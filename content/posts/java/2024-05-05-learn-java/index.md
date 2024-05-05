@@ -1,5 +1,4 @@
 ---
-
 title:      "Java学习笔记"
 date:       2024-05-04 21:00:00
 author:     "bruce"
@@ -8,7 +7,7 @@ tags:
     - java
 ---
 
-![image](/images/java/java-logo.jpg)
+![image](java-logo.jpg)
 
 ## 一、背景
 
@@ -16,8 +15,8 @@ tags:
 
 ## 二、整体学习路线
 
-![](/attachments/Pasted-image-20240504163728.png)
-![](/attachments/Pasted%20image%2020240504163749.png)
+![](Pasted-image-20240504163728.png)/
+![](Pasted%20image%2020240504163749.png)
 
 Java 技术体系（JAVA SE、JAVA EE、JAVA ME）。
 Java基本啥都能干，但主要做互联网系统的开发.
@@ -30,8 +29,8 @@ Java基本啥都能干，但主要做互联网系统的开发.
 
 ## 三、JDK 
 
-![](/attachments/Pasted%20image%2020240504194249.png)
-![](/attachments/Pasted%20image%2020240504200330.png)
+![](Pasted%20image%2020240504194249.png)
+![](Pasted%20image%2020240504200330.png)
 
 javac：编译工具
 
@@ -46,7 +45,7 @@ JDK(Java Development Kit): Java开发工具包(包含上面所有)
 
 ## 四、IDE IDEA
 
-![](/attachments/Pasted%20image%2020240504200858.png)
+![](Pasted%20image%2020240504200858.png)
 
 IDEA几种常见的快捷键，以及他们的作用
 
@@ -73,7 +72,7 @@ IDEA几种常见的快捷键，以及他们的作用
 
 字面量其实就是告诉程序员数据在程序中的书写格式
 
-![](/attachments/1660150925625.png)
+![](1660150925625.png)
 
 #### 1.2 变量
 
@@ -84,6 +83,9 @@ IDEA几种常见的快捷键，以及他们的作用
 **作用：** 使用变量来记录数据，对于数据的管理更为灵活。
 
 #### 1.3 关键字
+
+
+
 
 ### 2. 面向对象
 
