@@ -299,7 +299,7 @@ int[] arr = new int[]{44,55,66};
 
 例如:
 
-```java
+```
 //目标：掌握定义方法的完整格式，搞清楚使用方法的好处。
 public class MethodDemo1 {
     public static void main(String[] args) {
@@ -327,7 +327,62 @@ public class MethodDemo1 {
 
 **方法在计算机中的执行原理**
 
+Java的方法是在栈内存区域中执行，**每次调用方法，方法都会进栈执行；执行完后，又会弹栈出去。**先进后出
 
+假设在main方法中依次调用A方法、B方法、C方法，在内存中的执行流程如下：
+
+![image-20240505200300178](image-20240505200300178.png)
+
+**Java的参数传递机制都是：值传递，传递的是实参存储的值的副本。**
+
+基本类型和引用类型的参数在传递的时候有什么不同？
+
+- 都是值传递
+- 基本类型的参数传递存储的数据值。
+- 引用类型的参数传递存储的地址值。（String,Array都是引用类型）
+
+**方法重载**
+
+定义：一个类中，多个方法的名称相同，但它们形参列表不同。
+
+```
+public class MethodOverLoadDemo1 {
+    public static void main(String[] args) {
+        // 目标：认识方法重载，并掌握其应用场景。
+        test();
+        test(100);
+    }
+
+    public static void test(){
+        System.out.println("===test1===");
+    }
+
+    public static void test(int a){
+        System.out.println("===test2===" + a);
+    }
+
+    void test(double a){
+
+    }
+
+    void test(double a, int b){
+    }
+
+    void test(int b, double a){
+    }
+
+    int test(int a, int b){
+        return a + b;
+    }
+}
+```
+
+**方法重载需要注意什么？**
+
+- 一个类中，只要一些方法的名称相同、形参列表不同，那么它们就是方法重载了，
+  	  其它的都不管（如：修饰符，返回值类型是否一样都无所谓）。
+
+- 形参列表不同指的是：形参的个数、类型、顺序不同，不关心形参的名称。
 
 ### 2. 面向对象
 
