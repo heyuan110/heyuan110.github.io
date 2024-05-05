@@ -87,19 +87,24 @@ enableEmoji = true  # Shorthand emojis in content files - https://gohugo.io/func
     weight = 10
 
   [[menu.nav]]
+    name = "Java系列"
+    url = "java-categories/"
+    weight = 11
+
+  [[menu.nav]]
     name = "Go系列"
     url = "go-categories/"
-    weight = 11
+    weight = 12
 
   [[menu.nav]]
     name = "Docker系列"
     url = "docker-categories/"
-    weight = 12
+    weight = 13
 
   [[menu.nav]]
     name = "Linux系列"
     url = "linux-categories/"
-    weight = 13
+    weight = 14
 
 
 
