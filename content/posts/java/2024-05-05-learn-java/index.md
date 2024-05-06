@@ -21,12 +21,6 @@ tags:
 Java 技术体系（JAVA SE、JAVA EE、JAVA ME）。
 Java基本啥都能干，但主要做互联网系统的开发.
 
-*参考：*
-
-[1. Java视频教程从入门到精通（完整版）](https://yun.itheima.com/map/22.html)
-
-[2. Java程序员学习路线图](https://yun.itheima.com/subject/javamap/index.html)
-
 ## 三、JDK 
 
 ![](Pasted%20image%2020240504194249.png)
@@ -59,12 +53,6 @@ IDEA几种常见的快捷键，以及他们的作用
 | Ctrl + / , Ctrl + Shift + /       | 对代码进行注释(讲注释的时候再说) |
 
 ## 五、JAVA SE基础
-
-*参考学习教程：*
-
-[1. Java入门基础视频教程B站](https://www.bilibili.com/video/BV1Cv411372m/?spm_id_from=333.999.0.0) 
-
-[2. Java基础教程YouTube](https://www.youtube.com/watch?v=VqfGCmjQt10)
 
 ### 1. 基础语法
 
@@ -469,6 +457,18 @@ class Student{
 
 ## 六、JAVA WEB
 
-[JavaWeb开发教程](https://www.bilibili.com/video/BV1m84y1w7Tb/?vd_source=4d819443886ce5506c7c6b65b4a7ad93)
-
 ## 七、JAVA WEB进阶
+
+
+
+
+---
+## *参考*
+
+[Java程序员学习路线图](https://yun.itheima.com/subject/javamap/index.html)
+
+[Java入门基础视频教程(B站)](https://www.bilibili.com/video/BV1Cv411372m/?spm_id_from=333.999.0.0) 
+
+[Java基础教程(YouTube)](https://www.youtube.com/watch?v=VqfGCmjQt10)
+
+[JavaWeb开发教程(B站)](https://www.bilibili.com/video/BV1m84y1w7Tb/?vd_source=4d819443886ce5506c7c6b65b4a7ad93)
