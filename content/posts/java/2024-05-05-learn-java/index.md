@@ -632,17 +632,129 @@ public class StringDemo2 {
 }
 ```
 
+字符串原理理解注意下面两点：
+
+- String是不可变字符串对象。
+
+![image-20240506150738527](image-20240506150738527.png)
+
+看起来例子里的name值变了呀，为什么说字符串不可变呢？
+
+这需要从字符串在内存中存储原理来解释，以`”“`形式创建的字符串对象，会在堆内存中的 **字符串常量池** 中存储。
+
+![image-20240506151040074](image-20240506151040074.png)
 
 
 
 
 
+- 只要是以“...”方式写出的字符串对象，会存储到字符串常量池，且相同内容的字符串只存储一份；但通过new方式创建字符串对象，每new一次都会产生一个新的对象放在堆内存中。
+
+![image-20240506151836976](image-20240506151836976.png)
 
  **ArrayList**
 
 ArrayList是集合中最常用的一种，集合类似于数组，也是容器，用来装数据的，但集合的大小可变
 
-有数组为什么还要有集合？因为在java中数据长度是固定的，一旦创建不可改变，集合则可以根据需要想存几个就存几个，长度可变。
+有数组为什么还要有集合？因为在java中数组长度是固定的，一旦创建不可改变，集合则可以根据需要想存几个就存几个，长度可变。
+
+创建ArrayList容器对象一般使用空参数构造方法：
+
+![image-20240506161915929](image-20240506161915929.png)
+
+调用ArrayList类的常用方法对容器中的数据进行操作
+
+![image-20240506161933504](image-20240506161933504.png)
+
+```java
+public class ArrayListDemo1 {
+    public static void main(String[] args) {
+        // 1、创建一个ArrayList的集合对象
+        // ArrayList<String> list = new ArrayList<String>();
+        // 从jdk 1.7开始才支持的
+        ArrayList<String> list = new ArrayList<>();
+
+        list.add("黑马");
+        list.add("黑马");
+        list.add("Java");
+        System.out.println(list);
+
+        // 2、往集合中的某个索引位置处添加一个数据
+        list.add(1, "MySQL");
+        System.out.println(list);
+
+        // 3、根据索引获取集合中某个索引位置处的值
+        String rs = list.get(1);
+        System.out.println(rs);
+
+        // 4、获取集合的大小（返回集合中存储的元素个数）
+        System.out.println(list.size());
+
+        // 5、根据索引删除集合中的某个元素值，会返回被删除的元素值给我们
+        System.out.println(list.remove(1));
+        System.out.println(list);
+
+        // 6、直接删除某个元素值，删除成功会返回true，反之
+        System.out.println(list.remove("Java"));
+        System.out.println(list);
+
+        list.add(1, "html");
+        System.out.println(list);
+
+        // 默认删除的是第一次出现的这个黑马的数据的
+        System.out.println(list.remove("黑马"));
+        System.out.println(list);
+
+        // 7、修改某个索引位置处的数据，修改后会返回原来的值给我们
+        System.out.println(list.set(1, "黑马程序员"));
+        System.out.println(list);
+    }
+}
+```
+
+#### 2.9 static修饰符
+
+static读作静态，可以用来修饰成员变量，也能修饰成员方法。
+
+**修饰成员变量**
+
+Java中的成员变量按照有无static修饰分为两种：**类变量、实例变量**
+
+![image-20240506162549143](image-20240506162549143.png)
+
+静态变量是属于类的，只需要通过类名就可以调用：**`类名.静态变量`**
+
+实例变量是属于对象的，需要通过对象才能调用：**`对象.实例变量`**
+
+![image-20240506162800881](image-20240506162800881.png)
+
+
+
+- 1.类变量：属于类，在内存中只有一份，用类名调用
+- 2.实例变量：属于对象，每一个对象都有一份，用对象调用
+
+**修饰成员方法**
+
+成员方法根据有无static也分为两类：**类方法、实例方法**
+
+![image-20240506163026791](image-20240506163026791.png)
+
+> 有static修饰的方法，是属于类的，称为**类方法**；调用时直接用类名调用即可。
+
+> 无static修饰的方法，是属于对象的，称为实例方法；调用时，需要使用对象调用。
+
+- 类方法：static修饰的方法，可以被类名调用，是因为它是随着类的加载而加载的；所以类名直接就可以找到static修饰的方法
+- 实例方法：非static修饰的方法，需要创建对象后才能调用，是因为实例方法中可能会访问实例变量，而实例变量需要创建对象后才存在。所以实例方法，必须创建对象后才能调用。
+
+![image-20240506163328827](image-20240506163328827.png)
+
+
+
+
+
+
+
+
 
 
 
