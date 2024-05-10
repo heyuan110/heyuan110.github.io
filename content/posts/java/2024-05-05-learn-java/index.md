@@ -1195,6 +1195,345 @@ new 父类/接口(参数值){
 
 ![image-20240509173532567](image-20240509173532567.png)
 
+### 17 枚举
+
+枚举是一种特殊的类，它的格式是：
+
+```
+public enum 枚举类名{
+    枚举项1,枚举项2,枚举项3;
+}
+```
+
+其实枚举项就表示枚举类的对象，只是这些对象在定义枚举类时就预先写好了，以后就只能用这几个固定的对象。
+
+![image-20240509173839500](image-20240509173839500.png)
+
+枚举一般表示几个固定的值，然后作为参数进行传输
+
+### 18 泛型
+
+泛型指的是，在定义类、接口、方法时，同时声明了一个或者多个类型变量（如：<E>），称为泛型类、泛型接口、泛型方法、它们统称为泛型。
+
+前面学过的ArrayList类就是一个泛型类，打开API文档查看
+
+![image-20240509174121417](image-20240509174121417.png)
+
+- 泛型的好处：在编译阶段可以避免出现一些非法的数据。
+- 泛型的本质：把具体的数据类型传递给类型变量
+
+#### 自定义泛型类
+
+实际工作中一般都是源代码中写好，我们直接用的，就是ArrayList<E>这样的，自己定义泛型类是非常少的，自定义泛型类的格式如下：
+
+```
+//这里的<T,W>其实指的就是类型变量，可以是一个，也可以是多个。
+public class 类名<T,W>{
+    
+}
+```
+
+![image-20240509174419959](image-20240509174419959.png)
+
+![image-20240509174430125](image-20240509174430125.png)
+
+#### 自定义泛型接口
+
+泛型接口其实指的是在接口中把不确定的数据类型用`<类型变量>`表示。定义格式如下：
+
+```
+//这里的类型变量，一般是一个字母，比如<E>
+public interface 接口名<类型变量>{
+    
+}
+```
+
+#### 泛型方法
+
+格式：
+
+```
+public <泛型变量,泛型变量> 返回值类型 方法名(形参列表){
+    
+}
+```
+
+![image-20240509174828524](image-20240509174828524.png)
+
+![image-20240509194737575](image-20240509194737575.png)
+
+#### 泛型限定
+
+泛型限定的意思是对泛型的数据类型进行范围的限制。有如下的三种格式：
+
+- <?> 表示任意类型
+- <? extends 数据类型> 表示指定类型或者指定类型的子类
+- <? super 数据类型> 表示指定类型或者指定类型的父类
+
+演示一下，假设有Car作为父类，BENZ，BWM两个类作为Car的子类，代码如下：
+
+![image-20240509195036598](image-20240509195036598.png)
+
+#### 泛型擦除
+
+泛型只能编译阶段有效，一旦编译成字节码，字节码中是不包含泛型的
+
+泛型只支持引用数据类型，不支持基本数据类型
+
+把下面的代码的字节码进行反编译
+
+![image-20240509195159818](image-20240509195159818.png)
+
+下面是反编译之后的代码，我们发现ArrayList后面没有泛型
+
+![image-20240509195222000](image-20240509195222000.png)
+
+### 19 包装类
+
+Java中有一句很经典的话，万物皆对象。Java中的8种基本数据类型还不是对象，所以要把它们变成对象，变成对象之后，可以提供一些方法对数据进行操作。
+
+8种基本数据类型都用一个包装类与之对一个，如下图所示
+
+![image-20240510144338285](image-20240510144338285.png)
+
+#### 创建包装类的对象方式、自动装箱和拆箱的特性；以Integer为例：
+
+```java
+//1.创建Integer对象，封装基本类型数据10
+Integer a = new Integer(10);
+
+//2.使用Integer类的静态方法valueOf(数据)
+Integer b = Integer.valueOf(10);
+
+//3.还有一种自动装箱的写法（意思就是自动将基本类型转换为引用类型）
+Integer c = 10;
+
+//4.有装箱肯定还有拆箱（意思就是自动将引用类型转换为基本类型）
+int d = c;
+
+//5.装箱和拆箱在使用集合时就有体现
+ArrayList<Integer> list = new ArrayList<>();
+//添加的元素是基本类型，实际上会自动装箱为Integer类型
+list.add(100);
+//获取元素时，会将Integer类型自动拆箱为int类型
+int e = list.get(0);
+```
+
+#### 包装类数据类型转换
+
+- 把字符串转换为数值型数据：包装类.parseXxx(字符串)
+
+```
+public static int parseInt(String s)
+    把字符串转换为基本数据类型
+```
+
+- 将数值型数据转换为字符串：包装类.valueOf(数据);
+
+```
+public static String valueOf(int a)
+    把基本类型数据转换为
+```
+
+![image-20240510144917163](image-20240510144917163.png)
+
+### 20 常用API
+
+#### 1. Object类
+
+Object类是Java中所有类的祖宗类，因此，Java中所有类的对象都可以直接使用Object类中提供的一些方法。
+
+- clone()
+- equals(Object obj)
+- toString()
+
+#### 2. Objects类
+
+Objects是一个工具类，提供了一些方法可以对任意对象进行操作。主要方法如下
+
+![image-20240510145748115](image-20240510145748115.png)
+
+Object也有equals，Objects有equals，那两者有什么区别呢？
+
+![image-20240510145915640](image-20240510145915640.png)
+
+Object的equals方法前提是对象不能为null，Objects则可以，使用更安全。
+
+#### 3. StringBuilder类
+
+- StringBuilder代表可变字符串对象，相当于是一个容器，它里面的字符串是可以改变的，就是用来操作字符串的。
+
+- 好处：StringBuilder比String更合适做字符串的修改操作，效率更高，代码也更加简洁。
+
+  ![image-20240510150136587](image-20240510150136587.png)
+
+为什么说StringBuilder对字符串进行操作比String效率高？
+
+![image-20240510150212090](image-20240510150212090.png)
+
+直接使用Stirng拼接100万次，等了1分钟，还没结束，但是使用StringBuilder做拼接，不到1秒钟出结果了，why？
+
+简单说：String是不可变对象，而StringBuilder在拼接时只是把字符串转为char拷贝到char[]
+
+String对象不可变，则每次拼接都会创建新的String对象。即使在新的jdk有对`String+`的优化，仍然是效率不够高，比如每次循环拼接时都会被自动创建一个StringBuider对象来append，最后还会将该对象调用toString()方法。
+
+![image-20240510152257362](image-20240510152257362.png)
+
+StringBuilder其实就是个char[]，append时，是将String对象转为char后放入StringBuilder的char[]内。当长度不够放时，对该char[]扩容即可。
+
+![image-20240510152318548](image-20240510152318548.png)
+
+#### 4. StringJoiner
+
+StringJoiner号称是拼接神器，不仅效率高，而且代码简洁
+
+![image-20240510152549736](image-20240510152549736.png)
+
+#### 5. Math类
+
+Math是数学的意思，该类提供了很多个进行数学运算的方法，如求绝对值，求最大值，四舍五入等。
+
+```java
+public class MathTest {
+    public static void main(String[] args) {
+        // 目标：了解下Math类提供的常见方法。
+        // 1、public static int abs(int a)：取绝对值（拿到的结果一定是正数）
+        //    public static double abs(double a)
+        System.out.println(Math.abs(-12)); // 12
+        System.out.println(Math.abs(123)); // 123
+        System.out.println(Math.abs(-3.14)); // 3.14
+
+        // 2、public static double ceil(double a): 向上取整
+        System.out.println(Math.ceil(4.0000001)); // 5.0
+        System.out.println(Math.ceil(4.0)); // 4.0
+
+        // 3、public static double floor(double a): 向下取整
+        System.out.println(Math.floor(4.999999)); // 4.0
+        System.out.println(Math.floor(4.0)); // 4.0
+
+        // 4、public static long round(double a)：四舍五入
+        System.out.println(Math.round(3.4999)); // 3
+        System.out.println(Math.round(3.50001)); // 4
+
+        // 5、public static int max(int a, int b)：取较大值
+        //   public static int min(int a, int b)：取较小值
+        System.out.println(Math.max(10, 20)); // 20
+        System.out.println(Math.min(10, 20)); // 10
+
+        // 6、 public static double pow(double a, double b)：取次方
+        System.out.println(Math.pow(2, 3)); // 2的3次方   8.0
+        System.out.println(Math.pow(3, 2)); // 3的2次方   9.0
+
+        // 7、public static double random()： 取随机数 [0.0 , 1.0) (包前不包后)
+        System.out.println(Math.random());
+    }
+}
+```
+
+#### 6. System类
+
+System类，提供了一些获取获取系统数据的方法。比如获取系统时间
+
+```java
+/**
+ * 目标：了解下System类的常见方法。
+ */
+public class SystemTest {
+    public static void main(String[] args) {
+
+        // 1、public static void exit(int status):
+        //   终止当前运行的Java虚拟机。
+        //   该参数用作状态代码; 按照惯例，非零状态代码表示异常终止。
+        System.exit(0); // 人为的终止虚拟机。(不要使用)
+
+        // 2、public static long currentTimeMillis():
+        //    获取当前系统的时间
+        //    返回的是long类型的时间毫秒值：指的是从1970-1-1 0:0:0开始走到此刻的总的毫秒值，1s = 1000ms
+        long time = System.currentTimeMillis();
+        System.out.println(time);
+
+        for (int i = 0; i < 1000000; i++) {
+            System.out.println("输出了：" + i);
+        }
+
+        long time2 = System.currentTimeMillis();
+        System.out.println((time2 - time) / 1000.0 + "s");
+    }
+}
+```
+
+#### 7. Runtime类
+
+运行时类叫Runtime类，这个类可以用来获取JVM的一些信息，也可以用这个类去执行其他的程序
+
+![image-20240510160528198](image-20240510160528198.png)
+
+#### 8. BigDecimal类
+
+![image-20240510160659140](image-20240510160659140.png)
+
+BigDecimal的出现是为了解决计算精度损失的问题。它提供了一些方法可以对数据进行四则运算，而且不丢失精度，同时还可以保留指定的小数位。
+
+```java
+public class Test2 {
+    public static void main(String[] args) {
+        // 目标：掌握BigDecimal进行精确运算的方案。
+        double a = 0.1;
+        double b = 0.2;
+
+        // 1、把浮点型数据封装成BigDecimal对象，再来参与运算。
+        // a、public BigDecimal(double val) 得到的BigDecimal对象是无法精确计算浮点型数据的。 注意：不推荐使用这个，
+        // b、public BigDecimal(String val)  得到的BigDecimal对象是可以精确计算浮点型数据的。 可以使用。
+        // c、public static BigDecimal valueOf(double val): 通过这个静态方法得到的BigDecimal对象是可以精确运算的。是最好的方案。
+        BigDecimal a1 = BigDecimal.valueOf(a);
+        BigDecimal b1 = BigDecimal.valueOf(b);
+
+        // 2、public BigDecimal add(BigDecimal augend): 加法
+        BigDecimal c1 = a1.add(b1);
+        System.out.println(c1);
+
+        // 3、public BigDecimal subtract(BigDecimal augend): 减法
+        BigDecimal c2 = a1.subtract(b1);
+        System.out.println(c2);
+
+        // 4、public BigDecimal multiply(BigDecimal augend): 乘法
+        BigDecimal c3 = a1.multiply(b1);
+        System.out.println(c3);
+
+        // 5、public BigDecimal divide(BigDecimal b): 除法
+        BigDecimal c4 = a1.divide(b1);
+        System.out.println(c4);
+
+//        BigDecimal d1 = BigDecimal.valueOf(0.1);
+//        BigDecimal d2 = BigDecimal.valueOf(0.3);
+//        BigDecimal d3 = d1.divide(d2);
+//        System.out.println(d3);
+
+        // 6、public BigDecimal divide(另一个BigDecimal对象，精确几位，舍入模式) : 除法，可以设置精确几位。
+        BigDecimal d1 = BigDecimal.valueOf(0.1);
+        BigDecimal d2 = BigDecimal.valueOf(0.3);
+        BigDecimal d3 = d1.divide(d2,  2, RoundingMode.HALF_UP); // 0.33
+        System.out.println(d3);
+
+        // 7、public double doubleValue() : 把BigDecimal对象又转换成double类型的数据。
+        //print(d3);
+        //print(c1);
+        double db1 = d3.doubleValue();
+        double db2 = c1.doubleValue();
+        print(db1);
+        print(db2);
+    }
+
+    public static void print(double a){
+        System.out.println(a);
+    }
+}
+```
+
+
+
+
+
 
 
 
