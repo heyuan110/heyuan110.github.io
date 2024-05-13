@@ -1,6 +1,6 @@
 ---
 title:      "Java学习笔记（二）"
-date:       2024-05-04 21:00:00
+date:       2024-05-13 12:00:00
 author:     "bruce"
 toc: true
 tags:
@@ -9,7 +9,7 @@ tags:
 
 ![image](java-logo.jpg)
 
-[接上一篇《Java学习笔记（二）》](../2024-05-05-learn-java/index.md)
+[接上一篇《Java学习笔记（二）》](../2024-05-05-learn-java)
 
 
 
