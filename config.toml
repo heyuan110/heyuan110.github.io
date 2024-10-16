@@ -1,110 +1,114 @@
-baseURL = "http://www.heyuan110.com"
-languageCode = "zh-hans"
-defaultContentLanguage = "en"
-title = "Bruce's Blog"
-theme = "hermit"
-# enableGitInfo = true
-pygmentsCodefences  = true
-pygmentsUseClasses  = true
-# hasCJKLanguage = true  # If Chinese/Japanese/Korean is your main content language, enable this to make wordCount works right.
-rssLimit = 10  # Maximum number of items in the RSS feed.
-copyright = "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License." # This message is only used by the RSS template.
-enableEmoji = true  # Shorthand emojis in content files - https://gohugo.io/functions/emojify/
-# googleAnalytics = "UA-166045776-1"
-# disqusShortname = "yourdiscussshortname"
+baseURL="http://www.heyuan110.com"
+languageCode="zh-hans"
+defaultContentLanguage="en"
+title="Bruce'sBlog"
+theme="hermit"
+#enableGitInfo=true
+pygmentsCodefences=true
+pygmentsUseClasses=true
+#hasCJKLanguage=true#IfChinese/Japanese/Koreanisyourmaincontentlanguage,enablethistomakewordCountworksright.
+rssLimit=10#MaximumnumberofitemsintheRSSfeed.
+copyright="ThisworkislicensedunderaCreativeCommonsAttribution-NonCommercial4.0InternationalLicense."#ThismessageisonlyusedbytheRSStemplate.
+enableEmoji=true#Shorthandemojisincontentfiles-https://gohugo.io/functions/emojify/
+#googleAnalytics="UA-166045776-1"
+#disqusShortname="yourdiscussshortname"
 
 [author]
-  name = "Bruce's Blog"
+name="Bruce'sBlog"
 
 [blackfriday]
-  # hrefTargetBlank = true
-  # noreferrerLinks = true
-  # nofollowLinks = true
+#hrefTargetBlank=true
+#noreferrerLinks=true
+#nofollowLinks=true
 
 [taxonomies]
-  tag = "tags"
-  # Categories are disabled by default.
+tag="tags"
+#Categoriesaredisabledbydefault.
 
 [params]
-  since = "2015"
-  toc = true
+since="2015"
+toc=true
 
-  dateform        = "Jan 2, 2006"
-  dateformShort   = "Jan 2"
-  dateformNum     = "2006-01-02"
-  dateformNumTime = "2006-01-02 15:04 -0700"
+dateform="Jan2,2006"
+dateformShort="Jan2"
+dateformNum="2006-01-02"
+dateformNumTime="2006-01-0215:04-0700"
 
-  # Metadata mostly used in document's head
-  description = "bruce,hebruce110,laravel,java,springweb,vue,ios,博客,go,golang,源码分析,系列教程"
-  # images = [""]
-  themeColor = "#494f5c"
+#Metadatamostlyusedindocument'shead
+description="bruce,hebruce110,laravel,java,springweb,vue,ios,博客,go,golang,源码分析,系列教程"
+#images=[""]
+themeColor="#494f5c"
 
-  homeSubtitle = "常笑笑自己!"
-  footerCopyright = ' &#183; 版权所有'
-  # bgImg = ""  # Homepage background-image URL
+homeSubtitle="常笑笑自己!"
+footerCopyright='&#183;版权所有'
+#bgImg=""#Homepagebackground-imageURL
 
-  # Prefix of link to the git commit detail page. GitInfo must be enabled.
-  gitUrl = "https://github.com/heyuan110/heyuan110.github.com/commit/"
+#Prefixoflinktothegitcommitdetailpage.GitInfomustbeenabled.
+gitUrl="https://github.com/heyuan110/heyuan110.github.com/commit/"
 
-  # Toggling this option needs to rebuild SCSS, requires Hugo extended version
-  justifyContent = false  # Set "text-align: justify" to `.content`.
+#TogglingthisoptionneedstorebuildSCSS,requiresHugoextendedversion
+justifyContent=false#Set"text-align:justify"to`.content`.
 
-  relatedPosts = false  # Add a related content section to all single posts page
+relatedPosts=false#Addarelatedcontentsectiontoallsinglepostspage
 
-  code_copy_button = true # Turn on/off the code-copy-button for code-fields
-  
-  # Add custom css
-  # customCSS = ["css/foo.css", "css/bar.css"]
+code_copy_button=true#Turnon/offthecode-copy-buttonforcode-fields
 
-  # Social Icons
-  # Check https://github.com/Track3/hermit#social-icons for more info.
+#Addcustomcss
+#customCSS=["css/foo.css","css/bar.css"]
 
-  [[params.social]]
-    name = "github"
-    url = "https://github.com/hebruce110"
+#SocialIcons
+#Checkhttps://github.com/Track3/hermit#social-iconsformoreinfo.
+
+[[params.social]]
+name="github"
+url="https://github.com/hebruce110"
 
 [menu]
 
-  [[menu.main]]
-    name = "文章"
-    url = "posts/"
-    weight = 10
+[[menu.main]]
+name="文章"
+url="posts/"
+weight=10
 
-  [[menu.main]]
-    name = "标签"
-    url = "tags/"
-    weight = 10
+[[menu.main]]
+name="标签"
+url="tags/"
+weight=10
 
-  [[menu.main]]
-    name = "关于"
-    url = "about/"
-    weight = 20
+[[menu.main]]
+name="关于"
+url="about/"
+weight=20
 
+[[menu.nav]]
+name="文章"
+url="posts/"
+weight=10
 
-  [[menu.nav]]
-    name = "文章"
-    url = "posts/"
-    weight = 10
+[[menu.nav]]
+name="AI系列"
+url="ai-categories/"
+weight=11
 
-  [[menu.nav]]
-    name = "Java系列"
-    url = "java-categories/"
-    weight = 11
+[[menu.nav]]
+name="Java系列"
+url="java-categories/"
+weight=12
 
-  [[menu.nav]]
-    name = "Go系列"
-    url = "go-categories/"
-    weight = 12
+[[menu.nav]]
+name="Go系列"
+url="go-categories/"
+weight=13
 
-  [[menu.nav]]
-    name = "Docker系列"
-    url = "docker-categories/"
-    weight = 13
+[[menu.nav]]
+name="Docker系列"
+url="docker-categories/"
+weight=14
 
-  [[menu.nav]]
-    name = "Linux系列"
-    url = "linux-categories/"
-    weight = 14
+[[menu.nav]]
+name="Linux系列"
+url="linux-categories/"
+weight=15
 
 
 
