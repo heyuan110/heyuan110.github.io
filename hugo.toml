@@ -80,9 +80,14 @@ theme = 'hermit-V2'
 	weight=14
 
   [[menu.main]]
-	name="Linux系列"
-	url="linux-categories/"
-	weight=15	    
+  name="Linux系列"
+  url="linux-categories/"
+  weight=15     
+
+  [[menu.main]]
+  name="Web ToolBox"
+  url="web-toolbox/"
+  weight=16     
 
   [[menu.main]]
     name = "关于"
