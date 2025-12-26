@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON 查看器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --border-color: #30363d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --accent: #58a6ff;
+            --accent-hover: #79c0ff;
+            --string-color: #a5d6ff;
+            --number-color: #79c0ff;
+            --boolean-color: #ff7b72;
+            --null-color: #ffa657;
+            --key-color: #7ee787;
+            --bracket-color: #8b949e;
+            --line-color: #30363d;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 32px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #58a6ff, #a371f7, #ff7b72);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            min-height: calc(100vh - 200px);
+        }
+
+        .panel {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: var(--bg-tertiary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .panel-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .panel-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn {
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .btn:hover {
+            background: var(--border-color);
+            border-color: var(--text-secondary);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #238636, #2ea043);
+            border-color: #238636;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #2ea043, #3fb950);
+        }
+
+        .btn-accent {
+            background: linear-gradient(135deg, #1f6feb, #388bfd);
+            border-color: #1f6feb;
+            color: white;
+        }
+
+        .btn-accent:hover {
+            background: linear-gradient(135deg, #388bfd, #58a6ff);
+        }
+
+        .input-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .drop-overlay {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(88, 166, 255, 0.15);
+            border: 3px dashed var(--accent);
+            border-radius: 8px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 16px;
+            color: var(--accent);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .drop-overlay.active {
+            display: flex;
+        }
+
+        .drop-icon {
+            font-size: 48px;
+        }
+
+        #jsonInput {
+            flex: 1;
+            width: 100%;
+            padding: 16px;
+            background: var(--bg-primary);
+            border: none;
+            color: var(--text-primary);
+            font-family: 'SF Mono', 'Fira Code', 'Monaco', 'Menlo', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            resize: none;
+            outline: none;
+        }
+
+        #jsonInput::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .output-area {
+            flex: 1;
+            overflow: auto;
+            padding: 16px;
+            background: var(--bg-primary);
+        }
+
+        /* JSON树样式 */
+        .json-tree {
+            font-family: 'SF Mono', 'Fira Code', 'Monaco', 'Menlo', monospace;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .json-item {
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .json-item::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: var(--line-color);
+        }
+
+        .json-item:last-child::before {
+            bottom: 50%;
+        }
+
+        .json-item::after {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 14px;
+            width: 12px;
+            height: 1px;
+            background: var(--line-color);
+        }
+
+        .json-row {
+            display: flex;
+            align-items: flex-start;
+            padding: 2px 0;
+            border-radius: 4px;
+            transition: background 0.15s;
+        }
+
+        .json-row:hover {
+            background: rgba(88, 166, 255, 0.1);
+        }
+
+        .json-toggle {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 10px;
+            flex-shrink: 0;
+            border-radius: 4px;
+            margin-right: 4px;
+            transition: all 0.2s;
+            user-select: none;
+        }
+
+        .json-toggle:hover {
+            background: var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .json-toggle.collapsed::before {
+            content: '▶';
+        }
+
+        .json-toggle.expanded::before {
+            content: '▼';
+        }
+
+        .json-toggle.hidden {
+            visibility: hidden;
+        }
+
+        .json-key {
+            color: var(--key-color);
+            margin-right: 4px;
+        }
+
+        .json-colon {
+            color: var(--text-secondary);
+            margin-right: 8px;
+        }
+
+        .json-value {
+            word-break: break-all;
+        }
+
+        .json-value.string {
+            color: var(--string-color);
+        }
+
+        .json-value.string::before,
+        .json-value.string::after {
+            content: '"';
+            color: var(--string-color);
+            opacity: 0.7;
+        }
+
+        .json-value.number {
+            color: var(--number-color);
+        }
+
+        .json-value.boolean {
+            color: var(--boolean-color);
+            font-weight: 600;
+        }
+
+        .json-value.null {
+            color: var(--null-color);
+            font-style: italic;
+        }
+
+        .json-bracket {
+            color: var(--bracket-color);
+            font-weight: 500;
+        }
+
+        .json-bracket.open {
+            margin-left: 4px;
+        }
+
+        .json-children {
+            margin-left: 0;
+        }
+
+        .json-children.collapsed {
+            display: none;
+        }
+
+        .json-ellipsis {
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0 4px;
+            border-radius: 3px;
+        }
+
+        .json-ellipsis:hover {
+            background: var(--border-color);
+        }
+
+        .json-preview {
+            color: var(--text-secondary);
+            font-size: 12px;
+            margin-left: 8px;
+            opacity: 0.7;
+        }
+
+        .json-comma {
+            color: var(--text-secondary);
+        }
+
+        .json-size {
+            color: var(--text-secondary);
+            font-size: 11px;
+            margin-left: 8px;
+            background: var(--bg-tertiary);
+            padding: 1px 6px;
+            border-radius: 10px;
+        }
+
+        /* 搜索框 */
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--bg-tertiary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 6px 10px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-size: 13px;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent);
+        }
+
+        .search-info {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .highlight {
+            background: rgba(255, 200, 0, 0.3);
+            border-radius: 2px;
+            padding: 0 2px;
+        }
+
+        /* 状态消息 */
+        .message {
+            padding: 40px;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .message.error {
+            color: #ff7b72;
+        }
+
+        .message-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        /* 工具栏 */
+        .toolbar {
+            display: flex;
+            gap: 8px;
+            padding: 12px 16px;
+            background: var(--bg-tertiary);
+            border-top: 1px solid var(--border-color);
+            flex-wrap: wrap;
+        }
+
+        .toolbar-group {
+            display: flex;
+            gap: 4px;
+            padding-right: 12px;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .toolbar-group:last-child {
+            border-right: none;
+        }
+
+        /* 统计信息 */
+        .stats {
+            display: flex;
+            gap: 16px;
+            padding: 8px 16px;
+            background: var(--bg-tertiary);
+            border-top: 1px solid var(--border-color);
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .stat-value {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* 路径显示 */
+        .path-bar {
+            padding: 8px 16px;
+            background: var(--bg-tertiary);
+            border-bottom: 1px solid var(--border-color);
+            font-family: 'SF Mono', monospace;
+            font-size: 12px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            overflow-x: auto;
+        }
+
+        .path-segment {
+            color: var(--accent);
+            cursor: pointer;
+        }
+
+        .path-segment:hover {
+            text-decoration: underline;
+        }
+
+        /* Toast通知 */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast.success {
+            border-color: #238636;
+            color: #3fb950;
+        }
+
+        /* 深度指示器 */
+        .depth-indicator {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            border-radius: 2px;
+        }
+
+        .depth-0 .depth-indicator { background: #ff7b72; }
+        .depth-1 .depth-indicator { background: #ffa657; }
+        .depth-2 .depth-indicator { background: #d2a8ff; }
+        .depth-3 .depth-indicator { background: #79c0ff; }
+        .depth-4 .depth-indicator { background: #7ee787; }
+        .depth-5 .depth-indicator { background: #ff7b72; }
+
+        /* 响应式 */
+        @media (max-width: 1024px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .panel {
+                min-height: 400px;
+            }
+        }
+
+        /* 滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-secondary);
+        }
+
+        /* 复制按钮 */
+        .copy-btn {
+            opacity: 0;
+            padding: 2px 6px;
+            font-size: 10px;
+            margin-left: 8px;
+            transition: opacity 0.2s;
+        }
+
+        .json-row:hover .copy-btn {
+            opacity: 1;
+        }
+
+        /* 动画 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .json-tree > .json-node {
+            animation: fadeIn 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>{ } JSON 查看器</h1>
+            <p>粘贴 JSON 数据，即刻获得美观、可交互的树形视图</p>
+        </header>
+
+        <div class="main-layout">
+            <!-- 输入面板 -->
+            <div class="panel">
+                <div class="panel-header">
+                    <span class="panel-title">📝 输入 JSON</span>
+                    <div class="panel-actions">
+                        <button class="btn" onclick="openFile()">📂 打开</button>
+                        <button class="btn" onclick="loadSample()">📋 示例</button>
+                        <button class="btn" onclick="clearInput()">🗑️ 清空</button>
+                        <button class="btn btn-primary" onclick="formatAndParse()">✨ 格式化</button>
+                    </div>
+                </div>
+                <input type="file" id="fileInput" accept=".json,.txt" style="display: none;">
+                <div class="input-area" id="inputAreaWrapper">
+                    <textarea id="jsonInput" placeholder='在此粘贴 JSON 数据，或拖放 JSON 文件到此处
+
+示例：
+{
+  "name": "张三",
+  "age": 28,
+  "skills": ["JavaScript", "Python", "Go"]
+}'></textarea>
+                    <div class="drop-overlay" id="dropOverlay">
+                        <div class="drop-icon">📄</div>
+                        <div>释放文件以加载 JSON</div>
+                    </div>
+                </div>
+                <div class="toolbar">
+                    <div class="toolbar-group">
+                        <button class="btn" onclick="minifyJSON()">🗜️ 压缩</button>
+                        <button class="btn" onclick="beautifyJSON()">🎨 美化</button>
+                    </div>
+                    <div class="toolbar-group">
+                        <button class="btn" onclick="copyInput()">📋 复制</button>
+                        <button class="btn" onclick="downloadJSON()">💾 下载</button>
+                    </div>
+                    <div class="toolbar-group">
+                        <button class="btn" onclick="escapeJSON()">🔒 转义</button>
+                        <button class="btn" onclick="unescapeJSON()">🔓 反转义</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 输出面板 -->
+            <div class="panel">
+                <div class="panel-header">
+                    <span class="panel-title">🌳 树形视图</span>
+                    <div class="panel-actions">
+                        <button class="btn" onclick="expandAll()">📂 全部展开</button>
+                        <button class="btn" onclick="collapseAll()">📁 全部收起</button>
+                        <button class="btn btn-accent" onclick="copyFormatted()">📋 复制</button>
+                    </div>
+                </div>
+                <div class="search-box">
+                    <input type="text" class="search-input" id="searchInput" placeholder="🔍 搜索键名或值..." oninput="handleSearch()">
+                    <span class="search-info" id="searchInfo"></span>
+                </div>
+                <div id="pathBar" class="path-bar" style="display: none;">
+                    路径: <span id="pathContent">$</span>
+                </div>
+                <div class="output-area" id="outputArea">
+                    <div class="message">
+                        <div class="message-icon">📄</div>
+                        <div>在左侧输入 JSON 数据后点击「格式化」</div>
+                    </div>
+                </div>
+                <div class="stats" id="statsBar" style="display: none;">
+                    <span class="stat-item">对象: <span class="stat-value" id="statObjects">0</span></span>
+                    <span class="stat-item">数组: <span class="stat-value" id="statArrays">0</span></span>
+                    <span class="stat-item">字符串: <span class="stat-value" id="statStrings">0</span></span>
+                    <span class="stat-item">数字: <span class="stat-value" id="statNumbers">0</span></span>
+                    <span class="stat-item">布尔: <span class="stat-value" id="statBooleans">0</span></span>
+                    <span class="stat-item">Null: <span class="stat-value" id="statNulls">0</span></span>
+                    <span class="stat-item">深度: <span class="stat-value" id="statDepth">0</span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        let parsedData = null;
+        let stats = { objects: 0, arrays: 0, strings: 0, numbers: 0, booleans: 0, nulls: 0, maxDepth: 0 };
+
+        // 移除 JSON 中的注释（支持 JSONC 格式）
+        function stripJsonComments(jsonString) {
+            let result = '';
+            let i = 0;
+            let inString = false;
+            let stringChar = '';
+
+            while (i < jsonString.length) {
+                const char = jsonString[i];
+                const nextChar = jsonString[i + 1];
+
+                // 处理字符串状态
+                if (inString) {
+                    result += char;
+                    // 检查转义字符
+                    if (char === '\\' && i + 1 < jsonString.length) {
+                        result += nextChar;
+                        i += 2;
+                        continue;
+                    }
+                    // 检查字符串结束
+                    if (char === stringChar) {
+                        inString = false;
+                    }
+                    i++;
+                    continue;
+                }
+
+                // 检查字符串开始
+                if (char === '"' || char === "'") {
+                    inString = true;
+                    stringChar = char;
+                    result += char;
+                    i++;
+                    continue;
+                }
+
+                // 检查单行注释 //
+                if (char === '/' && nextChar === '/') {
+                    // 跳过到行尾
+                    while (i < jsonString.length && jsonString[i] !== '\n') {
+                        i++;
+                    }
+                    continue;
+                }
+
+                // 检查多行注释 /* */
+                if (char === '/' && nextChar === '*') {
+                    i += 2;
+                    // 跳过到 */
+                    while (i < jsonString.length - 1) {
+                        if (jsonString[i] === '*' && jsonString[i + 1] === '/') {
+                            i += 2;
+                            break;
+                        }
+                        i++;
+                    }
+                    continue;
+                }
+
+                result += char;
+                i++;
+            }
+
+            return result;
+        }
+
+        // 移除尾随逗号（JSON 不允许，但 JSONC 常见）
+        function removeTrailingCommas(jsonString) {
+            // 移除对象和数组中的尾随逗号
+            return jsonString.replace(/,(\s*[}\]])/g, '$1');
+        }
+
+        // 预处理 JSON 字符串，增强兼容性
+        function preprocessJson(input) {
+            let processed = input;
+
+            // 1. 移除注释
+            processed = stripJsonComments(processed);
+
+            // 2. 移除尾随逗号
+            processed = removeTrailingCommas(processed);
+
+            // 3. 尝试处理单引号（非标准但常见）
+            // 注意：这是一个简化处理，可能不适用于所有情况
+
+            return processed;
+        }
+
+        // 解析并渲染JSON
+        function formatAndParse() {
+            const input = document.getElementById('jsonInput').value.trim();
+            const output = document.getElementById('outputArea');
+
+            if (!input) {
+                output.innerHTML = '<div class="message"><div class="message-icon">📄</div><div>请输入 JSON 数据</div></div>';
+                document.getElementById('statsBar').style.display = 'none';
+                return;
+            }
+
+            let wasPreprocessed = false;
+
+            try {
+                // 先尝试直接解析
+                try {
+                    parsedData = JSON.parse(input);
+                } catch (directError) {
+                    // 直接解析失败，尝试预处理后解析
+                    const preprocessed = preprocessJson(input);
+                    parsedData = JSON.parse(preprocessed);
+                    wasPreprocessed = true;
+                }
+
+                // 美化输入框中的JSON
+                document.getElementById('jsonInput').value = JSON.stringify(parsedData, null, 2);
+
+                // 重置统计
+                stats = { objects: 0, arrays: 0, strings: 0, numbers: 0, booleans: 0, nulls: 0, maxDepth: 0 };
+
+                // 渲染树形视图
+                output.innerHTML = '<div class="json-tree">' + renderNode(parsedData, '', 0, false) + '</div>';
+
+                // 更新统计
+                updateStats();
+
+                if (wasPreprocessed) {
+                    showToast('✓ 解析成功（已自动移除注释和尾逗号）', 'success');
+                } else {
+                    showToast('✓ JSON 解析成功', 'success');
+                }
+
+            } catch (e) {
+                output.innerHTML = `<div class="message error"><div class="message-icon">❌</div><div>JSON 解析错误</div><div style="margin-top: 10px; font-size: 13px;">${escapeHtml(e.message)}</div></div>`;
+                document.getElementById('statsBar').style.display = 'none';
+                parsedData = null;
+            }
+        }
+
+        // 渲染节点
+        function renderNode(data, key, depth, isLast, path = '$') {
+            const type = getType(data);
+            const currentPath = key ? (path + (isNaN(key) ? '.' + key : '[' + key + ']')) : path;
+            const nodeId = 'node-' + Math.random().toString(36).substr(2, 9);
+
+            // 更新统计
+            if (depth > stats.maxDepth) stats.maxDepth = depth;
+
+            let html = `<div class="json-node depth-${depth % 6}" data-path="${escapeHtml(currentPath)}">`;
+            html += '<div class="json-row">';
+
+            if (type === 'object' || type === 'array') {
+                const isObject = type === 'object';
+                const items = isObject ? Object.keys(data) : data;
+                const size = isObject ? Object.keys(data).length : data.length;
+                const bracket = isObject ? ['{', '}'] : ['[', ']'];
+
+                if (isObject) stats.objects++;
+                else stats.arrays++;
+
+                html += `<span class="json-toggle expanded" onclick="toggleNode(this, '${nodeId}')"></span>`;
+
+                if (key !== '') {
+                    html += `<span class="json-key">"${escapeHtml(key)}"</span>`;
+                    html += '<span class="json-colon">:</span>';
+                }
+
+                html += `<span class="json-bracket open">${bracket[0]}</span>`;
+                html += `<span class="json-size">${size} ${isObject ? '项' : '个元素'}</span>`;
+                html += `<span class="json-ellipsis" onclick="toggleNode(document.querySelector('#${nodeId}').previousElementSibling.querySelector('.json-toggle'), '${nodeId}')" style="display: none;">...</span>`;
+                html += `<button class="btn copy-btn" onclick="copyPath('${escapeHtml(currentPath)}')">复制路径</button>`;
+                html += '</div>';
+
+                html += `<div class="json-children" id="${nodeId}">`;
+
+                if (isObject) {
+                    const keys = Object.keys(data);
+                    keys.forEach((k, i) => {
+                        html += `<div class="json-item">${renderNode(data[k], k, depth + 1, i === keys.length - 1, currentPath)}</div>`;
+                    });
+                } else {
+                    data.forEach((item, i) => {
+                        html += `<div class="json-item">${renderNode(item, i.toString(), depth + 1, i === data.length - 1, currentPath)}</div>`;
+                    });
+                }
+
+                html += '</div>';
+                html += `<div class="json-row"><span class="json-toggle hidden"></span><span class="json-bracket">${bracket[1]}</span>${!isLast ? '<span class="json-comma">,</span>' : ''}</div>`;
+
+            } else {
+                // 基本类型
+                html += '<span class="json-toggle hidden"></span>';
+
+                if (key !== '') {
+                    html += `<span class="json-key">"${escapeHtml(key)}"</span>`;
+                    html += '<span class="json-colon">:</span>';
+                }
+
+                html += renderValue(data, type);
+                if (!isLast) html += '<span class="json-comma">,</span>';
+                html += `<button class="btn copy-btn" onclick="copyValue(\`${escapeHtml(JSON.stringify(data))}\`)">复制</button>`;
+                html += '</div>';
+            }
+
+            html += '</div>';
+            return html;
+        }
+
+        // 渲染值
+        function renderValue(value, type) {
+            switch (type) {
+                case 'string':
+                    stats.strings++;
+                    const displayValue = value.length > 100 ? value.substring(0, 100) + '...' : value;
+                    return `<span class="json-value string" title="${escapeHtml(value)}">${escapeHtml(displayValue)}</span>`;
+                case 'number':
+                    stats.numbers++;
+                    return `<span class="json-value number">${value}</span>`;
+                case 'boolean':
+                    stats.booleans++;
+                    return `<span class="json-value boolean">${value}</span>`;
+                case 'null':
+                    stats.nulls++;
+                    return '<span class="json-value null">null</span>';
+                default:
+                    return `<span class="json-value">${escapeHtml(String(value))}</span>`;
+            }
+        }
+
+        // 获取类型
+        function getType(value) {
+            if (value === null) return 'null';
+            if (Array.isArray(value)) return 'array';
+            return typeof value;
+        }
+
+        // 切换节点
+        function toggleNode(toggle, nodeId) {
+            const children = document.getElementById(nodeId);
+            const ellipsis = toggle.parentElement.querySelector('.json-ellipsis');
+            const size = toggle.parentElement.querySelector('.json-size');
+
+            if (toggle.classList.contains('expanded')) {
+                toggle.classList.remove('expanded');
+                toggle.classList.add('collapsed');
+                children.classList.add('collapsed');
+                if (ellipsis) ellipsis.style.display = 'inline';
+                if (size) size.style.display = 'none';
+            } else {
+                toggle.classList.remove('collapsed');
+                toggle.classList.add('expanded');
+                children.classList.remove('collapsed');
+                if (ellipsis) ellipsis.style.display = 'none';
+                if (size) size.style.display = 'inline';
+            }
+        }
+
+        // 全部展开
+        function expandAll() {
+            document.querySelectorAll('.json-toggle.collapsed').forEach(toggle => {
+                const nodeId = toggle.getAttribute('onclick').match(/'([^']+)'/)[1];
+                toggleNode(toggle, nodeId);
+            });
+        }
+
+        // 全部收起
+        function collapseAll() {
+            document.querySelectorAll('.json-toggle.expanded:not(.hidden)').forEach(toggle => {
+                const match = toggle.getAttribute('onclick')?.match(/'([^']+)'/);
+                if (match) toggleNode(toggle, match[1]);
+            });
+        }
+
+        // 更新统计
+        function updateStats() {
+            document.getElementById('statsBar').style.display = 'flex';
+            document.getElementById('statObjects').textContent = stats.objects;
+            document.getElementById('statArrays').textContent = stats.arrays;
+            document.getElementById('statStrings').textContent = stats.strings;
+            document.getElementById('statNumbers').textContent = stats.numbers;
+            document.getElementById('statBooleans').textContent = stats.booleans;
+            document.getElementById('statNulls').textContent = stats.nulls;
+            document.getElementById('statDepth').textContent = stats.maxDepth;
+        }
+
+        // 搜索
+        function handleSearch() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const info = document.getElementById('searchInfo');
+
+            // 移除所有高亮
+            document.querySelectorAll('.highlight').forEach(el => {
+                el.outerHTML = el.innerHTML;
+            });
+
+            if (!query) {
+                info.textContent = '';
+                return;
+            }
+
+            let count = 0;
+
+            // 搜索键和值
+            document.querySelectorAll('.json-key, .json-value').forEach(el => {
+                const text = el.textContent.toLowerCase();
+                if (text.includes(query)) {
+                    const regex = new RegExp(`(${escapeRegex(query)})`, 'gi');
+                    el.innerHTML = el.innerHTML.replace(regex, '<span class="highlight">$1</span>');
+                    count++;
+
+                    // 展开父节点
+                    let parent = el.closest('.json-children');
+                    while (parent) {
+                        if (parent.classList.contains('collapsed')) {
+                            parent.classList.remove('collapsed');
+                            const toggle = parent.previousElementSibling?.querySelector('.json-toggle');
+                            if (toggle) {
+                                toggle.classList.remove('collapsed');
+                                toggle.classList.add('expanded');
+                            }
+                        }
+                        parent = parent.parentElement?.closest('.json-children');
+                    }
+                }
+            });
+
+            info.textContent = count > 0 ? `找到 ${count} 个匹配` : '无匹配';
+        }
+
+        // 工具函数
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        function escapeRegex(str) {
+            return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        // 复制路径
+        function copyPath(path) {
+            navigator.clipboard.writeText(path);
+            showToast('✓ 路径已复制: ' + path, 'success');
+        }
+
+        // 复制值
+        function copyValue(value) {
+            navigator.clipboard.writeText(JSON.parse(value));
+            showToast('✓ 值已复制', 'success');
+        }
+
+        // 复制输入
+        function copyInput() {
+            navigator.clipboard.writeText(document.getElementById('jsonInput').value);
+            showToast('✓ 已复制到剪贴板', 'success');
+        }
+
+        // 复制格式化后的JSON
+        function copyFormatted() {
+            if (parsedData) {
+                navigator.clipboard.writeText(JSON.stringify(parsedData, null, 2));
+                showToast('✓ 已复制格式化JSON', 'success');
+            }
+        }
+
+        // 下载JSON
+        function downloadJSON() {
+            const data = document.getElementById('jsonInput').value;
+            if (!data) return;
+
+            const blob = new Blob([data], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'data.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // 压缩JSON
+        function minifyJSON() {
+            const input = document.getElementById('jsonInput');
+            try {
+                const data = JSON.parse(input.value);
+                input.value = JSON.stringify(data);
+                showToast('✓ JSON 已压缩', 'success');
+            } catch (e) {
+                showToast('❌ 无效的 JSON', 'error');
+            }
+        }
+
+        // 美化JSON
+        function beautifyJSON() {
+            const input = document.getElementById('jsonInput');
+            try {
+                const data = JSON.parse(input.value);
+                input.value = JSON.stringify(data, null, 2);
+                showToast('✓ JSON 已美化', 'success');
+            } catch (e) {
+                showToast('❌ 无效的 JSON', 'error');
+            }
+        }
+
+        // 转义JSON字符串
+        function escapeJSON() {
+            const input = document.getElementById('jsonInput');
+            input.value = JSON.stringify(input.value);
+            showToast('✓ 已转义', 'success');
+        }
+
+        // 反转义
+        function unescapeJSON() {
+            const input = document.getElementById('jsonInput');
+            try {
+                input.value = JSON.parse(input.value);
+                showToast('✓ 已反转义', 'success');
+            } catch (e) {
+                showToast('❌ 反转义失败', 'error');
+            }
+        }
+
+        // 清空输入
+        function clearInput() {
+            document.getElementById('jsonInput').value = '';
+            document.getElementById('outputArea').innerHTML = '<div class="message"><div class="message-icon">📄</div><div>在左侧输入 JSON 数据后点击「格式化」</div></div>';
+            document.getElementById('statsBar').style.display = 'none';
+            parsedData = null;
+        }
+
+        // 加载示例
+        function loadSample() {
+            const sample = {
+                "用户信息": {
+                    "姓名": "张三",
+                    "年龄": 28,
+                    "邮箱": "zhangsan@example.com",
+                    "已认证": true,
+                    "会员等级": "金卡会员"
+                },
+                "订单列表": [
+                    {
+                        "订单号": "ORD20241225001",
+                        "商品": "iPhone 15 Pro Max",
+                        "价格": 9999.00,
+                        "数量": 1,
+                        "状态": "已发货",
+                        "收货地址": {
+                            "省份": "广东省",
+                            "城市": "深圳市",
+                            "区县": "南山区",
+                            "详细地址": "科技园路100号"
+                        }
+                    },
+                    {
+                        "订单号": "ORD20241225002",
+                        "商品": "AirPods Pro 2",
+                        "价格": 1899.00,
+                        "数量": 2,
+                        "状态": "待支付",
+                        "收货地址": null
+                    }
+                ],
+                "购物车": {
+                    "商品数量": 5,
+                    "总金额": 3580.50,
+                    "优惠券": ["WELCOME10", "NEWYEAR2025"],
+                    "已选中": true
+                },
+                "设置": {
+                    "通知": {
+                        "邮件通知": true,
+                        "短信通知": false,
+                        "推送通知": true
+                    },
+                    "隐私": {
+                        "个人资料可见": "仅好友",
+                        "在线状态": true
+                    },
+                    "主题": "深色模式"
+                },
+                "标签": ["VIP", "活跃用户", "新年特惠"],
+                "注册时间": "2023-06-15T08:30:00Z",
+                "最后登录": "2024-12-25T14:22:33Z",
+                "备注": null
+            };
+            document.getElementById('jsonInput').value = JSON.stringify(sample, null, 2);
+            formatAndParse();
+        }
+
+        // Toast通知
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast ' + type + ' show';
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+
+        // 快捷键
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey || e.metaKey) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    formatAndParse();
+                } else if (e.key === 'b') {
+                    e.preventDefault();
+                    beautifyJSON();
+                }
+            }
+        });
+
+        // 文件选择
+        const fileInput = document.getElementById('fileInput');
+
+        function openFile() {
+            fileInput.click();
+        }
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                loadFile(file);
+            }
+            // 清空以便下次选择同一文件也能触发
+            fileInput.value = '';
+        });
+
+        // 加载文件
+        function loadFile(file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                document.getElementById('jsonInput').value = event.target.result;
+                formatAndParse();
+                showToast(`✓ 已加载文件: ${file.name}`, 'success');
+            };
+            reader.onerror = () => {
+                showToast('❌ 文件读取失败', 'error');
+            };
+            reader.readAsText(file);
+        }
+
+        // 拖放支持
+        const inputAreaWrapper = document.getElementById('inputAreaWrapper');
+        const dropOverlay = document.getElementById('dropOverlay');
+        let dragCounter = 0;
+
+        inputAreaWrapper.addEventListener('dragenter', (e) => {
+            e.preventDefault();
+            dragCounter++;
+            dropOverlay.classList.add('active');
+        });
+
+        inputAreaWrapper.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            dragCounter--;
+            if (dragCounter === 0) {
+                dropOverlay.classList.remove('active');
+            }
+        });
+
+        inputAreaWrapper.addEventListener('dragover', (e) => {
+            e.preventDefault();
+        });
+
+        inputAreaWrapper.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dragCounter = 0;
+            dropOverlay.classList.remove('active');
+
+            const file = e.dataTransfer.files[0];
+            if (file) {
+                // 支持 .json 文件和文本文件
+                if (file.name.endsWith('.json') || file.type === 'application/json' || file.type.startsWith('text/')) {
+                    loadFile(file);
+                } else {
+                    // 尝试读取任何文件
+                    loadFile(file);
+                }
+            }
+        });
+
+        // 阻止整个页面的拖放默认行为
+        document.addEventListener('dragover', (e) => e.preventDefault());
+        document.addEventListener('drop', (e) => e.preventDefault());
+    </script>
+</body>
+</html>
