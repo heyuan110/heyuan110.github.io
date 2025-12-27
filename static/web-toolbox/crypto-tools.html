@@ -1,0 +1,1989 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>加解密编码工具箱</title>
+    <!-- CryptoJS 加密库 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <!-- JsBarcode 条形码库 -->
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #e4e4e7;
+            display: flex;
+        }
+
+        /* 侧边栏样式 */
+        .sidebar {
+            width: 260px;
+            background: rgba(0, 0, 0, 0.3);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            height: 100vh;
+            overflow-y: auto;
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .sidebar-header h1 {
+            font-size: 1.4rem;
+            background: linear-gradient(120deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .sidebar-header p {
+            font-size: 0.8rem;
+            color: #a1a1aa;
+            margin-top: 5px;
+        }
+
+        .nav-category {
+            padding: 15px 20px 8px;
+            font-size: 0.75rem;
+            color: #71717a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .nav-item {
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-item:hover {
+            background: rgba(124, 58, 237, 0.2);
+            border-left-color: #7c3aed;
+        }
+
+        .nav-item.active {
+            background: rgba(124, 58, 237, 0.3);
+            border-left-color: #7c3aed;
+            color: #a78bfa;
+        }
+
+        .nav-item .icon {
+            font-size: 1rem;
+        }
+
+        /* 主内容区 */
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        .tool-panel {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tool-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tool-header {
+            margin-bottom: 25px;
+        }
+
+        .tool-header h2 {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .tool-header p {
+            color: #a1a1aa;
+            font-size: 0.95rem;
+        }
+
+        /* 工具卡片 */
+        .tool-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .tool-card h3 {
+            font-size: 1.1rem;
+            color: #e4e4e7;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* 输入输出区域 */
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #a1a1aa;
+            font-size: 0.85rem;
+        }
+
+        textarea, input[type="text"], input[type="password"], input[type="number"], select {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            color: #e4e4e7;
+            font-size: 0.95rem;
+            font-family: 'Monaco', 'Menlo', monospace;
+            transition: all 0.2s ease;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        textarea:focus, input:focus, select:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        /* 按钮样式 */
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #7c3aed, #6366f1);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #8b5cf6, #818cf8);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #e4e4e7;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: #fff;
+        }
+
+        .btn-success:hover {
+            background: linear-gradient(135deg, #10b981, #34d399);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: #fff;
+        }
+
+        .btn-danger:hover {
+            background: linear-gradient(135deg, #ef4444, #f87171);
+        }
+
+        /* 选项卡 */
+        .tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            color: #a1a1aa;
+            transition: all 0.2s ease;
+        }
+
+        .tab:hover {
+            background: rgba(124, 58, 237, 0.2);
+        }
+
+        .tab.active {
+            background: rgba(124, 58, 237, 0.3);
+            border-color: #7c3aed;
+            color: #a78bfa;
+        }
+
+        /* 选项行 */
+        .options-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            align-items: flex-end;
+        }
+
+        .options-row .input-group {
+            margin-bottom: 0;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        /* 结果展示 */
+        .result-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            position: relative;
+        }
+
+        .result-box pre {
+            color: #22c55e;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 12px;
+            font-size: 0.8rem;
+        }
+
+        /* 分割线 */
+        .divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 20px 0;
+        }
+
+        /* 复选框样式 */
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            color: #a1a1aa;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        /* 滑块样式 */
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            background: #7c3aed;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* 文件上传 */
+        .file-upload {
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .file-upload:hover {
+            border-color: #7c3aed;
+            background: rgba(124, 58, 237, 0.1);
+        }
+
+        .file-upload input[type="file"] {
+            display: none;
+        }
+
+        .file-upload .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .file-upload p {
+            color: #a1a1aa;
+            font-size: 0.9rem;
+        }
+
+        /* 条形码画布 */
+        #barcode-canvas {
+            background: #fff;
+            border-radius: 8px;
+            max-width: 100%;
+        }
+
+        /* 图片预览 */
+        .image-preview {
+            max-width: 300px;
+            max-height: 200px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+
+            body {
+                flex-direction: column;
+            }
+
+            .options-row {
+                flex-direction: column;
+            }
+
+            .options-row .input-group {
+                width: 100%;
+            }
+        }
+
+        /* 返回首页按钮 */
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #a1a1aa;
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            margin-bottom: 20px;
+        }
+
+        .back-home:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        /* 密码强度指示器 */
+        .strength-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+
+        .strength-bar .fill {
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .strength-weak { width: 25%; background: #ef4444; }
+        .strength-fair { width: 50%; background: #f59e0b; }
+        .strength-good { width: 75%; background: #3b82f6; }
+        .strength-strong { width: 100%; background: #22c55e; }
+
+        /* Toast 提示 */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 12px 24px;
+            background: rgba(34, 197, 94, 0.9);
+            color: #fff;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+
+        .toast.error {
+            background: rgba(239, 68, 68, 0.9);
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* 网格布局 */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 侧边栏导航 -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <h1>🔐 加解密工具箱</h1>
+            <p>在线加密解密编码工具</p>
+        </div>
+
+        <div class="nav-category">哈希/散列</div>
+        <div class="nav-item active" data-panel="md5"><span class="icon">🔒</span>MD5 加密</div>
+        <div class="nav-item" data-panel="sha"><span class="icon">🛡️</span>SHA 系列加密</div>
+        <div class="nav-item" data-panel="hash-all"><span class="icon">📊</span>哈希大全</div>
+
+        <div class="nav-category">对称加密</div>
+        <div class="nav-item" data-panel="aes"><span class="icon">🔑</span>AES 加密/解密</div>
+        <div class="nav-item" data-panel="des"><span class="icon">🗝️</span>DES 加密/解密</div>
+        <div class="nav-item" data-panel="tripledes"><span class="icon">🔐</span>TripleDES 加密/解密</div>
+        <div class="nav-item" data-panel="rc4"><span class="icon">🔏</span>RC4 加密/解密</div>
+        <div class="nav-item" data-panel="rabbit"><span class="icon">🐰</span>Rabbit 加密/解密</div>
+
+        <div class="nav-category">编码转换</div>
+        <div class="nav-item" data-panel="base64"><span class="icon">📝</span>Base64 编码/解码</div>
+        <div class="nav-item" data-panel="url"><span class="icon">🔗</span>URL 编码/解码</div>
+        <div class="nav-item" data-panel="url-hex"><span class="icon">🌐</span>URL 十六进制编码</div>
+        <div class="nav-item" data-panel="escape"><span class="icon">⚡</span>Escape 编码/解码</div>
+        <div class="nav-item" data-panel="unicode"><span class="icon">🌍</span>Unicode/ASCII 转换</div>
+        <div class="nav-item" data-panel="native-unicode"><span class="icon">📜</span>Native/Unicode 转换</div>
+        <div class="nav-item" data-panel="utf8-gbk"><span class="icon">🔄</span>UTF-8/GBK 转换</div>
+
+        <div class="nav-category">其他工具</div>
+        <div class="nav-item" data-panel="morse"><span class="icon">📡</span>摩尔斯电码</div>
+        <div class="nav-item" data-panel="password"><span class="icon">🎲</span>密码生成器</div>
+        <div class="nav-item" data-panel="uuid"><span class="icon">🆔</span>UUID/GUID 生成</div>
+        <div class="nav-item" data-panel="htpasswd"><span class="icon">🔒</span>htpasswd 生成</div>
+        <div class="nav-item" data-panel="barcode"><span class="icon">📊</span>条形码生成器</div>
+        <div class="nav-item" data-panel="ip-convert"><span class="icon">🖥️</span>IP/数字地址转换</div>
+        <div class="nav-item" data-panel="image-base64"><span class="icon">🖼️</span>图片转 Base64</div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <a href="index.html" class="back-home">← 返回工具箱首页</a>
+
+        <!-- MD5 加密 -->
+        <div class="tool-panel active" id="panel-md5">
+            <div class="tool-header">
+                <h2>🔒 MD5 加密</h2>
+                <p>将文本转换为 MD5 哈希值，常用于密码存储和数据完整性校验</p>
+            </div>
+            <div class="tool-card">
+                <div class="input-group">
+                    <label>输入文本</label>
+                    <textarea id="md5-input" placeholder="请输入要加密的文本..."></textarea>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="md5Encrypt()">🔒 MD5 加密</button>
+                    <button class="btn btn-secondary" onclick="clearInput('md5-input', 'md5-output')">🗑️ 清空</button>
+                </div>
+                <div class="input-group">
+                    <label>加密结果</label>
+                    <div class="result-box">
+                        <pre id="md5-output">结果将显示在这里...</pre>
+                        <button class="btn btn-secondary copy-btn" onclick="copyResult('md5-output')">复制</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SHA 系列加密 -->
+        <div class="tool-panel" id="panel-sha">
+            <div class="tool-header">
+                <h2>🛡️ SHA 系列加密</h2>
+                <p>安全哈希算法，提供 SHA-1、SHA-256、SHA-384、SHA-512 等多种加密方式</p>
+            </div>
+            <div class="tool-card">
+                <div class="tabs">
+                    <div class="tab active" data-sha="1">SHA-1</div>
+                    <div class="tab" data-sha="256">SHA-256</div>
+                    <div class="tab" data-sha="384">SHA-384</div>
+                    <div class="tab" data-sha="512">SHA-512</div>
+                    <div class="tab" data-sha="3">SHA-3</div>
+                </div>
+                <div class="input-group">
+                    <label>输入文本</label>
+                    <textarea id="sha-input" placeholder="请输入要加密的文本..."></textarea>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="shaEncrypt()">🛡️ SHA 加密</button>
+                    <button class="btn btn-secondary" onclick="clearInput('sha-input', 'sha-output')">🗑️ 清空</button>
+                </div>
+                <div class="input-group">
+                    <label>加密结果</label>
+                    <div class="result-box">
+                        <pre id="sha-output">结果将显示在这里...</pre>
+                        <button class="btn btn-secondary copy-btn" onclick="copyResult('sha-output')">复制</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 哈希大全 -->
+        <div class="tool-panel" id="panel-hash-all">
+            <div class="tool-header">
+                <h2>📊 哈希/散列加密大全</h2>
+                <p>一键生成所有常用哈希算法的结果</p>
+            </div>
+            <div class="tool-card">
+                <div class="input-group">
+                    <label>输入文本</label>
+                    <textarea id="hash-all-input" placeholder="请输入要加密的文本..."></textarea>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="hashAll()">📊 生成所有哈希</button>
+                    <button class="btn btn-secondary" onclick="clearInput('hash-all-input', 'hash-all-output')">🗑️ 清空</button>
+                </div>
+                <div class="input-group">
+                    <label>所有哈希结果</label>
+                    <div class="result-box">
+                        <pre id="hash-all-output">结果将显示在这里...</pre>
+                        <button class="btn btn-secondary copy-btn" onclick="copyResult('hash-all-output')">复制</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AES 加密/解密 -->
+        <div class="tool-panel" id="panel-aes">
+            <div class="tool-header">
+                <h2>🔑 AES 加密/解密</h2>
+                <p>高级加密标准，目前最流行的对称加密算法</p>
+            </div>
+            <div class="tool-card">
+                <div class="input-group">
+                    <label>输入文本</label>
+                    <textarea id="aes-input" placeholder="请输入要加密/解密的文本..."></textarea>
+                </div>
+                <div class="options-row">
+                    <div class="input-group">
+                        <label>密钥 (Key)</label>
+                        <input type="text" id="aes-key" placeholder="请输入密钥">
+                    </div>
+                    <div class="input-group">
+                        <label>模式</label>
+                        <select id="aes-mode">
+                            <option value="CBC">CBC</option>
+                            <option value="ECB">ECB</option>
+                            <option value="CFB">CFB</option>
+                            <option value="OFB">OFB</option>
+                            <option value="CTR">CTR</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>填充</label>
+                        <select id="aes-padding">
+                            <option value="Pkcs7">PKCS7</option>
+                            <option value="ZeroPadding">ZeroPadding</option>
+                            <option value="NoPadding">NoPadding</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="aesEncrypt()">🔒 加密</button>
+                    <button class="btn btn-success" onclick="aesDecrypt()">🔓 解密</button>
+                    <button class="btn btn-secondary" onclick="clearInput('aes-input', 'aes-output')">🗑️ 清空</button>
+                </div>
+                <div class="input-group">
+                    <label>结果</label>
+                    <div class="result-box">
+                        <pre id="aes-output">结果将显示在这里...</pre>
+                        <button class="btn btn-secondary copy-btn" onclick="copyResult('aes-output')">复制</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DES 加密/解密 -->
+        <div class="tool-panel" id="panel-des">
+            <div class="tool-header">
+                <h2>🗝️ DES 加密/解密</h2>
+                <p>数据加密标准，经典的对称加密算法</p>
+            </div>
+            <div class="tool-card">
+                <div class="input-group">
+                    <label>输入文本</label>
+                    <textarea id="des-input" placeholder="请输入要加密/解密的文本..."></textarea>
+                </div>
+                <div class="options-row">
+                    <div class="input-group">
+                        <label>密钥 (Key)</label>
+                        <input type="text" id="des-key" placeholder="请输入密钥">
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="desEncrypt()">🔒 加密</button>
+                    <button class="btn btn-success" onclick="desDecrypt()">🔓 解密</button>
+                    <button class="btn btn-secondary" onclick="clearInput('des-input', 'des-output')">🗑️ 清空</button>
+                </div>
+                <div class="input-group">
+                    <label>结果</label>
+                    <div class="result-box">
+                        <pre id="des-output">结果将显示在这里...</pre>
+                        <button class="btn btn-secondary copy-btn" onclick="copyResult('des-output')">复制</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TripleDES 加密/解密 -->
+        <div class="tool-panel" id="panel-tripledes">
+            <div class="tool-header">
+                <h2>🔐 TripleDES 加密/解密</h2>
+                <p>三重数据加密算法，比 DES 更安全</p>
+            </div>
+            <div class="tool-card">
+                <div class="input-group">
+                    <label>输入文本</label>
+                    <textarea id="tripledes-input" placeholder="请输入要加密/解密的文本..."></textarea>
+                </div>
+                <div class="options-row">
+                    <div class="input-group">
+                        <label>密钥 (Key)</label>
+                        <input type="text" id="tripledes-key" placeholder="请输入密钥">
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="tripledesEncrypt()">🔒 加密</button>
+                    <button class="btn btn-success" onclick="tripledesDecrypt()">🔓 解密</button>
+                    <button class="btn btn-secondary" onclick="clearInput('tripledes-input', 'tripledes-output')">🗑️ 清空</button>
+                </div>
+                <div class="input-group">
+                    <label>结果</label>
+                    <div class="result-box">
+                        <pre id="tripledes-output">结果将显示在这里...</pre>
+                        <button class="btn btn-secondary copy-btn" onclick="copyResult('tripledes-output')">复制</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RC4 加密/解密 -->
+        <div class="tool-panel" id="panel-rc4">
+            <div class="tool-header">
+                <h2>🔏 RC4 加密/解密</h2>
+                <p>流加密算法，速度快但安全性较低</p>
+            </div>
+            <div class="tool-card">
+                <div class="input-group">
+                    <label>输入文本</label>
+                    <textarea id="rc4-input" placeholder="请输入要加密/解密的文本..."></textarea>
+                </div>
+                <div class="options-row">
+                    <div class="input-group">
+                        <label>密钥 (Key)</label>
+                        <input type="text" id="rc4-key" placeholder="请输入密钥">
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="rc4Encrypt()">🔒 加密</button>
+                    <button class="btn btn-success" onclick="rc4Decrypt()">🔓 解密</button>
+                    <button class="btn btn-secondary" onclick="clearInput('rc4-input', 'rc4-output')">🗑️ 清空</button>
+                </div>
+                <div class="input-group">
+                    <label>结果</label>
+                    <div class="result-box">
+                        <pre id="rc4-output">结果将显示在这里...</pre>
+                        <button class="btn btn-secondary copy-btn" onclick="copyResult('rc4-output')">复制</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rabbit 加密/解密 -->
+        <div class="tool-panel" id="panel-rabbit">
+            <div class="tool-header">
+                <h2>🐰 Rabbit 加密/解密</h2>
+                <p>高性能流加密算法</p>
+            </div>
+            <div class="tool-card">
+                <div class="input-group">
+                    <label>输入文本</label>
+                    <textarea id="rabbit-input" placeholder="请输入要加密/解密的文本..."></textarea>
+                </div>
+                <div class="options-row">
+                    <div class="input-group">
+                        <label>密钥 (Key)</label>
+                        <input type="text" id="rabbit-key" placeholder="请输入密钥">
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="rabbitEncrypt()">🔒 加密</button>
+                    <button class="btn btn-success" onclick="rabbitDecrypt()">🔓 解密</button>
+                    <button class="btn btn-secondary" onclick="clearInput('rabbit-input', 'rabbit-output')">🗑️ 清空</button>
+                </div>
+                <div class="input-group">
+                    <label>结果</label>
+                    <div class="result-box">
+                        <pre id="rabbit-output">结果将显示在这里...</pre>
+                        <button class="btn btn-secondary copy-btn" onclick="copyResult('rabbit-output')">复制</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Base64 编码/解码 -->
+        <div class="tool-panel" id="panel-base64">
+            <div class="tool-header">
+                <h2>📝 Base64 编码/解码</h2>
+                <p>将二进制数据转换为 ASCII 字符串，常用于数据传输</p>
+            </div>
+            <div class="tool-card">
+                <div class="input-group">
+                    <label>输入文本</label>
+                    <textarea id="base64-input" placeholder="请输入要编码/解码的文本..."></textarea>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="base64Encode()">📤 编码</button>
+                    <button class="btn btn-success" onclick="base64Decode()">📥 解码</button>
+                    <button class="btn btn-secondary" onclick="clearInput('base64-input', 'base64-output')">🗑️ 清空</button>
+                </div>
+                <div class="input-group">
+                    <label>结果</label>
+                    <div class="result-box">
+                        <pre id="base64-output">结果将显示在这里...</pre>
+                        <button class="btn btn-secondary copy-btn" onclick="copyResult('base64-output')">复制</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- URL 编码/解码 -->
+        <div class="tool-panel" id="panel-url">
+            <div class="tool-header">
+                <h2>🔗 URL 编码/解码</h2>
+                <p>对 URL 中的特殊字符进行编码和解码</p>
+            </div>
+            <div class="tool-card">
+                <div class="input-group">
+                    <label>输入文本</label>
+                    <textarea id="url-input" placeholder="请输入要编码/解码的 URL 或文本..."></textarea>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="urlEncode()">📤 编码</button>
+                    <button class="btn btn-success" onclick="urlDecode()">📥 解码</button>
+                    <button class="btn btn-secondary" onclick="urlEncodeComponent()">📤 组件编码</button>
+                    <button class="btn btn-secondary" onclick="urlDecodeComponent()">📥 组件解码</button>
+                    <button class="btn btn-secondary" onclick="clearInput('url-input', 'url-output')">🗑️ 清空</button>
+                </div>
+                <div class="input-group">
+                    <label>结果</label>
+                    <div class="result-box">
+                        <pre id="url-output">结果将显示在这里...</pre>
+                        <button class="btn btn-secondary copy-btn" onclick="copyResult('url-output')">复制</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- URL 十六进制编码 -->
+        <div class="tool-panel" id="panel-url-hex">
+            <div class="tool-header">
+                <h2>🌐 URL 十六进制编码</h2>
+                <p>将 URL 转换为十六进制编码格式</p>
+            </div>
+            <div class="tool-card">
+                <div class="input-group">
+                    <label>输入 URL</label>
+                    <textarea id="url-hex-input" placeholder="请输入 URL..."></textarea>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="urlHexEncode()">📤 十六进制编码</button>
+                    <button class="btn btn-success" onclick="urlHexDecode()">📥 十六进制解码</button>
+                    <button class="btn btn-secondary" onclick="clearInput('url-hex-input', 'url-hex-output')">🗑️ 清空</button>
+                </div>
+                <div class="input-group">
+                    <label>结果</label>
+                    <div class="result-box">
+                        <pre id="url-hex-output">结果将显示在这里...</pre>
+                        <button class="btn btn-secondary copy-btn" onclick="copyResult('url-hex-output')">复制</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Escape 编码/解码 -->
+        <div class="tool-panel" id="panel-escape">
+            <div class="tool-header">
+                <h2>⚡ Escape 编码/解码</h2>
+                <p>JavaScript escape/unescape 函数的编码和解码</p>
+            </div>
+            <div class="tool-card">
+                <div class="input-group">
+                    <label>输入文本</label>
+                    <textarea id="escape-input" placeholder="请输入要编码/解码的文本..."></textarea>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="escapeEncode()">📤 Escape 编码</button>
+                    <button class="btn btn-success" onclick="escapeDecode()">📥 Unescape 解码</button>
+                    <button class="btn btn-secondary" onclick="clearInput('escape-input', 'escape-output')">🗑️ 清空</button>
+                </div>
+                <div class="input-group">
+                    <label>结果</label>
+                    <div class="result-box">
+                        <pre id="escape-output">结果将显示在这里...</pre>
+                        <button class="btn btn-secondary copy-btn" onclick="copyResult('escape-output')">复制</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unicode/ASCII 转换 -->
+        <div class="tool-panel" id="panel-unicode">
+            <div class="tool-header">
+                <h2>🌍 Unicode/ASCII 转换</h2>
+                <p>在 Unicode 编码和普通文本之间转换</p>
+            </div>
+            <div class="tool-card">
+                <div class="input-group">
+                    <label>输入文本</label>
+                    <textarea id="unicode-input" placeholder="请输入文本或 Unicode 编码 (如: \u4e2d\u6587)..."></textarea>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="toUnicode()">📤 转 Unicode</button>
+                    <button class="btn btn-success" onclick="fromUnicode()">📥 Unicode 转文本</button>
+                    <button class="btn btn-secondary" onclick="toAsciiCode()">🔢 转 ASCII 码</button>
+                    <button class="btn btn-secondary" onclick="fromAsciiCode()">🔤 ASCII 码转文本</button>
+                    <button class="btn btn-secondary" onclick="clearInput('unicode-input', 'unicode-output')">🗑️ 清空</button>
+                </div>
+                <div class="input-group">
+                    <label>结果</label>
+                    <div class="result-box">
+                        <pre id="unicode-output">结果将显示在这里...</pre>
+                        <button class="btn btn-secondary copy-btn" onclick="copyResult('unicode-output')">复制</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Native/Unicode 编码转换 -->
+        <div class="tool-panel" id="panel-native-unicode">
+            <div class="tool-header">
+                <h2>📜 Native/Unicode 编码转换</h2>
+                <p>Native 编码与 Unicode 编码相互转换</p>
+            </div>
+            <div class="tool-card">
+                <div class="input-group">
+                    <label>输入文本</label>
+                    <textarea id="native-unicode-input" placeholder="请输入文本..."></textarea>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="nativeToUnicode()">📤 Native → Unicode</button>
+                    <button class="btn btn-success" onclick="unicodeToNative()">📥 Unicode → Native</button>
+                    <button class="btn btn-secondary" onclick="clearInput('native-unicode-input', 'native-unicode-output')">🗑️ 清空</button>
+                </div>
+                <div class="input-group">
+                    <label>结果</label>
+                    <div class="result-box">
+                        <pre id="native-unicode-output">结果将显示在这里...</pre>
+                        <button class="btn btn-secondary copy-btn" onclick="copyResult('native-unicode-output')">复制</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- UTF-8/GBK 转换 -->
+        <div class="tool-panel" id="panel-utf8-gbk">
+            <div class="tool-header">
+                <h2>🔄 UTF-8/GBK 转换</h2>
+                <p>查看文本的 UTF-8 和 GBK 编码表示</p>
+            </div>
+            <div class="tool-card">
+                <div class="input-group">
+                    <label>输入文本</label>
+                    <textarea id="utf8-gbk-input" placeholder="请输入文本..."></textarea>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="showUtf8()">📤 显示 UTF-8 编码</button>
+                    <button class="btn btn-success" onclick="utf8ToText()">📥 UTF-8 编码转文本</button>
+                    <button class="btn btn-secondary" onclick="clearInput('utf8-gbk-input', 'utf8-gbk-output')">🗑️ 清空</button>
+                </div>
+                <div class="input-group">
+                    <label>结果</label>
+                    <div class="result-box">
+                        <pre id="utf8-gbk-output">结果将显示在这里...</pre>
+                        <button class="btn btn-secondary copy-btn" onclick="copyResult('utf8-gbk-output')">复制</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 摩尔斯电码 -->
+        <div class="tool-panel" id="panel-morse">
+            <div class="tool-header">
+                <h2>📡 摩尔斯电码</h2>
+                <p>将文本转换为摩尔斯电码，或将摩尔斯电码转换为文本</p>
+            </div>
+            <div class="tool-card">
+                <div class="input-group">
+                    <label>输入文本/摩尔斯电码</label>
+                    <textarea id="morse-input" placeholder="请输入文本或摩尔斯电码 (用空格分隔字母，用 / 分隔单词)..."></textarea>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="textToMorse()">📤 文本 → 摩尔斯</button>
+                    <button class="btn btn-success" onclick="morseToText()">📥 摩尔斯 → 文本</button>
+                    <button class="btn btn-secondary" onclick="clearInput('morse-input', 'morse-output')">🗑️ 清空</button>
+                </div>
+                <div class="input-group">
+                    <label>结果</label>
+                    <div class="result-box">
+                        <pre id="morse-output">结果将显示在这里...</pre>
+                        <button class="btn btn-secondary copy-btn" onclick="copyResult('morse-output')">复制</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 密码生成器 -->
+        <div class="tool-panel" id="panel-password">
+            <div class="tool-header">
+                <h2>🎲 密码生成器</h2>
+                <p>生成安全的随机密码</p>
+            </div>
+            <div class="tool-card">
+                <div class="options-row">
+                    <div class="input-group">
+                        <label>密码长度: <span id="pwd-length-value">16</span></label>
+                        <input type="range" id="pwd-length" min="4" max="64" value="16" oninput="document.getElementById('pwd-length-value').textContent = this.value">
+                    </div>
+                    <div class="input-group">
+                        <label>生成数量</label>
+                        <input type="number" id="pwd-count" value="5" min="1" max="20">
+                    </div>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="pwd-upper" checked>
+                    <label for="pwd-upper">大写字母 (A-Z)</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="pwd-lower" checked>
+                    <label for="pwd-lower">小写字母 (a-z)</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="pwd-number" checked>
+                    <label for="pwd-number">数字 (0-9)</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="pwd-symbol" checked>
+                    <label for="pwd-symbol">特殊符号 (!@#$%^&*)</label>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="generatePassword()">🎲 生成密码</button>
+                </div>
+                <div class="input-group">
+                    <label>生成的密码</label>
+                    <div class="result-box">
+                        <pre id="password-output">密码将显示在这里...</pre>
+                        <button class="btn btn-secondary copy-btn" onclick="copyResult('password-output')">复制</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- UUID/GUID 生成 -->
+        <div class="tool-panel" id="panel-uuid">
+            <div class="tool-header">
+                <h2>🆔 UUID/GUID 生成</h2>
+                <p>生成通用唯一识别码</p>
+            </div>
+            <div class="tool-card">
+                <div class="options-row">
+                    <div class="input-group">
+                        <label>生成数量</label>
+                        <input type="number" id="uuid-count" value="5" min="1" max="100">
+                    </div>
+                    <div class="input-group">
+                        <label>格式</label>
+                        <select id="uuid-format">
+                            <option value="standard">标准格式 (带连字符)</option>
+                            <option value="compact">紧凑格式 (无连字符)</option>
+                            <option value="upper">大写格式</option>
+                            <option value="braces">花括号格式 {UUID}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="generateUUID()">🆔 生成 UUID</button>
+                    <button class="btn btn-success" onclick="generateGUID()">🔖 生成 GUID</button>
+                </div>
+                <div class="input-group">
+                    <label>生成结果</label>
+                    <div class="result-box">
+                        <pre id="uuid-output">结果将显示在这里...</pre>
+                        <button class="btn btn-secondary copy-btn" onclick="copyResult('uuid-output')">复制</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- htpasswd 生成 -->
+        <div class="tool-panel" id="panel-htpasswd">
+            <div class="tool-header">
+                <h2>🔒 htpasswd 生成</h2>
+                <p>生成 Apache htpasswd 格式的密码</p>
+            </div>
+            <div class="tool-card">
+                <div class="options-row">
+                    <div class="input-group">
+                        <label>用户名</label>
+                        <input type="text" id="htpasswd-user" placeholder="请输入用户名">
+                    </div>
+                    <div class="input-group">
+                        <label>密码</label>
+                        <input type="password" id="htpasswd-pass" placeholder="请输入密码">
+                    </div>
+                </div>
+                <div class="options-row">
+                    <div class="input-group">
+                        <label>加密方式</label>
+                        <select id="htpasswd-method">
+                            <option value="md5">MD5 (APR1)</option>
+                            <option value="sha1">SHA-1</option>
+                            <option value="plain">明文 (不推荐)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="generateHtpasswd()">🔒 生成 htpasswd</button>
+                </div>
+                <div class="input-group">
+                    <label>生成结果</label>
+                    <div class="result-box">
+                        <pre id="htpasswd-output">结果将显示在这里...</pre>
+                        <button class="btn btn-secondary copy-btn" onclick="copyResult('htpasswd-output')">复制</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 条形码生成器 -->
+        <div class="tool-panel" id="panel-barcode">
+            <div class="tool-header">
+                <h2>📊 条形码生成器</h2>
+                <p>生成各种格式的条形码</p>
+            </div>
+            <div class="tool-card">
+                <div class="options-row">
+                    <div class="input-group">
+                        <label>条形码内容</label>
+                        <input type="text" id="barcode-text" placeholder="请输入条形码内容">
+                    </div>
+                    <div class="input-group">
+                        <label>条形码格式</label>
+                        <select id="barcode-format">
+                            <option value="CODE128">CODE128 (通用)</option>
+                            <option value="CODE39">CODE39</option>
+                            <option value="EAN13">EAN-13</option>
+                            <option value="EAN8">EAN-8</option>
+                            <option value="UPC">UPC</option>
+                            <option value="ITF14">ITF-14</option>
+                            <option value="pharmacode">Pharmacode</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="generateBarcode()">📊 生成条形码</button>
+                    <button class="btn btn-success" onclick="downloadBarcode()">💾 下载图片</button>
+                </div>
+                <div class="input-group">
+                    <label>条形码预览</label>
+                    <div style="background: #fff; padding: 20px; border-radius: 8px; text-align: center;">
+                        <svg id="barcode-canvas"></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- IP/数字地址转换 -->
+        <div class="tool-panel" id="panel-ip-convert">
+            <div class="tool-header">
+                <h2>🖥️ IP/数字地址转换</h2>
+                <p>IP 地址与数字格式相互转换</p>
+            </div>
+            <div class="tool-card">
+                <div class="grid-2">
+                    <div class="input-group">
+                        <label>IP 地址</label>
+                        <input type="text" id="ip-input" placeholder="如: 192.168.1.1">
+                    </div>
+                    <div class="input-group">
+                        <label>数字地址</label>
+                        <input type="text" id="ip-number-input" placeholder="如: 3232235777">
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="ipToNumber()">📤 IP → 数字</button>
+                    <button class="btn btn-success" onclick="numberToIp()">📥 数字 → IP</button>
+                    <button class="btn btn-secondary" onclick="ipToBinary()">🔢 IP → 二进制</button>
+                    <button class="btn btn-secondary" onclick="ipToHex()">🔣 IP → 十六进制</button>
+                </div>
+                <div class="input-group">
+                    <label>转换结果</label>
+                    <div class="result-box">
+                        <pre id="ip-output">结果将显示在这里...</pre>
+                        <button class="btn btn-secondary copy-btn" onclick="copyResult('ip-output')">复制</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 图片转 Base64 -->
+        <div class="tool-panel" id="panel-image-base64">
+            <div class="tool-header">
+                <h2>🖼️ 图片转 Base64</h2>
+                <p>将图片文件转换为 Base64 编码</p>
+            </div>
+            <div class="tool-card">
+                <div class="file-upload" onclick="document.getElementById('image-file').click()">
+                    <input type="file" id="image-file" accept="image/*" onchange="imageToBase64(this)">
+                    <div class="icon">🖼️</div>
+                    <p>点击或拖拽图片到此处上传</p>
+                    <p style="font-size: 0.8rem; margin-top: 5px;">支持 JPG、PNG、GIF、WebP 等格式</p>
+                </div>
+                <img id="image-preview" class="image-preview" style="display: none;">
+                <div class="input-group" style="margin-top: 20px;">
+                    <label>Base64 编码结果</label>
+                    <div class="result-box">
+                        <pre id="image-base64-output" style="max-height: 200px; overflow: auto;">结果将显示在这里...</pre>
+                        <button class="btn btn-secondary copy-btn" onclick="copyResult('image-base64-output')">复制</button>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <h3 style="margin-bottom: 15px;">Base64 转图片</h3>
+                <div class="input-group">
+                    <label>输入 Base64 编码</label>
+                    <textarea id="base64-to-image-input" placeholder="请输入图片的 Base64 编码..."></textarea>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="base64ToImage()">🖼️ 转换为图片</button>
+                </div>
+                <img id="base64-image-preview" class="image-preview" style="display: none; margin-top: 15px;">
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // ==================== 导航切换 ====================
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // 移除所有 active 状态
+                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
+
+                // 添加当前 active 状态
+                this.classList.add('active');
+                const panelId = 'panel-' + this.dataset.panel;
+                document.getElementById(panelId).classList.add('active');
+            });
+        });
+
+        // SHA 选项卡切换
+        let currentSha = '1';
+        document.querySelectorAll('[data-sha]').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('[data-sha]').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                currentSha = this.dataset.sha;
+            });
+        });
+
+        // ==================== 通用工具函数 ====================
+        function showToast(message, isError = false) {
+            const toast = document.createElement('div');
+            toast.className = 'toast' + (isError ? ' error' : '');
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2000);
+        }
+
+        function copyResult(elementId) {
+            const text = document.getElementById(elementId).textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('已复制到剪贴板！');
+            }).catch(() => {
+                showToast('复制失败', true);
+            });
+        }
+
+        function clearInput(inputId, outputId) {
+            document.getElementById(inputId).value = '';
+            document.getElementById(outputId).textContent = '结果将显示在这里...';
+        }
+
+        // ==================== MD5 加密 ====================
+        function md5Encrypt() {
+            const input = document.getElementById('md5-input').value;
+            if (!input) { showToast('请输入要加密的文本', true); return; }
+            const result = CryptoJS.MD5(input).toString();
+            document.getElementById('md5-output').textContent =
+                `32位小写: ${result}\n32位大写: ${result.toUpperCase()}\n16位小写: ${result.substring(8, 24)}\n16位大写: ${result.substring(8, 24).toUpperCase()}`;
+        }
+
+        // ==================== SHA 系列加密 ====================
+        function shaEncrypt() {
+            const input = document.getElementById('sha-input').value;
+            if (!input) { showToast('请输入要加密的文本', true); return; }
+            let result;
+            switch(currentSha) {
+                case '1': result = CryptoJS.SHA1(input).toString(); break;
+                case '256': result = CryptoJS.SHA256(input).toString(); break;
+                case '384': result = CryptoJS.SHA384(input).toString(); break;
+                case '512': result = CryptoJS.SHA512(input).toString(); break;
+                case '3': result = CryptoJS.SHA3(input).toString(); break;
+            }
+            document.getElementById('sha-output').textContent = result;
+        }
+
+        // ==================== 哈希大全 ====================
+        function hashAll() {
+            const input = document.getElementById('hash-all-input').value;
+            if (!input) { showToast('请输入要加密的文本', true); return; }
+            const results = [
+                `MD5:      ${CryptoJS.MD5(input).toString()}`,
+                `SHA-1:    ${CryptoJS.SHA1(input).toString()}`,
+                `SHA-256:  ${CryptoJS.SHA256(input).toString()}`,
+                `SHA-384:  ${CryptoJS.SHA384(input).toString()}`,
+                `SHA-512:  ${CryptoJS.SHA512(input).toString()}`,
+                `SHA-3:    ${CryptoJS.SHA3(input).toString()}`,
+                `RIPEMD160: ${CryptoJS.RIPEMD160(input).toString()}`
+            ];
+            document.getElementById('hash-all-output').textContent = results.join('\n');
+        }
+
+        // ==================== AES 加密/解密 ====================
+        function aesEncrypt() {
+            const input = document.getElementById('aes-input').value;
+            const key = document.getElementById('aes-key').value;
+            if (!input || !key) { showToast('请输入文本和密钥', true); return; }
+            try {
+                const mode = document.getElementById('aes-mode').value;
+                const padding = document.getElementById('aes-padding').value;
+                const encrypted = CryptoJS.AES.encrypt(input, key, {
+                    mode: CryptoJS.mode[mode],
+                    padding: CryptoJS.pad[padding]
+                });
+                document.getElementById('aes-output').textContent = encrypted.toString();
+            } catch(e) {
+                showToast('加密失败: ' + e.message, true);
+            }
+        }
+
+        function aesDecrypt() {
+            const input = document.getElementById('aes-input').value;
+            const key = document.getElementById('aes-key').value;
+            if (!input || !key) { showToast('请输入文本和密钥', true); return; }
+            try {
+                const mode = document.getElementById('aes-mode').value;
+                const padding = document.getElementById('aes-padding').value;
+                const decrypted = CryptoJS.AES.decrypt(input, key, {
+                    mode: CryptoJS.mode[mode],
+                    padding: CryptoJS.pad[padding]
+                });
+                document.getElementById('aes-output').textContent = decrypted.toString(CryptoJS.enc.Utf8);
+            } catch(e) {
+                showToast('解密失败: ' + e.message, true);
+            }
+        }
+
+        // ==================== DES 加密/解密 ====================
+        function desEncrypt() {
+            const input = document.getElementById('des-input').value;
+            const key = document.getElementById('des-key').value;
+            if (!input || !key) { showToast('请输入文本和密钥', true); return; }
+            try {
+                const encrypted = CryptoJS.DES.encrypt(input, key);
+                document.getElementById('des-output').textContent = encrypted.toString();
+            } catch(e) {
+                showToast('加密失败: ' + e.message, true);
+            }
+        }
+
+        function desDecrypt() {
+            const input = document.getElementById('des-input').value;
+            const key = document.getElementById('des-key').value;
+            if (!input || !key) { showToast('请输入文本和密钥', true); return; }
+            try {
+                const decrypted = CryptoJS.DES.decrypt(input, key);
+                document.getElementById('des-output').textContent = decrypted.toString(CryptoJS.enc.Utf8);
+            } catch(e) {
+                showToast('解密失败: ' + e.message, true);
+            }
+        }
+
+        // ==================== TripleDES 加密/解密 ====================
+        function tripledesEncrypt() {
+            const input = document.getElementById('tripledes-input').value;
+            const key = document.getElementById('tripledes-key').value;
+            if (!input || !key) { showToast('请输入文本和密钥', true); return; }
+            try {
+                const encrypted = CryptoJS.TripleDES.encrypt(input, key);
+                document.getElementById('tripledes-output').textContent = encrypted.toString();
+            } catch(e) {
+                showToast('加密失败: ' + e.message, true);
+            }
+        }
+
+        function tripledesDecrypt() {
+            const input = document.getElementById('tripledes-input').value;
+            const key = document.getElementById('tripledes-key').value;
+            if (!input || !key) { showToast('请输入文本和密钥', true); return; }
+            try {
+                const decrypted = CryptoJS.TripleDES.decrypt(input, key);
+                document.getElementById('tripledes-output').textContent = decrypted.toString(CryptoJS.enc.Utf8);
+            } catch(e) {
+                showToast('解密失败: ' + e.message, true);
+            }
+        }
+
+        // ==================== RC4 加密/解密 ====================
+        function rc4Encrypt() {
+            const input = document.getElementById('rc4-input').value;
+            const key = document.getElementById('rc4-key').value;
+            if (!input || !key) { showToast('请输入文本和密钥', true); return; }
+            try {
+                const encrypted = CryptoJS.RC4.encrypt(input, key);
+                document.getElementById('rc4-output').textContent = encrypted.toString();
+            } catch(e) {
+                showToast('加密失败: ' + e.message, true);
+            }
+        }
+
+        function rc4Decrypt() {
+            const input = document.getElementById('rc4-input').value;
+            const key = document.getElementById('rc4-key').value;
+            if (!input || !key) { showToast('请输入文本和密钥', true); return; }
+            try {
+                const decrypted = CryptoJS.RC4.decrypt(input, key);
+                document.getElementById('rc4-output').textContent = decrypted.toString(CryptoJS.enc.Utf8);
+            } catch(e) {
+                showToast('解密失败: ' + e.message, true);
+            }
+        }
+
+        // ==================== Rabbit 加密/解密 ====================
+        function rabbitEncrypt() {
+            const input = document.getElementById('rabbit-input').value;
+            const key = document.getElementById('rabbit-key').value;
+            if (!input || !key) { showToast('请输入文本和密钥', true); return; }
+            try {
+                const encrypted = CryptoJS.Rabbit.encrypt(input, key);
+                document.getElementById('rabbit-output').textContent = encrypted.toString();
+            } catch(e) {
+                showToast('加密失败: ' + e.message, true);
+            }
+        }
+
+        function rabbitDecrypt() {
+            const input = document.getElementById('rabbit-input').value;
+            const key = document.getElementById('rabbit-key').value;
+            if (!input || !key) { showToast('请输入文本和密钥', true); return; }
+            try {
+                const decrypted = CryptoJS.Rabbit.decrypt(input, key);
+                document.getElementById('rabbit-output').textContent = decrypted.toString(CryptoJS.enc.Utf8);
+            } catch(e) {
+                showToast('解密失败: ' + e.message, true);
+            }
+        }
+
+        // ==================== Base64 编码/解码 ====================
+        function base64Encode() {
+            const input = document.getElementById('base64-input').value;
+            if (!input) { showToast('请输入要编码的文本', true); return; }
+            try {
+                const result = btoa(unescape(encodeURIComponent(input)));
+                document.getElementById('base64-output').textContent = result;
+            } catch(e) {
+                showToast('编码失败: ' + e.message, true);
+            }
+        }
+
+        function base64Decode() {
+            const input = document.getElementById('base64-input').value;
+            if (!input) { showToast('请输入要解码的文本', true); return; }
+            try {
+                const result = decodeURIComponent(escape(atob(input)));
+                document.getElementById('base64-output').textContent = result;
+            } catch(e) {
+                showToast('解码失败，请检查输入格式', true);
+            }
+        }
+
+        // ==================== URL 编码/解码 ====================
+        function urlEncode() {
+            const input = document.getElementById('url-input').value;
+            if (!input) { showToast('请输入要编码的文本', true); return; }
+            document.getElementById('url-output').textContent = encodeURI(input);
+        }
+
+        function urlDecode() {
+            const input = document.getElementById('url-input').value;
+            if (!input) { showToast('请输入要解码的文本', true); return; }
+            try {
+                document.getElementById('url-output').textContent = decodeURI(input);
+            } catch(e) {
+                showToast('解码失败，请检查输入格式', true);
+            }
+        }
+
+        function urlEncodeComponent() {
+            const input = document.getElementById('url-input').value;
+            if (!input) { showToast('请输入要编码的文本', true); return; }
+            document.getElementById('url-output').textContent = encodeURIComponent(input);
+        }
+
+        function urlDecodeComponent() {
+            const input = document.getElementById('url-input').value;
+            if (!input) { showToast('请输入要解码的文本', true); return; }
+            try {
+                document.getElementById('url-output').textContent = decodeURIComponent(input);
+            } catch(e) {
+                showToast('解码失败，请检查输入格式', true);
+            }
+        }
+
+        // ==================== URL 十六进制编码 ====================
+        function urlHexEncode() {
+            const input = document.getElementById('url-hex-input').value;
+            if (!input) { showToast('请输入 URL', true); return; }
+            let result = '';
+            for (let i = 0; i < input.length; i++) {
+                result += '%' + input.charCodeAt(i).toString(16).padStart(2, '0').toUpperCase();
+            }
+            document.getElementById('url-hex-output').textContent = result;
+        }
+
+        function urlHexDecode() {
+            const input = document.getElementById('url-hex-input').value;
+            if (!input) { showToast('请输入十六进制编码', true); return; }
+            try {
+                const result = decodeURIComponent(input);
+                document.getElementById('url-hex-output').textContent = result;
+            } catch(e) {
+                showToast('解码失败，请检查输入格式', true);
+            }
+        }
+
+        // ==================== Escape 编码/解码 ====================
+        function escapeEncode() {
+            const input = document.getElementById('escape-input').value;
+            if (!input) { showToast('请输入要编码的文本', true); return; }
+            document.getElementById('escape-output').textContent = escape(input);
+        }
+
+        function escapeDecode() {
+            const input = document.getElementById('escape-input').value;
+            if (!input) { showToast('请输入要解码的文本', true); return; }
+            try {
+                document.getElementById('escape-output').textContent = unescape(input);
+            } catch(e) {
+                showToast('解码失败，请检查输入格式', true);
+            }
+        }
+
+        // ==================== Unicode/ASCII 转换 ====================
+        function toUnicode() {
+            const input = document.getElementById('unicode-input').value;
+            if (!input) { showToast('请输入文本', true); return; }
+            let result = '';
+            for (let i = 0; i < input.length; i++) {
+                result += '\\u' + input.charCodeAt(i).toString(16).padStart(4, '0');
+            }
+            document.getElementById('unicode-output').textContent = result;
+        }
+
+        function fromUnicode() {
+            const input = document.getElementById('unicode-input').value;
+            if (!input) { showToast('请输入 Unicode 编码', true); return; }
+            try {
+                const result = input.replace(/\\u([0-9a-fA-F]{4})/g, (match, p1) => {
+                    return String.fromCharCode(parseInt(p1, 16));
+                });
+                document.getElementById('unicode-output').textContent = result;
+            } catch(e) {
+                showToast('转换失败，请检查输入格式', true);
+            }
+        }
+
+        function toAsciiCode() {
+            const input = document.getElementById('unicode-input').value;
+            if (!input) { showToast('请输入文本', true); return; }
+            let result = [];
+            for (let i = 0; i < input.length; i++) {
+                result.push(input.charCodeAt(i));
+            }
+            document.getElementById('unicode-output').textContent = result.join(' ');
+        }
+
+        function fromAsciiCode() {
+            const input = document.getElementById('unicode-input').value;
+            if (!input) { showToast('请输入 ASCII 码', true); return; }
+            try {
+                const codes = input.trim().split(/[\s,]+/);
+                const result = codes.map(code => String.fromCharCode(parseInt(code))).join('');
+                document.getElementById('unicode-output').textContent = result;
+            } catch(e) {
+                showToast('转换失败，请检查输入格式', true);
+            }
+        }
+
+        // ==================== Native/Unicode 编码转换 ====================
+        function nativeToUnicode() {
+            const input = document.getElementById('native-unicode-input').value;
+            if (!input) { showToast('请输入文本', true); return; }
+            let result = '';
+            for (let i = 0; i < input.length; i++) {
+                const code = input.charCodeAt(i);
+                if (code > 127) {
+                    result += '\\u' + code.toString(16).padStart(4, '0');
+                } else {
+                    result += input[i];
+                }
+            }
+            document.getElementById('native-unicode-output').textContent = result;
+        }
+
+        function unicodeToNative() {
+            const input = document.getElementById('native-unicode-input').value;
+            if (!input) { showToast('请输入文本', true); return; }
+            try {
+                const result = input.replace(/\\u([0-9a-fA-F]{4})/g, (match, p1) => {
+                    return String.fromCharCode(parseInt(p1, 16));
+                });
+                document.getElementById('native-unicode-output').textContent = result;
+            } catch(e) {
+                showToast('转换失败，请检查输入格式', true);
+            }
+        }
+
+        // ==================== UTF-8/GBK 转换 ====================
+        function showUtf8() {
+            const input = document.getElementById('utf8-gbk-input').value;
+            if (!input) { showToast('请输入文本', true); return; }
+            const encoder = new TextEncoder();
+            const bytes = encoder.encode(input);
+            let hexResult = '';
+            let decResult = [];
+            for (let i = 0; i < bytes.length; i++) {
+                hexResult += '\\x' + bytes[i].toString(16).padStart(2, '0').toUpperCase();
+                decResult.push(bytes[i]);
+            }
+            document.getElementById('utf8-gbk-output').textContent =
+                `UTF-8 十六进制: ${hexResult}\nUTF-8 十进制: ${decResult.join(' ')}\n字节长度: ${bytes.length}`;
+        }
+
+        function utf8ToText() {
+            const input = document.getElementById('utf8-gbk-input').value;
+            if (!input) { showToast('请输入 UTF-8 编码', true); return; }
+            try {
+                // 支持 \xNN 和空格分隔的十进制格式
+                let bytes;
+                if (input.includes('\\x')) {
+                    const hexStr = input.replace(/\\x/g, '');
+                    bytes = new Uint8Array(hexStr.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+                } else {
+                    bytes = new Uint8Array(input.trim().split(/[\s,]+/).map(n => parseInt(n)));
+                }
+                const decoder = new TextDecoder('utf-8');
+                const result = decoder.decode(bytes);
+                document.getElementById('utf8-gbk-output').textContent = result;
+            } catch(e) {
+                showToast('转换失败，请检查输入格式', true);
+            }
+        }
+
+        // ==================== 摩尔斯电码 ====================
+        const morseCode = {
+            'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.',
+            'G': '--.', 'H': '....', 'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..',
+            'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-', 'R': '.-.',
+            'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-',
+            'Y': '-.--', 'Z': '--..', '0': '-----', '1': '.----', '2': '..---',
+            '3': '...--', '4': '....-', '5': '.....', '6': '-....', '7': '--...',
+            '8': '---..', '9': '----.', '.': '.-.-.-', ',': '--..--', '?': '..--..',
+            "'": '.----.', '!': '-.-.--', '/': '-..-.', '(': '-.--.', ')': '-.--.-',
+            '&': '.-...', ':': '---...', ';': '-.-.-.', '=': '-...-', '+': '.-.-.',
+            '-': '-....-', '_': '..--.-', '"': '.-..-.', '$': '...-..-', '@': '.--.-.'
+        };
+
+        const reverseMorse = Object.fromEntries(Object.entries(morseCode).map(([k, v]) => [v, k]));
+
+        function textToMorse() {
+            const input = document.getElementById('morse-input').value.toUpperCase();
+            if (!input) { showToast('请输入文本', true); return; }
+            let result = '';
+            for (let char of input) {
+                if (char === ' ') {
+                    result += ' / ';
+                } else if (morseCode[char]) {
+                    result += morseCode[char] + ' ';
+                }
+            }
+            document.getElementById('morse-output').textContent = result.trim();
+        }
+
+        function morseToText() {
+            const input = document.getElementById('morse-input').value;
+            if (!input) { showToast('请输入摩尔斯电码', true); return; }
+            const words = input.split(' / ');
+            let result = '';
+            for (let word of words) {
+                const letters = word.trim().split(' ');
+                for (let letter of letters) {
+                    if (reverseMorse[letter]) {
+                        result += reverseMorse[letter];
+                    }
+                }
+                result += ' ';
+            }
+            document.getElementById('morse-output').textContent = result.trim();
+        }
+
+        // ==================== 密码生成器 ====================
+        function generatePassword() {
+            const length = parseInt(document.getElementById('pwd-length').value);
+            const count = parseInt(document.getElementById('pwd-count').value);
+            const useUpper = document.getElementById('pwd-upper').checked;
+            const useLower = document.getElementById('pwd-lower').checked;
+            const useNumber = document.getElementById('pwd-number').checked;
+            const useSymbol = document.getElementById('pwd-symbol').checked;
+
+            if (!useUpper && !useLower && !useNumber && !useSymbol) {
+                showToast('请至少选择一种字符类型', true);
+                return;
+            }
+
+            let charset = '';
+            if (useUpper) charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            if (useLower) charset += 'abcdefghijklmnopqrstuvwxyz';
+            if (useNumber) charset += '0123456789';
+            if (useSymbol) charset += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+
+            const passwords = [];
+            for (let i = 0; i < count; i++) {
+                let password = '';
+                const array = new Uint32Array(length);
+                crypto.getRandomValues(array);
+                for (let j = 0; j < length; j++) {
+                    password += charset[array[j] % charset.length];
+                }
+                passwords.push(password);
+            }
+            document.getElementById('password-output').textContent = passwords.join('\n');
+        }
+
+        // ==================== UUID/GUID 生成 ====================
+        function generateUUIDv4() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                const r = crypto.getRandomValues(new Uint8Array(1))[0] % 16;
+                const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+
+        function formatUUID(uuid, format) {
+            switch(format) {
+                case 'compact': return uuid.replace(/-/g, '');
+                case 'upper': return uuid.toUpperCase();
+                case 'braces': return '{' + uuid + '}';
+                default: return uuid;
+            }
+        }
+
+        function generateUUID() {
+            const count = parseInt(document.getElementById('uuid-count').value);
+            const format = document.getElementById('uuid-format').value;
+            const uuids = [];
+            for (let i = 0; i < count; i++) {
+                uuids.push(formatUUID(generateUUIDv4(), format));
+            }
+            document.getElementById('uuid-output').textContent = uuids.join('\n');
+        }
+
+        function generateGUID() {
+            generateUUID(); // GUID 和 UUID 在实现上是相同的
+        }
+
+        // ==================== htpasswd 生成 ====================
+        function generateHtpasswd() {
+            const user = document.getElementById('htpasswd-user').value;
+            const pass = document.getElementById('htpasswd-pass').value;
+            const method = document.getElementById('htpasswd-method').value;
+
+            if (!user || !pass) {
+                showToast('请输入用户名和密码', true);
+                return;
+            }
+
+            let hash;
+            switch(method) {
+                case 'md5':
+                    // 简化的 APR1 MD5 实现
+                    const salt = generateSalt(8);
+                    hash = '$apr1$' + salt + '$' + CryptoJS.MD5(pass + salt).toString().substring(0, 22);
+                    break;
+                case 'sha1':
+                    hash = '{SHA}' + CryptoJS.SHA1(pass).toString(CryptoJS.enc.Base64);
+                    break;
+                case 'plain':
+                    hash = pass;
+                    break;
+            }
+            document.getElementById('htpasswd-output').textContent = `${user}:${hash}`;
+        }
+
+        function generateSalt(length) {
+            const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789./';
+            let salt = '';
+            const array = new Uint32Array(length);
+            crypto.getRandomValues(array);
+            for (let i = 0; i < length; i++) {
+                salt += charset[array[i] % charset.length];
+            }
+            return salt;
+        }
+
+        // ==================== 条形码生成器 ====================
+        function generateBarcode() {
+            const text = document.getElementById('barcode-text').value;
+            const format = document.getElementById('barcode-format').value;
+
+            if (!text) {
+                showToast('请输入条形码内容', true);
+                return;
+            }
+
+            try {
+                JsBarcode("#barcode-canvas", text, {
+                    format: format,
+                    width: 2,
+                    height: 100,
+                    displayValue: true,
+                    fontSize: 16,
+                    margin: 10
+                });
+            } catch(e) {
+                showToast('生成失败: ' + e.message, true);
+            }
+        }
+
+        function downloadBarcode() {
+            const svg = document.getElementById('barcode-canvas');
+            const svgData = new XMLSerializer().serializeToString(svg);
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const img = new Image();
+
+            img.onload = function() {
+                canvas.width = img.width;
+                canvas.height = img.height;
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0);
+                const link = document.createElement('a');
+                link.download = 'barcode.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            };
+            img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgData)));
+        }
+
+        // ==================== IP/数字地址转换 ====================
+        function ipToNumber() {
+            const ip = document.getElementById('ip-input').value;
+            if (!ip) { showToast('请输入 IP 地址', true); return; }
+            const parts = ip.split('.');
+            if (parts.length !== 4) { showToast('IP 格式不正确', true); return; }
+            const num = ((parseInt(parts[0]) << 24) + (parseInt(parts[1]) << 16) + (parseInt(parts[2]) << 8) + parseInt(parts[3])) >>> 0;
+            document.getElementById('ip-output').textContent = num.toString();
+            document.getElementById('ip-number-input').value = num;
+        }
+
+        function numberToIp() {
+            const num = parseInt(document.getElementById('ip-number-input').value);
+            if (isNaN(num)) { showToast('请输入数字地址', true); return; }
+            const ip = [(num >>> 24) & 255, (num >>> 16) & 255, (num >>> 8) & 255, num & 255].join('.');
+            document.getElementById('ip-output').textContent = ip;
+            document.getElementById('ip-input').value = ip;
+        }
+
+        function ipToBinary() {
+            const ip = document.getElementById('ip-input').value;
+            if (!ip) { showToast('请输入 IP 地址', true); return; }
+            const parts = ip.split('.');
+            if (parts.length !== 4) { showToast('IP 格式不正确', true); return; }
+            const binary = parts.map(p => parseInt(p).toString(2).padStart(8, '0')).join('.');
+            document.getElementById('ip-output').textContent = binary;
+        }
+
+        function ipToHex() {
+            const ip = document.getElementById('ip-input').value;
+            if (!ip) { showToast('请输入 IP 地址', true); return; }
+            const parts = ip.split('.');
+            if (parts.length !== 4) { showToast('IP 格式不正确', true); return; }
+            const hex = parts.map(p => parseInt(p).toString(16).padStart(2, '0').toUpperCase()).join('.');
+            document.getElementById('ip-output').textContent = '0x' + parts.map(p => parseInt(p).toString(16).padStart(2, '0').toUpperCase()).join('');
+        }
+
+        // ==================== 图片转 Base64 ====================
+        function imageToBase64(input) {
+            const file = input.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const base64 = e.target.result;
+                document.getElementById('image-base64-output').textContent = base64;
+                document.getElementById('image-preview').src = base64;
+                document.getElementById('image-preview').style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function base64ToImage() {
+            let input = document.getElementById('base64-to-image-input').value.trim();
+            if (!input) { showToast('请输入 Base64 编码', true); return; }
+
+            // 如果没有 data:image 前缀，自动添加
+            if (!input.startsWith('data:image')) {
+                input = 'data:image/png;base64,' + input;
+            }
+
+            const img = document.getElementById('base64-image-preview');
+            img.src = input;
+            img.style.display = 'block';
+            img.onerror = function() {
+                showToast('无效的 Base64 图片编码', true);
+                img.style.display = 'none';
+            };
+        }
+
+        // 拖拽上传支持
+        const fileUpload = document.querySelector('.file-upload');
+        if (fileUpload) {
+            fileUpload.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                fileUpload.style.borderColor = '#7c3aed';
+                fileUpload.style.background = 'rgba(124, 58, 237, 0.1)';
+            });
+
+            fileUpload.addEventListener('dragleave', () => {
+                fileUpload.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                fileUpload.style.background = 'transparent';
+            });
+
+            fileUpload.addEventListener('drop', (e) => {
+                e.preventDefault();
+                fileUpload.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                fileUpload.style.background = 'transparent';
+                const file = e.dataTransfer.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    const input = document.getElementById('image-file');
+                    const dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(file);
+                    input.files = dataTransfer.files;
+                    imageToBase64(input);
+                }
+            });
+        }
+
+        // 初始化条形码
+        window.onload = function() {
+            try {
+                JsBarcode("#barcode-canvas", "Hello World", {
+                    format: "CODE128",
+                    width: 2,
+                    height: 100,
+                    displayValue: true
+                });
+            } catch(e) {}
+        };
+    </script>
+</body>
+</html>

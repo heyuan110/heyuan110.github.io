@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket 在线测试工具</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #e4e4e7;
+            line-height: 1.6;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 返回首页 */
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #a1a1aa;
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            margin-bottom: 20px;
+        }
+
+        .back-home:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        /* 头部 */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            background: linear-gradient(120deg, #00d4ff, #7c3aed, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #a1a1aa;
+            font-size: 0.95rem;
+        }
+
+        .tips {
+            background: rgba(124, 58, 237, 0.15);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: #a78bfa;
+            display: inline-block;
+        }
+
+        .tips code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', monospace;
+        }
+
+        /* 主布局 */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 卡片样式 */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .card-header {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-header h2 {
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        /* 连接区域 */
+        .connection-section {
+            grid-column: 1 / -1;
+        }
+
+        .connection-form {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .url-input-wrapper {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+
+        .url-input-wrapper .protocol {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #22c55e;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+            pointer-events: none;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            padding-left: 55px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            color: #e4e4e7;
+            font-size: 0.95rem;
+            font-family: 'Monaco', 'Menlo', monospace;
+            transition: all 0.2s ease;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+        }
+
+        /* 按钮 */
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .btn-connect {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: #fff;
+        }
+
+        .btn-connect:hover {
+            background: linear-gradient(135deg, #10b981, #34d399);
+            transform: translateY(-2px);
+        }
+
+        .btn-disconnect {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: #fff;
+        }
+
+        .btn-disconnect:hover {
+            background: linear-gradient(135deg, #ef4444, #f87171);
+            transform: translateY(-2px);
+        }
+
+        .btn-send {
+            background: linear-gradient(135deg, #7c3aed, #6366f1);
+            color: #fff;
+        }
+
+        .btn-send:hover {
+            background: linear-gradient(135deg, #8b5cf6, #818cf8);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #e4e4e7;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* 状态指示器 */
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #71717a;
+            animation: none;
+        }
+
+        .status-dot.connecting {
+            background: #f59e0b;
+            animation: pulse 1s infinite;
+        }
+
+        .status-dot.connected {
+            background: #22c55e;
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+        }
+
+        .status-dot.disconnected {
+            background: #ef4444;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .status-text {
+            color: #a1a1aa;
+        }
+
+        .status-text.connected {
+            color: #22c55e;
+        }
+
+        .status-text.connecting {
+            color: #f59e0b;
+        }
+
+        .status-text.disconnected {
+            color: #ef4444;
+        }
+
+        /* 消息输入 */
+        .message-input-area {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 12px 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            color: #e4e4e7;
+            font-size: 0.9rem;
+            font-family: 'Monaco', 'Menlo', monospace;
+            resize: vertical;
+            transition: all 0.2s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+        }
+
+        .message-options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .message-type {
+            display: flex;
+            gap: 5px;
+        }
+
+        .message-type label {
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
+        }
+
+        .message-type input[type="radio"] {
+            display: none;
+        }
+
+        .message-type input[type="radio"]:checked + label {
+            background: rgba(124, 58, 237, 0.3);
+            border-color: #7c3aed;
+            color: #a78bfa;
+        }
+
+        .send-actions {
+            display: flex;
+            gap: 10px;
+            margin-left: auto;
+        }
+
+        /* 消息日志 */
+        .message-log {
+            height: 400px;
+            overflow-y: auto;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        .message-log::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .message-log::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+        }
+
+        .message-log::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
+        .message-log::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .log-entry {
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-family: 'Monaco', 'Menlo', monospace;
+            animation: slideIn 0.2s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .log-entry.sent {
+            background: rgba(124, 58, 237, 0.2);
+            border-left: 3px solid #7c3aed;
+        }
+
+        .log-entry.received {
+            background: rgba(34, 197, 94, 0.2);
+            border-left: 3px solid #22c55e;
+        }
+
+        .log-entry.system {
+            background: rgba(59, 130, 246, 0.2);
+            border-left: 3px solid #3b82f6;
+        }
+
+        .log-entry.error {
+            background: rgba(239, 68, 68, 0.2);
+            border-left: 3px solid #ef4444;
+        }
+
+        .log-entry .time {
+            color: #71717a;
+            font-size: 0.75rem;
+            margin-right: 10px;
+        }
+
+        .log-entry .direction {
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .log-entry.sent .direction {
+            color: #a78bfa;
+        }
+
+        .log-entry.received .direction {
+            color: #22c55e;
+        }
+
+        .log-entry.system .direction {
+            color: #3b82f6;
+        }
+
+        .log-entry.error .direction {
+            color: #ef4444;
+        }
+
+        .log-entry .content {
+            word-break: break-all;
+            white-space: pre-wrap;
+        }
+
+        .log-empty {
+            text-align: center;
+            color: #71717a;
+            padding: 40px;
+        }
+
+        .log-empty .icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        /* 快捷消息 */
+        .quick-messages {
+            margin-top: 15px;
+        }
+
+        .quick-messages h4 {
+            font-size: 0.8rem;
+            color: #71717a;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .quick-msg-list {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .quick-msg {
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
+        }
+
+        .quick-msg:hover {
+            background: rgba(124, 58, 237, 0.2);
+            border-color: #7c3aed;
+        }
+
+        /* 历史记录 */
+        .history-list {
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .history-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 6px;
+            margin-bottom: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .history-item:hover {
+            background: rgba(124, 58, 237, 0.2);
+        }
+
+        .history-item .url {
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.85rem;
+            color: #e4e4e7;
+        }
+
+        .history-item .delete-btn {
+            background: none;
+            border: none;
+            color: #71717a;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .history-item .delete-btn:hover {
+            color: #ef4444;
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        .no-history {
+            text-align: center;
+            color: #71717a;
+            padding: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* 统计信息 */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .stat-item {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .stat-item .value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .stat-item .label {
+            font-size: 0.75rem;
+            color: #71717a;
+            margin-top: 4px;
+        }
+
+        .stat-item.sent .value { color: #a78bfa; }
+        .stat-item.received .value { color: #22c55e; }
+        .stat-item.errors .value { color: #ef4444; }
+        .stat-item.time .value { color: #3b82f6; font-size: 1rem; }
+
+        @media (max-width: 600px) {
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Toast 提示 */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 12px 24px;
+            background: rgba(34, 197, 94, 0.9);
+            color: #fff;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            z-index: 1000;
+            animation: toastIn 0.3s ease;
+        }
+
+        .toast.error {
+            background: rgba(239, 68, 68, 0.9);
+        }
+
+        @keyframes toastIn {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* 底部说明 */
+        .footer-notes {
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .footer-notes h3 {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: #e4e4e7;
+        }
+
+        .footer-notes ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-notes li {
+            padding: 10px 14px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: #a1a1aa;
+            line-height: 1.6;
+            word-break: break-word;
+        }
+
+        .footer-notes li::before {
+            content: "• ";
+            color: #7c3aed;
+            font-weight: bold;
+        }
+
+        .footer-notes code {
+            background: rgba(124, 58, 237, 0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.8rem;
+            color: #a78bfa;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-home">← 返回工具箱首页</a>
+
+        <header>
+            <h1>🔌 WebSocket 在线测试工具</h1>
+            <p>基于 HTML5 WebSocket 的在线调试工具，支持内网和外网连接测试</p>
+            <div class="tips">
+                连接格式：<code>ws://IP或域名:端口</code> 或 <code>wss://IP或域名:端口</code>
+                &nbsp;示例：<code>ws://127.0.0.1:8080</code>
+            </div>
+        </header>
+
+        <!-- 连接区域 -->
+        <div class="main-layout">
+            <div class="card connection-section">
+                <div class="card-header">
+                    <h2>🔗 连接设置</h2>
+                    <div class="status-indicator">
+                        <div class="status-dot" id="statusDot"></div>
+                        <span class="status-text" id="statusText">未连接</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="connection-form">
+                        <div class="url-input-wrapper">
+                            <span class="protocol" id="protocolLabel">ws://</span>
+                            <input type="text" id="wsUrl" placeholder="127.0.0.1:8080/ws" value="echo.websocket.org">
+                        </div>
+                        <button class="btn btn-connect" id="connectBtn" onclick="connect()">
+                            <span>🔌</span> 连接
+                        </button>
+                        <button class="btn btn-disconnect" id="disconnectBtn" onclick="disconnect()" disabled>
+                            <span>⏹️</span> 断开
+                        </button>
+                    </div>
+                    <div class="message-options" style="margin-top: 15px;">
+                        <div class="message-type">
+                            <input type="radio" name="protocol" id="ws" value="ws://" checked onchange="updateProtocol()">
+                            <label for="ws">WS</label>
+                            <input type="radio" name="protocol" id="wss" value="wss://" onchange="updateProtocol()">
+                            <label for="wss">WSS (SSL)</label>
+                        </div>
+                    </div>
+
+                    <!-- 统计信息 -->
+                    <div class="stats">
+                        <div class="stat-item sent">
+                            <div class="value" id="sentCount">0</div>
+                            <div class="label">已发送</div>
+                        </div>
+                        <div class="stat-item received">
+                            <div class="value" id="receivedCount">0</div>
+                            <div class="label">已接收</div>
+                        </div>
+                        <div class="stat-item errors">
+                            <div class="value" id="errorCount">0</div>
+                            <div class="label">错误</div>
+                        </div>
+                        <div class="stat-item time">
+                            <div class="value" id="connectedTime">--:--</div>
+                            <div class="label">连接时长</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 发送消息 -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>📤 发送消息</h2>
+                </div>
+                <div class="card-body">
+                    <div class="message-input-area">
+                        <textarea id="messageInput" placeholder="输入要发送的消息内容..."></textarea>
+                        <div class="message-options">
+                            <div class="message-type">
+                                <input type="radio" name="msgType" id="textMsg" value="text" checked>
+                                <label for="textMsg">文本</label>
+                                <input type="radio" name="msgType" id="jsonMsg" value="json">
+                                <label for="jsonMsg">JSON</label>
+                            </div>
+                            <div class="send-actions">
+                                <button class="btn btn-secondary" onclick="formatJson()">格式化 JSON</button>
+                                <button class="btn btn-secondary" onclick="clearMessage()">清空</button>
+                                <button class="btn btn-send" id="sendBtn" onclick="sendMessage()" disabled>
+                                    <span>📤</span> 发送
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="quick-messages">
+                        <h4>快捷消息</h4>
+                        <div class="quick-msg-list">
+                            <span class="quick-msg" onclick="setQuickMessage('ping')">ping</span>
+                            <span class="quick-msg" onclick="setQuickMessage('pong')">pong</span>
+                            <span class="quick-msg" onclick="setQuickMessage('hello')">hello</span>
+                            <span class="quick-msg" onclick="setQuickMessage('{&quot;type&quot;:&quot;ping&quot;}')">{ping}</span>
+                            <span class="quick-msg" onclick="setQuickMessage('{&quot;action&quot;:&quot;subscribe&quot;,&quot;channel&quot;:&quot;test&quot;}')">{subscribe}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 消息日志 -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>📋 消息日志</h2>
+                    <button class="btn btn-secondary" onclick="clearLog()" style="padding: 6px 12px; font-size: 0.8rem;">
+                        🗑️ 清空
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="message-log" id="messageLog">
+                        <div class="log-empty">
+                            <div class="icon">📭</div>
+                            <p>暂无消息记录</p>
+                            <p style="font-size: 0.8rem; margin-top: 5px;">连接 WebSocket 后，消息将显示在这里</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 使用说明 -->
+        <div class="footer-notes">
+            <h3>📖 使用说明</h3>
+            <ul>
+                <li>支持 <code>ws://</code>（普通）和 <code>wss://</code>（SSL加密）两种协议</li>
+                <li>内网测试：<code>ws://192.168.1.100:8080</code> 或 <code>ws://localhost:3000</code></li>
+                <li>外网测试：<code>wss://example.com/ws</code> 或 <code>ws://your-domain.com:8080</code></li>
+                <li>支持发送纯文本和 JSON 格式消息，可自动格式化 JSON</li>
+                <li>实时显示发送/接收消息，包含时间戳和消息内容</li>
+                <li>连接状态实时监控，统计发送/接收/错误次数</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // WebSocket 实例
+        let ws = null;
+        let connectedAt = null;
+        let timerInterval = null;
+
+        // 统计数据
+        let stats = {
+            sent: 0,
+            received: 0,
+            errors: 0
+        };
+
+        // 更新协议标签
+        function updateProtocol() {
+            const protocol = document.querySelector('input[name="protocol"]:checked').value;
+            document.getElementById('protocolLabel').textContent = protocol;
+        }
+
+        // 获取完整 URL
+        function getFullUrl() {
+            const protocol = document.querySelector('input[name="protocol"]:checked').value;
+            let url = document.getElementById('wsUrl').value.trim();
+            // 移除可能已有的协议前缀
+            url = url.replace(/^wss?:\/\//, '');
+            return protocol + url;
+        }
+
+        // 连接 WebSocket
+        function connect() {
+            const url = getFullUrl();
+
+            if (!url || url === 'ws://' || url === 'wss://') {
+                showToast('请输入有效的 WebSocket 地址', true);
+                return;
+            }
+
+            try {
+                updateStatus('connecting');
+                addLog('system', `正在连接 ${url}...`);
+
+                ws = new WebSocket(url);
+
+                ws.onopen = function(event) {
+                    updateStatus('connected');
+                    addLog('system', '连接成功！');
+                    connectedAt = new Date();
+                    startTimer();
+                    saveToHistory(url);
+                };
+
+                ws.onmessage = function(event) {
+                    stats.received++;
+                    updateStats();
+                    addLog('received', event.data);
+                };
+
+                ws.onerror = function(event) {
+                    stats.errors++;
+                    updateStats();
+                    addLog('error', '连接发生错误');
+                };
+
+                ws.onclose = function(event) {
+                    updateStatus('disconnected');
+                    stopTimer();
+                    let reason = event.reason || '连接已关闭';
+                    if (event.code) {
+                        reason += ` (代码: ${event.code})`;
+                    }
+                    addLog('system', reason);
+                };
+
+            } catch (e) {
+                updateStatus('disconnected');
+                addLog('error', '连接失败: ' + e.message);
+                showToast('连接失败: ' + e.message, true);
+            }
+        }
+
+        // 断开连接
+        function disconnect() {
+            if (ws) {
+                addLog('system', '正在断开连接...');
+                try {
+                    ws.close(1000, '用户主动断开');
+                } catch (e) {
+                    console.error('关闭连接出错:', e);
+                }
+                ws = null;
+                updateStatus('disconnected');
+                stopTimer();
+            }
+        }
+
+        // 发送消息
+        function sendMessage() {
+            if (!ws || ws.readyState !== WebSocket.OPEN) {
+                showToast('WebSocket 未连接', true);
+                return;
+            }
+
+            const message = document.getElementById('messageInput').value;
+            if (!message.trim()) {
+                showToast('请输入消息内容', true);
+                return;
+            }
+
+            try {
+                ws.send(message);
+                stats.sent++;
+                updateStats();
+                addLog('sent', message);
+            } catch (e) {
+                stats.errors++;
+                updateStats();
+                addLog('error', '发送失败: ' + e.message);
+            }
+        }
+
+        // 更新状态显示
+        function updateStatus(status) {
+            const dot = document.getElementById('statusDot');
+            const text = document.getElementById('statusText');
+            const connectBtn = document.getElementById('connectBtn');
+            const disconnectBtn = document.getElementById('disconnectBtn');
+            const sendBtn = document.getElementById('sendBtn');
+
+            dot.className = 'status-dot ' + status;
+            text.className = 'status-text ' + status;
+
+            switch(status) {
+                case 'connecting':
+                    text.textContent = '连接中...';
+                    connectBtn.disabled = true;
+                    disconnectBtn.disabled = true;
+                    sendBtn.disabled = true;
+                    break;
+                case 'connected':
+                    text.textContent = '已连接';
+                    connectBtn.disabled = true;
+                    disconnectBtn.disabled = false;
+                    sendBtn.disabled = false;
+                    break;
+                case 'disconnected':
+                    text.textContent = '未连接';
+                    connectBtn.disabled = false;
+                    disconnectBtn.disabled = true;
+                    sendBtn.disabled = true;
+                    break;
+            }
+        }
+
+        // 添加日志
+        function addLog(type, content) {
+            const log = document.getElementById('messageLog');
+            const empty = log.querySelector('.log-empty');
+            if (empty) {
+                empty.remove();
+            }
+
+            const entry = document.createElement('div');
+            entry.className = 'log-entry ' + type;
+
+            const time = new Date().toLocaleTimeString();
+            let direction = '';
+            switch(type) {
+                case 'sent': direction = '发送 →'; break;
+                case 'received': direction = '← 接收'; break;
+                case 'system': direction = '系统'; break;
+                case 'error': direction = '错误'; break;
+            }
+
+            // 尝试格式化 JSON
+            let displayContent = content;
+            try {
+                const parsed = JSON.parse(content);
+                displayContent = JSON.stringify(parsed, null, 2);
+            } catch(e) {
+                // 不是 JSON，保持原样
+            }
+
+            entry.innerHTML = `
+                <span class="time">${time}</span>
+                <span class="direction">[${direction}]</span>
+                <span class="content">${escapeHtml(displayContent)}</span>
+            `;
+
+            log.appendChild(entry);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        // HTML 转义
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // 清空日志
+        function clearLog() {
+            const log = document.getElementById('messageLog');
+            log.innerHTML = `
+                <div class="log-empty">
+                    <div class="icon">📭</div>
+                    <p>暂无消息记录</p>
+                    <p style="font-size: 0.8rem; margin-top: 5px;">连接 WebSocket 后，消息将显示在这里</p>
+                </div>
+            `;
+        }
+
+        // 更新统计
+        function updateStats() {
+            document.getElementById('sentCount').textContent = stats.sent;
+            document.getElementById('receivedCount').textContent = stats.received;
+            document.getElementById('errorCount').textContent = stats.errors;
+        }
+
+        // 开始计时器
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if (connectedAt) {
+                    const diff = Math.floor((new Date() - connectedAt) / 1000);
+                    const mins = Math.floor(diff / 60).toString().padStart(2, '0');
+                    const secs = (diff % 60).toString().padStart(2, '0');
+                    document.getElementById('connectedTime').textContent = `${mins}:${secs}`;
+                }
+            }, 1000);
+        }
+
+        // 停止计时器
+        function stopTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+            connectedAt = null;
+        }
+
+        // 格式化 JSON
+        function formatJson() {
+            const textarea = document.getElementById('messageInput');
+            try {
+                const parsed = JSON.parse(textarea.value);
+                textarea.value = JSON.stringify(parsed, null, 2);
+            } catch(e) {
+                showToast('无效的 JSON 格式', true);
+            }
+        }
+
+        // 清空消息输入
+        function clearMessage() {
+            document.getElementById('messageInput').value = '';
+        }
+
+        // 设置快捷消息
+        function setQuickMessage(msg) {
+            document.getElementById('messageInput').value = msg;
+        }
+
+        // 保存到历史记录
+        function saveToHistory(url) {
+            let history = JSON.parse(localStorage.getItem('ws_history') || '[]');
+            // 移除重复项
+            history = history.filter(item => item !== url);
+            // 添加到开头
+            history.unshift(url);
+            // 只保留最近10条
+            history = history.slice(0, 10);
+            localStorage.setItem('ws_history', JSON.stringify(history));
+        }
+
+        // 显示 Toast
+        function showToast(message, isError = false) {
+            const toast = document.createElement('div');
+            toast.className = 'toast' + (isError ? ' error' : '');
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2000);
+        }
+
+        // 回车发送
+        document.getElementById('messageInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && e.ctrlKey) {
+                sendMessage();
+            }
+        });
+
+        // URL 输入框回车连接
+        document.getElementById('wsUrl').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                connect();
+            }
+        });
+
+        // 页面关闭时断开连接
+        window.addEventListener('beforeunload', function() {
+            if (ws) {
+                ws.close();
+            }
+        });
+    </script>
+</body>
+</html>
