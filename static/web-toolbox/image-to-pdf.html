@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ===================== SEO META ===================== -->
+    <title>图片合并为PDF - 在线图片转PDF工具 | Web Toolbox</title>
+    <meta name="description" content="免费在线图片合并为PDF工具，支持多图拖拽排序、截图粘贴、手机扫码上传。支持JPG/PNG/WEBP格式，可自定义页面尺寸，一键生成高质量PDF文件。">
+    <meta name="keywords" content="图片转PDF,图片合并PDF,多图合并,截图转PDF,在线PDF生成,图片拖拽排序,免费PDF工具">
+    <meta name="author" content="heyuan110">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.heyuan110.com/web-toolbox/image-to-pdf.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.heyuan110.com/web-toolbox/image-to-pdf.html">
+    <meta property="og:title" content="图片合并为PDF - 在线图片转PDF工具">
+    <meta property="og:description" content="免费在线图片合并为PDF工具，支持多图拖拽排序、截图粘贴、手机扫码上传，一键生成高质量PDF。">
+    <meta property="og:image" content="https://www.heyuan110.com/web-toolbox/screenshots/image-to-pdf.png">
+    <meta property="og:locale" content="zh_CN">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="图片合并为PDF - 在线图片转PDF工具">
+    <meta name="twitter:description" content="免费在线图片合并为PDF，支持拖拽排序、截图粘贴、手机扫码上传。">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "图片合并为PDF",
+        "description": "免费在线图片合并为PDF工具，支持多图拖拽排序、截图粘贴上传，一键生成高质量PDF文件",
+        "url": "https://www.heyuan110.com/web-toolbox/image-to-pdf.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "CNY"},
+        "author": {"@type": "Person", "name": "heyuan110"}
+    }
+    </script>
+    <!-- ===================== /SEO META ===================== -->
+
+    <!-- ===================== TOOL_META ===================== -->
+    <script>
+    const TOOL_META = {
+        slug: 'image-to-pdf',
+        name: '图片合并为PDF',
+        description: '多图拖拽排序、截图粘贴、手机扫码上传，一键生成高质量PDF文件',
+        keywords: ['图片转PDF', '合并PDF', '截图转PDF', '拖拽排序']
+    };
+    </script>
+    <!-- ===================== /TOOL_META ===================== -->
+
+    <!-- 依赖库 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <!-- ===================== UI ===================== -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #e4e4e7;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        /* 头部 */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #a78bfa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: #c4b5fd;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(120deg, #00d4ff, #7c3aed, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            color: #a1a1aa;
+            font-size: 1rem;
+        }
+
+        /* 主体布局 */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 24px;
+        }
+
+        @media (max-width: 900px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 卡片 */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* 上传区域 */
+        .upload-zone {
+            border: 2px dashed rgba(124, 58, 237, 0.4);
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: rgba(124, 58, 237, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .upload-zone:hover,
+        .upload-zone.dragover {
+            border-color: #7c3aed;
+            background: rgba(124, 58, 237, 0.15);
+        }
+
+        .upload-zone.dragover {
+            transform: scale(1.02);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .upload-text {
+            color: #d4d4d8;
+            margin-bottom: 8px;
+        }
+
+        .upload-hint {
+            color: #71717a;
+            font-size: 0.85rem;
+        }
+
+        .upload-hint kbd {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+
+        .hidden-input {
+            display: none;
+        }
+
+        /* 快捷上传按钮 */
+        .quick-upload {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .quick-btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            color: #e4e4e7;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .quick-btn:hover {
+            background: rgba(124, 58, 237, 0.2);
+            border-color: rgba(124, 58, 237, 0.5);
+        }
+
+        /* 图片列表 */
+        .image-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 16px;
+            min-height: 100px;
+        }
+
+        .image-list:empty::before {
+            content: "暂无图片，请上传图片";
+            grid-column: 1 / -1;
+            text-align: center;
+            color: #71717a;
+            padding: 40px;
+        }
+
+        .image-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.3);
+            cursor: grab;
+            transition: all 0.2s;
+            aspect-ratio: 1;
+        }
+
+        .image-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .image-item.sortable-ghost {
+            opacity: 0.4;
+        }
+
+        .image-item.sortable-chosen {
+            box-shadow: 0 0 0 3px #7c3aed;
+        }
+
+        .image-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-index {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .image-remove {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(239, 68, 68, 0.9);
+            color: #fff;
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .image-item:hover .image-remove {
+            opacity: 1;
+        }
+
+        .image-remove:hover {
+            background: #dc2626;
+        }
+
+        .image-name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 6px 8px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: #fff;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* 右侧设置 */
+        .settings-section {
+            margin-bottom: 24px;
+        }
+
+        .setting-label {
+            display: block;
+            color: #a1a1aa;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+
+        .setting-select,
+        .setting-input {
+            width: 100%;
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            color: #e4e4e7;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .setting-select:focus,
+        .setting-input:focus {
+            border-color: #7c3aed;
+        }
+
+        .setting-select option {
+            background: #1a1a2e;
+        }
+
+        /* 二维码区域 */
+        .qrcode-section {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+
+        .qrcode-title {
+            font-size: 0.9rem;
+            color: #a1a1aa;
+            margin-bottom: 12px;
+        }
+
+        #qrcode {
+            display: inline-block;
+            padding: 12px;
+            background: #fff;
+            border-radius: 8px;
+        }
+
+        #qrcode img {
+            display: block;
+        }
+
+        .qrcode-hint {
+            font-size: 0.75rem;
+            color: #71717a;
+            margin-top: 10px;
+        }
+
+        /* 统计信息 */
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #7c3aed;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #71717a;
+        }
+
+        /* 生成按钮 */
+        .generate-btn {
+            width: 100%;
+            padding: 14px 24px;
+            background: linear-gradient(135deg, #7c3aed, #6366f1);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .generate-btn:hover:not(:disabled) {
+            background: linear-gradient(135deg, #8b5cf6, #818cf8);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+        }
+
+        .generate-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .generate-btn.loading {
+            pointer-events: none;
+        }
+
+        /* 清空按钮 */
+        .clear-btn {
+            width: 100%;
+            padding: 10px;
+            background: transparent;
+            border: 1px solid rgba(239, 68, 68, 0.5);
+            color: #f87171;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 12px;
+        }
+
+        .clear-btn:hover {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: #f87171;
+        }
+
+        /* 进度条 */
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 12px;
+            display: none;
+        }
+
+        .progress-bar.active {
+            display: block;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #7c3aed, #06b6d4);
+            border-radius: 3px;
+            transition: width 0.3s;
+        }
+
+        /* 使用说明 */
+        .usage-section {
+            margin-top: 24px;
+        }
+
+        .usage-list {
+            list-style: none;
+        }
+
+        .usage-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            gap: 12px;
+            color: #a1a1aa;
+            font-size: 0.9rem;
+        }
+
+        .usage-list li:last-child {
+            border-bottom: none;
+        }
+
+        .usage-step {
+            width: 24px;
+            height: 24px;
+            background: rgba(124, 58, 237, 0.2);
+            color: #a78bfa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        /* Toast 提示 */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success {
+            background: rgba(34, 197, 94, 0.9);
+        }
+
+        .toast.error {
+            background: rgba(239, 68, 68, 0.9);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #71717a;
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: #a78bfa;
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .quick-upload {
+                flex-direction: column;
+            }
+
+            .quick-btn {
+                min-width: 100%;
+            }
+
+            .image-list {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+        }
+    </style>
+    <!-- ===================== /UI ===================== -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="back-link">← 返回工具列表</a>
+            <h1>📄 图片合并为PDF</h1>
+            <p class="subtitle">多图拖拽排序、截图粘贴、手机扫码上传，一键生成高质量PDF</p>
+        </header>
+
+        <div class="main-layout">
+            <!-- 左侧：上传和图片列表 -->
+            <div class="left-panel">
+                <div class="card">
+                    <h2 class="card-title">📤 上传图片</h2>
+
+                    <!-- 上传区域 -->
+                    <div class="upload-zone" id="uploadZone">
+                        <div class="upload-icon">🖼️</div>
+                        <p class="upload-text">点击选择图片 或 拖拽图片到此处</p>
+                        <p class="upload-hint">
+                            支持 JPG / PNG / WEBP / GIF / BMP 格式<br>
+                            截图粘贴：<kbd>Ctrl</kbd> + <kbd>V</kbd> (Mac: <kbd>⌘</kbd> + <kbd>V</kbd>)
+                        </p>
+                    </div>
+                    <input type="file" id="fileInput" class="hidden-input" multiple accept="image/*">
+
+                    <!-- 快捷按钮 -->
+                    <div class="quick-upload">
+                        <button class="quick-btn" id="btnSelectFiles">
+                            📁 选择文件
+                        </button>
+                        <button class="quick-btn" id="btnSelectFolder">
+                            📂 选择文件夹
+                        </button>
+                    </div>
+                    <input type="file" id="folderInput" class="hidden-input" webkitdirectory multiple accept="image/*">
+
+                    <!-- 图片列表 -->
+                    <h3 class="card-title" style="margin-top: 24px;">🖼️ 图片列表 <span style="font-weight: normal; font-size: 0.85rem; color: #71717a;">(拖拽可调整顺序)</span></h3>
+                    <div class="image-list" id="imageList"></div>
+                </div>
+            </div>
+
+            <!-- 右侧：设置和操作 -->
+            <div class="right-panel">
+                <!-- 二维码 -->
+                <div class="card">
+                    <div class="qrcode-section">
+                        <p class="qrcode-title">📱 手机扫码上传</p>
+                        <div id="qrcode"></div>
+                        <p class="qrcode-hint">手机扫码打开本工具<br>直接在手机上选择图片</p>
+                    </div>
+                </div>
+
+                <!-- 设置 -->
+                <div class="card" style="margin-top: 20px;">
+                    <h2 class="card-title">⚙️ PDF 设置</h2>
+
+                    <div class="settings-section">
+                        <label class="setting-label">页面尺寸</label>
+                        <select class="setting-select" id="pageSize">
+                            <option value="a4">A4 (210 × 297 mm)</option>
+                            <option value="a3">A3 (297 × 420 mm)</option>
+                            <option value="a5">A5 (148 × 210 mm)</option>
+                            <option value="letter">Letter (216 × 279 mm)</option>
+                            <option value="fit" selected>自适应图片尺寸</option>
+                        </select>
+                    </div>
+
+                    <div class="settings-section">
+                        <label class="setting-label">页面方向</label>
+                        <select class="setting-select" id="pageOrientation">
+                            <option value="auto" selected>自动判断</option>
+                            <option value="portrait">纵向</option>
+                            <option value="landscape">横向</option>
+                        </select>
+                    </div>
+
+                    <div class="settings-section">
+                        <label class="setting-label">图片质量</label>
+                        <select class="setting-select" id="imageQuality">
+                            <option value="1">最高质量</option>
+                            <option value="0.9" selected>高质量 (推荐)</option>
+                            <option value="0.7">中等质量</option>
+                            <option value="0.5">低质量 (文件更小)</option>
+                        </select>
+                    </div>
+
+                    <div class="settings-section">
+                        <label class="setting-label">页边距 (mm)</label>
+                        <input type="number" class="setting-input" id="pageMargin" value="10" min="0" max="50">
+                    </div>
+
+                    <div class="settings-section">
+                        <label class="setting-label">文件名</label>
+                        <input type="text" class="setting-input" id="fileName" value="merged" placeholder="输入文件名">
+                    </div>
+
+                    <!-- 统计 -->
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-value" id="imageCount">0</div>
+                            <div class="stat-label">图片数量</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="totalSize">0</div>
+                            <div class="stat-label">总大小 (MB)</div>
+                        </div>
+                    </div>
+
+                    <!-- 生成按钮 -->
+                    <button class="generate-btn" id="generateBtn" disabled>
+                        📄 生成 PDF
+                    </button>
+                    <div class="progress-bar" id="progressBar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+
+                    <button class="clear-btn" id="clearBtn">🗑️ 清空所有图片</button>
+                </div>
+
+                <!-- 使用说明 -->
+                <div class="card usage-section" style="margin-top: 20px;">
+                    <h2 class="card-title">📖 使用说明</h2>
+                    <ul class="usage-list">
+                        <li>
+                            <span class="usage-step">1</span>
+                            <span>上传图片：点击选择、拖拽上传、粘贴截图或手机扫码</span>
+                        </li>
+                        <li>
+                            <span class="usage-step">2</span>
+                            <span>拖拽图片调整顺序，确保PDF页面排列正确</span>
+                        </li>
+                        <li>
+                            <span class="usage-step">3</span>
+                            <span>设置页面尺寸、方向和质量等参数</span>
+                        </li>
+                        <li>
+                            <span class="usage-step">4</span>
+                            <span>点击"生成PDF"按钮，自动下载到本地</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Made with ❤️ by <a href="https://github.com/heyuan110" target="_blank">@heyuan110</a> | <a href="index.html">返回工具列表</a></p>
+        </footer>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <!-- ===================== LOGIC ===================== -->
+    <script>
+    (function() {
+        'use strict';
+
+        // ===== 全局变量 =====
+        let images = []; // 存储图片数据 { id, file, dataUrl, name }
+        let sortable = null;
+
+        // ===== DOM 元素 =====
+        const uploadZone = document.getElementById('uploadZone');
+        const fileInput = document.getElementById('fileInput');
+        const folderInput = document.getElementById('folderInput');
+        const imageList = document.getElementById('imageList');
+        const generateBtn = document.getElementById('generateBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const progressBar = document.getElementById('progressBar');
+        const progressFill = document.getElementById('progressFill');
+        const imageCountEl = document.getElementById('imageCount');
+        const totalSizeEl = document.getElementById('totalSize');
+        const toast = document.getElementById('toast');
+
+        // ===== 初始化 =====
+        function init() {
+            initQRCode();
+            initEventListeners();
+            initSortable();
+        }
+
+        // 生成二维码
+        function initQRCode() {
+            const qrcodeContainer = document.getElementById('qrcode');
+            if (qrcodeContainer && typeof QRCode !== 'undefined') {
+                new QRCode(qrcodeContainer, {
+                    text: window.location.href,
+                    width: 120,
+                    height: 120,
+                    colorDark: '#1a1a2e',
+                    colorLight: '#ffffff',
+                    correctLevel: QRCode.CorrectLevel.M
+                });
+            }
+        }
+
+        // 初始化事件监听
+        function initEventListeners() {
+            // 点击上传区域
+            uploadZone.addEventListener('click', () => fileInput.click());
+
+            // 文件选择
+            fileInput.addEventListener('change', handleFileSelect);
+            folderInput.addEventListener('change', handleFileSelect);
+
+            // 快捷按钮
+            document.getElementById('btnSelectFiles').addEventListener('click', (e) => {
+                e.stopPropagation();
+                fileInput.click();
+            });
+            document.getElementById('btnSelectFolder').addEventListener('click', (e) => {
+                e.stopPropagation();
+                folderInput.click();
+            });
+
+            // 拖拽上传
+            uploadZone.addEventListener('dragover', handleDragOver);
+            uploadZone.addEventListener('dragleave', handleDragLeave);
+            uploadZone.addEventListener('drop', handleDrop);
+
+            // 全局拖拽（防止浏览器打开文件）
+            document.addEventListener('dragover', (e) => e.preventDefault());
+            document.addEventListener('drop', (e) => e.preventDefault());
+
+            // 粘贴上传
+            document.addEventListener('paste', handlePaste);
+
+            // 生成 PDF
+            generateBtn.addEventListener('click', generatePDF);
+
+            // 清空
+            clearBtn.addEventListener('click', clearAllImages);
+        }
+
+        // 初始化拖拽排序
+        function initSortable() {
+            sortable = new Sortable(imageList, {
+                animation: 150,
+                ghostClass: 'sortable-ghost',
+                chosenClass: 'sortable-chosen',
+                onEnd: function(evt) {
+                    // 更新数组顺序
+                    const movedItem = images.splice(evt.oldIndex, 1)[0];
+                    images.splice(evt.newIndex, 0, movedItem);
+                    updateIndexNumbers();
+                }
+            });
+        }
+
+        // ===== 文件处理 =====
+        function handleFileSelect(e) {
+            const files = Array.from(e.target.files);
+            processFiles(files);
+            e.target.value = ''; // 清空以便重复选择
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            uploadZone.classList.add('dragover');
+        }
+
+        function handleDragLeave(e) {
+            e.preventDefault();
+            uploadZone.classList.remove('dragover');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            uploadZone.classList.remove('dragover');
+            const files = Array.from(e.dataTransfer.files);
+            processFiles(files);
+        }
+
+        function handlePaste(e) {
+            const items = e.clipboardData?.items;
+            if (!items) return;
+
+            const imageFiles = [];
+            for (const item of items) {
+                if (item.type.startsWith('image/')) {
+                    const file = item.getAsFile();
+                    if (file) {
+                        // 生成文件名
+                        const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+                        const ext = file.type.split('/')[1] || 'png';
+                        const namedFile = new File([file], `screenshot-${timestamp}.${ext}`, { type: file.type });
+                        imageFiles.push(namedFile);
+                    }
+                }
+            }
+
+            if (imageFiles.length > 0) {
+                processFiles(imageFiles);
+                showToast(`已粘贴 ${imageFiles.length} 张图片`, 'success');
+            }
+        }
+
+        // 处理文件
+        async function processFiles(files) {
+            // 过滤图片文件
+            const imageFiles = files.filter(file => file.type.startsWith('image/'));
+
+            if (imageFiles.length === 0) {
+                showToast('请选择图片文件', 'error');
+                return;
+            }
+
+            // 按文件名排序
+            imageFiles.sort((a, b) => a.name.localeCompare(b.name, 'zh-CN', { numeric: true }));
+
+            for (const file of imageFiles) {
+                try {
+                    const dataUrl = await readFileAsDataURL(file);
+                    const imageData = {
+                        id: Date.now() + Math.random().toString(36).substr(2, 9),
+                        file: file,
+                        dataUrl: dataUrl,
+                        name: file.name
+                    };
+                    images.push(imageData);
+                    addImageToList(imageData);
+                } catch (err) {
+                    console.error('读取文件失败:', err);
+                }
+            }
+
+            updateStats();
+            updateGenerateButton();
+            showToast(`已添加 ${imageFiles.length} 张图片`, 'success');
+        }
+
+        function readFileAsDataURL(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // ===== UI 操作 =====
+        function addImageToList(imageData) {
+            const div = document.createElement('div');
+            div.className = 'image-item';
+            div.dataset.id = imageData.id;
+
+            div.innerHTML = `
+                <span class="image-index">${images.length}</span>
+                <img src="${imageData.dataUrl}" alt="${imageData.name}">
+                <button class="image-remove" title="删除">×</button>
+                <span class="image-name">${imageData.name}</span>
+            `;
+
+            // 删除按钮
+            div.querySelector('.image-remove').addEventListener('click', (e) => {
+                e.stopPropagation();
+                removeImage(imageData.id);
+            });
+
+            imageList.appendChild(div);
+        }
+
+        function removeImage(id) {
+            images = images.filter(img => img.id !== id);
+            const el = document.querySelector(`.image-item[data-id="${id}"]`);
+            if (el) {
+                el.style.transform = 'scale(0)';
+                setTimeout(() => {
+                    el.remove();
+                    updateIndexNumbers();
+                    updateStats();
+                    updateGenerateButton();
+                }, 200);
+            }
+        }
+
+        function clearAllImages() {
+            if (images.length === 0) return;
+            if (!confirm('确定要清空所有图片吗？')) return;
+
+            images = [];
+            imageList.innerHTML = '';
+            updateStats();
+            updateGenerateButton();
+            showToast('已清空所有图片', 'success');
+        }
+
+        function updateIndexNumbers() {
+            const items = imageList.querySelectorAll('.image-item');
+            items.forEach((item, index) => {
+                item.querySelector('.image-index').textContent = index + 1;
+            });
+        }
+
+        function updateStats() {
+            imageCountEl.textContent = images.length;
+            const totalBytes = images.reduce((sum, img) => sum + (img.file?.size || 0), 0);
+            totalSizeEl.textContent = (totalBytes / 1024 / 1024).toFixed(2);
+        }
+
+        function updateGenerateButton() {
+            generateBtn.disabled = images.length === 0;
+        }
+
+        // ===== 生成 PDF =====
+        async function generatePDF() {
+            if (images.length === 0) {
+                showToast('请先添加图片', 'error');
+                return;
+            }
+
+            const pageSize = document.getElementById('pageSize').value;
+            const orientation = document.getElementById('pageOrientation').value;
+            const quality = parseFloat(document.getElementById('imageQuality').value);
+            const margin = parseInt(document.getElementById('pageMargin').value) || 0;
+            const fileName = document.getElementById('fileName').value.trim() || 'merged';
+
+            generateBtn.disabled = true;
+            generateBtn.innerHTML = '⏳ 生成中...';
+            progressBar.classList.add('active');
+            progressFill.style.width = '0%';
+
+            try {
+                const { jsPDF } = window.jspdf;
+                let pdf = null;
+
+                for (let i = 0; i < images.length; i++) {
+                    const img = images[i];
+                    const progress = ((i + 1) / images.length) * 100;
+                    progressFill.style.width = `${progress}%`;
+
+                    // 加载图片获取尺寸
+                    const imgEl = await loadImage(img.dataUrl);
+                    const imgWidth = imgEl.width;
+                    const imgHeight = imgEl.height;
+
+                    // 确定页面方向
+                    let pageOrientation = orientation;
+                    if (orientation === 'auto') {
+                        pageOrientation = imgWidth > imgHeight ? 'landscape' : 'portrait';
+                    }
+
+                    // 确定页面尺寸
+                    let pdfWidth, pdfHeight;
+                    if (pageSize === 'fit') {
+                        // 自适应：将像素转换为毫米 (假设 96 DPI)
+                        const pxToMm = 25.4 / 96;
+                        pdfWidth = imgWidth * pxToMm + margin * 2;
+                        pdfHeight = imgHeight * pxToMm + margin * 2;
+                    } else {
+                        // 使用标准尺寸
+                        const sizes = {
+                            'a4': [210, 297],
+                            'a3': [297, 420],
+                            'a5': [148, 210],
+                            'letter': [216, 279]
+                        };
+                        [pdfWidth, pdfHeight] = sizes[pageSize];
+                        if (pageOrientation === 'landscape') {
+                            [pdfWidth, pdfHeight] = [pdfHeight, pdfWidth];
+                        }
+                    }
+
+                    // 创建或添加页面
+                    if (i === 0) {
+                        pdf = new jsPDF({
+                            orientation: pageOrientation,
+                            unit: 'mm',
+                            format: pageSize === 'fit' ? [pdfWidth, pdfHeight] : pageSize
+                        });
+                    } else {
+                        pdf.addPage(pageSize === 'fit' ? [pdfWidth, pdfHeight] : pageSize, pageOrientation);
+                    }
+
+                    // 计算图片在页面中的位置和尺寸
+                    const pageW = pdf.internal.pageSize.getWidth();
+                    const pageH = pdf.internal.pageSize.getHeight();
+                    const availableW = pageW - margin * 2;
+                    const availableH = pageH - margin * 2;
+
+                    let drawWidth, drawHeight;
+                    if (pageSize === 'fit') {
+                        // 自适应模式：图片填满页面
+                        drawWidth = availableW;
+                        drawHeight = availableH;
+                    } else {
+                        // 标准尺寸：保持比例居中
+                        const ratio = Math.min(availableW / imgWidth, availableH / imgHeight);
+                        drawWidth = imgWidth * ratio;
+                        drawHeight = imgHeight * ratio;
+                    }
+
+                    const x = margin + (availableW - drawWidth) / 2;
+                    const y = margin + (availableH - drawHeight) / 2;
+
+                    // 添加图片
+                    const imgFormat = getImageFormat(img.file?.type || 'image/jpeg');
+                    pdf.addImage(img.dataUrl, imgFormat, x, y, drawWidth, drawHeight, undefined, 'MEDIUM');
+
+                    // 让 UI 有机会更新
+                    await new Promise(r => setTimeout(r, 10));
+                }
+
+                // 下载 PDF
+                pdf.save(`${fileName}.pdf`);
+                showToast('PDF 生成成功！', 'success');
+
+            } catch (err) {
+                console.error('生成 PDF 失败:', err);
+                showToast('生成 PDF 失败: ' + err.message, 'error');
+            } finally {
+                generateBtn.disabled = false;
+                generateBtn.innerHTML = '📄 生成 PDF';
+                progressBar.classList.remove('active');
+            }
+        }
+
+        function loadImage(src) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = () => resolve(img);
+                img.onerror = reject;
+                img.src = src;
+            });
+        }
+
+        function getImageFormat(mimeType) {
+            const formats = {
+                'image/jpeg': 'JPEG',
+                'image/jpg': 'JPEG',
+                'image/png': 'PNG',
+                'image/webp': 'WEBP',
+                'image/gif': 'GIF'
+            };
+            return formats[mimeType] || 'JPEG';
+        }
+
+        // ===== Toast 提示 =====
+        function showToast(message, type = '') {
+            toast.textContent = message;
+            toast.className = 'toast ' + type;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // ===== 启动 =====
+        init();
+    })();
+    </script>
+    <!-- ===================== /LOGIC ===================== -->
+</body>
+</html>
