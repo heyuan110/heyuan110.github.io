@@ -3,7 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Toolbox - 实用前端工具集</title>
+    <title>Web Toolbox - 在线前端工具集 | 免费实用的浏览器工具箱</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Web Toolbox 是一套纯前端在线工具集，包含M3U8视频下载器、JSON查看器、SQLite浏览器、加解密工具、WebSocket测试、图片压缩、ICO制作、调色板等12+实用工具。无需安装，浏览器直接使用。">
+    <meta name="keywords" content="在线工具,前端工具,M3U8下载器,JSON格式化,SQLite查看器,加密解密,Base64编码,WebSocket测试,图片压缩,ICO制作,调色板,世界时钟,Whois查询,免费工具">
+    <meta name="author" content="heyuan110">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.heyuan110.com/web-toolbox/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.heyuan110.com/web-toolbox/">
+    <meta property="og:title" content="Web Toolbox - 在线前端工具集 | 免费实用的浏览器工具箱">
+    <meta property="og:description" content="纯前端在线工具集，包含M3U8下载、JSON格式化、SQLite浏览、加解密编码、图片压缩等12+实用工具。无需安装，浏览器直接使用。">
+    <meta property="og:image" content="https://www.heyuan110.com/web-toolbox/screenshots/og-image.png">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:site_name" content="Web Toolbox">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.heyuan110.com/web-toolbox/">
+    <meta name="twitter:title" content="Web Toolbox - 在线前端工具集">
+    <meta name="twitter:description" content="纯前端在线工具集，包含M3U8下载、JSON格式化、加解密编码、图片压缩等12+实用工具。">
+    <meta name="twitter:image" content="https://www.heyuan110.com/web-toolbox/screenshots/og-image.png">
+
+    <!-- JSON-LD 结构化数据 -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Web Toolbox",
+        "alternateName": "在线前端工具集",
+        "url": "https://www.heyuan110.com/web-toolbox/",
+        "description": "一套纯前端的实用工具集，包含M3U8视频下载、JSON格式化、SQLite浏览、加解密编码、图片压缩等12+在线工具",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "CNY"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "heyuan110",
+            "url": "https://github.com/heyuan110"
+        },
+        "hasPart": [
+            {"@type": "WebApplication", "name": "M3U8 视频下载器", "url": "https://www.heyuan110.com/web-toolbox/m3u8-downloader.html"},
+            {"@type": "WebApplication", "name": "JSON 查看器", "url": "https://www.heyuan110.com/web-toolbox/json-viewer.html"},
+            {"@type": "WebApplication", "name": "SQLite 查看器", "url": "https://www.heyuan110.com/web-toolbox/sqlite-viewer.html"},
+            {"@type": "WebApplication", "name": "加解密编码工具箱", "url": "https://www.heyuan110.com/web-toolbox/crypto-tools.html"},
+            {"@type": "WebApplication", "name": "WebSocket 测试工具", "url": "https://www.heyuan110.com/web-toolbox/websocket-tester.html"},
+            {"@type": "WebApplication", "name": "在线涂鸦画板", "url": "https://www.heyuan110.com/web-toolbox/paint-board.html"},
+            {"@type": "WebApplication", "name": "在线调色板", "url": "https://www.heyuan110.com/web-toolbox/color-palette.html"},
+            {"@type": "WebApplication", "name": "世界时间查询", "url": "https://www.heyuan110.com/web-toolbox/world-clock.html"},
+            {"@type": "WebApplication", "name": "Whois 域名查询", "url": "https://www.heyuan110.com/web-toolbox/whois-query.html"},
+            {"@type": "WebApplication", "name": "ICO 图标制作", "url": "https://www.heyuan110.com/web-toolbox/ico-maker.html"},
+            {"@type": "WebApplication", "name": "图片压缩工具", "url": "https://www.heyuan110.com/web-toolbox/image-compressor.html"}
+        ]
+    }
+    </script>
+
     <style>
         * {
             margin: 0;
@@ -383,11 +444,28 @@
                     <p class="tool-desc">将 PNG、JPG、GIF 图片转换为 ICO 图标文件</p>
                     <ul class="tool-features">
                         <li>支持 PNG/JPG/GIF 格式转换</li>
-                        <li>多尺寸选择 (16~256px)</li>
+                        <li>裁剪功能，多尺寸选择</li>
                         <li>实时预览各尺寸效果</li>
                         <li>一键生成并下载 ICO</li>
                     </ul>
                     <a href="ico-maker.html" class="tool-btn">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- 图片压缩工具 -->
+            <div class="tool-card">
+                <img src="screenshots/image-compressor.png" alt="图片压缩工具截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">📦</div>
+                    <h2 class="tool-title">图片压缩工具</h2>
+                    <p class="tool-desc">批量压缩图片，保持清晰度的同时大幅减小文件体积</p>
+                    <ul class="tool-features">
+                        <li>支持批量/文件夹导入</li>
+                        <li>可调节压缩质量和尺寸</li>
+                        <li>支持 JPG/PNG/WebP 输出</li>
+                        <li>一键打包下载全部</li>
+                    </ul>
+                    <a href="image-compressor.html" class="tool-btn">打开工具 →</a>
                 </div>
             </div>
         </div>
