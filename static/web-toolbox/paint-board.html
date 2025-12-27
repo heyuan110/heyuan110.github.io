@@ -244,6 +244,19 @@
             pointer-events: none;
         }
 
+        #textLayer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        #textLayer .text-object {
+            pointer-events: auto;
+        }
+
         /* 底部状态栏 */
         .status-bar {
             display: flex;
@@ -442,6 +455,156 @@
             cursor: pointer;
         }
 
+        /* 文本编辑面板 */
+        .text-panel {
+            position: absolute;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 15px;
+            min-width: 280px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            display: none;
+        }
+
+        .text-panel.active {
+            display: block;
+        }
+
+        .text-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .text-panel-header h4 {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #fff;
+        }
+
+        .text-panel-close {
+            background: none;
+            border: none;
+            color: #a1a1aa;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .text-panel-close:hover {
+            color: #ef4444;
+        }
+
+        .text-panel-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .text-panel-row label {
+            font-size: 0.8rem;
+            color: #a1a1aa;
+            min-width: 45px;
+        }
+
+        .text-panel-row input[type="text"],
+        .text-panel-row textarea {
+            flex: 1;
+            padding: 8px 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            color: #e4e4e7;
+            font-size: 0.9rem;
+            resize: none;
+        }
+
+        .text-panel-row textarea {
+            height: 60px;
+            font-family: inherit;
+        }
+
+        .text-panel-row input:focus,
+        .text-panel-row textarea:focus {
+            outline: none;
+            border-color: #7c3aed;
+        }
+
+        .text-panel-row select {
+            flex: 1;
+            padding: 8px 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            color: #e4e4e7;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .text-panel-row select:focus {
+            outline: none;
+            border-color: #7c3aed;
+        }
+
+        .text-panel-row input[type="number"] {
+            width: 70px;
+            padding: 8px 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            color: #e4e4e7;
+            font-size: 0.9rem;
+        }
+
+        .text-panel-row input[type="color"] {
+            width: 40px;
+            height: 32px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background: none;
+        }
+
+        .text-panel-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .text-panel-actions button {
+            flex: 1;
+        }
+
+        /* 文本对象样式（用于移动和编辑） */
+        .text-object {
+            position: absolute;
+            cursor: move;
+            padding: 4px 8px;
+            border: 2px dashed transparent;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            user-select: none;
+        }
+
+        .text-object:hover {
+            border-color: rgba(124, 58, 237, 0.5);
+        }
+
+        .text-object.selected {
+            border-color: #7c3aed;
+        }
+
+        .text-object.editing {
+            border-color: #22c55e;
+        }
+
         /* 响应式 */
         @media (max-width: 768px) {
             .toolbar {
@@ -475,6 +638,7 @@
                 <button class="tool-btn active" data-tool="brush" data-tooltip="画笔 (B)">🖌️</button>
                 <button class="tool-btn" data-tool="eraser" data-tooltip="橡皮擦 (E)">🧹</button>
                 <button class="tool-btn" data-tool="fill" data-tooltip="填充 (G)">🪣</button>
+                <button class="tool-btn" data-tool="text" data-tooltip="文字 (X)">📝</button>
             </div>
 
             <div class="toolbar-section">
@@ -539,6 +703,53 @@
             <div class="canvas-wrapper" id="canvasWrapper">
                 <canvas id="canvas" width="1000" height="600"></canvas>
                 <canvas id="previewCanvas" width="1000" height="600"></canvas>
+                <!-- 文本对象容器 -->
+                <div id="textLayer"></div>
+                <!-- 文本编辑面板 -->
+                <div class="text-panel" id="textPanel">
+                    <div class="text-panel-header">
+                        <h4>📝 添加文字</h4>
+                        <button class="text-panel-close" onclick="hideTextPanel()">×</button>
+                    </div>
+                    <div class="text-panel-row">
+                        <label>内容</label>
+                        <textarea id="textContent" placeholder="输入文字内容..."></textarea>
+                    </div>
+                    <div class="text-panel-row">
+                        <label>字体</label>
+                        <select id="textFont">
+                            <option value="Arial">Arial</option>
+                            <option value="Microsoft YaHei">微软雅黑</option>
+                            <option value="SimSun">宋体</option>
+                            <option value="SimHei">黑体</option>
+                            <option value="KaiTi">楷体</option>
+                            <option value="FangSong">仿宋</option>
+                            <option value="Georgia">Georgia</option>
+                            <option value="Times New Roman">Times New Roman</option>
+                            <option value="Courier New">Courier New</option>
+                            <option value="Comic Sans MS">Comic Sans MS</option>
+                        </select>
+                    </div>
+                    <div class="text-panel-row">
+                        <label>大小</label>
+                        <input type="number" id="textSize" value="24" min="8" max="200">
+                        <label style="min-width: auto;">颜色</label>
+                        <input type="color" id="textColor" value="#000000">
+                    </div>
+                    <div class="text-panel-row">
+                        <label>样式</label>
+                        <label style="min-width: auto; display: flex; align-items: center; gap: 4px;">
+                            <input type="checkbox" id="textBold"> 粗体
+                        </label>
+                        <label style="min-width: auto; display: flex; align-items: center; gap: 4px;">
+                            <input type="checkbox" id="textItalic"> 斜体
+                        </label>
+                    </div>
+                    <div class="text-panel-actions">
+                        <button class="action-btn action-btn-secondary" onclick="hideTextPanel()">取消</button>
+                        <button class="action-btn action-btn-primary" onclick="confirmText()">确定</button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -622,6 +833,7 @@
             brush: '画笔',
             eraser: '橡皮擦',
             fill: '填充',
+            text: '文字',
             line: '直线',
             arrowRight: '右箭头',
             arrowLeft: '左箭头',
@@ -635,6 +847,7 @@
             'b': 'brush',
             'e': 'eraser',
             'g': 'fill',
+            'x': 'text',
             'l': 'line',
             'a': 'arrowRight',
             's': 'arrowLeft',
@@ -642,6 +855,16 @@
             'c': 'circle',
             't': 'triangle'
         };
+
+        // 文本相关变量
+        let textObjects = [];
+        let selectedTextObject = null;
+        let isDraggingText = false;
+        let textDragOffsetX = 0;
+        let textDragOffsetY = 0;
+        let pendingTextX = 0;
+        let pendingTextY = 0;
+        let editingTextId = null;
 
         // 初始化
         function init() {
@@ -727,8 +950,18 @@
             document.querySelector(`[data-tool="${tool}"]`).classList.add('active');
             currentTool = tool;
             document.getElementById('currentTool').textContent = toolNames[currentTool];
-            canvas.style.cursor = currentTool === 'fill' ? 'cell' : 'crosshair';
-            previewCanvas.style.cursor = currentTool === 'fill' ? 'cell' : 'crosshair';
+
+            // 根据工具类型设置光标
+            let cursor = 'crosshair';
+            if (tool === 'fill') cursor = 'cell';
+            else if (tool === 'text') cursor = 'text';
+            canvas.style.cursor = cursor;
+            previewCanvas.style.cursor = cursor;
+
+            // 切换工具时隐藏文本面板
+            if (tool !== 'text') {
+                hideTextPanel();
+            }
         }
 
         // 键盘事件处理
@@ -764,8 +997,16 @@
 
         // 开始绘画
         function startDrawing(e) {
-            isDrawing = true;
             const coords = getCanvasCoords(e);
+
+            // 文本工具特殊处理
+            if (currentTool === 'text') {
+                // 点击画布时显示文本编辑面板
+                showTextPanel(e.clientX, e.clientY, coords.x, coords.y);
+                return;
+            }
+
+            isDrawing = true;
             lastX = coords.x;
             lastY = coords.y;
             startX = coords.x;
@@ -1182,6 +1423,306 @@
             document.body.appendChild(toast);
             setTimeout(() => toast.remove(), 1500);
         }
+
+        // ==================== 文本工具函数 ====================
+
+        // 显示文本编辑面板
+        function showTextPanel(clientX, clientY, canvasX, canvasY) {
+            const panel = document.getElementById('textPanel');
+            const wrapper = document.getElementById('canvasWrapper');
+            const wrapperRect = wrapper.getBoundingClientRect();
+
+            // 记录画布坐标
+            pendingTextX = canvasX;
+            pendingTextY = canvasY;
+
+            // 计算面板位置（相对于 wrapper）
+            let panelX = clientX - wrapperRect.left + 10;
+            let panelY = clientY - wrapperRect.top + 10;
+
+            // 确保面板不超出右边界
+            if (panelX + 280 > wrapperRect.width) {
+                panelX = clientX - wrapperRect.left - 290;
+            }
+            // 确保面板不超出下边界
+            if (panelY + 250 > wrapperRect.height) {
+                panelY = clientY - wrapperRect.top - 260;
+            }
+
+            panel.style.left = Math.max(10, panelX) + 'px';
+            panel.style.top = Math.max(10, panelY) + 'px';
+            panel.classList.add('active');
+
+            // 如果是编辑模式，填充现有文本信息
+            if (editingTextId !== null) {
+                const textObj = textObjects.find(t => t.id === editingTextId);
+                if (textObj) {
+                    document.getElementById('textContent').value = textObj.content;
+                    document.getElementById('textFont').value = textObj.font;
+                    document.getElementById('textSize').value = textObj.size;
+                    document.getElementById('textColor').value = textObj.color;
+                    document.getElementById('textBold').checked = textObj.bold;
+                    document.getElementById('textItalic').checked = textObj.italic;
+                }
+            } else {
+                // 新建文本时清空输入
+                document.getElementById('textContent').value = '';
+                document.getElementById('textColor').value = currentColor;
+            }
+
+            // 聚焦到文本输入框
+            setTimeout(() => document.getElementById('textContent').focus(), 100);
+        }
+
+        // 隐藏文本编辑面板
+        function hideTextPanel() {
+            document.getElementById('textPanel').classList.remove('active');
+            editingTextId = null;
+        }
+
+        // 确认添加/编辑文本
+        function confirmText() {
+            const content = document.getElementById('textContent').value.trim();
+            if (!content) {
+                showToast('请输入文字内容', true);
+                return;
+            }
+
+            const font = document.getElementById('textFont').value;
+            const size = parseInt(document.getElementById('textSize').value) || 24;
+            const color = document.getElementById('textColor').value;
+            const bold = document.getElementById('textBold').checked;
+            const italic = document.getElementById('textItalic').checked;
+
+            if (editingTextId !== null) {
+                // 更新现有文本
+                updateTextObject(editingTextId, { content, font, size, color, bold, italic });
+            } else {
+                // 创建新文本
+                createTextObject(pendingTextX, pendingTextY, content, font, size, color, bold, italic);
+            }
+
+            hideTextPanel();
+        }
+
+        // 创建文本对象
+        function createTextObject(x, y, content, font, size, color, bold, italic) {
+            const id = Date.now();
+            const textObj = {
+                id, x, y, content, font, size, color, bold, italic
+            };
+            textObjects.push(textObj);
+            renderTextObject(textObj);
+            showToast('文字已添加，拖动可移动位置');
+        }
+
+        // 渲染文本对象到 DOM
+        function renderTextObject(textObj) {
+            const layer = document.getElementById('textLayer');
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = rect.width / canvas.width;
+            const scaleY = rect.height / canvas.height;
+
+            const div = document.createElement('div');
+            div.className = 'text-object';
+            div.id = 'text-' + textObj.id;
+            div.textContent = textObj.content;
+            div.style.left = (textObj.x * scaleX) + 'px';
+            div.style.top = (textObj.y * scaleY) + 'px';
+            div.style.fontFamily = textObj.font;
+            div.style.fontSize = (textObj.size * scaleY) + 'px';
+            div.style.color = textObj.color;
+            div.style.fontWeight = textObj.bold ? 'bold' : 'normal';
+            div.style.fontStyle = textObj.italic ? 'italic' : 'normal';
+
+            // 拖动事件
+            div.addEventListener('mousedown', (e) => startDragText(e, textObj.id));
+            // 双击编辑
+            div.addEventListener('dblclick', (e) => editTextObject(e, textObj.id));
+
+            layer.appendChild(div);
+        }
+
+        // 更新文本对象
+        function updateTextObject(id, props) {
+            const textObj = textObjects.find(t => t.id === id);
+            if (!textObj) return;
+
+            Object.assign(textObj, props);
+
+            // 更新 DOM
+            const div = document.getElementById('text-' + id);
+            if (div) {
+                const rect = canvas.getBoundingClientRect();
+                const scaleY = rect.height / canvas.height;
+
+                div.textContent = textObj.content;
+                div.style.fontFamily = textObj.font;
+                div.style.fontSize = (textObj.size * scaleY) + 'px';
+                div.style.color = textObj.color;
+                div.style.fontWeight = textObj.bold ? 'bold' : 'normal';
+                div.style.fontStyle = textObj.italic ? 'italic' : 'normal';
+            }
+        }
+
+        // 开始拖动文本
+        function startDragText(e, id) {
+            e.stopPropagation();
+            e.preventDefault();
+
+            isDraggingText = true;
+            selectedTextObject = id;
+
+            const div = document.getElementById('text-' + id);
+            div.classList.add('selected');
+
+            const rect = div.getBoundingClientRect();
+            textDragOffsetX = e.clientX - rect.left;
+            textDragOffsetY = e.clientY - rect.top;
+
+            document.addEventListener('mousemove', dragText);
+            document.addEventListener('mouseup', stopDragText);
+        }
+
+        // 拖动文本
+        function dragText(e) {
+            if (!isDraggingText || !selectedTextObject) return;
+
+            const wrapper = document.getElementById('canvasWrapper');
+            const wrapperRect = wrapper.getBoundingClientRect();
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+
+            // 计算新位置
+            let newX = e.clientX - wrapperRect.left - textDragOffsetX;
+            let newY = e.clientY - wrapperRect.top - textDragOffsetY;
+
+            // 限制在画布范围内
+            newX = Math.max(0, Math.min(newX, rect.width - 50));
+            newY = Math.max(0, Math.min(newY, rect.height - 20));
+
+            const div = document.getElementById('text-' + selectedTextObject);
+            if (div) {
+                div.style.left = newX + 'px';
+                div.style.top = newY + 'px';
+
+                // 更新文本对象坐标
+                const textObj = textObjects.find(t => t.id === selectedTextObject);
+                if (textObj) {
+                    textObj.x = newX * scaleX;
+                    textObj.y = newY * scaleY;
+                }
+            }
+        }
+
+        // 停止拖动文本
+        function stopDragText() {
+            isDraggingText = false;
+
+            if (selectedTextObject) {
+                const div = document.getElementById('text-' + selectedTextObject);
+                if (div) {
+                    div.classList.remove('selected');
+                }
+            }
+
+            selectedTextObject = null;
+            document.removeEventListener('mousemove', dragText);
+            document.removeEventListener('mouseup', stopDragText);
+        }
+
+        // 双击编辑文本
+        function editTextObject(e, id) {
+            e.stopPropagation();
+            editingTextId = id;
+
+            const textObj = textObjects.find(t => t.id === id);
+            if (!textObj) return;
+
+            showTextPanel(e.clientX, e.clientY, textObj.x, textObj.y);
+        }
+
+        // 将所有文本渲染到画布上（保存时调用）
+        function renderAllTextToCanvas() {
+            textObjects.forEach(textObj => {
+                ctx.save();
+                ctx.font = `${textObj.italic ? 'italic ' : ''}${textObj.bold ? 'bold ' : ''}${textObj.size}px "${textObj.font}"`;
+                ctx.fillStyle = textObj.color;
+                ctx.textBaseline = 'top';
+
+                // 处理多行文本
+                const lines = textObj.content.split('\n');
+                lines.forEach((line, index) => {
+                    ctx.fillText(line, textObj.x, textObj.y + index * textObj.size * 1.2);
+                });
+
+                ctx.restore();
+            });
+        }
+
+        // 清空文本层
+        function clearTextLayer() {
+            document.getElementById('textLayer').innerHTML = '';
+            textObjects = [];
+        }
+
+        // 删除选中的文本（按 Delete 键）
+        function deleteSelectedText() {
+            if (selectedTextObject) {
+                const div = document.getElementById('text-' + selectedTextObject);
+                if (div) div.remove();
+                textObjects = textObjects.filter(t => t.id !== selectedTextObject);
+                selectedTextObject = null;
+                showToast('文字已删除');
+            }
+        }
+
+        // 更新键盘事件处理，添加删除文本支持
+        const originalHandleKeyboard = handleKeyboard;
+        handleKeyboard = function(e) {
+            // 如果正在编辑文本面板，不处理快捷键
+            if (document.getElementById('textPanel').classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    hideTextPanel();
+                }
+                return;
+            }
+
+            // 删除选中的文本
+            if (e.key === 'Delete' || e.key === 'Backspace') {
+                if (selectedTextObject) {
+                    e.preventDefault();
+                    deleteSelectedText();
+                    return;
+                }
+            }
+
+            originalHandleKeyboard(e);
+        };
+
+        // 修改保存图片函数，先渲染文本到画布
+        const originalSaveImage = saveImage;
+        saveImage = function(format) {
+            // 先将文本渲染到画布
+            renderAllTextToCanvas();
+            // 调用原始保存函数
+            originalSaveImage(format);
+            // 保存后恢复历史记录
+            saveHistory();
+        };
+
+        // 修改清空画布函数
+        const originalClearCanvas = clearCanvas;
+        clearCanvas = function() {
+            if (confirm('确定要清空画布吗？（包括所有文字）')) {
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                clearTextLayer();
+                saveHistory();
+                showToast('画布已清空');
+            }
+        };
 
         // 初始化
         init();
