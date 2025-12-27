@@ -1,0 +1,1729 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>万能计算器 - 科学计算/单位换算/利率计算/子网掩码 | Web Toolbox</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="免费在线万能计算器，集成科学计算器、利率计算器、子网掩码计算器及16种单位换算工具：长度、面积、体积、温度、时间、速度、压力、功率、热量、角度、数据大小、密度、力等换算。">
+    <meta name="keywords" content="在线计算器,科学计算器,利率计算器,子网掩码计算器,单位换算,长度换算,温度换算,面积换算,体积换算,数据换算,免费工具">
+    <meta name="author" content="heyuan110">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.heyuan110.com/web-toolbox/calculator.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.heyuan110.com/web-toolbox/calculator.html">
+    <meta property="og:title" content="万能计算器 - 科学计算/单位换算/利率计算">
+    <meta property="og:description" content="免费在线万能计算器，集成科学计算器、利率计算器、子网掩码计算及16种单位换算工具。">
+    <meta property="og:image" content="https://www.heyuan110.com/web-toolbox/screenshots/calculator.png">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:site_name" content="Web Toolbox">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="万能计算器 - 科学计算/单位换算/利率计算">
+    <meta name="twitter:description" content="免费在线万能计算器，集成科学计算器和16种单位换算工具。">
+    <meta name="twitter:image" content="https://www.heyuan110.com/web-toolbox/screenshots/calculator.png">
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "万能计算器",
+        "url": "https://www.heyuan110.com/web-toolbox/calculator.html",
+        "description": "在线万能计算器，集成科学计算器、利率计算器、子网掩码计算及多种单位换算工具",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "CNY"},
+        "author": {"@type": "Person", "name": "heyuan110"}
+    }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #e4e4e7;
+            display: flex;
+        }
+
+        /* 侧边栏 */
+        .sidebar {
+            width: 260px;
+            background: rgba(0, 0, 0, 0.3);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            height: 100vh;
+            overflow-y: auto;
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-header h1 {
+            font-size: 1.4rem;
+            background: linear-gradient(120deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .sidebar-header a {
+            color: #a1a1aa;
+            text-decoration: none;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        .sidebar-header a:hover {
+            color: #7c3aed;
+        }
+
+        .category {
+            padding: 12px 20px 8px;
+            font-size: 0.75rem;
+            color: #71717a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tool-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .tool-item:hover {
+            background: rgba(124, 58, 237, 0.1);
+        }
+
+        .tool-item.active {
+            background: rgba(124, 58, 237, 0.2);
+            border-left-color: #7c3aed;
+        }
+
+        .tool-item .icon {
+            font-size: 1.2rem;
+        }
+
+        .tool-item .name {
+            font-size: 0.9rem;
+        }
+
+        /* 主内容区 */
+        .main-content {
+            margin-left: 260px;
+            flex: 1;
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        .tool-panel {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tool-panel.active {
+            display: block;
+        }
+
+        .panel-header {
+            margin-bottom: 30px;
+        }
+
+        .panel-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .panel-header p {
+            color: #a1a1aa;
+        }
+
+        /* 通用卡片样式 */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            margin-bottom: 16px;
+            color: #a78bfa;
+        }
+
+        /* 输入组 */
+        .input-group {
+            margin-bottom: 16px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+            color: #a1a1aa;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            border-color: #7c3aed;
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        /* 按钮 */
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #e4e4e7;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        /* 结果显示 */
+        .result-box {
+            background: rgba(124, 58, 237, 0.1);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 16px;
+        }
+
+        .result-label {
+            font-size: 0.85rem;
+            color: #a1a1aa;
+            margin-bottom: 4px;
+        }
+
+        .result-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #a78bfa;
+            font-family: 'Monaco', 'Consolas', monospace;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        /* 科学计算器 */
+        .calc-display {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            text-align: right;
+        }
+
+        .calc-expression {
+            font-size: 0.9rem;
+            color: #a1a1aa;
+            min-height: 20px;
+        }
+
+        .calc-result {
+            font-size: 2rem;
+            font-family: 'Monaco', 'Consolas', monospace;
+            color: #fff;
+            word-break: break-all;
+        }
+
+        .calc-buttons {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+        }
+
+        .calc-btn {
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.15s;
+            background: rgba(255, 255, 255, 0.1);
+            color: #e4e4e7;
+        }
+
+        .calc-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .calc-btn:active {
+            transform: scale(0.95);
+        }
+
+        .calc-btn.operator {
+            background: rgba(124, 58, 237, 0.3);
+            color: #a78bfa;
+        }
+
+        .calc-btn.operator:hover {
+            background: rgba(124, 58, 237, 0.5);
+        }
+
+        .calc-btn.func {
+            background: rgba(34, 197, 94, 0.2);
+            color: #86efac;
+            font-size: 0.9rem;
+        }
+
+        .calc-btn.func:hover {
+            background: rgba(34, 197, 94, 0.3);
+        }
+
+        .calc-btn.equals {
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            color: white;
+        }
+
+        .calc-btn.clear {
+            background: rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+        }
+
+        /* 换算器通用样式 */
+        .converter-row {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 16px;
+            align-items: end;
+        }
+
+        .swap-btn {
+            padding: 12px;
+            background: rgba(124, 58, 237, 0.2);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 50%;
+            color: #a78bfa;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 8px;
+        }
+
+        .swap-btn:hover {
+            background: rgba(124, 58, 237, 0.4);
+            transform: rotate(180deg);
+        }
+
+        /* 子网掩码计算器 */
+        .ip-input-group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .ip-input-group input {
+            width: 70px;
+            text-align: center;
+        }
+
+        .ip-input-group span {
+            color: #a1a1aa;
+            font-size: 1.2rem;
+        }
+
+        .subnet-results {
+            display: grid;
+            gap: 12px;
+        }
+
+        .subnet-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 6px;
+        }
+
+        .subnet-row .label {
+            color: #a1a1aa;
+        }
+
+        .subnet-row .value {
+            font-family: 'Monaco', 'Consolas', monospace;
+            color: #86efac;
+        }
+
+        /* 利率计算器结果表格 */
+        .rate-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+
+        .rate-table th,
+        .rate-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .rate-table th {
+            color: #a1a1aa;
+            font-weight: 500;
+        }
+
+        .rate-table td {
+            font-family: 'Monaco', 'Consolas', monospace;
+        }
+
+        /* 快速单位按钮 */
+        .quick-units {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .quick-unit {
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #a1a1aa;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quick-unit:hover {
+            background: rgba(124, 58, 237, 0.2);
+            border-color: rgba(124, 58, 237, 0.4);
+            color: #a78bfa;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+
+            body {
+                flex-direction: column;
+            }
+
+            .calc-buttons {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .converter-row {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .swap-btn {
+                margin: 0 auto;
+            }
+
+            .input-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1>🧮 万能计算器</h1>
+            <a href="index.html">← 返回工具箱</a>
+        </div>
+
+        <div class="category">计算器</div>
+        <div class="tool-item active" data-tool="scientific">
+            <span class="icon">🔢</span>
+            <span class="name">科学计算器</span>
+        </div>
+        <div class="tool-item" data-tool="rate">
+            <span class="icon">💰</span>
+            <span class="name">利率计算器</span>
+        </div>
+        <div class="tool-item" data-tool="subnet">
+            <span class="icon">🌐</span>
+            <span class="name">子网掩码计算器</span>
+        </div>
+
+        <div class="category">单位换算</div>
+        <div class="tool-item" data-tool="length">
+            <span class="icon">📏</span>
+            <span class="name">长度换算</span>
+        </div>
+        <div class="tool-item" data-tool="area">
+            <span class="icon">⬛</span>
+            <span class="name">面积换算</span>
+        </div>
+        <div class="tool-item" data-tool="volume">
+            <span class="icon">📦</span>
+            <span class="name">体积换算</span>
+        </div>
+        <div class="tool-item" data-tool="temperature">
+            <span class="icon">🌡️</span>
+            <span class="name">温度换算</span>
+        </div>
+        <div class="tool-item" data-tool="time">
+            <span class="icon">⏱️</span>
+            <span class="name">时间换算</span>
+        </div>
+        <div class="tool-item" data-tool="speed">
+            <span class="icon">🚀</span>
+            <span class="name">速度换算</span>
+        </div>
+        <div class="tool-item" data-tool="data">
+            <span class="icon">💾</span>
+            <span class="name">数据大小换算</span>
+        </div>
+        <div class="tool-item" data-tool="pressure">
+            <span class="icon">🎈</span>
+            <span class="name">压力换算</span>
+        </div>
+        <div class="tool-item" data-tool="power">
+            <span class="icon">⚡</span>
+            <span class="name">功率换算</span>
+        </div>
+        <div class="tool-item" data-tool="energy">
+            <span class="icon">🔥</span>
+            <span class="name">热量换算</span>
+        </div>
+        <div class="tool-item" data-tool="angle">
+            <span class="icon">📐</span>
+            <span class="name">角度换算</span>
+        </div>
+        <div class="tool-item" data-tool="density">
+            <span class="icon">🧊</span>
+            <span class="name">密度换算</span>
+        </div>
+        <div class="tool-item" data-tool="force">
+            <span class="icon">💪</span>
+            <span class="name">力换算</span>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <!-- 科学计算器 -->
+        <div class="tool-panel active" id="panel-scientific">
+            <div class="panel-header">
+                <h2>🔢 科学计算器</h2>
+                <p>支持基础运算、三角函数、对数、幂运算等</p>
+            </div>
+            <div class="card">
+                <div class="calc-display">
+                    <div class="calc-expression" id="calcExpr"></div>
+                    <div class="calc-result" id="calcResult">0</div>
+                </div>
+                <div class="calc-buttons">
+                    <button class="calc-btn func" onclick="calcFunc('sin')">sin</button>
+                    <button class="calc-btn func" onclick="calcFunc('cos')">cos</button>
+                    <button class="calc-btn func" onclick="calcFunc('tan')">tan</button>
+                    <button class="calc-btn func" onclick="calcFunc('log')">log</button>
+                    <button class="calc-btn func" onclick="calcFunc('ln')">ln</button>
+                    <button class="calc-btn func" onclick="calcFunc('sqrt')">√</button>
+                    <button class="calc-btn func" onclick="calcFunc('pow2')">x²</button>
+                    <button class="calc-btn func" onclick="calcFunc('pow3')">x³</button>
+                    <button class="calc-btn operator" onclick="calcInput('^')">^</button>
+                    <button class="calc-btn func" onclick="calcFunc('pi')">π</button>
+                    <button class="calc-btn clear" onclick="calcClear()">C</button>
+                    <button class="calc-btn" onclick="calcBackspace()">⌫</button>
+                    <button class="calc-btn operator" onclick="calcInput('(')">(</button>
+                    <button class="calc-btn operator" onclick="calcInput(')')">)</button>
+                    <button class="calc-btn operator" onclick="calcInput('/')">÷</button>
+                    <button class="calc-btn" onclick="calcInput('7')">7</button>
+                    <button class="calc-btn" onclick="calcInput('8')">8</button>
+                    <button class="calc-btn" onclick="calcInput('9')">9</button>
+                    <button class="calc-btn operator" onclick="calcInput('*')">×</button>
+                    <button class="calc-btn func" onclick="calcFunc('factorial')">n!</button>
+                    <button class="calc-btn" onclick="calcInput('4')">4</button>
+                    <button class="calc-btn" onclick="calcInput('5')">5</button>
+                    <button class="calc-btn" onclick="calcInput('6')">6</button>
+                    <button class="calc-btn operator" onclick="calcInput('-')">−</button>
+                    <button class="calc-btn func" onclick="calcFunc('percent')">%</button>
+                    <button class="calc-btn" onclick="calcInput('1')">1</button>
+                    <button class="calc-btn" onclick="calcInput('2')">2</button>
+                    <button class="calc-btn" onclick="calcInput('3')">3</button>
+                    <button class="calc-btn operator" onclick="calcInput('+')">+</button>
+                    <button class="calc-btn equals" onclick="calcEquals()">=</button>
+                    <button class="calc-btn" onclick="calcInput('0')">0</button>
+                    <button class="calc-btn" onclick="calcInput('00')">00</button>
+                    <button class="calc-btn" onclick="calcInput('.')">.</button>
+                    <button class="calc-btn func" onclick="calcFunc('abs')">|x|</button>
+                    <button class="calc-btn func" onclick="calcFunc('e')">e</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 利率计算器 -->
+        <div class="tool-panel" id="panel-rate">
+            <div class="panel-header">
+                <h2>💰 利率计算器</h2>
+                <p>计算贷款月供、总利息，支持等额本息和等额本金</p>
+            </div>
+            <div class="card">
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>贷款金额（元）</label>
+                        <input type="number" id="loanAmount" value="1000000" placeholder="请输入贷款金额">
+                    </div>
+                    <div class="input-group">
+                        <label>贷款期限（月）</label>
+                        <input type="number" id="loanMonths" value="360" placeholder="请输入贷款月数">
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>年利率（%）</label>
+                        <input type="number" id="loanRate" value="4.2" step="0.01" placeholder="请输入年利率">
+                    </div>
+                    <div class="input-group">
+                        <label>还款方式</label>
+                        <select id="loanType">
+                            <option value="equal">等额本息</option>
+                            <option value="principal">等额本金</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="quick-units">
+                    <span class="quick-unit" onclick="setLoanMonths(12)">1年</span>
+                    <span class="quick-unit" onclick="setLoanMonths(36)">3年</span>
+                    <span class="quick-unit" onclick="setLoanMonths(60)">5年</span>
+                    <span class="quick-unit" onclick="setLoanMonths(120)">10年</span>
+                    <span class="quick-unit" onclick="setLoanMonths(240)">20年</span>
+                    <span class="quick-unit" onclick="setLoanMonths(360)">30年</span>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="calculateLoan()">计算</button>
+                </div>
+                <div id="loanResult"></div>
+            </div>
+        </div>
+
+        <!-- 子网掩码计算器 -->
+        <div class="tool-panel" id="panel-subnet">
+            <div class="panel-header">
+                <h2>🌐 子网掩码计算器</h2>
+                <p>计算IP地址的网络地址、广播地址、可用主机数等</p>
+            </div>
+            <div class="card">
+                <div class="input-group">
+                    <label>IP 地址</label>
+                    <div class="ip-input-group">
+                        <input type="number" id="ip1" value="192" min="0" max="255">
+                        <span>.</span>
+                        <input type="number" id="ip2" value="168" min="0" max="255">
+                        <span>.</span>
+                        <input type="number" id="ip3" value="1" min="0" max="255">
+                        <span>.</span>
+                        <input type="number" id="ip4" value="100" min="0" max="255">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>CIDR / 子网掩码位数</label>
+                    <input type="number" id="cidr" value="24" min="0" max="32" style="width: 100px;">
+                </div>
+                <div class="quick-units">
+                    <span class="quick-unit" onclick="setCIDR(8)">/8 (A类)</span>
+                    <span class="quick-unit" onclick="setCIDR(16)">/16 (B类)</span>
+                    <span class="quick-unit" onclick="setCIDR(24)">/24 (C类)</span>
+                    <span class="quick-unit" onclick="setCIDR(25)">/25</span>
+                    <span class="quick-unit" onclick="setCIDR(26)">/26</span>
+                    <span class="quick-unit" onclick="setCIDR(27)">/27</span>
+                    <span class="quick-unit" onclick="setCIDR(28)">/28</span>
+                    <span class="quick-unit" onclick="setCIDR(30)">/30</span>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="calculateSubnet()">计算</button>
+                </div>
+                <div id="subnetResult"></div>
+            </div>
+        </div>
+
+        <!-- 长度换算 -->
+        <div class="tool-panel" id="panel-length">
+            <div class="panel-header">
+                <h2>📏 长度换算</h2>
+                <p>支持米、厘米、英寸、英尺、英里、海里等单位换算</p>
+            </div>
+            <div class="card">
+                <div class="converter-row">
+                    <div class="input-group">
+                        <label>数值</label>
+                        <input type="number" id="lengthFrom" value="1" oninput="convertLength()">
+                        <select id="lengthFromUnit" onchange="convertLength()">
+                            <option value="m" selected>米 (m)</option>
+                            <option value="km">千米 (km)</option>
+                            <option value="cm">厘米 (cm)</option>
+                            <option value="mm">毫米 (mm)</option>
+                            <option value="um">微米 (μm)</option>
+                            <option value="nm">纳米 (nm)</option>
+                            <option value="in">英寸 (in)</option>
+                            <option value="ft">英尺 (ft)</option>
+                            <option value="yd">码 (yd)</option>
+                            <option value="mi">英里 (mi)</option>
+                            <option value="nmi">海里 (nmi)</option>
+                            <option value="li">里</option>
+                            <option value="zhang">丈</option>
+                            <option value="chi">尺</option>
+                            <option value="cun">寸</option>
+                        </select>
+                    </div>
+                    <button class="swap-btn" onclick="swapUnits('length')">⇄</button>
+                    <div class="input-group">
+                        <label>结果</label>
+                        <input type="number" id="lengthTo" readonly>
+                        <select id="lengthToUnit" onchange="convertLength()">
+                            <option value="m">米 (m)</option>
+                            <option value="km">千米 (km)</option>
+                            <option value="cm" selected>厘米 (cm)</option>
+                            <option value="mm">毫米 (mm)</option>
+                            <option value="um">微米 (μm)</option>
+                            <option value="nm">纳米 (nm)</option>
+                            <option value="in">英寸 (in)</option>
+                            <option value="ft">英尺 (ft)</option>
+                            <option value="yd">码 (yd)</option>
+                            <option value="mi">英里 (mi)</option>
+                            <option value="nmi">海里 (nmi)</option>
+                            <option value="li">里</option>
+                            <option value="zhang">丈</option>
+                            <option value="chi">尺</option>
+                            <option value="cun">寸</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 面积换算 -->
+        <div class="tool-panel" id="panel-area">
+            <div class="panel-header">
+                <h2>⬛ 面积换算</h2>
+                <p>支持平方米、公顷、亩、平方英尺等单位换算</p>
+            </div>
+            <div class="card">
+                <div class="converter-row">
+                    <div class="input-group">
+                        <label>数值</label>
+                        <input type="number" id="areaFrom" value="1" oninput="convertArea()">
+                        <select id="areaFromUnit" onchange="convertArea()">
+                            <option value="m2" selected>平方米 (m²)</option>
+                            <option value="km2">平方千米 (km²)</option>
+                            <option value="cm2">平方厘米 (cm²)</option>
+                            <option value="mm2">平方毫米 (mm²)</option>
+                            <option value="ha">公顷 (ha)</option>
+                            <option value="mu">亩</option>
+                            <option value="sqft">平方英尺 (ft²)</option>
+                            <option value="sqyd">平方码 (yd²)</option>
+                            <option value="sqmi">平方英里 (mi²)</option>
+                            <option value="acre">英亩 (acre)</option>
+                        </select>
+                    </div>
+                    <button class="swap-btn" onclick="swapUnits('area')">⇄</button>
+                    <div class="input-group">
+                        <label>结果</label>
+                        <input type="number" id="areaTo" readonly>
+                        <select id="areaToUnit" onchange="convertArea()">
+                            <option value="m2">平方米 (m²)</option>
+                            <option value="km2">平方千米 (km²)</option>
+                            <option value="cm2">平方厘米 (cm²)</option>
+                            <option value="mm2">平方毫米 (mm²)</option>
+                            <option value="ha">公顷 (ha)</option>
+                            <option value="mu" selected>亩</option>
+                            <option value="sqft">平方英尺 (ft²)</option>
+                            <option value="sqyd">平方码 (yd²)</option>
+                            <option value="sqmi">平方英里 (mi²)</option>
+                            <option value="acre">英亩 (acre)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 体积换算 -->
+        <div class="tool-panel" id="panel-volume">
+            <div class="panel-header">
+                <h2>📦 体积换算</h2>
+                <p>支持升、毫升、立方米、加仑等单位换算</p>
+            </div>
+            <div class="card">
+                <div class="converter-row">
+                    <div class="input-group">
+                        <label>数值</label>
+                        <input type="number" id="volumeFrom" value="1" oninput="convertVolume()">
+                        <select id="volumeFromUnit" onchange="convertVolume()">
+                            <option value="l" selected>升 (L)</option>
+                            <option value="ml">毫升 (mL)</option>
+                            <option value="m3">立方米 (m³)</option>
+                            <option value="cm3">立方厘米 (cm³)</option>
+                            <option value="mm3">立方毫米 (mm³)</option>
+                            <option value="gal">加仑 (gal)</option>
+                            <option value="qt">夸脱 (qt)</option>
+                            <option value="pt">品脱 (pt)</option>
+                            <option value="cup">杯</option>
+                            <option value="floz">液体盎司 (fl oz)</option>
+                            <option value="tbsp">汤匙</option>
+                            <option value="tsp">茶匙</option>
+                        </select>
+                    </div>
+                    <button class="swap-btn" onclick="swapUnits('volume')">⇄</button>
+                    <div class="input-group">
+                        <label>结果</label>
+                        <input type="number" id="volumeTo" readonly>
+                        <select id="volumeToUnit" onchange="convertVolume()">
+                            <option value="l">升 (L)</option>
+                            <option value="ml" selected>毫升 (mL)</option>
+                            <option value="m3">立方米 (m³)</option>
+                            <option value="cm3">立方厘米 (cm³)</option>
+                            <option value="mm3">立方毫米 (mm³)</option>
+                            <option value="gal">加仑 (gal)</option>
+                            <option value="qt">夸脱 (qt)</option>
+                            <option value="pt">品脱 (pt)</option>
+                            <option value="cup">杯</option>
+                            <option value="floz">液体盎司 (fl oz)</option>
+                            <option value="tbsp">汤匙</option>
+                            <option value="tsp">茶匙</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 温度换算 -->
+        <div class="tool-panel" id="panel-temperature">
+            <div class="panel-header">
+                <h2>🌡️ 温度换算</h2>
+                <p>支持摄氏度、华氏度、开尔文换算</p>
+            </div>
+            <div class="card">
+                <div class="converter-row">
+                    <div class="input-group">
+                        <label>数值</label>
+                        <input type="number" id="tempFrom" value="25" oninput="convertTemperature()">
+                        <select id="tempFromUnit" onchange="convertTemperature()">
+                            <option value="c" selected>摄氏度 (°C)</option>
+                            <option value="f">华氏度 (°F)</option>
+                            <option value="k">开尔文 (K)</option>
+                        </select>
+                    </div>
+                    <button class="swap-btn" onclick="swapUnits('temp')">⇄</button>
+                    <div class="input-group">
+                        <label>结果</label>
+                        <input type="number" id="tempTo" readonly>
+                        <select id="tempToUnit" onchange="convertTemperature()">
+                            <option value="c">摄氏度 (°C)</option>
+                            <option value="f" selected>华氏度 (°F)</option>
+                            <option value="k">开尔文 (K)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 时间换算 -->
+        <div class="tool-panel" id="panel-time">
+            <div class="panel-header">
+                <h2>⏱️ 时间换算</h2>
+                <p>支持秒、分、时、天、周、月、年等单位换算</p>
+            </div>
+            <div class="card">
+                <div class="converter-row">
+                    <div class="input-group">
+                        <label>数值</label>
+                        <input type="number" id="timeFrom" value="1" oninput="convertTime()">
+                        <select id="timeFromUnit" onchange="convertTime()">
+                            <option value="ms">毫秒 (ms)</option>
+                            <option value="s">秒 (s)</option>
+                            <option value="min">分钟 (min)</option>
+                            <option value="h" selected>小时 (h)</option>
+                            <option value="d">天 (d)</option>
+                            <option value="w">周 (w)</option>
+                            <option value="mo">月 (30天)</option>
+                            <option value="y">年 (365天)</option>
+                        </select>
+                    </div>
+                    <button class="swap-btn" onclick="swapUnits('time')">⇄</button>
+                    <div class="input-group">
+                        <label>结果</label>
+                        <input type="number" id="timeTo" readonly>
+                        <select id="timeToUnit" onchange="convertTime()">
+                            <option value="ms">毫秒 (ms)</option>
+                            <option value="s">秒 (s)</option>
+                            <option value="min" selected>分钟 (min)</option>
+                            <option value="h">小时 (h)</option>
+                            <option value="d">天 (d)</option>
+                            <option value="w">周 (w)</option>
+                            <option value="mo">月 (30天)</option>
+                            <option value="y">年 (365天)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 速度换算 -->
+        <div class="tool-panel" id="panel-speed">
+            <div class="panel-header">
+                <h2>🚀 速度换算</h2>
+                <p>支持米/秒、千米/时、英里/时、节、马赫等换算</p>
+            </div>
+            <div class="card">
+                <div class="converter-row">
+                    <div class="input-group">
+                        <label>数值</label>
+                        <input type="number" id="speedFrom" value="100" oninput="convertSpeed()">
+                        <select id="speedFromUnit" onchange="convertSpeed()">
+                            <option value="mps">米/秒 (m/s)</option>
+                            <option value="kmh" selected>千米/时 (km/h)</option>
+                            <option value="mph">英里/时 (mph)</option>
+                            <option value="knot">节 (kn)</option>
+                            <option value="mach">马赫 (Ma)</option>
+                            <option value="fps">英尺/秒 (ft/s)</option>
+                            <option value="c">光速 (c)</option>
+                        </select>
+                    </div>
+                    <button class="swap-btn" onclick="swapUnits('speed')">⇄</button>
+                    <div class="input-group">
+                        <label>结果</label>
+                        <input type="number" id="speedTo" readonly>
+                        <select id="speedToUnit" onchange="convertSpeed()">
+                            <option value="mps" selected>米/秒 (m/s)</option>
+                            <option value="kmh">千米/时 (km/h)</option>
+                            <option value="mph">英里/时 (mph)</option>
+                            <option value="knot">节 (kn)</option>
+                            <option value="mach">马赫 (Ma)</option>
+                            <option value="fps">英尺/秒 (ft/s)</option>
+                            <option value="c">光速 (c)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 数据大小换算 -->
+        <div class="tool-panel" id="panel-data">
+            <div class="panel-header">
+                <h2>💾 数据大小换算</h2>
+                <p>支持字节、KB、MB、GB、TB、PB等换算</p>
+            </div>
+            <div class="card">
+                <div class="converter-row">
+                    <div class="input-group">
+                        <label>数值</label>
+                        <input type="number" id="dataFrom" value="1" oninput="convertData()">
+                        <select id="dataFromUnit" onchange="convertData()">
+                            <option value="b">字节 (B)</option>
+                            <option value="kb">千字节 (KB)</option>
+                            <option value="mb">兆字节 (MB)</option>
+                            <option value="gb" selected>吉字节 (GB)</option>
+                            <option value="tb">太字节 (TB)</option>
+                            <option value="pb">拍字节 (PB)</option>
+                            <option value="kib">KiB (1024)</option>
+                            <option value="mib">MiB (1024)</option>
+                            <option value="gib">GiB (1024)</option>
+                            <option value="tib">TiB (1024)</option>
+                            <option value="bit">比特 (bit)</option>
+                        </select>
+                    </div>
+                    <button class="swap-btn" onclick="swapUnits('data')">⇄</button>
+                    <div class="input-group">
+                        <label>结果</label>
+                        <input type="number" id="dataTo" readonly>
+                        <select id="dataToUnit" onchange="convertData()">
+                            <option value="b">字节 (B)</option>
+                            <option value="kb">千字节 (KB)</option>
+                            <option value="mb" selected>兆字节 (MB)</option>
+                            <option value="gb">吉字节 (GB)</option>
+                            <option value="tb">太字节 (TB)</option>
+                            <option value="pb">拍字节 (PB)</option>
+                            <option value="kib">KiB (1024)</option>
+                            <option value="mib">MiB (1024)</option>
+                            <option value="gib">GiB (1024)</option>
+                            <option value="tib">TiB (1024)</option>
+                            <option value="bit">比特 (bit)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 压力换算 -->
+        <div class="tool-panel" id="panel-pressure">
+            <div class="panel-header">
+                <h2>🎈 压力换算</h2>
+                <p>支持帕斯卡、巴、大气压、PSI等单位换算</p>
+            </div>
+            <div class="card">
+                <div class="converter-row">
+                    <div class="input-group">
+                        <label>数值</label>
+                        <input type="number" id="pressureFrom" value="1" oninput="convertPressure()">
+                        <select id="pressureFromUnit" onchange="convertPressure()">
+                            <option value="pa">帕斯卡 (Pa)</option>
+                            <option value="kpa">千帕 (kPa)</option>
+                            <option value="mpa">兆帕 (MPa)</option>
+                            <option value="bar">巴 (bar)</option>
+                            <option value="atm" selected>标准大气压 (atm)</option>
+                            <option value="psi">磅/平方英寸 (psi)</option>
+                            <option value="mmhg">毫米汞柱 (mmHg)</option>
+                            <option value="torr">托 (Torr)</option>
+                        </select>
+                    </div>
+                    <button class="swap-btn" onclick="swapUnits('pressure')">⇄</button>
+                    <div class="input-group">
+                        <label>结果</label>
+                        <input type="number" id="pressureTo" readonly>
+                        <select id="pressureToUnit" onchange="convertPressure()">
+                            <option value="pa">帕斯卡 (Pa)</option>
+                            <option value="kpa" selected>千帕 (kPa)</option>
+                            <option value="mpa">兆帕 (MPa)</option>
+                            <option value="bar">巴 (bar)</option>
+                            <option value="atm">标准大气压 (atm)</option>
+                            <option value="psi">磅/平方英寸 (psi)</option>
+                            <option value="mmhg">毫米汞柱 (mmHg)</option>
+                            <option value="torr">托 (Torr)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 功率换算 -->
+        <div class="tool-panel" id="panel-power">
+            <div class="panel-header">
+                <h2>⚡ 功率换算</h2>
+                <p>支持瓦特、千瓦、马力、BTU/时等单位换算</p>
+            </div>
+            <div class="card">
+                <div class="converter-row">
+                    <div class="input-group">
+                        <label>数值</label>
+                        <input type="number" id="powerFrom" value="1" oninput="convertPower()">
+                        <select id="powerFromUnit" onchange="convertPower()">
+                            <option value="w">瓦特 (W)</option>
+                            <option value="kw" selected>千瓦 (kW)</option>
+                            <option value="mw">兆瓦 (MW)</option>
+                            <option value="hp">马力 (hp)</option>
+                            <option value="ps">公制马力 (PS)</option>
+                            <option value="btuh">BTU/时</option>
+                            <option value="ftlbs">英尺·磅/秒</option>
+                        </select>
+                    </div>
+                    <button class="swap-btn" onclick="swapUnits('power')">⇄</button>
+                    <div class="input-group">
+                        <label>结果</label>
+                        <input type="number" id="powerTo" readonly>
+                        <select id="powerToUnit" onchange="convertPower()">
+                            <option value="w" selected>瓦特 (W)</option>
+                            <option value="kw">千瓦 (kW)</option>
+                            <option value="mw">兆瓦 (MW)</option>
+                            <option value="hp">马力 (hp)</option>
+                            <option value="ps">公制马力 (PS)</option>
+                            <option value="btuh">BTU/时</option>
+                            <option value="ftlbs">英尺·磅/秒</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 热量换算 -->
+        <div class="tool-panel" id="panel-energy">
+            <div class="panel-header">
+                <h2>🔥 热量换算</h2>
+                <p>支持焦耳、卡路里、千卡、千瓦时、BTU等换算</p>
+            </div>
+            <div class="card">
+                <div class="converter-row">
+                    <div class="input-group">
+                        <label>数值</label>
+                        <input type="number" id="energyFrom" value="1" oninput="convertEnergy()">
+                        <select id="energyFromUnit" onchange="convertEnergy()">
+                            <option value="j">焦耳 (J)</option>
+                            <option value="kj">千焦 (kJ)</option>
+                            <option value="cal">卡路里 (cal)</option>
+                            <option value="kcal" selected>千卡 (kcal)</option>
+                            <option value="wh">瓦时 (Wh)</option>
+                            <option value="kwh">千瓦时 (kWh)</option>
+                            <option value="btu">英热单位 (BTU)</option>
+                            <option value="ev">电子伏特 (eV)</option>
+                        </select>
+                    </div>
+                    <button class="swap-btn" onclick="swapUnits('energy')">⇄</button>
+                    <div class="input-group">
+                        <label>结果</label>
+                        <input type="number" id="energyTo" readonly>
+                        <select id="energyToUnit" onchange="convertEnergy()">
+                            <option value="j">焦耳 (J)</option>
+                            <option value="kj" selected>千焦 (kJ)</option>
+                            <option value="cal">卡路里 (cal)</option>
+                            <option value="kcal">千卡 (kcal)</option>
+                            <option value="wh">瓦时 (Wh)</option>
+                            <option value="kwh">千瓦时 (kWh)</option>
+                            <option value="btu">英热单位 (BTU)</option>
+                            <option value="ev">电子伏特 (eV)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 角度换算 -->
+        <div class="tool-panel" id="panel-angle">
+            <div class="panel-header">
+                <h2>📐 角度换算</h2>
+                <p>支持度、弧度、梯度、圈等单位换算</p>
+            </div>
+            <div class="card">
+                <div class="converter-row">
+                    <div class="input-group">
+                        <label>数值</label>
+                        <input type="number" id="angleFrom" value="180" oninput="convertAngle()">
+                        <select id="angleFromUnit" onchange="convertAngle()">
+                            <option value="deg" selected>度 (°)</option>
+                            <option value="rad">弧度 (rad)</option>
+                            <option value="grad">梯度 (grad)</option>
+                            <option value="turn">圈 (turn)</option>
+                            <option value="arcmin">角分 (')</option>
+                            <option value="arcsec">角秒 (")</option>
+                        </select>
+                    </div>
+                    <button class="swap-btn" onclick="swapUnits('angle')">⇄</button>
+                    <div class="input-group">
+                        <label>结果</label>
+                        <input type="number" id="angleTo" readonly>
+                        <select id="angleToUnit" onchange="convertAngle()">
+                            <option value="deg">度 (°)</option>
+                            <option value="rad" selected>弧度 (rad)</option>
+                            <option value="grad">梯度 (grad)</option>
+                            <option value="turn">圈 (turn)</option>
+                            <option value="arcmin">角分 (')</option>
+                            <option value="arcsec">角秒 (")</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 密度换算 -->
+        <div class="tool-panel" id="panel-density">
+            <div class="panel-header">
+                <h2>🧊 密度换算</h2>
+                <p>支持千克/立方米、克/立方厘米、磅/立方英尺等换算</p>
+            </div>
+            <div class="card">
+                <div class="converter-row">
+                    <div class="input-group">
+                        <label>数值</label>
+                        <input type="number" id="densityFrom" value="1000" oninput="convertDensity()">
+                        <select id="densityFromUnit" onchange="convertDensity()">
+                            <option value="kgm3" selected>千克/立方米 (kg/m³)</option>
+                            <option value="gcm3">克/立方厘米 (g/cm³)</option>
+                            <option value="gml">克/毫升 (g/mL)</option>
+                            <option value="kgl">千克/升 (kg/L)</option>
+                            <option value="lbft3">磅/立方英尺 (lb/ft³)</option>
+                            <option value="lbin3">磅/立方英寸 (lb/in³)</option>
+                        </select>
+                    </div>
+                    <button class="swap-btn" onclick="swapUnits('density')">⇄</button>
+                    <div class="input-group">
+                        <label>结果</label>
+                        <input type="number" id="densityTo" readonly>
+                        <select id="densityToUnit" onchange="convertDensity()">
+                            <option value="kgm3">千克/立方米 (kg/m³)</option>
+                            <option value="gcm3" selected>克/立方厘米 (g/cm³)</option>
+                            <option value="gml">克/毫升 (g/mL)</option>
+                            <option value="kgl">千克/升 (kg/L)</option>
+                            <option value="lbft3">磅/立方英尺 (lb/ft³)</option>
+                            <option value="lbin3">磅/立方英寸 (lb/in³)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 力换算 -->
+        <div class="tool-panel" id="panel-force">
+            <div class="panel-header">
+                <h2>💪 力换算</h2>
+                <p>支持牛顿、千牛、达因、磅力、千克力等换算</p>
+            </div>
+            <div class="card">
+                <div class="converter-row">
+                    <div class="input-group">
+                        <label>数值</label>
+                        <input type="number" id="forceFrom" value="1" oninput="convertForce()">
+                        <select id="forceFromUnit" onchange="convertForce()">
+                            <option value="n" selected>牛顿 (N)</option>
+                            <option value="kn">千牛 (kN)</option>
+                            <option value="dyn">达因 (dyn)</option>
+                            <option value="lbf">磅力 (lbf)</option>
+                            <option value="kgf">千克力 (kgf)</option>
+                            <option value="gf">克力 (gf)</option>
+                            <option value="ozf">盎司力 (ozf)</option>
+                        </select>
+                    </div>
+                    <button class="swap-btn" onclick="swapUnits('force')">⇄</button>
+                    <div class="input-group">
+                        <label>结果</label>
+                        <input type="number" id="forceTo" readonly>
+                        <select id="forceToUnit" onchange="convertForce()">
+                            <option value="n">牛顿 (N)</option>
+                            <option value="kn">千牛 (kN)</option>
+                            <option value="dyn">达因 (dyn)</option>
+                            <option value="lbf" selected>磅力 (lbf)</option>
+                            <option value="kgf">千克力 (kgf)</option>
+                            <option value="gf">克力 (gf)</option>
+                            <option value="ozf">盎司力 (ozf)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // 工具切换
+        document.querySelectorAll('.tool-item').forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelectorAll('.tool-item').forEach(i => i.classList.remove('active'));
+                document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
+                item.classList.add('active');
+                document.getElementById('panel-' + item.dataset.tool).classList.add('active');
+            });
+        });
+
+        // ========== 科学计算器 ==========
+        let calcExpression = '';
+        let calcHistory = '';
+
+        function calcInput(value) {
+            calcExpression += value;
+            document.getElementById('calcResult').textContent = calcExpression;
+        }
+
+        function calcClear() {
+            calcExpression = '';
+            calcHistory = '';
+            document.getElementById('calcResult').textContent = '0';
+            document.getElementById('calcExpr').textContent = '';
+        }
+
+        function calcBackspace() {
+            calcExpression = calcExpression.slice(0, -1);
+            document.getElementById('calcResult').textContent = calcExpression || '0';
+        }
+
+        function calcFunc(func) {
+            const current = parseFloat(calcExpression) || 0;
+            let result;
+            switch(func) {
+                case 'sin': result = Math.sin(current * Math.PI / 180); break;
+                case 'cos': result = Math.cos(current * Math.PI / 180); break;
+                case 'tan': result = Math.tan(current * Math.PI / 180); break;
+                case 'log': result = Math.log10(current); break;
+                case 'ln': result = Math.log(current); break;
+                case 'sqrt': result = Math.sqrt(current); break;
+                case 'pow2': result = Math.pow(current, 2); break;
+                case 'pow3': result = Math.pow(current, 3); break;
+                case 'pi': calcExpression += Math.PI; document.getElementById('calcResult').textContent = calcExpression; return;
+                case 'e': calcExpression += Math.E; document.getElementById('calcResult').textContent = calcExpression; return;
+                case 'factorial': result = factorial(current); break;
+                case 'percent': result = current / 100; break;
+                case 'abs': result = Math.abs(current); break;
+            }
+            calcExpression = result.toString();
+            document.getElementById('calcResult').textContent = calcExpression;
+        }
+
+        function factorial(n) {
+            if (n < 0) return NaN;
+            if (n === 0 || n === 1) return 1;
+            let result = 1;
+            for (let i = 2; i <= n; i++) result *= i;
+            return result;
+        }
+
+        function calcEquals() {
+            try {
+                let expr = calcExpression
+                    .replace(/×/g, '*')
+                    .replace(/÷/g, '/')
+                    .replace(/−/g, '-')
+                    .replace(/\^/g, '**');
+                const result = eval(expr);
+                document.getElementById('calcExpr').textContent = calcExpression + ' =';
+                calcExpression = result.toString();
+                document.getElementById('calcResult').textContent = result;
+            } catch (e) {
+                document.getElementById('calcResult').textContent = 'Error';
+            }
+        }
+
+        // 键盘支持
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('panel-scientific').classList.contains('active')) {
+                if (/[0-9.+\-*/()^]/.test(e.key)) {
+                    calcInput(e.key);
+                } else if (e.key === 'Enter') {
+                    calcEquals();
+                } else if (e.key === 'Backspace') {
+                    calcBackspace();
+                } else if (e.key === 'Escape') {
+                    calcClear();
+                }
+            }
+        });
+
+        // ========== 利率计算器 ==========
+        function setLoanMonths(months) {
+            document.getElementById('loanMonths').value = months;
+        }
+
+        function calculateLoan() {
+            const amount = parseFloat(document.getElementById('loanAmount').value);
+            const months = parseInt(document.getElementById('loanMonths').value);
+            const yearRate = parseFloat(document.getElementById('loanRate').value) / 100;
+            const type = document.getElementById('loanType').value;
+            const monthRate = yearRate / 12;
+
+            let html = '<div class="result-box">';
+
+            if (type === 'equal') {
+                // 等额本息
+                const monthPay = amount * monthRate * Math.pow(1 + monthRate, months) / (Math.pow(1 + monthRate, months) - 1);
+                const totalPay = monthPay * months;
+                const totalInterest = totalPay - amount;
+
+                html += `
+                    <div class="result-grid">
+                        <div>
+                            <div class="result-label">月供</div>
+                            <div class="result-value">¥${monthPay.toFixed(2)}</div>
+                        </div>
+                        <div>
+                            <div class="result-label">总还款额</div>
+                            <div class="result-value">¥${totalPay.toFixed(2)}</div>
+                        </div>
+                        <div>
+                            <div class="result-label">总利息</div>
+                            <div class="result-value">¥${totalInterest.toFixed(2)}</div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                // 等额本金
+                const monthPrincipal = amount / months;
+                const firstMonthPay = monthPrincipal + amount * monthRate;
+                const lastMonthPay = monthPrincipal + monthPrincipal * monthRate;
+                const totalInterest = (months + 1) * amount * monthRate / 2;
+                const totalPay = amount + totalInterest;
+
+                html += `
+                    <div class="result-grid">
+                        <div>
+                            <div class="result-label">首月还款</div>
+                            <div class="result-value">¥${firstMonthPay.toFixed(2)}</div>
+                        </div>
+                        <div>
+                            <div class="result-label">末月还款</div>
+                            <div class="result-value">¥${lastMonthPay.toFixed(2)}</div>
+                        </div>
+                        <div>
+                            <div class="result-label">每月递减</div>
+                            <div class="result-value">¥${(monthPrincipal * monthRate).toFixed(2)}</div>
+                        </div>
+                        <div>
+                            <div class="result-label">总还款额</div>
+                            <div class="result-value">¥${totalPay.toFixed(2)}</div>
+                        </div>
+                        <div>
+                            <div class="result-label">总利息</div>
+                            <div class="result-value">¥${totalInterest.toFixed(2)}</div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            html += '</div>';
+            document.getElementById('loanResult').innerHTML = html;
+        }
+
+        // ========== 子网掩码计算器 ==========
+        function setCIDR(cidr) {
+            document.getElementById('cidr').value = cidr;
+        }
+
+        function calculateSubnet() {
+            const ip = [
+                parseInt(document.getElementById('ip1').value),
+                parseInt(document.getElementById('ip2').value),
+                parseInt(document.getElementById('ip3').value),
+                parseInt(document.getElementById('ip4').value)
+            ];
+            const cidr = parseInt(document.getElementById('cidr').value);
+
+            // 计算子网掩码
+            const mask = [];
+            for (let i = 0; i < 4; i++) {
+                const bits = Math.min(8, Math.max(0, cidr - i * 8));
+                mask.push(256 - Math.pow(2, 8 - bits));
+            }
+
+            // 网络地址
+            const network = ip.map((octet, i) => octet & mask[i]);
+
+            // 广播地址
+            const broadcast = network.map((octet, i) => octet | (255 - mask[i]));
+
+            // 可用主机范围
+            const firstHost = [...network];
+            firstHost[3] += 1;
+            const lastHost = [...broadcast];
+            lastHost[3] -= 1;
+
+            // 可用主机数
+            const hostCount = Math.pow(2, 32 - cidr) - 2;
+
+            // 通配符掩码
+            const wildcard = mask.map(m => 255 - m);
+
+            // IP 二进制
+            const ipBinary = ip.map(o => o.toString(2).padStart(8, '0')).join('.');
+
+            const html = `
+                <div class="result-box">
+                    <div class="subnet-results">
+                        <div class="subnet-row">
+                            <span class="label">IP 地址</span>
+                            <span class="value">${ip.join('.')}/${cidr}</span>
+                        </div>
+                        <div class="subnet-row">
+                            <span class="label">子网掩码</span>
+                            <span class="value">${mask.join('.')}</span>
+                        </div>
+                        <div class="subnet-row">
+                            <span class="label">通配符掩码</span>
+                            <span class="value">${wildcard.join('.')}</span>
+                        </div>
+                        <div class="subnet-row">
+                            <span class="label">网络地址</span>
+                            <span class="value">${network.join('.')}</span>
+                        </div>
+                        <div class="subnet-row">
+                            <span class="label">广播地址</span>
+                            <span class="value">${broadcast.join('.')}</span>
+                        </div>
+                        <div class="subnet-row">
+                            <span class="label">可用主机范围</span>
+                            <span class="value">${firstHost.join('.')} - ${lastHost.join('.')}</span>
+                        </div>
+                        <div class="subnet-row">
+                            <span class="label">可用主机数</span>
+                            <span class="value">${hostCount > 0 ? hostCount.toLocaleString() : 0}</span>
+                        </div>
+                        <div class="subnet-row">
+                            <span class="label">IP 二进制</span>
+                            <span class="value" style="font-size: 0.85rem;">${ipBinary}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('subnetResult').innerHTML = html;
+        }
+
+        // ========== 单位换算通用函数 ==========
+        function swapUnits(type) {
+            const fromUnit = document.getElementById(type + 'FromUnit');
+            const toUnit = document.getElementById(type + 'ToUnit');
+            const temp = fromUnit.value;
+            fromUnit.value = toUnit.value;
+            toUnit.value = temp;
+
+            // 触发重新计算
+            switch(type) {
+                case 'length': convertLength(); break;
+                case 'area': convertArea(); break;
+                case 'volume': convertVolume(); break;
+                case 'temp': convertTemperature(); break;
+                case 'time': convertTime(); break;
+                case 'speed': convertSpeed(); break;
+                case 'data': convertData(); break;
+                case 'pressure': convertPressure(); break;
+                case 'power': convertPower(); break;
+                case 'energy': convertEnergy(); break;
+                case 'angle': convertAngle(); break;
+                case 'density': convertDensity(); break;
+                case 'force': convertForce(); break;
+            }
+        }
+
+        // 长度换算
+        const lengthUnits = {
+            m: 1, km: 1000, cm: 0.01, mm: 0.001, um: 1e-6, nm: 1e-9,
+            in: 0.0254, ft: 0.3048, yd: 0.9144, mi: 1609.344, nmi: 1852,
+            li: 500, zhang: 3.33333, chi: 0.33333, cun: 0.03333
+        };
+        function convertLength() {
+            const value = parseFloat(document.getElementById('lengthFrom').value) || 0;
+            const from = document.getElementById('lengthFromUnit').value;
+            const to = document.getElementById('lengthToUnit').value;
+            const result = value * lengthUnits[from] / lengthUnits[to];
+            document.getElementById('lengthTo').value = result.toPrecision(10).replace(/\.?0+$/, '');
+        }
+
+        // 面积换算
+        const areaUnits = {
+            m2: 1, km2: 1e6, cm2: 1e-4, mm2: 1e-6, ha: 10000, mu: 666.667,
+            sqft: 0.092903, sqyd: 0.836127, sqmi: 2589988.11, acre: 4046.86
+        };
+        function convertArea() {
+            const value = parseFloat(document.getElementById('areaFrom').value) || 0;
+            const from = document.getElementById('areaFromUnit').value;
+            const to = document.getElementById('areaToUnit').value;
+            const result = value * areaUnits[from] / areaUnits[to];
+            document.getElementById('areaTo').value = result.toPrecision(10).replace(/\.?0+$/, '');
+        }
+
+        // 体积换算
+        const volumeUnits = {
+            l: 1, ml: 0.001, m3: 1000, cm3: 0.001, mm3: 1e-6,
+            gal: 3.78541, qt: 0.946353, pt: 0.473176, cup: 0.236588,
+            floz: 0.0295735, tbsp: 0.0147868, tsp: 0.00492892
+        };
+        function convertVolume() {
+            const value = parseFloat(document.getElementById('volumeFrom').value) || 0;
+            const from = document.getElementById('volumeFromUnit').value;
+            const to = document.getElementById('volumeToUnit').value;
+            const result = value * volumeUnits[from] / volumeUnits[to];
+            document.getElementById('volumeTo').value = result.toPrecision(10).replace(/\.?0+$/, '');
+        }
+
+        // 温度换算
+        function convertTemperature() {
+            const value = parseFloat(document.getElementById('tempFrom').value) || 0;
+            const from = document.getElementById('tempFromUnit').value;
+            const to = document.getElementById('tempToUnit').value;
+
+            // 先转为摄氏度
+            let celsius;
+            if (from === 'c') celsius = value;
+            else if (from === 'f') celsius = (value - 32) * 5 / 9;
+            else celsius = value - 273.15;
+
+            // 再转为目标单位
+            let result;
+            if (to === 'c') result = celsius;
+            else if (to === 'f') result = celsius * 9 / 5 + 32;
+            else result = celsius + 273.15;
+
+            document.getElementById('tempTo').value = result.toFixed(4).replace(/\.?0+$/, '');
+        }
+
+        // 时间换算
+        const timeUnits = {
+            ms: 0.001, s: 1, min: 60, h: 3600, d: 86400, w: 604800,
+            mo: 2592000, y: 31536000
+        };
+        function convertTime() {
+            const value = parseFloat(document.getElementById('timeFrom').value) || 0;
+            const from = document.getElementById('timeFromUnit').value;
+            const to = document.getElementById('timeToUnit').value;
+            const result = value * timeUnits[from] / timeUnits[to];
+            document.getElementById('timeTo').value = result.toPrecision(10).replace(/\.?0+$/, '');
+        }
+
+        // 速度换算
+        const speedUnits = {
+            mps: 1, kmh: 0.277778, mph: 0.44704, knot: 0.514444,
+            mach: 340.29, fps: 0.3048, c: 299792458
+        };
+        function convertSpeed() {
+            const value = parseFloat(document.getElementById('speedFrom').value) || 0;
+            const from = document.getElementById('speedFromUnit').value;
+            const to = document.getElementById('speedToUnit').value;
+            const result = value * speedUnits[from] / speedUnits[to];
+            document.getElementById('speedTo').value = result.toPrecision(10).replace(/\.?0+$/, '');
+        }
+
+        // 数据大小换算
+        const dataUnits = {
+            b: 1, kb: 1000, mb: 1e6, gb: 1e9, tb: 1e12, pb: 1e15,
+            kib: 1024, mib: 1048576, gib: 1073741824, tib: 1099511627776,
+            bit: 0.125
+        };
+        function convertData() {
+            const value = parseFloat(document.getElementById('dataFrom').value) || 0;
+            const from = document.getElementById('dataFromUnit').value;
+            const to = document.getElementById('dataToUnit').value;
+            const result = value * dataUnits[from] / dataUnits[to];
+            document.getElementById('dataTo').value = result.toPrecision(10).replace(/\.?0+$/, '');
+        }
+
+        // 压力换算
+        const pressureUnits = {
+            pa: 1, kpa: 1000, mpa: 1e6, bar: 100000, atm: 101325,
+            psi: 6894.76, mmhg: 133.322, torr: 133.322
+        };
+        function convertPressure() {
+            const value = parseFloat(document.getElementById('pressureFrom').value) || 0;
+            const from = document.getElementById('pressureFromUnit').value;
+            const to = document.getElementById('pressureToUnit').value;
+            const result = value * pressureUnits[from] / pressureUnits[to];
+            document.getElementById('pressureTo').value = result.toPrecision(10).replace(/\.?0+$/, '');
+        }
+
+        // 功率换算
+        const powerUnits = {
+            w: 1, kw: 1000, mw: 1e6, hp: 745.7, ps: 735.499,
+            btuh: 0.293071, ftlbs: 1.35582
+        };
+        function convertPower() {
+            const value = parseFloat(document.getElementById('powerFrom').value) || 0;
+            const from = document.getElementById('powerFromUnit').value;
+            const to = document.getElementById('powerToUnit').value;
+            const result = value * powerUnits[from] / powerUnits[to];
+            document.getElementById('powerTo').value = result.toPrecision(10).replace(/\.?0+$/, '');
+        }
+
+        // 热量换算
+        const energyUnits = {
+            j: 1, kj: 1000, cal: 4.184, kcal: 4184, wh: 3600, kwh: 3600000,
+            btu: 1055.06, ev: 1.60218e-19
+        };
+        function convertEnergy() {
+            const value = parseFloat(document.getElementById('energyFrom').value) || 0;
+            const from = document.getElementById('energyFromUnit').value;
+            const to = document.getElementById('energyToUnit').value;
+            const result = value * energyUnits[from] / energyUnits[to];
+            document.getElementById('energyTo').value = result.toPrecision(10).replace(/\.?0+$/, '');
+        }
+
+        // 角度换算
+        const angleUnits = {
+            deg: 1, rad: 57.2958, grad: 0.9, turn: 360, arcmin: 1/60, arcsec: 1/3600
+        };
+        function convertAngle() {
+            const value = parseFloat(document.getElementById('angleFrom').value) || 0;
+            const from = document.getElementById('angleFromUnit').value;
+            const to = document.getElementById('angleToUnit').value;
+            const result = value * angleUnits[from] / angleUnits[to];
+            document.getElementById('angleTo').value = result.toPrecision(10).replace(/\.?0+$/, '');
+        }
+
+        // 密度换算
+        const densityUnits = {
+            kgm3: 1, gcm3: 1000, gml: 1000, kgl: 1000,
+            lbft3: 16.0185, lbin3: 27679.9
+        };
+        function convertDensity() {
+            const value = parseFloat(document.getElementById('densityFrom').value) || 0;
+            const from = document.getElementById('densityFromUnit').value;
+            const to = document.getElementById('densityToUnit').value;
+            const result = value * densityUnits[from] / densityUnits[to];
+            document.getElementById('densityTo').value = result.toPrecision(10).replace(/\.?0+$/, '');
+        }
+
+        // 力换算
+        const forceUnits = {
+            n: 1, kn: 1000, dyn: 1e-5, lbf: 4.44822, kgf: 9.80665,
+            gf: 0.00980665, ozf: 0.278014
+        };
+        function convertForce() {
+            const value = parseFloat(document.getElementById('forceFrom').value) || 0;
+            const from = document.getElementById('forceFromUnit').value;
+            const to = document.getElementById('forceToUnit').value;
+            const result = value * forceUnits[from] / forceUnits[to];
+            document.getElementById('forceTo').value = result.toPrecision(10).replace(/\.?0+$/, '');
+        }
+
+        // 初始化所有换算
+        convertLength();
+        convertArea();
+        convertVolume();
+        convertTemperature();
+        convertTime();
+        convertSpeed();
+        convertData();
+        convertPressure();
+        convertPower();
+        convertEnergy();
+        convertAngle();
+        convertDensity();
+        convertForce();
+    </script>
+</body>
+</html>
