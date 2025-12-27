@@ -464,8 +464,9 @@
             padding: 15px;
             min-width: 280px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-            z-index: 100;
+            z-index: 1000;
             display: none;
+            pointer-events: auto;
         }
 
         .text-panel.active {
@@ -706,7 +707,7 @@
                 <!-- 文本对象容器 -->
                 <div id="textLayer"></div>
                 <!-- 文本编辑面板 -->
-                <div class="text-panel" id="textPanel">
+                <div class="text-panel" id="textPanel" onmousedown="event.stopPropagation()">
                     <div class="text-panel-header">
                         <h4>📝 添加文字</h4>
                         <button class="text-panel-close" onclick="hideTextPanel()">×</button>
@@ -746,8 +747,8 @@
                         </label>
                     </div>
                     <div class="text-panel-actions">
-                        <button class="action-btn action-btn-secondary" onclick="hideTextPanel()">取消</button>
-                        <button class="action-btn action-btn-primary" onclick="confirmText()">确定</button>
+                        <button class="action-btn action-btn-secondary" onmousedown="event.stopPropagation()" onclick="hideTextPanel()">取消</button>
+                        <button class="action-btn action-btn-primary" onmousedown="event.stopPropagation()" onclick="confirmText()">确定</button>
                     </div>
                 </div>
             </div>
@@ -997,10 +998,20 @@
 
         // 开始绘画
         function startDrawing(e) {
+            // 如果点击的是文本面板内部，不处理
+            const textPanel = document.getElementById('textPanel');
+            if (textPanel.contains(e.target)) {
+                return;
+            }
+
             const coords = getCanvasCoords(e);
 
             // 文本工具特殊处理
             if (currentTool === 'text') {
+                // 如果面板已经打开，先关闭
+                if (textPanel.classList.contains('active')) {
+                    return;
+                }
                 // 点击画布时显示文本编辑面板
                 showTextPanel(e.clientX, e.clientY, coords.x, coords.y);
                 return;

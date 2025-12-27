@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界时间查询 - 全球各地实时时间</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+            color: #e4e4e7;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        /* 顶部导航 */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #a1a1aa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.2s ease;
+        }
+
+        .back-home:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(120deg, #00d4ff, #7c3aed, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* 当前时区信息 */
+        .current-info {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .current-info .label {
+            font-size: 0.9rem;
+            color: #a1a1aa;
+            margin-bottom: 5px;
+        }
+
+        .current-info .timezone {
+            font-size: 1.1rem;
+            color: #7c3aed;
+            margin-bottom: 10px;
+        }
+
+        .current-info .main-time {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(120deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Monaco', 'Consolas', monospace;
+        }
+
+        .current-info .main-date {
+            font-size: 1.2rem;
+            color: #a1a1aa;
+            margin-top: 10px;
+        }
+
+        /* 时区网格 */
+        .timezone-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        /* 时区卡片 */
+        .timezone-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timezone-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #7c3aed, #00d4ff);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .timezone-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(124, 58, 237, 0.5);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .timezone-card:hover::before {
+            opacity: 1;
+        }
+
+        .timezone-card.current {
+            border-color: #7c3aed;
+            background: rgba(124, 58, 237, 0.1);
+        }
+
+        .timezone-card.current::before {
+            opacity: 1;
+        }
+
+        .timezone-card.current::after {
+            content: '当前时区';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(135deg, #7c3aed, #6366f1);
+            color: #fff;
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 10px;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .city-icon {
+            font-size: 2rem;
+        }
+
+        .city-info {
+            flex: 1;
+        }
+
+        .city-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .city-offset {
+            font-size: 0.85rem;
+            color: #a1a1aa;
+        }
+
+        .card-time {
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: 'Monaco', 'Consolas', monospace;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .card-date {
+            font-size: 0.9rem;
+            color: #a1a1aa;
+        }
+
+        .card-diff {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.85rem;
+            color: #71717a;
+        }
+
+        .diff-value {
+            color: #7c3aed;
+            font-weight: 500;
+        }
+
+        .diff-value.ahead {
+            color: #22c55e;
+        }
+
+        .diff-value.behind {
+            color: #f97316;
+        }
+
+        /* 日/夜指示器 */
+        .day-night {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.8rem;
+            padding: 3px 10px;
+            border-radius: 12px;
+            margin-left: 10px;
+        }
+
+        .day-night.day {
+            background: rgba(250, 204, 21, 0.2);
+            color: #facc15;
+        }
+
+        .day-night.night {
+            background: rgba(99, 102, 241, 0.2);
+            color: #818cf8;
+        }
+
+        /* 搜索框 */
+        .search-box {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 20px 15px 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #7c3aed;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .search-box input::placeholder {
+            color: #71717a;
+        }
+
+        .search-box::before {
+            content: '🔍';
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.1rem;
+        }
+
+        /* 分组标题 */
+        .group-title {
+            font-size: 1rem;
+            color: #a1a1aa;
+            margin: 30px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .group-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(to bottom, #7c3aed, #00d4ff);
+            border-radius: 2px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .current-info .main-time {
+                font-size: 2.5rem;
+            }
+
+            .timezone-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card-time {
+                font-size: 2rem;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* 动画 */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .time-separator {
+            animation: pulse 1s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-home">← 返回工具箱</a>
+            <h1>🌍 世界时间查询</h1>
+            <div></div>
+        </div>
+
+        <!-- 当前时区 -->
+        <div class="current-info">
+            <div class="label">您当前所在时区</div>
+            <div class="timezone" id="currentTimezone"></div>
+            <div class="main-time" id="mainTime"></div>
+            <div class="main-date" id="mainDate"></div>
+        </div>
+
+        <!-- 搜索框 -->
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="搜索城市或时区...">
+        </div>
+
+        <!-- 时区网格 -->
+        <div class="timezone-grid" id="timezoneGrid"></div>
+    </div>
+
+    <script>
+        // 时区数据
+        const timezones = [
+            // 西半球
+            { city: '夏威夷', country: '美国', offset: -10, icon: '🏝️', tz: 'Pacific/Honolulu' },
+            { city: '阿拉斯加', country: '美国', offset: -9, icon: '🐻', tz: 'America/Anchorage' },
+            { city: '洛杉矶', country: '太平洋时间', offset: -8, icon: '🌴', tz: 'America/Los_Angeles' },
+            { city: '丹佛', country: '美国山地时间', offset: -7, icon: '🏔️', tz: 'America/Denver' },
+            { city: '芝加哥', country: '美国中部时间', offset: -6, icon: '🌆', tz: 'America/Chicago' },
+            { city: '纽约', country: '美国东部时间', offset: -5, icon: '🗽', tz: 'America/New_York' },
+            { city: '圣胡安', country: '大西洋时间', offset: -4, icon: '🏖️', tz: 'America/Puerto_Rico' },
+            { city: '圣保罗', country: '巴西', offset: -3, icon: '🇧🇷', tz: 'America/Sao_Paulo' },
+            { city: '亚速尔', country: '大西洋-中部', offset: -2, icon: '🌊', tz: 'Atlantic/Azores' },
+
+            // 欧洲 & 非洲
+            { city: '伦敦', country: '英国', offset: 0, icon: '🇬🇧', tz: 'Europe/London' },
+            { city: '柏林', country: '德国', offset: 1, icon: '🇩🇪', tz: 'Europe/Berlin' },
+            { city: '巴黎', country: '法国', offset: 1, icon: '🗼', tz: 'Europe/Paris' },
+            { city: '开罗', country: '埃及', offset: 2, icon: '🏛️', tz: 'Africa/Cairo' },
+            { city: '莫斯科', country: '俄罗斯', offset: 3, icon: '🇷🇺', tz: 'Europe/Moscow' },
+            { city: '迪拜', country: '阿联酋', offset: 4, icon: '🏙️', tz: 'Asia/Dubai' },
+
+            // 亚洲
+            { city: '新德里', country: '印度', offset: 5.5, icon: '🇮🇳', tz: 'Asia/Kolkata' },
+            { city: '曼谷', country: '泰国', offset: 7, icon: '🇹🇭', tz: 'Asia/Bangkok' },
+            { city: '北京', country: '中国', offset: 8, icon: '🇨🇳', tz: 'Asia/Shanghai' },
+            { city: '香港', country: '中国', offset: 8, icon: '🏙️', tz: 'Asia/Hong_Kong' },
+            { city: '台北', country: '中国台湾', offset: 8, icon: '🏯', tz: 'Asia/Taipei' },
+            { city: '新加坡', country: '新加坡', offset: 8, icon: '🇸🇬', tz: 'Asia/Singapore' },
+            { city: '东京', country: '日本', offset: 9, icon: '🗾', tz: 'Asia/Tokyo' },
+            { city: '首尔', country: '韩国', offset: 9, icon: '🇰🇷', tz: 'Asia/Seoul' },
+
+            // 大洋洲
+            { city: '悉尼', country: '澳大利亚', offset: 10, icon: '🇦🇺', tz: 'Australia/Sydney' },
+            { city: '奥克兰', country: '新西兰', offset: 12, icon: '🇳🇿', tz: 'Pacific/Auckland' }
+        ];
+
+        // 获取用户当前时区偏移
+        const userOffset = -new Date().getTimezoneOffset() / 60;
+
+        // 初始化
+        function init() {
+            updateCurrentTime();
+            renderTimezones();
+            setInterval(updateAllTimes, 1000);
+
+            // 搜索功能
+            document.getElementById('searchInput').addEventListener('input', (e) => {
+                filterTimezones(e.target.value);
+            });
+        }
+
+        // 更新当前时间显示
+        function updateCurrentTime() {
+            const now = new Date();
+
+            // 时区名称
+            const tzName = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            const offsetStr = userOffset >= 0 ? `UTC+${userOffset}` : `UTC${userOffset}`;
+            document.getElementById('currentTimezone').textContent = `${tzName} (${offsetStr})`;
+
+            // 时间
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('mainTime').innerHTML =
+                `${hours}<span class="time-separator">:</span>${minutes}<span class="time-separator">:</span>${seconds}`;
+
+            // 日期
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('mainDate').textContent = now.toLocaleDateString('zh-CN', options);
+        }
+
+        // 渲染时区卡片
+        function renderTimezones() {
+            const grid = document.getElementById('timezoneGrid');
+
+            // 按照与用户时区的距离排序
+            const sortedTimezones = [...timezones].sort((a, b) => {
+                const diffA = Math.abs(a.offset - userOffset);
+                const diffB = Math.abs(b.offset - userOffset);
+                return diffA - diffB;
+            });
+
+            grid.innerHTML = sortedTimezones.map(tz => createTimezoneCard(tz)).join('');
+        }
+
+        // 创建时区卡片
+        function createTimezoneCard(tz) {
+            const isCurrent = Math.abs(tz.offset - userOffset) < 0.5;
+            const now = getTimeInTimezone(tz.offset);
+            const hours = now.getHours();
+            const isDay = hours >= 6 && hours < 18;
+
+            // 计算时差
+            const diff = tz.offset - userOffset;
+            let diffText = '';
+            if (Math.abs(diff) < 0.1) {
+                diffText = '与您时间相同';
+            } else if (diff > 0) {
+                diffText = `比您快 <span class="diff-value ahead">${formatDiff(diff)}</span>`;
+            } else {
+                diffText = `比您慢 <span class="diff-value behind">${formatDiff(Math.abs(diff))}</span>`;
+            }
+
+            const offsetStr = tz.offset >= 0 ? `GMT+${tz.offset}` : `GMT${tz.offset}`;
+
+            return `
+                <div class="timezone-card ${isCurrent ? 'current' : ''}" data-city="${tz.city}" data-country="${tz.country}" data-offset="${tz.offset}">
+                    <div class="card-header">
+                        <span class="city-icon">${tz.icon}</span>
+                        <div class="city-info">
+                            <div class="city-name">${tz.city}</div>
+                            <div class="city-offset">${tz.country} · ${offsetStr}</div>
+                        </div>
+                        <span class="day-night ${isDay ? 'day' : 'night'}">
+                            ${isDay ? '☀️ 白天' : '🌙 夜晚'}
+                        </span>
+                    </div>
+                    <div class="card-time" data-offset="${tz.offset}">
+                        ${formatTime(now)}
+                    </div>
+                    <div class="card-date" data-offset="${tz.offset}">
+                        ${formatDate(now)}
+                    </div>
+                    <div class="card-diff">${diffText}</div>
+                </div>
+            `;
+        }
+
+        // 获取指定时区的时间
+        function getTimeInTimezone(offset) {
+            const now = new Date();
+            const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+            return new Date(utc + offset * 3600000);
+        }
+
+        // 格式化时间
+        function formatTime(date) {
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            const seconds = String(date.getSeconds()).padStart(2, '0');
+            return `${hours}<span class="time-separator">:</span>${minutes}<span class="time-separator">:</span>${seconds}`;
+        }
+
+        // 格式化日期
+        function formatDate(date) {
+            const month = date.getMonth() + 1;
+            const day = date.getDate();
+            const weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+            const weekday = weekdays[date.getDay()];
+            return `${month}月${day}日 ${weekday}`;
+        }
+
+        // 格式化时差
+        function formatDiff(diff) {
+            if (Number.isInteger(diff)) {
+                return `${diff} 小时`;
+            } else {
+                const hours = Math.floor(diff);
+                const minutes = (diff - hours) * 60;
+                if (hours === 0) {
+                    return `${minutes} 分钟`;
+                }
+                return `${hours} 小时 ${minutes} 分钟`;
+            }
+        }
+
+        // 更新所有时间
+        function updateAllTimes() {
+            updateCurrentTime();
+
+            // 更新所有卡片时间
+            document.querySelectorAll('.card-time').forEach(el => {
+                const offset = parseFloat(el.dataset.offset);
+                const now = getTimeInTimezone(offset);
+                el.innerHTML = formatTime(now);
+            });
+
+            // 更新所有卡片日期
+            document.querySelectorAll('.card-date').forEach(el => {
+                const offset = parseFloat(el.dataset.offset);
+                const now = getTimeInTimezone(offset);
+                el.textContent = formatDate(now);
+            });
+
+            // 更新日夜指示器
+            document.querySelectorAll('.timezone-card').forEach(card => {
+                const offset = parseFloat(card.dataset.offset);
+                const now = getTimeInTimezone(offset);
+                const hours = now.getHours();
+                const isDay = hours >= 6 && hours < 18;
+                const indicator = card.querySelector('.day-night');
+                indicator.className = `day-night ${isDay ? 'day' : 'night'}`;
+                indicator.innerHTML = isDay ? '☀️ 白天' : '🌙 夜晚';
+            });
+        }
+
+        // 搜索过滤
+        function filterTimezones(query) {
+            const cards = document.querySelectorAll('.timezone-card');
+            const lowerQuery = query.toLowerCase();
+
+            cards.forEach(card => {
+                const city = card.dataset.city.toLowerCase();
+                const country = card.dataset.country.toLowerCase();
+                const offset = card.dataset.offset;
+
+                const matches = city.includes(lowerQuery) ||
+                               country.includes(lowerQuery) ||
+                               `gmt${offset}`.includes(lowerQuery) ||
+                               `gmt+${offset}`.includes(lowerQuery);
+
+                card.style.display = matches ? 'block' : 'none';
+            });
+        }
+
+        // 启动
+        init();
+    </script>
+</body>
+</html>
