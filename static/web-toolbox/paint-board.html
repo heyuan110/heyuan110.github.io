@@ -50,13 +50,6 @@
             border-right: none;
         }
 
-        .toolbar-section-label {
-            font-size: 0.75rem;
-            color: #71717a;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
         /* 返回按钮 */
         .back-home {
             display: inline-flex;
@@ -229,11 +222,26 @@
             position: relative;
         }
 
-        #canvas {
-            background: #fff;
+        .canvas-wrapper {
+            position: relative;
             border-radius: 8px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        #canvas, #previewCanvas {
+            border-radius: 8px;
             cursor: crosshair;
+        }
+
+        #canvas {
+            background: #fff;
+        }
+
+        #previewCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
         }
 
         /* 底部状态栏 */
@@ -295,15 +303,6 @@
 
         .action-btn-secondary:hover {
             background: rgba(255, 255, 255, 0.2);
-        }
-
-        .action-btn-danger {
-            background: linear-gradient(135deg, #dc2626, #ef4444);
-            color: #fff;
-        }
-
-        .action-btn-danger:hover {
-            background: linear-gradient(135deg, #ef4444, #f87171);
         }
 
         /* Toast 提示 */
@@ -428,12 +427,19 @@
             margin-top: 20px;
         }
 
-        /* 形状预览 */
-        .shape-preview {
-            position: fixed;
-            pointer-events: none;
-            border: 2px dashed rgba(124, 58, 237, 0.8);
-            z-index: 50;
+        /* 填充模式切换 */
+        .fill-toggle {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.8rem;
+            color: #a1a1aa;
+        }
+
+        .fill-toggle input {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
         }
 
         /* 响应式 */
@@ -466,16 +472,22 @@
             <a href="index.html" class="back-home">← 返回</a>
 
             <div class="toolbar-section">
-                <button class="tool-btn active" data-tool="brush" data-tooltip="画笔">🖌️</button>
-                <button class="tool-btn" data-tool="eraser" data-tooltip="橡皮擦">🧹</button>
-                <button class="tool-btn" data-tool="fill" data-tooltip="填充">🪣</button>
+                <button class="tool-btn active" data-tool="brush" data-tooltip="画笔 (B)">🖌️</button>
+                <button class="tool-btn" data-tool="eraser" data-tooltip="橡皮擦 (E)">🧹</button>
+                <button class="tool-btn" data-tool="fill" data-tooltip="填充 (G)">🪣</button>
             </div>
 
             <div class="toolbar-section">
-                <button class="tool-btn" data-tool="line" data-tooltip="直线">📏</button>
-                <button class="tool-btn" data-tool="rect" data-tooltip="矩形">⬜</button>
-                <button class="tool-btn" data-tool="circle" data-tooltip="圆形">⭕</button>
-                <button class="tool-btn" data-tool="triangle" data-tooltip="三角形">🔺</button>
+                <button class="tool-btn" data-tool="line" data-tooltip="直线 (L)">📏</button>
+                <button class="tool-btn" data-tool="arrowRight" data-tooltip="右箭头 (A)">→</button>
+                <button class="tool-btn" data-tool="arrowLeft" data-tooltip="左箭头 (S)">←</button>
+                <button class="tool-btn" data-tool="rect" data-tooltip="矩形 (R)">⬜</button>
+                <button class="tool-btn" data-tool="circle" data-tooltip="圆形 (C)">⭕</button>
+                <button class="tool-btn" data-tool="triangle" data-tooltip="三角形 (T)">🔺</button>
+                <label class="fill-toggle" data-tooltip="填充形状">
+                    <input type="checkbox" id="fillShape">
+                    <span>填充</span>
+                </label>
             </div>
 
             <div class="toolbar-section">
@@ -524,7 +536,10 @@
 
         <!-- 画布区域 -->
         <div class="canvas-container">
-            <canvas id="canvas" width="1000" height="600"></canvas>
+            <div class="canvas-wrapper" id="canvasWrapper">
+                <canvas id="canvas" width="1000" height="600"></canvas>
+                <canvas id="previewCanvas" width="1000" height="600"></canvas>
+            </div>
         </div>
 
         <!-- 底部状态栏 -->
@@ -540,6 +555,9 @@
             <div class="status-item">
                 <span>当前工具:</span>
                 <span id="currentTool">画笔</span>
+            </div>
+            <div class="status-item">
+                <span>💡 提示: 滚轮调整粗细</span>
             </div>
             <div style="display: flex; gap: 10px;">
                 <button class="action-btn action-btn-success" onclick="saveImage('png')">💾 保存 PNG</button>
@@ -579,6 +597,8 @@
         // 画布和上下文
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
+        const previewCanvas = document.getElementById('previewCanvas');
+        const previewCtx = previewCanvas.getContext('2d');
 
         // 状态变量
         let isDrawing = false;
@@ -590,8 +610,9 @@
         let lastY = 0;
         let startX = 0;
         let startY = 0;
+        let fillShape = false;
 
-        // 历史记录（用于撤销/重做）
+        // 历史记录
         let history = [];
         let historyIndex = -1;
         const maxHistory = 50;
@@ -602,27 +623,40 @@
             eraser: '橡皮擦',
             fill: '填充',
             line: '直线',
+            arrowRight: '右箭头',
+            arrowLeft: '左箭头',
             rect: '矩形',
             circle: '圆形',
             triangle: '三角形'
         };
 
+        // 快捷键映射
+        const shortcuts = {
+            'b': 'brush',
+            'e': 'eraser',
+            'g': 'fill',
+            'l': 'line',
+            'a': 'arrowRight',
+            's': 'arrowLeft',
+            'r': 'rect',
+            'c': 'circle',
+            't': 'triangle'
+        };
+
         // 初始化
         function init() {
-            // 设置白色背景
             ctx.fillStyle = '#ffffff';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             saveHistory();
 
             // 绑定工具按钮事件
             document.querySelectorAll('.tool-btn[data-tool]').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    document.querySelectorAll('.tool-btn[data-tool]').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    currentTool = btn.dataset.tool;
-                    document.getElementById('currentTool').textContent = toolNames[currentTool];
-                    canvas.style.cursor = currentTool === 'fill' ? 'cell' : 'crosshair';
-                });
+                btn.addEventListener('click', () => selectTool(btn.dataset.tool));
+            });
+
+            // 填充形状切换
+            document.getElementById('fillShape').addEventListener('change', (e) => {
+                fillShape = e.target.checked;
             });
 
             // 颜色选择器
@@ -661,27 +695,53 @@
             });
 
             // 画布事件
-            canvas.addEventListener('mousedown', startDrawing);
-            canvas.addEventListener('mousemove', draw);
-            canvas.addEventListener('mouseup', stopDrawing);
-            canvas.addEventListener('mouseout', stopDrawing);
-            canvas.addEventListener('mousemove', updateMousePos);
+            const wrapper = document.getElementById('canvasWrapper');
+            wrapper.addEventListener('mousedown', startDrawing);
+            wrapper.addEventListener('mousemove', draw);
+            wrapper.addEventListener('mouseup', stopDrawing);
+            wrapper.addEventListener('mouseleave', stopDrawing);
+            wrapper.addEventListener('mousemove', updateMousePos);
+
+            // 滚轮调整粗细
+            wrapper.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const delta = e.deltaY > 0 ? -1 : 1;
+                brushSize = Math.max(1, Math.min(50, brushSize + delta));
+                brushSizeSlider.value = brushSize;
+                brushSizeValue.textContent = brushSize;
+                showToast(`粗细: ${brushSize}px`);
+            });
 
             // 触摸支持
-            canvas.addEventListener('touchstart', handleTouch);
-            canvas.addEventListener('touchmove', handleTouch);
-            canvas.addEventListener('touchend', stopDrawing);
+            wrapper.addEventListener('touchstart', handleTouch);
+            wrapper.addEventListener('touchmove', handleTouch);
+            wrapper.addEventListener('touchend', stopDrawing);
 
             // 键盘快捷键
-            document.addEventListener('keydown', (e) => {
-                if (e.ctrlKey && e.key === 'z') {
-                    e.preventDefault();
-                    undo();
-                } else if (e.ctrlKey && e.key === 'y') {
-                    e.preventDefault();
-                    redo();
-                }
-            });
+            document.addEventListener('keydown', handleKeyboard);
+        }
+
+        // 选择工具
+        function selectTool(tool) {
+            document.querySelectorAll('.tool-btn[data-tool]').forEach(b => b.classList.remove('active'));
+            document.querySelector(`[data-tool="${tool}"]`).classList.add('active');
+            currentTool = tool;
+            document.getElementById('currentTool').textContent = toolNames[currentTool];
+            canvas.style.cursor = currentTool === 'fill' ? 'cell' : 'crosshair';
+            previewCanvas.style.cursor = currentTool === 'fill' ? 'cell' : 'crosshair';
+        }
+
+        // 键盘事件处理
+        function handleKeyboard(e) {
+            if (e.ctrlKey && e.key === 'z') {
+                e.preventDefault();
+                undo();
+            } else if (e.ctrlKey && e.key === 'y') {
+                e.preventDefault();
+                redo();
+            } else if (shortcuts[e.key.toLowerCase()] && !e.ctrlKey && !e.altKey) {
+                selectTool(shortcuts[e.key.toLowerCase()]);
+            }
         }
 
         // 更新颜色预设激活状态
@@ -691,101 +751,230 @@
             });
         }
 
-        // 开始绘画
-        function startDrawing(e) {
-            isDrawing = true;
+        // 获取画布坐标
+        function getCanvasCoords(e) {
             const rect = canvas.getBoundingClientRect();
             const scaleX = canvas.width / rect.width;
             const scaleY = canvas.height / rect.height;
-            lastX = (e.clientX - rect.left) * scaleX;
-            lastY = (e.clientY - rect.top) * scaleY;
-            startX = lastX;
-            startY = lastY;
+            return {
+                x: (e.clientX - rect.left) * scaleX,
+                y: (e.clientY - rect.top) * scaleY
+            };
+        }
+
+        // 开始绘画
+        function startDrawing(e) {
+            isDrawing = true;
+            const coords = getCanvasCoords(e);
+            lastX = coords.x;
+            lastY = coords.y;
+            startX = coords.x;
+            startY = coords.y;
 
             if (currentTool === 'fill') {
-                floodFill(Math.floor(lastX), Math.floor(lastY), hexToRgb(currentColor));
+                floodFill(Math.floor(coords.x), Math.floor(coords.y), hexToRgb(currentColor));
                 saveHistory();
             } else if (currentTool === 'brush' || currentTool === 'eraser') {
                 ctx.beginPath();
-                ctx.arc(lastX, lastY, brushSize / 2, 0, Math.PI * 2);
+                ctx.arc(coords.x, coords.y, brushSize / 2, 0, Math.PI * 2);
                 ctx.fillStyle = currentTool === 'eraser' ? '#ffffff' : currentColor;
                 ctx.globalAlpha = currentTool === 'eraser' ? 1 : opacity;
                 ctx.fill();
+                ctx.globalAlpha = 1;
             }
         }
 
         // 绘画中
         function draw(e) {
-            if (!isDrawing) return;
+            const coords = getCanvasCoords(e);
 
-            const rect = canvas.getBoundingClientRect();
-            const scaleX = canvas.width / rect.width;
-            const scaleY = canvas.height / rect.height;
-            const x = (e.clientX - rect.left) * scaleX;
-            const y = (e.clientY - rect.top) * scaleY;
+            if (!isDrawing) return;
 
             if (currentTool === 'brush' || currentTool === 'eraser') {
                 ctx.beginPath();
                 ctx.moveTo(lastX, lastY);
-                ctx.lineTo(x, y);
+                ctx.lineTo(coords.x, coords.y);
                 ctx.strokeStyle = currentTool === 'eraser' ? '#ffffff' : currentColor;
                 ctx.lineWidth = brushSize;
                 ctx.lineCap = 'round';
                 ctx.lineJoin = 'round';
                 ctx.globalAlpha = currentTool === 'eraser' ? 1 : opacity;
                 ctx.stroke();
-                lastX = x;
-                lastY = y;
+                ctx.globalAlpha = 1;
+                lastX = coords.x;
+                lastY = coords.y;
+            } else if (['line', 'arrowRight', 'arrowLeft', 'rect', 'circle', 'triangle'].includes(currentTool)) {
+                // 实时预览形状
+                drawShapePreview(coords.x, coords.y);
             }
+        }
+
+        // 绘制箭头辅助函数
+        function drawArrowHead(ctx, fromX, fromY, toX, toY, headLen) {
+            const angle = Math.atan2(toY - fromY, toX - fromX);
+            ctx.beginPath();
+            ctx.moveTo(toX, toY);
+            ctx.lineTo(toX - headLen * Math.cos(angle - Math.PI / 6), toY - headLen * Math.sin(angle - Math.PI / 6));
+            ctx.moveTo(toX, toY);
+            ctx.lineTo(toX - headLen * Math.cos(angle + Math.PI / 6), toY - headLen * Math.sin(angle + Math.PI / 6));
+            ctx.stroke();
+        }
+
+        // 绘制形状预览
+        function drawShapePreview(endX, endY) {
+            // 清除预览画布
+            previewCtx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
+
+            previewCtx.beginPath();
+            previewCtx.strokeStyle = currentColor;
+            previewCtx.fillStyle = currentColor;
+            previewCtx.lineWidth = brushSize;
+            previewCtx.globalAlpha = opacity;
+            previewCtx.lineCap = 'round';
+            previewCtx.lineJoin = 'round';
+
+            // 箭头头部长度，根据线条粗细动态调整
+            const arrowHeadLen = Math.max(15, brushSize * 3);
+
+            switch (currentTool) {
+                case 'line':
+                    previewCtx.moveTo(startX, startY);
+                    previewCtx.lineTo(endX, endY);
+                    previewCtx.stroke();
+                    break;
+                case 'arrowRight':
+                    // 画直线
+                    previewCtx.moveTo(startX, startY);
+                    previewCtx.lineTo(endX, endY);
+                    previewCtx.stroke();
+                    // 画箭头（在终点）
+                    drawArrowHead(previewCtx, startX, startY, endX, endY, arrowHeadLen);
+                    break;
+                case 'arrowLeft':
+                    // 画直线
+                    previewCtx.moveTo(startX, startY);
+                    previewCtx.lineTo(endX, endY);
+                    previewCtx.stroke();
+                    // 画箭头（在起点，方向相反）
+                    drawArrowHead(previewCtx, endX, endY, startX, startY, arrowHeadLen);
+                    break;
+                case 'rect':
+                    if (fillShape) {
+                        previewCtx.fillRect(startX, startY, endX - startX, endY - startY);
+                    } else {
+                        previewCtx.strokeRect(startX, startY, endX - startX, endY - startY);
+                    }
+                    break;
+                case 'circle':
+                    const radiusX = Math.abs(endX - startX) / 2;
+                    const radiusY = Math.abs(endY - startY) / 2;
+                    const centerX = startX + (endX - startX) / 2;
+                    const centerY = startY + (endY - startY) / 2;
+                    previewCtx.beginPath();
+                    previewCtx.ellipse(centerX, centerY, radiusX, radiusY, 0, 0, Math.PI * 2);
+                    if (fillShape) {
+                        previewCtx.fill();
+                    } else {
+                        previewCtx.stroke();
+                    }
+                    break;
+                case 'triangle':
+                    previewCtx.moveTo(startX + (endX - startX) / 2, startY);
+                    previewCtx.lineTo(endX, endY);
+                    previewCtx.lineTo(startX, endY);
+                    previewCtx.closePath();
+                    if (fillShape) {
+                        previewCtx.fill();
+                    } else {
+                        previewCtx.stroke();
+                    }
+                    break;
+            }
+
+            previewCtx.globalAlpha = 1;
         }
 
         // 停止绘画
         function stopDrawing(e) {
             if (!isDrawing) return;
 
-            if (['line', 'rect', 'circle', 'triangle'].includes(currentTool)) {
-                const rect = canvas.getBoundingClientRect();
-                const scaleX = canvas.width / rect.width;
-                const scaleY = canvas.height / rect.height;
-                const endX = (e.clientX - rect.left) * scaleX;
-                const endY = (e.clientY - rect.top) * scaleY;
+            if (['line', 'arrowRight', 'arrowLeft', 'rect', 'circle', 'triangle'].includes(currentTool)) {
+                const coords = getCanvasCoords(e);
 
+                // 清除预览
+                previewCtx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
+
+                // 绘制到主画布
                 ctx.beginPath();
                 ctx.strokeStyle = currentColor;
                 ctx.fillStyle = currentColor;
                 ctx.lineWidth = brushSize;
                 ctx.globalAlpha = opacity;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+
+                // 箭头头部长度
+                const arrowHeadLen = Math.max(15, brushSize * 3);
 
                 switch (currentTool) {
                     case 'line':
                         ctx.moveTo(startX, startY);
-                        ctx.lineTo(endX, endY);
+                        ctx.lineTo(coords.x, coords.y);
                         ctx.stroke();
+                        break;
+                    case 'arrowRight':
+                        // 画直线
+                        ctx.moveTo(startX, startY);
+                        ctx.lineTo(coords.x, coords.y);
+                        ctx.stroke();
+                        // 画箭头（在终点）
+                        drawArrowHead(ctx, startX, startY, coords.x, coords.y, arrowHeadLen);
+                        break;
+                    case 'arrowLeft':
+                        // 画直线
+                        ctx.moveTo(startX, startY);
+                        ctx.lineTo(coords.x, coords.y);
+                        ctx.stroke();
+                        // 画箭头（在起点，方向相反）
+                        drawArrowHead(ctx, coords.x, coords.y, startX, startY, arrowHeadLen);
                         break;
                     case 'rect':
-                        ctx.strokeRect(startX, startY, endX - startX, endY - startY);
+                        if (fillShape) {
+                            ctx.fillRect(startX, startY, coords.x - startX, coords.y - startY);
+                        } else {
+                            ctx.strokeRect(startX, startY, coords.x - startX, coords.y - startY);
+                        }
                         break;
                     case 'circle':
-                        const radiusX = Math.abs(endX - startX) / 2;
-                        const radiusY = Math.abs(endY - startY) / 2;
-                        const centerX = startX + (endX - startX) / 2;
-                        const centerY = startY + (endY - startY) / 2;
+                        const radiusX = Math.abs(coords.x - startX) / 2;
+                        const radiusY = Math.abs(coords.y - startY) / 2;
+                        const centerX = startX + (coords.x - startX) / 2;
+                        const centerY = startY + (coords.y - startY) / 2;
                         ctx.beginPath();
                         ctx.ellipse(centerX, centerY, radiusX, radiusY, 0, 0, Math.PI * 2);
-                        ctx.stroke();
+                        if (fillShape) {
+                            ctx.fill();
+                        } else {
+                            ctx.stroke();
+                        }
                         break;
                     case 'triangle':
-                        ctx.moveTo(startX + (endX - startX) / 2, startY);
-                        ctx.lineTo(endX, endY);
-                        ctx.lineTo(startX, endY);
+                        ctx.moveTo(startX + (coords.x - startX) / 2, startY);
+                        ctx.lineTo(coords.x, coords.y);
+                        ctx.lineTo(startX, coords.y);
                         ctx.closePath();
-                        ctx.stroke();
+                        if (fillShape) {
+                            ctx.fill();
+                        } else {
+                            ctx.stroke();
+                        }
                         break;
                 }
+
+                ctx.globalAlpha = 1;
             }
 
             isDrawing = false;
-            ctx.globalAlpha = 1;
 
             if (currentTool !== 'fill') {
                 saveHistory();
@@ -800,17 +989,17 @@
                 clientX: touch.clientX,
                 clientY: touch.clientY
             });
-            canvas.dispatchEvent(mouseEvent);
+            if (e.type === 'touchstart') {
+                startDrawing(mouseEvent);
+            } else {
+                draw(mouseEvent);
+            }
         }
 
         // 更新鼠标位置显示
         function updateMousePos(e) {
-            const rect = canvas.getBoundingClientRect();
-            const scaleX = canvas.width / rect.width;
-            const scaleY = canvas.height / rect.height;
-            const x = Math.floor((e.clientX - rect.left) * scaleX);
-            const y = Math.floor((e.clientY - rect.top) * scaleY);
-            document.getElementById('mousePos').textContent = `${x}, ${y}`;
+            const coords = getCanvasCoords(e);
+            document.getElementById('mousePos').textContent = `${Math.floor(coords.x)}, ${Math.floor(coords.y)}`;
         }
 
         // 填充算法
@@ -848,12 +1037,7 @@
 
         function getPixelColor(data, x, y, width) {
             const index = (y * width + x) * 4;
-            return {
-                r: data[index],
-                g: data[index + 1],
-                b: data[index + 2],
-                a: data[index + 3]
-            };
+            return { r: data[index], g: data[index + 1], b: data[index + 2], a: data[index + 3] };
         }
 
         function setPixelColor(data, x, y, width, color) {
@@ -929,7 +1113,6 @@
             const timestamp = new Date().toISOString().slice(0, 19).replace(/[:-]/g, '');
 
             if (format === 'jpg') {
-                // 创建临时画布处理 JPG 格式
                 const tempCanvas = document.createElement('canvas');
                 tempCanvas.width = canvas.width;
                 tempCanvas.height = canvas.height;
@@ -973,6 +1156,9 @@
 
             canvas.width = width;
             canvas.height = height;
+            previewCanvas.width = width;
+            previewCanvas.height = height;
+
             ctx.fillStyle = '#ffffff';
             ctx.fillRect(0, 0, width, height);
             document.getElementById('canvasSize').textContent = `${width} × ${height}`;
@@ -987,11 +1173,14 @@
 
         // Toast 提示
         function showToast(message, isError = false) {
+            // 移除已有的 toast
+            document.querySelectorAll('.toast').forEach(t => t.remove());
+
             const toast = document.createElement('div');
             toast.className = 'toast' + (isError ? ' error' : '');
             toast.textContent = message;
             document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 2000);
+            setTimeout(() => toast.remove(), 1500);
         }
 
         // 初始化
