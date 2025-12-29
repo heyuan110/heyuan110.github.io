@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>亲戚关系计算器 - 中国亲戚称呼查询工具 | Web Toolbox</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="免费在线亲戚关系计算器，快速查询中国家庭亲戚称呼。支持找称呼、找关系两种模式，涵盖父系母系、血亲姻亲等各种复杂亲戚关系，再也不怕叫错亲戚称呼。">
+    <meta name="keywords" content="亲戚关系计算器,亲戚称呼,称呼计算器,亲属关系,家庭称谓,辈分计算,中国亲戚,亲戚怎么叫,七大姑八大姨">
+    <meta name="author" content="heyuan110">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.heyuan110.com/web-toolbox/relative-calculator.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.heyuan110.com/web-toolbox/relative-calculator.html">
+    <meta property="og:title" content="亲戚关系计算器 - 中国亲戚称呼查询工具">
+    <meta property="og:description" content="快速查询中国家庭亲戚称呼，支持找称呼、找关系两种模式。">
+    <meta property="og:image" content="https://www.heyuan110.com/web-toolbox/screenshots/relative-calculator.png">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:site_name" content="Web Toolbox">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="亲戚关系计算器 - 中国亲戚称呼查询工具">
+    <meta name="twitter:description" content="快速查询中国家庭亲戚称呼。">
+    <meta name="twitter:image" content="https://www.heyuan110.com/web-toolbox/screenshots/relative-calculator.png">
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "亲戚关系计算器",
+        "url": "https://www.heyuan110.com/web-toolbox/relative-calculator.html",
+        "description": "中国亲戚关系称呼查询计算器，快速查询家庭亲戚称呼",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "CNY"},
+        "author": {"@type": "Person", "name": "heyuan110"}
+    }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #e4e4e7;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        /* 返回按钮 */
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #a1a1aa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            margin-bottom: 20px;
+        }
+
+        .back-home:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        /* 标题 */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(120deg, #f472b6, #fb923c, #facc15);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #a1a1aa;
+            font-size: 0.95rem;
+        }
+
+        /* 主面板 */
+        .calc-panel {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+
+        /* 计算类型切换 */
+        .calc-type-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .calc-type-btn {
+            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 25px;
+            color: #d4d4d8;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .calc-type-btn:hover {
+            background: rgba(244, 114, 182, 0.2);
+        }
+
+        .calc-type-btn.active {
+            background: linear-gradient(135deg, #f472b6, #ec4899);
+            border-color: transparent;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        /* 输入区域 */
+        .input-section {
+            margin-bottom: 25px;
+        }
+
+        .input-label {
+            display: block;
+            color: #a1a1aa;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .input-display {
+            width: 100%;
+            min-height: 60px;
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .input-display:empty::before {
+            content: '点击下方按钮选择亲戚关系...';
+            color: #71717a;
+            font-size: 1rem;
+        }
+
+        .relation-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 6px 12px;
+            background: linear-gradient(135deg, #7c3aed, #6366f1);
+            border-radius: 20px;
+            font-size: 0.95rem;
+        }
+
+        .relation-tag .remove {
+            cursor: pointer;
+            opacity: 0.7;
+            font-size: 1.1rem;
+        }
+
+        .relation-tag .remove:hover {
+            opacity: 1;
+        }
+
+        .de-text {
+            color: #a1a1aa;
+            font-size: 1rem;
+        }
+
+        /* 快速选择 */
+        .quick-select {
+            margin-bottom: 25px;
+        }
+
+        .quick-select-title {
+            color: #a1a1aa;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .btn-group-label {
+            width: 100%;
+            color: #71717a;
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+        }
+
+        .rel-btn {
+            padding: 10px 18px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            color: #d4d4d8;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .rel-btn:hover {
+            background: rgba(124, 58, 237, 0.3);
+            border-color: #7c3aed;
+            transform: translateY(-2px);
+        }
+
+        .rel-btn.male {
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+
+        .rel-btn.male:hover {
+            background: rgba(59, 130, 246, 0.3);
+            border-color: #3b82f6;
+        }
+
+        .rel-btn.female {
+            border-color: rgba(244, 114, 182, 0.4);
+        }
+
+        .rel-btn.female:hover {
+            background: rgba(244, 114, 182, 0.3);
+            border-color: #f472b6;
+        }
+
+        /* 操作按钮 */
+        .action-btns {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .action-btn {
+            padding: 14px 40px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .calc-btn {
+            background: linear-gradient(135deg, #f472b6, #ec4899);
+            color: #fff;
+        }
+
+        .calc-btn:hover {
+            background: linear-gradient(135deg, #f9a8d4, #f472b6);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(244, 114, 182, 0.3);
+        }
+
+        .clear-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: #d4d4d8;
+        }
+
+        .clear-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* 结果显示 */
+        .result-section {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .result-label {
+            color: #a1a1aa;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .result-content {
+            min-height: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .result-empty {
+            color: #71717a;
+            font-size: 1rem;
+        }
+
+        .result-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .result-alt {
+            color: #a1a1aa;
+            font-size: 0.95rem;
+        }
+
+        .result-relation {
+            color: #f472b6;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        /* 信息区域 */
+        .info-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .info-section h2 {
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .info-section p {
+            color: #a1a1aa;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .info-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .calc-panel {
+                padding: 20px;
+            }
+
+            .calc-type-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .input-display {
+                font-size: 1.1rem;
+                min-height: 50px;
+            }
+
+            .rel-btn {
+                padding: 8px 14px;
+                font-size: 0.85rem;
+            }
+
+            .action-btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+
+            .result-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-home">← 返回工具箱</a>
+
+        <header>
+            <h1>亲戚关系计算器</h1>
+            <p class="subtitle">快速查询中国家庭亲戚称呼，再也不怕叫错人</p>
+        </header>
+
+        <div class="calc-panel">
+            <!-- 计算类型 -->
+            <div class="calc-type-toggle">
+                <button class="calc-type-btn active" data-type="title">找称呼</button>
+                <button class="calc-type-btn" data-type="relation">找关系</button>
+            </div>
+
+            <!-- 输入显示 -->
+            <div class="input-section">
+                <label class="input-label">亲戚关系链</label>
+                <div class="input-display" id="inputDisplay"></div>
+            </div>
+
+            <!-- 快速选择 -->
+            <div class="quick-select">
+                <div class="quick-select-title">快速选择</div>
+
+                <div class="btn-group">
+                    <span class="btn-group-label">长辈</span>
+                    <button class="rel-btn male" data-rel="父亲">父亲</button>
+                    <button class="rel-btn female" data-rel="母亲">母亲</button>
+                    <button class="rel-btn male" data-rel="公公">公公</button>
+                    <button class="rel-btn female" data-rel="婆婆">婆婆</button>
+                    <button class="rel-btn male" data-rel="岳父">岳父</button>
+                    <button class="rel-btn female" data-rel="岳母">岳母</button>
+                </div>
+
+                <div class="btn-group">
+                    <span class="btn-group-label">平辈</span>
+                    <button class="rel-btn male" data-rel="丈夫">丈夫</button>
+                    <button class="rel-btn female" data-rel="妻子">妻子</button>
+                    <button class="rel-btn male" data-rel="哥哥">哥哥</button>
+                    <button class="rel-btn female" data-rel="姐姐">姐姐</button>
+                    <button class="rel-btn male" data-rel="弟弟">弟弟</button>
+                    <button class="rel-btn female" data-rel="妹妹">妹妹</button>
+                </div>
+
+                <div class="btn-group">
+                    <span class="btn-group-label">晚辈</span>
+                    <button class="rel-btn male" data-rel="儿子">儿子</button>
+                    <button class="rel-btn female" data-rel="女儿">女儿</button>
+                    <button class="rel-btn male" data-rel="女婿">女婿</button>
+                    <button class="rel-btn female" data-rel="儿媳">儿媳</button>
+                </div>
+            </div>
+
+            <!-- 操作按钮 -->
+            <div class="action-btns">
+                <button class="action-btn clear-btn" id="clearBtn">清空</button>
+                <button class="action-btn calc-btn" id="calcBtn">计算</button>
+            </div>
+
+            <!-- 结果 -->
+            <div class="result-section">
+                <div class="result-label">计算结果</div>
+                <div class="result-content" id="resultContent">
+                    <span class="result-empty">选择亲戚关系后点击计算</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 说明 -->
+        <div class="info-section">
+            <h2>关于亲戚称呼</h2>
+            <p>每次遇到不常碰面的亲戚，一时难免不知道该怎么称呼，极其尴尬甚至被当作不懂礼貌。中国亲戚关系称呼计算器工具可以快速简单的查询家庭亲戚称呼。此工具兼容不同地方的习惯叫法，比如你可以称呼父亲为"老爸"、"爸爸"、"爹地"或者"老爷子"。当然还可以直接使用快捷按钮来完成亲戚关系输入。点击"计算"即可生成亲戚关系称呼了。</p>
+            <p>亲戚称呼是指以自己为中心所确定的亲属成员，是建立在血亲姻亲基础上的亲属之间相互称呼的名称、叫法。它是以本人为轴心的确定亲属与本人关系的标志。汉族的亲戚关系条理例分明尊卑有序：比自己长一辈的称呼有姨父叔伯姑舅，同辈的有兄弟姐妹嫂等等，下一辈有侄甥等等。中国人由于姻亲而产生的亲戚关系相当庞杂。其派生出的各种称谓也是中华文化的一大特征。</p>
+        </div>
+    </div>
+
+    <script>
+        // 亲戚关系数据库
+        const relationData = {
+            // 父系
+            '父亲': { title: '爸爸', alt: ['父亲', '老爸', '爹', '爹地', '老爷子'], gender: 'm' },
+            '父亲,父亲': { title: '爷爷', alt: ['祖父', '爷'], gender: 'm' },
+            '父亲,母亲': { title: '奶奶', alt: ['祖母', '阿奶'], gender: 'f' },
+            '父亲,哥哥': { title: '伯父', alt: ['伯伯', '大伯'], gender: 'm' },
+            '父亲,弟弟': { title: '叔叔', alt: ['叔父', '小叔'], gender: 'm' },
+            '父亲,姐姐': { title: '姑姑', alt: ['姑妈', '姑母'], gender: 'f' },
+            '父亲,妹妹': { title: '姑姑', alt: ['姑妈', '姑母', '小姑'], gender: 'f' },
+            '父亲,哥哥,妻子': { title: '伯母', alt: ['伯娘', '大妈'], gender: 'f' },
+            '父亲,弟弟,妻子': { title: '婶婶', alt: ['婶母', '婶娘'], gender: 'f' },
+            '父亲,姐姐,丈夫': { title: '姑父', alt: ['姑丈'], gender: 'm' },
+            '父亲,妹妹,丈夫': { title: '姑父', alt: ['姑丈'], gender: 'm' },
+
+            // 母系
+            '母亲': { title: '妈妈', alt: ['母亲', '老妈', '娘', '妈咪'], gender: 'f' },
+            '母亲,父亲': { title: '外公', alt: ['外祖父', '姥爷', '外爷'], gender: 'm' },
+            '母亲,母亲': { title: '外婆', alt: ['外祖母', '姥姥', '外奶奶'], gender: 'f' },
+            '母亲,哥哥': { title: '舅舅', alt: ['舅父', '大舅'], gender: 'm' },
+            '母亲,弟弟': { title: '舅舅', alt: ['舅父', '小舅'], gender: 'm' },
+            '母亲,姐姐': { title: '姨妈', alt: ['姨母', '大姨'], gender: 'f' },
+            '母亲,妹妹': { title: '姨妈', alt: ['阿姨', '小姨'], gender: 'f' },
+            '母亲,哥哥,妻子': { title: '舅妈', alt: ['舅母', '舅娘'], gender: 'f' },
+            '母亲,弟弟,妻子': { title: '舅妈', alt: ['舅母'], gender: 'f' },
+            '母亲,姐姐,丈夫': { title: '姨父', alt: ['姨丈', '姨夫'], gender: 'm' },
+            '母亲,妹妹,丈夫': { title: '姨父', alt: ['姨丈'], gender: 'm' },
+
+            // 配偶
+            '丈夫': { title: '老公', alt: ['丈夫', '先生', '爱人', '老伴'], gender: 'm' },
+            '妻子': { title: '老婆', alt: ['妻子', '太太', '爱人', '老伴'], gender: 'f' },
+
+            // 配偶家人
+            '丈夫,父亲': { title: '公公', alt: ['公爹', '家公'], gender: 'm' },
+            '丈夫,母亲': { title: '婆婆', alt: ['婆母', '家婆'], gender: 'f' },
+            '妻子,父亲': { title: '岳父', alt: ['丈人', '岳丈', '老丈人'], gender: 'm' },
+            '妻子,母亲': { title: '岳母', alt: ['丈母娘', '岳母娘'], gender: 'f' },
+            '公公': { title: '公公', alt: ['公爹', '家公'], gender: 'm' },
+            '婆婆': { title: '婆婆', alt: ['婆母', '家婆'], gender: 'f' },
+            '岳父': { title: '岳父', alt: ['丈人', '老丈人'], gender: 'm' },
+            '岳母': { title: '岳母', alt: ['丈母娘'], gender: 'f' },
+
+            // 兄弟姐妹
+            '哥哥': { title: '哥哥', alt: ['兄长', '大哥'], gender: 'm' },
+            '姐姐': { title: '姐姐', alt: ['阿姐', '大姐'], gender: 'f' },
+            '弟弟': { title: '弟弟', alt: ['小弟', '老弟'], gender: 'm' },
+            '妹妹': { title: '妹妹', alt: ['小妹', '老妹'], gender: 'f' },
+            '哥哥,妻子': { title: '嫂子', alt: ['嫂嫂', '大嫂'], gender: 'f' },
+            '姐姐,丈夫': { title: '姐夫', alt: ['姐丈'], gender: 'm' },
+            '弟弟,妻子': { title: '弟妹', alt: ['弟媳'], gender: 'f' },
+            '妹妹,丈夫': { title: '妹夫', alt: ['妹婿'], gender: 'm' },
+
+            // 子女
+            '儿子': { title: '儿子', alt: ['孩子', '小子'], gender: 'm' },
+            '女儿': { title: '女儿', alt: ['闺女', '孩子'], gender: 'f' },
+            '儿子,妻子': { title: '儿媳', alt: ['儿媳妇', '媳妇'], gender: 'f' },
+            '女儿,丈夫': { title: '女婿', alt: ['姑爷', '半子'], gender: 'm' },
+            '儿媳': { title: '儿媳', alt: ['儿媳妇', '媳妇'], gender: 'f' },
+            '女婿': { title: '女婿', alt: ['姑爷'], gender: 'm' },
+
+            // 孙辈
+            '儿子,儿子': { title: '孙子', alt: ['孙儿'], gender: 'm' },
+            '儿子,女儿': { title: '孙女', alt: ['孙女儿'], gender: 'f' },
+            '女儿,儿子': { title: '外孙', alt: ['外孙子'], gender: 'm' },
+            '女儿,女儿': { title: '外孙女', alt: ['外孙女儿'], gender: 'f' },
+
+            // 堂亲（父系兄弟的子女）
+            '父亲,哥哥,儿子': { title: '堂哥', alt: ['堂兄'], gender: 'm' },
+            '父亲,哥哥,女儿': { title: '堂姐', alt: ['堂姊'], gender: 'f' },
+            '父亲,弟弟,儿子': { title: '堂弟', alt: ['堂弟弟'], gender: 'm' },
+            '父亲,弟弟,女儿': { title: '堂妹', alt: ['堂妹妹'], gender: 'f' },
+
+            // 表亲（父系姐妹和母系的子女）
+            '父亲,姐姐,儿子': { title: '表哥', alt: ['表兄', '姑表哥'], gender: 'm' },
+            '父亲,姐姐,女儿': { title: '表姐', alt: ['表姊', '姑表姐'], gender: 'f' },
+            '父亲,妹妹,儿子': { title: '表弟', alt: ['姑表弟'], gender: 'm' },
+            '父亲,妹妹,女儿': { title: '表妹', alt: ['姑表妹'], gender: 'f' },
+            '母亲,哥哥,儿子': { title: '表哥', alt: ['表兄', '舅表哥'], gender: 'm' },
+            '母亲,哥哥,女儿': { title: '表姐', alt: ['表姊', '舅表姐'], gender: 'f' },
+            '母亲,弟弟,儿子': { title: '表弟', alt: ['舅表弟'], gender: 'm' },
+            '母亲,弟弟,女儿': { title: '表妹', alt: ['舅表妹'], gender: 'f' },
+            '母亲,姐姐,儿子': { title: '表哥', alt: ['表兄', '姨表哥'], gender: 'm' },
+            '母亲,姐姐,女儿': { title: '表姐', alt: ['表姊', '姨表姐'], gender: 'f' },
+            '母亲,妹妹,儿子': { title: '表弟', alt: ['姨表弟'], gender: 'm' },
+            '母亲,妹妹,女儿': { title: '表妹', alt: ['姨表妹'], gender: 'f' },
+
+            // 侄辈
+            '哥哥,儿子': { title: '侄子', alt: ['侄儿', '大侄子'], gender: 'm' },
+            '哥哥,女儿': { title: '侄女', alt: ['侄女儿'], gender: 'f' },
+            '弟弟,儿子': { title: '侄子', alt: ['侄儿'], gender: 'm' },
+            '弟弟,女儿': { title: '侄女', alt: ['侄女儿'], gender: 'f' },
+            '姐姐,儿子': { title: '外甥', alt: ['甥男'], gender: 'm' },
+            '姐姐,女儿': { title: '外甥女', alt: ['甥女'], gender: 'f' },
+            '妹妹,儿子': { title: '外甥', alt: ['甥男'], gender: 'm' },
+            '妹妹,女儿': { title: '外甥女', alt: ['甥女'], gender: 'f' },
+
+            // 配偶兄弟姐妹
+            '丈夫,哥哥': { title: '大伯子', alt: ['大伯'], gender: 'm' },
+            '丈夫,弟弟': { title: '小叔子', alt: ['小叔'], gender: 'm' },
+            '丈夫,姐姐': { title: '大姑子', alt: ['大姑姐'], gender: 'f' },
+            '丈夫,妹妹': { title: '小姑子', alt: ['小姑'], gender: 'f' },
+            '妻子,哥哥': { title: '大舅子', alt: ['内兄', '大舅哥'], gender: 'm' },
+            '妻子,弟弟': { title: '小舅子', alt: ['内弟'], gender: 'm' },
+            '妻子,姐姐': { title: '大姨子', alt: ['大姨姐'], gender: 'f' },
+            '妻子,妹妹': { title: '小姨子', alt: ['小姨妹'], gender: 'f' },
+
+            // 连襟妯娌
+            '妻子,姐姐,丈夫': { title: '连襟', alt: ['襟兄', '姐夫'], gender: 'm' },
+            '妻子,妹妹,丈夫': { title: '连襟', alt: ['襟弟', '妹夫'], gender: 'm' },
+            '丈夫,哥哥,妻子': { title: '妯娌', alt: ['大嫂'], gender: 'f' },
+            '丈夫,弟弟,妻子': { title: '妯娌', alt: ['弟妹'], gender: 'f' },
+
+            // 曾祖辈
+            '父亲,父亲,父亲': { title: '曾祖父', alt: ['太爷爷', '老太爷'], gender: 'm' },
+            '父亲,父亲,母亲': { title: '曾祖母', alt: ['太奶奶', '老太太'], gender: 'f' },
+            '母亲,父亲,父亲': { title: '外曾祖父', alt: ['太姥爷'], gender: 'm' },
+            '母亲,父亲,母亲': { title: '外曾祖母', alt: ['太姥姥'], gender: 'f' },
+
+            // 自己
+            '': { title: '自己', alt: ['本人', '我'], gender: '' },
+        };
+
+        // 状态
+        let relationChain = [];
+        let calcType = 'title';
+
+        // 元素
+        const inputDisplay = document.getElementById('inputDisplay');
+        const resultContent = document.getElementById('resultContent');
+        const calcBtn = document.getElementById('calcBtn');
+        const clearBtn = document.getElementById('clearBtn');
+
+        // 初始化按钮事件
+        document.querySelectorAll('.rel-btn').forEach(btn => {
+            btn.addEventListener('click', () => addRelation(btn.dataset.rel));
+        });
+
+        document.querySelectorAll('.calc-type-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.calc-type-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                calcType = btn.dataset.type;
+            });
+        });
+
+        calcBtn.addEventListener('click', calculate);
+        clearBtn.addEventListener('click', clearAll);
+
+        // 添加关系
+        function addRelation(rel) {
+            relationChain.push(rel);
+            updateDisplay();
+        }
+
+        // 移除最后一个关系
+        function removeLastRelation() {
+            relationChain.pop();
+            updateDisplay();
+        }
+
+        // 更新显示
+        function updateDisplay() {
+            inputDisplay.innerHTML = '';
+
+            relationChain.forEach((rel, index) => {
+                if (index > 0) {
+                    const de = document.createElement('span');
+                    de.className = 'de-text';
+                    de.textContent = '的';
+                    inputDisplay.appendChild(de);
+                }
+
+                const tag = document.createElement('span');
+                tag.className = 'relation-tag';
+                tag.innerHTML = `${rel}<span class="remove" onclick="removeRelationAt(${index})">×</span>`;
+                inputDisplay.appendChild(tag);
+            });
+        }
+
+        // 移除指定位置的关系
+        window.removeRelationAt = function(index) {
+            relationChain.splice(index, 1);
+            updateDisplay();
+        };
+
+        // 清空
+        function clearAll() {
+            relationChain = [];
+            updateDisplay();
+            resultContent.innerHTML = '<span class="result-empty">选择亲戚关系后点击计算</span>';
+        }
+
+        // 计算
+        function calculate() {
+            if (relationChain.length === 0) {
+                resultContent.innerHTML = '<span class="result-empty">请先选择亲戚关系</span>';
+                return;
+            }
+
+            const key = relationChain.join(',');
+            const result = findRelation(key);
+
+            if (result) {
+                const relationText = relationChain.join('的');
+                resultContent.innerHTML = `
+                    <div class="result-title">${result.title}</div>
+                    <div class="result-alt">也可称呼：${result.alt.join('、')}</div>
+                    <div class="result-relation">${relationText} → ${result.title}</div>
+                `;
+            } else {
+                // 尝试简化查找
+                const simplified = simplifyRelation(relationChain);
+                if (simplified && relationData[simplified]) {
+                    const r = relationData[simplified];
+                    const relationText = relationChain.join('的');
+                    resultContent.innerHTML = `
+                        <div class="result-title">${r.title}</div>
+                        <div class="result-alt">也可称呼：${r.alt.join('、')}</div>
+                        <div class="result-relation">${relationText} → ${r.title}</div>
+                    `;
+                } else {
+                    resultContent.innerHTML = `
+                        <div class="result-title" style="font-size: 1.5rem; color: #f472b6;">关系较复杂</div>
+                        <div class="result-alt">该亲戚关系暂未收录，建议简化后重试</div>
+                    `;
+                }
+            }
+        }
+
+        // 查找关系
+        function findRelation(key) {
+            // 直接匹配
+            if (relationData[key]) {
+                return relationData[key];
+            }
+
+            // 尝试等价转换
+            const equivalents = {
+                '公公': '丈夫,父亲',
+                '婆婆': '丈夫,母亲',
+                '岳父': '妻子,父亲',
+                '岳母': '妻子,母亲',
+                '儿媳': '儿子,妻子',
+                '女婿': '女儿,丈夫'
+            };
+
+            // 展开并重试
+            let expandedKey = key;
+            for (const [short, long] of Object.entries(equivalents)) {
+                expandedKey = expandedKey.replace(short, long);
+            }
+
+            if (expandedKey !== key && relationData[expandedKey]) {
+                return relationData[expandedKey];
+            }
+
+            return null;
+        }
+
+        // 简化关系链
+        function simplifyRelation(chain) {
+            // 尝试一些简化规则
+            const simplified = [...chain];
+
+            // 规则：丈夫的父亲 = 公公
+            // 规则：妻子的母亲 = 岳母
+            // 等等...
+
+            return simplified.join(',');
+        }
+
+        // 键盘支持
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace' && relationChain.length > 0) {
+                removeLastRelation();
+            } else if (e.key === 'Enter') {
+                calculate();
+            } else if (e.key === 'Escape') {
+                clearAll();
+            }
+        });
+    </script>
+</body>
+</html>
