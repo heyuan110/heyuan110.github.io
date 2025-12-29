@@ -1246,9 +1246,15 @@
             try {
                 loadingText.textContent = '正在加载编码器（首次约需10秒）...';
 
-                // 动态加载 FFmpeg 模块（使用 0.10.0 版本，兼容性好）
-                const { FFmpeg } = await import('https://unpkg.com/@ffmpeg/ffmpeg@0.10.0/dist/esm/index.js');
-                const { toBlobURL } = await import('https://unpkg.com/@ffmpeg/util@0.12.1/dist/esm/index.js');
+                // 使用 jsdelivr CDN，CORS 支持更好
+                const cdnBase = 'https://cdn.jsdelivr.net/npm';
+
+                // 动态加载 FFmpeg 模块
+                const FFmpegModule = await import(`${cdnBase}/@ffmpeg/ffmpeg@0.12.10/+esm`);
+                const UtilModule = await import(`${cdnBase}/@ffmpeg/util@0.12.1/+esm`);
+
+                const { FFmpeg } = FFmpegModule;
+                const { toBlobURL } = UtilModule;
 
                 ffmpeg = new FFmpeg();
 
@@ -1258,12 +1264,11 @@
                     loadingText.textContent = `正在转换... ${percent}%`;
                 });
 
-                // 加载 FFmpeg 核心（使用 0.10.0 版本，包含完整 worker）
-                const baseURL = 'https://unpkg.com/@ffmpeg/core@0.10.0/dist';
+                // 加载 FFmpeg 核心
+                const coreBase = `${cdnBase}/@ffmpeg/core@0.12.6/dist/esm`;
                 await ffmpeg.load({
-                    coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
-                    wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
-                    workerURL: await toBlobURL(`${baseURL}/ffmpeg-core.worker.js`, 'text/javascript')
+                    coreURL: await toBlobURL(`${coreBase}/ffmpeg-core.js`, 'text/javascript'),
+                    wasmURL: await toBlobURL(`${coreBase}/ffmpeg-core.wasm`, 'application/wasm')
                 });
 
                 ffmpegLoaded = true;
