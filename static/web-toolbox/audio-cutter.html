@@ -1308,10 +1308,10 @@
                 const workerBlob = await fetchWithProgress('https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/esm/worker.js', 'Worker');
                 const workerURL = toBlobURL(workerBlob, 'text/javascript');
 
-                // 4. 动态加载 FFmpeg 模块
+                // 4. 动态加载 FFmpeg 模块（使用 esm.sh，专为浏览器 ESM 设计）
                 loadingText.textContent = '正在初始化编码器模块...';
                 console.log('加载 FFmpeg 模块...');
-                const { FFmpeg } = await import('https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/+esm');
+                const { FFmpeg } = await import('https://esm.sh/@ffmpeg/ffmpeg@0.12.10');
 
                 ffmpeg = new FFmpeg();
 
