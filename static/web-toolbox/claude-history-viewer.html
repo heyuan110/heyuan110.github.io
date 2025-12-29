@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code 历史记录查看器 - 在线工具箱</title>
+    <meta name="description" content="查看和搜索 Claude Code 的历史对话记录，支持 JSONL 格式导入，美观易用的界面">
+    <meta name="keywords" content="Claude Code,历史记录,对话查看器,AI对话,JSONL">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💬</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #1a1a2e;
+            --bg-secondary: #16213e;
+            --bg-card: #0f3460;
+            --bg-hover: #1a4a7a;
+            --text-primary: #eee;
+            --text-secondary: #aaa;
+            --text-muted: #666;
+            --accent: #e94560;
+            --accent-light: #ff6b6b;
+            --success: #4ecdc4;
+            --warning: #ffd93d;
+            --border: #2a2a4a;
+            --user-bg: #2d5a27;
+            --assistant-bg: #1e3a5f;
+            --tool-bg: #3d2d5a;
+            --code-bg: #0d1117;
+            --scrollbar: #444;
+            --scrollbar-thumb: #666;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* 自定义滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--scrollbar);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #888;
+        }
+
+        /* 头部导航 */
+        .header {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            font-size: 32px;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-text span {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        /* 按钮样式 */
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-hover);
+        }
+
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 0.8rem;
+        }
+
+        /* 主布局 */
+        .main-container {
+            display: flex;
+            max-width: 1600px;
+            margin: 0 auto;
+            min-height: calc(100vh - 90px);
+        }
+
+        /* 侧边栏 */
+        .sidebar {
+            width: 320px;
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .sidebar-header {
+            padding: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 40px 12px 15px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .search-box::after {
+            content: '🔍';
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+        }
+
+        .session-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .session-item {
+            padding: 12px 15px;
+            background: var(--bg-card);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .session-item:hover {
+            background: var(--bg-hover);
+            border-color: var(--accent);
+        }
+
+        .session-item.active {
+            border-color: var(--accent);
+            background: var(--bg-hover);
+        }
+
+        .session-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .session-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .session-project {
+            color: var(--success);
+            font-size: 0.7rem;
+            margin-top: 5px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* 内容区域 */
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* 上传区域 */
+        .upload-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .upload-box {
+            text-align: center;
+            padding: 60px 40px;
+            border: 2px dashed var(--border);
+            border-radius: 16px;
+            background: var(--bg-secondary);
+            max-width: 600px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .upload-box:hover,
+        .upload-box.drag-over {
+            border-color: var(--accent);
+            background: var(--bg-card);
+        }
+
+        .upload-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        .upload-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .upload-desc {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+        }
+
+        .upload-hint {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 20px;
+        }
+
+        .upload-hint code {
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', monospace;
+        }
+
+        /* 对话视图 */
+        .conversation-view {
+            flex: 1;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .conversation-header {
+            padding: 15px 20px;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .conversation-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .conversation-info {
+            display: flex;
+            gap: 15px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .conversation-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        /* 消息样式 */
+        .message {
+            margin-bottom: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .message-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .message-user .message-avatar {
+            background: var(--user-bg);
+        }
+
+        .message-assistant .message-avatar {
+            background: var(--assistant-bg);
+        }
+
+        .message-tool .message-avatar {
+            background: var(--tool-bg);
+        }
+
+        .message-role {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .message-time {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .message-content {
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-left: 42px;
+            line-height: 1.7;
+        }
+
+        .message-user .message-content {
+            background: var(--user-bg);
+            border-left: 3px solid #4caf50;
+        }
+
+        .message-assistant .message-content {
+            background: var(--assistant-bg);
+            border-left: 3px solid #2196f3;
+        }
+
+        .message-tool .message-content {
+            background: var(--tool-bg);
+            border-left: 3px solid #9c27b0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.85rem;
+        }
+
+        .message-thinking {
+            background: #2a2a3a;
+            border-left: 3px solid #ff9800;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        /* 代码块 */
+        .message-content pre {
+            background: var(--code-bg);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0;
+            font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .message-content code {
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+            font-size: 0.9em;
+        }
+
+        .message-content pre code {
+            background: transparent;
+            padding: 0;
+        }
+
+        /* 工具调用详情 */
+        .tool-call {
+            background: var(--code-bg);
+            border-radius: 8px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+
+        .tool-call-header {
+            padding: 10px 15px;
+            background: rgba(156, 39, 176, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .tool-call-name {
+            font-weight: 600;
+            color: #ce93d8;
+        }
+
+        .tool-call-toggle {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .tool-call-body {
+            padding: 15px;
+            display: none;
+            max-height: 400px;
+            overflow: auto;
+        }
+
+        .tool-call.expanded .tool-call-body {
+            display: block;
+        }
+
+        /* 统计面板 */
+        .stats-panel {
+            padding: 15px;
+            background: var(--bg-card);
+            border-radius: 8px;
+            margin: 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* 空状态 */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        /* 文件输入隐藏 */
+        input[type="file"] {
+            display: none;
+        }
+
+        /* 标签 */
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            font-size: 0.7rem;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+
+        .tag-user {
+            background: var(--user-bg);
+        }
+
+        .tag-assistant {
+            background: var(--assistant-bg);
+        }
+
+        .tag-tool {
+            background: var(--tool-bg);
+        }
+
+        /* 筛选器 */
+        .filter-bar {
+            padding: 10px 15px;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 5px 12px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        /* 响应式 */
+        @media (max-width: 900px) {
+            .main-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                max-height: 300px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* 返回首页链接 */
+        .back-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        /* 高亮搜索结果 */
+        .highlight {
+            background: rgba(233, 69, 96, 0.4);
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+
+        /* 加载动画 */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* 折叠按钮 */
+        .collapse-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 5px;
+            font-size: 0.8rem;
+        }
+
+        .collapse-btn:hover {
+            color: var(--accent);
+        }
+
+        /* 消息内容中的链接 */
+        .message-content a {
+            color: var(--accent-light);
+            text-decoration: none;
+        }
+
+        .message-content a:hover {
+            text-decoration: underline;
+        }
+
+        /* 导出按钮 */
+        .export-menu {
+            position: relative;
+        }
+
+        .export-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 0;
+            min-width: 150px;
+            display: none;
+            z-index: 10;
+        }
+
+        .export-dropdown.show {
+            display: block;
+        }
+
+        .export-option {
+            display: block;
+            width: 100%;
+            padding: 8px 15px;
+            text-align: left;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .export-option:hover {
+            background: var(--bg-hover);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">💬</span>
+                <div class="logo-text">
+                    <h1>Claude Code 历史记录</h1>
+                    <span>查看和搜索你的对话历史</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <a href="index.html" class="back-link">← 返回工具箱</a>
+                <label for="file-input" class="btn btn-primary">
+                    📂 导入文件
+                </label>
+                <label for="folder-input" class="btn btn-secondary">
+                    📁 导入文件夹
+                </label>
+            </div>
+        </div>
+    </header>
+
+    <input type="file" id="file-input" accept=".jsonl,.json" multiple>
+    <input type="file" id="folder-input" webkitdirectory>
+
+    <main class="main-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索对话内容...">
+                </div>
+            </div>
+            <div class="stats-panel" id="stats-panel" style="display: none;">
+                <div class="stat-item">
+                    <div class="stat-value" id="stat-sessions">0</div>
+                    <div class="stat-label">对话数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="stat-messages">0</div>
+                    <div class="stat-label">消息数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="stat-projects">0</div>
+                    <div class="stat-label">项目数</div>
+                </div>
+            </div>
+            <div class="session-list" id="session-list">
+                <div class="empty-state">
+                    <div class="empty-state-icon">📋</div>
+                    <p>暂无对话记录</p>
+                    <p style="font-size: 0.8rem; margin-top: 10px;">请导入 JSONL 文件</p>
+                </div>
+            </div>
+        </aside>
+
+        <section class="content">
+            <div class="upload-area" id="upload-area">
+                <div class="upload-box" id="upload-box">
+                    <div class="upload-icon">📤</div>
+                    <h2 class="upload-title">导入 Claude Code 历史记录</h2>
+                    <p class="upload-desc">拖拽 JSONL 文件到此处，或点击按钮选择文件</p>
+                    <div style="display: flex; gap: 15px; justify-content: center;">
+                        <label for="file-input" class="btn btn-primary">
+                            📂 选择文件
+                        </label>
+                        <label for="folder-input" class="btn btn-secondary">
+                            📁 选择文件夹
+                        </label>
+                    </div>
+                    <p class="upload-hint">
+                        历史记录位置：<code>~/.claude/projects/</code>
+                        <br><br>
+                        支持导入单个 .jsonl 文件或整个项目文件夹
+                    </p>
+                </div>
+            </div>
+
+            <div class="conversation-view" id="conversation-view">
+                <div class="conversation-header">
+                    <div>
+                        <div class="conversation-title" id="conversation-title">对话标题</div>
+                        <div class="conversation-info">
+                            <span id="conversation-date">日期</span>
+                            <span id="conversation-count">消息数</span>
+                        </div>
+                    </div>
+                    <div class="export-menu">
+                        <button class="btn btn-secondary btn-small" id="export-btn">
+                            📥 导出
+                        </button>
+                        <div class="export-dropdown" id="export-dropdown">
+                            <button class="export-option" data-format="markdown">导出为 Markdown</button>
+                            <button class="export-option" data-format="json">导出为 JSON</button>
+                            <button class="export-option" data-format="text">导出为纯文本</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-bar">
+                    <button class="filter-btn active" data-filter="all">全部</button>
+                    <button class="filter-btn" data-filter="user">用户消息</button>
+                    <button class="filter-btn" data-filter="assistant">AI 回复</button>
+                    <button class="filter-btn" data-filter="tool">工具调用</button>
+                    <button class="filter-btn" data-filter="thinking">思考过程</button>
+                </div>
+                <div class="conversation-messages" id="conversation-messages">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // 全局数据存储
+        let allSessions = [];
+        let currentSession = null;
+        let currentFilter = 'all';
+        let searchQuery = '';
+
+        // DOM 元素
+        const fileInput = document.getElementById('file-input');
+        const folderInput = document.getElementById('folder-input');
+        const uploadArea = document.getElementById('upload-area');
+        const uploadBox = document.getElementById('upload-box');
+        const conversationView = document.getElementById('conversation-view');
+        const sessionList = document.getElementById('session-list');
+        const searchInput = document.getElementById('search-input');
+        const statsPanel = document.getElementById('stats-panel');
+        const exportBtn = document.getElementById('export-btn');
+        const exportDropdown = document.getElementById('export-dropdown');
+
+        // 事件监听
+        fileInput.addEventListener('change', handleFileSelect);
+        folderInput.addEventListener('change', handleFolderSelect);
+        searchInput.addEventListener('input', debounce(handleSearch, 300));
+
+        // 拖拽上传
+        uploadBox.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadBox.classList.add('drag-over');
+        });
+
+        uploadBox.addEventListener('dragleave', () => {
+            uploadBox.classList.remove('drag-over');
+        });
+
+        uploadBox.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadBox.classList.remove('drag-over');
+            const items = e.dataTransfer.items;
+            handleDroppedItems(items);
+        });
+
+        // 筛选器
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                if (currentSession) {
+                    renderMessages(currentSession.messages);
+                }
+            });
+        });
+
+        // 导出菜单
+        exportBtn.addEventListener('click', () => {
+            exportDropdown.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.export-menu')) {
+                exportDropdown.classList.remove('show');
+            }
+        });
+
+        document.querySelectorAll('.export-option').forEach(opt => {
+            opt.addEventListener('click', () => {
+                if (currentSession) {
+                    exportConversation(opt.dataset.format);
+                }
+                exportDropdown.classList.remove('show');
+            });
+        });
+
+        // 处理文件选择
+        function handleFileSelect(e) {
+            const files = Array.from(e.target.files);
+            processFiles(files);
+        }
+
+        // 处理文件夹选择
+        function handleFolderSelect(e) {
+            const files = Array.from(e.target.files).filter(f =>
+                f.name.endsWith('.jsonl') || f.name.endsWith('.json')
+            );
+            processFiles(files);
+        }
+
+        // 处理拖拽的项目
+        async function handleDroppedItems(items) {
+            const files = [];
+
+            for (const item of items) {
+                if (item.kind === 'file') {
+                    const entry = item.webkitGetAsEntry();
+                    if (entry) {
+                        if (entry.isFile) {
+                            const file = item.getAsFile();
+                            if (file.name.endsWith('.jsonl') || file.name.endsWith('.json')) {
+                                files.push(file);
+                            }
+                        } else if (entry.isDirectory) {
+                            await traverseDirectory(entry, files);
+                        }
+                    }
+                }
+            }
+
+            processFiles(files);
+        }
+
+        // 遍历目录
+        async function traverseDirectory(entry, files) {
+            const reader = entry.createReader();
+            const entries = await new Promise(resolve => reader.readEntries(resolve));
+
+            for (const e of entries) {
+                if (e.isFile && (e.name.endsWith('.jsonl') || e.name.endsWith('.json'))) {
+                    const file = await new Promise(resolve => e.file(resolve));
+                    files.push(file);
+                } else if (e.isDirectory) {
+                    await traverseDirectory(e, files);
+                }
+            }
+        }
+
+        // 处理文件
+        async function processFiles(files) {
+            if (files.length === 0) return;
+
+            // 显示加载状态
+            sessionList.innerHTML = '<div class="loading"><div class="loading-spinner"></div></div>';
+
+            for (const file of files) {
+                try {
+                    const content = await file.text();
+                    parseJSONL(content, file.name);
+                } catch (err) {
+                    console.error('解析文件失败:', file.name, err);
+                }
+            }
+
+            // 更新 UI
+            updateStats();
+            renderSessionList();
+
+            if (allSessions.length > 0) {
+                uploadArea.style.display = 'none';
+                statsPanel.style.display = 'grid';
+            }
+        }
+
+        // 解析 JSONL 格式
+        function parseJSONL(content, filename) {
+            const lines = content.split('\n').filter(line => line.trim());
+
+            // 检查是否是全局历史记录
+            if (filename === 'history.jsonl') {
+                parseGlobalHistory(lines);
+                return;
+            }
+
+            // 解析对话记录
+            const messages = [];
+            let summary = '';
+            let sessionId = filename.replace('.jsonl', '');
+            let project = '';
+            let firstTimestamp = null;
+            let lastTimestamp = null;
+
+            for (const line of lines) {
+                try {
+                    const item = JSON.parse(line);
+
+                    if (item.type === 'summary') {
+                        summary = item.summary;
+                    } else if (item.type === 'user' || item.type === 'assistant') {
+                        if (item.sessionId) sessionId = item.sessionId;
+                        if (item.cwd) project = item.cwd;
+
+                        const timestamp = item.timestamp ? new Date(item.timestamp) : null;
+                        if (timestamp) {
+                            if (!firstTimestamp) firstTimestamp = timestamp;
+                            lastTimestamp = timestamp;
+                        }
+
+                        messages.push({
+                            type: item.type,
+                            role: item.message?.role || item.type,
+                            content: item.message?.content || '',
+                            timestamp: timestamp,
+                            uuid: item.uuid
+                        });
+                    }
+                } catch (err) {
+                    // 忽略解析错误的行
+                }
+            }
+
+            if (messages.length > 0) {
+                // 检查是否已存在相同 sessionId
+                const existingIndex = allSessions.findIndex(s => s.sessionId === sessionId);
+                const session = {
+                    sessionId,
+                    filename,
+                    summary: summary || getFirstUserMessage(messages) || '未命名对话',
+                    project,
+                    messages,
+                    firstTimestamp,
+                    lastTimestamp,
+                    messageCount: messages.length
+                };
+
+                if (existingIndex >= 0) {
+                    allSessions[existingIndex] = session;
+                } else {
+                    allSessions.push(session);
+                }
+            }
+        }
+
+        // 解析全局历史
+        function parseGlobalHistory(lines) {
+            for (const line of lines) {
+                try {
+                    const item = JSON.parse(line);
+                    // 全局历史主要用于搜索，不单独显示
+                } catch (err) {
+                    // 忽略
+                }
+            }
+        }
+
+        // 获取第一条用户消息作为标题
+        function getFirstUserMessage(messages) {
+            const userMsg = messages.find(m => m.role === 'user');
+            if (userMsg && userMsg.content) {
+                const text = extractTextContent(userMsg.content);
+                return text.slice(0, 100) + (text.length > 100 ? '...' : '');
+            }
+            return null;
+        }
+
+        // 提取文本内容
+        function extractTextContent(content) {
+            if (typeof content === 'string') return content;
+            if (Array.isArray(content)) {
+                return content
+                    .filter(c => c.type === 'text')
+                    .map(c => c.text)
+                    .join('\n');
+            }
+            return '';
+        }
+
+        // 更新统计
+        function updateStats() {
+            const totalMessages = allSessions.reduce((sum, s) => sum + s.messageCount, 0);
+            const projects = new Set(allSessions.map(s => s.project)).size;
+
+            document.getElementById('stat-sessions').textContent = allSessions.length;
+            document.getElementById('stat-messages').textContent = totalMessages;
+            document.getElementById('stat-projects').textContent = projects;
+        }
+
+        // 渲染会话列表
+        function renderSessionList() {
+            // 按时间排序（最新的在前）
+            const sortedSessions = [...allSessions].sort((a, b) => {
+                const timeA = a.lastTimestamp || a.firstTimestamp || new Date(0);
+                const timeB = b.lastTimestamp || b.firstTimestamp || new Date(0);
+                return timeB - timeA;
+            });
+
+            // 过滤搜索结果
+            const filtered = searchQuery
+                ? sortedSessions.filter(s =>
+                    s.summary.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    s.messages.some(m => {
+                        const text = extractTextContent(m.content);
+                        return text.toLowerCase().includes(searchQuery.toLowerCase());
+                    })
+                )
+                : sortedSessions;
+
+            if (filtered.length === 0) {
+                sessionList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🔍</div>
+                        <p>未找到匹配的对话</p>
+                    </div>
+                `;
+                return;
+            }
+
+            sessionList.innerHTML = filtered.map(session => `
+                <div class="session-item ${currentSession?.sessionId === session.sessionId ? 'active' : ''}"
+                     data-session-id="${session.sessionId}">
+                    <div class="session-title">${escapeHtml(session.summary)}</div>
+                    <div class="session-meta">
+                        <span>${session.messageCount} 条消息</span>
+                        <span>${formatDate(session.lastTimestamp || session.firstTimestamp)}</span>
+                    </div>
+                    ${session.project ? `<div class="session-project">📁 ${getShortPath(session.project)}</div>` : ''}
+                </div>
+            `).join('');
+
+            // 添加点击事件
+            document.querySelectorAll('.session-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const sessionId = item.dataset.sessionId;
+                    const session = allSessions.find(s => s.sessionId === sessionId);
+                    if (session) {
+                        selectSession(session);
+                    }
+                });
+            });
+        }
+
+        // 选择会话
+        function selectSession(session) {
+            currentSession = session;
+
+            // 更新列表高亮
+            document.querySelectorAll('.session-item').forEach(item => {
+                item.classList.toggle('active', item.dataset.sessionId === session.sessionId);
+            });
+
+            // 显示对话视图
+            uploadArea.style.display = 'none';
+            conversationView.style.display = 'flex';
+
+            // 更新头部信息
+            document.getElementById('conversation-title').textContent = session.summary;
+            document.getElementById('conversation-date').textContent = formatDateTime(session.firstTimestamp);
+            document.getElementById('conversation-count').textContent = `${session.messageCount} 条消息`;
+
+            // 渲染消息
+            renderMessages(session.messages);
+        }
+
+        // 渲染消息
+        function renderMessages(messages) {
+            const container = document.getElementById('conversation-messages');
+
+            // 过滤消息
+            const filtered = messages.filter(msg => {
+                if (currentFilter === 'all') return true;
+                if (currentFilter === 'user') return msg.role === 'user';
+                if (currentFilter === 'assistant') return msg.role === 'assistant' && !hasThinkingContent(msg.content);
+                if (currentFilter === 'tool') return hasToolContent(msg.content);
+                if (currentFilter === 'thinking') return hasThinkingContent(msg.content);
+                return true;
+            });
+
+            container.innerHTML = filtered.map(msg => renderMessage(msg)).join('');
+
+            // 添加工具调用折叠事件
+            container.querySelectorAll('.tool-call-header').forEach(header => {
+                header.addEventListener('click', () => {
+                    header.closest('.tool-call').classList.toggle('expanded');
+                });
+            });
+        }
+
+        // 渲染单条消息
+        function renderMessage(msg) {
+            const role = msg.role;
+            const content = msg.content;
+            const timestamp = msg.timestamp;
+
+            let roleLabel = '未知';
+            let avatar = '❓';
+            let typeClass = '';
+
+            if (role === 'user') {
+                roleLabel = '用户';
+                avatar = '👤';
+                typeClass = 'message-user';
+            } else if (role === 'assistant') {
+                roleLabel = 'Claude';
+                avatar = '🤖';
+                typeClass = 'message-assistant';
+            }
+
+            let contentHtml = '';
+
+            if (typeof content === 'string') {
+                contentHtml = formatContent(content);
+            } else if (Array.isArray(content)) {
+                contentHtml = content.map(item => {
+                    if (item.type === 'text') {
+                        return formatContent(item.text);
+                    } else if (item.type === 'thinking') {
+                        return `<div class="message-content message-thinking">
+                            <strong>💭 思考过程:</strong><br>
+                            ${formatContent(item.thinking || '')}
+                        </div>`;
+                    } else if (item.type === 'tool_use') {
+                        return `<div class="tool-call">
+                            <div class="tool-call-header">
+                                <span class="tool-call-name">🔧 ${escapeHtml(item.name || 'Tool')}</span>
+                                <span class="tool-call-toggle">点击展开</span>
+                            </div>
+                            <div class="tool-call-body">
+                                <pre>${escapeHtml(JSON.stringify(item.input, null, 2))}</pre>
+                            </div>
+                        </div>`;
+                    } else if (item.type === 'tool_result') {
+                        return `<div class="tool-call">
+                            <div class="tool-call-header">
+                                <span class="tool-call-name">📤 工具结果</span>
+                                <span class="tool-call-toggle">点击展开</span>
+                            </div>
+                            <div class="tool-call-body">
+                                <pre>${escapeHtml(typeof item.content === 'string' ? item.content : JSON.stringify(item.content, null, 2))}</pre>
+                            </div>
+                        </div>`;
+                    }
+                    return '';
+                }).join('');
+            }
+
+            // 如果是工具结果类型的消息
+            if (hasToolContent(content) && !contentHtml.includes('message-content')) {
+                typeClass = 'message-tool';
+            }
+
+            return `
+                <div class="message ${typeClass}">
+                    <div class="message-header">
+                        <div class="message-avatar">${avatar}</div>
+                        <span class="message-role">${roleLabel}</span>
+                        ${timestamp ? `<span class="message-time">${formatTime(timestamp)}</span>` : ''}
+                    </div>
+                    ${contentHtml ? `<div class="message-content">${contentHtml}</div>` : ''}
+                </div>
+            `;
+        }
+
+        // 检查是否有思考内容
+        function hasThinkingContent(content) {
+            if (Array.isArray(content)) {
+                return content.some(c => c.type === 'thinking');
+            }
+            return false;
+        }
+
+        // 检查是否有工具内容
+        function hasToolContent(content) {
+            if (Array.isArray(content)) {
+                return content.some(c => c.type === 'tool_use' || c.type === 'tool_result');
+            }
+            return false;
+        }
+
+        // 格式化内容（支持 Markdown）
+        function formatContent(text) {
+            if (!text) return '';
+
+            let html = escapeHtml(text);
+
+            // 代码块
+            html = html.replace(/```(\w*)\n([\s\S]*?)```/g, (_, lang, code) => {
+                return `<pre><code class="language-${lang}">${code.trim()}</code></pre>`;
+            });
+
+            // 行内代码
+            html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+
+            // 粗体
+            html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+
+            // 斜体
+            html = html.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+            // 链接
+            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+
+            // 换行
+            html = html.replace(/\n/g, '<br>');
+
+            // 高亮搜索词
+            if (searchQuery) {
+                const regex = new RegExp(`(${escapeRegex(searchQuery)})`, 'gi');
+                html = html.replace(regex, '<span class="highlight">$1</span>');
+            }
+
+            return html;
+        }
+
+        // 导出对话
+        function exportConversation(format) {
+            if (!currentSession) return;
+
+            let content = '';
+            let filename = `claude-conversation-${currentSession.sessionId}`;
+            let mimeType = 'text/plain';
+
+            if (format === 'markdown') {
+                content = generateMarkdown(currentSession);
+                filename += '.md';
+                mimeType = 'text/markdown';
+            } else if (format === 'json') {
+                content = JSON.stringify(currentSession, null, 2);
+                filename += '.json';
+                mimeType = 'application/json';
+            } else {
+                content = generatePlainText(currentSession);
+                filename += '.txt';
+            }
+
+            downloadFile(content, filename, mimeType);
+        }
+
+        // 生成 Markdown
+        function generateMarkdown(session) {
+            let md = `# ${session.summary}\n\n`;
+            md += `- 项目: ${session.project || '未知'}\n`;
+            md += `- 时间: ${formatDateTime(session.firstTimestamp)}\n`;
+            md += `- 消息数: ${session.messageCount}\n\n---\n\n`;
+
+            for (const msg of session.messages) {
+                const role = msg.role === 'user' ? '👤 用户' : '🤖 Claude';
+                const time = msg.timestamp ? ` (${formatTime(msg.timestamp)})` : '';
+                md += `## ${role}${time}\n\n`;
+
+                const text = extractTextContent(msg.content);
+                md += `${text}\n\n`;
+            }
+
+            return md;
+        }
+
+        // 生成纯文本
+        function generatePlainText(session) {
+            let text = `${session.summary}\n`;
+            text += `${'='.repeat(50)}\n`;
+            text += `项目: ${session.project || '未知'}\n`;
+            text += `时间: ${formatDateTime(session.firstTimestamp)}\n`;
+            text += `${'='.repeat(50)}\n\n`;
+
+            for (const msg of session.messages) {
+                const role = msg.role === 'user' ? '[用户]' : '[Claude]';
+                const time = msg.timestamp ? ` ${formatTime(msg.timestamp)}` : '';
+                text += `${role}${time}\n`;
+                text += `${'-'.repeat(30)}\n`;
+
+                const content = extractTextContent(msg.content);
+                text += `${content}\n\n`;
+            }
+
+            return text;
+        }
+
+        // 下载文件
+        function downloadFile(content, filename, mimeType) {
+            const blob = new Blob([content], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // 搜索处理
+        function handleSearch() {
+            searchQuery = searchInput.value.trim();
+            renderSessionList();
+
+            if (currentSession) {
+                renderMessages(currentSession.messages);
+            }
+        }
+
+        // 工具函数
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function escapeRegex(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        function formatDate(date) {
+            if (!date) return '未知';
+            return date.toLocaleDateString('zh-CN', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+        }
+
+        function formatTime(date) {
+            if (!date) return '';
+            return date.toLocaleTimeString('zh-CN', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function formatDateTime(date) {
+            if (!date) return '未知';
+            return date.toLocaleString('zh-CN', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function getShortPath(path) {
+            if (!path) return '';
+            const parts = path.split('/');
+            if (parts.length <= 3) return path;
+            return '.../' + parts.slice(-2).join('/');
+        }
+
+        function debounce(fn, delay) {
+            let timer = null;
+            return function(...args) {
+                clearTimeout(timer);
+                timer = setTimeout(() => fn.apply(this, args), delay);
+            };
+        }
+
+        // ========== 自动加载功能（通过本地服务器） ==========
+
+        // 检查是否通过本地服务器访问
+        async function checkAutoLoad() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (!urlParams.has('auto')) return;
+
+            try {
+                sessionList.innerHTML = '<div class="loading"><div class="loading-spinner"></div></div>';
+
+                const response = await fetch('/api/sessions');
+                if (!response.ok) throw new Error('API 不可用');
+
+                const data = await response.json();
+                if (data.error) {
+                    console.warn('加载警告:', data.error);
+                }
+
+                if (data.sessions && data.sessions.length > 0) {
+                    // 转换为本地格式
+                    for (const session of data.sessions) {
+                        session.firstTimestamp = session.firstTimestamp ? new Date(session.firstTimestamp) : null;
+                        session.lastTimestamp = session.lastTimestamp ? new Date(session.lastTimestamp) : null;
+                        session.messages = []; // 消息延迟加载
+                    }
+
+                    allSessions = data.sessions;
+                    updateStats();
+                    renderSessionList();
+                    uploadArea.style.display = 'none';
+                    statsPanel.style.display = 'grid';
+
+                    console.log(`已自动加载 ${allSessions.length} 个对话`);
+                }
+            } catch (err) {
+                console.log('自动加载不可用，使用手动导入模式');
+            }
+        }
+
+        // 重写选择会话函数以支持延迟加载
+        const originalSelectSession = selectSession;
+        selectSession = async function(session) {
+            // 如果消息为空且通过 API 访问，则加载消息
+            if (session.messages.length === 0 && session.filepath) {
+                try {
+                    const response = await fetch(`/api/session/${encodeURIComponent(session.filepath)}`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.messages) {
+                            session.messages = data.messages.map(msg => ({
+                                ...msg,
+                                timestamp: msg.timestamp ? new Date(msg.timestamp) : null
+                            }));
+                            session.messageCount = session.messages.length;
+                        }
+                    }
+                } catch (err) {
+                    console.error('加载消息失败:', err);
+                }
+            }
+
+            currentSession = session;
+
+            // 更新列表高亮
+            document.querySelectorAll('.session-item').forEach(item => {
+                item.classList.toggle('active', item.dataset.sessionId === session.sessionId);
+            });
+
+            // 显示对话视图
+            uploadArea.style.display = 'none';
+            conversationView.style.display = 'flex';
+
+            // 更新头部信息
+            document.getElementById('conversation-title').textContent = session.summary;
+            document.getElementById('conversation-date').textContent = formatDateTime(session.firstTimestamp);
+            document.getElementById('conversation-count').textContent = `${session.messageCount} 条消息`;
+
+            // 渲染消息
+            renderMessages(session.messages);
+        };
+
+        // 页面加载时尝试自动加载
+        checkAutoLoad();
+    </script>
+</body>
+</html>
