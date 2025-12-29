@@ -1264,11 +1264,13 @@
                     loadingText.textContent = `正在转换... ${percent}%`;
                 });
 
-                // 加载 FFmpeg 核心
+                // 加载 FFmpeg 核心（所有资源都转为 blob URL 以绕过 CORS）
                 const coreBase = `${cdnBase}/@ffmpeg/core@0.12.6/dist/esm`;
+                const ffmpegBase = `${cdnBase}/@ffmpeg/ffmpeg@0.12.10/dist/esm`;
                 await ffmpeg.load({
                     coreURL: await toBlobURL(`${coreBase}/ffmpeg-core.js`, 'text/javascript'),
-                    wasmURL: await toBlobURL(`${coreBase}/ffmpeg-core.wasm`, 'application/wasm')
+                    wasmURL: await toBlobURL(`${coreBase}/ffmpeg-core.wasm`, 'application/wasm'),
+                    classWorkerURL: await toBlobURL(`${ffmpegBase}/worker.js`, 'text/javascript')
                 });
 
                 ffmpegLoaded = true;
