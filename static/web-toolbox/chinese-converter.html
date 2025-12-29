@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中文简繁体转换 - 在线简繁体互转工具 | Web Toolbox</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="免费在线中文简繁体转换工具，支持简体中文、繁体中文、大陆简体、港澳繁体、台湾正体、马新简体互转。智能识别地区习惯用语，一键转换。">
+    <meta name="keywords" content="简繁转换,繁简转换,简体转繁体,繁体转简体,中文转换,台湾正体,港澳繁体,马新简体,OpenCC">
+    <meta name="author" content="heyuan110">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.heyuan110.com/web-toolbox/chinese-converter.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.heyuan110.com/web-toolbox/chinese-converter.html">
+    <meta property="og:title" content="中文简繁体转换 - 在线简繁体互转工具">
+    <meta property="og:description" content="免费在线简繁体转换，支持大陆简体、港澳繁体、台湾正体、马新简体。">
+    <meta property="og:image" content="https://www.heyuan110.com/web-toolbox/screenshots/chinese-converter.jpg">
+    <meta property="og:locale" content="zh_CN">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="中文简繁体转换 - 在线简繁体互转工具">
+    <meta name="twitter:description" content="免费在线简繁体转换，支持多地区用语习惯。">
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "中文简繁体转换",
+        "url": "https://www.heyuan110.com/web-toolbox/chinese-converter.html",
+        "description": "在线中文简繁体转换工具，支持多地区用语习惯",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "CNY"},
+        "author": {"@type": "Person", "name": "heyuan110"}
+    }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #e4e4e7;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #a1a1aa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            margin-bottom: 20px;
+        }
+
+        .back-home:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(120deg, #00d4ff, #7c3aed, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #a1a1aa;
+            font-size: 0.95rem;
+        }
+
+        .main-panel {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+
+        /* 转换模式选择 */
+        .mode-selector {
+            margin-bottom: 25px;
+        }
+
+        .mode-label {
+            color: #d4d4d8;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .mode-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .mode-tab {
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            color: #a1a1aa;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            min-width: 140px;
+        }
+
+        .mode-tab:hover {
+            background: rgba(124, 58, 237, 0.15);
+            border-color: rgba(124, 58, 237, 0.4);
+        }
+
+        .mode-tab.active {
+            background: rgba(124, 58, 237, 0.25);
+            border-color: #7c3aed;
+            color: #fff;
+        }
+
+        .mode-tab .mode-icon {
+            font-size: 1.3rem;
+        }
+
+        .mode-tab .mode-name {
+            font-weight: 500;
+        }
+
+        .mode-tab .mode-desc {
+            font-size: 0.75rem;
+            color: #71717a;
+        }
+
+        .mode-tab.active .mode-desc {
+            color: #a78bfa;
+        }
+
+        /* 文本区域 */
+        .text-areas {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 15px;
+            align-items: stretch;
+            margin-bottom: 20px;
+        }
+
+        .text-box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .text-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .text-label {
+            color: #d4d4d8;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .text-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .text-action-btn {
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 6px;
+            color: #a1a1aa;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .text-action-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        textarea {
+            width: 100%;
+            height: 300px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            color: #e4e4e7;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            line-height: 1.8;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #7c3aed;
+        }
+
+        textarea::placeholder {
+            color: #71717a;
+        }
+
+        /* 中间控制按钮 */
+        .middle-controls {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding-top: 35px;
+        }
+
+        .convert-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, #7c3aed, #6366f1);
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .convert-btn:hover {
+            background: linear-gradient(135deg, #8b5cf6, #818cf8);
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+        }
+
+        .swap-btn {
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 8px;
+            color: #a1a1aa;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .swap-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        /* 字符统计 */
+        .char-count {
+            text-align: right;
+            color: #71717a;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+
+        /* 快捷操作 */
+        .quick-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .quick-btn {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            color: #d4d4d8;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .quick-btn:hover {
+            background: rgba(124, 58, 237, 0.2);
+            border-color: rgba(124, 58, 237, 0.4);
+        }
+
+        /* 说明区域 */
+        .info-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .info-section h2 {
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .info-item {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .info-item h3 {
+            color: #a78bfa;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
+        .info-item p {
+            color: #a1a1aa;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .example-text {
+            background: rgba(124, 58, 237, 0.1);
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-top: 8px;
+            font-size: 0.85rem;
+        }
+
+        .example-text .from {
+            color: #71717a;
+        }
+
+        .example-text .arrow {
+            color: #7c3aed;
+            margin: 0 8px;
+        }
+
+        .example-text .to {
+            color: #22c55e;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .text-areas {
+                grid-template-columns: 1fr;
+            }
+
+            .middle-controls {
+                flex-direction: row;
+                padding-top: 0;
+            }
+
+            textarea {
+                height: 200px;
+            }
+
+            .mode-tabs {
+                justify-content: center;
+            }
+
+            .mode-tab {
+                min-width: 120px;
+                padding: 10px 15px;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .main-panel {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-home">← 返回工具箱</a>
+
+        <header>
+            <h1>中文简繁体转换</h1>
+            <p class="subtitle">支持简繁互转，智能识别地区习惯用语</p>
+        </header>
+
+        <div class="main-panel">
+            <!-- 转换模式 -->
+            <div class="mode-selector">
+                <span class="mode-label">选择转换模式：</span>
+                <div class="mode-tabs">
+                    <div class="mode-tab active" data-mode="s2t">
+                        <span class="mode-icon">简→繁</span>
+                        <span class="mode-name">简体转繁体</span>
+                        <span class="mode-desc">仅转换文字</span>
+                    </div>
+                    <div class="mode-tab" data-mode="t2s">
+                        <span class="mode-icon">繁→简</span>
+                        <span class="mode-name">繁体转简体</span>
+                        <span class="mode-desc">仅转换文字</span>
+                    </div>
+                    <div class="mode-tab" data-mode="s2hk">
+                        <span class="mode-icon">🇭🇰</span>
+                        <span class="mode-name">港澳繁体</span>
+                        <span class="mode-desc">含习惯用语</span>
+                    </div>
+                    <div class="mode-tab" data-mode="s2tw">
+                        <span class="mode-icon">🇹🇼</span>
+                        <span class="mode-name">台湾正体</span>
+                        <span class="mode-desc">含习惯用语</span>
+                    </div>
+                    <div class="mode-tab" data-mode="s2my">
+                        <span class="mode-icon">🇲🇾</span>
+                        <span class="mode-name">马新简体</span>
+                        <span class="mode-desc">含习惯用语</span>
+                    </div>
+                    <div class="mode-tab" data-mode="cn">
+                        <span class="mode-icon">🇨🇳</span>
+                        <span class="mode-name">大陆简体</span>
+                        <span class="mode-desc">含习惯用语</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 文本区域 -->
+            <div class="text-areas">
+                <div class="text-box">
+                    <div class="text-header">
+                        <span class="text-label" id="inputLabel">输入文本（简体）</span>
+                        <div class="text-actions">
+                            <button class="text-action-btn" id="pasteBtn">粘贴</button>
+                            <button class="text-action-btn" id="clearInputBtn">清空</button>
+                        </div>
+                    </div>
+                    <textarea id="inputText" placeholder="在此输入或粘贴要转换的文字..."></textarea>
+                    <div class="char-count">字符数：<span id="inputCount">0</span></div>
+                </div>
+
+                <div class="middle-controls">
+                    <button class="convert-btn" id="convertBtn" title="开始转换">→</button>
+                    <button class="swap-btn" id="swapBtn" title="交换输入输出">⇄</button>
+                </div>
+
+                <div class="text-box">
+                    <div class="text-header">
+                        <span class="text-label" id="outputLabel">输出文本（繁体）</span>
+                        <div class="text-actions">
+                            <button class="text-action-btn" id="copyBtn">复制</button>
+                            <button class="text-action-btn" id="clearOutputBtn">清空</button>
+                        </div>
+                    </div>
+                    <textarea id="outputText" placeholder="转换结果将显示在这里..." readonly></textarea>
+                    <div class="char-count">字符数：<span id="outputCount">0</span></div>
+                </div>
+            </div>
+
+            <!-- 快捷操作 -->
+            <div class="quick-actions">
+                <button class="quick-btn" id="autoConvertToggle">🔄 实时转换：关</button>
+                <button class="quick-btn" id="downloadBtn">💾 下载结果</button>
+            </div>
+        </div>
+
+        <!-- 说明 -->
+        <div class="info-section">
+            <h2>转换模式说明</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <h3>简体 ⇄ 繁体</h3>
+                    <p>仅对单个汉字进行简繁转换，不改变词语习惯用法。</p>
+                    <div class="example-text">
+                        <span class="from">软件</span>
+                        <span class="arrow">→</span>
+                        <span class="to">軟件</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <h3>港澳繁体</h3>
+                    <p>转换为香港/澳门地区习惯用语和繁体字。</p>
+                    <div class="example-text">
+                        <span class="from">软件、内存</span>
+                        <span class="arrow">→</span>
+                        <span class="to">軟件、記憶體</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <h3>台湾正体</h3>
+                    <p>转换为台湾地区习惯用语和正体字。</p>
+                    <div class="example-text">
+                        <span class="from">软件、U盘</span>
+                        <span class="arrow">→</span>
+                        <span class="to">軟體、隨身碟</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <h3>马新简体</h3>
+                    <p>转换为马来西亚/新加坡地区习惯用语。</p>
+                    <div class="example-text">
+                        <span class="from">出租车</span>
+                        <span class="arrow">→</span>
+                        <span class="to">德士</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <h3>大陆简体</h3>
+                    <p>将繁体或其他地区用语转换为大陆简体习惯。</p>
+                    <div class="example-text">
+                        <span class="from">軟體、計程車</span>
+                        <span class="arrow">→</span>
+                        <span class="to">软件、出租车</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 简繁对照表（常用字）
+        const s2tMap = {};
+        const t2sMap = {};
+
+        // 简繁对照数据（约3000常用字）
+        const charPairs = `爱愛皑皚蔼藹碍礙肮骯袄襖奥奧坝壩罢罷摆擺败敗颁頒办辦绊絆帮幫绑綁镑鎊谤謗剥剝饱飽宝寶报報鲍鮑杯盃备備贝貝狈狽辈輩笔筆币幣毕畢毙斃闭閉边邊编編贬貶变變辩辯标標表錶鳖鱉别彆宾賓滨濱缤繽冰氷并並拨撥钵缽驳駁补補布佈财財采採参參蚕蠶残殘惭慚惨慘灿燦仓倉沧滄舱艙藏臟测測侧側厕廁層岑涔产產尝嘗偿償长長肠腸厂廠场場畅暢钞鈔车車彻徹衬襯称稱尘塵陈陳沉瀋诚誠铖鋮惩懲吃喫驰馳池塰迟遲赤炽齿齒冲沖虫蟲宠寵筹籌丑醜踌躊处處触觸础礎储儲传傳船舩创創纯純辞辭词詞聪聰从從丛叢凑湊窜竄催崔摧毀错錯达達带帶单單担擔胆膽惮憚当當挡擋党黨档檔捣搗岛島祷禱导導倒燾道衜德悳灯燈邓鄧敌敵涤滌递遞帝帶缔締点點电電垫墊淀澱店敵钓釣调調叠疊钉釘顶頂订訂东東冬鼕动動冻凍栋棟斗鬥窦竇独獨读讀赌賭镀鍍锻鍛断斷队隊吨噸夺奪堕墮鹅鵝额額恶惡饿餓儿兒尔爾贰貳发發乏髮罚罰阀閥法彂帆颿凡颺范範贩販饭飯访訪纺紡飞飛费費坟墳纷紛粉糞奋奮丰豐风風凤鳳肤膚辐輻抚撫辅輔讣訃妇婦负負复復赋賦缝縫该該盖蓋干幹赶趕秆稈冈岡纲綱岗崗钢鋼杠槓高髙搞镐镐告誥鸽鴿个個给給根亙宫宮工攻贡貢巩鞏构構购購够夠股骨估詁谷榖顾顧刮颳关關观觀馆館惯慣贯貫广廣规規归歸轨軌柜櫃贵貴滚滾锅鍋国國过過海醢咸鹹函凾韩韓寒晗汉漢号號合閤何訶和龢核覈盒闔贺賀黑嘿恨狠很佷横橫红紅哄鬨后後呼嘑户戶护護沪滬花畫华華划劃画畵怀懷坏壞欢歡还還环環唤喚换換焕煥涣渙荒衁皇徨簧鍠辉輝挥揮徽徾汇匯会會绘繪贿賄秽穢婚冣昏昬荤葷获獲货貨或惑祸禍击擊饥飢鸡雞迹跡积積基磯及極级級挤擠几幾纪紀技伎际際继繼计計记記济濟绩績剂劑寄寓加镓夹夾家傢坚堅歼殲间間监監检檢见見建舰艦渐漸剑劍践踐鉴鑒键鍵将將浆漿桨槳奖獎讲講酱醬胶膠浇澆较較交餃杰傑节節茧繭拣揀检檢碱鹼简簡建鑑荐薦贱賤见監健鍵剑劍渐漸件俭儉捡撿舰艦姜薑将醬奖槳浆獎蒋蔣讲講较鉸酱絳脚腳饺餃缴繳觉覺教敎节節杰傑洁潔结結界畍今㒸仅僅紧緊锦錦尽盡进進靳藎劲勁晋晉烬燼京倞经經井丼惊驚精睛颈頸静靜镜鏡径徑净淨竞競窘冏九玖纠糾旧舊厩廄救捄韭韮举舉剧劇惧懼据據聚俱绝絕觉覺军軍骏駿开開凯凱慨愾刊栞看竻揀恳懇壳殼颗顆垦墾恐倥空崆控箜困睏扩擴阔闊拉菈来來莱萊兰蘭栏欄蓝藍拦攔篮籃览覽懒懶滥濫劳勞牢嶗痨癆乐樂勒饹類垒壘类淚雷纍泪類累縭里裏离離礼禮丽麗历歷厉厲励勵砺礪俩倆连連联聯帘簾莲蓮炼煉链鏈脸臉练練粮糧良倆谅諒疗療辽遼列烮猎獵临臨邻鄰鳞鱗赁賃灵靈岭嶺领領刘劉流浏瀏龙龍聋聾笼籠陇隴楼樓娄婁漏陋卢盧炉爐掳擄卤鹵虏虜陆陸录錄路賂驴驢侣侶旅呂铝鋁屡屢律嵂滤濾抡掄轮輪论論罗羅萝蘿骡騾逻邏裸躶落洛妈媽马馬骂罵吗嗎玛瑪码碼埋薶买買麦麥卖賣迈邁脉脈蛮蠻瞒瞞满滿馒饅猫貓锚錨矛貿茅髦茆卯夘没沒镁鎂门門闷悶们們锰錳蒙懞梦夢迷谜謎弥彌绵緜棉棈面麪灭滅蔑衊闽閩庙廟灭滅民㞢敏鏔闵閔名洺命掵谬謬摸撫模糢磨嚒摩魔抹犘陌馍饃默黙谋謀牡姆亩畝姥佬幕暮慕幙木冧牧狇睦穆吶拿內那哪纳納难難挠撓恼腦闹鬧馁餒内內嫩娚能岭泥昵暱拟擬你妳逆晲年秊念廿酿釀鸟鳥捏揑聂聶您恁宁寧拧擰牛犂纽紐农農浓濃弄挊奴伮努駑怒砮疟瘧诺諾哦喔欧歐殴毆呕嘔偶耦藕耦泡礮炮砲跑袍培裴陪賠佩珮配妃盆湓烹亨彭蓬朋捧碰掽批毗皮紕啤脾琵疲篦匹仳僻辟闢譬偏媝片騙票飘飄拼牝贫貧频頻凭憑瓶甁评評泼潑坡頗婆嘙迫珀泊烞破頗朴朴扑撲谱譜铺鋪铺舖普晋普溥曝瀑期朞欺慼齐齊其棋奇碁旗旂骑騎岂豈启啓起綺乞訖气氣汽泣弃棄恰卡掐帢洽愜千韆迁遷签簽谦謙牵牽钎釺前歉潜潛浅淺遣譴欠塹枪槍腔羌强強抢搶墙牆蔷薔抢搶乔橋荞蕎侨僑桥喬瞧憔窍竅翘翹切竊茄茳且苴亲親侵寖钦欽芹菣秦秦琴唚禽蠻青圊轻輕氢氫倾傾卿郷清凊蜻蜓晴晛情愔请請庆慶穷窮琼瓊秋鶖求毬球觩邱蘧区區曲麯趋趨驱驅渠璩取娶去厺娶趣麮圈棬权權劝勸全畎泉銓诠詮拳卷券绻綣缺闕鹊鵲确確让讓饶饒热熱人亼壬仁忍認荏衽任韧軔仍扔日囸戎茸荣榮绒絨容溶融熔镕冗宂柔揉肉禸如茹儒襦孺蠕汝乳辱鋊入缛縟软軟锐銳润潤若鄀弱蒻撒洒灑赛賽三叁伞傘丧喪扫掃骚騷涩澀瑟銫色穡杀殺沙砂傻儍筛篩晒曬山煽删刪珊姍闪閃陕陝扇煽善繕缮謄骟騸伤傷商觴赏賞上仩绍紹稍綃烧燒哨鞘勺芍少紹设設涉渉社裑舍捨舌蛇神㥜审審婶嬸肾腎渗滲升昇牲聖省渻盛乘绳繩圣聖声聲胜勝绳繩牲犧失湿濕诗詩狮獅施釃时時识識实實拾饣食石蝕史使矢始屎士氏示飾世勢是視事侍室逝势試谥諡适適饰識释釋收莬手首寿壽受狩售授兽獸书書抒紓淑婌输輸蔬蔌殊殳疏踈舒攄属屬署薯曙蜀术術树樹述戍竖豎数數刷帥耍摔甩帅衰蟀双雙谁誰水氺睡稅说說丝絲私厶司絲死巳四亖寺似祀飼松鬆颂頌宋宗送誦搜蒐艘嗖苏蘇诉訴肃肅素溯俗粟速宿塑訴溯酸蒜算狻虽雖随隨髓歲岁碎穗遂隧孙孫损損笋筍缩縮所鎍索嗦锁鎖他她它祂塌榻太呔态態台臺台檯泰炱谈談坛壇坛罈弹彈炭炭叹嘆探歎堂棠唐糖膛搪倘躺淌烫燙掏濤涛滔讨討腾謄誊騰体體梯锑剃屜替嚏天舔甛添舔田恬甜填佃钿鈿条條跳糶挑眺贴貼铁鐵厅廳听聽庭蜓亭霆停婷挺艇通同铜銅童僮桐统統痛酮头頭投骰透凸图圖涂塗土圡兔菟团團推颓頹腿褪退蛻吞屯臀驮馱托託拖脫挖洼蛙蜗蝸瓦咓娃袜襪外歪崴弯彎湾灣万萬王汪亡妄网網往旺望忘微为為违違围圍唯韋维維伪偽尾委萎胃慰卫衛蔚尉未魏蝟谓謂温溫文紋闻聞蚊蟁纹紋稳穩问問翁螉窝窩我卧臥乌烏呜嗚污污巫姆无無吴吳五伍武侮午舞务務悟誤误晤物霧吾勿戊雾霧西錫吸嘻牺犧稀蒷溪餐昔噏析唏晳熙熈嬉膝锡犀犧习習席蓆洗徙玺璽喜禧戏戲系係細细繫隙虾蝦瞎狹峡倷狭俠侠硤辖轄夏廈咸鹹先纎贤賢弦絃闲閒涎筵衔銜娴嫻显顯险險县縣现現献獻线線宪憲陷餡乡鄉相箱香湘想響享向巷项項象橡萧蕭嚣囂销銷小晓曉孝肖啸嘯效效些歇蝎鞋协協写寫卸械谢謝泄洩锌鋅新噷薪芯辛心欣昕信舋兴興星腥刑形行醒型杏姓幸性凶兇胸匈雄熊休咻羞修馐饈秀袖绣繡嗅须須虚虛需許徐叙敘畜恤序续續絮蓄宣渲选選悬懸旋漩穴學学雪薛谑謔熏薰勋勳询詢巡循训訓讯訊迅逊遜压壓押鸦鴉鸭鴨牙崖芽蚜雅哑啞亚亞咽嚥咽醃烟煙盐鹽沿筵严嚴言巖岩颜顏檐簷眼演掩厌厭艳艷砚硯宴晏验驗谚諺燕讌雁鹽央秧扬揚杨楊阳陽养養氧养痒癢样樣妖夭尧堯摇搖遥遙窑窯谣謠药藥要葯耀燿爷爺也冶野页頁业業叶葉夜液一伊医醫依铱銥仪儀宜颐頤移遗遺疑蚁螘已以苡椅倚乙艺藝抑屹亿億义義译譯易忆憶议議异異益溢谊誼逸軼意毅翳因阴陰音吟寅引饮飲隐隱印茵银銀蝇蠅迎盈营營萤螢赢贏英櫻应應婴嬰映硬佣傭拥擁庸墉永咏詠泳涌湧踊踴用喁优優忧憂邮郵犹猶油游遊友有酉又幼右诱誘于於余馀鱼魚愚娱娛渔漁逾俞雨禹语語玉欲狱獄浴谕諭郁鬱裕蓹预預御禦驭馭鸳鴛渊淵元原源園园员員远遠缘緣愿願约約月曰越岳跃躍钥鑰阅閲云雲匀勻陨隕运運晕暈韵韻酝醞孕蕴蘊杂雜灾災栽哉载載再在赞贊暂暫脏髒葬藏遭糟早枣棗造皂灶竈则則择擇泽澤贼賊赠贈增曾综怎憎扎劄扎紮札紥炸詐榨蚱乍窄宅債债寨斋齋粘沾瞻詹战戰站佔占绽綻张張章彰丈帐帳账賬杖障招昭找沼诏詔照罩遮折哲辙轍针針侦偵贞貞斟珍真圳枕阵陣振镇鎮震祯禎争爭征徵睁睜蒸烝整正政证證郑鄭帧幀织職织織只隻枝汁支知執肢脂直值殖植纸紙止指趾志誌至致窒帜幟制製质質治滞滯钟鐘终終种種肿腫众眾仲冢忠钟周洲诌謅舟州粥帚皱皺骤驟朱珠诸諸猪豬竹烛燭主煮嘱囑助柱贮貯驻駐注註筑築抓爪专專砖磚转轉传賺庄莊装裝壮壯状狀坠墜缀綴准準桌捉拙琢灼茁浊濁啄卓酌斫着著资資兹茲姿谘咨淄訾紫仔籽子字自综縱宗综踪蹤总總纵粽走奏揍租足族阻组組祖钻鑽嘴醉罪最尊遵昨作左坐座做`;
+
+        // 初始化对照表
+        charPairs.split('').forEach((char, i) => {
+            if (i % 2 === 0) {
+                const simp = char;
+                const trad = charPairs[i + 1];
+                if (simp && trad && simp !== trad) {
+                    s2tMap[simp] = trad;
+                    t2sMap[trad] = simp;
+                }
+            }
+        });
+
+        // 地区习惯用语转换表
+        const regionPhrases = {
+            // 大陆简体 -> 港澳繁体
+            s2hk: {
+                '软件': '軟件', '硬件': '硬件', '程序': '程式', '网络': '網絡', '信息': '資訊',
+                '数码': '數碼', '内存': '記憶體', '硬盘': '硬碟', '光盘': '光碟', '鼠标': '滑鼠',
+                '打印机': '打印機', '激光': '激光', '调制解调器': '調制解調器', '服务器': '伺服器',
+                '出租车': '的士', '地铁': '地鐵', '公交车': '巴士', '三明治': '三文治',
+                '奶酪': '芝士', '沙拉': '沙律', '方便面': '即食麵', '土豆': '薯仔',
+                '西红柿': '番茄', '菠萝': '菠蘿', '草莓': '士多啤梨', '猕猴桃': '奇異果'
+            },
+            // 大陆简体 -> 台湾正体
+            s2tw: {
+                '软件': '軟體', '硬件': '硬體', '程序': '程式', '网络': '網路', '信息': '資訊',
+                '数码': '數位', '内存': '記憶體', '硬盘': '硬碟', '光盘': '光碟', '鼠标': '滑鼠',
+                '打印机': '印表機', '激光': '雷射', '调制解调器': '數據機', '服务器': '伺服器',
+                '出租车': '計程車', '地铁': '捷運', '公交车': '公車', 'U盘': '隨身碟',
+                '优盘': '隨身碟', '视频': '視訊', '音频': '音訊', '博客': '部落格',
+                '短信': '簡訊', '宽带': '寬頻', '上网': '上網', '网站': '網站',
+                '土豆': '馬鈴薯', '西红柿': '番茄', '菠萝': '鳳梨', '猕猴桃': '奇異果',
+                '方便面': '泡麵', '酸奶': '優酪乳', '奶酪': '乳酪', '三明治': '三明治',
+                '沙拉': '沙拉', '比萨': '披薩', '意大利面': '義大利麵'
+            },
+            // 大陆简体 -> 马新简体
+            s2my: {
+                '出租车': '德士', '摩托车': '电单车', '自行车': '脚车', '电梯': '升降机',
+                '方便面': '快熟面', '土豆': '马铃薯', '菠萝': '黄梨', '空调': '冷气',
+                '塑料袋': '塑料袋', '垃圾桶': '垃圾桶'
+            },
+            // 繁体/其他地区 -> 大陆简体
+            cn: {
+                '軟體': '软件', '硬體': '硬件', '程式': '程序', '網路': '网络', '資訊': '信息',
+                '數位': '数码', '記憶體': '内存', '硬碟': '硬盘', '光碟': '光盘', '滑鼠': '鼠标',
+                '印表機': '打印机', '雷射': '激光', '數據機': '调制解调器', '伺服器': '服务器',
+                '計程車': '出租车', '捷運': '地铁', '公車': '公交车', '隨身碟': 'U盘',
+                '視訊': '视频', '音訊': '音频', '部落格': '博客', '簡訊': '短信',
+                '寬頻': '宽带', '的士': '出租车', '巴士': '公交车', '德士': '出租车',
+                '馬鈴薯': '土豆', '番茄': '西红柿', '鳳梨': '菠萝', '奇異果': '猕猴桃',
+                '泡麵': '方便面', '即食麵': '方便面', '優酪乳': '酸奶', '乳酪': '奶酪',
+                '芝士': '奶酪', '三文治': '三明治', '沙律': '沙拉', '披薩': '比萨',
+                '義大利麵': '意大利面', '士多啤梨': '草莓', '薯仔': '土豆', '菠蘿': '菠萝',
+                '軟件': '软件', '網絡': '网络', '數碼': '数码', '打印機': '打印机'
+            }
+        };
+
+        // 当前模式
+        let currentMode = 's2t';
+        let autoConvert = false;
+
+        // 元素
+        const modeTabs = document.querySelectorAll('.mode-tab');
+        const inputText = document.getElementById('inputText');
+        const outputText = document.getElementById('outputText');
+        const inputLabel = document.getElementById('inputLabel');
+        const outputLabel = document.getElementById('outputLabel');
+        const inputCount = document.getElementById('inputCount');
+        const outputCount = document.getElementById('outputCount');
+        const convertBtn = document.getElementById('convertBtn');
+        const swapBtn = document.getElementById('swapBtn');
+        const pasteBtn = document.getElementById('pasteBtn');
+        const copyBtn = document.getElementById('copyBtn');
+        const clearInputBtn = document.getElementById('clearInputBtn');
+        const clearOutputBtn = document.getElementById('clearOutputBtn');
+        const autoConvertToggle = document.getElementById('autoConvertToggle');
+        const downloadBtn = document.getElementById('downloadBtn');
+
+        // 模式标签配置
+        const modeLabels = {
+            's2t': { input: '输入文本（简体）', output: '输出文本（繁体）' },
+            't2s': { input: '输入文本（繁体）', output: '输出文本（简体）' },
+            's2hk': { input: '输入文本（简体）', output: '输出文本（港澳繁体）' },
+            's2tw': { input: '输入文本（简体）', output: '输出文本（台湾正体）' },
+            's2my': { input: '输入文本（简体）', output: '输出文本（马新简体）' },
+            'cn': { input: '输入文本（繁体/其他）', output: '输出文本（大陆简体）' }
+        };
+
+        // 简体转繁体（仅文字）
+        function s2t(text) {
+            return text.split('').map(char => s2tMap[char] || char).join('');
+        }
+
+        // 繁体转简体（仅文字）
+        function t2s(text) {
+            return text.split('').map(char => t2sMap[char] || char).join('');
+        }
+
+        // 替换习惯用语
+        function replacePhrases(text, phraseMap) {
+            let result = text;
+            // 按词语长度排序（长的先替换，避免部分匹配）
+            const phrases = Object.keys(phraseMap).sort((a, b) => b.length - a.length);
+            for (const phrase of phrases) {
+                result = result.split(phrase).join(phraseMap[phrase]);
+            }
+            return result;
+        }
+
+        // 主转换函数
+        function convert(text, mode) {
+            if (!text) return '';
+
+            switch (mode) {
+                case 's2t':
+                    // 简体转繁体（仅文字）
+                    return s2t(text);
+
+                case 't2s':
+                    // 繁体转简体（仅文字）
+                    return t2s(text);
+
+                case 's2hk':
+                    // 简体转港澳繁体（含习惯用语）
+                    let hkResult = replacePhrases(text, regionPhrases.s2hk);
+                    return s2t(hkResult);
+
+                case 's2tw':
+                    // 简体转台湾正体（含习惯用语）
+                    let twResult = replacePhrases(text, regionPhrases.s2tw);
+                    return s2t(twResult);
+
+                case 's2my':
+                    // 简体转马新简体（含习惯用语）
+                    return replacePhrases(text, regionPhrases.s2my);
+
+                case 'cn':
+                    // 转大陆简体（含习惯用语）
+                    let cnResult = replacePhrases(text, regionPhrases.cn);
+                    return t2s(cnResult);
+
+                default:
+                    return text;
+            }
+        }
+
+        // 执行转换
+        function doConvert() {
+            const result = convert(inputText.value, currentMode);
+            outputText.value = result;
+            outputCount.textContent = result.length;
+        }
+
+        // 更新字符数
+        function updateInputCount() {
+            inputCount.textContent = inputText.value.length;
+        }
+
+        // 事件绑定
+        modeTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                modeTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                currentMode = tab.dataset.mode;
+
+                // 更新标签
+                inputLabel.textContent = modeLabels[currentMode].input;
+                outputLabel.textContent = modeLabels[currentMode].output;
+
+                // 如果开启了实时转换，立即转换
+                if (autoConvert) {
+                    doConvert();
+                }
+            });
+        });
+
+        convertBtn.addEventListener('click', doConvert);
+
+        swapBtn.addEventListener('click', () => {
+            const temp = inputText.value;
+            inputText.value = outputText.value;
+            outputText.value = temp;
+            updateInputCount();
+            outputCount.textContent = outputText.value.length;
+        });
+
+        pasteBtn.addEventListener('click', async () => {
+            try {
+                const text = await navigator.clipboard.readText();
+                inputText.value = text;
+                updateInputCount();
+                if (autoConvert) doConvert();
+            } catch (err) {
+                alert('无法访问剪贴板，请手动粘贴');
+            }
+        });
+
+        copyBtn.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(outputText.value);
+                copyBtn.textContent = '已复制!';
+                setTimeout(() => copyBtn.textContent = '复制', 1500);
+            } catch (err) {
+                outputText.select();
+                document.execCommand('copy');
+            }
+        });
+
+        clearInputBtn.addEventListener('click', () => {
+            inputText.value = '';
+            updateInputCount();
+        });
+
+        clearOutputBtn.addEventListener('click', () => {
+            outputText.value = '';
+            outputCount.textContent = '0';
+        });
+
+        autoConvertToggle.addEventListener('click', () => {
+            autoConvert = !autoConvert;
+            autoConvertToggle.textContent = `🔄 实时转换：${autoConvert ? '开' : '关'}`;
+            if (autoConvert) doConvert();
+        });
+
+        inputText.addEventListener('input', () => {
+            updateInputCount();
+            if (autoConvert) doConvert();
+        });
+
+        downloadBtn.addEventListener('click', () => {
+            if (!outputText.value) {
+                alert('没有可下载的内容');
+                return;
+            }
+            const blob = new Blob([outputText.value], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'converted_text.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+    </script>
+</body>
+</html>
