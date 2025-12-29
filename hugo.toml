@@ -4,7 +4,7 @@ title = "Bruce's Blog"
 theme = 'hermit-V2'
 
 [params]
-  description="bruce,hebruce110,laravel,java,springweb,vue,ios,博客,go,golang,源码分析,系列教程"
+  description="AI,AI Agent,Claude Code,AI 编程,LLM,Prompt Engineering,技术博客,程序员博客,后端架构,系统设计,源码分析,系列教程,Java,Spring Boot,Vue,Go,Golang"
   # images = [""]
   themeColor = "#494f5c"
   accentColor = "#018472"
