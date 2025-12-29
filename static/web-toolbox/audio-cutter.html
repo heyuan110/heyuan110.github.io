@@ -1244,41 +1244,94 @@
             }
 
             try {
-                loadingText.textContent = '正在加载编码器（首次约需10秒）...';
+                // 带进度显示的资源下载
+                async function fetchWithProgress(url, label) {
+                    loadingText.textContent = `正在下载${label}...`;
+                    console.log(`开始下载: ${url}`);
+                    const startTime = Date.now();
 
-                // 手动实现 toBlobURL 功能（避免额外依赖）
-                async function fetchAsBlob(url, mimeType) {
                     const response = await fetch(url);
-                    if (!response.ok) throw new Error(`Failed to fetch ${url}`);
-                    const blob = await response.blob();
-                    return URL.createObjectURL(new Blob([await blob.arrayBuffer()], { type: mimeType }));
+                    if (!response.ok) throw new Error(`下载失败: ${url} (${response.status})`);
+
+                    const contentLength = response.headers.get('content-length');
+                    const total = contentLength ? parseInt(contentLength, 10) : 0;
+
+                    if (!response.body || !total) {
+                        // 无法获取进度，直接下载
+                        const blob = await response.blob();
+                        const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+                        console.log(`下载完成: ${label} (${(blob.size / 1024 / 1024).toFixed(2)}MB, ${elapsed}s)`);
+                        return blob;
+                    }
+
+                    // 带进度的下载
+                    const reader = response.body.getReader();
+                    const chunks = [];
+                    let received = 0;
+
+                    while (true) {
+                        const { done, value } = await reader.read();
+                        if (done) break;
+                        chunks.push(value);
+                        received += value.length;
+                        const percent = Math.round((received / total) * 100);
+                        loadingText.textContent = `正在下载${label}... ${percent}%`;
+                    }
+
+                    const blob = new Blob(chunks);
+                    const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+                    console.log(`下载完成: ${label} (${(blob.size / 1024 / 1024).toFixed(2)}MB, ${elapsed}s)`);
+                    return blob;
                 }
 
-                // 预加载所有 FFmpeg 资源为 blob URL（完全绕过 CORS）
-                const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm';
-                const [coreURL, wasmURL, workerURL] = await Promise.all([
-                    fetchAsBlob(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
-                    fetchAsBlob(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
-                    fetchAsBlob('https://unpkg.com/@ffmpeg/ffmpeg@0.12.10/dist/esm/worker.js', 'text/javascript')
-                ]);
+                // 转换为 Blob URL
+                function toBlobURL(blob, mimeType) {
+                    return URL.createObjectURL(new Blob([blob], { type: mimeType }));
+                }
 
-                // 动态加载 FFmpeg 模块（使用 esm.sh，它会正确处理 worker 路径）
-                const { FFmpeg } = await import('https://esm.sh/@ffmpeg/ffmpeg@0.12.10');
+                console.log('开始加载 FFmpeg...');
+                const loadStartTime = Date.now();
+
+                // 使用 jsdelivr CDN（通常在中国访问更快）
+                const baseURL = 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/esm';
+
+                // 1. 下载核心文件
+                loadingText.textContent = '正在下载编码器核心...';
+                const coreBlob = await fetchWithProgress(`${baseURL}/ffmpeg-core.js`, '核心模块');
+                const coreURL = toBlobURL(coreBlob, 'text/javascript');
+
+                // 2. 下载 WASM 文件（最大，约 32MB）
+                const wasmBlob = await fetchWithProgress(`${baseURL}/ffmpeg-core.wasm`, 'WASM引擎');
+                const wasmURL = toBlobURL(wasmBlob, 'application/wasm');
+
+                // 3. 下载 Worker 文件
+                const workerBlob = await fetchWithProgress('https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/esm/worker.js', 'Worker');
+                const workerURL = toBlobURL(workerBlob, 'text/javascript');
+
+                // 4. 动态加载 FFmpeg 模块
+                loadingText.textContent = '正在初始化编码器模块...';
+                console.log('加载 FFmpeg 模块...');
+                const { FFmpeg } = await import('https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/+esm');
 
                 ffmpeg = new FFmpeg();
 
-                // 加载进度
+                // 加载进度回调
                 ffmpeg.on('progress', ({ progress }) => {
                     const percent = Math.round(progress * 100);
                     loadingText.textContent = `正在转换... ${percent}%`;
                 });
 
-                // 使用预加载的 blob URL
+                // 5. 初始化 FFmpeg
+                loadingText.textContent = '正在初始化编码器...';
+                console.log('初始化 FFmpeg...');
                 await ffmpeg.load({
                     coreURL: coreURL,
                     wasmURL: wasmURL,
                     classWorkerURL: workerURL
                 });
+
+                const totalTime = ((Date.now() - loadStartTime) / 1000).toFixed(1);
+                console.log(`FFmpeg 加载完成，总耗时: ${totalTime}s`);
 
                 ffmpegLoaded = true;
                 return true;
