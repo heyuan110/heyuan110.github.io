@@ -473,12 +473,26 @@
             display: flex;
         }
 
+        .crop-actions {
+            padding: 15px;
+            background: var(--bg-secondary);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
         .crop-container {
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            overflow: auto;
+            min-height: 0;
         }
 
         .crop-container img {
@@ -486,18 +500,9 @@
             max-height: 100%;
         }
 
-        .crop-actions {
-            padding: 15px;
-            background: var(--bg-secondary);
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-
         .crop-ratio-btns {
             display: flex;
             gap: 8px;
-            margin-bottom: 10px;
         }
 
         .ratio-btn {
@@ -604,6 +609,23 @@
             display: block;
         }
 
+        #textLayerContainer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #textLayerContainer .text-layer {
+            pointer-events: auto;
+            white-space: nowrap;
+        }
+
         /* 绘图画布 */
         #drawCanvas {
             position: absolute;
@@ -684,13 +706,12 @@
                 <!-- 主画布 -->
                 <canvas id="mainCanvas" class="hidden"></canvas>
                 <canvas id="drawCanvas" class="hidden"></canvas>
+                <!-- 文字图层容器 -->
+                <div id="textLayerContainer"></div>
             </div>
 
             <!-- 裁切覆盖层 -->
             <div class="crop-overlay" id="cropOverlay">
-                <div class="crop-container">
-                    <img id="cropImage" src="">
-                </div>
                 <div class="crop-actions">
                     <div class="crop-ratio-btns">
                         <button class="ratio-btn active" data-ratio="free">自由</button>
@@ -701,6 +722,9 @@
                     </div>
                     <button class="btn btn-primary" id="applyCrop">✓ 应用裁切</button>
                     <button class="btn btn-secondary" id="cancelCrop">✕ 取消</button>
+                </div>
+                <div class="crop-container">
+                    <img id="cropImage" src="">
                 </div>
             </div>
 
@@ -921,6 +945,10 @@
                         </div>
                     </div>
                     <button class="btn btn-primary" id="addText" style="width: 100%;">添加文字</button>
+                    <p style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 10px; text-align: center;">
+                        💡 添加后可拖动文字调整位置
+                    </p>
+                    <button class="btn btn-secondary" id="clearText" style="width: 100%; margin-top: 10px;">清除所有文字</button>
                 </div>
             </div>
 
@@ -1098,6 +1126,7 @@
                 document.getElementById('fontSizeValue').textContent = e.target.value;
             });
             document.getElementById('addText').addEventListener('click', addTextLayer);
+            document.getElementById('clearText').addEventListener('click', clearTextLayers);
 
             // 抠图
             document.getElementById('chromaTolerance').addEventListener('input', (e) => {
@@ -1674,6 +1703,9 @@
         }
 
         // ========== 文字 ==========
+        const textLayerContainer = document.getElementById('textLayerContainer');
+        let textLayerId = 0;
+
         function addTextLayer() {
             const text = document.getElementById('textInput').value.trim();
             if (!text || !state.originalImage) return;
@@ -1684,24 +1716,127 @@
             const bold = document.getElementById('textBold').checked;
             const shadow = document.getElementById('textShadow').checked;
 
-            // 直接绘制到标注画布
-            drawCtx.font = `${bold ? 'bold ' : ''}${size}px ${font}`;
-            drawCtx.fillStyle = color;
-            drawCtx.textAlign = 'center';
+            // 创建文字图层 DOM 元素
+            const layer = document.createElement('div');
+            layer.className = 'text-layer';
+            layer.id = `text-layer-${textLayerId++}`;
+            layer.textContent = text;
+            layer.style.cssText = `
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                color: ${color};
+                font-size: ${size}px;
+                font-family: ${font};
+                font-weight: ${bold ? 'bold' : 'normal'};
+                ${shadow ? 'text-shadow: 2px 2px 4px rgba(0,0,0,0.5);' : ''}
+            `;
 
-            if (shadow) {
-                drawCtx.shadowColor = 'rgba(0,0,0,0.5)';
-                drawCtx.shadowBlur = 4;
-                drawCtx.shadowOffsetX = 2;
-                drawCtx.shadowOffsetY = 2;
-            }
+            // 删除按钮
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'delete-btn';
+            deleteBtn.textContent = '×';
+            deleteBtn.onclick = (e) => {
+                e.stopPropagation();
+                layer.remove();
+                state.textLayers = state.textLayers.filter(l => l.id !== layer.id);
+            };
+            layer.appendChild(deleteBtn);
 
-            drawCtx.fillText(text, drawCanvas.width / 2, drawCanvas.height / 2);
+            // 保存到状态
+            const layerData = {
+                id: layer.id,
+                text, color, size: parseInt(size), font, bold, shadow,
+                x: 0.5, y: 0.5  // 相对位置（0-1）
+            };
+            state.textLayers.push(layerData);
 
-            drawCtx.shadowColor = 'transparent';
-            drawCtx.shadowBlur = 0;
+            // 拖动功能
+            let isDragging = false;
+            let startX, startY, startLeft, startTop;
 
+            layer.addEventListener('mousedown', (e) => {
+                if (e.target === deleteBtn) return;
+                isDragging = true;
+                layer.classList.add('selected');
+                startX = e.clientX;
+                startY = e.clientY;
+                const rect = layer.getBoundingClientRect();
+                const containerRect = textLayerContainer.getBoundingClientRect();
+                startLeft = rect.left - containerRect.left + rect.width / 2;
+                startTop = rect.top - containerRect.top + rect.height / 2;
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                const containerRect = textLayerContainer.getBoundingClientRect();
+                const dx = e.clientX - startX;
+                const dy = e.clientY - startY;
+                const newLeft = startLeft + dx;
+                const newTop = startTop + dy;
+
+                layer.style.left = newLeft + 'px';
+                layer.style.top = newTop + 'px';
+                layer.style.transform = 'translate(-50%, -50%)';
+
+                // 更新相对位置
+                layerData.x = newLeft / containerRect.width;
+                layerData.y = newTop / containerRect.height;
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    layer.classList.remove('selected');
+                }
+            });
+
+            textLayerContainer.appendChild(layer);
             document.getElementById('textInput').value = '';
+        }
+
+        // 将文字图层绘制到画布（保存时调用）
+        function renderTextLayersToCanvas() {
+            const containerRect = textLayerContainer.getBoundingClientRect();
+            const canvasRect = mainCanvas.getBoundingClientRect();
+            const scaleX = mainCanvas.width / canvasRect.width;
+            const scaleY = mainCanvas.height / canvasRect.height;
+
+            state.textLayers.forEach(layerData => {
+                const layer = document.getElementById(layerData.id);
+                if (!layer) return;
+
+                const rect = layer.getBoundingClientRect();
+                const x = (rect.left - canvasRect.left + rect.width / 2) * scaleX;
+                const y = (rect.top - canvasRect.top + rect.height / 2) * scaleY;
+
+                ctx.font = `${layerData.bold ? 'bold ' : ''}${layerData.size * scaleX}px ${layerData.font}`;
+                ctx.fillStyle = layerData.color;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+
+                if (layerData.shadow) {
+                    ctx.shadowColor = 'rgba(0,0,0,0.5)';
+                    ctx.shadowBlur = 4 * scaleX;
+                    ctx.shadowOffsetX = 2 * scaleX;
+                    ctx.shadowOffsetY = 2 * scaleY;
+                }
+
+                ctx.fillText(layerData.text, x, y);
+
+                ctx.shadowColor = 'transparent';
+                ctx.shadowBlur = 0;
+                ctx.shadowOffsetX = 0;
+                ctx.shadowOffsetY = 0;
+            });
+        }
+
+        // 清除文字图层
+        function clearTextLayers() {
+            textLayerContainer.innerHTML = '';
+            state.textLayers = [];
         }
 
         // ========== 抠图 ==========
@@ -1863,6 +1998,7 @@
             document.querySelector('.filter-item[data-filter="none"]').classList.add('active');
 
             clearDrawCanvas();
+            clearTextLayers();
             initCanvas(state.originalImage);
             saveHistory('重置');
         }
@@ -1872,6 +2008,7 @@
             state.zoom = Math.max(0.1, Math.min(3, z));
             mainCanvas.style.transform = `scale(${state.zoom})`;
             drawCanvas.style.transform = `scale(${state.zoom})`;
+            textLayerContainer.style.transform = `scale(${state.zoom})`;
             document.getElementById('zoomValue').textContent = Math.round(state.zoom * 100) + '%';
         }
 
@@ -1891,6 +2028,39 @@
             const combCtx = combined.getContext('2d');
             combCtx.drawImage(mainCanvas, 0, 0);
             combCtx.drawImage(drawCanvas, 0, 0);
+
+            // 绘制文字图层
+            const canvasRect = mainCanvas.getBoundingClientRect();
+            const scaleX = mainCanvas.width / canvasRect.width;
+            const scaleY = mainCanvas.height / canvasRect.height;
+
+            state.textLayers.forEach(layerData => {
+                const layer = document.getElementById(layerData.id);
+                if (!layer) return;
+
+                const rect = layer.getBoundingClientRect();
+                const x = (rect.left - canvasRect.left + rect.width / 2) * scaleX;
+                const y = (rect.top - canvasRect.top + rect.height / 2) * scaleY;
+
+                combCtx.font = `${layerData.bold ? 'bold ' : ''}${layerData.size * scaleX}px ${layerData.font}`;
+                combCtx.fillStyle = layerData.color;
+                combCtx.textAlign = 'center';
+                combCtx.textBaseline = 'middle';
+
+                if (layerData.shadow) {
+                    combCtx.shadowColor = 'rgba(0,0,0,0.5)';
+                    combCtx.shadowBlur = 4 * scaleX;
+                    combCtx.shadowOffsetX = 2 * scaleX;
+                    combCtx.shadowOffsetY = 2 * scaleY;
+                }
+
+                combCtx.fillText(layerData.text, x, y);
+
+                combCtx.shadowColor = 'transparent';
+                combCtx.shadowBlur = 0;
+                combCtx.shadowOffsetX = 0;
+                combCtx.shadowOffsetY = 0;
+            });
 
             const link = document.createElement('a');
             link.download = 'edited-image.png';
