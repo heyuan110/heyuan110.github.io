@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线节拍器 - 免费音乐练习节奏工具 | Web Toolbox</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="免费在线节拍器工具，支持40-220 BPM速度调节，多种拍号(2/4、3/4、4/4、6/8)，电子音和钢琴音色选择。适用于乐器练习、歌唱训练、舞蹈排练，帮助你保持精准节奏。">
+    <meta name="keywords" content="节拍器,在线节拍器,BPM,音乐节拍,节奏练习,乐器练习,钢琴练习,吉他练习,架子鼓练习,免费节拍器">
+    <meta name="author" content="heyuan110">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.heyuan110.com/web-toolbox/metronome.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.heyuan110.com/web-toolbox/metronome.html">
+    <meta property="og:title" content="在线节拍器 - 免费音乐练习节奏工具">
+    <meta property="og:description" content="免费在线节拍器，支持多种拍号和音色，帮助你保持精准节奏。">
+    <meta property="og:image" content="https://www.heyuan110.com/web-toolbox/screenshots/metronome.png">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:site_name" content="Web Toolbox">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="在线节拍器 - 免费音乐练习节奏工具">
+    <meta name="twitter:description" content="免费在线节拍器，支持多种拍号和音色选择。">
+    <meta name="twitter:image" content="https://www.heyuan110.com/web-toolbox/screenshots/metronome.png">
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "在线节拍器",
+        "url": "https://www.heyuan110.com/web-toolbox/metronome.html",
+        "description": "在线节拍器工具，支持多种拍号和音色，帮助音乐练习保持精准节奏",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "CNY"},
+        "author": {"@type": "Person", "name": "heyuan110"}
+    }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #e4e4e7;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        /* 返回按钮 */
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #a1a1aa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            margin-bottom: 20px;
+        }
+
+        .back-home:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        /* 主面板 */
+        .metronome-panel {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .metronome-title {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(120deg, #00d4ff, #7c3aed, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .metronome-subtitle {
+            color: #a1a1aa;
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+
+        /* BPM 显示 */
+        .bpm-display {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .bpm-value {
+            font-size: 6rem;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1;
+            transition: all 0.1s ease;
+        }
+
+        .bpm-value.flash {
+            color: #7c3aed;
+            text-shadow: 0 0 30px rgba(124, 58, 237, 0.8);
+        }
+
+        .bpm-label {
+            font-size: 1.2rem;
+            color: #a1a1aa;
+            margin-top: 5px;
+        }
+
+        /* BPM 滑块 */
+        .bpm-slider-container {
+            margin: 30px 0;
+            padding: 0 20px;
+        }
+
+        .bpm-slider {
+            width: 100%;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            outline: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+        }
+
+        .bpm-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, #7c3aed, #6366f1);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.5);
+            transition: transform 0.2s ease;
+        }
+
+        .bpm-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+        }
+
+        .bpm-range {
+            display: flex;
+            justify-content: space-between;
+            color: #71717a;
+            font-size: 0.85rem;
+            margin-top: 8px;
+        }
+
+        /* 快捷 BPM 按钮 */
+        .bpm-presets {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .bpm-preset {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            color: #d4d4d8;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .bpm-preset:hover {
+            background: rgba(124, 58, 237, 0.3);
+            border-color: #7c3aed;
+        }
+
+        /* 播放按钮 */
+        .play-btn {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, #7c3aed, #6366f1);
+            color: #fff;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 40px rgba(124, 58, 237, 0.4);
+            margin-bottom: 30px;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 15px 50px rgba(124, 58, 237, 0.5);
+        }
+
+        .play-btn:active {
+            transform: scale(0.98);
+        }
+
+        .play-btn.playing {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            box-shadow: 0 10px 40px rgba(239, 68, 68, 0.4);
+        }
+
+        /* 节拍指示器 */
+        .beat-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .beat-dot {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: #71717a;
+        }
+
+        .beat-dot.strong {
+            background: rgba(124, 58, 237, 0.3);
+            border-color: #7c3aed;
+            color: #a78bfa;
+        }
+
+        .beat-dot.medium {
+            background: rgba(34, 197, 94, 0.2);
+            border-color: #22c55e;
+            color: #86efac;
+        }
+
+        .beat-dot.active {
+            transform: scale(1.3);
+            box-shadow: 0 0 20px currentColor;
+        }
+
+        .beat-dot.active.strong {
+            background: #7c3aed;
+            color: #fff;
+        }
+
+        .beat-dot.active.medium {
+            background: #22c55e;
+            color: #fff;
+        }
+
+        .beat-dot.active.weak {
+            background: rgba(255, 255, 255, 0.5);
+            border-color: #fff;
+        }
+
+        .beat-hint {
+            font-size: 0.8rem;
+            color: #71717a;
+            margin-bottom: 20px;
+        }
+
+        /* 设置区域 */
+        .settings-row {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .setting-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .setting-label {
+            font-size: 0.9rem;
+            color: #a1a1aa;
+        }
+
+        /* 拍号选择 */
+        .time-signature-btns {
+            display: flex;
+            gap: 8px;
+        }
+
+        .time-sig-btn {
+            padding: 10px 18px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            color: #d4d4d8;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .time-sig-btn:hover {
+            background: rgba(124, 58, 237, 0.2);
+        }
+
+        .time-sig-btn.active {
+            background: linear-gradient(135deg, #7c3aed, #6366f1);
+            border-color: transparent;
+            color: #fff;
+        }
+
+        /* 音色选择 */
+        .sound-btns {
+            display: flex;
+            gap: 8px;
+        }
+
+        .sound-btn {
+            padding: 10px 18px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            color: #d4d4d8;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .sound-btn:hover {
+            background: rgba(124, 58, 237, 0.2);
+        }
+
+        .sound-btn.active {
+            background: linear-gradient(135deg, #7c3aed, #6366f1);
+            border-color: transparent;
+            color: #fff;
+        }
+
+        /* 闪烁效果开关 */
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 13px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-switch.active {
+            background: linear-gradient(135deg, #7c3aed, #6366f1);
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-switch.active::after {
+            transform: translateX(24px);
+        }
+
+        /* 闪烁背景效果 */
+        .flash-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.05s ease;
+        }
+
+        .flash-overlay.active {
+            opacity: 1;
+        }
+
+        .flash-overlay.strong {
+            background: radial-gradient(circle at center, rgba(124, 58, 237, 0.15), transparent 70%);
+        }
+
+        .flash-overlay.medium {
+            background: radial-gradient(circle at center, rgba(34, 197, 94, 0.1), transparent 70%);
+        }
+
+        .flash-overlay.weak {
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05), transparent 70%);
+        }
+
+        /* 简介和使用说明 */
+        .info-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .info-section h2 {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-section p {
+            color: #a1a1aa;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .info-section h3 {
+            font-size: 1rem;
+            color: #d4d4d8;
+            margin: 20px 0 10px;
+        }
+
+        .info-section ul, .info-section ol {
+            color: #a1a1aa;
+            font-size: 0.9rem;
+            padding-left: 20px;
+        }
+
+        .info-section li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .tips-box {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin-top: 15px;
+        }
+
+        .tips-box h4 {
+            color: #22c55e;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .metronome-panel {
+                padding: 25px 20px;
+            }
+
+            .metronome-title {
+                font-size: 1.6rem;
+            }
+
+            .bpm-value {
+                font-size: 4rem;
+            }
+
+            .play-btn {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+
+            .beat-dot {
+                width: 35px;
+                height: 35px;
+            }
+
+            .settings-row {
+                gap: 20px;
+            }
+
+            .time-sig-btn, .sound-btn {
+                padding: 8px 14px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="flash-overlay" id="flashOverlay"></div>
+
+    <div class="container">
+        <a href="index.html" class="back-home">← 返回工具箱</a>
+
+        <div class="metronome-panel">
+            <h1 class="metronome-title">节拍器</h1>
+            <p class="metronome-subtitle">保持你的节奏</p>
+
+            <!-- BPM 显示 -->
+            <div class="bpm-display">
+                <div class="bpm-value" id="bpmValue">120</div>
+                <div class="bpm-label">BPM</div>
+            </div>
+
+            <!-- BPM 滑块 -->
+            <div class="bpm-slider-container">
+                <input type="range" class="bpm-slider" id="bpmSlider" min="40" max="220" value="120">
+                <div class="bpm-range">
+                    <span>40</span>
+                    <span>慢 ← → 快</span>
+                    <span>220</span>
+                </div>
+            </div>
+
+            <!-- 快捷 BPM -->
+            <div class="bpm-presets">
+                <span class="bpm-preset" data-bpm="60">60 慢板</span>
+                <span class="bpm-preset" data-bpm="80">80 行板</span>
+                <span class="bpm-preset" data-bpm="100">100 中板</span>
+                <span class="bpm-preset" data-bpm="120">120 快板</span>
+                <span class="bpm-preset" data-bpm="140">140 急板</span>
+            </div>
+
+            <!-- 播放按钮 -->
+            <button class="play-btn" id="playBtn">▶</button>
+
+            <!-- 节拍指示器 -->
+            <div class="beat-indicators" id="beatIndicators">
+                <!-- 动态生成 -->
+            </div>
+            <p class="beat-hint">点击节拍可以改变强弱</p>
+
+            <!-- 设置 -->
+            <div class="settings-row">
+                <div class="setting-item">
+                    <span class="setting-label">拍号</span>
+                    <div class="time-signature-btns" id="timeSigBtns">
+                        <button class="time-sig-btn" data-beats="2">2/4</button>
+                        <button class="time-sig-btn" data-beats="3">3/4</button>
+                        <button class="time-sig-btn active" data-beats="4">4/4</button>
+                        <button class="time-sig-btn" data-beats="6">6/8</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-row">
+                <div class="setting-item">
+                    <span class="setting-label">闪烁效果</span>
+                    <div class="toggle-container">
+                        <div class="toggle-switch active" id="flashToggle"></div>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <span class="setting-label">音色</span>
+                    <div class="sound-btns" id="soundBtns">
+                        <button class="sound-btn active" data-sound="electronic">电子音</button>
+                        <button class="sound-btn" data-sound="piano">钢琴音</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 简介 -->
+        <div class="info-section">
+            <h2>关于节拍器</h2>
+            <p>在线节拍器是一个简单实用的音乐练习工具，它能够产生稳定的节拍声音，帮助音乐学习者保持准确的节奏感。无论是乐器练习、歌唱训练，还是舞蹈排练，都能帮助你掌握精准的节奏。</p>
+            <p>本工具完全免费使用，支持多种拍号设置，可调节速度(BPM)，并提供不同的节拍音色选择。</p>
+        </div>
+
+        <!-- 使用说明 -->
+        <div class="info-section">
+            <h2>使用说明</h2>
+
+            <h3>1. 调节速度(BPM)</h3>
+            <ul>
+                <li>使用滑块或点击预设按钮来设置所需的速度</li>
+                <li>BPM范围：40-220，数值越大表示速度越快</li>
+            </ul>
+
+            <h3>2. 选择拍号</h3>
+            <ul>
+                <li>支持常见拍号：2/4、3/4、4/4、6/8</li>
+                <li>根据练习需求选择合适的拍号</li>
+            </ul>
+
+            <h3>3. 开始/停止</h3>
+            <ul>
+                <li>点击播放按钮开始节拍</li>
+                <li>再次点击可以暂停</li>
+                <li>练习时可随时调整速度和拍号</li>
+            </ul>
+
+            <h3>4. 自定义强弱</h3>
+            <ul>
+                <li>点击节拍圆点可切换强、中、弱三种力度</li>
+                <li>紫色为强拍，绿色为中强，灰色为弱拍</li>
+            </ul>
+
+            <div class="tips-box">
+                <h4>使用技巧</h4>
+                <ol>
+                    <li>初学者建议从较慢的速度开始练习，确保动作准确后再逐渐加快。</li>
+                    <li>练习时注意聆听重音，培养节奏感。</li>
+                    <li>可以使用耳机练习，避免干扰他人。</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 音频上下文
+        let audioContext = null;
+
+        // 状态
+        let isPlaying = false;
+        let bpm = 120;
+        let beatsPerMeasure = 4;
+        let currentBeat = 0;
+        let intervalId = null;
+        let flashEnabled = true;
+        let soundType = 'electronic';
+
+        // 节拍强度配置 (strong, medium, weak)
+        let beatStrengths = ['strong', 'weak', 'weak', 'weak'];
+
+        // 元素
+        const bpmValue = document.getElementById('bpmValue');
+        const bpmSlider = document.getElementById('bpmSlider');
+        const playBtn = document.getElementById('playBtn');
+        const beatIndicators = document.getElementById('beatIndicators');
+        const flashOverlay = document.getElementById('flashOverlay');
+        const flashToggle = document.getElementById('flashToggle');
+        const timeSigBtns = document.getElementById('timeSigBtns');
+        const soundBtns = document.getElementById('soundBtns');
+
+        // 初始化音频上下文
+        function initAudio() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+        }
+
+        // 播放节拍音
+        function playClick(strength) {
+            if (!audioContext) return;
+
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            // 根据音色和强度设置参数
+            if (soundType === 'electronic') {
+                oscillator.type = 'sine';
+                if (strength === 'strong') {
+                    oscillator.frequency.setValueAtTime(880, audioContext.currentTime);
+                    gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
+                } else if (strength === 'medium') {
+                    oscillator.frequency.setValueAtTime(660, audioContext.currentTime);
+                    gainNode.gain.setValueAtTime(0.35, audioContext.currentTime);
+                } else {
+                    oscillator.frequency.setValueAtTime(440, audioContext.currentTime);
+                    gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+                }
+                gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.1);
+            } else {
+                // 钢琴音 - 更柔和的音色
+                oscillator.type = 'triangle';
+                if (strength === 'strong') {
+                    oscillator.frequency.setValueAtTime(523.25, audioContext.currentTime); // C5
+                    gainNode.gain.setValueAtTime(0.4, audioContext.currentTime);
+                } else if (strength === 'medium') {
+                    oscillator.frequency.setValueAtTime(392, audioContext.currentTime); // G4
+                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                } else {
+                    oscillator.frequency.setValueAtTime(329.63, audioContext.currentTime); // E4
+                    gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+                }
+                gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.15);
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.15);
+            }
+        }
+
+        // 生成节拍指示器
+        function createBeatIndicators() {
+            beatIndicators.innerHTML = '';
+            beatStrengths = [];
+
+            for (let i = 0; i < beatsPerMeasure; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'beat-dot';
+                dot.dataset.index = i;
+
+                // 默认：第一拍强，其他弱
+                if (i === 0) {
+                    dot.classList.add('strong');
+                    beatStrengths.push('strong');
+                } else if (beatsPerMeasure === 6 && i === 3) {
+                    // 6/8 拍的第4拍为中强
+                    dot.classList.add('medium');
+                    beatStrengths.push('medium');
+                } else {
+                    beatStrengths.push('weak');
+                }
+
+                dot.textContent = i + 1;
+                dot.addEventListener('click', () => toggleBeatStrength(i));
+                beatIndicators.appendChild(dot);
+            }
+        }
+
+        // 切换节拍强度
+        function toggleBeatStrength(index) {
+            const dot = beatIndicators.children[index];
+            const currentStrength = beatStrengths[index];
+
+            // 循环切换: strong -> medium -> weak -> strong
+            let newStrength;
+            if (currentStrength === 'strong') {
+                newStrength = 'medium';
+            } else if (currentStrength === 'medium') {
+                newStrength = 'weak';
+            } else {
+                newStrength = 'strong';
+            }
+
+            beatStrengths[index] = newStrength;
+            dot.classList.remove('strong', 'medium', 'weak');
+            if (newStrength !== 'weak') {
+                dot.classList.add(newStrength);
+            }
+        }
+
+        // 触发节拍
+        function tick() {
+            const strength = beatStrengths[currentBeat];
+
+            // 播放声音
+            playClick(strength);
+
+            // 更新视觉
+            updateBeatVisual(currentBeat, strength);
+
+            // 闪烁效果
+            if (flashEnabled) {
+                triggerFlash(strength);
+            }
+
+            // BPM 数字闪烁
+            bpmValue.classList.add('flash');
+            setTimeout(() => bpmValue.classList.remove('flash'), 100);
+
+            // 下一拍
+            currentBeat = (currentBeat + 1) % beatsPerMeasure;
+        }
+
+        // 更新节拍视觉
+        function updateBeatVisual(index, strength) {
+            // 清除所有活动状态
+            Array.from(beatIndicators.children).forEach(dot => {
+                dot.classList.remove('active');
+            });
+
+            // 设置当前节拍为活动
+            const currentDot = beatIndicators.children[index];
+            if (currentDot) {
+                currentDot.classList.add('active');
+            }
+        }
+
+        // 触发闪烁
+        function triggerFlash(strength) {
+            flashOverlay.className = 'flash-overlay active ' + strength;
+            setTimeout(() => {
+                flashOverlay.classList.remove('active');
+            }, 80);
+        }
+
+        // 开始节拍器
+        function start() {
+            initAudio();
+            isPlaying = true;
+            playBtn.classList.add('playing');
+            playBtn.textContent = '■';
+            currentBeat = 0;
+
+            // 立即触发第一拍
+            tick();
+
+            // 设置间隔
+            const interval = 60000 / bpm;
+            intervalId = setInterval(tick, interval);
+        }
+
+        // 停止节拍器
+        function stop() {
+            isPlaying = false;
+            playBtn.classList.remove('playing');
+            playBtn.textContent = '▶';
+
+            if (intervalId) {
+                clearInterval(intervalId);
+                intervalId = null;
+            }
+
+            // 清除视觉效果
+            Array.from(beatIndicators.children).forEach(dot => {
+                dot.classList.remove('active');
+            });
+        }
+
+        // 更新 BPM
+        function updateBPM(newBpm) {
+            bpm = parseInt(newBpm);
+            bpmValue.textContent = bpm;
+            bpmSlider.value = bpm;
+
+            // 如果正在播放，重新设置间隔
+            if (isPlaying) {
+                clearInterval(intervalId);
+                const interval = 60000 / bpm;
+                intervalId = setInterval(tick, interval);
+            }
+        }
+
+        // 事件绑定
+        playBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                stop();
+            } else {
+                start();
+            }
+        });
+
+        bpmSlider.addEventListener('input', (e) => {
+            updateBPM(e.target.value);
+        });
+
+        // BPM 预设
+        document.querySelectorAll('.bpm-preset').forEach(btn => {
+            btn.addEventListener('click', () => {
+                updateBPM(btn.dataset.bpm);
+            });
+        });
+
+        // 拍号选择
+        timeSigBtns.addEventListener('click', (e) => {
+            const btn = e.target.closest('.time-sig-btn');
+            if (!btn) return;
+
+            document.querySelectorAll('.time-sig-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            beatsPerMeasure = parseInt(btn.dataset.beats);
+            currentBeat = 0;
+            createBeatIndicators();
+
+            // 如果正在播放，重启
+            if (isPlaying) {
+                stop();
+                start();
+            }
+        });
+
+        // 音色选择
+        soundBtns.addEventListener('click', (e) => {
+            const btn = e.target.closest('.sound-btn');
+            if (!btn) return;
+
+            document.querySelectorAll('.sound-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            soundType = btn.dataset.sound;
+        });
+
+        // 闪烁开关
+        flashToggle.addEventListener('click', () => {
+            flashEnabled = !flashEnabled;
+            flashToggle.classList.toggle('active', flashEnabled);
+        });
+
+        // 键盘快捷键
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                if (isPlaying) {
+                    stop();
+                } else {
+                    start();
+                }
+            } else if (e.code === 'ArrowUp') {
+                e.preventDefault();
+                updateBPM(Math.min(220, bpm + 5));
+            } else if (e.code === 'ArrowDown') {
+                e.preventDefault();
+                updateBPM(Math.max(40, bpm - 5));
+            }
+        });
+
+        // 初始化
+        createBeatIndicators();
+
+        // 从 localStorage 恢复设置
+        function loadSettings() {
+            const saved = localStorage.getItem('metronomeSettings');
+            if (saved) {
+                try {
+                    const s = JSON.parse(saved);
+                    if (s.bpm) updateBPM(s.bpm);
+                    if (s.beats) {
+                        beatsPerMeasure = s.beats;
+                        document.querySelectorAll('.time-sig-btn').forEach(b => {
+                            b.classList.toggle('active', parseInt(b.dataset.beats) === s.beats);
+                        });
+                        createBeatIndicators();
+                    }
+                    if (s.sound) {
+                        soundType = s.sound;
+                        document.querySelectorAll('.sound-btn').forEach(b => {
+                            b.classList.toggle('active', b.dataset.sound === s.sound);
+                        });
+                    }
+                    if (typeof s.flash === 'boolean') {
+                        flashEnabled = s.flash;
+                        flashToggle.classList.toggle('active', flashEnabled);
+                    }
+                } catch (e) {}
+            }
+        }
+
+        // 保存设置
+        function saveSettings() {
+            localStorage.setItem('metronomeSettings', JSON.stringify({
+                bpm, beats: beatsPerMeasure, sound: soundType, flash: flashEnabled
+            }));
+        }
+
+        // 页面关闭时保存
+        window.addEventListener('beforeunload', saveSettings);
+
+        loadSettings();
+    </script>
+</body>
+</html>
