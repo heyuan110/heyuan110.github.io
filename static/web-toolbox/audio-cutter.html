@@ -1440,12 +1440,38 @@
                 downloadLink.classList.add('show');
 
                 // 清理临时文件（0.11.x API）
-                ffmpeg.FS('unlink', 'input.wav');
-                ffmpeg.FS('unlink', outputFile);
+                try {
+                    ffmpeg.FS('unlink', 'input.wav');
+                    ffmpeg.FS('unlink', outputFile);
+                } catch (e) {
+                    console.warn('清理临时文件失败:', e);
+                }
+
+                // 重置 FFmpeg 状态，以便下次可以重新使用
+                // 单线程版本执行完命令后需要 exit() 才能再次使用
+                try {
+                    ffmpeg.exit();
+                } catch (e) {
+                    console.warn('FFmpeg exit 失败:', e);
+                }
+                ffmpegLoaded = false;
+                ffmpeg = null;
 
                 hideLoading();
             } catch (err) {
                 console.error('剪辑失败:', err);
+
+                // 出错时也要重置 FFmpeg 状态
+                if (ffmpeg) {
+                    try {
+                        ffmpeg.exit();
+                    } catch (e) {
+                        console.warn('FFmpeg exit 失败:', e);
+                    }
+                    ffmpegLoaded = false;
+                    ffmpeg = null;
+                }
+
                 hideLoading();
                 alert('剪辑失败: ' + err.message);
             }
