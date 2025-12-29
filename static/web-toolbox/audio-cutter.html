@@ -1248,11 +1248,46 @@
                 console.log('开始加载 FFmpeg...');
                 const loadStartTime = Date.now();
 
+                // 带进度的文件下载
+                async function fetchWithProgress(url, label) {
+                    const response = await fetch(url);
+                    if (!response.ok) throw new Error(`下载失败: ${url}`);
+
+                    const contentLength = response.headers.get('content-length');
+                    const total = contentLength ? parseInt(contentLength, 10) : 0;
+
+                    if (!response.body || !total) {
+                        return await response.arrayBuffer();
+                    }
+
+                    const reader = response.body.getReader();
+                    const chunks = [];
+                    let received = 0;
+
+                    while (true) {
+                        const { done, value } = await reader.read();
+                        if (done) break;
+                        chunks.push(value);
+                        received += value.length;
+                        const percent = Math.min(100, Math.round((received / total) * 100));
+                        loadingText.textContent = `${label} ${percent}%`;
+                    }
+
+                    // 合并 chunks
+                    const allChunks = new Uint8Array(received);
+                    let position = 0;
+                    for (const chunk of chunks) {
+                        allChunks.set(chunk, position);
+                        position += chunk.length;
+                    }
+                    return allChunks.buffer;
+                }
+
                 // 使用 0.11.x 版本 + 单线程 core（无需 SharedArrayBuffer，兼容性更好）
                 const FFMPEG_VERSION = '0.11.6';
+                const CORE_VERSION = '0.11.1';
                 const ffmpegURL = `https://unpkg.com/@ffmpeg/ffmpeg@${FFMPEG_VERSION}/dist/ffmpeg.min.js`;
-                // 使用单线程版本的 core，不需要 SharedArrayBuffer
-                const coreURL = 'https://unpkg.com/@ffmpeg/core-st@0.11.1/dist/ffmpeg-core.js';
+                const coreBaseURL = `https://unpkg.com/@ffmpeg/core-st@${CORE_VERSION}/dist`;
 
                 // 1. 加载 FFmpeg 主模块
                 loadingText.textContent = '正在加载编码器模块...';
@@ -1269,29 +1304,53 @@
                     });
                 }
 
-                // 2. 创建 FFmpeg 实例（使用单线程 core）
+                // 2. 手动下载 core 文件并显示进度
+                console.log('下载 FFmpeg core 文件...');
+
+                // 下载 ffmpeg-core.js
+                loadingText.textContent = '正在下载核心模块... 0%';
+                const coreJsData = await fetchWithProgress(`${coreBaseURL}/ffmpeg-core.js`, '正在下载核心模块...');
+                const coreJsBlob = new Blob([coreJsData], { type: 'text/javascript' });
+                const coreJsURL = URL.createObjectURL(coreJsBlob);
+                console.log('核心模块下载完成');
+
+                // 下载 ffmpeg-core.wasm（最大，约 25MB）
+                loadingText.textContent = '正在下载 WASM 引擎... 0%';
+                const wasmData = await fetchWithProgress(`${coreBaseURL}/ffmpeg-core.wasm`, '正在下载 WASM 引擎...');
+                const wasmBlob = new Blob([wasmData], { type: 'application/wasm' });
+                const wasmURL = URL.createObjectURL(wasmBlob);
+                console.log('WASM 引擎下载完成');
+
+                // 3. 创建 FFmpeg 实例
                 loadingText.textContent = '正在初始化编码器...';
                 console.log('创建 FFmpeg 实例...');
 
                 const { createFFmpeg, fetchFile: ffmpegFetchFile } = FFmpeg;
 
                 ffmpeg = createFFmpeg({
-                    log: true,
-                    corePath: coreURL,
-                    mainName: 'main'
+                    log: false,
+                    corePath: coreJsURL,
+                    wasmPath: wasmURL,
+                    mainName: 'main',
+                    // 转换进度回调
+                    progress: ({ ratio }) => {
+                        if (ratio >= 0 && ratio <= 1) {
+                            const percent = Math.round(ratio * 100);
+                            loadingText.textContent = `正在转换... ${percent}%`;
+                        }
+                    }
                 });
 
                 // 保存 fetchFile 供后续使用
                 window.ffmpegFetchFile = ffmpegFetchFile;
 
-                // 3. 加载 FFmpeg（会下载 wasm 文件，约 25MB）
-                loadingText.textContent = '正在下载编码器核心（约25MB）...';
-                console.log('加载 FFmpeg core...');
-
+                // 4. 加载 FFmpeg
+                console.log('初始化 FFmpeg...');
                 await ffmpeg.load();
 
                 const totalTime = ((Date.now() - loadStartTime) / 1000).toFixed(1);
                 console.log(`FFmpeg 加载完成，总耗时: ${totalTime}s`);
+                loadingText.textContent = '编码器加载完成';
 
                 ffmpegLoaded = true;
                 return true;
