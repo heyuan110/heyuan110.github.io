@@ -1,6 +1,6 @@
-# Bruce's Blog
+# AI实战与工程笔记
 
-> Bruce的技术博客，分享AI、Claude Code、Java、Go、Docker、Linux等技术文章
+> Bruce 的 AI 实战博客，专注大模型、AI Agent、RAG、Prompt Engineering 与工程化落地
 
 ## 网站信息
 
@@ -9,22 +9,47 @@
 - GitHub: https://github.com/heyuan110
 - X/Twitter: https://x.com/heyuan110
 
-## 主要内容分类
+## 核心内容
 
-- AI系列: AI编程、Claude Code、LLM、Prompt Engineering
-- Java系列: Java基础、Spring Boot、微服务架构
-- Go系列: Go语言学习和实践
-- Docker系列: Docker容器化技术
-- Linux系列: Linux运维、Shell脚本、Nginx配置
+本博客专注于 AI 领域的实战与工程落地：
 
-## 核心主题
+### AI基础与理论
+- 大模型原理与架构
+- 向量数据库与 Embedding
+- Transformer、Attention 机制
+- Token、上下文窗口等核心概念
 
-本博客专注于以下技术领域:
-1. AI和大语言模型应用开发
-2. 后端架构设计与实现
-3. DevOps和云原生技术
-4. 系统设计和源码分析
+### AI工具与工程实战
+- Claude Code 深度使用
+- Cursor、Copilot 等 AI 编程工具
+- MCP Server 开发
+- AI Agent 框架与工程化
+
+### Prompt学习与优化
+- Prompt Engineering 方法论
+- System Prompt 设计
+- Few-shot、Chain of Thought
+- 提示词调优与测试
+
+### AI实战项目案例
+- AI Agent 开发实战
+- RAG 系统构建
+- 智能客服、代码助手
+- 真实项目踩坑记录
+
+## 工具箱
+
+网站还提供 Web Toolbox 在线工具集，包含：
+- JSON 查看器、SQLite 浏览器
+- 图片压缩、格式转换
+- 时间戳转换、正则测试
+- Claude Code 历史记录查看器
+- 更多实用开发工具...
+
+## 归档内容
+
+旧的 Java、Go、Docker、Linux 技术文章仍保留归档，可通过标签访问。
 
 ## 联系方式
 
-如需引用或合作，请通过GitHub或X联系作者。
+如需引用或合作，请通过 GitHub 或 X 联系作者。
