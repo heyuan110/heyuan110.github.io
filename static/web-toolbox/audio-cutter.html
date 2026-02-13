@@ -669,6 +669,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 16px;
             padding: 25px;
+            margin-top: 20px;
             margin-bottom: 20px;
         }
 
@@ -1525,7 +1526,7 @@
                 const FFMPEG_VERSION = '0.11.6';
                 const CORE_VERSION = '0.11.1';
                 const ffmpegURL = `https://unpkg.com/@ffmpeg/ffmpeg@${FFMPEG_VERSION}/dist/ffmpeg.min.js`;
-                const coreBaseURL = `https:
+                const coreBaseURL = `https://unpkg.com/@ffmpeg/core-st@${CORE_VERSION}/dist`;
                 const loadingModuleTexts = {
                     'en': 'Loading encoder module...',
                     'zh-CN': '正在加载编码器模块...',
@@ -1893,6 +1894,7 @@
         const translations = {
             'zh-CN': {
                 'loading': '正在处理...',
+                'tool_name': '音频剪辑',
                 'backHome': '← 返回工具箱',
                 'title': '音频剪辑',
                 'subtitle': '在线可视化音频裁剪，支持多种格式',
@@ -1968,6 +1970,7 @@
             },
             'en': {
                 'loading': 'Processing...',
+                'tool_name': 'Audio Cutter',
                 'backHome': '← Back to Toolbox',
                 'title': 'Audio Cutter',
                 'subtitle': 'Online visual audio trimming, supports multiple formats',
@@ -2043,6 +2046,7 @@
             },
             'fr': {
                 'loading': 'Traitement...',
+                'tool_name': 'Découpeur Audio',
                 'backHome': '← Retour à la boîte à outils',
                 'title': 'Découpeur Audio',
                 'subtitle': 'Découpage audio visuel en ligne, supporte plusieurs formats',
@@ -2118,6 +2122,7 @@
             },
             'es': {
                 'loading': 'Procesando...',
+                'tool_name': 'Cortador de Audio',
                 'backHome': '← Volver a la caja de herramientas',
                 'title': 'Cortador de Audio',
                 'subtitle': 'Recorte de audio visual en línea, soporta múltiples formatos',
@@ -2192,17 +2197,11 @@
                 'trust_free': '🚫 Sin anuncios, sin registro'
             }
         };
-let currentLang = detectLanguage();
-
-
-        document.addEventListener('DOMContentLoaded', function() {
-});
-}
-        });
+        window._audioCutterI18n = translations;
     })();
     </script>
     <script src="common/common.js" data-tool-id="audio-cutter" data-tool-name="Audio Cutter" data-category="media"></script>
-    <script>WebToolbox.init(translations);</script>
+    <script>WebToolbox.init(window._audioCutterI18n);</script>
 
 </body>
 </html>

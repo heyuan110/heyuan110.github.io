@@ -274,6 +274,7 @@
             background: rgba(255, 255, 255, 0.05);
             border-radius: 16px;
             padding: 24px;
+            margin-top: 20px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -622,11 +623,6 @@
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
 <div class="container">
 <div class="header">
             
@@ -746,6 +742,7 @@
         // ==================== 国际化系统 ====================
         const i18n = {
             'en': {
+                tool_name: 'M3U8 Downloader',
                 pageTitle: '🎬 M3U8 Batch Downloader',
                 backToToolbox: '← Back to Toolbox',
                 featurePlayTitle: '100% Free & Private',
@@ -839,6 +836,7 @@
                 trust_free: '🚫 No Ads, No Signup'
             },
             'zh-CN': {
+                tool_name: 'M3U8 批量下载器',
                 pageTitle: '🎬 M3U8批量下载器',
                 backToToolbox: '← 返回工具箱',
                 featurePlayTitle: '100% 免费且安全',
@@ -932,6 +930,7 @@
                 trust_free: '🚫 无广告、无需注册'
             },
             'fr': {
+                tool_name: 'Téléchargeur M3U8',
                 pageTitle: '🎬 Téléchargeur M3U8 par lots',
                 backToToolbox: '← Retour à la boîte à outils',
                 featurePlayTitle: '100% Gratuit et Privé',
@@ -1025,6 +1024,7 @@
                 trust_free: '🚫 Sans pub, sans inscription'
             },
             'es': {
+                tool_name: 'Descargador M3U8',
                 pageTitle: '🎬 Descargador M3U8 por lotes',
                 backToToolbox: '← Volver a la caja de herramientas',
                 featurePlayTitle: '100% Gratis y Privado',
@@ -1224,11 +1224,19 @@
         const MAX_CONCURRENT_DOWNLOADS = 3;
         let activeDownloads = 0;
 
+        // 补全URL协议
+        function normalizeUrl(url) {
+            if (url && !url.startsWith('http://') && !url.startsWith('https://')) {
+                return 'https://' + url;
+            }
+            return url;
+        }
+
         // 添加单个任务
         function addSingleTask() {
             const urlInput = document.getElementById('singleUrl');
             const nameInput = document.getElementById('fileName');
-            const url = urlInput.value.trim();
+            const url = normalizeUrl(urlInput.value.trim());
             const name = nameInput.value.trim();
 
             if (!url) {
@@ -1249,31 +1257,52 @@
         // 批量添加任务
         function addBatchTasks() {
             const textarea = document.getElementById('batchUrls');
-            const lines = textarea.value.trim().split('\n').filter(line => line.trim());
+            const raw = textarea.value.trim();
 
-            if (lines.length === 0) {
+            if (!raw) {
                 alert(t('alertEnterUrl'));
                 return;
             }
 
             let addedCount = 0;
+
+            // 先尝试按行解析（支持 name|url 格式）
+            const lines = raw.split('\n').filter(line => line.trim());
             lines.forEach(line => {
                 line = line.trim();
                 if (!line) return;
 
-                let url, name;
+                // name|url 格式
                 if (line.includes('|')) {
                     const parts = line.split('|');
-                    name = parts[0].trim();
-                    url = parts[1].trim();
-                } else {
-                    url = line;
-                    name = extractFileName(url);
+                    const name = parts[0].trim();
+                    const url = normalizeUrl(parts[1].trim());
+                    if (isValidUrl(url)) {
+                        createTask(url, name);
+                        addedCount++;
+                        return;
+                    }
                 }
 
-                if (isValidUrl(url)) {
-                    createTask(url, name);
+                // 整行是一个有效URL
+                const normalized = normalizeUrl(line);
+                if (isValidUrl(normalized) && /\.m3u8/i.test(normalized)) {
+                    createTask(normalized, extractFileName(normalized));
                     addedCount++;
+                    return;
+                }
+
+                // 从行内文本中提取所有 http(s) URL
+                const urlRegex = /https?:\/\/[^\s"',\]}\)]+/gi;
+                const matches = line.match(urlRegex);
+                if (matches) {
+                    matches.forEach(m => {
+                        const url = m.replace(/["\s]+$/, ''); // 清理尾部引号
+                        if (isValidUrl(url)) {
+                            createTask(url, extractFileName(url));
+                            addedCount++;
+                        }
+                    });
                 }
             });
 
@@ -1309,7 +1338,7 @@
         function isValidUrl(url) {
             try {
                 new URL(url);
-                return url.includes('.m3u8') || url.includes('m3u8');
+                return true;
             } catch {
                 return false;
             }
@@ -1549,6 +1578,7 @@
                     } catch (error) {
                         if (error.name !== 'AbortError') {
                             console.error(`Segment ${index} download failed:`, error);
+                        }
                         throw error;
                     }
                 }
@@ -1755,6 +1785,8 @@
 
             const pendingTask = tasks.find(t => t.status === TaskStatus.PENDING);
             if (pendingTask) {
+                startTask(pendingTask.id);
+            }
         }
 
         // 全部开始
@@ -1983,9 +2015,12 @@
         document.addEventListener('DOMContentLoaded', () => {
             updatePageLanguage();
         });
+
+        // 暴露翻译对象给 common.js
+        window._m3u8DownloaderI18n = i18n;
     </script>
     <script src="common/common.js" data-tool-id="m3u8-downloader" data-tool-name="M3U8 Downloader" data-category="media"></script>
-    <script>WebToolbox.init(i18n);</script>
+    <script>WebToolbox.init(window._m3u8DownloaderI18n);</script>
 
 
     <!-- FAQ 问答区块 -->
@@ -1994,12 +2029,9 @@
     </section>
 
     <!-- 相关工具推荐 -->
-    <section id="relatedToolsSection" class="related-tools" style="max-width: 1200px; margin: 40px auto; padding: 0 20px;">
+    <section id="relatedToolsSection" class="related-tools" style="margin: 40px 0;">
         <!-- 由 JavaScript 动态渲染 -->
     </section>
 
-    <footer id="pageFooter" style="text-align: center; padding: 30px 20px; border-top: 1px solid rgba(255,255,255,0.1); color: #888; font-size: 14px;">
-        <!-- 由 JavaScript 动态渲染 -->
-    </footer>
 </body>
 </html>
