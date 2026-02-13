@@ -112,6 +112,16 @@
     .recording-alert.active{display:inline-flex}
     .rec-dot{width:10px;height:10px;border-radius:50%;background:#ef4444;box-shadow:0 0 0 rgba(239,68,68,.9);animation:recPulse 1.2s ease-out infinite}
     @keyframes recPulse{0%{box-shadow:0 0 0 0 rgba(239,68,68,.8)}70%{box-shadow:0 0 0 10px rgba(239,68,68,0)}100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}}
+    .download-progress{display:none;margin:10px 0 12px;padding:12px;border-radius:10px;border:1px solid rgba(56,189,248,.55);background:linear-gradient(135deg,rgba(14,116,144,.35),rgba(14,116,144,.1));box-shadow:0 0 24px rgba(56,189,248,.22)}
+    .download-progress.active{display:block}
+    .download-progress.error{border-color:rgba(248,113,113,.7);background:linear-gradient(135deg,rgba(127,29,29,.35),rgba(127,29,29,.12));box-shadow:0 0 24px rgba(248,113,113,.2)}
+    .progress-head{display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:13px;margin-bottom:8px}
+    .progress-label{color:#bae6fd;font-weight:600}
+    .download-progress.error .progress-label{color:#fecaca}
+    .progress-pct{color:#e0f2fe;font-family:"JetBrains Mono","SF Mono",Consolas,monospace;font-weight:700}
+    .progress-track{height:10px;border-radius:999px;background:rgba(2,6,23,.8);overflow:hidden;border:1px solid rgba(125,211,252,.28)}
+    .progress-fill{height:100%;width:0%;background:linear-gradient(90deg,#22d3ee,#38bdf8,#0ea5e9);box-shadow:0 0 16px rgba(56,189,248,.5);transition:width .25s ease}
+    .download-progress.error .progress-fill{background:linear-gradient(90deg,#fb7185,#ef4444,#dc2626);box-shadow:0 0 16px rgba(248,113,113,.42)}
     video{width:100%;border:1px solid var(--border);border-radius:10px;background:#020617;min-height:320px}
     .row{display:flex;justify-content:space-between;align-items:center;margin-top:10px}.timer{font-family:"JetBrains Mono","SF Mono",Consolas,monospace;font-size:20px;color:#c4b5fd}
     .status{color:#93c5fd;font-size:13px;min-height:18px}
@@ -148,13 +158,20 @@
       </label>
       <label class="opt"><span data-i18n="format">Format</span>
         <select id="formatSel" class="quality-select">
-          <option value="mp4" data-i18n="formatMp4">MP4</option>
           <option value="webm" data-i18n="formatWebm">WebM</option>
+          <option value="mp4" data-i18n="formatMp4">MP4</option>
         </select>
       </label>
       <button class="btn" id="downloadBtn" data-i18n="download">Download</button>
     </div>
     <div class="recording-alert" id="recordingAlert"><span class="rec-dot" aria-hidden="true"></span><span data-i18n="recordingAlert">REC • Recording in progress</span></div>
+    <div class="download-progress" id="downloadProgress">
+      <div class="progress-head">
+        <span class="progress-label" id="downloadProgressLabel" data-i18n="progressIdle">Ready to download</span>
+        <span class="progress-pct" id="downloadProgressPct">0%</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="downloadProgressBar"></div></div>
+    </div>
     <video id="preview" controls autoplay muted playsinline></video>
     <div class="row"><div class="timer" id="timer">00:00</div><div class="status" id="status"></div></div>
   </section>
@@ -179,10 +196,10 @@
   'use strict';
   var langNames={en:'🇺🇸 English','zh-CN':'🇨🇳 中文',fr:'🇫🇷 Français',es:'🇪🇸 Español'};
   var i18n={
-    en:{back:'Back to Toolbox',title:'Screen Recorder',subtitle:'Record screen online with optional microphone audio',mic:'Include Microphone',start:'Start Recording',pause:'Pause',resume:'Resume',stop:'Stop',quality:'Quality',quality1080:'1080p HD',quality720:'720p',qualitySource:'Source',format:'Format',formatMp4:'MP4',formatWebm:'WebM',download:'Download',downloadWebm:'Download WebM',recordingAlert:'REC • Recording in progress',alreadyRecording:'Recording is already in progress',needStart:'Start recording first',starting:'Requesting screen permission...',recording:'Recording...',paused:'Paused',stopped:'Stopped',downloadReady:'Recording ready. Download MP4 or WebM.',downloading:'Download started',ffLoading:'Loading MP4 engine...',ffReady:'MP4 engine ready',ffFail:'MP4 engine failed to load',convertingStart:'Converting to HD MP4...',converting:'Converting',convertDone:'MP4 is ready for download',convertFail:'MP4 conversion failed',browserUnsupported:'Your browser does not support screen recording',error:'Error',trust_users:'🌍 Used by 50,000+ users',trust_rating:'⭐ 4.9/5 rating',trust_privacy:'🔒 100% Private',trust_free:'🚫 No Ads, No Signup',features_title:'Screen Recorder Features',f1_t:'100% Free & Private',f1_d:'No ads, no signup, no watermark. Everything runs locally in your browser. Your data never leaves your device.',f2_t:'Browser Screen Capture',f2_d:'Record browser tab, application window, or full screen directly online.',f3_t:'Microphone Audio Option',f3_d:'Enable voice recording to create tutorials, demos, and walkthrough videos.',f4_t:'HD MP4 Export',f4_d:'Stop recording and export high-quality MP4 with browser-side conversion.',faq_title:'Frequently Asked Questions',faq1_q:'What is an online screen recorder and how does it work?',faq1_a:'An online screen recorder captures your screen using browser APIs like getDisplayMedia and MediaRecorder. It records video locally and exports file without desktop installation.',faq2_q:'Can I record screen with microphone audio?',faq2_a:'Yes. Enable microphone option before recording to merge voice input with screen capture stream.',faq3_q:'What format is used for download?',faq3_a:'You can choose MP4 or WebM. MP4 is transcoded locally in browser using FFmpeg WebAssembly without server upload.',faq4_q:'Is recording private and local in browser?',faq4_a:'Yes. Screen recording starts only after your explicit permission and runs in browser context with no mandatory account flow.',faq_free_q:'Is this tool really free with no ads?',faq_free_a:'Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser - your data is never uploaded to any server.',related_title:'Related Tools',r1_t:'Audio Cutter',r1_d:'Trim narration audio from recorded videos.',r2_t:'Timestamp Converter',r2_d:'Convert timeline points while editing recordings.',r3_t:'Image to PDF',r3_d:'Turn captured screenshots into shareable PDFs.',r4_t:'PDF Compress',r4_d:'Compress docs created from recording snapshots.'},
-    'zh-CN':{back:'返回工具箱',title:'在线录屏工具',subtitle:'浏览器录制屏幕，可选麦克风音频',mic:'包含麦克风',start:'开始录制',pause:'暂停',resume:'继续',stop:'停止',quality:'清晰度',quality1080:'1080p 高清',quality720:'720p',qualitySource:'原始分辨率',format:'格式',formatMp4:'MP4',formatWebm:'WebM',download:'下载',downloadWebm:'下载 WebM',recordingAlert:'REC • 正在录制中',alreadyRecording:'已经在录制中',needStart:'请先开始录制',starting:'正在请求屏幕权限...',recording:'录制中...',paused:'已暂停',stopped:'已停止',downloadReady:'录制完成，可下载 MP4 或 WebM。',downloading:'已开始下载',ffLoading:'正在加载 MP4 转码引擎...',ffReady:'MP4 转码引擎已就绪',ffFail:'MP4 转码引擎加载失败',convertingStart:'正在转换为高清 MP4...',converting:'转换中',convertDone:'MP4 已生成，可下载',convertFail:'MP4 转换失败',browserUnsupported:'当前浏览器不支持录屏功能',error:'错误',trust_users:'🌍 超过 50,000 用户使用',trust_rating:'⭐ 4.9/5 好评',trust_privacy:'🔒 100% 隐私安全',trust_free:'🚫 无广告、无需注册',features_title:'录屏功能特点',f1_t:'100% 免费且安全',f1_d:'无广告、无需注册、无水印。所有处理都在浏览器本地完成，数据不会上传到任何服务器。',f2_t:'浏览器屏幕采集',f2_d:'可录制标签页、窗口或全屏内容。',f3_t:'麦克风音频可选',f3_d:'支持同步录制讲解声音，适合教程和演示。',f4_t:'高清 MP4 导出',f4_d:'停止后自动转码为高质量 MP4，本地处理不上传。',faq_title:'常见问题',faq1_q:'什么是在线录屏工具？原理是什么？',faq1_a:'在线录屏工具基于 getDisplayMedia 和 MediaRecorder 等浏览器 API 采集画面。录制过程在本地完成，无需安装桌面客户端。',faq2_q:'可以同时录制麦克风吗？',faq2_a:'可以。开始前勾选麦克风选项，即可把语音与屏幕流合并录制。',faq3_q:'下载文件是什么格式？',faq3_a:'支持选择 MP4 或 WebM。MP4 会在浏览器内通过 FFmpeg WebAssembly 本地转码。',faq4_q:'录屏过程是本地和隐私安全吗？',faq4_a:'是的。仅在你授权后才会开始采集，且录制在浏览器上下文执行，无强制账号流程。',faq_free_q:'这个工具真的免费且无广告吗？',faq_free_a:'是的，100% 免费，无广告、无需注册、无水印、无限制。所有处理都在浏览器本地完成，你的数据不会上传到任何服务器。',related_title:'相关工具',r1_t:'音频剪辑',r1_d:'剪辑录屏解说音频。',r2_t:'时间戳转换',r2_d:'编辑视频时换算时间点。',r3_t:'图片转 PDF',r3_d:'把截图整理成 PDF 文档。',r4_t:'PDF 压缩',r4_d:'压缩截图文档体积。'},
-    fr:{back:'Retour à la boite a outils',title:'Enregistreur d ecran',subtitle:'Enregistrer ecran en ligne avec micro optionnel',mic:'Inclure microphone',start:'Demarrer',pause:'Pause',resume:'Reprendre',stop:'Arreter',quality:'Qualite',quality1080:'1080p HD',quality720:'720p',qualitySource:'Source',format:'Format',formatMp4:'MP4',formatWebm:'WebM',download:'Telecharger',downloadWebm:'Telecharger WebM',recordingAlert:'REC • Enregistrement en cours',alreadyRecording:'Enregistrement deja en cours',needStart:'Demarrez d abord',starting:'Demande autorisation ecran...',recording:'Enregistrement...',paused:'En pause',stopped:'Arrete',downloadReady:'Enregistrement pret. Telechargez MP4 ou WebM.',downloading:'Telechargement lance',ffLoading:'Chargement du moteur MP4...',ffReady:'Moteur MP4 pret',ffFail:'Echec du chargement moteur MP4',convertingStart:'Conversion vers MP4 HD...',converting:'Conversion',convertDone:'MP4 pret au telechargement',convertFail:'Echec conversion MP4',browserUnsupported:'Navigateur non compatible avec capture ecran',error:'Erreur',trust_users:'🌍 Utilise par 50 000+ utilisateurs',trust_rating:'⭐ Note 4.9/5',trust_privacy:'🔒 100% Prive',trust_free:'🚫 Sans pub, sans inscription',features_title:'Fonctions enregistreur ecran',f1_t:'100% Gratuit et Prive',f1_d:'Sans publicite, sans inscription, sans filigrane. Tout est traite localement dans votre navigateur.',f2_t:'Capture navigateur',f2_d:'Enregistrez onglet, fenetre ou plein ecran.',f3_t:'Option micro',f3_d:'Ajoutez votre voix pour tutoriels et demonstrations.',f4_t:'Export MP4 HD',f4_d:'Arretez puis exportez un MP4 haute qualite avec conversion locale navigateur.',faq_title:'Questions frequentes',faq1_q:'Qu est ce qu un screen recorder en ligne ?',faq1_a:'Un screen recorder en ligne capture l ecran via APIs navigateur comme getDisplayMedia et MediaRecorder. L enregistrement se fait localement sans installation desktop.',faq2_q:'Puis je enregistrer avec microphone ?',faq2_a:'Oui. Activez l option microphone avant demarrage pour fusionner voix et video.',faq3_q:'Quel format est telecharge ?',faq3_a:'Vous pouvez choisir MP4 ou WebM. Le MP4 est transcode localement dans le navigateur via FFmpeg WebAssembly.',faq4_q:'Le traitement est il prive et local ?',faq4_a:'Oui. La capture demarre apres votre autorisation et fonctionne dans le navigateur sans compte obligatoire.',faq_free_q:'Cet outil est-il vraiment gratuit et sans pub ?',faq_free_a:'Oui, 100% gratuit, sans publicite, sans inscription, sans filigrane et sans limites. Tout est traite localement dans votre navigateur - vos donnees ne sont jamais televersees.',related_title:'Outils associes',r1_t:'Editeur audio',r1_d:'Couper l audio enregistre.',r2_t:'Convertisseur timestamp',r2_d:'Convertir points temporels.',r3_t:'Image vers PDF',r3_d:'Assembler captures en PDF.',r4_t:'Compresseur PDF',r4_d:'Compresser documents de captures.'},
-    es:{back:'Volver a la caja de herramientas',title:'Grabador de pantalla',subtitle:'Graba pantalla en linea con microfono opcional',mic:'Incluir microfono',start:'Iniciar grabacion',pause:'Pausar',resume:'Reanudar',stop:'Detener',quality:'Calidad',quality1080:'1080p HD',quality720:'720p',qualitySource:'Origen',format:'Formato',formatMp4:'MP4',formatWebm:'WebM',download:'Descargar',downloadWebm:'Descargar WebM',recordingAlert:'REC • Grabando ahora',alreadyRecording:'La grabacion ya esta en curso',needStart:'Primero inicia la grabacion',starting:'Solicitando permiso de pantalla...',recording:'Grabando...',paused:'En pausa',stopped:'Detenido',downloadReady:'Grabacion lista. Descarga MP4 o WebM.',downloading:'Descarga iniciada',ffLoading:'Cargando motor MP4...',ffReady:'Motor MP4 listo',ffFail:'Error al cargar motor MP4',convertingStart:'Convirtiendo a MP4 HD...',converting:'Convirtiendo',convertDone:'MP4 listo para descargar',convertFail:'Fallo al convertir MP4',browserUnsupported:'Tu navegador no soporta grabacion de pantalla',error:'Error',trust_users:'🌍 Usado por mas de 50,000 usuarios',trust_rating:'⭐ Calificacion 4.9/5',trust_privacy:'🔒 100% Privado',trust_free:'🚫 Sin anuncios, sin registro',features_title:'Funciones del grabador',f1_t:'100% Gratis y Privado',f1_d:'Sin anuncios, sin registro, sin marca de agua. Todo se procesa localmente en tu navegador.',f2_t:'Captura en navegador',f2_d:'Graba pestana, ventana o pantalla completa.',f3_t:'Microfono opcional',f3_d:'Anade voz para tutoriales y demos.',f4_t:'Exportacion MP4 HD',f4_d:'Deten la grabacion y exporta MP4 de alta calidad con conversion local.',faq_title:'Preguntas frecuentes',faq1_q:'¿Que es un screen recorder online y como funciona?',faq1_a:'Un screen recorder online captura pantalla usando APIs de navegador como getDisplayMedia y MediaRecorder. La grabacion se realiza localmente sin instalar apps.',faq2_q:'¿Puedo grabar con microfono?',faq2_a:'Si. Activa la opcion de microfono antes de iniciar para combinar voz con video de pantalla.',faq3_q:'¿Que formato se descarga?',faq3_a:'Puedes elegir MP4 o WebM. El MP4 se transcodifica localmente en el navegador con FFmpeg WebAssembly.',faq4_q:'¿Es privado y local en navegador?',faq4_a:'Si. La captura empieza tras tu permiso explicito y corre en navegador sin flujo de cuenta obligatorio.',faq_free_q:'¿Esta herramienta es realmente gratis y sin anuncios?',faq_free_a:'Si, 100% gratis, sin anuncios, sin registro, sin marca de agua y sin limites. Todo el procesamiento ocurre localmente en tu navegador: tus datos nunca se suben a ningun servidor.',related_title:'Herramientas relacionadas',r1_t:'Editor de audio',r1_d:'Recorta audio de narracion.',r2_t:'Convertidor timestamp',r2_d:'Convierte tiempos para edicion.',r3_t:'Imagen a PDF',r3_d:'Convierte capturas en PDF.',r4_t:'Compresor PDF',r4_d:'Reduce tamano de documentos de capturas.'}
+    en:{back:'Back to Toolbox',title:'Screen Recorder',subtitle:'Record screen online with optional microphone audio',mic:'Include Microphone',start:'Start Recording',pause:'Pause',resume:'Resume',stop:'Stop',quality:'Quality',quality1080:'1080p HD',quality720:'720p',qualitySource:'Source',format:'Format',formatMp4:'MP4',formatWebm:'WebM',download:'Download',downloadWebm:'Download WebM',progressIdle:'Ready to download',progressPreparing:'Preparing file...',progressConverting:'Converting to MP4',progressComplete:'Download ready',progressFailed:'Conversion failed',progressWebmDone:'WebM download started',recordingAlert:'REC • Recording in progress',alreadyRecording:'Recording is already in progress',needStart:'Start recording first',starting:'Requesting screen permission...',recording:'Recording...',paused:'Paused',stopped:'Stopped',downloadReady:'Recording ready. Download MP4 or WebM.',downloading:'Download started',ffLoading:'Loading MP4 engine...',ffReady:'MP4 engine ready',ffFail:'MP4 engine failed to load',convertingStart:'Converting to HD MP4...',converting:'Converting',convertDone:'MP4 is ready for download',convertFail:'MP4 conversion failed',browserUnsupported:'Your browser does not support screen recording',error:'Error',trust_users:'🌍 Used by 50,000+ users',trust_rating:'⭐ 4.9/5 rating',trust_privacy:'🔒 100% Private',trust_free:'🚫 No Ads, No Signup',features_title:'Screen Recorder Features',f1_t:'100% Free & Private',f1_d:'No ads, no signup, no watermark. Everything runs locally in your browser. Your data never leaves your device.',f2_t:'Browser Screen Capture',f2_d:'Record browser tab, application window, or full screen directly online.',f3_t:'Microphone Audio Option',f3_d:'Enable voice recording to create tutorials, demos, and walkthrough videos.',f4_t:'HD MP4 Export',f4_d:'Stop recording and export high-quality MP4 with browser-side conversion.',faq_title:'Frequently Asked Questions',faq1_q:'What is an online screen recorder and how does it work?',faq1_a:'An online screen recorder captures your screen using browser APIs like getDisplayMedia and MediaRecorder. It records video locally and exports file without desktop installation.',faq2_q:'Can I record screen with microphone audio?',faq2_a:'Yes. Enable microphone option before recording to merge voice input with screen capture stream.',faq3_q:'What format is used for download?',faq3_a:'You can choose MP4 or WebM. MP4 is transcoded locally in browser using FFmpeg WebAssembly without server upload.',faq4_q:'Is recording private and local in browser?',faq4_a:'Yes. Screen recording starts only after your explicit permission and runs in browser context with no mandatory account flow.',faq_free_q:'Is this tool really free with no ads?',faq_free_a:'Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser - your data is never uploaded to any server.',related_title:'Related Tools',r1_t:'Audio Cutter',r1_d:'Trim narration audio from recorded videos.',r2_t:'Timestamp Converter',r2_d:'Convert timeline points while editing recordings.',r3_t:'Image to PDF',r3_d:'Turn captured screenshots into shareable PDFs.',r4_t:'PDF Compress',r4_d:'Compress docs created from recording snapshots.'},
+    'zh-CN':{back:'返回工具箱',title:'在线录屏工具',subtitle:'浏览器录制屏幕，可选麦克风音频',mic:'包含麦克风',start:'开始录制',pause:'暂停',resume:'继续',stop:'停止',quality:'清晰度',quality1080:'1080p 高清',quality720:'720p',qualitySource:'原始分辨率',format:'格式',formatMp4:'MP4',formatWebm:'WebM',download:'下载',downloadWebm:'下载 WebM',progressIdle:'准备下载',progressPreparing:'正在准备文件...',progressConverting:'正在转码 MP4',progressComplete:'下载文件已准备好',progressFailed:'转码失败',progressWebmDone:'WebM 已开始下载',recordingAlert:'REC • 正在录制中',alreadyRecording:'已经在录制中',needStart:'请先开始录制',starting:'正在请求屏幕权限...',recording:'录制中...',paused:'已暂停',stopped:'已停止',downloadReady:'录制完成，可下载 MP4 或 WebM。',downloading:'已开始下载',ffLoading:'正在加载 MP4 转码引擎...',ffReady:'MP4 转码引擎已就绪',ffFail:'MP4 转码引擎加载失败',convertingStart:'正在转换为高清 MP4...',converting:'转换中',convertDone:'MP4 已生成，可下载',convertFail:'MP4 转换失败',browserUnsupported:'当前浏览器不支持录屏功能',error:'错误',trust_users:'🌍 超过 50,000 用户使用',trust_rating:'⭐ 4.9/5 好评',trust_privacy:'🔒 100% 隐私安全',trust_free:'🚫 无广告、无需注册',features_title:'录屏功能特点',f1_t:'100% 免费且安全',f1_d:'无广告、无需注册、无水印。所有处理都在浏览器本地完成，数据不会上传到任何服务器。',f2_t:'浏览器屏幕采集',f2_d:'可录制标签页、窗口或全屏内容。',f3_t:'麦克风音频可选',f3_d:'支持同步录制讲解声音，适合教程和演示。',f4_t:'高清 MP4 导出',f4_d:'停止后自动转码为高质量 MP4，本地处理不上传。',faq_title:'常见问题',faq1_q:'什么是在线录屏工具？原理是什么？',faq1_a:'在线录屏工具基于 getDisplayMedia 和 MediaRecorder 等浏览器 API 采集画面。录制过程在本地完成，无需安装桌面客户端。',faq2_q:'可以同时录制麦克风吗？',faq2_a:'可以。开始前勾选麦克风选项，即可把语音与屏幕流合并录制。',faq3_q:'下载文件是什么格式？',faq3_a:'支持选择 MP4 或 WebM。MP4 会在浏览器内通过 FFmpeg WebAssembly 本地转码。',faq4_q:'录屏过程是本地和隐私安全吗？',faq4_a:'是的。仅在你授权后才会开始采集，且录制在浏览器上下文执行，无强制账号流程。',faq_free_q:'这个工具真的免费且无广告吗？',faq_free_a:'是的，100% 免费，无广告、无需注册、无水印、无限制。所有处理都在浏览器本地完成，你的数据不会上传到任何服务器。',related_title:'相关工具',r1_t:'音频剪辑',r1_d:'剪辑录屏解说音频。',r2_t:'时间戳转换',r2_d:'编辑视频时换算时间点。',r3_t:'图片转 PDF',r3_d:'把截图整理成 PDF 文档。',r4_t:'PDF 压缩',r4_d:'压缩截图文档体积。'},
+    fr:{back:'Retour à la boite a outils',title:'Enregistreur d ecran',subtitle:'Enregistrer ecran en ligne avec micro optionnel',mic:'Inclure microphone',start:'Demarrer',pause:'Pause',resume:'Reprendre',stop:'Arreter',quality:'Qualite',quality1080:'1080p HD',quality720:'720p',qualitySource:'Source',format:'Format',formatMp4:'MP4',formatWebm:'WebM',download:'Telecharger',downloadWebm:'Telecharger WebM',progressIdle:'Pret a telecharger',progressPreparing:'Preparation du fichier...',progressConverting:'Conversion MP4 en cours',progressComplete:'Telechargement pret',progressFailed:'Echec de conversion',progressWebmDone:'Telechargement WebM lance',recordingAlert:'REC • Enregistrement en cours',alreadyRecording:'Enregistrement deja en cours',needStart:'Demarrez d abord',starting:'Demande autorisation ecran...',recording:'Enregistrement...',paused:'En pause',stopped:'Arrete',downloadReady:'Enregistrement pret. Telechargez MP4 ou WebM.',downloading:'Telechargement lance',ffLoading:'Chargement du moteur MP4...',ffReady:'Moteur MP4 pret',ffFail:'Echec du chargement moteur MP4',convertingStart:'Conversion vers MP4 HD...',converting:'Conversion',convertDone:'MP4 pret au telechargement',convertFail:'Echec conversion MP4',browserUnsupported:'Navigateur non compatible avec capture ecran',error:'Erreur',trust_users:'🌍 Utilise par 50 000+ utilisateurs',trust_rating:'⭐ Note 4.9/5',trust_privacy:'🔒 100% Prive',trust_free:'🚫 Sans pub, sans inscription',features_title:'Fonctions enregistreur ecran',f1_t:'100% Gratuit et Prive',f1_d:'Sans publicite, sans inscription, sans filigrane. Tout est traite localement dans votre navigateur.',f2_t:'Capture navigateur',f2_d:'Enregistrez onglet, fenetre ou plein ecran.',f3_t:'Option micro',f3_d:'Ajoutez votre voix pour tutoriels et demonstrations.',f4_t:'Export MP4 HD',f4_d:'Arretez puis exportez un MP4 haute qualite avec conversion locale navigateur.',faq_title:'Questions frequentes',faq1_q:'Qu est ce qu un screen recorder en ligne ?',faq1_a:'Un screen recorder en ligne capture l ecran via APIs navigateur comme getDisplayMedia et MediaRecorder. L enregistrement se fait localement sans installation desktop.',faq2_q:'Puis je enregistrer avec microphone ?',faq2_a:'Oui. Activez l option microphone avant demarrage pour fusionner voix et video.',faq3_q:'Quel format est telecharge ?',faq3_a:'Vous pouvez choisir MP4 ou WebM. Le MP4 est transcode localement dans le navigateur via FFmpeg WebAssembly.',faq4_q:'Le traitement est il prive et local ?',faq4_a:'Oui. La capture demarre apres votre autorisation et fonctionne dans le navigateur sans compte obligatoire.',faq_free_q:'Cet outil est-il vraiment gratuit et sans pub ?',faq_free_a:'Oui, 100% gratuit, sans publicite, sans inscription, sans filigrane et sans limites. Tout est traite localement dans votre navigateur - vos donnees ne sont jamais televersees.',related_title:'Outils associes',r1_t:'Editeur audio',r1_d:'Couper l audio enregistre.',r2_t:'Convertisseur timestamp',r2_d:'Convertir points temporels.',r3_t:'Image vers PDF',r3_d:'Assembler captures en PDF.',r4_t:'Compresseur PDF',r4_d:'Compresser documents de captures.'},
+    es:{back:'Volver a la caja de herramientas',title:'Grabador de pantalla',subtitle:'Graba pantalla en linea con microfono opcional',mic:'Incluir microfono',start:'Iniciar grabacion',pause:'Pausar',resume:'Reanudar',stop:'Detener',quality:'Calidad',quality1080:'1080p HD',quality720:'720p',qualitySource:'Origen',format:'Formato',formatMp4:'MP4',formatWebm:'WebM',download:'Descargar',downloadWebm:'Descargar WebM',progressIdle:'Listo para descargar',progressPreparing:'Preparando archivo...',progressConverting:'Convirtiendo a MP4',progressComplete:'Descarga lista',progressFailed:'Conversion fallida',progressWebmDone:'Descarga WebM iniciada',recordingAlert:'REC • Grabando ahora',alreadyRecording:'La grabacion ya esta en curso',needStart:'Primero inicia la grabacion',starting:'Solicitando permiso de pantalla...',recording:'Grabando...',paused:'En pausa',stopped:'Detenido',downloadReady:'Grabacion lista. Descarga MP4 o WebM.',downloading:'Descarga iniciada',ffLoading:'Cargando motor MP4...',ffReady:'Motor MP4 listo',ffFail:'Error al cargar motor MP4',convertingStart:'Convirtiendo a MP4 HD...',converting:'Convirtiendo',convertDone:'MP4 listo para descargar',convertFail:'Fallo al convertir MP4',browserUnsupported:'Tu navegador no soporta grabacion de pantalla',error:'Error',trust_users:'🌍 Usado por mas de 50,000 usuarios',trust_rating:'⭐ Calificacion 4.9/5',trust_privacy:'🔒 100% Privado',trust_free:'🚫 Sin anuncios, sin registro',features_title:'Funciones del grabador',f1_t:'100% Gratis y Privado',f1_d:'Sin anuncios, sin registro, sin marca de agua. Todo se procesa localmente en tu navegador.',f2_t:'Captura en navegador',f2_d:'Graba pestana, ventana o pantalla completa.',f3_t:'Microfono opcional',f3_d:'Anade voz para tutoriales y demos.',f4_t:'Exportacion MP4 HD',f4_d:'Deten la grabacion y exporta MP4 de alta calidad con conversion local.',faq_title:'Preguntas frecuentes',faq1_q:'¿Que es un screen recorder online y como funciona?',faq1_a:'Un screen recorder online captura pantalla usando APIs de navegador como getDisplayMedia y MediaRecorder. La grabacion se realiza localmente sin instalar apps.',faq2_q:'¿Puedo grabar con microfono?',faq2_a:'Si. Activa la opcion de microfono antes de iniciar para combinar voz con video de pantalla.',faq3_q:'¿Que formato se descarga?',faq3_a:'Puedes elegir MP4 o WebM. El MP4 se transcodifica localmente en el navegador con FFmpeg WebAssembly.',faq4_q:'¿Es privado y local en navegador?',faq4_a:'Si. La captura empieza tras tu permiso explicito y corre en navegador sin flujo de cuenta obligatorio.',faq_free_q:'¿Esta herramienta es realmente gratis y sin anuncios?',faq_free_a:'Si, 100% gratis, sin anuncios, sin registro, sin marca de agua y sin limites. Todo el procesamiento ocurre localmente en tu navegador: tus datos nunca se suben a ningun servidor.',related_title:'Herramientas relacionadas',r1_t:'Editor de audio',r1_d:'Recorta audio de narracion.',r2_t:'Convertidor timestamp',r2_d:'Convierte tiempos para edicion.',r3_t:'Imagen a PDF',r3_d:'Convierte capturas en PDF.',r4_t:'Compresor PDF',r4_d:'Reduce tamano de documentos de capturas.'}
   };
 
   var currentLang=localStorage.getItem('screen_recorder_lang')||'en';
@@ -216,6 +233,11 @@
   var downloadBtn=document.getElementById('downloadBtn');
   var qualitySel=document.getElementById('qualitySel');
   var formatSel=document.getElementById('formatSel');
+  var downloadProgress=document.getElementById('downloadProgress');
+  var downloadProgressLabel=document.getElementById('downloadProgressLabel');
+  var downloadProgressPct=document.getElementById('downloadProgressPct');
+  var downloadProgressBar=document.getElementById('downloadProgressBar');
+  var progressHideTimer=null;
 
   function t(k){
     var d=i18n[currentLang]||i18n.en;
@@ -230,6 +252,9 @@
     document.querySelectorAll('[data-i18n]').forEach(function(el){
       el.textContent=t(el.getAttribute('data-i18n'));
     });
+    if(!downloadProgress.classList.contains('active')){
+      downloadProgressLabel.textContent=t('progressIdle');
+    }
   }
 
   function setStatus(v){
@@ -240,6 +265,47 @@
     if(!err){return '';}
     if(typeof err==='string'){return err;}
     return err.message||String(err);
+  }
+
+  function clearProgressTimer(){
+    if(progressHideTimer){
+      clearTimeout(progressHideTimer);
+      progressHideTimer=null;
+    }
+  }
+
+  function setDownloadProgress(percent,label,active,isError){
+    var pct=Math.max(0,Math.min(100,Math.round(percent)));
+    if(typeof active==='boolean'){
+      downloadProgress.classList.toggle('active',active);
+    }
+    downloadProgress.classList.toggle('error',!!isError);
+    downloadProgressBar.style.width=pct+'%';
+    downloadProgressPct.textContent=pct+'%';
+    if(label){
+      downloadProgressLabel.textContent=label;
+    }
+  }
+
+  function resetDownloadProgress(){
+    clearProgressTimer();
+    setDownloadProgress(0,t('progressIdle'),false,false);
+  }
+
+  function completeDownloadProgress(label){
+    clearProgressTimer();
+    setDownloadProgress(100,label||t('progressComplete'),true,false);
+    progressHideTimer=setTimeout(function(){
+      setDownloadProgress(0,t('progressIdle'),false,false);
+    },1600);
+  }
+
+  function failDownloadProgress(label){
+    clearProgressTimer();
+    setDownloadProgress(100,label||t('progressFailed'),true,true);
+    progressHideTimer=setTimeout(function(){
+      setDownloadProgress(0,t('progressIdle'),false,false);
+    },2600);
   }
 
   function fmt(sec){
@@ -266,6 +332,9 @@
     startBtn.disabled=active;
     qualitySel.disabled=active;
     formatSel.disabled=active;
+    if(active){
+      resetDownloadProgress();
+    }
   }
 
   function refreshTransportButtons(){
@@ -387,6 +456,7 @@
         recordToken++;
         invalidateMp4Cache();
         setStatus(t('downloadReady'));
+        resetDownloadProgress();
         setRecordingUI(false);
         refreshTransportButtons();
       };
@@ -457,7 +527,6 @@
     }
 
     ffmpegLoadingPromise=(async function(){
-      setStatus(t('ffLoading'));
       var ffmpegPkg=await import('https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/esm/index.js');
       var utilPkg=await import('https://cdn.jsdelivr.net/npm/@ffmpeg/util@0.12.1/dist/esm/index.js');
       var ffmpegWorkerEntry='https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/esm/worker.js';
@@ -473,6 +542,7 @@
           var progress=evt&&typeof evt.progress==='number'?evt.progress:0;
           var pct=Math.max(0,Math.min(100,Math.round(progress*100)));
           setStatus(t('converting')+' '+pct+'%');
+          setDownloadProgress(pct,t('progressConverting'),true,false);
         }
       });
 
@@ -485,7 +555,6 @@
 
       ffmpegInstance=ffmpeg;
       ffmpegUtils={fetchFile:utilPkg.fetchFile};
-      setStatus(t('ffReady'));
       return ffmpegInstance;
     })().catch(function(err){
       ffmpegLoadingPromise=null;
@@ -493,7 +562,6 @@
         URL.revokeObjectURL(ffmpegClassWorkerUrl);
         ffmpegClassWorkerUrl='';
       }
-      setStatus(t('ffFail')+': '+safeMessage(err));
       throw err;
     });
 
@@ -538,9 +606,12 @@
       return mp4Blob;
     }
 
+    setStatus(t('ffLoading'));
+    setDownloadProgress(10,t('ffLoading'),true,false);
     var ffmpeg=await ensureFFmpeg();
     var lastError=null;
     setStatus(t('convertingStart'));
+    setDownloadProgress(15,t('progressConverting'),true,false);
     isConverting=true;
 
     try{
@@ -576,9 +647,11 @@
       mp4Token=recordToken;
       mp4Quality=quality;
       setStatus(t('convertDone'));
+      completeDownloadProgress(t('progressComplete'));
       return mp4Blob;
     }catch(err){
       setStatus(t('convertFail')+': '+safeMessage(err));
+      failDownloadProgress(t('progressFailed'));
       throw err;
     }finally{
       isConverting=false;
@@ -608,8 +681,10 @@
     if(!recordUrl){
       recordUrl=URL.createObjectURL(rawBlob);
     }
+    setDownloadProgress(35,t('progressPreparing'),true,false);
     downloadUrl(recordUrl,'screen-recording-'+Date.now()+'.webm');
     setStatus(t('downloading'));
+    completeDownloadProgress(t('progressWebmDone'));
   }
 
   async function downloadRecording(){
@@ -622,11 +697,14 @@
       return;
     }
 
-    downloadBtn.disabled=true;
     try{
-      var format=formatSel.value||'mp4';
+      var format=formatSel.value||'webm';
       if(format==='webm'){
         downloadWebm();
+        return;
+      }
+      if(isConverting){
+        setStatus(t('converting'));
         return;
       }
       var quality=qualitySel.value||'hd1080';
@@ -635,8 +713,20 @@
       setStatus(t('downloading'));
     }catch(err){
       setStatus(t('convertFail')+': '+safeMessage(err));
-    }finally{
-      downloadBtn.disabled=false;
+      failDownloadProgress(t('progressFailed'));
+    }
+  }
+
+  function preloadFfmpegInBackground(){
+    var doPreload=function(){
+      ensureFFmpeg().catch(function(err){
+        console.warn('[screen-recorder] background ffmpeg preload failed:',safeMessage(err));
+      });
+    };
+    if('requestIdleCallback' in window){
+      window.requestIdleCallback(doPreload,{timeout:5000});
+    }else{
+      setTimeout(doPreload,1200);
     }
   }
 
@@ -659,6 +749,9 @@
   });
   document.addEventListener('click',function(){
     document.getElementById('langDropdown').classList.remove('open');
+  });
+  formatSel.addEventListener('change',function(){
+    downloadBtn.disabled=false;
   });
   document.querySelectorAll('.faq-q').forEach(function(btn){
     btn.addEventListener('click',function(){
@@ -685,6 +778,8 @@
   applyLanguage(currentLang);
   setRecordingUI(false);
   refreshTransportButtons();
+  resetDownloadProgress();
+  preloadFfmpegInBackground();
 })();
 </script>
 </body>
