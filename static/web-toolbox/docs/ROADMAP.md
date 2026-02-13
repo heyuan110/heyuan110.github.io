@@ -10,13 +10,13 @@
 
 | 指标 | 数量 |
 |------|------|
-| 已上线工具 | 56 个 |
-| 待开发工具 | 6 个 |
+| 已上线工具 | 58 个 |
+| 待开发工具 | 4 个 |
 | 目标总计 | 62+ 个 |
 
 ---
 
-## 已上线工具清单（56 个）
+## 已上线工具清单（58 个）
 
 | # | 工具名称 | 文件 | 分类 | 上线时间 |
 |---|---------|------|------|---------|
@@ -76,6 +76,8 @@
 | 54 | PDF 加密/解密 | pdf-protect.html | PDF/安全 | 2026-02-13 |
 | 55 | 文件格式转换中心 | file-converter.html | 文件 | 2026-02-13 |
 | 56 | 图片水印工具 | watermark-tool.html | 图片 | 2026-02-13 |
+| 57 | 天使数字计算器 | angel-number.html | 占卜/神秘学 | 2026-02-13 |
+| 58 | 命理计算器 | numerology.html | 占卜/神秘学 | 2026-02-13 |
 
 ---
 
@@ -88,8 +90,8 @@
 
 | # | 工具名称 | 文件名 | 月搜索量级 | 难度 | 核心技术 | SEO 关键词 |
 |---|---------|--------|-----------|------|---------|-----------|
-| 57 | 天使数字计算器 | angel-number.html | 十万级 | ⭐ | 纯 JS 数学运算 | angel number calculator, what is my angel number |
-| 58 | 命理计算器（生命灵数） | numerology.html | 十万级 | ⭐ | 纯 JS 数学运算 | life path number calculator, numerology free |
+| ~~57~~ | ~~天使数字计算器~~ | ~~angel-number.html~~ | ~~十万级~~ | ~~⭐~~ | ~~纯 JS 数学运算~~ | ~~已上线 ✅~~ |
+| ~~58~~ | ~~命理计算器（生命灵数）~~ | ~~numerology.html~~ | ~~十万级~~ | ~~⭐~~ | ~~纯 JS 数学运算~~ | ~~已上线 ✅~~ |
 | 59 | 星座配对计算器 | zodiac-compatibility.html | 百万级 | ⭐ | 纯 JS 逻辑匹配 | zodiac compatibility, love compatibility calculator |
 | 60 | 塔罗牌在线占卜 | tarot-reading.html | 百万级 | ⭐⭐ | JS 随机 + CSS 翻牌动画 + 牌义 JSON | free tarot reading online, tarot card reading no signup |
 | 61 | 塔罗牌义百科 | tarot-guide.html | 十万级 | ⭐⭐ | 78 张牌数据 + 搜索/筛选 | tarot card meanings, learn tarot free |
@@ -160,9 +162,9 @@ Phase 1 ✅ → Phase 2 ✅ → Phase 3 ✅ → Phase 4 ✅ → Phase 5 ✅ → 
 - [x] 文件格式转换中心 (file-converter.html)
 - [x] 图片水印工具 (watermark-tool.html)
 
-### Phase 8 — 🔲 占卜/神秘学工具
-- [ ] 天使数字计算器 (angel-number.html)
-- [ ] 命理计算器 (numerology.html)
+### Phase 8 — 🔲 占卜/神秘学工具（2/6 已完成）
+- [x] 天使数字计算器 (angel-number.html)
+- [x] 命理计算器 (numerology.html)
 - [ ] 星座配对计算器 (zodiac-compatibility.html)
 - [ ] 塔罗牌在线占卜 (tarot-reading.html)
 - [ ] 塔罗牌义百科 (tarot-guide.html)
