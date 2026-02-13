@@ -32,19 +32,26 @@
 
 **Header（common.js 自动注入，禁止手写）：**
 - 面包屑导航（左）：`Home › Web Toolbox › {Category} › {ToolName}`
+- 面包屑中的 Home、Web Toolbox、Category 由 common.js 内置 `COMMON_I18N` 提供 4 语翻译
+- 面包屑最后一项（工具名）使用 `data-i18n="tool_name"` 自动翻译，需工具翻译中提供 `tool_name` 键
 - 语言切换器（右）：4 语下拉菜单
 - 禁止在 HTML 中手写 `<nav>` 返回链接、`lang-dropdown`、`lang-switcher` 等元素
 - 禁止在 JS 中手写 `langDropdown`、`langCurrent` 相关事件绑定
 
 **Footer（common.js 自动注入，禁止手写）：**
-- 类目导航栏（`category-nav`）：7 类入口，当前类目高亮
-- 版权行（`site-footer`）：`© 2024-2026 heyuan110. All rights reserved.`
+- 类目导航栏（`category-nav`）：7 类入口，当前类目高亮，标签文案由 `COMMON_I18N` 提供 4 语翻译
+- 版权行（`site-footer`）：`© 2024-2026 heyuan110. All rights reserved.`，由 `COMMON_I18N` 提供 4 语翻译
 - 禁止在 HTML 中手写 `<footer>` 或版权信息
 
 **Related Tools（各工具自己写内容，必须用 common.css class）：**
 - 使用 `.related-tools` > `.related-grid` > `.related-card` 结构
 - 3-5 个相关工具内链，内容因工具而异
 - 禁止 inline style，统一使用 common.css 提供的 class
+
+**FAQ 手风琴交互（common.js 自动绑定，禁止手写）：**
+- common.js 的 `bindFaqAccordion()` 自动绑定 `.faq-question` 点击事件
+- 工具只需按 `.faq-item` > `.faq-question` + 答案内容结构编写 HTML
+- 禁止在工具 JS 中手写 FAQ 展开/收起逻辑
 
 **Container 对齐规则：**
 - `.container` 必须 `max-width: 1200px; padding: 40px;`
@@ -77,6 +84,11 @@
 - 翻译定义在 IIFE 内部时，必须通过 `window._xxxI18n = translations;` 暴露
 - 工具内部 `t()` 函数使用 `WebToolbox.getCurrentLang()` 获取当前语言，禁止自定义 `currentLang` 变量
 
+**工具翻译必须包含 `tool_name` 键（强制）：**
+- 每个工具的 4 语言翻译对象中必须包含 `tool_name` 键，用于面包屑工具名的多语言显示
+- `tool_name` 值为工具短名称（不含副标题/营销语），如：`'File Converter'` / `'文件格式转换'`
+- `data-tool-name` 属性值作为英文默认值，`tool_name` 提供各语言翻译覆盖
+
 ### 1) 页面基础要求
 
 - 必须为支持浅色和深色主题、默认是浅色、响应式设计（桌面/平板/手机）。
@@ -89,11 +101,17 @@
 
 每个工具必须支持：`en`、`zh-CN`、`fr`、`es`。
 
-- 文本：`data-i18n="key"`
-- placeholder：`data-i18n-placeholder="key"`
-- 语言切换器由 `common.js` 自动注入（禁止手写）
-- `localStorage` 统一键名：`toolbox_lang`（由 common.js 管理）
+**工具翻译职责（工具开发者负责）：**
+- 文本元素：`data-i18n="key"` → common.js 的 `applyTranslations()` 自动替换 innerHTML
+- placeholder：`data-i18n-placeholder="key"` → 自动替换 placeholder 属性
+- 翻译对象必须包含 `tool_name` 键（详见规则 0）
 - 默认语言：English (`en`)
+
+**以下由 common.js 统管（禁止工具手写）：**
+- 语言切换器 UI 及交互事件
+- `localStorage` 键名 `toolbox_lang` 的读写
+- 公共 UI 翻译（面包屑、类目导航、版权）通过 `COMMON_I18N` 内置
+- 语言检测与旧键名迁移
 
 ### 3) SEO Head（强制）
 
@@ -118,11 +136,11 @@
 
 ### 5) 页面可见 SEO 区块（强制）
 
-在主体功能区后，必须有：
+在主体功能区后，必须有（均在 `.container` 内部）：
 
 1. `features-section`（4 张卡，grid，自适应）
-2. `faq-section`（≥5 问答，手风琴交互）
-3. `related-tools`（3-5 个相关工具内链）
+2. `faq-section`（≥5 问答，手风琴交互由 common.js 自动绑定）
+3. `related-tools`（3-5 个相关工具内链，结构与样式详见规则 0 Related Tools）
 
 ### 6) 痛点关键词埋词（强制）
 
@@ -139,17 +157,18 @@
 
 ### 7) Trust Bar（强制）
 
-功能区与 features 之间必须有 `trust-bar`，包含 4 项文案键：
+功能区与 features 之间必须有 Trust Bar，使用 common.css 类名 `.trust-bar` > `.trust-item`。
+
+包含 4 项文案键（工具翻译中提供 4 语）：
 
 - `trust_users`
 - `trust_rating`
 - `trust_privacy`
 - `trust_free`
 
-并提供 4 语言翻译。
-
 ### 8) FAQ 深度与热词（强制）
 
+- HTML 结构：`.faq-item` > `.faq-question`（按钮）+ 答案容器，手风琴交互由 common.js 自动绑定
 - 每条 FAQ 答案必须有解释深度（建议 3-8 句），不能是空泛一句话。
 - 至少 1 条 FAQ 必须是基础科普（What is X / X 是什么，有什么用）。
 - FAQ 与 JSON-LD FAQPage 必须语义一致。
@@ -186,7 +205,8 @@ features 第一张卡必须是“100% Free & Private”卖点（含无广告、�
 - [ ] **公共结构**：无手写 header/footer/语言切换器，全部由 common.js 注入
 - [ ] **公共结构**：container `max-width:1200px; padding:40px`，与 header 对齐
 - [ ] **公共结构**：related-tools 使用 common.css class（禁止 inline style）
-- [ ] 4 语言完整，语言切换与持久化正常
+- [ ] **公共结构**：翻译对象包含 `tool_name` 键（4 语），面包屑工具名可翻译
+- [ ] 4 语言完整，语言切换与持久化正常（含公共 UI：面包屑、类目导航、版权）
 - [ ] SEO Head 标签齐全
 - [ ] JSON-LD 四件套齐全
 - [ ] features/faq/related 三个可见区块齐全

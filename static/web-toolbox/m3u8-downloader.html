@@ -45,8 +45,8 @@
         "featureList": ["No ads", "No signup required", "100% browser-based", "Unlimited usage"],
         "author": {"@type": "Person", "name": "heyuan110"},
         "publisher": {"@type": "Organization", "name": "Web Toolbox", "url": "https://www.heyuan110.com/web-toolbox/"},
-        "screenshot": "https://www.heyuan110.com/web-toolbox/screenshots/m3u8-downloader.webp"
-        "alternateName": ["M3U8视频下载器", "HLS Video Downloader", "M3U8 Stream Saver"],
+        "screenshot": "https://www.heyuan110.com/web-toolbox/screenshots/m3u8-downloader.webp",
+        "alternateName": ["M3U8视频下载器", "HLS Video Downloader", "M3U8 Stream Saver"]
     }
     </script>
 
@@ -127,6 +127,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 40px;
         }
 
         .header {
@@ -1119,7 +1120,8 @@
         };
 // 获取翻译文本
         function t(key, params = {}) {
-            let text = i18n[currentLang]?.[key] || i18n['en'][key] || key;
+            var lang = (typeof WebToolbox !== 'undefined') ? WebToolbox.getCurrentLang() : 'en';
+            let text = i18n[lang]?.[key] || i18n['en'][key] || key;
             Object.keys(params).forEach(param => {
                 text = text.replace(`{${param}}`, params[param]);
             });
@@ -1144,42 +1146,13 @@
                 el.placeholder = t(key);
             });
 
-            // 更新语言切换器当前显示
-document.getElementById('langCurrent').textContent = langNames[currentLang] || '🌐 English';
-
             // 重新渲染任务列表和FAQ等动态内容
             renderTasks();
             updateTaskCount();
             renderFAQ();
             renderRelatedTools();
-            renderFooter();
         }
 
-        // 初始化语言切换器
-        function initLanguageSwitcher() {
-            const dropdown = document.getElementById('langDropdown');
-            const current = document.getElementById('langCurrent');
-
-            current.addEventListener('click', (e) => {
-                e.stopPropagation();
-                dropdown.classList.toggle('active');
-            });
-
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const lang = btn.getAttribute('data-lang');
-                    currentLang = lang;
-                    localStorage.setItem('toolbox_lang', lang);
-                    dropdown.classList.remove('active');
-                    updatePageLanguage();
-                });
-            });
-
-            document.addEventListener('click', () => {
-                dropdown.classList.remove('active');
-            });
-        }
 
         // 渲染FAQ
         function renderFAQ() {
@@ -1235,20 +1208,6 @@ document.getElementById('langCurrent').textContent = langNames[currentLang] || '
             `;
         }
 
-        // 渲染页脚
-        function renderFooter() {
-            const footer = document.getElementById('pageFooter');
-            if (!footer) return;
-
-            footer.innerHTML = `
-                <p>${t('footerText')}</p>
-                <p style="margin-top: 12px;">
-                    <a href="index.html" style="color: #00d9ff; text-decoration: none;">${t('footerBackHome')}</a>
-                    <span style="margin: 0 12px;">|</span>
-                    <a href="https://github.com/heyuan110" target="_blank" rel="noopener" style="color: #00d9ff; text-decoration: none;">GitHub</a>
-                </p>
-            `;
-        }
         const TaskStatus = {
             PENDING: 'pending',
             DOWNLOADING: 'downloading',
@@ -2022,7 +1981,6 @@ document.getElementById('langCurrent').textContent = langNames[currentLang] || '
 
         // 初始化
         document.addEventListener('DOMContentLoaded', () => {
-            initLanguageSwitcher();
             updatePageLanguage();
         });
     </script>
@@ -2031,7 +1989,7 @@ document.getElementById('langCurrent').textContent = langNames[currentLang] || '
 
 
     <!-- FAQ 问答区块 -->
-    <section id="faqSection" class="faq-section" style="max-width: 1200px; margin: 40px auto; padding: 0 20px;">
+    <section id="faqSection" class="faq-section" style="margin: 40px 0;">
         <!-- 由 JavaScript 动态渲染 -->
     </section>
 
