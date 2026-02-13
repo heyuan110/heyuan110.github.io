@@ -40,8 +40,12 @@
         "description": "Online WebSocket connection testing and debugging tool",
         "applicationCategory": "DeveloperApplication",
         "operatingSystem": "Web Browser",
+        "featureList": ["No ads", "No signup required", "100% browser-based", "Unlimited usage", "No watermark"],
         "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
-        "author": {"@type": "Person", "name": "heyuan110"}
+        "author": {"@type": "Person", "name": "heyuan110"},
+        "alternateName": ["WebSocket测试器", "WS Tester", "WebSocket Client"],
+        "publisher": {"@type": "Organization", "name": "Web Toolbox", "url": "https://www.heyuan110.com/web-toolbox/"},
+        "screenshot": "https://www.heyuan110.com/web-toolbox/screenshots/websocket-tester.webp"
     }
     </script>
 
@@ -123,27 +127,7 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-
-        /* 返回首页 */
-        .back-home {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: #a1a1aa;
-            text-decoration: none;
-            font-size: 0.85rem;
-            padding: 8px 12px;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-            margin-bottom: 20px;
-        }
-
-        .back-home:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-        }
-
-        /* 头部 */
+/* 头部 */
         header {
             text-align: center;
             margin-bottom: 30px;
@@ -182,17 +166,7 @@
             font-family: 'Monaco', 'Menlo', monospace;
         }
 
-        /* 语言切换器 */
-        .lang-switcher { position: absolute; top: 0; right: 0; }
-        .lang-dropdown { position: relative; display: inline-block; }
-        .lang-current { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 14px; color: #e0e0e0; transition: all 0.3s ease; }
-        .lang-current:hover { background: rgba(255,255,255,0.15); }
-        .lang-menu { position: absolute; top: 100%; right: 0; margin-top: 4px; background: #1e1e2e; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 4px; min-width: 140px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; z-index: 1000; }
-        .lang-dropdown.active .lang-menu { opacity: 1; visibility: visible; transform: translateY(0); }
-        .lang-btn { display: block; width: 100%; padding: 10px 16px; background: none; border: none; color: #e0e0e0; font-size: 14px; text-align: left; cursor: pointer; border-radius: 6px; transition: background 0.2s ease; }
-        .lang-btn:hover { background: rgba(255,255,255,0.1); }
-
-        /* 主布局 */
+        .lang-dropdown.active /* 主布局 */
         .main-layout {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -872,40 +846,18 @@
             font-size: 0.8rem;
             color: #a78bfa;
         }
-        .trust-bar {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
-            margin: 12px 0 24px;
-            padding: 12px 20px;
-            background: rgba(124, 58, 237, 0.1);
-            border: 1px solid rgba(124, 58, 237, 0.2);
-            border-radius: 12px;
-        }
-        .trust-item {
-            font-size: 13px;
-            color: #a78bfa;
-            white-space: nowrap;
-        }
-    </style>
+        </style>
+    <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-home" data-i18n="backHome">← Back to Toolbox Home</a>
+[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
+            }
 
-        <header>
-            <div class="lang-switcher">
-                <div class="lang-dropdown" id="langDropdown">
-                    <div class="lang-current" id="langCurrent">🌐 English</div>
-                    <div class="lang-menu">
-                        <button class="lang-btn" data-lang="en">🇺🇸 English</button>
-                        <button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button>
-                        <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
-                        <button class="lang-btn" data-lang="es">🇪🇸 Español</button>
-                    </div>
-                </div>
-            </div>
+    
+        </style>
+<div class="container">
+<header>
+            
             <h1 data-i18n="pageTitle">🔌 WebSocket Online Tester</h1>
             <p data-i18n="pageSubtitle">HTML5 WebSocket-based online debugging tool, supports internal and external connection testing</p>
             <div class="tips">
@@ -1452,7 +1404,7 @@
             setLang(lang) {
                 if (this.translations[lang]) {
                     this.currentLang = lang;
-                    localStorage.setItem('websocket-tester-lang', lang);
+                    localStorage.setItem('toolbox_lang', lang);
                     this.updateUI();
                 }
             },
@@ -1482,7 +1434,7 @@
 
             init() {
                 // 从 localStorage 读取保存的语言设置
-                const savedLang = localStorage.getItem('websocket-tester-lang');
+                const savedLang = localStorage.getItem('toolbox_lang');
                 if (savedLang && this.translations[savedLang]) {
                     this.currentLang = savedLang;
                 } else {
@@ -1523,10 +1475,6 @@
 
         // 初始化 i18n
         i18n.init();
-
-        // ==================== WebSocket 模块 ====================
-
-        // WebSocket 实例
         let ws = null;
         let connectedAt = null;
         let timerInterval = null;
@@ -1704,9 +1652,6 @@
                 const parsed = JSON.parse(content);
                 displayContent = JSON.stringify(parsed, null, 2);
             } catch(e) {
-                // 不是 JSON，保持原样
-            }
-
             entry.innerHTML = `
                 <span class="time">${time}</span>
                 <span class="direction">[${direction}]</span>
@@ -1827,6 +1772,9 @@
             }
         });
     </script>
+    <script src="common/common.js" data-tool-id="websocket-tester" data-tool-name="WebSocket Tester" data-category="developer"></script>
+    <script>WebToolbox.init(i18n);</script>
+
 
     <!-- FAQ 常见问题 -->
     <section class="faq-section" style="max-width: 1000px; margin: 40px auto 0; padding: 24px;">
@@ -1856,41 +1804,5 @@
             <div class="faq-answer" data-i18n="faqFreeA">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</div>
         </div>
     </section>
-
-    <!-- 相关工具推荐 -->
-    <section class="related-tools" style="max-width: 1000px; margin: 40px auto; padding: 0 20px;">
-        <h3 style="color: #f0f0f0; font-size: 18px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #333;" data-i18n="relatedTools">🔗 Related Tools</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
-            <a href="json-viewer.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                <div style="font-size: 24px; margin-bottom: 8px;">{ }</div>
-                <div style="color: #f0f0f0; font-weight: 500;" data-i18n="jsonViewer">JSON Viewer</div>
-                <div style="color: #94a3b8; font-size: 12px; margin-top: 4px;" data-i18n="jsonViewerDesc">JSON formatting and visualization</div>
-            </a>
-            <a href="crypto-tools.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                <div style="font-size: 24px; margin-bottom: 8px;">🔐</div>
-                <div style="color: #f0f0f0; font-weight: 500;" data-i18n="cryptoTools">Crypto Toolbox</div>
-                <div style="color: #94a3b8; font-size: 12px; margin-top: 4px;" data-i18n="cryptoToolsDesc">Base64/MD5/AES etc.</div>
-            </a>
-            <a href="ip-lookup.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                <div style="font-size: 24px; margin-bottom: 8px;">🌐</div>
-                <div style="color: #f0f0f0; font-weight: 500;" data-i18n="ipLookup">IP Lookup</div>
-                <div style="color: #94a3b8; font-size: 12px; margin-top: 4px;" data-i18n="ipLookupDesc">Query IP geolocation</div>
-            </a>
-            <a href="regex-tester.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                <div style="font-size: 24px; margin-bottom: 8px;">🔍</div>
-                <div style="color: #f0f0f0; font-weight: 500;" data-i18n="regexTester">Regex Tester</div>
-                <div style="color: #94a3b8; font-size: 12px; margin-top: 4px;" data-i18n="regexTesterDesc">Online regex matching and debugging</div>
-            </a>
-        </div>
-    </section>
-
-    <footer style="text-align: center; padding: 30px 20px; border-top: 1px solid #333; color: #94a3b8; font-size: 14px;">
-        <p data-i18n="footerNote">Pure frontend processing, data will not be uploaded to server</p>
-        <p style="margin-top: 12px;">
-            <a href="index.html" style="color: #7c3aed; text-decoration: none;" data-i18n="footerBackHome">← Back to Web Toolbox Home</a>
-            <span style="margin: 0 12px;">|</span>
-            <a href="https://github.com/heyuan110" target="_blank" rel="noopener" style="color: #7c3aed; text-decoration: none;">GitHub</a>
-        </p>
-    </footer>
 </body>
 </html>

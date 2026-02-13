@@ -219,31 +219,9 @@
         a { color: #a78bfa; text-decoration: none; }
         a:hover { color: #c4b5fd; }
 
-        /* 语言切换器 */
-        .lang-switcher { position: fixed; top: 20px; right: 20px; z-index: 1000; }
-        .lang-dropdown { position: relative; display: inline-block; }
-        .lang-current { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 14px; color: #e0e0e0; transition: all 0.3s ease; user-select: none; }
-        .lang-current:hover { background: rgba(255,255,255,0.15); }
-        .lang-menu { position: absolute; top: 100%; right: 0; margin-top: 4px; background: #1e1e2e; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 4px; min-width: 140px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; z-index: 1000; }
-        .lang-dropdown.active .lang-menu { opacity: 1; visibility: visible; transform: translateY(0); }
-        .lang-btn { display: block; width: 100%; padding: 10px 16px; background: none; border: none; color: #e0e0e0; font-size: 14px; text-align: left; cursor: pointer; border-radius: 6px; transition: background 0.2s ease; }
-        .lang-btn:hover { background: rgba(255,255,255,0.1); }
-
-        /* 返回链接 */
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: #a78bfa;
-            font-size: 14px;
-            margin-bottom: 20px;
-            transition: color 0.3s;
-        }
-        .back-link:hover { color: #c4b5fd; }
-
-        /* 页面容器 */
+        .lang-dropdown.active /* 页面容器 */
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
@@ -609,36 +587,10 @@
             margin-bottom: 20px;
             text-align: center;
         }
-        .related-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 14px;
-        }
         @media (max-width: 768px) {
-            .related-grid { grid-template-columns: repeat(2, 1fr); }
-        }
+            }
         @media (max-width: 480px) {
-            .related-grid { grid-template-columns: 1fr; }
-        }
-        .related-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            background: rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px;
-            padding: 24px 16px;
-            text-decoration: none;
-            transition: transform 0.2s, border-color 0.3s;
-        }
-        .related-card:hover {
-            transform: translateY(-3px);
-            border-color: rgba(124,58,237,0.4);
-        }
-        .related-icon {
-            font-size: 2rem;
-        }
+            }
         .related-card span {
             font-size: 14px;
             font-weight: 600;
@@ -667,53 +619,17 @@
             transform: translateX(-50%) translateY(0);
         }
 
-        /* 页脚 */
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.06);
-            color: #52525b;
-            font-size: 13px;
-        }
-.trust-bar {
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    flex-wrap: wrap;
-    margin: 12px 0 24px;
-    padding: 12px 20px;
-    background: rgba(124, 58, 237, 0.1);
-    border: 1px solid rgba(124, 58, 237, 0.2);
-    border-radius: 12px;
-}
-.trust-item {
-    font-size: 13px;
-    color: #a78bfa;
-    white-space: nowrap;
-}
-    </style>
+        </style>
+    <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
+[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
+            }
 
-    <!-- 语言切换器 -->
-    <div class="lang-switcher">
-        <div class="lang-dropdown" id="langDropdown">
-            <div class="lang-current" id="langCurrent">🌐 English</div>
-            <div class="lang-menu">
-                <button class="lang-btn" data-lang="en">🇺🇸 English</button>
-                <button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button>
-                <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
-                <button class="lang-btn" data-lang="es">🇪🇸 Español</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <!-- 返回链接 -->
-        <a href="index.html" class="back-link">← <span data-i18n="backHome">Back to Toolbox</span></a>
-
-        <!-- 标题 -->
+    
+        </style>
+<div class="container">
+<!-- 标题 -->
         <div class="header">
             <h1 data-i18n="title">Word Counter</h1>
             <p data-i18n="subtitle">Count words, characters, sentences, paragraphs. Estimate reading time and analyze keyword density.</p>
@@ -1166,19 +1082,7 @@
                 trust_free: '🚫 Sin anuncios, sin registro'
             }
         };
-
-        // 语言名称映射（用于语言切换器显示）
-        const langNames = {
-            en: '🌐 English',
-            'zh-CN': '🌐 中文',
-            fr: '🌐 Français',
-            es: '🌐 Español'
-        };
-
-        // 当前语言
-        let currentLang = localStorage.getItem('wordcnt_lang') || 'en';
-
-        // ========== DOM 元素引用 ==========
+// ========== DOM 元素引用 ==========
         const textInput = document.getElementById('textInput');
         const statChars = document.getElementById('statChars');
         const statCharsNoSpace = document.getElementById('statCharsNoSpace');
@@ -1189,62 +1093,6 @@
         const readingTimeValue = document.getElementById('readingTimeValue');
         const keywordList = document.getElementById('keywordList');
         const toastEl = document.getElementById('toast');
-        const langDropdown = document.getElementById('langDropdown');
-        const langCurrent = document.getElementById('langCurrent');
-
-        // ========== 国际化函数 ==========
-        function applyLanguage(lang) {
-            currentLang = lang;
-            localStorage.setItem('wordcnt_lang', lang);
-            const data = i18nData[lang] || i18nData.en;
-
-            // 更新所有 data-i18n 元素的文本
-            document.querySelectorAll('[data-i18n]').forEach(function(el) {
-                var key = el.getAttribute('data-i18n');
-                if (data[key] !== undefined) {
-                    el.textContent = data[key];
-                }
-            });
-
-            // 更新所有 data-i18n-placeholder 元素的 placeholder
-            document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
-                var key = el.getAttribute('data-i18n-placeholder');
-                if (data[key] !== undefined) {
-                    el.placeholder = data[key];
-                }
-            });
-
-            // 更新语言切换器显示
-            langCurrent.textContent = langNames[lang] || langNames.en;
-
-            // 更新 HTML lang 属性
-            document.documentElement.lang = lang === 'zh-CN' ? 'zh-CN' : lang;
-
-            // 重新渲染统计（更新阅读时间的文字）
-            updateStats();
-        }
-
-        // ========== 语言切换器事件 ==========
-        langCurrent.addEventListener('click', function(e) {
-            e.stopPropagation();
-            langDropdown.classList.toggle('active');
-        });
-
-        document.querySelectorAll('.lang-btn').forEach(function(btn) {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                var lang = this.getAttribute('data-lang');
-                applyLanguage(lang);
-                langDropdown.classList.remove('active');
-            });
-        });
-
-        // 点击其他区域关闭下拉菜单
-        document.addEventListener('click', function() {
-            langDropdown.classList.remove('active');
-        });
-
-        // ========== 常用停用词（多语言） ==========
         var stopWords = new Set([
             // 英文停用词
             'the','a','an','and','or','but','in','on','at','to','for','of','with','by',
@@ -1272,10 +1120,6 @@
             'esta','estos','estas','ese','esa','esos','esas','yo','tú','él','ella',
             'nosotros','vosotros','ellos','ellas'
         ]);
-
-        // ========== 统计函数 ==========
-
-        // 判断是否是 CJK 字符（中日韩统一表意文字）
         function isCJK(char) {
             var code = char.charCodeAt(0);
             return (code >= 0x4E00 && code <= 0x9FFF)   // CJK 基本区
@@ -1504,10 +1348,6 @@
                 return prefix + char.toUpperCase();
             });
         }
-
-        // ========== 事件绑定 ==========
-
-        // 实时统计
         textInput.addEventListener('input', updateStats);
 
         // 复制文本
@@ -1580,17 +1420,6 @@
             updateStats();
             showToast(data.cleared);
         });
-
-        // ========== FAQ 手风琴交互 ==========
-        document.querySelectorAll('.faq-question').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                var item = this.closest('.faq-item');
-                var isActive = item.classList.contains('active');
-                // 关闭所有其他 FAQ 项
-                document.querySelectorAll('.faq-item').forEach(function(el) {
-                    el.classList.remove('active');
-                });
-                // 如果当前项之前未激活，则激活它
                 if (!isActive) {
                     item.classList.add('active');
                 }
@@ -1598,10 +1427,12 @@
         });
 
         // ========== 初始化 ==========
-        applyLanguage(currentLang);
-        updateStats();
+updateStats();
 
     })();
     </script>
+    <script src="common/common.js" data-tool-id="word-counter" data-tool-name="Word Counter" data-category="text"></script>
+    <script>WebToolbox.init({});</script>
+
 </body>
 </html>

@@ -37,13 +37,17 @@
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": "Audio Cutter",
+        "alternateName": ["音频剪切器", "Online Audio Trimmer", "MP3 Cutter"],
         "url": "https://www.heyuan110.com/web-toolbox/audio-cutter.html",
         "description": "Online visual audio cutting tool, supports multiple audio formats",
         "applicationCategory": "MultimediaApplication",
         "operatingSystem": "Web Browser",
         "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
         "featureList": ["No ads", "No signup required", "100% browser-based", "Unlimited usage"],
-        "author": {"@type": "Person", "name": "heyuan110"}
+        "author": {"@type": "Person", "name": "heyuan110"},
+        "publisher": {"@type": "Organization", "name": "Web Toolbox", "url": "https://www.heyuan110.com/web-toolbox/"},
+        "screenshot": "https://www.heyuan110.com/web-toolbox/screenshots/audio-cutter.webp"
+        "alternateName": ["音频剪切器", "Online Audio Trimmer", "MP3 Cutter"],
     }
     </script>
 
@@ -121,31 +125,11 @@
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 30px 20px;
+            padding: 40px 40px;
         }
-
-        /* 返回按钮 */
-        .back-home {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: #a1a1aa;
-            text-decoration: none;
-            font-size: 0.9rem;
-            padding: 8px 16px;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-            margin-bottom: 20px;
-        }
-
-        .back-home:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-        }
-
-        /* 标题 */
+/* 标题 */
         header {
             text-align: center;
             margin-bottom: 30px;
@@ -167,75 +151,7 @@
             font-size: 0.95rem;
         }
 
-        /* 语言切换器 */
-        .lang-switcher {
-            position: absolute;
-            top: 0;
-            right: 0;
-        }
-
-        .lang-dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .lang-current {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 8px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            color: #e0e0e0;
-            transition: all 0.3s ease;
-        }
-
-        .lang-current:hover {
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .lang-menu {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            margin-top: 4px;
-            background: #1e1e2e;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            padding: 4px;
-            min-width: 140px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .lang-dropdown.active .lang-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .lang-btn {
-            display: block;
-            width: 100%;
-            padding: 10px 16px;
-            background: none;
-            border: none;
-            color: #e0e0e0;
-            font-size: 14px;
-            text-align: left;
-            cursor: pointer;
-            border-radius: 6px;
-            transition: background 0.2s ease;
-        }
-
-        .lang-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        /* 主面板 */
+        .lang-dropdown.active /* 主面板 */
         .editor-panel {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -857,56 +773,29 @@
                 align-items: center;
             }
 
-            .lang-switcher {
-                position: static;
-                margin-bottom: 15px;
-            }
-
             header {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
             }
         }
-        .trust-bar {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
-            margin: 12px 0 24px;
-            padding: 12px 20px;
-            background: rgba(124, 58, 237, 0.1);
-            border: 1px solid rgba(124, 58, 237, 0.2);
-            border-radius: 12px;
-        }
-        .trust-item {
-            font-size: 13px;
-            color: #a78bfa;
-            white-space: nowrap;
-        }
-    </style>
+        </style>
+    <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-    <div class="loading-overlay" id="loadingOverlay">
+[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
+            }
+
+    
+        </style>
+<div class="loading-overlay" id="loadingOverlay">
         <div class="loading-spinner"></div>
         <div class="loading-text" id="loadingText" data-i18n="loading">Processing...</div>
     </div>
 
     <div class="container">
-        <a href="index.html" class="back-home" data-i18n="backHome">← Back to Toolbox</a>
-
-        <header>
-            <div class="lang-switcher">
-                <div class="lang-dropdown" id="langDropdown">
-                    <div class="lang-current" id="langCurrent">🌐 English</div>
-                    <div class="lang-menu">
-                        <button class="lang-btn" data-lang="en">🇺🇸 English</button>
-                        <button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button>
-                        <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
-                        <button class="lang-btn" data-lang="es">🇪🇸 Español</button>
-                    </div>
-                </div>
-            </div>
+<header>
+            
             <h1 data-i18n="title">Audio Cutter</h1>
             <p class="subtitle" data-i18n="subtitle">Online visual audio trimming, supports multiple formats</p>
         </header>
@@ -1641,9 +1530,7 @@
                 const FFMPEG_VERSION = '0.11.6';
                 const CORE_VERSION = '0.11.1';
                 const ffmpegURL = `https://unpkg.com/@ffmpeg/ffmpeg@${FFMPEG_VERSION}/dist/ffmpeg.min.js`;
-                const coreBaseURL = `https://unpkg.com/@ffmpeg/core-st@${CORE_VERSION}/dist`;
-
-                // 1. 加载 FFmpeg 主模块
+                const coreBaseURL = `https:
                 const loadingModuleTexts = {
                     'en': 'Loading encoder module...',
                     'zh-CN': '正在加载编码器模块...',
@@ -1904,9 +1791,6 @@
                 } catch (e) {
                     console.warn('Failed to clean temp files:', e);
                 }
-
-                // 重置 FFmpeg 状态，以便下次可以重新使用
-                // 单线程版本执行完命令后需要 exit() 才能再次使用
                 try {
                     ffmpeg.exit();
                 } catch (e) {
@@ -2313,126 +2197,17 @@
                 'trust_free': '🚫 Sin anuncios, sin registro'
             }
         };
+let currentLang = detectLanguage();
 
-        const langNames = {
-            'en': '🇺🇸 English',
-            'zh-CN': '🇨🇳 中文',
-            'fr': '🇫🇷 Français',
-            'es': '🇪🇸 Español'
-        };
-
-        function detectLanguage() {
-            const saved = localStorage.getItem('toolbox_lang');
-            if (saved && translations[saved]) return saved;
-            const browserLang = navigator.language || navigator.userLanguage;
-            if (browserLang.startsWith('zh')) return 'zh-CN';
-            if (browserLang.startsWith('fr')) return 'fr';
-            if (browserLang.startsWith('es')) return 'es';
-            return 'en';
-        }
-
-        let currentLang = detectLanguage();
-
-        function applyTranslations(lang) {
-            const t = translations[lang] || translations['en'];
-            document.documentElement.lang = lang === 'zh-CN' ? 'zh-CN' : lang;
-
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (t[key]) el.innerHTML = t[key];
-            });
-
-            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-                const key = el.getAttribute('data-i18n-placeholder');
-                if (t[key]) el.placeholder = t[key];
-            });
-
-            document.querySelectorAll('[data-i18n-title]').forEach(el => {
-                const key = el.getAttribute('data-i18n-title');
-                if (t[key]) el.title = t[key];
-            });
-
-            const langCurrent = document.getElementById('langCurrent');
-            if (langCurrent) langCurrent.textContent = langNames[lang] || langNames['en'];
-
-            // 更新格式说明
-            if (typeof getFormatNote === 'function' && typeof selectedFormat !== 'undefined') {
-                const exportNoteEl = document.getElementById('exportNote');
-                if (exportNoteEl) {
-                    exportNoteEl.textContent = getFormatNote(selectedFormat);
-                }
-            }
-        }
-
-        function switchLanguage(lang) {
-            currentLang = lang;
-            localStorage.setItem('toolbox_lang', lang);
-            applyTranslations(lang);
-            const dropdown = document.getElementById('langDropdown');
-            if (dropdown) dropdown.classList.remove('active');
-        }
 
         document.addEventListener('DOMContentLoaded', function() {
-            applyTranslations(currentLang);
-
-            const langCurrent = document.getElementById('langCurrent');
-            const langDropdown = document.getElementById('langDropdown');
-
-            if (langCurrent && langDropdown) {
-                langCurrent.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    langDropdown.classList.toggle('active');
-                });
-
-                document.querySelectorAll('.lang-btn').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const lang = this.getAttribute('data-lang');
-                        switchLanguage(lang);
-                    });
-                });
-
-                document.addEventListener('click', function() {
-                    langDropdown.classList.remove('active');
-                });
-            }
+});
+}
         });
     })();
     </script>
+    <script src="common/common.js" data-tool-id="audio-cutter" data-tool-name="Audio Cutter" data-category="media"></script>
+    <script>WebToolbox.init(translations);</script>
 
-    <!-- 相关工具推荐 -->
-    <section class="related-tools" style="max-width: 1000px; margin: 40px auto; padding: 0 20px;">
-        <h3 style="color: #f0f0f0; font-size: 18px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #333;" data-i18n="relatedTools">🔗 Related Tools</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
-            <a href="m3u8-downloader.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                <div style="font-size: 24px; margin-bottom: 8px;">🎬</div>
-                <div style="color: #f0f0f0; font-weight: 500;" data-i18n="m3u8Title">M3U8 Video Download</div>
-                <div style="color: #94a3b8; font-size: 12px; margin-top: 4px;" data-i18n="m3u8Desc">Download M3U8 streaming videos</div>
-            </a>
-            <a href="image-compressor.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                <div style="font-size: 24px; margin-bottom: 8px;">📦</div>
-                <div style="color: #f0f0f0; font-weight: 500;" data-i18n="imageCompressorTitle">Image Compressor</div>
-                <div style="color: #94a3b8; font-size: 12px; margin-top: 4px;" data-i18n="imageCompressorDesc">Batch compress image files</div>
-            </a>
-            <a href="social-video-downloader.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                <div style="font-size: 24px; margin-bottom: 8px;">📱</div>
-                <div style="color: #f0f0f0; font-weight: 500;" data-i18n="socialVideoTitle">X/TikTok Video Download</div>
-                <div style="color: #94a3b8; font-size: 12px; margin-top: 4px;" data-i18n="socialVideoDesc">Download social media videos</div>
-            </a>
-            <a href="metronome.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                <div style="font-size: 24px; margin-bottom: 8px;">🎵</div>
-                <div style="color: #f0f0f0; font-weight: 500;" data-i18n="metronomeTitle">Online Metronome</div>
-                <div style="color: #94a3b8; font-size: 12px; margin-top: 4px;" data-i18n="metronomeDesc">Music practice metronome</div>
-            </a>
-        </div>
-    </section>
-
-    <footer style="text-align: center; padding: 30px 20px; border-top: 1px solid #333; color: #94a3b8; font-size: 14px;">
-        <p data-i18n="footerPrivacy">Pure frontend processing, audio will not be uploaded to server</p>
-        <p style="margin-top: 12px;">
-            <a href="index.html" style="color: #7c3aed; text-decoration: none;" data-i18n="footerBack">← Back to Web Toolbox Home</a>
-            <span style="margin: 0 12px;">|</span>
-            <a href="https://github.com/heyuan110" target="_blank" rel="noopener" style="color: #7c3aed; text-decoration: none;">GitHub</a>
-        </p>
-    </footer>
 </body>
 </html>

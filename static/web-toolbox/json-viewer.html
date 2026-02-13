@@ -41,8 +41,12 @@
         "description": "Online JSON formatting, syntax highlighting, visualization tool",
         "applicationCategory": "DeveloperApplication",
         "operatingSystem": "Web Browser",
+        "featureList": ["No ads", "No signup required", "100% browser-based", "Unlimited usage", "No watermark"],
         "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
         "author": {"@type": "Person", "name": "heyuan110"},
+        "alternateName": ["JSON查看器", "JSON Formatter", "JSON Pretty Print"],
+        "publisher": {"@type": "Organization", "name": "Web Toolbox", "url": "https://www.heyuan110.com/web-toolbox/"},
+        "screenshot": "https://www.heyuan110.com/web-toolbox/screenshots/json-viewer.webp"
         "inLanguage": ["en", "zh-CN", "fr", "es"]
     }
     </script>
@@ -139,7 +143,7 @@
         }
 
         .container {
-            max-width: 1600px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -167,95 +171,7 @@
             font-size: 14px;
         }
 
-        /* 语言切换器样式 */
-        .lang-switcher {
-            position: absolute;
-            top: 0;
-            right: 0;
-        }
-
-        .lang-dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .lang-current {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #e4e4e7;
-            padding: 8px 14px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s ease;
-        }
-
-        .lang-current:hover {
-            background: rgba(88, 166, 255, 0.2);
-            border-color: rgba(88, 166, 255, 0.4);
-        }
-
-        .lang-current::after {
-            content: '▼';
-            font-size: 0.6rem;
-            opacity: 0.7;
-            transition: transform 0.2s ease;
-        }
-
-        .lang-dropdown.open .lang-current::after {
-            transform: rotate(180deg);
-        }
-
-        .lang-menu {
-            position: absolute;
-            top: calc(100% + 6px);
-            right: 0;
-            background: rgba(22, 27, 34, 0.98);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 8px;
-            min-width: 140px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-8px);
-            transition: all 0.2s ease;
-            z-index: 100;
-            overflow: hidden;
-        }
-
-        .lang-dropdown.open .lang-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .lang-btn {
-            display: block;
-            width: 100%;
-            background: transparent;
-            border: none;
-            color: #a1a1aa;
-            padding: 10px 14px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            text-align: left;
-            transition: all 0.15s ease;
-        }
-
-        .lang-btn:hover {
-            background: rgba(88, 166, 255, 0.2);
-            color: #e4e4e7;
-        }
-
-        .lang-btn.active {
-            background: rgba(88, 166, 255, 0.3);
-            color: #58a6ff;
-        }
-
-        .main-layout {
+        .lang-dropdown.open .lang-dropdown.open .main-layout {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
@@ -772,41 +688,19 @@
         .json-tree > .json-node {
             animation: fadeIn 0.3s ease;
         }
-        .trust-bar {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
-            margin: 12px 0 24px;
-            padding: 12px 20px;
-            background: rgba(124, 58, 237, 0.1);
-            border: 1px solid rgba(124, 58, 237, 0.2);
-            border-radius: 12px;
-        }
-        .trust-item {
-            font-size: 13px;
-            color: #a78bfa;
-            white-space: nowrap;
-        }
-    </style>
+        </style>
+    <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <!-- 语言切换器 -->
-            <div class="lang-switcher" id="langSwitcher">
-                <div class="lang-dropdown" id="langDropdown">
-                    <div class="lang-current" id="langCurrent">🌐 English</div>
-                    <div class="lang-menu">
-                        <button class="lang-btn" data-lang="en">🇺🇸 English</button>
-                        <button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button>
-                        <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
-                        <button class="lang-btn" data-lang="es">🇪🇸 Español</button>
-                    </div>
-                </div>
-            </div>
-            <a href="index.html" class="back-link" style="display: inline-block; margin-bottom: 16px; color: #8b949e; text-decoration: none; font-size: 14px; transition: color 0.2s;" data-i18n="backToToolbox">← Back to Toolbox</a>
-            <h1 data-i18n="pageTitle">{ } JSON Viewer</h1>
+[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
+            }
+
+    
+        </style>
+<div class="container">
+<header>
+
+<h1 data-i18n="pageTitle">{ } JSON Viewer</h1>
             <p data-i18n="pageSubtitle">Paste JSON data and instantly get a beautiful, interactive tree view</p>
         </header>
 
@@ -1316,77 +1210,12 @@ Example:
                 trust_free: '🚫 Sin anuncios, sin registro'
             }
         };
-
-        // 当前语言
-        let currentLang = localStorage.getItem('toolbox_lang') || detectLanguage();
-
-        // 语言显示名称映射
-        const langNames = {
-            'en': '🇺🇸 English',
-            'zh-CN': '🇨🇳 中文',
-            'fr': '🇫🇷 Français',
-            'es': '🇪🇸 Español'
-        };
-
-        // 检测浏览器语言
-        function detectLanguage() {
-            const browserLang = navigator.language || navigator.userLanguage;
-            if (browserLang.startsWith('zh')) return 'zh-CN';
-            if (browserLang.startsWith('fr')) return 'fr';
-            if (browserLang.startsWith('es')) return 'es';
-            return 'en';
-        }
-
-        // 获取翻译文本
+// 获取翻译文本
         function t(key) {
             const trans = translations[currentLang] || translations['en'];
             return trans[key] || translations['en'][key] || key;
         }
 
-        // 应用翻译
-        function applyTranslations(lang) {
-            const trans = translations[lang] || translations['en'];
-
-            // 更新 HTML lang 属性
-            document.documentElement.lang = lang;
-
-            // 翻译所有带 data-i18n 属性的元素
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (trans[key]) {
-                    el.innerHTML = trans[key];
-                }
-            });
-
-            // 翻译 placeholder
-            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-                const key = el.getAttribute('data-i18n-placeholder');
-                if (trans[key]) {
-                    el.placeholder = trans[key];
-                }
-            });
-
-            // 更新语言按钮状态
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.lang === lang);
-            });
-
-            // 更新当前语言显示
-            const langCurrent = document.getElementById('langCurrent');
-            if (langCurrent) {
-                langCurrent.textContent = langNames[lang] || langNames['en'];
-            }
-        }
-
-        // 切换语言
-        function switchLanguage(lang) {
-            currentLang = lang;
-            localStorage.setItem('toolbox_lang', lang);
-            applyTranslations(lang);
-            // 关闭下拉菜单
-            const dropdown = document.getElementById('langDropdown');
-            if (dropdown) dropdown.classList.remove('open');
-        }
 
         // 移除 JSON 中的注释（支持 JSONC 格式）
         function stripJsonComments(jsonString) {
@@ -2031,8 +1860,7 @@ Example:
         document.addEventListener('drop', (e) => e.preventDefault());
 
         // 语言切换器交互
-        const langDropdown = document.getElementById('langDropdown');
-        const langCurrentBtn = document.getElementById('langCurrent');
+const langCurrentBtn = document.getElementById('langCurrent');
 
         if (langCurrentBtn && langDropdown) {
             // 点击当前语言按钮切换下拉菜单
@@ -2040,24 +1868,11 @@ Example:
                 e.stopPropagation();
                 langDropdown.classList.toggle('open');
             });
-
-            // 点击页面其他地方关闭下拉菜单
-            document.addEventListener('click', () => {
-                langDropdown.classList.remove('open');
-            });
-        }
-
-        // 绑定语言切换按钮事件
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                switchLanguage(btn.dataset.lang);
-            });
-        });
-
         // 初始化翻译
-        applyTranslations(currentLang);
-    </script>
+</script>
+    <script src="common/common.js" data-tool-id="json-viewer" data-tool-name="JSON Viewer & Formatter" data-category="developer"></script>
+    <script>WebToolbox.init(translations);</script>
+
 
     <!-- FAQ 常见问题 -->
     <section class="faq-section" style="max-width: 1600px; margin: 40px auto; padding: 0 20px;">
@@ -2120,41 +1935,5 @@ Example:
             </details>
         </div>
     </section>
-
-    <!-- 相关工具推荐 -->
-    <section class="related-tools" style="max-width: 1600px; margin: 40px auto; padding: 0 20px;">
-        <h3 style="color: #e6edf3; font-size: 18px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #30363d;" data-i18n="relatedTools">🔗 Related Tools</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
-            <a href="sqlite-viewer.html" style="display: block; padding: 16px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                <div style="font-size: 24px; margin-bottom: 8px;">🗄️</div>
-                <div style="color: #e6edf3; font-weight: 500;" data-i18n="relatedSqlite">SQLite Viewer</div>
-                <div style="color: #8b949e; font-size: 12px; margin-top: 4px;" data-i18n="relatedSqliteDesc">Browse SQLite databases online</div>
-            </a>
-            <a href="crypto-tools.html" style="display: block; padding: 16px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                <div style="font-size: 24px; margin-bottom: 8px;">🔐</div>
-                <div style="color: #e6edf3; font-weight: 500;" data-i18n="relatedCrypto">Crypto Toolkit</div>
-                <div style="color: #8b949e; font-size: 12px; margin-top: 4px;" data-i18n="relatedCryptoDesc">Base64/MD5/AES encoding & encryption</div>
-            </a>
-            <a href="regex-tester.html" style="display: block; padding: 16px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                <div style="font-size: 24px; margin-bottom: 8px;">🔍</div>
-                <div style="color: #e6edf3; font-weight: 500;" data-i18n="relatedRegex">Regex Tester</div>
-                <div style="color: #8b949e; font-size: 12px; margin-top: 4px;" data-i18n="relatedRegexDesc">Online regex matching & debugging</div>
-            </a>
-            <a href="timestamp-converter.html" style="display: block; padding: 16px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                <div style="font-size: 24px; margin-bottom: 8px;">⏰</div>
-                <div style="color: #e6edf3; font-weight: 500;" data-i18n="relatedTimestamp">Timestamp Converter</div>
-                <div style="color: #8b949e; font-size: 12px; margin-top: 4px;" data-i18n="relatedTimestampDesc">Unix timestamp & date conversion</div>
-            </a>
-        </div>
-    </section>
-
-    <footer style="text-align: center; padding: 30px 20px; border-top: 1px solid #30363d; color: #8b949e; font-size: 14px;">
-        <p data-i18n="footerPrivacy">Pure frontend processing, data never uploaded to server</p>
-        <p style="margin-top: 12px;">
-            <a href="index.html" style="color: #58a6ff; text-decoration: none;" data-i18n="footerBack">← Back to Web Toolbox</a>
-            <span style="margin: 0 12px;">|</span>
-            <a href="https://github.com/heyuan110" target="_blank" rel="noopener" style="color: #58a6ff; text-decoration: none;">GitHub</a>
-        </p>
-    </footer>
 </body>
 </html>

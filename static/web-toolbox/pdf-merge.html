@@ -146,7 +146,7 @@
             padding: 24px 16px 56px;
             line-height: 1.6;
         }
-        .container { max-width: 980px; margin: 0 auto; }
+        .container { max-width: 1200px; margin: 0 auto; }
 
         .top-bar {
             display: flex;
@@ -155,54 +155,7 @@
             gap: 12px;
             margin-bottom: 20px;
         }
-        .back-link {
-            color: #a78bfa;
-            text-decoration: none;
-            font-size: 14px;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .back-link:hover { color: #c4b5fd; }
-
-        .lang-dropdown { position: relative; }
-        .lang-current {
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: #e4e4e7;
-            padding: 8px 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            user-select: none;
-        }
-        .lang-menu {
-            position: absolute;
-            right: 0;
-            top: calc(100% + 4px);
-            min-width: 150px;
-            background: #1f2937;
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 8px;
-            padding: 4px;
-            display: none;
-            z-index: 10;
-        }
-        .lang-dropdown.open .lang-menu { display: block; }
-        .lang-btn {
-            width: 100%;
-            border: 0;
-            background: transparent;
-            color: #e4e4e7;
-            text-align: left;
-            padding: 8px 10px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        .lang-btn:hover { background: rgba(124,58,237,0.28); }
-
-        h1 {
+.lang-dropdown.open h1 {
             text-align: center;
             font-size: 2rem;
             margin-bottom: 8px;
@@ -298,35 +251,8 @@
             font-size: 14px;
         }
 
-        .features-section, .faq-section, .related-tools {
-            margin-top: 24px;
-            background: rgba(0,0,0,0.26);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px;
-            padding: 22px;
-        }
-        .features-section h2, .faq-section h2, .related-tools h3 {
-            font-size: 1.2rem;
-            margin-bottom: 16px;
-            text-align: center;
-        }
-
-        .features-grid, .related-grid {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 12px;
-        }
-        .feature-card, .related-card {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 12px;
-            padding: 14px;
-        }
-        .feature-card h4, .related-card h4 { margin: 8px 0 6px; font-size: 15px; }
+        .features-section, .faq-section, .features-section h2, .faq-section h2, .features-grid, .feature-card, .feature-card h4, .related-card h4 { margin: 8px 0 6px; font-size: 15px; }
         .feature-card p, .related-card p { color: #a1a1aa; font-size: 13px; }
-        .related-card { text-decoration: none; color: inherit; display: block; }
-        .related-card:hover { border-color: rgba(124,58,237,0.6); }
-
         .faq-item {
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 10px;
@@ -353,48 +279,23 @@
         .faq-item.active .faq-answer { display: block; }
 
         @media (max-width: 900px) {
-            .features-grid, .related-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-        }
+            .features-grid, }
         @media (max-width: 640px) {
             h1 { font-size: 1.7rem; }
-            .features-grid, .related-grid { grid-template-columns: 1fr; }
-            .file-item { grid-template-columns: 1fr; }
+            .features-grid, .file-item { grid-template-columns: 1fr; }
             .file-actions { justify-content: flex-start; }
         }
-        .trust-bar {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
-            margin: 12px 0 24px;
-            padding: 12px 20px;
-            background: rgba(124, 58, 237, 0.1);
-            border: 1px solid rgba(124, 58, 237, 0.2);
-            border-radius: 12px;
-        }
-        .trust-item {
-            font-size: 13px;
-            color: #a78bfa;
-            white-space: nowrap;
-        }
-    </style>
+        </style>
+    <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-    <div class="container">
-        <div class="top-bar">
-            <a class="back-link" href="index.html">← <span data-i18n="backHome">Back to Toolbox</span></a>
-            <div class="lang-dropdown" id="langDropdown">
-                <div class="lang-current" id="langCurrent">🇺🇸 English</div>
-                <div class="lang-menu">
-                    <button class="lang-btn" data-lang="en">🇺🇸 English</button>
-                    <button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button>
-                    <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
-                    <button class="lang-btn" data-lang="es">🇪🇸 Español</button>
-                </div>
-            </div>
-        </div>
+[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
+            }
 
-        <h1 data-i18n="title">PDF Merge Tool</h1>
+    
+        </style>
+<div class="container">
+<h1 data-i18n="title">PDF Merge Tool</h1>
         <p class="subtitle" data-i18n="subtitle">Combine multiple PDF files into one document in your browser</p>
 
         <section class="card">
@@ -738,44 +639,19 @@
                 trust_free: '🚫 Sin anuncios, sin registro'
             }
         };
-
-        var langNames = {
-            en: '🇺🇸 English',
-            'zh-CN': '🇨🇳 中文',
-            fr: '🇫🇷 Français',
-            es: '🇪🇸 Español'
-        };
-
-        var fileInput = document.getElementById('fileInput');
+var fileInput = document.getElementById('fileInput');
         var uploadZone = document.getElementById('uploadZone');
         var fileList = document.getElementById('fileList');
         var statsText = document.getElementById('statsText');
         var statusText = document.getElementById('statusText');
         var clearBtn = document.getElementById('clearBtn');
         var mergeBtn = document.getElementById('mergeBtn');
-        var langDropdown = document.getElementById('langDropdown');
-        var langCurrent = document.getElementById('langCurrent');
-
-        var filesState = [];
-        var currentLang = localStorage.getItem('pdf_merge_lang') || 'en';
-
-        function t(key) {
+var filesState = [];
+function t(key) {
             var dict = i18n[currentLang] || i18n.en;
             return dict[key] || i18n.en[key] || key;
         }
 
-        function applyLanguage(lang) {
-            currentLang = i18n[lang] ? lang : 'en';
-            localStorage.setItem('pdf_merge_lang', currentLang);
-            document.documentElement.lang = currentLang;
-            langCurrent.textContent = langNames[currentLang];
-            document.querySelectorAll('[data-i18n]').forEach(function(el) {
-                var key = el.getAttribute('data-i18n');
-                el.textContent = t(key);
-            });
-            renderStats();
-            renderFileList();
-        }
 
         function fileSize(bytes) {
             if (bytes < 1024) return bytes + ' B';
@@ -961,36 +837,15 @@
         });
 
         mergeBtn.addEventListener('click', mergePdf);
-
-        langCurrent.addEventListener('click', function(e) {
-            e.stopPropagation();
-            langDropdown.classList.toggle('open');
-        });
-
-        document.querySelectorAll('.lang-btn').forEach(function(btn) {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                applyLanguage(btn.getAttribute('data-lang'));
-                langDropdown.classList.remove('open');
+});
+if (!open) item.classList.add('active');
             });
         });
-
-        document.addEventListener('click', function() {
-            langDropdown.classList.remove('open');
-        });
-
-        document.querySelectorAll('.faq-question').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                var item = btn.parentElement;
-                var open = item.classList.contains('active');
-                document.querySelectorAll('.faq-item').forEach(function(it) { it.classList.remove('active'); });
-                if (!open) item.classList.add('active');
-            });
-        });
-
-        applyLanguage(currentLang);
-        renderFileList();
+renderFileList();
     })();
     </script>
+    <script src="common/common.js" data-tool-id="pdf-merge" data-tool-name="Merge PDF" data-category="pdf"></script>
+    <script>WebToolbox.init(i18n);</script>
+
 </body>
 </html>

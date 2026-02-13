@@ -204,16 +204,7 @@
         }
 
         /* ========== 语言切换器 ========== */
-        .lang-switcher { position: fixed; top: 20px; right: 20px; z-index: 1000; }
-        .lang-dropdown { position: relative; display: inline-block; }
-        .lang-current { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 14px; color: #e0e0e0; transition: all 0.3s ease; user-select: none; }
-        .lang-current:hover { background: rgba(255,255,255,0.15); }
-        .lang-menu { position: absolute; top: 100%; right: 0; margin-top: 4px; background: #1e1e2e; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 4px; min-width: 140px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; z-index: 1000; }
-        .lang-dropdown.active .lang-menu { opacity: 1; visibility: visible; transform: translateY(0); }
-        .lang-btn { display: block; width: 100%; padding: 10px 16px; background: none; border: none; color: #e0e0e0; font-size: 14px; text-align: left; cursor: pointer; border-radius: 6px; transition: background 0.2s ease; }
-        .lang-btn:hover { background: rgba(255,255,255,0.1); }
-
-        /* ========== 头部区域 ========== */
+        .lang-dropdown.active /* ========== 头部区域 ========== */
         .header {
             text-align: center;
             padding: 50px 20px 30px;
@@ -231,24 +222,9 @@
             color: #a1a1aa;
             font-size: 1.05rem;
         }
-        .back-link {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            color: #a78bfa;
-            text-decoration: none;
-            font-size: 14px;
-            z-index: 1000;
-            background: rgba(255,255,255,0.1);
-            padding: 8px 16px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-        .back-link:hover { background: rgba(255,255,255,0.15); }
-
-        /* ========== 主容器 ========== */
+/* ========== 主容器 ========== */
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px 60px;
         }
@@ -558,12 +534,9 @@
             }
             .tabs { flex-wrap: wrap; }
             .tab-btn { font-size: 13px; padding: 10px 12px; }
-            .back-link { top: auto; bottom: 20px; left: 20px; }
-            .lang-switcher { top: 10px; right: 10px; }
-            .filename-input { width: 100%; }
+.filename-input { width: 100%; }
             .features-grid { grid-template-columns: 1fr !important; }
-            .related-grid { grid-template-columns: 1fr !important; }
-        }
+            }
 
         /* ========== 功能特点区域 ========== */
         .seo-section {
@@ -665,82 +638,28 @@
         }
 
         /* ========== 相关工具推荐 ========== */
-        .related-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-            margin-bottom: 60px;
-        }
-        .related-card {
-            background: rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 16px;
-            padding: 24px 20px;
-            text-align: center;
-            text-decoration: none;
-            color: inherit;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            display: block;
-        }
-        .related-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(124,58,237,0.15);
-            border-color: rgba(124,58,237,0.3);
-        }
-        .related-icon {
-            font-size: 32px;
-            margin-bottom: 10px;
-            display: block;
-        }
         .related-title {
             font-size: 14px;
             font-weight: 600;
             color: #a78bfa;
         }
-.trust-bar {
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    flex-wrap: wrap;
-    margin: 12px 0 24px;
-    padding: 12px 20px;
-    background: rgba(124, 58, 237, 0.1);
-    border: 1px solid rgba(124, 58, 237, 0.2);
-    border-radius: 12px;
-}
-.trust-item {
-    font-size: 13px;
-    color: #a78bfa;
-    white-space: nowrap;
-}
-    </style>
+</style>
+    <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
+[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
+            }
 
-    <!-- 返回首页 -->
-    <a href="index.html" class="back-link" data-i18n="backHome">← Back to Home</a>
-
-    <!-- 语言切换器 -->
-    <div class="lang-switcher">
-        <div class="lang-dropdown" id="langDropdown">
-            <div class="lang-current" id="langCurrent">🌐 English</div>
-            <div class="lang-menu">
-                <button class="lang-btn" data-lang="en">🇺🇸 English</button>
-                <button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button>
-                <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
-                <button class="lang-btn" data-lang="es">🇪🇸 Español</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 头部 -->
+    
+        </style>
+<!-- 头部 -->
     <div class="header">
         <h1 data-i18n="title">Base64 Encoder / Decoder</h1>
         <p data-i18n="subtitle">Encode and decode Base64 strings, files, and images — all in your browser.</p>
     </div>
 
     <div class="container">
-        <!-- Tab 切换 -->
+<!-- Tab 切换 -->
         <div class="tabs">
             <button class="tab-btn active" data-tab="text" data-i18n="tabText">Text Encode/Decode</button>
             <button class="tab-btn" data-tab="file" data-i18n="tabFile">File Encode</button>
@@ -1269,10 +1188,7 @@
             fr: '🌐 Français',
             es: '🌐 Español'
         };
-
-        var currentLang = localStorage.getItem('base64_lang') || 'en';
-
-        function t(key) {
+function t(key) {
             return (i18n[currentLang] && i18n[currentLang][key]) || (i18n.en[key]) || key;
         }
 
@@ -1295,7 +1211,7 @@
 
         function switchLang(lang) {
             currentLang = lang;
-            localStorage.setItem('base64_lang', lang);
+            localStorage.setItem('toolbox_lang', lang);
             applyLang();
             // 重新检测 Base64 有效性（刷新 badge 文本）
             validateBase64Output();
@@ -1688,5 +1604,8 @@
 
     })();
     </script>
+    <script src="common/common.js" data-tool-id="base64-tool" data-tool-name="Base64 Encode Decode" data-category="developer"></script>
+    <script>WebToolbox.init(i18n);</script>
+
 </body>
 </html>

@@ -31,16 +31,11 @@
     body::after{width:500px;height:500px;bottom:-100px;right:-60px;background:radial-gradient(circle,rgba(34,197,94,.2),transparent 70%);animation:bgFloat 22s ease-in-out infinite reverse}
     @keyframes bgFloat{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,30px)}}
 
-    .container{max-width:1200px;margin:0 auto;position:relative;z-index:1}
+    .container{max-width: 1200px;margin:0 auto;position:relative;z-index:1}
 
     /* 顶栏 */
     .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
-    .back{color:#cbd5e1;text-decoration:none;font-size:14px;padding:8px 14px;border:1px solid var(--border);border-radius:10px;background:var(--glass);backdrop-filter:blur(12px);transition:border-color .2s}.back:hover{border-color:var(--pri)}
-    .lang-dropdown{position:relative}.lang-current{border:1px solid var(--border);border-radius:10px;background:var(--glass);backdrop-filter:blur(12px);padding:8px 14px;font-size:14px;cursor:pointer;color:var(--text);transition:border-color .2s}.lang-current:hover{border-color:var(--pri)}
-    .lang-menu{display:none;position:absolute;right:0;top:calc(100% + 4px);background:var(--card);border:1px solid var(--border);border-radius:10px;padding:4px;min-width:155px;z-index:30;backdrop-filter:blur(16px)}.lang-dropdown.open .lang-menu{display:block}
-    .lang-btn{width:100%;padding:8px 10px;background:transparent;border:0;color:var(--text);text-align:left;border-radius:8px;cursor:pointer;font-size:14px}.lang-btn:hover{background:var(--pri-glow)}
-
-    /* 标题 */
+.lang-dropdown.open /* 标题 */
     h1{text-align:center;font-size:2.4rem;font-weight:800;letter-spacing:-.03em;background:linear-gradient(135deg,#bae6fd 0%,#38bdf8 40%,#a78bfa 100%);-webkit-background-clip:text;background-clip:text;color:transparent;animation:fadeInUp .7s ease both}
     .subtitle{text-align:center;color:var(--muted);margin:8px 0 24px;font-size:15px;animation:fadeInUp .7s .08s ease both}
 
@@ -124,15 +119,8 @@
     .status.err{color:#f87171}
 
     /* 动画 */
-    @keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-
     /* Trust / Features / FAQ / Related — 复用标准样式 */
-    .trust-bar{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin:20px 0 24px;padding:12px 20px;border:1px solid rgba(56,189,248,.2);background:rgba(56,189,248,.07);border-radius:12px;backdrop-filter:blur(8px);animation:fadeInUp .7s .3s ease both}
-    .trust-item{font-size:13px;color:#bae6fd;white-space:nowrap}
-    .features-section,.faq-section,.related-tools{margin-top:22px;background:var(--glass);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:var(--radius);padding:18px;animation:fadeInUp .7s .36s ease both}
-    .features-section h2,.faq-section h2,.related-tools h3{text-align:center;margin-bottom:14px;font-size:1.2rem}
-    .features-grid,.related-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
-    .feature,.related{border:1px solid var(--border);border-radius:12px;padding:14px;background:rgba(2,6,23,.45);transition:border-color .25s,transform .25s}
+    .features-section,.faq-section,.features-section h2,.faq-section h2,.features-grid,.feature,.related{border:1px solid var(--border);border-radius:12px;padding:14px;background:rgba(2,6,23,.45);transition:border-color .25s,transform .25s}
     .feature:hover,.related:hover{border-color:var(--border-hover);transform:translateY(-2px)}
     .feature h4,.related h4{margin:8px 0 6px;font-size:14px}.feature p,.related p{color:var(--muted);font-size:13px;line-height:1.55}
     .related{text-decoration:none;color:inherit;display:block}
@@ -144,15 +132,19 @@
     .faq-a{display:none;padding:0 16px 14px;color:var(--muted);font-size:13px;line-height:1.65}.faq-item.active .faq-a{display:block}
 
     /* 响应式 */
-    @media(max-width:960px){.workspace{grid-template-columns:1fr}.features-grid,.related-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:640px){h1{font-size:1.8rem}.features-grid,.related-grid{grid-template-columns:1fr}.steps{flex-wrap:wrap}.step-sep{width:16px}.sig-toolbar{gap:6px}}
+    @media(max-width:960px){.workspace{grid-template-columns:1fr}.features-grid,}
+    @media(max-width:640px){h1{font-size:1.8rem}.features-grid,.steps{flex-wrap:wrap}.step-sep{width:16px}.sig-toolbar{gap:6px}}
   </style>
+    <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
+[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
+            }
+
+    </style>
 <div class="container">
-  <div class="topbar">
-    <a class="back" href="index.html">← <span data-i18n="back">Back to Toolbox</span></a>
-    <div class="lang-dropdown" id="langDropdown">
+<div class="topbar">
+<div class="lang-dropdown" id="langDropdown">
       <div class="lang-current" id="langCurrent">🇺🇸 English</div>
       <div class="lang-menu">
         <button class="lang-btn" data-lang="en">🇺🇸 English</button>
@@ -290,16 +282,13 @@
   }
 
   /* ========== i18n ========== */
-  var langNames={en:'🇺🇸 English','zh-CN':'🇨🇳 中文',fr:'🇫🇷 Français',es:'🇪🇸 Español'};
-  var i18n={
+var i18n={
     en:{back:'Back to Toolbox',title:'E-Sign Tool',subtitle:'Draw your signature and place it on PDF pages — click to position',step1:'Upload PDF',step2:'Draw Signature',step3:'Place & Export',pdfPreview:'PDF Preview',dropMain:'Drop PDF here or click to upload',dropSub:'Your file stays local — nothing is uploaded',drawLabel:'Draw Signature',sigHint:'Sign here with mouse or touch',undo:'Undo',clearSig:'Clear',placeLabel:'Placement',position:'Position',posClick:'Click on PDF preview',posBR:'Bottom Right',posBL:'Bottom Left',posBC:'Bottom Center',sigSize:'Size','export':'Sign & Download PDF',loading:'Loading PDF...',ok:'Signed PDF downloaded!',needPdf:'Please upload a PDF first',needSign:'Please draw your signature first',clickHint:'Click on the PDF preview to position your signature',err:'Failed to sign PDF',trust_users:'🌍 Used by 50,000+ users',trust_rating:'⭐ 4.9/5 rating',trust_privacy:'🔒 100% Private',trust_free:'🚫 No Ads, No Signup',features_title:'E-Sign Features',f1_t:'100% Free & Private',f1_d:'No ads, no signup, no watermark. PDF signing runs locally in browser. Your contracts never leave your device.',f2_t:'Handwritten Signature',f2_d:'Draw electronic signature with mouse or touch. Choose ink color and pen thickness for a natural look.',f3_t:'Live PDF Preview',f3_d:'See your PDF pages in real time. Click on the preview to position your signature exactly where you want it.',f4_t:'Instant PDF Export',f4_d:'Generate signed PDF and download immediately. Supports multi-page documents with page-by-page navigation.',faq_title:'Frequently Asked Questions',faq1_q:'What is an electronic signature tool?',faq1_a:'An electronic signature tool allows you to draw or add a signature to digital documents such as PDF files. It is commonly used for contracts, invoices, approvals, and internal document workflows. Unlike wet ink signatures, e-signatures can be applied instantly from any device with a browser.',faq2_q:'Can I sign PDF without creating account?',faq2_a:'Yes. This online e-sign tool works directly in browser with no login and no signup. You can upload, draw your signature, position it on any page, and download the signed PDF in seconds.',faq3_q:'How do I choose signature position?',faq3_a:'You can click directly on the PDF preview to place your signature at the exact location. Alternatively, use the position presets (Bottom Right, Bottom Left, Bottom Center) for quick placement. A ghost preview shows exactly where the signature will appear.',faq4_q:'Will my contract file be uploaded to server?',faq4_a:'No. The entire signing process is handled locally in your browser using PDF-lib. Your PDF file and signature data never leave your device — there is no server-side processing or data transmission involved.',faq_free_q:'Is this tool really free with no ads?',faq_free_a:'Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.',related_title:'Related Tools',r1_t:'PDF Merge',r1_d:'Merge signed documents into one file.',r2_t:'PDF Compress',r2_d:'Reduce size after adding signatures.',r3_t:'PDF Protect',r3_d:'Encrypt signed PDFs before sharing.',r4_t:'Watermark Tool',r4_d:'Add extra watermark to signed files.'},
     'zh-CN':{back:'返回工具箱',title:'电子签名工具',subtitle:'手写签名并放置到 PDF 页面 — 点击预览区定位',step1:'上传 PDF',step2:'手写签名',step3:'放置并导出',pdfPreview:'PDF 预览',dropMain:'拖拽 PDF 到此处，或点击上传',dropSub:'文件不会离开你的设备',drawLabel:'手写签名',sigHint:'在此用鼠标或触控签名',undo:'撤销',clearSig:'清空',placeLabel:'放置设置',position:'位置',posClick:'在 PDF 预览上点击',posBR:'右下角',posBL:'左下角',posBC:'底部居中',sigSize:'大小','export':'签署并下载 PDF',loading:'正在加载 PDF...',ok:'签署成功，已下载！',needPdf:'请先上传 PDF 文件',needSign:'请先绘制签名',clickHint:'点击 PDF 预览区域放置签名',err:'PDF 签署失败',trust_users:'🌍 超过 50,000 用户使用',trust_rating:'⭐ 4.9/5 好评',trust_privacy:'🔒 100% 隐私安全',trust_free:'🚫 无广告、无需注册',features_title:'电子签名功能',f1_t:'100% 免费且安全',f1_d:'无广告、无需注册、无水印。PDF 签署在浏览器本地完成，合同文件不会离开你的设备。',f2_t:'手写签名',f2_d:'用鼠标或触控绘制签名，可选择墨水颜色和笔画粗细。',f3_t:'PDF 实时预览',f3_d:'实时查看 PDF 页面，点击预览区即可精确定位签名位置。',f4_t:'即时导出 PDF',f4_d:'一键生成签署后的 PDF 文件，支持多页文档逐页浏览。',faq_title:'常见问题',faq1_q:'什么是电子签名工具？',faq1_a:'电子签名工具可将签名添加到 PDF 等数字文档中，常用于合同、发票、审批和内部流程。与传统签名不同，电子签名可在任何设备的浏览器中即时完成。',faq2_q:'不注册也能签署 PDF 吗？',faq2_a:'可以。该工具无需登录或注册，上传后绘制签名、定位放置，即可下载签署后的 PDF。',faq3_q:'如何选择签名位置？',faq3_a:'你可以直接点击 PDF 预览来放置签名，也可使用预设位置（右下角、左下角、底部居中）快速定位。半透明预览会显示签名将出现的确切位置。',faq4_q:'文件会上传到服务器吗？',faq4_a:'不会。整个签署流程在浏览器本地使用 PDF-lib 完成，PDF 文件和签名数据不会离开你的设备。',faq_free_q:'这个工具真的免费且无广告吗？',faq_free_a:'是的，100% 免费，无广告、无需注册、无水印、无限制。所有处理都在浏览器本地完成，你的数据不会上传到任何服务器。',related_title:'相关工具',r1_t:'PDF 合并',r1_d:'合并签署后的多个文件。',r2_t:'PDF 压缩',r2_d:'签署后压缩体积。',r3_t:'PDF 保护',r3_d:'分享前加密签署文件。',r4_t:'水印工具',r4_d:'给签署文档加额外水印。'},
     fr:{back:'Retour à la boîte à outils',title:'Outil signature électronique',subtitle:'Dessinez votre signature et placez-la dans PDF — cliquez pour positionner',step1:'Charger PDF',step2:'Dessiner signature',step3:'Placer et exporter',pdfPreview:'Aperçu PDF',dropMain:'Glissez PDF ici ou cliquez pour charger',dropSub:'Votre fichier reste local',drawLabel:'Dessiner signature',sigHint:'Signez ici avec souris ou toucher',undo:'Annuler',clearSig:'Effacer',placeLabel:'Placement',position:'Position',posClick:'Cliquez sur l\'aperçu PDF',posBR:'En bas à droite',posBL:'En bas à gauche',posBC:'En bas au centre',sigSize:'Taille','export':'Signer et télécharger PDF',loading:'Chargement PDF...',ok:'PDF signé téléchargé !',needPdf:'Choisissez un PDF',needSign:'Dessinez votre signature',clickHint:'Cliquez sur l\'aperçu pour positionner',err:'Échec de la signature',trust_users:'🌍 Utilisé par 50 000+ utilisateurs',trust_rating:'⭐ Note 4.9/5',trust_privacy:'🔒 100% Privé',trust_free:'🚫 Sans pub, sans inscription',features_title:'Fonctions signature',f1_t:'100% Gratuit et Privé',f1_d:'Sans publicité, sans inscription, sans filigrane. Signature locale navigateur.',f2_t:'Signature manuscrite',f2_d:'Dessinez avec souris ou toucher. Choisissez couleur et épaisseur.',f3_t:'Aperçu PDF en direct',f3_d:'Visualisez les pages et cliquez pour positionner la signature.',f4_t:'Export PDF immédiat',f4_d:'Générez le PDF signé et téléchargez-le instantanément.',faq_title:'Questions fréquentes',faq1_q:'Qu\'est-ce qu\'un outil de signature électronique ?',faq1_a:'Il permet d\'ajouter une signature aux documents numériques comme PDF. Utilisé pour contrats, factures et validation. Contrairement à la signature manuscrite, elle peut être appliquée instantanément depuis n\'importe quel navigateur.',faq2_q:'Puis-je signer sans compte ?',faq2_a:'Oui, aucun login requis. Chargez, signez et téléchargez en quelques secondes.',faq3_q:'Comment choisir la position ?',faq3_a:'Cliquez sur l\'aperçu PDF pour placer la signature ou utilisez les préréglages (bas droite, bas gauche, bas centre). Un aperçu fantôme montre l\'emplacement exact.',faq4_q:'Le fichier est-il uploadé ?',faq4_a:'Non, tout se fait localement dans le navigateur avec PDF-lib. Aucune donnée n\'est transmise.',faq_free_q:'Cet outil est-il vraiment gratuit et sans pub ?',faq_free_a:'Oui, 100% gratuit, sans publicité, sans inscription, sans filigrane et sans limites. Tout est traité localement dans votre navigateur.',related_title:'Outils associés',r1_t:'Fusion PDF',r1_d:'Fusionner docs signés.',r2_t:'Compresser PDF',r2_d:'Réduire taille après signature.',r3_t:'Protection PDF',r3_d:'Chiffrer PDF signé.',r4_t:'Outil filigrane',r4_d:'Ajouter filigrane.'},
     es:{back:'Volver a la caja de herramientas',title:'Herramienta de firma electrónica',subtitle:'Dibuja tu firma y colócala en páginas PDF — haz clic para posicionar',step1:'Subir PDF',step2:'Dibujar firma',step3:'Colocar y exportar',pdfPreview:'Vista previa PDF',dropMain:'Arrastra PDF aquí o haz clic para subir',dropSub:'Tu archivo no sale de tu dispositivo',drawLabel:'Dibujar firma',sigHint:'Firma aquí con ratón o toque',undo:'Deshacer',clearSig:'Limpiar',placeLabel:'Colocación',position:'Posición',posClick:'Clic en vista previa PDF',posBR:'Abajo derecha',posBL:'Abajo izquierda',posBC:'Abajo centro',sigSize:'Tamaño','export':'Firmar y descargar PDF',loading:'Cargando PDF...',ok:'¡PDF firmado descargado!',needPdf:'Primero sube un PDF',needSign:'Primero dibuja tu firma',clickHint:'Haz clic en la vista previa para posicionar',err:'Error al firmar PDF',trust_users:'🌍 Usado por más de 50,000 usuarios',trust_rating:'⭐ Calificación 4.9/5',trust_privacy:'🔒 100% Privado',trust_free:'🚫 Sin anuncios, sin registro',features_title:'Funciones de firma',f1_t:'100% Gratis y Privado',f1_d:'Sin anuncios, sin registro, sin marca de agua. Firma local en navegador.',f2_t:'Firma manuscrita',f2_d:'Dibuja con ratón o toque. Elige color y grosor del trazo.',f3_t:'Vista previa en vivo',f3_d:'Ve las páginas PDF y haz clic para posicionar la firma exactamente.',f4_t:'Exportación inmediata',f4_d:'Genera el PDF firmado y descárgalo al instante.',faq_title:'Preguntas frecuentes',faq1_q:'¿Qué es una herramienta de firma electrónica?',faq1_a:'Permite agregar firma a documentos digitales como PDF. Se usa para contratos, facturas y aprobaciones. A diferencia de la firma en papel, se aplica instantáneamente desde cualquier navegador.',faq2_q:'¿Puedo firmar sin cuenta?',faq2_a:'Sí, no necesitas login. Sube, firma y descarga en segundos.',faq3_q:'¿Cómo elijo la posición?',faq3_a:'Haz clic en la vista previa PDF para colocar la firma o usa preajustes (abajo derecha, abajo izquierda, abajo centro). Una vista fantasma muestra la ubicación exacta.',faq4_q:'¿El archivo se sube al servidor?',faq4_a:'No, todo ocurre localmente en el navegador con PDF-lib. Ningún dato se transmite.',faq_free_q:'¿Es realmente gratis y sin anuncios?',faq_free_a:'Sí, 100% gratis, sin anuncios, sin registro, sin marca de agua y sin límites. Todo se procesa localmente en tu navegador.',related_title:'Herramientas relacionadas',r1_t:'Unir PDF',r1_d:'Une documentos firmados.',r2_t:'Comprimir PDF',r2_d:'Reduce tamaño tras firmar.',r3_t:'Proteger PDF',r3_d:'Cifra PDF firmado.',r4_t:'Marca de agua',r4_d:'Añade marca adicional.'}
   };
-
-  var currentLang=localStorage.getItem('e_sign_lang')||'en';
-  function t(k){var d=i18n[currentLang]||i18n.en;return d[k]||i18n.en[k]||k;}
+function t(k){var d=i18n[currentLang]||i18n.en;return d[k]||i18n.en[k]||k;}
 
   /* ========== DOM 引用 ========== */
   var fileInput=document.getElementById('fileInput');
@@ -335,18 +324,7 @@
   }
 
   /* ========== 语言 ========== */
-  function applyLanguage(lang){
-    currentLang=i18n[lang]?lang:'en';
-    localStorage.setItem('e_sign_lang',currentLang);
-    document.documentElement.lang=currentLang;
-    document.getElementById('langCurrent').textContent=langNames[currentLang];
-    document.querySelectorAll('[data-i18n]').forEach(function(el){el.textContent=t(el.getAttribute('data-i18n'));});
-    /* select option 翻译 */
-    posPreset.querySelector('[value="click"]').textContent=t('posClick');
-    posPreset.querySelector('[value="br"]').textContent=t('posBR');
-    posPreset.querySelector('[value="bl"]').textContent=t('posBL');
-    posPreset.querySelector('[value="bc"]').textContent=t('posBC');
-  }
+
 
   /* ========== PDF 加载与预览 ========== */
   function loadPdf(arrayBuf){
@@ -598,12 +576,13 @@
 
   /* ========== 语言切换 + FAQ 手风琴 ========== */
   document.getElementById('langCurrent').addEventListener('click',function(e){e.stopPropagation();document.getElementById('langDropdown').classList.toggle('open');});
-  document.querySelectorAll('.lang-btn').forEach(function(btn){btn.addEventListener('click',function(e){e.stopPropagation();applyLanguage(btn.getAttribute('data-lang'));document.getElementById('langDropdown').classList.remove('open');});});
+});
   document.addEventListener('click',function(){document.getElementById('langDropdown').classList.remove('open');});
   document.querySelectorAll('.faq-q').forEach(function(btn){btn.addEventListener('click',function(){var item=btn.parentElement;var open=item.classList.contains('active');document.querySelectorAll('.faq-item').forEach(function(it){it.classList.remove('active');});if(!open)item.classList.add('active');});});
-
-  applyLanguage(currentLang);
 })();
 </script>
+    <script src="common/common.js" data-tool-id="e-sign" data-tool-name="E-Sign Tool" data-category="pdf"></script>
+    <script>WebToolbox.init(i18n);</script>
+
 </body>
 </html>

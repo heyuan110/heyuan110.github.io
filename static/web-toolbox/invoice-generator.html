@@ -109,13 +109,8 @@
       50% { transform: translate(40px, 30px); }
     }
 
-    .container { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+    .container { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
 
-    /* 入场动画 */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
@@ -164,63 +159,8 @@
       margin-bottom: 24px;
       animation: fadeIn .5s ease;
     }
-    .back {
-      color: #cbd5e1;
-      text-decoration: none;
-      font-size: 14px;
-      padding: 8px 16px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: rgba(15,23,42,.65);
-      backdrop-filter: blur(8px);
-      transition: all .25s ease;
-    }
-    .back:hover { border-color: var(--primary); color: #fff; }
-
-    /* 语言切换 */
-    .lang-dropdown { position: relative; }
-    .lang-current {
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: rgba(15,23,42,.75);
-      backdrop-filter: blur(8px);
-      padding: 8px 14px;
-      font-size: 14px;
-      cursor: pointer;
-      user-select: none;
-      transition: border-color .25s ease;
-    }
-    .lang-current:hover { border-color: var(--border-hover); }
-    .lang-menu {
-      position: absolute;
-      top: calc(100% + 6px);
-      right: 0;
-      background: rgba(15,23,42,.96);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 4px;
-      min-width: 155px;
-      display: none;
-      z-index: 30;
-      box-shadow: 0 8px 32px rgba(0,0,0,.4);
-    }
-    .lang-dropdown.open .lang-menu { display: block; animation: scaleIn .2s ease; }
-    .lang-btn {
-      width: 100%;
-      background: transparent;
-      border: 0;
-      color: var(--text);
-      padding: 9px 12px;
-      text-align: left;
-      border-radius: 7px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: background .2s;
-    }
-    .lang-btn:hover { background: rgba(59,130,246,.18); }
-
-    /* 标题 */
+/* 语言切换 */
+    .lang-dropdown.open /* 标题 */
     h1 {
       text-align: center;
       font-size: 2.2rem;
@@ -488,48 +428,12 @@
     }
 
     /* Trust Bar */
-    .trust-bar {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      flex-wrap: wrap;
-      margin: 20px 0 28px;
-      padding: 14px 20px;
-      background: rgba(139,92,246,.06);
-      border: 1px solid rgba(139,92,246,.15);
-      border-radius: var(--radius);
-      backdrop-filter: blur(8px);
-    }
-    .trust-item {
-      font-size: 13px;
-      color: #a78bfa;
-      white-space: nowrap;
-    }
-
     /* 通用 section */
     .features-section,
     .faq-section,
-    .related-tools {
-      margin-top: 24px;
-      background: rgba(15,23,42,.6);
-      backdrop-filter: blur(8px);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 22px;
-    }
     .features-section h2,
     .faq-section h2,
-    .related-tools h3 {
-      text-align: center;
-      margin-bottom: 16px;
-      font-size: 1.2rem;
-    }
     .features-grid,
-    .related-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-    }
     .feature,
     .related {
       border: 1px solid var(--border);
@@ -613,22 +517,24 @@
     /* 响应式 */
     @media (max-width: 960px) {
       .form-grid { grid-template-columns: 1fr; }
-      .features-grid, .related-grid { grid-template-columns: repeat(2, 1fr); }
-    }
+      .features-grid, }
     @media (max-width: 640px) {
       h1 { font-size: 1.7rem; }
-      .features-grid, .related-grid { grid-template-columns: 1fr; }
-      .tool-card { padding: 14px; }
+      .features-grid, .tool-card { padding: 14px; }
       .totals { padding: 12px; }
       .totals .grand { font-size: 18px; }
     }
   </style>
+    <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
+[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
+            }
+
+    </style>
 <div class="container">
-  <div class="topbar">
-    <a class="back" href="index.html">&larr; <span data-i18n="back">Back to Toolbox</span></a>
-    <div class="lang-dropdown" id="langDropdown">
+<div class="topbar">
+<div class="lang-dropdown" id="langDropdown">
       <div class="lang-current" id="langCurrent">🇺🇸 English</div>
       <div class="lang-menu">
         <button class="lang-btn" data-lang="en">🇺🇸 English</button>
@@ -760,9 +666,7 @@
 <script>
 (function() {
   'use strict';
-
-  var langNames = { en: '🇺🇸 English', 'zh-CN': '🇨🇳 中文', fr: '🇫🇷 Français', es: '🇪🇸 Español' };
-  var i18n = {
+var i18n = {
     en: {
       back: 'Back to Toolbox', title: 'Invoice Generator', subtitle: 'Create itemized invoice PDF in your browser',
       fromName: 'From (Your Business)', toName: 'Bill To (Client)', invoiceNo: 'Invoice No.', invoiceDate: 'Invoice Date',
@@ -888,9 +792,7 @@
       r4_t: 'Compresor PDF', r4_d: 'Reducir tamaño del PDF.'
     }
   };
-
-  var currentLang = localStorage.getItem('invoice_generator_lang') || 'en';
-  var itemsBody = document.getElementById('itemsBody');
+var itemsBody = document.getElementById('itemsBody');
   var statusEl = document.getElementById('status');
   var grandEl = document.getElementById('grandTotal');
   var exportBtn = document.getElementById('exportBtn');
@@ -952,16 +854,6 @@
     }
   }
 
-  function applyLanguage(lang) {
-    currentLang = i18n[lang] ? lang : 'en';
-    localStorage.setItem('invoice_generator_lang', currentLang);
-    document.documentElement.lang = currentLang;
-    document.getElementById('langCurrent').textContent = langNames[currentLang];
-    document.querySelectorAll('[data-i18n]').forEach(function(el) {
-      el.textContent = t(el.getAttribute('data-i18n'));
-    });
-    calc();
-  }
 
   /* 导出 PDF（带按钮状态反馈） */
   function exportPDF() {
@@ -1037,13 +929,7 @@
     e.stopPropagation();
     document.getElementById('langDropdown').classList.toggle('open');
   });
-  document.querySelectorAll('.lang-btn').forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      applyLanguage(btn.getAttribute('data-lang'));
-      document.getElementById('langDropdown').classList.remove('open');
-    });
-  });
+});
   document.addEventListener('click', function() {
     document.getElementById('langDropdown').classList.remove('open');
   });
@@ -1066,8 +952,10 @@
   var due = new Date(today.getTime() + 7 * 24 * 3600 * 1000);
   document.getElementById('dueDate').value = due.toISOString().slice(0, 10);
   calc();
-  applyLanguage(currentLang);
 })();
 </script>
+    <script src="common/common.js" data-tool-id="invoice-generator" data-tool-name="Invoice Generator" data-category="utility"></script>
+    <script>WebToolbox.init(i18n);</script>
+
 </body>
 </html>

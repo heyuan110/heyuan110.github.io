@@ -172,6 +172,21 @@ Phase 1 ✅ → Phase 2 ✅ → Phase 3 ✅ → Phase 4 ✅ → Phase 5 ✅ → 
 
 ---
 
+## SEO 分类着陆页（6 个）
+
+> 2026-02-13 上线，提升分类级搜索词覆盖和主题权威性
+
+| 分类页 | 文件名 | 覆盖工具数 | 目标关键词 |
+|--------|--------|-----------|-----------|
+| PDF 工具合集 | pdf-tools.html | 7 | best free pdf tools online no signup |
+| 图片工具合集 | image-tools.html | 11 | free image tools no watermark online |
+| 开发者工具 | developer-tools.html | 16 | online dev tools free json regex api |
+| 文本工具合集 | text-tools.html | 5 | text tools online word counter diff |
+| 视频音频工具 | media-tools.html | 5 | free screen recorder video tools |
+| 效率工具合集 | utility-tools.html | 14 | free online calculator converter |
+
+---
+
 ## 开发流程
 
 每个新工具按以下步骤开发：

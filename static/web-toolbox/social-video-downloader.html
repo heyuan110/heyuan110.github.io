@@ -254,95 +254,7 @@
             position: relative;
         }
 
-        /* 语言切换器样式 - 下拉菜单 */
-        .lang-switcher {
-            position: absolute;
-            top: 0;
-            right: 0;
-        }
-
-        .lang-dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .lang-current {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            color: var(--text-primary);
-            padding: 8px 14px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s ease;
-        }
-
-        .lang-current:hover {
-            background: rgba(254, 44, 85, 0.2);
-            border-color: rgba(254, 44, 85, 0.4);
-        }
-
-        .lang-current::after {
-            content: '\u25bc';
-            font-size: 0.6rem;
-            opacity: 0.7;
-            transition: transform 0.2s ease;
-        }
-
-        .lang-dropdown.open .lang-current::after {
-            transform: rotate(180deg);
-        }
-
-        .lang-menu {
-            position: absolute;
-            top: calc(100% + 6px);
-            right: 0;
-            background: rgba(26, 26, 46, 0.98);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            min-width: 140px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-8px);
-            transition: all 0.2s ease;
-            z-index: 100;
-            overflow: hidden;
-        }
-
-        .lang-dropdown.open .lang-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .lang-btn {
-            display: block;
-            width: 100%;
-            background: transparent;
-            border: none;
-            color: var(--text-secondary);
-            padding: 10px 14px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            text-align: left;
-            transition: all 0.15s ease;
-        }
-
-        .lang-btn:hover {
-            background: rgba(254, 44, 85, 0.2);
-            color: var(--text-primary);
-        }
-
-        .lang-btn.active {
-            background: rgba(254, 44, 85, 0.3);
-            color: var(--accent-tiktok);
-        }
-
-        .logo {
+        .lang-dropdown.open .lang-dropdown.open .logo {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -757,25 +669,6 @@
             flex-shrink: 0;
         }
 
-        /* 页脚 */
-        .footer {
-            text-align: center;
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 1px solid var(--border);
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .footer a {
-            color: var(--accent-tiktok);
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
         .back-link {
             display: inline-flex;
             align-items: center;
@@ -1082,23 +975,8 @@
             font-size: 0.95rem;
             line-height: 1.6;
         }
-        .trust-bar {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
-            margin: 12px 0 24px;
-            padding: 12px 20px;
-            background: rgba(124, 58, 237, 0.1);
-            border: 1px solid rgba(124, 58, 237, 0.2);
-            border-radius: 12px;
-        }
-        .trust-item {
-            font-size: 13px;
-            color: #a78bfa;
-            white-space: nowrap;
-        }
-    </style>
+        </style>
+    <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
     <div class="container">
@@ -1239,12 +1117,7 @@
                 <li data-i18n="tip6">视频解析通过安全服务完成，下载直接从原平台获取</li>
             </ul>
         </section>
-
-        <footer class="footer">
-            <p>Made with ❤️ by <a href="https://github.com/heyuan110" target="_blank" rel="noopener">@heyuan110</a></p>
-            <p style="margin-top: 8px; font-size: 0.8rem; opacity: 0.6;" data-i18n="footerNote">本工具仅供个人学习使用，请尊重原创者版权，勿用于商业用途</p>
-        </footer>
-    </div>
+</div>
 
     <div class="toast" id="toast"></div>
 
@@ -1306,13 +1179,8 @@
         const historyList = document.getElementById('historyList');
         const clearHistoryBtn = document.getElementById('clearHistoryBtn');
         const toast = document.getElementById('toast');
-
-        // Cloudflare Worker 代理 URL
-        // 部署你自己的 Worker 后，将下面的 URL 替换为你的 Worker 地址
         // 如果 Worker 不可用或超出配额，会自动回退到外部服务
-        const WORKER_URL = 'https://videoproxyapi.heyuan110.com/';
-
-        // 历史记录
+        const WORKER_URL = 'https:
         const HISTORY_KEY = 'social_video_history';
         let history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
 
@@ -1771,9 +1639,6 @@
             }
             return { success: false };
         }
-
-        // Instagram 视频解析
-        // 优先使用 Worker 代理，失败时回退到外部服务
         async function fetchInstagramVideo(url) {
             // 尝试使用 Worker
             const workerResult = await fetchViaWorker(url, 'instagram');
@@ -1817,9 +1682,6 @@
                 ]
             };
         }
-
-        // Facebook 视频解析
-        // 优先使用 Worker 代理，失败时回退到外部服务
         async function fetchFacebookVideo(url) {
             // 尝试使用 Worker
             const workerResult = await fetchViaWorker(url, 'facebook');
@@ -1863,9 +1725,6 @@
                 ]
             };
         }
-
-        // YouTube 视频解析
-        // 优先使用 Worker 代理，失败时回退到外部服务
         async function fetchYouTubeVideo(url) {
             // 尝试使用 Worker
             const workerResult = await fetchViaWorker(url, 'youtube');
@@ -1999,8 +1858,6 @@
                     downloadOptions.appendChild(option);
                 });
             } else if (result.videos && result.videos.length > 0) {
-                // YouTube 视频 - 已解析到信息，但直接链接有 IP 限制
-                // 显示提示信息
                 const notice = document.createElement('div');
                 notice.className = 'download-notice';
                 notice.innerHTML = `
@@ -2162,20 +2019,6 @@
 
         // 启动
         init();
-
-        // FAQ 交互
-        document.querySelectorAll('.faq-question').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const item = this.parentElement;
-                const wasActive = item.classList.contains('active');
-                // 关闭所有其他项
-                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-                // 切换当前项
-                if (!wasActive) {
-                    item.classList.add('active');
-                }
-            });
-        });
     })();
 
     // 多语言支持 (i18n)
@@ -2411,98 +2254,11 @@
                 trust_free: '🚫 Sin anuncios, sin registro',
             },
         };
-
-        // 当前语言
-        let currentLang = localStorage.getItem('toolbox_lang') || detectLanguage();
-
-        // 检测浏览器语言
-        function detectLanguage() {
-            const browserLang = navigator.language || navigator.userLanguage;
-            if (browserLang.startsWith('zh')) return 'zh-CN';
-            if (browserLang.startsWith('fr')) return 'fr';
-            if (browserLang.startsWith('es')) return 'es';
-            return 'en';
-        }
-
-        // 应用翻译
-        function applyTranslations(lang) {
-            const t = translations[lang] || translations['en'];
-
-            // 更新 HTML lang 属性
-            document.documentElement.lang = lang;
-
-            // 翻译所有带 data-i18n 属性的元素
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (t[key]) {
-                    el.innerHTML = t[key];
-                }
-            });
-
-            // 翻译占位符
-            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-                const key = el.getAttribute('data-i18n-placeholder');
-                if (t[key]) {
-                    el.placeholder = t[key];
-                }
-            });
-        }
-
-        // 语言显示名称映射
-        const langNames = {
-            'en': '🇺🇸 English',
-            'zh-CN': '🇨🇳 中文',
-            'fr': '🇫🇷 Français',
-            'es': '🇪🇸 Español'
-        };
-
-        // 切换语言
-        function switchLanguage(lang) {
-            currentLang = lang;
-            localStorage.setItem('toolbox_lang', lang);
-            applyTranslations(lang);
-            // 更新下拉菜单显示的当前语言
-            const langCurrent = document.getElementById('langCurrent');
-            if (langCurrent) {
-                langCurrent.textContent = langNames[lang] || langNames['en'];
-            }
-            // 关闭下拉菜单
-            const dropdown = document.getElementById('langDropdown');
-            if (dropdown) dropdown.classList.remove('open');
-        }
-
-        // 下拉菜单交互
-        const langDropdown = document.getElementById('langDropdown');
-        const langCurrent = document.getElementById('langCurrent');
-
-        if (langCurrent && langDropdown) {
-            langCurrent.addEventListener('click', (e) => {
-                e.stopPropagation();
-                langDropdown.classList.toggle('open');
-            });
-
-            // 点击外部关闭下拉菜单
-            document.addEventListener('click', () => {
-                langDropdown.classList.remove('open');
-            });
-        }
-
-        // 绑定语言切换按钮事件
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                switchLanguage(btn.dataset.lang);
-            });
-        });
-
-        // 初始化
-        applyTranslations(currentLang);
-        // 设置初始语言显示
-        if (langCurrent) {
-            langCurrent.textContent = langNames[currentLang] || langNames['en'];
-        }
-    })();
+})();
     </script>
+    <script src="common/common.js" data-tool-id="social-video-downloader" data-tool-name="Social Video Downloader" data-category="media"></script>
+    <script>WebToolbox.init(translations);</script>
+
 
     <!-- 相关工具推荐 -->
     <section class="related-tools" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">

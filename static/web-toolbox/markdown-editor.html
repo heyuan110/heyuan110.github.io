@@ -133,60 +133,14 @@
             min-height: 100vh;
             padding: 24px 16px 60px;
         }
-        .container { max-width: 1260px; margin: 0 auto; }
+        .container { max-width: 1200px; margin: 0 auto; }
         .topbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 18px;
         }
-        .back {
-            color: #cbd5e1;
-            text-decoration: none;
-            font-size: 14px;
-            padding: 8px 12px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background: rgba(15,23,42,0.65);
-        }
-        .back:hover { border-color: #64748b; }
-
-        .lang-dropdown { position: relative; }
-        .lang-current {
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background: rgba(15,23,42,0.75);
-            padding: 8px 12px;
-            font-size: 14px;
-            cursor: pointer;
-            user-select: none;
-        }
-        .lang-menu {
-            position: absolute;
-            top: calc(100% + 4px);
-            right: 0;
-            background: #0f172a;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 4px;
-            min-width: 150px;
-            display: none;
-            z-index: 30;
-        }
-        .lang-dropdown.open .lang-menu { display: block; }
-        .lang-btn {
-            width: 100%;
-            background: transparent;
-            border: 0;
-            color: var(--text);
-            padding: 8px 10px;
-            text-align: left;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-        .lang-btn:hover { background: rgba(59,130,246,0.2); }
-
-        h1 {
+.lang-dropdown.open h1 {
             text-align: center;
             font-size: 2.1rem;
             letter-spacing: -0.02em;
@@ -273,41 +227,7 @@
         .stats { margin-top: 10px; color: var(--muted); font-size: 13px; }
         .status { margin-top: 10px; color: #93c5fd; font-size: 13px; min-height: 18px; }
 
-        .trust-bar {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
-            margin: 12px 0 24px;
-            padding: 12px 20px;
-            background: rgba(124, 58, 237, 0.1);
-            border: 1px solid rgba(124, 58, 237, 0.2);
-            border-radius: 12px;
-        }
-        .trust-item {
-            font-size: 13px;
-            color: #a78bfa;
-            white-space: nowrap;
-        }
-
-        .features-section, .faq-section, .related-tools {
-            margin-top: 22px;
-            background: rgba(15,23,42,0.82);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 18px;
-        }
-        .features-section h2, .faq-section h2, .related-tools h3 {
-            text-align: center;
-            margin-bottom: 14px;
-            font-size: 1.2rem;
-        }
-        .features-grid, .related-grid {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 10px;
-        }
-        .feature, .related {
+        .features-section, .faq-section, .features-section h2, .faq-section h2, .features-grid, .feature, .related {
             border: 1px solid var(--border);
             border-radius: 10px;
             padding: 12px;
@@ -346,19 +266,22 @@
 
         @media (max-width: 960px) {
             .layout { grid-template-columns: 1fr; }
-            .features-grid, .related-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-        }
+            .features-grid, }
         @media (max-width: 640px) {
             h1 { font-size: 1.7rem; }
-            .features-grid, .related-grid { grid-template-columns: 1fr; }
-        }
+            .features-grid, }
     </style>
+    <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
+[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
+            }
+
+    
+        </style>
 <div class="container">
-    <div class="topbar">
-        <a class="back" href="index.html">← <span data-i18n="back">Back to Toolbox</span></a>
-        <div class="lang-dropdown" id="langDropdown">
+<div class="topbar">
+<div class="lang-dropdown" id="langDropdown">
             <div class="lang-current" id="langCurrent">🇺🇸 English</div>
             <div class="lang-menu">
                 <button class="lang-btn" data-lang="en">🇺🇸 English</button>
@@ -451,9 +374,7 @@
 <script>
 (function() {
     'use strict';
-
-    var langNames = { en: '🇺🇸 English', 'zh-CN': '🇨🇳 中文', fr: '🇫🇷 Français', es: '🇪🇸 Español' };
-    var i18n = {
+var i18n = {
         en: {
             back:'Back to Toolbox', title:'Markdown Editor', subtitle:'Write markdown with instant preview and code highlight',
             sample:'Insert Sample', clear:'Clear', copyHtml:'Copy HTML', copyMd:'Copy Markdown', editorPanel:'Markdown Input', previewPanel:'Live Preview',
@@ -495,33 +416,15 @@
             related_title:'Herramientas relacionadas', r1_t:'Diff de texto', r1_d:'Compara dos textos y resalta cambios.', r2_t:'Convertidor CSV JSON', r2_d:'Conversión CSV ↔ JSON en navegador.', r3_t:'Generador Cron', r3_d:'Crea expresiones cron y lee su descripción.', r4_t:'Herramienta Base64', r4_d:'Codifica y decodifica para flujo de desarrollo.'
         }
     };
-
-    var currentLang = localStorage.getItem('markdown_editor_lang') || 'en';
-    var mdInput = document.getElementById('mdInput');
+var mdInput = document.getElementById('mdInput');
     var preview = document.getElementById('preview');
     var stats = document.getElementById('stats');
     var statusEl = document.getElementById('status');
-    var langDropdown = document.getElementById('langDropdown');
-    var langCurrent = document.getElementById('langCurrent');
-
-    function t(key) {
+function t(key) {
         var d = i18n[currentLang] || i18n.en;
         return d[key] || i18n.en[key] || key;
     }
 
-    function applyLanguage(lang) {
-        currentLang = i18n[lang] ? lang : 'en';
-        localStorage.setItem('markdown_editor_lang', currentLang);
-        document.documentElement.lang = currentLang;
-        langCurrent.textContent = langNames[currentLang];
-        document.querySelectorAll('[data-i18n]').forEach(function(el) {
-            el.textContent = t(el.getAttribute('data-i18n'));
-        });
-        document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
-            el.placeholder = t(el.getAttribute('data-i18n-placeholder'));
-        });
-        updateStats();
-    }
 
     function updateStats() {
         var text = mdInput.value || '';
@@ -565,23 +468,8 @@
     });
 
     mdInput.addEventListener('input', render);
-
-    langCurrent.addEventListener('click', function(e) {
-        e.stopPropagation();
-        langDropdown.classList.toggle('open');
-    });
-    document.querySelectorAll('.lang-btn').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            applyLanguage(btn.getAttribute('data-lang'));
-            langDropdown.classList.remove('open');
-        });
-    });
-    document.addEventListener('click', function() {
-        langDropdown.classList.remove('open');
-    });
-
-    document.querySelectorAll('.faq-q').forEach(function(btn) {
+});
+document.querySelectorAll('.faq-q').forEach(function(btn) {
         btn.addEventListener('click', function() {
             var item = btn.parentElement;
             var wasOpen = item.classList.contains('active');
@@ -589,11 +477,12 @@
             if (!wasOpen) item.classList.add('active');
         });
     });
-
-    applyLanguage(currentLang);
-    mdInput.value = sample;
+mdInput.value = sample;
     render();
 })();
 </script>
+    <script src="common/common.js" data-tool-id="markdown-editor" data-tool-name="Markdown Editor" data-category="text"></script>
+    <script>WebToolbox.init(i18n);</script>
+
 </body>
 </html>

@@ -102,12 +102,8 @@
     :root{--bg:#020617;--panel:#0b1220;--card:#0f172a;--muted:#94a3b8;--text:#e2e8f0;--border:rgba(148,163,184,.2);--primary:#3b82f6;--primary2:#2563eb;--radius:12px}
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:"Inter","SF Pro Text",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 20% 0%,rgba(59,130,246,.18),transparent 40%),radial-gradient(circle at 100% 0%,rgba(16,185,129,.12),transparent 38%),var(--bg);color:var(--text);min-height:100vh;padding:24px 16px 60px}
-    .container{max-width:1200px;margin:0 auto}.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
-    .back{color:#cbd5e1;text-decoration:none;font-size:14px;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:rgba(15,23,42,.65)}.back:hover{border-color:#64748b}
-    .lang-dropdown{position:relative}.lang-current{border:1px solid var(--border);border-radius:8px;background:rgba(15,23,42,.75);padding:8px 12px;font-size:14px;cursor:pointer;user-select:none}
-    .lang-menu{position:absolute;top:calc(100% + 4px);right:0;background:#0f172a;border:1px solid var(--border);border-radius:8px;padding:4px;min-width:150px;display:none;z-index:30}.lang-dropdown.open .lang-menu{display:block}
-    .lang-btn{width:100%;background:transparent;border:0;color:var(--text);padding:8px 10px;text-align:left;border-radius:6px;cursor:pointer}.lang-btn:hover{background:rgba(59,130,246,.2)}
-    h1{text-align:center;font-size:2.1rem;letter-spacing:-.02em;margin-bottom:10px}.subtitle{text-align:center;color:var(--muted);margin-bottom:22px}
+    .container{max-width: 1200px;margin:0 auto}.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.lang-dropdown.open h1{text-align:center;font-size:2.1rem;letter-spacing:-.02em;margin-bottom:10px}.subtitle{text-align:center;color:var(--muted);margin-bottom:22px}
     .card{background:rgba(15,23,42,.82);border:1px solid var(--border);border-radius:var(--radius)}.tool-card{padding:14px}
     .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;align-items:center}.btn{border:1px solid var(--border);background:#0b1220;color:var(--text);padding:8px 12px;border-radius:8px;font-size:13px;cursor:pointer}
     .btn:hover{border-color:#64748b}.btn.primary{background:linear-gradient(135deg,var(--primary),var(--primary2));border-color:transparent;color:#fff}
@@ -118,21 +114,24 @@
     .drop.drag{background:rgba(59,130,246,.12)}.preview{max-width:100%;max-height:220px;border-radius:8px;display:none}
     textarea{width:100%;min-height:260px;border:0;outline:none;padding:14px;background:#020617;color:var(--text);font-size:14px;line-height:1.7;font-family:"JetBrains Mono","SF Mono",Consolas,monospace}
     .status{margin-top:8px;color:#93c5fd;font-size:13px;min-height:18px}
-    .trust-bar{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin:12px 0 24px;padding:12px 20px;background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.2);border-radius:12px}.trust-item{font-size:13px;color:#a78bfa;white-space:nowrap}
-    .features-section,.faq-section,.related-tools{margin-top:22px;background:rgba(15,23,42,.82);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
-    .features-section h2,.faq-section h2,.related-tools h3{text-align:center;margin-bottom:14px;font-size:1.2rem}
-    .features-grid,.related-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
-    .feature,.related{border:1px solid var(--border);border-radius:10px;padding:12px;background:rgba(2,6,23,.58)}.feature h4,.related h4{margin:8px 0 6px;font-size:14px}.feature p,.related p{color:var(--muted);font-size:13px;line-height:1.55}
+    .features-section,.faq-section,.features-section h2,.faq-section h2,.features-grid,.feature,.related{border:1px solid var(--border);border-radius:10px;padding:12px;background:rgba(2,6,23,.58)}.feature h4,.related h4{margin:8px 0 6px;font-size:14px}.feature p,.related p{color:var(--muted);font-size:13px;line-height:1.55}
     .related{text-decoration:none;color:inherit;display:block}.related:hover{border-color:#64748b}
     .faq-item{border:1px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden;background:rgba(2,6,23,.5)}.faq-q{width:100%;text-align:left;background:transparent;border:0;color:var(--text);padding:12px 14px;cursor:pointer;font-size:14px}
     .faq-a{display:none;padding:0 14px 12px;color:var(--muted);font-size:13px;line-height:1.6}.faq-item.active .faq-a{display:block}
-    @media (max-width:960px){.layout{grid-template-columns:1fr}.features-grid,.related-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media (max-width:640px){h1{font-size:1.7rem}.features-grid,.related-grid{grid-template-columns:1fr}}
+    @media (max-width:960px){.layout{grid-template-columns:1fr}.features-grid,}
+    @media (max-width:640px){h1{font-size:1.7rem}.features-grid,}
   </style>
+    <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
+[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
+            }
+
+    
+        </style>
 <div class="container">
-  <div class="topbar"><a class="back" href="index.html">← <span data-i18n="back">Back to Toolbox</span></a><div class="lang-dropdown" id="langDropdown"><div class="lang-current" id="langCurrent">🇺🇸 English</div><div class="lang-menu"><button class="lang-btn" data-lang="en">🇺🇸 English</button><button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button><button class="lang-btn" data-lang="fr">🇫🇷 Français</button><button class="lang-btn" data-lang="es">🇪🇸 Español</button></div></div></div>
+<div class="topbar">
+<div class="lang-dropdown" id="langDropdown"><div class="lang-current" id="langCurrent">🇺🇸 English</div><div class="lang-menu"><button class="lang-btn" data-lang="en">🇺🇸 English</button><button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button><button class="lang-btn" data-lang="fr">🇫🇷 Français</button><button class="lang-btn" data-lang="es">🇪🇸 Español</button></div></div></div>
 
   <h1 data-i18n="title">OCR Tool</h1>
   <p class="subtitle" data-i18n="subtitle">Extract text from image online with browser OCR</p>
@@ -172,16 +171,13 @@
 <script>
 (function(){
   'use strict';
-  var langNames={en:'🇺🇸 English','zh-CN':'🇨🇳 中文',fr:'🇫🇷 Français',es:'🇪🇸 Español'};
-  var i18n={
+var i18n={
     en:{back:'Back to Toolbox',title:'OCR Tool',subtitle:'Extract text from image online with browser OCR',choose:'Choose Image',extract:'Extract Text',copy:'Copy Text',clear:'Clear',inputPanel:'Image Input',outputPanel:'OCR Result',dropHint:'Drag and drop image here or click Choose Image',resultPlaceholder:'Recognized text appears here...',noFile:'Please choose an image first',processing:'OCR running...',done:'OCR completed',copied:'Copied to clipboard',trust_users:'🌍 Used by 50,000+ users',trust_rating:'⭐ 4.9/5 rating',trust_privacy:'🔒 100% Private',trust_free:'🚫 No Ads, No Signup',features_title:'OCR Tool Features',f1_t:'100% Free & Private',f1_d:'No ads, no signup, no watermark. Everything runs locally in your browser. Your data never leaves your device.',f2_t:'Image to Text OCR',f2_d:'Convert screenshots, scans, and photos into editable text with OCR online.',f3_t:'Multi-language Recognition',f3_d:'Choose OCR language mode for English, Chinese, French, and Spanish text extraction.',f4_t:'One-click Copy',f4_d:'Copy recognized text instantly for translation, search, notes, and document reuse.',faq_title:'Frequently Asked Questions',faq1_q:'What is OCR and what is it used for?',faq1_a:'OCR means Optical Character Recognition. It converts text in screenshots, scans, and photos into editable text for search, translation, and documentation workflows.',faq2_q:'Can this OCR tool extract text from screenshots and scanned PDFs?',faq2_a:'Yes. This image to text converter works well for screenshots and scanned document images. For PDFs, convert pages to images first, then run OCR online.',faq3_q:'Which OCR languages are supported?',faq3_a:'The tool provides common OCR language modes like English, Chinese, French, and Spanish. Pick the closest language to improve text recognition accuracy.',faq4_q:'Is OCR processing private and local?',faq4_a:'Yes. OCR runs in your browser with local processing logic and no account requirement. Image files are not uploaded by this page to any app server.',faq_free_q:'Is this tool really free with no ads?',faq_free_a:'Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.',related_title:'Related Tools',r1_t:'Image Editor',r1_d:'Crop and enhance images before OCR extraction.',r2_t:'PDF to Image',r2_d:'Convert PDF pages to images, then run OCR.',r3_t:'Chinese Converter',r3_d:'Convert OCR text between simplified and traditional.',r4_t:'CSV JSON Converter',r4_d:'Transform extracted text data for developer workflows.'},
     'zh-CN':{back:'返回工具箱',title:'OCR 图片文字识别',subtitle:'在浏览器中将图片快速转换为可编辑文本',choose:'选择图片',extract:'开始识别',copy:'复制文本',clear:'清空',inputPanel:'图片输入',outputPanel:'识别结果',dropHint:'拖拽图片到此处，或点击“选择图片”',resultPlaceholder:'识别文本会显示在这里...',noFile:'请先选择图片文件',processing:'正在执行 OCR 识别...',done:'识别完成',copied:'已复制到剪贴板',trust_users:'🌍 超过 50,000 用户使用',trust_rating:'⭐ 4.9/5 好评',trust_privacy:'🔒 100% 隐私安全',trust_free:'🚫 无广告、无需注册',features_title:'OCR 功能特点',f1_t:'100% 免费且安全',f1_d:'无广告、无需注册、无水印。所有处理都在浏览器本地完成，数据不会上传到任何服务器。',f2_t:'图片转文字 OCR',f2_d:'支持截图、扫描件、拍照图片的 image to text 识别。',f3_t:'多语言识别',f3_d:'可切换英文、中文、法语、西班牙语 OCR 识别模式。',f4_t:'一键复制',f4_d:'识别后可立即复制，用于翻译、检索和文档整理。',faq_title:'常见问题',faq1_q:'什么是 OCR？OCR 有什么用？',faq1_a:'OCR 即光学字符识别，可把图片里的文字变成可编辑文本。常见于截图转文字、纸质文档数字化、图片内容检索等场景。',faq2_q:'这个工具能识别截图和扫描件吗？',faq2_a:'可以。该 OCR online 工具适合截图和扫描图片。若是 PDF，可先转成图片后再做图片文字识别。',faq3_q:'支持哪些 OCR 语言？',faq3_a:'支持常用 OCR 语言模式，如英文、中文、法语、西班牙语。选择与文本最接近的语言，可提升识别准确率。',faq4_q:'识别过程是本地和隐私安全吗？',faq4_a:'是的。识别逻辑在浏览器本地执行，无需账号。页面不会主动把你的图片上传到应用服务器。',faq_free_q:'这个工具真的免费且无广告吗？',faq_free_a:'是的，100% 免费，无广告、无需注册、无水印、无限制。所有处理都在浏览器本地完成，你的数据不会上传到任何服务器。',related_title:'相关工具',r1_t:'图片编辑器',r1_d:'先裁剪增强图片，再进行 OCR。',r2_t:'PDF 转图片',r2_d:'先把 PDF 页转图，再识别文字。',r3_t:'简繁转换',r3_d:'对 OCR 结果进行简繁互转处理。',r4_t:'CSV JSON 转换',r4_d:'把提取文本进一步结构化处理。'},
     fr:{back:'Retour à la boîte à outils',title:'Outil OCR',subtitle:'Extraire le texte d image en ligne avec OCR navigateur',choose:'Choisir une image',extract:'Extraire le texte',copy:'Copier le texte',clear:'Effacer',inputPanel:'Entrée image',outputPanel:'Résultat OCR',dropHint:'Glissez une image ici ou cliquez sur Choisir',resultPlaceholder:'Le texte reconnu apparaît ici...',noFile:'Veuillez choisir une image',processing:'OCR en cours...',done:'OCR terminé',copied:'Copié dans le presse-papiers',trust_users:'🌍 Utilisé par 50 000+ utilisateurs',trust_rating:'⭐ Note 4.9/5',trust_privacy:'🔒 100% Privé',trust_free:'🚫 Sans pub, sans inscription',features_title:'Fonctionnalités OCR',f1_t:'100% Gratuit et Privé',f1_d:'Sans publicité, sans inscription, sans filigrane. Tout est traité localement dans votre navigateur.',f2_t:'OCR image vers texte',f2_d:'Convertissez captures, scans et photos en texte éditable.',f3_t:'Reconnaissance multilingue',f3_d:'Modes OCR anglais, chinois, français et espagnol.',f4_t:'Copie en un clic',f4_d:'Copiez immédiatement le texte reconnu pour vos flux.',faq_title:'Questions fréquentes',faq1_q:'Qu est ce que OCR et a quoi sert il ?',faq1_a:'OCR signifie reconnaissance optique de caracteres. Cette technologie convertit le texte present dans une image en texte editable pour recherche et documentation.',faq2_q:'Puis je extraire du texte depuis capture et scan ?',faq2_a:'Oui. Cet outil image to text fonctionne avec captures d ecran et scans. Pour PDF, convertissez d abord en image puis lancez OCR.',faq3_q:'Quelles langues OCR sont disponibles ?',faq3_a:'Le tool propose des modes OCR courants: anglais, chinois, francais et espagnol. Choisissez la langue la plus proche pour une meilleure precision.',faq4_q:'Le traitement OCR est il local et prive ?',faq4_a:'Oui. Le traitement fonctionne dans le navigateur et n exige pas de compte. Vos images ne sont pas envoyees a un serveur applicatif.',faq_free_q:'Cet outil est-il vraiment gratuit et sans pub ?',faq_free_a:'Oui, 100% gratuit, sans publicité, sans inscription, sans filigrane et sans limites. Tout est traité localement dans votre navigateur — vos données ne sont jamais téléversées.',related_title:'Outils associés',r1_t:'Éditeur d image',r1_d:'Recadrez l image avant OCR.',r2_t:'PDF vers image',r2_d:'Convertissez PDF en image puis OCR.',r3_t:'Convertisseur chinois',r3_d:'Convertissez texte OCR simplifie/traditionnel.',r4_t:'Convertisseur CSV JSON',r4_d:'Structurer le texte extrait.'},
     es:{back:'Volver a la caja de herramientas',title:'Herramienta OCR',subtitle:'Extrae texto de imagen en línea con OCR en navegador',choose:'Elegir imagen',extract:'Extraer texto',copy:'Copiar texto',clear:'Limpiar',inputPanel:'Entrada de imagen',outputPanel:'Resultado OCR',dropHint:'Arrastra imagen aquí o haz clic en Elegir imagen',resultPlaceholder:'El texto reconocido aparece aquí...',noFile:'Primero selecciona una imagen',processing:'OCR en progreso...',done:'OCR completado',copied:'Copiado al portapapeles',trust_users:'🌍 Usado por más de 50,000 usuarios',trust_rating:'⭐ Calificación 4.9/5',trust_privacy:'🔒 100% Privado',trust_free:'🚫 Sin anuncios, sin registro',features_title:'Funciones OCR',f1_t:'100% Gratis y Privado',f1_d:'Sin anuncios, sin registro, sin marca de agua. Todo se procesa localmente en tu navegador.',f2_t:'OCR imagen a texto',f2_d:'Convierte capturas, escaneos y fotos en texto editable.',f3_t:'Reconocimiento multilenguaje',f3_d:'Modos OCR para inglés, chino, francés y español.',f4_t:'Copiar con un clic',f4_d:'Copia el texto reconocido para buscar, traducir y documentar.',faq_title:'Preguntas frecuentes',faq1_q:'¿Qué es OCR y para qué sirve?',faq1_a:'OCR significa reconocimiento óptico de caracteres. Convierte texto dentro de imágenes en texto editable para búsqueda, traducción y documentación.',faq2_q:'¿Puede extraer texto de capturas y escaneos?',faq2_a:'Sí. Este image to text converter funciona con capturas y escaneos. Para PDF, convierte primero a imagen y luego ejecuta OCR online.',faq3_q:'¿Qué idiomas OCR soporta?',faq3_a:'Incluye modos OCR comunes como inglés, chino, francés y español. Elegir el idioma correcto mejora la precisión de reconocimiento.',faq4_q:'¿El procesamiento OCR es local y privado?',faq4_a:'Sí. El procesamiento ocurre en el navegador y no requiere cuenta. Tus imágenes no se suben a un servidor de aplicación.',faq_free_q:'¿Esta herramienta es realmente gratis y sin anuncios?',faq_free_a:'Sí, 100% gratis, sin anuncios, sin registro, sin marca de agua y sin límites. Todo el procesamiento ocurre localmente en tu navegador: tus datos nunca se suben a ningún servidor.',related_title:'Herramientas relacionadas',r1_t:'Editor de imagen',r1_d:'Recorta y mejora la imagen antes de OCR.',r2_t:'PDF a imagen',r2_d:'Convierte PDF a imagen y luego aplica OCR.',r3_t:'Convertidor chino',r3_d:'Convierte texto OCR entre simplificado/tradicional.',r4_t:'Convertidor CSV JSON',r4_d:'Estructura los datos de texto extraído.'}
   };
-
-  var currentLang=localStorage.getItem('ocr_tool_lang')||'en';
-  var fileInput=document.getElementById('fileInput');
+var fileInput=document.getElementById('fileInput');
   var preview=document.getElementById('preview');
   var resultText=document.getElementById('resultText');
   var statusEl=document.getElementById('status');
@@ -191,7 +187,7 @@
 
   function t(k){var d=i18n[currentLang]||i18n.en;return d[k]||i18n.en[k]||k}
   function setStatus(v){statusEl.textContent=v||''}
-  function applyLanguage(lang){currentLang=i18n[lang]?lang:'en';localStorage.setItem('ocr_tool_lang',currentLang);document.documentElement.lang=currentLang;document.getElementById('langCurrent').textContent=langNames[currentLang];document.querySelectorAll('[data-i18n]').forEach(function(el){el.textContent=t(el.getAttribute('data-i18n'))});document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el){el.placeholder=t(el.getAttribute('data-i18n-placeholder'))});}
+
 
   function setFile(file){
     currentFile=file;
@@ -225,12 +221,13 @@
   document.getElementById('clearBtn').addEventListener('click',function(){setFile(null);resultText.value='';setStatus('');fileInput.value='';});
 
   document.getElementById('langCurrent').addEventListener('click',function(e){e.stopPropagation();document.getElementById('langDropdown').classList.toggle('open');});
-  document.querySelectorAll('.lang-btn').forEach(function(btn){btn.addEventListener('click',function(e){e.stopPropagation();applyLanguage(btn.getAttribute('data-lang'));document.getElementById('langDropdown').classList.remove('open');});});
+});
   document.addEventListener('click',function(){document.getElementById('langDropdown').classList.remove('open');});
   document.querySelectorAll('.faq-q').forEach(function(btn){btn.addEventListener('click',function(){var item=btn.parentElement;var open=item.classList.contains('active');document.querySelectorAll('.faq-item').forEach(function(it){it.classList.remove('active')});if(!open)item.classList.add('active');});});
-
-  applyLanguage(currentLang);
 })();
 </script>
+    <script src="common/common.js" data-tool-id="ocr-tool" data-tool-name="OCR Tool" data-category="image"></script>
+    <script>WebToolbox.init(i18n);</script>
+
 </body>
 </html>

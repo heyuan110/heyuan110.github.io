@@ -40,8 +40,12 @@
         "description": "Comprehensive toolbox with 20+ encryption, decryption and encoding conversion tools",
         "applicationCategory": "DeveloperApplication",
         "operatingSystem": "Web Browser",
+        "featureList": ["No ads", "No signup required", "100% browser-based", "Unlimited usage", "No watermark"],
         "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
-        "author": {"@type": "Person", "name": "heyuan110"}
+        "author": {"@type": "Person", "name": "heyuan110"},
+        "alternateName": ["加密编码工具箱", "Encryption Toolkit", "Hash Generator"],
+        "publisher": {"@type": "Organization", "name": "Web Toolbox", "url": "https://www.heyuan110.com/web-toolbox/"},
+        "screenshot": "https://www.heyuan110.com/web-toolbox/screenshots/crypto-tools.webp"
     }
     </script>
 
@@ -143,17 +147,7 @@
             position: relative;
         }
 
-        /* Language Switcher */
-        .lang-switcher { position: absolute; top: 0; right: 0; }
-        .lang-dropdown { position: relative; display: inline-block; }
-        .lang-current { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 14px; color: #e0e0e0; transition: all 0.3s ease; }
-        .lang-current:hover { background: rgba(255,255,255,0.15); }
-        .lang-menu { position: absolute; top: 100%; right: 0; margin-top: 4px; background: #1e1e2e; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 4px; min-width: 140px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; z-index: 1000; }
-        .lang-dropdown.active .lang-menu { opacity: 1; visibility: visible; transform: translateY(0); }
-        .lang-btn { display: block; width: 100%; padding: 10px 16px; background: none; border: none; color: #e0e0e0; font-size: 14px; text-align: left; cursor: pointer; border-radius: 6px; transition: background 0.2s ease; }
-        .lang-btn:hover { background: rgba(255,255,255,0.1); }
-
-        .sidebar-header h1 {
+        .lang-dropdown.active .sidebar-header h1 {
             font-size: 1.4rem;
             background: linear-gradient(120deg, #00d4ff, #7c3aed);
             -webkit-background-clip: text;
@@ -208,6 +202,7 @@
             margin-left: 260px;
             padding: 30px;
             min-height: 100vh;
+            position: relative;
         }
 
         .tool-panel {
@@ -542,27 +537,7 @@
                 width: 100%;
             }
         }
-
-        /* 返回首页按钮 */
-        .back-home {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: #a1a1aa;
-            text-decoration: none;
-            font-size: 0.85rem;
-            padding: 8px 12px;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-            margin-bottom: 20px;
-        }
-
-        .back-home:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-        }
-
-        /* 密码强度指示器 */
+/* 密码强度指示器 */
         .strength-bar {
             height: 4px;
             background: rgba(255, 255, 255, 0.1);
@@ -748,39 +723,18 @@
                 grid-template-columns: 1fr;
             }
         }
-        .trust-bar {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
-            margin: 12px 0 24px;
-            padding: 12px 20px;
-            background: rgba(124, 58, 237, 0.1);
-            border: 1px solid rgba(124, 58, 237, 0.2);
-            border-radius: 12px;
-        }
-        .trust-item {
-            font-size: 13px;
-            color: #a78bfa;
-            white-space: nowrap;
-        }
-    </style>
+        </style>
+    <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
+[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
+            }
+
+    
+        </style>
     <!-- 侧边栏导航 -->
     <nav class="sidebar">
         <div class="sidebar-header">
-            <div class="lang-switcher">
-                <div class="lang-dropdown" id="langDropdown">
-                    <div class="lang-current" id="langCurrent">🌐 English</div>
-                    <div class="lang-menu">
-                        <button class="lang-btn" data-lang="en">🇺🇸 English</button>
-                        <button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button>
-                        <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
-                        <button class="lang-btn" data-lang="es">🇪🇸 Español</button>
-                    </div>
-                </div>
-            </div>
             <h1 data-i18n="siteTitle">🔐 Crypto Toolbox</h1>
             <p data-i18n="siteSubtitle">Online Encryption & Encoding Tools</p>
         </div>
@@ -819,9 +773,7 @@
 
     <!-- 主内容区 -->
     <main class="main-content">
-        <a href="index.html" class="back-home" data-i18n="backHome">← Back to Toolbox Home</a>
-
-        <div class="trust-bar">
+<div class="trust-bar">
             <span class="trust-item" data-i18n="trust_users">🌍 Used by 50,000+ users</span>
             <span class="trust-item" data-i18n="trust_rating">⭐ 4.9/5 rating</span>
             <span class="trust-item" data-i18n="trust_privacy">🔒 100% Private</span>
@@ -1731,42 +1683,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- 相关工具推荐 -->
-        <section class="related-tools" style="margin-top: 40px; padding: 20px; background: rgba(0, 0, 0, 0.2); border-radius: 12px;">
-            <h3 style="color: #fff; font-size: 18px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #333;" data-i18n="relatedTools">🔗 Related Tools</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
-                <a href="json-viewer.html" style="display: block; padding: 16px; background: #16213e; border: 1px solid #333; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">📋</div>
-                    <div style="color: #fff; font-weight: 500;" data-i18n="relatedJsonViewer">JSON Viewer</div>
-                    <div style="color: #888; font-size: 12px; margin-top: 4px;" data-i18n="relatedJsonViewerDesc">JSON formatting and visualization</div>
-                </a>
-                <a href="regex-tester.html" style="display: block; padding: 16px; background: #16213e; border: 1px solid #333; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">🔍</div>
-                    <div style="color: #fff; font-weight: 500;" data-i18n="relatedRegexTester">Regex Tester</div>
-                    <div style="color: #888; font-size: 12px; margin-top: 4px;" data-i18n="relatedRegexTesterDesc">Online regex matching and debugging</div>
-                </a>
-                <a href="timestamp-converter.html" style="display: block; padding: 16px; background: #16213e; border: 1px solid #333; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">⏰</div>
-                    <div style="color: #fff; font-weight: 500;" data-i18n="relatedTimestamp">Timestamp Converter</div>
-                    <div style="color: #888; font-size: 12px; margin-top: 4px;" data-i18n="relatedTimestampDesc">Convert Unix timestamp and date</div>
-                </a>
-                <a href="websocket-tester.html" style="display: block; padding: 16px; background: #16213e; border: 1px solid #333; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">🔌</div>
-                    <div style="color: #fff; font-weight: 500;" data-i18n="relatedWebSocket">WebSocket Tester</div>
-                    <div style="color: #888; font-size: 12px; margin-top: 4px;" data-i18n="relatedWebSocketDesc">WebSocket connection debugging</div>
-                </a>
-            </div>
-        </section>
-
-        <footer style="text-align: center; padding: 30px 0; margin-top: 30px; border-top: 1px solid #333; color: #888; font-size: 14px;">
-            <p data-i18n="footerPrivacy">Pure frontend processing, data is not uploaded to servers</p>
-            <p style="margin-top: 12px;">
-                <a href="index.html" style="color: #00d9ff; text-decoration: none;" data-i18n="footerBackHome">← Back to Web Toolbox Home</a>
-                <span style="margin: 0 12px;">|</span>
-                <a href="https://github.com/heyuan110" target="_blank" rel="noopener" style="color: #00d9ff; text-decoration: none;">GitHub</a>
-            </p>
-        </footer>
     </main>
 
     <script>
@@ -3741,11 +3657,9 @@
         };
 
         // Language switcher functionality
-        let currentLang = localStorage.getItem('crypto-tools-lang') || 'en';
-
-        function updateLanguage(lang) {
+function updateLanguage(lang) {
             currentLang = lang;
-            localStorage.setItem('crypto-tools-lang', lang);
+            localStorage.setItem('toolbox_lang', lang);
 
             // Update all elements with data-i18n
             document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -3762,33 +3676,9 @@
                     el.placeholder = i18n[lang][key];
                 }
             });
-
-            // Update language button text
-            const langNames = {
-                'en': '🇺🇸 English',
-                'zh-CN': '🇨🇳 中文',
-                'fr': '🇫🇷 Français',
-                'es': '🇪🇸 Español'
-            };
-            const langCurrent = document.getElementById('langCurrent');
-            if (langCurrent) {
-                langCurrent.textContent = langNames[lang] || langNames['en'];
-            }
-        }
-
         // Initialize language switcher
         document.addEventListener('DOMContentLoaded', function() {
-            const langDropdown = document.getElementById('langDropdown');
-            const langCurrent = document.getElementById('langCurrent');
-
-            if (langDropdown && langCurrent) {
-                // Toggle dropdown
-                langCurrent.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    langDropdown.classList.toggle('active');
-                });
-
-                // Language selection
+if (langDropdown && langCurrent) {
                 document.querySelectorAll('.lang-btn').forEach(btn => {
                     btn.addEventListener('click', function(e) {
                         e.stopPropagation();
@@ -3797,17 +3687,13 @@
                         langDropdown.classList.remove('active');
                     });
                 });
-
-                // Close dropdown when clicking outside
-                document.addEventListener('click', function() {
-                    langDropdown.classList.remove('active');
-                });
-            }
-
             // Apply saved language
             updateLanguage(currentLang);
         });
     </script>
+    <script src="common/common.js" data-tool-id="crypto-tools" data-tool-name="Crypto & Encoding Toolbox" data-category="developer"></script>
+    <script>WebToolbox.init(i18n);</script>
+
 
 </body>
 </html>

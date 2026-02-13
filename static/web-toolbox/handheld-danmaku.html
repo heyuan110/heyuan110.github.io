@@ -36,13 +36,17 @@
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": "Handheld Danmaku",
+        "alternateName": ["LED弹幕", "Scrolling Text Banner", "LED Message Board"],
         "url": "https://www.heyuan110.com/web-toolbox/handheld-danmaku.html",
         "description": "Online handheld danmaku tool with customizable scrolling text, speed, font size and colors",
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "Web Browser",
         "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
         "featureList": ["No ads", "No signup required", "100% browser-based", "Unlimited usage"],
-        "author": {"@type": "Person", "name": "heyuan110"}
+        "author": {"@type": "Person", "name": "heyuan110"},
+        "publisher": {"@type": "Organization", "name": "Web Toolbox", "url": "https://www.heyuan110.com/web-toolbox/"},
+        "screenshot": "https://www.heyuan110.com/web-toolbox/screenshots/handheld-danmaku.webp"
+        "alternateName": ["LED弹幕", "Scrolling Text Banner", "LED Message Board"],
     }
     </script>
 
@@ -120,31 +124,11 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 30px 20px;
+            padding: 40px 40px;
         }
-
-        /* 返回按钮 */
-        .back-home {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: #a1a1aa;
-            text-decoration: none;
-            font-size: 0.9rem;
-            padding: 8px 16px;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-            margin-bottom: 20px;
-        }
-
-        .back-home:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-        }
-
-        /* 标题 */
+/* 标题 */
         header {
             text-align: center;
             margin-bottom: 30px;
@@ -166,17 +150,7 @@
             font-size: 0.95rem;
         }
 
-        /* 语言切换器 */
-        .lang-switcher { position: absolute; top: 0; right: 0; }
-        .lang-dropdown { position: relative; display: inline-block; }
-        .lang-current { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 14px; color: #e0e0e0; transition: all 0.3s ease; }
-        .lang-current:hover { background: rgba(255,255,255,0.15); }
-        .lang-menu { position: absolute; top: 100%; right: 0; margin-top: 4px; background: #1e1e2e; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 4px; min-width: 140px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; z-index: 1000; }
-        .lang-dropdown.active .lang-menu { opacity: 1; visibility: visible; transform: translateY(0); }
-        .lang-btn { display: block; width: 100%; padding: 10px 16px; background: none; border: none; color: #e0e0e0; font-size: 14px; text-align: left; cursor: pointer; border-radius: 6px; transition: background 0.2s ease; }
-        .lang-btn:hover { background: rgba(255,255,255,0.1); }
-
-        /* 设置面板 */
+        .lang-dropdown.active /* 设置面板 */
         .settings-panel {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -496,40 +470,18 @@
                 min-width: 40px;
             }
         }
-        .trust-bar {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
-            margin: 12px 0 24px;
-            padding: 12px 20px;
-            background: rgba(124, 58, 237, 0.1);
-            border: 1px solid rgba(124, 58, 237, 0.2);
-            border-radius: 12px;
-        }
-        .trust-item {
-            font-size: 13px;
-            color: #a78bfa;
-            white-space: nowrap;
-        }
-    </style>
+        </style>
+    <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-home" data-i18n="backHome">← Back to Toolbox</a>
+[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
+            }
 
-        <header>
-            <div class="lang-switcher">
-                <div class="lang-dropdown" id="langDropdown">
-                    <div class="lang-current" id="langCurrent">🌐 English</div>
-                    <div class="lang-menu">
-                        <button class="lang-btn" data-lang="en">🇺🇸 English</button>
-                        <button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button>
-                        <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
-                        <button class="lang-btn" data-lang="es">🇪🇸 Español</button>
-                    </div>
-                </div>
-            </div>
+    
+        </style>
+<div class="container">
+<header>
+            
             <h1 data-i18n="title">Handheld Danmaku</h1>
             <p class="subtitle" data-i18n="subtitle">Essential tool for concerts, events, parties and confessions</p>
         </header>
@@ -919,72 +871,16 @@
                 trust_free: '🚫 Sin anuncios, sin registro'
             }
         };
-
-        const langNames = {
-            'en': '🇺🇸 English',
-            'zh-CN': '🇨🇳 中文',
-            'fr': '🇫🇷 Français',
-            'es': '🇪🇸 Español'
-        };
-
-        let currentLang = localStorage.getItem('handheld-danmaku-lang') || 'en';
-
-        function applyLanguage(lang) {
-            currentLang = lang;
-            localStorage.setItem('handheld-danmaku-lang', lang);
-            const texts = i18n[lang];
-
-            // 更新所有 data-i18n 元素
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (texts[key]) {
-                    el.innerHTML = texts[key];
-                }
-            });
-
-            // 更新 placeholder
-            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-                const key = el.getAttribute('data-i18n-placeholder');
-                if (texts[key]) {
-                    el.placeholder = texts[key];
-                }
-            });
-
-            // 更新 title 属性
-            document.querySelectorAll('[data-i18n-title]').forEach(el => {
-                const key = el.getAttribute('data-i18n-title');
-                if (texts[key]) {
-                    el.title = texts[key];
-                }
-            });
-
-            // 更新语言切换器显示
-            document.getElementById('langCurrent').textContent = langNames[lang];
-        }
-
-        // 语言切换器事件
+// 语言切换器事件
         document.getElementById('langDropdown').addEventListener('click', function(e) {
             e.stopPropagation();
             this.classList.toggle('active');
         });
-
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const lang = this.getAttribute('data-lang');
-                applyLanguage(lang);
-                document.getElementById('langDropdown').classList.remove('active');
-            });
-        });
+});
 
         document.addEventListener('click', function() {
             document.getElementById('langDropdown').classList.remove('active');
         });
-
-        // 页面加载时应用语言
-        applyLanguage(currentLang);
-
-        // ==================== 弹幕功能 ====================
         // 获取元素
         const danmakuText = document.getElementById('danmakuText');
         const speedSlider = document.getElementById('speedSlider');
@@ -1128,11 +1024,6 @@
         // 监听全屏变化
         document.addEventListener('fullscreenchange', () => {
             if (!document.fullscreenElement && isRunning) {
-                // 用户手动退出全屏时也停止弹幕
-                // 不自动停止，允许非全屏模式
-            }
-        });
-
         // 窗口大小变化时重新计算
         window.addEventListener('resize', () => {
             if (isRunning) {
@@ -1183,6 +1074,9 @@
         // 页面加载时恢复设置
         loadSettings();
     </script>
+    <script src="common/common.js" data-tool-id="handheld-danmaku" data-tool-name="LED Scrolling Text" data-category="utility"></script>
+    <script>WebToolbox.init(i18n);</script>
+
 
     <!-- FAQ 问答区块 -->
     <section class="faq-section" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
@@ -1244,41 +1138,5 @@
             </details>
         </div>
     </section>
-
-    <!-- 相关工具推荐 -->
-    <section class="related-tools" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
-        <h3 style="color: #e6edf3; font-size: 18px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #30363d;" data-i18n="relatedTitle">🔗 Related Tools</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
-            <a href="color-palette.html" style="display: block; padding: 16px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                <div style="font-size: 24px; margin-bottom: 8px;">🎨</div>
-                <div style="color: #e6edf3; font-weight: 500;" data-i18n="relatedPalette">Color Palette</div>
-                <div style="color: #8b949e; font-size: 12px; margin-top: 4px;" data-i18n="relatedPaletteDesc">Color picker and converter</div>
-            </a>
-            <a href="metronome.html" style="display: block; padding: 16px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                <div style="font-size: 24px; margin-bottom: 8px;">🥁</div>
-                <div style="color: #e6edf3; font-weight: 500;" data-i18n="relatedMetronome">Metronome</div>
-                <div style="color: #8b949e; font-size: 12px; margin-top: 4px;" data-i18n="relatedMetronomeDesc">Online metronome tool</div>
-            </a>
-            <a href="world-clock.html" style="display: block; padding: 16px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                <div style="font-size: 24px; margin-bottom: 8px;">🌍</div>
-                <div style="color: #e6edf3; font-weight: 500;" data-i18n="relatedWorldClock">World Clock</div>
-                <div style="color: #8b949e; font-size: 12px; margin-top: 4px;" data-i18n="relatedWorldClockDesc">Global timezone times</div>
-            </a>
-            <a href="calculator.html" style="display: block; padding: 16px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                <div style="font-size: 24px; margin-bottom: 8px;">🔢</div>
-                <div style="color: #e6edf3; font-weight: 500;" data-i18n="relatedCalculator">Calculator</div>
-                <div style="color: #8b949e; font-size: 12px; margin-top: 4px;" data-i18n="relatedCalculatorDesc">Supports complex expressions</div>
-            </a>
-        </div>
-    </section>
-
-    <footer style="text-align: center; padding: 30px 20px; border-top: 1px solid #30363d; color: #8b949e; font-size: 14px;">
-        <p data-i18n="footerPrivacy">Pure frontend processing, data is not uploaded to server</p>
-        <p style="margin-top: 12px;">
-            <a href="index.html" style="color: #58a6ff; text-decoration: none;" data-i18n="footerBack">← Back to Web Toolbox</a>
-            <span style="margin: 0 12px;">|</span>
-            <a href="https://github.com/heyuan110" target="_blank" rel="noopener" style="color: #58a6ff; text-decoration: none;">GitHub</a>
-        </p>
-    </footer>
 </body>
 </html>

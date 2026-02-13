@@ -36,6 +36,7 @@
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": "Online Page Auto Refresher Tool",
+        "alternateName": ["页面自动刷新", "Auto Page Reloader", "Tab Refresher"],
         "description": "Free online page auto refresh tool with customizable intervals. Perfect for web testing, monitoring page updates, and stress testing.",
         "url": "https://www.heyuan110.com/web-toolbox/page-refresher.html",
         "applicationCategory": "UtilityApplication",
@@ -46,7 +47,10 @@
             "@type": "Offer",
             "price": "0",
             "priceCurrency": "USD"
-        }
+        },
+        "author": {"@type": "Person", "name": "heyuan110"},
+        "publisher": {"@type": "Organization", "name": "Web Toolbox", "url": "https://www.heyuan110.com/web-toolbox/"},
+        "screenshot": "https://www.heyuan110.com/web-toolbox/screenshots/page-refresher.webp"
     }
     </script>
 
@@ -125,7 +129,7 @@
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
@@ -152,35 +156,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
-        .back-link {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
-        }
-
-        .back-link:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-        }
-
-        /* 语言切换器 */
-        .lang-switcher { flex-shrink: 0; z-index: 100; }
-        .lang-dropdown { position: relative; display: inline-block; }
-        .lang-current { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 14px; color: #e0e0e0; transition: all 0.3s ease; }
-        .lang-current:hover { background: rgba(255,255,255,0.15); }
-        .lang-menu { position: absolute; top: 100%; left: 0; margin-top: 4px; background: #1e1e2e; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 4px; min-width: 140px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; z-index: 9999; }
-        .lang-dropdown.active .lang-menu { opacity: 1; visibility: visible; transform: translateY(0); }
-        .lang-btn { display: block; width: 100%; padding: 10px 16px; background: none; border: none; color: #e0e0e0; font-size: 14px; text-align: left; cursor: pointer; border-radius: 6px; transition: background 0.2s ease; }
-        .lang-btn:hover { background: rgba(255,255,255,0.1); }
-
-        /* 警告提示 */
+.lang-dropdown.active /* 警告提示 */
         .warning-banner {
             background: linear-gradient(135deg, rgba(255, 193, 7, 0.2), rgba(255, 152, 0, 0.2));
             border: 1px solid rgba(255, 193, 7, 0.5);
@@ -907,45 +883,21 @@
             line-height: 1.7;
             font-size: 0.95rem;
         }
-        .trust-bar {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
-            margin: 12px 0 24px;
-            padding: 12px 20px;
-            background: rgba(124, 58, 237, 0.1);
-            border: 1px solid rgba(124, 58, 237, 0.2);
-            border-radius: 12px;
-        }
-        .trust-item {
-            font-size: 13px;
-            color: #a78bfa;
-            white-space: nowrap;
-        }
-    </style>
+        </style>
+    <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-    <div class="container">
-        <!-- 顶部导航 -->
+[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
+            }
+
+    
+        </style>
+<div class="container">
+<!-- 顶部导航 -->
         <nav class="top-nav">
-            <div class="lang-switcher">
-                <div class="lang-dropdown" id="langDropdown">
-                    <div class="lang-current" id="langCurrent">🌐 English</div>
-                    <div class="lang-menu">
-                        <button class="lang-btn" data-lang="en">🇺🇸 English</button>
-                        <button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button>
-                        <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
-                        <button class="lang-btn" data-lang="es">🇪🇸 Español</button>
-                    </div>
-                </div>
-            </div>
+            
             <div class="nav-brand" data-i18n="navBrand">🔄 Page Refresher</div>
-            <a href="index.html" class="back-link">
-                <span>←</span>
-                <span data-i18n="backToToolbox">Back to Toolbox</span>
-            </a>
-        </nav>
+</nav>
 
         <div class="trust-bar">
             <span class="trust-item" data-i18n="trust_users">🌍 Used by 50,000+ users</span>
@@ -1672,19 +1624,9 @@
                 trust_free: '🚫 Sin anuncios, sin registro'
             }
         };
-
-        const langNames = {
-            'en': '🇺🇸 English',
-            'zh-CN': '🇨🇳 中文',
-            'fr': '🇫🇷 Français',
-            'es': '🇪🇸 Español'
-        };
-
-        let currentLang = localStorage.getItem('preferredLanguage') || 'en';
-
-        function updateLanguage(lang) {
+function updateLanguage(lang) {
             currentLang = lang;
-            localStorage.setItem('preferredLanguage', lang);
+            localStorage.setItem('toolbox_lang', lang);
             document.getElementById('langCurrent').textContent = langNames[lang];
 
             const t = translations[lang];
@@ -2302,19 +2244,6 @@
                 stopRefresh();
             }
         });
-
-        // FAQ 折叠展开功能
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const item = question.parentElement;
-                const isActive = item.classList.contains('active');
-
-                // 关闭所有其他项
-                document.querySelectorAll('.faq-item').forEach(i => {
-                    i.classList.remove('active');
-                });
-
-                // 如果当前项未展开，则展开它
                 if (!isActive) {
                     item.classList.add('active');
                 }
@@ -2325,6 +2254,9 @@
         updateLanguage(currentLang);
         updateModeHint();
     </script>
+    <script src="common/common.js" data-tool-id="page-refresher" data-tool-name="Page Auto Refresher" data-category="utility"></script>
+    <script>WebToolbox.init(translations);</script>
+
 
     <!-- FAQ 常见问题 -->
     <section class="faq-section">
@@ -2371,41 +2303,5 @@
             </div>
         </div>
     </section>
-
-    <!-- 相关工具推荐 -->
-    <section class="related-tools" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
-        <h3 style="color: #e6edf3; font-size: 18px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #30363d;" data-i18n="relatedTools">🔗 Related Tools</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
-            <a href="websocket-tester.html" style="display: block; padding: 16px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                <div style="font-size: 24px; margin-bottom: 8px;">🔌</div>
-                <div style="color: #e6edf3; font-weight: 500;" data-i18n="websocketTest">WebSocket Test</div>
-                <div style="color: #8b949e; font-size: 12px; margin-top: 4px;" data-i18n="websocketDesc">WebSocket connection debugging</div>
-            </a>
-            <a href="ip-lookup.html" style="display: block; padding: 16px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                <div style="font-size: 24px; margin-bottom: 8px;">🌐</div>
-                <div style="color: #e6edf3; font-weight: 500;" data-i18n="ipLookup">IP Lookup</div>
-                <div style="color: #8b949e; font-size: 12px; margin-top: 4px;" data-i18n="ipLookupDesc">Query IP geolocation</div>
-            </a>
-            <a href="whois-query.html" style="display: block; padding: 16px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                <div style="font-size: 24px; margin-bottom: 8px;">🔎</div>
-                <div style="color: #e6edf3; font-weight: 500;" data-i18n="whoisQuery">WHOIS Query</div>
-                <div style="color: #8b949e; font-size: 12px; margin-top: 4px;" data-i18n="whoisQueryDesc">Domain registration info</div>
-            </a>
-            <a href="json-viewer.html" style="display: block; padding: 16px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                <div style="font-size: 24px; margin-bottom: 8px;">📋</div>
-                <div style="color: #e6edf3; font-weight: 500;" data-i18n="jsonFormat">JSON Format</div>
-                <div style="color: #8b949e; font-size: 12px; margin-top: 4px;" data-i18n="jsonFormatDesc">JSON formatting & validation</div>
-            </a>
-        </div>
-    </section>
-
-    <footer style="text-align: center; padding: 30px 20px; border-top: 1px solid #30363d; color: #8b949e; font-size: 14px;">
-        <p data-i18n="footerPrivacy">Pure frontend processing, data is not uploaded to server</p>
-        <p style="margin-top: 12px;">
-            <a href="index.html" style="color: #58a6ff; text-decoration: none;" data-i18n="footerBack">← Back to Web Toolbox</a>
-            <span style="margin: 0 12px;">|</span>
-            <a href="https://github.com/heyuan110" target="_blank" rel="noopener" style="color: #58a6ff; text-decoration: none;">GitHub</a>
-        </p>
-    </footer>
 </body>
 </html>

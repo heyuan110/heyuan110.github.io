@@ -36,13 +36,17 @@
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": "Universal Calculator",
+        "alternateName": ["万能计算器", "Scientific Calculator", "Online Calculator"],
         "url": "https://www.heyuan110.com/web-toolbox/calculator.html",
         "description": "Online universal calculator with scientific calculator, interest calculator, subnet calculator and multiple unit converters",
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "Web Browser",
         "featureList": ["No ads", "No signup required", "100% browser-based", "Unlimited usage"],
         "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
-        "author": {"@type": "Person", "name": "heyuan110"}
+        "author": {"@type": "Person", "name": "heyuan110"},
+        "publisher": {"@type": "Organization", "name": "Web Toolbox", "url": "https://www.heyuan110.com/web-toolbox/"},
+        "screenshot": "https://www.heyuan110.com/web-toolbox/screenshots/calculator.webp"
+        "alternateName": ["万能计算器", "Scientific Calculator", "Online Calculator"],
     }
     </script>
 
@@ -137,17 +141,7 @@
             position: relative;
         }
 
-        /* Language Switcher */
-        .lang-switcher { position: absolute; top: 0; right: 0; }
-        .lang-dropdown { position: relative; display: inline-block; }
-        .lang-current { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 14px; color: #e0e0e0; transition: all 0.3s ease; }
-        .lang-current:hover { background: rgba(255,255,255,0.15); }
-        .lang-menu { position: absolute; top: 100%; right: 0; margin-top: 4px; background: #1e1e2e; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 4px; min-width: 140px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; z-index: 1000; }
-        .lang-dropdown.active .lang-menu { opacity: 1; visibility: visible; transform: translateY(0); }
-        .lang-btn { display: block; width: 100%; padding: 10px 16px; background: none; border: none; color: #e0e0e0; font-size: 14px; text-align: left; cursor: pointer; border-radius: 6px; transition: background 0.2s ease; }
-        .lang-btn:hover { background: rgba(255,255,255,0.1); }
-
-        .sidebar-header h1 {
+        .lang-dropdown.active .sidebar-header h1 {
             font-size: 1.4rem;
             background: linear-gradient(120deg, #00d4ff, #7c3aed);
             -webkit-background-clip: text;
@@ -208,6 +202,7 @@
             flex: 1;
             padding: 30px;
             min-height: 100vh;
+            position: relative;
         }
 
         .tool-panel {
@@ -572,40 +567,18 @@
             }
         }
 
-        .trust-bar {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
-            margin: 12px 0 24px;
-            padding: 12px 20px;
-            background: rgba(124, 58, 237, 0.1);
-            border: 1px solid rgba(124, 58, 237, 0.2);
-            border-radius: 12px;
-        }
-        .trust-item {
-            font-size: 13px;
-            color: #a78bfa;
-            white-space: nowrap;
-        }
-    </style>
+        </style>
+    <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
+[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
+            }
+
+    
+        </style>
     <aside class="sidebar">
         <div class="sidebar-header">
-            <div class="lang-switcher">
-                <div class="lang-dropdown" id="langDropdown">
-                    <div class="lang-current" id="langCurrent">🌐 English</div>
-                    <div class="lang-menu">
-                        <button class="lang-btn" data-lang="en">🇺🇸 English</button>
-                        <button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button>
-                        <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
-                        <button class="lang-btn" data-lang="es">🇪🇸 Español</button>
-                    </div>
-                </div>
-            </div>
             <h1 data-i18n="title">🧮 Universal Calculator</h1>
-            <a href="index.html" data-i18n="backToToolbox">← Back to Toolbox</a>
         </div>
 
         <div class="category" data-i18n="categoryCalculators">Calculators</div>
@@ -678,7 +651,7 @@
     </aside>
 
     <main class="main-content">
-        <div class="trust-bar">
+<div class="trust-bar">
             <span class="trust-item" data-i18n="trust_users">🌍 Used by 50,000+ users</span>
             <span class="trust-item" data-i18n="trust_rating">⭐ 4.9/5 rating</span>
             <span class="trust-item" data-i18n="trust_privacy">🔒 100% Private</span>
@@ -1484,15 +1457,6 @@
                 </a>
             </div>
         </section>
-
-        <footer style="text-align: center; padding: 30px 0; margin-top: 30px; border-top: 1px solid #333; color: #94a3b8; font-size: 14px;">
-            <p data-i18n="footerPrivacy">Pure frontend processing, data is not uploaded to server</p>
-            <p style="margin-top: 12px;">
-                <a href="index.html" style="color: #7c3aed; text-decoration: none;" data-i18n="footerBackHome">← Back to Web Toolbox</a>
-                <span style="margin: 0 12px;">|</span>
-                <a href="https://github.com/heyuan110" target="_blank" rel="noopener" style="color: #7c3aed; text-decoration: none;">GitHub</a>
-            </p>
-        </footer>
     </main>
 
     <script>
@@ -2444,55 +2408,25 @@
                 trust_free: "🚫 Sin anuncios, sin registro"
             }
         };
+let currentLang = localStorage.getItem("toolbox_lang") || "en";
 
-        const langNames = {
-            en: "🇺🇸 English",
-            "zh-CN": "🇨🇳 中文",
-            fr: "🇫🇷 Français",
-            es: "🇪🇸 Español"
-        };
-
-        let currentLang = localStorage.getItem("calc_lang") || "en";
-
-        function applyLanguage(lang) {
-            currentLang = lang;
-            localStorage.setItem("calc_lang", lang);
-            document.getElementById("langCurrent").textContent = langNames[lang];
-            document.querySelectorAll("[data-i18n]").forEach(el => {
-                const key = el.getAttribute("data-i18n");
-                if (i18n[lang] && i18n[lang][key]) {
-                    el.textContent = i18n[lang][key];
-                }
-            });
-            document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
-                const key = el.getAttribute("data-i18n-placeholder");
-                if (i18n[lang] && i18n[lang][key]) {
-                    el.placeholder = i18n[lang][key];
-                }
-            });
-        }
 
         // 语言切换器事件
         document.getElementById("langDropdown").addEventListener("click", function(e) {
             e.stopPropagation();
             this.classList.toggle("active");
         });
-
-        document.querySelectorAll(".lang-btn").forEach(btn => {
-            btn.addEventListener("click", function(e) {
-                e.stopPropagation();
-                applyLanguage(this.dataset.lang);
-                document.getElementById("langDropdown").classList.remove("active");
-            });
-        });
+});
 
         document.addEventListener("click", function() {
             document.getElementById("langDropdown").classList.remove("active");
         });
 
         // 初始化语言
-        applyLanguage(currentLang);
-    </script>
+</script>
+    <script src="common/common.js" data-tool-id="calculator" data-tool-name="Calculator" data-category="utility"></script>
+    <script>WebToolbox.init(i18n);</script>
+
 
 </body>
 </html>

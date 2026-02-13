@@ -38,44 +38,9 @@
       min-height: 100vh;
       padding: 24px 16px 60px;
     }
-    .container { max-width: 1080px; margin: 0 auto; }
+    .container { max-width: 1200px; margin: 0 auto; }
     .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-    .back, .lang-current {
-      border: 1px solid var(--border);
-      background: rgba(15,23,42,.72);
-      border-radius: 10px;
-      padding: 8px 12px;
-      color: #cbd5e1;
-      text-decoration: none;
-      font-size: 14px;
-    }
-    .lang-dropdown { position: relative; }
-    .lang-current { cursor: pointer; }
-    .lang-menu {
-      display: none;
-      position: absolute;
-      right: 0;
-      top: calc(100% + 4px);
-      background: #0b1220;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 4px;
-      min-width: 150px;
-      z-index: 20;
-    }
-    .lang-dropdown.open .lang-menu { display: block; }
-    .lang-btn {
-      width: 100%;
-      padding: 8px 10px;
-      background: transparent;
-      border: 0;
-      color: var(--text);
-      text-align: left;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    .lang-btn:hover { background: rgba(20,184,166,.2); }
-    h1 {
+    .back, .lang-dropdown.open h1 {
       text-align: center;
       font-size: 2.2rem;
       background: linear-gradient(120deg, #5eead4, #14b8a6, #93c5fd);
@@ -138,33 +103,12 @@
     }
     .preview canvas { max-width: 100%; border-radius: 8px; background: #0b1220; }
     .status { font-size: 13px; min-height: 18px; color: #5eead4; margin-top: 8px; }
-    .trust-bar {
-      display: flex;
-      justify-content: center;
-      gap: 18px;
-      flex-wrap: wrap;
-      margin: 12px 0 24px;
-      padding: 11px;
-      border: 1px solid rgba(20,184,166,.25);
-      background: rgba(20,184,166,.09);
-      border-radius: 12px;
-    }
-    .trust-item { font-size: 13px; color: #99f6e4; white-space: nowrap; }
     [data-reveal] { opacity: 0; transform: translateY(12px); animation: up .6s ease forwards; }
     [data-reveal="2"] { animation-delay: .08s; }
     [data-reveal="3"] { animation-delay: .16s; }
     [data-reveal="4"] { animation-delay: .24s; }
     @keyframes up { to { opacity: 1; transform: none; } }
-    .features-section, .faq-section, .related-tools {
-      margin-top: 22px;
-      background: rgba(15,23,42,.84);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 18px;
-    }
-    .features-section h2, .faq-section h2, .related-tools h3 { text-align: center; margin-bottom: 14px; }
-    .features-grid, .related-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
-    .feature, .related {
+    .features-section, .faq-section, .features-section h2, .faq-section h2, .features-grid, .feature, .related {
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 12px;
@@ -196,16 +140,21 @@
     @media (max-width: 1000px) {
       .toolbar { grid-template-columns: 1fr 1fr; }
       .settings-grid { grid-template-columns: 1fr 1fr; }
-      .features-grid, .related-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
+      .features-grid, }
     @media (max-width: 640px) {
-      .features-grid, .related-grid { grid-template-columns: 1fr; }
-    }
+      .features-grid, }
   </style>
+    <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
+[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
+            }
+
+    
+        </style>
 <div class="container">
-  <div class="topbar"><a class="back" href="index.html">← <span data-i18n="back">Back to Toolbox</span></a><div class="lang-dropdown" id="langDropdown"><div class="lang-current" id="langCurrent">🇺🇸 English</div><div class="lang-menu"><button class="lang-btn" data-lang="en">🇺🇸 English</button><button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button><button class="lang-btn" data-lang="fr">🇫🇷 Français</button><button class="lang-btn" data-lang="es">🇪🇸 Español</button></div></div></div>
+<div class="topbar">
+<div class="lang-dropdown" id="langDropdown"><div class="lang-current" id="langCurrent">🇺🇸 English</div><div class="lang-menu"><button class="lang-btn" data-lang="en">🇺🇸 English</button><button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button><button class="lang-btn" data-lang="fr">🇫🇷 Français</button><button class="lang-btn" data-lang="es">🇪🇸 Español</button></div></div></div>
   <h1 data-i18n="title">Watermark Tool</h1><p class="subtitle" data-i18n="subtitle">Add custom text watermark to your image</p>
   <section class="card tool" data-reveal="1">
     <div class="toolbar">
@@ -241,17 +190,13 @@
 <script>
 (function() {
   'use strict';
-
-  var langNames = { en: '🇺🇸 English', 'zh-CN': '🇨🇳 中文', fr: '🇫🇷 Français', es: '🇪🇸 Español' };
-  var i18n = {
+var i18n = {
     en: { back: 'Back to Toolbox', title: 'Watermark Tool', subtitle: 'Add one or multiple custom text watermarks to your image', pick: 'Choose Image', download: 'Download', addLayer: 'Add Layer', delLayer: 'Delete Layer', layerName: 'Layer', layerTips: 'Each layer has independent settings', wmTextLabel: 'Watermark Text', opacityLabel: 'Opacity', angleLabel: 'Angle', sizeLabel: 'Font Size', positionLabel: 'Position', layerTipsLabel: 'Layer Tips', textPh: 'Watermark text', needImg: 'Choose image first', ok: 'Watermark updated', layerAdded: 'New watermark layer added', layerDeleted: 'Watermark layer deleted', keepOneLayer: 'At least one layer is required', pos_center: 'Center', pos_top_left: 'Top Left', pos_top_right: 'Top Right', pos_bottom_left: 'Bottom Left', pos_bottom_right: 'Bottom Right', pos_repeat: 'Repeat', trust_users: '🌍 Used by 50,000+ users', trust_rating: '⭐ 4.9/5 rating', trust_privacy: '🔒 100% Private', trust_free: '🚫 No Ads, No Signup', features_title: 'Watermark Tool Features', f1_t: '100% Free & Private', f1_d: 'No ads, no signup, no watermark. Editing runs locally in browser.', f2_t: 'Custom Text Watermark', f2_d: 'Set your own brand text, copyright name, or ID watermark string.', f3_t: 'Opacity Angle Size Controls', f3_d: 'Tune watermark opacity, rotation, and size for clear but non-invasive marks.', f4_t: 'Position and Repeat Mode', f4_d: 'Place watermark in corners, center, or repeat diagonally across image.', faq_title: 'Frequently Asked Questions', faq1_q: 'What is an image watermark tool?', faq1_a: 'An image watermark tool overlays text or logo on photos to indicate ownership and reduce unauthorized reuse. It is commonly used for portfolio images, ecommerce assets, and social media posts.', faq2_q: 'Can I adjust watermark opacity and angle?', faq2_a: 'Yes. You can control opacity, rotation angle, text size, and position. This helps balance brand visibility with image readability.', faq3_q: 'Does this tool support tiled watermark style?', faq3_a: 'Yes. You can choose repeat mode to draw watermark text diagonally across the image for stronger copyright protection.', faq4_q: 'Will original image be uploaded to server?', faq4_a: 'No. Watermark processing runs locally in your browser canvas pipeline. Source images are not uploaded by this page to application backend.', faq_free_q: 'Is this tool really free with no ads?', faq_free_a: 'Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.', related_title: 'Related Tools', r1_t: 'Image Editor', r1_d: 'Edit image before adding watermark.', r2_t: 'Image Compressor', r2_d: 'Compress watermarked images for web upload.', r3_t: 'E-Sign Tool', r3_d: 'Add signature to documents and images.', r4_t: 'File Converter', r4_d: 'Convert output format after watermarking.' },
     'zh-CN': { back: '返回工具箱', title: '图片水印工具', subtitle: '为图片添加一个或多个自定义文字水印', pick: '选择图片', download: '下载图片', addLayer: '新增图层', delLayer: '删除图层', layerName: '图层', layerTips: '每个图层都有独立参数', wmTextLabel: '水印文字', opacityLabel: '透明度', angleLabel: '角度', sizeLabel: '字体大小', positionLabel: '位置', layerTipsLabel: '图层提示', textPh: '输入水印文字', needImg: '请先选择图片', ok: '水印已更新', layerAdded: '已新增水印图层', layerDeleted: '已删除水印图层', keepOneLayer: '至少保留一个图层', pos_center: '居中', pos_top_left: '左上', pos_top_right: '右上', pos_bottom_left: '左下', pos_bottom_right: '右下', pos_repeat: '平铺', trust_users: '🌍 超过 50,000 用户使用', trust_rating: '⭐ 4.9/5 好评', trust_privacy: '🔒 100% 隐私安全', trust_free: '🚫 无广告、无需注册', features_title: '水印工具功能', f1_t: '100% 免费且安全', f1_d: '无广告、无需注册、无水印。编辑处理在浏览器本地执行。', f2_t: '自定义文字水印', f2_d: '支持品牌名、版权信息、账号 ID 等文字叠加。', f3_t: '透明度角度大小控制', f3_d: '自由调节透明度、旋转角度和字体大小。', f4_t: '位置与平铺模式', f4_d: '支持角落、中心和全图平铺斜向水印。', faq_title: '常见问题', faq1_q: '什么是图片水印工具？', faq1_a: '图片水印工具会在照片上叠加文字或标识，用于声明版权并减少未授权转载，常用于作品集、电商图和社媒内容。', faq2_q: '可以调节透明度和角度吗？', faq2_a: '可以。你可以调整透明度、角度、字号和位置，使品牌可见但不遮挡主体。', faq3_q: '支持平铺水印吗？', faq3_a: '支持。选择 repeat 模式可在整张图上斜向重复绘制水印。', faq4_q: '原图会上传服务器吗？', faq4_a: '不会。处理流程在浏览器 canvas 本地完成，页面不会主动上传你的原图。', faq_free_q: '这个工具真的免费且无广告吗？', faq_free_a: '是的，100% 免费，无广告、无需注册、无水印、无限制。所有处理都在浏览器本地完成，你的数据不会上传到任何服务器。', related_title: '相关工具', r1_t: '图片编辑器', r1_d: '加水印前先做图像编辑。', r2_t: '图片压缩', r2_d: '压缩水印图用于网页发布。', r3_t: '电子签名', r3_d: '给文档和图片添加签名。', r4_t: '文件转换', r4_d: '水印后转换输出格式。' },
     fr: { back: 'Retour à la boîte à outils', title: 'Outil filigrane', subtitle: 'Ajouter un ou plusieurs filigranes texte sur votre image', pick: 'Choisir image', download: 'Télécharger', addLayer: 'Ajouter couche', delLayer: 'Supprimer couche', layerName: 'Couche', layerTips: 'Chaque couche a ses propres paramètres', wmTextLabel: 'Texte filigrane', opacityLabel: 'Opacité', angleLabel: 'Angle', sizeLabel: 'Taille police', positionLabel: 'Position', layerTipsLabel: 'Conseil couche', textPh: 'Texte filigrane', needImg: 'Choisissez image', ok: 'Filigrane mis à jour', layerAdded: 'Nouvelle couche ajoutée', layerDeleted: 'Couche supprimée', keepOneLayer: 'Au moins une couche est requise', pos_center: 'Centre', pos_top_left: 'Haut gauche', pos_top_right: 'Haut droite', pos_bottom_left: 'Bas gauche', pos_bottom_right: 'Bas droite', pos_repeat: 'Répéter', trust_users: '🌍 Utilisé par 50 000+ utilisateurs', trust_rating: '⭐ Note 4.9/5', trust_privacy: '🔒 100% Privé', trust_free: '🚫 Sans pub, sans inscription', features_title: 'Fonctions outil filigrane', f1_t: '100% Gratuit et Privé', f1_d: 'Sans publicité, sans inscription, sans filigrane. Traitement local.', f2_t: 'Texte personnalisé', f2_d: 'Ajoutez marque, copyright, identifiant.', f3_t: 'Opacité angle taille', f3_d: 'Réglages fins du filigrane.', f4_t: 'Position et mode répétition', f4_d: 'Coins, centre, répétition diagonale.', faq_title: 'Questions fréquentes', faq1_q: 'Qu est ce qu un outil filigrane image ?', faq1_a: 'Il superpose texte/logo pour marquer propriété et réduire réutilisation non autorisée.', faq2_q: 'Puis-je régler opacité et angle ?', faq2_a: 'Oui, opacité, angle, taille et position sont personnalisables.', faq3_q: 'Supporte-t-il mode répétition ?', faq3_a: 'Oui, mode repeat dessine texte en diagonale sur toute image.', faq4_q: 'Image originale uploadée ?', faq4_a: 'Non, traitement local canvas navigateur.', faq_free_q: 'Cet outil est-il vraiment gratuit et sans pub ?', faq_free_a: 'Oui, 100% gratuit, sans publicité, sans inscription, sans filigrane et sans limites. Tout est traité localement dans votre navigateur — vos données ne sont jamais téléversées.', related_title: 'Outils associés', r1_t: 'Éditeur image', r1_d: 'Editer avant filigrane.', r2_t: 'Compresseur image', r2_d: 'Compresser après filigrane.', r3_t: 'Outil signature', r3_d: 'Ajouter signature.', r4_t: 'Convertisseur fichiers', r4_d: 'Convertir format final.' },
     es: { back: 'Volver a la caja de herramientas', title: 'Herramienta de marca de agua', subtitle: 'Añade una o varias marcas de agua de texto a tu imagen', pick: 'Elegir imagen', download: 'Descargar', addLayer: 'Agregar capa', delLayer: 'Eliminar capa', layerName: 'Capa', layerTips: 'Cada capa tiene configuración independiente', wmTextLabel: 'Texto de marca de agua', opacityLabel: 'Opacidad', angleLabel: 'Ángulo', sizeLabel: 'Tamaño fuente', positionLabel: 'Posición', layerTipsLabel: 'Consejo de capa', textPh: 'Texto de marca de agua', needImg: 'Primero elige imagen', ok: 'Marca de agua actualizada', layerAdded: 'Nueva capa agregada', layerDeleted: 'Capa eliminada', keepOneLayer: 'Se requiere al menos una capa', pos_center: 'Centro', pos_top_left: 'Arriba izquierda', pos_top_right: 'Arriba derecha', pos_bottom_left: 'Abajo izquierda', pos_bottom_right: 'Abajo derecha', pos_repeat: 'Repetir', trust_users: '🌍 Usado por más de 50,000 usuarios', trust_rating: '⭐ Calificación 4.9/5', trust_privacy: '🔒 100% Privado', trust_free: '🚫 Sin anuncios, sin registro', features_title: 'Funciones de marca de agua', f1_t: '100% Gratis y Privado', f1_d: 'Sin anuncios, sin registro, sin marca de agua. Procesamiento local.', f2_t: 'Texto personalizado', f2_d: 'Agrega marca, copyright o ID.', f3_t: 'Controles de opacidad ángulo tamaño', f3_d: 'Ajusta visibilidad y estilo del watermark.', f4_t: 'Posición y modo repetido', f4_d: 'Esquinas, centro y repetición diagonal.', faq_title: 'Preguntas frecuentes', faq1_q: '¿Qué es una herramienta de marca de agua?', faq1_a: 'Superpone texto/logo sobre fotos para indicar propiedad y reducir reutilización no autorizada.', faq2_q: '¿Puedo ajustar opacidad y ángulo?', faq2_a: 'Sí, puedes ajustar opacidad, ángulo, tamaño y posición.', faq3_q: '¿Soporta marca repetida?', faq3_a: 'Sí, modo repeat dibuja texto diagonal por toda la imagen.', faq4_q: '¿Se sube la imagen original?', faq4_a: 'No, el procesamiento se hace localmente en canvas.', faq_free_q: '¿Esta herramienta es realmente gratis y sin anuncios?', faq_free_a: 'Sí, 100% gratis, sin anuncios, sin registro, sin marca de agua y sin límites. Todo el procesamiento ocurre localmente en tu navegador: tus datos nunca se suben a ningún servidor.', related_title: 'Herramientas relacionadas', r1_t: 'Editor de imagen', r1_d: 'Edita antes de marcar.', r2_t: 'Compresor de imagen', r2_d: 'Comprime después de marcar.', r3_t: 'Herramienta de firma', r3_d: 'Añade firma.', r4_t: 'Convertidor de archivos', r4_d: 'Convierte formato final.' }
   };
-
-  var currentLang = localStorage.getItem('watermark_tool_lang') || 'en';
-  var img = null;
+var img = null;
   var canvas = document.getElementById('canvas');
   var ctx = canvas.getContext('2d');
   var layerSelect = document.getElementById('layerSelect');
@@ -273,20 +218,6 @@
     document.getElementById('status').textContent = v || '';
   }
 
-  function applyLanguage(lang) {
-    currentLang = i18n[lang] ? lang : 'en';
-    localStorage.setItem('watermark_tool_lang', currentLang);
-    document.documentElement.lang = currentLang;
-    document.getElementById('langCurrent').textContent = langNames[currentLang];
-    document.querySelectorAll('[data-i18n]').forEach(function(el) {
-      el.textContent = t(el.getAttribute('data-i18n'));
-    });
-    document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
-      el.placeholder = t(el.getAttribute('data-i18n-placeholder'));
-    });
-    layerTipsInput.value = t('layerTips');
-    renderLayerSelect();
-  }
 
   function renderLayerSelect() {
     layerSelect.innerHTML = '';
@@ -443,13 +374,7 @@
     e.stopPropagation();
     document.getElementById('langDropdown').classList.toggle('open');
   });
-  document.querySelectorAll('.lang-btn').forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      applyLanguage(btn.getAttribute('data-lang'));
-      document.getElementById('langDropdown').classList.remove('open');
-    });
-  });
+});
   document.addEventListener('click', function() {
     document.getElementById('langDropdown').classList.remove('open');
   });
@@ -461,11 +386,12 @@
       if (!open) item.classList.add('active');
     });
   });
-
-  applyLanguage(currentLang);
-  renderLayerSelect();
+renderLayerSelect();
   syncInputsFromLayer();
 })();
 </script>
+    <script src="common/common.js" data-tool-id="watermark-tool" data-tool-name="Watermark Tool" data-category="image"></script>
+    <script>WebToolbox.init(i18n);</script>
+
 </body>
 </html>

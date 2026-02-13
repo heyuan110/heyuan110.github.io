@@ -102,14 +102,9 @@
         :root { --bg:#020617; --panel:#0b1220; --card:#0f172a; --muted:#94a3b8; --text:#e2e8f0; --border:rgba(148,163,184,.2); --primary:#3b82f6; --primary2:#2563eb; --radius:12px; }
         *{box-sizing:border-box;margin:0;padding:0}
         body{font-family:"Inter","SF Pro Text",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 20% 0%,rgba(59,130,246,.18),transparent 40%),radial-gradient(circle at 100% 0%,rgba(16,185,129,.12),transparent 38%),var(--bg);color:var(--text);min-height:100vh;padding:24px 16px 60px}
-        .container{max-width:1260px;margin:0 auto}
+        .container{max-width: 1200px;margin:0 auto}
         .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
-        .back{color:#cbd5e1;text-decoration:none;font-size:14px;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:rgba(15,23,42,.65)}
-        .back:hover{border-color:#64748b}
-        .lang-dropdown{position:relative}.lang-current{border:1px solid var(--border);border-radius:8px;background:rgba(15,23,42,.75);padding:8px 12px;font-size:14px;cursor:pointer;user-select:none}
-        .lang-menu{position:absolute;top:calc(100% + 4px);right:0;background:#0f172a;border:1px solid var(--border);border-radius:8px;padding:4px;min-width:150px;display:none;z-index:30}
-        .lang-dropdown.open .lang-menu{display:block}.lang-btn{width:100%;background:transparent;border:0;color:var(--text);padding:8px 10px;text-align:left;border-radius:6px;cursor:pointer}.lang-btn:hover{background:rgba(59,130,246,.2)}
-        h1{text-align:center;font-size:2.1rem;letter-spacing:-.02em;margin-bottom:10px}.subtitle{text-align:center;color:var(--muted);margin-bottom:22px}
+.lang-dropdown.open h1{text-align:center;font-size:2.1rem;letter-spacing:-.02em;margin-bottom:10px}.subtitle{text-align:center;color:var(--muted);margin-bottom:22px}
         .card{background:rgba(15,23,42,.82);border:1px solid var(--border);border-radius:var(--radius)}
         .tool-card{padding:14px}
         .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
@@ -123,22 +118,23 @@
         .result{margin-top:12px;border:1px solid var(--border);border-radius:10px;background:#020617;padding:14px;min-height:110px;white-space:pre-wrap;word-break:break-word;font-family:"JetBrains Mono","SF Mono",Consolas,monospace;line-height:1.65}
         .add{background:rgba(34,197,94,.25);color:#86efac}.del{background:rgba(239,68,68,.25);color:#fca5a5}.eq{color:#cbd5e1}
         .stats{margin-top:10px;color:var(--muted);font-size:13px}.status{margin-top:8px;color:#93c5fd;font-size:13px;min-height:18px}
-        .trust-bar{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin:12px 0 24px;padding:12px 20px;background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.2);border-radius:12px}.trust-item{font-size:13px;color:#a78bfa;white-space:nowrap}
-        .features-section,.faq-section,.related-tools{margin-top:22px;background:rgba(15,23,42,.82);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
-        .features-section h2,.faq-section h2,.related-tools h3{text-align:center;margin-bottom:14px;font-size:1.2rem}
-        .features-grid,.related-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
-        .feature,.related{border:1px solid var(--border);border-radius:10px;padding:12px;background:rgba(2,6,23,.58)}.feature h4,.related h4{margin:8px 0 6px;font-size:14px}.feature p,.related p{color:var(--muted);font-size:13px;line-height:1.55}
+        .features-section,.faq-section,.features-section h2,.faq-section h2,.features-grid,.feature,.related{border:1px solid var(--border);border-radius:10px;padding:12px;background:rgba(2,6,23,.58)}.feature h4,.related h4{margin:8px 0 6px;font-size:14px}.feature p,.related p{color:var(--muted);font-size:13px;line-height:1.55}
         .related{text-decoration:none;color:inherit;display:block}.related:hover{border-color:#64748b}
         .faq-item{border:1px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden;background:rgba(2,6,23,.5)}.faq-q{width:100%;text-align:left;background:transparent;border:0;color:var(--text);padding:12px 14px;cursor:pointer;font-size:14px}.faq-a{display:none;padding:0 14px 12px;color:var(--muted);font-size:13px;line-height:1.6}.faq-item.active .faq-a{display:block}
-        @media (max-width:960px){.layout{grid-template-columns:1fr}.features-grid,.related-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-        @media (max-width:640px){h1{font-size:1.7rem}.features-grid,.related-grid{grid-template-columns:1fr}}
+        @media (max-width:960px){.layout{grid-template-columns:1fr}.features-grid,}
+        @media (max-width:640px){h1{font-size:1.7rem}.features-grid,}
     </style>
+    <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
+[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
+            }
+
+    
+        </style>
 <div class="container">
-    <div class="topbar">
-        <a class="back" href="index.html">← <span data-i18n="back">Back to Toolbox</span></a>
-        <div class="lang-dropdown" id="langDropdown"><div class="lang-current" id="langCurrent">🇺🇸 English</div><div class="lang-menu"><button class="lang-btn" data-lang="en">🇺🇸 English</button><button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button><button class="lang-btn" data-lang="fr">🇫🇷 Français</button><button class="lang-btn" data-lang="es">🇪🇸 Español</button></div></div>
+<div class="topbar">
+<div class="lang-dropdown" id="langDropdown"><div class="lang-current" id="langCurrent">🇺🇸 English</div><div class="lang-menu"><button class="lang-btn" data-lang="en">🇺🇸 English</button><button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button><button class="lang-btn" data-lang="fr">🇫🇷 Français</button><button class="lang-btn" data-lang="es">🇪🇸 Español</button></div></div>
     </div>
 
     <h1 data-i18n="title">Text Diff Checker</h1>
@@ -195,16 +191,13 @@
 <script>
 (function() {
     'use strict';
-    var langNames = { en:'🇺🇸 English', 'zh-CN':'🇨🇳 中文', fr:'🇫🇷 Français', es:'🇪🇸 Español' };
-    var i18n = {
+var i18n = {
         en:{back:'Back to Toolbox',title:'Text Diff Checker',subtitle:'Compare two texts and highlight additions, deletions, and edits',sample:'Insert Sample',clear:'Clear',compare:'Compare Text',copy:'Copy Result',ignoreCase:'Ignore case',ignoreSpace:'Ignore extra spaces',leftPanel:'Original Text',rightPanel:'Updated Text',leftPlaceholder:'Paste original text...',rightPlaceholder:'Paste updated text...',stats:'Added: {a} · Removed: {d} · Unchanged: {e}',copied:'Copied to clipboard',trust_users:'🌍 Used by 50,000+ users',trust_rating:'⭐ 4.9/5 rating',trust_privacy:'🔒 100% Private',trust_free:'🚫 No Ads, No Signup',features_title:'Text Compare Features',f1_t:'100% Free & Private',f1_d:'No ads, no signup, no watermark. Everything runs locally in your browser. Your data never leaves your device.',f2_t:'Instant Diff',f2_d:'Compare text instantly and highlight added or removed content.',f3_t:'Noise Filters',f3_d:'Ignore case and spacing differences to focus on real content changes.',f4_t:'Copy Result',f4_d:'Copy comparison result quickly for QA and review workflows.',faq_title:'Frequently Asked Questions',faq1_q:'Can I compare code snippets?',faq1_a:'Yes. This tool works for plain text, code snippets, and documentation.',faq2_q:'How are changes highlighted?',faq2_a:'Added text is highlighted in green and removed text in red.',faq3_q:'Can I ignore formatting differences?',faq3_a:'Yes. Enable ignore-case and whitespace normalization options.',faq4_q:'Is my content stored anywhere?',faq4_a:'No. Everything stays in your browser and is never uploaded.',faq_free_q:'Is this tool really free with no ads?',faq_free_a:'Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.',related_title:'Related Tools',r1_t:'Markdown Editor',r1_d:'Write markdown with instant rendered preview.',r2_t:'CSV JSON Converter',r2_d:'Convert structured text formats for development.',r3_t:'Regex Tester',r3_d:'Test and debug regular expressions online.',r4_t:'Cron Generator',r4_d:'Generate cron schedules with readable descriptions.'},
         'zh-CN':{back:'返回工具箱',title:'文本对比工具',subtitle:'比较两段文本，突出新增、删除和修改内容',sample:'插入示例',clear:'清空',compare:'开始比较',copy:'复制结果',ignoreCase:'忽略大小写',ignoreSpace:'忽略多余空格',leftPanel:'原始文本',rightPanel:'新文本',leftPlaceholder:'粘贴原始文本...',rightPlaceholder:'粘贴新文本...',stats:'新增：{a} · 删除：{d} · 相同：{e}',copied:'已复制到剪贴板',trust_users:'🌍 超过 50,000 用户使用',trust_rating:'⭐ 4.9/5 好评',trust_privacy:'🔒 100% 隐私安全',trust_free:'🚫 无广告、无需注册',features_title:'文本比较功能',f1_t:'100% 免费且安全',f1_d:'无广告、无需注册、无水印。所有处理都在浏览器本地完成，数据不会上传到任何服务器。',f2_t:'即时差异高亮',f2_d:'输入后立即对比，快速识别新增和删除内容。',f3_t:'降噪过滤',f3_d:'可忽略大小写和空白差异，聚焦核心变更。',f4_t:'结果一键复制',f4_d:'便于 QA、评审和文档审校场景复用。',faq_title:'常见问题',faq1_q:'可以比较代码片段吗？',faq1_a:'可以，支持普通文本、代码和文档内容比较。',faq2_q:'差异如何显示？',faq2_a:'新增内容绿色标记，删除内容红色标记。',faq3_q:'可以忽略格式差异吗？',faq3_a:'可以，开启忽略大小写和空白选项即可。',faq4_q:'内容会被保存吗？',faq4_a:'不会，全部在浏览器本地处理。',faq_free_q:'这个工具真的免费且无广告吗？',faq_free_a:'是的，100% 免费，无广告、无需注册、无水印、无限制。所有处理都在浏览器本地完成，你的数据不会上传到任何服务器。',related_title:'相关工具',r1_t:'Markdown 编辑器',r1_d:'编写 Markdown 并实时预览。',r2_t:'CSV JSON 转换',r2_d:'开发常用结构化文本互转工具。',r3_t:'正则测试器',r3_d:'在线调试和验证正则表达式。',r4_t:'Cron 生成器',r4_d:'生成定时表达式并查看含义。'},
         fr:{back:'Retour à la boîte à outils',title:'Comparateur de texte',subtitle:'Comparez deux textes et surlignez les ajouts et suppressions',sample:'Insérer un exemple',clear:'Effacer',compare:'Comparer',copy:'Copier le résultat',ignoreCase:'Ignorer la casse',ignoreSpace:'Ignorer les espaces en trop',leftPanel:'Texte original',rightPanel:'Texte modifié',leftPlaceholder:'Collez le texte original...',rightPlaceholder:'Collez le texte modifié...',stats:'Ajouté: {a} · Supprimé: {d} · Identique: {e}',copied:'Copié dans le presse-papiers',trust_users:'🌍 Utilisé par 50 000+ utilisateurs',trust_rating:'⭐ Note 4.9/5',trust_privacy:'🔒 100% Privé',trust_free:'🚫 Sans pub, sans inscription',features_title:'Fonctions de comparaison',f1_t:'100% Gratuit et Privé',f1_d:'Sans publicité, sans inscription, sans filigrane. Tout est traité localement dans votre navigateur.',f2_t:'Diff instantané',f2_d:'Comparez instantanément et surlignez les changements.',f3_t:'Filtres anti-bruit',f3_d:'Ignorez casse et espaces pour se concentrer sur le fond.',f4_t:'Copie rapide',f4_d:'Copiez le résultat pour QA et revue de contenu.',faq_title:'Questions fréquentes',faq1_q:'Puis-je comparer du code ?',faq1_a:'Oui, l outil fonctionne pour texte, code et documentation.',faq2_q:'Comment les changements sont-ils affichés ?',faq2_a:'Les ajouts sont en vert et les suppressions en rouge.',faq3_q:'Puis-je ignorer les différences de format ?',faq3_a:'Oui, activez les options de normalisation.',faq4_q:'Mes données sont-elles stockées ?',faq4_a:'Non, tout reste dans le navigateur.',faq_free_q:'Cet outil est-il vraiment gratuit et sans pub ?',faq_free_a:'Oui, 100% gratuit, sans publicité, sans inscription, sans filigrane et sans limites. Tout est traité localement dans votre navigateur — vos données ne sont jamais téléversées.',related_title:'Outils associés',r1_t:'Éditeur Markdown',r1_d:'Rédiger du markdown avec aperçu instantané.',r2_t:'Convertisseur CSV JSON',r2_d:'Convertir des formats structurés pour le dev.',r3_t:'Testeur Regex',r3_d:'Tester les expressions régulières en ligne.',r4_t:'Générateur Cron',r4_d:'Créer des expressions cron lisibles.'},
         es:{back:'Volver a la caja de herramientas',title:'Comparador de texto',subtitle:'Compara dos textos y resalta adiciones, eliminaciones y cambios',sample:'Insertar ejemplo',clear:'Limpiar',compare:'Comparar texto',copy:'Copiar resultado',ignoreCase:'Ignorar mayúsculas',ignoreSpace:'Ignorar espacios extra',leftPanel:'Texto original',rightPanel:'Texto actualizado',leftPlaceholder:'Pega el texto original...',rightPlaceholder:'Pega el texto actualizado...',stats:'Añadido: {a} · Eliminado: {d} · Igual: {e}',copied:'Copiado al portapapeles',trust_users:'🌍 Usado por más de 50,000 usuarios',trust_rating:'⭐ Calificación 4.9/5',trust_privacy:'🔒 100% Privado',trust_free:'🚫 Sin anuncios, sin registro',features_title:'Funciones de comparación',f1_t:'100% Gratis y Privado',f1_d:'Sin anuncios, sin registro, sin marca de agua. Todo se procesa localmente en tu navegador.',f2_t:'Diff instantáneo',f2_d:'Compara al instante y detecta adiciones y eliminaciones.',f3_t:'Filtros de ruido',f3_d:'Ignora diferencias de formato para revisar contenido real.',f4_t:'Copiar resultado',f4_d:'Copia rápidamente la salida para QA y revisión.',faq_title:'Preguntas frecuentes',faq1_q:'¿Puedo comparar código?',faq1_a:'Sí, funciona con texto, código y documentos.',faq2_q:'¿Cómo se muestran los cambios?',faq2_a:'Lo añadido se marca en verde y lo eliminado en rojo.',faq3_q:'¿Puedo ignorar formato?',faq3_a:'Sí, activa opciones para ignorar mayúsculas y espacios.',faq4_q:'¿Se guardan mis datos?',faq4_a:'No, todo queda en el navegador.',faq_free_q:'¿Esta herramienta es realmente gratis y sin anuncios?',faq_free_a:'Sí, 100% gratis, sin anuncios, sin registro, sin marca de agua y sin límites. Todo el procesamiento ocurre localmente en tu navegador: tus datos nunca se suben a ningún servidor.',related_title:'Herramientas relacionadas',r1_t:'Editor Markdown',r1_d:'Escribe markdown con vista previa al instante.',r2_t:'Convertidor CSV JSON',r2_d:'Convierte formatos estructurados para desarrollo.',r3_t:'Probador Regex',r3_d:'Prueba expresiones regulares en línea.',r4_t:'Generador Cron',r4_d:'Crea cron y lee su descripción.'}
     };
-
-    var currentLang = localStorage.getItem('text_diff_lang') || 'en';
-    var dmp = new diff_match_patch();
+var dmp = new diff_match_patch();
     var leftInput = document.getElementById('leftInput');
     var rightInput = document.getElementById('rightInput');
     var result = document.getElementById('result');
@@ -212,7 +205,7 @@
     var statusEl = document.getElementById('status');
 
     function t(key){var d=i18n[currentLang]||i18n.en;return d[key]||i18n.en[key]||key}
-    function applyLanguage(lang){currentLang=i18n[lang]?lang:'en';localStorage.setItem('text_diff_lang',currentLang);document.documentElement.lang=currentLang;document.getElementById('langCurrent').textContent=langNames[currentLang];document.querySelectorAll('[data-i18n]').forEach(function(el){el.textContent=t(el.getAttribute('data-i18n'))});document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el){el.placeholder=t(el.getAttribute('data-i18n-placeholder'))});}
+
 
     function normalize(text){
         var out=text;
@@ -253,14 +246,15 @@
     document.getElementById('copyBtn').addEventListener('click', function(){navigator.clipboard.writeText(result.innerText || '').then(function(){setStatus(t('copied'));});});
 
     document.getElementById('langCurrent').addEventListener('click', function(e){e.stopPropagation();document.getElementById('langDropdown').classList.toggle('open');});
-    document.querySelectorAll('.lang-btn').forEach(function(btn){btn.addEventListener('click', function(e){e.stopPropagation();applyLanguage(btn.getAttribute('data-lang'));document.getElementById('langDropdown').classList.remove('open');});});
+});
     document.addEventListener('click', function(){document.getElementById('langDropdown').classList.remove('open');});
 
     document.querySelectorAll('.faq-q').forEach(function(btn){btn.addEventListener('click', function(){var item=btn.parentElement;var open=item.classList.contains('active');document.querySelectorAll('.faq-item').forEach(function(it){it.classList.remove('active')});if(!open)item.classList.add('active');});});
-
-    applyLanguage(currentLang);
-    compare();
+compare();
 })();
 </script>
+    <script src="common/common.js" data-tool-id="text-diff" data-tool-name="Text Diff Checker" data-category="text"></script>
+    <script>WebToolbox.init(i18n);</script>
+
 </body>
 </html>
