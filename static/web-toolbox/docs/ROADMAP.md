@@ -2,7 +2,7 @@
 
 > 最后更新：2026-02-13
 > 目标：通过高搜索量的免费在线工具抢占 SEO 流量
-> 调研报告：[docs/report/market-research-2026-02-13.md](report/market-research-2026-02-13.md)
+> 调研报告：[综合调研 2026-02-13](report/market-research-2026-02-13.md) | [占卜/塔罗专项调研 2026-02-13](report/divination-research-2026-02-13.md)
 
 ---
 
@@ -11,8 +11,8 @@
 | 指标 | 数量 |
 |------|------|
 | 已上线工具 | 56 个 |
-| 待开发工具 | 0 个 |
-| 目标总计 | 56+ 个 |
+| 待开发工具 | 6 个 |
+| 目标总计 | 62+ 个 |
 
 ---
 
@@ -79,56 +79,28 @@
 
 ---
 
-## 待开发工具计划（0 个）
+## 待开发工具计划（6 个）
 
-### Phase 4 — AI 时代热门工具
+### Phase 8 — 占卜/神秘学工具
 
-> 2025-2026 趋势品类，Reddit 讨论热度爆表
-
-| # | 工具名称 | 文件名 | 月搜索量级 | 难度 | 核心技术 | SEO 关键词 |
-|---|---------|--------|-----------|------|---------|-----------|
-| 43 | 图片文字识别 (OCR) | ocr-tool.html | 百万级 | ⭐⭐ | Tesseract.js | image to text, OCR online, 图片转文字 |
-| 44 | 图片去背景 | bg-remover.html | 十万级 | ⭐⭐⭐ | ONNX.js + U2Net | remove background, 去背景, 抠图 |
-| 45 | 屏幕录制器 | screen-recorder.html | 十万级 | ⭐⭐ | MediaRecorder API | screen recorder online, 在线录屏 |
-
-### Phase 5 — 生活/效率工具
-
-> 搜索量稳定，用户粘性高
+> 来源：塔罗/星座专项调研，占星 App 市场 126 亿美元，头部站月访千万级
+> 调研报告：[占卜/塔罗专项调研 2026-02-13](report/divination-research-2026-02-13.md)
 
 | # | 工具名称 | 文件名 | 月搜索量级 | 难度 | 核心技术 | SEO 关键词 |
 |---|---------|--------|-----------|------|---------|-----------|
-| 46 | 番茄钟 | pomodoro.html | 十万级 | ⭐ | 纯 JS + Notification API | pomodoro timer, 番茄钟, focus timer |
-| 47 | 单位换算器 | unit-converter.html | 十万级 | ⭐ | 纯 JS | unit converter, 单位换算, 温度转换 |
-| 48 | 发票生成器 | invoice-generator.html | 十万级 | ⭐⭐⭐ | jsPDF | invoice generator, 发票生成, free invoice |
-
-### Phase 6 — 开发者进阶工具
-
-> 来源：Hacker News 2026 开发者需求 + Reddit r/webdev 讨论
-
-| # | 工具名称 | 文件名 | 月搜索量级 | 难度 | 核心技术 | SEO 关键词 |
-|---|---------|--------|-----------|------|---------|-----------|
-| 49 | HTTP/API 测试器 | api-tester.html | 万级 | ⭐⭐ | Fetch API + CodeMirror | API tester online, HTTP client, Postman alternative |
-| 50 | Hex 文件查看器 | hex-viewer.html | 万级 | ⭐⭐ | DataView + WebAssembly | hex editor online, binary file viewer, hex viewer |
-| 51 | 代码格式化器 | code-formatter.html | 十万级 | ⭐⭐ | Prettier standalone | code formatter, JSON beautifier, SQL formatter |
-| 52 | YAML/TOML 编辑器 | yaml-editor.html | 万级 | ⭐⭐ | js-yaml + CodeMirror | YAML editor online, TOML editor, config validator |
-
-### Phase 7 — 文件处理工具
-
-> 来源：Reddit 用户高频需求 + Google Trends 搜索量分析
-
-| # | 工具名称 | 文件名 | 月搜索量级 | 难度 | 核心技术 | SEO 关键词 |
-|---|---------|--------|-----------|------|---------|-----------|
-| 53 | 电子签名工具 | e-sign.html | 十万级 | ⭐⭐ | Canvas + pdf-lib.js | sign PDF online, electronic signature, 电子签名 |
-| 54 | PDF 加密/解密 | pdf-protect.html | 十万级 | ⭐⭐ | pdf-lib.js | encrypt PDF, password protect PDF, PDF 加密 |
-| 55 | 文件格式转换中心 | file-converter.html | 百万级 | ⭐⭐⭐ | FFmpeg.wasm | file converter, video to MP3, 格式转换 |
-| 56 | 图片水印工具 | watermark-tool.html | 十万级 | ⭐⭐ | Canvas API | add watermark, image watermark, 图片加水印 |
+| 57 | 天使数字计算器 | angel-number.html | 十万级 | ⭐ | 纯 JS 数学运算 | angel number calculator, what is my angel number |
+| 58 | 命理计算器（生命灵数） | numerology.html | 十万级 | ⭐ | 纯 JS 数学运算 | life path number calculator, numerology free |
+| 59 | 星座配对计算器 | zodiac-compatibility.html | 百万级 | ⭐ | 纯 JS 逻辑匹配 | zodiac compatibility, love compatibility calculator |
+| 60 | 塔罗牌在线占卜 | tarot-reading.html | 百万级 | ⭐⭐ | JS 随机 + CSS 翻牌动画 + 牌义 JSON | free tarot reading online, tarot card reading no signup |
+| 61 | 塔罗牌义百科 | tarot-guide.html | 十万级 | ⭐⭐ | 78 张牌数据 + 搜索/筛选 | tarot card meanings, learn tarot free |
+| 62 | 符文占卜 | rune-reading.html | 万级 | ⭐⭐ | JS 随机 + 符文 SVG + 含义 JSON | rune reading online free, viking runes divination |
 
 ---
 
 ## 开发优先级
 
 ```
-Phase 1 ✅ → Phase 2 ✅ → Phase 3 ✅ → Phase 4 ✅ → Phase 5 ✅ → Phase 6 ✅ → Phase 7 ✅
+Phase 1 ✅ → Phase 2 ✅ → Phase 3 ✅ → Phase 4 ✅ → Phase 5 ✅ → Phase 6 ✅ → Phase 7 ✅ → Phase 8 🔲
 ```
 
 | Phase | 工具数 | 状态 | 策略 |
@@ -140,6 +112,7 @@ Phase 1 ✅ → Phase 2 ✅ → Phase 3 ✅ → Phase 4 ✅ → Phase 5 ✅ → 
 | Phase 5 生活效率 | 3 | ✅ 已完成 | 稳定长尾流量，补全工具矩阵 |
 | Phase 6 开发者进阶 | 4 | ✅ 已完成 | HN 开发者强需求，轻量 Postman 替代引流 |
 | Phase 7 文件处理 | 4 | ✅ 已完成 | PDF 生态扩展 + 高搜索量格式转换 |
+| Phase 8 占卜/神秘学 | 6 | 🔲 待开发 | 占星市场 126 亿美元，头部站千万月访，TikTok 病毒传播 |
 
 ---
 
@@ -187,6 +160,14 @@ Phase 1 ✅ → Phase 2 ✅ → Phase 3 ✅ → Phase 4 ✅ → Phase 5 ✅ → 
 - [x] 文件格式转换中心 (file-converter.html)
 - [x] 图片水印工具 (watermark-tool.html)
 
+### Phase 8 — 🔲 占卜/神秘学工具
+- [ ] 天使数字计算器 (angel-number.html)
+- [ ] 命理计算器 (numerology.html)
+- [ ] 星座配对计算器 (zodiac-compatibility.html)
+- [ ] 塔罗牌在线占卜 (tarot-reading.html)
+- [ ] 塔罗牌义百科 (tarot-guide.html)
+- [ ] 符文占卜 (rune-reading.html)
+
 ---
 
 ## 开发流程
@@ -222,6 +203,12 @@ Phase 1 ✅ → Phase 2 ✅ → Phase 3 ✅ → Phase 4 ✅ → Phase 5 ✅ → 
 | r/graphic_design | 去背景、调色板、水印 | 800K+ |
 | r/SideProject | 全部新工具 | 622K |
 | r/freesoftware | PDF 工具、OCR、去背景 | 100K+ |
+| r/tarot | 塔罗占卜、牌义百科 | 346K |
+| r/astrology | 星座配对、星盘计算 | 820K |
+| r/Psychic | 全部占卜工具 | 340K |
+| r/spirituality | 全部占卜工具 | 750K |
+| r/WitchesVsPatriarchy | 塔罗、符文占卜 | 1M+ |
+| r/numerology | 命理计算、天使数字 | 50K+ |
 
 ### SEO 关键词策略
 
