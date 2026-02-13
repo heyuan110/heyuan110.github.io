@@ -119,7 +119,7 @@
             {"@type": "WebApplication", "name": "YAML TOML Editor", "url": "https://www.heyuan110.com/web-toolbox/yaml-editor.html"},
             {"@type": "WebApplication", "name": "E-Sign Tool", "url": "https://www.heyuan110.com/web-toolbox/e-sign.html"},
             {"@type": "WebApplication", "name": "PDF Protect", "url": "https://www.heyuan110.com/web-toolbox/pdf-protect.html"},
-            {"@type": "WebApplication", "name": "File Converter Center", "url": "https://www.heyuan110.com/web-toolbox/file-converter.html"},
+            {"@type": "WebApplication", "name": "File Converter", "url": "https://www.heyuan110.com/web-toolbox/file-converter.html"},
             {"@type": "WebApplication", "name": "Watermark Tool", "url": "https://www.heyuan110.com/web-toolbox/watermark-tool.html"},
             {"@type": "WebApplication", "name": "Tweet Deleter", "url": "https://github.com/heyuan110/tweet-deleter"},
             {"@type": "WebApplication", "name": "XPorts - Terminal Port Manager", "url": "https://github.com/heyuan110/xports"}
@@ -1508,13 +1508,13 @@
                 <img src="screenshots/code-formatter.webp" alt="代码格式化器截图" class="tool-screenshot">
                 <div class="tool-content">
                     <div class="tool-icon">✨</div>
-                    <h2 class="tool-title">代码格式化器</h2>
-                    <p class="tool-desc">一键美化 JSON、JS、TS、HTML、CSS、Markdown、SQL 代码</p>
+                    <h2 class="tool-title" data-i18n="tool_codefmt_title">代码格式化器</h2>
+                    <p class="tool-desc" data-i18n="tool_codefmt_desc">一键美化 JSON、JS、TS、HTML、CSS、Markdown、SQL 代码</p>
                     <ul class="tool-features">
-                        <li>集成 Prettier 与 SQL Formatter</li>
-                        <li>支持压缩与格式化切换</li>
-                        <li>自动整理缩进与空格风格</li>
-                        <li>复制结果快速复用</li>
+                        <li data-i18n="tool_codefmt_f1">集成 Prettier 与 SQL Formatter</li>
+                        <li data-i18n="tool_codefmt_f2">支持压缩与格式化切换</li>
+                        <li data-i18n="tool_codefmt_f3">自动整理缩进与空格风格</li>
+                        <li data-i18n="tool_codefmt_f4">复制结果快速复用</li>
                     </ul>
                     <a href="code-formatter.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
                 </div>
@@ -1525,13 +1525,13 @@
                 <img src="screenshots/yaml-editor.webp" alt="YAML TOML 编辑器截图" class="tool-screenshot">
                 <div class="tool-content">
                     <div class="tool-icon">⚙️</div>
-                    <h2 class="tool-title">YAML/TOML 编辑器</h2>
-                    <p class="tool-desc">配置文件校验与互转，支持 YAML、TOML、JSON 三格式工作流</p>
+                    <h2 class="tool-title" data-i18n="tool_yamledit_title">YAML/TOML 编辑器</h2>
+                    <p class="tool-desc" data-i18n="tool_yamledit_desc">配置文件校验与互转，支持 YAML、TOML、JSON 三格式工作流</p>
                     <ul class="tool-features">
-                        <li>YAML/TOML/JSON 双向转换</li>
-                        <li>语法错误定位更直观</li>
-                        <li>适合 DevOps 与配置调试</li>
-                        <li>结果可复制与下载</li>
+                        <li data-i18n="tool_yamledit_f1">YAML/TOML/JSON 双向转换</li>
+                        <li data-i18n="tool_yamledit_f2">语法错误定位更直观</li>
+                        <li data-i18n="tool_yamledit_f3">适合 DevOps 与配置调试</li>
+                        <li data-i18n="tool_yamledit_f4">结果可复制与下载</li>
                     </ul>
                     <a href="yaml-editor.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
                 </div>
@@ -1542,13 +1542,13 @@
                 <img src="screenshots/e-sign.webp" alt="电子签名工具截图" class="tool-screenshot">
                 <div class="tool-content">
                     <div class="tool-icon">✍️</div>
-                    <h2 class="tool-title">电子签名工具</h2>
-                    <p class="tool-desc">上传 PDF 并添加手写签名，设置页码坐标后导出签署文件</p>
+                    <h2 class="tool-title" data-i18n="tool_esign_title">电子签名工具</h2>
+                    <p class="tool-desc" data-i18n="tool_esign_desc">上传 PDF 并添加手写签名，设置页码坐标后导出签署文件</p>
                     <ul class="tool-features">
-                        <li>画布手写签名即时预览</li>
-                        <li>指定页码和签名位置</li>
-                        <li>支持调整签名尺寸</li>
-                        <li>导出签署后的 PDF 文件</li>
+                        <li data-i18n="tool_esign_f1">画布手写签名即时预览</li>
+                        <li data-i18n="tool_esign_f2">指定页码和签名位置</li>
+                        <li data-i18n="tool_esign_f3">支持调整签名尺寸</li>
+                        <li data-i18n="tool_esign_f4">导出签署后的 PDF 文件</li>
                     </ul>
                     <a href="e-sign.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
                 </div>
@@ -1559,30 +1559,30 @@
                 <img src="screenshots/pdf-protect.webp" alt="PDF 加密解密截图" class="tool-screenshot">
                 <div class="tool-content">
                     <div class="tool-icon">🔐</div>
-                    <h2 class="tool-title">PDF 加密解密</h2>
-                    <p class="tool-desc">使用浏览器端 AES-GCM 对 PDF 文件进行加密打包与还原解密</p>
+                    <h2 class="tool-title" data-i18n="tool_pdfprotect_title">PDF 加密解密</h2>
+                    <p class="tool-desc" data-i18n="tool_pdfprotect_desc">使用浏览器端 AES-GCM 对 PDF 文件进行加密打包与还原解密</p>
                     <ul class="tool-features">
-                        <li>基于密码派生密钥加密</li>
-                        <li>支持加密与解密双模式</li>
-                        <li>Web Crypto 本地执行</li>
-                        <li>无上传、无账号、更私密</li>
+                        <li data-i18n="tool_pdfprotect_f1">基于密码派生密钥加密</li>
+                        <li data-i18n="tool_pdfprotect_f2">支持加密与解密双模式</li>
+                        <li data-i18n="tool_pdfprotect_f3">Web Crypto 本地执行</li>
+                        <li data-i18n="tool_pdfprotect_f4">无上传、无账号、更私密</li>
                     </ul>
                     <a href="pdf-protect.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
                 </div>
             </div>
 
-            <!-- 文件格式转换中心 -->
-            <div class="tool-card" data-tool="file converter video mp3 image">
-                <img src="screenshots/file-converter.webp" alt="文件格式转换中心截图" class="tool-screenshot">
+            <!-- 跨媒体格式转换 -->
+            <div class="tool-card" data-tool="file converter video gif audio svg base64">
+                <img src="screenshots/file-converter.webp" alt="跨媒体格式转换截图" class="tool-screenshot">
                 <div class="tool-content">
                     <div class="tool-icon">🔄</div>
-                    <h2 class="tool-title">文件格式转换中心</h2>
-                    <p class="tool-desc">支持图片格式转换与视频转 MP3，覆盖常见多媒体转换场景</p>
+                    <h2 class="tool-title" data-i18n="tool_fileconv_title">跨媒体格式转换</h2>
+                    <p class="tool-desc" data-i18n="tool_fileconv_desc">视频转 GIF、视频提取音频、SVG 转 PNG/JPG、图片与 Base64 互转</p>
                     <ul class="tool-features">
-                        <li>PNG/JPG/WebP 图片互转</li>
-                        <li>视频提取 MP3（Beta）</li>
-                        <li>支持质量参数控制</li>
-                        <li>转换完成一键下载</li>
+                        <li data-i18n="tool_fileconv_f1">视频片段转 GIF 动图</li>
+                        <li data-i18n="tool_fileconv_f2">视频提取音频为 WAV</li>
+                        <li data-i18n="tool_fileconv_f3">SVG 转 PNG/JPG 支持缩放</li>
+                        <li data-i18n="tool_fileconv_f4">图片 ↔ Base64 双向转换</li>
                     </ul>
                     <a href="file-converter.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
                 </div>
@@ -1593,13 +1593,13 @@
                 <img src="screenshots/watermark-tool.webp" alt="图片水印工具截图" class="tool-screenshot">
                 <div class="tool-content">
                     <div class="tool-icon">💧</div>
-                    <h2 class="tool-title">图片水印工具</h2>
-                    <p class="tool-desc">给图片添加文字水印，支持透明度、角度、位置与平铺模式控制</p>
+                    <h2 class="tool-title" data-i18n="tool_watermark_title">图片水印工具</h2>
+                    <p class="tool-desc" data-i18n="tool_watermark_desc">给图片添加文字水印，支持透明度、角度、位置与平铺模式控制</p>
                     <ul class="tool-features">
-                        <li>自定义品牌或版权文字</li>
-                        <li>支持角度/字号/透明度调节</li>
-                        <li>支持单点与平铺两种布局</li>
-                        <li>导出带水印图片</li>
+                        <li data-i18n="tool_watermark_f1">自定义品牌或版权文字</li>
+                        <li data-i18n="tool_watermark_f2">支持角度/字号/透明度调节</li>
+                        <li data-i18n="tool_watermark_f3">支持单点与平铺两种布局</li>
+                        <li data-i18n="tool_watermark_f4">导出带水印图片</li>
                     </ul>
                     <a href="watermark-tool.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
                 </div>
@@ -2050,6 +2050,90 @@
                     tool_cron_f2: '内置常用定时模板',
                     tool_cron_f3: '表达式自动语义化解释',
                     tool_cron_f4: '一键复制用于 crontab',
+                    tool_ocr_title: 'OCR 图片文字识别',
+                    tool_ocr_desc: '提取图片中的文本内容，支持多语言识别与本地隐私处理',
+                    tool_ocr_f1: '支持截图、拍照图与扫描图识别',
+                    tool_ocr_f2: '支持中英文等多语言 OCR',
+                    tool_ocr_f3: '识别结果可复制或下载',
+                    tool_ocr_f4: '浏览器本地处理，无需上传',
+                    tool_bgremover_title: '图片去背景',
+                    tool_bgremover_desc: 'AI 自动抠图，快速导出透明 PNG，适合电商图与设计素材',
+                    tool_bgremover_f1: '自动识别主体与背景边缘',
+                    tool_bgremover_f2: '输出透明背景 PNG',
+                    tool_bgremover_f3: '无需安装，无需注册',
+                    tool_bgremover_f4: '纯前端处理更安全',
+                    tool_screenrec_title: '屏幕录制器',
+                    tool_screenrec_desc: '在线录制屏幕内容，可选麦克风音频，完成后一键导出 WebM',
+                    tool_screenrec_f1: '支持标签页、窗口或全屏录制',
+                    tool_screenrec_f2: '可叠加麦克风解说音频',
+                    tool_screenrec_f3: '暂停/继续/停止全流程控制',
+                    tool_screenrec_f4: '录制结束立即下载文件',
+                    tool_pomodoro_title: '番茄钟',
+                    tool_pomodoro_desc: '专注计时与休息循环管理，支持阶段提醒、快捷键与节奏预设',
+                    tool_pomodoro_f1: '专注/短休息/长休息自动切换',
+                    tool_pomodoro_f2: '支持多组预设计时方案',
+                    tool_pomodoro_f3: '浏览器通知提醒阶段变化',
+                    tool_pomodoro_f4: '记录已完成的专注轮次',
+                    tool_unitconv_title: '单位换算器',
+                    tool_unitconv_desc: '长度、重量、温度、面积、体积、速度等常见单位快速换算',
+                    tool_unitconv_f1: '覆盖公制与英制主流单位',
+                    tool_unitconv_f2: '支持温度公式精确换算',
+                    tool_unitconv_f3: '输入即算，结果实时刷新',
+                    tool_unitconv_f4: '一键复制换算结果',
+                    tool_invoice_title: '发票生成器',
+                    tool_invoice_desc: '在线填写发票信息并导出专业 PDF，适合自由职业者和小团队',
+                    tool_invoice_f1: '自定义公司、客户与项目明细',
+                    tool_invoice_f2: '自动计算税费与总金额',
+                    tool_invoice_f3: '模板化排版，快速出单',
+                    tool_invoice_f4: '一键导出可打印 PDF',
+                    tool_apitester_title: 'API 测试器',
+                    tool_apitester_desc: '在线发送 HTTP 请求，快速调试 REST 接口、请求头和 JSON Body',
+                    tool_apitester_f1: '支持 GET/POST/PUT/PATCH/DELETE',
+                    tool_apitester_f2: '可编辑 Headers 与 JSON Body',
+                    tool_apitester_f3: '展示状态码、耗时与响应大小',
+                    tool_apitester_f4: '响应结果一键复制',
+                    tool_hexview_title: 'Hex 文件查看器',
+                    tool_hexview_desc: '按偏移查看二进制字节内容，支持 HEX 模式搜索和分页浏览',
+                    tool_hexview_f1: '显示偏移地址与 ASCII 对照',
+                    tool_hexview_f2: '支持字节序列签名搜索',
+                    tool_hexview_f3: '大文件分页加载不卡顿',
+                    tool_hexview_f4: '适合调试与取证分析',
+                    tool_codefmt_title: '代码格式化器',
+                    tool_codefmt_desc: '一键美化 JSON、JS、TS、HTML、CSS、Markdown、SQL 代码',
+                    tool_codefmt_f1: '集成 Prettier 与 SQL Formatter',
+                    tool_codefmt_f2: '支持压缩与格式化切换',
+                    tool_codefmt_f3: '自动整理缩进与空格风格',
+                    tool_codefmt_f4: '复制结果快速复用',
+                    tool_yamledit_title: 'YAML/TOML 编辑器',
+                    tool_yamledit_desc: '配置文件校验与互转，支持 YAML、TOML、JSON 三格式工作流',
+                    tool_yamledit_f1: 'YAML/TOML/JSON 双向转换',
+                    tool_yamledit_f2: '语法错误定位更直观',
+                    tool_yamledit_f3: '适合 DevOps 与配置调试',
+                    tool_yamledit_f4: '结果可复制与下载',
+                    tool_esign_title: '电子签名工具',
+                    tool_esign_desc: '上传 PDF 并添加手写签名，设置页码坐标后导出签署文件',
+                    tool_esign_f1: '画布手写签名即时预览',
+                    tool_esign_f2: '指定页码和签名位置',
+                    tool_esign_f3: '支持调整签名尺寸',
+                    tool_esign_f4: '导出签署后的 PDF 文件',
+                    tool_pdfprotect_title: 'PDF 加密解密',
+                    tool_pdfprotect_desc: '使用浏览器端 AES-GCM 对 PDF 文件进行加密打包与还原解密',
+                    tool_pdfprotect_f1: '基于密码派生密钥加密',
+                    tool_pdfprotect_f2: '支持加密与解密双模式',
+                    tool_pdfprotect_f3: 'Web Crypto 本地执行',
+                    tool_pdfprotect_f4: '无上传、无账号、更私密',
+                    tool_fileconv_title: '跨媒体格式转换',
+                    tool_fileconv_desc: '视频转 GIF、视频提取音频、SVG 转 PNG/JPG、图片与 Base64 互转',
+                    tool_fileconv_f1: '视频片段转 GIF 动图',
+                    tool_fileconv_f2: '视频提取音频为 WAV',
+                    tool_fileconv_f3: 'SVG 转 PNG/JPG 支持缩放',
+                    tool_fileconv_f4: '图片 ↔ Base64 双向转换',
+                    tool_watermark_title: '图片水印工具',
+                    tool_watermark_desc: '给图片添加文字水印，支持透明度、角度、位置与平铺模式控制',
+                    tool_watermark_f1: '自定义品牌或版权文字',
+                    tool_watermark_f2: '支持角度/字号/透明度调节',
+                    tool_watermark_f3: '支持单点与平铺两种布局',
+                    tool_watermark_f4: '导出带水印图片',
                 },
                 'en': {
                     homeLink: 'Home',
@@ -2339,6 +2423,90 @@
                     tool_cron_f2: 'Built-in schedule presets',
                     tool_cron_f3: 'Instant natural language explanation',
                     tool_cron_f4: 'Copy cron for crontab in one click',
+                    tool_ocr_title: 'OCR Text Recognition',
+                    tool_ocr_desc: 'Extract text from images with multi-language OCR, processed locally for privacy',
+                    tool_ocr_f1: 'Supports screenshots, photos & scanned images',
+                    tool_ocr_f2: 'Multi-language OCR (Chinese, English, etc.)',
+                    tool_ocr_f3: 'Copy or download recognized text',
+                    tool_ocr_f4: 'Browser-based processing, no upload needed',
+                    tool_bgremover_title: 'Background Remover',
+                    tool_bgremover_desc: 'AI-powered auto cutout, export transparent PNG for e-commerce and design',
+                    tool_bgremover_f1: 'Auto-detect subject and background edges',
+                    tool_bgremover_f2: 'Export transparent background PNG',
+                    tool_bgremover_f3: 'No installation, no signup required',
+                    tool_bgremover_f4: 'Pure frontend processing, more secure',
+                    tool_screenrec_title: 'Screen Recorder',
+                    tool_screenrec_desc: 'Record screen content online with optional microphone audio, export as WebM',
+                    tool_screenrec_f1: 'Record tab, window, or full screen',
+                    tool_screenrec_f2: 'Overlay microphone narration audio',
+                    tool_screenrec_f3: 'Pause/resume/stop full workflow control',
+                    tool_screenrec_f4: 'Download file immediately after recording',
+                    tool_pomodoro_title: 'Pomodoro Timer',
+                    tool_pomodoro_desc: 'Focus timer with break cycles, stage reminders, shortcuts and rhythm presets',
+                    tool_pomodoro_f1: 'Auto-switch focus/short break/long break',
+                    tool_pomodoro_f2: 'Multiple preset timing plans',
+                    tool_pomodoro_f3: 'Browser notifications for stage changes',
+                    tool_pomodoro_f4: 'Track completed focus rounds',
+                    tool_unitconv_title: 'Unit Converter',
+                    tool_unitconv_desc: 'Quick conversion for length, weight, temperature, area, volume, speed and more',
+                    tool_unitconv_f1: 'Covers metric and imperial units',
+                    tool_unitconv_f2: 'Precise temperature formula conversion',
+                    tool_unitconv_f3: 'Instant results as you type',
+                    tool_unitconv_f4: 'One-click copy conversion results',
+                    tool_invoice_title: 'Invoice Generator',
+                    tool_invoice_desc: 'Fill in invoice details online and export professional PDF, ideal for freelancers',
+                    tool_invoice_f1: 'Custom company, client & item details',
+                    tool_invoice_f2: 'Auto-calculate tax and total amount',
+                    tool_invoice_f3: 'Template layout for quick invoicing',
+                    tool_invoice_f4: 'One-click export printable PDF',
+                    tool_apitester_title: 'API Tester',
+                    tool_apitester_desc: 'Send HTTP requests online to quickly debug REST APIs, headers, and JSON body',
+                    tool_apitester_f1: 'Supports GET/POST/PUT/PATCH/DELETE',
+                    tool_apitester_f2: 'Editable Headers and JSON Body',
+                    tool_apitester_f3: 'Show status code, latency & response size',
+                    tool_apitester_f4: 'One-click copy response result',
+                    tool_hexview_title: 'Hex Viewer',
+                    tool_hexview_desc: 'View binary content by offset with HEX search and paginated browsing',
+                    tool_hexview_f1: 'Display offset address with ASCII view',
+                    tool_hexview_f2: 'Byte sequence signature search',
+                    tool_hexview_f3: 'Paginated loading for large files',
+                    tool_hexview_f4: 'Ideal for debugging and forensic analysis',
+                    tool_codefmt_title: 'Code Formatter',
+                    tool_codefmt_desc: 'One-click beautify JSON, JS, TS, HTML, CSS, Markdown, SQL code',
+                    tool_codefmt_f1: 'Integrated Prettier & SQL Formatter',
+                    tool_codefmt_f2: 'Toggle between minify and format',
+                    tool_codefmt_f3: 'Auto-fix indentation and spacing style',
+                    tool_codefmt_f4: 'Quick copy formatted result',
+                    tool_yamledit_title: 'YAML/TOML Editor',
+                    tool_yamledit_desc: 'Config file validation and conversion between YAML, TOML, and JSON',
+                    tool_yamledit_f1: 'YAML/TOML/JSON bidirectional conversion',
+                    tool_yamledit_f2: 'Intuitive syntax error location',
+                    tool_yamledit_f3: 'Great for DevOps and config debugging',
+                    tool_yamledit_f4: 'Copy or download results',
+                    tool_esign_title: 'E-Signature Tool',
+                    tool_esign_desc: 'Upload PDF and add handwritten signature, set page coordinates and export signed file',
+                    tool_esign_f1: 'Canvas handwriting with instant preview',
+                    tool_esign_f2: 'Specify page number and signature position',
+                    tool_esign_f3: 'Adjustable signature size',
+                    tool_esign_f4: 'Export signed PDF file',
+                    tool_pdfprotect_title: 'PDF Encrypt & Decrypt',
+                    tool_pdfprotect_desc: 'Encrypt and decrypt PDF files using browser-side AES-GCM encryption',
+                    tool_pdfprotect_f1: 'Password-derived key encryption',
+                    tool_pdfprotect_f2: 'Encrypt and decrypt dual modes',
+                    tool_pdfprotect_f3: 'Web Crypto local execution',
+                    tool_pdfprotect_f4: 'No upload, no account, more private',
+                    tool_fileconv_title: 'Cross-Media Converter',
+                    tool_fileconv_desc: 'Video to GIF, extract audio from video, SVG to PNG/JPG, Image ↔ Base64',
+                    tool_fileconv_f1: 'Video clips to animated GIF',
+                    tool_fileconv_f2: 'Extract audio as WAV',
+                    tool_fileconv_f3: 'SVG to PNG/JPG with scale',
+                    tool_fileconv_f4: 'Image ↔ Base64 bidirectional',
+                    tool_watermark_title: 'Image Watermark Tool',
+                    tool_watermark_desc: 'Add text watermark to images with opacity, angle, position and tiling control',
+                    tool_watermark_f1: 'Custom brand or copyright text',
+                    tool_watermark_f2: 'Adjust angle/font size/opacity',
+                    tool_watermark_f3: 'Single point and tiled layout modes',
+                    tool_watermark_f4: 'Export watermarked image',
                 },
                 'fr': {
                     homeLink: 'Accueil',
@@ -2628,6 +2796,90 @@
                     tool_cron_f2: 'Modèles de planification intégrés',
                     tool_cron_f3: 'Explication en langage naturel',
                     tool_cron_f4: 'Copie cron en un clic',
+                    tool_ocr_title: 'Reconnaissance OCR',
+                    tool_ocr_desc: 'Extraire le texte des images avec OCR multilingue, traitement local pour la confidentialité',
+                    tool_ocr_f1: 'Captures d\'écran, photos et images numérisées',
+                    tool_ocr_f2: 'OCR multilingue (chinois, anglais, etc.)',
+                    tool_ocr_f3: 'Copier ou télécharger le texte reconnu',
+                    tool_ocr_f4: 'Traitement dans le navigateur, sans téléversement',
+                    tool_bgremover_title: 'Suppression d\'arrière-plan',
+                    tool_bgremover_desc: 'Détourage automatique par IA, export PNG transparent pour e-commerce et design',
+                    tool_bgremover_f1: 'Détection automatique du sujet et des bords',
+                    tool_bgremover_f2: 'Export PNG avec fond transparent',
+                    tool_bgremover_f3: 'Sans installation, sans inscription',
+                    tool_bgremover_f4: 'Traitement frontend plus sécurisé',
+                    tool_screenrec_title: 'Enregistreur d\'écran',
+                    tool_screenrec_desc: 'Enregistrez l\'écran en ligne avec audio micro optionnel, exportez en WebM',
+                    tool_screenrec_f1: 'Enregistrer onglet, fenêtre ou écran entier',
+                    tool_screenrec_f2: 'Superposer la narration audio du micro',
+                    tool_screenrec_f3: 'Contrôle pause/reprise/arrêt complet',
+                    tool_screenrec_f4: 'Téléchargement immédiat après enregistrement',
+                    tool_pomodoro_title: 'Minuteur Pomodoro',
+                    tool_pomodoro_desc: 'Minuteur de concentration avec cycles de pause, rappels et préréglages de rythme',
+                    tool_pomodoro_f1: 'Alternance auto focus/pause courte/pause longue',
+                    tool_pomodoro_f2: 'Plusieurs plans de minutage préréglés',
+                    tool_pomodoro_f3: 'Notifications navigateur pour les changements',
+                    tool_pomodoro_f4: 'Suivi des cycles de concentration terminés',
+                    tool_unitconv_title: 'Convertisseur d\'unités',
+                    tool_unitconv_desc: 'Conversion rapide longueur, poids, température, surface, volume, vitesse et plus',
+                    tool_unitconv_f1: 'Unités métriques et impériales courantes',
+                    tool_unitconv_f2: 'Conversion précise par formule de température',
+                    tool_unitconv_f3: 'Résultats instantanés à la saisie',
+                    tool_unitconv_f4: 'Copie en un clic des résultats',
+                    tool_invoice_title: 'Générateur de factures',
+                    tool_invoice_desc: 'Remplissez les détails en ligne et exportez un PDF professionnel, idéal pour freelances',
+                    tool_invoice_f1: 'Détails personnalisés entreprise, client et articles',
+                    tool_invoice_f2: 'Calcul automatique taxes et montant total',
+                    tool_invoice_f3: 'Mise en page modèle pour facturation rapide',
+                    tool_invoice_f4: 'Export PDF imprimable en un clic',
+                    tool_apitester_title: 'Testeur d\'API',
+                    tool_apitester_desc: 'Envoyez des requêtes HTTP en ligne pour déboguer rapidement les API REST',
+                    tool_apitester_f1: 'Supporte GET/POST/PUT/PATCH/DELETE',
+                    tool_apitester_f2: 'Headers et Body JSON éditables',
+                    tool_apitester_f3: 'Affiche code, latence et taille de réponse',
+                    tool_apitester_f4: 'Copie du résultat en un clic',
+                    tool_hexview_title: 'Visualiseur Hex',
+                    tool_hexview_desc: 'Visualisez le contenu binaire par offset avec recherche HEX et pagination',
+                    tool_hexview_f1: 'Affichage offset avec vue ASCII',
+                    tool_hexview_f2: 'Recherche de signature par séquence d\'octets',
+                    tool_hexview_f3: 'Chargement paginé pour gros fichiers',
+                    tool_hexview_f4: 'Idéal pour débogage et analyse forensique',
+                    tool_codefmt_title: 'Formateur de code',
+                    tool_codefmt_desc: 'Embellir en un clic JSON, JS, TS, HTML, CSS, Markdown, SQL',
+                    tool_codefmt_f1: 'Intégration Prettier et SQL Formatter',
+                    tool_codefmt_f2: 'Basculer entre minification et formatage',
+                    tool_codefmt_f3: 'Correction auto de l\'indentation et des espaces',
+                    tool_codefmt_f4: 'Copie rapide du résultat formaté',
+                    tool_yamledit_title: 'Éditeur YAML/TOML',
+                    tool_yamledit_desc: 'Validation et conversion de fichiers config entre YAML, TOML et JSON',
+                    tool_yamledit_f1: 'Conversion bidirectionnelle YAML/TOML/JSON',
+                    tool_yamledit_f2: 'Localisation intuitive des erreurs de syntaxe',
+                    tool_yamledit_f3: 'Idéal pour DevOps et débogage de config',
+                    tool_yamledit_f4: 'Copier ou télécharger les résultats',
+                    tool_esign_title: 'Outil de signature électronique',
+                    tool_esign_desc: 'Téléversez un PDF et ajoutez une signature manuscrite, exportez le fichier signé',
+                    tool_esign_f1: 'Écriture manuscrite sur canevas avec aperçu',
+                    tool_esign_f2: 'Spécifier page et position de signature',
+                    tool_esign_f3: 'Taille de signature ajustable',
+                    tool_esign_f4: 'Export du PDF signé',
+                    tool_pdfprotect_title: 'Chiffrement/Déchiffrement PDF',
+                    tool_pdfprotect_desc: 'Chiffrer et déchiffrer les PDF avec AES-GCM côté navigateur',
+                    tool_pdfprotect_f1: 'Chiffrement par clé dérivée du mot de passe',
+                    tool_pdfprotect_f2: 'Double mode chiffrement et déchiffrement',
+                    tool_pdfprotect_f3: 'Exécution locale Web Crypto',
+                    tool_pdfprotect_f4: 'Sans téléversement, sans compte, plus privé',
+                    tool_fileconv_title: 'Convertisseur cross-média',
+                    tool_fileconv_desc: 'Vidéo vers GIF, extraction audio, SVG vers PNG/JPG, Image ↔ Base64',
+                    tool_fileconv_f1: 'Clips vidéo en GIF animé',
+                    tool_fileconv_f2: 'Extraction audio en WAV',
+                    tool_fileconv_f3: 'SVG vers PNG/JPG avec échelle',
+                    tool_fileconv_f4: 'Image ↔ Base64 bidirectionnel',
+                    tool_watermark_title: 'Outil de filigrane',
+                    tool_watermark_desc: 'Ajoutez un filigrane texte aux images avec contrôle d\'opacité, angle et mosaïque',
+                    tool_watermark_f1: 'Texte de marque ou copyright personnalisé',
+                    tool_watermark_f2: 'Réglage angle/taille de police/opacité',
+                    tool_watermark_f3: 'Modes point unique et mosaïque',
+                    tool_watermark_f4: 'Exporter l\'image avec filigrane',
                 },
                 'es': {
                     homeLink: 'Inicio',
@@ -2917,6 +3169,90 @@
                     tool_cron_f2: 'Plantillas de programación integradas',
                     tool_cron_f3: 'Explicación en lenguaje natural',
                     tool_cron_f4: 'Copiar cron con un clic',
+                    tool_ocr_title: 'Reconocimiento OCR',
+                    tool_ocr_desc: 'Extraer texto de imágenes con OCR multilingüe, procesado local para privacidad',
+                    tool_ocr_f1: 'Capturas de pantalla, fotos e imágenes escaneadas',
+                    tool_ocr_f2: 'OCR multilingüe (chino, inglés, etc.)',
+                    tool_ocr_f3: 'Copiar o descargar texto reconocido',
+                    tool_ocr_f4: 'Procesamiento en navegador, sin subir archivos',
+                    tool_bgremover_title: 'Eliminador de fondo',
+                    tool_bgremover_desc: 'Recorte automático con IA, exportar PNG transparente para comercio y diseño',
+                    tool_bgremover_f1: 'Detección automática de sujeto y bordes',
+                    tool_bgremover_f2: 'Exportar PNG con fondo transparente',
+                    tool_bgremover_f3: 'Sin instalación, sin registro',
+                    tool_bgremover_f4: 'Procesamiento frontend más seguro',
+                    tool_screenrec_title: 'Grabador de pantalla',
+                    tool_screenrec_desc: 'Grabe la pantalla en línea con audio de micrófono opcional, exporte como WebM',
+                    tool_screenrec_f1: 'Grabar pestaña, ventana o pantalla completa',
+                    tool_screenrec_f2: 'Superponer narración de audio del micrófono',
+                    tool_screenrec_f3: 'Control completo pausa/continuar/detener',
+                    tool_screenrec_f4: 'Descarga inmediata tras la grabación',
+                    tool_pomodoro_title: 'Temporizador Pomodoro',
+                    tool_pomodoro_desc: 'Temporizador de enfoque con ciclos de descanso, recordatorios y preajustes de ritmo',
+                    tool_pomodoro_f1: 'Alternancia auto enfoque/descanso corto/largo',
+                    tool_pomodoro_f2: 'Múltiples planes de tiempo preestablecidos',
+                    tool_pomodoro_f3: 'Notificaciones del navegador para cambios',
+                    tool_pomodoro_f4: 'Seguimiento de rondas de enfoque completadas',
+                    tool_unitconv_title: 'Convertidor de unidades',
+                    tool_unitconv_desc: 'Conversión rápida de longitud, peso, temperatura, área, volumen, velocidad y más',
+                    tool_unitconv_f1: 'Unidades métricas e imperiales comunes',
+                    tool_unitconv_f2: 'Conversión precisa por fórmula de temperatura',
+                    tool_unitconv_f3: 'Resultados instantáneos al escribir',
+                    tool_unitconv_f4: 'Copiar resultados con un clic',
+                    tool_invoice_title: 'Generador de facturas',
+                    tool_invoice_desc: 'Complete datos de factura en línea y exporte PDF profesional, ideal para freelancers',
+                    tool_invoice_f1: 'Detalles personalizados de empresa, cliente y artículos',
+                    tool_invoice_f2: 'Cálculo automático de impuestos y total',
+                    tool_invoice_f3: 'Diseño de plantilla para facturación rápida',
+                    tool_invoice_f4: 'Exportar PDF imprimible con un clic',
+                    tool_apitester_title: 'Probador de API',
+                    tool_apitester_desc: 'Envíe solicitudes HTTP en línea para depurar rápidamente APIs REST',
+                    tool_apitester_f1: 'Soporta GET/POST/PUT/PATCH/DELETE',
+                    tool_apitester_f2: 'Headers y Body JSON editables',
+                    tool_apitester_f3: 'Muestra código, latencia y tamaño de respuesta',
+                    tool_apitester_f4: 'Copiar resultado con un clic',
+                    tool_hexview_title: 'Visor Hex',
+                    tool_hexview_desc: 'Ver contenido binario por offset con búsqueda HEX y navegación paginada',
+                    tool_hexview_f1: 'Visualización de offset con vista ASCII',
+                    tool_hexview_f2: 'Búsqueda de firma por secuencia de bytes',
+                    tool_hexview_f3: 'Carga paginada para archivos grandes',
+                    tool_hexview_f4: 'Ideal para depuración y análisis forense',
+                    tool_codefmt_title: 'Formateador de código',
+                    tool_codefmt_desc: 'Embellece con un clic JSON, JS, TS, HTML, CSS, Markdown, SQL',
+                    tool_codefmt_f1: 'Integración de Prettier y SQL Formatter',
+                    tool_codefmt_f2: 'Alternar entre minificar y formatear',
+                    tool_codefmt_f3: 'Corrección auto de indentación y espacios',
+                    tool_codefmt_f4: 'Copia rápida del resultado formateado',
+                    tool_yamledit_title: 'Editor YAML/TOML',
+                    tool_yamledit_desc: 'Validación y conversión de archivos de config entre YAML, TOML y JSON',
+                    tool_yamledit_f1: 'Conversión bidireccional YAML/TOML/JSON',
+                    tool_yamledit_f2: 'Ubicación intuitiva de errores de sintaxis',
+                    tool_yamledit_f3: 'Ideal para DevOps y depuración de config',
+                    tool_yamledit_f4: 'Copiar o descargar resultados',
+                    tool_esign_title: 'Herramienta de firma electrónica',
+                    tool_esign_desc: 'Suba un PDF y añada firma manuscrita, configure coordenadas y exporte el archivo firmado',
+                    tool_esign_f1: 'Escritura manuscrita en lienzo con vista previa',
+                    tool_esign_f2: 'Especificar página y posición de firma',
+                    tool_esign_f3: 'Tamaño de firma ajustable',
+                    tool_esign_f4: 'Exportar PDF firmado',
+                    tool_pdfprotect_title: 'Cifrado/Descifrado PDF',
+                    tool_pdfprotect_desc: 'Cifrar y descifrar archivos PDF con AES-GCM en el navegador',
+                    tool_pdfprotect_f1: 'Cifrado con clave derivada de contraseña',
+                    tool_pdfprotect_f2: 'Doble modo cifrado y descifrado',
+                    tool_pdfprotect_f3: 'Ejecución local Web Crypto',
+                    tool_pdfprotect_f4: 'Sin subir, sin cuenta, más privado',
+                    tool_fileconv_title: 'Convertidor cross-media',
+                    tool_fileconv_desc: 'Video a GIF, extracción de audio, SVG a PNG/JPG, Imagen ↔ Base64',
+                    tool_fileconv_f1: 'Clips de video a GIF animado',
+                    tool_fileconv_f2: 'Extracción de audio como WAV',
+                    tool_fileconv_f3: 'SVG a PNG/JPG con escala',
+                    tool_fileconv_f4: 'Imagen ↔ Base64 bidireccional',
+                    tool_watermark_title: 'Herramienta de marca de agua',
+                    tool_watermark_desc: 'Añadir marca de agua de texto a imágenes con control de opacidad, ángulo y mosaico',
+                    tool_watermark_f1: 'Texto de marca o copyright personalizado',
+                    tool_watermark_f2: 'Ajuste de ángulo/tamaño de fuente/opacidad',
+                    tool_watermark_f3: 'Modos de punto único y mosaico',
+                    tool_watermark_f4: 'Exportar imagen con marca de agua',
                 },
             };
 
