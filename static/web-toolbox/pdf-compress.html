@@ -149,7 +149,7 @@
         }
         .container { max-width: 1200px; margin: 0 auto; }
         .top-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 20px; }
-.lang-dropdown.open h1 { text-align: center; font-size: 2rem; margin-bottom: 8px; background: linear-gradient(120deg, #00d4ff, #7c3aed, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        h1 { text-align: center; font-size: 2rem; margin-bottom: 8px; background: linear-gradient(120deg, #00d4ff, #7c3aed, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .subtitle { text-align: center; color: #a1a1aa; margin-bottom: 26px; }
 
         .card { background: rgba(0,0,0,0.28); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 20px; margin-bottom: 18px; }
@@ -198,7 +198,7 @@
         .faq-answer { display: none; padding: 0 14px 12px; color: #a1a1aa; font-size: 14px; }
         .faq-item.active .faq-answer { display: block; }
 
-        @media (max-width: 900px) { .features-grid, }
+        @media (max-width: 900px) { .features-grid { grid-template-columns: 1fr; } }
         @media (max-width: 640px) {
             h1 { font-size: 1.7rem; }
             .features-grid, .control-row { flex-direction: column; align-items: stretch; }
@@ -208,11 +208,6 @@
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
 <div class="container">
 <h1 data-i18n="title">PDF Compress Tool</h1>
         <p class="subtitle" data-i18n="subtitle">Reduce PDF size with adjustable quality and output resolution</p>
@@ -313,36 +308,33 @@
                 <div class="faq-answer" data-i18n="faq5A">Yes, it is free without registration.</div>
             </div>
             <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span data-i18n="faq_free_q">Is this tool really free? Are my files safe?</span>
-                    <span class="arrow">▼</span>
-                </div>
-                <div class="faq-answer"><p data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, and no usage limits. Unlike other PDF tools, your files are never uploaded to any server — all processing happens locally in your browser for maximum privacy.</p></div>
+                <button class="faq-question" data-i18n="faq_free_q">Is this tool really free? Are my files safe?</button>
+                <div class="faq-answer" data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, and no usage limits. Unlike other PDF tools, your files are never uploaded to any server — all processing happens locally in your browser for maximum privacy.</div>
             </div>
         </section>
 
         <section class="related-tools">
-            <h3 data-i18n="relatedTitle">Related PDF Tools</h3>
+            <h3 data-i18n="relatedToolsTitle">Related PDF Tools</h3>
             <div class="related-grid">
                 <a class="related-card" href="pdf-merge.html">
                     <div>📚</div>
-                    <h4 data-i18n="rel1Title">PDF Merge</h4>
-                    <p data-i18n="rel1Desc">Combine multiple PDF files into one document.</p>
+                    <h4 data-i18n="relatedTool1">PDF Merge</h4>
+                    <p data-i18n="relatedTool1Desc">Combine multiple PDF files into one document.</p>
                 </a>
                 <a class="related-card" href="pdf-split.html">
                     <div>✂️</div>
-                    <h4 data-i18n="rel2Title">PDF Split</h4>
-                    <p data-i18n="rel2Desc">Split PDF into pages or custom ranges.</p>
+                    <h4 data-i18n="relatedTool2">PDF Split</h4>
+                    <p data-i18n="relatedTool2Desc">Split PDF into pages or custom ranges.</p>
                 </a>
                 <a class="related-card" href="pdf-to-image.html">
                     <div>🖼️</div>
-                    <h4 data-i18n="rel3Title">PDF to Image</h4>
-                    <p data-i18n="rel3Desc">Export PDF pages as PNG or JPG images.</p>
+                    <h4 data-i18n="relatedTool3">PDF to Image</h4>
+                    <p data-i18n="relatedTool3Desc">Export PDF pages as PNG or JPG images.</p>
                 </a>
-                <a class="related-card" href="image-to-pdf.html">
-                    <div>📄</div>
-                    <h4 data-i18n="rel4Title">Image to PDF</h4>
-                    <p data-i18n="rel4Desc">Create a PDF from multiple images.</p>
+                <a class="related-card" href="pdf-protect.html">
+                    <div>🔐</div>
+                    <h4 data-i18n="relatedTool4">PDF Protect</h4>
+                    <p data-i18n="relatedTool4Desc">Add password protection to your PDF files.</p>
                 </a>
             </div>
         </section>
@@ -356,9 +348,13 @@
             window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
         }
 
+        function getLang() {
+            return (typeof WebToolbox !== 'undefined') ? WebToolbox.getCurrentLang() : (localStorage.getItem('toolbox_lang') || 'en');
+        }
+
         var i18n = {
             en: {
-                backHome: 'Back to Toolbox',
+                tool_name: 'PDF Compress',
                 title: 'PDF Compress Tool',
                 subtitle: 'Reduce PDF size with adjustable quality and output resolution',
                 uploadTitle: 'Upload PDF File',
@@ -401,22 +397,22 @@
                 faq5A: 'Yes, it is free without registration.',
                 faq_free_q: 'Is this tool really free? Are my files safe?',
                 faq_free_a: 'Yes, 100% free with no ads, no registration, and no usage limits. Unlike other PDF tools, your files are never uploaded to any server — all processing happens locally in your browser for maximum privacy.',
-                relatedTitle: 'Related PDF Tools',
-                rel1Title: 'PDF Merge',
-                rel1Desc: 'Combine multiple PDF files into one document.',
-                rel2Title: 'PDF Split',
-                rel2Desc: 'Split PDF into pages or custom ranges.',
-                rel3Title: 'PDF to Image',
-                rel3Desc: 'Export PDF pages as PNG or JPG images.',
-                rel4Title: 'Image to PDF',
-                rel4Desc: 'Create a PDF from multiple images.',
+                relatedToolsTitle: 'Related PDF Tools',
+                relatedTool1: 'PDF Merge',
+                relatedTool1Desc: 'Combine multiple PDF files into one document.',
+                relatedTool2: 'PDF Split',
+                relatedTool2Desc: 'Split PDF into pages or custom ranges.',
+                relatedTool3: 'PDF to Image',
+                relatedTool3Desc: 'Export PDF pages as PNG or JPG images.',
+                relatedTool4: 'PDF Protect',
+                relatedTool4Desc: 'Add password protection to your PDF files.',
                 trust_users: '🌍 Used by 50,000+ users',
                 trust_rating: '⭐ 4.9/5 rating',
                 trust_privacy: '🔒 100% Private',
                 trust_free: '🚫 No Ads, No Signup'
             },
             'zh-CN': {
-                backHome: '返回工具箱',
+                tool_name: 'PDF 压缩',
                 title: 'PDF 压缩',
                 subtitle: '通过质量和分辨率控制减小 PDF 文件体积',
                 uploadTitle: '上传 PDF 文件',
@@ -459,22 +455,22 @@
                 faq5A: '是的，免费且无需注册。',
                 faq_free_q: '这个工具真的免费吗？我的文件安全吗？',
                 faq_free_a: '是的，100% 免费，无广告、无需注册、无使用限制。与其他 PDF 工具不同，您的文件不会上传到任何服务器——所有处理都在浏览器本地完成，最大程度保护隐私。',
-                relatedTitle: '相关 PDF 工具',
-                rel1Title: 'PDF 合并',
-                rel1Desc: '将多个 PDF 文件合并成一个文档。',
-                rel2Title: 'PDF 拆分',
-                rel2Desc: '按单页或范围拆分 PDF。',
-                rel3Title: 'PDF 转图片',
-                rel3Desc: '导出 PDF 页面为 PNG 或 JPG 图片。',
-                rel4Title: '图片转 PDF',
-                rel4Desc: '将多张图片生成一个 PDF。',
+                relatedToolsTitle: '相关 PDF 工具',
+                relatedTool1: 'PDF 合并',
+                relatedTool1Desc: '将多个 PDF 文件合并成一个文档。',
+                relatedTool2: 'PDF 拆分',
+                relatedTool2Desc: '按单页或范围拆分 PDF。',
+                relatedTool3: 'PDF 转图片',
+                relatedTool3Desc: '导出 PDF 页面为 PNG 或 JPG 图片。',
+                relatedTool4: 'PDF 加密',
+                relatedTool4Desc: '为 PDF 文件添加密码保护。',
                 trust_users: '🌍 超过 50,000 用户使用',
                 trust_rating: '⭐ 4.9/5 好评',
                 trust_privacy: '🔒 100% 隐私安全',
                 trust_free: '🚫 无广告、无需注册'
             },
             fr: {
-                backHome: 'Retour à la boîte à outils',
+                tool_name: 'Compresser PDF',
                 title: 'Compresser PDF',
                 subtitle: 'Réduisez la taille des PDF avec des réglages de qualité et résolution',
                 uploadTitle: 'Importer un fichier PDF',
@@ -517,22 +513,22 @@
                 faq5A: 'Oui, gratuit sans inscription.',
                 faq_free_q: 'Cet outil est-il vraiment gratuit ? Mes fichiers sont-ils en sécurité ?',
                 faq_free_a: 'Oui, 100% gratuit sans publicité, sans inscription et sans limite. Contrairement à d\'autres outils PDF, vos fichiers ne sont jamais téléchargés sur un serveur.',
-                relatedTitle: 'Outils PDF associés',
-                rel1Title: 'Fusion PDF',
-                rel1Desc: 'Combiner plusieurs PDF en un seul.',
-                rel2Title: 'Découper PDF',
-                rel2Desc: 'Diviser PDF par pages ou plages.',
-                rel3Title: 'PDF vers image',
-                rel3Desc: 'Exporter les pages PDF en PNG ou JPG.',
-                rel4Title: 'Image vers PDF',
-                rel4Desc: 'Créer un PDF à partir de plusieurs images.',
+                relatedToolsTitle: 'Outils PDF associés',
+                relatedTool1: 'Fusion PDF',
+                relatedTool1Desc: 'Combiner plusieurs PDF en un seul.',
+                relatedTool2: 'Découper PDF',
+                relatedTool2Desc: 'Diviser PDF par pages ou plages.',
+                relatedTool3: 'PDF vers image',
+                relatedTool3Desc: 'Exporter les pages PDF en PNG ou JPG.',
+                relatedTool4: 'Protéger PDF',
+                relatedTool4Desc: 'Ajouter une protection par mot de passe à vos fichiers PDF.',
                 trust_users: '🌍 Utilisé par 50 000+ utilisateurs',
                 trust_rating: '⭐ Note 4.9/5',
                 trust_privacy: '🔒 100% Privé',
                 trust_free: '🚫 Sans pub, sans inscription'
             },
             es: {
-                backHome: 'Volver a la caja de herramientas',
+                tool_name: 'Comprimir PDF',
                 title: 'Comprimir PDF',
                 subtitle: 'Reduce el tamaño del PDF con control de calidad y resolución',
                 uploadTitle: 'Subir archivo PDF',
@@ -575,22 +571,23 @@
                 faq5A: 'Sí, gratuita y sin registro.',
                 faq_free_q: '¿Es realmente gratuito? ¿Mis archivos están seguros?',
                 faq_free_a: 'Sí, 100% gratuito sin anuncios, sin registro y sin límites. A diferencia de otras herramientas PDF, sus archivos nunca se suben a ningún servidor.',
-                relatedTitle: 'Herramientas PDF relacionadas',
-                rel1Title: 'Unir PDF',
-                rel1Desc: 'Combina varios PDF en un solo documento.',
-                rel2Title: 'Dividir PDF',
-                rel2Desc: 'Divide PDF por páginas o rangos.',
-                rel3Title: 'PDF a imagen',
-                rel3Desc: 'Exporta páginas PDF como PNG o JPG.',
-                rel4Title: 'Imagen a PDF',
-                rel4Desc: 'Crea un PDF desde varias imágenes.',
+                relatedToolsTitle: 'Herramientas PDF relacionadas',
+                relatedTool1: 'Unir PDF',
+                relatedTool1Desc: 'Combina varios PDF en un solo documento.',
+                relatedTool2: 'Dividir PDF',
+                relatedTool2Desc: 'Divide PDF por páginas o rangos.',
+                relatedTool3: 'PDF a imagen',
+                relatedTool3Desc: 'Exporta páginas PDF como PNG o JPG.',
+                relatedTool4: 'Proteger PDF',
+                relatedTool4Desc: 'Añade protección con contraseña a tus archivos PDF.',
                 trust_users: '🌍 Usado por más de 50,000 usuarios',
                 trust_rating: '⭐ Calificación 4.9/5',
                 trust_privacy: '🔒 100% Privado',
                 trust_free: '🚫 Sin anuncios, sin registro'
             }
         };
-var fileInput = document.getElementById('fileInput');
+
+        var fileInput = document.getElementById('fileInput');
         var uploadZone = document.getElementById('uploadZone');
         var fileInfo = document.getElementById('fileInfo');
         var fileNameEl = document.getElementById('fileName');
@@ -604,13 +601,12 @@ var fileInput = document.getElementById('fileInput');
         var compressBtn = document.getElementById('compressBtn');
         var statusText = document.getElementById('statusText');
         var resultText = document.getElementById('resultText');
-var source = null;
+        var source = null;
 
         function t(key) {
-            var dict = i18n[currentLang] || i18n.en;
+            var dict = i18n[getLang()] || i18n.en;
             return dict[key] || i18n.en[key] || key;
         }
-
 
         function fileSize(bytes) {
             if (bytes < 1024) return bytes + ' B';
@@ -775,16 +771,14 @@ var source = null;
         });
 
         compressBtn.addEventListener('click', compressPdf);
-});
-if (!open) item.classList.add('active');
-            });
-        });
 
         updateSliderLabels();
-})();
+
+        window._translations = i18n;
+    })();
     </script>
     <script src="common/common.js" data-tool-id="pdf-compress" data-tool-name="Compress PDF" data-category="pdf"></script>
-    <script>WebToolbox.init(i18n);</script>
+    <script>WebToolbox.init(window._translations);</script>
 
 </body>
 </html>

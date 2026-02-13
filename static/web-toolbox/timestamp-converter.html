@@ -166,7 +166,8 @@
             max-width: 700px;
             margin: 0 auto;
         }
-.lang-dropdown.active /* 当前时间戳显示 */
+
+        /* 当前时间戳显示 */
         .current-timestamp {
             background: linear-gradient(135deg, var(--accent), #8b5cf6);
             border-radius: 16px;
@@ -570,11 +571,6 @@
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
 <div class="container">
 <header class="header">
             
@@ -803,6 +799,29 @@
                 </details>
             </div>
         </section>
+
+        <!-- Related Tools -->
+        <section class="related-tools" style="background: var(--bg-secondary); border-radius: 12px; padding: 25px; margin-bottom: 30px; border: 1px solid var(--border);">
+            <h2 style="font-size: 1.1rem; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; color: var(--accent-light);">🔗 <span data-i18n="relatedToolsTitle">Related Tools</span></h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="json-formatter.html" style="background: var(--bg-card); padding: 15px; border-radius: 8px; text-decoration: none; color: var(--text-primary); transition: background 0.2s;" onmouseover="this.style.background='var(--bg-hover)'" onmouseout="this.style.background='var(--bg-card)'">
+                    <div style="font-weight: 500; margin-bottom: 5px;" data-i18n="relatedTool1">JSON Formatter</div>
+                    <div style="font-size: 0.85rem; color: var(--text-secondary);" data-i18n="relatedTool1Desc">Format and validate JSON data</div>
+                </a>
+                <a href="base64-encoder-decoder.html" style="background: var(--bg-card); padding: 15px; border-radius: 8px; text-decoration: none; color: var(--text-primary); transition: background 0.2s;" onmouseover="this.style.background='var(--bg-hover)'" onmouseout="this.style.background='var(--bg-card)'">
+                    <div style="font-weight: 500; margin-bottom: 5px;" data-i18n="relatedTool2">Base64 Encoder/Decoder</div>
+                    <div style="font-size: 0.85rem; color: var(--text-secondary);" data-i18n="relatedTool2Desc">Encode and decode Base64 strings</div>
+                </a>
+                <a href="uuid-generator.html" style="background: var(--bg-card); padding: 15px; border-radius: 8px; text-decoration: none; color: var(--text-primary); transition: background 0.2s;" onmouseover="this.style.background='var(--bg-hover)'" onmouseout="this.style.background='var(--bg-card)'">
+                    <div style="font-weight: 500; margin-bottom: 5px;" data-i18n="relatedTool3">UUID Generator</div>
+                    <div style="font-size: 0.85rem; color: var(--text-secondary);" data-i18n="relatedTool3Desc">Generate unique identifiers</div>
+                </a>
+                <a href="hash-generator.html" style="background: var(--bg-card); padding: 15px; border-radius: 8px; text-decoration: none; color: var(--text-primary); transition: background 0.2s;" onmouseover="this.style.background='var(--bg-hover)'" onmouseout="this.style.background='var(--bg-card)'">
+                    <div style="font-weight: 500; margin-bottom: 5px;" data-i18n="relatedTool4">Hash Generator</div>
+                    <div style="font-size: 0.85rem; color: var(--text-secondary);" data-i18n="relatedTool4Desc">MD5, SHA-1, SHA-256 hash generation</div>
+                </a>
+            </div>
+        </section>
     </div>
 
     <div class="toast" id="toast" data-i18n="copied">Copied to clipboard</div>
@@ -811,6 +830,7 @@
         // i18n 翻译数据
         const i18nData = {
             'en': {
+                tool_name: 'Timestamp Converter',
                 backToToolbox: '← Back to Toolbox',
                 title: 'Timestamp Converter',
                 subtitle: 'A timestamp is the number of seconds since January 1, 1970 (UTC midnight). This tool supports conversion between timestamps and date/time, as well as multi-timezone comparison.',
@@ -889,6 +909,15 @@
                 weekdays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
                 footerPrivacy: 'Pure frontend processing, data is not uploaded to servers',
                 footerBack: '← Back to Web Toolbox Home',
+                relatedToolsTitle: 'Related Tools',
+                relatedTool1: 'JSON Formatter',
+                relatedTool1Desc: 'Format and validate JSON data',
+                relatedTool2: 'Base64 Encoder/Decoder',
+                relatedTool2Desc: 'Encode and decode Base64 strings',
+                relatedTool3: 'UUID Generator',
+                relatedTool3Desc: 'Generate unique identifiers',
+                relatedTool4: 'Hash Generator',
+                relatedTool4Desc: 'MD5, SHA-1, SHA-256 hash generation',
                 relatedTools: 'Related Tools',
                 worldClock: 'World Clock',
                 worldClockDesc: 'Global timezone query',
@@ -917,6 +946,7 @@
                 trust_free: '🚫 No Ads, No Signup'
             },
             'zh-CN': {
+                tool_name: '时间戳转换工具',
                 backToToolbox: '← 返回工具箱',
                 title: '时间戳转换工具',
                 subtitle: '时间戳是从1970年1月1日（UTC/GMT的午夜）开始所经过的秒数，本工具支持时间戳与日期时间互转，以及多时区对照。',
@@ -995,6 +1025,15 @@
                 weekdays: ['日', '一', '二', '三', '四', '五', '六'],
                 footerPrivacy: '纯前端处理，数据不会上传到服务器',
                 footerBack: '← 返回 Web Toolbox 首页',
+                relatedToolsTitle: '相关工具推荐',
+                relatedTool1: 'JSON 格式化工具',
+                relatedTool1Desc: '格式化和验证 JSON 数据',
+                relatedTool2: 'Base64 编码/解码',
+                relatedTool2Desc: '编码和解码 Base64 字符串',
+                relatedTool3: 'UUID 生成器',
+                relatedTool3Desc: '生成唯一标识符',
+                relatedTool4: '哈希生成器',
+                relatedTool4Desc: 'MD5、SHA-1、SHA-256 哈希生成',
                 relatedTools: '相关工具推荐',
                 worldClock: '世界时钟',
                 worldClockDesc: '全球时区时间查询',
@@ -1023,6 +1062,7 @@
                 trust_free: '🚫 无广告、无需注册'
             },
             'fr': {
+                tool_name: 'Convertisseur de Timestamp',
                 backToToolbox: '← Retour à la boîte à outils',
                 title: 'Convertisseur de Timestamp',
                 subtitle: 'Un timestamp est le nombre de secondes écoulées depuis le 1er janvier 1970 (minuit UTC). Cet outil prend en charge la conversion entre les timestamps et les dates/heures, ainsi que la comparaison multi-fuseaux horaires.',
@@ -1101,6 +1141,15 @@
                 weekdays: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
                 footerPrivacy: 'Traitement côté client, les données ne sont pas téléchargées sur les serveurs',
                 footerBack: '← Retour à l\'accueil Web Toolbox',
+                relatedToolsTitle: 'Outils connexes',
+                relatedTool1: 'Formateur JSON',
+                relatedTool1Desc: 'Formater et valider les données JSON',
+                relatedTool2: 'Encodeur/Décodeur Base64',
+                relatedTool2Desc: 'Encoder et décoder les chaînes Base64',
+                relatedTool3: 'Générateur UUID',
+                relatedTool3Desc: 'Générer des identifiants uniques',
+                relatedTool4: 'Générateur de Hash',
+                relatedTool4Desc: 'Génération de hash MD5, SHA-1, SHA-256',
                 relatedTools: 'Outils connexes',
                 worldClock: 'Horloge mondiale',
                 worldClockDesc: 'Requête de fuseaux horaires mondiaux',
@@ -1129,6 +1178,7 @@
                 trust_free: '🚫 Sans pub, sans inscription'
             },
             'es': {
+                tool_name: 'Convertidor de Timestamp',
                 backToToolbox: '← Volver a la caja de herramientas',
                 title: 'Convertidor de Timestamp',
                 subtitle: 'Un timestamp es el número de segundos desde el 1 de enero de 1970 (medianoche UTC). Esta herramienta soporta la conversión entre timestamps y fecha/hora, así como la comparación de múltiples zonas horarias.',
@@ -1207,6 +1257,15 @@
                 weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
                 footerPrivacy: 'Procesamiento en el navegador, los datos no se suben a servidores',
                 footerBack: '← Volver a Web Toolbox',
+                relatedToolsTitle: 'Herramientas relacionadas',
+                relatedTool1: 'Formateador JSON',
+                relatedTool1Desc: 'Formatear y validar datos JSON',
+                relatedTool2: 'Codificador/Decodificador Base64',
+                relatedTool2Desc: 'Codificar y decodificar cadenas Base64',
+                relatedTool3: 'Generador de UUID',
+                relatedTool3Desc: 'Generar identificadores únicos',
+                relatedTool4: 'Generador de Hash',
+                relatedTool4Desc: 'Generación de hash MD5, SHA-1, SHA-256',
                 relatedTools: 'Herramientas relacionadas',
                 worldClock: 'Reloj mundial',
                 worldClockDesc: 'Consulta de zonas horarias globales',
@@ -1236,27 +1295,15 @@
             }
         };
 
-        // 当前语言
-        let currentLanguage = localStorage.getItem('toolbox_lang') || 'en';
-        function t(key) {
-            return i18nData[currentLanguage]?.[key] || i18nData['en'][key] || key;
+        // 获取当前语言
+        function getLang() {
+            return localStorage.getItem('toolbox_lang') || 'en';
         }
 
-
-        // 语言切换器事件
-        function initLangSwitcher() {
-            const dropdown = document.getElementById('langDropdown');
-            const current = document.getElementById('langCurrent');
-
-            current.addEventListener('click', (e) => {
-                e.stopPropagation();
-                dropdown.classList.toggle('active');
-            });
-});
-
-            document.addEventListener('click', () => {
-                dropdown.classList.remove('active');
-            });
+        // 翻译函数
+        function t(key) {
+            const lang = getLang();
+            return i18nData[lang]?.[key] || i18nData['en'][key] || key;
         }
 
         // 代码示例数据
@@ -1425,9 +1472,6 @@ new Date().time`
 
         // 初始化
         function init() {
-            initLangSwitcher();
-            applyTranslations();
-
             updateCurrentTimestamp();
             setInterval(updateCurrentTimestamp, 100);
 
@@ -1450,7 +1494,7 @@ new Date().time`
             document.getElementById('currentTimestampMs').textContent = `${t('milliseconds')}: ${now}`;
 
             const date = new Date(now);
-            const localTime = date.toLocaleString(currentLanguage === 'zh-CN' ? 'zh-CN' : 'en-US', {
+            const localTime = date.toLocaleString(getLang() === 'zh-CN' ? 'zh-CN' : 'en-US', {
                 timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
                 year: 'numeric',
                 month: '2-digit',
@@ -1480,7 +1524,7 @@ new Date().time`
         // 更新时区时间
         function updateTimezones() {
             const now = new Date();
-            const locale = currentLanguage === 'zh-CN' ? 'zh-CN' : 'en-US';
+            const locale = getLang() === 'zh-CN' ? 'zh-CN' : 'en-US';
             document.querySelectorAll('[data-zone]').forEach(el => {
                 const zone = el.dataset.zone;
                 try {
@@ -1563,7 +1607,7 @@ new Date().time`
                 return;
             }
 
-            const locale = currentLanguage === 'zh-CN' ? 'zh-CN' : 'en-US';
+            const locale = getLang() === 'zh-CN' ? 'zh-CN' : 'en-US';
             const localTime = date.toLocaleString(locale, {
                 year: 'numeric',
                 month: '2-digit',
@@ -1691,9 +1735,12 @@ new Date().time`
 
         // 启动
         init();
+
+        // 导出翻译数据供 common.js 使用
+        window._translations = i18nData;
     </script>
     <script src="common/common.js" data-tool-id="timestamp-converter" data-tool-name="Timestamp Converter" data-category="developer"></script>
-    <script>WebToolbox.init({});</script>
+    <script>WebToolbox.init(window._translations);</script>
 
 </body>
 </html>

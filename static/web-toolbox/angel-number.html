@@ -573,7 +573,8 @@
         }
         footer a { color: #818cf8; text-decoration: none; }
         footer a:hover { text-decoration: underline; }
-.lang-dropdown.active /* 响应式 */
+
+        /* 响应式 */
         @media (max-width: 600px) {
             h1 { font-size: 1.6rem; }
             .big-number { font-size: 4rem; }
@@ -586,10 +587,6 @@
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    </style>
 <!-- 星空粒子背景 -->
     <div class="stars-bg" id="starsBg"></div>
 
@@ -959,6 +956,7 @@
         // ===== 多语言 =====
         var i18n = {
             en: {
+                tool_name: 'Angel Number Calculator',
                 langName: '🌐 English',
                 title: 'Angel Number Calculator',
                 subtitle: 'Discover your angel number and its deep spiritual meaning by birthday',
@@ -999,6 +997,15 @@
                 faq5A: 'Absolutely! You can calculate the angel number for anyone whose birthday you know — friends, family, partners, or even celebrities. This can be a fun way to understand the spiritual energies of the people in your life and explore compatibility. Simply enter their birth date and discover their unique angel number and interpretation.',
                 faq_free_q: 'Is this tool really free with no ads?',
                 faq_free_a: 'Yes! This angel number calculator is 100% free with zero ads, no signup or login required, no email collection, and no usage limits. It runs entirely in your browser with no server-side processing — your birthday data stays completely private on your device. There are no hidden fees, premium tiers, or paywalls. Every feature is available to everyone, always.',
+                relatedToolsTitle: 'Related Tools',
+                relatedTool1: 'Numerology Calculator',
+                relatedTool1Desc: 'Calculate Life Path, Expression, Soul Urge & Personality numbers',
+                relatedTool2: 'All-in-One Calculator',
+                relatedTool2Desc: 'Scientific calculator with unit conversion',
+                relatedTool3: 'Password Generator',
+                relatedTool3Desc: 'Generate strong random passwords',
+                relatedTool4: 'Text Tools',
+                relatedTool4Desc: 'Text manipulation and analysis tools',
                 relatedTitle: 'Related Tools',
                 rel1Name: 'Numerology Calculator',
                 rel1Desc: 'Calculate Life Path, Expression, Soul Urge & Personality numbers',
@@ -1016,6 +1023,7 @@
                 clickSeq: 'Click to expand'
             },
             'zh-CN': {
+                tool_name: '天使数字计算器',
                 langName: '🌐 中文',
                 title: '天使数字计算器',
                 subtitle: '通过生日发现你的天使数字及其深层灵性含义',
@@ -1056,6 +1064,15 @@
                 faq5A: '当然可以！你可以为任何你知道生日的人计算天使数字——朋友、家人、伴侣，甚至名人。这是了解你生活中人们的灵性能量和探索兼容性的有趣方式。只需输入他们的出生日期，就能发现他们独特的天使数字和解读。',
                 faq_free_q: '这个工具真的免费无广告吗？',
                 faq_free_a: '是的！这个天使数字计算器 100% 免费，零广告、无需注册或登录、不收集邮箱、无使用限制。它完全在你的浏览器中运行，无需服务器端处理——你的生日数据完全保留在你的设备上。没有隐藏费用、高级层级或付费墙。所有功能对每个人永远开放。',
+                relatedToolsTitle: '相关工具',
+                relatedTool1: '命理计算器',
+                relatedTool1Desc: '计算生命灵数、表达数、灵魂数和性格数',
+                relatedTool2: '万能计算器',
+                relatedTool2Desc: '科学计算器，支持单位换算',
+                relatedTool3: '密码生成器',
+                relatedTool3Desc: '生成高强度随机密码',
+                relatedTool4: '文本工具',
+                relatedTool4Desc: '文本处理和分析工具',
                 relatedTitle: '相关工具',
                 rel1Name: '命理计算器',
                 rel1Desc: '计算生命灵数、表达数、灵魂数和性格数',
@@ -1073,6 +1090,7 @@
                 clickSeq: '点击展开'
             },
             fr: {
+                tool_name: 'Calculateur de Nombre Angélique',
                 langName: '🌐 Français',
                 title: 'Calculateur de Nombre Angélique',
                 subtitle: 'Découvrez votre nombre angélique et sa signification spirituelle profonde',
@@ -1113,6 +1131,15 @@
                 faq5A: 'Absolument ! Vous pouvez calculer le nombre angélique de toute personne dont vous connaissez l\'anniversaire — amis, famille, partenaires ou même célébrités.',
                 faq_free_q: 'Cet outil est-il vraiment gratuit et sans publicité ?',
                 faq_free_a: 'Oui ! Ce calculateur de nombre angélique est 100% gratuit, sans publicité, sans inscription requise, sans collecte d\'email et sans limite d\'utilisation. Il fonctionne entièrement dans votre navigateur sans aucun traitement côté serveur.',
+                relatedToolsTitle: 'Outils Associés',
+                relatedTool1: 'Calculateur de Numérologie',
+                relatedTool1Desc: 'Calculez vos nombres de chemin de vie, d\'expression, d\'âme et de personnalité',
+                relatedTool2: 'Calculatrice Tout-en-un',
+                relatedTool2Desc: 'Calculatrice scientifique avec conversion d\'unités',
+                relatedTool3: 'Générateur de Mots de Passe',
+                relatedTool3Desc: 'Générez des mots de passe aléatoires forts',
+                relatedTool4: 'Outils de Texte',
+                relatedTool4Desc: 'Outils de manipulation et d\'analyse de texte',
                 relatedTitle: 'Outils Associés',
                 rel1Name: 'Calculateur de Numérologie',
                 rel1Desc: 'Calculez vos nombres de chemin de vie, d\'expression, d\'âme et de personnalité',
@@ -1130,6 +1157,7 @@
                 clickSeq: 'Cliquez pour développer'
             },
             es: {
+                tool_name: 'Calculadora de Número Angelical',
                 langName: '🌐 Español',
                 title: 'Calculadora de Número Angelical',
                 subtitle: 'Descubre tu número angelical y su profundo significado espiritual por fecha de nacimiento',
@@ -1170,6 +1198,15 @@
                 faq5A: '¡Por supuesto! Puedes calcular el número angelical de cualquier persona cuyo cumpleaños conozcas — amigos, familia, pareja o incluso celebridades.',
                 faq_free_q: '¿Esta herramienta es realmente gratis y sin anuncios?',
                 faq_free_a: '¡Sí! Esta calculadora de número angelical es 100% gratuita, sin anuncios, sin necesidad de registro o inicio de sesión, sin recopilación de correo electrónico y sin límites de uso. Funciona completamente en tu navegador sin procesamiento del lado del servidor.',
+                relatedToolsTitle: 'Herramientas Relacionadas',
+                relatedTool1: 'Calculadora de Numerología',
+                relatedTool1Desc: 'Calcula tu Número de Camino de Vida, Expresión, Impulso del Alma y Personalidad',
+                relatedTool2: 'Calculadora Todo-en-Uno',
+                relatedTool2Desc: 'Calculadora científica con conversión de unidades',
+                relatedTool3: 'Generador de Contraseñas',
+                relatedTool3Desc: 'Genera contraseñas aleatorias seguras',
+                relatedTool4: 'Herramientas de Texto',
+                relatedTool4Desc: 'Herramientas de manipulación y análisis de texto',
                 relatedTitle: 'Herramientas Relacionadas',
                 rel1Name: 'Calculadora de Numerología',
                 rel1Desc: 'Calcula tu Número de Camino de Vida, Expresión, Impulso del Alma y Personalidad',
@@ -1187,10 +1224,20 @@
                 clickSeq: 'Clic para expandir'
             }
         };
-function t(key) {
-            return (i18n[currentLang] && i18n[currentLang][key]) || i18n['en'][key] || key;
+
+        // ===== 语言帮助函数 =====
+        function getLang() {
+            return localStorage.getItem('angel-number_lang') || 'en';
         }
-// ===== 星空背景 =====
+
+        var currentLang = getLang();
+
+        function t(key) {
+            var lang = getLang();
+            return (i18n[lang] && i18n[lang][key]) || i18n['en'][key] || key;
+        }
+
+        // ===== 星空背景 =====
         function createStars() {
             var bg = document.getElementById('starsBg');
             for (var i = 0; i < 80; i++) {
@@ -1235,15 +1282,16 @@ function t(key) {
             var num = result.number;
             var data = numberData[num];
             if (!data) return;
+            var lang = getLang();
 
             document.getElementById('bigNumber').textContent = num;
-            document.getElementById('numberName').textContent = data.name[currentLang] || data.name.en;
-            document.getElementById('meaningText').textContent = data.meaning[currentLang] || data.meaning.en;
+            document.getElementById('numberName').textContent = data.name[lang] || data.name.en;
+            document.getElementById('meaningText').textContent = data.meaning[lang] || data.meaning.en;
 
             // 优势标签
             var sTags = document.getElementById('strengthsTags');
             sTags.innerHTML = '';
-            (data.strengths[currentLang] || data.strengths.en).forEach(function(s) {
+            (data.strengths[lang] || data.strengths.en).forEach(function(s) {
                 var tag = document.createElement('span');
                 tag.className = 'trait-tag';
                 tag.textContent = s;
@@ -1253,7 +1301,7 @@ function t(key) {
             // 挑战标签
             var cTags = document.getElementById('challengesTags');
             cTags.innerHTML = '';
-            (data.challenges[currentLang] || data.challenges.en).forEach(function(c) {
+            (data.challenges[lang] || data.challenges.en).forEach(function(c) {
                 var tag = document.createElement('span');
                 tag.className = 'trait-tag challenge';
                 tag.textContent = c;
@@ -1261,10 +1309,10 @@ function t(key) {
             });
 
             // 幸运属性
-            document.getElementById('luckyColorValue').textContent = data.color[currentLang] || data.color.en;
+            document.getElementById('luckyColorValue').textContent = data.color[lang] || data.color.en;
             document.getElementById('luckyColorIcon').style.color = data.colorHex;
-            document.getElementById('luckyGemValue').textContent = data.gemstone[currentLang] || data.gemstone.en;
-            document.getElementById('luckyDayValue').textContent = data.day[currentLang] || data.day.en;
+            document.getElementById('luckyGemValue').textContent = data.gemstone[lang] || data.gemstone.en;
+            document.getElementById('luckyDayValue').textContent = data.day[lang] || data.day.en;
 
             // 计算过程
             var processEl = document.getElementById('calcProcess');
@@ -1296,13 +1344,14 @@ function t(key) {
         function renderSequences() {
             var grid = document.getElementById('seqGrid');
             grid.innerHTML = '';
+            var lang = getLang();
             Object.keys(sequenceData).forEach(function(key) {
                 var s = sequenceData[key];
                 var card = document.createElement('div');
                 card.className = 'seq-card';
                 card.innerHTML = '<div class="seq-num">' + key + '</div>' +
-                    '<div class="seq-title">' + (s.title[currentLang] || s.title.en) + '</div>' +
-                    '<div class="seq-desc">' + (s.desc[currentLang] || s.desc.en) + '</div>';
+                    '<div class="seq-title">' + (s.title[lang] || s.title.en) + '</div>' +
+                    '<div class="seq-desc">' + (s.desc[lang] || s.desc.en) + '</div>';
                 card.addEventListener('click', function() {
                     this.classList.toggle('expanded');
                 });
@@ -1322,16 +1371,28 @@ function t(key) {
         });
 
         // FAQ 手风琴
-if (!wasActive) item.classList.add('active');
+        document.querySelectorAll('.faq-question').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var item = this.parentElement;
+                var wasActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('active'); });
+                if (!wasActive) item.classList.add('active');
             });
         });
 
         // 初始化
-        applyLanguage();
+        renderSequences();
+
+        // 导出翻译供 common.js 使用
+        window._translations = i18n;
     })();
     </script>
     <script src="common/common.js" data-tool-id="angel-number" data-tool-name="Angel Number Calculator" data-category="utility"></script>
-    <script>WebToolbox.init(i18n);</script>
+    <script>
+        if (typeof WebToolbox !== 'undefined') {
+            WebToolbox.init(window._translations);
+        }
+    </script>
 
 </body>
 </html>

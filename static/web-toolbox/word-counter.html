@@ -219,7 +219,7 @@
         a { color: #a78bfa; text-decoration: none; }
         a:hover { color: #c4b5fd; }
 
-        .lang-dropdown.active /* 页面容器 */
+        /* 页面容器 */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -623,11 +623,6 @@
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
 <div class="container">
 <!-- 标题 -->
         <div class="header">
@@ -830,6 +825,7 @@
         // ========== 国际化翻译数据 ==========
         const i18nData = {
             en: {
+                tool_name: 'Word Counter',
                 backHome: 'Back to Toolbox',
                 title: 'Word Counter',
                 subtitle: 'Count words, characters, sentences, paragraphs. Estimate reading time and analyze keyword density.',
@@ -882,6 +878,15 @@
                 faqA5: 'Yes, this word counter is completely free to use with no limitations. It runs entirely in your browser, so your text is never sent to any server. There are no sign-up requirements or usage limits.',
                 faqFreeQ: 'Is this tool really free with no ads?',
                 faqFreeA: 'Yes, this tool is 100% free with no ads, no signup, no login, and no usage limits. It runs entirely in your browser so your data stays private. There are no hidden fees or premium tiers — every feature is available to everyone.',
+                relatedToolsTitle: 'Related Tools',
+                relatedTool1: 'Lorem Ipsum Generator',
+                relatedTool1Desc: 'Generate placeholder text',
+                relatedTool2: 'Chinese Converter',
+                relatedTool2Desc: 'Convert Simplified/Traditional Chinese',
+                relatedTool3: 'Base64 Encoder/Decoder',
+                relatedTool3Desc: 'Encode or decode Base64',
+                relatedTool4: 'URL Encoder/Decoder',
+                relatedTool4Desc: 'Encode or decode URLs',
                 relatedTitle: 'Related Tools',
                 relatedLorem: 'Lorem Ipsum Generator',
                 relatedChinese: 'Chinese Converter',
@@ -893,6 +898,7 @@
                 trust_free: '🚫 No Ads, No Signup'
             },
             'zh-CN': {
+                tool_name: '字数统计',
                 backHome: '返回工具箱',
                 title: '字数统计',
                 subtitle: '统计字数、字符数、句子数、段落数，估算阅读时间，分析关键词密度。',
@@ -945,6 +951,15 @@
                 faqA5: '是的，这个字数统计工具完全免费使用，没有任何限制。它完全在浏览器中运行，您的文本不会被发送到任何服务器。无需注册，没有使用次数限制。',
                 faqFreeQ: '这个工具真的免费且没有广告吗？',
                 faqFreeA: '是的，本工具 100% 免费，无广告、无需注册、无需登录，也没有使用次数限制。所有处理完全在浏览器中完成，数据不会离开您的设备。没有隐藏费用或付费等级，所有功能对所有用户完全开放。',
+                relatedToolsTitle: '相关工具推荐',
+                relatedTool1: 'Lorem Ipsum 生成器',
+                relatedTool1Desc: '生成占位文本',
+                relatedTool2: '中文简繁转换',
+                relatedTool2Desc: '简体繁体互转',
+                relatedTool3: 'Base64 编码/解码',
+                relatedTool3Desc: 'Base64 编解码',
+                relatedTool4: 'URL 编码/解码',
+                relatedTool4Desc: 'URL 编解码',
                 relatedTitle: '相关工具推荐',
                 relatedLorem: 'Lorem Ipsum 生成器',
                 relatedChinese: '中文简繁转换',
@@ -956,6 +971,7 @@
                 trust_free: '🚫 无广告、无需注册'
             },
             fr: {
+                tool_name: 'Compteur de Mots',
                 backHome: 'Retour à la boîte à outils',
                 title: 'Compteur de Mots',
                 subtitle: 'Comptez les mots, caractères, phrases, paragraphes. Estimez le temps de lecture et analysez la densité des mots-clés.',
@@ -1008,6 +1024,15 @@
                 faqA5: 'Oui, ce compteur de mots est entièrement gratuit et sans limitation. Il fonctionne entièrement dans votre navigateur, donc votre texte n\'est jamais envoyé à un serveur. Aucune inscription requise.',
                 faqFreeQ: 'Cet outil est-il vraiment gratuit et sans publicité ?',
                 faqFreeA: 'Oui, cet outil est 100% gratuit, sans publicité, sans inscription, sans connexion et sans limite d\'utilisation. Tout fonctionne dans votre navigateur, vos données restent privées. Il n\'y a pas de frais cachés ni de niveaux premium — toutes les fonctionnalités sont accessibles à tous.',
+                relatedToolsTitle: 'Outils associés',
+                relatedTool1: 'Générateur Lorem Ipsum',
+                relatedTool1Desc: 'Générer du texte de substitution',
+                relatedTool2: 'Convertisseur chinois',
+                relatedTool2Desc: 'Convertir chinois simplifié/traditionnel',
+                relatedTool3: 'Encodeur/Décodeur Base64',
+                relatedTool3Desc: 'Encoder ou décoder en Base64',
+                relatedTool4: 'Encodeur/Décodeur URL',
+                relatedTool4Desc: 'Encoder ou décoder les URL',
                 relatedTitle: 'Outils associés',
                 relatedLorem: 'Générateur Lorem Ipsum',
                 relatedChinese: 'Convertisseur chinois',
@@ -1019,6 +1044,7 @@
                 trust_free: '🚫 Sans pub, sans inscription'
             },
             es: {
+                tool_name: 'Contador de Palabras',
                 backHome: 'Volver a la caja de herramientas',
                 title: 'Contador de Palabras',
                 subtitle: 'Cuenta palabras, caracteres, oraciones, párrafos. Estima el tiempo de lectura y analiza la densidad de palabras clave.',
@@ -1071,6 +1097,15 @@
                 faqA5: 'Sí, este contador de palabras es completamente gratuito y sin limitaciones. Funciona íntegramente en su navegador, por lo que su texto nunca se envía a ningún servidor. No requiere registro ni tiene límites de uso.',
                 faqFreeQ: '¿Esta herramienta es realmente gratuita y sin anuncios?',
                 faqFreeA: 'Sí, esta herramienta es 100% gratuita, sin anuncios, sin registro, sin inicio de sesión y sin límites de uso. Todo se ejecuta en tu navegador, así que tus datos permanecen privados. No hay tarifas ocultas ni niveles premium — todas las funciones están disponibles para todos.',
+                relatedToolsTitle: 'Herramientas relacionadas',
+                relatedTool1: 'Generador Lorem Ipsum',
+                relatedTool1Desc: 'Generar texto de marcador de posición',
+                relatedTool2: 'Convertidor chino',
+                relatedTool2Desc: 'Convertir chino simplificado/tradicional',
+                relatedTool3: 'Codificador/Decodificador Base64',
+                relatedTool3Desc: 'Codificar o decodificar Base64',
+                relatedTool4: 'Codificador/Decodificador URL',
+                relatedTool4Desc: 'Codificar o decodificar URL',
                 relatedTitle: 'Herramientas relacionadas',
                 relatedLorem: 'Generador Lorem Ipsum',
                 relatedChinese: 'Convertidor chino',
@@ -1082,7 +1117,19 @@
                 trust_free: '🚫 Sin anuncios, sin registro'
             }
         };
-// ========== DOM 元素引用 ==========
+
+        // ========== 获取当前语言 ==========
+        function getLang() {
+            return localStorage.getItem('word_counter_lang') || 'en';
+        }
+
+        // ========== 翻译函数 ==========
+        function t(key) {
+            var lang = getLang();
+            return (i18nData[lang] && i18nData[lang][key]) || (i18nData.en && i18nData.en[key]) || key;
+        }
+
+        // ========== DOM 元素引用 ==========
         const textInput = document.getElementById('textInput');
         const statChars = document.getElementById('statChars');
         const statCharsNoSpace = document.getElementById('statCharsNoSpace');
@@ -1211,7 +1258,7 @@
 
         // 格式化阅读时间
         function formatReadingTime(minutes) {
-            var data = i18nData[currentLang] || i18nData.en;
+            var data = i18nData[getLang()] || i18nData.en;
             if (minutes < 1) {
                 var secs = Math.max(1, Math.round(minutes * 60));
                 return secs + ' ' + data.secRead;
@@ -1271,7 +1318,7 @@
 
         // ========== 渲染关键词列表 ==========
         function renderKeywords(keywords) {
-            var data = i18nData[currentLang] || i18nData.en;
+            var data = i18nData[getLang()] || i18nData.en;
             if (!keywords.length) {
                 keywordList.innerHTML = '<div class="keyword-empty" data-i18n="keywordEmpty">' + data.keywordEmpty + '</div>';
                 return;
@@ -1310,7 +1357,7 @@
             statLines.textContent = countLines(text);
 
             var minutes = estimateReadingTime(text);
-            readingTimeValue.textContent = text.trim() ? formatReadingTime(minutes) : '0 ' + ((i18nData[currentLang] || i18nData.en).minRead);
+            readingTimeValue.textContent = text.trim() ? formatReadingTime(minutes) : '0 ' + ((i18nData[getLang()] || i18nData.en).minRead);
 
             var keywords = analyzeKeywords(text);
             renderKeywords(keywords);
@@ -1352,7 +1399,7 @@
 
         // 复制文本
         document.getElementById('btnCopy').addEventListener('click', function() {
-            var data = i18nData[currentLang] || i18nData.en;
+            var data = i18nData[getLang()] || i18nData.en;
             var text = textInput.value;
             if (!text) {
                 showToast(data.noText);
@@ -1394,7 +1441,7 @@
 
         // 去除多余空格
         document.getElementById('btnTrimSpaces').addEventListener('click', function() {
-            var data = i18nData[currentLang] || i18nData.en;
+            var data = i18nData[getLang()] || i18nData.en;
             // 将多个空格合并为一个，去除行首行尾空格
             textInput.value = textInput.value.split('\n').map(function(line) {
                 return line.replace(/\s+/g, ' ').trim();
@@ -1405,7 +1452,7 @@
 
         // 去除空行
         document.getElementById('btnRemoveEmptyLines').addEventListener('click', function() {
-            var data = i18nData[currentLang] || i18nData.en;
+            var data = i18nData[getLang()] || i18nData.en;
             textInput.value = textInput.value.split('\n').filter(function(line) {
                 return line.trim().length > 0;
             }).join('\n');
@@ -1415,24 +1462,35 @@
 
         // 清空
         document.getElementById('btnClear').addEventListener('click', function() {
-            var data = i18nData[currentLang] || i18nData.en;
+            var data = i18nData[getLang()] || i18nData.en;
             textInput.value = '';
             updateStats();
             showToast(data.cleared);
         });
+
+        // ========== FAQ 手风琴交互 ==========
+        document.querySelectorAll('.faq-question').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var item = this.parentElement;
+                var isActive = item.classList.contains('active');
                 if (!isActive) {
                     item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
                 }
             });
         });
 
         // ========== 初始化 ==========
-updateStats();
+        updateStats();
+
+        // ========== 导出翻译数据供 common.js 使用 ==========
+        window._translations = i18nData;
 
     })();
     </script>
     <script src="common/common.js" data-tool-id="word-counter" data-tool-name="Word Counter" data-category="text"></script>
-    <script>WebToolbox.init({});</script>
+    <script>WebToolbox.init(window._translations);</script>
 
 </body>
 </html>

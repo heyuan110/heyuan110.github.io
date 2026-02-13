@@ -149,7 +149,7 @@
         }
         .container { max-width: 1200px; margin: 0 auto; }
         .top-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 20px; }
-.lang-dropdown.open h1 { text-align: center; font-size: 2rem; margin-bottom: 8px; background: linear-gradient(120deg, #00d4ff, #7c3aed, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        h1 { text-align: center; font-size: 2rem; margin-bottom: 8px; background: linear-gradient(120deg, #00d4ff, #7c3aed, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .subtitle { text-align: center; color: #a1a1aa; margin-bottom: 26px; }
 
         .card { background: rgba(0,0,0,0.28); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 20px; margin-bottom: 18px; }
@@ -204,7 +204,7 @@
         .faq-answer { display: none; padding: 0 14px 12px; color: #a1a1aa; font-size: 14px; }
         .faq-item.active .faq-answer { display: block; }
 
-        @media (max-width: 900px) { .features-grid, }
+        @media (max-width: 900px) { .features-grid { grid-template-columns: 1fr; } }
         @media (max-width: 640px) {
             h1 { font-size: 1.7rem; }
             .features-grid, .control-row { flex-direction: column; align-items: stretch; }
@@ -214,11 +214,6 @@
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
 <div class="container">
 <h1 data-i18n="title">PDF to Image Converter</h1>
         <p class="subtitle" data-i18n="subtitle">Convert PDF pages to PNG or JPG images in your browser</p>
@@ -326,36 +321,33 @@
                 <div class="faq-answer" data-i18n="faq5A">Yes, it is completely free.</div>
             </div>
             <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span data-i18n="faq_free_q">Is this tool really free? Are my files safe?</span>
-                    <span class="arrow">▼</span>
-                </div>
-                <div class="faq-answer"><p data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, and no usage limits. Unlike other PDF tools, your files are never uploaded to any server — all processing happens locally in your browser for maximum privacy.</p></div>
+                <button class="faq-question" data-i18n="faq_free_q">Is this tool really free? Are my files safe?</button>
+                <div class="faq-answer" data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, and no usage limits. Unlike other PDF tools, your files are never uploaded to any server — all processing happens locally in your browser for maximum privacy.</div>
             </div>
         </section>
 
         <section class="related-tools">
-            <h3 data-i18n="relatedTitle">Related PDF Tools</h3>
+            <h3 data-i18n="relatedToolsTitle">Related PDF Tools</h3>
             <div class="related-grid">
                 <a class="related-card" href="pdf-merge.html">
                     <div>📚</div>
-                    <h4 data-i18n="rel1Title">PDF Merge</h4>
-                    <p data-i18n="rel1Desc">Combine multiple PDF files into one.</p>
+                    <h4 data-i18n="relatedTool1">PDF Merge</h4>
+                    <p data-i18n="relatedTool1Desc">Combine multiple PDF files into one.</p>
                 </a>
                 <a class="related-card" href="pdf-split.html">
                     <div>✂️</div>
-                    <h4 data-i18n="rel2Title">PDF Split</h4>
-                    <p data-i18n="rel2Desc">Split a PDF into pages or ranges.</p>
+                    <h4 data-i18n="relatedTool2">PDF Split</h4>
+                    <p data-i18n="relatedTool2Desc">Split a PDF into pages or ranges.</p>
                 </a>
                 <a class="related-card" href="pdf-compress.html">
                     <div>🗜️</div>
-                    <h4 data-i18n="rel3Title">PDF Compress</h4>
-                    <p data-i18n="rel3Desc">Reduce PDF size for sharing and upload.</p>
+                    <h4 data-i18n="relatedTool3">PDF Compress</h4>
+                    <p data-i18n="relatedTool3Desc">Reduce PDF size for sharing and upload.</p>
                 </a>
                 <a class="related-card" href="image-to-pdf.html">
                     <div>📄</div>
-                    <h4 data-i18n="rel4Title">Image to PDF</h4>
-                    <p data-i18n="rel4Desc">Create PDF files from multiple images.</p>
+                    <h4 data-i18n="relatedTool4">Image to PDF</h4>
+                    <p data-i18n="relatedTool4Desc">Create PDF files from multiple images.</p>
                 </a>
             </div>
         </section>
@@ -371,7 +363,7 @@
 
         var i18n = {
             en: {
-                backHome: 'Back to Toolbox',
+                tool_name: 'PDF to Image',
                 title: 'PDF to Image Converter',
                 subtitle: 'Convert PDF pages to PNG or JPG images in your browser',
                 uploadTitle: 'Upload PDF File',
@@ -417,22 +409,22 @@
                 faq5A: 'Yes, it is completely free.',
                 faq_free_q: 'Is this tool really free? Are my files safe?',
                 faq_free_a: 'Yes, 100% free with no ads, no registration, and no usage limits. Unlike other PDF tools, your files are never uploaded to any server — all processing happens locally in your browser for maximum privacy.',
-                relatedTitle: 'Related PDF Tools',
-                rel1Title: 'PDF Merge',
-                rel1Desc: 'Combine multiple PDF files into one.',
-                rel2Title: 'PDF Split',
-                rel2Desc: 'Split a PDF into pages or ranges.',
-                rel3Title: 'PDF Compress',
-                rel3Desc: 'Reduce PDF size for sharing and upload.',
-                rel4Title: 'Image to PDF',
-                rel4Desc: 'Create PDF files from multiple images.',
+                relatedToolsTitle: 'Related PDF Tools',
+                relatedTool1: 'PDF Merge',
+                relatedTool1Desc: 'Combine multiple PDF files into one.',
+                relatedTool2: 'PDF Split',
+                relatedTool2Desc: 'Split a PDF into pages or ranges.',
+                relatedTool3: 'PDF Compress',
+                relatedTool3Desc: 'Reduce PDF size for sharing and upload.',
+                relatedTool4: 'Image to PDF',
+                relatedTool4Desc: 'Create PDF files from multiple images.',
                 trust_users: '🌍 Used by 50,000+ users',
                 trust_rating: '⭐ 4.9/5 rating',
                 trust_privacy: '🔒 100% Private',
                 trust_free: '🚫 No Ads, No Signup'
             },
             'zh-CN': {
-                backHome: '返回工具箱',
+                tool_name: 'PDF 转图片',
                 title: 'PDF 转图片',
                 subtitle: '在浏览器中将 PDF 页面转换为 PNG 或 JPG 图片',
                 uploadTitle: '上传 PDF 文件',
@@ -478,22 +470,22 @@
                 faq5A: '是的，完全免费。',
                 faq_free_q: '这个工具真的免费吗？我的文件安全吗？',
                 faq_free_a: '是的，100% 免费，无广告、无需注册、无使用限制。与其他 PDF 工具不同，您的文件不会上传到任何服务器——所有处理都在浏览器本地完成，最大程度保护隐私。',
-                relatedTitle: '相关 PDF 工具',
-                rel1Title: 'PDF 合并',
-                rel1Desc: '将多个 PDF 文件合并成一个。',
-                rel2Title: 'PDF 拆分',
-                rel2Desc: '按单页或范围拆分 PDF。',
-                rel3Title: 'PDF 压缩',
-                rel3Desc: '减小 PDF 文件体积，方便分享。',
-                rel4Title: '图片转 PDF',
-                rel4Desc: '将多张图片生成 PDF 文件。',
+                relatedToolsTitle: '相关 PDF 工具',
+                relatedTool1: 'PDF 合并',
+                relatedTool1Desc: '将多个 PDF 文件合并成一个。',
+                relatedTool2: 'PDF 拆分',
+                relatedTool2Desc: '按单页或范围拆分 PDF。',
+                relatedTool3: 'PDF 压缩',
+                relatedTool3Desc: '减小 PDF 文件体积，方便分享。',
+                relatedTool4: '图片转 PDF',
+                relatedTool4Desc: '将多张图片生成 PDF 文件。',
                 trust_users: '🌍 超过 50,000 用户使用',
                 trust_rating: '⭐ 4.9/5 好评',
                 trust_privacy: '🔒 100% 隐私安全',
                 trust_free: '🚫 无广告、无需注册'
             },
             fr: {
-                backHome: 'Retour à la boîte à outils',
+                tool_name: 'PDF en image',
                 title: 'PDF vers image',
                 subtitle: 'Convertissez les pages PDF en images PNG ou JPG',
                 uploadTitle: 'Importer un fichier PDF',
@@ -539,22 +531,22 @@
                 faq5A: 'Oui, totalement gratuit.',
                 faq_free_q: 'Cet outil est-il vraiment gratuit ? Mes fichiers sont-ils en sécurité ?',
                 faq_free_a: 'Oui, 100% gratuit sans publicité, sans inscription et sans limite. Contrairement à d\'autres outils PDF, vos fichiers ne sont jamais téléchargés sur un serveur.',
-                relatedTitle: 'Outils PDF associés',
-                rel1Title: 'Fusion PDF',
-                rel1Desc: 'Combiner plusieurs fichiers PDF en un.',
-                rel2Title: 'Découper PDF',
-                rel2Desc: 'Diviser un PDF par pages ou plages.',
-                rel3Title: 'Compresser PDF',
-                rel3Desc: 'Réduire la taille des PDF.',
-                rel4Title: 'Image vers PDF',
-                rel4Desc: 'Créer un PDF à partir de plusieurs images.',
+                relatedToolsTitle: 'Outils PDF associés',
+                relatedTool1: 'Fusion PDF',
+                relatedTool1Desc: 'Combiner plusieurs fichiers PDF en un.',
+                relatedTool2: 'Découper PDF',
+                relatedTool2Desc: 'Diviser un PDF par pages ou plages.',
+                relatedTool3: 'Compresser PDF',
+                relatedTool3Desc: 'Réduire la taille des PDF.',
+                relatedTool4: 'Image vers PDF',
+                relatedTool4Desc: 'Créer un PDF à partir de plusieurs images.',
                 trust_users: '🌍 Utilisé par 50 000+ utilisateurs',
                 trust_rating: '⭐ Note 4.9/5',
                 trust_privacy: '🔒 100% Privé',
                 trust_free: '🚫 Sans pub, sans inscription'
             },
             es: {
-                backHome: 'Volver a la caja de herramientas',
+                tool_name: 'PDF a imagen',
                 title: 'PDF a imagen',
                 subtitle: 'Convierte páginas PDF en imágenes PNG o JPG',
                 uploadTitle: 'Subir archivo PDF',
@@ -600,22 +592,27 @@
                 faq5A: 'Sí, completamente gratuita.',
                 faq_free_q: '¿Es realmente gratuito? ¿Mis archivos están seguros?',
                 faq_free_a: 'Sí, 100% gratuito sin anuncios, sin registro y sin límites. A diferencia de otras herramientas PDF, sus archivos nunca se suben a ningún servidor.',
-                relatedTitle: 'Herramientas PDF relacionadas',
-                rel1Title: 'Unir PDF',
-                rel1Desc: 'Combina varios archivos PDF en uno.',
-                rel2Title: 'Dividir PDF',
-                rel2Desc: 'Divide un PDF por páginas o rangos.',
-                rel3Title: 'Comprimir PDF',
-                rel3Desc: 'Reduce el tamaño de los archivos PDF.',
-                rel4Title: 'Imagen a PDF',
-                rel4Desc: 'Crea PDF a partir de varias imágenes.',
+                relatedToolsTitle: 'Herramientas PDF relacionadas',
+                relatedTool1: 'Unir PDF',
+                relatedTool1Desc: 'Combina varios archivos PDF en uno.',
+                relatedTool2: 'Dividir PDF',
+                relatedTool2Desc: 'Divide un PDF por páginas o rangos.',
+                relatedTool3: 'Comprimir PDF',
+                relatedTool3Desc: 'Reduce el tamaño de los archivos PDF.',
+                relatedTool4: 'Imagen a PDF',
+                relatedTool4Desc: 'Crea PDF a partir de varias imágenes.',
                 trust_users: '🌍 Usado por más de 50,000 usuarios',
                 trust_rating: '⭐ Calificación 4.9/5',
                 trust_privacy: '🔒 100% Privado',
                 trust_free: '🚫 Sin anuncios, sin registro'
             }
         };
-var fileInput = document.getElementById('fileInput');
+        // 获取当前语言
+        function getLang() {
+            return (typeof WebToolbox !== 'undefined') ? WebToolbox.getCurrentLang() : (localStorage.getItem('toolbox_lang') || 'en');
+        }
+
+        var fileInput = document.getElementById('fileInput');
         var uploadZone = document.getElementById('uploadZone');
         var fileInfo = document.getElementById('fileInfo');
         var fileNameEl = document.getElementById('fileName');
@@ -630,10 +627,10 @@ var fileInput = document.getElementById('fileInput');
         var convertBtn = document.getElementById('convertBtn');
         var statusText = document.getElementById('statusText');
         var previewImg = document.getElementById('previewImg');
-var source = null;
+        var source = null;
 
         function t(key) {
-            var dict = i18n[currentLang] || i18n.en;
+            var dict = i18n[getLang()] || i18n.en;
             return dict[key] || i18n.en[key] || key;
         }
 
@@ -832,16 +829,13 @@ var source = null;
         });
 
         convertBtn.addEventListener('click', convertPdf);
-});
-if (!open) item.classList.add('active');
-            });
-        });
 
         updateSliderLabels();
-})();
+
+        window._translations = i18n;
+    })();
     </script>
     <script src="common/common.js" data-tool-id="pdf-to-image" data-tool-name="PDF to JPG/PNG" data-category="pdf"></script>
-    <script>WebToolbox.init(i18n);</script>
-
+    <script>WebToolbox.init(window._translations);</script>
 </body>
 </html>

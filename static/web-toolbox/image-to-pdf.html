@@ -41,7 +41,6 @@
         "author": {"@type": "Person", "name": "heyuan110"},
         "publisher": {"@type": "Organization", "name": "Web Toolbox", "url": "https://www.heyuan110.com/web-toolbox/"},
         "screenshot": "https://www.heyuan110.com/web-toolbox/screenshots/image-to-pdf.webp"
-        "alternateName": ["图片转PDF", "Image to PDF Converter", "JPG to PDF"],
     }
     </script>
     <script type="application/ld+json">
@@ -161,7 +160,7 @@ h1 {
             font-size: 1rem;
         }
 
-        .lang-dropdown.active /* 主体布局 */
+        /* 主体布局 */
         .main-layout {
             display: grid;
             grid-template-columns: 1fr 320px;
@@ -751,11 +750,6 @@ h1 {
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
 <div class="container">
 <header>
             
@@ -931,9 +925,79 @@ h1 {
             </div>
         </div>
 
-        <footer>
-            <p>Made with ❤️ by <a href="https://github.com/heyuan110" target="_blank">@heyuan110</a> | <a href="index.html" data-i18n="backToList">← Back to Tools</a></p>
-        </footer>
+        <!-- FAQ -->
+        <section class="faq-section">
+            <h2 class="faq-title" style="display: flex; align-items: center; gap: 10px;">
+                <span style="color: #7c3aed;">❓</span> <span data-i18n="faqTitle">FAQ</span>
+            </h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq1Question">What image formats are supported?</div>
+                    <div class="faq-answer">
+                        <p class="faq-answer-content" data-i18n="faq1Answer">Supports JPG, PNG, WebP, GIF, BMP and other common image formats.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq2Question">How many images can I merge at once?</div>
+                    <div class="faq-answer">
+                        <p class="faq-answer-content" data-i18n="faq2Answer">Theoretically unlimited, depends on browser memory. Recommended not to exceed 100 images per conversion.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq3Question">Can I reorder the images?</div>
+                    <div class="faq-answer">
+                        <p class="faq-answer-content" data-i18n="faq3Answer">Yes, after uploading, simply drag image thumbnails to adjust the page order in the PDF.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq4Question">What page sizes are supported?</div>
+                    <div class="faq-answer">
+                        <p class="faq-answer-content" data-i18n="faq4Answer">Supports A4, A3, A5, Letter, Legal and other common sizes, plus fit-to-image mode.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq5Question">Are my images uploaded to a server?</div>
+                    <div class="faq-answer">
+                        <p class="faq-answer-content" data-i18n="faq5Answer">No, the conversion is done locally in your browser using jsPDF library. Your images never leave your device.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq_free_q">Is this tool really free with no ads?</div>
+                    <div class="faq-answer">
+                        <p class="faq-answer-content" data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 相关工具 -->
+        <section class="related-tools" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
+            <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
+                <span style="color: #7c3aed;">🔗</span> <span data-i18n="relatedToolsTitle">Related Tools</span>
+            </h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px;">
+                <a href="pdf-merge.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">📑</div>
+                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool1">PDF Merge</div>
+                    <div style="color: #a1a1aa; font-size: 0.85rem;" data-i18n="relatedTool1Desc">Merge multiple PDFs into one</div>
+                </a>
+                <a href="pdf-split.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">✂️</div>
+                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool2">PDF Split</div>
+                    <div style="color: #a1a1aa; font-size: 0.85rem;" data-i18n="relatedTool2Desc">Split PDF into multiple files</div>
+                </a>
+                <a href="pdf-compress.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">🗜️</div>
+                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool3">PDF Compress</div>
+                    <div style="color: #a1a1aa; font-size: 0.85rem;" data-i18n="relatedTool3Desc">Reduce PDF file size</div>
+                </a>
+                <a href="image-compressor.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">🖼️</div>
+                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool4">Image Compressor</div>
+                    <div style="color: #a1a1aa; font-size: 0.85rem;" data-i18n="relatedTool4Desc">Batch compress image files</div>
+                </a>
+            </div>
+        </section>
     </div>
 
     <!-- Toast -->
@@ -947,9 +1011,9 @@ h1 {
         // ===== i18n 多语言支持 =====
         const i18n = {
             'en': {
+                tool_name: 'Image to PDF',
                 pageTitle: '📄 Image to PDF Converter',
                 pageSubtitle: 'Merge multiple images into PDF with drag-and-drop sorting, clipboard paste, QR code upload',
-                backToList: '← Back to Tools',
                 featureBatchTitle: '100% Free & Private',
                 featureBatchDesc: 'No ads, no signup, no watermark. Everything runs locally in your browser. Your data never leaves your device.',
                 featureOrderTitle: 'Reorder',
@@ -1008,16 +1072,15 @@ h1 {
                 faq4Answer: 'Supports A4, A3, A5, Letter, Legal and other common sizes, plus fit-to-image mode.',
                 faq5Question: 'Are my images uploaded to a server?',
                 faq5Answer: 'No, the conversion is done locally in your browser using jsPDF library. Your images never leave your device.',
-                relatedTitle: '🔗 Related Tools',
-                relatedCompressor: 'Image Compressor',
-                relatedCompressorDesc: 'Batch compress image files',
-                relatedConverter: 'Image Converter',
-                relatedConverterDesc: 'Convert WebP/PNG/JPG',
-                relatedEditor: 'Image Editor',
-                relatedEditorDesc: 'Edit images online',
-                relatedRenamer: 'File Renamer',
-                relatedRenamerDesc: 'Batch rename files',
-                footerPrivacy: 'Pure frontend processing, images never uploaded to server',
+                relatedToolsTitle: 'Related Tools',
+                relatedTool1: 'PDF Merge',
+                relatedTool1Desc: 'Merge multiple PDFs into one',
+                relatedTool2: 'PDF Split',
+                relatedTool2Desc: 'Split PDF into multiple files',
+                relatedTool3: 'PDF Compress',
+                relatedTool3Desc: 'Reduce PDF file size',
+                relatedTool4: 'Image Compressor',
+                relatedTool4Desc: 'Batch compress image files',
                 toastPasted: 'Pasted {count} image(s)',
                 toastAdded: 'Added {count} image(s)',
                 toastCleared: 'All images cleared',
@@ -1034,9 +1097,9 @@ h1 {
                 trust_free: '🚫 No Ads, No Signup'
             },
             'zh-CN': {
+                tool_name: '图片转PDF',
                 pageTitle: '📄 图片合并为PDF',
                 pageSubtitle: '多图拖拽排序、截图粘贴、手机扫码上传，一键生成高质量PDF',
-                backToList: '← 返回工具列表',
                 featureBatchTitle: '100% 免费且安全',
                 featureBatchDesc: '无广告、无需注册、无水印。所有处理都在浏览器本地完成，数据不会上传到任何服务器。',
                 featureOrderTitle: '顺序调整',
@@ -1095,16 +1158,15 @@ h1 {
                 faq4Answer: '支持 A4、A3、A5、Letter、Legal 等常用纸张大小，还可以选择自适应图片尺寸模式。',
                 faq5Question: '图片会上传到服务器吗？',
                 faq5Answer: '不会，本工具使用 jsPDF 库在本地浏览器完成转换，图片数据完全保留在您的设备上，安全可靠。',
-                relatedTitle: '🔗 相关工具推荐',
-                relatedCompressor: '图片压缩',
-                relatedCompressorDesc: '批量压缩图片体积',
-                relatedConverter: '图片格式转换',
-                relatedConverterDesc: 'WebP/PNG/JPG 互转',
-                relatedEditor: '图片编辑器',
-                relatedEditorDesc: '在线编辑图片',
-                relatedRenamer: '文件批量重命名',
-                relatedRenamerDesc: '批量修改文件名',
-                footerPrivacy: '纯前端处理，图片不会上传到服务器',
+                relatedToolsTitle: '相关工具',
+                relatedTool1: 'PDF 合并',
+                relatedTool1Desc: '将多个 PDF 合并为一个',
+                relatedTool2: 'PDF 拆分',
+                relatedTool2Desc: '将 PDF 拆分为多个文件',
+                relatedTool3: 'PDF 压缩',
+                relatedTool3Desc: '减小 PDF 文件大小',
+                relatedTool4: '图片压缩',
+                relatedTool4Desc: '批量压缩图片文件',
                 toastPasted: '已粘贴 {count} 张图片',
                 toastAdded: '已添加 {count} 张图片',
                 toastCleared: '已清空所有图片',
@@ -1121,9 +1183,9 @@ h1 {
                 trust_free: '🚫 无广告、无需注册'
             },
             'fr': {
+                tool_name: 'Image en PDF',
                 pageTitle: '📄 Convertisseur Image en PDF',
                 pageSubtitle: 'Fusionnez plusieurs images en PDF avec tri par glisser-déposer, collage du presse-papiers, téléchargement QR code',
-                backToList: '← Retour aux outils',
                 featureBatchTitle: '100% Gratuit et Privé',
                 featureBatchDesc: 'Sans publicité, sans inscription, sans filigrane. Tout est traité localement dans votre navigateur.',
                 featureOrderTitle: 'Réorganiser',
@@ -1182,16 +1244,15 @@ h1 {
                 faq4Answer: 'Prend en charge A4, A3, A5, Letter, Legal et d\'autres tailles courantes, plus le mode adaptatif.',
                 faq5Question: 'Mes images sont-elles téléchargées sur un serveur?',
                 faq5Answer: 'Non, la conversion se fait localement dans votre navigateur avec la bibliothèque jsPDF. Vos images ne quittent jamais votre appareil.',
-                relatedTitle: '🔗 Outils associés',
-                relatedCompressor: 'Compresseur d\'images',
-                relatedCompressorDesc: 'Compresser des images par lots',
-                relatedConverter: 'Convertisseur d\'images',
-                relatedConverterDesc: 'Convertir WebP/PNG/JPG',
-                relatedEditor: 'Éditeur d\'images',
-                relatedEditorDesc: 'Éditer des images en ligne',
-                relatedRenamer: 'Renommeur de fichiers',
-                relatedRenamerDesc: 'Renommer des fichiers par lots',
-                footerPrivacy: 'Traitement purement frontend, les images ne sont jamais téléchargées sur le serveur',
+                relatedToolsTitle: 'Outils associés',
+                relatedTool1: 'Fusion PDF',
+                relatedTool1Desc: 'Fusionner plusieurs PDF en un',
+                relatedTool2: 'Division PDF',
+                relatedTool2Desc: 'Diviser un PDF en plusieurs fichiers',
+                relatedTool3: 'Compression PDF',
+                relatedTool3Desc: 'Réduire la taille du fichier PDF',
+                relatedTool4: 'Compresseur d\'images',
+                relatedTool4Desc: 'Compresser des images par lots',
                 toastPasted: '{count} image(s) collée(s)',
                 toastAdded: '{count} image(s) ajoutée(s)',
                 toastCleared: 'Toutes les images effacées',
@@ -1208,9 +1269,9 @@ h1 {
                 trust_free: '🚫 Sans pub, sans inscription'
             },
             'es': {
+                tool_name: 'Imagen a PDF',
                 pageTitle: '📄 Convertidor de Imagen a PDF',
                 pageSubtitle: 'Fusiona múltiples imágenes en PDF con arrastrar y soltar, pegar del portapapeles, carga por QR',
-                backToList: '← Volver a herramientas',
                 featureBatchTitle: '100% Gratis y Privado',
                 featureBatchDesc: 'Sin anuncios, sin registro, sin marca de agua. Todo se procesa localmente en tu navegador.',
                 featureOrderTitle: 'Reordenar',
@@ -1269,16 +1330,15 @@ h1 {
                 faq4Answer: 'Soporta A4, A3, A5, Letter, Legal y otros tamaños comunes, además del modo adaptativo.',
                 faq5Question: '¿Mis imágenes se suben a un servidor?',
                 faq5Answer: 'No, la conversión se realiza localmente en tu navegador usando la biblioteca jsPDF. Tus imágenes nunca salen de tu dispositivo.',
-                relatedTitle: '🔗 Herramientas relacionadas',
-                relatedCompressor: 'Compresor de imágenes',
-                relatedCompressorDesc: 'Comprimir imágenes por lotes',
-                relatedConverter: 'Convertidor de imágenes',
-                relatedConverterDesc: 'Convertir WebP/PNG/JPG',
-                relatedEditor: 'Editor de imágenes',
-                relatedEditorDesc: 'Editar imágenes en línea',
-                relatedRenamer: 'Renombrador de archivos',
-                relatedRenamerDesc: 'Renombrar archivos por lotes',
-                footerPrivacy: 'Procesamiento puramente frontend, las imágenes nunca se suben al servidor',
+                relatedToolsTitle: 'Herramientas relacionadas',
+                relatedTool1: 'Fusionar PDF',
+                relatedTool1Desc: 'Fusionar varios PDF en uno',
+                relatedTool2: 'Dividir PDF',
+                relatedTool2Desc: 'Dividir PDF en varios archivos',
+                relatedTool3: 'Comprimir PDF',
+                relatedTool3Desc: 'Reducir el tamaño del archivo PDF',
+                relatedTool4: 'Compresor de imágenes',
+                relatedTool4Desc: 'Comprimir imágenes por lotes',
                 toastPasted: '{count} imagen(es) pegada(s)',
                 toastAdded: '{count} imagen(es) añadida(s)',
                 toastCleared: 'Todas las imágenes borradas',
@@ -1295,25 +1355,16 @@ h1 {
                 trust_free: '🚫 Sin anuncios, sin registro'
             }
         };
-function t(key) {
-            return i18n[currentLang]?.[key] || i18n['en'][key] || key;
+
+        // 获取当前语言
+        function getLang() {
+            return (typeof WebToolbox !== 'undefined') ? WebToolbox.getCurrentLang() : (localStorage.getItem('toolbox_lang') || 'en');
         }
 
+        function t(key) {
+            return i18n[getLang()]?.[key] || i18n['en'][key] || key;
+        }
 
-        // 语言切换器事件
-        function initLangSwitcher() {
-            const dropdown = document.getElementById('langDropdown');
-            const current = document.getElementById('langCurrent');
-
-            current.addEventListener('click', (e) => {
-                e.stopPropagation();
-                dropdown.classList.toggle('active');
-            });
-});
-
-            document.addEventListener('click', () => {
-                dropdown.classList.remove('active');
-            });
         // ===== 全局变量 =====
         let images = []; // 存储图片数据 { id, file, dataUrl, name }
         let sortable = null;
@@ -1333,7 +1384,6 @@ function t(key) {
 
         // ===== 初始化 =====
         function init() {
-            initLangSwitcher();
             initQRCode();
             initEventListeners();
             initSortable();
@@ -1707,60 +1757,13 @@ function t(key) {
 
         // ===== 启动 =====
         init();
-                if (!isActive) {
-                    item.classList.add('active');
-                }
-            });
-        });
+
+        window._translations = i18n;
     })();
     </script>
     <script src="common/common.js" data-tool-id="image-to-pdf" data-tool-name="Image to PDF" data-category="pdf"></script>
-    <script>WebToolbox.init(i18n);</script>
+    <script>WebToolbox.init(window._translations);</script>
 
     <!-- ===================== /LOGIC ===================== -->
-
-    <!-- FAQ 常见问题 -->
-    <section class="faq-section">
-        <h2 class="faq-title" data-i18n="faqTitle">❓ FAQ</h2>
-        <div class="faq-list">
-            <div class="faq-item">
-                <div class="faq-question" data-i18n="faq1Question">What image formats are supported?</div>
-                <div class="faq-answer">
-                    <p class="faq-answer-content" data-i18n="faq1Answer">Supports JPG, PNG, WebP, GIF, BMP and other common image formats.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" data-i18n="faq2Question">How many images can I merge at once?</div>
-                <div class="faq-answer">
-                    <p class="faq-answer-content" data-i18n="faq2Answer">Theoretically unlimited, depends on browser memory. Recommended not to exceed 100 images per conversion.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" data-i18n="faq3Question">Can I reorder the images?</div>
-                <div class="faq-answer">
-                    <p class="faq-answer-content" data-i18n="faq3Answer">Yes, after uploading, simply drag image thumbnails to adjust the page order in the PDF.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" data-i18n="faq4Question">What page sizes are supported?</div>
-                <div class="faq-answer">
-                    <p class="faq-answer-content" data-i18n="faq4Answer">Supports A4, A3, A5, Letter, Legal and other common sizes, plus fit-to-image mode.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" data-i18n="faq5Question">Are my images uploaded to a server?</div>
-                <div class="faq-answer">
-                    <p class="faq-answer-content" data-i18n="faq5Answer">No, the conversion is done locally in your browser using jsPDF library. Your images never leave your device.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span data-i18n="faq_free_q">Is this tool really free with no ads?</span>
-                    <span class="arrow">▼</span>
-                </div>
-                <div class="faq-answer"><p data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</p></div>
-            </div>
-        </div>
-    </section>
 </body>
 </html>

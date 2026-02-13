@@ -154,7 +154,7 @@
         .toolbar-section:last-child {
             border-right: none;
         }
-.lang-dropdown.active /* 工具按钮 */
+        /* 工具按钮 */
         .tool-btn {
             width: 40px;
             height: 40px;
@@ -841,11 +841,6 @@
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
 <div class="container">
 <!-- 顶部工具栏 -->
         <div class="toolbar">
@@ -1032,6 +1027,72 @@
                 <button class="action-btn action-btn-primary" onclick="saveImage('jpg')" data-i18n="saveJpg">💾 Save JPG</button>
             </div>
         </div>
+
+    <!-- FAQ 问答区块 -->
+    <section class="faq-section">
+        <h3>FAQ</h3>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question">What drawing tools are supported?</div>
+                <div class="faq-answer">
+                    <p>Supports pencil, brush, line, rectangle, circle, eraser and other tools to meet various drawing needs. Each tool can adjust size and opacity.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Can I adjust the brush size?</div>
+                <div class="faq-answer">
+                    <p>Yes, supports brush size adjustment from 1px to 50px. You can adjust via slider or use mouse scroll wheel for quick adjustment.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How to save artwork?</div>
+                <div class="faq-answer">
+                    <p>Click "Save PNG" or "Save JPG" button at the bottom to export your artwork as an image file, which will be automatically downloaded to your device.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Does it support touch screen drawing?</div>
+                <div class="faq-answer">
+                    <p>Yes, you can draw with finger or stylus on tablets or touch screens with smooth operation, suitable for mobile devices.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Can I open existing images for editing?</div>
+                <div class="faq-answer">
+                    <p>You can import images as background and draw on them, convenient for image annotation and secondary creation. Use "New Canvas" to set appropriate canvas size.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Is this tool really free with no ads?</div>
+                <div class="faq-answer">
+                    <p>Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Tools -->
+    <section class="related-tools">
+        <h2>Related Tools</h2>
+        <div class="related-grid">
+            <a href="color-palette.html" class="related-card">
+                <h3>Color Palette</h3>
+                <p>Color generation and palette tools</p>
+            </a>
+            <a href="image-editor.html" class="related-card">
+                <h3>Image Editor</h3>
+                <p>Online image editing and processing</p>
+            </a>
+            <a href="image-converter.html" class="related-card">
+                <h3>Image Converter</h3>
+                <p>Convert between image formats</p>
+            </a>
+            <a href="ico-maker.html" class="related-card">
+                <h3>ICO Maker</h3>
+                <p>Create favicon and icon files</p>
+            </a>
+        </div>
+    </section>
     </div>
 
     <!-- 新建画布模态框 -->
@@ -1065,6 +1126,7 @@
         // ==================== 国际化 i18n ====================
         const i18n = {
             'en': {
+                tool_name: 'Paint Board',
                 back: '← Back',
                 fill: 'Fill',
                 size: 'Size',
@@ -1185,6 +1247,7 @@
                 trust_free: '🚫 No Ads, No Signup'
             },
             'zh-CN': {
+                tool_name: '在线画板',
                 back: '← 返回',
                 fill: '填充',
                 size: '粗细',
@@ -1305,6 +1368,7 @@
                 trust_free: '🚫 无广告、无需注册'
             },
             'fr': {
+                tool_name: 'Tableau de peinture',
                 back: '← Retour',
                 fill: 'Remplir',
                 size: 'Taille',
@@ -1425,6 +1489,7 @@
                 trust_free: '🚫 Sans pub, sans inscription'
             },
             'es': {
+                tool_name: 'Tablero de pintura',
                 back: '← Volver',
                 fill: 'Rellenar',
                 size: 'Tamaño',
@@ -1553,7 +1618,7 @@
 
         // 更新 FAQ 区块
         function updateFaqSection() {
-            const t = i18n[currentLang].faq;
+            const t = i18n[WebToolbox.getCurrentLang()].faq;
             const faqSection = document.querySelector('.faq-section');
             if (faqSection) {
                 faqSection.querySelector('h3').textContent = t.title;
@@ -1587,7 +1652,7 @@
 
         // 更新相关工具区块
         function updateRelatedSection() {
-            const t = i18n[currentLang].related;
+            const t = i18n[WebToolbox.getCurrentLang()].related;
             const section = document.querySelector('.related-tools');
             if (section) {
                 section.querySelector('h3').textContent = t.title;
@@ -1613,7 +1678,7 @@
 
         // 更新页脚
         function updateFooter() {
-            const t = i18n[currentLang].footer;
+            const t = i18n[WebToolbox.getCurrentLang()].footer;
             const footer = document.querySelector('footer');
             if (footer) {
                 const paragraphs = footer.querySelectorAll('p');
@@ -1622,17 +1687,6 @@
                 if (links[0]) links[0].textContent = t.backHome;
             }
         }
-
-        // 语言切换器事件
-        document.getElementById('langDropdown').addEventListener('click', function(e) {
-            e.stopPropagation();
-            this.classList.toggle('active');
-        });
-});
-
-        document.addEventListener('click', function() {
-            document.getElementById('langDropdown').classList.remove('active');
-        });
 
         // 画布和上下文
         const canvas = document.getElementById('canvas');
@@ -1659,7 +1713,7 @@
 
         // 工具名称映射（使用 i18n）
         function getToolName(tool) {
-            return i18n[currentLang].tool[tool] || tool;
+            return i18n[WebToolbox.getCurrentLang()].tool[tool] || tool;
         }
 
         // 快捷键映射
@@ -1752,7 +1806,7 @@
                 brushSize = Math.max(1, Math.min(50, brushSize + delta));
                 brushSizeSlider.value = brushSize;
                 brushSizeValue.textContent = brushSize;
-                showToast(`${i18n[currentLang].size}: ${brushSize}px`);
+                showToast(`${i18n[WebToolbox.getCurrentLang()].size}: ${brushSize}px`);
             });
 
             // 触摸支持
@@ -1763,8 +1817,7 @@
             // 键盘快捷键
             document.addEventListener('keydown', handleKeyboard);
 
-            // 初始化语言
-            switchLanguage(currentLang);
+            // 语言由 common.js 初始化
         }
 
         // 选择工具
@@ -2150,7 +2203,7 @@
             if (historyIndex > 0) {
                 historyIndex--;
                 loadHistory();
-                showToast(i18n[currentLang].toast.undoSuccess);
+                showToast(i18n[WebToolbox.getCurrentLang()].toast.undoSuccess);
             }
         }
 
@@ -2158,7 +2211,7 @@
             if (historyIndex < history.length - 1) {
                 historyIndex++;
                 loadHistory();
-                showToast(i18n[currentLang].toast.redoSuccess);
+                showToast(i18n[WebToolbox.getCurrentLang()].toast.redoSuccess);
             }
         }
 
@@ -2173,12 +2226,12 @@
 
         // 清空画布
         function clearCanvas() {
-            if (confirm(i18n[currentLang].toast.confirmClearWithText)) {
+            if (confirm(i18n[WebToolbox.getCurrentLang()].toast.confirmClearWithText)) {
                 ctx.fillStyle = '#ffffff';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 clearTextLayer();
                 saveHistory();
-                showToast(i18n[currentLang].toast.canvasCleared);
+                showToast(i18n[WebToolbox.getCurrentLang()].toast.canvasCleared);
             }
         }
 
@@ -2206,7 +2259,7 @@
             }
 
             link.click();
-            showToast(`${i18n[currentLang].toast.imageSaved} ${format.toUpperCase()}`);
+            showToast(`${i18n[WebToolbox.getCurrentLang()].toast.imageSaved} ${format.toUpperCase()}`);
 
             // 保存后恢复历史记录
             saveHistory();
@@ -2231,7 +2284,7 @@
             const height = parseInt(document.getElementById('canvasHeight').value);
 
             if (width < 100 || width > 3000 || height < 100 || height > 3000) {
-                showToast(i18n[currentLang].toast.sizeRange, true);
+                showToast(i18n[WebToolbox.getCurrentLang()].toast.sizeRange, true);
                 return;
             }
 
@@ -2249,7 +2302,7 @@
             saveHistory();
 
             hideNewCanvasModal();
-            showToast(`${i18n[currentLang].toast.newCanvasCreated} (${width}×${height})`);
+            showToast(`${i18n[WebToolbox.getCurrentLang()].toast.newCanvasCreated} (${width}×${height})`);
         }
 
         // Toast 提示
@@ -2320,7 +2373,7 @@
         function confirmText() {
             const content = document.getElementById('textContent').value.trim();
             if (!content) {
-                showToast(i18n[currentLang].toast.enterText, true);
+                showToast(i18n[WebToolbox.getCurrentLang()].toast.enterText, true);
                 return;
             }
 
@@ -2349,7 +2402,7 @@
             };
             textObjects.push(textObj);
             renderTextObject(textObj);
-            showToast(i18n[currentLang].toast.textAdded);
+            showToast(i18n[WebToolbox.getCurrentLang()].toast.textAdded);
         }
 
         // 渲染文本对象到 DOM
@@ -2510,7 +2563,7 @@
                 if (div) div.remove();
                 textObjects = textObjects.filter(t => t.id !== selectedTextObject);
                 selectedTextObject = null;
-                showToast(i18n[currentLang].toast.textDeleted);
+                showToast(i18n[WebToolbox.getCurrentLang()].toast.textDeleted);
             }
         }
 
@@ -2539,52 +2592,10 @@
 
         // 初始化
         init();
+
+        window._translations = i18n;
     </script>
     <script src="common/common.js" data-tool-id="paint-board" data-tool-name="Paint Board" data-category="image"></script>
-    <script>WebToolbox.init(i18n);</script>
-
-
-    <!-- FAQ 问答区块 -->
-    <section class="faq-section">
-        <h3 data-i18n="faq.title">FAQ</h3>
-        <div class="faq-list">
-            <div class="faq-item">
-                <div class="faq-question">What drawing tools are supported?</div>
-                <div class="faq-answer">
-                    <p>Supports pencil, brush, line, rectangle, circle, eraser and other tools to meet various drawing needs. Each tool can adjust size and opacity.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Can I adjust the brush size?</div>
-                <div class="faq-answer">
-                    <p>Yes, supports brush size adjustment from 1px to 50px. You can adjust via slider or use mouse scroll wheel for quick adjustment.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">How to save artwork?</div>
-                <div class="faq-answer">
-                    <p>Click "Save PNG" or "Save JPG" button at the bottom to export your artwork as an image file, which will be automatically downloaded to your device.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Does it support touch screen drawing?</div>
-                <div class="faq-answer">
-                    <p>Yes, you can draw with finger or stylus on tablets or touch screens with smooth operation, suitable for mobile devices.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Can I open existing images for editing?</div>
-                <div class="faq-answer">
-                    <p>You can import images as background and draw on them, convenient for image annotation and secondary creation. Use "New Canvas" to set appropriate canvas size.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Is this tool really free with no ads?</div>
-                <div class="faq-answer">
-                    <p>Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <script>WebToolbox.init(window._translations);</script>
 </body>
 </html>

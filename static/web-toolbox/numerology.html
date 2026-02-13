@@ -331,7 +331,8 @@
         footer { text-align: center; padding: 40px 20px; color: #71717a; font-size: 0.9rem; }
         footer a { color: #818cf8; text-decoration: none; }
         footer a:hover { text-decoration: underline; }
-.lang-dropdown.active @media (max-width: 600px) {
+
+        @media (max-width: 600px) {
             h1 { font-size: 1.6rem; }
             .results-grid { grid-template-columns: 1fr; }
             .num-card.expanded { grid-column: 1; }
@@ -341,15 +342,11 @@
             .step-dot { padding: 6px 10px; font-size: 0.8rem; }
             .pyth-table { font-size: 0.7rem; }
             .pyth-table th, .pyth-table td { padding: 6px 2px; }
-            }
+        }
     </style>
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    </style>
 <div class="stars-bg" id="starsBg"></div>
 
     <div class="container">
@@ -528,6 +525,7 @@
         // ===== 多语言 =====
         var i18n = {
             en: {
+                tool_name: 'Numerology Calculator',
                 langName: '🌐 English', title: 'Numerology Calculator',
                 subtitle: 'Calculate your 4 core numerology numbers from birthday and name',
                 step1Label: 'Birthday', step2Label: 'Full Name', step3Label: 'Results',
@@ -564,6 +562,11 @@
                 faq5A: 'The Personal Year Number reveals the overarching theme and energy of a specific year in your life. It is calculated by adding your birth month, birth day, and the current calendar year, then reducing to a single digit. Each Personal Year number (1-9) represents a different phase: 1 is new beginnings, 5 is change and freedom, 9 is completion, and so on.',
                 faq_free_q: 'Is this numerology calculator really free with no ads?',
                 faq_free_a: 'Yes! This numerology calculator is 100% free with zero ads, no signup or login required, no email collection, and no usage limits. All calculations happen entirely in your browser — your name and birthday data never leave your device. There are no hidden fees, premium tiers, or paywalls.',
+                relatedToolsTitle: 'Related Tools',
+                relatedTool1: 'Angel Number Calculator', relatedTool1Desc: 'Discover your angel number and its spiritual meaning',
+                relatedTool2: 'All-in-One Calculator', relatedTool2Desc: 'Scientific calculator with unit conversion',
+                relatedTool3: 'Password Generator', relatedTool3Desc: 'Generate strong random passwords',
+                relatedTool4: '', relatedTool4Desc: '',
                 relatedTitle: 'Related Tools',
                 rel1Name: 'Angel Number Calculator', rel1Desc: 'Discover your angel number and its spiritual meaning',
                 rel2Name: 'All-in-One Calculator', rel2Desc: 'Scientific calculator with unit conversion',
@@ -573,6 +576,7 @@
                 vowelsStr: 'Vowels', consonantsStr: 'Consonants', allLetters: 'All letters', masterNote: '(Master Number)'
             },
             'zh-CN': {
+                tool_name: '命理计算器',
                 langName: '🌐 中文', title: '命理计算器',
                 subtitle: '通过生日和姓名计算你的4大核心命理数字',
                 step1Label: '生日', step2Label: '全名', step3Label: '结果',
@@ -609,6 +613,11 @@
                 faq5A: '个人年数字揭示了你生命中某一年的总体主题和能量。计算方式是将出生月、出生日和当前年份相加，然后归约为单个数字。每个个人年数字（1-9）代表不同阶段：1 是新的开始，5 是变化和自由，9 是完成。',
                 faq_free_q: '这个命理计算器真的免费无广告吗？',
                 faq_free_a: '是的！100% 免费，零广告、无需注册或登录、不收集邮箱、无使用限制。所有计算完全在浏览器中完成，你的姓名和生日数据永远不会离开设备。没有隐藏费用或付费墙。',
+                relatedToolsTitle: '相关工具',
+                relatedTool1: '天使数字计算器', relatedTool1Desc: '发现你的天使数字及其灵性含义',
+                relatedTool2: '万能计算器', relatedTool2Desc: '科学计算器，支持单位换算',
+                relatedTool3: '密码生成器', relatedTool3Desc: '生成高强度随机密码',
+                relatedTool4: '', relatedTool4Desc: '',
                 relatedTitle: '相关工具',
                 rel1Name: '天使数字计算器', rel1Desc: '发现你的天使数字及其灵性含义',
                 rel2Name: '万能计算器', rel2Desc: '科学计算器，支持单位换算',
@@ -618,6 +627,7 @@
                 vowelsStr: '元音', consonantsStr: '辅音', allLetters: '所有字母', masterNote: '（主数）'
             },
             fr: {
+                tool_name: 'Calculateur de Numérologie',
                 langName: '🌐 Français', title: 'Calculateur de Numérologie',
                 subtitle: 'Calculez vos 4 nombres principaux à partir de votre date de naissance et nom',
                 step1Label: 'Naissance', step2Label: 'Nom Complet', step3Label: 'Résultats',
@@ -644,6 +654,11 @@
                 faq4Q: 'Dois-je utiliser mon nom de naissance ?', faq4A: 'Traditionnellement, le nom de naissance donne la lecture la plus précise. Vous pouvez aussi calculer avec votre nom actuel pour comparaison.',
                 faq5Q: 'Qu\'est-ce qu\'un nombre d\'année personnelle ?', faq5A: 'Il révèle le thème principal d\'une année spécifique. Calculé en ajoutant votre mois et jour de naissance avec l\'année en cours.',
                 faq_free_q: 'Cet outil est-il vraiment gratuit ?', faq_free_a: 'Oui ! 100% gratuit, sans publicité, sans inscription, sans collecte de données.',
+                relatedToolsTitle: 'Outils Associés',
+                relatedTool1: 'Calculateur Angélique', relatedTool1Desc: 'Découvrez votre nombre angélique',
+                relatedTool2: 'Calculatrice Tout-en-un', relatedTool2Desc: 'Calculatrice scientifique',
+                relatedTool3: 'Générateur de Mots de Passe', relatedTool3Desc: 'Générez des mots de passe forts',
+                relatedTool4: '', relatedTool4Desc: '',
                 relatedTitle: 'Outils Associés',
                 rel1Name: 'Calculateur Angélique', rel1Desc: 'Découvrez votre nombre angélique',
                 rel2Name: 'Calculatrice Tout-en-un', rel2Desc: 'Calculatrice scientifique',
@@ -653,6 +668,7 @@
                 vowelsStr: 'Voyelles', consonantsStr: 'Consonnes', allLetters: 'Toutes les lettres', masterNote: '(Nombre Maître)'
             },
             es: {
+                tool_name: 'Calculadora de Numerología',
                 langName: '🌐 Español', title: 'Calculadora de Numerología',
                 subtitle: 'Calcula tus 4 números principales de numerología por fecha de nacimiento y nombre',
                 step1Label: 'Nacimiento', step2Label: 'Nombre', step3Label: 'Resultados',
@@ -679,6 +695,11 @@
                 faq4Q: '¿Debo usar mi nombre de nacimiento?', faq4A: 'Tradicionalmente, el nombre de nacimiento da la lectura más precisa. También puedes calcular con tu nombre actual para comparar.',
                 faq5Q: '¿Qué es un número de año personal?', faq5A: 'Revela el tema principal de un año específico en tu vida. Se calcula sumando tu mes y día de nacimiento con el año actual.',
                 faq_free_q: '¿Es realmente gratis esta herramienta?', faq_free_a: '¡Sí! 100% gratuita, sin anuncios, sin registro, sin recopilación de datos.',
+                relatedToolsTitle: 'Herramientas Relacionadas',
+                relatedTool1: 'Calculadora Angelical', relatedTool1Desc: 'Descubre tu número angelical',
+                relatedTool2: 'Calculadora Todo-en-Uno', relatedTool2Desc: 'Calculadora científica',
+                relatedTool3: 'Generador de Contraseñas', relatedTool3Desc: 'Genera contraseñas seguras',
+                relatedTool4: '', relatedTool4Desc: '',
                 relatedTitle: 'Herramientas Relacionadas',
                 rel1Name: 'Calculadora Angelical', rel1Desc: 'Descubre tu número angelical',
                 rel2Name: 'Calculadora Todo-en-Uno', rel2Desc: 'Calculadora científica',
@@ -688,13 +709,22 @@
                 vowelsStr: 'Vocales', consonantsStr: 'Consonantes', allLetters: 'Todas las letras', masterNote: '(Número Maestro)'
             }
         };
-function t(key) { return (i18n[currentLang] && i18n[currentLang][key]) || i18n['en'][key] || key; }
 
+        function getLang() {
+            var saved = localStorage.getItem('numerology_lang');
+            if (saved && i18n[saved]) return saved;
+            var browserLang = navigator.language || navigator.userLanguage;
+            if (browserLang.startsWith('zh')) return 'zh-CN';
+            if (browserLang.startsWith('fr')) return 'fr';
+            if (browserLang.startsWith('es')) return 'es';
+            return 'en';
+        }
 
-        // 语言切换器
-document.getElementById('langCurrent').addEventListener('click', function(e) { e.stopPropagation(); langDropdown.classList.toggle('active'); });
-});
-// 星空背景
+        var currentLang = getLang();
+
+        function t(key) { return (i18n[currentLang] && i18n[currentLang][key]) || i18n['en'][key] || key; }
+
+        // 星空背景
         (function() {
             var bg = document.getElementById('starsBg');
             for (var i = 0; i < 80; i++) {
@@ -863,16 +893,22 @@ document.getElementById('langCurrent').addEventListener('click', function(e) { e
         }
 
         // FAQ 手风琴
-if (!wasActive) item.classList.add('active');
+        var faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(function(item) {
+            var question = item.querySelector('.faq-question');
+            question.addEventListener('click', function() {
+                var wasActive = item.classList.contains('active');
+                faqItems.forEach(function(i) { i.classList.remove('active'); });
+                if (!wasActive) item.classList.add('active');
             });
         });
 
-        // 初始化
-        applyLanguage();
+        // 导出翻译对象供 common.js 使用
+        window._translations = i18n;
     })();
     </script>
     <script src="common/common.js" data-tool-id="numerology" data-tool-name="Numerology Calculator" data-category="utility"></script>
-    <script>WebToolbox.init(i18n);</script>
+    <script>WebToolbox.init(window._translations);</script>
 
 </body>
 </html>

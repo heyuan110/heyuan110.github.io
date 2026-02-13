@@ -212,7 +212,7 @@
             padding: 20px;
         }
 
-        .lang-dropdown.active /* 标题 */
+        /* 标题 */
         .page-header {
             text-align: center;
             margin-bottom: 30px;
@@ -734,11 +734,6 @@
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
 <div class="container">
 <div class="page-header">
         <h1 data-i18n="pageTitle">URL Encoder / Decoder</h1>
@@ -862,6 +857,94 @@
             </div>
         </div>
     </div>
+
+    <!-- ==================== FAQ 手风琴 ==================== -->
+    <section class="faq-section">
+        <h2 data-i18n="faqTitle">Frequently Asked Questions</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span data-i18n="faqQ1">What is URL encoding (percent encoding)?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner" data-i18n="faqA1">URL encoding, also known as percent-encoding, is a mechanism for encoding information in a URI. Special characters are replaced with a percent sign (%) followed by two hexadecimal digits representing the character's ASCII value. For example, a space becomes %20 and an ampersand (&) becomes %26. This ensures URLs are transmitted correctly over the Internet.</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span data-i18n="faqQ2">What's the difference between encodeURI and encodeURIComponent?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner" data-i18n="faqA2">encodeURI encodes a complete URI but preserves URL structure characters like ://?#[]@!$&'()*+,;=. It is used when you want to encode a full URL while keeping it valid. encodeURIComponent encodes all special characters including URL structure characters, making it suitable for encoding individual query parameter values or path segments.</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span data-i18n="faqQ3">When do I need URL encoding?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner" data-i18n="faqA3">URL encoding is needed when passing special characters in URL query parameters, form data, API requests, or any context where characters like spaces, ampersands, equals signs, or non-ASCII characters (such as Chinese, Japanese, or emoji) appear in a URL. Without encoding, these characters may break the URL or be misinterpreted.</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span data-i18n="faqQ4">Can I process multiple URLs at once?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner" data-i18n="faqA4">Yes! This tool supports batch mode. Simply enable the "Batch Mode" toggle and enter one string per line. Each line will be encoded or decoded independently, making it easy to process multiple values at once without repeating the operation.</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span data-i18n="faqQ5">Is this tool free and safe?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner" data-i18n="faqA5">Yes, this tool is completely free with no usage limits. All processing happens entirely in your browser using JavaScript — no data is ever sent to any server. Your URLs and data remain 100% private and secure on your device.</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span data-i18n="faqFreeQ">Is this tool really free with no ads or signup?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner" data-i18n="faqFreeA">Absolutely! This URL encoder/decoder is 100% free with no ads, no signup, no login, and no usage limits. It runs entirely in your browser — no data is sent to any server, no account is needed, and there are no hidden costs. Use it as much as you want, anytime.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 相关工具推荐 ==================== -->
+    <section class="related-tools">
+        <h2 data-i18n="relatedToolsTitle">Related Tools</h2>
+        <div class="related-grid">
+            <a href="base64-tool.html" class="related-card">
+                <div class="related-icon">🔣</div>
+                <h3 data-i18n="relatedTool1">Base64 Encoder/Decoder</h3>
+                <p data-i18n="relatedTool1Desc">Encode and decode Base64 strings</p>
+            </a>
+            <a href="crypto-tools.html" class="related-card">
+                <div class="related-icon">🛡️</div>
+                <h3 data-i18n="relatedTool2">Crypto & Encoding Toolkit</h3>
+                <p data-i18n="relatedTool2Desc">MD5, SHA, AES encryption tools</p>
+            </a>
+            <a href="json-viewer.html" class="related-card">
+                <div class="related-icon">📊</div>
+                <h3 data-i18n="relatedTool3">JSON Viewer</h3>
+                <p data-i18n="relatedTool3Desc">Format and validate JSON data</p>
+            </a>
+            <a href="password-generator.html" class="related-card">
+                <div class="related-icon">🔐</div>
+                <h3 data-i18n="relatedTool4">Password Generator</h3>
+                <p data-i18n="relatedTool4Desc">Generate secure random passwords</p>
+            </a>
+        </div>
+    </section>
 </div>
 
 <div class="trust-bar">
@@ -898,90 +981,6 @@
     </div>
 </section>
 
-<!-- ==================== FAQ 手风琴 ==================== -->
-<section class="faq-section">
-    <h2 data-i18n="faqTitle">Frequently Asked Questions</h2>
-    <div class="faq-list">
-        <div class="faq-item">
-            <div class="faq-question">
-                <span data-i18n="faqQ1">What is URL encoding (percent encoding)?</span>
-                <span class="faq-arrow">▼</span>
-            </div>
-            <div class="faq-answer">
-                <div class="faq-answer-inner" data-i18n="faqA1">URL encoding, also known as percent-encoding, is a mechanism for encoding information in a URI. Special characters are replaced with a percent sign (%) followed by two hexadecimal digits representing the character's ASCII value. For example, a space becomes %20 and an ampersand (&) becomes %26. This ensures URLs are transmitted correctly over the Internet.</div>
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">
-                <span data-i18n="faqQ2">What's the difference between encodeURI and encodeURIComponent?</span>
-                <span class="faq-arrow">▼</span>
-            </div>
-            <div class="faq-answer">
-                <div class="faq-answer-inner" data-i18n="faqA2">encodeURI encodes a complete URI but preserves URL structure characters like ://?#[]@!$&'()*+,;=. It is used when you want to encode a full URL while keeping it valid. encodeURIComponent encodes all special characters including URL structure characters, making it suitable for encoding individual query parameter values or path segments.</div>
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">
-                <span data-i18n="faqQ3">When do I need URL encoding?</span>
-                <span class="faq-arrow">▼</span>
-            </div>
-            <div class="faq-answer">
-                <div class="faq-answer-inner" data-i18n="faqA3">URL encoding is needed when passing special characters in URL query parameters, form data, API requests, or any context where characters like spaces, ampersands, equals signs, or non-ASCII characters (such as Chinese, Japanese, or emoji) appear in a URL. Without encoding, these characters may break the URL or be misinterpreted.</div>
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">
-                <span data-i18n="faqQ4">Can I process multiple URLs at once?</span>
-                <span class="faq-arrow">▼</span>
-            </div>
-            <div class="faq-answer">
-                <div class="faq-answer-inner" data-i18n="faqA4">Yes! This tool supports batch mode. Simply enable the "Batch Mode" toggle and enter one string per line. Each line will be encoded or decoded independently, making it easy to process multiple values at once without repeating the operation.</div>
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">
-                <span data-i18n="faqQ5">Is this tool free and safe?</span>
-                <span class="faq-arrow">▼</span>
-            </div>
-            <div class="faq-answer">
-                <div class="faq-answer-inner" data-i18n="faqA5">Yes, this tool is completely free with no usage limits. All processing happens entirely in your browser using JavaScript — no data is ever sent to any server. Your URLs and data remain 100% private and secure on your device.</div>
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">
-                <span data-i18n="faqFreeQ">Is this tool really free with no ads or signup?</span>
-                <span class="faq-arrow">▼</span>
-            </div>
-            <div class="faq-answer">
-                <div class="faq-answer-inner" data-i18n="faqFreeA">Absolutely! This URL encoder/decoder is 100% free with no ads, no signup, no login, and no usage limits. It runs entirely in your browser — no data is sent to any server, no account is needed, and there are no hidden costs. Use it as much as you want, anytime.</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ==================== 相关工具推荐 ==================== -->
-<section class="related-section">
-    <h2 data-i18n="relatedTitle">Related Tools</h2>
-    <div class="related-grid">
-        <a href="base64-tool.html" class="related-card">
-            <div class="related-icon">🔣</div>
-            <h3 data-i18n="relatedBase64">Base64 Encoder / Decoder</h3>
-        </a>
-        <a href="crypto-tools.html" class="related-card">
-            <div class="related-icon">🛡️</div>
-            <h3 data-i18n="relatedCrypto">Crypto & Encoding Toolkit</h3>
-        </a>
-        <a href="json-viewer.html" class="related-card">
-            <div class="related-icon">📊</div>
-            <h3 data-i18n="relatedJson">JSON Viewer</h3>
-        </a>
-        <a href="password-generator.html" class="related-card">
-            <div class="related-icon">🔐</div>
-            <h3 data-i18n="relatedPassword">Password Generator</h3>
-        </a>
-    </div>
-</section>
-
 <div class="toast" id="toast"></div>
 
 <script>
@@ -991,6 +990,7 @@
     // ==================== 国际化 ====================
     const I18N = {
         en: {
+            tool_name: 'URL Encoder/Decoder',
             backHome: '\u2190 Back to Toolbox',
             pageTitle: 'URL Encoder / Decoder',
             pageDesc: 'Encode, decode, and parse URLs online \u2014 fast, free, and private.',
@@ -1055,6 +1055,15 @@
             faqFreeQ: 'Is this tool really free with no ads or signup?',
             faqFreeA: 'Absolutely! This URL encoder/decoder is 100% free with no ads, no signup, no login, and no usage limits. It runs entirely in your browser — no data is sent to any server, no account is needed, and there are no hidden costs. Use it as much as you want, anytime.',
             relatedTitle: 'Related Tools',
+            relatedToolsTitle: 'Related Tools',
+            relatedTool1: 'Base64 Encoder/Decoder',
+            relatedTool1Desc: 'Encode and decode Base64 strings',
+            relatedTool2: 'Crypto & Encoding Toolkit',
+            relatedTool2Desc: 'MD5, SHA, AES encryption tools',
+            relatedTool3: 'JSON Viewer',
+            relatedTool3Desc: 'Format and validate JSON data',
+            relatedTool4: 'Password Generator',
+            relatedTool4Desc: 'Generate secure random passwords',
             relatedBase64: 'Base64 Encoder / Decoder',
             relatedCrypto: 'Crypto & Encoding Toolkit',
             relatedJson: 'JSON Viewer',
@@ -1066,6 +1075,7 @@
             trust_free: '🚫 No Ads, No Signup'
         },
         'zh-CN': {
+            tool_name: 'URL 编解码工具',
             backHome: '\u2190 \u8fd4\u56de\u5de5\u5177\u7bb1',
             pageTitle: 'URL \u7f16\u89e3\u7801\u5de5\u5177',
             pageDesc: '\u5728\u7ebf\u7f16\u7801\u3001\u89e3\u7801\u548c\u89e3\u6790 URL \u2014 \u5feb\u901f\u3001\u514d\u8d39\u3001\u9690\u79c1\u5b89\u5168\u3002',
@@ -1130,6 +1140,15 @@
             faqFreeQ: '这个工具真的免费、无广告、无需注册吗？',
             faqFreeA: '完全正确！本 URL 编解码工具 100% 免费，无广告、无需注册、无需登录、无使用限制。所有处理都在浏览器中完成，不会向任何服务器发送数据，无需账号，也没有隐藏费用。随时随地，想用就用。',
             relatedTitle: '相关工具',
+            relatedToolsTitle: '相关工具',
+            relatedTool1: 'Base64 编解码',
+            relatedTool1Desc: '编码和解码 Base64 字符串',
+            relatedTool2: '加密与编码工具箱',
+            relatedTool2Desc: 'MD5、SHA、AES 加密工具',
+            relatedTool3: 'JSON 查看器',
+            relatedTool3Desc: '格式化和验证 JSON 数据',
+            relatedTool4: '密码生成器',
+            relatedTool4Desc: '生成安全随机密码',
             relatedBase64: 'Base64 编码 / 解码',
             relatedCrypto: '加密与编码工具箱',
             relatedJson: 'JSON 查看器',
@@ -1141,6 +1160,7 @@
             trust_free: '🚫 无广告、无需注册'
         },
         fr: {
+            tool_name: 'Encodeur/Décodeur URL',
             backHome: '\u2190 Retour \u00e0 la bo\u00eete \u00e0 outils',
             pageTitle: 'Encodeur / D\u00e9codeur URL',
             pageDesc: 'Encodez, d\u00e9codez et analysez les URL en ligne \u2014 rapide, gratuit et priv\u00e9.',
@@ -1205,6 +1225,15 @@
             faqFreeQ: 'Cet outil est-il vraiment gratuit, sans publicit\u00e9 ni inscription ?',
             faqFreeA: 'Absolument ! Cet encodeur/d\u00e9codeur URL est 100% gratuit, sans publicit\u00e9, sans inscription, sans connexion et sans limite d\'utilisation. Il fonctionne enti\u00e8rement dans votre navigateur — aucune donn\u00e9e n\'est envoy\u00e9e \u00e0 un serveur, aucun compte n\'est n\u00e9cessaire et il n\'y a aucun co\u00fbt cach\u00e9. Utilisez-le autant que vous le souhaitez, \u00e0 tout moment.',
             relatedTitle: 'Outils connexes',
+            relatedToolsTitle: 'Outils connexes',
+            relatedTool1: 'Encodeur/Décodeur Base64',
+            relatedTool1Desc: 'Encoder et décoder des chaînes Base64',
+            relatedTool2: 'Outils de cryptage et d\'encodage',
+            relatedTool2Desc: 'Outils de cryptage MD5, SHA, AES',
+            relatedTool3: 'Visualiseur JSON',
+            relatedTool3Desc: 'Formater et valider les données JSON',
+            relatedTool4: 'Générateur de mots de passe',
+            relatedTool4Desc: 'Générer des mots de passe aléatoires sécurisés',
             relatedBase64: 'Encodeur / D\u00e9codeur Base64',
             relatedCrypto: 'Outils de cryptage et d\'encodage',
             relatedJson: 'Visualiseur JSON',
@@ -1216,6 +1245,7 @@
             trust_free: '🚫 Sans pub, sans inscription'
         },
         es: {
+            tool_name: 'Codificador/Decodificador URL',
             backHome: '\u2190 Volver a la caja de herramientas',
             pageTitle: 'Codificador / Decodificador URL',
             pageDesc: 'Codifica, decodifica y analiza URLs en l\u00ednea \u2014 r\u00e1pido, gratuito y privado.',
@@ -1280,6 +1310,15 @@
             faqFreeQ: '\u00bfEsta herramienta es realmente gratuita, sin anuncios ni registro?',
             faqFreeA: '\u00a1Por supuesto! Este codificador/decodificador de URL es 100% gratuito, sin anuncios, sin registro, sin inicio de sesi\u00f3n y sin l\u00edmites de uso. Funciona completamente en tu navegador — no se env\u00edan datos a ning\u00fan servidor, no se necesita cuenta y no hay costos ocultos. \u00dasalo tanto como quieras, en cualquier momento.',
             relatedTitle: 'Herramientas relacionadas',
+            relatedToolsTitle: 'Herramientas relacionadas',
+            relatedTool1: 'Codificador/Decodificador Base64',
+            relatedTool1Desc: 'Codificar y decodificar cadenas Base64',
+            relatedTool2: 'Herramientas de cifrado y codificación',
+            relatedTool2Desc: 'Herramientas de cifrado MD5, SHA, AES',
+            relatedTool3: 'Visor JSON',
+            relatedTool3Desc: 'Formatear y validar datos JSON',
+            relatedTool4: 'Generador de contraseñas',
+            relatedTool4Desc: 'Generar contraseñas aleatorias seguras',
             relatedBase64: 'Codificador / Decodificador Base64',
             relatedCrypto: 'Herramientas de cifrado y codificaci\u00f3n',
             relatedJson: 'Visor JSON',
@@ -1291,13 +1330,19 @@
             trust_free: '🚫 Sin anuncios, sin registro'
         }
     };
-let encodeMode = 'component'; // component | uri
+
+    let encodeMode = 'component'; // component | uri
     let decodeMode = 'component';
     let parsedUrlObj = null;
 
     // ==================== 国际化应用 ====================
+    function getLang() {
+        return localStorage.getItem('urlencoder_lang') || 'en';
+    }
+
     function t(key) {
-        return (I18N[currentLang] && I18N[currentLang][key]) || I18N.en[key] || key;
+        var lang = getLang();
+        return (I18N[lang] && I18N[lang][key]) || I18N.en[key] || key;
     }
 
     function applyI18N() {
@@ -1315,10 +1360,6 @@ let encodeMode = 'component'; // component | uri
                 el.placeholder = t(key);
             }
         });
-        // 更新语言切换器显示
-if (langCurrent) {
-            langCurrent.textContent = I18N[currentLang] ? I18N[currentLang].langName : '\ud83c\uddfa\ud83c\uddf8 English';
-        }
         // 更新参数表格中的删除按钮
         document.querySelectorAll('.param-action-btn').forEach(function(btn) {
             btn.textContent = t('paramDelete');
@@ -1326,10 +1367,8 @@ if (langCurrent) {
     }
 
     function setLang(lang) {
-        currentLang = lang;
-        localStorage.setItem('toolbox_lang', lang);
+        localStorage.setItem('urlencoder_lang', lang);
         applyI18N();
-        document.getElementById('langDropdown').classList.remove('active');
     }
 
     // ==================== Tab 切换 ====================
@@ -1596,21 +1635,6 @@ if (langCurrent) {
 
     // ==================== 事件绑定 ====================
     function init() {
-        // 语言切换
-        document.getElementById('langDropdown').addEventListener('click', function(e) {
-            e.stopPropagation();
-            this.classList.toggle('active');
-        });
-        document.querySelectorAll('.lang-btn').forEach(function(btn) {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                setLang(this.getAttribute('data-lang'));
-            });
-        });
-        document.addEventListener('click', function() {
-            document.getElementById('langDropdown').classList.remove('active');
-        });
-
         // Tab 切换
         document.querySelectorAll('.tab-btn').forEach(function(btn) {
             btn.addEventListener('click', function() {
@@ -1656,11 +1680,6 @@ if (langCurrent) {
             } else {
                 document.getElementById('parserResultCard').style.display = 'none';
             }
-        });
-                if (!isActive) {
-                    item.classList.add('active');
-                }
-            });
         });
 
         // 应用语言
@@ -1715,10 +1734,13 @@ if (langCurrent) {
     } else {
         init();
     }
+
+    // 暴露翻译对象给 common.js
+    window._translations = I18N;
 })();
 </script>
     <script src="common/common.js" data-tool-id="url-encoder" data-tool-name="URL Encode Decode" data-category="developer"></script>
-    <script>WebToolbox.init({});</script>
+    <script>WebToolbox.init(window._translations);</script>
 
 </body>
 </html>

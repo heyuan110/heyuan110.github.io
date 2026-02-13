@@ -155,7 +155,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-.lang-dropdown.active /* 主布局 */
+/* 主布局 */
         .main-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -720,7 +720,7 @@
             transition: transform 0.3s ease;
         }
 
-        .faq-item.open .faq-toggle {
+        .faq-item.active .faq-toggle {
             transform: rotate(180deg);
         }
 
@@ -730,7 +730,7 @@
             transition: max-height 0.3s ease;
         }
 
-        .faq-item.open .faq-answer {
+        .faq-item.active .faq-answer {
             max-height: 200px;
         }
 
@@ -745,11 +745,6 @@
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
 <div class="container">
 <!-- 顶部导航 -->
         <nav class="top-nav">
@@ -1020,14 +1015,102 @@
                 </div>
             </div>
         </div>
+
+        <!-- FAQ 常见问题 -->
+        <section class="faq-section">
+            <h2 class="faq-title" data-i18n="faqTitle">❓ FAQ</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-i18n="faqQ1">What is a regular expression?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-i18n="faqA1">A regular expression is a pattern matching syntax used to search, validate, and replace text. It consists of ordinary characters and special characters (metacharacters) that can describe complex text patterns, widely used in data validation, text search, and string processing.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-i18n="faqQ2">What do the g, i, m flags mean?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-i18n="faqA2">g (global) enables global matching, finding all matches instead of stopping after the first; i (ignoreCase) enables case-insensitive matching; m (multiline) enables multiline mode where ^ and $ match the start and end of each line.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-i18n="faqQ3">How to match Chinese characters?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-i18n="faqA3">Use [\u4e00-\u9fa5] to match common Chinese characters. This range covers all Chinese characters in the CJK Unified Ideographs basic block.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-i18n="faqQ4">Why are my match results different from expected?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-i18n="faqA4">Common reasons include: 1. Special characters not escaped (. * + need backslash); 2. Greedy matching captures too much (use ? for non-greedy); 3. Incorrect flags (missing global flag returns only first result); 4. Boundary conditions not considered (^ $ usage).</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-i18n="faqQ5">Which regex syntax is supported?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-i18n="faqA5">This tool uses JavaScript regular expression syntax (ECMAScript specification). It supports common metacharacters, character classes, quantifiers, groups, assertions, and flags like g, i, m, s, u.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-i18n="faqFreeQ">Is this tool really free with no ads?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-i18n="faqFreeA">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 相关工具 -->
+        <section class="related-tools">
+            <h2 class="section-title" data-i18n="relatedToolsTitle">🔗 Related Tools</h2>
+            <div class="related-grid">
+                <a href="json-viewer.html" class="related-card">
+                    <div class="related-name" data-i18n="relatedTool1">JSON Viewer</div>
+                    <div class="related-desc" data-i18n="relatedTool1Desc">JSON formatting & visualization</div>
+                </a>
+                <a href="crypto-tools.html" class="related-card">
+                    <div class="related-name" data-i18n="relatedTool2">Crypto Tools</div>
+                    <div class="related-desc" data-i18n="relatedTool2Desc">Base64/MD5/AES etc.</div>
+                </a>
+                <a href="timestamp-converter.html" class="related-card">
+                    <div class="related-name" data-i18n="relatedTool3">Timestamp Converter</div>
+                    <div class="related-desc" data-i18n="relatedTool3Desc">Unix timestamp & date conversion</div>
+                </a>
+                <a href="chinese-converter.html" class="related-card">
+                    <div class="related-name" data-i18n="relatedTool4">Chinese Converter</div>
+                    <div class="related-desc" data-i18n="relatedTool4Desc">Simplified & Traditional conversion</div>
+                </a>
+            </div>
+        </section>
     </div>
 
     <script>
+        function getLang() {
+            return (typeof WebToolbox !== 'undefined') ? WebToolbox.getCurrentLang() : (localStorage.getItem('toolbox_lang') || 'en');
+        }
+
         // 多语言翻译
-        const i18n = {
+        const translations = {
             en: {
+                tool_name: 'Regex Tester',
                 navBrand: '🔍 Regex Tester',
-                backToToolbox: 'Back to Toolbox',
                 featureRealtimeTitle: '100% Free & Private',
                 featureRealtimeDesc: 'No ads, no signup, no watermark. Everything runs locally in your browser. Your data never leaves your device.',
                 featureFlagsTitle: 'Flag Support',
@@ -1144,17 +1227,15 @@
                 faqA5: 'This tool uses JavaScript regular expression syntax (ECMAScript specification). It supports common metacharacters, character classes, quantifiers, groups, assertions, and flags like g, i, m, s, u.',
                 faqFreeQ: 'Is this tool really free with no ads?',
                 faqFreeA: 'Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.',
-                relatedTools: '🔗 Related Tools',
-                jsonViewer: 'JSON Viewer',
-                jsonViewerDesc: 'JSON formatting & visualization',
-                cryptoTools: 'Crypto Tools',
-                cryptoToolsDesc: 'Base64/MD5/AES etc.',
-                timestampConverter: 'Timestamp Converter',
-                timestampConverterDesc: 'Unix timestamp & date conversion',
-                chineseConverter: 'Chinese Converter',
-                chineseConverterDesc: 'Simplified & Traditional conversion',
-                footerPrivacy: 'Pure frontend processing, data is not uploaded to server',
-                footerBack: '← Back to Web Toolbox',
+                relatedToolsTitle: '🔗 Related Tools',
+                relatedTool1: 'JSON Viewer',
+                relatedTool1Desc: 'JSON formatting & visualization',
+                relatedTool2: 'Crypto Tools',
+                relatedTool2Desc: 'Base64/MD5/AES etc.',
+                relatedTool3: 'Timestamp Converter',
+                relatedTool3Desc: 'Unix timestamp & date conversion',
+                relatedTool4: 'Chinese Converter',
+                relatedTool4Desc: 'Simplified & Traditional conversion',
                 noMatch: 'No matches found',
                 regexError: 'Regex syntax error: ',
                 trust_users: '🌍 Used by 50,000+ users',
@@ -1175,8 +1256,8 @@
                 }
             },
             'zh-CN': {
+                tool_name: '正则表达式测试工具',
                 navBrand: '🔍 正则表达式测试工具',
-                backToToolbox: '返回工具箱',
                 featureRealtimeTitle: '100% 免费且安全',
                 featureRealtimeDesc: '无广告、无需注册、无水印。所有处理都在浏览器本地完成，数据不会上传到任何服务器。',
                 featureFlagsTitle: '标志位支持',
@@ -1293,17 +1374,15 @@
                 faqA5: '本工具使用 JavaScript 的正则表达式语法（ECMAScript 规范）。支持常见的元字符、字符类、量词、分组、断言等特性，并支持 g、i、m、s、u 等标志位。',
                 faqFreeQ: '这个工具真的免费且没有广告吗？',
                 faqFreeA: '是的，100% 免费，无广告、无需注册、无水印、无使用限制。所有处理都在浏览器本地完成，您的数据不会上传到任何服务器。',
-                relatedTools: '🔗 相关工具推荐',
-                jsonViewer: 'JSON 查看器',
-                jsonViewerDesc: 'JSON 格式化与可视化',
-                cryptoTools: '加解密工具箱',
-                cryptoToolsDesc: 'Base64/MD5/AES 等',
-                timestampConverter: '时间戳转换',
-                timestampConverterDesc: 'Unix 时间戳与日期互转',
-                chineseConverter: '中文简繁转换',
-                chineseConverterDesc: '简体繁体互转',
-                footerPrivacy: '纯前端处理，数据不会上传到服务器',
-                footerBack: '← 返回 Web Toolbox 首页',
+                relatedToolsTitle: '🔗 相关工具推荐',
+                relatedTool1: 'JSON 查看器',
+                relatedTool1Desc: 'JSON 格式化与可视化',
+                relatedTool2: '加解密工具箱',
+                relatedTool2Desc: 'Base64/MD5/AES 等',
+                relatedTool3: '时间戳转换',
+                relatedTool3Desc: 'Unix 时间戳与日期互转',
+                relatedTool4: '中文简繁转换',
+                relatedTool4Desc: '简体繁体互转',
                 noMatch: '无匹配结果',
                 regexError: '正则表达式语法错误: ',
                 trust_users: '🌍 超过 50,000 用户使用',
@@ -1324,8 +1403,8 @@
                 }
             },
             fr: {
+                tool_name: 'Testeur Regex',
                 navBrand: '🔍 Testeur Regex',
-                backToToolbox: 'Retour',
                 featureRealtimeTitle: '100% Gratuit et Privé',
                 featureRealtimeDesc: 'Sans publicité, sans inscription, sans filigrane. Tout est traité localement dans votre navigateur.',
                 featureFlagsTitle: 'Support des drapeaux',
@@ -1442,17 +1521,15 @@
                 faqA5: 'Cet outil utilise la syntaxe JavaScript (specification ECMAScript).',
                 faqFreeQ: 'Cet outil est-il vraiment gratuit et sans publicité ?',
                 faqFreeA: 'Oui, 100% gratuit, sans publicité, sans inscription, sans filigrane et sans limite d\'utilisation. Tout le traitement se fait localement dans votre navigateur — vos données ne sont jamais envoyées à un serveur.',
-                relatedTools: '🔗 Outils connexes',
-                jsonViewer: 'Visionneuse JSON',
-                jsonViewerDesc: 'Formatage et visualisation JSON',
-                cryptoTools: 'Outils Crypto',
-                cryptoToolsDesc: 'Base64/MD5/AES etc.',
-                timestampConverter: 'Convertisseur Timestamp',
-                timestampConverterDesc: 'Conversion timestamp Unix et date',
-                chineseConverter: 'Convertisseur Chinois',
-                chineseConverterDesc: 'Conversion simplifie et traditionnel',
-                footerPrivacy: 'Traitement cote client, donnees non televersees',
-                footerBack: '← Retour a Web Toolbox',
+                relatedToolsTitle: '🔗 Outils connexes',
+                relatedTool1: 'Visionneuse JSON',
+                relatedTool1Desc: 'Formatage et visualisation JSON',
+                relatedTool2: 'Outils Crypto',
+                relatedTool2Desc: 'Base64/MD5/AES etc.',
+                relatedTool3: 'Convertisseur Timestamp',
+                relatedTool3Desc: 'Conversion timestamp Unix et date',
+                relatedTool4: 'Convertisseur Chinois',
+                relatedTool4Desc: 'Conversion simplifie et traditionnel',
                 noMatch: 'Aucune correspondance',
                 regexError: 'Erreur de syntaxe regex: ',
                 trust_users: '🌍 Utilisé par 50 000+ utilisateurs',
@@ -1473,8 +1550,8 @@
                 }
             },
             es: {
+                tool_name: 'Probador Regex',
                 navBrand: '🔍 Probador Regex',
-                backToToolbox: 'Volver',
                 featureRealtimeTitle: '100% Gratis y Privado',
                 featureRealtimeDesc: 'Sin anuncios, sin registro, sin marca de agua. Todo se procesa localmente en tu navegador.',
                 featureFlagsTitle: 'Soporte de banderas',
@@ -1591,17 +1668,15 @@
                 faqA5: 'Esta herramienta usa sintaxis JavaScript (especificacion ECMAScript).',
                 faqFreeQ: '¿Esta herramienta es realmente gratuita y sin anuncios?',
                 faqFreeA: 'Sí, 100% gratuita, sin anuncios, sin registro, sin marca de agua y sin límites de uso. Todo el procesamiento se realiza localmente en tu navegador — tus datos nunca se envían a ningún servidor.',
-                relatedTools: '🔗 Herramientas relacionadas',
-                jsonViewer: 'Visor JSON',
-                jsonViewerDesc: 'Formateo y visualizacion JSON',
-                cryptoTools: 'Herramientas Crypto',
-                cryptoToolsDesc: 'Base64/MD5/AES etc.',
-                timestampConverter: 'Convertidor Timestamp',
-                timestampConverterDesc: 'Conversion timestamp Unix y fecha',
-                chineseConverter: 'Convertidor Chino',
-                chineseConverterDesc: 'Conversion simplificado y tradicional',
-                footerPrivacy: 'Procesamiento del lado cliente, datos no subidos',
-                footerBack: '← Volver a Web Toolbox',
+                relatedToolsTitle: '🔗 Herramientas relacionadas',
+                relatedTool1: 'Visor JSON',
+                relatedTool1Desc: 'Formateo y visualizacion JSON',
+                relatedTool2: 'Herramientas Crypto',
+                relatedTool2Desc: 'Base64/MD5/AES etc.',
+                relatedTool3: 'Convertidor Timestamp',
+                relatedTool3Desc: 'Conversion timestamp Unix y fecha',
+                relatedTool4: 'Convertidor Chino',
+                relatedTool4Desc: 'Conversion simplificado y tradicional',
                 noMatch: 'Sin coincidencias',
                 regexError: 'Error de sintaxis regex: ',
                 trust_users: '🌍 Usado por más de 50,000 usuarios',
@@ -1622,16 +1697,6 @@
                 }
             }
         };
-let currentUILang = localStorage.getItem('toolbox_lang') || 'en';
-        document.getElementById('langDropdown').addEventListener('click', function(e) {
-            e.stopPropagation();
-            this.classList.toggle('active');
-        });
-});
-
-        document.addEventListener('click', function() {
-            document.getElementById('langDropdown').classList.remove('active');
-        });
 
         // DOM 元素
         const regexInput = document.getElementById('regexInput');
@@ -1698,7 +1763,7 @@ let currentUILang = localStorage.getItem('toolbox_lang') || 'en';
             const pattern = regexInput.value;
             const text = testText.value;
             const flags = activeFlags.join('');
-            const t = i18n[currentUILang];
+            const t = translations[getLang()];
 
             // 清空错误
             errorMessage.classList.remove('show');
@@ -1798,7 +1863,7 @@ let currentUILang = localStorage.getItem('toolbox_lang') || 'en';
             const pattern = regexInput.value || '\\d+';
             const flags = activeFlags.join('');
             const text = testText.value || 'Hello 123 World 456';
-            const t = i18n[currentUILang];
+            const t = translations[getLang()];
             const c = t.codeComment;
 
             const langDisplayNames = {
@@ -2013,7 +2078,7 @@ class Program {
 
         // 复制代码
         copyCodeBtn.addEventListener('click', () => {
-            const t = i18n[currentUILang];
+            const t = translations[getLang()];
             navigator.clipboard.writeText(codeContent.textContent).then(() => {
                 const originalText = copyCodeBtn.textContent;
                 copyCodeBtn.textContent = t.codeCopied;
@@ -2030,9 +2095,6 @@ class Program {
             body.classList.toggle('open');
         }
 
-        // 初始化
-        applyLanguage(currentUILang);
-
         // 示例文本
         testText.value = `Hello World 123
 Email: test@example.com
@@ -2043,77 +2105,9 @@ Date: 2024-12-27`;
         regexInput.value = '\\d+';
         runTest();
 
-        // FAQ 折叠/展开
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const item = question.parentElement;
-                item.classList.toggle('open');
-            });
-        });
+        window._translations = translations;
     </script>
     <script src="common/common.js" data-tool-id="regex-tester" data-tool-name="Regex Tester" data-category="developer"></script>
-    <script>WebToolbox.init(i18n);</script>
-
-
-    <!-- FAQ 常见问题 -->
-    <section class="faq-section">
-        <h2 class="faq-title" data-i18n="faqTitle">❓ FAQ</h2>
-        <div class="faq-list">
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3 data-i18n="faqQ1">What is a regular expression?</h3>
-                    <span class="faq-toggle">▼</span>
-                </div>
-                <div class="faq-answer">
-                    <p data-i18n="faqA1">A regular expression is a pattern matching syntax used to search, validate, and replace text. It consists of ordinary characters and special characters (metacharacters) that can describe complex text patterns, widely used in data validation, text search, and string processing.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3 data-i18n="faqQ2">What do the g, i, m flags mean?</h3>
-                    <span class="faq-toggle">▼</span>
-                </div>
-                <div class="faq-answer">
-                    <p data-i18n="faqA2">g (global) enables global matching, finding all matches instead of stopping after the first; i (ignoreCase) enables case-insensitive matching; m (multiline) enables multiline mode where ^ and $ match the start and end of each line.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3 data-i18n="faqQ3">How to match Chinese characters?</h3>
-                    <span class="faq-toggle">▼</span>
-                </div>
-                <div class="faq-answer">
-                    <p data-i18n="faqA3">Use [\u4e00-\u9fa5] to match common Chinese characters. This range covers all Chinese characters in the CJK Unified Ideographs basic block.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3 data-i18n="faqQ4">Why are my match results different from expected?</h3>
-                    <span class="faq-toggle">▼</span>
-                </div>
-                <div class="faq-answer">
-                    <p data-i18n="faqA4">Common reasons include: 1. Special characters not escaped (. * + need backslash); 2. Greedy matching captures too much (use ? for non-greedy); 3. Incorrect flags (missing global flag returns only first result); 4. Boundary conditions not considered (^ $ usage).</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3 data-i18n="faqQ5">Which regex syntax is supported?</h3>
-                    <span class="faq-toggle">▼</span>
-                </div>
-                <div class="faq-answer">
-                    <p data-i18n="faqA5">This tool uses JavaScript regular expression syntax (ECMAScript specification). It supports common metacharacters, character classes, quantifiers, groups, assertions, and flags like g, i, m, s, u.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3 data-i18n="faqFreeQ">Is this tool really free with no ads?</h3>
-                    <span class="faq-toggle">▼</span>
-                </div>
-                <div class="faq-answer">
-                    <p data-i18n="faqFreeA">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <script>WebToolbox.init(window._translations);</script>
 </body>
 </html>

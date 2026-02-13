@@ -203,8 +203,7 @@
             line-height: 1.6;
         }
 
-        /* ========== 语言切换器 ========== */
-        .lang-dropdown.active /* ========== 头部区域 ========== */
+        /* ========== 头部区域 ========== */
         .header {
             text-align: center;
             padding: 50px 20px 30px;
@@ -647,11 +646,6 @@
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
 <!-- 头部 -->
     <div class="header">
         <h1 data-i18n="title">Base64 Encoder / Decoder</h1>
@@ -765,17 +759,16 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="trust-bar">
-        <span class="trust-item" data-i18n="trust_users">🌍 Used by 50,000+ users</span>
-        <span class="trust-item" data-i18n="trust_rating">⭐ 4.9/5 rating</span>
-        <span class="trust-item" data-i18n="trust_privacy">🔒 100% Private</span>
-        <span class="trust-item" data-i18n="trust_free">🚫 No Ads, No Signup</span>
-    </div>
+        <div class="trust-bar">
+            <span class="trust-item" data-i18n="trust_users">🌍 Used by 50,000+ users</span>
+            <span class="trust-item" data-i18n="trust_rating">⭐ 4.9/5 rating</span>
+            <span class="trust-item" data-i18n="trust_privacy">🔒 100% Private</span>
+            <span class="trust-item" data-i18n="trust_free">🚫 No Ads, No Signup</span>
+        </div>
 
-    <!-- ===== 功能特点区域 ===== -->
-    <div class="seo-section">
+        <!-- ===== 功能特点区域 ===== -->
+        <div class="seo-section">
         <h2 class="seo-section-title" data-i18n="featuresTitle">Key Features</h2>
         <div class="features-grid">
             <div class="feature-card">
@@ -799,14 +792,14 @@
                 <div class="feature-desc" data-i18n="feature4Desc">Automatically detects Base64 validity and displays real-time status.</div>
             </div>
         </div>
-    </div>
+        </div>
 
-    <!-- ===== FAQ 手风琴 ===== -->
-    <div class="seo-section faq-section">
+        <!-- ===== FAQ 手风琴 ===== -->
+        <div class="seo-section faq-section">
         <h2 class="seo-section-title" data-i18n="faqTitle">Frequently Asked Questions</h2>
         <div class="faq-list" id="faqList">
             <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
+                <button class="faq-question">
                     <span data-i18n="faq1Q">What is Base64 encoding?</span>
                     <span class="faq-arrow">▼</span>
                 </button>
@@ -815,7 +808,7 @@
                 </div>
             </div>
             <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
+                <button class="faq-question">
                     <span data-i18n="faq2Q">Is Base64 encryption?</span>
                     <span class="faq-arrow">▼</span>
                 </button>
@@ -824,7 +817,7 @@
                 </div>
             </div>
             <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
+                <button class="faq-question">
                     <span data-i18n="faq3Q">Does it support Chinese and emoji?</span>
                     <span class="faq-arrow">▼</span>
                 </button>
@@ -833,7 +826,7 @@
                 </div>
             </div>
             <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
+                <button class="faq-question">
                     <span data-i18n="faq4Q">What is the file size limit?</span>
                     <span class="faq-arrow">▼</span>
                 </button>
@@ -842,7 +835,7 @@
                 </div>
             </div>
             <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
+                <button class="faq-question">
                     <span data-i18n="faq5Q">Is my data safe?</span>
                     <span class="faq-arrow">▼</span>
                 </button>
@@ -851,7 +844,7 @@
                 </div>
             </div>
             <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
+                <button class="faq-question">
                     <span data-i18n="faqFreeQ">Is this tool really free with no ads?</span>
                     <span class="faq-arrow">▼</span>
                 </button>
@@ -860,10 +853,10 @@
                 </div>
             </div>
         </div>
-    </div>
+        </div>
 
-    <!-- ===== 相关工具推荐 ===== -->
-    <div class="seo-section">
+        <!-- ===== 相关工具推荐 ===== -->
+        <div class="seo-section">
         <h2 class="seo-section-title" data-i18n="relatedTitle">Related Tools</h2>
         <div class="related-grid">
             <a href="url-encoder.html" class="related-card">
@@ -883,6 +876,7 @@
                 <div class="related-title" data-i18n="related4">Image Format Converter</div>
             </a>
         </div>
+        </div>
     </div>
 
     <!-- Toast 通知 -->
@@ -897,6 +891,7 @@
          * ============================================================ */
         var i18n = {
             en: {
+                tool_name: 'Base64 Encoder / Decoder',
                 backHome: '← Back to Home',
                 title: 'Base64 Encoder / Decoder',
                 subtitle: 'Encode and decode Base64 strings, files, and images — all in your browser.',
@@ -958,6 +953,15 @@
                 faqFreeQ: 'Is this tool really free with no ads?',
                 faqFreeA: 'Yes, this tool is 100% free with no ads, no signup, no login, and no usage limits. It runs entirely in your browser so your data stays private. There are no hidden fees or premium tiers — every feature is available to everyone.',
                 relatedTitle: 'Related Tools',
+                relatedToolsTitle: 'Related Tools',
+                relatedTool1: 'URL Encoder/Decoder',
+                relatedTool1Desc: 'Encode and decode URL parameters',
+                relatedTool2: 'Crypto & Encoding Toolkit',
+                relatedTool2Desc: 'Hash, encrypt, and encode data',
+                relatedTool3: 'Password Generator',
+                relatedTool3Desc: 'Generate secure random passwords',
+                relatedTool4: 'Image Format Converter',
+                relatedTool4Desc: 'Convert images between formats',
                 related1: 'URL Encoder/Decoder',
                 related2: 'Crypto & Encoding Toolkit',
                 related3: 'Password Generator',
@@ -968,6 +972,7 @@
                 trust_free: '🚫 No Ads, No Signup'
             },
             'zh-CN': {
+                tool_name: 'Base64 编码 / 解码',
                 backHome: '← 返回首页',
                 title: 'Base64 编码 / 解码',
                 subtitle: '在浏览器中编码和解码 Base64 字符串、文件和图片，数据完全本地处理。',
@@ -1028,6 +1033,15 @@
                 faq5A: '绝对安全。所有编码和解码都完全在您的浏览器中通过 JavaScript 完成，不会向任何服务器发送数据。您的文件、文本和图片完全保留在本地设备上。',
                 faqFreeQ: '这个工具真的免费且没有广告吗？',
                 faqFreeA: '是的，本工具 100% 免费，无广告、无需注册、无需登录，也没有使用次数限制。所有处理完全在浏览器中完成，数据不会离开您的设备。没有隐藏费用或付费等级，所有功能对所有用户完全开放。',
+                relatedToolsTitle: '相关工具',
+                relatedTool1: 'URL 编码/解码',
+                relatedTool1Desc: '编码和解码 URL 参数',
+                relatedTool2: '加密与编码工具箱',
+                relatedTool2Desc: '哈希、加密和编码数据',
+                relatedTool3: '密码生成器',
+                relatedTool3Desc: '生成安全的随机密码',
+                relatedTool4: '图片格式转换器',
+                relatedTool4Desc: '在不同格式之间转换图片',
                 relatedTitle: '相关工具',
                 related1: 'URL 编码/解码',
                 related2: '加密与编码工具箱',
@@ -1039,6 +1053,7 @@
                 trust_free: '🚫 无广告、无需注册'
             },
             fr: {
+                tool_name: 'Encodeur / Décodeur Base64',
                 backHome: '← Retour à l\'accueil',
                 title: 'Encodeur / Décodeur Base64',
                 subtitle: 'Encodez et décodez des chaînes, fichiers et images Base64 — directement dans votre navigateur.',
@@ -1099,6 +1114,15 @@
                 faq5A: 'Absolument. Tout l\'encodage et le décodage sont effectués entièrement dans votre navigateur en JavaScript. Aucune donnée n\'est jamais envoyée à un serveur. Vos fichiers, textes et images restent complètement privés sur votre appareil.',
                 faqFreeQ: 'Cet outil est-il vraiment gratuit et sans publicité ?',
                 faqFreeA: 'Oui, cet outil est 100% gratuit, sans publicité, sans inscription, sans connexion et sans limite d\'utilisation. Tout fonctionne dans votre navigateur, vos données restent privées. Il n\'y a pas de frais cachés ni de niveaux premium — toutes les fonctionnalités sont accessibles à tous.',
+                relatedToolsTitle: 'Outils Connexes',
+                relatedTool1: 'Encodeur/Décodeur URL',
+                relatedTool1Desc: 'Encoder et décoder des paramètres URL',
+                relatedTool2: 'Boîte à Outils Crypto',
+                relatedTool2Desc: 'Hasher, chiffrer et encoder les données',
+                relatedTool3: 'Générateur de Mots de Passe',
+                relatedTool3Desc: 'Générer des mots de passe sécurisés',
+                relatedTool4: 'Convertisseur de Format d\'Image',
+                relatedTool4Desc: 'Convertir des images entre formats',
                 relatedTitle: 'Outils Connexes',
                 related1: 'Encodeur/Décodeur URL',
                 related2: 'Boîte à Outils Crypto',
@@ -1110,6 +1134,7 @@
                 trust_free: '🚫 Sans pub, sans inscription'
             },
             es: {
+                tool_name: 'Codificador / Decodificador Base64',
                 backHome: '← Volver al inicio',
                 title: 'Codificador / Decodificador Base64',
                 subtitle: 'Codifica y decodifica cadenas, archivos e imágenes Base64 — todo en tu navegador.',
@@ -1170,6 +1195,15 @@
                 faq5A: 'Absolutamente. Toda la codificación y decodificación se realiza completamente en su navegador usando JavaScript. Ningún dato se envía jamás a ningún servidor. Sus archivos, textos e imágenes permanecen completamente privados en su dispositivo.',
                 faqFreeQ: '¿Esta herramienta es realmente gratuita y sin anuncios?',
                 faqFreeA: 'Sí, esta herramienta es 100% gratuita, sin anuncios, sin registro, sin inicio de sesión y sin límites de uso. Todo se ejecuta en tu navegador, así que tus datos permanecen privados. No hay tarifas ocultas ni niveles premium — todas las funciones están disponibles para todos.',
+                relatedToolsTitle: 'Herramientas Relacionadas',
+                relatedTool1: 'Codificador/Decodificador URL',
+                relatedTool1Desc: 'Codificar y decodificar parámetros URL',
+                relatedTool2: 'Kit de Herramientas Cripto',
+                relatedTool2Desc: 'Hash, encriptar y codificar datos',
+                relatedTool3: 'Generador de Contraseñas',
+                relatedTool3Desc: 'Generar contraseñas seguras aleatorias',
+                relatedTool4: 'Convertidor de Formato de Imagen',
+                relatedTool4Desc: 'Convertir imágenes entre formatos',
                 relatedTitle: 'Herramientas Relacionadas',
                 related1: 'Codificador/Decodificador URL',
                 related2: 'Kit de Herramientas Cripto',
@@ -1188,33 +1222,16 @@
             fr: '🌐 Français',
             es: '🌐 Español'
         };
-function t(key) {
-            return (i18n[currentLang] && i18n[currentLang][key]) || (i18n.en[key]) || key;
+
+        function getLang() {
+            return localStorage.getItem('toolbox_lang') || 'en';
         }
 
-        function applyLang() {
-            // data-i18n 文本
-            document.querySelectorAll('[data-i18n]').forEach(function(el) {
-                var key = el.getAttribute('data-i18n');
-                el.textContent = t(key);
-            });
-            // data-i18n-placeholder
-            document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
-                var key = el.getAttribute('data-i18n-placeholder');
-                el.setAttribute('placeholder', t(key));
-            });
-            // 更新语言切换器显示
-            document.getElementById('langCurrent').textContent = langLabels[currentLang] || langLabels.en;
-            // 更新 html lang
-            document.documentElement.lang = currentLang === 'zh-CN' ? 'zh-CN' : currentLang;
-        }
+        var currentLang = getLang();
 
-        function switchLang(lang) {
-            currentLang = lang;
-            localStorage.setItem('toolbox_lang', lang);
-            applyLang();
-            // 重新检测 Base64 有效性（刷新 badge 文本）
-            validateBase64Output();
+        function t(key) {
+            var lang = getLang();
+            return (i18n[lang] && i18n[lang][key]) || (i18n.en[key]) || key;
         }
 
         /* ============================================================
@@ -1465,24 +1482,6 @@ function t(key) {
             });
         });
 
-        /* ============================================================
-         *  语言切换器交互
-         * ============================================================ */
-        var dropdown = document.getElementById('langDropdown');
-        document.getElementById('langCurrent').addEventListener('click', function(e) {
-            e.stopPropagation();
-            dropdown.classList.toggle('active');
-        });
-        document.querySelectorAll('.lang-btn').forEach(function(btn) {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                switchLang(btn.getAttribute('data-lang'));
-                dropdown.classList.remove('active');
-            });
-        });
-        document.addEventListener('click', function() {
-            dropdown.classList.remove('active');
-        });
 
         /* ============================================================
          *  文本输入监听
@@ -1581,31 +1580,17 @@ function t(key) {
         setupDropZone('imageDropZone', 'imageInput', handleImageUpload);
 
         /* ============================================================
-         *  FAQ 手风琴交互
-         * ============================================================ */
-        window.toggleFaq = function(btn) {
-            var item = btn.parentElement;
-            var wasActive = item.classList.contains('active');
-            // 关闭所有
-            document.querySelectorAll('.faq-item').forEach(function(el) {
-                el.classList.remove('active');
-            });
-            // 如果之前没打开，则打开当前项
-            if (!wasActive) {
-                item.classList.add('active');
-            }
-        };
-
-        /* ============================================================
          *  初始化
          * ============================================================ */
-        applyLang();
         updateCounts();
+
+        // 暴露 translations 到全局
+        window._translations = i18n;
 
     })();
     </script>
     <script src="common/common.js" data-tool-id="base64-tool" data-tool-name="Base64 Encode Decode" data-category="developer"></script>
-    <script>WebToolbox.init(i18n);</script>
+    <script>WebToolbox.init(window._translations);</script>
 
 </body>
 </html>

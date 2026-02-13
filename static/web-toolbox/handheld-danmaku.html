@@ -46,7 +46,6 @@
         "author": {"@type": "Person", "name": "heyuan110"},
         "publisher": {"@type": "Organization", "name": "Web Toolbox", "url": "https://www.heyuan110.com/web-toolbox/"},
         "screenshot": "https://www.heyuan110.com/web-toolbox/screenshots/handheld-danmaku.webp"
-        "alternateName": ["LED弹幕", "Scrolling Text Banner", "LED Message Board"],
     }
     </script>
 
@@ -128,7 +127,8 @@
             margin: 0 auto;
             padding: 40px 40px;
         }
-/* 标题 */
+
+        /* 标题 */
         header {
             text-align: center;
             margin-bottom: 30px;
@@ -150,7 +150,7 @@
             font-size: 0.95rem;
         }
 
-        .lang-dropdown.active /* 设置面板 */
+        /* 设置面板 */
         .settings-panel {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -470,18 +470,13 @@
                 min-width: 40px;
             }
         }
-        </style>
+    </style>
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
 
-    
-        </style>
 <div class="container">
 <header>
-            
             <h1 data-i18n="title">Handheld Danmaku</h1>
             <p class="subtitle" data-i18n="subtitle">Essential tool for concerts, events, parties and confessions</p>
         </header>
@@ -595,6 +590,96 @@
             <h2 data-i18n="aboutTitle">About Handheld Danmaku</h2>
             <p data-i18n="aboutContent">Handheld danmaku is a new interactive communication tool that can easily add fun and interactivity to various outdoor activities, performances and carnivals. It features lightweight, portable and easy-to-operate advantages, making every participant part of the event. Handheld danmaku can also express emotions and ideas through pre-written text and emojis, enabling communication and interaction. In the age of social media, the use of handheld danmaku also brings wider social effects, increasing the interactivity and reach of events. Whether for organizers or participants, handheld danmaku is a valuable interactive tool.</p>
         </div>
+
+        <!-- FAQ 问答区块 -->
+        <section class="faq-section" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
+            <h2 style="color: #e6edf3; font-size: 1.4rem; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #30363d;" data-i18n="faqTitle">FAQ</h2>
+            <div class="faq-list" style="display: flex; flex-direction: column; gap: 12px;">
+                <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq1Q">How to display text in fullscreen?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq1A">
+                        After clicking start, the phone will automatically enter fullscreen mode. Landscape orientation is recommended.
+                    </div>
+                </details>
+                <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq2Q">Can I adjust the scroll speed?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq2A">
+                        Yes, you can adjust the speed in settings, with multiple speed options available from slow to fast.
+                    </div>
+                </details>
+                <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq3Q">Does it support emoji?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq3A">
+                        Yes, you can input emoji and they will display and scroll normally.
+                    </div>
+                </details>
+                <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq4Q">How to exit fullscreen?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq4A">
+                        Double-tap anywhere on the screen or press the back button to exit.
+                    </div>
+                </details>
+                <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq5Q">Does it support portrait mode?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq5A">
+                        Yes, but landscape mode works better with larger and more visible text.
+                    </div>
+                </details>
+                <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq_free_q">Is this tool really free with no ads?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq_free_a">
+                        Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- 相关工具 -->
+        <section class="related-tools" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
+            <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
+                <span style="color: #7c3aed;">🔗</span> <span data-i18n="relatedToolsTitle">Related Tools</span>
+            </h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px;">
+                <a href="qrcode-generator.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">📱</div>
+                    <div style="color: #e4e4e7; font-weight: 500; margin: 4px 0;" data-i18n="relatedTool1">QR Code Generator</div>
+                    <div style="color: #a1a1aa; font-size: 0.85rem;" data-i18n="relatedTool1Desc">Generate QR codes instantly</div>
+                </a>
+                <a href="word-counter.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">📝</div>
+                    <div style="color: #e4e4e7; font-weight: 500; margin: 4px 0;" data-i18n="relatedTool2">Word Counter</div>
+                    <div style="color: #a1a1aa; font-size: 0.85rem;" data-i18n="relatedTool2Desc">Count words, characters & lines</div>
+                </a>
+                <a href="paint-board.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">🎨</div>
+                    <div style="color: #e4e4e7; font-weight: 500; margin: 4px 0;" data-i18n="relatedTool3">Paint Board</div>
+                    <div style="color: #a1a1aa; font-size: 0.85rem;" data-i18n="relatedTool3Desc">Free online drawing canvas</div>
+                </a>
+                <a href="metronome.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">🥁</div>
+                    <div style="color: #e4e4e7; font-weight: 500; margin: 4px 0;" data-i18n="relatedTool4">Metronome</div>
+                    <div style="color: #a1a1aa; font-size: 0.85rem;" data-i18n="relatedTool4Desc">Online metronome tool</div>
+                </a>
+            </div>
+        </section>
     </div>
 
     <!-- 弹幕全屏区域 -->
@@ -604,10 +689,10 @@
     </div>
 
     <script>
-        // ==================== i18n 国际化系统 ====================
-        const i18n = {
+        // ==================== i18n 翻译 ====================
+        const translations = {
             'en': {
-                backHome: '← Back to Toolbox',
+                tool_name: 'LED Banner',
                 title: 'Handheld Danmaku',
                 subtitle: 'Essential tool for concerts, events, parties and confessions',
                 feature1Title: '100% Free & Private',
@@ -656,24 +741,22 @@
                 faq5A: 'Yes, but landscape mode works better with larger and more visible text.',
                 faq_free_q: 'Is this tool really free with no ads?',
                 faq_free_a: 'Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.',
-                relatedTitle: '🔗 Related Tools',
-                relatedPalette: 'Color Palette',
-                relatedPaletteDesc: 'Color picker and converter',
-                relatedMetronome: 'Metronome',
-                relatedMetronomeDesc: 'Online metronome tool',
-                relatedWorldClock: 'World Clock',
-                relatedWorldClockDesc: 'Global timezone times',
-                relatedCalculator: 'Calculator',
-                relatedCalculatorDesc: 'Supports complex expressions',
-                footerPrivacy: 'Pure frontend processing, data is not uploaded to server',
-                footerBack: '← Back to Web Toolbox',
+                relatedToolsTitle: 'Related Tools',
+                relatedTool1: 'QR Code Generator',
+                relatedTool1Desc: 'Generate QR codes instantly',
+                relatedTool2: 'Word Counter',
+                relatedTool2Desc: 'Count words, characters & lines',
+                relatedTool3: 'Paint Board',
+                relatedTool3Desc: 'Free online drawing canvas',
+                relatedTool4: 'Metronome',
+                relatedTool4Desc: 'Online metronome tool',
                 trust_users: '🌍 Used by 50,000+ users',
                 trust_rating: '⭐ 4.9/5 rating',
                 trust_privacy: '🔒 100% Private',
                 trust_free: '🚫 No Ads, No Signup'
             },
             'zh-CN': {
-                backHome: '← 返回工具箱',
+                tool_name: '手持弹幕',
                 title: '手持弹幕',
                 subtitle: '演唱会应援、活动表白、聚会互动必备神器',
                 feature1Title: '100% 免费且安全',
@@ -722,24 +805,22 @@
                 faq5A: '支持，但横屏效果更佳，文字更大更醒目。',
                 faq_free_q: '这个工具真的免费且无广告吗？',
                 faq_free_a: '是的，100% 免费，无广告、无需注册、无水印、无使用限制。所有处理都在浏览器本地完成，数据不会上传到任何服务器。',
-                relatedTitle: '🔗 相关工具推荐',
-                relatedPalette: '调色板',
-                relatedPaletteDesc: '颜色选择与转换',
-                relatedMetronome: '节拍器',
-                relatedMetronomeDesc: '在线节拍器工具',
-                relatedWorldClock: '世界时钟',
-                relatedWorldClockDesc: '全球时区时间',
-                relatedCalculator: '科学计算器',
-                relatedCalculatorDesc: '支持复杂表达式',
-                footerPrivacy: '纯前端处理，数据不会上传到服务器',
-                footerBack: '← 返回 Web Toolbox 首页',
+                relatedToolsTitle: '相关工具',
+                relatedTool1: '二维码生成器',
+                relatedTool1Desc: '即时生成二维码',
+                relatedTool2: '字数统计',
+                relatedTool2Desc: '统计字数、字符和行数',
+                relatedTool3: '画板',
+                relatedTool3Desc: '免费在线绘图画板',
+                relatedTool4: '节拍器',
+                relatedTool4Desc: '在线节拍器工具',
                 trust_users: '🌍 超过 50,000 用户使用',
                 trust_rating: '⭐ 4.9/5 好评',
                 trust_privacy: '🔒 100% 隐私安全',
                 trust_free: '🚫 无广告、无需注册'
             },
             'fr': {
-                backHome: '← Retour à la boîte à outils',
+                tool_name: 'Bannière LED',
                 title: 'Danmaku Portable',
                 subtitle: 'Outil essentiel pour concerts, événements, fêtes et déclarations',
                 feature1Title: '100% Gratuit et Privé',
@@ -788,24 +869,22 @@
                 faq5A: 'Oui, mais le mode paysage fonctionne mieux avec un texte plus grand et plus visible.',
                 faq_free_q: 'Cet outil est-il vraiment gratuit et sans publicité ?',
                 faq_free_a: 'Oui, 100% gratuit, sans publicité, sans inscription, sans filigrane et sans limite d\'utilisation. Tout le traitement se fait localement dans votre navigateur — vos données ne sont jamais envoyées à un serveur.',
-                relatedTitle: '🔗 Outils connexes',
-                relatedPalette: 'Palette de couleurs',
-                relatedPaletteDesc: 'Sélecteur et convertisseur de couleurs',
-                relatedMetronome: 'Métronome',
-                relatedMetronomeDesc: 'Outil métronome en ligne',
-                relatedWorldClock: 'Horloge mondiale',
-                relatedWorldClockDesc: 'Heures des fuseaux horaires mondiaux',
-                relatedCalculator: 'Calculatrice',
-                relatedCalculatorDesc: 'Supporte les expressions complexes',
-                footerPrivacy: 'Traitement purement frontend, les données ne sont pas téléchargées sur le serveur',
-                footerBack: '← Retour à Web Toolbox',
+                relatedToolsTitle: 'Outils connexes',
+                relatedTool1: 'Générateur de QR Code',
+                relatedTool1Desc: 'Générer des codes QR instantanément',
+                relatedTool2: 'Compteur de mots',
+                relatedTool2Desc: 'Compter mots, caractères et lignes',
+                relatedTool3: 'Tableau de dessin',
+                relatedTool3Desc: 'Toile de dessin en ligne gratuite',
+                relatedTool4: 'Métronome',
+                relatedTool4Desc: 'Outil métronome en ligne',
                 trust_users: '🌍 Utilisé par 50 000+ utilisateurs',
                 trust_rating: '⭐ Note 4.9/5',
                 trust_privacy: '🔒 100% Privé',
                 trust_free: '🚫 Sans pub, sans inscription'
             },
             'es': {
-                backHome: '← Volver a la caja de herramientas',
+                tool_name: 'Cartel LED',
                 title: 'Danmaku Portátil',
                 subtitle: 'Herramienta esencial para conciertos, eventos, fiestas y declaraciones',
                 feature1Title: '100% Gratis y Privado',
@@ -854,33 +933,26 @@
                 faq5A: 'Sí, pero el modo horizontal funciona mejor con texto más grande y visible.',
                 faq_free_q: '¿Es esta herramienta realmente gratuita y sin anuncios?',
                 faq_free_a: 'Sí, 100% gratuita, sin anuncios, sin registro, sin marca de agua y sin límites de uso. Todo el procesamiento se realiza localmente en tu navegador — tus datos nunca se envían a ningún servidor.',
-                relatedTitle: '🔗 Herramientas relacionadas',
-                relatedPalette: 'Paleta de colores',
-                relatedPaletteDesc: 'Selector y convertidor de colores',
-                relatedMetronome: 'Metrónomo',
-                relatedMetronomeDesc: 'Herramienta de metrónomo en línea',
-                relatedWorldClock: 'Reloj mundial',
-                relatedWorldClockDesc: 'Horarios de zonas horarias globales',
-                relatedCalculator: 'Calculadora',
-                relatedCalculatorDesc: 'Soporta expresiones complejas',
-                footerPrivacy: 'Procesamiento puramente frontend, los datos no se suben al servidor',
-                footerBack: '← Volver a Web Toolbox',
+                relatedToolsTitle: 'Herramientas relacionadas',
+                relatedTool1: 'Generador de código QR',
+                relatedTool1Desc: 'Genera códigos QR al instante',
+                relatedTool2: 'Contador de palabras',
+                relatedTool2Desc: 'Contar palabras, caracteres y líneas',
+                relatedTool3: 'Pizarra de dibujo',
+                relatedTool3Desc: 'Lienzo de dibujo en línea gratuito',
+                relatedTool4: 'Metrónomo',
+                relatedTool4Desc: 'Herramienta de metrónomo en línea',
                 trust_users: '🌍 Usado por más de 50,000 usuarios',
                 trust_rating: '⭐ Calificación 4.9/5',
                 trust_privacy: '🔒 100% Privado',
                 trust_free: '🚫 Sin anuncios, sin registro'
             }
         };
-// 语言切换器事件
-        document.getElementById('langDropdown').addEventListener('click', function(e) {
-            e.stopPropagation();
-            this.classList.toggle('active');
-        });
-});
 
-        document.addEventListener('click', function() {
-            document.getElementById('langDropdown').classList.remove('active');
-        });
+        function getLang() {
+            return (typeof WebToolbox !== 'undefined') ? WebToolbox.getCurrentLang() : (localStorage.getItem('toolbox_lang') || 'en');
+        }
+
         // 获取元素
         const danmakuText = document.getElementById('danmakuText');
         const speedSlider = document.getElementById('speedSlider');
@@ -921,7 +993,7 @@
         function startDanmaku() {
             const text = danmakuText.value.trim();
             if (!text) {
-                alert(i18n[currentLang].alertEmpty);
+                alert(translations[getLang()].alertEmpty);
                 danmakuText.focus();
                 return;
             }
@@ -1024,6 +1096,10 @@
         // 监听全屏变化
         document.addEventListener('fullscreenchange', () => {
             if (!document.fullscreenElement && isRunning) {
+                stopDanmaku();
+            }
+        });
+
         // 窗口大小变化时重新计算
         window.addEventListener('resize', () => {
             if (isRunning) {
@@ -1073,70 +1149,10 @@
 
         // 页面加载时恢复设置
         loadSettings();
+
+        window._translations = translations;
     </script>
     <script src="common/common.js" data-tool-id="handheld-danmaku" data-tool-name="LED Scrolling Text" data-category="utility"></script>
-    <script>WebToolbox.init(i18n);</script>
-
-
-    <!-- FAQ 问答区块 -->
-    <section class="faq-section" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
-        <h2 style="color: #e6edf3; font-size: 1.4rem; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #30363d;" data-i18n="faqTitle">FAQ</h2>
-        <div class="faq-list" style="display: flex; flex-direction: column; gap: 12px;">
-            <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq1Q">How to display text in fullscreen?</span>
-                    <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                </summary>
-                <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq1A">
-                    After clicking start, the phone will automatically enter fullscreen mode. Landscape orientation is recommended.
-                </div>
-            </details>
-            <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq2Q">Can I adjust the scroll speed?</span>
-                    <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                </summary>
-                <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq2A">
-                    Yes, you can adjust the speed in settings, with multiple speed options available from slow to fast.
-                </div>
-            </details>
-            <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq3Q">Does it support emoji?</span>
-                    <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                </summary>
-                <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq3A">
-                    Yes, you can input emoji and they will display and scroll normally.
-                </div>
-            </details>
-            <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq4Q">How to exit fullscreen?</span>
-                    <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                </summary>
-                <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq4A">
-                    Double-tap anywhere on the screen or press the back button to exit.
-                </div>
-            </details>
-            <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq5Q">Does it support portrait mode?</span>
-                    <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                </summary>
-                <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq5A">
-                    Yes, but landscape mode works better with larger and more visible text.
-                </div>
-            </details>
-            <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq_free_q">Is this tool really free with no ads?</span>
-                    <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                </summary>
-                <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq_free_a">
-                    Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.
-                </div>
-            </details>
-        </div>
-    </section>
+    <script>WebToolbox.init(window._translations);</script>
 </body>
 </html>

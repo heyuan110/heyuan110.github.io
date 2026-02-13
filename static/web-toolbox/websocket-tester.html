@@ -166,7 +166,7 @@
             font-family: 'Monaco', 'Menlo', monospace;
         }
 
-        .lang-dropdown.active /* 主布局 */
+        /* 主布局 */
         .main-layout {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -850,11 +850,6 @@
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
 <div class="container">
 <header>
             
@@ -1020,14 +1015,66 @@
                 <li data-i18n="usageNote6">Real-time connection status monitoring, statistics for sent/received/error counts</li>
             </ul>
         </div>
+
+    <!-- FAQ 常见问题 -->
+    <section class="faq-section">
+        <h2 data-i18n="faqTitle">❓ FAQ</h2>
+        <div class="faq-item">
+            <div class="faq-question" data-i18n="faq1Question">What is WebSocket?</div>
+            <div class="faq-answer" data-i18n="faq1Answer">WebSocket is a full-duplex communication protocol that enables the server to push data to the client proactively. Unlike traditional HTTP request-response mode, WebSocket can communicate bidirectionally in real-time after establishing a connection, suitable for chat, real-time data push, online games, etc.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" data-i18n="faq2Question">What is the difference between ws and wss?</div>
+            <div class="faq-answer" data-i18n="faq2Answer">ws is the regular WebSocket protocol, wss is the encrypted WebSocket (similar to the relationship between <code>http</code> and <code>https</code>). wss uses TLS/SSL to encrypt data transmission, which is more secure. It is recommended to use wss protocol in production environments.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" data-i18n="faq3Question">Why does WebSocket connection fail?</div>
+            <div class="faq-answer" data-i18n="faq3Answer">Common reasons include: incorrect address, server not started, firewall blocking, CORS restrictions, SSL certificate issues (wss protocol), port occupied, etc. It is recommended to check the server status and network connection to ensure the WebSocket service is running normally.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" data-i18n="faq4Question">Can I test WebSocket that requires authentication?</div>
+            <div class="faq-answer" data-i18n="faq4Answer">This tool does not support WebSocket connections that require authentication. It only supports non-authenticated WebSocket connection testing. For authenticated connections, it is recommended to use professional WebSocket client tools like Postman or wscat.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" data-i18n="faq5Question">Are there any message format restrictions?</div>
+            <div class="faq-answer" data-i18n="faq5Answer">Any text message is supported, JSON format will be automatically formatted for display. The tool automatically detects JSON format and beautifies it for easy API interface debugging. There is no specific message length limit, but it is recommended to keep single messages under 64KB.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" data-i18n="faqFreeQ">Is this tool really free with no ads?</div>
+            <div class="faq-answer" data-i18n="faqFreeA">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</div>
+        </div>
+    </section>
+
+    <!-- Related Tools -->
+    <section class="related-tools">
+        <h2 data-i18n="relatedTools">🔗 Related Tools</h2>
+        <div class="related-grid">
+            <a href="json-viewer.html" class="related-card">
+                <h3 data-i18n="jsonViewer">JSON Viewer</h3>
+                <p data-i18n="jsonViewerDesc">JSON formatting and visualization</p>
+            </a>
+            <a href="crypto-tools.html" class="related-card">
+                <h3 data-i18n="cryptoTools">Crypto Toolbox</h3>
+                <p data-i18n="cryptoToolsDesc">Base64/MD5/AES etc.</p>
+            </a>
+            <a href="ip-lookup.html" class="related-card">
+                <h3 data-i18n="ipLookup">IP Lookup</h3>
+                <p data-i18n="ipLookupDesc">Query IP geolocation</p>
+            </a>
+            <a href="regex-tester.html" class="related-card">
+                <h3 data-i18n="regexTester">Regex Tester</h3>
+                <p data-i18n="regexTesterDesc">Online regex matching and debugging</p>
+            </a>
+        </div>
+    </section>
     </div>
 
     <script>
         // ==================== 国际化模块 ====================
         const i18n = {
-            currentLang: 'en',
             translations: {
                 en: {
+                    tool_name: 'WebSocket Tester',
                     backHome: '← Back to Toolbox Home',
                     pageTitle: '🔌 WebSocket Online Tester',
                     pageSubtitle: 'HTML5 WebSocket-based online debugging tool, supports internal and external connection testing',
@@ -1120,6 +1167,7 @@
                     trust_free: '🚫 No Ads, No Signup'
                 },
                 'zh-CN': {
+                    tool_name: 'WebSocket 测试工具',
                     backHome: '← 返回工具箱首页',
                     pageTitle: '🔌 WebSocket 在线测试工具',
                     pageSubtitle: '基于 HTML5 WebSocket 的在线调试工具，支持内网和外网连接测试',
@@ -1212,6 +1260,7 @@
                     trust_free: '🚫 无广告、无需注册'
                 },
                 fr: {
+                    tool_name: 'Testeur WebSocket',
                     backHome: '← Retour à la boîte à outils',
                     pageTitle: '🔌 Testeur WebSocket en ligne',
                     pageSubtitle: 'Outil de débogage en ligne basé sur HTML5 WebSocket, prend en charge les tests de connexion internes et externes',
@@ -1304,6 +1353,7 @@
                     trust_free: '🚫 Sans pub, sans inscription'
                 },
                 es: {
+                    tool_name: 'Probador WebSocket',
                     backHome: '← Volver a la caja de herramientas',
                     pageTitle: '🔌 Probador WebSocket en línea',
                     pageSubtitle: 'Herramienta de depuración en línea basada en HTML5 WebSocket, soporta pruebas de conexión internas y externas',
@@ -1398,83 +1448,11 @@
             },
 
             t(key) {
-                return this.translations[this.currentLang]?.[key] || this.translations['en'][key] || key;
-            },
-
-            setLang(lang) {
-                if (this.translations[lang]) {
-                    this.currentLang = lang;
-                    localStorage.setItem('toolbox_lang', lang);
-                    this.updateUI();
-                }
-            },
-
-            updateUI() {
-                // 更新所有带 data-i18n 属性的元素
-                document.querySelectorAll('[data-i18n]').forEach(el => {
-                    const key = el.getAttribute('data-i18n');
-                    const translation = this.t(key);
-                    if (translation) {
-                        el.innerHTML = translation;
-                    }
-                });
-
-                // 更新所有带 data-i18n-placeholder 属性的元素
-                document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-                    const key = el.getAttribute('data-i18n-placeholder');
-                    const translation = this.t(key);
-                    if (translation) {
-                        el.placeholder = translation;
-                    }
-                });
-
-                // 更新语言切换器显示
-                document.getElementById('langCurrent').textContent = this.t('langName');
-            },
-
-            init() {
-                // 从 localStorage 读取保存的语言设置
-                const savedLang = localStorage.getItem('toolbox_lang');
-                if (savedLang && this.translations[savedLang]) {
-                    this.currentLang = savedLang;
-                } else {
-                    // 根据浏览器语言自动选择
-                    const browserLang = navigator.language || navigator.userLanguage;
-                    if (browserLang.startsWith('zh')) {
-                        this.currentLang = 'zh-CN';
-                    } else if (browserLang.startsWith('fr')) {
-                        this.currentLang = 'fr';
-                    } else if (browserLang.startsWith('es')) {
-                        this.currentLang = 'es';
-                    } else {
-                        this.currentLang = 'en';
-                    }
-                }
-                this.updateUI();
+                const lang = WebToolbox.getCurrentLang();
+                return this.translations[lang]?.[key] || this.translations['en'][key] || key;
             }
         };
 
-        // 语言切换器交互
-        document.getElementById('langDropdown').addEventListener('click', function(e) {
-            this.classList.toggle('active');
-            e.stopPropagation();
-        });
-
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                const lang = this.getAttribute('data-lang');
-                i18n.setLang(lang);
-                document.getElementById('langDropdown').classList.remove('active');
-                e.stopPropagation();
-            });
-        });
-
-        document.addEventListener('click', function() {
-            document.getElementById('langDropdown').classList.remove('active');
-        });
-
-        // 初始化 i18n
-        i18n.init();
         let ws = null;
         let connectedAt = null;
         let timerInterval = null;
@@ -1652,6 +1630,9 @@
                 const parsed = JSON.parse(content);
                 displayContent = JSON.stringify(parsed, null, 2);
             } catch(e) {
+                // JSON parse failed, use raw content
+            }
+
             entry.innerHTML = `
                 <span class="time">${time}</span>
                 <span class="direction">[${direction}]</span>
@@ -1771,38 +1752,9 @@
                 ws.close();
             }
         });
+        window._translations = i18n.translations;
     </script>
     <script src="common/common.js" data-tool-id="websocket-tester" data-tool-name="WebSocket Tester" data-category="developer"></script>
-    <script>WebToolbox.init(i18n);</script>
-
-
-    <!-- FAQ 常见问题 -->
-    <section class="faq-section" style="max-width: 1000px; margin: 40px auto 0; padding: 24px;">
-        <h2 data-i18n="faqTitle">❓ FAQ</h2>
-        <div class="faq-item">
-            <div class="faq-question" data-i18n="faq1Question">What is WebSocket?</div>
-            <div class="faq-answer" data-i18n="faq1Answer">WebSocket is a full-duplex communication protocol that enables the server to push data to the client proactively. Unlike traditional HTTP request-response mode, WebSocket can communicate bidirectionally in real-time after establishing a connection, suitable for chat, real-time data push, online games, etc.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question" data-i18n="faq2Question">What is the difference between ws and wss?</div>
-            <div class="faq-answer" data-i18n="faq2Answer">ws is the regular WebSocket protocol, wss is the encrypted WebSocket (similar to the relationship between <code>http</code> and <code>https</code>). wss uses TLS/SSL to encrypt data transmission, which is more secure. It is recommended to use wss protocol in production environments.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question" data-i18n="faq3Question">Why does WebSocket connection fail?</div>
-            <div class="faq-answer" data-i18n="faq3Answer">Common reasons include: incorrect address, server not started, firewall blocking, CORS restrictions, SSL certificate issues (wss protocol), port occupied, etc. It is recommended to check the server status and network connection to ensure the WebSocket service is running normally.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question" data-i18n="faq4Question">Can I test WebSocket that requires authentication?</div>
-            <div class="faq-answer" data-i18n="faq4Answer">This tool does not support WebSocket connections that require authentication. It only supports non-authenticated WebSocket connection testing. For authenticated connections, it is recommended to use professional WebSocket client tools like Postman or wscat.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question" data-i18n="faq5Question">Are there any message format restrictions?</div>
-            <div class="faq-answer" data-i18n="faq5Answer">Any text message is supported, JSON format will be automatically formatted for display. The tool automatically detects JSON format and beautifies it for easy API interface debugging. There is no specific message length limit, but it is recommended to keep single messages under 64KB.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question" data-i18n="faqFreeQ">Is this tool really free with no ads?</div>
-            <div class="faq-answer" data-i18n="faqFreeA">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</div>
-        </div>
-    </section>
+    <script>WebToolbox.init(window._translations);</script>
 </body>
 </html>

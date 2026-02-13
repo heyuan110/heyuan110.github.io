@@ -155,7 +155,7 @@
             gap: 12px;
             margin-bottom: 20px;
         }
-.lang-dropdown.open h1 {
+        h1 {
             text-align: center;
             font-size: 2rem;
             margin-bottom: 8px;
@@ -279,23 +279,20 @@
         .faq-item.active .faq-answer { display: block; }
 
         @media (max-width: 900px) {
-            .features-grid, }
+            .features-grid { grid-template-columns: 1fr; }
+        }
         @media (max-width: 640px) {
             h1 { font-size: 1.7rem; }
             .features-grid, .file-item { grid-template-columns: 1fr; }
             .file-actions { justify-content: flex-start; }
         }
-        </style>
+    </style>
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
 
-    
-        </style>
 <div class="container">
-<h1 data-i18n="title">PDF Merge Tool</h1>
+        <h1 data-i18n="title">PDF Merge Tool</h1>
         <p class="subtitle" data-i18n="subtitle">Combine multiple PDF files into one document in your browser</p>
 
         <section class="card">
@@ -319,10 +316,10 @@
         </section>
 
         <div class="trust-bar">
-            <span class="trust-item" data-i18n="trust_users">🌍 Used by 50,000+ users</span>
-            <span class="trust-item" data-i18n="trust_rating">⭐ 4.9/5 rating</span>
-            <span class="trust-item" data-i18n="trust_privacy">🔒 100% Private</span>
-            <span class="trust-item" data-i18n="trust_free">🚫 No Ads, No Signup</span>
+            <span class="trust-item" data-i18n="trust_users">Used by 50,000+ users</span>
+            <span class="trust-item" data-i18n="trust_rating">4.9/5 rating</span>
+            <span class="trust-item" data-i18n="trust_privacy">100% Private</span>
+            <span class="trust-item" data-i18n="trust_free">No Ads, No Signup</span>
         </div>
 
         <section class="features-section">
@@ -374,36 +371,33 @@
                 <div class="faq-answer" data-i18n="faq5A">No. This tool copies pages directly and keeps original quality.</div>
             </div>
             <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span data-i18n="faq_free_q">Is this tool really free? Are my files safe?</span>
-                    <span class="arrow">▼</span>
-                </div>
-                <div class="faq-answer"><p data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, and no usage limits. Unlike other PDF tools, your files are never uploaded to any server — all processing happens locally in your browser for maximum privacy.</p></div>
+                <button class="faq-question" data-i18n="faq_free_q">Is this tool really free? Are my files safe?</button>
+                <div class="faq-answer" data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, and no usage limits. Unlike other PDF tools, your files are never uploaded to any server — all processing happens locally in your browser for maximum privacy.</div>
             </div>
         </section>
 
         <section class="related-tools">
-            <h3 data-i18n="relatedTitle">Related PDF Tools</h3>
+            <h3 data-i18n="relatedToolsTitle">Related PDF Tools</h3>
             <div class="related-grid">
                 <a class="related-card" href="pdf-split.html">
                     <div>✂️</div>
-                    <h4 data-i18n="rel1Title">PDF Split</h4>
-                    <p data-i18n="rel1Desc">Extract pages or split PDF into multiple files.</p>
+                    <h4 data-i18n="relatedTool1">PDF Split</h4>
+                    <p data-i18n="relatedTool1Desc">Extract pages or split PDF into multiple files.</p>
                 </a>
                 <a class="related-card" href="pdf-compress.html">
                     <div>🗜️</div>
-                    <h4 data-i18n="rel2Title">PDF Compress</h4>
-                    <p data-i18n="rel2Desc">Reduce PDF file size for email and web upload.</p>
+                    <h4 data-i18n="relatedTool2">PDF Compress</h4>
+                    <p data-i18n="relatedTool2Desc">Reduce PDF file size for email and web upload.</p>
                 </a>
                 <a class="related-card" href="pdf-to-image.html">
                     <div>🖼️</div>
-                    <h4 data-i18n="rel3Title">PDF to Image</h4>
-                    <p data-i18n="rel3Desc">Convert PDF pages to PNG or JPG images.</p>
+                    <h4 data-i18n="relatedTool3">PDF to Image</h4>
+                    <p data-i18n="relatedTool3Desc">Convert PDF pages to PNG or JPG images.</p>
                 </a>
                 <a class="related-card" href="image-to-pdf.html">
                     <div>📄</div>
-                    <h4 data-i18n="rel4Title">Image to PDF</h4>
-                    <p data-i18n="rel4Desc">Turn multiple pictures into one PDF document.</p>
+                    <h4 data-i18n="relatedTool4">Image to PDF</h4>
+                    <p data-i18n="relatedTool4Desc">Turn multiple pictures into one PDF document.</p>
                 </a>
             </div>
         </section>
@@ -413,9 +407,9 @@
     (function() {
         'use strict';
 
-        var i18n = {
+        var translations = {
             en: {
-                backHome: 'Back to Toolbox',
+                tool_name: 'PDF Merge',
                 title: 'PDF Merge Tool',
                 subtitle: 'Combine multiple PDF files into one document in your browser',
                 uploadTitle: 'Upload PDF Files',
@@ -456,22 +450,22 @@
                 faq5A: 'No. This tool copies pages directly and keeps original quality.',
                 faq_free_q: 'Is this tool really free? Are my files safe?',
                 faq_free_a: 'Yes, 100% free with no ads, no registration, and no usage limits. Unlike other PDF tools, your files are never uploaded to any server — all processing happens locally in your browser for maximum privacy.',
-                relatedTitle: 'Related PDF Tools',
-                rel1Title: 'PDF Split',
-                rel1Desc: 'Extract pages or split PDF into multiple files.',
-                rel2Title: 'PDF Compress',
-                rel2Desc: 'Reduce PDF file size for email and web upload.',
-                rel3Title: 'PDF to Image',
-                rel3Desc: 'Convert PDF pages to PNG or JPG images.',
-                rel4Title: 'Image to PDF',
-                rel4Desc: 'Turn multiple pictures into one PDF document.',
-                trust_users: '🌍 Used by 50,000+ users',
-                trust_rating: '⭐ 4.9/5 rating',
-                trust_privacy: '🔒 100% Private',
-                trust_free: '🚫 No Ads, No Signup'
+                relatedToolsTitle: 'Related PDF Tools',
+                relatedTool1: 'PDF Split',
+                relatedTool1Desc: 'Extract pages or split PDF into multiple files.',
+                relatedTool2: 'PDF Compress',
+                relatedTool2Desc: 'Reduce PDF file size for email and web upload.',
+                relatedTool3: 'PDF to Image',
+                relatedTool3Desc: 'Convert PDF pages to PNG or JPG images.',
+                relatedTool4: 'Image to PDF',
+                relatedTool4Desc: 'Turn multiple pictures into one PDF document.',
+                trust_users: 'Used by 50,000+ users',
+                trust_rating: '4.9/5 rating',
+                trust_privacy: '100% Private',
+                trust_free: 'No Ads, No Signup'
             },
             'zh-CN': {
-                backHome: '返回工具箱',
+                tool_name: 'PDF 合并',
                 title: 'PDF 合并',
                 subtitle: '在浏览器中将多个 PDF 文件快速合并为一个文档',
                 uploadTitle: '上传 PDF 文件',
@@ -512,22 +506,22 @@
                 faq5A: '不会。工具会直接复制页面，保持原始质量。',
                 faq_free_q: '这个工具真的免费吗？我的文件安全吗？',
                 faq_free_a: '是的，100% 免费，无广告、无需注册、无使用限制。与其他 PDF 工具不同，您的文件不会上传到任何服务器——所有处理都在浏览器本地完成，最大程度保护隐私。',
-                relatedTitle: '相关 PDF 工具',
-                rel1Title: 'PDF 拆分',
-                rel1Desc: '按页提取或按范围拆分 PDF。',
-                rel2Title: 'PDF 压缩',
-                rel2Desc: '减小 PDF 体积，方便传输和上传。',
-                rel3Title: 'PDF 转图片',
-                rel3Desc: '将 PDF 页面导出为 PNG 或 JPG 图片。',
-                rel4Title: '图片转 PDF',
-                rel4Desc: '将多张图片合并生成 PDF 文档。',
-                trust_users: '🌍 超过 50,000 用户使用',
-                trust_rating: '⭐ 4.9/5 好评',
-                trust_privacy: '🔒 100% 隐私安全',
-                trust_free: '🚫 无广告、无需注册'
+                relatedToolsTitle: '相关 PDF 工具',
+                relatedTool1: 'PDF 拆分',
+                relatedTool1Desc: '按页提取或按范围拆分 PDF。',
+                relatedTool2: 'PDF 压缩',
+                relatedTool2Desc: '减小 PDF 体积，方便传输和上传。',
+                relatedTool3: 'PDF 转图片',
+                relatedTool3Desc: '将 PDF 页面导出为 PNG 或 JPG 图片。',
+                relatedTool4: '图片转 PDF',
+                relatedTool4Desc: '将多张图片合并生成 PDF 文档。',
+                trust_users: '超过 50,000 用户使用',
+                trust_rating: '4.9/5 好评',
+                trust_privacy: '100% 隐私安全',
+                trust_free: '无广告、无需注册'
             },
             fr: {
-                backHome: 'Retour à la boîte à outils',
+                tool_name: 'Fusion PDF',
                 title: 'Fusion PDF',
                 subtitle: 'Combinez plusieurs fichiers PDF en un seul dans votre navigateur',
                 uploadTitle: 'Importer des fichiers PDF',
@@ -568,22 +562,22 @@
                 faq5A: 'Non. L outil conserve la qualité d origine des pages.',
                 faq_free_q: 'Cet outil est-il vraiment gratuit ? Mes fichiers sont-ils en sécurité ?',
                 faq_free_a: 'Oui, 100% gratuit sans publicité, sans inscription et sans limite. Contrairement à d\'autres outils PDF, vos fichiers ne sont jamais téléchargés sur un serveur.',
-                relatedTitle: 'Outils PDF associés',
-                rel1Title: 'Découper PDF',
-                rel1Desc: 'Extraire des pages ou scinder un PDF en plusieurs fichiers.',
-                rel2Title: 'Compresser PDF',
-                rel2Desc: 'Réduire la taille des PDF pour email et web.',
-                rel3Title: 'PDF vers image',
-                rel3Desc: 'Convertir les pages PDF en PNG ou JPG.',
-                rel4Title: 'Image vers PDF',
-                rel4Desc: 'Transformer plusieurs images en un document PDF.',
-                trust_users: '🌍 Utilisé par 50 000+ utilisateurs',
-                trust_rating: '⭐ Note 4.9/5',
-                trust_privacy: '🔒 100% Privé',
-                trust_free: '🚫 Sans pub, sans inscription'
+                relatedToolsTitle: 'Outils PDF associés',
+                relatedTool1: 'Découper PDF',
+                relatedTool1Desc: 'Extraire des pages ou scinder un PDF en plusieurs fichiers.',
+                relatedTool2: 'Compresser PDF',
+                relatedTool2Desc: 'Réduire la taille des PDF pour email et web.',
+                relatedTool3: 'PDF vers image',
+                relatedTool3Desc: 'Convertir les pages PDF en PNG ou JPG.',
+                relatedTool4: 'Image vers PDF',
+                relatedTool4Desc: 'Transformer plusieurs images en un document PDF.',
+                trust_users: 'Utilisé par 50 000+ utilisateurs',
+                trust_rating: 'Note 4.9/5',
+                trust_privacy: '100% Privé',
+                trust_free: 'Sans pub, sans inscription'
             },
             es: {
-                backHome: 'Volver a la caja de herramientas',
+                tool_name: 'Fusionar PDF',
                 title: 'Unir PDF',
                 subtitle: 'Combina varios archivos PDF en un solo documento en tu navegador',
                 uploadTitle: 'Subir archivos PDF',
@@ -624,34 +618,39 @@
                 faq5A: 'No. La herramienta mantiene la calidad original.',
                 faq_free_q: '¿Es realmente gratuito? ¿Mis archivos están seguros?',
                 faq_free_a: 'Sí, 100% gratuito sin anuncios, sin registro y sin límites. A diferencia de otras herramientas PDF, sus archivos nunca se suben a ningún servidor.',
-                relatedTitle: 'Herramientas PDF relacionadas',
-                rel1Title: 'Dividir PDF',
-                rel1Desc: 'Extrae páginas o divide PDF por rangos.',
-                rel2Title: 'Comprimir PDF',
-                rel2Desc: 'Reduce el tamaño de PDF para correo y web.',
-                rel3Title: 'PDF a imagen',
-                rel3Desc: 'Convierte páginas PDF a PNG o JPG.',
-                rel4Title: 'Imagen a PDF',
-                rel4Desc: 'Convierte varias imágenes en un documento PDF.',
-                trust_users: '🌍 Usado por más de 50,000 usuarios',
-                trust_rating: '⭐ Calificación 4.9/5',
-                trust_privacy: '🔒 100% Privado',
-                trust_free: '🚫 Sin anuncios, sin registro'
+                relatedToolsTitle: 'Herramientas PDF relacionadas',
+                relatedTool1: 'Dividir PDF',
+                relatedTool1Desc: 'Extrae páginas o divide PDF por rangos.',
+                relatedTool2: 'Comprimir PDF',
+                relatedTool2Desc: 'Reduce el tamaño de PDF para correo y web.',
+                relatedTool3: 'PDF a imagen',
+                relatedTool3Desc: 'Convierte páginas PDF a PNG o JPG.',
+                relatedTool4: 'Imagen a PDF',
+                relatedTool4Desc: 'Convierte varias imágenes en un documento PDF.',
+                trust_users: 'Usado por más de 50,000 usuarios',
+                trust_rating: 'Calificación 4.9/5',
+                trust_privacy: '100% Privado',
+                trust_free: 'Sin anuncios, sin registro'
             }
         };
-var fileInput = document.getElementById('fileInput');
+
+        function getLang() {
+            return (typeof WebToolbox !== 'undefined') ? WebToolbox.getCurrentLang() : (localStorage.getItem('toolbox_lang') || 'en');
+        }
+
+        function t(key) {
+            var dict = translations[getLang()] || translations.en;
+            return dict[key] || translations.en[key] || key;
+        }
+
+        var fileInput = document.getElementById('fileInput');
         var uploadZone = document.getElementById('uploadZone');
         var fileList = document.getElementById('fileList');
         var statsText = document.getElementById('statsText');
         var statusText = document.getElementById('statusText');
         var clearBtn = document.getElementById('clearBtn');
         var mergeBtn = document.getElementById('mergeBtn');
-var filesState = [];
-function t(key) {
-            var dict = i18n[currentLang] || i18n.en;
-            return dict[key] || i18n.en[key] || key;
-        }
-
+        var filesState = [];
 
         function fileSize(bytes) {
             if (bytes < 1024) return bytes + ' B';
@@ -837,15 +836,26 @@ function t(key) {
         });
 
         mergeBtn.addEventListener('click', mergePdf);
-});
-if (!open) item.classList.add('active');
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var item = btn.closest('.faq-item');
+                var open = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(function(i) {
+                    i.classList.remove('active');
+                });
+                if (!open) item.classList.add('active');
             });
         });
-renderFileList();
+
+        renderFileList();
+
+        window._translations = translations;
     })();
     </script>
     <script src="common/common.js" data-tool-id="pdf-merge" data-tool-name="Merge PDF" data-category="pdf"></script>
-    <script>WebToolbox.init(i18n);</script>
+    <script>WebToolbox.init(window._translations);</script>
 
 </body>
 </html>

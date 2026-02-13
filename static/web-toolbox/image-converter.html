@@ -46,7 +46,6 @@
         "author": {"@type": "Person", "name": "heyuan110"},
         "publisher": {"@type": "Organization", "name": "Web Toolbox", "url": "https://www.heyuan110.com/web-toolbox/"},
         "screenshot": "https://www.heyuan110.com/web-toolbox/screenshots/image-converter.webp"
-        "alternateName": ["图片格式转换", "Image Format Converter", "Photo Converter"],
     }
     </script>
 
@@ -150,7 +149,7 @@
             font-size: 0.95rem;
         }
 
-        .lang-dropdown.active /* 主面板 */
+        /* 主面板 */
         .converter-panel {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -714,11 +713,6 @@
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
 <div class="container">
 <header>
             
@@ -840,6 +834,59 @@
                 <li><strong data-i18n="step5Title">Download results</strong>: <span data-i18n="step5Desc">Download individually or download all as a package</span></li>
             </ol>
         </div>
+
+        <!-- FAQ -->
+        <div class="faq-section">
+            <h2 data-i18n="faqTitle">FAQ</h2>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq1Q">What formats are supported?</div>
+                <div class="faq-answer" data-i18n="faq1A">Supports conversion between JPG, PNG, WebP, GIF, BMP, ICO formats, covering the most common image formats in daily use.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq2Q">What are the advantages of WebP format?</div>
+                <div class="faq-answer" data-i18n="faq2A">WebP is a format developed by Google. At the same quality, the file size is about 30% smaller than JPG, making it ideal for web use and significantly improving website loading speed.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq3Q">Will conversion cause quality loss?</div>
+                <div class="faq-answer" data-i18n="faq3A">JPG/WebP are lossy formats with slight quality loss, while PNG/BMP are lossless formats with no quality loss. You can adjust the quality slider to balance image quality and file size.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq4Q">Can I convert animated GIFs to other formats?</div>
+                <div class="faq-answer" data-i18n="faq4A">Yes, but only the first frame is retained when converting to static formats. If you need to preserve the animation effect, it is recommended to keep the GIF format or convert to WebP format that supports animation.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq5Q">Will images be uploaded to the server?</div>
+                <div class="faq-answer" data-i18n="faq5A">No, all conversions are done locally in your browser. Images are never uploaded to any server, completely protecting your privacy.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq_free_q">Is this tool really free with no ads?</div>
+                <div class="faq-answer" data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</div>
+            </div>
+        </div>
+
+        <!-- Related Tools -->
+        <section class="related-tools" style="margin-top: 30px; margin-bottom: 30px;">
+            <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
+                <span style="color: #7c3aed;">🔗</span> <span data-i18n="relatedToolsTitle">Related Tools</span>
+            </h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+                <a href="image-compressor.html" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; text-decoration: none; transition: all 0.2s ease;">
+                    <div style="font-size: 1.5rem; margin-bottom: 8px;">🗜️</div>
+                    <div style="color: #e4e4e7; font-weight: 500; margin: 4px 0;" data-i18n="relatedTool1">Image Compressor</div>
+                    <div style="color: #a1a1aa; font-size: 0.85rem;" data-i18n="relatedTool1Desc">Batch compress image size</div>
+                </a>
+                <a href="ico-maker.html" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; text-decoration: none; transition: all 0.2s ease;">
+                    <div style="font-size: 1.5rem; margin-bottom: 8px;">🎯</div>
+                    <div style="color: #e4e4e7; font-weight: 500; margin: 4px 0;" data-i18n="relatedTool2">ICO Maker</div>
+                    <div style="color: #a1a1aa; font-size: 0.85rem;" data-i18n="relatedTool2Desc">Generate multi-size ICO icons</div>
+                </a>
+                <a href="id-photo-tool.html" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; text-decoration: none; transition: all 0.2s ease;">
+                    <div style="font-size: 1.5rem; margin-bottom: 8px;">📸</div>
+                    <div style="color: #e4e4e7; font-weight: 500; margin: 4px 0;" data-i18n="relatedTool3">ID Photo Cropper</div>
+                    <div style="color: #a1a1aa; font-size: 0.85rem;" data-i18n="relatedTool3Desc">ID photo size cropping</div>
+                </a>
+            </div>
+        </section>
     </div>
 
     <!-- JSZip for packaging -->
@@ -849,7 +896,7 @@
         // 多语言翻译
         const translations = {
             'en': {
-                backHome: '← Back to Toolbox',
+                tool_name: 'Image Converter',
                 title: 'Image Format Converter',
                 subtitle: 'Convert between multiple image formats, local processing for privacy',
                 feature1Title: '100% Free & Private',
@@ -898,22 +945,17 @@
                 faq4A: 'Yes, but only the first frame is retained when converting to static formats. If you need to preserve the animation effect, it is recommended to keep the GIF format or convert to WebP format that supports animation.',
                 faq5Q: 'Will images be uploaded to the server?',
                 faq5A: 'No, all conversions are done locally in your browser. Images are never uploaded to any server, completely protecting your privacy.',
-                relatedTools: '🔗 Related Tools',
-                toolCompressor: 'Image Compressor',
-                toolCompressorDesc: 'Batch compress image size',
-                toolEditor: 'Image Editor',
-                toolEditorDesc: 'Edit and crop images online',
-                toolIco: 'ICO Maker',
-                toolIcoDesc: 'Generate multi-size ICO icons',
-                toolPhoto: 'ID Photo Cropper',
-                toolPhotoDesc: 'ID photo size cropping',
-                footerText: 'Pure frontend processing, images are not uploaded to the server',
-                footerBack: '← Back to Web Toolbox',
+                relatedToolsTitle: 'Related Tools',
+                relatedTool1: 'Image Compressor',
+                relatedTool1Desc: 'Batch compress image size',
+                relatedTool2: 'ICO Maker',
+                relatedTool2Desc: 'Generate multi-size ICO icons',
+                relatedTool3: 'ID Photo Cropper',
+                relatedTool3Desc: 'ID photo size cropping',
                 statusPending: 'Pending',
                 statusConverting: 'Converting...',
                 statusDone: 'Done',
                 statusError: 'Failed',
-                langName: '🌐 English',
                 faq_free_q: 'Is this tool really free with no ads?',
                 faq_free_a: 'Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.',
                 trust_users: '🌍 Used by 50,000+ users',
@@ -922,7 +964,7 @@
                 trust_free: '🚫 No Ads, No Signup'
             },
             'zh-CN': {
-                backHome: '← 返回工具箱',
+                tool_name: '图片格式转换',
                 title: '图片格式转换',
                 subtitle: '支持多种图片格式互转，本地处理保护隐私',
                 feature1Title: '100% 免费且安全',
@@ -971,22 +1013,17 @@
                 faq4A: '可以，但转为静态格式时只保留第一帧。如果需要保留动画效果，建议保持 GIF 格式或转换为支持动画的 WebP 格式。',
                 faq5Q: '图片会上传到服务器吗？',
                 faq5A: '不会，所有转换在本地浏览器完成，图片不会上传到任何服务器，完全保护您的隐私安全。',
-                relatedTools: '🔗 相关工具推荐',
-                toolCompressor: '图片压缩',
-                toolCompressorDesc: '批量压缩图片体积',
-                toolEditor: '图片编辑器',
-                toolEditorDesc: '在线编辑裁剪图片',
-                toolIco: 'ICO 图标制作',
-                toolIcoDesc: '生成多尺寸 ICO 图标',
-                toolPhoto: '证件照裁剪',
-                toolPhotoDesc: '证件照尺寸裁剪',
-                footerText: '纯前端处理，图片不会上传到服务器',
-                footerBack: '← 返回 Web Toolbox 首页',
+                relatedToolsTitle: '相关工具',
+                relatedTool1: '图片压缩',
+                relatedTool1Desc: '批量压缩图片体积',
+                relatedTool2: 'ICO 图标制作',
+                relatedTool2Desc: '生成多尺寸 ICO 图标',
+                relatedTool3: '证件照裁剪',
+                relatedTool3Desc: '证件照尺寸裁剪',
                 statusPending: '等待中',
                 statusConverting: '转换中...',
                 statusDone: '完成',
                 statusError: '失败',
-                langName: '🌐 中文',
                 faq_free_q: '这个工具真的完全免费无广告吗？',
                 faq_free_a: '是的，100% 免费，无广告、无需注册、无水印、无使用限制。所有处理都在浏览器本地完成。',
                 trust_users: '🌍 超过 50,000 用户使用',
@@ -995,7 +1032,7 @@
                 trust_free: '🚫 无广告、无需注册'
             },
             'fr': {
-                backHome: '← Retour à la boîte à outils',
+                tool_name: 'Convertisseur d\'Image',
                 title: 'Convertisseur de Format d\'Image',
                 subtitle: 'Convertir entre plusieurs formats d\'image, traitement local pour la confidentialité',
                 feature1Title: '100% Gratuit et Privé',
@@ -1044,22 +1081,17 @@
                 faq4A: 'Oui, mais seule la première image est conservée lors de la conversion vers des formats statiques.',
                 faq5Q: 'Les images sont-elles téléchargées sur le serveur ?',
                 faq5A: 'Non, toutes les conversions sont effectuées localement dans votre navigateur. Les images ne sont jamais téléchargées sur aucun serveur.',
-                relatedTools: '🔗 Outils Connexes',
-                toolCompressor: 'Compresseur d\'Image',
-                toolCompressorDesc: 'Compresser les images par lot',
-                toolEditor: 'Éditeur d\'Image',
-                toolEditorDesc: 'Éditer et recadrer en ligne',
-                toolIco: 'Créateur ICO',
-                toolIcoDesc: 'Générer des icônes ICO multi-tailles',
-                toolPhoto: 'Recadrage Photo ID',
-                toolPhotoDesc: 'Recadrage de photos d\'identité',
-                footerText: 'Traitement frontend pur, les images ne sont pas téléchargées sur le serveur',
-                footerBack: '← Retour à Web Toolbox',
+                relatedToolsTitle: 'Outils Connexes',
+                relatedTool1: 'Compresseur d\'Image',
+                relatedTool1Desc: 'Compresser les images par lot',
+                relatedTool2: 'Créateur ICO',
+                relatedTool2Desc: 'Générer des icônes ICO multi-tailles',
+                relatedTool3: 'Recadrage Photo ID',
+                relatedTool3Desc: 'Recadrage de photos d\'identité',
                 statusPending: 'En attente',
                 statusConverting: 'Conversion...',
                 statusDone: 'Terminé',
                 statusError: 'Échec',
-                langName: '🌐 Français',
                 faq_free_q: 'Cet outil est-il vraiment gratuit sans publicité ?',
                 faq_free_a: 'Oui, 100% gratuit sans publicité, sans inscription, sans filigrane et sans limite d\'utilisation.',
                 trust_users: '🌍 Utilisé par 50 000+ utilisateurs',
@@ -1068,7 +1100,7 @@
                 trust_free: '🚫 Sans pub, sans inscription'
             },
             'es': {
-                backHome: '← Volver a Herramientas',
+                tool_name: 'Convertidor de Imagen',
                 title: 'Convertidor de Formato de Imagen',
                 subtitle: 'Convertir entre múltiples formatos de imagen, procesamiento local para privacidad',
                 feature1Title: '100% Gratis y Privado',
@@ -1117,22 +1149,17 @@
                 faq4A: 'Sí, pero solo se conserva el primer fotograma al convertir a formatos estáticos.',
                 faq5Q: '¿Las imágenes se suben al servidor?',
                 faq5A: 'No, todas las conversiones se realizan localmente en tu navegador. Las imágenes nunca se suben a ningún servidor.',
-                relatedTools: '🔗 Herramientas Relacionadas',
-                toolCompressor: 'Compresor de Imagen',
-                toolCompressorDesc: 'Comprimir imágenes por lotes',
-                toolEditor: 'Editor de Imagen',
-                toolEditorDesc: 'Editar y recortar en línea',
-                toolIco: 'Creador ICO',
-                toolIcoDesc: 'Generar iconos ICO multi-tamaño',
-                toolPhoto: 'Recorte de Foto ID',
-                toolPhotoDesc: 'Recorte de fotos de identificación',
-                footerText: 'Procesamiento frontend puro, las imágenes no se suben al servidor',
-                footerBack: '← Volver a Web Toolbox',
+                relatedToolsTitle: 'Herramientas Relacionadas',
+                relatedTool1: 'Compresor de Imagen',
+                relatedTool1Desc: 'Comprimir imágenes por lotes',
+                relatedTool2: 'Creador ICO',
+                relatedTool2Desc: 'Generar iconos ICO multi-tamaño',
+                relatedTool3: 'Recorte de Foto ID',
+                relatedTool3Desc: 'Recorte de fotos de identificación',
                 statusPending: 'Pendiente',
                 statusConverting: 'Convirtiendo...',
                 statusDone: 'Completado',
                 statusError: 'Error',
-                langName: '🌐 Español',
                 faq_free_q: '¿Esta herramienta es realmente gratuita sin anuncios?',
                 faq_free_a: 'Sí, 100% gratuita sin anuncios, sin registro, sin marca de agua y sin límites de uso.',
                 trust_users: '🌍 Usado por más de 50,000 usuarios',
@@ -1141,22 +1168,10 @@
                 trust_free: '🚫 Sin anuncios, sin registro'
             }
         };
-const langBtns = document.querySelectorAll('.lang-btn');
-document.addEventListener('click', (e) => {
-            if (!langDropdown.contains(e.target)) {
-                langDropdown.classList.remove('active');
-            }
-        });
+        function getLang() {
+            return (typeof WebToolbox !== 'undefined') ? WebToolbox.getCurrentLang() : (localStorage.getItem('toolbox_lang') || 'en');
+        }
 
-        langBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const lang = btn.dataset.lang;
-                currentLang = lang;
-                localStorage.setItem('toolbox_lang', lang);
-                applyTranslations();
-                langDropdown.classList.remove('active');
-            });
-        });
         let files = [];
         let targetFormat = 'png';
         let quality = 0.9;
@@ -1248,7 +1263,7 @@ document.addEventListener('click', (e) => {
 
         // 更新文件列表
         function updateFileList() {
-            const t = translations[currentLang];
+            const t = translations[getLang()];
 
             if (files.length === 0) {
                 fileList.classList.add('hidden');
@@ -1289,7 +1304,7 @@ document.addEventListener('click', (e) => {
 
         // 状态文本
         function getStatusText(status) {
-            const t = translations[currentLang];
+            const t = translations[getLang()];
             const map = {
                 pending: t.statusPending,
                 converting: t.statusConverting,
@@ -1313,7 +1328,7 @@ document.addEventListener('click', (e) => {
 
         // 开始转换
         convertBtn.addEventListener('click', async () => {
-            const t = translations[currentLang];
+            const t = translations[getLang()];
             convertBtn.disabled = true;
             convertBtn.textContent = t.converting;
 
@@ -1403,7 +1418,7 @@ document.addEventListener('click', (e) => {
 
         // 打包下载
         downloadAllBtn.addEventListener('click', async () => {
-            const t = translations[currentLang];
+            const t = translations[getLang()];
             const doneFiles = files.filter(f => f.status === 'done' && f.result);
             if (doneFiles.length === 0) return;
 
@@ -1433,53 +1448,10 @@ document.addEventListener('click', (e) => {
             downloadAllBtn.textContent = t.downloadAll;
         });
 
-        // 初始化应用翻译
-        applyTranslations();
-    </script>
-
-    <!-- FAQ 问答区块 -->
-    <div class="container">
-        <div class="faq-section">
-            <h2 data-i18n="faqTitle">FAQ</h2>
-            <div class="faq-item">
-                <div class="faq-question" data-i18n="faq1Q">What formats are supported?</div>
-                <div class="faq-answer" data-i18n="faq1A">Supports conversion between JPG, PNG, WebP, GIF, BMP, ICO formats, covering the most common image formats in daily use.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" data-i18n="faq2Q">What are the advantages of WebP format?</div>
-                <div class="faq-answer" data-i18n="faq2A">WebP is a format developed by Google. At the same quality, the file size is about 30% smaller than JPG, making it ideal for web use and significantly improving website loading speed.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" data-i18n="faq3Q">Will conversion cause quality loss?</div>
-                <div class="faq-answer" data-i18n="faq3A">JPG/WebP are lossy formats with slight quality loss, while PNG/BMP are lossless formats with no quality loss. You can adjust the quality slider to balance image quality and file size.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" data-i18n="faq4Q">Can I convert animated GIFs to other formats?</div>
-                <div class="faq-answer" data-i18n="faq4A">Yes, but only the first frame is retained when converting to static formats. If you need to preserve the animation effect, it is recommended to keep the GIF format or convert to WebP format that supports animation.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" data-i18n="faq5Q">Will images be uploaded to the server?</div>
-                <div class="faq-answer" data-i18n="faq5A">No, all conversions are done locally in your browser. Images are never uploaded to any server, completely protecting your privacy.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span data-i18n="faq_free_q">Is this tool really free with no ads?</span>
-                    <span class="arrow">▼</span>
-                </div>
-                <div class="faq-answer"><p data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</p></div>
-            </div>
-        </div>
-</div>
-
-    <!-- 页面加载后重新应用翻译到动态内容 -->
-    <script>
-        // 确保FAQ和footer等在脚本之后的内容也被翻译
-        document.addEventListener('DOMContentLoaded', () => {
-            applyTranslations();
-        });
+        window._translations = translations;
     </script>
     <script src="common/common.js" data-tool-id="image-converter" data-tool-name="Image Converter" data-category="image"></script>
-    <script>WebToolbox.init(translations);</script>
+    <script>WebToolbox.init(window._translations);</script>
 
 </body>
 </html>

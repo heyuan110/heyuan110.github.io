@@ -46,7 +46,6 @@
         "author": {"@type": "Person", "name": "heyuan110"},
         "publisher": {"@type": "Organization", "name": "Web Toolbox", "url": "https://www.heyuan110.com/web-toolbox/"},
         "screenshot": "https://www.heyuan110.com/web-toolbox/screenshots/relative-calculator.webp"
-        "alternateName": ["亲戚称谓计算器", "Chinese Family Relationship Calculator", "亲属关系查询"],
     }
     </script>
 
@@ -150,7 +149,7 @@
             font-size: 0.95rem;
         }
 
-        .lang-dropdown.active /* 主面板 */
+        /* 主面板 */
         .calc-panel {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -561,11 +560,6 @@
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
 <div class="container">
 <header>
             
@@ -671,12 +665,77 @@
             <p data-i18n="aboutP1">When meeting relatives you don't see often, it can be awkward not knowing how to address them properly. This Chinese Relative Relationship Calculator helps you quickly find the correct family titles. The tool supports various regional naming conventions - for example, you can call your father "Baba", "Laoye", "Dad", or "Father".</p>
             <p data-i18n="aboutP2">Chinese kinship terminology is based on blood and marriage relationships, with clear distinctions by seniority and generation. Elders include terms like aunt, uncle, and in-laws; peers include siblings and cousins; juniors include nephews and nieces. The complex in-law relationships in Chinese culture have produced a rich system of titles that is a unique feature of Chinese civilization.</p>
         </div>
+
+        <!-- FAQ 常见问题 -->
+        <section class="faq-section">
+            <h2 data-i18n="faqTitle">Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq1Q">How to use the relative relationship calculator?</div>
+                <div class="faq-answer" data-i18n="faq1A">Starting from 'Me', select relative relationships step by step (e.g., father's older brother's son). The system automatically calculates the title. Click the relationship buttons below to build the chain, then click 'Calculate' to get the correct title.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq2Q">How many generations of relatives are supported?</div>
+                <div class="faq-answer" data-i18n="faq2A">Supports both lineal and collateral relatives, capable of calculating complex multi-generational relationships. Includes paternal, maternal, and in-law family relationships, covering from great-grandparents to grandchildren.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq3Q">Why are there multiple titles for the same relationship?</div>
+                <div class="faq-answer" data-i18n="faq3A">Different regions in China have different dialects, so the same relationship may have different titles. For example, maternal grandmother is called 'Laolao' in the north and 'Waipo' or 'Apo' in the south. This tool includes common titles from various regions.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq4Q">How are in-law relationships calculated?</div>
+                <div class="faq-answer" data-i18n="faq4A">Relatives of your spouse are calculated as in-laws, such as father-in-law and mother-in-law. Select 'Husband' or 'Wife' first, then select the corresponding relative. For example: wife's father = Yuefu (father-in-law), husband's mother = Popo (mother-in-law).</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq5Q">What is the difference between Tang and Biao relatives?</div>
+                <div class="faq-answer" data-i18n="faq5A">Tang relatives are paternal same-surname relatives (children of father's brothers), while Biao relatives are maternal or paternal different-surname relatives (children of father's sisters or mother's siblings). Tang siblings usually share the same surname, while Biao siblings usually have different surnames.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq_free_q">Is this tool really free? Are there any hidden charges?</div>
+                <div class="faq-answer" data-i18n="faq_free_a">Yes, this tool is 100% free with no hidden charges, no ads, and no signup required. It runs entirely in your browser — your data never leaves your device.</div>
+            </div>
+        </section>
+
+        <!-- Related Tools -->
+        <section class="related-tools">
+            <h2 data-i18n="relatedToolsTitle">Related Tools</h2>
+            <div class="tool-grid">
+                <a href="angel-number-calculator.html" class="tool-link">
+                    <span class="tool-icon">👼</span>
+                    <div class="tool-info">
+                        <h3 data-i18n="relatedTool1">Angel Number Calculator</h3>
+                        <p data-i18n="relatedTool1Desc">Discover angel number meanings</p>
+                    </div>
+                </a>
+                <a href="numerology-calculator.html" class="tool-link">
+                    <span class="tool-icon">🔢</span>
+                    <div class="tool-info">
+                        <h3 data-i18n="relatedTool2">Numerology Calculator</h3>
+                        <p data-i18n="relatedTool2Desc">Calculate your life path number</p>
+                    </div>
+                </a>
+                <a href="tarot-reading.html" class="tool-link">
+                    <span class="tool-icon">🔮</span>
+                    <div class="tool-info">
+                        <h3 data-i18n="relatedTool3">Tarot Reading</h3>
+                        <p data-i18n="relatedTool3Desc">Online tarot card reading</p>
+                    </div>
+                </a>
+                <a href="zodiac-calculator.html" class="tool-link">
+                    <span class="tool-icon">♈</span>
+                    <div class="tool-info">
+                        <h3 data-i18n="relatedTool4">Zodiac Calculator</h3>
+                        <p data-i18n="relatedTool4Desc">Calculate your zodiac sign</p>
+                    </div>
+                </a>
+            </div>
+        </section>
     </div>
 
     <script>
         // 国际化翻译
         const i18n = {
             'en': {
+                tool_name: 'Chinese Family Title Calculator',
                 backHome: '← Back to Toolbox',
                 title: 'Chinese Relative Calculator',
                 subtitle: 'Quickly find Chinese family titles, never call relatives by the wrong name again',
@@ -736,17 +795,15 @@
                 faq5A: "Tang relatives are paternal same-surname relatives (children of father's brothers), while Biao relatives are maternal or paternal different-surname relatives (children of father's sisters or mother's siblings). Tang siblings usually share the same surname, while Biao siblings usually have different surnames.",
                 faq_free_q: 'Is this tool really free? Is it safe?',
                 faq_free_a: 'Yes, this tool is 100% free with no ads, no signup, no usage limits, and no watermarks. All processing happens in your browser — your data never leaves your device. It\'s completely safe and private.',
-                relatedTools: 'Related Tools',
-                calculator: 'Calculator',
-                calculatorDesc: 'Scientific expressions',
-                worldClock: 'World Clock',
-                worldClockDesc: 'Global timezone time',
-                timestampConverter: 'Timestamp Converter',
-                timestampConverterDesc: 'Convert timestamps',
-                chineseConverter: 'Chinese Converter',
-                chineseConverterDesc: 'Simplified/Traditional',
-                footerPrivacy: 'Pure frontend processing, no data uploaded to server',
-                footerBack: '← Back to Web Toolbox Home',
+                relatedToolsTitle: 'Related Tools',
+                relatedTool1: 'Angel Number Calculator',
+                relatedTool1Desc: 'Discover angel number meanings',
+                relatedTool2: 'Numerology Calculator',
+                relatedTool2Desc: 'Calculate your life path number',
+                relatedTool3: 'Tarot Reading',
+                relatedTool3Desc: 'Online tarot card reading',
+                relatedTool4: 'Zodiac Calculator',
+                relatedTool4Desc: 'Calculate your zodiac sign',
                 deText: "'s",
                 langName: '🌐 English',
                 trust_users: '🌍 Used by 50,000+ users',
@@ -755,6 +812,7 @@
                 trust_free: '🚫 No Ads, No Signup'
             },
             'zh-CN': {
+                tool_name: '中国亲戚称谓计算器',
                 backHome: '← 返回工具箱',
                 title: '亲戚关系计算器',
                 subtitle: '快速查询中国家庭亲戚称呼，再也不怕叫错人',
@@ -814,17 +872,15 @@
                 faq5A: '堂亲是父系同姓亲属（父亲兄弟的子女），表亲是母系或父系异姓亲属（父亲姐妹或母亲兄弟姐妹的子女）。堂兄弟姐妹一般同姓，表兄弟姐妹一般不同姓。',
                 faq_free_q: '这个工具真的免费吗？安全吗？',
                 faq_free_a: '是的，本工具 100% 免费，无广告、无需注册、无使用限制、无水印。所有处理都在浏览器中完成，数据不会离开你的设备，完全安全且隐私。',
-                relatedTools: '相关工具推荐',
-                calculator: '科学计算器',
-                calculatorDesc: '支持复杂表达式',
-                worldClock: '世界时钟',
-                worldClockDesc: '全球时区时间',
-                timestampConverter: '时间戳转换',
-                timestampConverterDesc: '时间戳与日期互转',
-                chineseConverter: '简繁转换',
-                chineseConverterDesc: '简体繁体中文转换',
-                footerPrivacy: '纯前端处理，数据不会上传到服务器',
-                footerBack: '← 返回 Web Toolbox 首页',
+                relatedToolsTitle: '相关工具推荐',
+                relatedTool1: '天使数字计算器',
+                relatedTool1Desc: '揭示天使数字含义',
+                relatedTool2: '命理计算器',
+                relatedTool2Desc: '计算你的生命路径数',
+                relatedTool3: '塔罗牌占卜',
+                relatedTool3Desc: '在线塔罗牌占卜',
+                relatedTool4: '星座计算器',
+                relatedTool4Desc: '计算你的星座',
                 deText: '的',
                 langName: '🌐 中文',
                 trust_users: '🌍 超过 50,000 用户使用',
@@ -833,6 +889,7 @@
                 trust_free: '🚫 无广告、无需注册'
             },
             'fr': {
+                tool_name: 'Calculateur de titre de famille chinoise',
                 backHome: '← Retour aux outils',
                 title: 'Calculateur de parenté chinoise',
                 subtitle: 'Trouvez rapidement les titres familiaux chinois, ne vous trompez plus jamais',
@@ -892,17 +949,15 @@
                 faq5A: 'Tang sont les parents paternels du même nom (enfants des frères du père), Biao sont les parents maternels ou paternels de nom différent (enfants des sœurs du père ou des frères et sœurs de la mère).',
                 faq_free_q: 'Cet outil est-il vraiment gratuit ? Est-il sûr ?',
                 faq_free_a: 'Oui, cet outil est 100% gratuit, sans publicité, sans inscription, sans limites d\'utilisation et sans filigrane. Tout le traitement se fait dans votre navigateur — vos données ne quittent jamais votre appareil.',
-                relatedTools: 'Outils connexes',
-                calculator: 'Calculatrice',
-                calculatorDesc: 'Expressions scientifiques',
-                worldClock: 'Horloge mondiale',
-                worldClockDesc: 'Fuseaux horaires mondiaux',
-                timestampConverter: 'Convertisseur de timestamp',
-                timestampConverterDesc: 'Convertir les timestamps',
-                chineseConverter: 'Convertisseur chinois',
-                chineseConverterDesc: 'Simplifié/Traditionnel',
-                footerPrivacy: 'Traitement côté client, aucune donnée envoyée au serveur',
-                footerBack: '← Retour à l\'accueil Web Toolbox',
+                relatedToolsTitle: 'Outils connexes',
+                relatedTool1: 'Calculateur de nombre d\'ange',
+                relatedTool1Desc: 'Découvrez la signification des nombres',
+                relatedTool2: 'Calculateur de numérologie',
+                relatedTool2Desc: 'Calculez votre chemin de vie',
+                relatedTool3: 'Lecture de tarot',
+                relatedTool3Desc: 'Lecture de cartes de tarot en ligne',
+                relatedTool4: 'Calculateur de zodiaque',
+                relatedTool4Desc: 'Calculez votre signe du zodiaque',
                 deText: ' de ',
                 langName: '🌐 Français',
                 trust_users: '🌍 Utilisé par 50 000+ utilisateurs',
@@ -911,6 +966,7 @@
                 trust_free: '🚫 Sans pub, sans inscription'
             },
             'es': {
+                tool_name: 'Calculadora de título familiar chino',
                 backHome: '← Volver a herramientas',
                 title: 'Calculadora de parentesco chino',
                 subtitle: 'Encuentra rápidamente los títulos familiares chinos, nunca más te equivoques',
@@ -970,17 +1026,15 @@
                 faq5A: 'Tang son parientes paternos del mismo apellido (hijos de los hermanos del padre), Biao son parientes maternos o paternos de diferente apellido (hijos de las hermanas del padre o hermanos de la madre).',
                 faq_free_q: '¿Esta herramienta es realmente gratuita? ¿Es segura?',
                 faq_free_a: 'Sí, esta herramienta es 100% gratuita, sin anuncios, sin registro, sin límites de uso y sin marcas de agua. Todo el procesamiento ocurre en tu navegador — tus datos nunca salen de tu dispositivo.',
-                relatedTools: 'Herramientas relacionadas',
-                calculator: 'Calculadora',
-                calculatorDesc: 'Expresiones científicas',
-                worldClock: 'Reloj mundial',
-                worldClockDesc: 'Zonas horarias globales',
-                timestampConverter: 'Convertidor de timestamp',
-                timestampConverterDesc: 'Convertir timestamps',
-                chineseConverter: 'Convertidor chino',
-                chineseConverterDesc: 'Simplificado/Tradicional',
-                footerPrivacy: 'Procesamiento del lado del cliente, no se envían datos al servidor',
-                footerBack: '← Volver a la página principal de Web Toolbox',
+                relatedToolsTitle: 'Herramientas relacionadas',
+                relatedTool1: 'Calculadora de números angelicales',
+                relatedTool1Desc: 'Descubre el significado de los números',
+                relatedTool2: 'Calculadora de numerología',
+                relatedTool2Desc: 'Calcula tu número de camino de vida',
+                relatedTool3: 'Lectura de tarot',
+                relatedTool3Desc: 'Lectura de cartas de tarot en línea',
+                relatedTool4: 'Calculadora de zodiaco',
+                relatedTool4Desc: 'Calcula tu signo del zodiaco',
                 deText: ' de ',
                 langName: '🌐 Español',
                 trust_users: '🌍 Usado por más de 50,000 usuarios',
@@ -990,19 +1044,18 @@
             }
         };
 
+        // 获取当前语言
+        function getLang() {
+            return localStorage.getItem('relative_calculator_lang') || 'en';
+        }
 
-        // 语言切换器
-document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const lang = btn.getAttribute('data-lang');
-                applyTranslations(lang);
-                langDropdown.classList.remove('active');
-                // 重新渲染显示区域
-                updateDisplay();
-            });
-        });
-// 亲戚关系数据库
+        // 翻译函数
+        function t(key) {
+            const lang = getLang();
+            return i18n[lang]?.[key] || i18n['en']?.[key] || key;
+        }
+
+        // 亲戚关系数据库
         const relationData = {
             // 父系
             '父亲': { title: '爸爸', alt: ['父亲', '老爸', '爹', '爹地', '老爷子'], gender: 'm' },
@@ -1184,7 +1237,8 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
 
         // 获取关系的显示文本
         function getRelationDisplayText(rel) {
-            const translations = i18n[currentLang];
+            const lang = getLang();
+            const translations = i18n[lang];
             const keyMap = {
                 '父亲': 'father',
                 '母亲': 'mother',
@@ -1209,7 +1263,8 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
         // 更新显示
         function updateDisplay() {
             inputDisplay.innerHTML = '';
-            const translations = i18n[currentLang];
+            const lang = getLang();
+            const translations = i18n[lang];
 
             relationChain.forEach((rel, index) => {
                 if (index > 0) {
@@ -1236,16 +1291,13 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
         function clearAll() {
             relationChain = [];
             updateDisplay();
-            const translations = i18n[currentLang];
-            resultContent.innerHTML = `<span class="result-empty">${translations.resultEmpty}</span>`;
+            resultContent.innerHTML = `<span class="result-empty">${t('resultEmpty')}</span>`;
         }
 
         // 计算
         function calculate() {
-            const translations = i18n[currentLang];
-
             if (relationChain.length === 0) {
-                resultContent.innerHTML = `<span class="result-empty">${translations.resultPleaseSelect}</span>`;
+                resultContent.innerHTML = `<span class="result-empty">${t('resultPleaseSelect')}</span>`;
                 return;
             }
 
@@ -1253,10 +1305,10 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
             const result = findRelation(key);
 
             if (result) {
-                const relationText = relationChain.map(r => getRelationDisplayText(r)).join(translations.deText);
+                const relationText = relationChain.map(r => getRelationDisplayText(r)).join(t('deText'));
                 resultContent.innerHTML = `
                     <div class="result-title">${result.title}</div>
-                    <div class="result-alt">${translations.resultAlsoCalledPrefix}${result.alt.join('、')}</div>
+                    <div class="result-alt">${t('resultAlsoCalledPrefix')}${result.alt.join('、')}</div>
                     <div class="result-relation">${relationText} → ${result.title}</div>
                 `;
             } else {
@@ -1264,16 +1316,16 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
                 const simplified = simplifyRelation(relationChain);
                 if (simplified && relationData[simplified]) {
                     const r = relationData[simplified];
-                    const relationText = relationChain.map(r => getRelationDisplayText(r)).join(translations.deText);
+                    const relationText = relationChain.map(r => getRelationDisplayText(r)).join(t('deText'));
                     resultContent.innerHTML = `
                         <div class="result-title">${r.title}</div>
-                        <div class="result-alt">${translations.resultAlsoCalledPrefix}${r.alt.join('、')}</div>
+                        <div class="result-alt">${t('resultAlsoCalledPrefix')}${r.alt.join('、')}</div>
                         <div class="result-relation">${relationText} → ${r.title}</div>
                     `;
                 } else {
                     resultContent.innerHTML = `
-                        <div class="result-title" style="font-size: 1.5rem; color: #f472b6;">${translations.resultComplexTitle}</div>
-                        <div class="result-alt">${translations.resultComplexDesc}</div>
+                        <div class="result-title" style="font-size: 1.5rem; color: #f472b6;">${t('resultComplexTitle')}</div>
+                        <div class="result-alt">${t('resultComplexDesc')}</div>
                     `;
                 }
             }
@@ -1328,39 +1380,23 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
             }
         });
 
-        // 初始化应用语言
-</script>
+        // 监听语言切换事件
+        window.addEventListener('languageChanged', () => {
+            updateDisplay();
+            // 如果有结果，重新计算以更新语言
+            if (relationChain.length > 0) {
+                calculate();
+            }
+        });
+
+        // Export translations for common.js
+        window._translations = i18n;
+    </script>
     <script src="common/common.js" data-tool-id="relative-calculator" data-tool-name="Chinese Family Title Calculator" data-category="utility"></script>
-    <script>WebToolbox.init(translations);</script>
-
-
-    <!-- FAQ 常见问题 -->
-    <section class="faq-section">
-        <h2 data-i18n="faqTitle">Frequently Asked Questions</h2>
-        <div class="faq-item">
-            <div class="faq-question" data-i18n="faq1Q">How to use the relative relationship calculator?</div>
-            <div class="faq-answer" data-i18n="faq1A">Starting from 'Me', select relative relationships step by step (e.g., father's older brother's son). The system automatically calculates the title. Click the relationship buttons below to build the chain, then click 'Calculate' to get the correct title.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question" data-i18n="faq2Q">How many generations of relatives are supported?</div>
-            <div class="faq-answer" data-i18n="faq2A">Supports both lineal and collateral relatives, capable of calculating complex multi-generational relationships. Includes paternal, maternal, and in-law family relationships, covering from great-grandparents to grandchildren.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question" data-i18n="faq3Q">Why are there multiple titles for the same relationship?</div>
-            <div class="faq-answer" data-i18n="faq3A">Different regions in China have different dialects, so the same relationship may have different titles. For example, maternal grandmother is called 'Laolao' in the north and 'Waipo' or 'Apo' in the south. This tool includes common titles from various regions.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question" data-i18n="faq4Q">How are in-law relationships calculated?</div>
-            <div class="faq-answer" data-i18n="faq4A">Relatives of your spouse are calculated as in-laws, such as father-in-law and mother-in-law. Select 'Husband' or 'Wife' first, then select the corresponding relative. For example: wife's father = Yuefu (father-in-law), husband's mother = Popo (mother-in-law).</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question" data-i18n="faq5Q">What is the difference between Tang and Biao relatives?</div>
-            <div class="faq-answer" data-i18n="faq5A">Tang relatives are paternal same-surname relatives (children of father's brothers), while Biao relatives are maternal or paternal different-surname relatives (children of father's sisters or mother's siblings). Tang siblings usually share the same surname, while Biao siblings usually have different surnames.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question" data-i18n="faq_free_q">Is this tool really free? Are there any hidden charges?</div>
-            <div class="faq-answer" data-i18n="faq_free_a">Yes, this tool is 100% free with no hidden charges, no ads, and no signup required. It runs entirely in your browser — your data never leaves your device.</div>
-        </div>
-    </section>
+    <script>
+        if (typeof WebToolbox !== 'undefined') {
+            WebToolbox.init(window._translations);
+        }
+    </script>
 </body>
 </html>

@@ -147,7 +147,7 @@
         border: 1px solid rgba(255,255,255,0.1);
     }
 
-    .lang-dropdown.active .header h1 {
+    .header h1 {
         font-size: 1.4rem;
         background: linear-gradient(135deg, #60a5fa, #a78bfa);
         -webkit-background-clip: text;
@@ -156,7 +156,8 @@
         align-items: center;
         gap: 10px;
     }
-/* Privacy Banner */
+
+    /* Privacy Banner */
     .privacy-banner {
         background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(16,185,129,0.05));
         border: 1px solid rgba(16,185,129,0.3);
@@ -581,12 +582,6 @@
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
-<!-- UI -->
     <div class="container">
 <header class="header">
             
@@ -926,6 +921,92 @@
                 </div>
             </div>
         </div>
+
+        <!-- FAQ 问答区块 -->
+        <section class="faq-section" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
+            <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid #30363d;" data-i18n="faqTitle">❓ FAQ</h2>
+            <div class="faq-list" style="display: flex; flex-direction: column; gap: 16px;">
+                <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; font-weight: 500; color: #e6edf3; list-style: none; display: flex; justify-content: space-between; align-items: center;" data-i18n="faq1Question">
+                        What ID photo sizes are supported?
+                        <span style="color: #8b949e; font-size: 18px;">+</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #8b949e; line-height: 1.7;" data-i18n="faq1Answer">
+                        Supports 1-inch (25x35mm), 2-inch (35x49mm), small 1-inch (22x32mm), passport (33x48mm) and other common sizes. You can also choose "Free Crop" mode to customize any size.
+                    </div>
+                </details>
+                <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; font-weight: 500; color: #e6edf3; list-style: none; display: flex; justify-content: space-between; align-items: center;" data-i18n="faq2Question">
+                        What background colors are available?
+                        <span style="color: #8b949e; font-size: 18px;">+</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #8b949e; line-height: 1.7;" data-i18n="faq2Answer">
+                        Supports red, blue, and white - the most common ID photo background colors. In the "Resize" settings, you can use the color picker to customize any background color.
+                    </div>
+                </details>
+                <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; font-weight: 500; color: #e6edf3; list-style: none; display: flex; justify-content: space-between; align-items: center;" data-i18n="faq3Question">
+                        Will my photos be uploaded to a server?
+                        <span style="color: #8b949e; font-size: 18px;">+</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #8b949e; line-height: 1.7;" data-i18n="faq3Answer">
+                        No, all processing is done locally in your browser. Photos never leave your device. This is a completely offline tool, ideal for processing sensitive ID documents. All data is cleared when you refresh the page.
+                    </div>
+                </details>
+                <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; font-weight: 500; color: #e6edf3; list-style: none; display: flex; justify-content: space-between; align-items: center;" data-i18n="faq4Question">
+                        Can I use photos taken with my phone?
+                        <span style="color: #8b949e; font-size: 18px;">+</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #8b949e; line-height: 1.7;" data-i18n="faq4Answer">
+                        Yes, we recommend taking front-facing photos in well-lit environments with a simple background. After uploading, use the crop function to adjust to the appropriate ID photo ratio.
+                    </div>
+                </details>
+                <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; font-weight: 500; color: #e6edf3; list-style: none; display: flex; justify-content: space-between; align-items: center;" data-i18n="faq5Question">
+                        What resolution are the exported photos?
+                        <span style="color: #8b949e; font-size: 18px;">+</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #8b949e; line-height: 1.7;" data-i18n="faq5Answer">
+                        Photos are exported at standard print resolution (300dpi). For example, 1-inch photos are 295x413 pixels, 2-inch photos are 413x531 pixels, meeting all ID photo printing requirements.
+                    </div>
+                </details>
+                <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; font-weight: 500; color: #e6edf3; list-style: none; display: flex; justify-content: space-between; align-items: center;" data-i18n="faq_free_q">
+                        Is this tool really free? Is it safe?
+                        <span style="color: #8b949e; font-size: 18px;">+</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #8b949e; line-height: 1.7;" data-i18n="faq_free_a">
+                        Yes, this tool is 100% free with no ads, no signup, no usage limits, and no watermarks. All processing happens in your browser — your data never leaves your device. It's completely safe and private.
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- 相关工具 -->
+        <section class="related-tools" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
+            <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
+                <span style="color: #7c3aed;">🔗</span> <span data-i18n="relatedToolsTitle">Related Tools</span>
+            </h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px;">
+                <a href="image-compressor.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">📦</div>
+                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool1">Image Compressor</div>
+                </a>
+                <a href="paint-board.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">🎨</div>
+                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool2">Paint Board</div>
+                </a>
+                <a href="image-converter.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">🔄</div>
+                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool3">Image Converter</div>
+                </a>
+                <a href="bg-remover.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">✂️</div>
+                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool4">Background Remover</div>
+                </a>
+            </div>
+        </section>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
@@ -1550,76 +1631,19 @@
     })();
     </script>
 
-    <!-- FAQ 问答区块 -->
-    <section class="faq-section" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
-        <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid #30363d;" data-i18n="faqTitle">❓ FAQ</h2>
-        <div class="faq-list" style="display: flex; flex-direction: column; gap: 16px;">
-            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; font-weight: 500; color: #e6edf3; list-style: none; display: flex; justify-content: space-between; align-items: center;" data-i18n="faq1Question">
-                    What ID photo sizes are supported?
-                    <span style="color: #8b949e; font-size: 18px;">+</span>
-                </summary>
-                <div style="padding: 0 20px 16px; color: #8b949e; line-height: 1.7;" data-i18n="faq1Answer">
-                    Supports 1-inch (25x35mm), 2-inch (35x49mm), small 1-inch (22x32mm), passport (33x48mm) and other common sizes. You can also choose "Free Crop" mode to customize any size.
-                </div>
-            </details>
-            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; font-weight: 500; color: #e6edf3; list-style: none; display: flex; justify-content: space-between; align-items: center;" data-i18n="faq2Question">
-                    What background colors are available?
-                    <span style="color: #8b949e; font-size: 18px;">+</span>
-                </summary>
-                <div style="padding: 0 20px 16px; color: #8b949e; line-height: 1.7;" data-i18n="faq2Answer">
-                    Supports red, blue, and white - the most common ID photo background colors. In the "Resize" settings, you can use the color picker to customize any background color.
-                </div>
-            </details>
-            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; font-weight: 500; color: #e6edf3; list-style: none; display: flex; justify-content: space-between; align-items: center;" data-i18n="faq3Question">
-                    Will my photos be uploaded to a server?
-                    <span style="color: #8b949e; font-size: 18px;">+</span>
-                </summary>
-                <div style="padding: 0 20px 16px; color: #8b949e; line-height: 1.7;" data-i18n="faq3Answer">
-                    No, all processing is done locally in your browser. Photos never leave your device. This is a completely offline tool, ideal for processing sensitive ID documents. All data is cleared when you refresh the page.
-                </div>
-            </details>
-            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; font-weight: 500; color: #e6edf3; list-style: none; display: flex; justify-content: space-between; align-items: center;" data-i18n="faq4Question">
-                    Can I use photos taken with my phone?
-                    <span style="color: #8b949e; font-size: 18px;">+</span>
-                </summary>
-                <div style="padding: 0 20px 16px; color: #8b949e; line-height: 1.7;" data-i18n="faq4Answer">
-                    Yes, we recommend taking front-facing photos in well-lit environments with a simple background. After uploading, use the crop function to adjust to the appropriate ID photo ratio.
-                </div>
-            </details>
-            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; font-weight: 500; color: #e6edf3; list-style: none; display: flex; justify-content: space-between; align-items: center;" data-i18n="faq5Question">
-                    What resolution are the exported photos?
-                    <span style="color: #8b949e; font-size: 18px;">+</span>
-                </summary>
-                <div style="padding: 0 20px 16px; color: #8b949e; line-height: 1.7;" data-i18n="faq5Answer">
-                    Photos are exported at standard print resolution (300dpi). For example, 1-inch photos are 295x413 pixels, 2-inch photos are 413x531 pixels, meeting all ID photo printing requirements.
-                </div>
-            </details>
-            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; font-weight: 500; color: #e6edf3; list-style: none; display: flex; justify-content: space-between; align-items: center;" data-i18n="faq_free_q">
-                    Is this tool really free? Is it safe?
-                    <span style="color: #8b949e; font-size: 18px;">+</span>
-                </summary>
-                <div style="padding: 0 20px 16px; color: #8b949e; line-height: 1.7;" data-i18n="faq_free_a">
-                    Yes, this tool is 100% free with no ads, no signup, no usage limits, and no watermarks. All processing happens in your browser — your data never leaves your device. It's completely safe and private.
-                </div>
-            </details>
-        </div>
-    </section>
-
     <!-- i18n Script -->
     <script>
     (function() {
         'use strict';
 
+        function getLang() {
+            return (typeof WebToolbox !== 'undefined') ? WebToolbox.getCurrentLang() : (localStorage.getItem('toolbox_lang') || 'en');
+        }
+
         const translations = {
             'en': {
+                tool_name: 'ID Photo Maker',
                 title: '📷 ID Photo Cropper & Watermark',
-                backToToolbox: '← Back to Toolbox',
                 privacyTitle: 'This Tool Runs Completely Offline',
                 privacyDesc: 'All image processing is done locally in your browser with no network requests. Ideal for sensitive documents like ID cards, driver\'s licenses, and passports. Refresh the page to clear all data.',
                 feature1_title: '100% Free & Private',
@@ -1716,25 +1740,23 @@
                 faq5Answer: 'Photos are exported at standard print resolution (300dpi). For example, 1-inch photos are 295x413 pixels, 2-inch photos are 413x531 pixels, meeting all ID photo printing requirements.',
                 faq_free_q: 'Is this tool really free? Is it safe?',
                 faq_free_a: 'Yes, this tool is 100% free with no ads, no signup, no usage limits, and no watermarks. All processing happens in your browser — your data never leaves your device. It\'s completely safe and private.',
-                relatedTools: '🔗 Related Tools',
-                toolCompressor: 'Image Compressor',
-                toolCompressorDesc: 'Compress image file size',
-                toolEditor: 'Image Editor',
-                toolEditorDesc: 'Crop, rotate, filters',
-                toolConverter: 'Image Converter',
-                toolConverterDesc: 'PNG/JPG/WebP conversion',
-                toolIco: 'ICO Maker',
-                toolIcoDesc: 'Generate website icons',
-                footerPrivacy: 'Pure frontend processing, data is never uploaded to servers',
-                footerBack: '← Back to Web Toolbox',
+                relatedToolsTitle: 'Related Tools',
+                relatedTool1: 'Image Compressor',
+                relatedTool1Desc: 'Compress image file size',
+                relatedTool2: 'Paint Board',
+                relatedTool2Desc: 'Online drawing tool',
+                relatedTool3: 'Image Converter',
+                relatedTool3Desc: 'PNG/JPG/WebP conversion',
+                relatedTool4: 'Background Remover',
+                relatedTool4Desc: 'Remove image background',
                 trust_users: '🌍 Used by 50,000+ users',
                 trust_rating: '⭐ 4.9/5 rating',
                 trust_privacy: '🔒 100% Private',
                 trust_free: '🚫 No Ads, No Signup'
             },
             'zh-CN': {
+                tool_name: '证件照制作',
                 title: '📷 证件照裁剪 & 透明文字水印',
-                backToToolbox: '← 返回工具箱',
                 privacyTitle: '本工具完全离线运行',
                 privacyDesc: '所有图片处理均在本地浏览器完成，无任何网络请求，适合身份证、驾照、护照等敏感证件处理。刷新页面即清空所有数据。',
                 feature1_title: '100% 免费且安全',
@@ -1831,25 +1853,23 @@
                 faq5Answer: '根据选择的规格导出标准打印分辨率(300dpi)。例如一寸照片为295x413像素，二寸照片为413x531像素，满足各类证件照打印需求。',
                 faq_free_q: '这个工具真的免费吗？安全吗？',
                 faq_free_a: '是的，本工具 100% 免费，无广告、无需注册、无使用限制、无水印。所有处理都在浏览器中完成，数据不会离开你的设备，完全安全且隐私。',
-                relatedTools: '🔗 相关工具推荐',
-                toolCompressor: '图片压缩',
-                toolCompressorDesc: '在线压缩图片大小',
-                toolEditor: '图片编辑器',
-                toolEditorDesc: '裁剪、旋转、滤镜',
-                toolConverter: '图片格式转换',
-                toolConverterDesc: 'PNG/JPG/WebP 互转',
-                toolIco: 'ICO 图标制作',
-                toolIcoDesc: '生成网站图标',
-                footerPrivacy: '纯前端处理，数据不会上传到服务器',
-                footerBack: '← 返回 Web Toolbox 首页',
+                relatedToolsTitle: '相关工具',
+                relatedTool1: '图片压缩',
+                relatedTool1Desc: '在线压缩图片大小',
+                relatedTool2: '画板工具',
+                relatedTool2Desc: '在线绘图工具',
+                relatedTool3: '图片格式转换',
+                relatedTool3Desc: 'PNG/JPG/WebP 互转',
+                relatedTool4: '背景移除',
+                relatedTool4Desc: '移除图片背景',
                 trust_users: '🌍 超过 50,000 用户使用',
                 trust_rating: '⭐ 4.9/5 好评',
                 trust_privacy: '🔒 100% 隐私安全',
                 trust_free: '🚫 无广告、无需注册'
             },
             'fr': {
+                tool_name: 'Photo d\'identité',
                 title: '📷 Recadrage Photo ID & Filigrane',
-                backToToolbox: '← Retour à la Boîte à Outils',
                 privacyTitle: 'Cet Outil Fonctionne Entièrement Hors Ligne',
                 privacyDesc: 'Tout le traitement d\'image est effectué localement dans votre navigateur sans requêtes réseau. Idéal pour les documents sensibles comme les cartes d\'identité, permis de conduire et passeports. Actualisez la page pour effacer toutes les données.',
                 feature1_title: '100% Gratuit et Privé',
@@ -1946,25 +1966,23 @@
                 faq5Answer: 'Les photos sont exportées à la résolution d\'impression standard (300dpi). Par exemple, les photos 1 pouce font 295x413 pixels.',
                 faq_free_q: 'Cet outil est-il vraiment gratuit ? Est-il sûr ?',
                 faq_free_a: 'Oui, cet outil est 100% gratuit, sans publicité, sans inscription, sans limites d\'utilisation et sans filigrane. Tout le traitement se fait dans votre navigateur — vos données ne quittent jamais votre appareil.',
-                relatedTools: '🔗 Outils Connexes',
-                toolCompressor: 'Compresseur d\'Image',
-                toolCompressorDesc: 'Compresser la taille du fichier',
-                toolEditor: 'Éditeur d\'Image',
-                toolEditorDesc: 'Recadrer, pivoter, filtres',
-                toolConverter: 'Convertisseur d\'Image',
-                toolConverterDesc: 'Conversion PNG/JPG/WebP',
-                toolIco: 'Créateur ICO',
-                toolIcoDesc: 'Générer des icônes de site',
-                footerPrivacy: 'Traitement frontend pur, les données ne sont jamais téléversées',
-                footerBack: '← Retour à Web Toolbox',
+                relatedToolsTitle: 'Outils connexes',
+                relatedTool1: 'Compresseur d\'image',
+                relatedTool1Desc: 'Compresser la taille du fichier',
+                relatedTool2: 'Tableau de peinture',
+                relatedTool2Desc: 'Outil de dessin en ligne',
+                relatedTool3: 'Convertisseur d\'image',
+                relatedTool3Desc: 'Conversion PNG/JPG/WebP',
+                relatedTool4: 'Suppression d\'arrière-plan',
+                relatedTool4Desc: 'Supprimer l\'arrière-plan',
                 trust_users: '🌍 Utilisé par 50 000+ utilisateurs',
                 trust_rating: '⭐ Note 4.9/5',
                 trust_privacy: '🔒 100% Privé',
                 trust_free: '🚫 Sans pub, sans inscription'
             },
             'es': {
+                tool_name: 'Foto de identificación',
                 title: '📷 Recorte de Foto ID y Marca de Agua',
-                backToToolbox: '← Volver a la Caja de Herramientas',
                 privacyTitle: 'Esta Herramienta Funciona Completamente Sin Conexión',
                 privacyDesc: 'Todo el procesamiento de imágenes se realiza localmente en su navegador sin solicitudes de red. Ideal para documentos sensibles como tarjetas de identificación, licencias de conducir y pasaportes. Actualice la página para borrar todos los datos.',
                 feature1_title: '100% Gratis y Privado',
@@ -2061,69 +2079,27 @@
                 faq5Answer: 'Las fotos se exportan a resolución de impresión estándar (300dpi). Por ejemplo, las fotos de 1 pulgada son 295x413 píxeles.',
                 faq_free_q: '¿Esta herramienta es realmente gratuita? ¿Es segura?',
                 faq_free_a: 'Sí, esta herramienta es 100% gratuita, sin anuncios, sin registro, sin límites de uso y sin marcas de agua. Todo el procesamiento ocurre en tu navegador — tus datos nunca salen de tu dispositivo.',
-                relatedTools: '🔗 Herramientas Relacionadas',
-                toolCompressor: 'Compresor de Imágenes',
-                toolCompressorDesc: 'Comprimir tamaño de archivo',
-                toolEditor: 'Editor de Imágenes',
-                toolEditorDesc: 'Recortar, rotar, filtros',
-                toolConverter: 'Convertidor de Imágenes',
-                toolConverterDesc: 'Conversión PNG/JPG/WebP',
-                toolIco: 'Creador de ICO',
-                toolIcoDesc: 'Generar iconos de sitio web',
-                footerPrivacy: 'Procesamiento frontend puro, los datos nunca se suben a servidores',
-                footerBack: '← Volver a Web Toolbox',
+                relatedToolsTitle: 'Herramientas relacionadas',
+                relatedTool1: 'Compresor de imágenes',
+                relatedTool1Desc: 'Comprimir tamaño de archivo',
+                relatedTool2: 'Tablero de pintura',
+                relatedTool2Desc: 'Herramienta de dibujo en línea',
+                relatedTool3: 'Convertidor de imágenes',
+                relatedTool3Desc: 'Conversión PNG/JPG/WebP',
+                relatedTool4: 'Eliminador de fondo',
+                relatedTool4Desc: 'Eliminar fondo de imagen',
                 trust_users: '🌍 Usado por más de 50,000 usuarios',
                 trust_rating: '⭐ Calificación 4.9/5',
                 trust_privacy: '🔒 100% Privado',
                 trust_free: '🚫 Sin anuncios, sin registro'
             }
         };
-function getBrowserLanguage() {
-            const lang = navigator.language || navigator.userLanguage;
-            if (lang.startsWith('zh')) return 'zh-CN';
-            if (lang.startsWith('fr')) return 'fr';
-            if (lang.startsWith('es')) return 'es';
-            return 'en';
-        }
 
-        function setLanguage(lang) {
-            const t = translations[lang] || translations['en'];
-
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (t[key]) {
-                    el.innerHTML = t[key];
-                }
-            });
-
-            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-                const key = el.getAttribute('data-i18n-placeholder');
-                if (t[key]) {
-                    el.placeholder = t[key];
-                }
-            });
-
-            document.getElementById('langCurrent').textContent = langNames[lang] || langNames['en'];
-            localStorage.setItem('toolbox_lang', lang);
-        }
-
-        // Language dropdown toggle
-document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const lang = btn.getAttribute('data-lang');
-                setLanguage(lang);
-                langDropdown.classList.remove('active');
-            });
-        });
-// Initialize language
-        const savedLang = localStorage.getItem('toolbox_lang');
-        const initialLang = savedLang || getBrowserLanguage();
-        setLanguage(initialLang);
+        window._translations = translations;
     })();
     </script>
     <script src="common/common.js" data-tool-id="id-photo-tool" data-tool-name="ID Photo Tool" data-category="image"></script>
-    <script>WebToolbox.init(translations);</script>
+    <script>WebToolbox.init(window._translations);</script>
 
 </body>
 </html>

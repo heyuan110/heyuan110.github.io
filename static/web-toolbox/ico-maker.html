@@ -782,7 +782,7 @@ h1 {
             line-height: 1.7;
         }
 
-        .lang-dropdown.active @media (max-width: 768px) {
+        @media (max-width: 768px) {
             h1 {
                 font-size: 1.8rem;
             }
@@ -843,11 +843,6 @@ h1 {
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
 <div class="container">
 <header>
             
@@ -1050,20 +1045,93 @@ h1 {
             </div>
         </div>
 
-        <footer>
-            <p data-i18n="footerPrivacy">Pure frontend processing, images are not uploaded to the server</p>
-            <p style="margin-top: 8px;">
-                <a href="index.html" data-i18n="footerBack">← Back to Web Toolbox</a>
-            </p>
-        </footer>
+        <!-- FAQ -->
+        <section class="faq-section" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
+            <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
+                <span style="color: #7c3aed;">❓</span> <span data-i18n="faqTitle">FAQ</span>
+            </h2>
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq1Q">What is ICO format used for?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq1A">ICO is the Windows icon format, used for desktop shortcuts, website favicons, etc. It can contain multiple icon sizes, and the system will automatically choose the appropriate size to display.</div>
+                </details>
+                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq2Q">What image size is recommended?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq2A">We recommend using 256x256 or larger square images. The tool will automatically scale to generate various required sizes.</div>
+                </details>
+                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq3Q">Does it support transparent backgrounds?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq3A">Yes, upload a PNG image with transparency to preserve the transparent areas. The generated ICO file will maintain the original image's alpha channel.</div>
+                </details>
+                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq4Q">What sizes are included in the generated ICO?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq4A">It includes common sizes like 16x16, 32x32, 48x48, 64x64, 128x128, 256x256, etc. You can freely select which sizes to include.</div>
+                </details>
+                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq5Q">Can it be used for website favicon?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq5A">Yes, the generated ICO file can be used directly as a website icon. Name the file favicon.ico and place it in the website root directory.</div>
+                </details>
+                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq_free_q">Is this tool really free? Is it safe?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</div>
+                </details>
+            </div>
+        </section>
+
+        <!-- 相关工具 -->
+        <section class="related-tools" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
+            <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
+                <span style="color: #7c3aed;">🔗</span> <span data-i18n="relatedToolsTitle">Related Tools</span>
+            </h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px;">
+                <a href="image-converter.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">🔄</div>
+                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool1">Image Converter</div>
+                </a>
+                <a href="image-compressor.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">📦</div>
+                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool2">Image Compressor</div>
+                </a>
+                <a href="paint-board.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">🎨</div>
+                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool3">Paint Board</div>
+                </a>
+                <a href="bg-remover.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">✂️</div>
+                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool4">Background Remover</div>
+                </a>
+            </div>
+        </section>
     </div>
 
     <script>
         // ==================== i18n 多语言支持 ====================
         const i18n = {
             'en': {
-                langName: '🌐 English',
-                backLink: '← Back to Toolbox',
+                tool_name: 'ICO Maker',
+                relatedToolsTitle: 'Related Tools',
+                relatedTool1: 'Image Converter',
+                relatedTool2: 'Image Compressor',
+                relatedTool3: 'Paint Board',
+                relatedTool4: 'Background Remover',
                 title: '🎨 ICO Icon Maker',
                 subtitle: 'Convert PNG, JPG, GIF images to ICO icon files',
                 feature1Title: '100% Free & Private',
@@ -1131,8 +1199,12 @@ h1 {
                 trust_free: '🚫 No Ads, No Signup'
             },
             'zh-CN': {
-                langName: '🌐 中文',
-                backLink: '← 返回工具箱',
+                tool_name: 'ICO 图标制作',
+                relatedToolsTitle: '相关工具',
+                relatedTool1: '图片格式转换',
+                relatedTool2: '图片压缩',
+                relatedTool3: '在线画板',
+                relatedTool4: '背景去除',
                 title: '🎨 ICO 图标制作',
                 subtitle: '将 PNG、JPG、GIF 图片转换为 ICO 图标文件',
                 feature1Title: '100% 免费且安全',
@@ -1200,8 +1272,12 @@ h1 {
                 trust_free: '🚫 无广告、无需注册'
             },
             'fr': {
-                langName: '🌐 Français',
-                backLink: '← Retour à la boîte à outils',
+                tool_name: 'Créateur ICO',
+                relatedToolsTitle: 'Outils connexes',
+                relatedTool1: 'Convertisseur d\'images',
+                relatedTool2: 'Compresseur d\'images',
+                relatedTool3: 'Tableau de peinture',
+                relatedTool4: 'Suppression d\'arrière-plan',
                 title: '🎨 Créateur d\'icônes ICO',
                 subtitle: 'Convertir des images PNG, JPG, GIF en fichiers icônes ICO',
                 feature1Title: '100% Gratuit et Privé',
@@ -1269,8 +1345,12 @@ h1 {
                 trust_free: '🚫 Sans pub, sans inscription'
             },
             'es': {
-                langName: '🌐 Español',
-                backLink: '← Volver a la caja de herramientas',
+                tool_name: 'Creador de ICO',
+                relatedToolsTitle: 'Herramientas relacionadas',
+                relatedTool1: 'Convertidor de imágenes',
+                relatedTool2: 'Compresor de imágenes',
+                relatedTool3: 'Tablero de pintura',
+                relatedTool4: 'Eliminador de fondo',
                 title: '🎨 Creador de iconos ICO',
                 subtitle: 'Convertir imágenes PNG, JPG, GIF a archivos de iconos ICO',
                 feature1Title: '100% Gratis y Privado',
@@ -1338,127 +1418,19 @@ h1 {
                 trust_free: '🚫 Sin anuncios, sin registro'
             }
         };
+
+        // 获取当前语言
+        function getLang() {
+            return (typeof WebToolbox !== 'undefined') ? WebToolbox.getCurrentLang() : (localStorage.getItem('toolbox_lang') || 'en');
+        }
+
 function t(key, params = {}) {
-            let text = i18n[currentLang]?.[key] || i18n['en'][key] || key;
+            let text = i18n[getLang()]?.[key] || i18n['en'][key] || key;
             Object.keys(params).forEach(param => {
                 text = text.replace(`{${param}}`, params[param]);
             });
             return text;
         }
-
-        function updatePageLanguage() {
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (i18n[currentLang]?.[key]) {
-                    el.textContent = i18n[currentLang][key];
-                }
-            });
-            document.getElementById('langCurrent').textContent = i18n[currentLang]?.langName || '🌐 English';
-
-            // 更新 FAQ 区块
-            updateFaqSection();
-            // 更新相关工具区块
-            updateRelatedToolsSection();
-        }
-
-        function updateFaqSection() {
-            const faqSection = document.querySelector('.faq-section');
-            if (faqSection) {
-                faqSection.innerHTML = `
-                    <h2 class="faq-title"><span>${t('faqTitle')}</span></h2>
-                    <div class="faq-list">
-                        <div class="faq-item">
-                            <div class="faq-question" onclick="toggleFaq(this)">
-                                <span>${t('faq1Q')}</span>
-                            </div>
-                            <div class="faq-answer">
-                                <div class="faq-answer-content">${t('faq1A')}</div>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question" onclick="toggleFaq(this)">
-                                <span>${t('faq2Q')}</span>
-                            </div>
-                            <div class="faq-answer">
-                                <div class="faq-answer-content">${t('faq2A')}</div>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question" onclick="toggleFaq(this)">
-                                <span>${t('faq3Q')}</span>
-                            </div>
-                            <div class="faq-answer">
-                                <div class="faq-answer-content">${t('faq3A')}</div>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question" onclick="toggleFaq(this)">
-                                <span>${t('faq4Q')}</span>
-                            </div>
-                            <div class="faq-answer">
-                                <div class="faq-answer-content">${t('faq4A')}</div>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question" onclick="toggleFaq(this)">
-                                <span>${t('faq5Q')}</span>
-                            </div>
-                            <div class="faq-answer">
-                                <div class="faq-answer-content">${t('faq5A')}</div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }
-        }
-
-        function updateRelatedToolsSection() {
-            const relatedSection = document.querySelector('.related-tools');
-            if (relatedSection) {
-                relatedSection.innerHTML = `
-                    <h3 style="color: #e6edf3; font-size: 18px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #30363d;">${t('relatedTools')}</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
-                        <a href="image-compressor.html" style="display: block; padding: 16px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                            <div style="font-size: 24px; margin-bottom: 8px;">🗜️</div>
-                            <div style="color: #e6edf3; font-weight: 500;">${t('imageCompressor')}</div>
-                            <div style="color: #8b949e; font-size: 12px; margin-top: 4px;">${t('imageCompressorDesc')}</div>
-                        </a>
-                        <a href="image-converter.html" style="display: block; padding: 16px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                            <div style="font-size: 24px; margin-bottom: 8px;">🔄</div>
-                            <div style="color: #e6edf3; font-weight: 500;">${t('imageConverter')}</div>
-                            <div style="color: #8b949e; font-size: 12px; margin-top: 4px;">${t('imageConverterDesc')}</div>
-                        </a>
-                        <a href="image-editor.html" style="display: block; padding: 16px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                            <div style="font-size: 24px; margin-bottom: 8px;">✏️</div>
-                            <div style="color: #e6edf3; font-weight: 500;">${t('imageEditor')}</div>
-                            <div style="color: #8b949e; font-size: 12px; margin-top: 4px;">${t('imageEditorDesc')}</div>
-                        </a>
-                        <a href="id-photo-tool.html" style="display: block; padding: 16px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                            <div style="font-size: 24px; margin-bottom: 8px;">📷</div>
-                            <div style="color: #e6edf3; font-weight: 500;">${t('idPhotoTool')}</div>
-                            <div style="color: #8b949e; font-size: 12px; margin-top: 4px;">${t('idPhotoToolDesc')}</div>
-                        </a>
-                    </div>
-                `;
-            }
-        }
-
-
-        // 语言切换器事件
-        document.getElementById('langCurrent').addEventListener('click', (e) => {
-            e.stopPropagation();
-            document.getElementById('langDropdown').classList.toggle('active');
-        });
-});
-
-        document.addEventListener('click', () => {
-            document.getElementById('langDropdown').classList.remove('active');
-        });
-
-        // 页面加载时应用语言
-        document.addEventListener('DOMContentLoaded', () => {
-            updatePageLanguage();
-        });
 
         // ==================== 原有功能代码 ====================
         let originalImage = null;
@@ -1958,73 +1930,11 @@ function t(key, params = {}) {
                 faqItem.classList.add('active');
             }
         }
+
+        // 暴露翻译对象供 common.js 使用
+        window._translations = i18n;
     </script>
     <script src="common/common.js" data-tool-id="ico-maker" data-tool-name="ICO Maker" data-category="image"></script>
-    <script>WebToolbox.init(i18n);</script>
-
-
-    <!-- FAQ 问答区块 -->
-    <section class="faq-section">
-        <h2 class="faq-title"><span data-i18n="faqTitle">❓ FAQ</span></h2>
-        <div class="faq-list">
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span data-i18n="faq1Q">What is ICO format used for?</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content" data-i18n="faq1A">
-                        ICO is the Windows icon format, used for desktop shortcuts, website favicons, etc. It can contain multiple icon sizes, and the system will automatically choose the appropriate size to display.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span data-i18n="faq2Q">What image size is recommended?</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content" data-i18n="faq2A">
-                        We recommend using 256x256 or larger square images. The tool will automatically scale to generate various required sizes. Using high-resolution source images ensures quality after scaling.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span data-i18n="faq3Q">Does it support transparent backgrounds?</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content" data-i18n="faq3A">
-                        Yes, upload a PNG image with transparency to preserve the transparent areas. The generated ICO file will maintain the original image's alpha channel.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span data-i18n="faq4Q">What sizes are included in the generated ICO?</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content" data-i18n="faq4A">
-                        It includes common sizes like 16x16, 32x32, 48x48, 64x64, 128x128, 256x256, etc. You can freely select which sizes to include.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span data-i18n="faq5Q">Can it be used for website favicon?</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content" data-i18n="faq5A">
-                        Yes, the generated ICO file can be used directly as a website icon. Name the file favicon.ico and place it in the website root directory for browsers to automatically recognize it.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span data-i18n="faq_free_q">Is this tool really free with no ads?</span>
-                    <span class="arrow">▼</span>
-                </div>
-                <div class="faq-answer"><p data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</p></div>
-            </div>
-        </div>
-    </section>
+    <script>WebToolbox.init(window._translations);</script>
 </body>
 </html>

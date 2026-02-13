@@ -45,7 +45,6 @@
         "author": {"@type": "Person", "name": "heyuan110"},
         "publisher": {"@type": "Organization", "name": "Web Toolbox", "url": "https://www.heyuan110.com/web-toolbox/"},
         "screenshot": "https://www.heyuan110.com/web-toolbox/screenshots/image-editor.webp"
-        "alternateName": ["图片编辑器", "Online Photo Editor", "Image Editor"],
     }
     </script>
 
@@ -151,7 +150,7 @@
             position: relative;
         }
 
-        .lang-dropdown.active .logo {
+        .logo {
             display: flex;
             align-items: center;
             gap: 10px;
@@ -732,11 +731,6 @@
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
 <header class="header">
         
         <div class="logo">
@@ -1124,6 +1118,76 @@
             </div>
         </aside>
     </main>
+
+    <div class="container" style="max-width: 900px; margin: 0 auto; padding: 0 20px;">
+    <!-- FAQ 问答区块 -->
+    <section class="faq-section" style="margin: 40px auto; padding: 0;">
+        <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid #30363d;" data-i18n="faqTitle">FAQ</h2>
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 16px;">
+                <summary style="color: #e6edf3; font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                    <span data-i18n="faq1q">What image formats are supported?</span>
+                    <span style="color: #8b949e; font-size: 18px;">+</span>
+                </summary>
+                <p style="color: #8b949e; margin-top: 12px; padding-top: 12px; border-top: 1px solid #30363d; line-height: 1.6;" data-i18n="faq1a">Supports JPG, PNG, WebP, GIF, BMP and other common image formats.</p>
+            </details>
+            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 16px;">
+                <summary style="color: #e6edf3; font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                    <span data-i18n="faq2q">Can I undo edits?</span>
+                    <span style="color: #8b949e; font-size: 18px;">+</span>
+                </summary>
+                <p style="color: #8b949e; margin-top: 12px; padding-top: 12px; border-top: 1px solid #30363d; line-height: 1.6;" data-i18n="faq2a">Yes, undo and redo functions are supported.</p>
+            </details>
+            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 16px;">
+                <summary style="color: #e6edf3; font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                    <span data-i18n="faq3q">What format is the edited image?</span>
+                    <span style="color: #8b949e; font-size: 18px;">+</span>
+                </summary>
+                <p style="color: #8b949e; margin-top: 12px; padding-top: 12px; border-top: 1px solid #30363d; line-height: 1.6;" data-i18n="faq3a">You can choose to export as JPG, PNG, or WebP format.</p>
+            </details>
+            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 16px;">
+                <summary style="color: #e6edf3; font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                    <span data-i18n="faq4q">Can I batch edit images?</span>
+                    <span style="color: #8b949e; font-size: 18px;">+</span>
+                </summary>
+                <p style="color: #8b949e; margin-top: 12px; padding-top: 12px; border-top: 1px solid #30363d; line-height: 1.6;" data-i18n="faq4a">Not currently supported, only one image can be edited at a time.</p>
+            </details>
+            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 16px;">
+                <summary style="color: #e6edf3; font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                    <span data-i18n="faq5q">Are images uploaded to a server?</span>
+                    <span style="color: #8b949e; font-size: 18px;">+</span>
+                </summary>
+                <p style="color: #8b949e; margin-top: 12px; padding-top: 12px; border-top: 1px solid #30363d; line-height: 1.6;" data-i18n="faq5a">No, all editing is done locally in your browser.</p>
+            </details>
+            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 16px;">
+                <summary style="color: #e6edf3; font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                    <span data-i18n="faq_free_q">Is this tool really free with no ads?</span>
+                    <span style="color: #8b949e; font-size: 18px;">+</span>
+                </summary>
+                <p style="color: #8b949e; margin-top: 12px; padding-top: 12px; border-top: 1px solid #30363d; line-height: 1.6;" data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</p>
+            </details>
+        </div>
+    </section>
+
+    <!-- 相关工具推荐 -->
+    <section class="related-tools" style="margin: 40px auto; padding: 0;">
+        <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid #30363d;" data-i18n="relatedToolsTitle">Related Tools</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+            <a href="image-compressor.html" style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; text-decoration: none; transition: border-color 0.2s;">
+                <h3 style="color: #e6edf3; font-size: 15px; margin-bottom: 8px;" data-i18n="relatedTool1">Image Compressor</h3>
+                <p style="color: #8b949e; font-size: 13px; line-height: 1.5;" data-i18n="relatedTool1Desc">Compress image size online</p>
+            </a>
+            <a href="image-converter.html" style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; text-decoration: none; transition: border-color 0.2s;">
+                <h3 style="color: #e6edf3; font-size: 15px; margin-bottom: 8px;" data-i18n="relatedTool2">Image Converter</h3>
+                <p style="color: #8b949e; font-size: 13px; line-height: 1.5;" data-i18n="relatedTool2Desc">PNG/JPG/WebP conversion</p>
+            </a>
+            <a href="color-palette.html" style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; text-decoration: none; transition: border-color 0.2s;">
+                <h3 style="color: #e6edf3; font-size: 15px; margin-bottom: 8px;" data-i18n="relatedTool3">Color Palette</h3>
+                <p style="color: #8b949e; font-size: 13px; line-height: 1.5;" data-i18n="relatedTool3Desc">Color selection and conversion</p>
+            </a>
+        </div>
+    </section>
+    </div>
 
     <!-- Cropper.js -->
     <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.6.1/dist/cropper.min.js"></script>
@@ -2258,8 +2322,8 @@
         // ========== 多语言支持 ==========
         const i18n = {
             en: {
+                tool_name: "Image Editor",
                 title: "Online Image Editor",
-                backToToolbox: "← Back to Toolbox",
                 openImage: "📂 Open Image",
                 undo: "↩ Undo",
                 redo: "↪ Redo",
@@ -2342,17 +2406,13 @@
                 faq4a: "Not currently supported, only one image can be edited at a time.",
                 faq5q: "Are images uploaded to a server?",
                 faq5a: "No, all editing is done locally in your browser.",
-                relatedTools: "Related Tools",
-                toolCompressor: "Image Compressor",
-                toolCompressorDesc: "Compress image size online",
-                toolConverter: "Image Converter",
-                toolConverterDesc: "PNG/JPG/WebP conversion",
-                toolIdPhoto: "ID Photo Maker",
-                toolIdPhotoDesc: "Change ID photo background",
-                toolPalette: "Color Palette",
-                toolPaletteDesc: "Color selection and conversion",
-                footerText: "Pure frontend processing, data is not uploaded to server",
-                backToHome: "Back to Web Toolbox",
+                relatedToolsTitle: "Related Tools",
+                relatedTool1: "Image Compressor",
+                relatedTool1Desc: "Compress image size online",
+                relatedTool2: "Image Converter",
+                relatedTool2Desc: "PNG/JPG/WebP conversion",
+                relatedTool3: "Color Palette",
+                relatedTool3Desc: "Color selection and conversion",
                 filterNone: "Original",
                 filterGrayscale: "Grayscale",
                 filterInvert: "Invert",
@@ -2373,8 +2433,8 @@
                 trust_free: "🚫 No Ads, No Signup"
             },
             "zh-CN": {
+                tool_name: "图片编辑器",
                 title: "在线图片编辑器",
-                backToToolbox: "← 返回工具箱",
                 openImage: "📂 打开图片",
                 undo: "↩ 撤销",
                 redo: "↪ 重做",
@@ -2457,17 +2517,13 @@
                 faq4a: "暂不支持，每次只能编辑一张图片。",
                 faq5q: "图片会上传到服务器吗？",
                 faq5a: "不会，所有编辑在本地浏览器完成。",
-                relatedTools: "🔗 相关工具推荐",
-                toolCompressor: "图片压缩",
-                toolCompressorDesc: "在线压缩图片大小",
-                toolConverter: "图片格式转换",
-                toolConverterDesc: "PNG/JPG/WebP 互转",
-                toolIdPhoto: "证件照制作",
-                toolIdPhotoDesc: "证件照换底色",
-                toolPalette: "调色板",
-                toolPaletteDesc: "颜色选择与转换",
-                footerText: "纯前端处理，数据不会上传到服务器",
-                backToHome: "← 返回 Web Toolbox 首页",
+                relatedToolsTitle: "相关工具推荐",
+                relatedTool1: "图片压缩",
+                relatedTool1Desc: "在线压缩图片大小",
+                relatedTool2: "图片格式转换",
+                relatedTool2Desc: "PNG/JPG/WebP 互转",
+                relatedTool3: "调色板",
+                relatedTool3Desc: "颜色选择与转换",
                 filterNone: "原图",
                 filterGrayscale: "灰度",
                 filterInvert: "反色",
@@ -2488,8 +2544,8 @@
                 trust_free: "🚫 无广告、无需注册"
             },
             fr: {
+                tool_name: "Editeur d'images",
                 title: "Editeur d'images en ligne",
-                backToToolbox: "← Retour à la boîte à outils",
                 openImage: "📂 Ouvrir image",
                 undo: "↩ Annuler",
                 redo: "↪ Rétablir",
@@ -2572,17 +2628,13 @@
                 faq4a: "Non, une seule image à la fois.",
                 faq5q: "Les images sont-elles téléchargées sur un serveur?",
                 faq5a: "Non, tout est traité localement dans votre navigateur.",
-                relatedTools: "Outils connexes",
-                toolCompressor: "Compresseur d'images",
-                toolCompressorDesc: "Compresser la taille des images",
-                toolConverter: "Convertisseur d'images",
-                toolConverterDesc: "Conversion PNG/JPG/WebP",
-                toolIdPhoto: "Photo d'identité",
-                toolIdPhotoDesc: "Changer le fond de la photo",
-                toolPalette: "Palette de couleurs",
-                toolPaletteDesc: "Sélection et conversion de couleurs",
-                footerText: "Traitement frontend pur, données non téléchargées",
-                backToHome: "Retour à Web Toolbox",
+                relatedToolsTitle: "Outils connexes",
+                relatedTool1: "Compresseur d'images",
+                relatedTool1Desc: "Compresser la taille des images",
+                relatedTool2: "Convertisseur d'images",
+                relatedTool2Desc: "Conversion PNG/JPG/WebP",
+                relatedTool3: "Palette de couleurs",
+                relatedTool3Desc: "Sélection et conversion de couleurs",
                 filterNone: "Original",
                 filterGrayscale: "Gris",
                 filterInvert: "Inverser",
@@ -2603,8 +2655,8 @@
                 trust_free: "🚫 Sans pub, sans inscription"
             },
             es: {
+                tool_name: "Editor de imágenes",
                 title: "Editor de imágenes en línea",
-                backToToolbox: "← Volver a herramientas",
                 openImage: "📂 Abrir imagen",
                 undo: "↩ Deshacer",
                 redo: "↪ Rehacer",
@@ -2687,17 +2739,13 @@
                 faq4a: "No, solo una imagen a la vez.",
                 faq5q: "¿Se suben las imágenes a un servidor?",
                 faq5a: "No, todo se procesa localmente en tu navegador.",
-                relatedTools: "Herramientas relacionadas",
-                toolCompressor: "Compresor de imágenes",
-                toolCompressorDesc: "Comprimir tamaño de imagen",
-                toolConverter: "Convertidor de imágenes",
-                toolConverterDesc: "Conversión PNG/JPG/WebP",
-                toolIdPhoto: "Foto de identificación",
-                toolIdPhotoDesc: "Cambiar fondo de foto",
-                toolPalette: "Paleta de colores",
-                toolPaletteDesc: "Selección y conversión de colores",
-                footerText: "Procesamiento frontend puro, datos no se suben al servidor",
-                backToHome: "Volver a Web Toolbox",
+                relatedToolsTitle: "Herramientas relacionadas",
+                relatedTool1: "Compresor de imágenes",
+                relatedTool1Desc: "Comprimir tamaño de imagen",
+                relatedTool2: "Convertidor de imágenes",
+                relatedTool2Desc: "Conversión PNG/JPG/WebP",
+                relatedTool3: "Paleta de colores",
+                relatedTool3Desc: "Selección y conversión de colores",
                 filterNone: "Original",
                 filterGrayscale: "Grises",
                 filterInvert: "Invertir",
@@ -2718,30 +2766,18 @@
                 trust_free: "🚫 Sin anuncios, sin registro"
             }
         };
-function setLanguage(lang) {
-            if (!i18n[lang]) lang = 'en';
-            localStorage.setItem('language', lang);
-            document.getElementById('langCurrent').textContent = langNames[lang] || langNames.en;
 
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (i18n[lang][key]) {
-                    el.textContent = i18n[lang][key];
-                }
-            });
-
-            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-                const key = el.getAttribute('data-i18n-placeholder');
-                if (i18n[lang][key]) {
-                    el.placeholder = i18n[lang][key];
-                }
-            });
-
-            // 更新滤镜名称
-            updateFilterNames(lang);
+        function getLang() {
+            return (typeof WebToolbox !== 'undefined') ? WebToolbox.getCurrentLang() : (localStorage.getItem('toolbox_lang') || 'en');
         }
 
-        function updateFilterNames(lang) {
+        function t(key) {
+            const lang = getLang();
+            return (i18n[lang] && i18n[lang][key]) || (i18n.en && i18n.en[key]) || key;
+        }
+
+        function updateFilterNames() {
+            const lang = getLang();
             const filterMap = {
                 'none': 'filterNone',
                 'grayscale': 'filterGrayscale',
@@ -2760,86 +2796,20 @@ function setLanguage(lang) {
             document.querySelectorAll('.filter-item').forEach(item => {
                 const filterId = item.getAttribute('data-filter');
                 const nameEl = item.querySelector('.filter-name');
-                if (nameEl && filterMap[filterId] && i18n[lang][filterMap[filterId]]) {
+                if (nameEl && filterMap[filterId] && i18n[lang] && i18n[lang][filterMap[filterId]]) {
                     nameEl.textContent = i18n[lang][filterMap[filterId]];
                 }
             });
         }
 
-        // 语言切换器事件
-        document.getElementById('langDropdown').addEventListener('click', function(e) {
-            this.classList.toggle('active');
+        // Listen for language change events from common.js
+        document.addEventListener('langChanged', function() {
+            updateFilterNames();
         });
 
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                setLanguage(this.getAttribute('data-lang'));
-                document.getElementById('langDropdown').classList.remove('active');
-            });
-        });
-
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.lang-dropdown')) {
-                document.getElementById('langDropdown').classList.remove('active');
-            }
-        });
-
-        // 初始化语言
-        const savedLang = localStorage.getItem('language') || (navigator.language.startsWith('zh') ? 'zh-CN' : navigator.language.startsWith('fr') ? 'fr' : navigator.language.startsWith('es') ? 'es' : 'en');
-        setLanguage(savedLang);
+        window._translations = i18n;
     </script>
     <script src="common/common.js" data-tool-id="image-editor" data-tool-name="Image Editor" data-category="image"></script>
-    <script>WebToolbox.init(i18n);</script>
-
-
-    <!-- FAQ 问答区块 -->
-    <section class="faq-section" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
-        <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid #30363d;" data-i18n="faqTitle">FAQ</h2>
-        <div style="display: flex; flex-direction: column; gap: 16px;">
-            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 16px;">
-                <summary style="color: #e6edf3; font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq1q">What image formats are supported?</span>
-                    <span style="color: #8b949e; font-size: 18px;">+</span>
-                </summary>
-                <p style="color: #8b949e; margin-top: 12px; padding-top: 12px; border-top: 1px solid #30363d; line-height: 1.6;" data-i18n="faq1a">Supports JPG, PNG, WebP, GIF, BMP and other common image formats.</p>
-            </details>
-            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 16px;">
-                <summary style="color: #e6edf3; font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq2q">Can I undo edits?</span>
-                    <span style="color: #8b949e; font-size: 18px;">+</span>
-                </summary>
-                <p style="color: #8b949e; margin-top: 12px; padding-top: 12px; border-top: 1px solid #30363d; line-height: 1.6;" data-i18n="faq2a">Yes, undo and redo functions are supported.</p>
-            </details>
-            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 16px;">
-                <summary style="color: #e6edf3; font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq3q">What format is the edited image?</span>
-                    <span style="color: #8b949e; font-size: 18px;">+</span>
-                </summary>
-                <p style="color: #8b949e; margin-top: 12px; padding-top: 12px; border-top: 1px solid #30363d; line-height: 1.6;" data-i18n="faq3a">You can choose to export as JPG, PNG, or WebP format.</p>
-            </details>
-            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 16px;">
-                <summary style="color: #e6edf3; font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq4q">Can I batch edit images?</span>
-                    <span style="color: #8b949e; font-size: 18px;">+</span>
-                </summary>
-                <p style="color: #8b949e; margin-top: 12px; padding-top: 12px; border-top: 1px solid #30363d; line-height: 1.6;" data-i18n="faq4a">Not currently supported, only one image can be edited at a time.</p>
-            </details>
-            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 16px;">
-                <summary style="color: #e6edf3; font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq5q">Are images uploaded to a server?</span>
-                    <span style="color: #8b949e; font-size: 18px;">+</span>
-                </summary>
-                <p style="color: #8b949e; margin-top: 12px; padding-top: 12px; border-top: 1px solid #30363d; line-height: 1.6;" data-i18n="faq5a">No, all editing is done locally in your browser.</p>
-            </details>
-            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 16px;">
-                <summary style="color: #e6edf3; font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq_free_q">Is this tool really free with no ads?</span>
-                    <span style="color: #8b949e; font-size: 18px;">+</span>
-                </summary>
-                <p style="color: #8b949e; margin-top: 12px; padding-top: 12px; border-top: 1px solid #30363d; line-height: 1.6;" data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</p>
-            </details>
-        </div>
-    </section>
+    <script>WebToolbox.init(window._translations);</script>
 </body>
 </html>

@@ -46,7 +46,6 @@
         "author": {"@type": "Person", "name": "heyuan110"},
         "publisher": {"@type": "Organization", "name": "Web Toolbox", "url": "https://www.heyuan110.com/web-toolbox/"},
         "screenshot": "https://www.heyuan110.com/web-toolbox/screenshots/ip-lookup.webp"
-        "alternateName": ["IP地理定位", "IP Address Lookup", "IP Geolocation Finder"],
     }
     </script>
 
@@ -148,7 +147,7 @@ h1 {
             font-size: 1rem;
         }
 
-        .lang-dropdown.active /* 搜索区域 */
+        /* 搜索区域 */
         .search-section {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -480,11 +479,6 @@ h1 {
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
 <div class="container">
 <header>
             
@@ -648,17 +642,97 @@ h1 {
                 </div>
             </div>
         </div>
+
+        <!-- FAQ -->
+        <section class="faq-section" style="margin-top: 40px;">
+            <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid #30363d;" data-i18n="faqTitle">FAQ</h2>
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px 20px;">
+                    <summary style="font-weight: 500; color: #e4e4e7; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq1q">Is IP address location accurate?</span>
+                        <span style="color: #7c3aed; font-size: 1.2rem;">▼</span>
+                    </summary>
+                    <p style="margin-top: 12px; color: #a1a1aa; line-height: 1.6; padding-left: 4px;" data-i18n="faq1a">Usually accurate to city level, precision depends on IP database update frequency. Different IP databases may have slight variations, enterprise IPs are usually more accurate.</p>
+                </details>
+                <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px 20px;">
+                    <summary style="font-weight: 500; color: #e4e4e7; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq2q">Can I query private IP addresses?</span>
+                        <span style="color: #7c3aed; font-size: 1.2rem;">▼</span>
+                    </summary>
+                    <p style="margin-top: 12px; color: #a1a1aa; line-height: 1.6; padding-left: 4px;" data-i18n="faq2a">No, private IPs (like 192.168.x.x, 10.x.x.x, 172.16.x.x) are private address ranges and cannot be geolocated through public databases.</p>
+                </details>
+                <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px 20px;">
+                    <summary style="font-weight: 500; color: #e4e4e7; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq3q">What IP information is included?</span>
+                        <span style="color: #7c3aed; font-size: 1.2rem;">▼</span>
+                    </summary>
+                    <p style="margin-top: 12px; color: #a1a1aa; line-height: 1.6; padding-left: 4px;" data-i18n="faq3a">Includes country, city, ISP (Internet Service Provider), ASN (Autonomous System Number), timezone, coordinates, postal code and other details.</p>
+                </details>
+                <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px 20px;">
+                    <summary style="font-weight: 500; color: #e4e4e7; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq4q">How to view my public IP?</span>
+                        <span style="color: #7c3aed; font-size: 1.2rem;">▼</span>
+                    </summary>
+                    <p style="margin-top: 12px; color: #a1a1aa; line-height: 1.6; padding-left: 4px;" data-i18n="faq4a">Your public IP is automatically displayed when you open the page. The "Client Information" section at the bottom will automatically fetch and display it.</p>
+                </details>
+                <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px 20px;">
+                    <summary style="font-weight: 500; color: #e4e4e7; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq5q">Does IP lookup record my information?</span>
+                        <span style="color: #7c3aed; font-size: 1.2rem;">▼</span>
+                    </summary>
+                    <p style="margin-top: 12px; color: #a1a1aa; line-height: 1.6; padding-left: 4px;" data-i18n="faq5a">No, this tool is purely frontend-based. Query results are only displayed in the browser and no data is stored or uploaded to our servers.</p>
+                </details>
+                <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px 20px;">
+                    <summary style="font-weight: 500; color: #e4e4e7; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq_free_q">Is this tool really free? Is it safe?</span>
+                        <span style="color: #7c3aed; font-size: 1.2rem;">▼</span>
+                    </summary>
+                    <p style="margin-top: 12px; color: #a1a1aa; line-height: 1.6; padding-left: 4px;" data-i18n="faq_free_a">Yes, this tool is 100% free with no ads, no signup, no usage limits, and no watermarks. All processing happens in your browser — your data never leaves your device. It's completely safe and private.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- Related Tools -->
+        <section class="related-tools" style="margin-top: 40px; margin-bottom: 20px;">
+            <h3 style="color: #e6edf3; font-size: 18px; margin-bottom: 16px;" data-i18n="relatedToolsTitle">🔗 Related Tools</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+                <a href="whois-query.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; text-decoration: none; transition: all 0.3s;">
+                    <div style="font-size: 1.5rem;">🔍</div>
+                    <div style="color: #e4e4e7; font-weight: 500; margin: 4px 0;" data-i18n="relatedTool1">Whois Lookup</div>
+                    <div style="color: #a1a1aa; font-size: 0.85rem;" data-i18n="relatedTool1Desc">Domain registration info query</div>
+                </a>
+                <a href="websocket-tester.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; text-decoration: none; transition: all 0.3s;">
+                    <div style="font-size: 1.5rem;">🔌</div>
+                    <div style="color: #e4e4e7; font-weight: 500; margin: 4px 0;" data-i18n="relatedTool2">WebSocket Tester</div>
+                    <div style="color: #a1a1aa; font-size: 0.85rem;" data-i18n="relatedTool2Desc">WebSocket connection debugging</div>
+                </a>
+                <a href="json-viewer.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; text-decoration: none; transition: all 0.3s;">
+                    <div style="font-size: 1.5rem;">📋</div>
+                    <div style="color: #e4e4e7; font-weight: 500; margin: 4px 0;" data-i18n="relatedTool3">JSON Viewer</div>
+                    <div style="color: #a1a1aa; font-size: 0.85rem;" data-i18n="relatedTool3Desc">Format and validate JSON</div>
+                </a>
+                <a href="crypto-tools.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; text-decoration: none; transition: all 0.3s;">
+                    <div style="font-size: 1.5rem;">🔐</div>
+                    <div style="color: #e4e4e7; font-weight: 500; margin: 4px 0;" data-i18n="relatedTool4">Crypto Tools</div>
+                    <div style="color: #a1a1aa; font-size: 0.85rem;" data-i18n="relatedTool4Desc">Base64/MD5/SHA encoding</div>
+                </a>
+            </div>
+        </section>
     </div>
 
     <script>
         // ==================== 国际化模块 ====================
+        function getLang() {
+            return (typeof WebToolbox !== 'undefined') ? WebToolbox.getCurrentLang() : (localStorage.getItem('toolbox_lang') || 'en');
+        }
+
         const i18n = {
-            currentLang: 'en',
             translations: {
                 'en': {
+                    tool_name: 'IP Lookup',
                     pageTitle: '🌍 IP Address Lookup',
                     pageSubtitle: 'Query IP address or domain for geolocation, ISP, IP range and more',
-                    backToToolbox: '← Back to Toolbox',
+
                     searchPlaceholder: 'Enter IP address or domain, e.g. 8.8.8.8 or google.com',
                     searchBtn: '🔍 Lookup',
                     quickAliDns: 'Alibaba DNS',
@@ -709,17 +783,15 @@ h1 {
                     faq5a: 'No, this tool is purely frontend-based. Query results are only displayed in the browser and no data is stored or uploaded to our servers.',
                     faq_free_q: 'Is this tool really free? Is it safe?',
                     faq_free_a: 'Yes, this tool is 100% free with no ads, no signup, no usage limits, and no watermarks. All processing happens in your browser — your data never leaves your device. It\'s completely safe and private.',
-                    relatedTools: '🔗 Related Tools',
-                    toolWhois: 'WHOIS Lookup',
-                    toolWhoisDesc: 'Domain registration info',
-                    toolWebsocket: 'WebSocket Test',
-                    toolWebsocketDesc: 'WebSocket connection debug',
-                    toolJson: 'JSON Formatter',
-                    toolJsonDesc: 'JSON format & validate',
-                    toolCrypto: 'Crypto Tools',
-                    toolCryptoDesc: 'Base64/MD5/SHA etc.',
-                    footerPrivacy: 'Pure frontend processing, data is not uploaded to server',
-                    footerBack: '← Back to Web Toolbox',
+                    relatedToolsTitle: '🔗 Related Tools',
+                    relatedTool1: 'Whois Lookup',
+                    relatedTool1Desc: 'Domain registration info query',
+                    relatedTool2: 'WebSocket Tester',
+                    relatedTool2Desc: 'WebSocket connection debugging',
+                    relatedTool3: 'JSON Viewer',
+                    relatedTool3Desc: 'Format and validate JSON',
+                    relatedTool4: 'Crypto Tools',
+                    relatedTool4Desc: 'Base64/MD5/SHA encoding',
                     errorEnterInput: 'Please enter an IP address or domain',
                     errorInvalidInput: 'Please enter a valid IP address or domain',
                     errorDnsResolve: 'Domain resolution failed, please check if the domain is correct',
@@ -734,9 +806,10 @@ h1 {
                     trust_free: '🚫 No Ads, No Signup'
                 },
                 'zh-CN': {
+                    tool_name: 'IP 查询',
                     pageTitle: '🌍 IP地址归属地查询',
                     pageSubtitle: '查询IP地址或域名的地理位置、运营商、IP段范围等信息',
-                    backToToolbox: '← 返回工具箱',
+
                     searchPlaceholder: '输入 IP 地址或域名，如 8.8.8.8 或 google.com',
                     searchBtn: '🔍 查询',
                     quickAliDns: '阿里 DNS',
@@ -787,17 +860,15 @@ h1 {
                     faq5a: '不会，本工具是纯前端实现，查询结果仅在浏览器中显示，不会存储或上传任何数据到我们的服务器。',
                     faq_free_q: '这个工具真的免费吗？安全吗？',
                     faq_free_a: '是的，本工具 100% 免费，无广告、无需注册、无使用限制、无水印。所有处理都在浏览器中完成，数据不会离开你的设备，完全安全且隐私。',
-                    relatedTools: '🔗 相关工具推荐',
-                    toolWhois: 'WHOIS 查询',
-                    toolWhoisDesc: '域名注册信息查询',
-                    toolWebsocket: 'WebSocket 测试',
-                    toolWebsocketDesc: 'WebSocket 连接调试',
-                    toolJson: 'JSON 格式化',
-                    toolJsonDesc: 'JSON 格式化与校验',
-                    toolCrypto: '加密解密工具',
-                    toolCryptoDesc: 'Base64/MD5/SHA等',
-                    footerPrivacy: '纯前端处理，数据不会上传到服务器',
-                    footerBack: '← 返回 Web Toolbox 首页',
+                    relatedToolsTitle: '🔗 相关工具推荐',
+                    relatedTool1: 'Whois 查询',
+                    relatedTool1Desc: '域名注册信息查询',
+                    relatedTool2: 'WebSocket 测试',
+                    relatedTool2Desc: 'WebSocket 连接调试',
+                    relatedTool3: 'JSON 查看器',
+                    relatedTool3Desc: 'JSON 格式化与校验',
+                    relatedTool4: '加密解密工具',
+                    relatedTool4Desc: 'Base64/MD5/SHA 编码',
                     errorEnterInput: '请输入IP地址或域名',
                     errorInvalidInput: '请输入有效的IP地址或域名',
                     errorDnsResolve: '域名解析失败，请检查域名是否正确',
@@ -812,9 +883,10 @@ h1 {
                     trust_free: '🚫 无广告、无需注册'
                 },
                 'fr': {
+                    tool_name: 'Recherche IP',
                     pageTitle: '🌍 Recherche d\'adresse IP',
                     pageSubtitle: 'Rechercher l\'adresse IP ou le domaine pour la géolocalisation, le FAI, la plage IP et plus',
-                    backToToolbox: '← Retour à la boîte à outils',
+
                     searchPlaceholder: 'Entrez l\'adresse IP ou le domaine, ex: 8.8.8.8 ou google.com',
                     searchBtn: '🔍 Rechercher',
                     quickAliDns: 'DNS Alibaba',
@@ -865,17 +937,15 @@ h1 {
                     faq5a: 'Non, cet outil est purement basé sur le frontend. Les résultats de recherche sont uniquement affichés dans le navigateur et aucune donnée n\'est stockée.',
                     faq_free_q: 'Cet outil est-il vraiment gratuit ? Est-il sûr ?',
                     faq_free_a: 'Oui, cet outil est 100% gratuit, sans publicité, sans inscription, sans limites d\'utilisation et sans filigrane. Tout le traitement se fait dans votre navigateur — vos données ne quittent jamais votre appareil.',
-                    relatedTools: '🔗 Outils connexes',
-                    toolWhois: 'Recherche WHOIS',
-                    toolWhoisDesc: 'Infos d\'enregistrement de domaine',
-                    toolWebsocket: 'Test WebSocket',
-                    toolWebsocketDesc: 'Débogage connexion WebSocket',
-                    toolJson: 'Formateur JSON',
-                    toolJsonDesc: 'Formater & valider JSON',
-                    toolCrypto: 'Outils crypto',
-                    toolCryptoDesc: 'Base64/MD5/SHA etc.',
-                    footerPrivacy: 'Traitement purement frontend, les données ne sont pas téléchargées',
-                    footerBack: '← Retour à Web Toolbox',
+                    relatedToolsTitle: '🔗 Outils connexes',
+                    relatedTool1: 'Recherche Whois',
+                    relatedTool1Desc: 'Infos d\'enregistrement de domaine',
+                    relatedTool2: 'Testeur WebSocket',
+                    relatedTool2Desc: 'Débogage connexion WebSocket',
+                    relatedTool3: 'Visionneur JSON',
+                    relatedTool3Desc: 'Formater et valider JSON',
+                    relatedTool4: 'Outils crypto',
+                    relatedTool4Desc: 'Encodage Base64/MD5/SHA',
                     errorEnterInput: 'Veuillez entrer une adresse IP ou un domaine',
                     errorInvalidInput: 'Veuillez entrer une adresse IP ou un domaine valide',
                     errorDnsResolve: 'Échec de la résolution du domaine, veuillez vérifier le domaine',
@@ -890,9 +960,10 @@ h1 {
                     trust_free: '🚫 Sans pub, sans inscription'
                 },
                 'es': {
+                    tool_name: 'Búsqueda IP',
                     pageTitle: '🌍 Búsqueda de dirección IP',
                     pageSubtitle: 'Consulta la dirección IP o dominio para geolocalización, ISP, rango IP y más',
-                    backToToolbox: '← Volver a herramientas',
+
                     searchPlaceholder: 'Ingrese dirección IP o dominio, ej: 8.8.8.8 o google.com',
                     searchBtn: '🔍 Buscar',
                     quickAliDns: 'DNS Alibaba',
@@ -943,17 +1014,15 @@ h1 {
                     faq5a: 'No, esta herramienta es puramente frontend. Los resultados de búsqueda solo se muestran en el navegador y no se almacenan datos.',
                     faq_free_q: '¿Esta herramienta es realmente gratuita? ¿Es segura?',
                     faq_free_a: 'Sí, esta herramienta es 100% gratuita, sin anuncios, sin registro, sin límites de uso y sin marcas de agua. Todo el procesamiento ocurre en tu navegador — tus datos nunca salen de tu dispositivo.',
-                    relatedTools: '🔗 Herramientas relacionadas',
-                    toolWhois: 'Búsqueda WHOIS',
-                    toolWhoisDesc: 'Info de registro de dominio',
-                    toolWebsocket: 'Prueba WebSocket',
-                    toolWebsocketDesc: 'Depuración conexión WebSocket',
-                    toolJson: 'Formateador JSON',
-                    toolJsonDesc: 'Formatear y validar JSON',
-                    toolCrypto: 'Herramientas crypto',
-                    toolCryptoDesc: 'Base64/MD5/SHA etc.',
-                    footerPrivacy: 'Procesamiento puramente frontend, los datos no se suben al servidor',
-                    footerBack: '← Volver a Web Toolbox',
+                    relatedToolsTitle: '🔗 Herramientas relacionadas',
+                    relatedTool1: 'Consulta Whois',
+                    relatedTool1Desc: 'Consulta de registro de dominio',
+                    relatedTool2: 'Probador WebSocket',
+                    relatedTool2Desc: 'Depuración de conexión WebSocket',
+                    relatedTool3: 'Visor JSON',
+                    relatedTool3Desc: 'Formatear y validar JSON',
+                    relatedTool4: 'Herramientas crypto',
+                    relatedTool4Desc: 'Codificación Base64/MD5/SHA',
                     errorEnterInput: 'Por favor ingrese una dirección IP o dominio',
                     errorInvalidInput: 'Por favor ingrese una dirección IP o dominio válido',
                     errorDnsResolve: 'Error en la resolución del dominio, por favor verifique el dominio',
@@ -970,126 +1039,14 @@ h1 {
             },
 
             t(key, params = {}) {
-                let text = this.translations[this.currentLang]?.[key] || this.translations['en'][key] || key;
+                let text = this.translations[getLang()]?.[key] || this.translations['en'][key] || key;
                 Object.keys(params).forEach(k => {
                     text = text.replace(`{${k}}`, params[k]);
                 });
                 return text;
-            },
-
-            setLang(lang) {
-                if (!this.translations[lang]) lang = 'en';
-                this.currentLang = lang;
-                localStorage.setItem('toolbox_lang', lang);
-                this.updatePage();
-                this.updateLangButton();
-            },
-
-            updatePage() {
-                document.querySelectorAll('[data-i18n]').forEach(el => {
-                    const key = el.getAttribute('data-i18n');
-                    if (key) el.textContent = this.t(key);
-                });
-                document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-                    const key = el.getAttribute('data-i18n-placeholder');
-                    if (key) el.placeholder = this.t(key);
-                });
-                // 更新动态生成的 FAQ 和相关工具
-                this.updateFAQ();
-                this.updateRelatedTools();
-                this.updateFooter();
-            },
-
-            updateLangButton() {
-document.getElementById('langCurrent').textContent = langNames[this.currentLang] || '🌐 English';
-            },
-
-            updateFAQ() {
-                const faqSection = document.querySelector('.faq-section');
-                if (!faqSection) return;
-                faqSection.querySelector('h2').textContent = this.t('faqTitle');
-                const faqs = [
-                    { q: 'faq1q', a: 'faq1a' },
-                    { q: 'faq2q', a: 'faq2a' },
-                    { q: 'faq3q', a: 'faq3a' },
-                    { q: 'faq4q', a: 'faq4a' },
-                    { q: 'faq5q', a: 'faq5a' },
-                    { q: 'faq_free_q', a: 'faq_free_a' }
-                ];
-                const details = faqSection.querySelectorAll('details');
-                details.forEach((detail, index) => {
-                    if (faqs[index]) {
-                        detail.querySelector('summary span:first-child').textContent = this.t(faqs[index].q);
-                        detail.querySelector('p').textContent = this.t(faqs[index].a);
-                    }
-                });
-            },
-
-            updateRelatedTools() {
-                const section = document.querySelector('.related-tools');
-                if (!section) return;
-                section.querySelector('h3').textContent = this.t('relatedTools');
-                const tools = section.querySelectorAll('a');
-                const toolData = [
-                    { title: 'toolWhois', desc: 'toolWhoisDesc' },
-                    { title: 'toolWebsocket', desc: 'toolWebsocketDesc' },
-                    { title: 'toolJson', desc: 'toolJsonDesc' },
-                    { title: 'toolCrypto', desc: 'toolCryptoDesc' }
-                ];
-                tools.forEach((tool, index) => {
-                    if (toolData[index]) {
-                        tool.querySelector('div:nth-child(2)').textContent = this.t(toolData[index].title);
-                        tool.querySelector('div:nth-child(3)').textContent = this.t(toolData[index].desc);
-                    }
-                });
-            },
-
-            updateFooter() {
-                const footer = document.querySelector('footer');
-                if (!footer) return;
-                const p1 = footer.querySelector('p:first-child');
-                const backLink = footer.querySelector('a[href="index.html"]');
-                if (p1) p1.textContent = this.t('footerPrivacy');
-                if (backLink) backLink.textContent = this.t('footerBack');
-            },
-
-            init() {
-                const saved = localStorage.getItem('toolbox_lang');
-                const browserLang = navigator.language || navigator.userLanguage;
-                let defaultLang = 'en';
-                if (saved && this.translations[saved]) {
-                    defaultLang = saved;
-                } else if (browserLang.startsWith('zh')) {
-                    defaultLang = 'zh-CN';
-                } else if (browserLang.startsWith('fr')) {
-                    defaultLang = 'fr';
-                } else if (browserLang.startsWith('es')) {
-                    defaultLang = 'es';
-                }
-                this.currentLang = defaultLang;
-                this.updatePage();
-                this.updateLangButton();
             }
         };
 
-        // 语言切换器事件
-        document.getElementById('langDropdown').addEventListener('click', function(e) {
-            e.stopPropagation();
-            this.classList.toggle('active');
-        });
-
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const lang = this.getAttribute('data-lang');
-                i18n.setLang(lang);
-                document.getElementById('langDropdown').classList.remove('active');
-            });
-        });
-
-        document.addEventListener('click', function() {
-            document.getElementById('langDropdown').classList.remove('active');
-        });
         function ipToNumber(ip) {
             const parts = ip.split('.').map(Number);
             return ((parts[0] << 24) + (parts[1] << 16) + (parts[2] << 8) + parts[3]) >>> 0;
@@ -1299,6 +1256,7 @@ document.getElementById('langCurrent').textContent = langNames[this.currentLang]
                 } catch (error) {
                     lastError = error;
                     console.log(`API ${api.name} failed:`, error.message);
+                }
             }
 
             // 所有API都失败了
@@ -1454,60 +1412,11 @@ document.getElementById('langCurrent').textContent = langNames[this.currentLang]
         });
 
         // 初始化
-        i18n.init();
         getClientInfo();
+
+        window._translations = i18n.translations;
     </script>
     <script src="common/common.js" data-tool-id="ip-lookup" data-tool-name="IP Lookup" data-category="developer"></script>
-    <script>WebToolbox.init(i18n);</script>
-
-
-    <!-- FAQ 问答区块 -->
-    <section class="faq-section" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
-        <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid #30363d;" data-i18n="faqTitle">FAQ</h2>
-        <div style="display: flex; flex-direction: column; gap: 16px;">
-            <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px 20px;">
-                <summary style="font-weight: 500; color: #e4e4e7; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq1q">Is IP address location accurate?</span>
-                    <span style="color: #7c3aed; font-size: 1.2rem;">+</span>
-                </summary>
-                <p style="margin-top: 12px; color: #a1a1aa; line-height: 1.6; padding-left: 4px;" data-i18n="faq1a">Usually accurate to city level, precision depends on IP database update frequency. Different IP databases may have slight variations, enterprise IPs are usually more accurate.</p>
-            </details>
-            <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px 20px;">
-                <summary style="font-weight: 500; color: #e4e4e7; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq2q">Can I query private IP addresses?</span>
-                    <span style="color: #7c3aed; font-size: 1.2rem;">+</span>
-                </summary>
-                <p style="margin-top: 12px; color: #a1a1aa; line-height: 1.6; padding-left: 4px;" data-i18n="faq2a">No, private IPs (like 192.168.x.x, 10.x.x.x, 172.16.x.x) are private address ranges and cannot be geolocated through public databases.</p>
-            </details>
-            <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px 20px;">
-                <summary style="font-weight: 500; color: #e4e4e7; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq3q">What IP information is included?</span>
-                    <span style="color: #7c3aed; font-size: 1.2rem;">+</span>
-                </summary>
-                <p style="margin-top: 12px; color: #a1a1aa; line-height: 1.6; padding-left: 4px;" data-i18n="faq3a">Includes country, city, ISP (Internet Service Provider), ASN (Autonomous System Number), timezone, coordinates, postal code and other details.</p>
-            </details>
-            <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px 20px;">
-                <summary style="font-weight: 500; color: #e4e4e7; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq4q">How to view my public IP?</span>
-                    <span style="color: #7c3aed; font-size: 1.2rem;">+</span>
-                </summary>
-                <p style="margin-top: 12px; color: #a1a1aa; line-height: 1.6; padding-left: 4px;" data-i18n="faq4a">Your public IP is automatically displayed when you open the page. The "Client Information" section at the bottom will automatically fetch and display it.</p>
-            </details>
-            <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px 20px;">
-                <summary style="font-weight: 500; color: #e4e4e7; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq5q">Does IP lookup record my information?</span>
-                    <span style="color: #7c3aed; font-size: 1.2rem;">+</span>
-                </summary>
-                <p style="margin-top: 12px; color: #a1a1aa; line-height: 1.6; padding-left: 4px;" data-i18n="faq5a">No, this tool is purely frontend-based. Query results are only displayed in the browser and no data is stored or uploaded to our servers.</p>
-            </details>
-            <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px 20px;">
-                <summary style="font-weight: 500; color: #e4e4e7; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq_free_q">Is this tool really free? Is it safe?</span>
-                    <span style="color: #7c3aed; font-size: 1.2rem;">+</span>
-                </summary>
-                <p style="margin-top: 12px; color: #a1a1aa; line-height: 1.6; padding-left: 4px;" data-i18n="faq_free_a">Yes, this tool is 100% free with no ads, no signup, no usage limits, and no watermarks. All processing happens in your browser — your data never leaves your device. It's completely safe and private.</p>
-            </details>
-        </div>
-    </section>
+    <script>WebToolbox.init(window._translations);</script>
 </body>
 </html>

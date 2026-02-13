@@ -156,7 +156,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-.lang-dropdown.active /* 警告提示 */
+        /* 警告提示 */
         .warning-banner {
             background: linear-gradient(135deg, rgba(255, 193, 7, 0.2), rgba(255, 152, 0, 0.2));
             border: 1px solid rgba(255, 193, 7, 0.5);
@@ -887,11 +887,6 @@
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
 <div class="container">
 <!-- 顶部导航 -->
         <nav class="top-nav">
@@ -1134,14 +1129,103 @@
                 </div>
             </div>
         </div>
+
+        <!-- FAQ -->
+        <section class="faq-section" style="margin-top: 40px;">
+            <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid #30363d;" data-i18n="faqTitle">FAQ</h2>
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px 20px;">
+                    <summary style="font-weight: 500; color: #e4e4e7; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq1Q">Can I refresh any webpage?</span>
+                        <span style="color: #7c3aed; font-size: 1.2rem;">▼</span>
+                    </summary>
+                    <p style="margin-top: 12px; color: #a1a1aa; line-height: 1.6;" data-i18n="faq1A">Due to browser security restrictions, some websites don't allow being embedded in iframes. You can use background request mode or new window mode to refresh such websites.</p>
+                </details>
+                <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px 20px;">
+                    <summary style="font-weight: 500; color: #e4e4e7; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq2Q">What is the minimum refresh interval?</span>
+                        <span style="color: #7c3aed; font-size: 1.2rem;">▼</span>
+                    </summary>
+                    <p style="margin-top: 12px; color: #a1a1aa; line-height: 1.6;" data-i18n="faq2A">The minimum is 1 second, but we recommend setting it to 5 seconds or more to avoid putting pressure on the target website.</p>
+                </details>
+                <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px 20px;">
+                    <summary style="font-weight: 500; color: #e4e4e7; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq3Q">Will refreshing continue after closing the page?</span>
+                        <span style="color: #7c3aed; font-size: 1.2rem;">▼</span>
+                    </summary>
+                    <p style="margin-top: 12px; color: #a1a1aa; line-height: 1.6;" data-i18n="faq3A">No, the refresh function requires the page to remain open. After closing the browser tab, the auto-refresh will stop automatically.</p>
+                </details>
+                <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px 20px;">
+                    <summary style="font-weight: 500; color: #e4e4e7; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq4Q">Can I refresh multiple pages simultaneously?</span>
+                        <span style="color: #7c3aed; font-size: 1.2rem;">▼</span>
+                    </summary>
+                    <p style="margin-top: 12px; color: #a1a1aa; line-height: 1.6;" data-i18n="faq4A">Yes, you can open multiple tool tabs and set different URLs to refresh simultaneously.</p>
+                </details>
+                <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px 20px;">
+                    <summary style="font-weight: 500; color: #e4e4e7; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq5Q">What are the use cases for this tool?</span>
+                        <span style="color: #7c3aed; font-size: 1.2rem;">▼</span>
+                    </summary>
+                    <p style="margin-top: 12px; color: #a1a1aa; line-height: 1.6;" data-i18n="faq5A">It's suitable for monitoring page updates, ticket grabbing, flash sales, and monitoring data changes.</p>
+                </details>
+                <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px 20px;">
+                    <summary style="font-weight: 500; color: #e4e4e7; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq_free_q">Is this tool really free? Is it safe?</span>
+                        <span style="color: #7c3aed; font-size: 1.2rem;">▼</span>
+                    </summary>
+                    <p style="margin-top: 12px; color: #a1a1aa; line-height: 1.6;" data-i18n="faq_free_a">Yes, this tool is 100% free with no ads, no signup, and no hidden charges. It runs entirely in your browser.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- Related Tools -->
+        <section class="related-tools" style="margin-top: 40px; margin-bottom: 20px;">
+            <h3 style="color: #e6edf3; font-size: 18px; margin-bottom: 16px;" data-i18n="relatedToolsTitle">🔗 Related Tools</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+                <a href="websocket-tester.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; text-decoration: none; transition: all 0.3s;">
+                    <div style="font-size: 1.5rem;">🔌</div>
+                    <div style="color: #e4e4e7; font-weight: 500; margin: 4px 0;" data-i18n="relatedTool1">WebSocket Tester</div>
+                    <div style="color: #a1a1aa; font-size: 0.85rem;" data-i18n="relatedTool1Desc">WebSocket connection debugging</div>
+                </a>
+                <a href="ip-lookup.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; text-decoration: none; transition: all 0.3s;">
+                    <div style="font-size: 1.5rem;">🌍</div>
+                    <div style="color: #e4e4e7; font-weight: 500; margin: 4px 0;" data-i18n="relatedTool2">IP Lookup</div>
+                    <div style="color: #a1a1aa; font-size: 0.85rem;" data-i18n="relatedTool2Desc">IP geolocation query</div>
+                </a>
+                <a href="whois-query.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; text-decoration: none; transition: all 0.3s;">
+                    <div style="font-size: 1.5rem;">🔍</div>
+                    <div style="color: #e4e4e7; font-weight: 500; margin: 4px 0;" data-i18n="relatedTool3">Whois Lookup</div>
+                    <div style="color: #a1a1aa; font-size: 0.85rem;" data-i18n="relatedTool3Desc">Domain registration query</div>
+                </a>
+                <a href="json-viewer.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; text-decoration: none; transition: all 0.3s;">
+                    <div style="font-size: 1.5rem;">📋</div>
+                    <div style="color: #e4e4e7; font-weight: 500; margin: 4px 0;" data-i18n="relatedTool4">JSON Viewer</div>
+                    <div style="color: #a1a1aa; font-size: 0.85rem;" data-i18n="relatedTool4Desc">Format and validate JSON</div>
+                </a>
+            </div>
+        </section>
     </div>
 
     <script>
+        function getLang() {
+            return (typeof WebToolbox !== 'undefined') ? WebToolbox.getCurrentLang() : (localStorage.getItem('toolbox_lang') || 'en');
+        }
+
         // 多语言翻译
         const translations = {
             'en': {
+                tool_name: 'Page Refresher',
                 navBrand: '🔄 Page Refresher',
-                backToToolbox: 'Back to Toolbox',
+                relatedToolsTitle: '🔗 Related Tools',
+                relatedTool1: 'WebSocket Tester',
+                relatedTool1Desc: 'WebSocket connection debugging',
+                relatedTool2: 'IP Lookup',
+                relatedTool2Desc: 'IP geolocation query',
+                relatedTool3: 'Whois Lookup',
+                relatedTool3Desc: 'Domain registration query',
+                relatedTool4: 'JSON Viewer',
+                relatedTool4Desc: 'Format and validate JSON',
                 featureTimedTitle: 'Timed Refresh',
                 featureTimedDesc: 'Set interval time to auto-refresh pages, supports seconds/minutes',
                 feature1_title: '100% Free & Private',
@@ -1237,17 +1321,6 @@
                 faq5A: 'It\'s suitable for monitoring page updates, ticket grabbing, flash sales, and monitoring data changes. It can also be used for testing website stability or keeping sessions active.',
                 faq_free_q: 'Is this tool really free? Are there any hidden charges?',
                 faq_free_a: 'Yes, this tool is 100% free with no hidden charges, no ads, and no signup required. It runs entirely in your browser — your data never leaves your device.',
-                relatedTools: 'Related Tools',
-                websocketTest: 'WebSocket Test',
-                websocketDesc: 'WebSocket connection debugging',
-                ipLookup: 'IP Lookup',
-                ipLookupDesc: 'Query IP geolocation',
-                whoisQuery: 'WHOIS Query',
-                whoisQueryDesc: 'Domain registration info',
-                jsonFormat: 'JSON Format',
-                jsonFormatDesc: 'JSON formatting & validation',
-                footerPrivacy: 'Pure frontend processing, data is not uploaded to server',
-                footerBack: '← Back to Web Toolbox',
                 unitSecond: 'second',
                 unitMinute: 'minute',
                 modeBackground: 'background',
@@ -1261,8 +1334,17 @@
                 trust_free: '🚫 No Ads, No Signup'
             },
             'zh-CN': {
+                tool_name: '页面刷新器',
                 navBrand: '🔄 定时刷新网页',
-                backToToolbox: '返回工具箱',
+                relatedToolsTitle: '🔗 相关工具推荐',
+                relatedTool1: 'WebSocket 测试',
+                relatedTool1Desc: 'WebSocket 连接调试',
+                relatedTool2: 'IP 查询',
+                relatedTool2Desc: 'IP 地理位置查询',
+                relatedTool3: 'Whois 查询',
+                relatedTool3Desc: '域名注册信息查询',
+                relatedTool4: 'JSON 查看器',
+                relatedTool4Desc: 'JSON 格式化与校验',
                 featureTimedTitle: '定时刷新',
                 featureTimedDesc: '设置间隔时间，自动定时刷新网页，支持秒/分钟单位',
                 feature1_title: '100% 免费且安全',
@@ -1358,17 +1440,6 @@
                 faq5A: '适用于监控网页更新、抢票、秒杀、监控数据变化等场景。也可用于测试网站稳定性或保持会话活跃状态。',
                 faq_free_q: '这个工具真的免费吗？有隐藏收费吗？',
                 faq_free_a: '是的，本工具 100% 免费，无隐藏收费、无广告、无需注册。完全在浏览器中运行，数据不会离开您的设备。',
-                relatedTools: '相关工具推荐',
-                websocketTest: 'WebSocket 测试',
-                websocketDesc: 'WebSocket 连接调试',
-                ipLookup: 'IP 地址查询',
-                ipLookupDesc: '查询 IP 归属地',
-                whoisQuery: 'WHOIS 查询',
-                whoisQueryDesc: '域名注册信息查询',
-                jsonFormat: 'JSON 格式化',
-                jsonFormatDesc: 'JSON 格式化与校验',
-                footerPrivacy: '纯前端处理，数据不会上传到服务器',
-                footerBack: '← 返回 Web Toolbox 首页',
                 unitSecond: '秒',
                 unitMinute: '分钟',
                 modeBackground: '后台',
@@ -1382,8 +1453,17 @@
                 trust_free: '🚫 无广告、无需注册'
             },
             'fr': {
+                tool_name: 'Rafraîchisseur de page',
                 navBrand: '🔄 Rafraîchisseur de Page',
-                backToToolbox: 'Retour à la Boîte à Outils',
+                relatedToolsTitle: '🔗 Outils connexes',
+                relatedTool1: 'Testeur WebSocket',
+                relatedTool1Desc: 'Débogage connexion WebSocket',
+                relatedTool2: 'Recherche IP',
+                relatedTool2Desc: 'Géolocalisation IP',
+                relatedTool3: 'Recherche Whois',
+                relatedTool3Desc: 'Infos d\'enregistrement de domaine',
+                relatedTool4: 'Visionneur JSON',
+                relatedTool4Desc: 'Formater et valider JSON',
                 featureTimedTitle: 'Rafraîchissement Programmé',
                 featureTimedDesc: 'Définir l\'intervalle pour rafraîchir automatiquement les pages, supporte secondes/minutes',
                 feature1_title: '100% Gratuit et Privé',
@@ -1479,17 +1559,6 @@
                 faq5A: 'Idéal pour surveiller les mises à jour de pages, la réservation de billets, les ventes flash, et la surveillance des données. Aussi utile pour tester la stabilité ou maintenir des sessions actives.',
                 faq_free_q: 'Cet outil est-il vraiment gratuit ? Y a-t-il des frais cachés ?',
                 faq_free_a: 'Oui, cet outil est 100% gratuit sans frais cachés, sans publicité et sans inscription. Il fonctionne entièrement dans votre navigateur — vos données ne quittent jamais votre appareil.',
-                relatedTools: 'Outils Connexes',
-                websocketTest: 'Test WebSocket',
-                websocketDesc: 'Débogage de connexion WebSocket',
-                ipLookup: 'Recherche IP',
-                ipLookupDesc: 'Géolocalisation IP',
-                whoisQuery: 'Requête WHOIS',
-                whoisQueryDesc: 'Infos d\'enregistrement de domaine',
-                jsonFormat: 'Format JSON',
-                jsonFormatDesc: 'Formatage & validation JSON',
-                footerPrivacy: 'Traitement frontend pur, les données ne sont pas téléchargées',
-                footerBack: '← Retour à Web Toolbox',
                 unitSecond: 'seconde',
                 unitMinute: 'minute',
                 modeBackground: 'arrière-plan',
@@ -1503,8 +1572,17 @@
                 trust_free: '🚫 Sans pub, sans inscription'
             },
             'es': {
+                tool_name: 'Actualizador de página',
                 navBrand: '🔄 Refrescador de Página',
-                backToToolbox: 'Volver a Herramientas',
+                relatedToolsTitle: '🔗 Herramientas relacionadas',
+                relatedTool1: 'Probador WebSocket',
+                relatedTool1Desc: 'Depuración de conexión WebSocket',
+                relatedTool2: 'Búsqueda IP',
+                relatedTool2Desc: 'Consulta de geolocalización IP',
+                relatedTool3: 'Consulta Whois',
+                relatedTool3Desc: 'Consulta de registro de dominio',
+                relatedTool4: 'Visor JSON',
+                relatedTool4Desc: 'Formatear y validar JSON',
                 featureTimedTitle: 'Actualización Programada',
                 featureTimedDesc: 'Establecer intervalo para actualizar páginas automáticamente, soporta segundos/minutos',
                 feature1_title: '100% Gratis y Privado',
@@ -1600,17 +1678,6 @@
                 faq5A: 'Ideal para monitorear actualizaciones de páginas, compra de boletos, ventas flash, y monitoreo de datos. También útil para probar estabilidad o mantener sesiones activas.',
                 faq_free_q: '¿Esta herramienta es realmente gratuita? ¿Hay cargos ocultos?',
                 faq_free_a: 'Sí, esta herramienta es 100% gratuita sin cargos ocultos, sin anuncios y sin registro. Funciona completamente en tu navegador — tus datos nunca salen de tu dispositivo.',
-                relatedTools: 'Herramientas Relacionadas',
-                websocketTest: 'Prueba WebSocket',
-                websocketDesc: 'Depuración de conexión WebSocket',
-                ipLookup: 'Búsqueda IP',
-                ipLookupDesc: 'Geolocalización de IP',
-                whoisQuery: 'Consulta WHOIS',
-                whoisQueryDesc: 'Info de registro de dominio',
-                jsonFormat: 'Formato JSON',
-                jsonFormatDesc: 'Formateo y validación JSON',
-                footerPrivacy: 'Procesamiento frontend puro, los datos no se suben al servidor',
-                footerBack: '← Volver a Web Toolbox',
                 unitSecond: 'segundo',
                 unitMinute: 'minuto',
                 modeBackground: 'segundo plano',
@@ -1624,124 +1691,6 @@
                 trust_free: '🚫 Sin anuncios, sin registro'
             }
         };
-function updateLanguage(lang) {
-            currentLang = lang;
-            localStorage.setItem('toolbox_lang', lang);
-            document.getElementById('langCurrent').textContent = langNames[lang];
-
-            const t = translations[lang];
-
-            // 更新所有带 data-i18n 属性的元素
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (t[key]) {
-                    el.textContent = t[key];
-                }
-            });
-
-            // 更新 placeholder
-            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-                const key = el.getAttribute('data-i18n-placeholder');
-                if (t[key]) {
-                    el.placeholder = t[key];
-                }
-            });
-
-            // 更新 select 选项
-            document.querySelectorAll('select option[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (t[key]) {
-                    el.textContent = t[key];
-                }
-            });
-
-            // 更新 FAQ 部分
-            updateFAQ(t);
-
-            // 更新相关工具和页脚
-            updateRelatedAndFooter(t);
-        }
-
-        function updateFAQ(t) {
-            const faqSection = document.querySelector('.faq-section');
-            if (faqSection) {
-                faqSection.querySelector('.faq-title span:last-child').textContent = t.faqTitle;
-                const faqItems = faqSection.querySelectorAll('.faq-item');
-                if (faqItems[0]) {
-                    faqItems[0].querySelector('.faq-question').childNodes[0].textContent = t.faq1Q;
-                    faqItems[0].querySelector('.faq-answer-content').textContent = t.faq1A;
-                }
-                if (faqItems[1]) {
-                    faqItems[1].querySelector('.faq-question').childNodes[0].textContent = t.faq2Q;
-                    faqItems[1].querySelector('.faq-answer-content').textContent = t.faq2A;
-                }
-                if (faqItems[2]) {
-                    faqItems[2].querySelector('.faq-question').childNodes[0].textContent = t.faq3Q;
-                    faqItems[2].querySelector('.faq-answer-content').textContent = t.faq3A;
-                }
-                if (faqItems[3]) {
-                    faqItems[3].querySelector('.faq-question').childNodes[0].textContent = t.faq4Q;
-                    faqItems[3].querySelector('.faq-answer-content').textContent = t.faq4A;
-                }
-                if (faqItems[4]) {
-                    faqItems[4].querySelector('.faq-question').childNodes[0].textContent = t.faq5Q;
-                    faqItems[4].querySelector('.faq-answer-content').textContent = t.faq5A;
-                }
-                if (faqItems[5]) {
-                    faqItems[5].querySelector('.faq-question').childNodes[0].textContent = t.faq_free_q;
-                    faqItems[5].querySelector('.faq-answer-content').textContent = t.faq_free_a;
-                }
-            }
-        }
-
-        function updateRelatedAndFooter(t) {
-            const relatedSection = document.querySelector('.related-tools');
-            if (relatedSection) {
-                relatedSection.querySelector('h3').innerHTML = '🔗 ' + t.relatedTools;
-                const links = relatedSection.querySelectorAll('a');
-                if (links[0]) {
-                    links[0].querySelector('div:nth-child(2)').textContent = t.websocketTest;
-                    links[0].querySelector('div:nth-child(3)').textContent = t.websocketDesc;
-                }
-                if (links[1]) {
-                    links[1].querySelector('div:nth-child(2)').textContent = t.ipLookup;
-                    links[1].querySelector('div:nth-child(3)').textContent = t.ipLookupDesc;
-                }
-                if (links[2]) {
-                    links[2].querySelector('div:nth-child(2)').textContent = t.whoisQuery;
-                    links[2].querySelector('div:nth-child(3)').textContent = t.whoisQueryDesc;
-                }
-                if (links[3]) {
-                    links[3].querySelector('div:nth-child(2)').textContent = t.jsonFormat;
-                    links[3].querySelector('div:nth-child(3)').textContent = t.jsonFormatDesc;
-                }
-            }
-
-            const footer = document.querySelector('footer');
-            if (footer) {
-                footer.querySelector('p:first-child').textContent = t.footerPrivacy;
-                footer.querySelector('a[href="index.html"]').textContent = t.footerBack;
-            }
-        }
-
-        // 语言切换器事件
-        document.getElementById('langDropdown').addEventListener('click', function(e) {
-            e.stopPropagation();
-            this.classList.toggle('active');
-        });
-
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const lang = this.getAttribute('data-lang');
-                updateLanguage(lang);
-                document.getElementById('langDropdown').classList.remove('active');
-            });
-        });
-
-        document.addEventListener('click', function() {
-            document.getElementById('langDropdown').classList.remove('active');
-        });
 
         // 状态变量
         let isRunning = false;
@@ -1796,7 +1745,7 @@ function updateLanguage(lang) {
 
         // 获取当前语言翻译
         function t(key) {
-            return translations[currentLang][key] || key;
+            return translations[getLang()]?.[key] || translations['en'][key] || key;
         }
 
         // 模式提示更新
@@ -2244,64 +2193,13 @@ function updateLanguage(lang) {
                 stopRefresh();
             }
         });
-                if (!isActive) {
-                    item.classList.add('active');
-                }
-            });
-        });
 
-        // 初始化语言
-        updateLanguage(currentLang);
+        // 初始化
         updateModeHint();
+
+        window._translations = translations;
     </script>
     <script src="common/common.js" data-tool-id="page-refresher" data-tool-name="Page Auto Refresher" data-category="utility"></script>
-    <script>WebToolbox.init(translations);</script>
-
-
-    <!-- FAQ 常见问题 -->
-    <section class="faq-section">
-        <h2 class="faq-title">
-            <span>❓</span>
-            <span data-i18n="faqTitle">FAQ</span>
-        </h2>
-        <div class="faq-list">
-            <div class="faq-item">
-                <div class="faq-question" data-i18n="faq1Q">Can I refresh any webpage?</div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content" data-i18n="faq1A">Due to browser security restrictions, some websites don't allow being embedded in iframes. You can use background request mode or new window mode to refresh such websites.</div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" data-i18n="faq2Q">What is the minimum refresh interval?</div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content" data-i18n="faq2A">The minimum is 1 second, but we recommend setting it to 5 seconds or more to avoid putting pressure on the target website. Frequent refreshing may cause the target website to temporarily block your access.</div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" data-i18n="faq3Q">Will refreshing continue after closing the page?</div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content" data-i18n="faq3A">No, the refresh function requires the page to remain open. After closing the browser tab or window, the auto-refresh will stop automatically.</div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" data-i18n="faq4Q">Can I refresh multiple pages simultaneously?</div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content" data-i18n="faq4A">Yes, you can open multiple tool tabs and set different URLs to refresh simultaneously. Each tab runs independently without affecting others.</div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" data-i18n="faq5Q">What are the use cases for this tool?</div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content" data-i18n="faq5A">It's suitable for monitoring page updates, ticket grabbing, flash sales, and monitoring data changes. It can also be used for testing website stability or keeping sessions active.</div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" data-i18n="faq_free_q">Is this tool really free? Are there any hidden charges?</div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content" data-i18n="faq_free_a">Yes, this tool is 100% free with no hidden charges, no ads, and no signup required. It runs entirely in your browser — your data never leaves your device.</div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <script>WebToolbox.init(window._translations);</script>
 </body>
 </html>

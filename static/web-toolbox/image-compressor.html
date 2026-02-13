@@ -135,7 +135,7 @@
             position: relative;
         }
 
-        .lang-dropdown.active h1 {
+        h1 {
             font-size: 2.5rem;
             font-weight: 700;
             background: linear-gradient(120deg, #22c55e, #3b82f6, #8b5cf6);
@@ -850,11 +850,6 @@
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
 <div class="container">
 <header>
             
@@ -1025,19 +1020,93 @@
             </div>
         </div>
 
-        <footer>
-            <p data-i18n="footerNote">Pure frontend processing, images are not uploaded to server</p>
-            <p style="margin-top: 8px;">
-                <a href="index.html" data-i18n="footerBack">← Back to Web Toolbox</a>
-            </p>
-        </footer>
+        <!-- FAQ -->
+        <section class="faq-section" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
+            <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
+                <span style="color: #7c3aed;">❓</span> <span data-i18n="faqTitle">FAQ</span>
+            </h2>
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq1Q">How does image compression work?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq1A">Image compression reduces file size by adjusting quality parameters and optimizing encoding. Our tool uses the browser's built-in Canvas API for lossy compression, removing imperceptible visual details while maintaining overall image clarity.</div>
+                </details>
+                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq2Q">Which image formats are supported?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq2A">Supports JPEG, PNG, WebP, GIF and other common image formats. You can batch upload multiple images and compress them all at once with customizable quality settings.</div>
+                </details>
+                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq3Q">Will compression reduce image quality?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq3A">You can control the balance between file size and quality using the quality slider. At 70-80% quality, most images show no visible quality loss while achieving significant size reduction.</div>
+                </details>
+                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq4Q">Is there a file size limit?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq4A">Since all processing happens in your browser, there's no server-imposed file size limit. However, very large images may take longer to process depending on your device's performance.</div>
+                </details>
+                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq5Q">Can I compress multiple images at once?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq5A">Yes, you can select or drag multiple images at once. All images will be compressed with the same quality settings, and you can download them individually or as a batch ZIP file.</div>
+                </details>
+                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq_free_q">Is this tool really free? Is it safe?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</div>
+                </details>
+            </div>
+        </section>
+
+        <!-- 相关工具 -->
+        <section class="related-tools" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
+            <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
+                <span style="color: #7c3aed;">🔗</span> <span data-i18n="relatedToolsTitle">Related Tools</span>
+            </h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px;">
+                <a href="image-converter.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">🔄</div>
+                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool1">Image Converter</div>
+                </a>
+                <a href="ico-maker.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">🎨</div>
+                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool2">ICO Maker</div>
+                </a>
+                <a href="image-to-pdf.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">📄</div>
+                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool3">Image to PDF</div>
+                </a>
+                <a href="bg-remover.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">✂️</div>
+                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool4">Background Remover</div>
+                </a>
+            </div>
+        </section>
     </div>
 
     <script>
         // ==================== 多语言支持 ====================
         const i18n = {
             'en': {
-                backLink: '← Back to Toolbox',
+                tool_name: 'Image Compressor',
+                relatedToolsTitle: 'Related Tools',
+                relatedTool1: 'Image Converter',
+                relatedTool2: 'ICO Maker',
+                relatedTool3: 'Image to PDF',
+                relatedTool4: 'Background Remover',
                 title: '📦 Image Compressor',
                 subtitle: 'Batch compress images, significantly reduce file size while maintaining clarity',
                 feature1Title: '100% Free & Private',
@@ -1111,7 +1180,12 @@
                 trust_free: '🚫 No Ads, No Signup'
             },
             'zh-CN': {
-                backLink: '← 返回工具箱',
+                tool_name: '图片压缩',
+                relatedToolsTitle: '相关工具',
+                relatedTool1: '图片格式转换',
+                relatedTool2: 'ICO 图标制作',
+                relatedTool3: '图片转 PDF',
+                relatedTool4: '背景去除',
                 title: '📦 图片压缩工具',
                 subtitle: '批量压缩图片，保持清晰度的同时大幅减小文件体积',
                 feature1Title: '100% 免费且安全',
@@ -1185,7 +1259,12 @@
                 trust_free: '🚫 无广告、无需注册'
             },
             'fr': {
-                backLink: '← Retour à la boîte à outils',
+                tool_name: 'Compresseur d\'images',
+                relatedToolsTitle: 'Outils connexes',
+                relatedTool1: 'Convertisseur d\'images',
+                relatedTool2: 'Créateur ICO',
+                relatedTool3: 'Image en PDF',
+                relatedTool4: 'Suppression d\'arrière-plan',
                 title: '📦 Compresseur d\'images',
                 subtitle: 'Compressez des images en lot, réduisez considérablement la taille des fichiers tout en maintenant la clarté',
                 feature1Title: '100% Gratuit et Privé',
@@ -1259,7 +1338,12 @@
                 trust_free: '🚫 Sans pub, sans inscription'
             },
             'es': {
-                backLink: '← Volver a la caja de herramientas',
+                tool_name: 'Compresor de imágenes',
+                relatedToolsTitle: 'Herramientas relacionadas',
+                relatedTool1: 'Convertidor de imágenes',
+                relatedTool2: 'Creador de ICO',
+                relatedTool3: 'Imagen a PDF',
+                relatedTool4: 'Eliminador de fondo',
                 title: '📦 Compresor de imágenes',
                 subtitle: 'Comprima imágenes en lote, reduzca significativamente el tamaño del archivo manteniendo la claridad',
                 feature1Title: '100% Gratis y Privado',
@@ -1333,20 +1417,11 @@
                 trust_free: '🚫 Sin anuncios, sin registro'
             }
         };
-// 语言切换器事件
-        document.getElementById('langDropdown').addEventListener('click', function(e) {
-            e.stopPropagation();
-            this.classList.toggle('active');
-        });
-});
 
-        document.addEventListener('click', function() {
-            document.getElementById('langDropdown').classList.remove('active');
-        });
-
-        // 页面加载时应用语言
-        document.addEventListener('DOMContentLoaded', function() {
-});
+        // 获取当前语言
+        function getLang() {
+            return (typeof WebToolbox !== 'undefined') ? WebToolbox.getCurrentLang() : (localStorage.getItem('toolbox_lang') || 'en');
+        }
 
         // ==================== 图片压缩功能 ====================
         let images = [];
@@ -1401,7 +1476,7 @@
             const imageFiles = Array.from(files).filter(file => file.type.startsWith('image/'));
 
             if (imageFiles.length === 0) {
-                alert(i18n[currentLang].alertSelectImages);
+                alert(i18n[getLang()].alertSelectImages);
                 return;
             }
 
@@ -1435,7 +1510,7 @@
         function renderImages() {
             const grid = document.getElementById('imagesGrid');
             const section = document.getElementById('imagesSection');
-            const texts = i18n[currentLang];
+            const texts = i18n[getLang()];
 
             if (images.length === 0) {
                 section.classList.remove('show');
@@ -1508,7 +1583,7 @@
         // 压缩所有图片
         async function compressAll() {
             const btn = document.getElementById('compressBtn');
-            const texts = i18n[currentLang];
+            const texts = i18n[getLang()];
             btn.disabled = true;
             btn.innerHTML = '<span>⏳</span><span>' + texts.compressing + '</span>';
 
@@ -1766,93 +1841,21 @@
 
         // 清空全部
         function clearAll() {
-            if (images.length > 0 && !confirm(i18n[currentLang].confirmClear)) return;
+            if (images.length > 0 && !confirm(i18n[getLang()].confirmClear)) return;
             images = [];
             renderImages();
             document.getElementById('downloadAllBtn').style.display = 'none';
             document.getElementById('statsSection').classList.remove('show');
         }
+
+        // 暴露翻译对象供 common.js 使用
+        window._translations = i18n;
     </script>
 
     <!-- 可选：加载 JSZip 用于批量下载 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
-    <!-- FAQ 问答区块 -->
-    <section class="faq-section">
-        <h2 class="faq-title">
-            <span>❓</span>
-            <span data-i18n="faqTitle">Frequently Asked Questions</span>
-        </h2>
-        <div class="faq-list">
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span data-i18n="faq1Q">What image formats are supported?</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content" data-i18n="faq1A">
-                        Supports JPG, PNG, WebP, GIF and other common image formats. You can directly drag or select these format images for compression.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span data-i18n="faq2Q">Will compression reduce image quality?</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content" data-i18n="faq2A">
-                        There will be slight loss, but you can control it by adjusting compression quality. We recommend setting it above 80%, where the difference is barely noticeable to the human eye while achieving good compression.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span data-i18n="faq3Q">How many images can be compressed at once?</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content" data-i18n="faq3A">
-                        Depends on browser memory and device performance, we recommend not exceeding 50 images at a time. For larger images, consider reducing the quantity to ensure smooth processing.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span data-i18n="faq4Q">Will images be uploaded to a server?</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content" data-i18n="faq4A">
-                        No. All compression processing is done entirely in your local browser. Image data is never uploaded to any server, ensuring your privacy and data security.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span data-i18n="faq5Q">Can PNG images be compressed losslessly?</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content" data-i18n="faq5A">
-                        PNG uses lossless compression algorithm, which can reduce size through optimization without losing quality. This tool intelligently selects the optimal compression scheme, automatically applying lossless optimization when keeping the original format.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span data-i18n="faq_free_q">Is this tool really free with no ads?</span>
-                    <span class="arrow">▼</span>
-                </div>
-                <div class="faq-answer"><p data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</p></div>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        // FAQ 展开/收起
-        function toggleFaq(element) {
-            const faqItem = element.closest('.faq-item');
-            faqItem.classList.toggle('active');
-        }
-    </script>
     <script src="common/common.js" data-tool-id="image-compressor" data-tool-name="Image Compressor" data-category="image"></script>
-    <script>WebToolbox.init(i18n);</script>
-
+    <script>WebToolbox.init(window._translations);</script>
 </body>
 </html>

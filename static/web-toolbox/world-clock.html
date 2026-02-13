@@ -148,7 +148,7 @@ h1 {
             gap: 10px;
         }
 
-        .lang-dropdown.active /* 当前时区信息 */
+        /* 当前时区信息 */
         .current-info {
             text-align: center;
             margin-bottom: 30px;
@@ -417,11 +417,6 @@ h1 {
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
 <div class="container">
 <div class="header">
             
@@ -488,13 +483,106 @@ h1 {
 
         <!-- 时区网格 -->
         <div class="timezone-grid" id="timezoneGrid"></div>
+
+        <!-- FAQ 常见问题 -->
+        <section class="faq-section" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
+            <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
+                <span style="color: #7c3aed;">❓</span> <span data-i18n="faqTitle">Frequently Asked Questions</span>
+            </h2>
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq1Q">How many cities does the world clock support?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq1A">
+                        Supports 20+ major cities and time zones worldwide, covering important cities in Asia, Europe, Americas, and Oceania, including Beijing, Tokyo, New York, London, Paris, Sydney, etc.
+                    </div>
+                </details>
+                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq2Q">Is the time accurate?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq2A">
+                        The time is based on your device's system time. Ensure correct time for accurate display. We recommend enabling automatic time sync on your device.
+                    </div>
+                </details>
+                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq3Q">What is UTC time?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq3A">
+                        UTC (Coordinated Universal Time) is the international standard time and basis for global time zone calculations. Beijing time is UTC+8, meaning 8 hours ahead of UTC; New York is UTC-5 (winter) or UTC-4 (summer).
+                    </div>
+                </details>
+                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq4Q">Why does some city time differ from expected?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq4A">
+                        This may be due to daylight saving time. Some countries (like the US and most of Europe) adjust clocks during certain seasons, typically advancing by one hour in spring and reverting in fall.
+                    </div>
+                </details>
+                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq5Q">Can I add custom cities?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq5A">
+                        Custom city addition is not supported yet. Currently displays preset major cities worldwide, covering most commonly used regions. Use the search function to quickly locate cities in nearby timezones.
+                    </div>
+                </details>
+                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq_free_q">Is this tool really free? Is it safe?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq_free_a">
+                        Yes, this tool is 100% free with no ads, no signup, no usage limits, and no watermarks. All processing happens in your browser — your data never leaves your device. It's completely safe and private.
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- 相关工具 -->
+        <section class="related-tools" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
+            <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
+                <span style="color: #7c3aed;">🔗</span> <span data-i18n="relatedToolsTitle">Related Tools</span>
+            </h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px;">
+                <a href="timestamp-converter.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">🕐</div>
+                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool1">Timestamp Converter</div>
+                </a>
+                <a href="unit-converter.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">📏</div>
+                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool2">Unit Converter</div>
+                </a>
+                <a href="pomodoro.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">🍅</div>
+                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool3">Pomodoro Timer</div>
+                </a>
+                <a href="calculator.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">🧮</div>
+                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool4">Calculator</div>
+                </a>
+            </div>
+        </section>
     </div>
 
     <script>
         // 多语言翻译
         const translations = {
             'en': {
-                backHome: '← Back to Toolbox',
+                tool_name: 'World Clock',
+                relatedToolsTitle: 'Related Tools',
+                relatedTool1: 'Timestamp Converter',
+                relatedTool2: 'Unit Converter',
+                relatedTool3: 'Pomodoro Timer',
+                relatedTool4: 'Calculator',
                 pageTitle: 'World Clock',
                 featuresTitle: 'Features',
                 feature1Title: '100% Free & Private',
@@ -605,7 +693,12 @@ h1 {
                 trust_free: '🚫 No Ads, No Signup'
             },
             'zh-CN': {
-                backHome: '← 返回工具箱',
+                tool_name: '世界时钟',
+                relatedToolsTitle: '相关工具',
+                relatedTool1: '时间戳转换器',
+                relatedTool2: '单位转换器',
+                relatedTool3: '番茄钟',
+                relatedTool4: '计算器',
                 pageTitle: '世界时间查询',
                 featuresTitle: '功能特点',
                 feature1Title: '100% 免费且安全',
@@ -716,7 +809,12 @@ h1 {
                 trust_free: '🚫 无广告、无需注册'
             },
             'fr': {
-                backHome: '← Retour à la boîte à outils',
+                tool_name: 'Horloge mondiale',
+                relatedToolsTitle: 'Outils connexes',
+                relatedTool1: 'Convertisseur de timestamp',
+                relatedTool2: 'Convertisseur d\'unités',
+                relatedTool3: 'Minuteur Pomodoro',
+                relatedTool4: 'Calculatrice',
                 pageTitle: 'Horloge Mondiale',
                 featuresTitle: 'Fonctionnalités',
                 feature1Title: '100% Gratuit et Privé',
@@ -827,7 +925,12 @@ h1 {
                 trust_free: '🚫 Sans pub, sans inscription'
             },
             'es': {
-                backHome: '← Volver a herramientas',
+                tool_name: 'Reloj mundial',
+                relatedToolsTitle: 'Herramientas relacionadas',
+                relatedTool1: 'Convertidor de marcas de tiempo',
+                relatedTool2: 'Convertidor de unidades',
+                relatedTool3: 'Temporizador Pomodoro',
+                relatedTool4: 'Calculadora',
                 pageTitle: 'Reloj Mundial',
                 featuresTitle: 'Características',
                 feature1Title: '100% Gratis y Privado',
@@ -938,78 +1041,13 @@ h1 {
                 trust_free: '🚫 Sin anuncios, sin registro'
             }
         };
+        function getLang() {
+            return (typeof WebToolbox !== 'undefined') ? WebToolbox.getCurrentLang() : (localStorage.getItem('toolbox_lang') || 'en');
+        }
         function t(key) {
-            return translations[currentLang][key] || translations['en'][key] || key;
+            const lang = getLang();
+            return translations[lang]?.[key] || translations['en'][key] || key;
         }
-        function updateFAQ() {
-            const faqSection = document.querySelector('.faq-section');
-            if (faqSection) {
-                faqSection.querySelector('h2 span').textContent = t('faqTitle');
-                const details = faqSection.querySelectorAll('details');
-                const faqData = [
-                    { q: 'faq1Q', a: 'faq1A' },
-                    { q: 'faq2Q', a: 'faq2A' },
-                    { q: 'faq3Q', a: 'faq3A' },
-                    { q: 'faq4Q', a: 'faq4A' },
-                    { q: 'faq5Q', a: 'faq5A' },
-                    { q: 'faq_free_q', a: 'faq_free_a' }
-                ];
-                details.forEach((detail, index) => {
-                    if (faqData[index]) {
-                        detail.querySelector('summary').childNodes[0].textContent = t(faqData[index].q) + '\n                    ';
-                        detail.querySelector('div').textContent = t(faqData[index].a);
-                    }
-                });
-            }
-        }
-
-        // 更新相关工具部分
-        function updateRelatedTools() {
-            const relatedSection = document.querySelector('.related-tools');
-            if (relatedSection) {
-                relatedSection.querySelector('h3').innerHTML = '🔗 ' + t('relatedTools');
-                const tools = relatedSection.querySelectorAll('a');
-                const toolData = [
-                    { title: 'timestampTool', desc: 'timestampDesc' },
-                    { title: 'calculatorTool', desc: 'calculatorDesc' },
-                    { title: 'metronomeTool', desc: 'metronomeDesc' },
-                    { title: 'danmakuTool', desc: 'danmakuDesc' }
-                ];
-                tools.forEach((tool, index) => {
-                    if (toolData[index]) {
-                        const titleEl = tool.querySelectorAll('div')[1];
-                        const descEl = tool.querySelectorAll('div')[2];
-                        if (titleEl) titleEl.textContent = t(toolData[index].title);
-                        if (descEl) descEl.textContent = t(toolData[index].desc);
-                    }
-                });
-            }
-        }
-
-        // 更新页脚
-        function updateFooter() {
-            const footer = document.querySelector('footer');
-            if (footer) {
-                const paragraphs = footer.querySelectorAll('p');
-                if (paragraphs[0]) paragraphs[0].textContent = t('footerPrivacy');
-                if (paragraphs[1]) {
-                    const backLink = paragraphs[1].querySelector('a');
-                    if (backLink) backLink.textContent = t('footerBack');
-                }
-            }
-        }
-
-        // 语言切换器事件
-        document.getElementById('langDropdown').addEventListener('click', function(e) {
-            this.classList.toggle('active');
-            e.stopPropagation();
-        });
-});
-
-        document.addEventListener('click', function() {
-            document.getElementById('langDropdown').classList.remove('active');
-        });
-
         // 时区数据
         const timezones = [
             // 西半球
@@ -1078,7 +1116,7 @@ updateCurrentTime();
                 `${hours}<span class="time-separator">:</span>${minutes}<span class="time-separator">:</span>${seconds}`;
 
             // 日期
-            const locale = currentLang === 'zh-CN' ? 'zh-CN' : (currentLang === 'fr' ? 'fr-FR' : (currentLang === 'es' ? 'es-ES' : 'en-US'));
+            const locale = getLang() === 'zh-CN' ? 'zh-CN' : (getLang() === 'fr' ? 'fr-FR' : (getLang() === 'es' ? 'es-ES' : 'en-US'));
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             document.getElementById('mainDate').textContent = now.toLocaleDateString(locale, options);
         }
@@ -1164,12 +1202,12 @@ updateCurrentTime();
             const weekdays = [t('sunday'), t('monday'), t('tuesday'), t('wednesday'), t('thursday'), t('friday'), t('saturday')];
             const weekday = weekdays[date.getDay()];
 
-            if (currentLang === 'zh-CN') {
+            if (getLang() === 'zh-CN') {
                 return `${month}月${day}日 ${weekday}`;
-            } else if (currentLang === 'fr') {
+            } else if (getLang() === 'fr') {
                 const months = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
                 return `${weekday} ${day} ${months[month-1]}`;
-            } else if (currentLang === 'es') {
+            } else if (getLang() === 'es') {
                 const months = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
                 return `${weekday} ${day} de ${months[month-1]}`;
             } else {
@@ -1243,72 +1281,11 @@ updateCurrentTime();
 
         // 启动
         init();
+
+        // 暴露翻译对象供 common.js 使用
+        window._translations = translations;
     </script>
     <script src="common/common.js" data-tool-id="world-clock" data-tool-name="World Clock" data-category="utility"></script>
-    <script>WebToolbox.init(translations);</script>
-
-
-    <!-- FAQ 常见问题 -->
-    <section class="faq-section" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
-        <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
-            <span style="color: #7c3aed;">❓</span> <span data-i18n="faqTitle">Frequently Asked Questions</span>
-        </h2>
-        <div style="display: flex; flex-direction: column; gap: 16px;">
-            <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq1Q">How many cities does the world clock support?</span>
-                    <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                </summary>
-                <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq1A">
-                    Supports 20+ major cities and time zones worldwide, covering important cities in Asia, Europe, Americas, and Oceania, including Beijing, Tokyo, New York, London, Paris, Sydney, etc.
-                </div>
-            </details>
-            <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq2Q">Is the time accurate?</span>
-                    <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                </summary>
-                <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq2A">
-                    The time is based on your device's system time. Ensure correct time for accurate display. We recommend enabling automatic time sync on your device.
-                </div>
-            </details>
-            <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq3Q">What is UTC time?</span>
-                    <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                </summary>
-                <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq3A">
-                    UTC (Coordinated Universal Time) is the international standard time and basis for global time zone calculations. Beijing time is UTC+8, meaning 8 hours ahead of UTC; New York is UTC-5 (winter) or UTC-4 (summer).
-                </div>
-            </details>
-            <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq4Q">Why does some city time differ from expected?</span>
-                    <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                </summary>
-                <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq4A">
-                    This may be due to daylight saving time. Some countries (like the US and most of Europe) adjust clocks during certain seasons, typically advancing by one hour in spring and reverting in fall.
-                </div>
-            </details>
-            <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq5Q">Can I add custom cities?</span>
-                    <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                </summary>
-                <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq5A">
-                    Custom city addition is not supported yet. Currently displays preset major cities worldwide, covering most commonly used regions. Use the search function to quickly locate cities in nearby timezones.
-                </div>
-            </details>
-            <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq_free_q">Is this tool really free? Is it safe?</span>
-                    <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                </summary>
-                <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq_free_a">
-                    Yes, this tool is 100% free with no ads, no signup, no usage limits, and no watermarks. All processing happens in your browser — your data never leaves your device. It's completely safe and private.
-                </div>
-            </details>
-        </div>
-    </section>
+    <script>WebToolbox.init(window._translations);</script>
 </body>
 </html>

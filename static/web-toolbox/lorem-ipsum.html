@@ -237,8 +237,7 @@
         a { color: #a78bfa; text-decoration: none; }
         a:hover { text-decoration: underline; }
 
-        /* ===== 语言切换器 ===== */
-        .lang-dropdown.active /* ===== Header ===== */
+        /* ===== Header ===== */
         .header {
             text-align: center;
             padding: 40px 20px 20px;
@@ -533,7 +532,6 @@
             transform: translateX(-50%) translateY(0);
         }
 
-        /* ===== 响应式 ===== */
         /* ===== 功能特点区域 ===== */
         .seo-section {
             max-width: 1200px;
@@ -652,6 +650,8 @@
             color: #a78bfa;
             margin-bottom: 4px;
         }
+
+        /* ===== 响应式 ===== */
         @media (max-width: 800px) {
             .main-container {
                 grid-template-columns: 1fr;
@@ -668,11 +668,6 @@
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
 <!-- 头部 -->
     <header class="header">
 <h1 data-i18n="pageTitle">Lorem Ipsum Generator</h1>
@@ -765,6 +760,7 @@
         </div>
     </div>
 
+    <div class="container">
     <div class="trust-bar">
         <span class="trust-item" data-i18n="trust_users">🌍 Used by 50,000+ users</span>
         <span class="trust-item" data-i18n="trust_rating">⭐ 4.9/5 rating</span>
@@ -886,6 +882,7 @@
             </a>
         </div>
     </section>
+    </div>
 
     <!-- Toast 提示 -->
     <div class="toast" id="toast"></div>
@@ -992,6 +989,7 @@
         // =============================================
         var I18N = {
             en: {
+                tool_name: 'Lorem Ipsum Generator',
                 backHome: '\u2190 Back to Web Toolbox',
                 pageTitle: 'Lorem Ipsum Generator',
                 pageSubtitle: 'Generate placeholder text for your designs and layouts',
@@ -1054,6 +1052,7 @@
                 trust_free: '🚫 No Ads, No Signup'
             },
             'zh-CN': {
+                tool_name: '占位文本生成器',
                 backHome: '\u2190 返回工具箱',
                 pageTitle: '占位文本生成器',
                 pageSubtitle: '为您的设计和排版生成占位文本',
@@ -1116,6 +1115,7 @@
                 trust_free: '🚫 无广告、无需注册'
             },
             fr: {
+                tool_name: 'Générateur Lorem Ipsum',
                 backHome: '\u2190 Retour aux outils',
                 pageTitle: 'Générateur Lorem Ipsum',
                 pageSubtitle: 'Générez du texte de remplissage pour vos maquettes',
@@ -1178,6 +1178,7 @@
                 trust_free: '🚫 Sans pub, sans inscription'
             },
             es: {
+                tool_name: 'Generador Lorem Ipsum',
                 backHome: '\u2190 Volver a herramientas',
                 pageTitle: 'Generador Lorem Ipsum',
                 pageSubtitle: 'Genera texto de relleno para tus diseños y maquetas',
@@ -1241,18 +1242,24 @@
             }
         };
 
-        var LANG_LABELS = {
-            en: '🌐 English',
-            'zh-CN': '🌐 中文',
-            fr: '🌐 Français',
-            es: '🌐 Español'
-        };
+        // =============================================
+        // 辅助函数：获取当前语言
+        function getLang() {
+            return localStorage.getItem('toolbox_lang') || 'en';
+        }
+
+        // 辅助函数：翻译键
+        function t(key) {
+            var lang = getLang();
+            var dict = I18N[lang] || I18N.en;
+            return dict[key] !== undefined ? dict[key] : (I18N.en[key] || key);
+        }
+
         // =============================================
         var currentStyle = 'classic';
         var currentUnit = 'paragraphs';
         var currentQuantity = 5;
         var startWithLorem = true;
-        var currentLang = 'en';
         var generatedText = '';
         // =============================================
         var $previewContent = document.getElementById('previewContent');
@@ -1261,8 +1268,6 @@
         var $startWithLorem = document.getElementById('startWithLorem');
         var $btnCopy = document.getElementById('btnCopy');
         var $toast = document.getElementById('toast');
-        var $langDropdown = document.getElementById('langDropdown');
-        var $langCurrent = document.getElementById('langCurrent');
         var $statParagraphs = document.getElementById('statParagraphs');
         var $statSentences = document.getElementById('statSentences');
         var $statWords = document.getElementById('statWords');
@@ -1479,7 +1484,7 @@
         // =============================================
         function copyToClipboard() {
             if (!generatedText) {
-                showToast(I18N[currentLang].toastEmpty);
+                showToast(I18N[getLang()].toastEmpty);
                 return;
             }
             if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -1510,13 +1515,13 @@
         }
 
         function showCopySuccess() {
-            showToast(I18N[currentLang].toastCopied);
+            showToast(I18N[getLang()].toastCopied);
             $btnCopy.classList.add('copied');
             var origText = $btnCopy.textContent;
-            $btnCopy.textContent = '✓ ' + I18N[currentLang].toastCopied;
+            $btnCopy.textContent = '✓ ' + I18N[getLang()].toastCopied;
             setTimeout(function() {
                 $btnCopy.classList.remove('copied');
-                $btnCopy.textContent = I18N[currentLang].btnCopy;
+                $btnCopy.textContent = I18N[getLang()].btnCopy;
             }, 2000);
         }
         // =============================================
@@ -1530,59 +1535,7 @@
             }, 2500);
         }
         // =============================================
-        function applyI18n() {
-            var lang = currentLang;
-            var dict = I18N[lang];
-            if (!dict) return;
-
-            // data-i18n
-            var els = document.querySelectorAll('[data-i18n]');
-            for (var i = 0; i < els.length; i++) {
-                var key = els[i].getAttribute('data-i18n');
-                if (dict[key] !== undefined) {
-                    els[i].textContent = dict[key];
-                }
-            }
-
-            // data-i18n-placeholder
-            var placeholderEls = document.querySelectorAll('[data-i18n-placeholder]');
-            for (var j = 0; j < placeholderEls.length; j++) {
-                var pKey = placeholderEls[j].getAttribute('data-i18n-placeholder');
-                if (dict[pKey] !== undefined) {
-                    placeholderEls[j].placeholder = dict[pKey];
-                }
-            }
-
-            // 更新语言选择器显示
-            $langCurrent.textContent = LANG_LABELS[lang] || LANG_LABELS.en;
-
-            // 更新 html lang 属性
-            document.documentElement.lang = lang === 'zh-CN' ? 'zh-CN' : lang;
-        }
-
-        function setLang(lang) {
-            currentLang = lang;
-            try {
-                localStorage.setItem('toolbox_lang', lang);
-            } catch (e) {}
-            applyI18n();
-            $langDropdown.classList.remove('active');
-        }
-
-        function loadLang() {
-            try {
-                var saved = localStorage.getItem('toolbox_lang');
-                if (saved && I18N[saved]) {
-                    currentLang = saved;
-                }
-            } catch (e) {}
-        }
-        // =============================================
         function init() {
-            // 加载语言偏好
-            loadLang();
-            applyI18n();
-
             // 风格 Tab 切换
             var styleTabs = document.querySelectorAll('.style-tab');
             for (var i = 0; i < styleTabs.length; i++) {
@@ -1636,21 +1589,6 @@
             // 复制按钮
             $btnCopy.addEventListener('click', copyToClipboard);
 
-            // 语言切换器
-            $
-var langBtns = document.querySelectorAll('.lang-btn');
-            for (var m = 0; m < langBtns.length; m++) {
-                langBtns[m].addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    setLang(this.getAttribute('data-lang'));
-                });
-            }
-
-            // 点击其他地方关闭语言菜单
-            document.addEventListener('click', function() {
-                $langDropdown.classList.remove('active');
-            });
-
             // FAQ 手风琴交互
             var faqItems = document.querySelectorAll('.faq-item');
             for (var n = 0; n < faqItems.length; n++) {
@@ -1680,10 +1618,13 @@ var langBtns = document.querySelectorAll('.lang-btn');
         } else {
             init();
         }
+
+        // 导出翻译字典供 common.js 使用
+        window._translations = I18N;
     })();
     </script>
     <script src="common/common.js" data-tool-id="lorem-ipsum" data-tool-name="Lorem Ipsum Generator" data-category="text"></script>
-    <script>WebToolbox.init({});</script>
+    <script>WebToolbox.init(window._translations);</script>
 
 </body>
 </html>

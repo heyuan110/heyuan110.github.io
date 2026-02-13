@@ -147,7 +147,7 @@
             font-size: 14px;
         }
 
-        .lang-dropdown.active .upload-area {
+        .upload-area {
             border: 2px dashed #444;
             border-radius: 12px;
             padding: 40px;
@@ -688,11 +688,6 @@
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
 <div class="container">
 <header>
             
@@ -818,6 +813,62 @@
                 </section>
             </div>
         </div>
+
+    <!-- FAQ 常见问题 -->
+    <section class="faq-section" style="max-width: 1400px; margin: 40px auto; padding: 0 20px;">
+        <h2 style="color: #eee; font-size: 20px; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid #333;" data-i18n="faqTitle">Frequently Asked Questions</h2>
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+            <details style="background: #16213e; border: 1px solid #333; border-radius: 10px; overflow: hidden;">
+                <summary style="padding: 16px 20px; cursor: pointer; color: #00d9ff; font-weight: 500; font-size: 15px; list-style: none; display: flex; align-items: center; gap: 10px;">
+                    <span style="transition: transform 0.2s;">▶</span> <span data-i18n="faq1Title">What is the maximum database file size supported?</span>
+                </summary>
+                <div style="padding: 0 20px 16px 46px; color: #bbb; font-size: 14px; line-height: 1.6;" data-i18n="faq1Answer">
+                    The supported file size depends on browser memory, recommended not to exceed 100MB. For larger database files, consider using desktop SQLite management tools like DB Browser for SQLite or DBeaver.
+                </div>
+            </details>
+            <details style="background: #16213e; border: 1px solid #333; border-radius: 10px; overflow: hidden;">
+                <summary style="padding: 16px 20px; cursor: pointer; color: #00d9ff; font-weight: 500; font-size: 15px; list-style: none; display: flex; align-items: center; gap: 10px;">
+                    <span style="transition: transform 0.2s;">▶</span> <span data-i18n="faq2Title">Can I modify the database?</span>
+                </summary>
+                <div style="padding: 0 20px 16px 46px; color: #bbb; font-size: 14px; line-height: 1.6;" data-i18n="faq2Answer">
+                    You can execute INSERT, UPDATE, DELETE and other SQL statements, but all modifications are only made in browser memory and will not affect your original file. Export results to a new file if you need to save changes.
+                </div>
+            </details>
+            <details style="background: #16213e; border: 1px solid #333; border-radius: 10px; overflow: hidden;">
+                <summary style="padding: 16px 20px; cursor: pointer; color: #00d9ff; font-weight: 500; font-size: 15px; list-style: none; display: flex; align-items: center; gap: 10px;">
+                    <span style="transition: transform 0.2s;">▶</span> <span data-i18n="faq3Title">How do I save the modified database?</span>
+                </summary>
+                <div style="padding: 0 20px 16px 46px; color: #bbb; font-size: 14px; line-height: 1.6;" data-i18n="faq3Answer">
+                    You can export query results to CSV, JSON or SQL format. To fully save the database, use the exported SQL statements to rebuild the database in other SQLite tools.
+                </div>
+            </details>
+            <details style="background: #16213e; border: 1px solid #333; border-radius: 10px; overflow: hidden;">
+                <summary style="padding: 16px 20px; cursor: pointer; color: #00d9ff; font-weight: 500; font-size: 15px; list-style: none; display: flex; align-items: center; gap: 10px;">
+                    <span style="transition: transform 0.2s;">▶</span> <span data-i18n="faq4Title">Will my database file be uploaded to a server?</span>
+                </summary>
+                <div style="padding: 0 20px 16px 46px; color: #bbb; font-size: 14px; line-height: 1.6;">
+                    <strong style="color: #00ff88;">No!</strong> <span data-i18n="faq4Answer">This tool uses the sql.js library, all data processing is done locally in your browser, database files are never uploaded to any server, ensuring your data security and privacy.</span>
+                </div>
+            </details>
+            <details style="background: #16213e; border: 1px solid #333; border-radius: 10px; overflow: hidden;">
+                <summary style="padding: 16px 20px; cursor: pointer; color: #00d9ff; font-weight: 500; font-size: 15px; list-style: none; display: flex; align-items: center; gap: 10px;">
+                    <span style="transition: transform 0.2s;">▶</span> <span data-i18n="faq5Title">Which SQLite versions are supported?</span>
+                </summary>
+                <div style="padding: 0 20px 16px 46px; color: #bbb; font-size: 14px; line-height: 1.6;" data-i18n="faq5Answer">
+                    Supports SQLite 3.x database files, including .db, .sqlite, .sqlite3, .db3 and other common extension formats.
+                </div>
+            </details>
+            <details style="background: #16213e; border: 1px solid #333; border-radius: 10px; overflow: hidden;">
+                <summary style="padding: 16px 20px; cursor: pointer; color: #00d9ff; font-weight: 500; font-size: 15px; list-style: none; display: flex; align-items: center; gap: 10px;">
+                    <span style="transition: transform 0.2s;">▶</span> <span data-i18n="faqFreeQ">Is this tool really free with no ads?</span>
+                </summary>
+                <div style="padding: 0 20px 16px 46px; color: #bbb; font-size: 14px; line-height: 1.6;" data-i18n="faqFreeA">
+                    Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.
+                </div>
+            </details>
+        </div>
+    </section>
+
     </div>
 
     <div class="shortcuts">
@@ -829,6 +880,7 @@
         // ==================== 国际化 (i18n) ====================
         const translations = {
             'en': {
+                tool_name: 'SQLite Viewer',
                 backToToolbox: '← Back to Toolbox',
                 pageTitle: '🗄️ SQLite Database Viewer',
                 pageSubtitle: 'View and query SQLite database files directly in your browser',
@@ -921,6 +973,7 @@
                 trust_free: '🚫 No Ads, No Signup'
             },
             'zh-CN': {
+                tool_name: 'SQLite 查看器',
                 backToToolbox: '← 返回工具箱',
                 pageTitle: '🗄️ SQLite 数据库查看器',
                 pageSubtitle: '在浏览器中直接查看和查询 SQLite 数据库文件',
@@ -1013,6 +1066,7 @@
                 trust_free: '🚫 无广告、无需注册'
             },
             'fr': {
+                tool_name: 'Visionneur SQLite',
                 backToToolbox: '← Retour à la Boîte à outils',
                 pageTitle: '🗄️ Visualiseur SQLite',
                 pageSubtitle: 'Visualisez et interrogez des fichiers SQLite directement dans votre navigateur',
@@ -1105,6 +1159,7 @@
                 trust_free: '🚫 Sans pub, sans inscription'
             },
             'es': {
+                tool_name: 'Visor SQLite',
                 backToToolbox: '← Volver a Herramientas',
                 pageTitle: '🗄️ Visor SQLite',
                 pageSubtitle: 'Visualiza y consulta archivos SQLite directamente en tu navegador',
@@ -1198,7 +1253,7 @@
             }
         };
 function t(key, params = {}) {
-            let text = translations[currentLang]?.[key] || translations['en'][key] || key;
+            let text = translations[WebToolbox.getCurrentLang()]?.[key] || translations['en'][key] || key;
             Object.keys(params).forEach(k => {
                 text = text.replace(`{${k}}`, params[k]);
             });
@@ -1206,29 +1261,6 @@ function t(key, params = {}) {
         }
 
 
-        function setLanguage(lang) {
-            currentLang = lang;
-            localStorage.setItem('toolbox_lang', lang);
-            applyTranslations();
-            document.getElementById('langDropdown').classList.remove('active');
-        }
-
-        // 语言切换器事件
-        document.getElementById('langCurrent').addEventListener('click', (e) => {
-            e.stopPropagation();
-            document.getElementById('langDropdown').classList.toggle('active');
-        });
-
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                setLanguage(btn.getAttribute('data-lang'));
-            });
-        });
-
-        document.addEventListener('click', () => {
-            document.getElementById('langDropdown').classList.remove('active');
-        });
         let db = null;
         let currentTable = null;
         let currentResults = [];
@@ -1870,71 +1902,9 @@ function t(key, params = {}) {
             }
         }
 
-        // 页面加载时应用翻译
-        document.addEventListener('DOMContentLoaded', () => {
-            applyTranslations();
-        });
-
-        // 立即应用翻译（针对直接执行的情况）
-        applyTranslations();
+        window._translations = translations;
     </script>
     <script src="common/common.js" data-tool-id="sqlite-viewer" data-tool-name="SQLite Viewer" data-category="developer"></script>
-    <script>WebToolbox.init(translations);</script>
-
-
-    <!-- FAQ 常见问题 -->
-    <section class="faq-section" style="max-width: 1400px; margin: 40px auto; padding: 0 20px;">
-        <h2 style="color: #eee; font-size: 20px; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid #333;" data-i18n="faqTitle">❓ Frequently Asked Questions</h2>
-        <div style="display: flex; flex-direction: column; gap: 16px;">
-            <details style="background: #16213e; border: 1px solid #333; border-radius: 10px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; color: #00d9ff; font-weight: 500; font-size: 15px; list-style: none; display: flex; align-items: center; gap: 10px;">
-                    <span style="transition: transform 0.2s;">▶</span> <span data-i18n="faq1Title">What is the maximum database file size supported?</span>
-                </summary>
-                <div style="padding: 0 20px 16px 46px; color: #bbb; font-size: 14px; line-height: 1.6;" data-i18n="faq1Answer">
-                    The supported file size depends on browser memory, recommended not to exceed 100MB. For larger database files, consider using desktop SQLite management tools like DB Browser for SQLite or DBeaver.
-                </div>
-            </details>
-            <details style="background: #16213e; border: 1px solid #333; border-radius: 10px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; color: #00d9ff; font-weight: 500; font-size: 15px; list-style: none; display: flex; align-items: center; gap: 10px;">
-                    <span style="transition: transform 0.2s;">▶</span> <span data-i18n="faq2Title">Can I modify the database?</span>
-                </summary>
-                <div style="padding: 0 20px 16px 46px; color: #bbb; font-size: 14px; line-height: 1.6;" data-i18n="faq2Answer">
-                    You can execute INSERT, UPDATE, DELETE and other SQL statements, but all modifications are only made in browser memory and will not affect your original file. Export results to a new file if you need to save changes.
-                </div>
-            </details>
-            <details style="background: #16213e; border: 1px solid #333; border-radius: 10px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; color: #00d9ff; font-weight: 500; font-size: 15px; list-style: none; display: flex; align-items: center; gap: 10px;">
-                    <span style="transition: transform 0.2s;">▶</span> <span data-i18n="faq3Title">How do I save the modified database?</span>
-                </summary>
-                <div style="padding: 0 20px 16px 46px; color: #bbb; font-size: 14px; line-height: 1.6;" data-i18n="faq3Answer">
-                    You can export query results to CSV, JSON or SQL format. To fully save the database, use the exported SQL statements to rebuild the database in other SQLite tools.
-                </div>
-            </details>
-            <details style="background: #16213e; border: 1px solid #333; border-radius: 10px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; color: #00d9ff; font-weight: 500; font-size: 15px; list-style: none; display: flex; align-items: center; gap: 10px;">
-                    <span style="transition: transform 0.2s;">▶</span> <span data-i18n="faq4Title">Will my database file be uploaded to a server?</span>
-                </summary>
-                <div style="padding: 0 20px 16px 46px; color: #bbb; font-size: 14px; line-height: 1.6;">
-                    <strong style="color: #00ff88;">No!</strong> <span data-i18n="faq4Answer">This tool uses the sql.js library, all data processing is done locally in your browser, database files are never uploaded to any server, ensuring your data security and privacy.</span>
-                </div>
-            </details>
-            <details style="background: #16213e; border: 1px solid #333; border-radius: 10px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; color: #00d9ff; font-weight: 500; font-size: 15px; list-style: none; display: flex; align-items: center; gap: 10px;">
-                    <span style="transition: transform 0.2s;">▶</span> <span data-i18n="faq5Title">Which SQLite versions are supported?</span>
-                </summary>
-                <div style="padding: 0 20px 16px 46px; color: #bbb; font-size: 14px; line-height: 1.6;" data-i18n="faq5Answer">
-                    Supports SQLite 3.x database files, including .db, .sqlite, .sqlite3, .db3 and other common extension formats.
-                </div>
-            </details>
-            <details style="background: #16213e; border: 1px solid #333; border-radius: 10px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; color: #00d9ff; font-weight: 500; font-size: 15px; list-style: none; display: flex; align-items: center; gap: 10px;">
-                    <span style="transition: transform 0.2s;">▶</span> <span data-i18n="faqFreeQ">Is this tool really free with no ads?</span>
-                </summary>
-                <div style="padding: 0 20px 16px 46px; color: #bbb; font-size: 14px; line-height: 1.6;" data-i18n="faqFreeA">
-                    Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.
-                </div>
-            </details>
-        </div>
-    </section>
+    <script>WebToolbox.init(window._translations);</script>
 </body>
 </html>

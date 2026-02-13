@@ -159,8 +159,8 @@
       margin-bottom: 24px;
       animation: fadeIn .5s ease;
     }
-/* 语言切换 */
-    .lang-dropdown.open /* 标题 */
+
+    /* 标题 */
     h1 {
       text-align: center;
       font-size: 2.2rem;
@@ -517,10 +517,10 @@
     /* 响应式 */
     @media (max-width: 960px) {
       .form-grid { grid-template-columns: 1fr; }
-      .features-grid, }
+    }
     @media (max-width: 640px) {
       h1 { font-size: 1.7rem; }
-      .features-grid, .tool-card { padding: 14px; }
+      .tool-card { padding: 14px; }
       .totals { padding: 12px; }
       .totals .grand { font-size: 18px; }
     }
@@ -528,23 +528,7 @@
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    </style>
 <div class="container">
-<div class="topbar">
-<div class="lang-dropdown" id="langDropdown">
-      <div class="lang-current" id="langCurrent">🇺🇸 English</div>
-      <div class="lang-menu">
-        <button class="lang-btn" data-lang="en">🇺🇸 English</button>
-        <button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button>
-        <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
-        <button class="lang-btn" data-lang="es">🇪🇸 Español</button>
-      </div>
-    </div>
-  </div>
-
   <h1 class="animate-in" data-i18n="title">Invoice Generator</h1>
   <p class="subtitle animate-in" data-i18n="subtitle">Create itemized invoice PDF in your browser</p>
 
@@ -636,27 +620,27 @@
   </section>
 
   <section class="related-tools animate-in">
-    <h3 data-i18n="related_title">Related Tools</h3>
+    <h3 data-i18n="relatedToolsTitle">Related Tools</h3>
     <div class="related-grid">
       <a class="related" href="calculator.html">
         <div class="feature-icon">🧮</div>
-        <h4 data-i18n="r1_t">Calculator</h4>
-        <p data-i18n="r1_d">Check additional finance formulas quickly.</p>
+        <h4 data-i18n="relatedTool1">Calculator</h4>
+        <p data-i18n="relatedTool1Desc">Check additional finance formulas quickly.</p>
       </a>
       <a class="related" href="unit-converter.html">
         <div class="feature-icon">📏</div>
-        <h4 data-i18n="r2_t">Unit Converter</h4>
-        <p data-i18n="r2_d">Convert units in quotes and invoice specs.</p>
+        <h4 data-i18n="relatedTool2">Unit Converter</h4>
+        <p data-i18n="relatedTool2Desc">Convert units in quotes and invoice specs.</p>
       </a>
       <a class="related" href="timestamp-converter.html">
         <div class="feature-icon">🕒</div>
-        <h4 data-i18n="r3_t">Timestamp Converter</h4>
-        <p data-i18n="r3_d">Convert invoice dates and UNIX timestamps.</p>
+        <h4 data-i18n="relatedTool3">Timestamp Converter</h4>
+        <p data-i18n="relatedTool3Desc">Convert invoice dates and UNIX timestamps.</p>
       </a>
       <a class="related" href="pdf-compress.html">
         <div class="feature-icon">📦</div>
-        <h4 data-i18n="r4_t">PDF Compress</h4>
-        <p data-i18n="r4_d">Reduce invoice PDF size before sharing.</p>
+        <h4 data-i18n="relatedTool4">PDF Compress</h4>
+        <p data-i18n="relatedTool4Desc">Reduce invoice PDF size before sharing.</p>
       </a>
     </div>
   </section>
@@ -668,6 +652,7 @@
   'use strict';
 var i18n = {
     en: {
+      tool_name: 'Invoice Generator',
       back: 'Back to Toolbox', title: 'Invoice Generator', subtitle: 'Create itemized invoice PDF in your browser',
       fromName: 'From (Your Business)', toName: 'Bill To (Client)', invoiceNo: 'Invoice No.', invoiceDate: 'Invoice Date',
       dueDate: 'Due Date', taxRate: 'Tax Rate (%)', itemsLabel: 'Line Items',
@@ -692,13 +677,14 @@ var i18n = {
       faq4_a: 'No. Invoice calculation and PDF generation are handled in browser session. Data is not sent by this page to an application backend.',
       faq_free_q: 'Is this tool really free with no ads?',
       faq_free_a: 'Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.',
-      related_title: 'Related Tools',
-      r1_t: 'Calculator', r1_d: 'Check additional finance formulas quickly.',
-      r2_t: 'Unit Converter', r2_d: 'Convert units in quotes and invoice specs.',
-      r3_t: 'Timestamp Converter', r3_d: 'Convert invoice dates and UNIX timestamps.',
-      r4_t: 'PDF Compress', r4_d: 'Reduce invoice PDF size before sharing.'
+      relatedToolsTitle: 'Related Tools',
+      relatedTool1: 'Calculator', relatedTool1Desc: 'Check additional finance formulas quickly.',
+      relatedTool2: 'Unit Converter', relatedTool2Desc: 'Convert units in quotes and invoice specs.',
+      relatedTool3: 'Timestamp Converter', relatedTool3Desc: 'Convert invoice dates and UNIX timestamps.',
+      relatedTool4: 'PDF Compress', relatedTool4Desc: 'Reduce invoice PDF size before sharing.'
     },
     'zh-CN': {
+      tool_name: '发票生成器',
       back: '返回工具箱', title: '发票生成器', subtitle: '在线创建明细发票并导出 PDF',
       fromName: '开票方（你的公司）', toName: '收票方（客户）', invoiceNo: '发票编号', invoiceDate: '开票日期',
       dueDate: '到期日期', taxRate: '税率 (%)', itemsLabel: '明细项',
@@ -723,13 +709,14 @@ var i18n = {
       faq4_a: '不会。计算和导出都在浏览器会话中完成，页面不会主动把发票内容发送到应用后端。',
       faq_free_q: '这个工具真的免费且无广告吗？',
       faq_free_a: '是的，100% 免费，无广告、无需注册、无水印、无限制。所有处理都在浏览器本地完成，你的数据不会上传到任何服务器。',
-      related_title: '相关工具',
-      r1_t: '计算器', r1_d: '快速处理更多财务计算。',
-      r2_t: '单位换算器', r2_d: '报价和规格中的单位换算。',
-      r3_t: '时间戳转换', r3_d: '转换日期与时间戳。',
-      r4_t: 'PDF 压缩', r4_d: '分享前压缩发票 PDF。'
+      relatedToolsTitle: '相关工具',
+      relatedTool1: '计算器', relatedTool1Desc: '快速处理更多财务计算。',
+      relatedTool2: '单位换算器', relatedTool2Desc: '报价和规格中的单位换算。',
+      relatedTool3: '时间戳转换', relatedTool3Desc: '转换日期与时间戳。',
+      relatedTool4: 'PDF 压缩', relatedTool4Desc: '分享前压缩发票 PDF。'
     },
     fr: {
+      tool_name: 'Générateur de facture',
       back: 'Retour à la boîte à outils', title: 'Générateur de facture', subtitle: 'Créer facture détaillée et exporter PDF en ligne',
       fromName: 'Émetteur (votre société)', toName: 'Facturer à (client)', invoiceNo: 'N° facture', invoiceDate: 'Date facture',
       dueDate: 'Date échéance', taxRate: 'Taux taxe (%)', itemsLabel: 'Lignes de facture',
@@ -754,13 +741,14 @@ var i18n = {
       faq4_a: 'Non. Calcul et génération PDF se font dans session navigateur sans envoi vers backend applicatif.',
       faq_free_q: 'Cet outil est-il vraiment gratuit et sans pub ?',
       faq_free_a: 'Oui, 100% gratuit, sans publicité, sans inscription, sans filigrane et sans limites. Tout est traité localement dans votre navigateur — vos données ne sont jamais téléversées.',
-      related_title: 'Outils associés',
-      r1_t: 'Calculatrice', r1_d: 'Vérifier calculs financiers.',
-      r2_t: 'Convertisseur unités', r2_d: 'Convertir unités dans devis.',
-      r3_t: 'Convertisseur timestamp', r3_d: 'Convertir dates et temps.',
-      r4_t: 'Compresseur PDF', r4_d: 'Réduire taille du PDF facture.'
+      relatedToolsTitle: 'Outils associés',
+      relatedTool1: 'Calculatrice', relatedTool1Desc: 'Vérifier calculs financiers.',
+      relatedTool2: 'Convertisseur unités', relatedTool2Desc: 'Convertir unités dans devis.',
+      relatedTool3: 'Convertisseur timestamp', relatedTool3Desc: 'Convertir dates et temps.',
+      relatedTool4: 'Compresseur PDF', relatedTool4Desc: 'Réduire taille du PDF facture.'
     },
     es: {
+      tool_name: 'Generador de facturas',
       back: 'Volver a la caja de herramientas', title: 'Generador de facturas', subtitle: 'Crea factura detallada y exporta PDF en línea',
       fromName: 'Emisor (tu empresa)', toName: 'Facturar a (cliente)', invoiceNo: 'N.º factura', invoiceDate: 'Fecha factura',
       dueDate: 'Fecha vencimiento', taxRate: 'Tasa impuesto (%)', itemsLabel: 'Líneas de factura',
@@ -785,19 +773,23 @@ var i18n = {
       faq4_a: 'No. El cálculo y la generación PDF se realizan en sesión de navegador sin envío a backend de aplicación.',
       faq_free_q: '¿Esta herramienta es realmente gratis y sin anuncios?',
       faq_free_a: 'Sí, 100% gratis, sin anuncios, sin registro, sin marca de agua y sin límites. Todo el procesamiento ocurre localmente en tu navegador: tus datos nunca se suben a ningún servidor.',
-      related_title: 'Herramientas relacionadas',
-      r1_t: 'Calculadora', r1_d: 'Revisar cálculos financieros.',
-      r2_t: 'Convertidor de unidades', r2_d: 'Convertir unidades en cotizaciones.',
-      r3_t: 'Convertidor timestamp', r3_d: 'Convertir fechas y tiempo.',
-      r4_t: 'Compresor PDF', r4_d: 'Reducir tamaño del PDF.'
+      relatedToolsTitle: 'Herramientas relacionadas',
+      relatedTool1: 'Calculadora', relatedTool1Desc: 'Revisar cálculos financieros.',
+      relatedTool2: 'Convertidor de unidades', relatedTool2Desc: 'Convertir unidades en cotizaciones.',
+      relatedTool3: 'Convertidor timestamp', relatedTool3Desc: 'Convertir fechas y tiempo.',
+      relatedTool4: 'Compresor PDF', relatedTool4Desc: 'Reducir tamaño del PDF.'
     }
   };
-var itemsBody = document.getElementById('itemsBody');
+
+  var currentLang = localStorage.getItem('invoice_generator_lang') || 'en';
+  function getLang() { return currentLang; }
+
+  var itemsBody = document.getElementById('itemsBody');
   var statusEl = document.getElementById('status');
   var grandEl = document.getElementById('grandTotal');
   var exportBtn = document.getElementById('exportBtn');
 
-  function t(k) { var d = i18n[currentLang] || i18n.en; return d[k] || i18n.en[k] || k; }
+  function t(k) { var d = i18n[getLang()] || i18n.en; return d[k] || i18n.en[k] || k; }
   function money(v) { return (Number(v) || 0).toFixed(2); }
 
   /* 添加明细行（带入场动画） */
@@ -924,15 +916,6 @@ var itemsBody = document.getElementById('itemsBody');
     document.getElementById(id).addEventListener('input', calc);
   });
 
-  /* 语言切换 */
-  document.getElementById('langCurrent').addEventListener('click', function(e) {
-    e.stopPropagation();
-    document.getElementById('langDropdown').classList.toggle('open');
-  });
-});
-  document.addEventListener('click', function() {
-    document.getElementById('langDropdown').classList.remove('open');
-  });
 
   /* FAQ 手风琴 */
   document.querySelectorAll('.faq-q').forEach(function(btn) {
@@ -952,10 +935,22 @@ var itemsBody = document.getElementById('itemsBody');
   var due = new Date(today.getTime() + 7 * 24 * 3600 * 1000);
   document.getElementById('dueDate').value = due.toISOString().slice(0, 10);
   calc();
+
+  /* FAQ 手风琴 */
+  document.querySelectorAll('.faq-q').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var item = btn.parentElement;
+      var open = item.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(function(it) { it.classList.remove('active'); });
+      if (!open) item.classList.add('active');
+    });
+  });
+
+  window._translations = i18n;
 })();
 </script>
     <script src="common/common.js" data-tool-id="invoice-generator" data-tool-name="Invoice Generator" data-category="utility"></script>
-    <script>WebToolbox.init(i18n);</script>
+    <script>WebToolbox.init(window._translations);</script>
 
 </body>
 </html>

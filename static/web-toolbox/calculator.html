@@ -141,7 +141,7 @@
             position: relative;
         }
 
-        .lang-dropdown.active .sidebar-header h1 {
+        .sidebar-header h1 {
             font-size: 1.4rem;
             background: linear-gradient(120deg, #00d4ff, #7c3aed);
             -webkit-background-clip: text;
@@ -571,11 +571,7 @@
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
+<div class="container">
     <aside class="sidebar">
         <div class="sidebar-header">
             <h1 data-i18n="title">🧮 Universal Calculator</h1>
@@ -1458,6 +1454,7 @@
             </div>
         </section>
     </main>
+</div>
 
     <script>
         // 工具切换
@@ -1932,8 +1929,8 @@
         // ========== i18n 多语言支持 ==========
         const i18n = {
             en: {
+                tool_name: "Calculator",
                 title: "🧮 Universal Calculator",
-                backToToolbox: "← Back to Toolbox",
                 categoryCalculators: "Calculators",
                 categoryUnitConversion: "Unit Conversion",
                 scientificCalc: "Scientific Calculator",
@@ -2051,8 +2048,8 @@
                 trust_free: "🚫 No Ads, No Signup"
             },
             "zh-CN": {
+                tool_name: "计算器",
                 title: "🧮 万能计算器",
-                backToToolbox: "← 返回工具箱",
                 categoryCalculators: "计算器",
                 categoryUnitConversion: "单位换算",
                 scientificCalc: "科学计算器",
@@ -2170,8 +2167,8 @@
                 trust_free: "🚫 无广告、无需注册"
             },
             fr: {
+                tool_name: "Calculatrice",
                 title: "🧮 Calculatrice Universelle",
-                backToToolbox: "← Retour aux outils",
                 categoryCalculators: "Calculatrices",
                 categoryUnitConversion: "Conversion d'unités",
                 scientificCalc: "Calculatrice scientifique",
@@ -2289,8 +2286,8 @@
                 trust_free: "🚫 Sans pub, sans inscription"
             },
             es: {
+                tool_name: "Calculadora",
                 title: "🧮 Calculadora Universal",
-                backToToolbox: "← Volver a herramientas",
                 categoryCalculators: "Calculadoras",
                 categoryUnitConversion: "Conversión de unidades",
                 scientificCalc: "Calculadora científica",
@@ -2408,25 +2405,10 @@
                 trust_free: "🚫 Sin anuncios, sin registro"
             }
         };
-let currentLang = localStorage.getItem("toolbox_lang") || "en";
-
-
-        // 语言切换器事件
-        document.getElementById("langDropdown").addEventListener("click", function(e) {
-            e.stopPropagation();
-            this.classList.toggle("active");
-        });
-});
-
-        document.addEventListener("click", function() {
-            document.getElementById("langDropdown").classList.remove("active");
-        });
-
-        // 初始化语言
+        // 暴露翻译对象供 common.js 使用
+        window._translations = i18n;
 </script>
     <script src="common/common.js" data-tool-id="calculator" data-tool-name="Calculator" data-category="utility"></script>
-    <script>WebToolbox.init(i18n);</script>
-
-
+    <script>WebToolbox.init(window._translations);</script>
 </body>
 </html>

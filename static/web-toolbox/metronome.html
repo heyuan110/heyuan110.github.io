@@ -13,7 +13,20 @@
     <meta name="keywords" content="metronome,online metronome,BPM,music beat,rhythm practice,instrument practice,piano practice,guitar practice,drum practice,free metronome, no ads, no signup, no login, free unlimited, browser-based, no installation">
     <meta name="author" content="heyuan110">
     <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="bingbot" content="index, follow">
+    <meta name="revisit-after" content="7 days">
+    <meta name="rating" content="general">
+    <meta name="distribution" content="global">
+    <meta name="language" content="en, zh-CN, fr, es">
     <link rel="canonical" href="https://www.heyuan110.com/web-toolbox/metronome.html">
+
+    <!-- Alternate hreflang -->
+    <link rel="alternate" hreflang="en" href="https://www.heyuan110.com/web-toolbox/metronome.html">
+    <link rel="alternate" hreflang="zh-CN" href="https://www.heyuan110.com/web-toolbox/metronome.html">
+    <link rel="alternate" hreflang="fr" href="https://www.heyuan110.com/web-toolbox/metronome.html">
+    <link rel="alternate" hreflang="es" href="https://www.heyuan110.com/web-toolbox/metronome.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.heyuan110.com/web-toolbox/metronome.html">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
@@ -46,7 +59,6 @@
         "author": {"@type": "Person", "name": "heyuan110"},
         "publisher": {"@type": "Organization", "name": "Web Toolbox", "url": "https://www.heyuan110.com/web-toolbox/"},
         "screenshot": "https://www.heyuan110.com/web-toolbox/screenshots/metronome.webp"
-        "alternateName": ["在线节拍器", "Online Metronome", "BPM Counter"],
     }
     </script>
 
@@ -108,6 +120,64 @@
     }
     </script>
 
+    <!-- BreadcrumbList JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.heyuan110.com/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Web Toolbox",
+                "item": "https://www.heyuan110.com/web-toolbox/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Online Metronome",
+                "item": "https://www.heyuan110.com/web-toolbox/metronome.html"
+            }
+        ]
+    }
+    </script>
+
+    <!-- HowTo JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to Use Online Metronome",
+        "description": "Learn how to use the online metronome for music practice",
+        "step": [
+            {
+                "@type": "HowToStep",
+                "position": 1,
+                "name": "Adjust Speed (BPM)",
+                "text": "Use the slider or click preset buttons to set your desired tempo between 40-220 BPM"
+            },
+            {
+                "@type": "HowToStep",
+                "position": 2,
+                "name": "Select Time Signature",
+                "text": "Choose from common time signatures (2/4, 3/4, 4/4, 6/8) based on your practice needs"
+            },
+            {
+                "@type": "HowToStep",
+                "position": 3,
+                "name": "Start and Practice",
+                "text": "Click the play button to start the metronome and begin your practice session"
+            }
+        ]
+    }
+    </script>
+
     <style>
         * {
             margin: 0;
@@ -135,7 +205,7 @@
             margin-bottom: 20px;
         }
 
-        .lang-dropdown.active /* 主面板 */
+        /* 主面板 */
         .metronome-panel {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -686,11 +756,6 @@
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
 <div class="flash-overlay" id="flashOverlay"></div>
 
     <div class="container">
@@ -843,12 +908,69 @@
                 </ol>
             </div>
         </div>
+
+        <!-- FAQ 常见问题 -->
+        <section class="faq-section">
+            <h2 data-i18n="faqTitle">FAQ</h2>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq1Q">What does BPM mean?</div>
+                <div class="faq-answer" data-i18n="faq1A">BPM (Beats Per Minute) indicates the number of beats per minute. Higher values mean faster tempo. For example, 60 BPM means one beat per second, 120 BPM means two beats per second. This is the standard unit for describing tempo in music.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq2Q">What are common BPM ranges for different music?</div>
+                <div class="faq-answer" data-i18n="faq2A">Slow songs are around 60-80 BPM, pop songs around 100-130 BPM, fast songs can reach 140-180 BPM. In classical music, Largo is about 40-60 BPM, Andante about 76-108 BPM, Allegro about 120-168 BPM.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq3Q">How accurate is this metronome?</div>
+                <div class="faq-answer" data-i18n="faq3A">This online metronome uses the Web Audio API for millisecond-level precision, meeting the needs of professional music practice. Compared to traditional JavaScript timers, Web Audio API provides more stable and accurate timing.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq4Q">Can it run in the background?</div>
+                <div class="faq-answer" data-i18n="faq4A">Yes, the metronome continues running when you switch to other tabs, the sound won't interrupt, making it convenient to practice while reading sheet music. However, using headphones is recommended for a better experience.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq5Q">Does it support custom time signatures?</div>
+                <div class="faq-answer" data-i18n="faq5A">It supports common time signatures like 2/4, 3/4, 4/4, 6/8, and you can click on the beat dots to customize the accent pattern for each beat. Purple indicates strong beat, green indicates medium beat, gray indicates weak beat.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq6Q">Is this tool really free with no ads?</div>
+                <div class="faq-answer" data-i18n="faq6A">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</div>
+            </div>
+        </section>
+
+        <!-- 相关工具 -->
+        <section class="related-tools">
+            <h2 data-i18n="relatedToolsTitle">Related Tools</h2>
+            <div class="tool-grid">
+                <a href="audio-cutter.html" class="tool-link">
+                    <span class="tool-link-title" data-i18n="relatedTool1">Audio Cutter</span>
+                    <span class="tool-link-desc" data-i18n="relatedTool1Desc">Cut audio files online</span>
+                </a>
+                <a href="world-clock.html" class="tool-link">
+                    <span class="tool-link-title" data-i18n="relatedTool2">World Clock</span>
+                    <span class="tool-link-desc" data-i18n="relatedTool2Desc">Global timezone times</span>
+                </a>
+                <a href="scientific-calculator.html" class="tool-link">
+                    <span class="tool-link-title" data-i18n="relatedTool3">Scientific Calculator</span>
+                    <span class="tool-link-desc" data-i18n="relatedTool3Desc">Complex expressions</span>
+                </a>
+                <a href="handheld-danmaku.html" class="tool-link">
+                    <span class="tool-link-title" data-i18n="relatedTool4">LED Banner</span>
+                    <span class="tool-link-desc" data-i18n="relatedTool4Desc">LED scrolling text</span>
+                </a>
+            </div>
+        </section>
     </div>
 
     <script>
+        function getLang() {
+            return (typeof WebToolbox !== 'undefined') ? WebToolbox.getCurrentLang() : (localStorage.getItem('toolbox_lang') || 'en');
+        }
+
         // 多语言翻译
         const translations = {
             en: {
+                tool_name: 'Online Metronome',
                 backHome: '← Back to Toolbox',
                 title: 'Metronome',
                 subtitle: 'Keep your rhythm',
@@ -906,23 +1028,22 @@
                 faq5A: 'It supports common time signatures like 2/4, 3/4, 4/4, 6/8, and you can click on the beat dots to customize the accent pattern for each beat. Purple indicates strong beat, green indicates medium beat, gray indicates weak beat.',
                 faq6Q: 'Is this tool really free with no ads?',
                 faq6A: 'Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.',
-                relatedTools: 'Related Tools',
-                audioCutter: 'Audio Cutter',
-                audioCutterDesc: 'Cut audio files online',
-                worldClock: 'World Clock',
-                worldClockDesc: 'Global timezone times',
-                calculator: 'Scientific Calculator',
-                calculatorDesc: 'Complex expressions',
-                handheldDanmaku: 'LED Banner',
-                handheldDanmakuDesc: 'LED scrolling text',
-                footerPrivacy: 'Pure frontend processing, data is not uploaded to server',
-                footerBack: '← Back to Web Toolbox',
                 trust_users: '🌍 Used by 50,000+ users',
                 trust_rating: '⭐ 4.9/5 rating',
                 trust_privacy: '🔒 100% Private',
-                trust_free: '🚫 No Ads, No Signup'
+                trust_free: '🚫 No Ads, No Signup',
+                relatedToolsTitle: 'Related Tools',
+                relatedTool1: 'Audio Cutter',
+                relatedTool1Desc: 'Cut audio files online',
+                relatedTool2: 'World Clock',
+                relatedTool2Desc: 'Global timezone times',
+                relatedTool3: 'Scientific Calculator',
+                relatedTool3Desc: 'Complex expressions',
+                relatedTool4: 'LED Banner',
+                relatedTool4Desc: 'LED scrolling text'
             },
             'zh-CN': {
+                tool_name: '在线节拍器',
                 backHome: '← 返回工具箱',
                 title: '节拍器',
                 subtitle: '保持你的节奏',
@@ -980,23 +1101,22 @@
                 faq5A: '支持常见的 2/4、3/4、4/4、6/8 等拍号，并且可以点击节拍圆点自定义每一拍的强弱。紫色表示强拍，绿色表示中强拍，灰色表示弱拍。',
                 faq6Q: '这个工具真的免费且无广告吗？',
                 faq6A: '是的，100% 免费，无广告、无需注册、无水印、无使用限制。所有处理都在浏览器本地完成，数据不会上传到任何服务器。',
-                relatedTools: '相关工具推荐',
-                audioCutter: '音频剪切',
-                audioCutterDesc: '在线剪切音频文件',
-                worldClock: '世界时钟',
-                worldClockDesc: '全球时区时间',
-                calculator: '科学计算器',
-                calculatorDesc: '支持复杂表达式',
-                handheldDanmaku: '手持弹幕',
-                handheldDanmakuDesc: 'LED 滚动字幕',
-                footerPrivacy: '纯前端处理，数据不会上传到服务器',
-                footerBack: '← 返回 Web Toolbox 首页',
                 trust_users: '🌍 超过 50,000 用户使用',
                 trust_rating: '⭐ 4.9/5 好评',
                 trust_privacy: '🔒 100% 隐私安全',
-                trust_free: '🚫 无广告、无需注册'
+                trust_free: '🚫 无广告、无需注册',
+                relatedToolsTitle: '相关工具推荐',
+                relatedTool1: '音频剪切',
+                relatedTool1Desc: '在线剪切音频文件',
+                relatedTool2: '世界时钟',
+                relatedTool2Desc: '全球时区时间',
+                relatedTool3: '科学计算器',
+                relatedTool3Desc: '支持复杂表达式',
+                relatedTool4: '手持弹幕',
+                relatedTool4Desc: 'LED 滚动字幕'
             },
             fr: {
+                tool_name: 'Métronome en ligne',
                 backHome: '← Retour à la boîte à outils',
                 title: 'Métronome',
                 subtitle: 'Gardez le rythme',
@@ -1054,23 +1174,22 @@
                 faq5A: 'Il prend en charge les signatures courantes comme 2/4, 3/4, 4/4, 6/8, et vous pouvez cliquer sur les points de battement pour personnaliser le motif d\'accent pour chaque temps. Violet indique temps fort, vert indique temps moyen, gris indique temps faible.',
                 faq6Q: 'Cet outil est-il vraiment gratuit et sans publicité ?',
                 faq6A: 'Oui, 100% gratuit, sans publicité, sans inscription, sans filigrane et sans limite d\'utilisation. Tout le traitement se fait localement dans votre navigateur — vos données ne sont jamais envoyées à un serveur.',
-                relatedTools: 'Outils connexes',
-                audioCutter: 'Découpeur audio',
-                audioCutterDesc: 'Couper des fichiers audio en ligne',
-                worldClock: 'Horloge mondiale',
-                worldClockDesc: 'Heures des fuseaux horaires',
-                calculator: 'Calculatrice scientifique',
-                calculatorDesc: 'Expressions complexes',
-                handheldDanmaku: 'Bannière LED',
-                handheldDanmakuDesc: 'Texte défilant LED',
-                footerPrivacy: 'Traitement côté client, les données ne sont pas envoyées au serveur',
-                footerBack: '← Retour à Web Toolbox',
                 trust_users: '🌍 Utilisé par 50 000+ utilisateurs',
                 trust_rating: '⭐ Note 4.9/5',
                 trust_privacy: '🔒 100% Privé',
-                trust_free: '🚫 Sans pub, sans inscription'
+                trust_free: '🚫 Sans pub, sans inscription',
+                relatedToolsTitle: 'Outils connexes',
+                relatedTool1: 'Découpeur audio',
+                relatedTool1Desc: 'Couper des fichiers audio en ligne',
+                relatedTool2: 'Horloge mondiale',
+                relatedTool2Desc: 'Heures des fuseaux horaires',
+                relatedTool3: 'Calculatrice scientifique',
+                relatedTool3Desc: 'Expressions complexes',
+                relatedTool4: 'Bannière LED',
+                relatedTool4Desc: 'Texte défilant LED'
             },
             es: {
+                tool_name: 'Metrónomo en línea',
                 backHome: '← Volver a herramientas',
                 title: 'Metrónomo',
                 subtitle: 'Mantén tu ritmo',
@@ -1128,47 +1247,23 @@
                 faq5A: 'Soporta compases comunes como 2/4, 3/4, 4/4, 6/8, y puedes hacer clic en los puntos de pulso para personalizar el patrón de acentos para cada tiempo. Morado indica tiempo fuerte, verde indica tiempo medio, gris indica tiempo débil.',
                 faq6Q: '¿Es esta herramienta realmente gratuita y sin anuncios?',
                 faq6A: 'Sí, 100% gratuita, sin anuncios, sin registro, sin marca de agua y sin límites de uso. Todo el procesamiento se realiza localmente en tu navegador — tus datos nunca se envían a ningún servidor.',
-                relatedTools: 'Herramientas relacionadas',
-                audioCutter: 'Cortador de audio',
-                audioCutterDesc: 'Cortar archivos de audio en línea',
-                worldClock: 'Reloj mundial',
-                worldClockDesc: 'Horas de zonas horarias',
-                calculator: 'Calculadora científica',
-                calculatorDesc: 'Expresiones complejas',
-                handheldDanmaku: 'Banner LED',
-                handheldDanmakuDesc: 'Texto LED desplazable',
-                footerPrivacy: 'Procesamiento del lado del cliente, los datos no se envían al servidor',
-                footerBack: '← Volver a Web Toolbox',
                 trust_users: '🌍 Usado por más de 50,000 usuarios',
                 trust_rating: '⭐ Calificación 4.9/5',
                 trust_privacy: '🔒 100% Privado',
-                trust_free: '🚫 Sin anuncios, sin registro'
+                trust_free: '🚫 Sin anuncios, sin registro',
+                relatedToolsTitle: 'Herramientas relacionadas',
+                relatedTool1: 'Cortador de audio',
+                relatedTool1Desc: 'Cortar archivos de audio en línea',
+                relatedTool2: 'Reloj mundial',
+                relatedTool2Desc: 'Horas de zonas horarias',
+                relatedTool3: 'Calculadora científica',
+                relatedTool3Desc: 'Expresiones complejas',
+                relatedTool4: 'Banner LED',
+                relatedTool4Desc: 'Texto LED desplazable'
             }
         };
-function setLanguage(lang) {
-            currentLang = lang;
-            localStorage.setItem('toolbox_lang', lang);
-            applyTranslations(lang);
-            document.getElementById('langDropdown').classList.remove('active');
-        }
 
-        // 语言切换器事件
-        document.getElementById('langCurrent').addEventListener('click', function(e) {
-            e.stopPropagation();
-            document.getElementById('langDropdown').classList.toggle('active');
-        });
-
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                setLanguage(this.dataset.lang);
-            });
-        });
-
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.lang-dropdown')) {
-                document.getElementById('langDropdown').classList.remove('active');
-            }
-        });
+        window._translations = translations;
 
         // 音频上下文
         let audioContext = null;
@@ -1511,36 +1606,6 @@ function setLanguage(lang) {
         // 应用初始语言
 </script>
     <script src="common/common.js" data-tool-id="metronome" data-tool-name="Online Metronome" data-category="utility"></script>
-    <script>WebToolbox.init(translations);</script>
-
-
-    <!-- FAQ 常见问题 -->
-    <section class="faq-section" style="max-width: 900px; margin: 0 auto 30px; padding: 25px 20px;">
-        <h2 data-i18n="faqTitle">FAQ</h2>
-        <div class="faq-item">
-            <div class="faq-question">What does BPM mean?</div>
-            <div class="faq-answer">BPM (Beats Per Minute) indicates the number of beats per minute. Higher values mean faster tempo. For example, 60 BPM means one beat per second, 120 BPM means two beats per second. This is the standard unit for describing tempo in music.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">What are common BPM ranges for different music?</div>
-            <div class="faq-answer">Slow songs are around 60-80 BPM, pop songs around 100-130 BPM, fast songs can reach 140-180 BPM. In classical music, Largo is about 40-60 BPM, Andante about 76-108 BPM, Allegro about 120-168 BPM.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">How accurate is this metronome?</div>
-            <div class="faq-answer">This online metronome uses the Web Audio API for millisecond-level precision, meeting the needs of professional music practice. Compared to traditional JavaScript timers, Web Audio API provides more stable and accurate timing.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">Can it run in the background?</div>
-            <div class="faq-answer">Yes, the metronome continues running when you switch to other tabs, the sound won't interrupt, making it convenient to practice while reading sheet music. However, using headphones is recommended for a better experience.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">Does it support custom time signatures?</div>
-            <div class="faq-answer">It supports common time signatures like 2/4, 3/4, 4/4, 6/8, and you can click on the beat dots to customize the accent pattern for each beat. Purple indicates strong beat, green indicates medium beat, gray indicates weak beat.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">Is this tool really free with no ads?</div>
-            <div class="faq-answer">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</div>
-        </div>
-    </section>
+    <script>WebToolbox.init(window._translations);</script>
 </body>
 </html>

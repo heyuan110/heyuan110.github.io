@@ -194,7 +194,7 @@
             padding: 20px;
         }
 
-        .lang-dropdown.active .header {
+        .header {
             text-align: center;
             margin-bottom: 30px;
             padding-top: 10px;
@@ -696,13 +696,13 @@
         }
 
         /* ===== Related Tools Section ===== */
-        .related-section {
+        .related-tools {
             max-width: 1100px;
             margin: 48px auto 0;
             padding-bottom: 48px;
         }
 
-        .related-section .section-title {
+        .related-tools .section-title {
             text-align: center;
             font-size: 1.5rem;
             font-weight: 700;
@@ -713,27 +713,62 @@
             margin-bottom: 24px;
         }
 
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .related-card {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 24px 20px;
+            text-align: center;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .related-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(124, 58, 237, 0.15);
+        }
+
+        .related-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
         .related-card h3 {
             font-size: 15px;
             font-weight: 600;
             color: #c4b5fd;
+            margin-bottom: 8px;
+        }
+
+        .related-card p {
+            font-size: 13px;
+            color: #a1a1aa;
+            line-height: 1.5;
         }
 
         @media (max-width: 800px) {
+            .related-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
+        }
 
         @media (max-width: 480px) {
+            .related-grid {
+                grid-template-columns: 1fr;
             }
+        }
 </style>
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
-<div class="header">
+<div class="container">
+    <div class="header">
         <h1 data-i18n="pageTitle">QR Code Generator</h1>
         <p data-i18n="pageSubtitle">Create custom QR codes instantly — free, private, no server required</p>
     </div>
@@ -886,7 +921,7 @@
     </div>
 
     <!-- 功能特点 -->
-    <section class="features-section">
+    <section class="features-section" id="features-section">
         <h2 class="section-title" data-i18n="featuresTitle">Features</h2>
         <div class="features-grid">
             <div class="feature-card">
@@ -913,7 +948,7 @@
     </section>
 
     <!-- FAQ 手风琴 -->
-    <section class="faq-section">
+    <section class="faq-section" id="faq-section">
         <h2 class="section-title" data-i18n="faqTitle">Frequently Asked Questions</h2>
 
         <div class="faq-item">
@@ -960,27 +995,33 @@
     </section>
 
     <!-- 相关工具推荐 -->
-    <section class="related-section">
-        <h2 class="section-title" data-i18n="relatedTitle">Related Tools</h2>
+    <section class="related-tools" id="related-tools">
+        <h2 class="section-title" data-i18n="relatedToolsTitle">Related Tools</h2>
         <div class="related-grid">
             <a href="password-generator.html" class="related-card">
                 <div class="related-icon">🔐</div>
-                <h3 data-i18n="related1">Password Generator</h3>
+                <h3 data-i18n="relatedTool1">Password Generator</h3>
+                <p data-i18n="relatedTool1Desc">Generate secure passwords</p>
             </a>
             <a href="base64-tool.html" class="related-card">
                 <div class="related-icon">🔣</div>
-                <h3 data-i18n="related2">Base64 Encoder/Decoder</h3>
+                <h3 data-i18n="relatedTool2">Base64 Encoder/Decoder</h3>
+                <p data-i18n="relatedTool2Desc">Encode or decode Base64</p>
             </a>
             <a href="image-compressor.html" class="related-card">
                 <div class="related-icon">🖼️</div>
-                <h3 data-i18n="related3">Image Compressor</h3>
+                <h3 data-i18n="relatedTool3">Image Compressor</h3>
+                <p data-i18n="relatedTool3Desc">Reduce image file size</p>
             </a>
             <a href="ico-maker.html" class="related-card">
                 <div class="related-icon">🎨</div>
-                <h3 data-i18n="related4">ICO Maker</h3>
+                <h3 data-i18n="relatedTool4">ICO Maker</h3>
+                <p data-i18n="relatedTool4Desc">Create favicon files</p>
             </a>
         </div>
     </section>
+
+</div>
 
     <script>
     (function() {
@@ -989,6 +1030,7 @@
         // ============ 多语言 ============
         var i18n = {
             en: {
+                tool_name: 'QR Code Generator',
                 backToHome: '\u2190 Back to Home',
                 pageTitle: 'QR Code Generator',
                 pageSubtitle: 'Create custom QR codes instantly \u2014 free, private, no server required',
@@ -1051,17 +1093,22 @@
                 faq5A: 'Yes, this QR code generator is 100% free with no limitations. There are no watermarks, no sign-up required, and no usage limits. Generate as many QR codes as you need.',
                 faq_free_q: 'Is this tool really free with no ads?',
                 faq_free_a: 'Absolutely! This QR code generator is 100% free with zero ads, no signup or login required, no watermarks, and no usage limits. It runs entirely in your browser with no server-side processing, so your data stays completely private. There are no hidden fees or premium tiers — every feature is available to everyone.',
-                relatedTitle: 'Related Tools',
-                related1: 'Password Generator',
-                related2: 'Base64 Encoder/Decoder',
-                related3: 'Image Compressor',
-                related4: 'ICO Maker',
+                relatedToolsTitle: 'Related Tools',
+                relatedTool1: 'Password Generator',
+                relatedTool1Desc: 'Generate secure passwords',
+                relatedTool2: 'Base64 Encoder/Decoder',
+                relatedTool2Desc: 'Encode or decode Base64',
+                relatedTool3: 'Image Compressor',
+                relatedTool3Desc: 'Reduce image file size',
+                relatedTool4: 'ICO Maker',
+                relatedTool4Desc: 'Create favicon files',
                 trust_users: '🌍 Used by 50,000+ users',
                 trust_rating: '⭐ 4.9/5 rating',
                 trust_privacy: '🔒 100% Private',
                 trust_free: '🚫 No Ads, No Signup'
             },
             'zh-CN': {
+                tool_name: '二维码生成器',
                 backToHome: '\u2190 \u8fd4\u56de\u9996\u9875',
                 pageTitle: '\u4e8c\u7ef4\u7801\u751f\u6210\u5668',
                 pageSubtitle: '\u5b9e\u65f6\u521b\u5efa\u81ea\u5b9a\u4e49\u4e8c\u7ef4\u7801 \u2014 \u514d\u8d39\u3001\u79c1\u5bc6\u3001\u65e0\u9700\u670d\u52a1\u5668',
@@ -1124,17 +1171,22 @@
                 faq5A: '\u662f\u7684\uff0c\u8fd9\u4e2a\u4e8c\u7ef4\u7801\u751f\u6210\u5668 100% \u514d\u8d39\uff0c\u6ca1\u6709\u4efb\u4f55\u9650\u5236\u3002\u6ca1\u6709\u6c34\u5370\u3001\u65e0\u9700\u6ce8\u518c\u3001\u6ca1\u6709\u4f7f\u7528\u6b21\u6570\u9650\u5236\u3002\u60a8\u53ef\u4ee5\u751f\u6210\u4efb\u610f\u6570\u91cf\u7684\u4e8c\u7ef4\u7801\u3002',
                 faq_free_q: '\u8fd9\u4e2a\u5de5\u5177\u771f\u7684\u514d\u8d39\u4e14\u6ca1\u6709\u5e7f\u544a\u5417\uff1f',
                 faq_free_a: '\u5b8c\u5168\u6b63\u786e\uff01\u672c\u4e8c\u7ef4\u7801\u751f\u6210\u5668 100% \u514d\u8d39\uff0c\u96f6\u5e7f\u544a\u3001\u65e0\u9700\u6ce8\u518c\u6216\u767b\u5f55\u3001\u65e0\u6c34\u5370\u3001\u65e0\u4f7f\u7528\u6b21\u6570\u9650\u5236\u3002\u6240\u6709\u64cd\u4f5c\u5b8c\u5168\u5728\u6d4f\u89c8\u5668\u4e2d\u8fd0\u884c\uff0c\u4e0d\u6d89\u53ca\u670d\u52a1\u5668\u7aef\u5904\u7406\uff0c\u60a8\u7684\u6570\u636e\u5b8c\u5168\u79c1\u5bc6\u3002\u6ca1\u6709\u9690\u85cf\u8d39\u7528\u6216\u9ad8\u7ea7\u5957\u9910\uff0c\u6240\u6709\u529f\u80fd\u5bf9\u6240\u6709\u4eba\u5b8c\u5168\u5f00\u653e\u3002',
-                relatedTitle: '\u76f8\u5173\u5de5\u5177',
-                related1: '\u5bc6\u7801\u751f\u6210\u5668',
-                related2: 'Base64 \u7f16\u89e3\u7801',
-                related3: '\u56fe\u7247\u538b\u7f29',
-                related4: 'ICO \u5236\u4f5c',
+                relatedToolsTitle: '相关工具',
+                relatedTool1: '密码生成器',
+                relatedTool1Desc: '生成安全密码',
+                relatedTool2: 'Base64 编解码',
+                relatedTool2Desc: '编码或解码 Base64',
+                relatedTool3: '图片压缩',
+                relatedTool3Desc: '减小图片文件大小',
+                relatedTool4: 'ICO 制作',
+                relatedTool4Desc: '创建网站图标文件',
                 trust_users: '🌍 超过 50,000 用户使用',
                 trust_rating: '⭐ 4.9/5 好评',
                 trust_privacy: '🔒 100% 隐私安全',
                 trust_free: '🚫 无广告、无需注册'
             },
             fr: {
+                tool_name: 'Générateur de QR Code',
                 backToHome: '\u2190 Retour \u00e0 l\u2019accueil',
                 pageTitle: 'G\u00e9n\u00e9rateur de QR Code',
                 pageSubtitle: 'Cr\u00e9ez des QR codes personnalis\u00e9s instantan\u00e9ment \u2014 gratuit, priv\u00e9, sans serveur',
@@ -1197,17 +1249,22 @@
                 faq5A: 'Oui, ce g\u00e9n\u00e9rateur de QR code est 100% gratuit sans aucune limitation. Pas de filigrane, pas d\u2019inscription requise, pas de limite d\u2019utilisation. G\u00e9n\u00e9rez autant de QR codes que vous le souhaitez.',
                 faq_free_q: 'Cet outil est-il vraiment gratuit et sans publicit\u00e9 ?',
                 faq_free_a: 'Absolument ! Ce g\u00e9n\u00e9rateur de QR code est 100% gratuit, sans aucune publicit\u00e9, sans inscription ni connexion requise, sans filigrane et sans limite d\u2019utilisation. Il fonctionne enti\u00e8rement dans votre navigateur sans traitement c\u00f4t\u00e9 serveur, vos donn\u00e9es restent totalement priv\u00e9es. Aucun frais cach\u00e9 ni offre premium \u2014 toutes les fonctionnalit\u00e9s sont accessibles \u00e0 tous.',
-                relatedTitle: 'Outils associ\u00e9s',
-                related1: 'G\u00e9n\u00e9rateur de mots de passe',
-                related2: 'Encodeur/D\u00e9codeur Base64',
-                related3: 'Compresseur d\u2019images',
-                related4: 'Cr\u00e9ateur ICO',
+                relatedToolsTitle: 'Outils associés',
+                relatedTool1: 'Générateur de mots de passe',
+                relatedTool1Desc: 'Générer des mots de passe sécurisés',
+                relatedTool2: 'Encodeur/Décodeur Base64',
+                relatedTool2Desc: 'Encoder ou décoder Base64',
+                relatedTool3: 'Compresseur d\'images',
+                relatedTool3Desc: 'Réduire la taille des fichiers image',
+                relatedTool4: 'Créateur ICO',
+                relatedTool4Desc: 'Créer des fichiers favicon',
                 trust_users: '🌍 Utilisé par 50 000+ utilisateurs',
                 trust_rating: '⭐ Note 4.9/5',
                 trust_privacy: '🔒 100% Privé',
                 trust_free: '🚫 Sans pub, sans inscription'
             },
             es: {
+                tool_name: 'Generador de Códigos QR',
                 backToHome: '\u2190 Volver al inicio',
                 pageTitle: 'Generador de C\u00f3digos QR',
                 pageSubtitle: 'Crea c\u00f3digos QR personalizados al instante \u2014 gratis, privado, sin servidor',
@@ -1270,11 +1327,15 @@
                 faq5A: 'S\u00ed, este generador de c\u00f3digos QR es 100% gratuito sin limitaciones. Sin marcas de agua, sin registro requerido y sin l\u00edmites de uso. Genere tantos c\u00f3digos QR como necesite.',
                 faq_free_q: '\u00bfEsta herramienta es realmente gratuita y sin anuncios?',
                 faq_free_a: '\u00a1Por supuesto! Este generador de c\u00f3digos QR es 100% gratuito, sin anuncios, sin registro ni inicio de sesi\u00f3n requerido, sin marcas de agua y sin l\u00edmites de uso. Se ejecuta completamente en su navegador sin procesamiento del lado del servidor, por lo que sus datos permanecen totalmente privados. No hay tarifas ocultas ni niveles premium \u2014 todas las funciones est\u00e1n disponibles para todos.',
-                relatedTitle: 'Herramientas relacionadas',
-                related1: 'Generador de contrase\u00f1as',
-                related2: 'Codificador/Decodificador Base64',
-                related3: 'Compresor de im\u00e1genes',
-                related4: 'Creador de ICO',
+                relatedToolsTitle: 'Herramientas relacionadas',
+                relatedTool1: 'Generador de contraseñas',
+                relatedTool1Desc: 'Generar contraseñas seguras',
+                relatedTool2: 'Codificador/Decodificador Base64',
+                relatedTool2Desc: 'Codificar o decodificar Base64',
+                relatedTool3: 'Compresor de imágenes',
+                relatedTool3Desc: 'Reducir el tamaño del archivo de imagen',
+                relatedTool4: 'Creador de ICO',
+                relatedTool4Desc: 'Crear archivos favicon',
                 trust_users: '🌍 Usado por más de 50,000 usuarios',
                 trust_rating: '⭐ Calificación 4.9/5',
                 trust_privacy: '🔒 100% Privado',
@@ -1288,9 +1349,16 @@
             fr: '🌐 Fran\u00e7ais',
             es: '🌐 Espa\u00f1ol'
         };
-function applyLang(lang) {
+
+        var currentLang = localStorage.getItem('qr-code-generator_lang') || 'en';
+
+        function getLang() {
+            return currentLang;
+        }
+
+        function applyLang(lang) {
             currentLang = lang;
-            localStorage.setItem('toolbox_lang', lang);
+            localStorage.setItem('qr-code-generator_lang', lang);
 
             var strings = i18n[lang] || i18n.en;
 
@@ -1320,9 +1388,6 @@ function applyLang(lang) {
                 var key = el.getAttribute('data-i18n-placeholder');
                 el.placeholder = strings[key] || key;
             });
-
-            // 更新语言切换器当前显示
-            document.getElementById('langCurrent').textContent = langLabels[lang] || langLabels.en;
 
             // 更新数据信息
             updateDataInfo();
@@ -1458,7 +1523,7 @@ function applyLang(lang) {
         // 更新数据信息显示
         function updateDataInfo() {
             var data = getQRData();
-            var strings = i18n[currentLang] || i18n.en;
+            var strings = i18n[getLang()] || i18n.en;
             if (data) {
                 var display = data.length > 120 ? data.substring(0, 120) + '...' : data;
                 dataInfo.textContent = (strings.dataInfoPrefix || 'Data: ') + display;
@@ -1551,29 +1616,20 @@ function applyLang(lang) {
             link.click();
         });
 
-        // ============ 语言切换器交互 ============
-document.querySelectorAll('.lang-btn').forEach(function(btn) {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                var lang = this.getAttribute('data-lang');
-                applyLang(lang);
-                langDropdown.classList.remove('active');
-            });
-        });
-// 切换当前项
-                if (!isActive) {
-                    item.classList.add('active');
-                }
-            });
-        });
-
         // ============ 初始化 ============
         applyLang(currentLang);
+
+        // 导出翻译对象供 common.js 使用
+        window._translations = i18n;
 
     })();
     </script>
     <script src="common/common.js" data-tool-id="qr-code-generator" data-tool-name="QR Code Generator" data-category="image"></script>
-    <script>WebToolbox.init(i18n);</script>
+    <script>
+        if (typeof WebToolbox !== 'undefined') {
+            WebToolbox.init(window._translations);
+        }
+    </script>
 
 </body>
 </html>

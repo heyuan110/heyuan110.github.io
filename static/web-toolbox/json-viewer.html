@@ -171,7 +171,7 @@
             font-size: 14px;
         }
 
-        .lang-dropdown.open .lang-dropdown.open .main-layout {
+        .main-layout {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
@@ -692,11 +692,6 @@
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
 <div class="container">
 <header>
 
@@ -823,6 +818,69 @@ Example:
                 </div>
             </div>
         </div>
+
+    <!-- FAQ 常见问题 -->
+    <section class="faq-section" style="max-width: 1200px; margin: 40px auto; padding: 0 20px;">
+        <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid #30363d;" data-i18n="faqTitle">FAQ</h2>
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
+                <summary style="padding: 16px 20px; cursor: pointer; color: #e6edf3; font-weight: 500; display: flex; align-items: center; gap: 10px; user-select: none;">
+                    <span style="color: #58a6ff;">Q:</span> <span data-i18n="faq1Q">What is JSON format?</span>
+                </summary>
+                <div style="padding: 0 20px 16px 20px; color: #8b949e; line-height: 1.7;">
+                    <p data-i18n="faq1A">JSON (JavaScript Object Notation) is a lightweight data interchange format. It's easy for humans to read and write, and easy for machines to parse and generate. JSON is commonly used for data transmission between frontend and backend in web applications and is one of the most common formats for modern APIs.</p>
+                </div>
+            </details>
+            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
+                <summary style="padding: 16px 20px; cursor: pointer; color: #e6edf3; font-weight: 500; display: flex; align-items: center; gap: 10px; user-select: none;">
+                    <span style="color: #58a6ff;">Q:</span> <span data-i18n="faq2Q">Why does my JSON parsing fail?</span>
+                </summary>
+                <div style="padding: 0 20px 16px 20px; color: #8b949e; line-height: 1.7;">
+                    <p data-i18n="faq2A">Common reasons for JSON parsing failure include:</p>
+                    <ul style="margin: 10px 0 0 20px;">
+                        <li data-i18n="faq2List1">Missing quotes: All keys and string values need double quotes</li>
+                        <li data-i18n="faq2List2">Trailing commas: No comma after the last element</li>
+                        <li data-i18n="faq2List3">Using single quotes: JSON standard only supports double quotes</li>
+                        <li data-i18n="faq2List4">Missing or mismatched brackets</li>
+                        <li data-i18n="faq2List5">Containing comments: Standard JSON doesn't support comments (this tool auto-removes them)</li>
+                    </ul>
+                </div>
+            </details>
+            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
+                <summary style="padding: 16px 20px; cursor: pointer; color: #e6edf3; font-weight: 500; display: flex; align-items: center; gap: 10px; user-select: none;">
+                    <span style="color: #58a6ff;">Q:</span> <span data-i18n="faq3Q">What is the maximum JSON data size supported?</span>
+                </summary>
+                <div style="padding: 0 20px 16px 20px; color: #8b949e; line-height: 1.7;">
+                    <p data-i18n="faq3A">JSON data size depends on browser memory limits, recommended not to exceed 10MB. Large JSON data may cause browser lag or crash. For very large data, use professional desktop JSON editors or command line tools (like jq).</p>
+                </div>
+            </details>
+            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
+                <summary style="padding: 16px 20px; cursor: pointer; color: #e6edf3; font-weight: 500; display: flex; align-items: center; gap: 10px; user-select: none;">
+                    <span style="color: #58a6ff;">Q:</span> <span data-i18n="faq4Q">Can I edit JSON?</span>
+                </summary>
+                <div style="padding: 0 20px 16px 20px; color: #8b949e; line-height: 1.7;">
+                    <p data-i18n="faq4A">Yes. You can edit JSON data directly in the input box, then click the "Format" button to validate the syntax. The tool will automatically detect errors and indicate their location for quick troubleshooting.</p>
+                </div>
+            </details>
+            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
+                <summary style="padding: 16px 20px; cursor: pointer; color: #e6edf3; font-weight: 500; display: flex; align-items: center; gap: 10px; user-select: none;">
+                    <span style="color: #58a6ff;">Q:</span> <span data-i18n="faq5Q">Will JSON data be uploaded to the server?</span>
+                </summary>
+                <div style="padding: 0 20px 16px 20px; color: #8b949e; line-height: 1.7;">
+                    <p data-i18n="faq5A">No. All JSON parsing and formatting operations are performed locally in your browser. Data is never uploaded to any server. You can safely process sensitive data with complete privacy protection.</p>
+                </div>
+            </details>
+            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
+                <summary style="padding: 16px 20px; cursor: pointer; color: #e6edf3; font-weight: 500; display: flex; align-items: center; gap: 10px; user-select: none;">
+                    <span style="color: #58a6ff;">Q:</span> <span data-i18n="faqFreeQ">Is this tool really free with no ads?</span>
+                </summary>
+                <div style="padding: 0 20px 16px 20px; color: #8b949e; line-height: 1.7;">
+                    <p data-i18n="faqFreeA">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</p>
+                </div>
+            </details>
+        </div>
+    </section>
+
     </div>
 
     <div class="toast" id="toast"></div>
@@ -834,6 +892,7 @@ Example:
         // 多语言翻译数据
         const translations = {
             'en': {
+                tool_name: 'JSON Viewer',
                 backToToolbox: '← Back to Toolbox',
                 pageTitle: '{ } JSON Viewer',
                 pageSubtitle: 'Paste JSON data and instantly get a beautiful, interactive tree view',
@@ -928,6 +987,7 @@ Example:
                 trust_free: '🚫 No Ads, No Signup'
             },
             'zh-CN': {
+                tool_name: 'JSON 查看器',
                 backToToolbox: '← 返回工具箱',
                 pageTitle: '{ } JSON 查看器',
                 pageSubtitle: '粘贴 JSON 数据，即刻获得美观、可交互的树形视图',
@@ -1022,6 +1082,7 @@ Example:
                 trust_free: '🚫 无广告、无需注册'
             },
             'fr': {
+                tool_name: 'Visionneur JSON',
                 backToToolbox: '← Retour à la boîte à outils',
                 pageTitle: '{ } Visionneur JSON',
                 pageSubtitle: 'Collez des données JSON et obtenez instantanément une vue arborescente interactive',
@@ -1116,6 +1177,7 @@ Example:
                 trust_free: '🚫 Sans pub, sans inscription'
             },
             'es': {
+                tool_name: 'Visor JSON',
                 backToToolbox: '← Volver a la caja de herramientas',
                 pageTitle: '{ } Visor JSON',
                 pageSubtitle: 'Pega datos JSON y obtén instantáneamente una vista de árbol interactiva',
@@ -1212,7 +1274,7 @@ Example:
         };
 // 获取翻译文本
         function t(key) {
-            const trans = translations[currentLang] || translations['en'];
+            const trans = translations[WebToolbox.getCurrentLang()] || translations['en'];
             return trans[key] || translations['en'][key] || key;
         }
 
@@ -1757,7 +1819,7 @@ Example:
                 "notes": null
             };
 
-            const sample = currentLang === 'zh-CN' ? sampleZh : sampleEn;
+            const sample = WebToolbox.getCurrentLang() === 'zh-CN' ? sampleZh : sampleEn;
             document.getElementById('jsonInput').value = JSON.stringify(sample, null, 2);
             formatAndParse();
         }
@@ -1859,81 +1921,9 @@ Example:
         document.addEventListener('dragover', (e) => e.preventDefault());
         document.addEventListener('drop', (e) => e.preventDefault());
 
-        // 语言切换器交互
-const langCurrentBtn = document.getElementById('langCurrent');
-
-        if (langCurrentBtn && langDropdown) {
-            // 点击当前语言按钮切换下拉菜单
-            langCurrentBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                langDropdown.classList.toggle('open');
-            });
-        // 初始化翻译
+        window._translations = translations;
 </script>
     <script src="common/common.js" data-tool-id="json-viewer" data-tool-name="JSON Viewer & Formatter" data-category="developer"></script>
-    <script>WebToolbox.init(translations);</script>
-
-
-    <!-- FAQ 常见问题 -->
-    <section class="faq-section" style="max-width: 1600px; margin: 40px auto; padding: 0 20px;">
-        <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid #30363d;" data-i18n="faqTitle">FAQ</h2>
-        <div style="display: flex; flex-direction: column; gap: 16px;">
-            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; color: #e6edf3; font-weight: 500; display: flex; align-items: center; gap: 10px; user-select: none;">
-                    <span style="color: #58a6ff;">Q:</span> <span data-i18n="faq1Q">What is JSON format?</span>
-                </summary>
-                <div style="padding: 0 20px 16px 20px; color: #8b949e; line-height: 1.7;">
-                    <p data-i18n="faq1A">JSON (JavaScript Object Notation) is a lightweight data interchange format. It's easy for humans to read and write, and easy for machines to parse and generate. JSON is commonly used for data transmission between frontend and backend in web applications and is one of the most common formats for modern APIs.</p>
-                </div>
-            </details>
-            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; color: #e6edf3; font-weight: 500; display: flex; align-items: center; gap: 10px; user-select: none;">
-                    <span style="color: #58a6ff;">Q:</span> <span data-i18n="faq2Q">Why does my JSON parsing fail?</span>
-                </summary>
-                <div style="padding: 0 20px 16px 20px; color: #8b949e; line-height: 1.7;">
-                    <p data-i18n="faq2A">Common reasons for JSON parsing failure include:</p>
-                    <ul style="margin: 10px 0 0 20px;">
-                        <li data-i18n="faq2List1">Missing quotes: All keys and string values need double quotes</li>
-                        <li data-i18n="faq2List2">Trailing commas: No comma after the last element</li>
-                        <li data-i18n="faq2List3">Using single quotes: JSON standard only supports double quotes</li>
-                        <li data-i18n="faq2List4">Missing or mismatched brackets</li>
-                        <li data-i18n="faq2List5">Containing comments: Standard JSON doesn't support comments (this tool auto-removes them)</li>
-                    </ul>
-                </div>
-            </details>
-            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; color: #e6edf3; font-weight: 500; display: flex; align-items: center; gap: 10px; user-select: none;">
-                    <span style="color: #58a6ff;">Q:</span> <span data-i18n="faq3Q">What is the maximum JSON data size supported?</span>
-                </summary>
-                <div style="padding: 0 20px 16px 20px; color: #8b949e; line-height: 1.7;">
-                    <p data-i18n="faq3A">JSON data size depends on browser memory limits, recommended not to exceed 10MB. Large JSON data may cause browser lag or crash. For very large data, use professional desktop JSON editors or command line tools (like jq).</p>
-                </div>
-            </details>
-            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; color: #e6edf3; font-weight: 500; display: flex; align-items: center; gap: 10px; user-select: none;">
-                    <span style="color: #58a6ff;">Q:</span> <span data-i18n="faq4Q">Can I edit JSON?</span>
-                </summary>
-                <div style="padding: 0 20px 16px 20px; color: #8b949e; line-height: 1.7;">
-                    <p data-i18n="faq4A">Yes. You can edit JSON data directly in the input box, then click the "Format" button to validate the syntax. The tool will automatically detect errors and indicate their location for quick troubleshooting.</p>
-                </div>
-            </details>
-            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; color: #e6edf3; font-weight: 500; display: flex; align-items: center; gap: 10px; user-select: none;">
-                    <span style="color: #58a6ff;">Q:</span> <span data-i18n="faq5Q">Will JSON data be uploaded to the server?</span>
-                </summary>
-                <div style="padding: 0 20px 16px 20px; color: #8b949e; line-height: 1.7;">
-                    <p data-i18n="faq5A">No. All JSON parsing and formatting operations are performed locally in your browser. Data is never uploaded to any server. You can safely process sensitive data with complete privacy protection.</p>
-                </div>
-            </details>
-            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
-                <summary style="padding: 16px 20px; cursor: pointer; color: #e6edf3; font-weight: 500; display: flex; align-items: center; gap: 10px; user-select: none;">
-                    <span style="color: #58a6ff;">Q:</span> <span data-i18n="faqFreeQ">Is this tool really free with no ads?</span>
-                </summary>
-                <div style="padding: 0 20px 16px 20px; color: #8b949e; line-height: 1.7;">
-                    <p data-i18n="faqFreeA">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</p>
-                </div>
-            </details>
-        </div>
-    </section>
+    <script>WebToolbox.init(window._translations);</script>
 </body>
 </html>

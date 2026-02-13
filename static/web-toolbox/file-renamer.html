@@ -41,7 +41,6 @@
         "author": {"@type": "Person", "name": "heyuan110"},
         "publisher": {"@type": "Organization", "name": "Web Toolbox", "url": "https://www.heyuan110.com/web-toolbox/"},
         "screenshot": "https://www.heyuan110.com/web-toolbox/screenshots/file-renamer.webp"
-        "alternateName": ["批量文件重命名", "Batch File Renamer", "File Name Changer"],
     }
     </script>
     <script type="application/ld+json">
@@ -173,7 +172,7 @@ h1 {
             margin-top: 12px;
         }
 
-        .lang-dropdown.active /* 卡片 */
+        /* 卡片 */
         .card {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -712,11 +711,6 @@ h1 {
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
 <div class="container">
 <header>
             
@@ -946,9 +940,87 @@ h1 {
             </div>
         </div>
 
-        <footer>
-            <p data-i18n="footerCredit">Made with ❤️ by <a href="https://github.com/heyuan110" target="_blank">@heyuan110</a> | <a href="index.html">Back to Tools</a></p>
-        </footer>
+        <!-- FAQ Section -->
+        <section class="faq-section" style="margin-top: 40px;">
+            <h2 style="color: #f0f0f0; font-size: 20px; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid rgba(124, 58, 237, 0.3);" data-i18n="faqTitle">❓ FAQ</h2>
+            <div class="faq-list" style="display: flex; flex-direction: column; gap: 16px;">
+                <div class="faq-item" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px;">
+                    <h3 style="color: #e4e4e7; font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                        <span style="color: #7c3aed;">Q:</span> <span data-i18n="faqQ1">How many files can be batch renamed?</span>
+                    </h3>
+                    <p style="color: #a1a1aa; font-size: 0.9rem; line-height: 1.6; padding-left: 24px;" data-i18n="faqA1">
+                        Theoretically unlimited, depends on browser performance. Recommended not to exceed 1000 files for smooth operation.
+                    </p>
+                </div>
+                <div class="faq-item" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px;">
+                    <h3 style="color: #e4e4e7; font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                        <span style="color: #7c3aed;">Q:</span> <span data-i18n="faqQ2">What renaming rules are supported?</span>
+                    </h3>
+                    <p style="color: #a1a1aa; font-size: 0.9rem; line-height: 1.6; padding-left: 24px;" data-i18n="faqA2">
+                        Supports prefix/suffix, sequential numbering, date insertion, find & replace, case conversion and more to meet most needs.
+                    </p>
+                </div>
+                <div class="faq-item" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px;">
+                    <h3 style="color: #e4e4e7; font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                        <span style="color: #7c3aed;">Q:</span> <span data-i18n="faqQ3">Are files uploaded to a server?</span>
+                    </h3>
+                    <p style="color: #a1a1aa; font-size: 0.9rem; line-height: 1.6; padding-left: 24px;" data-i18n="faqA3">
+                        No, all processing is done locally. Files never leave your computer, ensuring complete privacy.
+                    </p>
+                </div>
+                <div class="faq-item" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px;">
+                    <h3 style="color: #e4e4e7; font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                        <span style="color: #7c3aed;">Q:</span> <span data-i18n="faqQ4">Can I undo the rename?</span>
+                    </h3>
+                    <p style="color: #a1a1aa; font-size: 0.9rem; line-height: 1.6; padding-left: 24px;" data-i18n="faqA4">
+                        Before downloading, you can readjust rules or click "Reset" to restore. After downloading, you need to manually restore filenames.
+                    </p>
+                </div>
+                <div class="faq-item" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px;">
+                    <h3 style="color: #e4e4e7; font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                        <span style="color: #7c3aed;">Q:</span> <span data-i18n="faqQ5">Can folders be renamed?</span>
+                    </h3>
+                    <p style="color: #a1a1aa; font-size: 0.9rem; line-height: 1.6; padding-left: 24px;" data-i18n="faqA5">
+                        Only file renaming is supported, not folders. Selecting a folder will automatically read all files within for renaming.
+                    </p>
+                </div>
+                <div class="faq-item" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px;">
+                    <h3 style="color: #e4e4e7; font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                        <span style="color: #7c3aed;">Q:</span> <span data-i18n="faq_free_q">Is this tool really free? Are there any hidden charges?</span>
+                    </h3>
+                    <p style="color: #a1a1aa; font-size: 0.9rem; line-height: 1.6; padding-left: 24px;" data-i18n="faq_free_a">
+                        Yes, this tool is 100% free with no hidden charges, no ads, and no signup required. It runs entirely in your browser — your data never leaves your device.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Tools -->
+        <section class="related-tools" style="margin-top: 40px; margin-bottom: 20px;">
+            <h3 style="color: #e6edf3; font-size: 18px; margin-bottom: 16px;" data-i18n="relatedToolsTitle">🔗 Related Tools</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+                <a href="code-formatter.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; text-decoration: none; transition: all 0.3s;">
+                    <div style="font-size: 1.5rem;">💻</div>
+                    <div style="color: #e4e4e7; font-weight: 500; margin: 4px 0;" data-i18n="relatedTool1">Code Formatter</div>
+                    <div style="color: #a1a1aa; font-size: 0.85rem;" data-i18n="relatedTool1Desc">Format & beautify code</div>
+                </a>
+                <a href="text-diff.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; text-decoration: none; transition: all 0.3s;">
+                    <div style="font-size: 1.5rem;">📝</div>
+                    <div style="color: #e4e4e7; font-weight: 500; margin: 4px 0;" data-i18n="relatedTool2">Text Diff</div>
+                    <div style="color: #a1a1aa; font-size: 0.85rem;" data-i18n="relatedTool2Desc">Compare text differences</div>
+                </a>
+                <a href="csv-json-converter.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; text-decoration: none; transition: all 0.3s;">
+                    <div style="font-size: 1.5rem;">🔄</div>
+                    <div style="color: #e4e4e7; font-weight: 500; margin: 4px 0;" data-i18n="relatedTool3">CSV JSON Converter</div>
+                    <div style="color: #a1a1aa; font-size: 0.85rem;" data-i18n="relatedTool3Desc">Convert between CSV and JSON</div>
+                </a>
+                <a href="word-counter.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; text-decoration: none; transition: all 0.3s;">
+                    <div style="font-size: 1.5rem;">🔢</div>
+                    <div style="color: #e4e4e7; font-weight: 500; margin: 4px 0;" data-i18n="relatedTool4">Word Counter</div>
+                    <div style="color: #a1a1aa; font-size: 0.85rem;" data-i18n="relatedTool4Desc">Count words, characters & lines</div>
+                </a>
+            </div>
+        </section>
     </div>
 
     <!-- Toast -->
@@ -956,474 +1028,463 @@ h1 {
 
     <!-- ===================== LOGIC ===================== -->
     <script>
+    // getLang helper - must be before translations
+    function getLang() {
+        return (typeof WebToolbox !== 'undefined') ? WebToolbox.getCurrentLang() : (localStorage.getItem('toolbox_lang') || 'en');
+    }
+
+    const translations = {
+        en: {
+            tool_name: 'File Renamer',
+            title: '📝 Batch File Renamer',
+            subtitle: 'Supports sequential numbering, find & replace, prefix/suffix and more',
+            privacyBadge: '🔒 Fully local processing, no server upload',
+            featureBatchTitle: 'Batch Rename',
+            featureBatchDesc: 'Process multiple files at once, one-click batch rename to improve efficiency',
+            feature1_title: '100% Free & Private',
+            feature1_desc: 'No ads, no signup, no watermark. Everything runs locally in your browser. Your data never leaves your device.',
+            featureRulesTitle: 'Multiple Rules',
+            featureRulesDesc: 'Supports prefix/suffix, numbering, date, find & replace, case conversion and more',
+            featurePreviewTitle: 'Real-time Preview',
+            featurePreviewDesc: 'Preview rename results in real-time as you adjust rules, confirm before applying',
+            featureLocalTitle: 'Local Processing',
+            featureLocalDesc: 'Files are not uploaded, only filenames are processed in browser, privacy secured',
+            uploadText: 'Click to select files/folder or drag & drop here',
+            uploadHint: 'Supports any file type, selecting folder will read all files automatically',
+            selectFiles: '📄 Select Files',
+            selectFolder: '📂 Select Folder',
+            renameMode: '⚙️ Rename Mode',
+            tabSequence: 'Sequential Numbering',
+            tabReplace: 'Find & Replace',
+            tabPrefix: 'Add Prefix/Suffix',
+            tabRegex: 'Regex Replace',
+            tabCase: 'Case Conversion',
+            templateLabel: 'Naming Template',
+            templatePlaceholder: 'e.g. IMG_###',
+            templateHint: '# indicates number position, count determines zero padding; {self} represents original filename',
+            keepOriginal: 'Keep original',
+            startNumber: 'Start Number',
+            stepLabel: 'Step',
+            findLabel: 'Find Text',
+            findPlaceholder: 'Text to replace',
+            replaceLabel: 'Replace With',
+            replacePlaceholder: 'New text (empty to delete)',
+            caseSensitive: 'Case sensitive',
+            replaceAll: 'Replace all matches',
+            prefixLabel: 'Add Prefix',
+            prefixPlaceholder: 'Add to beginning of filename',
+            suffixLabel: 'Add Suffix',
+            suffixPlaceholder: 'Add to end of filename (before extension)',
+            regexLabel: 'Regular Expression',
+            regexPlaceholder: 'e.g. \\d+',
+            regexReplaceLabel: 'Replace With',
+            regexReplacePlaceholder: 'Supports $1 capture groups',
+            ignoreCase: 'Ignore case',
+            globalMatch: 'Global match',
+            caseTypeLabel: 'Conversion Type',
+            caseLower: 'All lowercase (lowercase)',
+            caseUpper: 'All uppercase (UPPERCASE)',
+            caseTitle: 'Title Case',
+            caseSentence: 'Sentence case',
+            includeExtension: 'Include extension',
+            btnPreview: '👁️ Preview',
+            btnApply: '✅ Apply Rename',
+            btnReset: '🔄 Reset',
+            btnClear: '🗑️ Clear Files',
+            fileListTitle: '📋 File List',
+            fileCount: '{count} files total',
+            sortNameAsc: 'Name ↑',
+            sortNameDesc: 'Name ↓',
+            sortSizeAsc: 'Size ↑',
+            sortSizeDesc: 'Size ↓',
+            fileListEmpty: 'Please upload files',
+            downloadTitle: '📥 Download Files',
+            downloadSingle: 'Download Single',
+            downloadSingleDesc: 'Click download button in file list',
+            downloadZip: 'Download as ZIP',
+            downloadZipDesc: 'Package all files into ZIP',
+            downloadSequence: 'Download One by One',
+            downloadSequenceDesc: 'Download each file sequentially',
+            footerCredit: 'Made with ❤️ by <a href="https://github.com/heyuan110" target="_blank">@heyuan110</a> | <a href="index.html">Back to Tools</a>',
+            toastAdded: 'Added {count} files',
+            toastCleared: 'All files cleared',
+            toastSorted: 'Sorted',
+            toastPreviewUpdated: 'Preview updated',
+            toastNoChanges: 'No files to rename',
+            toastApplied: 'Rename applied, please select download method',
+            toastReset: 'All filenames reset',
+            toastZipDone: 'ZIP packaging complete',
+            toastZipFailed: 'Packaging failed: ',
+            toastAllDownloaded: 'All files downloaded',
+            confirmClear: 'Are you sure you want to clear all files?',
+            faqTitle: '❓ FAQ',
+            faqQ1: 'How many files can be batch renamed?',
+            faqA1: 'Theoretically unlimited, depends on browser performance. Recommended not to exceed 1000 files for smooth operation.',
+            faqQ2: 'What renaming rules are supported?',
+            faqA2: 'Supports prefix/suffix, sequential numbering, date insertion, find & replace, case conversion and more to meet most needs.',
+            faqQ3: 'Are files uploaded to a server?',
+            faqA3: 'No, all processing is done locally. Files never leave your computer, ensuring complete privacy.',
+            faqQ4: 'Can I undo the rename?',
+            faqA4: 'Before downloading, you can readjust rules or click "Reset" to restore. After downloading, you need to manually restore filenames.',
+            faqQ5: 'Can folders be renamed?',
+            faqA5: 'Only file renaming is supported, not folders. Selecting a folder will automatically read all files within for renaming.',
+            faq_free_q: 'Is this tool really free? Are there any hidden charges?',
+            faq_free_a: 'Yes, this tool is 100% free with no hidden charges, no ads, and no signup required. It runs entirely in your browser — your data never leaves your device.',
+            relatedToolsTitle: '🔗 Related Tools',
+            relatedTool1: 'Code Formatter',
+            relatedTool1Desc: 'Format & beautify code',
+            relatedTool2: 'Text Diff',
+            relatedTool2Desc: 'Compare text differences',
+            relatedTool3: 'CSV JSON Converter',
+            relatedTool3Desc: 'Convert between CSV and JSON',
+            relatedTool4: 'Word Counter',
+            relatedTool4Desc: 'Count words, characters & lines',
+            trust_users: '🌍 Used by 50,000+ users',
+            trust_rating: '⭐ 4.9/5 rating',
+            trust_privacy: '🔒 100% Private',
+            trust_free: '🚫 No Ads, No Signup'
+        },
+        'zh-CN': {
+            tool_name: '文件重命名',
+            title: '📝 文件批量重命名',
+            subtitle: '支持顺序编号、查找替换、添加前后缀等多种模式',
+            privacyBadge: '🔒 完全本地处理，不上传服务器',
+            featureBatchTitle: '批量重命名',
+            featureBatchDesc: '支持同时处理多个文件，一键批量重命名，提高工作效率',
+            feature1_title: '100% 免费且安全',
+            feature1_desc: '无广告、无需注册、无水印。所有处理都在浏览器本地完成，数据不会上传到任何服务器。',
+            featureRulesTitle: '多种规则',
+            featureRulesDesc: '支持添加前缀后缀、序号、日期、查找替换等多种重命名规则',
+            featurePreviewTitle: '实时预览',
+            featurePreviewDesc: '修改规则时实时预览重命名效果，确认无误后再应用',
+            featureLocalTitle: '本地处理',
+            featureLocalDesc: '文件不上传，仅在浏览器中处理文件名，隐私安全有保障',
+            uploadText: '点击选择文件/文件夹 或 拖拽到此处',
+            uploadHint: '支持任意类型文件，选择文件夹会自动读取所有文件',
+            selectFiles: '📄 选择文件',
+            selectFolder: '📂 选择文件夹',
+            renameMode: '⚙️ 重命名模式',
+            tabSequence: '顺序编号',
+            tabReplace: '查找替换',
+            tabPrefix: '添加前后缀',
+            tabRegex: '正则替换',
+            tabCase: '大小写转换',
+            templateLabel: '命名模板',
+            templatePlaceholder: '例如: IMG_###',
+            templateHint: '# 表示编号位置，位数决定补零数量；{self} 表示原文件名',
+            keepOriginal: '仅保留原名',
+            startNumber: '起始编号',
+            stepLabel: '步长',
+            findLabel: '查找内容',
+            findPlaceholder: '要替换的文本',
+            replaceLabel: '替换为',
+            replacePlaceholder: '新文本（留空则删除）',
+            caseSensitive: '区分大小写',
+            replaceAll: '替换所有匹配',
+            prefixLabel: '添加前缀',
+            prefixPlaceholder: '添加到文件名开头',
+            suffixLabel: '添加后缀',
+            suffixPlaceholder: '添加到文件名末尾（扩展名前）',
+            regexLabel: '正则表达式',
+            regexPlaceholder: '例如: \\d+',
+            regexReplaceLabel: '替换为',
+            regexReplacePlaceholder: '支持 $1 等捕获组',
+            ignoreCase: '忽略大小写',
+            globalMatch: '全局匹配',
+            caseTypeLabel: '转换方式',
+            caseLower: '全部小写 (lowercase)',
+            caseUpper: '全部大写 (UPPERCASE)',
+            caseTitle: '首字母大写 (Title Case)',
+            caseSentence: '句首大写 (Sentence case)',
+            includeExtension: '包含扩展名',
+            btnPreview: '👁️ 预览效果',
+            btnApply: '✅ 应用重命名',
+            btnReset: '🔄 重置',
+            btnClear: '🗑️ 清空文件',
+            fileListTitle: '📋 文件列表',
+            fileCount: '共 {count} 个文件',
+            sortNameAsc: '名称 ↑',
+            sortNameDesc: '名称 ↓',
+            sortSizeAsc: '大小 ↑',
+            sortSizeDesc: '大小 ↓',
+            fileListEmpty: '请上传文件',
+            downloadTitle: '📥 下载文件',
+            downloadSingle: '单独下载',
+            downloadSingleDesc: '点击文件列表中的下载按钮',
+            downloadZip: '打包下载',
+            downloadZipDesc: '所有文件打包为 ZIP',
+            downloadSequence: '逐个下载',
+            downloadSequenceDesc: '依次下载每个文件',
+            footerCredit: 'Made with ❤️ by <a href="https://github.com/heyuan110" target="_blank">@heyuan110</a> | <a href="index.html">返回工具列表</a>',
+            toastAdded: '已添加 {count} 个文件',
+            toastCleared: '已清空所有文件',
+            toastSorted: '已排序',
+            toastPreviewUpdated: '预览已更新',
+            toastNoChanges: '没有需要重命名的文件',
+            toastApplied: '重命名已应用，请选择下载方式',
+            toastReset: '已重置所有文件名',
+            toastZipDone: 'ZIP 打包完成',
+            toastZipFailed: '打包失败: ',
+            toastAllDownloaded: '所有文件下载完成',
+            confirmClear: '确定要清空所有文件吗？',
+            faqTitle: '❓ 常见问题',
+            faqQ1: '可以批量重命名多少文件？',
+            faqA1: '理论上无限制，取决于浏览器性能，建议一次不超过1000个文件，以保证流畅的操作体验。',
+            faqQ2: '支持哪些重命名规则？',
+            faqA2: '支持添加前缀后缀、插入序号、添加日期、查找替换、大小写转换等多种规则，可以满足大部分重命名需求。',
+            faqQ3: '文件会上传到服务器吗？',
+            faqA3: '不会，所有处理在本地完成，文件不会离开你的电脑，完全保护你的隐私安全。',
+            faqQ4: '可以撤销重命名吗？',
+            faqA4: '下载前可以重新调整规则或点击"重置"按钮恢复原名，下载后需要手动恢复文件名。',
+            faqQ5: '支持重命名文件夹吗？',
+            faqA5: '仅支持文件重命名，不支持文件夹。选择文件夹时会自动读取其中的所有文件进行重命名。',
+            faq_free_q: '这个工具真的免费吗？有隐藏收费吗？',
+            faq_free_a: '是的，本工具 100% 免费，无隐藏收费、无广告、无需注册。完全在浏览器中运行，数据不会离开您的设备。',
+            relatedToolsTitle: '🔗 相关工具推荐',
+            relatedTool1: '代码格式化',
+            relatedTool1Desc: '格式化和美化代码',
+            relatedTool2: '文本对比',
+            relatedTool2Desc: '对比文本差异',
+            relatedTool3: 'CSV JSON 转换',
+            relatedTool3Desc: 'CSV 和 JSON 互转',
+            relatedTool4: '字数统计',
+            relatedTool4Desc: '统计字数、字符和行数',
+            trust_users: '🌍 超过 50,000 用户使用',
+            trust_rating: '⭐ 4.9/5 好评',
+            trust_privacy: '🔒 100% 隐私安全',
+            trust_free: '🚫 无广告、无需注册'
+        },
+        fr: {
+            tool_name: 'Renommeur de fichiers',
+            title: '📝 Renommeur de fichiers par lot',
+            subtitle: 'Prend en charge la numérotation séquentielle, rechercher/remplacer, préfixe/suffixe et plus',
+            privacyBadge: '🔒 Traitement entièrement local, pas de téléversement',
+            featureBatchTitle: 'Renommage par lot',
+            featureBatchDesc: 'Traitez plusieurs fichiers à la fois, renommage par lot en un clic pour améliorer l\'efficacité',
+            feature1_title: '100% Gratuit et Privé',
+            feature1_desc: 'Sans publicité, sans inscription, sans filigrane. Tout est traité localement dans votre navigateur.',
+            featureRulesTitle: 'Règles multiples',
+            featureRulesDesc: 'Prend en charge préfixe/suffixe, numérotation, date, rechercher/remplacer, conversion de casse et plus',
+            featurePreviewTitle: 'Aperçu en temps réel',
+            featurePreviewDesc: 'Prévisualisez les résultats en temps réel lors de l\'ajustement des règles, confirmez avant d\'appliquer',
+            featureLocalTitle: 'Traitement local',
+            featureLocalDesc: 'Les fichiers ne sont pas téléversés, seuls les noms sont traités dans le navigateur, confidentialité assurée',
+            uploadText: 'Cliquez pour sélectionner des fichiers/dossier ou glissez-déposez ici',
+            uploadHint: 'Prend en charge tout type de fichier, la sélection d\'un dossier lira automatiquement tous les fichiers',
+            selectFiles: '📄 Sélectionner des fichiers',
+            selectFolder: '📂 Sélectionner un dossier',
+            renameMode: '⚙️ Mode de renommage',
+            tabSequence: 'Numérotation séquentielle',
+            tabReplace: 'Rechercher/Remplacer',
+            tabPrefix: 'Ajouter préfixe/suffixe',
+            tabRegex: 'Remplacement regex',
+            tabCase: 'Conversion de casse',
+            templateLabel: 'Modèle de nommage',
+            templatePlaceholder: 'ex: IMG_###',
+            templateHint: '# indique la position du numéro, le nombre détermine le remplissage par zéros; {self} représente le nom original',
+            keepOriginal: 'Garder l\'original',
+            startNumber: 'Numéro de départ',
+            stepLabel: 'Pas',
+            findLabel: 'Texte à rechercher',
+            findPlaceholder: 'Texte à remplacer',
+            replaceLabel: 'Remplacer par',
+            replacePlaceholder: 'Nouveau texte (vide pour supprimer)',
+            caseSensitive: 'Sensible à la casse',
+            replaceAll: 'Remplacer toutes les occurrences',
+            prefixLabel: 'Ajouter un préfixe',
+            prefixPlaceholder: 'Ajouter au début du nom de fichier',
+            suffixLabel: 'Ajouter un suffixe',
+            suffixPlaceholder: 'Ajouter à la fin du nom (avant l\'extension)',
+            regexLabel: 'Expression régulière',
+            regexPlaceholder: 'ex: \\d+',
+            regexReplaceLabel: 'Remplacer par',
+            regexReplacePlaceholder: 'Prend en charge les groupes de capture $1',
+            ignoreCase: 'Ignorer la casse',
+            globalMatch: 'Correspondance globale',
+            caseTypeLabel: 'Type de conversion',
+            caseLower: 'Tout en minuscules (lowercase)',
+            caseUpper: 'Tout en majuscules (UPPERCASE)',
+            caseTitle: 'Casse du titre (Title Case)',
+            caseSentence: 'Casse de phrase (Sentence case)',
+            includeExtension: 'Inclure l\'extension',
+            btnPreview: '👁️ Aperçu',
+            btnApply: '✅ Appliquer le renommage',
+            btnReset: '🔄 Réinitialiser',
+            btnClear: '🗑️ Effacer les fichiers',
+            fileListTitle: '📋 Liste des fichiers',
+            fileCount: '{count} fichiers au total',
+            sortNameAsc: 'Nom ↑',
+            sortNameDesc: 'Nom ↓',
+            sortSizeAsc: 'Taille ↑',
+            sortSizeDesc: 'Taille ↓',
+            fileListEmpty: 'Veuillez téléverser des fichiers',
+            downloadTitle: '📥 Télécharger les fichiers',
+            downloadSingle: 'Télécharger individuellement',
+            downloadSingleDesc: 'Cliquez sur le bouton de téléchargement dans la liste',
+            downloadZip: 'Télécharger en ZIP',
+            downloadZipDesc: 'Empaqueter tous les fichiers en ZIP',
+            downloadSequence: 'Télécharger un par un',
+            downloadSequenceDesc: 'Télécharger chaque fichier séquentiellement',
+            footerCredit: 'Fait avec ❤️ par <a href="https://github.com/heyuan110" target="_blank">@heyuan110</a> | <a href="index.html">Retour aux outils</a>',
+            toastAdded: '{count} fichiers ajoutés',
+            toastCleared: 'Tous les fichiers effacés',
+            toastSorted: 'Trié',
+            toastPreviewUpdated: 'Aperçu mis à jour',
+            toastNoChanges: 'Aucun fichier à renommer',
+            toastApplied: 'Renommage appliqué, veuillez sélectionner la méthode de téléchargement',
+            toastReset: 'Tous les noms de fichiers réinitialisés',
+            toastZipDone: 'Empaquetage ZIP terminé',
+            toastZipFailed: 'Échec de l\'empaquetage: ',
+            toastAllDownloaded: 'Tous les fichiers téléchargés',
+            confirmClear: 'Êtes-vous sûr de vouloir effacer tous les fichiers?',
+            faqTitle: '❓ FAQ',
+            faqQ1: 'Combien de fichiers peuvent être renommés par lot?',
+            faqA1: 'Théoriquement illimité, dépend des performances du navigateur. Recommandé de ne pas dépasser 1000 fichiers pour un fonctionnement fluide.',
+            faqQ2: 'Quelles règles de renommage sont prises en charge?',
+            faqA2: 'Prend en charge préfixe/suffixe, numérotation séquentielle, insertion de date, rechercher/remplacer, conversion de casse et plus.',
+            faqQ3: 'Les fichiers sont-ils téléversés sur un serveur?',
+            faqA3: 'Non, tout le traitement est fait localement. Les fichiers ne quittent jamais votre ordinateur, assurant une confidentialité totale.',
+            faqQ4: 'Puis-je annuler le renommage?',
+            faqA4: 'Avant le téléchargement, vous pouvez réajuster les règles ou cliquer sur "Réinitialiser". Après le téléchargement, vous devez restaurer manuellement.',
+            faqQ5: 'Les dossiers peuvent-ils être renommés?',
+            faqA5: 'Seul le renommage de fichiers est pris en charge, pas les dossiers. Sélectionner un dossier lira automatiquement tous les fichiers pour le renommage.',
+            faq_free_q: 'Cet outil est-il vraiment gratuit ? Y a-t-il des frais cachés ?',
+            faq_free_a: 'Oui, cet outil est 100% gratuit sans frais cachés, sans publicité et sans inscription. Il fonctionne entièrement dans votre navigateur — vos données ne quittent jamais votre appareil.',
+            relatedToolsTitle: '🔗 Outils connexes',
+            relatedTool1: 'Formateur de code',
+            relatedTool1Desc: 'Formater et embellir le code',
+            relatedTool2: 'Comparaison de texte',
+            relatedTool2Desc: 'Comparer les différences de texte',
+            relatedTool3: 'Convertisseur CSV JSON',
+            relatedTool3Desc: 'Convertir entre CSV et JSON',
+            relatedTool4: 'Compteur de mots',
+            relatedTool4Desc: 'Compter les mots, caractères et lignes',
+            trust_users: '🌍 Utilisé par 50 000+ utilisateurs',
+            trust_rating: '⭐ Note 4.9/5',
+            trust_privacy: '🔒 100% Privé',
+            trust_free: '🚫 Sans pub, sans inscription'
+        },
+        es: {
+            tool_name: 'Renombrador de archivos',
+            title: '📝 Renombrador de archivos por lotes',
+            subtitle: 'Soporta numeración secuencial, buscar/reemplazar, prefijo/sufijo y más',
+            privacyBadge: '🔒 Procesamiento completamente local, sin subir al servidor',
+            featureBatchTitle: 'Renombrado por lotes',
+            featureBatchDesc: 'Procesa múltiples archivos a la vez, renombrado por lotes con un clic para mejorar la eficiencia',
+            feature1_title: '100% Gratis y Privado',
+            feature1_desc: 'Sin anuncios, sin registro, sin marca de agua. Todo se procesa localmente en tu navegador.',
+            featureRulesTitle: 'Múltiples reglas',
+            featureRulesDesc: 'Soporta prefijo/sufijo, numeración, fecha, buscar/reemplazar, conversión de mayúsculas y más',
+            featurePreviewTitle: 'Vista previa en tiempo real',
+            featurePreviewDesc: 'Vista previa de resultados en tiempo real al ajustar reglas, confirma antes de aplicar',
+            featureLocalTitle: 'Procesamiento local',
+            featureLocalDesc: 'Los archivos no se suben, solo se procesan los nombres en el navegador, privacidad asegurada',
+            uploadText: 'Clic para seleccionar archivos/carpeta o arrastrar y soltar aquí',
+            uploadHint: 'Soporta cualquier tipo de archivo, seleccionar carpeta leerá todos los archivos automáticamente',
+            selectFiles: '📄 Seleccionar archivos',
+            selectFolder: '📂 Seleccionar carpeta',
+            renameMode: '⚙️ Modo de renombrado',
+            tabSequence: 'Numeración secuencial',
+            tabReplace: 'Buscar/Reemplazar',
+            tabPrefix: 'Añadir prefijo/sufijo',
+            tabRegex: 'Reemplazo regex',
+            tabCase: 'Conversión de mayúsculas',
+            templateLabel: 'Plantilla de nombre',
+            templatePlaceholder: 'ej: IMG_###',
+            templateHint: '# indica posición del número, la cantidad determina el relleno con ceros; {self} representa el nombre original',
+            keepOriginal: 'Mantener original',
+            startNumber: 'Número inicial',
+            stepLabel: 'Paso',
+            findLabel: 'Texto a buscar',
+            findPlaceholder: 'Texto a reemplazar',
+            replaceLabel: 'Reemplazar con',
+            replacePlaceholder: 'Nuevo texto (vacío para eliminar)',
+            caseSensitive: 'Distinguir mayúsculas',
+            replaceAll: 'Reemplazar todas las coincidencias',
+            prefixLabel: 'Añadir prefijo',
+            prefixPlaceholder: 'Añadir al inicio del nombre',
+            suffixLabel: 'Añadir sufijo',
+            suffixPlaceholder: 'Añadir al final del nombre (antes de la extensión)',
+            regexLabel: 'Expresión regular',
+            regexPlaceholder: 'ej: \\d+',
+            regexReplaceLabel: 'Reemplazar con',
+            regexReplacePlaceholder: 'Soporta grupos de captura $1',
+            ignoreCase: 'Ignorar mayúsculas',
+            globalMatch: 'Coincidencia global',
+            caseTypeLabel: 'Tipo de conversión',
+            caseLower: 'Todo minúsculas (lowercase)',
+            caseUpper: 'Todo mayúsculas (UPPERCASE)',
+            caseTitle: 'Mayúscula inicial (Title Case)',
+            caseSentence: 'Mayúscula de oración (Sentence case)',
+            includeExtension: 'Incluir extensión',
+            btnPreview: '👁️ Vista previa',
+            btnApply: '✅ Aplicar renombrado',
+            btnReset: '🔄 Restablecer',
+            btnClear: '🗑️ Limpiar archivos',
+            fileListTitle: '📋 Lista de archivos',
+            fileCount: '{count} archivos en total',
+            sortNameAsc: 'Nombre ↑',
+            sortNameDesc: 'Nombre ↓',
+            sortSizeAsc: 'Tamaño ↑',
+            sortSizeDesc: 'Tamaño ↓',
+            fileListEmpty: 'Por favor suba archivos',
+            downloadTitle: '📥 Descargar archivos',
+            downloadSingle: 'Descargar individual',
+            downloadSingleDesc: 'Clic en el botón de descarga en la lista',
+            downloadZip: 'Descargar como ZIP',
+            downloadZipDesc: 'Empaquetar todos los archivos en ZIP',
+            downloadSequence: 'Descargar uno por uno',
+            downloadSequenceDesc: 'Descargar cada archivo secuencialmente',
+            footerCredit: 'Hecho con ❤️ por <a href="https://github.com/heyuan110" target="_blank">@heyuan110</a> | <a href="index.html">Volver a herramientas</a>',
+            toastAdded: '{count} archivos añadidos',
+            toastCleared: 'Todos los archivos eliminados',
+            toastSorted: 'Ordenado',
+            toastPreviewUpdated: 'Vista previa actualizada',
+            toastNoChanges: 'No hay archivos para renombrar',
+            toastApplied: 'Renombrado aplicado, por favor seleccione método de descarga',
+            toastReset: 'Todos los nombres de archivos restablecidos',
+            toastZipDone: 'Empaquetado ZIP completado',
+            toastZipFailed: 'Error al empaquetar: ',
+            toastAllDownloaded: 'Todos los archivos descargados',
+            confirmClear: '¿Está seguro de que desea limpiar todos los archivos?',
+            faqTitle: '❓ Preguntas frecuentes',
+            faqQ1: '¿Cuántos archivos se pueden renombrar por lotes?',
+            faqA1: 'Teóricamente ilimitado, depende del rendimiento del navegador. Se recomienda no exceder 1000 archivos para una operación fluida.',
+            faqQ2: '¿Qué reglas de renombrado se soportan?',
+            faqA2: 'Soporta prefijo/sufijo, numeración secuencial, inserción de fecha, buscar/reemplazar, conversión de mayúsculas y más.',
+            faqQ3: '¿Se suben los archivos a un servidor?',
+            faqA3: 'No, todo el procesamiento se hace localmente. Los archivos nunca salen de su computadora, asegurando privacidad completa.',
+            faqQ4: '¿Puedo deshacer el renombrado?',
+            faqA4: 'Antes de descargar, puede reajustar reglas o hacer clic en "Restablecer". Después de descargar, debe restaurar manualmente.',
+            faqQ5: '¿Se pueden renombrar carpetas?',
+            faqA5: 'Solo se soporta renombrar archivos, no carpetas. Seleccionar una carpeta leerá automáticamente todos los archivos para renombrar.',
+            faq_free_q: '¿Esta herramienta es realmente gratuita? ¿Hay cargos ocultos?',
+            faq_free_a: 'Sí, esta herramienta es 100% gratuita sin cargos ocultos, sin anuncios y sin registro. Funciona completamente en tu navegador — tus datos nunca salen de tu dispositivo.',
+            relatedToolsTitle: '🔗 Herramientas relacionadas',
+            relatedTool1: 'Formateador de código',
+            relatedTool1Desc: 'Formatear y embellecer código',
+            relatedTool2: 'Comparación de texto',
+            relatedTool2Desc: 'Comparar diferencias de texto',
+            relatedTool3: 'Convertidor CSV JSON',
+            relatedTool3Desc: 'Convertir entre CSV y JSON',
+            relatedTool4: 'Contador de palabras',
+            relatedTool4Desc: 'Contar palabras, caracteres y líneas',
+            trust_users: '🌍 Usado por más de 50,000 usuarios',
+            trust_rating: '⭐ Calificación 4.9/5',
+            trust_privacy: '🔒 100% Privado',
+            trust_free: '🚫 Sin anuncios, sin registro'
+        }
+    };
+
     (function() {
         'use strict';
 
-        // ===== i18n 多语言支持 =====
-        const translations = {
-            en: {
-                backLink: '← Back to Tools',
-                title: '📝 Batch File Renamer',
-                subtitle: 'Supports sequential numbering, find & replace, prefix/suffix and more',
-                privacyBadge: '🔒 Fully local processing, no server upload',
-                featureBatchTitle: 'Batch Rename',
-                featureBatchDesc: 'Process multiple files at once, one-click batch rename to improve efficiency',
-                feature1_title: '100% Free & Private',
-                feature1_desc: 'No ads, no signup, no watermark. Everything runs locally in your browser. Your data never leaves your device.',
-                featureRulesTitle: 'Multiple Rules',
-                featureRulesDesc: 'Supports prefix/suffix, numbering, date, find & replace, case conversion and more',
-                featurePreviewTitle: 'Real-time Preview',
-                featurePreviewDesc: 'Preview rename results in real-time as you adjust rules, confirm before applying',
-                featureLocalTitle: 'Local Processing',
-                featureLocalDesc: 'Files are not uploaded, only filenames are processed in browser, privacy secured',
-                uploadText: 'Click to select files/folder or drag & drop here',
-                uploadHint: 'Supports any file type, selecting folder will read all files automatically',
-                selectFiles: '📄 Select Files',
-                selectFolder: '📂 Select Folder',
-                renameMode: '⚙️ Rename Mode',
-                tabSequence: 'Sequential Numbering',
-                tabReplace: 'Find & Replace',
-                tabPrefix: 'Add Prefix/Suffix',
-                tabRegex: 'Regex Replace',
-                tabCase: 'Case Conversion',
-                templateLabel: 'Naming Template',
-                templatePlaceholder: 'e.g. IMG_###',
-                templateHint: '# indicates number position, count determines zero padding; {self} represents original filename',
-                keepOriginal: 'Keep original',
-                startNumber: 'Start Number',
-                stepLabel: 'Step',
-                findLabel: 'Find Text',
-                findPlaceholder: 'Text to replace',
-                replaceLabel: 'Replace With',
-                replacePlaceholder: 'New text (empty to delete)',
-                caseSensitive: 'Case sensitive',
-                replaceAll: 'Replace all matches',
-                prefixLabel: 'Add Prefix',
-                prefixPlaceholder: 'Add to beginning of filename',
-                suffixLabel: 'Add Suffix',
-                suffixPlaceholder: 'Add to end of filename (before extension)',
-                regexLabel: 'Regular Expression',
-                regexPlaceholder: 'e.g. \\d+',
-                regexReplaceLabel: 'Replace With',
-                regexReplacePlaceholder: 'Supports $1 capture groups',
-                ignoreCase: 'Ignore case',
-                globalMatch: 'Global match',
-                caseTypeLabel: 'Conversion Type',
-                caseLower: 'All lowercase (lowercase)',
-                caseUpper: 'All uppercase (UPPERCASE)',
-                caseTitle: 'Title Case',
-                caseSentence: 'Sentence case',
-                includeExtension: 'Include extension',
-                btnPreview: '👁️ Preview',
-                btnApply: '✅ Apply Rename',
-                btnReset: '🔄 Reset',
-                btnClear: '🗑️ Clear Files',
-                fileListTitle: '📋 File List',
-                fileCount: '{count} files total',
-                sortNameAsc: 'Name ↑',
-                sortNameDesc: 'Name ↓',
-                sortSizeAsc: 'Size ↑',
-                sortSizeDesc: 'Size ↓',
-                fileListEmpty: 'Please upload files',
-                downloadTitle: '📥 Download Files',
-                downloadSingle: 'Download Single',
-                downloadSingleDesc: 'Click download button in file list',
-                downloadZip: 'Download as ZIP',
-                downloadZipDesc: 'Package all files into ZIP',
-                downloadSequence: 'Download One by One',
-                downloadSequenceDesc: 'Download each file sequentially',
-                footerCredit: 'Made with ❤️ by <a href="https://github.com/heyuan110" target="_blank">@heyuan110</a> | <a href="index.html">Back to Tools</a>',
-                toastAdded: 'Added {count} files',
-                toastCleared: 'All files cleared',
-                toastSorted: 'Sorted',
-                toastPreviewUpdated: 'Preview updated',
-                toastNoChanges: 'No files to rename',
-                toastApplied: 'Rename applied, please select download method',
-                toastReset: 'All filenames reset',
-                toastZipDone: 'ZIP packaging complete',
-                toastZipFailed: 'Packaging failed: ',
-                toastAllDownloaded: 'All files downloaded',
-                confirmClear: 'Are you sure you want to clear all files?',
-                faqTitle: '❓ FAQ',
-                faqQ1: 'How many files can be batch renamed?',
-                faqA1: 'Theoretically unlimited, depends on browser performance. Recommended not to exceed 1000 files for smooth operation.',
-                faqQ2: 'What renaming rules are supported?',
-                faqA2: 'Supports prefix/suffix, sequential numbering, date insertion, find & replace, case conversion and more to meet most needs.',
-                faqQ3: 'Are files uploaded to a server?',
-                faqA3: 'No, all processing is done locally. Files never leave your computer, ensuring complete privacy.',
-                faqQ4: 'Can I undo the rename?',
-                faqA4: 'Before downloading, you can readjust rules or click "Reset" to restore. After downloading, you need to manually restore filenames.',
-                faqQ5: 'Can folders be renamed?',
-                faqA5: 'Only file renaming is supported, not folders. Selecting a folder will automatically read all files within for renaming.',
-                faq_free_q: 'Is this tool really free? Are there any hidden charges?',
-                faq_free_a: 'Yes, this tool is 100% free with no hidden charges, no ads, and no signup required. It runs entirely in your browser — your data never leaves your device.',
-                relatedTools: '🔗 Related Tools',
-                relatedImageToPdf: 'Images to PDF',
-                relatedImageToPdfDesc: 'Merge multiple images into PDF',
-                relatedImageCompressor: 'Image Compressor',
-                relatedImageCompressorDesc: 'Batch compress image size',
-                relatedImageConverter: 'Image Converter',
-                relatedImageConverterDesc: 'WebP/PNG/JPG conversion',
-                relatedCryptoTools: 'Crypto Toolbox',
-                relatedCryptoToolsDesc: 'Base64/MD5/AES etc.',
-                footerPrivacy: 'Pure frontend processing, files are not uploaded to server',
-                footerBack: '← Back to Web Toolbox',
-                trust_users: '🌍 Used by 50,000+ users',
-                trust_rating: '⭐ 4.9/5 rating',
-                trust_privacy: '🔒 100% Private',
-                trust_free: '🚫 No Ads, No Signup'
-            },
-            'zh-CN': {
-                backLink: '← 返回工具列表',
-                title: '📝 文件批量重命名',
-                subtitle: '支持顺序编号、查找替换、添加前后缀等多种模式',
-                privacyBadge: '🔒 完全本地处理，不上传服务器',
-                featureBatchTitle: '批量重命名',
-                featureBatchDesc: '支持同时处理多个文件，一键批量重命名，提高工作效率',
-                feature1_title: '100% 免费且安全',
-                feature1_desc: '无广告、无需注册、无水印。所有处理都在浏览器本地完成，数据不会上传到任何服务器。',
-                featureRulesTitle: '多种规则',
-                featureRulesDesc: '支持添加前缀后缀、序号、日期、查找替换等多种重命名规则',
-                featurePreviewTitle: '实时预览',
-                featurePreviewDesc: '修改规则时实时预览重命名效果，确认无误后再应用',
-                featureLocalTitle: '本地处理',
-                featureLocalDesc: '文件不上传，仅在浏览器中处理文件名，隐私安全有保障',
-                uploadText: '点击选择文件/文件夹 或 拖拽到此处',
-                uploadHint: '支持任意类型文件，选择文件夹会自动读取所有文件',
-                selectFiles: '📄 选择文件',
-                selectFolder: '📂 选择文件夹',
-                renameMode: '⚙️ 重命名模式',
-                tabSequence: '顺序编号',
-                tabReplace: '查找替换',
-                tabPrefix: '添加前后缀',
-                tabRegex: '正则替换',
-                tabCase: '大小写转换',
-                templateLabel: '命名模板',
-                templatePlaceholder: '例如: IMG_###',
-                templateHint: '# 表示编号位置，位数决定补零数量；{self} 表示原文件名',
-                keepOriginal: '仅保留原名',
-                startNumber: '起始编号',
-                stepLabel: '步长',
-                findLabel: '查找内容',
-                findPlaceholder: '要替换的文本',
-                replaceLabel: '替换为',
-                replacePlaceholder: '新文本（留空则删除）',
-                caseSensitive: '区分大小写',
-                replaceAll: '替换所有匹配',
-                prefixLabel: '添加前缀',
-                prefixPlaceholder: '添加到文件名开头',
-                suffixLabel: '添加后缀',
-                suffixPlaceholder: '添加到文件名末尾（扩展名前）',
-                regexLabel: '正则表达式',
-                regexPlaceholder: '例如: \\d+',
-                regexReplaceLabel: '替换为',
-                regexReplacePlaceholder: '支持 $1 等捕获组',
-                ignoreCase: '忽略大小写',
-                globalMatch: '全局匹配',
-                caseTypeLabel: '转换方式',
-                caseLower: '全部小写 (lowercase)',
-                caseUpper: '全部大写 (UPPERCASE)',
-                caseTitle: '首字母大写 (Title Case)',
-                caseSentence: '句首大写 (Sentence case)',
-                includeExtension: '包含扩展名',
-                btnPreview: '👁️ 预览效果',
-                btnApply: '✅ 应用重命名',
-                btnReset: '🔄 重置',
-                btnClear: '🗑️ 清空文件',
-                fileListTitle: '📋 文件列表',
-                fileCount: '共 {count} 个文件',
-                sortNameAsc: '名称 ↑',
-                sortNameDesc: '名称 ↓',
-                sortSizeAsc: '大小 ↑',
-                sortSizeDesc: '大小 ↓',
-                fileListEmpty: '请上传文件',
-                downloadTitle: '📥 下载文件',
-                downloadSingle: '单独下载',
-                downloadSingleDesc: '点击文件列表中的下载按钮',
-                downloadZip: '打包下载',
-                downloadZipDesc: '所有文件打包为 ZIP',
-                downloadSequence: '逐个下载',
-                downloadSequenceDesc: '依次下载每个文件',
-                footerCredit: 'Made with ❤️ by <a href="https://github.com/heyuan110" target="_blank">@heyuan110</a> | <a href="index.html">返回工具列表</a>',
-                toastAdded: '已添加 {count} 个文件',
-                toastCleared: '已清空所有文件',
-                toastSorted: '已排序',
-                toastPreviewUpdated: '预览已更新',
-                toastNoChanges: '没有需要重命名的文件',
-                toastApplied: '重命名已应用，请选择下载方式',
-                toastReset: '已重置所有文件名',
-                toastZipDone: 'ZIP 打包完成',
-                toastZipFailed: '打包失败: ',
-                toastAllDownloaded: '所有文件下载完成',
-                confirmClear: '确定要清空所有文件吗？',
-                faqTitle: '❓ 常见问题',
-                faqQ1: '可以批量重命名多少文件？',
-                faqA1: '理论上无限制，取决于浏览器性能，建议一次不超过1000个文件，以保证流畅的操作体验。',
-                faqQ2: '支持哪些重命名规则？',
-                faqA2: '支持添加前缀后缀、插入序号、添加日期、查找替换、大小写转换等多种规则，可以满足大部分重命名需求。',
-                faqQ3: '文件会上传到服务器吗？',
-                faqA3: '不会，所有处理在本地完成，文件不会离开你的电脑，完全保护你的隐私安全。',
-                faqQ4: '可以撤销重命名吗？',
-                faqA4: '下载前可以重新调整规则或点击"重置"按钮恢复原名，下载后需要手动恢复文件名。',
-                faqQ5: '支持重命名文件夹吗？',
-                faqA5: '仅支持文件重命名，不支持文件夹。选择文件夹时会自动读取其中的所有文件进行重命名。',
-                faq_free_q: '这个工具真的免费吗？有隐藏收费吗？',
-                faq_free_a: '是的，本工具 100% 免费，无隐藏收费、无广告、无需注册。完全在浏览器中运行，数据不会离开您的设备。',
-                relatedTools: '🔗 相关工具推荐',
-                relatedImageToPdf: '图片合并为PDF',
-                relatedImageToPdfDesc: '多图合并生成PDF',
-                relatedImageCompressor: '图片压缩',
-                relatedImageCompressorDesc: '批量压缩图片体积',
-                relatedImageConverter: '图片格式转换',
-                relatedImageConverterDesc: 'WebP/PNG/JPG 互转',
-                relatedCryptoTools: '加解密工具箱',
-                relatedCryptoToolsDesc: 'Base64/MD5/AES 等',
-                footerPrivacy: '纯前端处理，文件不会上传到服务器',
-                footerBack: '← 返回 Web Toolbox 首页',
-                trust_users: '🌍 超过 50,000 用户使用',
-                trust_rating: '⭐ 4.9/5 好评',
-                trust_privacy: '🔒 100% 隐私安全',
-                trust_free: '🚫 无广告、无需注册'
-            },
-            fr: {
-                backLink: '← Retour aux outils',
-                title: '📝 Renommeur de fichiers par lot',
-                subtitle: 'Prend en charge la numérotation séquentielle, rechercher/remplacer, préfixe/suffixe et plus',
-                privacyBadge: '🔒 Traitement entièrement local, pas de téléversement',
-                featureBatchTitle: 'Renommage par lot',
-                featureBatchDesc: 'Traitez plusieurs fichiers à la fois, renommage par lot en un clic pour améliorer l\'efficacité',
-                feature1_title: '100% Gratuit et Privé',
-                feature1_desc: 'Sans publicité, sans inscription, sans filigrane. Tout est traité localement dans votre navigateur.',
-                featureRulesTitle: 'Règles multiples',
-                featureRulesDesc: 'Prend en charge préfixe/suffixe, numérotation, date, rechercher/remplacer, conversion de casse et plus',
-                featurePreviewTitle: 'Aperçu en temps réel',
-                featurePreviewDesc: 'Prévisualisez les résultats en temps réel lors de l\'ajustement des règles, confirmez avant d\'appliquer',
-                featureLocalTitle: 'Traitement local',
-                featureLocalDesc: 'Les fichiers ne sont pas téléversés, seuls les noms sont traités dans le navigateur, confidentialité assurée',
-                uploadText: 'Cliquez pour sélectionner des fichiers/dossier ou glissez-déposez ici',
-                uploadHint: 'Prend en charge tout type de fichier, la sélection d\'un dossier lira automatiquement tous les fichiers',
-                selectFiles: '📄 Sélectionner des fichiers',
-                selectFolder: '📂 Sélectionner un dossier',
-                renameMode: '⚙️ Mode de renommage',
-                tabSequence: 'Numérotation séquentielle',
-                tabReplace: 'Rechercher/Remplacer',
-                tabPrefix: 'Ajouter préfixe/suffixe',
-                tabRegex: 'Remplacement regex',
-                tabCase: 'Conversion de casse',
-                templateLabel: 'Modèle de nommage',
-                templatePlaceholder: 'ex: IMG_###',
-                templateHint: '# indique la position du numéro, le nombre détermine le remplissage par zéros; {self} représente le nom original',
-                keepOriginal: 'Garder l\'original',
-                startNumber: 'Numéro de départ',
-                stepLabel: 'Pas',
-                findLabel: 'Texte à rechercher',
-                findPlaceholder: 'Texte à remplacer',
-                replaceLabel: 'Remplacer par',
-                replacePlaceholder: 'Nouveau texte (vide pour supprimer)',
-                caseSensitive: 'Sensible à la casse',
-                replaceAll: 'Remplacer toutes les occurrences',
-                prefixLabel: 'Ajouter un préfixe',
-                prefixPlaceholder: 'Ajouter au début du nom de fichier',
-                suffixLabel: 'Ajouter un suffixe',
-                suffixPlaceholder: 'Ajouter à la fin du nom (avant l\'extension)',
-                regexLabel: 'Expression régulière',
-                regexPlaceholder: 'ex: \\d+',
-                regexReplaceLabel: 'Remplacer par',
-                regexReplacePlaceholder: 'Prend en charge les groupes de capture $1',
-                ignoreCase: 'Ignorer la casse',
-                globalMatch: 'Correspondance globale',
-                caseTypeLabel: 'Type de conversion',
-                caseLower: 'Tout en minuscules (lowercase)',
-                caseUpper: 'Tout en majuscules (UPPERCASE)',
-                caseTitle: 'Casse du titre (Title Case)',
-                caseSentence: 'Casse de phrase (Sentence case)',
-                includeExtension: 'Inclure l\'extension',
-                btnPreview: '👁️ Aperçu',
-                btnApply: '✅ Appliquer le renommage',
-                btnReset: '🔄 Réinitialiser',
-                btnClear: '🗑️ Effacer les fichiers',
-                fileListTitle: '📋 Liste des fichiers',
-                fileCount: '{count} fichiers au total',
-                sortNameAsc: 'Nom ↑',
-                sortNameDesc: 'Nom ↓',
-                sortSizeAsc: 'Taille ↑',
-                sortSizeDesc: 'Taille ↓',
-                fileListEmpty: 'Veuillez téléverser des fichiers',
-                downloadTitle: '📥 Télécharger les fichiers',
-                downloadSingle: 'Télécharger individuellement',
-                downloadSingleDesc: 'Cliquez sur le bouton de téléchargement dans la liste',
-                downloadZip: 'Télécharger en ZIP',
-                downloadZipDesc: 'Empaqueter tous les fichiers en ZIP',
-                downloadSequence: 'Télécharger un par un',
-                downloadSequenceDesc: 'Télécharger chaque fichier séquentiellement',
-                footerCredit: 'Fait avec ❤️ par <a href="https://github.com/heyuan110" target="_blank">@heyuan110</a> | <a href="index.html">Retour aux outils</a>',
-                toastAdded: '{count} fichiers ajoutés',
-                toastCleared: 'Tous les fichiers effacés',
-                toastSorted: 'Trié',
-                toastPreviewUpdated: 'Aperçu mis à jour',
-                toastNoChanges: 'Aucun fichier à renommer',
-                toastApplied: 'Renommage appliqué, veuillez sélectionner la méthode de téléchargement',
-                toastReset: 'Tous les noms de fichiers réinitialisés',
-                toastZipDone: 'Empaquetage ZIP terminé',
-                toastZipFailed: 'Échec de l\'empaquetage: ',
-                toastAllDownloaded: 'Tous les fichiers téléchargés',
-                confirmClear: 'Êtes-vous sûr de vouloir effacer tous les fichiers?',
-                faqTitle: '❓ FAQ',
-                faqQ1: 'Combien de fichiers peuvent être renommés par lot?',
-                faqA1: 'Théoriquement illimité, dépend des performances du navigateur. Recommandé de ne pas dépasser 1000 fichiers pour un fonctionnement fluide.',
-                faqQ2: 'Quelles règles de renommage sont prises en charge?',
-                faqA2: 'Prend en charge préfixe/suffixe, numérotation séquentielle, insertion de date, rechercher/remplacer, conversion de casse et plus.',
-                faqQ3: 'Les fichiers sont-ils téléversés sur un serveur?',
-                faqA3: 'Non, tout le traitement est fait localement. Les fichiers ne quittent jamais votre ordinateur, assurant une confidentialité totale.',
-                faqQ4: 'Puis-je annuler le renommage?',
-                faqA4: 'Avant le téléchargement, vous pouvez réajuster les règles ou cliquer sur "Réinitialiser". Après le téléchargement, vous devez restaurer manuellement.',
-                faqQ5: 'Les dossiers peuvent-ils être renommés?',
-                faqA5: 'Seul le renommage de fichiers est pris en charge, pas les dossiers. Sélectionner un dossier lira automatiquement tous les fichiers pour le renommage.',
-                faq_free_q: 'Cet outil est-il vraiment gratuit ? Y a-t-il des frais cachés ?',
-                faq_free_a: 'Oui, cet outil est 100% gratuit sans frais cachés, sans publicité et sans inscription. Il fonctionne entièrement dans votre navigateur — vos données ne quittent jamais votre appareil.',
-                relatedTools: '🔗 Outils connexes',
-                relatedImageToPdf: 'Images vers PDF',
-                relatedImageToPdfDesc: 'Fusionner plusieurs images en PDF',
-                relatedImageCompressor: 'Compresseur d\'images',
-                relatedImageCompressorDesc: 'Compresser les images par lot',
-                relatedImageConverter: 'Convertisseur d\'images',
-                relatedImageConverterDesc: 'Conversion WebP/PNG/JPG',
-                relatedCryptoTools: 'Boîte à outils crypto',
-                relatedCryptoToolsDesc: 'Base64/MD5/AES etc.',
-                footerPrivacy: 'Traitement côté client, les fichiers ne sont pas téléversés',
-                footerBack: '← Retour à Web Toolbox',
-                trust_users: '🌍 Utilisé par 50 000+ utilisateurs',
-                trust_rating: '⭐ Note 4.9/5',
-                trust_privacy: '🔒 100% Privé',
-                trust_free: '🚫 Sans pub, sans inscription'
-            },
-            es: {
-                backLink: '← Volver a herramientas',
-                title: '📝 Renombrador de archivos por lotes',
-                subtitle: 'Soporta numeración secuencial, buscar/reemplazar, prefijo/sufijo y más',
-                privacyBadge: '🔒 Procesamiento completamente local, sin subir al servidor',
-                featureBatchTitle: 'Renombrado por lotes',
-                featureBatchDesc: 'Procesa múltiples archivos a la vez, renombrado por lotes con un clic para mejorar la eficiencia',
-                feature1_title: '100% Gratis y Privado',
-                feature1_desc: 'Sin anuncios, sin registro, sin marca de agua. Todo se procesa localmente en tu navegador.',
-                featureRulesTitle: 'Múltiples reglas',
-                featureRulesDesc: 'Soporta prefijo/sufijo, numeración, fecha, buscar/reemplazar, conversión de mayúsculas y más',
-                featurePreviewTitle: 'Vista previa en tiempo real',
-                featurePreviewDesc: 'Vista previa de resultados en tiempo real al ajustar reglas, confirma antes de aplicar',
-                featureLocalTitle: 'Procesamiento local',
-                featureLocalDesc: 'Los archivos no se suben, solo se procesan los nombres en el navegador, privacidad asegurada',
-                uploadText: 'Clic para seleccionar archivos/carpeta o arrastrar y soltar aquí',
-                uploadHint: 'Soporta cualquier tipo de archivo, seleccionar carpeta leerá todos los archivos automáticamente',
-                selectFiles: '📄 Seleccionar archivos',
-                selectFolder: '📂 Seleccionar carpeta',
-                renameMode: '⚙️ Modo de renombrado',
-                tabSequence: 'Numeración secuencial',
-                tabReplace: 'Buscar/Reemplazar',
-                tabPrefix: 'Añadir prefijo/sufijo',
-                tabRegex: 'Reemplazo regex',
-                tabCase: 'Conversión de mayúsculas',
-                templateLabel: 'Plantilla de nombre',
-                templatePlaceholder: 'ej: IMG_###',
-                templateHint: '# indica posición del número, la cantidad determina el relleno con ceros; {self} representa el nombre original',
-                keepOriginal: 'Mantener original',
-                startNumber: 'Número inicial',
-                stepLabel: 'Paso',
-                findLabel: 'Texto a buscar',
-                findPlaceholder: 'Texto a reemplazar',
-                replaceLabel: 'Reemplazar con',
-                replacePlaceholder: 'Nuevo texto (vacío para eliminar)',
-                caseSensitive: 'Distinguir mayúsculas',
-                replaceAll: 'Reemplazar todas las coincidencias',
-                prefixLabel: 'Añadir prefijo',
-                prefixPlaceholder: 'Añadir al inicio del nombre',
-                suffixLabel: 'Añadir sufijo',
-                suffixPlaceholder: 'Añadir al final del nombre (antes de la extensión)',
-                regexLabel: 'Expresión regular',
-                regexPlaceholder: 'ej: \\d+',
-                regexReplaceLabel: 'Reemplazar con',
-                regexReplacePlaceholder: 'Soporta grupos de captura $1',
-                ignoreCase: 'Ignorar mayúsculas',
-                globalMatch: 'Coincidencia global',
-                caseTypeLabel: 'Tipo de conversión',
-                caseLower: 'Todo minúsculas (lowercase)',
-                caseUpper: 'Todo mayúsculas (UPPERCASE)',
-                caseTitle: 'Mayúscula inicial (Title Case)',
-                caseSentence: 'Mayúscula de oración (Sentence case)',
-                includeExtension: 'Incluir extensión',
-                btnPreview: '👁️ Vista previa',
-                btnApply: '✅ Aplicar renombrado',
-                btnReset: '🔄 Restablecer',
-                btnClear: '🗑️ Limpiar archivos',
-                fileListTitle: '📋 Lista de archivos',
-                fileCount: '{count} archivos en total',
-                sortNameAsc: 'Nombre ↑',
-                sortNameDesc: 'Nombre ↓',
-                sortSizeAsc: 'Tamaño ↑',
-                sortSizeDesc: 'Tamaño ↓',
-                fileListEmpty: 'Por favor suba archivos',
-                downloadTitle: '📥 Descargar archivos',
-                downloadSingle: 'Descargar individual',
-                downloadSingleDesc: 'Clic en el botón de descarga en la lista',
-                downloadZip: 'Descargar como ZIP',
-                downloadZipDesc: 'Empaquetar todos los archivos en ZIP',
-                downloadSequence: 'Descargar uno por uno',
-                downloadSequenceDesc: 'Descargar cada archivo secuencialmente',
-                footerCredit: 'Hecho con ❤️ por <a href="https://github.com/heyuan110" target="_blank">@heyuan110</a> | <a href="index.html">Volver a herramientas</a>',
-                toastAdded: '{count} archivos añadidos',
-                toastCleared: 'Todos los archivos eliminados',
-                toastSorted: 'Ordenado',
-                toastPreviewUpdated: 'Vista previa actualizada',
-                toastNoChanges: 'No hay archivos para renombrar',
-                toastApplied: 'Renombrado aplicado, por favor seleccione método de descarga',
-                toastReset: 'Todos los nombres de archivos restablecidos',
-                toastZipDone: 'Empaquetado ZIP completado',
-                toastZipFailed: 'Error al empaquetar: ',
-                toastAllDownloaded: 'Todos los archivos descargados',
-                confirmClear: '¿Está seguro de que desea limpiar todos los archivos?',
-                faqTitle: '❓ Preguntas frecuentes',
-                faqQ1: '¿Cuántos archivos se pueden renombrar por lotes?',
-                faqA1: 'Teóricamente ilimitado, depende del rendimiento del navegador. Se recomienda no exceder 1000 archivos para una operación fluida.',
-                faqQ2: '¿Qué reglas de renombrado se soportan?',
-                faqA2: 'Soporta prefijo/sufijo, numeración secuencial, inserción de fecha, buscar/reemplazar, conversión de mayúsculas y más.',
-                faqQ3: '¿Se suben los archivos a un servidor?',
-                faqA3: 'No, todo el procesamiento se hace localmente. Los archivos nunca salen de su computadora, asegurando privacidad completa.',
-                faqQ4: '¿Puedo deshacer el renombrado?',
-                faqA4: 'Antes de descargar, puede reajustar reglas o hacer clic en "Restablecer". Después de descargar, debe restaurar manualmente.',
-                faqQ5: '¿Se pueden renombrar carpetas?',
-                faqA5: 'Solo se soporta renombrar archivos, no carpetas. Seleccionar una carpeta leerá automáticamente todos los archivos para renombrar.',
-                faq_free_q: '¿Esta herramienta es realmente gratuita? ¿Hay cargos ocultos?',
-                faq_free_a: 'Sí, esta herramienta es 100% gratuita sin cargos ocultos, sin anuncios y sin registro. Funciona completamente en tu navegador — tus datos nunca salen de tu dispositivo.',
-                relatedTools: '🔗 Herramientas relacionadas',
-                relatedImageToPdf: 'Imágenes a PDF',
-                relatedImageToPdfDesc: 'Combinar múltiples imágenes en PDF',
-                relatedImageCompressor: 'Compresor de imágenes',
-                relatedImageCompressorDesc: 'Comprimir imágenes por lotes',
-                relatedImageConverter: 'Convertidor de imágenes',
-                relatedImageConverterDesc: 'Conversión WebP/PNG/JPG',
-                relatedCryptoTools: 'Caja de herramientas crypto',
-                relatedCryptoToolsDesc: 'Base64/MD5/AES etc.',
-                footerPrivacy: 'Procesamiento frontend, los archivos no se suben al servidor',
-                footerBack: '← Volver a Web Toolbox',
-                trust_users: '🌍 Usado por más de 50,000 usuarios',
-                trust_rating: '⭐ Calificación 4.9/5',
-                trust_privacy: '🔒 100% Privado',
-                trust_free: '🚫 Sin anuncios, sin registro'
-            }
-        };
-function t(key, params = {}) {
-            let text = translations[currentLang]?.[key] || translations['en'][key] || key;
+        function t(key, params = {}) {
+            let text = translations[getLang()]?.[key] || translations['en'][key] || key;
             Object.keys(params).forEach(k => {
                 text = text.replace(`{${k}}`, params[k]);
             });
             return text;
-        }
-
-
-        function setLanguage(lang) {
-            currentLang = lang;
-            localStorage.setItem('toolbox_lang', lang);
-            applyTranslations();
-            document.getElementById('langDropdown').classList.remove('active');
         }
 
         // ===== 全局变量 =====
@@ -1450,28 +1511,6 @@ function t(key, params = {}) {
         function init() {
             initEventListeners();
             initSortable();
-            initLanguageSwitcher();
-            applyTranslations();
-        }
-
-        function initLanguageSwitcher() {
-            const dropdown = document.getElementById('langDropdown');
-            const current = document.getElementById('langCurrent');
-
-            current.addEventListener('click', (e) => {
-                e.stopPropagation();
-                dropdown.classList.toggle('active');
-            });
-
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    setLanguage(btn.dataset.lang);
-                });
-            });
-
-            document.addEventListener('click', () => {
-                dropdown.classList.remove('active');
-            });
         }
 
         function initEventListeners() {
@@ -1899,65 +1938,11 @@ function t(key, params = {}) {
         // ===== 启动 =====
         init();
     })();
+
+    window._translations = translations;
     </script>
     <script src="common/common.js" data-tool-id="file-renamer" data-tool-name="File Renamer" data-category="utility"></script>
-    <script>WebToolbox.init(translations);</script>
-
+    <script>WebToolbox.init(window._translations);</script>
     <!-- ===================== /LOGIC ===================== -->
-
-    <!-- FAQ 常见问题 -->
-    <section class="faq-section" style="max-width: 1000px; margin: 40px auto; padding: 0 20px;">
-        <h2 style="color: #f0f0f0; font-size: 20px; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid rgba(124, 58, 237, 0.3);" data-i18n="faqTitle">❓ FAQ</h2>
-        <div class="faq-list" style="display: flex; flex-direction: column; gap: 16px;">
-            <div class="faq-item" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px;">
-                <h3 style="color: #e4e4e7; font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
-                    <span style="color: #7c3aed;">Q:</span> <span data-i18n="faqQ1">How many files can be batch renamed?</span>
-                </h3>
-                <p style="color: #a1a1aa; font-size: 0.9rem; line-height: 1.6; padding-left: 24px;" data-i18n="faqA1">
-                    Theoretically unlimited, depends on browser performance. Recommended not to exceed 1000 files for smooth operation.
-                </p>
-            </div>
-            <div class="faq-item" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px;">
-                <h3 style="color: #e4e4e7; font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
-                    <span style="color: #7c3aed;">Q:</span> <span data-i18n="faqQ2">What renaming rules are supported?</span>
-                </h3>
-                <p style="color: #a1a1aa; font-size: 0.9rem; line-height: 1.6; padding-left: 24px;" data-i18n="faqA2">
-                    Supports prefix/suffix, sequential numbering, date insertion, find & replace, case conversion and more to meet most needs.
-                </p>
-            </div>
-            <div class="faq-item" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px;">
-                <h3 style="color: #e4e4e7; font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
-                    <span style="color: #7c3aed;">Q:</span> <span data-i18n="faqQ3">Are files uploaded to a server?</span>
-                </h3>
-                <p style="color: #a1a1aa; font-size: 0.9rem; line-height: 1.6; padding-left: 24px;" data-i18n="faqA3">
-                    No, all processing is done locally. Files never leave your computer, ensuring complete privacy.
-                </p>
-            </div>
-            <div class="faq-item" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px;">
-                <h3 style="color: #e4e4e7; font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
-                    <span style="color: #7c3aed;">Q:</span> <span data-i18n="faqQ4">Can I undo the rename?</span>
-                </h3>
-                <p style="color: #a1a1aa; font-size: 0.9rem; line-height: 1.6; padding-left: 24px;" data-i18n="faqA4">
-                    Before downloading, you can readjust rules or click "Reset" to restore. After downloading, you need to manually restore filenames.
-                </p>
-            </div>
-            <div class="faq-item" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px;">
-                <h3 style="color: #e4e4e7; font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
-                    <span style="color: #7c3aed;">Q:</span> <span data-i18n="faqQ5">Can folders be renamed?</span>
-                </h3>
-                <p style="color: #a1a1aa; font-size: 0.9rem; line-height: 1.6; padding-left: 24px;" data-i18n="faqA5">
-                    Only file renaming is supported, not folders. Selecting a folder will automatically read all files within for renaming.
-                </p>
-            </div>
-            <div class="faq-item" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px;">
-                <h3 style="color: #e4e4e7; font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
-                    <span style="color: #7c3aed;">Q:</span> <span data-i18n="faq_free_q">Is this tool really free? Are there any hidden charges?</span>
-                </h3>
-                <p style="color: #a1a1aa; font-size: 0.9rem; line-height: 1.6; padding-left: 24px;" data-i18n="faq_free_a">
-                    Yes, this tool is 100% free with no hidden charges, no ads, and no signup required. It runs entirely in your browser — your data never leaves your device.
-                </p>
-            </div>
-        </div>
-    </section>
 </body>
 </html>

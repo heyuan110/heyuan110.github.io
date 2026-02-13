@@ -44,7 +44,6 @@
         "author": {"@type": "Person", "name": "heyuan110"},
         "publisher": {"@type": "Organization", "name": "Web Toolbox", "url": "https://www.heyuan110.com/web-toolbox/"},
         "screenshot": "https://www.heyuan110.com/web-toolbox/screenshots/chinese-converter.webp"
-        "alternateName": ["简繁转换器", "Chinese Traditional Simplified Converter", "中文繁简转换"],
     }
     </script>
 
@@ -132,7 +131,7 @@ header {
             position: relative;
         }
 
-        .lang-dropdown.active h1 {
+        h1 {
             font-size: 2rem;
             font-weight: 700;
             background: linear-gradient(120deg, #00d4ff, #7c3aed, #f472b6);
@@ -564,11 +563,6 @@ header {
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
 <div class="container">
 <header>
             
@@ -764,13 +758,15 @@ header {
                 <div class="faq-answer" data-i18n="faq_free_a">Yes, this tool is 100% free with no ads, no signup, no usage limits, and no watermarks. All processing happens in your browser — your data never leaves your device. It's completely safe and private.</div>
             </div>
         </section>
+
+        <section class="related-tools"><h3 data-i18n="relatedToolsTitle">Related Tools</h3><div class="related-grid"><a class="related" href="text-diff.html"><div>📝</div><h4 data-i18n="relatedTool1">Text Diff Checker</h4><p data-i18n="relatedTool1Desc">Compare two texts and highlight differences.</p></a><a class="related" href="regex-tester.html"><div>🔍</div><h4 data-i18n="relatedTool2">Regex Tester</h4><p data-i18n="relatedTool2Desc">Test regular expressions online in real time.</p></a><a class="related" href="crypto-tool.html"><div>🔐</div><h4 data-i18n="relatedTool3">Crypto Tools</h4><p data-i18n="relatedTool3Desc">Base64, MD5, SHA encoding and hashing.</p></a></div></section>
     </div>
 
     <script>
         // 国际化翻译
         const i18n = {
             en: {
-                backHome: '← Back to Toolbox',
+                tool_name: 'Chinese Converter',
                 pageTitle: 'Chinese Simplified/Traditional Converter',
                 pageSubtitle: 'Convert between Simplified and Traditional Chinese with regional terminology support',
                 feature1Title: '100% Free & Private',
@@ -843,24 +839,20 @@ header {
                 faq_free_a: 'Yes, this tool is 100% free with no ads, no signup, no usage limits, and no watermarks. All processing happens in your browser — your data never leaves your device. It\'s completely safe and private.',
                 noContent: 'No content to download',
                 clipboardError: 'Cannot access clipboard, please paste manually',
-                footerPrivacy: 'Pure frontend processing, data is not uploaded to any server',
-                footerHome: '← Back to Web Toolbox Home',
-                relatedTools: '🔗 Related Tools',
-                regexTester: 'Regex Tester',
-                regexTesterDesc: 'Test regular expressions online',
-                jsonViewer: 'JSON Formatter',
-                jsonViewerDesc: 'Format and validate JSON',
-                cryptoTools: 'Crypto Tools',
-                cryptoToolsDesc: 'Base64/MD5/SHA etc.',
-                timestampConverter: 'Timestamp Converter',
-                timestampConverterDesc: 'Convert timestamps and dates',
+                relatedToolsTitle: 'Related Tools',
+                relatedTool1: 'Text Diff Checker',
+                relatedTool1Desc: 'Compare two texts and highlight differences.',
+                relatedTool2: 'Regex Tester',
+                relatedTool2Desc: 'Test regular expressions online in real time.',
+                relatedTool3: 'Crypto Tools',
+                relatedTool3Desc: 'Base64, MD5, SHA encoding and hashing.',
                 trust_users: '🌍 Used by 50,000+ users',
                 trust_rating: '⭐ 4.9/5 rating',
                 trust_privacy: '🔒 100% Private',
                 trust_free: '🚫 No Ads, No Signup'
             },
             'zh-CN': {
-                backHome: '← 返回工具箱',
+                tool_name: '中文简繁转换',
                 pageTitle: '中文简繁体转换',
                 pageSubtitle: '支持简繁互转，智能识别地区习惯用语',
                 feature1Title: '100% 免费且安全',
@@ -933,24 +925,20 @@ header {
                 faq_free_a: '是的，本工具 100% 免费，无广告、无需注册、无使用限制、无水印。所有处理都在浏览器中完成，数据不会离开你的设备，完全安全且隐私。',
                 noContent: '没有可下载的内容',
                 clipboardError: '无法访问剪贴板，请手动粘贴',
-                footerPrivacy: '纯前端处理，数据不会上传到服务器',
-                footerHome: '← 返回 Web Toolbox 首页',
-                relatedTools: '🔗 相关工具推荐',
-                regexTester: '正则表达式测试',
-                regexTesterDesc: '在线测试正则表达式',
-                jsonViewer: 'JSON 格式化',
-                jsonViewerDesc: 'JSON 格式化与校验',
-                cryptoTools: '加密解密工具',
-                cryptoToolsDesc: 'Base64/MD5/SHA等',
-                timestampConverter: '时间戳转换',
-                timestampConverterDesc: '时间戳与日期互转',
+                relatedToolsTitle: '相关工具',
+                relatedTool1: '文本对比',
+                relatedTool1Desc: '对比两段文字并高亮差异。',
+                relatedTool2: '正则表达式测试',
+                relatedTool2Desc: '在线实时测试正则表达式。',
+                relatedTool3: '加密解密工具',
+                relatedTool3Desc: 'Base64、MD5、SHA 编码与哈希。',
                 trust_users: '🌍 超过 50,000 用户使用',
                 trust_rating: '⭐ 4.9/5 好评',
                 trust_privacy: '🔒 100% 隐私安全',
                 trust_free: '🚫 无广告、无需注册'
             },
             fr: {
-                backHome: '← Retour aux outils',
+                tool_name: 'Convertisseur Chinois',
                 pageTitle: 'Convertisseur Chinois Simplifié/Traditionnel',
                 pageSubtitle: 'Convertir entre chinois simplifié et traditionnel avec support terminologique régional',
                 feature1Title: '100% Gratuit et Privé',
@@ -1023,24 +1011,20 @@ header {
                 faq_free_a: 'Oui, cet outil est 100% gratuit, sans publicité, sans inscription, sans limites d\'utilisation et sans filigrane. Tout le traitement se fait dans votre navigateur — vos données ne quittent jamais votre appareil.',
                 noContent: 'Aucun contenu à télécharger',
                 clipboardError: 'Impossible d\'accéder au presse-papiers, veuillez coller manuellement',
-                footerPrivacy: 'Traitement purement frontend, les données ne sont pas envoyées à un serveur',
-                footerHome: '← Retour à la page d\'accueil Web Toolbox',
-                relatedTools: '🔗 Outils Connexes',
-                regexTester: 'Testeur de Regex',
-                regexTesterDesc: 'Tester les expressions régulières en ligne',
-                jsonViewer: 'Formateur JSON',
-                jsonViewerDesc: 'Formater et valider JSON',
-                cryptoTools: 'Outils Crypto',
-                cryptoToolsDesc: 'Base64/MD5/SHA etc.',
-                timestampConverter: 'Convertisseur Timestamp',
-                timestampConverterDesc: 'Convertir timestamps et dates',
+                relatedToolsTitle: 'Outils associés',
+                relatedTool1: 'Comparateur de texte',
+                relatedTool1Desc: 'Comparer deux textes et surligner les différences.',
+                relatedTool2: 'Testeur de Regex',
+                relatedTool2Desc: 'Tester les expressions régulières en ligne en temps réel.',
+                relatedTool3: 'Outils Crypto',
+                relatedTool3Desc: 'Encodage et hachage Base64, MD5, SHA.',
                 trust_users: '🌍 Utilisé par 50 000+ utilisateurs',
                 trust_rating: '⭐ Note 4.9/5',
                 trust_privacy: '🔒 100% Privé',
                 trust_free: '🚫 Sans pub, sans inscription'
             },
             es: {
-                backHome: '← Volver a herramientas',
+                tool_name: 'Convertidor Chino',
                 pageTitle: 'Convertidor Chino Simplificado/Tradicional',
                 pageSubtitle: 'Convertir entre chino simplificado y tradicional con soporte terminológico regional',
                 feature1Title: '100% Gratis y Privado',
@@ -1113,17 +1097,13 @@ header {
                 faq_free_a: 'Sí, esta herramienta es 100% gratuita, sin anuncios, sin registro, sin límites de uso y sin marcas de agua. Todo el procesamiento ocurre en tu navegador — tus datos nunca salen de tu dispositivo.',
                 noContent: 'No hay contenido para descargar',
                 clipboardError: 'No se puede acceder al portapapeles, por favor pegue manualmente',
-                footerPrivacy: 'Procesamiento puro de frontend, los datos no se suben a ningún servidor',
-                footerHome: '← Volver a la página principal de Web Toolbox',
-                relatedTools: '🔗 Herramientas Relacionadas',
-                regexTester: 'Probador de Regex',
-                regexTesterDesc: 'Probar expresiones regulares en línea',
-                jsonViewer: 'Formateador JSON',
-                jsonViewerDesc: 'Formatear y validar JSON',
-                cryptoTools: 'Herramientas Crypto',
-                cryptoToolsDesc: 'Base64/MD5/SHA etc.',
-                timestampConverter: 'Convertidor de Timestamp',
-                timestampConverterDesc: 'Convertir timestamps y fechas',
+                relatedToolsTitle: 'Herramientas relacionadas',
+                relatedTool1: 'Comparador de texto',
+                relatedTool1Desc: 'Compara dos textos y resalta diferencias.',
+                relatedTool2: 'Probador de Regex',
+                relatedTool2Desc: 'Prueba expresiones regulares en tiempo real.',
+                relatedTool3: 'Herramientas Crypto',
+                relatedTool3Desc: 'Codificación y hash Base64, MD5, SHA.',
                 trust_users: '🌍 Usado por más de 50,000 usuarios',
                 trust_rating: '⭐ Calificación 4.9/5',
                 trust_privacy: '🔒 100% Privado',
@@ -1132,57 +1112,10 @@ header {
         };
 
 
-        // 更新 footer 翻译
-        function updateFooter(translations) {
-            const footerPrivacy = document.querySelector('[data-i18n="footerPrivacy"]');
-            const footerHome = document.querySelector('[data-i18n="footerHome"]');
-            const relatedToolsTitle = document.querySelector('[data-i18n="relatedTools"]');
-
-            if (footerPrivacy) footerPrivacy.textContent = translations.footerPrivacy;
-            if (footerHome) footerHome.textContent = translations.footerHome;
-            if (relatedToolsTitle) relatedToolsTitle.textContent = translations.relatedTools;
-
-            // 更新相关工具
-            const regexTitle = document.querySelector('[data-i18n="regexTester"]');
-            const regexDesc = document.querySelector('[data-i18n="regexTesterDesc"]');
-            const jsonTitle = document.querySelector('[data-i18n="jsonViewer"]');
-            const jsonDesc = document.querySelector('[data-i18n="jsonViewerDesc"]');
-            const cryptoTitle = document.querySelector('[data-i18n="cryptoTools"]');
-            const cryptoDesc = document.querySelector('[data-i18n="cryptoToolsDesc"]');
-            const tsTitle = document.querySelector('[data-i18n="timestampConverter"]');
-            const tsDesc = document.querySelector('[data-i18n="timestampConverterDesc"]');
-
-            if (regexTitle) regexTitle.textContent = translations.regexTester;
-            if (regexDesc) regexDesc.textContent = translations.regexTesterDesc;
-            if (jsonTitle) jsonTitle.textContent = translations.jsonViewer;
-            if (jsonDesc) jsonDesc.textContent = translations.jsonViewerDesc;
-            if (cryptoTitle) cryptoTitle.textContent = translations.cryptoTools;
-            if (cryptoDesc) cryptoDesc.textContent = translations.cryptoToolsDesc;
-            if (tsTitle) tsTitle.textContent = translations.timestampConverter;
-            if (tsDesc) tsDesc.textContent = translations.timestampConverterDesc;
+        // getLang helper
+        function getLang() {
+            return (typeof WebToolbox !== 'undefined') ? WebToolbox.getCurrentLang() : (localStorage.getItem('toolbox_lang') || 'en');
         }
-
-        // 语言切换器事件
-        document.getElementById('langDropdown').addEventListener('click', function(e) {
-            this.classList.toggle('active');
-            e.stopPropagation();
-        });
-
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const lang = this.getAttribute('data-lang');
-                applyTranslations(lang);
-                document.getElementById('langDropdown').classList.remove('active');
-                // 更新模式标签
-                updateModeLabels();
-            });
-        });
-
-        // 点击外部关闭下拉菜单
-        document.addEventListener('click', function() {
-            document.getElementById('langDropdown').classList.remove('active');
-        });
 
         // 简繁对照表（常用字）
         const s2tMap = {};
@@ -1271,7 +1204,7 @@ header {
 
         // 更新模式标签
         function updateModeLabels() {
-            const t = i18n[currentLang];
+            const t = i18n[getLang()];
             const modeLabelsMap = {
                 's2t': { input: t.inputLabelSimplified, output: t.outputLabelTraditional },
                 't2s': { input: t.inputLabelTraditional, output: t.outputLabelSimplified },
@@ -1388,15 +1321,15 @@ header {
                 updateInputCount();
                 if (autoConvert) doConvert();
             } catch (err) {
-                alert(i18n[currentLang].clipboardError);
+                alert(i18n[getLang()].clipboardError);
             }
         });
 
         copyBtn.addEventListener('click', async () => {
             try {
                 await navigator.clipboard.writeText(outputText.value);
-                copyBtn.textContent = i18n[currentLang].copied;
-                setTimeout(() => copyBtn.textContent = i18n[currentLang].copy, 1500);
+                copyBtn.textContent = i18n[getLang()].copied;
+                setTimeout(() => copyBtn.textContent = i18n[getLang()].copy, 1500);
             } catch (err) {
                 outputText.select();
                 document.execCommand('copy');
@@ -1415,7 +1348,7 @@ header {
 
         autoConvertToggle.addEventListener('click', () => {
             autoConvert = !autoConvert;
-            autoConvertToggle.textContent = autoConvert ? i18n[currentLang].autoConvertOn : i18n[currentLang].autoConvertOff;
+            autoConvertToggle.textContent = autoConvert ? i18n[getLang()].autoConvertOn : i18n[getLang()].autoConvertOff;
             if (autoConvert) doConvert();
         });
 
@@ -1426,7 +1359,7 @@ header {
 
         downloadBtn.addEventListener('click', () => {
             if (!outputText.value) {
-                alert(i18n[currentLang].noContent);
+                alert(i18n[getLang()].noContent);
                 return;
             }
             const blob = new Blob([outputText.value], { type: 'text/plain;charset=utf-8' });
@@ -1439,10 +1372,12 @@ header {
         });
 
         // 初始化翻译
-updateModeLabels();
+        updateModeLabels();
+
+        window._translations = i18n;
     </script>
     <script src="common/common.js" data-tool-id="chinese-converter" data-tool-name="Chinese Converter" data-category="text"></script>
-    <script>WebToolbox.init(i18n);</script>
+    <script>WebToolbox.init(window._translations);</script>
 
 </body>
 </html>

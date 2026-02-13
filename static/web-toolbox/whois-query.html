@@ -46,7 +46,6 @@
         "author": {"@type": "Person", "name": "heyuan110"},
         "publisher": {"@type": "Organization", "name": "Web Toolbox", "url": "https://www.heyuan110.com/web-toolbox/"},
         "screenshot": "https://www.heyuan110.com/web-toolbox/screenshots/whois-query.webp"
-        "alternateName": ["Whois域名查询", "Domain Lookup", "WHOIS Search"],
     }
     </script>
 
@@ -150,7 +149,7 @@ h1 {
             font-size: 1.1rem;
         }
 
-        .lang-dropdown.active /* 搜索框 */
+        /* 搜索框 */
         .search-section {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -728,11 +727,6 @@ h1 {
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    
-        </style>
 <div class="container">
 <header>
             
@@ -918,19 +912,93 @@ h1 {
             </div>
         </div>
 
-        <footer>
-            <p data-i18n="dataSource">Data source: RDAP (Registration Data Access Protocol)</p>
-            <p style="margin-top: 8px;">
-                <a href="index.html" data-i18n="backToHome">← Back to Web Toolbox</a>
-            </p>
-        </footer>
+        <!-- FAQ 问答区块 -->
+        <section class="faq-section" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
+            <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
+                <span style="color: #7c3aed;">❓</span> <span data-i18n="faqTitle">FAQ</span>
+            </h2>
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq1Q">What is WHOIS?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq1A">WHOIS is a protocol for querying domain registration information, allowing you to view domain owner, registrar, and other details. Through WHOIS queries, you can learn about domain registration time, expiration time, DNS server configuration, and registrant contact information.</div>
+                </details>
+                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq2Q">What is the difference between WHOIS and RDAP?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq2A">RDAP (Registration Data Access Protocol) is the modern replacement for the traditional WHOIS protocol. RDAP returns structured JSON data, supports HTTPS encrypted transmission, provides internationalized content, and follows standardized access control. Our tool uses RDAP for more reliable and comprehensive query results.</div>
+                </details>
+                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq3Q">Which domain extensions are supported?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq3A">This tool supports most popular domain extensions including .com, .net, .org, .cn, .io, .dev, .app, and many country-code TLDs. The query is performed via RDAP protocol, which covers the vast majority of domain registries worldwide.</div>
+                </details>
+                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq4Q">Why is some information hidden or redacted?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq4A">Many domain registrars now offer WHOIS privacy protection services that redact personal information like owner name, email, and phone number. This is done to comply with privacy regulations like GDPR. You may see "REDACTED FOR PRIVACY" or similar notices in the query results.</div>
+                </details>
+                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq5Q">How to check when a domain expires?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq5A">Simply enter the domain name in the search box and click "Query". The result will show the registration date, expiration date, and remaining days until expiration. You can use this information to monitor domain renewals or check domain availability.</div>
+                </details>
+                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
+                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="faq_free_q">Is this tool really free? Is it safe?</span>
+                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
+                    </summary>
+                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq_free_a">Yes, this tool is 100% free with no ads, no signup, no usage limits, and no watermarks. All queries are made directly from your browser to the RDAP servers — your data never passes through our servers. It's completely safe and private.</div>
+                </details>
+            </div>
+        </section>
+
+        <!-- 相关工具 -->
+        <section class="related-tools" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
+            <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
+                <span style="color: #7c3aed;">🔗</span> <span data-i18n="relatedToolsTitle">Related Tools</span>
+            </h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px;">
+                <a href="ip-lookup.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">🌐</div>
+                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool1">IP Lookup</div>
+                </a>
+                <a href="websocket-tester.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">🔌</div>
+                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool2">WebSocket Tester</div>
+                </a>
+                <a href="json-viewer.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">📋</div>
+                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool3">JSON Viewer</div>
+                </a>
+                <a href="crypto-tools.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">🔐</div>
+                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool4">Crypto Tools</div>
+                </a>
+            </div>
+        </section>
     </div>
 
     <script>
         // 多语言翻译
         const i18n = {
             en: {
-                backToToolbox: '← Back to Toolbox',
+                tool_name: 'Whois Lookup',
+                relatedToolsTitle: 'Related Tools',
+                relatedTool1: 'IP Lookup',
+                relatedTool2: 'WebSocket Tester',
+                relatedTool3: 'JSON Viewer',
+                relatedTool4: 'Crypto Tools',
                 pageTitle: 'Whois Domain Lookup',
                 pageSubtitle: 'Query domain registration info, owner, registrar, expiration date and more',
                 feature1_title: '100% Free & Private',
@@ -1013,7 +1081,12 @@ h1 {
                 trust_free: '🚫 No Ads, No Signup'
             },
             'zh-CN': {
-                backToToolbox: '← 返回工具箱',
+                tool_name: 'Whois 查询',
+                relatedToolsTitle: '相关工具',
+                relatedTool1: 'IP 查询',
+                relatedTool2: 'WebSocket 测试',
+                relatedTool3: 'JSON 查看器',
+                relatedTool4: '加密工具',
                 pageTitle: 'Whois 域名查询',
                 pageSubtitle: '查询域名注册信息、所有者、注册商、有效期等详细信息',
                 feature1_title: '100% 免费且安全',
@@ -1096,7 +1169,12 @@ h1 {
                 trust_free: '🚫 无广告、无需注册'
             },
             fr: {
-                backToToolbox: '← Retour à la boîte à outils',
+                tool_name: 'Recherche Whois',
+                relatedToolsTitle: 'Outils connexes',
+                relatedTool1: 'Recherche IP',
+                relatedTool2: 'Testeur WebSocket',
+                relatedTool3: 'Visionneuse JSON',
+                relatedTool4: 'Outils de cryptage',
                 pageTitle: 'Recherche Whois',
                 pageSubtitle: 'Rechercher les informations d\'enregistrement de domaine, propriétaire, registraire, date d\'expiration et plus',
                 feature1_title: '100% Gratuit et Privé',
@@ -1179,7 +1257,12 @@ h1 {
                 trust_free: '🚫 Sans pub, sans inscription'
             },
             es: {
-                backToToolbox: '← Volver a herramientas',
+                tool_name: 'Consulta Whois',
+                relatedToolsTitle: 'Herramientas relacionadas',
+                relatedTool1: 'Búsqueda de IP',
+                relatedTool2: 'Probador WebSocket',
+                relatedTool3: 'Visor JSON',
+                relatedTool4: 'Herramientas criptográficas',
                 pageTitle: 'Consulta Whois',
                 pageSubtitle: 'Consultar información de registro de dominio, propietario, registrador, fecha de vencimiento y más',
                 feature1_title: '100% Gratis y Privado',
@@ -1262,138 +1345,20 @@ h1 {
                 trust_free: '🚫 Sin anuncios, sin registro'
             }
         };
+
+        // 获取当前语言
+        function getLang() {
+            return (typeof WebToolbox !== 'undefined') ? WebToolbox.getCurrentLang() : (localStorage.getItem('toolbox_lang') || 'en');
+        }
+
 // 获取翻译文本
         function t(key, params = {}) {
-            let text = i18n[currentLang][key] || i18n['en'][key] || key;
+            let text = i18n[getLang()]?.[key] || i18n['en'][key] || key;
             Object.keys(params).forEach(param => {
                 text = text.replace(`{${param}}`, params[param]);
             });
             return text;
         }
-        function updateFaqSection() {
-            const faqSection = document.querySelector('.faq-section');
-            if (faqSection) {
-                faqSection.innerHTML = `
-                    <h2 class="faq-title">
-                        <span>❓</span>
-                        <span>${t('faqTitle')}</span>
-                    </h2>
-                    <div class="faq-list">
-                        <div class="faq-item">
-                            <div class="faq-question" onclick="toggleFaq(this)">
-                                <span>${t('faq1Q')}</span>
-                                <span class="faq-toggle">+</span>
-                            </div>
-                            <div class="faq-answer">
-                                <div class="faq-answer-content">${t('faq1A')}</div>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question" onclick="toggleFaq(this)">
-                                <span>${t('faq2Q')}</span>
-                                <span class="faq-toggle">+</span>
-                            </div>
-                            <div class="faq-answer">
-                                <div class="faq-answer-content">${t('faq2A')}</div>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question" onclick="toggleFaq(this)">
-                                <span>${t('faq3Q')}</span>
-                                <span class="faq-toggle">+</span>
-                            </div>
-                            <div class="faq-answer">
-                                <div class="faq-answer-content">${t('faq3A')}</div>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question" onclick="toggleFaq(this)">
-                                <span>${t('faq4Q')}</span>
-                                <span class="faq-toggle">+</span>
-                            </div>
-                            <div class="faq-answer">
-                                <div class="faq-answer-content">${t('faq4A')}</div>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question" onclick="toggleFaq(this)">
-                                <span>${t('faq5Q')}</span>
-                                <span class="faq-toggle">+</span>
-                            </div>
-                            <div class="faq-answer">
-                                <div class="faq-answer-content">${t('faq5A')}</div>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question" onclick="toggleFaq(this)">
-                                <span>${t('faq_free_q')}</span>
-                                <span class="faq-toggle">+</span>
-                            </div>
-                            <div class="faq-answer">
-                                <div class="faq-answer-content">${t('faq_free_a')}</div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }
-        }
-
-        // 更新相关工具区块
-        function updateRelatedToolsSection() {
-            const relatedSection = document.querySelector('.related-tools');
-            if (relatedSection) {
-                relatedSection.innerHTML = `
-                    <h3 style="color: #e6edf3; font-size: 18px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #30363d;">🔗 ${t('relatedTools')}</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
-                        <a href="ip-lookup.html" style="display: block; padding: 16px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                            <div style="font-size: 24px; margin-bottom: 8px;">🌐</div>
-                            <div style="color: #e6edf3; font-weight: 500;">${t('ipLookup')}</div>
-                            <div style="color: #8b949e; font-size: 12px; margin-top: 4px;">${t('ipLookupDesc')}</div>
-                        </a>
-                        <a href="websocket-tester.html" style="display: block; padding: 16px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                            <div style="font-size: 24px; margin-bottom: 8px;">🔌</div>
-                            <div style="color: #e6edf3; font-weight: 500;">${t('websocketTest')}</div>
-                            <div style="color: #8b949e; font-size: 12px; margin-top: 4px;">${t('websocketTestDesc')}</div>
-                        </a>
-                        <a href="json-viewer.html" style="display: block; padding: 16px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                            <div style="font-size: 24px; margin-bottom: 8px;">📋</div>
-                            <div style="color: #e6edf3; font-weight: 500;">${t('jsonFormat')}</div>
-                            <div style="color: #8b949e; font-size: 12px; margin-top: 4px;">${t('jsonFormatDesc')}</div>
-                        </a>
-                        <a href="crypto-tools.html" style="display: block; padding: 16px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                            <div style="font-size: 24px; margin-bottom: 8px;">🔐</div>
-                            <div style="color: #e6edf3; font-weight: 500;">${t('cryptoTools')}</div>
-                            <div style="color: #8b949e; font-size: 12px; margin-top: 4px;">${t('cryptoToolsDesc')}</div>
-                        </a>
-                    </div>
-                `;
-            }
-        }
-
-        // 更新底部页脚
-        function updateFooterSection() {
-            const footerSection = document.querySelector('footer.bottom-footer');
-            if (footerSection) {
-                footerSection.innerHTML = `
-                    <p>${t('frontendNote')}</p>
-                    <p style="margin-top: 12px;">
-                        <a href="index.html" style="color: #58a6ff; text-decoration: none;">${t('backToHome')}</a>
-                        <span style="margin: 0 12px;">|</span>
-                        <a href="https://github.com/heyuan110" target="_blank" rel="noopener" style="color: #58a6ff; text-decoration: none;">GitHub</a>
-                    </p>
-                `;
-            }
-        }
-        document.getElementById('langCurrent').addEventListener('click', function(e) {
-            e.stopPropagation();
-            document.getElementById('langDropdown').classList.toggle('active');
-        });
-});
-
-        document.addEventListener('click', function() {
-            document.getElementById('langDropdown').classList.remove('active');
-        });
-
         // 域名输入框回车事件
         document.getElementById('domainInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
@@ -1428,7 +1393,7 @@ h1 {
             if (!dateStr) return '-';
             try {
                 const date = new Date(dateStr);
-                const locale = currentLang === 'zh-CN' ? 'zh-CN' : currentLang === 'fr' ? 'fr-FR' : currentLang === 'es' ? 'es-ES' : 'en-US';
+                const locale = getLang() === 'zh-CN' ? 'zh-CN' : getLang() === 'fr' ? 'fr-FR' : getLang() === 'es' ? 'es-ES' : 'en-US';
                 return date.toLocaleDateString(locale, {
                     year: 'numeric',
                     month: '2-digit',
@@ -1500,7 +1465,7 @@ h1 {
             };
             const statusLower = status.toLowerCase();
             if (statusMap[statusLower]) {
-                return statusMap[statusLower][currentLang] || statusMap[statusLower]['en'];
+                return statusMap[statusLower][getLang()] || statusMap[statusLower]['en'];
             }
             return status;
         }
@@ -1704,43 +1669,10 @@ h1 {
             faqItem.classList.toggle('active');
         }
 
-        // 页面加载时应用翻译
-        document.addEventListener('DOMContentLoaded', function() {
-            applyTranslations();
-        });
+        // 暴露翻译对象供 common.js 使用
+        window._translations = i18n;
     </script>
     <script src="common/common.js" data-tool-id="whois-query" data-tool-name="Whois Lookup" data-category="developer"></script>
-    <script>WebToolbox.init(i18n);</script>
-
-
-    <!-- FAQ 问答区块 -->
-    <section class="faq-section">
-        <h2 class="faq-title">
-            <span>❓</span>
-            <span data-i18n="faqTitle">FAQ</span>
-        </h2>
-        <div class="faq-list">
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>What is WHOIS?</span>
-                    <span class="faq-toggle">+</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content">
-                        WHOIS is a protocol for querying domain registration information, allowing you to view domain owner, registrar, and other details. Through WHOIS queries, you can learn about domain registration time, expiration time, DNS server configuration, and registrant contact information.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bottom-footer" style="text-align: center; padding: 30px 20px; border-top: 1px solid #30363d; color: #8b949e; font-size: 14px;">
-        <p data-i18n="frontendNote">Pure frontend processing, data is not uploaded to server</p>
-        <p style="margin-top: 12px;">
-            <a href="index.html" style="color: #58a6ff; text-decoration: none;" data-i18n="backToHome">← Back to Web Toolbox</a>
-            <span style="margin: 0 12px;">|</span>
-            <a href="https://github.com/heyuan110" target="_blank" rel="noopener" style="color: #58a6ff; text-decoration: none;">GitHub</a>
-        </p>
-    </footer>
+    <script>WebToolbox.init(window._translations);</script>
 </body>
 </html>
