@@ -19,26 +19,98 @@
     // 统一 localStorage 键名
     var LANG_KEY = 'toolbox_lang';
 
+    // ==================== 公共 UI 翻译 ====================
+    var COMMON_I18N = {
+        en: {
+            home: 'Home',
+            toolbox: 'Web Toolbox',
+            cat_pdf: 'PDF Tools',
+            cat_image: 'Image Tools',
+            cat_developer: 'Developer Tools',
+            cat_text: 'Text Tools',
+            cat_media: 'Media Tools',
+            cat_utility: 'Utility Tools',
+            nav_home: 'Magic ToolBox',
+            nav_pdf: 'PDF',
+            nav_image: 'Image',
+            nav_developer: 'Dev',
+            nav_text: 'Text',
+            nav_media: 'Media',
+            nav_utility: 'Utility',
+            copyright: '© 2024-2026 <a href="https://github.com/heyuan110" target="_blank" rel="noopener">heyuan110</a>. All rights reserved.'
+        },
+        'zh-CN': {
+            home: '首页',
+            toolbox: '在线工具箱',
+            cat_pdf: 'PDF 工具',
+            cat_image: '图片工具',
+            cat_developer: '开发者工具',
+            cat_text: '文本工具',
+            cat_media: '媒体工具',
+            cat_utility: '实用工具',
+            nav_home: '工具箱首页',
+            nav_pdf: 'PDF',
+            nav_image: '图片',
+            nav_developer: '开发',
+            nav_text: '文本',
+            nav_media: '媒体',
+            nav_utility: '实用',
+            copyright: '© 2024-2026 <a href="https://github.com/heyuan110" target="_blank" rel="noopener">heyuan110</a>. 保留所有权利。'
+        },
+        fr: {
+            home: 'Accueil',
+            toolbox: 'Boîte à Outils',
+            cat_pdf: 'Outils PDF',
+            cat_image: 'Outils Image',
+            cat_developer: 'Outils Dev',
+            cat_text: 'Outils Texte',
+            cat_media: 'Outils Média',
+            cat_utility: 'Outils Utilitaires',
+            nav_home: 'Boîte à Outils',
+            nav_pdf: 'PDF',
+            nav_image: 'Image',
+            nav_developer: 'Dev',
+            nav_text: 'Texte',
+            nav_media: 'Média',
+            nav_utility: 'Utilitaire',
+            copyright: '© 2024-2026 <a href="https://github.com/heyuan110" target="_blank" rel="noopener">heyuan110</a>. Tous droits réservés.'
+        },
+        es: {
+            home: 'Inicio',
+            toolbox: 'Caja de Herramientas',
+            cat_pdf: 'Herramientas PDF',
+            cat_image: 'Herramientas Imagen',
+            cat_developer: 'Herramientas Dev',
+            cat_text: 'Herramientas Texto',
+            cat_media: 'Herramientas Medios',
+            cat_utility: 'Herramientas Utilidad',
+            nav_home: 'Herramientas',
+            nav_pdf: 'PDF',
+            nav_image: 'Imagen',
+            nav_developer: 'Dev',
+            nav_text: 'Texto',
+            nav_media: 'Medios',
+            nav_utility: 'Utilidad',
+            copyright: '© 2024-2026 <a href="https://github.com/heyuan110" target="_blank" rel="noopener">heyuan110</a>. Todos los derechos reservados.'
+        }
+    };
+
+    // 公共翻译辅助函数
+    function ct(lang, key) {
+        var t = COMMON_I18N[lang] || COMMON_I18N['en'];
+        return t[key] || COMMON_I18N['en'][key] || key;
+    }
+
     // 类目配置
     var CATEGORIES = [
-        { key: 'home',      emoji: '🏠', label: 'Magic ToolBox', href: 'index.html' },
-        { key: 'pdf',       emoji: '📄', label: 'PDF',           href: 'pdf-tools.html' },
-        { key: 'image',     emoji: '🖼️', label: 'Image',         href: 'image-tools.html' },
-        { key: 'developer', emoji: '💻', label: 'Dev',           href: 'developer-tools.html' },
-        { key: 'text',      emoji: '📝', label: 'Text',          href: 'text-tools.html' },
-        { key: 'media',     emoji: '🎬', label: 'Media',         href: 'media-tools.html' },
-        { key: 'utility',   emoji: '⚡', label: 'Utility',       href: 'utility-tools.html' }
+        { key: 'home',      emoji: '🏠', i18nKey: 'nav_home',      href: 'index.html' },
+        { key: 'pdf',       emoji: '📄', i18nKey: 'nav_pdf',       href: 'pdf-tools.html' },
+        { key: 'image',     emoji: '🖼️', i18nKey: 'nav_image',     href: 'image-tools.html' },
+        { key: 'developer', emoji: '💻', i18nKey: 'nav_developer', href: 'developer-tools.html' },
+        { key: 'text',      emoji: '📝', i18nKey: 'nav_text',      href: 'text-tools.html' },
+        { key: 'media',     emoji: '🎬', i18nKey: 'nav_media',     href: 'media-tools.html' },
+        { key: 'utility',   emoji: '⚡', i18nKey: 'nav_utility',   href: 'utility-tools.html' }
     ];
-
-    // 类目 → 面包屑显示名 & 链接
-    var CATEGORY_BREADCRUMB = {
-        pdf:       { name: 'PDF Tools',       href: 'pdf-tools.html' },
-        image:     { name: 'Image Tools',     href: 'image-tools.html' },
-        developer: { name: 'Developer Tools', href: 'developer-tools.html' },
-        text:      { name: 'Text Tools',      href: 'text-tools.html' },
-        media:     { name: 'Media Tools',     href: 'media-tools.html' },
-        utility:   { name: 'Utility Tools',   href: 'utility-tools.html' }
-    };
 
     // 语言显示名称
     var LANG_NAMES = {
@@ -72,7 +144,6 @@
     // 兼容旧键名：自动迁移到统一键名
     function migrateOldLangKey(toolId) {
         if (localStorage.getItem(LANG_KEY)) return;
-        // 尝试读取旧键名
         var oldKeys = [
             toolId + '_lang',
             toolId.replace(/-/g, '_') + '_lang',
@@ -92,19 +163,25 @@
         return localStorage.getItem(LANG_KEY) || detectLanguage();
     }
 
+    // ==================== DOM 构建 ====================
+
     // 生成面包屑 + 语言切换器 HTML
-    function buildHeader(config) {
-        var cat = CATEGORY_BREADCRUMB[config.category];
-        var catPart = cat
-            ? '<a href="' + cat.href + '">' + cat.name + '</a><span class="bc-sep">›</span>'
+    function buildHeader(config, lang) {
+        var catKey = 'cat_' + config.category;
+        var catHref = '';
+        CATEGORIES.forEach(function (c) {
+            if (c.key === config.category) catHref = c.href;
+        });
+        var catPart = catHref
+            ? '<a href="' + catHref + '" data-common-i18n="' + catKey + '">' + ct(lang, catKey) + '</a><span class="bc-sep">›</span>'
             : '';
 
         return '<nav class="bc-nav" aria-label="Breadcrumb">' +
             '<div class="bc-left">' +
-                '<a href="/">Home</a><span class="bc-sep">›</span>' +
-                '<a href="index.html">Web Toolbox</a><span class="bc-sep">›</span>' +
+                '<a href="/" data-common-i18n="home">' + ct(lang, 'home') + '</a><span class="bc-sep">›</span>' +
+                '<a href="index.html" data-common-i18n="toolbox">' + ct(lang, 'toolbox') + '</a><span class="bc-sep">›</span>' +
                 catPart +
-                '<span class="bc-cur">' + config.toolName + '</span>' +
+                '<span class="bc-cur" data-i18n="tool_name">' + config.toolName + '</span>' +
             '</div>' +
             '<div class="lang-switcher">' +
                 '<div class="lang-dropdown" id="langDropdown">' +
@@ -121,41 +198,62 @@
     }
 
     // 生成类目导航 HTML
-    function buildCategoryNav(activeCategory) {
+    function buildCategoryNav(activeCategory, lang) {
         var items = CATEGORIES.map(function (c) {
             var cls = c.key === activeCategory ? ' active' : '';
-            return '<a href="' + c.href + '" class="cat-nav-item' + cls + '">' + c.emoji + ' ' + c.label + '</a>';
+            return '<a href="' + c.href + '" class="cat-nav-item' + cls + '" data-common-i18n="' + c.i18nKey + '">' + c.emoji + ' ' + ct(lang, c.i18nKey) + '</a>';
         }).join('\n        ');
         return '<nav class="category-nav">\n        ' + items + '\n    </nav>';
     }
 
     // 生成 footer HTML
-    function buildFooter(activeCategory) {
-        return buildCategoryNav(activeCategory) +
+    function buildFooter(activeCategory, lang) {
+        return buildCategoryNav(activeCategory, lang) +
             '\n    <footer class="site-footer">' +
-            '<p>© 2024-2026 <a href="https://github.com/heyuan110" target="_blank" rel="noopener">heyuan110</a>. All rights reserved.</p>' +
+            '<p data-common-i18n="copyright">' + ct(lang, 'copyright') + '</p>' +
             '</footer>';
     }
 
     // 注入 header（在 <body> 开始处）
-    function injectHeader(config) {
-        // 已有 bc-nav 则不注入
+    function injectHeader(config, lang) {
         if (document.querySelector('.bc-nav')) return;
-        var html = buildHeader(config);
+        var html = buildHeader(config, lang);
         document.body.insertAdjacentHTML('afterbegin', html);
     }
 
     // 注入 footer（在 .container 末尾或 </body> 前）
-    function injectFooter(config) {
-        // 已有 category-nav 则不注入
+    function injectFooter(config, lang) {
         if (document.querySelector('.category-nav')) return;
         var container = document.querySelector('.container');
-        var footerHtml = buildFooter(config.category);
+        var footerHtml = buildFooter(config.category, lang);
         if (container) {
             container.insertAdjacentHTML('beforeend', footerHtml);
         } else {
             document.body.insertAdjacentHTML('beforeend', footerHtml);
         }
+    }
+
+    // ==================== 语言切换 ====================
+
+    // 更新公共 UI 翻译（面包屑、类目导航、版权）
+    function applyCommonTranslations(lang) {
+        document.querySelectorAll('[data-common-i18n]').forEach(function (el) {
+            var key = el.getAttribute('data-common-i18n');
+            var val = ct(lang, key);
+            // 类目导航带 emoji 前缀
+            if (key.indexOf('nav_') === 0) {
+                CATEGORIES.forEach(function (c) {
+                    if (c.i18nKey === key) {
+                        val = c.emoji + ' ' + val;
+                    }
+                });
+            }
+            if (key === 'copyright') {
+                el.innerHTML = val;
+            } else {
+                el.textContent = val;
+            }
+        });
     }
 
     // 绑定语言切换器交互
@@ -181,15 +279,13 @@
         });
     }
 
-    // 应用翻译
+    // 应用工具翻译
     function applyTranslations(lang, translations) {
         var t = translations[lang] || translations['en'];
         if (!t) return;
 
-        // 更新 <html lang>
         document.documentElement.lang = lang;
 
-        // data-i18n
         document.querySelectorAll('[data-i18n]').forEach(function (el) {
             var key = el.getAttribute('data-i18n');
             if (t[key] !== undefined) {
@@ -197,7 +293,6 @@
             }
         });
 
-        // data-i18n-placeholder
         document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
             var key = el.getAttribute('data-i18n-placeholder');
             if (t[key] !== undefined) {
@@ -209,9 +304,14 @@
     // 切换语言
     function switchLanguage(lang, translations) {
         localStorage.setItem(LANG_KEY, lang);
+
+        // 更新工具翻译
         applyTranslations(lang, translations);
 
-        // 更新显示
+        // 更新公共 UI 翻译
+        applyCommonTranslations(lang);
+
+        // 更新语言切换器显示
         var current = document.getElementById('langCurrent');
         if (current) {
             current.textContent = LANG_NAMES[lang] || LANG_NAMES['en'];
@@ -230,7 +330,6 @@
     // 绑定 FAQ 手风琴
     function bindFaqAccordion() {
         document.querySelectorAll('.faq-question').forEach(function (btn) {
-            // 避免重复绑定
             if (btn._faqBound) return;
             btn._faqBound = true;
             btn.addEventListener('click', function () {
@@ -244,7 +343,7 @@
         });
     }
 
-    // 公开 API
+    // ==================== 公开 API ====================
     window.WebToolbox = {
         LANG_KEY: LANG_KEY,
 
@@ -260,13 +359,13 @@
          */
         init: function (translations) {
             var config = getConfig();
-
-            // 兼容旧键名
             migrateOldLangKey(config.toolId);
 
-            // 注入 header & footer
-            injectHeader(config);
-            injectFooter(config);
+            var lang = getCurrentLang();
+
+            // 注入 header & footer（带当前语言）
+            injectHeader(config, lang);
+            injectFooter(config, lang);
 
             // 绑定语言切换器
             bindLangSwitcher(translations || {});
@@ -275,10 +374,10 @@
             bindFaqAccordion();
 
             // 首次翻译
-            var lang = getCurrentLang();
             if (translations) {
                 applyTranslations(lang, translations);
             }
+            applyCommonTranslations(lang);
 
             // 设置语言切换器初始显示
             var current = document.getElementById('langCurrent');

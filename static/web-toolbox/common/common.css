@@ -165,6 +165,10 @@
     color: #a0a0b8;
     font-size: 0.9rem;
 }
+.category-nav + .site-footer {
+    border-top: none;
+    margin-top: 20px;
+}
 .site-footer a {
     color: #a78bfa;
     text-decoration: none;

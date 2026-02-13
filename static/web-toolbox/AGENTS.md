@@ -26,9 +26,60 @@
 
 ## 强制规则
 
+### 0) 公共结构（common.js / common.css 统管，禁止手写）
+
+每个工具页必须引入 `common/common.css` 和 `common/common.js`，由它们统一注入和管理以下公共 UI：
+
+**Header（common.js 自动注入，禁止手写）：**
+- 面包屑导航（左）：`Home › Web Toolbox › {Category} › {ToolName}`
+- 语言切换器（右）：4 语下拉菜单
+- 禁止在 HTML 中手写 `<nav>` 返回链接、`lang-dropdown`、`lang-switcher` 等元素
+- 禁止在 JS 中手写 `langDropdown`、`langCurrent` 相关事件绑定
+
+**Footer（common.js 自动注入，禁止手写）：**
+- 类目导航栏（`category-nav`）：7 类入口，当前类目高亮
+- 版权行（`site-footer`）：`© 2024-2026 heyuan110. All rights reserved.`
+- 禁止在 HTML 中手写 `<footer>` 或版权信息
+
+**Related Tools（各工具自己写内容，必须用 common.css class）：**
+- 使用 `.related-tools` > `.related-grid` > `.related-card` 结构
+- 3-5 个相关工具内链，内容因工具而异
+- 禁止 inline style，统一使用 common.css 提供的 class
+
+**Container 对齐规则：**
+- `.container` 必须 `max-width: 1200px; padding: 40px;`
+- 与 header 的 `bc-nav`（`max-width: 1200px; padding: 12px 40px`）左右对齐
+- 所有内容区块（features、faq、related-tools）必须在 `.container` 内部
+
+**集成方式（固定模式）：**
+```html
+<!-- </head> 之前 -->
+<link rel="stylesheet" href="common/common.css">
+</head>
+<body>
+<div class="container">
+  <!-- 工具主体内容 -->
+  <!-- features-section -->
+  <!-- faq-section -->
+  <!-- related-tools -->
+</div>
+<!-- 脚本区（在 container 外部） -->
+<script>/* 工具 IIFE，翻译对象暴露到 window */</script>
+<script src="common/common.js"
+  data-tool-id="{tool-id}"
+  data-tool-name="{Tool Name}"
+  data-category="{category}"></script>
+<script>WebToolbox.init(window._translations);</script>
+</body>
+```
+
+**翻译对象暴露规则：**
+- 翻译定义在 IIFE 内部时，必须通过 `window._xxxI18n = translations;` 暴露
+- 工具内部 `t()` 函数使用 `WebToolbox.getCurrentLang()` 获取当前语言，禁止自定义 `currentLang` 变量
+
 ### 1) 页面基础要求
 
-- 必须为深色主题、响应式设计（桌面/平板/手机）。
+- 必须为支持浅色和深色主题、默认是浅色、响应式设计（桌面/平板/手机）。
 - JavaScript 必须使用 IIFE 或等价作用域隔离，避免全局污染。
 - 新增/重构工具默认采用 **shadcn/ui 视觉语言**（卡片、边框、层次、间距、控件风格一致）。
 - 关键交互区必须包含**有意义的动效设计**（至少 2 类）：如首屏入场动画 + 状态反馈动画（进度、切换、完成反馈），做到“第一眼有吸引力、交互时有反馈”，禁止纯静态工具页。
@@ -40,8 +91,8 @@
 
 - 文本：`data-i18n="key"`
 - placeholder：`data-i18n-placeholder="key"`
-- 右上角语言切换器
-- `localStorage` 键名：`{tool}_lang`
+- 语言切换器由 `common.js` 自动注入（禁止手写）
+- `localStorage` 统一键名：`toolbox_lang`（由 common.js 管理）
 - 默认语言：English (`en`)
 
 ### 3) SEO Head（强制）
@@ -132,6 +183,9 @@ features 第一张卡必须是“100% Free & Private”卖点（含无广告、�
 
 ## 最小验收清单（PR/提交前）
 
+- [ ] **公共结构**：无手写 header/footer/语言切换器，全部由 common.js 注入
+- [ ] **公共结构**：container `max-width:1200px; padding:40px`，与 header 对齐
+- [ ] **公共结构**：related-tools 使用 common.css class（禁止 inline style）
 - [ ] 4 语言完整，语言切换与持久化正常
 - [ ] SEO Head 标签齐全
 - [ ] JSON-LD 四件套齐全
@@ -139,7 +193,7 @@ features 第一张卡必须是“100% Free & Private”卖点（含无广告、�
 - [ ] Trust Bar 存在且翻译完整
 - [ ] 痛点关键词 6 层埋词完成
 - [ ] FAQ 深度、科普、热词、`faq_free_q/a` 完成
-- [ ] 首卡为“100% Free & Private”
+- [ ] 首卡为"100% Free & Private"
 - [ ] UI/UX 达标：界面美观统一、首次使用路径清晰、核心参数有明确标签与说明
 - [ ] `index.html` 卡片与 `hasPart` 已更新
 - [ ] `sitemap.xml`、`docs/ROADMAP.md` 已更新

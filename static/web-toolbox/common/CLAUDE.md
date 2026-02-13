@@ -1,6 +1,3 @@
-see @AGENTS.md
-
-
 <claude-mem-context>
 # Recent Activity
 
@@ -10,5 +7,5 @@ see @AGENTS.md
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
-| #2360 | 12:51 AM | 🔵 | Web Toolbox Project Standards and Rules | ~811 |
+| #2335 | 12:44 AM | 🔵 | Common.js shared component architecture examined | ~404 |
 </claude-mem-context>

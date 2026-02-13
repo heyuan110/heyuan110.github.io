@@ -121,11 +121,9 @@
     .anim{opacity:0;animation:fadeInUp .55s ease forwards}
     .anim-d1{animation-delay:.05s}.anim-d2{animation-delay:.12s}.anim-d3{animation-delay:.2s}.anim-d4{animation-delay:.28s}.anim-d5{animation-delay:.36s}.anim-d6{animation-delay:.44s}.anim-d7{animation-delay:.52s}
 
-    .container{max-width: 1200px;margin:0 auto;position:relative;z-index:1}
+    .container{max-width: 1200px;margin:0 auto;padding:40px 40px;position:relative;z-index:1}
 
-    /* 顶栏 */
-    .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
-.lang-dropdown.open /* 标题 */
+    /* 标题 */
     h1{text-align:center;font-size:2.2rem;font-weight:700;letter-spacing:-.03em;margin-bottom:8px;background:linear-gradient(135deg,#e2e8f0,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
     .subtitle{text-align:center;color:var(--muted);margin-bottom:20px;font-size:15px}
 
@@ -234,29 +232,12 @@
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-[data-theme="light"] [data-theme="light"] [data-theme="light"] [data-theme="light"] @media (max-width: 768px) {
-            }
-
-    </style>
 <!-- 背景光球 -->
 <div class="orb orb-1"></div>
 <div class="orb orb-2"></div>
 <div class="orb orb-3"></div>
 
 <div class="container">
-<!-- 顶栏 -->
-  <div class="topbar anim anim-d1">
-<div class="lang-dropdown" id="langDropdown">
-      <div class="lang-current" id="langCurrent">🇺🇸 English</div>
-      <div class="lang-menu">
-        <button class="lang-btn" data-lang="en">🇺🇸 English</button>
-        <button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button>
-        <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
-        <button class="lang-btn" data-lang="es">🇪🇸 Español</button>
-      </div>
-    </div>
-  </div>
-
   <!-- 标题 -->
   <h1 class="anim anim-d2" data-i18n="title">File Converter</h1>
   <p class="subtitle anim anim-d2" data-i18n="subtitle">Cross-media format bridge — Video, Image, SVG & Base64</p>
@@ -420,7 +401,7 @@
 /* ========== 多语言系统 ========== */
 const i18n = {
 en:{
-  back:'Back to Toolbox',title:'File Converter',subtitle:'Cross-media format bridge — Video, Image, SVG & Base64',
+  back:'Back to Toolbox',tool_name:'File Converter',title:'File Converter',subtitle:'Cross-media format bridge — Video, Image, SVG & Base64',
   step_upload:'Upload',step_convert:'Convert',step_download:'Download',
   tab_vgif:'Video → GIF',tab_vaudio:'Video → Audio',tab_svg:'SVG → PNG/JPG',tab_b64:'Image ↔ Base64',
   drop_video:'Drop video file here or click to browse',drop_video_hint:'MP4, WebM, MOV supported',
@@ -458,7 +439,7 @@ en:{
   r4_t:'Base64 Tool',r4_d:'Encode and decode text with Base64.'
 },
 'zh-CN':{
-  back:'返回工具箱',title:'文件格式转换',subtitle:'跨媒体格式桥梁 — 视频、图片、SVG 与 Base64',
+  back:'返回工具箱',tool_name:'文件格式转换',title:'文件格式转换',subtitle:'跨媒体格式桥梁 — 视频、图片、SVG 与 Base64',
   step_upload:'上传',step_convert:'转换',step_download:'下载',
   tab_vgif:'视频 → GIF',tab_vaudio:'视频 → 音频',tab_svg:'SVG → PNG/JPG',tab_b64:'图片 ↔ Base64',
   drop_video:'将视频文件拖放到此处，或点击浏览',drop_video_hint:'支持 MP4、WebM、MOV',
@@ -496,7 +477,7 @@ en:{
   r4_t:'Base64 工具',r4_d:'文本 Base64 编码与解码。'
 },
 fr:{
-  back:'Retour à la boîte à outils',title:'Convertisseur de fichiers',subtitle:'Pont de formats cross-média — Vidéo, Image, SVG & Base64',
+  back:'Retour à la boîte à outils',tool_name:'Convertisseur de fichiers',title:'Convertisseur de fichiers',subtitle:'Pont de formats cross-média — Vidéo, Image, SVG & Base64',
   step_upload:'Téléverser',step_convert:'Convertir',step_download:'Télécharger',
   tab_vgif:'Vidéo → GIF',tab_vaudio:'Vidéo → Audio',tab_svg:'SVG → PNG/JPG',tab_b64:'Image ↔ Base64',
   drop_video:'Déposez le fichier vidéo ici ou cliquez pour parcourir',drop_video_hint:'MP4, WebM, MOV supportés',
@@ -534,7 +515,7 @@ fr:{
   r4_t:'Outil Base64',r4_d:'Encoder et décoder du texte en Base64.'
 },
 es:{
-  back:'Volver a la caja de herramientas',title:'Convertidor de archivos',subtitle:'Puente de formatos multimedia — Video, Imagen, SVG y Base64',
+  back:'Volver a la caja de herramientas',tool_name:'Convertidor de archivos',title:'Convertidor de archivos',subtitle:'Puente de formatos multimedia — Video, Imagen, SVG y Base64',
   step_upload:'Subir',step_convert:'Convertir',step_download:'Descargar',
   tab_vgif:'Video → GIF',tab_vaudio:'Video → Audio',tab_svg:'SVG → PNG/JPG',tab_b64:'Imagen ↔ Base64',
   drop_video:'Arrastra el archivo de video aquí o haz clic para explorar',drop_video_hint:'MP4, WebM, MOV compatibles',
@@ -574,7 +555,7 @@ es:{
 };
 const $ = (id) => document.getElementById(id);
 
-function t(k) { return (i18n[currentLang] || i18n.en)[k] || i18n.en[k] || k; }
+function t(k) { var lang = (typeof WebToolbox !== 'undefined') ? WebToolbox.getCurrentLang() : 'en'; return (i18n[lang] || i18n.en)[k] || i18n.en[k] || k; }
 
 function setStatus(msg) { $('statusLine').textContent = msg || ''; }
 
@@ -1012,14 +993,6 @@ $('btnDecodeB64').addEventListener('click', () => {
   };
 });
 
-/* ========== 语言切换 ========== */
-$('langCurrent').addEventListener('click', e => {
-  e.stopPropagation();
-  $('langDropdown').classList.toggle('open');
-});
-});
-document.addEventListener('click', () => $('langDropdown').classList.remove('open'));
-
 /* ========== FAQ 手风琴 ========== */
 document.querySelectorAll('.faq-q').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -1033,10 +1006,13 @@ document.querySelectorAll('.faq-q').forEach(btn => {
 /* ========== 初始化 ========== */
 setStep(1);
 
+// 暴露翻译给 common.js
+window._fileConverterI18n = i18n;
+
 })();
 </script>
     <script src="common/common.js" data-tool-id="file-converter" data-tool-name="File Converter" data-category="media"></script>
-    <script>WebToolbox.init(i18n);</script>
+    <script>WebToolbox.init(window._fileConverterI18n);</script>
 
 </body>
 </html>

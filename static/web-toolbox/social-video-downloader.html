@@ -242,9 +242,9 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 40px 40px;
         }
 
         /* 头部 */
@@ -254,7 +254,7 @@
             position: relative;
         }
 
-        .lang-dropdown.open .lang-dropdown.open .logo {
+        .logo {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -669,21 +669,6 @@
             flex-shrink: 0;
         }
 
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-bottom: 12px;
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.2s;
-        }
-
-        .back-link:hover {
-            color: var(--text-primary);
-        }
-
         /* 历史记录 */
         .history-section {
             margin-top: 40px;
@@ -898,9 +883,7 @@
 
         /* FAQ 区块 */
         .faq-section {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
+            margin: 40px 0;
         }
 
         .faq-section h2 {
@@ -975,28 +958,12 @@
             font-size: 0.95rem;
             line-height: 1.6;
         }
-        </style>
+    </style>
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
     <div class="container">
-        <nav aria-label="Breadcrumb">
-            <a href="index.html" class="back-link" data-i18n="backLink">← 返回工具箱</a>
-        </nav>
-
         <header class="header">
-            <!-- 语言切换器 - 右上角下拉菜单 -->
-            <div class="lang-switcher" id="langSwitcher">
-                <div class="lang-dropdown" id="langDropdown">
-                    <div class="lang-current" id="langCurrent">🌐 English</div>
-                    <div class="lang-menu">
-                        <button class="lang-btn" data-lang="en">🇺🇸 English</button>
-                        <button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button>
-                        <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
-                        <button class="lang-btn" data-lang="es">🇪🇸 Español</button>
-                    </div>
-                </div>
-            </div>
             <div class="logo">
                 <div class="logo-icon">📥</div>
             </div>
@@ -1117,12 +1084,11 @@
                 <li data-i18n="tip6">视频解析通过安全服务完成，下载直接从原平台获取</li>
             </ul>
         </section>
-</div>
 
-    <div class="toast" id="toast"></div>
+        <div class="toast" id="toast"></div>
 
-    <!-- FAQ 常见问题 -->
-    <section class="faq-section">
+        <!-- FAQ 常见问题 -->
+        <section class="faq-section">
         <h2 data-i18n="faqTitle">❓ 常见问题</h2>
         <div class="faq-list">
             <div class="faq-item">
@@ -1155,8 +1121,36 @@
                     <p data-i18n="faq5A">仅供个人学习使用，请尊重原作者版权，勿用于商业用途。下载的内容请勿二次传播或用于盈利目的。</p>
                 </div>
             </div>
-        </div>
-    </section>
+            </div>
+        </section>
+
+        <!-- 相关工具推荐 -->
+        <section class="related-tools">
+            <h3 data-i18n="relatedTools">🔗 相关工具推荐</h3>
+            <div class="related-grid">
+                <a href="m3u8-downloader.html" class="related-card">
+                    <div class="related-icon">📺</div>
+                    <div class="related-name" data-i18n="toolM3u8">M3U8 下载器</div>
+                    <div class="related-desc" data-i18n="toolM3u8Desc">HLS 流媒体下载</div>
+                </a>
+                <a href="audio-cutter.html" class="related-card">
+                    <div class="related-icon">✂️</div>
+                    <div class="related-name" data-i18n="toolAudio">音频剪切</div>
+                    <div class="related-desc" data-i18n="toolAudioDesc">在线剪切音频文件</div>
+                </a>
+                <a href="image-compressor.html" class="related-card">
+                    <div class="related-icon">🗜️</div>
+                    <div class="related-name" data-i18n="toolImage">图片压缩</div>
+                    <div class="related-desc" data-i18n="toolImageDesc">在线压缩图片大小</div>
+                </a>
+                <a href="file-renamer.html" class="related-card">
+                    <div class="related-icon">📝</div>
+                    <div class="related-name" data-i18n="toolRename">批量重命名</div>
+                    <div class="related-desc" data-i18n="toolRenameDesc">文件批量重命名</div>
+                </a>
+            </div>
+        </section>
+    </div>
 
     <script>
     (function() {
@@ -1179,8 +1173,9 @@
         const historyList = document.getElementById('historyList');
         const clearHistoryBtn = document.getElementById('clearHistoryBtn');
         const toast = document.getElementById('toast');
+        // Cloudflare Worker 代理 URL
         // 如果 Worker 不可用或超出配额，会自动回退到外部服务
-        const WORKER_URL = 'https:
+        const WORKER_URL = 'https://videoproxyapi.heyuan110.com/';
         const HISTORY_KEY = 'social_video_history';
         let history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
 
@@ -2022,11 +2017,11 @@
     })();
 
     // 多语言支持 (i18n)
-    (function() {
         // 翻译数据
-        const translations = {
+        var translations = {
             'zh-CN': {
                 backLink: '← 返回工具箱',
+                tool_name: '社交视频下载器',
                 pageTitle: '社交媒体视频下载器 - 免费无水印下载',
                 pageSubtitle: '一键下载 <strong>TikTok</strong>、<strong>X (Twitter)</strong>、<strong>Instagram Reels</strong>、<strong>Facebook</strong>、<strong>YouTube</strong> 视频，支持<em>无水印高清画质</em>，无需安装任何软件',
                 feature1Title: '多平台视频下载',
@@ -2084,6 +2079,7 @@
             },
             'en': {
                 backLink: '← Back to Toolbox',
+                tool_name: 'Social Video Downloader',
                 pageTitle: 'Social Video Downloader - Free No Watermark',
                 pageSubtitle: 'One-click download <strong>TikTok</strong>, <strong>X (Twitter)</strong>, <strong>Instagram Reels</strong>, <strong>Facebook</strong>, <strong>YouTube</strong> videos with <em>HD quality without watermark</em>, no software needed',
                 feature1Title: 'Multi-Platform Download',
@@ -2141,6 +2137,7 @@
             },
             'fr': {
                 backLink: '← Retour à la boîte à outils',
+                tool_name: 'Téléchargeur Vidéo Social',
                 pageTitle: 'Téléchargeur Vidéo Social - Gratuit Sans Filigrane',
                 pageSubtitle: 'Téléchargez en un clic les vidéos <strong>TikTok</strong>, <strong>X (Twitter)</strong>, <strong>Instagram Reels</strong>, <strong>Facebook</strong>, <strong>YouTube</strong> en <em>HD sans filigrane</em>, aucun logiciel requis',
                 feature1Title: 'Téléchargement Multi-Plateforme',
@@ -2198,6 +2195,7 @@
             },
             'es': {
                 backLink: '← Volver a Herramientas',
+                tool_name: 'Descargador de Video Social',
                 pageTitle: 'Descargador de Video Social - Gratis Sin Marca de Agua',
                 pageSubtitle: 'Descarga con un clic videos de <strong>TikTok</strong>, <strong>X (Twitter)</strong>, <strong>Instagram Reels</strong>, <strong>Facebook</strong>, <strong>YouTube</strong> en <em>HD sin marca de agua</em>, sin software',
                 feature1Title: 'Descarga Multi-Plataforma',
@@ -2254,46 +2252,8 @@
                 trust_free: '🚫 Sin anuncios, sin registro',
             },
         };
-})();
     </script>
     <script src="common/common.js" data-tool-id="social-video-downloader" data-tool-name="Social Video Downloader" data-category="media"></script>
     <script>WebToolbox.init(translations);</script>
-
-
-    <!-- 相关工具推荐 -->
-    <section class="related-tools" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
-        <h3 style="color: #e6edf3; font-size: 18px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #30363d;" data-i18n="relatedTools">🔗 相关工具推荐</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
-            <a href="m3u8-downloader.html" style="display: block; padding: 16px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                <div style="font-size: 24px; margin-bottom: 8px;">📺</div>
-                <div style="color: #e6edf3; font-weight: 500;" data-i18n="toolM3u8">M3U8 下载器</div>
-                <div style="color: #8b949e; font-size: 12px; margin-top: 4px;" data-i18n="toolM3u8Desc">HLS 流媒体下载</div>
-            </a>
-            <a href="audio-cutter.html" style="display: block; padding: 16px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                <div style="font-size: 24px; margin-bottom: 8px;">✂️</div>
-                <div style="color: #e6edf3; font-weight: 500;" data-i18n="toolAudio">音频剪切</div>
-                <div style="color: #8b949e; font-size: 12px; margin-top: 4px;" data-i18n="toolAudioDesc">在线剪切音频文件</div>
-            </a>
-            <a href="image-compressor.html" style="display: block; padding: 16px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                <div style="font-size: 24px; margin-bottom: 8px;">🗜️</div>
-                <div style="color: #e6edf3; font-weight: 500;" data-i18n="toolImage">图片压缩</div>
-                <div style="color: #8b949e; font-size: 12px; margin-top: 4px;" data-i18n="toolImageDesc">在线压缩图片大小</div>
-            </a>
-            <a href="file-renamer.html" style="display: block; padding: 16px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                <div style="font-size: 24px; margin-bottom: 8px;">📝</div>
-                <div style="color: #e6edf3; font-weight: 500;" data-i18n="toolRename">批量重命名</div>
-                <div style="color: #8b949e; font-size: 12px; margin-top: 4px;" data-i18n="toolRenameDesc">文件批量重命名</div>
-            </a>
-        </div>
-    </section>
-
-    <footer style="text-align: center; padding: 30px 20px; border-top: 1px solid #30363d; color: #8b949e; font-size: 14px;">
-        <p data-i18n="footerPrivacy">纯前端处理，数据不会上传到服务器</p>
-        <p style="margin-top: 12px;">
-            <a href="index.html" style="color: #58a6ff; text-decoration: none;" data-i18n="backToHome">← 返回 Web Toolbox 首页</a>
-            <span style="margin: 0 12px;">|</span>
-            <a href="https://github.com/heyuan110" target="_blank" rel="noopener" style="color: #58a6ff; text-decoration: none;">GitHub</a>
-        </p>
-    </footer>
 </body>
 </html>
