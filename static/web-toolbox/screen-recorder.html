@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Screen Recorder - Free Online Screen Recording Tool | No Ads, No Signup | 在线录屏 | Web Toolbox</title>
-  <meta name="description" content="Free online screen recorder with browser MediaRecorder API. Record screen with optional microphone audio and download instantly. ✅ No ads ✅ No signup ✅ No limits. Runs entirely in your browser.">
-  <meta name="keywords" content="screen recorder online,record screen,browser screen recording,webm recorder,在线录屏,屏幕录制,no ads,no signup,no login,no watermark,free unlimited,browser-based,no installation,local processing">
+  <meta name="description" content="Free online screen recorder with browser MediaRecorder API. Record screen with optional microphone audio and export HD MP4 in browser. ✅ No ads ✅ No signup ✅ No limits.">
+  <meta name="keywords" content="screen recorder online,record screen,hd mp4 screen recorder,browser screen recording,在线录屏,屏幕录制,mp4录屏,no ads,no signup,no login,no watermark,free unlimited,browser-based,no installation,local processing">
   <meta name="author" content="heyuan110">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="googlebot" content="index, follow">
@@ -53,7 +53,7 @@
     "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
     "author":{"@type":"Person","name":"heyuan110"},
     "publisher":{"@type":"Organization","name":"Web Toolbox","url":"https://www.heyuan110.com/web-toolbox/"},
-    "featureList":["Record full screen or browser tab","Optional microphone audio","Live preview and timer","Download recording as WebM","No ads","No signup required","No watermark","100% browser-based","Unlimited usage"],
+    "featureList":["Record full screen or browser tab","Optional microphone audio","Live preview and timer","Export recording as HD MP4","No ads","No signup required","No watermark","100% browser-based","Unlimited usage"],
     "screenshot":"https://www.heyuan110.com/web-toolbox/screenshots/screen-recorder.webp"
   }
   </script>
@@ -77,7 +77,7 @@
     "step":[
       {"@type":"HowToStep","position":1,"name":"Choose options","text":"Enable microphone if needed and click Start Recording."},
       {"@type":"HowToStep","position":2,"name":"Select screen source","text":"Pick browser tab, window, or full screen in sharing dialog."},
-      {"@type":"HowToStep","position":3,"name":"Stop and download","text":"Stop recording and download generated WebM file."}
+      {"@type":"HowToStep","position":3,"name":"Stop and download","text":"Stop recording and export HD MP4 file."}
     ]
   }
   </script>
@@ -88,7 +88,7 @@
     "mainEntity":[
       {"@type":"Question","name":"What is an online screen recorder and how does it work?","acceptedAnswer":{"@type":"Answer","text":"An online screen recorder captures your screen using browser APIs like getDisplayMedia and MediaRecorder. It records video locally and exports file without desktop installation."}},
       {"@type":"Question","name":"Can I record screen with microphone audio?","acceptedAnswer":{"@type":"Answer","text":"Yes. Enable microphone option before recording to merge voice input with screen capture stream."}},
-      {"@type":"Question","name":"What format is used for download?","acceptedAnswer":{"@type":"Answer","text":"The default recording output is WebM video, which is widely supported by modern browsers and easy to convert later."}},
+      {"@type":"Question","name":"What format is used for download?","acceptedAnswer":{"@type":"Answer","text":"The tool exports HD MP4 by default. Raw recording stream is transcoded locally in browser using FFmpeg WebAssembly without server upload."}},
       {"@type":"Question","name":"Is recording private and local in browser?","acceptedAnswer":{"@type":"Answer","text":"Yes. Screen recording starts only after your explicit permission and runs in browser context with no mandatory account flow."}},
       {"@type":"Question","name":"Is this tool really free with no ads?","acceptedAnswer":{"@type":"Answer","text":"Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server."}}
     ]
@@ -104,8 +104,14 @@
     .lang-dropdown{position:relative}.lang-current{border:1px solid var(--border);border-radius:8px;background:rgba(15,23,42,.75);padding:8px 12px;font-size:14px;cursor:pointer;user-select:none}.lang-menu{position:absolute;top:calc(100% + 4px);right:0;background:#0f172a;border:1px solid var(--border);border-radius:8px;padding:4px;min-width:150px;display:none;z-index:30}.lang-dropdown.open .lang-menu{display:block}.lang-btn{width:100%;background:transparent;border:0;color:var(--text);padding:8px 10px;text-align:left;border-radius:6px;cursor:pointer}.lang-btn:hover{background:rgba(59,130,246,.2)}
     h1{text-align:center;font-size:2.1rem;letter-spacing:-.02em;margin-bottom:10px}.subtitle{text-align:center;color:var(--muted);margin-bottom:22px}
     .card{background:rgba(15,23,42,.82);border:1px solid var(--border);border-radius:var(--radius)}.tool-card{padding:14px}
-    .toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}.btn{border:1px solid var(--border);background:#0b1220;color:var(--text);padding:8px 12px;border-radius:8px;font-size:13px;cursor:pointer}.btn:hover{border-color:#64748b}.btn.primary{background:linear-gradient(135deg,var(--primary),var(--primary2));border-color:transparent;color:#fff}
+    .tool-card.recording{border-color:rgba(239,68,68,.9);box-shadow:0 0 0 1px rgba(239,68,68,.32),0 0 30px rgba(239,68,68,.28)}
+    .toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}.btn{border:1px solid var(--border);background:#0b1220;color:var(--text);padding:8px 12px;border-radius:8px;font-size:13px;cursor:pointer}.btn:hover{border-color:#64748b}.btn:disabled{opacity:.5;cursor:not-allowed}.btn.primary{background:linear-gradient(135deg,var(--primary),var(--primary2));border-color:transparent;color:#fff}
     .opt{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:13px;padding:6px 8px;border:1px solid var(--border);border-radius:8px;background:#020617}
+    .quality-select{background:#020617;border:1px solid var(--border);color:var(--text);border-radius:6px;padding:5px 8px;font-size:12px}
+    .recording-alert{display:none;align-items:center;gap:8px;width:fit-content;padding:8px 12px;border-radius:999px;border:1px solid rgba(248,113,113,.7);background:rgba(127,29,29,.38);color:#fecaca;margin-bottom:10px;font-size:13px}
+    .recording-alert.active{display:inline-flex}
+    .rec-dot{width:10px;height:10px;border-radius:50%;background:#ef4444;box-shadow:0 0 0 rgba(239,68,68,.9);animation:recPulse 1.2s ease-out infinite}
+    @keyframes recPulse{0%{box-shadow:0 0 0 0 rgba(239,68,68,.8)}70%{box-shadow:0 0 0 10px rgba(239,68,68,0)}100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}}
     video{width:100%;border:1px solid var(--border);border-radius:10px;background:#020617;min-height:320px}
     .row{display:flex;justify-content:space-between;align-items:center;margin-top:10px}.timer{font-family:"JetBrains Mono","SF Mono",Consolas,monospace;font-size:20px;color:#c4b5fd}
     .status{color:#93c5fd;font-size:13px;min-height:18px}
@@ -133,20 +139,28 @@
       <button class="btn" id="pauseBtn" data-i18n="pause">Pause</button>
       <button class="btn" id="resumeBtn" data-i18n="resume">Resume</button>
       <button class="btn" id="stopBtn" data-i18n="stop">Stop</button>
-      <button class="btn" id="downloadBtn" data-i18n="download">Download WebM</button>
+      <label class="opt"><span data-i18n="quality">Quality</span>
+        <select id="qualitySel" class="quality-select">
+          <option value="hd1080" data-i18n="quality1080">1080p HD</option>
+          <option value="hd720" data-i18n="quality720">720p</option>
+          <option value="source" data-i18n="qualitySource">Source</option>
+        </select>
+      </label>
+      <button class="btn" id="downloadBtn" data-i18n="download">Download HD MP4</button>
     </div>
+    <div class="recording-alert" id="recordingAlert"><span class="rec-dot" aria-hidden="true"></span><span data-i18n="recordingAlert">REC • Recording in progress</span></div>
     <video id="preview" controls autoplay muted playsinline></video>
     <div class="row"><div class="timer" id="timer">00:00</div><div class="status" id="status"></div></div>
   </section>
 
   <div class="trust-bar"><span class="trust-item" data-i18n="trust_users">🌍 Used by 50,000+ users</span><span class="trust-item" data-i18n="trust_rating">⭐ 4.9/5 rating</span><span class="trust-item" data-i18n="trust_privacy">🔒 100% Private</span><span class="trust-item" data-i18n="trust_free">🚫 No Ads, No Signup</span></div>
 
-  <section class="features-section"><h2 data-i18n="features_title">Screen Recorder Features</h2><div class="features-grid"><article class="feature"><div>🔒</div><h4 data-i18n="f1_t">100% Free & Private</h4><p data-i18n="f1_d">No ads, no signup, no watermark. Everything runs locally in your browser. Your data never leaves your device.</p></article><article class="feature"><div>🖥️</div><h4 data-i18n="f2_t">Browser Screen Capture</h4><p data-i18n="f2_d">Record browser tab, application window, or full screen directly online.</p></article><article class="feature"><div>🎙️</div><h4 data-i18n="f3_t">Microphone Audio Option</h4><p data-i18n="f3_d">Enable voice recording to create tutorials, demos, and walkthrough videos.</p></article><article class="feature"><div>⬇️</div><h4 data-i18n="f4_t">Instant Download</h4><p data-i18n="f4_d">Stop recording and download generated WebM file in one click.</p></article></div></section>
+  <section class="features-section"><h2 data-i18n="features_title">Screen Recorder Features</h2><div class="features-grid"><article class="feature"><div>🔒</div><h4 data-i18n="f1_t">100% Free & Private</h4><p data-i18n="f1_d">No ads, no signup, no watermark. Everything runs locally in your browser. Your data never leaves your device.</p></article><article class="feature"><div>🖥️</div><h4 data-i18n="f2_t">Browser Screen Capture</h4><p data-i18n="f2_d">Record browser tab, application window, or full screen directly online.</p></article><article class="feature"><div>🎙️</div><h4 data-i18n="f3_t">Microphone Audio Option</h4><p data-i18n="f3_d">Enable voice recording to create tutorials, demos, and walkthrough videos.</p></article><article class="feature"><div>🎬</div><h4 data-i18n="f4_t">HD MP4 Export</h4><p data-i18n="f4_d">Stop recording and export high-quality MP4 with browser-side conversion.</p></article></div></section>
 
   <section class="faq-section"><h2 data-i18n="faq_title">Frequently Asked Questions</h2>
     <div class="faq-item"><button class="faq-q" data-i18n="faq1_q">What is an online screen recorder and how does it work?</button><div class="faq-a" data-i18n="faq1_a">An online screen recorder captures your screen using browser APIs like getDisplayMedia and MediaRecorder. It records video locally and exports file without desktop installation.</div></div>
     <div class="faq-item"><button class="faq-q" data-i18n="faq2_q">Can I record screen with microphone audio?</button><div class="faq-a" data-i18n="faq2_a">Yes. Enable microphone option before recording to merge voice input with screen capture stream.</div></div>
-    <div class="faq-item"><button class="faq-q" data-i18n="faq3_q">What format is used for download?</button><div class="faq-a" data-i18n="faq3_a">The default recording output is WebM video, which is widely supported by modern browsers and easy to convert later.</div></div>
+    <div class="faq-item"><button class="faq-q" data-i18n="faq3_q">What format is used for download?</button><div class="faq-a" data-i18n="faq3_a">The tool exports HD MP4 by default. Raw recording stream is transcoded locally in browser using FFmpeg WebAssembly without server upload.</div></div>
     <div class="faq-item"><button class="faq-q" data-i18n="faq4_q">Is recording private and local in browser?</button><div class="faq-a" data-i18n="faq4_a">Yes. Screen recording starts only after your explicit permission and runs in browser context with no mandatory account flow.</div></div>
     <div class="faq-item"><button class="faq-q" data-i18n="faq_free_q">Is this tool really free with no ads?</button><div class="faq-a" data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</div></div>
   </section>
@@ -159,77 +173,474 @@
   'use strict';
   var langNames={en:'🇺🇸 English','zh-CN':'🇨🇳 中文',fr:'🇫🇷 Français',es:'🇪🇸 Español'};
   var i18n={
-    en:{back:'Back to Toolbox',title:'Screen Recorder',subtitle:'Record screen online with optional microphone audio',mic:'Include Microphone',start:'Start Recording',pause:'Pause',resume:'Resume',stop:'Stop',download:'Download WebM',needStart:'Start recording first',starting:'Requesting screen permission...',recording:'Recording...',paused:'Paused',stopped:'Stopped',downloadReady:'Recording ready for download',trust_users:'🌍 Used by 50,000+ users',trust_rating:'⭐ 4.9/5 rating',trust_privacy:'🔒 100% Private',trust_free:'🚫 No Ads, No Signup',features_title:'Screen Recorder Features',f1_t:'100% Free & Private',f1_d:'No ads, no signup, no watermark. Everything runs locally in your browser. Your data never leaves your device.',f2_t:'Browser Screen Capture',f2_d:'Record browser tab, application window, or full screen directly online.',f3_t:'Microphone Audio Option',f3_d:'Enable voice recording to create tutorials, demos, and walkthrough videos.',f4_t:'Instant Download',f4_d:'Stop recording and download generated WebM file in one click.',faq_title:'Frequently Asked Questions',faq1_q:'What is an online screen recorder and how does it work?',faq1_a:'An online screen recorder captures your screen using browser APIs like getDisplayMedia and MediaRecorder. It records video locally and exports file without desktop installation.',faq2_q:'Can I record screen with microphone audio?',faq2_a:'Yes. Enable microphone option before recording to merge voice input with screen capture stream.',faq3_q:'What format is used for download?',faq3_a:'The default recording output is WebM video, which is widely supported by modern browsers and easy to convert later.',faq4_q:'Is recording private and local in browser?',faq4_a:'Yes. Screen recording starts only after your explicit permission and runs in browser context with no mandatory account flow.',faq_free_q:'Is this tool really free with no ads?',faq_free_a:'Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.',related_title:'Related Tools',r1_t:'Audio Cutter',r1_d:'Trim narration audio from recorded videos.',r2_t:'Timestamp Converter',r2_d:'Convert timeline points while editing recordings.',r3_t:'Image to PDF',r3_d:'Turn captured screenshots into shareable PDFs.',r4_t:'PDF Compress',r4_d:'Compress docs created from recording snapshots.'},
-    'zh-CN':{back:'返回工具箱',title:'在线录屏工具',subtitle:'浏览器录制屏幕，可选麦克风音频',mic:'包含麦克风',start:'开始录制',pause:'暂停',resume:'继续',stop:'停止',download:'下载 WebM',needStart:'请先开始录制',starting:'正在请求屏幕权限...',recording:'录制中...',paused:'已暂停',stopped:'已停止',downloadReady:'录制完成，可下载',trust_users:'🌍 超过 50,000 用户使用',trust_rating:'⭐ 4.9/5 好评',trust_privacy:'🔒 100% 隐私安全',trust_free:'🚫 无广告、无需注册',features_title:'录屏功能特点',f1_t:'100% 免费且安全',f1_d:'无广告、无需注册、无水印。所有处理都在浏览器本地完成，数据不会上传到任何服务器。',f2_t:'浏览器屏幕采集',f2_d:'可录制标签页、窗口或全屏内容。',f3_t:'麦克风音频可选',f3_d:'支持同步录制讲解声音，适合教程和演示。',f4_t:'即时下载',f4_d:'停止后立即下载 WebM 文件。',faq_title:'常见问题',faq1_q:'什么是在线录屏工具？原理是什么？',faq1_a:'在线录屏工具基于 getDisplayMedia 和 MediaRecorder 等浏览器 API 采集画面。录制过程在本地完成，无需安装桌面客户端。',faq2_q:'可以同时录制麦克风吗？',faq2_a:'可以。开始前勾选麦克风选项，即可把语音与屏幕流合并录制。',faq3_q:'下载文件是什么格式？',faq3_a:'默认输出 WebM 格式，现代浏览器兼容性好，后续也便于转换。',faq4_q:'录屏过程是本地和隐私安全吗？',faq4_a:'是的。仅在你授权后才会开始采集，且录制在浏览器上下文执行，无强制账号流程。',faq_free_q:'这个工具真的免费且无广告吗？',faq_free_a:'是的，100% 免费，无广告、无需注册、无水印、无限制。所有处理都在浏览器本地完成，你的数据不会上传到任何服务器。',related_title:'相关工具',r1_t:'音频剪辑',r1_d:'剪辑录屏解说音频。',r2_t:'时间戳转换',r2_d:'编辑视频时换算时间点。',r3_t:'图片转 PDF',r3_d:'把截图整理成 PDF 文档。',r4_t:'PDF 压缩',r4_d:'压缩截图文档体积。'},
-    fr:{back:'Retour à la boîte à outils',title:'Enregistreur d écran',subtitle:'Enregistrer écran en ligne avec micro optionnel',mic:'Inclure microphone',start:'Démarrer',pause:'Pause',resume:'Reprendre',stop:'Arrêter',download:'Télécharger WebM',needStart:'Démarrez d abord',starting:'Demande autorisation écran...',recording:'Enregistrement...',paused:'En pause',stopped:'Arrêté',downloadReady:'Fichier prêt',trust_users:'🌍 Utilisé par 50 000+ utilisateurs',trust_rating:'⭐ Note 4.9/5',trust_privacy:'🔒 100% Privé',trust_free:'🚫 Sans pub, sans inscription',features_title:'Fonctions enregistreur écran',f1_t:'100% Gratuit et Privé',f1_d:'Sans publicité, sans inscription, sans filigrane. Tout est traité localement dans votre navigateur.',f2_t:'Capture navigateur',f2_d:'Enregistrez onglet, fenêtre ou plein écran.',f3_t:'Option micro',f3_d:'Ajoutez votre voix pour tutoriels et démonstrations.',f4_t:'Téléchargement immédiat',f4_d:'Arrêtez puis téléchargez le fichier WebM.',faq_title:'Questions fréquentes',faq1_q:'Qu est ce qu un screen recorder en ligne ?',faq1_a:'Un screen recorder en ligne capture l écran via APIs navigateur comme getDisplayMedia et MediaRecorder. L enregistrement se fait localement sans installation desktop.',faq2_q:'Puis je enregistrer avec microphone ?',faq2_a:'Oui. Activez l option microphone avant démarrage pour fusionner voix et vidéo.',faq3_q:'Quel format est téléchargé ?',faq3_a:'Le format par défaut est WebM, largement supporté par navigateurs modernes.',faq4_q:'Le traitement est il privé et local ?',faq4_a:'Oui. La capture démarre après votre autorisation et fonctionne dans le navigateur sans compte obligatoire.',faq_free_q:'Cet outil est-il vraiment gratuit et sans pub ?',faq_free_a:'Oui, 100% gratuit, sans publicité, sans inscription, sans filigrane et sans limites. Tout est traité localement dans votre navigateur — vos données ne sont jamais téléversées.',related_title:'Outils associés',r1_t:'Éditeur audio',r1_d:'Couper l audio enregistré.',r2_t:'Convertisseur timestamp',r2_d:'Convertir points temporels.',r3_t:'Image vers PDF',r3_d:'Assembler captures en PDF.',r4_t:'Compresseur PDF',r4_d:'Compresser documents de captures.'},
-    es:{back:'Volver a la caja de herramientas',title:'Grabador de pantalla',subtitle:'Graba pantalla en línea con micrófono opcional',mic:'Incluir micrófono',start:'Iniciar',pause:'Pausar',resume:'Reanudar',stop:'Detener',download:'Descargar WebM',needStart:'Primero inicia grabación',starting:'Solicitando permiso de pantalla...',recording:'Grabando...',paused:'En pausa',stopped:'Detenido',downloadReady:'Grabación lista para descargar',trust_users:'🌍 Usado por más de 50,000 usuarios',trust_rating:'⭐ Calificación 4.9/5',trust_privacy:'🔒 100% Privado',trust_free:'🚫 Sin anuncios, sin registro',features_title:'Funciones del grabador',f1_t:'100% Gratis y Privado',f1_d:'Sin anuncios, sin registro, sin marca de agua. Todo se procesa localmente en tu navegador.',f2_t:'Captura en navegador',f2_d:'Graba pestaña, ventana o pantalla completa.',f3_t:'Micrófono opcional',f3_d:'Añade voz para tutoriales y demos.',f4_t:'Descarga inmediata',f4_d:'Detén y descarga archivo WebM al instante.',faq_title:'Preguntas frecuentes',faq1_q:'¿Qué es un screen recorder online y cómo funciona?',faq1_a:'Un screen recorder online captura pantalla usando APIs de navegador como getDisplayMedia y MediaRecorder. La grabación se realiza localmente sin instalar apps.',faq2_q:'¿Puedo grabar con micrófono?',faq2_a:'Sí. Activa la opción de micrófono antes de iniciar para combinar voz con video de pantalla.',faq3_q:'¿Qué formato se descarga?',faq3_a:'El formato de salida por defecto es WebM, compatible con navegadores modernos.',faq4_q:'¿Es privado y local en navegador?',faq4_a:'Sí. La captura empieza tras tu permiso explícito y corre en navegador sin flujo de cuenta obligatorio.',faq_free_q:'¿Esta herramienta es realmente gratis y sin anuncios?',faq_free_a:'Sí, 100% gratis, sin anuncios, sin registro, sin marca de agua y sin límites. Todo el procesamiento ocurre localmente en tu navegador: tus datos nunca se suben a ningún servidor.',related_title:'Herramientas relacionadas',r1_t:'Editor de audio',r1_d:'Recorta audio de narración.',r2_t:'Convertidor timestamp',r2_d:'Convierte tiempos para edición.',r3_t:'Imagen a PDF',r3_d:'Convierte capturas en PDF.',r4_t:'Compresor PDF',r4_d:'Reduce tamaño de documentos de capturas.'}
+    en:{back:'Back to Toolbox',title:'Screen Recorder',subtitle:'Record screen online with optional microphone audio',mic:'Include Microphone',start:'Start Recording',pause:'Pause',resume:'Resume',stop:'Stop',quality:'Quality',quality1080:'1080p HD',quality720:'720p',qualitySource:'Source',download:'Download HD MP4',recordingAlert:'REC • Recording in progress',alreadyRecording:'Recording is already in progress',needStart:'Start recording first',starting:'Requesting screen permission...',recording:'Recording...',paused:'Paused',stopped:'Stopped',downloadReady:'Recording ready. Click download for HD MP4.',downloading:'Download started',ffLoading:'Loading MP4 engine...',ffReady:'MP4 engine ready',ffFail:'MP4 engine failed to load',convertingStart:'Converting to HD MP4...',converting:'Converting',convertDone:'MP4 is ready for download',convertFail:'MP4 conversion failed',browserUnsupported:'Your browser does not support screen recording',error:'Error',trust_users:'🌍 Used by 50,000+ users',trust_rating:'⭐ 4.9/5 rating',trust_privacy:'🔒 100% Private',trust_free:'🚫 No Ads, No Signup',features_title:'Screen Recorder Features',f1_t:'100% Free & Private',f1_d:'No ads, no signup, no watermark. Everything runs locally in your browser. Your data never leaves your device.',f2_t:'Browser Screen Capture',f2_d:'Record browser tab, application window, or full screen directly online.',f3_t:'Microphone Audio Option',f3_d:'Enable voice recording to create tutorials, demos, and walkthrough videos.',f4_t:'HD MP4 Export',f4_d:'Stop recording and export high-quality MP4 with browser-side conversion.',faq_title:'Frequently Asked Questions',faq1_q:'What is an online screen recorder and how does it work?',faq1_a:'An online screen recorder captures your screen using browser APIs like getDisplayMedia and MediaRecorder. It records video locally and exports file without desktop installation.',faq2_q:'Can I record screen with microphone audio?',faq2_a:'Yes. Enable microphone option before recording to merge voice input with screen capture stream.',faq3_q:'What format is used for download?',faq3_a:'The tool exports HD MP4 by default. Raw recording stream is transcoded locally in browser using FFmpeg WebAssembly without server upload.',faq4_q:'Is recording private and local in browser?',faq4_a:'Yes. Screen recording starts only after your explicit permission and runs in browser context with no mandatory account flow.',faq_free_q:'Is this tool really free with no ads?',faq_free_a:'Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser - your data is never uploaded to any server.',related_title:'Related Tools',r1_t:'Audio Cutter',r1_d:'Trim narration audio from recorded videos.',r2_t:'Timestamp Converter',r2_d:'Convert timeline points while editing recordings.',r3_t:'Image to PDF',r3_d:'Turn captured screenshots into shareable PDFs.',r4_t:'PDF Compress',r4_d:'Compress docs created from recording snapshots.'},
+    'zh-CN':{back:'返回工具箱',title:'在线录屏工具',subtitle:'浏览器录制屏幕，可选麦克风音频',mic:'包含麦克风',start:'开始录制',pause:'暂停',resume:'继续',stop:'停止',quality:'清晰度',quality1080:'1080p 高清',quality720:'720p',qualitySource:'原始分辨率',download:'下载高清 MP4',recordingAlert:'REC • 正在录制中',alreadyRecording:'已经在录制中',needStart:'请先开始录制',starting:'正在请求屏幕权限...',recording:'录制中...',paused:'已暂停',stopped:'已停止',downloadReady:'录制完成，点击下载高清 MP4。',downloading:'已开始下载',ffLoading:'正在加载 MP4 转码引擎...',ffReady:'MP4 转码引擎已就绪',ffFail:'MP4 转码引擎加载失败',convertingStart:'正在转换为高清 MP4...',converting:'转换中',convertDone:'MP4 已生成，可下载',convertFail:'MP4 转换失败',browserUnsupported:'当前浏览器不支持录屏功能',error:'错误',trust_users:'🌍 超过 50,000 用户使用',trust_rating:'⭐ 4.9/5 好评',trust_privacy:'🔒 100% 隐私安全',trust_free:'🚫 无广告、无需注册',features_title:'录屏功能特点',f1_t:'100% 免费且安全',f1_d:'无广告、无需注册、无水印。所有处理都在浏览器本地完成，数据不会上传到任何服务器。',f2_t:'浏览器屏幕采集',f2_d:'可录制标签页、窗口或全屏内容。',f3_t:'麦克风音频可选',f3_d:'支持同步录制讲解声音，适合教程和演示。',f4_t:'高清 MP4 导出',f4_d:'停止后自动转码为高质量 MP4，本地处理不上传。',faq_title:'常见问题',faq1_q:'什么是在线录屏工具？原理是什么？',faq1_a:'在线录屏工具基于 getDisplayMedia 和 MediaRecorder 等浏览器 API 采集画面。录制过程在本地完成，无需安装桌面客户端。',faq2_q:'可以同时录制麦克风吗？',faq2_a:'可以。开始前勾选麦克风选项，即可把语音与屏幕流合并录制。',faq3_q:'下载文件是什么格式？',faq3_a:'默认导出高清 MP4。原始录制流会在浏览器内通过 FFmpeg WebAssembly 本地转码。',faq4_q:'录屏过程是本地和隐私安全吗？',faq4_a:'是的。仅在你授权后才会开始采集，且录制在浏览器上下文执行，无强制账号流程。',faq_free_q:'这个工具真的免费且无广告吗？',faq_free_a:'是的，100% 免费，无广告、无需注册、无水印、无限制。所有处理都在浏览器本地完成，你的数据不会上传到任何服务器。',related_title:'相关工具',r1_t:'音频剪辑',r1_d:'剪辑录屏解说音频。',r2_t:'时间戳转换',r2_d:'编辑视频时换算时间点。',r3_t:'图片转 PDF',r3_d:'把截图整理成 PDF 文档。',r4_t:'PDF 压缩',r4_d:'压缩截图文档体积。'},
+    fr:{back:'Retour à la boite a outils',title:'Enregistreur d ecran',subtitle:'Enregistrer ecran en ligne avec micro optionnel',mic:'Inclure microphone',start:'Demarrer',pause:'Pause',resume:'Reprendre',stop:'Arreter',quality:'Qualite',quality1080:'1080p HD',quality720:'720p',qualitySource:'Source',download:'Telecharger MP4 HD',recordingAlert:'REC • Enregistrement en cours',alreadyRecording:'Enregistrement deja en cours',needStart:'Demarrez d abord',starting:'Demande autorisation ecran...',recording:'Enregistrement...',paused:'En pause',stopped:'Arrete',downloadReady:'Enregistrement pret. Cliquez pour exporter MP4 HD.',downloading:'Telechargement lance',ffLoading:'Chargement du moteur MP4...',ffReady:'Moteur MP4 pret',ffFail:'Echec du chargement moteur MP4',convertingStart:'Conversion vers MP4 HD...',converting:'Conversion',convertDone:'MP4 pret au telechargement',convertFail:'Echec conversion MP4',browserUnsupported:'Navigateur non compatible avec capture ecran',error:'Erreur',trust_users:'🌍 Utilise par 50 000+ utilisateurs',trust_rating:'⭐ Note 4.9/5',trust_privacy:'🔒 100% Prive',trust_free:'🚫 Sans pub, sans inscription',features_title:'Fonctions enregistreur ecran',f1_t:'100% Gratuit et Prive',f1_d:'Sans publicite, sans inscription, sans filigrane. Tout est traite localement dans votre navigateur.',f2_t:'Capture navigateur',f2_d:'Enregistrez onglet, fenetre ou plein ecran.',f3_t:'Option micro',f3_d:'Ajoutez votre voix pour tutoriels et demonstrations.',f4_t:'Export MP4 HD',f4_d:'Arretez puis exportez un MP4 haute qualite avec conversion locale navigateur.',faq_title:'Questions frequentes',faq1_q:'Qu est ce qu un screen recorder en ligne ?',faq1_a:'Un screen recorder en ligne capture l ecran via APIs navigateur comme getDisplayMedia et MediaRecorder. L enregistrement se fait localement sans installation desktop.',faq2_q:'Puis je enregistrer avec microphone ?',faq2_a:'Oui. Activez l option microphone avant demarrage pour fusionner voix et video.',faq3_q:'Quel format est telecharge ?',faq3_a:'L outil exporte MP4 HD par defaut. Le flux brut est transcode localement dans le navigateur via FFmpeg WebAssembly.',faq4_q:'Le traitement est il prive et local ?',faq4_a:'Oui. La capture demarre apres votre autorisation et fonctionne dans le navigateur sans compte obligatoire.',faq_free_q:'Cet outil est-il vraiment gratuit et sans pub ?',faq_free_a:'Oui, 100% gratuit, sans publicite, sans inscription, sans filigrane et sans limites. Tout est traite localement dans votre navigateur - vos donnees ne sont jamais televersees.',related_title:'Outils associes',r1_t:'Editeur audio',r1_d:'Couper l audio enregistre.',r2_t:'Convertisseur timestamp',r2_d:'Convertir points temporels.',r3_t:'Image vers PDF',r3_d:'Assembler captures en PDF.',r4_t:'Compresseur PDF',r4_d:'Compresser documents de captures.'},
+    es:{back:'Volver a la caja de herramientas',title:'Grabador de pantalla',subtitle:'Graba pantalla en linea con microfono opcional',mic:'Incluir microfono',start:'Iniciar grabacion',pause:'Pausar',resume:'Reanudar',stop:'Detener',quality:'Calidad',quality1080:'1080p HD',quality720:'720p',qualitySource:'Origen',download:'Descargar MP4 HD',recordingAlert:'REC • Grabando ahora',alreadyRecording:'La grabacion ya esta en curso',needStart:'Primero inicia la grabacion',starting:'Solicitando permiso de pantalla...',recording:'Grabando...',paused:'En pausa',stopped:'Detenido',downloadReady:'Grabacion lista. Haz clic para bajar MP4 HD.',downloading:'Descarga iniciada',ffLoading:'Cargando motor MP4...',ffReady:'Motor MP4 listo',ffFail:'Error al cargar motor MP4',convertingStart:'Convirtiendo a MP4 HD...',converting:'Convirtiendo',convertDone:'MP4 listo para descargar',convertFail:'Fallo al convertir MP4',browserUnsupported:'Tu navegador no soporta grabacion de pantalla',error:'Error',trust_users:'🌍 Usado por mas de 50,000 usuarios',trust_rating:'⭐ Calificacion 4.9/5',trust_privacy:'🔒 100% Privado',trust_free:'🚫 Sin anuncios, sin registro',features_title:'Funciones del grabador',f1_t:'100% Gratis y Privado',f1_d:'Sin anuncios, sin registro, sin marca de agua. Todo se procesa localmente en tu navegador.',f2_t:'Captura en navegador',f2_d:'Graba pestana, ventana o pantalla completa.',f3_t:'Microfono opcional',f3_d:'Anade voz para tutoriales y demos.',f4_t:'Exportacion MP4 HD',f4_d:'Deten la grabacion y exporta MP4 de alta calidad con conversion local.',faq_title:'Preguntas frecuentes',faq1_q:'¿Que es un screen recorder online y como funciona?',faq1_a:'Un screen recorder online captura pantalla usando APIs de navegador como getDisplayMedia y MediaRecorder. La grabacion se realiza localmente sin instalar apps.',faq2_q:'¿Puedo grabar con microfono?',faq2_a:'Si. Activa la opcion de microfono antes de iniciar para combinar voz con video de pantalla.',faq3_q:'¿Que formato se descarga?',faq3_a:'La herramienta exporta MP4 HD por defecto. El flujo crudo se transcodifica localmente en el navegador con FFmpeg WebAssembly.',faq4_q:'¿Es privado y local en navegador?',faq4_a:'Si. La captura empieza tras tu permiso explicito y corre en navegador sin flujo de cuenta obligatorio.',faq_free_q:'¿Esta herramienta es realmente gratis y sin anuncios?',faq_free_a:'Si, 100% gratis, sin anuncios, sin registro, sin marca de agua y sin limites. Todo el procesamiento ocurre localmente en tu navegador: tus datos nunca se suben a ningun servidor.',related_title:'Herramientas relacionadas',r1_t:'Editor de audio',r1_d:'Recorta audio de narracion.',r2_t:'Convertidor timestamp',r2_d:'Convierte tiempos para edicion.',r3_t:'Imagen a PDF',r3_d:'Convierte capturas en PDF.',r4_t:'Compresor PDF',r4_d:'Reduce tamano de documentos de capturas.'}
   };
 
   var currentLang=localStorage.getItem('screen_recorder_lang')||'en';
-  var mediaRecorder=null,screenStream=null,micStream=null,recordedChunks=[],recordUrl='';
-  var timer=0,timerInt=null;
+  var mediaRecorder=null;
+  var screenStream=null;
+  var micStream=null;
+  var recordedChunks=[];
+  var rawBlob=null;
+  var recordUrl='';
+  var mp4Blob=null;
+  var mp4Url='';
+  var recordToken=0;
+  var mp4Token=-1;
+  var mp4Quality='';
+  var timer=0;
+  var timerInt=null;
+  var isConverting=false;
+  var ffmpegInstance=null;
+  var ffmpegUtils=null;
+  var ffmpegLoadingPromise=null;
+
   var preview=document.getElementById('preview');
   var statusEl=document.getElementById('status');
+  var toolCard=document.querySelector('.tool-card');
+  var recordingAlert=document.getElementById('recordingAlert');
+  var startBtn=document.getElementById('startBtn');
+  var pauseBtn=document.getElementById('pauseBtn');
+  var resumeBtn=document.getElementById('resumeBtn');
+  var stopBtn=document.getElementById('stopBtn');
+  var downloadBtn=document.getElementById('downloadBtn');
+  var qualitySel=document.getElementById('qualitySel');
 
-  function t(k){var d=i18n[currentLang]||i18n.en;return d[k]||i18n.en[k]||k;}
-  function applyLanguage(lang){currentLang=i18n[lang]?lang:'en';localStorage.setItem('screen_recorder_lang',currentLang);document.documentElement.lang=currentLang;document.getElementById('langCurrent').textContent=langNames[currentLang];document.querySelectorAll('[data-i18n]').forEach(function(el){el.textContent=t(el.getAttribute('data-i18n'))});}
-  function setStatus(v){statusEl.textContent=v||'';}
-  function fmt(sec){var m=Math.floor(sec/60),s=sec%60;return String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');}
-
-  function startTimer(){clearInterval(timerInt);timerInt=setInterval(function(){timer++;document.getElementById('timer').textContent=fmt(timer);},1000);}
-  function stopTimer(){clearInterval(timerInt);}
-
-  async function startRecording(){
-    try{
-      setStatus(t('starting'));
-      screenStream=await navigator.mediaDevices.getDisplayMedia({video:true,audio:true});
-      var tracks=[...screenStream.getVideoTracks(),...screenStream.getAudioTracks()];
-      if(document.getElementById('micChk').checked){
-        micStream=await navigator.mediaDevices.getUserMedia({audio:true});
-        tracks.push(...micStream.getAudioTracks());
-      }
-      var stream=new MediaStream(tracks);
-      recordedChunks=[];
-      mediaRecorder=new MediaRecorder(stream,{mimeType:'video/webm;codecs=vp8,opus'});
-      mediaRecorder.ondataavailable=function(e){if(e.data&&e.data.size>0)recordedChunks.push(e.data);};
-      mediaRecorder.onstop=function(){
-        var blob=new Blob(recordedChunks,{type:'video/webm'});
-        if(recordUrl)URL.revokeObjectURL(recordUrl);
-        recordUrl=URL.createObjectURL(blob);
-        preview.src=recordUrl;
-        preview.controls=true;
-        setStatus(t('downloadReady'));
-      };
-      mediaRecorder.start(300);
-      preview.srcObject=stream;
-      timer=0;document.getElementById('timer').textContent='00:00';startTimer();
-      setStatus(t('recording'));
-      screenStream.getVideoTracks()[0].addEventListener('ended',function(){if(mediaRecorder&&mediaRecorder.state!=='inactive')stopRecording();});
-    }catch(e){setStatus('Error: '+(e.message||e));}
+  function t(k){
+    var d=i18n[currentLang]||i18n.en;
+    return d[k]||i18n.en[k]||k;
   }
 
-  function pauseRecording(){if(mediaRecorder&&mediaRecorder.state==='recording'){mediaRecorder.pause();stopTimer();setStatus(t('paused'));}}
-  function resumeRecording(){if(mediaRecorder&&mediaRecorder.state==='paused'){mediaRecorder.resume();startTimer();setStatus(t('recording'));}}
-  function stopRecording(){
-    if(mediaRecorder&&mediaRecorder.state!=='inactive')mediaRecorder.stop();
-    stopTimer();setStatus(t('stopped'));
-    if(screenStream)screenStream.getTracks().forEach(function(t){t.stop();});
-    if(micStream)micStream.getTracks().forEach(function(t){t.stop();});
+  function applyLanguage(lang){
+    currentLang=i18n[lang]?lang:'en';
+    localStorage.setItem('screen_recorder_lang',currentLang);
+    document.documentElement.lang=currentLang;
+    document.getElementById('langCurrent').textContent=langNames[currentLang];
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      el.textContent=t(el.getAttribute('data-i18n'));
+    });
+  }
+
+  function setStatus(v){
+    statusEl.textContent=v||'';
+  }
+
+  function safeMessage(err){
+    if(!err){return '';}
+    if(typeof err==='string'){return err;}
+    return err.message||String(err);
+  }
+
+  function fmt(sec){
+    var m=Math.floor(sec/60);
+    var s=sec%60;
+    return String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+  }
+
+  function startTimer(){
+    clearInterval(timerInt);
+    timerInt=setInterval(function(){
+      timer++;
+      document.getElementById('timer').textContent=fmt(timer);
+    },1000);
+  }
+
+  function stopTimer(){
+    clearInterval(timerInt);
+  }
+
+  function setRecordingUI(active){
+    toolCard.classList.toggle('recording',active);
+    recordingAlert.classList.toggle('active',active);
+    startBtn.disabled=active;
+    qualitySel.disabled=active;
+  }
+
+  function refreshTransportButtons(){
+    var state=mediaRecorder?mediaRecorder.state:'inactive';
+    pauseBtn.disabled=state!=='recording';
+    resumeBtn.disabled=state!=='paused';
+    stopBtn.disabled=state==='inactive';
+  }
+
+  function stopInputStreams(){
+    if(screenStream){
+      screenStream.getTracks().forEach(function(track){track.stop();});
+      screenStream=null;
+    }
+    if(micStream){
+      micStream.getTracks().forEach(function(track){track.stop();});
+      micStream=null;
+    }
     preview.srcObject=null;
   }
 
-  document.getElementById('startBtn').addEventListener('click',startRecording);
-  document.getElementById('pauseBtn').addEventListener('click',pauseRecording);
-  document.getElementById('resumeBtn').addEventListener('click',resumeRecording);
-  document.getElementById('stopBtn').addEventListener('click',stopRecording);
-  document.getElementById('downloadBtn').addEventListener('click',function(){if(!recordUrl){setStatus(t('needStart'));return;}var a=document.createElement('a');a.href=recordUrl;a.download='screen-recording-'+Date.now()+'.webm';a.click();});
+  function revokeRecordUrl(){
+    if(recordUrl){
+      URL.revokeObjectURL(recordUrl);
+      recordUrl='';
+    }
+  }
 
-  document.getElementById('langCurrent').addEventListener('click',function(e){e.stopPropagation();document.getElementById('langDropdown').classList.toggle('open');});
-  document.querySelectorAll('.lang-btn').forEach(function(btn){btn.addEventListener('click',function(e){e.stopPropagation();applyLanguage(btn.getAttribute('data-lang'));document.getElementById('langDropdown').classList.remove('open');});});
-  document.addEventListener('click',function(){document.getElementById('langDropdown').classList.remove('open');});
-  document.querySelectorAll('.faq-q').forEach(function(btn){btn.addEventListener('click',function(){var item=btn.parentElement;var open=item.classList.contains('active');document.querySelectorAll('.faq-item').forEach(function(it){it.classList.remove('active')});if(!open)item.classList.add('active');});});
+  function invalidateMp4Cache(){
+    if(mp4Url){
+      URL.revokeObjectURL(mp4Url);
+      mp4Url='';
+    }
+    mp4Blob=null;
+    mp4Token=-1;
+    mp4Quality='';
+  }
+
+  function getSupportedMimeType(){
+    if(typeof MediaRecorder==='undefined'){return '';}
+    var options=['video/webm;codecs=vp9,opus','video/webm;codecs=vp8,opus','video/webm'];
+    for(var i=0;i<options.length;i++){
+      if(MediaRecorder.isTypeSupported(options[i])){return options[i];}
+    }
+    return '';
+  }
+
+  function getVideoConstraintByQuality(){
+    var q=qualitySel.value;
+    var base={frameRate:{ideal:30,max:60}};
+    if(q==='hd1080'){
+      base.width={ideal:1920,max:3840};
+      base.height={ideal:1080,max:2160};
+    }else if(q==='hd720'){
+      base.width={ideal:1280,max:2560};
+      base.height={ideal:720,max:1440};
+    }
+    return base;
+  }
+
+  async function startRecording(){
+    if(mediaRecorder&&mediaRecorder.state!=='inactive'){
+      setStatus(t('alreadyRecording'));
+      return;
+    }
+    if(!navigator.mediaDevices||!navigator.mediaDevices.getDisplayMedia||typeof MediaRecorder==='undefined'){
+      setStatus(t('browserUnsupported'));
+      return;
+    }
+
+    try{
+      setStatus(t('starting'));
+      revokeRecordUrl();
+      invalidateMp4Cache();
+      rawBlob=null;
+      recordedChunks=[];
+
+      screenStream=await navigator.mediaDevices.getDisplayMedia({
+        video:getVideoConstraintByQuality(),
+        audio:true
+      });
+
+      var tracks=[].concat(screenStream.getVideoTracks(),screenStream.getAudioTracks());
+      if(document.getElementById('micChk').checked){
+        micStream=await navigator.mediaDevices.getUserMedia({audio:true});
+        tracks=tracks.concat(micStream.getAudioTracks());
+      }
+
+      var mixedStream=new MediaStream(tracks);
+      var mimeType=getSupportedMimeType();
+      if(!mimeType){
+        throw new Error(t('browserUnsupported'));
+      }
+
+      mediaRecorder=new MediaRecorder(mixedStream,{
+        mimeType:mimeType,
+        videoBitsPerSecond:10000000,
+        audioBitsPerSecond:192000
+      });
+
+      mediaRecorder.ondataavailable=function(e){
+        if(e.data&&e.data.size>0){
+          recordedChunks.push(e.data);
+        }
+      };
+
+      mediaRecorder.onerror=function(e){
+        setStatus(t('error')+': '+safeMessage(e.error||e));
+      };
+
+      mediaRecorder.onstop=function(){
+        var finalType=mediaRecorder&&mediaRecorder.mimeType?mediaRecorder.mimeType:'video/webm';
+        rawBlob=new Blob(recordedChunks,{type:finalType});
+        revokeRecordUrl();
+        recordUrl=URL.createObjectURL(rawBlob);
+        preview.src=recordUrl;
+        preview.controls=true;
+        preview.muted=false;
+        recordToken++;
+        invalidateMp4Cache();
+        setStatus(t('downloadReady'));
+        setRecordingUI(false);
+        refreshTransportButtons();
+      };
+
+      mediaRecorder.start(400);
+      preview.srcObject=mixedStream;
+      preview.muted=true;
+      preview.controls=true;
+      timer=0;
+      document.getElementById('timer').textContent='00:00';
+      startTimer();
+      setRecordingUI(true);
+      refreshTransportButtons();
+      setStatus(t('recording'));
+
+      var videoTracks=screenStream.getVideoTracks();
+      if(videoTracks[0]){
+        videoTracks[0].addEventListener('ended',function(){
+          if(mediaRecorder&&mediaRecorder.state!=='inactive'){
+            stopRecording();
+          }
+        });
+      }
+    }catch(err){
+      stopTimer();
+      setRecordingUI(false);
+      refreshTransportButtons();
+      stopInputStreams();
+      setStatus(t('error')+': '+safeMessage(err));
+    }
+  }
+
+  function pauseRecording(){
+    if(mediaRecorder&&mediaRecorder.state==='recording'){
+      mediaRecorder.pause();
+      stopTimer();
+      setStatus(t('paused'));
+      refreshTransportButtons();
+    }
+  }
+
+  function resumeRecording(){
+    if(mediaRecorder&&mediaRecorder.state==='paused'){
+      mediaRecorder.resume();
+      startTimer();
+      setStatus(t('recording'));
+      refreshTransportButtons();
+    }
+  }
+
+  function stopRecording(){
+    if(mediaRecorder&&mediaRecorder.state!=='inactive'){
+      mediaRecorder.stop();
+    }
+    stopTimer();
+    setStatus(t('stopped'));
+    stopInputStreams();
+    setRecordingUI(false);
+    refreshTransportButtons();
+  }
+
+  async function ensureFFmpeg(){
+    if(ffmpegInstance&&ffmpegUtils){
+      return ffmpegInstance;
+    }
+    if(ffmpegLoadingPromise){
+      return ffmpegLoadingPromise;
+    }
+
+    ffmpegLoadingPromise=(async function(){
+      setStatus(t('ffLoading'));
+      var ffmpegPkg=await import('https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/esm/index.js');
+      var utilPkg=await import('https://cdn.jsdelivr.net/npm/@ffmpeg/util@0.12.1/dist/esm/index.js');
+      var base='https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/umd';
+      var ffmpeg=new ffmpegPkg.FFmpeg();
+
+      ffmpeg.on('progress',function(evt){
+        if(isConverting){
+          var progress=evt&&typeof evt.progress==='number'?evt.progress:0;
+          var pct=Math.max(0,Math.min(100,Math.round(progress*100)));
+          setStatus(t('converting')+' '+pct+'%');
+        }
+      });
+
+      await ffmpeg.load({
+        coreURL:await utilPkg.toBlobURL(base+'/ffmpeg-core.js','text/javascript'),
+        wasmURL:await utilPkg.toBlobURL(base+'/ffmpeg-core.wasm','application/wasm'),
+        workerURL:await utilPkg.toBlobURL(base+'/ffmpeg-core.worker.js','text/javascript')
+      });
+
+      ffmpegInstance=ffmpeg;
+      ffmpegUtils={fetchFile:utilPkg.fetchFile};
+      setStatus(t('ffReady'));
+      return ffmpegInstance;
+    })().catch(function(err){
+      ffmpegLoadingPromise=null;
+      setStatus(t('ffFail')+': '+safeMessage(err));
+      throw err;
+    });
+
+    return ffmpegLoadingPromise;
+  }
+
+  function buildScaleFilter(q){
+    if(q==='hd1080'){
+      return 'scale=1920:1080:force_original_aspect_ratio=decrease:force_divisible_by=2';
+    }
+    if(q==='hd720'){
+      return 'scale=1280:720:force_original_aspect_ratio=decrease:force_divisible_by=2';
+    }
+    return '';
+  }
+
+  function buildCommands(q){
+    var base=['-y','-i','input.webm'];
+    var scaleFilter=buildScaleFilter(q);
+    if(scaleFilter){
+      base.push('-vf',scaleFilter);
+    }
+    return [
+      base.concat(['-c:v','libx264','-preset','veryfast','-crf','21','-pix_fmt','yuv420p','-c:a','aac','-b:a','192k','-movflags','+faststart','output.mp4']),
+      base.concat(['-c:v','mpeg4','-q:v','2','-c:a','aac','-b:a','160k','-movflags','+faststart','output.mp4']),
+      base.concat(['-c:v','mpeg4','-q:v','2','-an','-movflags','+faststart','output.mp4'])
+    ];
+  }
+
+  async function runFfmpegCommand(ffmpeg,args){
+    var code=await ffmpeg.exec(args);
+    if(typeof code==='number'&&code!==0){
+      throw new Error('ffmpeg exit code '+code);
+    }
+  }
+
+  async function convertToMp4(quality){
+    if(!rawBlob){
+      throw new Error(t('needStart'));
+    }
+    if(mp4Blob&&mp4Token===recordToken&&mp4Quality===quality){
+      return mp4Blob;
+    }
+
+    var ffmpeg=await ensureFFmpeg();
+    var lastError=null;
+    setStatus(t('convertingStart'));
+    isConverting=true;
+
+    try{
+      try{await ffmpeg.deleteFile('input.webm');}catch(_e){}
+      try{await ffmpeg.deleteFile('output.mp4');}catch(_e){}
+
+      await ffmpeg.writeFile('input.webm',await ffmpegUtils.fetchFile(rawBlob));
+
+      var cmds=buildCommands(quality);
+      for(var i=0;i<cmds.length;i++){
+        try{
+          await runFfmpegCommand(ffmpeg,cmds[i]);
+          lastError=null;
+          break;
+        }catch(err){
+          lastError=err;
+        }
+      }
+
+      if(lastError){
+        throw lastError;
+      }
+
+      var output=await ffmpeg.readFile('output.mp4');
+      if(!output||!output.length){
+        throw new Error('empty mp4 output');
+      }
+
+      var blob=new Blob([output],{type:'video/mp4'});
+      invalidateMp4Cache();
+      mp4Blob=blob;
+      mp4Url=URL.createObjectURL(blob);
+      mp4Token=recordToken;
+      mp4Quality=quality;
+      setStatus(t('convertDone'));
+      return mp4Blob;
+    }catch(err){
+      setStatus(t('convertFail')+': '+safeMessage(err));
+      throw err;
+    }finally{
+      isConverting=false;
+      try{await ffmpeg.deleteFile('input.webm');}catch(_e){}
+      try{await ffmpeg.deleteFile('output.mp4');}catch(_e){}
+    }
+  }
+
+  function downloadUrl(url,filename){
+    var a=document.createElement('a');
+    a.href=url;
+    a.download=filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
+
+  async function downloadRecording(){
+    if(!rawBlob){
+      setStatus(t('needStart'));
+      return;
+    }
+    if(mediaRecorder&&mediaRecorder.state==='recording'){
+      setStatus(t('recording'));
+      return;
+    }
+
+    downloadBtn.disabled=true;
+    try{
+      var quality=qualitySel.value||'hd1080';
+      await convertToMp4(quality);
+      downloadUrl(mp4Url,'screen-recording-'+Date.now()+'-'+quality+'.mp4');
+      setStatus(t('downloading'));
+    }catch(_err){
+      // conversion status already set in convertToMp4
+    }finally{
+      downloadBtn.disabled=false;
+    }
+  }
+
+  startBtn.addEventListener('click',startRecording);
+  pauseBtn.addEventListener('click',pauseRecording);
+  resumeBtn.addEventListener('click',resumeRecording);
+  stopBtn.addEventListener('click',stopRecording);
+  downloadBtn.addEventListener('click',downloadRecording);
+
+  document.getElementById('langCurrent').addEventListener('click',function(e){
+    e.stopPropagation();
+    document.getElementById('langDropdown').classList.toggle('open');
+  });
+  document.querySelectorAll('.lang-btn').forEach(function(btn){
+    btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      applyLanguage(btn.getAttribute('data-lang'));
+      document.getElementById('langDropdown').classList.remove('open');
+    });
+  });
+  document.addEventListener('click',function(){
+    document.getElementById('langDropdown').classList.remove('open');
+  });
+  document.querySelectorAll('.faq-q').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var item=btn.parentElement;
+      var open=item.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(function(it){it.classList.remove('active');});
+      if(!open){
+        item.classList.add('active');
+      }
+    });
+  });
+
+  window.addEventListener('beforeunload',function(){
+    stopTimer();
+    stopInputStreams();
+    revokeRecordUrl();
+    invalidateMp4Cache();
+  });
 
   applyLanguage(currentLang);
+  setRecordingUI(false);
+  refreshTransportButtons();
 })();
 </script>
 </body>
