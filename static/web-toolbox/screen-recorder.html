@@ -77,7 +77,7 @@
     "step":[
       {"@type":"HowToStep","position":1,"name":"Choose options","text":"Enable microphone if needed and click Start Recording."},
       {"@type":"HowToStep","position":2,"name":"Select screen source","text":"Pick browser tab, window, or full screen in sharing dialog."},
-      {"@type":"HowToStep","position":3,"name":"Stop and download","text":"Stop recording and export HD MP4 file."}
+      {"@type":"HowToStep","position":3,"name":"Stop and download","text":"Stop recording and download HD MP4 file instantly."}
     ]
   }
   </script>
@@ -86,9 +86,9 @@
     "@context":"https://schema.org",
     "@type":"FAQPage",
     "mainEntity":[
-      {"@type":"Question","name":"What is an online screen recorder and how does it work?","acceptedAnswer":{"@type":"Answer","text":"An online screen recorder captures your screen using browser APIs like getDisplayMedia and MediaRecorder. It records video locally and exports file without desktop installation."}},
-      {"@type":"Question","name":"Can I record screen with microphone audio?","acceptedAnswer":{"@type":"Answer","text":"Yes. Enable microphone option before recording to merge voice input with screen capture stream."}},
-      {"@type":"Question","name":"What format is used for download?","acceptedAnswer":{"@type":"Answer","text":"You can download both WebM source recording and HD MP4. MP4 is transcoded locally in browser using FFmpeg WebAssembly without server upload."}},
+      {"@type":"Question","name":"What is an online screen recorder and how does it work?","acceptedAnswer":{"@type":"Answer","text":"An online screen recorder captures your screen using browser APIs like getDisplayMedia and MediaRecorder. It records video locally and exports the file without desktop installation. Modern browsers support native MP4 recording for instant downloads."}},
+      {"@type":"Question","name":"Can I record screen with microphone audio?","acceptedAnswer":{"@type":"Answer","text":"Yes. Enable microphone option before recording to merge voice input with screen capture stream. Perfect for tutorials and demos."}},
+      {"@type":"Question","name":"What format is used for download?","acceptedAnswer":{"@type":"Answer","text":"Modern browsers record directly in HD MP4 format using native MediaRecorder API. No conversion or transcoding engine is needed — your recording downloads instantly."}},
       {"@type":"Question","name":"Is recording private and local in browser?","acceptedAnswer":{"@type":"Answer","text":"Yes. Screen recording starts only after your explicit permission and runs in browser context with no mandatory account flow."}},
       {"@type":"Question","name":"Is this tool really free with no ads?","acceptedAnswer":{"@type":"Answer","text":"Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server."}}
     ]
@@ -96,94 +96,247 @@
   </script>
 
   <style>
-    :root{--bg:#020617;--panel:#0b1220;--card:#0f172a;--muted:#94a3b8;--text:#e2e8f0;--border:rgba(148,163,184,.2);--primary:#3b82f6;--primary2:#2563eb;--radius:12px}
+    :root{--bg:#020617;--card:#0f172a;--muted:#94a3b8;--text:#e2e8f0;--border:rgba(148,163,184,.15);--primary:#3b82f6;--primary2:#2563eb;--red:#ef4444;--green:#10b981;--radius:16px}
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:"Inter","SF Pro Text",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 20% 0%,rgba(59,130,246,.18),transparent 40%),radial-gradient(circle at 100% 0%,rgba(16,185,129,.12),transparent 38%),var(--bg);color:var(--text);min-height:100vh;padding:24px 16px 60px}
-    .container{max-width:1100px;margin:0 auto}.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
-    .back{color:#cbd5e1;text-decoration:none;font-size:14px;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:rgba(15,23,42,.65)}.back:hover{border-color:#64748b}
-    .lang-dropdown{position:relative}.lang-current{border:1px solid var(--border);border-radius:8px;background:rgba(15,23,42,.75);padding:8px 12px;font-size:14px;cursor:pointer;user-select:none}.lang-menu{position:absolute;top:calc(100% + 4px);right:0;background:#0f172a;border:1px solid var(--border);border-radius:8px;padding:4px;min-width:150px;display:none;z-index:30}.lang-dropdown.open .lang-menu{display:block}.lang-btn{width:100%;background:transparent;border:0;color:var(--text);padding:8px 10px;text-align:left;border-radius:6px;cursor:pointer}.lang-btn:hover{background:rgba(59,130,246,.2)}
-    h1{text-align:center;font-size:2.1rem;letter-spacing:-.02em;margin-bottom:10px}.subtitle{text-align:center;color:var(--muted);margin-bottom:22px}
-    .card{background:rgba(15,23,42,.82);border:1px solid var(--border);border-radius:var(--radius)}.tool-card{padding:14px}
-    .tool-card.recording{border-color:rgba(239,68,68,.9);box-shadow:0 0 0 1px rgba(239,68,68,.32),0 0 30px rgba(239,68,68,.28)}
-    .toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}.btn{border:1px solid var(--border);background:#0b1220;color:var(--text);padding:8px 12px;border-radius:8px;font-size:13px;cursor:pointer}.btn:hover{border-color:#64748b}.btn:disabled{opacity:.5;cursor:not-allowed}.btn.primary{background:linear-gradient(135deg,var(--primary),var(--primary2));border-color:transparent;color:#fff}
-    .opt{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:13px;padding:6px 8px;border:1px solid var(--border);border-radius:8px;background:#020617}
-    .quality-select{background:#020617;border:1px solid var(--border);color:var(--text);border-radius:6px;padding:5px 8px;font-size:12px}
-    .recording-alert{display:none;align-items:center;gap:8px;width:fit-content;padding:8px 12px;border-radius:999px;border:1px solid rgba(248,113,113,.7);background:rgba(127,29,29,.38);color:#fecaca;margin-bottom:10px;font-size:13px}
-    .recording-alert.active{display:inline-flex}
-    .rec-dot{width:10px;height:10px;border-radius:50%;background:#ef4444;box-shadow:0 0 0 rgba(239,68,68,.9);animation:recPulse 1.2s ease-out infinite}
-    @keyframes recPulse{0%{box-shadow:0 0 0 0 rgba(239,68,68,.8)}70%{box-shadow:0 0 0 10px rgba(239,68,68,0)}100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}}
-    .download-progress{display:none;margin:10px 0 12px;padding:12px;border-radius:10px;border:1px solid rgba(56,189,248,.55);background:linear-gradient(135deg,rgba(14,116,144,.35),rgba(14,116,144,.1));box-shadow:0 0 24px rgba(56,189,248,.22)}
-    .download-progress.active{display:block}
-    .download-progress.error{border-color:rgba(248,113,113,.7);background:linear-gradient(135deg,rgba(127,29,29,.35),rgba(127,29,29,.12));box-shadow:0 0 24px rgba(248,113,113,.2)}
-    .progress-head{display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:13px;margin-bottom:8px}
-    .progress-label{color:#bae6fd;font-weight:600}
-    .download-progress.error .progress-label{color:#fecaca}
-    .progress-pct{color:#e0f2fe;font-family:"JetBrains Mono","SF Mono",Consolas,monospace;font-weight:700}
-    .progress-track{height:10px;border-radius:999px;background:rgba(2,6,23,.8);overflow:hidden;border:1px solid rgba(125,211,252,.28)}
-    .progress-fill{height:100%;width:0%;background:linear-gradient(90deg,#22d3ee,#38bdf8,#0ea5e9);box-shadow:0 0 16px rgba(56,189,248,.5);transition:width .25s ease}
-    .download-progress.error .progress-fill{background:linear-gradient(90deg,#fb7185,#ef4444,#dc2626);box-shadow:0 0 16px rgba(248,113,113,.42)}
-    video{width:100%;border:1px solid var(--border);border-radius:10px;background:#020617;min-height:320px}
-    .row{display:flex;justify-content:space-between;align-items:center;margin-top:10px}.timer{font-family:"JetBrains Mono","SF Mono",Consolas,monospace;font-size:20px;color:#c4b5fd}
-    .status{color:#93c5fd;font-size:13px;min-height:18px}
-    .trust-bar{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin:12px 0 24px;padding:12px 20px;background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.2);border-radius:12px}.trust-item{font-size:13px;color:#a78bfa;white-space:nowrap}
-    .features-section,.faq-section,.related-tools{margin-top:22px;background:rgba(15,23,42,.82);border:1px solid var(--border);border-radius:var(--radius);padding:18px}.features-section h2,.faq-section h2,.related-tools h3{text-align:center;margin-bottom:14px;font-size:1.2rem}
-    .features-grid,.related-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
-    .feature,.related{border:1px solid var(--border);border-radius:10px;padding:12px;background:rgba(2,6,23,.58)}.feature h4,.related h4{margin:8px 0 6px;font-size:14px}.feature p,.related p{color:var(--muted);font-size:13px;line-height:1.55}
-    .related{text-decoration:none;color:inherit;display:block}.related:hover{border-color:#64748b}
-    .faq-item{border:1px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden;background:rgba(2,6,23,.5)}.faq-q{width:100%;text-align:left;background:transparent;border:0;color:var(--text);padding:12px 14px;cursor:pointer;font-size:14px}.faq-a{display:none;padding:0 14px 12px;color:var(--muted);font-size:13px;line-height:1.6}.faq-item.active .faq-a{display:block}
-    @media (max-width:960px){.features-grid,.related-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media (max-width:640px){h1{font-size:1.7rem}.features-grid,.related-grid{grid-template-columns:1fr}}
+    body{font-family:"Inter","SF Pro Text",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:24px 16px 60px;overflow-x:hidden}
+
+    /* 浮动背景光球 */
+    .orb{position:fixed;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;animation:bgFloat 22s ease-in-out infinite}
+    .orb-1{width:420px;height:420px;top:-120px;left:-80px;background:rgba(59,130,246,.22)}
+    .orb-2{width:360px;height:360px;bottom:-80px;right:-60px;background:rgba(139,92,246,.18);animation-delay:-8s}
+    .orb-3{width:280px;height:280px;top:45%;left:55%;background:rgba(16,185,129,.14);animation-delay:-15s}
+    @keyframes bgFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-25px) scale(1.06)}66%{transform:translate(-25px,18px) scale(.94)}}
+
+    /* 入场动画 */
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+    .anim{opacity:0;animation:fadeInUp .55s ease forwards}
+    .anim-d1{animation-delay:.05s}.anim-d2{animation-delay:.12s}.anim-d3{animation-delay:.2s}.anim-d4{animation-delay:.28s}.anim-d5{animation-delay:.36s}.anim-d6{animation-delay:.44s}.anim-d7{animation-delay:.52s}.anim-d8{animation-delay:.6s}
+
+    .container{max-width:1100px;margin:0 auto;position:relative;z-index:1}
+
+    /* 顶栏 */
+    .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+    .back{color:#cbd5e1;text-decoration:none;font-size:14px;padding:8px 14px;border:1px solid var(--border);border-radius:10px;background:rgba(15,23,42,.5);backdrop-filter:blur(8px);transition:border-color .2s}.back:hover{border-color:#64748b}
+    .lang-dropdown{position:relative}.lang-current{border:1px solid var(--border);border-radius:10px;background:rgba(15,23,42,.5);backdrop-filter:blur(8px);padding:8px 14px;font-size:14px;cursor:pointer;user-select:none;transition:border-color .2s}.lang-current:hover{border-color:#64748b}.lang-menu{position:absolute;top:calc(100% + 4px);right:0;background:rgba(15,23,42,.95);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:10px;padding:4px;min-width:155px;display:none;z-index:30}.lang-dropdown.open .lang-menu{display:block}.lang-btn{width:100%;background:transparent;border:0;color:var(--text);padding:9px 12px;text-align:left;border-radius:8px;cursor:pointer;font-size:14px;transition:background .15s}.lang-btn:hover{background:rgba(59,130,246,.15)}
+
+    /* 标题 */
+    h1{text-align:center;font-size:2.2rem;font-weight:700;letter-spacing:-.03em;margin-bottom:8px;background:linear-gradient(135deg,#e2e8f0,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .subtitle{text-align:center;color:var(--muted);margin-bottom:20px;font-size:15px}
+
+    /* 步骤指示器 */
+    .steps{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:22px}
+    .step{display:flex;align-items:center;gap:7px;padding:6px 12px;font-size:13px;color:var(--muted);font-weight:500;transition:color .3s}
+    .step-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;border:2px solid var(--border);background:transparent;transition:all .3s}
+    .step.active{color:var(--primary)}.step.active .step-num{border-color:var(--primary);background:var(--primary);color:#fff}
+    .step.done{color:var(--green)}.step.done .step-num{border-color:var(--green);background:var(--green);color:#fff}
+    .step-line{width:36px;height:2px;background:var(--border);transition:background .3s}
+    .step-line.active{background:var(--green)}
+
+    /* 毛玻璃主卡片 */
+    .glass-card{background:rgba(15,23,42,.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:var(--radius);transition:border-color .4s,box-shadow .4s;overflow:hidden}
+
+    /* 状态边框 */
+    .tool-card[data-state="recording"],.tool-card[data-state="paused"]{border-color:rgba(239,68,68,.5);box-shadow:0 0 40px rgba(239,68,68,.15)}
+    .tool-card[data-state="done"]{border-color:rgba(16,185,129,.4);box-shadow:0 0 40px rgba(16,185,129,.12)}
+
+    /* ===== 配置栏 ===== */
+    .config-bar{display:none;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;padding:18px 20px;border-bottom:1px solid var(--border)}
+    .toggle-label{display:flex;align-items:center;gap:10px;cursor:pointer;font-size:14px;color:var(--muted);user-select:none}
+    .toggle-input{display:none}
+    .toggle-switch{position:relative;width:44px;height:24px;background:rgba(100,116,139,.25);border-radius:12px;transition:.3s;flex-shrink:0}
+    .toggle-switch::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;background:#64748b;border-radius:50%;transition:.3s}
+    .toggle-input:checked+.toggle-switch{background:rgba(59,130,246,.5)}
+    .toggle-input:checked+.toggle-switch::after{transform:translateX(20px);background:#60a5fa}
+    .quality-opt{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
+    .quality-select{background:rgba(2,6,23,.6);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:6px 10px;font-size:13px;cursor:pointer}
+
+    /* ===== 开始区域 ===== */
+    .start-section{display:none;flex-direction:column;align-items:center;padding:0 20px 20px}
+    .placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;border:2px dashed rgba(148,163,184,.15);border-radius:14px;margin:0 0 18px;width:100%;color:var(--muted);gap:10px}
+    .placeholder-icon{font-size:52px;opacity:.4}
+    .placeholder p{font-size:15px}
+    .start-btn{display:flex;align-items:center;justify-content:center;gap:10px;padding:15px 44px;border:none;border-radius:14px;background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;font-size:17px;font-weight:600;cursor:pointer;transition:all .25s;box-shadow:0 4px 24px rgba(239,68,68,.3)}
+    .start-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(239,68,68,.45)}
+    .start-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+    .start-btn .rec-circle{width:14px;height:14px;border-radius:50%;background:#fff;flex-shrink:0}
+
+    /* ===== 录制头部 ===== */
+    .rec-header{display:none;text-align:center;padding:20px 20px 10px}
+    .rec-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 16px;border-radius:999px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:#fca5a5;font-size:13px;font-weight:600;margin-bottom:6px}
+    .rec-dot{width:10px;height:10px;border-radius:50%;background:#ef4444;animation:recPulse 1.2s ease-out infinite}
+    @keyframes recPulse{0%{box-shadow:0 0 0 0 rgba(239,68,68,.7)}70%{box-shadow:0 0 0 10px rgba(239,68,68,0)}100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}}
+    .rec-timer{font-family:"JetBrains Mono","SF Mono",Consolas,monospace;font-size:52px;font-weight:700;color:#fff;letter-spacing:3px;line-height:1.15;text-shadow:0 0 40px rgba(239,68,68,.3)}
+    [data-state="paused"] .rec-timer{color:#fbbf24;text-shadow:0 0 40px rgba(251,191,36,.25)}
+    [data-state="paused"] .rec-badge{background:rgba(234,179,8,.1);border-color:rgba(234,179,8,.3);color:#fde68a}
+    [data-state="paused"] .rec-dot{background:#eab308;animation:none}
+
+    /* ===== 录制控制 ===== */
+    .rec-controls{display:none;justify-content:center;gap:10px;padding:8px 20px 16px}
+    .ctrl-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 22px;border:1px solid var(--border);border-radius:10px;background:rgba(15,23,42,.7);color:var(--text);font-size:14px;font-weight:500;cursor:pointer;transition:all .2s}
+    .ctrl-btn:hover{border-color:#64748b;background:rgba(30,41,59,.7)}
+    .ctrl-btn:disabled{opacity:.35;cursor:not-allowed}
+    .ctrl-btn.stop-btn{border-color:rgba(239,68,68,.4);color:#fca5a5}
+    .ctrl-btn.stop-btn:hover{background:rgba(127,29,29,.25);border-color:rgba(239,68,68,.6)}
+
+    /* ===== 视频区域 ===== */
+    .video-wrap{padding:0 16px 12px;display:none}
+    .video-wrap video{width:100%;border-radius:12px;background:#020617;display:block}
+
+    /* ===== 完成栏 ===== */
+    .done-bar{display:none;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:16px 20px;border-top:1px solid var(--border)}
+    .file-info{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:14px}
+    .file-icon{font-size:20px}
+    .file-meta{line-height:1.4}
+    .file-name{font-weight:600;color:var(--text)}
+    .file-size{font-size:12px;color:var(--muted)}
+    .done-actions{display:flex;gap:10px;align-items:center}
+    .new-btn{padding:10px 18px;border:1px solid var(--border);border-radius:10px;background:transparent;color:var(--muted);font-size:14px;cursor:pointer;transition:all .2s}
+    .new-btn:hover{border-color:#64748b;color:var(--text)}
+    .download-btn{display:flex;align-items:center;gap:8px;padding:11px 26px;border:none;border-radius:12px;background:linear-gradient(135deg,#10b981,#059669);color:#fff;font-size:15px;font-weight:600;cursor:pointer;transition:all .25s;animation:glowPulse 2.2s ease-in-out infinite}
+    .download-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(16,185,129,.5)}
+    @keyframes glowPulse{0%,100%{box-shadow:0 0 14px rgba(16,185,129,.25)}50%{box-shadow:0 0 32px rgba(16,185,129,.5)}}
+
+    /* 状态行 */
+    .status-line{padding:10px 20px;font-size:13px;color:#93c5fd;min-height:38px}
+
+    /* ===== CSS 状态切换（基于 data-state） ===== */
+    [data-state="idle"] .config-bar{display:flex}
+    [data-state="idle"] .start-section{display:flex}
+
+    [data-state="recording"] .rec-header,[data-state="paused"] .rec-header{display:block}
+    [data-state="recording"] .rec-controls,[data-state="paused"] .rec-controls{display:flex}
+    [data-state="recording"] .video-wrap,[data-state="paused"] .video-wrap,[data-state="done"] .video-wrap{display:block}
+    [data-state="recording"] #pauseBtn{display:inline-flex}
+    [data-state="recording"] #resumeBtn{display:none}
+    [data-state="paused"] #pauseBtn{display:none}
+    [data-state="paused"] #resumeBtn{display:inline-flex}
+
+    [data-state="done"] .done-bar{display:flex}
+
+    /* ===== 信任条 + 功能区 + FAQ + 相关工具 ===== */
+    .trust-bar{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin:16px 0 26px;padding:14px 20px;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.15);border-radius:14px;backdrop-filter:blur(6px)}.trust-item{font-size:13px;color:#a78bfa;white-space:nowrap}
+    .features-section,.faq-section,.related-tools{margin-top:22px;background:rgba(15,23,42,.55);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
+    .features-section h2,.faq-section h2,.related-tools h3{text-align:center;margin-bottom:16px;font-size:1.2rem}
+    .features-grid,.related-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+    .feature,.related{border:1px solid var(--border);border-radius:12px;padding:14px;background:rgba(2,6,23,.45);transition:border-color .2s,transform .2s}.feature:hover,.related:hover{border-color:rgba(148,163,184,.3);transform:translateY(-2px)}.feature h4,.related h4{margin:8px 0 6px;font-size:14px}.feature p,.related p{color:var(--muted);font-size:13px;line-height:1.6}
+    .related{text-decoration:none;color:inherit;display:block}
+    .faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:8px;overflow:hidden;background:rgba(2,6,23,.4);transition:border-color .2s}.faq-item:hover{border-color:rgba(148,163,184,.25)}.faq-q{width:100%;text-align:left;background:transparent;border:0;color:var(--text);padding:14px 16px;cursor:pointer;font-size:14px;font-weight:500;display:flex;justify-content:space-between;align-items:center}.faq-q::after{content:'+';font-size:18px;color:var(--muted);transition:transform .2s}.faq-item.active .faq-q::after{transform:rotate(45deg)}.faq-a{display:none;padding:0 16px 14px;color:var(--muted);font-size:13px;line-height:1.65}.faq-item.active .faq-a{display:block}
+
+    @media(max-width:960px){.features-grid,.related-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:640px){h1{font-size:1.7rem}.features-grid,.related-grid{grid-template-columns:1fr}.steps{gap:0}.step span:not(.step-num){display:none}.config-bar{gap:14px}.done-bar{flex-direction:column;align-items:stretch}.done-actions{justify-content:stretch}.done-actions .download-btn,.done-actions .new-btn{flex:1;justify-content:center}.rec-timer{font-size:40px}}
   </style>
 </head>
 <body>
+<!-- 背景光球 -->
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
 <div class="container">
-  <div class="topbar"><a class="back" href="index.html">← <span data-i18n="back">Back to Toolbox</span></a><div class="lang-dropdown" id="langDropdown"><div class="lang-current" id="langCurrent">🇺🇸 English</div><div class="lang-menu"><button class="lang-btn" data-lang="en">🇺🇸 English</button><button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button><button class="lang-btn" data-lang="fr">🇫🇷 Français</button><button class="lang-btn" data-lang="es">🇪🇸 Español</button></div></div></div>
+  <div class="topbar anim anim-d1"><a class="back" href="index.html">← <span data-i18n="back">Back to Toolbox</span></a><div class="lang-dropdown" id="langDropdown"><div class="lang-current" id="langCurrent">🇺🇸 English</div><div class="lang-menu"><button class="lang-btn" data-lang="en">🇺🇸 English</button><button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button><button class="lang-btn" data-lang="fr">🇫🇷 Français</button><button class="lang-btn" data-lang="es">🇪🇸 Español</button></div></div></div>
 
-  <h1 data-i18n="title">Screen Recorder</h1>
-  <p class="subtitle" data-i18n="subtitle">Record screen online with optional microphone audio</p>
+  <h1 class="anim anim-d2" data-i18n="title">Screen Recorder</h1>
+  <p class="subtitle anim anim-d2" data-i18n="subtitle">Record screen online with optional microphone audio</p>
 
-  <section class="card tool-card">
-    <div class="toolbar">
-      <label class="opt"><input type="checkbox" id="micChk"> <span data-i18n="mic">Include Microphone</span></label>
-      <button class="btn primary" id="startBtn" data-i18n="start">Start Recording</button>
-      <button class="btn" id="pauseBtn" data-i18n="pause">Pause</button>
-      <button class="btn" id="resumeBtn" data-i18n="resume">Resume</button>
-      <button class="btn" id="stopBtn" data-i18n="stop">Stop</button>
-      <label class="opt"><span data-i18n="quality">Quality</span>
+  <!-- 步骤指示器 -->
+  <div class="steps anim anim-d3">
+    <div class="step active" id="step1"><span class="step-num">1</span><span data-i18n="step1">Setup</span></div>
+    <div class="step-line" id="line1"></div>
+    <div class="step" id="step2"><span class="step-num">2</span><span data-i18n="step2">Record</span></div>
+    <div class="step-line" id="line2"></div>
+    <div class="step" id="step3"><span class="step-num">3</span><span data-i18n="step3">Save</span></div>
+  </div>
+
+  <!-- 主卡片 -->
+  <section class="glass-card tool-card anim anim-d4" id="toolCard" data-state="idle">
+    <input type="hidden" id="formatSel" value="mp4">
+
+    <!-- 配置栏（空闲态） -->
+    <div class="config-bar" id="configBar">
+      <label class="toggle-label">
+        <input type="checkbox" id="micChk" class="toggle-input">
+        <span class="toggle-switch"></span>
+        <span data-i18n="mic">Include Microphone</span>
+      </label>
+      <div class="quality-opt">
+        <span data-i18n="quality">Quality</span>
         <select id="qualitySel" class="quality-select">
           <option value="source" data-i18n="qualitySource">Source</option>
           <option value="hd1080" data-i18n="quality1080">1080p</option>
           <option value="hd720" data-i18n="quality720">720p</option>
         </select>
-      </label>
-      <input type="hidden" id="formatSel" value="mp4">
-      <button class="btn" id="downloadBtn" data-i18n="download">Download</button>
-    </div>
-    <div class="recording-alert" id="recordingAlert"><span class="rec-dot" aria-hidden="true"></span><span data-i18n="recordingAlert">REC • Recording in progress</span></div>
-    <div class="download-progress" id="downloadProgress">
-      <div class="progress-head">
-        <span class="progress-label" id="downloadProgressLabel" data-i18n="progressIdle">Ready to download</span>
-        <span class="progress-pct" id="downloadProgressPct">0%</span>
       </div>
-      <div class="progress-track"><div class="progress-fill" id="downloadProgressBar"></div></div>
     </div>
-    <video id="preview" controls autoplay muted playsinline></video>
-    <div class="row"><div class="timer" id="timer">00:00</div><div class="status" id="status"></div></div>
+
+    <!-- 开始区域（空闲态） -->
+    <div class="start-section" id="startSection">
+      <div class="placeholder">
+        <div class="placeholder-icon">🖥️</div>
+        <p data-i18n="placeholderText">Your screen preview will appear here</p>
+      </div>
+      <button class="start-btn" id="startBtn">
+        <span class="rec-circle"></span>
+        <span data-i18n="start">Start Recording</span>
+      </button>
+    </div>
+
+    <!-- 录制头部（录制/暂停态） -->
+    <div class="rec-header" id="recHeader">
+      <div class="rec-badge"><span class="rec-dot"></span><span id="recBadgeText" data-i18n="recordingAlert">REC</span></div>
+      <div class="rec-timer" id="timer">00:00</div>
+    </div>
+
+    <!-- 视频 -->
+    <div class="video-wrap"><video id="preview" controls autoplay muted playsinline></video></div>
+
+    <!-- 录制控制（录制/暂停态） -->
+    <div class="rec-controls" id="recControls">
+      <button class="ctrl-btn" id="pauseBtn" data-i18n="pause">⏸ Pause</button>
+      <button class="ctrl-btn" id="resumeBtn" data-i18n="resume">▶ Resume</button>
+      <button class="ctrl-btn stop-btn" id="stopBtn" data-i18n="stop">⏹ Stop</button>
+    </div>
+
+    <!-- 完成栏（完成态） -->
+    <div class="done-bar" id="doneBar">
+      <div class="file-info">
+        <span class="file-icon">🎬</span>
+        <div class="file-meta">
+          <div class="file-name" id="fileName">recording.mp4</div>
+          <div class="file-size" id="fileSize"></div>
+        </div>
+      </div>
+      <div class="done-actions">
+        <button class="new-btn" id="newBtn" data-i18n="newRecording">Record Again</button>
+        <button class="download-btn" id="downloadBtn">⬇ <span data-i18n="downloadMp4">Download MP4</span></button>
+      </div>
+    </div>
+
+    <div class="status-line" id="status"></div>
   </section>
 
-  <div class="trust-bar"><span class="trust-item" data-i18n="trust_users">🌍 Used by 50,000+ users</span><span class="trust-item" data-i18n="trust_rating">⭐ 4.9/5 rating</span><span class="trust-item" data-i18n="trust_privacy">🔒 100% Private</span><span class="trust-item" data-i18n="trust_free">🚫 No Ads, No Signup</span></div>
+  <div class="trust-bar anim anim-d5"><span class="trust-item" data-i18n="trust_users">🌍 Used by 50,000+ users</span><span class="trust-item" data-i18n="trust_rating">⭐ 4.9/5 rating</span><span class="trust-item" data-i18n="trust_privacy">🔒 100% Private</span><span class="trust-item" data-i18n="trust_free">🚫 No Ads, No Signup</span></div>
 
-  <section class="features-section"><h2 data-i18n="features_title">Screen Recorder Features</h2><div class="features-grid"><article class="feature"><div>🔒</div><h4 data-i18n="f1_t">100% Free & Private</h4><p data-i18n="f1_d">No ads, no signup, no watermark. Everything runs locally in your browser. Your data never leaves your device.</p></article><article class="feature"><div>🖥️</div><h4 data-i18n="f2_t">Browser Screen Capture</h4><p data-i18n="f2_d">Record browser tab, application window, or full screen directly online.</p></article><article class="feature"><div>🎙️</div><h4 data-i18n="f3_t">Microphone Audio Option</h4><p data-i18n="f3_d">Enable voice recording to create tutorials, demos, and walkthrough videos.</p></article><article class="feature"><div>🎬</div><h4 data-i18n="f4_t">HD MP4 Export</h4><p data-i18n="f4_d">Stop recording and export high-quality MP4 with browser-side conversion.</p></article></div></section>
+  <section class="features-section anim anim-d6"><h2 data-i18n="features_title">Screen Recorder Features</h2><div class="features-grid">
+    <article class="feature"><div>🔒</div><h4 data-i18n="f1_t">100% Free & Private</h4><p data-i18n="f1_d">No ads, no signup, no watermark. Everything runs locally in your browser. Your data never leaves your device.</p></article>
+    <article class="feature"><div>🖥️</div><h4 data-i18n="f2_t">Browser Screen Capture</h4><p data-i18n="f2_d">Record browser tab, application window, or full screen directly online.</p></article>
+    <article class="feature"><div>🎙️</div><h4 data-i18n="f3_t">Microphone Audio Option</h4><p data-i18n="f3_d">Enable voice recording to create tutorials, demos, and walkthrough videos.</p></article>
+    <article class="feature"><div>🎬</div><h4 data-i18n="f4_t">HD MP4 Export</h4><p data-i18n="f4_d">Record and download high-quality MP4 directly in your browser — no conversion needed.</p></article>
+  </div></section>
 
-  <section class="faq-section"><h2 data-i18n="faq_title">Frequently Asked Questions</h2>
-    <div class="faq-item"><button class="faq-q" data-i18n="faq1_q">What is an online screen recorder and how does it work?</button><div class="faq-a" data-i18n="faq1_a">An online screen recorder captures your screen using browser APIs like getDisplayMedia and MediaRecorder. It records video locally and exports file without desktop installation.</div></div>
-    <div class="faq-item"><button class="faq-q" data-i18n="faq2_q">Can I record screen with microphone audio?</button><div class="faq-a" data-i18n="faq2_a">Yes. Enable microphone option before recording to merge voice input with screen capture stream.</div></div>
-    <div class="faq-item"><button class="faq-q" data-i18n="faq3_q">What format is used for download?</button><div class="faq-a" data-i18n="faq3_a">You can download both WebM source recording and HD MP4. MP4 is transcoded locally in browser using FFmpeg WebAssembly without server upload.</div></div>
-    <div class="faq-item"><button class="faq-q" data-i18n="faq4_q">Is recording private and local in browser?</button><div class="faq-a" data-i18n="faq4_a">Yes. Screen recording starts only after your explicit permission and runs in browser context with no mandatory account flow.</div></div>
-    <div class="faq-item"><button class="faq-q" data-i18n="faq_free_q">Is this tool really free with no ads?</button><div class="faq-a" data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</div></div>
+  <section class="faq-section anim anim-d7"><h2 data-i18n="faq_title">Frequently Asked Questions</h2>
+    <div class="faq-item"><button class="faq-q"><span data-i18n="faq1_q">What is an online screen recorder and how does it work?</span></button><div class="faq-a" data-i18n="faq1_a">An online screen recorder captures your screen using browser APIs like getDisplayMedia and MediaRecorder. It records video locally and exports the file without any desktop installation. Modern browsers can record directly in MP4 format, so you get instant downloads with no conversion wait time.</div></div>
+    <div class="faq-item"><button class="faq-q"><span data-i18n="faq2_q">Can I record screen with microphone audio?</span></button><div class="faq-a" data-i18n="faq2_a">Yes. Enable the microphone option before recording to merge your voice input with the screen capture stream. This is perfect for creating tutorials, product demos, and walkthrough videos with live narration.</div></div>
+    <div class="faq-item"><button class="faq-q"><span data-i18n="faq3_q">What format is used for download?</span></button><div class="faq-a" data-i18n="faq3_a">Modern browsers support native MP4 recording, so no extra conversion or transcoding engine is needed — your recording downloads instantly after you stop.</div></div>
+    <div class="faq-item"><button class="faq-q"><span data-i18n="faq4_q">Is recording private and local in browser?</span></button><div class="faq-a" data-i18n="faq4_a">Yes. Screen recording starts only after your explicit permission and runs entirely in the browser context. No data is uploaded to any server.</div></div>
+    <div class="faq-item"><button class="faq-q"><span data-i18n="faq_free_q">Is this tool really free with no ads?</span></button><div class="faq-a" data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</div></div>
   </section>
 
-  <section class="related-tools"><h3 data-i18n="related_title">Related Tools</h3><div class="related-grid"><a class="related" href="audio-cutter.html"><div>🎧</div><h4 data-i18n="r1_t">Audio Cutter</h4><p data-i18n="r1_d">Trim narration audio from recorded videos.</p></a><a class="related" href="timestamp-converter.html"><div>🕒</div><h4 data-i18n="r2_t">Timestamp Converter</h4><p data-i18n="r2_d">Convert timeline points while editing recordings.</p></a><a class="related" href="image-to-pdf.html"><div>🗂️</div><h4 data-i18n="r3_t">Image to PDF</h4><p data-i18n="r3_d">Turn captured screenshots into shareable PDFs.</p></a><a class="related" href="pdf-compress.html"><div>📦</div><h4 data-i18n="r4_t">PDF Compress</h4><p data-i18n="r4_d">Compress docs created from recording snapshots.</p></a></div></section>
+  <section class="related-tools anim anim-d8"><h3 data-i18n="related_title">Related Tools</h3><div class="related-grid">
+    <a class="related" href="audio-cutter.html"><div>🎧</div><h4 data-i18n="r1_t">Audio Cutter</h4><p data-i18n="r1_d">Trim narration audio from recorded videos.</p></a>
+    <a class="related" href="timestamp-converter.html"><div>🕒</div><h4 data-i18n="r2_t">Timestamp Converter</h4><p data-i18n="r2_d">Convert timeline points while editing recordings.</p></a>
+    <a class="related" href="image-to-pdf.html"><div>🗂️</div><h4 data-i18n="r3_t">Image to PDF</h4><p data-i18n="r3_d">Turn captured screenshots into shareable PDFs.</p></a>
+    <a class="related" href="pdf-compress.html"><div>📦</div><h4 data-i18n="r4_t">PDF Compress</h4><p data-i18n="r4_d">Compress docs created from recording snapshots.</p></a>
+  </div></section>
 </div>
 
 <script>
@@ -191,10 +344,10 @@
   'use strict';
   var langNames={en:'🇺🇸 English','zh-CN':'🇨🇳 中文',fr:'🇫🇷 Français',es:'🇪🇸 Español'};
   var i18n={
-    en:{back:'Back to Toolbox',title:'Screen Recorder',subtitle:'Record screen online with optional microphone audio',mic:'Include Microphone',start:'Start Recording',pause:'Pause',resume:'Resume',stop:'Stop',quality:'Quality',quality1080:'1080p HD',quality720:'720p',qualitySource:'Source',format:'Format',formatMp4:'MP4',formatWebm:'WebM',download:'Download',progressIdle:'Ready to download',progressPreparing:'Preparing file...',progressComplete:'Download ready',progressFailed:'Download failed',recordingAlert:'REC • Recording in progress',alreadyRecording:'Recording is already in progress',needStart:'Start recording first',starting:'Requesting screen permission...',recording:'Recording...',paused:'Paused',stopped:'Stopped',downloadReady:'Recording ready — click Download to save.',downloading:'Download started',mp4Unsupported:'MP4 recording not supported in this browser. Using WebM format.',browserUnsupported:'Your browser does not support screen recording',error:'Error',trust_users:'🌍 Used by 50,000+ users',trust_rating:'⭐ 4.9/5 rating',trust_privacy:'🔒 100% Private',trust_free:'🚫 No Ads, No Signup',features_title:'Screen Recorder Features',f1_t:'100% Free & Private',f1_d:'No ads, no signup, no watermark. Everything runs locally in your browser. Your data never leaves your device.',f2_t:'Browser Screen Capture',f2_d:'Record browser tab, application window, or full screen directly online.',f3_t:'Microphone Audio Option',f3_d:'Enable voice recording to create tutorials, demos, and walkthrough videos.',f4_t:'HD MP4 Export',f4_d:'Record and download high-quality MP4 directly in your browser — no conversion needed.',faq_title:'Frequently Asked Questions',faq1_q:'What is an online screen recorder and how does it work?',faq1_a:'An online screen recorder captures your screen using browser APIs like getDisplayMedia and MediaRecorder. It records video locally and exports the file without any desktop installation. Modern browsers (Chrome, Edge, Safari) can record directly in MP4 format, so you get instant downloads with no conversion wait time.',faq2_q:'Can I record screen with microphone audio?',faq2_a:'Yes. Enable the microphone option before recording to merge your voice input with the screen capture stream. This is perfect for creating tutorials, product demos, and walkthrough videos with live narration.',faq3_q:'What format is used for download?',faq3_a:'You can choose MP4 or WebM format before recording. Modern browsers support native MP4 recording, so no extra conversion or transcoding engine is needed — your recording downloads instantly after you stop.',faq4_q:'Is recording private and local in browser?',faq4_a:'Yes. Screen recording starts only after your explicit permission and runs entirely in the browser context. No data is uploaded to any server. There is no mandatory account flow, no tracking, and no third-party processing involved.',faq_free_q:'Is this tool really free with no ads?',faq_free_a:'Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server. There are no hidden fees or premium tiers.',related_title:'Related Tools',r1_t:'Audio Cutter',r1_d:'Trim narration audio from recorded videos.',r2_t:'Timestamp Converter',r2_d:'Convert timeline points while editing recordings.',r3_t:'Image to PDF',r3_d:'Turn captured screenshots into shareable PDFs.',r4_t:'PDF Compress',r4_d:'Compress docs created from recording snapshots.'},
-    'zh-CN':{back:'返回工具箱',title:'在线录屏工具',subtitle:'浏览器录制屏幕，可选麦克风音频',mic:'包含麦克风',start:'开始录制',pause:'暂停',resume:'继续',stop:'停止',quality:'清晰度',quality1080:'1080p 高清',quality720:'720p',qualitySource:'原始分辨率',format:'格式',formatMp4:'MP4',formatWebm:'WebM',download:'下载',progressIdle:'准备下载',progressPreparing:'正在准备文件...',progressComplete:'下载文件已准备好',progressFailed:'下载失败',recordingAlert:'REC • 正在录制中',alreadyRecording:'已经在录制中',needStart:'请先开始录制',starting:'正在请求屏幕权限...',recording:'录制中...',paused:'已暂停',stopped:'已停止',downloadReady:'录制完成，点击下载按钮保存文件。',downloading:'已开始下载',mp4Unsupported:'当前浏览器不支持 MP4 录制，将使用 WebM 格式。',browserUnsupported:'当前浏览器不支持录屏功能',error:'错误',trust_users:'🌍 超过 50,000 用户使用',trust_rating:'⭐ 4.9/5 好评',trust_privacy:'🔒 100% 隐私安全',trust_free:'🚫 无广告、无需注册',features_title:'录屏功能特点',f1_t:'100% 免费且安全',f1_d:'无广告、无需注册、无水印。所有处理都在浏览器本地完成，数据不会上传到任何服务器。',f2_t:'浏览器屏幕采集',f2_d:'可录制标签页、窗口或全屏内容。',f3_t:'麦克风音频可选',f3_d:'支持同步录制讲解声音，适合教程和演示。',f4_t:'高清 MP4 导出',f4_d:'浏览器原生录制 MP4，无需转码即可直接下载。',faq_title:'常见问题',faq1_q:'什么是在线录屏工具？原理是什么？',faq1_a:'在线录屏工具基于 getDisplayMedia 和 MediaRecorder 等浏览器 API 采集画面。录制过程在本地完成，无需安装桌面客户端。现代浏览器（Chrome、Edge、Safari）支持直接录制 MP4 格式，录完即可下载，无需等待转码。',faq2_q:'可以同时录制麦克风吗？',faq2_a:'可以。开始前勾选麦克风选项，即可把语音与屏幕流合并录制。非常适合制作教程、产品演示和操作说明视频。',faq3_q:'下载文件是什么格式？',faq3_a:'支持录制前选择 MP4 或 WebM 格式。现代浏览器原生支持 MP4 录制，无需额外转码引擎，录制完即可直接下载。',faq4_q:'录屏过程是本地和隐私安全吗？',faq4_a:'是的。仅在你授权后才会开始采集，且录制在浏览器上下文执行，无强制账号流程。不会有任何数据上传到服务器。',faq_free_q:'这个工具真的免费且无广告吗？',faq_free_a:'是的，100% 免费，无广告、无需注册、无水印、无限制。所有处理都在浏览器本地完成，你的数据不会上传到任何服务器。没有隐藏收费或高级版本。',related_title:'相关工具',r1_t:'音频剪辑',r1_d:'剪辑录屏解说音频。',r2_t:'时间戳转换',r2_d:'编辑视频时换算时间点。',r3_t:'图片转 PDF',r3_d:'把截图整理成 PDF 文档。',r4_t:'PDF 压缩',r4_d:'压缩截图文档体积。'},
-    fr:{back:'Retour a la boite a outils',title:'Enregistreur d\'ecran',subtitle:'Enregistrer ecran en ligne avec micro optionnel',mic:'Inclure microphone',start:'Demarrer',pause:'Pause',resume:'Reprendre',stop:'Arreter',quality:'Qualite',quality1080:'1080p HD',quality720:'720p',qualitySource:'Source',format:'Format',formatMp4:'MP4',formatWebm:'WebM',download:'Telecharger',progressIdle:'Pret a telecharger',progressPreparing:'Preparation du fichier...',progressComplete:'Telechargement pret',progressFailed:'Echec du telechargement',recordingAlert:'REC • Enregistrement en cours',alreadyRecording:'Enregistrement deja en cours',needStart:'Demarrez d\'abord',starting:'Demande autorisation ecran...',recording:'Enregistrement...',paused:'En pause',stopped:'Arrete',downloadReady:'Enregistrement pret. Cliquez sur Telecharger.',downloading:'Telechargement lance',mp4Unsupported:'Enregistrement MP4 non supporte par ce navigateur. Format WebM utilise.',browserUnsupported:'Navigateur non compatible avec capture ecran',error:'Erreur',trust_users:'🌍 Utilise par 50 000+ utilisateurs',trust_rating:'⭐ Note 4.9/5',trust_privacy:'🔒 100% Prive',trust_free:'🚫 Sans pub, sans inscription',features_title:'Fonctions enregistreur ecran',f1_t:'100% Gratuit et Prive',f1_d:'Sans publicite, sans inscription, sans filigrane. Tout est traite localement dans votre navigateur.',f2_t:'Capture navigateur',f2_d:'Enregistrez onglet, fenetre ou plein ecran.',f3_t:'Option micro',f3_d:'Ajoutez votre voix pour tutoriels et demonstrations.',f4_t:'Export MP4 HD',f4_d:'Enregistrement MP4 natif dans le navigateur, telechargement direct sans conversion.',faq_title:'Questions frequentes',faq1_q:'Qu\'est-ce qu\'un screen recorder en ligne ?',faq1_a:'Un screen recorder en ligne capture l\'ecran via APIs navigateur comme getDisplayMedia et MediaRecorder. L\'enregistrement se fait localement sans installation desktop. Les navigateurs modernes supportent l\'enregistrement MP4 natif pour un telechargement instantane.',faq2_q:'Puis-je enregistrer avec microphone ?',faq2_a:'Oui. Activez l\'option microphone avant demarrage pour fusionner voix et video. Ideal pour les tutoriels et demonstrations avec narration en direct.',faq3_q:'Quel format est telecharge ?',faq3_a:'Vous pouvez choisir MP4 ou WebM avant l\'enregistrement. Les navigateurs modernes supportent l\'enregistrement MP4 nativement, aucune conversion supplementaire n\'est necessaire.',faq4_q:'Le traitement est-il prive et local ?',faq4_a:'Oui. La capture demarre apres votre autorisation et fonctionne dans le navigateur sans compte obligatoire. Aucune donnee n\'est envoyee a un serveur.',faq_free_q:'Cet outil est-il vraiment gratuit et sans pub ?',faq_free_a:'Oui, 100% gratuit, sans publicite, sans inscription, sans filigrane et sans limites. Tout est traite localement dans votre navigateur — vos donnees ne sont jamais televersees.',related_title:'Outils associes',r1_t:'Editeur audio',r1_d:'Couper l\'audio enregistre.',r2_t:'Convertisseur timestamp',r2_d:'Convertir points temporels.',r3_t:'Image vers PDF',r3_d:'Assembler captures en PDF.',r4_t:'Compresseur PDF',r4_d:'Compresser documents de captures.'},
-    es:{back:'Volver a la caja de herramientas',title:'Grabador de pantalla',subtitle:'Graba pantalla en linea con microfono opcional',mic:'Incluir microfono',start:'Iniciar grabacion',pause:'Pausar',resume:'Reanudar',stop:'Detener',quality:'Calidad',quality1080:'1080p HD',quality720:'720p',qualitySource:'Origen',format:'Formato',formatMp4:'MP4',formatWebm:'WebM',download:'Descargar',progressIdle:'Listo para descargar',progressPreparing:'Preparando archivo...',progressComplete:'Descarga lista',progressFailed:'Descarga fallida',recordingAlert:'REC • Grabando ahora',alreadyRecording:'La grabacion ya esta en curso',needStart:'Primero inicia la grabacion',starting:'Solicitando permiso de pantalla...',recording:'Grabando...',paused:'En pausa',stopped:'Detenido',downloadReady:'Grabacion lista — haz clic en Descargar.',downloading:'Descarga iniciada',mp4Unsupported:'Tu navegador no soporta grabacion MP4. Usando formato WebM.',browserUnsupported:'Tu navegador no soporta grabacion de pantalla',error:'Error',trust_users:'🌍 Usado por mas de 50,000 usuarios',trust_rating:'⭐ Calificacion 4.9/5',trust_privacy:'🔒 100% Privado',trust_free:'🚫 Sin anuncios, sin registro',features_title:'Funciones del grabador',f1_t:'100% Gratis y Privado',f1_d:'Sin anuncios, sin registro, sin marca de agua. Todo se procesa localmente en tu navegador.',f2_t:'Captura en navegador',f2_d:'Graba pestana, ventana o pantalla completa.',f3_t:'Microfono opcional',f3_d:'Anade voz para tutoriales y demos.',f4_t:'Exportacion MP4 HD',f4_d:'Grabacion MP4 nativa en el navegador, descarga directa sin conversion.',faq_title:'Preguntas frecuentes',faq1_q:'Que es un screen recorder online y como funciona?',faq1_a:'Un screen recorder online captura pantalla usando APIs de navegador como getDisplayMedia y MediaRecorder. La grabacion se realiza localmente sin instalar apps. Los navegadores modernos soportan grabacion MP4 nativa para descarga instantanea.',faq2_q:'Puedo grabar con microfono?',faq2_a:'Si. Activa la opcion de microfono antes de iniciar para combinar voz con video de pantalla. Ideal para tutoriales y demos con narracion en vivo.',faq3_q:'Que formato se descarga?',faq3_a:'Puedes elegir MP4 o WebM antes de grabar. Los navegadores modernos soportan grabacion MP4 nativa, sin necesidad de conversion adicional.',faq4_q:'Es privado y local en navegador?',faq4_a:'Si. La captura empieza tras tu permiso explicito y corre en navegador sin flujo de cuenta obligatorio. Ningún dato se envia a un servidor.',faq_free_q:'Esta herramienta es realmente gratis y sin anuncios?',faq_free_a:'Si, 100% gratis, sin anuncios, sin registro, sin marca de agua y sin limites. Todo el procesamiento ocurre localmente en tu navegador — tus datos nunca se suben a ningun servidor.',related_title:'Herramientas relacionadas',r1_t:'Editor de audio',r1_d:'Recorta audio de narracion.',r2_t:'Convertidor timestamp',r2_d:'Convierte tiempos para edicion.',r3_t:'Imagen a PDF',r3_d:'Convierte capturas en PDF.',r4_t:'Compresor PDF',r4_d:'Reduce tamano de documentos de capturas.'}
+    en:{back:'Back to Toolbox',title:'Screen Recorder',subtitle:'Record screen online with optional microphone audio',step1:'Setup',step2:'Record',step3:'Save',mic:'Include Microphone',start:'Start Recording',pause:'⏸ Pause',resume:'▶ Resume',stop:'⏹ Stop',quality:'Quality',quality1080:'1080p',quality720:'720p',qualitySource:'Source',downloadMp4:'Download MP4',newRecording:'Record Again',placeholderText:'Your screen preview will appear here',recordingAlert:'REC',alreadyRecording:'Recording is already in progress',needStart:'Start recording first',starting:'Requesting screen permission...',recording:'Recording...',paused:'Paused',stopped:'Stopped',downloadReady:'Recording ready — click Download to save.',downloading:'Download started',mp4Unsupported:'MP4 not supported in this browser. Using WebM.',browserUnsupported:'Your browser does not support screen recording',error:'Error',trust_users:'🌍 Used by 50,000+ users',trust_rating:'⭐ 4.9/5 rating',trust_privacy:'🔒 100% Private',trust_free:'🚫 No Ads, No Signup',features_title:'Screen Recorder Features',f1_t:'100% Free & Private',f1_d:'No ads, no signup, no watermark. Everything runs locally in your browser. Your data never leaves your device.',f2_t:'Browser Screen Capture',f2_d:'Record browser tab, application window, or full screen directly online.',f3_t:'Microphone Audio Option',f3_d:'Enable voice recording to create tutorials, demos, and walkthrough videos.',f4_t:'HD MP4 Export',f4_d:'Record and download high-quality MP4 directly in your browser — no conversion needed.',faq_title:'Frequently Asked Questions',faq1_q:'What is an online screen recorder and how does it work?',faq1_a:'An online screen recorder captures your screen using browser APIs like getDisplayMedia and MediaRecorder. It records video locally and exports the file without any desktop installation. Modern browsers (Chrome, Edge, Safari) can record directly in MP4 format, so you get instant downloads with no conversion wait time.',faq2_q:'Can I record screen with microphone audio?',faq2_a:'Yes. Enable the microphone option before recording to merge your voice input with the screen capture stream. This is perfect for creating tutorials, product demos, and walkthrough videos with live narration.',faq3_q:'What format is used for download?',faq3_a:'Modern browsers support native MP4 recording, so no extra conversion or transcoding engine is needed — your recording downloads instantly after you stop.',faq4_q:'Is recording private and local in browser?',faq4_a:'Yes. Screen recording starts only after your explicit permission and runs entirely in the browser context. No data is uploaded to any server. There is no mandatory account flow, no tracking, and no third-party processing involved.',faq_free_q:'Is this tool really free with no ads?',faq_free_a:'Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.',related_title:'Related Tools',r1_t:'Audio Cutter',r1_d:'Trim narration audio from recorded videos.',r2_t:'Timestamp Converter',r2_d:'Convert timeline points while editing recordings.',r3_t:'Image to PDF',r3_d:'Turn captured screenshots into shareable PDFs.',r4_t:'PDF Compress',r4_d:'Compress docs created from recording snapshots.'},
+    'zh-CN':{back:'返回工具箱',title:'在线录屏工具',subtitle:'浏览器录制屏幕，可选麦克风音频',step1:'设置',step2:'录制',step3:'保存',mic:'包含麦克风',start:'开始录制',pause:'⏸ 暂停',resume:'▶ 继续',stop:'⏹ 停止',quality:'清晰度',quality1080:'1080p',quality720:'720p',qualitySource:'原始分辨率',downloadMp4:'下载 MP4',newRecording:'重新录制',placeholderText:'录制内容将在此显示',recordingAlert:'REC',alreadyRecording:'已经在录制中',needStart:'请先开始录制',starting:'正在请求屏幕权限...',recording:'录制中...',paused:'已暂停',stopped:'已停止',downloadReady:'录制完成，点击下载按钮保存文件。',downloading:'已开始下载',mp4Unsupported:'当前浏览器不支持 MP4 录制，将使用 WebM 格式。',browserUnsupported:'当前浏览器不支持录屏功能',error:'错误',trust_users:'🌍 超过 50,000 用户使用',trust_rating:'⭐ 4.9/5 好评',trust_privacy:'🔒 100% 隐私安全',trust_free:'🚫 无广告、无需注册',features_title:'录屏功能特点',f1_t:'100% 免费且安全',f1_d:'无广告、无需注册、无水印。所有处理都在浏览器本地完成，数据不会上传到任何服务器。',f2_t:'浏览器屏幕采集',f2_d:'可录制标签页、窗口或全屏内容。',f3_t:'麦克风音频可选',f3_d:'支持同步录制讲解声音，适合教程和演示。',f4_t:'高清 MP4 导出',f4_d:'浏览器原生录制 MP4，无需转码即可直接下载。',faq_title:'常见问题',faq1_q:'什么是在线录屏工具？原理是什么？',faq1_a:'在线录屏工具基于 getDisplayMedia 和 MediaRecorder 等浏览器 API 采集画面。录制过程在本地完成，无需安装桌面客户端。现代浏览器支持直接录制 MP4 格式，录完即可下载，无需等待转码。',faq2_q:'可以同时录制麦克风吗？',faq2_a:'可以。开始前勾选麦克风选项，即可把语音与屏幕流合并录制。非常适合制作教程、产品演示和操作说明视频。',faq3_q:'下载文件是什么格式？',faq3_a:'现代浏览器原生支持 MP4 录制，无需额外转码引擎，录制完即可直接下载。',faq4_q:'录屏过程是本地和隐私安全吗？',faq4_a:'是的。仅在你授权后才会开始采集，且录制在浏览器上下文执行，无强制账号流程。不会有任何数据上传到服务器。',faq_free_q:'这个工具真的免费且无广告吗？',faq_free_a:'是的，100% 免费，无广告、无需注册、无水印、无限制。所有处理都在浏览器本地完成，你的数据不会上传到任何服务器。',related_title:'相关工具',r1_t:'音频剪辑',r1_d:'剪辑录屏解说音频。',r2_t:'时间戳转换',r2_d:'编辑视频时换算时间点。',r3_t:'图片转 PDF',r3_d:'把截图整理成 PDF 文档。',r4_t:'PDF 压缩',r4_d:'压缩截图文档体积。'},
+    fr:{back:'Retour a la boite a outils',title:'Enregistreur d\'ecran',subtitle:'Enregistrer ecran en ligne avec micro optionnel',step1:'Config',step2:'Enregistrer',step3:'Sauver',mic:'Inclure microphone',start:'Demarrer l\'enregistrement',pause:'⏸ Pause',resume:'▶ Reprendre',stop:'⏹ Arreter',quality:'Qualite',quality1080:'1080p',quality720:'720p',qualitySource:'Source',downloadMp4:'Telecharger MP4',newRecording:'Enregistrer a nouveau',placeholderText:'Votre apercu apparaitra ici',recordingAlert:'REC',alreadyRecording:'Enregistrement deja en cours',needStart:'Demarrez d\'abord',starting:'Demande autorisation ecran...',recording:'Enregistrement...',paused:'En pause',stopped:'Arrete',downloadReady:'Enregistrement pret. Cliquez sur Telecharger.',downloading:'Telechargement lance',mp4Unsupported:'MP4 non supporte. Format WebM utilise.',browserUnsupported:'Navigateur non compatible',error:'Erreur',trust_users:'🌍 50 000+ utilisateurs',trust_rating:'⭐ Note 4.9/5',trust_privacy:'🔒 100% Prive',trust_free:'🚫 Sans pub, sans inscription',features_title:'Fonctions',f1_t:'100% Gratuit et Prive',f1_d:'Sans publicite, sans inscription, sans filigrane. Tout est traite localement.',f2_t:'Capture navigateur',f2_d:'Enregistrez onglet, fenetre ou plein ecran.',f3_t:'Option micro',f3_d:'Ajoutez votre voix pour tutoriels et demonstrations.',f4_t:'Export MP4 HD',f4_d:'Enregistrement MP4 natif, telechargement direct sans conversion.',faq_title:'Questions frequentes',faq1_q:'Qu\'est-ce qu\'un screen recorder en ligne ?',faq1_a:'Un screen recorder en ligne capture l\'ecran via APIs navigateur. L\'enregistrement se fait localement sans installation. Les navigateurs modernes supportent l\'enregistrement MP4 natif.',faq2_q:'Puis-je enregistrer avec microphone ?',faq2_a:'Oui. Activez l\'option microphone pour fusionner voix et video.',faq3_q:'Quel format est telecharge ?',faq3_a:'Les navigateurs modernes supportent l\'enregistrement MP4 nativement, aucune conversion necessaire.',faq4_q:'Le traitement est-il prive ?',faq4_a:'Oui. La capture demarre apres votre autorisation dans le navigateur sans compte obligatoire.',faq_free_q:'Cet outil est-il vraiment gratuit ?',faq_free_a:'Oui, 100% gratuit, sans publicite, sans inscription et sans limites. Tout est traite localement.',related_title:'Outils associes',r1_t:'Editeur audio',r1_d:'Couper l\'audio enregistre.',r2_t:'Convertisseur timestamp',r2_d:'Convertir points temporels.',r3_t:'Image vers PDF',r3_d:'Assembler captures en PDF.',r4_t:'Compresseur PDF',r4_d:'Compresser documents.'},
+    es:{back:'Volver',title:'Grabador de pantalla',subtitle:'Graba pantalla en linea con microfono opcional',step1:'Configurar',step2:'Grabar',step3:'Guardar',mic:'Incluir microfono',start:'Iniciar grabacion',pause:'⏸ Pausar',resume:'▶ Reanudar',stop:'⏹ Detener',quality:'Calidad',quality1080:'1080p',quality720:'720p',qualitySource:'Original',downloadMp4:'Descargar MP4',newRecording:'Grabar de nuevo',placeholderText:'Tu vista previa aparecera aqui',recordingAlert:'REC',alreadyRecording:'Ya esta grabando',needStart:'Primero inicia la grabacion',starting:'Solicitando permiso...',recording:'Grabando...',paused:'En pausa',stopped:'Detenido',downloadReady:'Grabacion lista — haz clic en Descargar.',downloading:'Descarga iniciada',mp4Unsupported:'MP4 no soportado. Usando WebM.',browserUnsupported:'Tu navegador no soporta grabacion',error:'Error',trust_users:'🌍 50,000+ usuarios',trust_rating:'⭐ 4.9/5',trust_privacy:'🔒 100% Privado',trust_free:'🚫 Sin anuncios',features_title:'Funciones',f1_t:'100% Gratis y Privado',f1_d:'Sin anuncios, sin registro, sin marca de agua. Todo se procesa localmente.',f2_t:'Captura en navegador',f2_d:'Graba pestana, ventana o pantalla completa.',f3_t:'Microfono opcional',f3_d:'Anade voz para tutoriales y demos.',f4_t:'Exportacion MP4 HD',f4_d:'Grabacion MP4 nativa, descarga directa sin conversion.',faq_title:'Preguntas frecuentes',faq1_q:'Que es un screen recorder online?',faq1_a:'Un screen recorder online captura pantalla usando APIs de navegador. La grabacion se realiza localmente. Los navegadores modernos soportan grabacion MP4 nativa.',faq2_q:'Puedo grabar con microfono?',faq2_a:'Si. Activa la opcion de microfono para combinar voz con video.',faq3_q:'Que formato se descarga?',faq3_a:'Los navegadores modernos soportan grabacion MP4 nativa, sin conversion adicional.',faq4_q:'Es privado y local?',faq4_a:'Si. La captura empieza tras tu permiso en navegador sin cuenta obligatoria.',faq_free_q:'Es realmente gratis?',faq_free_a:'Si, 100% gratis, sin anuncios, sin registro y sin limites. Todo se procesa localmente.',related_title:'Herramientas relacionadas',r1_t:'Editor de audio',r1_d:'Recorta audio.',r2_t:'Convertidor timestamp',r2_d:'Convierte tiempos.',r3_t:'Imagen a PDF',r3_d:'Capturas en PDF.',r4_t:'Compresor PDF',r4_d:'Reduce tamano.'}
   };
 
   var currentLang=localStorage.getItem('screen_recorder_lang')||'en';
@@ -204,407 +357,219 @@
   var recordedChunks=[];
   var rawBlob=null;
   var recordUrl='';
-  var recordedFormat='webm';
+  var recordedFormat='mp4';
   var timer=0;
   var timerInt=null;
 
+  var toolCard=document.getElementById('toolCard');
   var preview=document.getElementById('preview');
   var statusEl=document.getElementById('status');
-  var toolCard=document.querySelector('.tool-card');
-  var recordingAlert=document.getElementById('recordingAlert');
+  var formatSel=document.getElementById('formatSel');
+  var qualitySel=document.getElementById('qualitySel');
   var startBtn=document.getElementById('startBtn');
   var pauseBtn=document.getElementById('pauseBtn');
   var resumeBtn=document.getElementById('resumeBtn');
   var stopBtn=document.getElementById('stopBtn');
   var downloadBtn=document.getElementById('downloadBtn');
-  var qualitySel=document.getElementById('qualitySel');
-  var formatSel=document.getElementById('formatSel');
-  var downloadProgress=document.getElementById('downloadProgress');
-  var downloadProgressLabel=document.getElementById('downloadProgressLabel');
-  var downloadProgressPct=document.getElementById('downloadProgressPct');
-  var downloadProgressBar=document.getElementById('downloadProgressBar');
-  var progressHideTimer=null;
+  var newBtn=document.getElementById('newBtn');
+  var fileNameEl=document.getElementById('fileName');
+  var fileSizeEl=document.getElementById('fileSize');
 
-  function t(k){
-    var d=i18n[currentLang]||i18n.en;
-    return d[k]||i18n.en[k]||k;
-  }
+  function t(k){var d=i18n[currentLang]||i18n.en;return d[k]||i18n.en[k]||k;}
 
   function applyLanguage(lang){
     currentLang=i18n[lang]?lang:'en';
     localStorage.setItem('screen_recorder_lang',currentLang);
     document.documentElement.lang=currentLang;
     document.getElementById('langCurrent').textContent=langNames[currentLang];
-    document.querySelectorAll('[data-i18n]').forEach(function(el){
-      el.textContent=t(el.getAttribute('data-i18n'));
-    });
-    if(!downloadProgress.classList.contains('active')){
-      downloadProgressLabel.textContent=t('progressIdle');
-    }
+    document.querySelectorAll('[data-i18n]').forEach(function(el){el.textContent=t(el.getAttribute('data-i18n'));});
   }
 
-  function setStatus(v){
-    statusEl.textContent=v||'';
-  }
+  function setStatus(v){statusEl.textContent=v||'';}
+  function safeMsg(e){return e?(typeof e==='string'?e:e.message||String(e)):'';}
 
-  function safeMessage(err){
-    if(!err){return '';}
-    if(typeof err==='string'){return err;}
-    return err.message||String(err);
-  }
-
-  function clearProgressTimer(){
-    if(progressHideTimer){
-      clearTimeout(progressHideTimer);
-      progressHideTimer=null;
-    }
-  }
-
-  function setDownloadProgress(percent,label,active,isError){
-    var pct=Math.max(0,Math.min(100,Math.round(percent)));
-    if(typeof active==='boolean'){
-      downloadProgress.classList.toggle('active',active);
-    }
-    downloadProgress.classList.toggle('error',!!isError);
-    downloadProgressBar.style.width=pct+'%';
-    downloadProgressPct.textContent=pct+'%';
-    if(label){
-      downloadProgressLabel.textContent=label;
-    }
-  }
-
-  function resetDownloadProgress(){
-    clearProgressTimer();
-    setDownloadProgress(0,t('progressIdle'),false,false);
-  }
-
-  function completeDownloadProgress(label){
-    clearProgressTimer();
-    setDownloadProgress(100,label||t('progressComplete'),true,false);
-    progressHideTimer=setTimeout(function(){
-      setDownloadProgress(0,t('progressIdle'),false,false);
-    },1600);
-  }
-
-  function failDownloadProgress(label){
-    clearProgressTimer();
-    setDownloadProgress(100,label||t('progressFailed'),true,true);
-    progressHideTimer=setTimeout(function(){
-      setDownloadProgress(0,t('progressIdle'),false,false);
-    },2600);
+  /* 状态机 */
+  function setState(s){
+    toolCard.setAttribute('data-state',s);
+    var s1=document.getElementById('step1'),s2=document.getElementById('step2'),s3=document.getElementById('step3');
+    var l1=document.getElementById('line1'),l2=document.getElementById('line2');
+    s1.className='step'+(s==='idle'?' active':' done');
+    s2.className='step'+((s==='recording'||s==='paused')?' active':(s==='done'?' done':''));
+    s3.className='step'+(s==='done'?' active':'');
+    l1.className='step-line'+(s!=='idle'?' active':'');
+    l2.className='step-line'+(s==='done'?' active':'');
   }
 
   function fmt(sec){
-    var m=Math.floor(sec/60);
-    var s=sec%60;
+    var m=Math.floor(sec/60),s=sec%60;
     return String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
   }
-
   function startTimer(){
     clearInterval(timerInt);
-    timerInt=setInterval(function(){
-      timer++;
-      document.getElementById('timer').textContent=fmt(timer);
-    },1000);
+    timerInt=setInterval(function(){timer++;document.getElementById('timer').textContent=fmt(timer);},1000);
   }
+  function stopTimer(){clearInterval(timerInt);}
 
-  function stopTimer(){
-    clearInterval(timerInt);
-  }
-
-  function setRecordingUI(active){
-    toolCard.classList.toggle('recording',active);
-    recordingAlert.classList.toggle('active',active);
-    startBtn.disabled=active;
-    qualitySel.disabled=active;
-    if(active){
-      resetDownloadProgress();
-    }
-  }
-
-  function refreshTransportButtons(){
-    var state=mediaRecorder?mediaRecorder.state:'inactive';
-    pauseBtn.disabled=state!=='recording';
-    resumeBtn.disabled=state!=='paused';
-    stopBtn.disabled=state==='inactive';
+  function formatSize(bytes){
+    if(bytes<1024)return bytes+' B';
+    if(bytes<1048576)return(bytes/1024).toFixed(1)+' KB';
+    if(bytes<1073741824)return(bytes/1048576).toFixed(1)+' MB';
+    return(bytes/1073741824).toFixed(2)+' GB';
   }
 
   function stopInputStreams(){
-    if(screenStream){
-      screenStream.getTracks().forEach(function(track){track.stop();});
-      screenStream=null;
-    }
-    if(micStream){
-      micStream.getTracks().forEach(function(track){track.stop();});
-      micStream=null;
-    }
+    if(screenStream){screenStream.getTracks().forEach(function(t){t.stop();});screenStream=null;}
+    if(micStream){micStream.getTracks().forEach(function(t){t.stop();});micStream=null;}
     preview.srcObject=null;
   }
 
-  function revokeRecordUrl(){
-    if(recordUrl){
-      URL.revokeObjectURL(recordUrl);
-      recordUrl='';
-    }
-  }
+  function revokeRecordUrl(){if(recordUrl){URL.revokeObjectURL(recordUrl);recordUrl='';}}
 
-  /* 根据用户选择的格式，检测浏览器支持的最佳 MIME 类型（优先 High Profile 高画质） */
   function getPreferredMimeType(){
-    if(typeof MediaRecorder==='undefined'){return {mime:'',format:''};}
-    var format=formatSel.value||'mp4';
-    if(format==='mp4'){
-      var mp4Types=[
-        'video/mp4;codecs=avc1.640034,opus',  /* High Profile L5.2 — 4K */
-        'video/mp4;codecs=avc1.640032,opus',  /* High Profile L5.1 */
-        'video/mp4;codecs=avc1.640028,opus',  /* High Profile L4.0 — 1080p */
-        'video/mp4;codecs=avc1.4d0028,opus',  /* Main Profile L4.0 */
-        'video/mp4;codecs=avc1,opus',
-        'video/mp4;codecs=avc1.640034',
-        'video/mp4;codecs=avc1.640028',
-        'video/mp4;codecs=avc1',
-        'video/mp4'
-      ];
-      for(var i=0;i<mp4Types.length;i++){
-        if(MediaRecorder.isTypeSupported(mp4Types[i])){return {mime:mp4Types[i],format:'mp4'};}
-      }
+    if(typeof MediaRecorder==='undefined')return{mime:'',format:''};
+    var f=formatSel.value||'mp4';
+    if(f==='mp4'){
+      var mp4=['video/mp4;codecs=avc1.640034,opus','video/mp4;codecs=avc1.640032,opus','video/mp4;codecs=avc1.640028,opus','video/mp4;codecs=avc1.4d0028,opus','video/mp4;codecs=avc1,opus','video/mp4;codecs=avc1.640034','video/mp4;codecs=avc1.640028','video/mp4;codecs=avc1','video/mp4'];
+      for(var i=0;i<mp4.length;i++){if(MediaRecorder.isTypeSupported(mp4[i]))return{mime:mp4[i],format:'mp4'};}
     }
-    var webmTypes=['video/webm;codecs=vp9,opus','video/webm;codecs=vp8,opus','video/webm'];
-    for(var j=0;j<webmTypes.length;j++){
-      if(MediaRecorder.isTypeSupported(webmTypes[j])){return {mime:webmTypes[j],format:'webm'};}
-    }
-    return {mime:'',format:''};
+    var webm=['video/webm;codecs=vp9,opus','video/webm;codecs=vp8,opus','video/webm'];
+    for(var j=0;j<webm.length;j++){if(MediaRecorder.isTypeSupported(webm[j]))return{mime:webm[j],format:'webm'};}
+    return{mime:'',format:''};
   }
 
-  /* 根据清晰度设置返回合适的视频码率 */
   function getBitrateByQuality(){
     var q=qualitySel.value;
-    if(q==='hd1080'){return 16000000;}  /* 16 Mbps */
-    if(q==='hd720'){return 8000000;}    /* 8 Mbps */
-    return 30000000;                     /* 30 Mbps — 原始分辨率，保证高清 */
+    if(q==='hd1080')return 16000000;
+    if(q==='hd720')return 8000000;
+    return 30000000;
   }
 
-  /* Source 模式不传 width/height，让浏览器按屏幕原始像素采集（Retina/2K/4K） */
-  function getVideoConstraintByQuality(){
+  function getVideoConstraint(){
     var q=qualitySel.value;
-    if(q==='source'){return {frameRate:{ideal:60}};}
+    if(q==='source')return{frameRate:{ideal:60}};
     var base={frameRate:{ideal:30,max:60}};
-    if(q==='hd1080'){
-      base.width={ideal:1920};
-      base.height={ideal:1080};
-    }else if(q==='hd720'){
-      base.width={ideal:1280};
-      base.height={ideal:720};
-    }
+    if(q==='hd1080'){base.width={ideal:1920};base.height={ideal:1080};}
+    else if(q==='hd720'){base.width={ideal:1280};base.height={ideal:720};}
     return base;
   }
 
   async function startRecording(){
-    if(mediaRecorder&&mediaRecorder.state!=='inactive'){
-      setStatus(t('alreadyRecording'));
-      return;
-    }
-    if(!navigator.mediaDevices||!navigator.mediaDevices.getDisplayMedia||typeof MediaRecorder==='undefined'){
-      setStatus(t('browserUnsupported'));
-      return;
-    }
-
+    if(mediaRecorder&&mediaRecorder.state!=='inactive'){setStatus(t('alreadyRecording'));return;}
+    if(!navigator.mediaDevices||!navigator.mediaDevices.getDisplayMedia||typeof MediaRecorder==='undefined'){setStatus(t('browserUnsupported'));return;}
     try{
       setStatus(t('starting'));
-      revokeRecordUrl();
-      rawBlob=null;
-      recordedChunks=[];
+      revokeRecordUrl();rawBlob=null;recordedChunks=[];
 
-      screenStream=await navigator.mediaDevices.getDisplayMedia({
-        video:getVideoConstraintByQuality(),
-        audio:true
-      });
-
+      screenStream=await navigator.mediaDevices.getDisplayMedia({video:getVideoConstraint(),audio:true});
       var tracks=[].concat(screenStream.getVideoTracks(),screenStream.getAudioTracks());
       if(document.getElementById('micChk').checked){
         micStream=await navigator.mediaDevices.getUserMedia({audio:true});
         tracks=tracks.concat(micStream.getAudioTracks());
       }
+      var mixed=new MediaStream(tracks);
+      var pref=getPreferredMimeType();
+      if(!pref.mime)throw new Error(t('browserUnsupported'));
 
-      var mixedStream=new MediaStream(tracks);
-      var preferred=getPreferredMimeType();
-      if(!preferred.mime){
-        throw new Error(t('browserUnsupported'));
+      if(pref.format==='webm'&&formatSel.value==='mp4'){
+        formatSel.value='webm';setStatus(t('mp4Unsupported'));
       }
+      recordedFormat=pref.format;
 
-      /* 如果浏览器不支持 MP4 录制，自动回退 WebM 并提示 */
-      if(preferred.format==='webm'&&formatSel.value==='mp4'){
-        formatSel.value='webm';
-        setStatus(t('mp4Unsupported'));
-      }
-      recordedFormat=preferred.format;
-
-      mediaRecorder=new MediaRecorder(mixedStream,{
-        mimeType:preferred.mime,
-        videoBitsPerSecond:getBitrateByQuality(),
-        audioBitsPerSecond:192000
-      });
-
-      mediaRecorder.ondataavailable=function(e){
-        if(e.data&&e.data.size>0){
-          recordedChunks.push(e.data);
-        }
-      };
-
-      mediaRecorder.onerror=function(e){
-        setStatus(t('error')+': '+safeMessage(e.error||e));
-      };
-
+      mediaRecorder=new MediaRecorder(mixed,{mimeType:pref.mime,videoBitsPerSecond:getBitrateByQuality(),audioBitsPerSecond:192000});
+      mediaRecorder.ondataavailable=function(e){if(e.data&&e.data.size>0)recordedChunks.push(e.data);};
+      mediaRecorder.onerror=function(e){setStatus(t('error')+': '+safeMsg(e.error||e));};
       mediaRecorder.onstop=function(){
-        var mimeStr=recordedFormat==='mp4'?'video/mp4':'video/webm';
-        rawBlob=new Blob(recordedChunks,{type:mimeStr});
+        var mime=recordedFormat==='mp4'?'video/mp4':'video/webm';
+        rawBlob=new Blob(recordedChunks,{type:mime});
         revokeRecordUrl();
         recordUrl=URL.createObjectURL(rawBlob);
-        preview.src=recordUrl;
-        preview.controls=true;
-        preview.muted=false;
+        preview.src=recordUrl;preview.controls=true;preview.muted=false;
+        var ext=recordedFormat||'mp4';
+        fileNameEl.textContent='screen-recording.'+ext;
+        fileSizeEl.textContent=formatSize(rawBlob.size);
+        setState('done');
         setStatus(t('downloadReady'));
-        resetDownloadProgress();
-        setRecordingUI(false);
-        refreshTransportButtons();
       };
 
       mediaRecorder.start(400);
-      preview.srcObject=mixedStream;
-      preview.muted=true;
-      preview.controls=true;
-      timer=0;
-      document.getElementById('timer').textContent='00:00';
-      startTimer();
-      setRecordingUI(true);
-      refreshTransportButtons();
-      setStatus(t('recording'));
+      preview.srcObject=mixed;preview.muted=true;preview.controls=false;
+      timer=0;document.getElementById('timer').textContent='00:00';
+      startTimer();setState('recording');setStatus(t('recording'));
 
-      var videoTracks=screenStream.getVideoTracks();
-      if(videoTracks[0]){
-        videoTracks[0].addEventListener('ended',function(){
-          if(mediaRecorder&&mediaRecorder.state!=='inactive'){
-            stopRecording();
-          }
-        });
-      }
+      screenStream.getVideoTracks()[0].addEventListener('ended',function(){
+        if(mediaRecorder&&mediaRecorder.state!=='inactive')doStop();
+      });
     }catch(err){
-      stopTimer();
-      setRecordingUI(false);
-      refreshTransportButtons();
-      stopInputStreams();
-      setStatus(t('error')+': '+safeMessage(err));
+      stopTimer();setState('idle');stopInputStreams();
+      setStatus(t('error')+': '+safeMsg(err));
     }
   }
 
-  function pauseRecording(){
+  function doPause(){
     if(mediaRecorder&&mediaRecorder.state==='recording'){
-      mediaRecorder.pause();
-      stopTimer();
-      setStatus(t('paused'));
-      refreshTransportButtons();
+      mediaRecorder.pause();stopTimer();setState('paused');setStatus(t('paused'));
     }
   }
-
-  function resumeRecording(){
+  function doResume(){
     if(mediaRecorder&&mediaRecorder.state==='paused'){
-      mediaRecorder.resume();
-      startTimer();
-      setStatus(t('recording'));
-      refreshTransportButtons();
+      mediaRecorder.resume();startTimer();setState('recording');setStatus(t('recording'));
     }
   }
-
-  function stopRecording(){
-    if(mediaRecorder&&mediaRecorder.state!=='inactive'){
-      mediaRecorder.stop();
-    }
-    stopTimer();
-    setStatus(t('stopped'));
-    stopInputStreams();
-    setRecordingUI(false);
-    refreshTransportButtons();
+  function doStop(){
+    if(mediaRecorder&&mediaRecorder.state!=='inactive')mediaRecorder.stop();
+    stopTimer();stopInputStreams();setStatus(t('stopped'));
+  }
+  function doNew(){
+    revokeRecordUrl();rawBlob=null;recordedChunks=[];
+    preview.removeAttribute('src');preview.srcObject=null;
+    setState('idle');setStatus('');
   }
 
-  function downloadUrl(url,filename){
-    var a=document.createElement('a');
-    a.href=url;
-    a.download=filename;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-  }
+  function downloadUrl(url,name){var a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();}
 
-  /* 直接下载录制文件，无需转码 */
-  function downloadRecording(){
-    if(!rawBlob){
-      setStatus(t('needStart'));
-      return;
-    }
-    if(mediaRecorder&&mediaRecorder.state==='recording'){
-      setStatus(t('recording'));
-      return;
-    }
-    if(!recordUrl){
-      recordUrl=URL.createObjectURL(rawBlob);
-    }
-    var ext=recordedFormat||'webm';
-    setDownloadProgress(50,t('progressPreparing'),true,false);
+  function doDownload(){
+    if(!rawBlob){setStatus(t('needStart'));return;}
+    if(!recordUrl)recordUrl=URL.createObjectURL(rawBlob);
+    var ext=recordedFormat||'mp4';
     downloadUrl(recordUrl,'screen-recording-'+Date.now()+'.'+ext);
     setStatus(t('downloading'));
-    completeDownloadProgress(t('progressComplete'));
   }
 
+  /* 事件绑定 */
   startBtn.addEventListener('click',startRecording);
-  pauseBtn.addEventListener('click',pauseRecording);
-  resumeBtn.addEventListener('click',resumeRecording);
-  stopBtn.addEventListener('click',stopRecording);
-  downloadBtn.addEventListener('click',downloadRecording);
+  pauseBtn.addEventListener('click',doPause);
+  resumeBtn.addEventListener('click',doResume);
+  stopBtn.addEventListener('click',doStop);
+  downloadBtn.addEventListener('click',doDownload);
+  newBtn.addEventListener('click',doNew);
 
-  document.getElementById('langCurrent').addEventListener('click',function(e){
-    e.stopPropagation();
-    document.getElementById('langDropdown').classList.toggle('open');
-  });
-  document.querySelectorAll('.lang-btn').forEach(function(btn){
-    btn.addEventListener('click',function(e){
-      e.stopPropagation();
-      applyLanguage(btn.getAttribute('data-lang'));
-      document.getElementById('langDropdown').classList.remove('open');
-    });
-  });
-  document.addEventListener('click',function(){
-    document.getElementById('langDropdown').classList.remove('open');
-  });
-  document.querySelectorAll('.faq-q').forEach(function(btn){
-    btn.addEventListener('click',function(){
-      var item=btn.parentElement;
-      var open=item.classList.contains('active');
-      document.querySelectorAll('.faq-item').forEach(function(it){it.classList.remove('active');});
-      if(!open){
-        item.classList.add('active');
-      }
-    });
-  });
-
-  window.addEventListener('beforeunload',function(){
-    stopTimer();
-    stopInputStreams();
-    revokeRecordUrl();
-  });
-
-  applyLanguage(currentLang);
-  setRecordingUI(false);
-  refreshTransportButtons();
-  resetDownloadProgress();
-
-  /* 检测 MP4 录制支持，若不支持则自动回退 WebM */
-  (function detectFormats(){
-    var mp4Ok=['video/mp4;codecs=avc1.640028,opus','video/mp4;codecs=avc1,opus','video/mp4;codecs=avc1','video/mp4'].some(function(t){
-      return typeof MediaRecorder!=='undefined'&&MediaRecorder.isTypeSupported(t);
-    });
-    if(!mp4Ok){
-      formatSel.value='webm';
-      setStatus(t('mp4Unsupported'));
+  /* 键盘快捷键 */
+  document.addEventListener('keydown',function(e){
+    var state=toolCard.getAttribute('data-state');
+    if(e.code==='Space'&&(state==='recording'||state==='paused')&&e.target.tagName!=='INPUT'&&e.target.tagName!=='SELECT'){
+      e.preventDefault();state==='recording'?doPause():doResume();
     }
+    if(e.code==='Escape'&&(state==='recording'||state==='paused')){e.preventDefault();doStop();}
+  });
+
+  /* 语言 */
+  document.getElementById('langCurrent').addEventListener('click',function(e){e.stopPropagation();document.getElementById('langDropdown').classList.toggle('open');});
+  document.querySelectorAll('.lang-btn').forEach(function(btn){btn.addEventListener('click',function(e){e.stopPropagation();applyLanguage(btn.getAttribute('data-lang'));document.getElementById('langDropdown').classList.remove('open');});});
+  document.addEventListener('click',function(){document.getElementById('langDropdown').classList.remove('open');});
+
+  /* FAQ 手风琴 */
+  document.querySelectorAll('.faq-q').forEach(function(btn){btn.addEventListener('click',function(){var item=btn.parentElement;var open=item.classList.contains('active');document.querySelectorAll('.faq-item').forEach(function(it){it.classList.remove('active');});if(!open)item.classList.add('active');});});
+
+  window.addEventListener('beforeunload',function(){stopTimer();stopInputStreams();revokeRecordUrl();});
+
+  /* 初始化 */
+  applyLanguage(currentLang);
+  setState('idle');
+
+  /* 检测 MP4 支持 */
+  (function(){
+    var ok=['video/mp4;codecs=avc1.640028,opus','video/mp4;codecs=avc1,opus','video/mp4;codecs=avc1','video/mp4'].some(function(t){return typeof MediaRecorder!=='undefined'&&MediaRecorder.isTypeSupported(t);});
+    if(!ok){formatSel.value='webm';setStatus(t('mp4Unsupported'));}
   })();
 })();
 </script>
