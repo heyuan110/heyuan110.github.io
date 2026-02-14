@@ -128,7 +128,8 @@
         return {
             toolId:   script.getAttribute('data-tool-id')   || '',
             toolName: script.getAttribute('data-tool-name') || '',
-            category: script.getAttribute('data-category')  || 'utility'
+            category: script.getAttribute('data-category')  || 'utility',
+            pageType: script.getAttribute('data-page-type') || 'tool'
         };
     }
 
@@ -172,25 +173,39 @@
         CATEGORIES.forEach(function (c) {
             if (c.key === config.category) catHref = c.href;
         });
-        var catPart = catHref
-            ? '<a href="' + catHref + '" data-common-i18n="' + catKey + '">' + ct(lang, catKey) + '</a><span class="bc-sep">›</span>'
-            : '';
 
-        return '<nav class="bc-nav" aria-label="Breadcrumb">' +
-            '<div class="bc-left">' +
+        var breadcrumb;
+        if (config.pageType === 'category') {
+            // 分类页：3 级面包屑 Home > Web Toolbox > 分类名
+            breadcrumb =
+                '<a href="/" data-common-i18n="home">' + ct(lang, 'home') + '</a><span class="bc-sep">›</span>' +
+                '<a href="index.html" data-common-i18n="toolbox">' + ct(lang, 'toolbox') + '</a><span class="bc-sep">›</span>' +
+                '<span class="bc-cur" data-common-i18n="' + catKey + '">' + ct(lang, catKey) + '</span>';
+        } else {
+            // 工具页：4 级面包屑 Home > Web Toolbox > 分类 > 工具名
+            var catPart = catHref
+                ? '<a href="' + catHref + '" data-common-i18n="' + catKey + '">' + ct(lang, catKey) + '</a><span class="bc-sep">›</span>'
+                : '';
+            breadcrumb =
                 '<a href="/" data-common-i18n="home">' + ct(lang, 'home') + '</a><span class="bc-sep">›</span>' +
                 '<a href="index.html" data-common-i18n="toolbox">' + ct(lang, 'toolbox') + '</a><span class="bc-sep">›</span>' +
                 catPart +
-                '<span class="bc-cur" data-i18n="tool_name">' + config.toolName + '</span>' +
-            '</div>' +
-            '<div class="lang-switcher">' +
-                '<div class="lang-dropdown" id="langDropdown">' +
-                    '<div class="lang-current" id="langCurrent">🌐 English</div>' +
-                    '<div class="lang-menu">' +
-                        '<button class="lang-btn" data-lang="en">🇺🇸 English</button>' +
-                        '<button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button>' +
-                        '<button class="lang-btn" data-lang="fr">🇫🇷 Français</button>' +
-                        '<button class="lang-btn" data-lang="es">🇪🇸 Español</button>' +
+                '<span class="bc-cur" data-i18n="tool_name">' + config.toolName + '</span>';
+        }
+
+        return '<nav class="bc-nav" aria-label="Breadcrumb">' +
+            '<div class="bc-left">' + breadcrumb + '</div>' +
+            '<div class="bc-right">' +
+                '<button class="theme-toggle" id="themeToggle" title="Toggle theme">🌙</button>' +
+                '<div class="lang-switcher">' +
+                    '<div class="lang-dropdown" id="langDropdown">' +
+                        '<div class="lang-current" id="langCurrent">🌐 English</div>' +
+                        '<div class="lang-menu">' +
+                            '<button class="lang-btn" data-lang="en">🇺🇸 English</button>' +
+                            '<button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button>' +
+                            '<button class="lang-btn" data-lang="fr">🇫🇷 Français</button>' +
+                            '<button class="lang-btn" data-lang="es">🇪🇸 Español</button>' +
+                        '</div>' +
                     '</div>' +
                 '</div>' +
             '</div>' +
@@ -207,8 +222,15 @@
     }
 
     // 生成 footer HTML
-    function buildFooter(activeCategory, lang) {
-        return buildCategoryNav(activeCategory, lang) +
+    function buildFooter(config, lang) {
+        if (config.pageType === 'category') {
+            // 分类页：仅版权行，无类目导航
+            return '<footer class="site-footer">' +
+                '<p data-common-i18n="copyright">' + ct(lang, 'copyright') + '</p>' +
+                '</footer>';
+        }
+        // 工具页：类目导航 + 版权
+        return buildCategoryNav(config.category, lang) +
             '\n    <footer class="site-footer">' +
             '<p data-common-i18n="copyright">' + ct(lang, 'copyright') + '</p>' +
             '</footer>';
@@ -228,14 +250,37 @@
 
     // 注入 footer（在 .container 末尾或 </body> 前）
     function injectFooter(config, lang) {
-        if (document.querySelector('.category-nav')) return;
+        if (document.querySelector('.category-nav') || document.querySelector('.site-footer')) return;
         var container = document.querySelector('.container');
-        var footerHtml = buildFooter(config.category, lang);
+        var footerHtml = buildFooter(config, lang);
         if (container) {
             container.insertAdjacentHTML('beforeend', footerHtml);
         } else {
             document.body.insertAdjacentHTML('beforeend', footerHtml);
         }
+    }
+
+    // 主题切换
+    function bindThemeToggle() {
+        var toggle = document.getElementById('themeToggle');
+        if (!toggle) return;
+        var saved = localStorage.getItem('magic_toolbox_theme');
+        if (saved === 'light') {
+            document.body.setAttribute('data-theme', 'light');
+            toggle.textContent = '☀️';
+        }
+        toggle.addEventListener('click', function () {
+            var isLight = document.body.getAttribute('data-theme') === 'light';
+            if (isLight) {
+                document.body.removeAttribute('data-theme');
+                toggle.textContent = '🌙';
+                localStorage.setItem('magic_toolbox_theme', 'dark');
+            } else {
+                document.body.setAttribute('data-theme', 'light');
+                toggle.textContent = '☀️';
+                localStorage.setItem('magic_toolbox_theme', 'light');
+            }
+        });
     }
 
     // ==================== 语言切换 ====================
@@ -371,6 +416,9 @@
             // 注入 header & footer（带当前语言）
             injectHeader(config, lang);
             injectFooter(config, lang);
+
+            // 绑定主题切换
+            bindThemeToggle();
 
             // 绑定语言切换器
             bindLangSwitcher(translations || {});

@@ -54,6 +54,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
+    <link rel="stylesheet" href="common/common.css">
+
     <!-- ========== JSON-LD: WebApplication ========== -->
     <script type="application/ld+json">
     {
@@ -189,36 +191,8 @@
             line-height:1.6;
         }
 
-        /* ========== 语言切换器 ========== */
-        .lang-switcher{position:fixed;top:16px;right:16px;z-index:1000;}
-        .lang-switcher .lang-current{
-            background:rgba(124,58,237,0.3);border:1px solid rgba(124,58,237,0.5);
-            color:#e4e4e7;padding:8px 16px;border-radius:8px;cursor:pointer;font-size:14px;
-            transition:background 0.3s;
-        }
-        .lang-switcher .lang-current:hover{background:rgba(124,58,237,0.5);}
-        .lang-switcher .lang-dropdown{
-            display:none;position:absolute;top:100%;right:0;
-            background:#1a1a2e;border:1px solid rgba(124,58,237,0.3);
-            border-radius:8px;margin-top:4px;overflow:hidden;min-width:140px;
-            box-shadow:0 8px 32px rgba(0,0,0,0.4);
-        }
-        .lang-switcher:hover .lang-dropdown,.lang-switcher .lang-dropdown.active{display:block;}
-        .lang-dropdown button{
-            display:block;width:100%;padding:10px 16px;background:none;border:none;
-            color:#e4e4e7;cursor:pointer;text-align:left;white-space:nowrap;font-size:14px;
-            transition:background 0.2s;
-        }
-        .lang-dropdown button:hover{background:rgba(124,58,237,0.2);}
-
-        /* ========== 返回链接 ========== */
-        .back-link{
-            display:inline-flex;align-items:center;gap:6px;
-            color:#a78bfa;text-decoration:none;font-size:14px;
-            padding:20px 20px 0;max-width:1200px;margin:0 auto;
-            transition:color 0.3s;
-        }
-        .back-link:hover{color:#c4b5fd;}
+        /* ========== Container ========== */
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px; }
 
         /* ========== Hero 区域 ========== */
         .hero{
@@ -367,16 +341,6 @@
         .related-card .icon{font-size:28px;margin-bottom:8px;}
         .related-card h3{font-size:14px;color:#a78bfa;margin-bottom:6px;}
         .related-card p{font-size:12px;color:#9ca3af;}
-
-        /* ========== Footer ========== */
-        .page-footer{
-            text-align:center;padding:32px 20px;
-            border-top:1px solid rgba(255,255,255,0.1);
-            color:#a1a1aa;font-size:13px;
-            max-width:1200px;margin:0 auto;
-        }
-        .page-footer a{color:#a78bfa;text-decoration:none;transition:color 0.3s;}
-        .page-footer a:hover{color:#c4b5fd;}
 
         /* ========== 动画 ========== */
         @keyframes fadeInUp{

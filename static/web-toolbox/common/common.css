@@ -42,6 +42,46 @@
     color: #e4e4e7;
 }
 
+/* --- Header 右侧容器 --- */
+.bc-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+/* --- 主题切换按钮 --- */
+.theme-toggle {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #a1a1aa;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+.theme-toggle:hover {
+    background: rgba(124, 58, 237, 0.2);
+    border-color: rgba(124, 58, 237, 0.4);
+    color: #e4e4e7;
+}
+[data-theme="light"] .theme-toggle {
+    background: #ffffff;
+    border-color: #e4e4e7;
+    color: #3f3f46;
+}
+[data-theme="light"] .theme-toggle:hover {
+    background: #f4f4f5;
+    border-color: #7c3aed;
+    color: #7c3aed;
+}
+
 /* --- 语言切换器 --- */
 .lang-switcher {
     position: relative;
@@ -162,6 +202,67 @@
     background: rgba(124, 58, 237, 0.1);
 }
 
+/* --- Light 主题：面包屑 --- */
+[data-theme="light"] .bc-nav a {
+    color: #71717a;
+}
+[data-theme="light"] .bc-nav a:hover {
+    color: #7c3aed;
+}
+[data-theme="light"] .bc-sep {
+    color: #a1a1aa;
+}
+[data-theme="light"] .bc-cur {
+    color: #09090b;
+}
+
+/* --- Light 主题：语言切换器 --- */
+[data-theme="light"] .lang-current {
+    background: #ffffff;
+    border-color: #e4e4e7;
+    color: #3f3f46;
+}
+[data-theme="light"] .lang-current:hover {
+    background: #f4f4f5;
+    border-color: #7c3aed;
+}
+[data-theme="light"] .lang-menu {
+    background: #ffffff;
+    border-color: #e4e4e7;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+[data-theme="light"] .lang-btn {
+    color: #3f3f46;
+}
+[data-theme="light"] .lang-btn:hover {
+    background: #f4f4f5;
+    color: #09090b;
+}
+[data-theme="light"] .lang-btn.active {
+    background: #f3f0ff;
+    color: #7c3aed;
+}
+
+/* --- Light 主题：信任栏 --- */
+[data-theme="light"] .trust-bar {
+    background: rgba(124, 58, 237, 0.05);
+    border-color: rgba(124, 58, 237, 0.15);
+}
+[data-theme="light"] .trust-item {
+    color: #6d28d9;
+}
+
+/* --- Light 主题：相关工具标题 --- */
+[data-theme="light"] .related-tools h3 {
+    border-bottom-color: #e4e4e7;
+}
+
+/* --- Light 主题：页脚 --- */
+[data-theme="light"] .site-footer {
+    border-top-color: #e4e4e7;
+    color: #71717a;
+}
+
 /* --- 页脚 --- */
 .site-footer {
     text-align: center;
@@ -277,6 +378,14 @@
     .bc-nav {
         padding: 8px 16px 0;
         font-size: 12px;
+    }
+    .bc-right {
+        gap: 4px;
+    }
+    .theme-toggle {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
     }
     .category-nav {
         gap: 2px;
