@@ -1,7 +1,7 @@
 +++
 date = '2026-02-14T08:10:00+08:00'
 draft = false
-title = '一次看懂 OpenClaw 如何自动干活：Gateway/Agent/Skills/Nodes/Heartbeat/Cron 架构深度解析'
+title = '拆解 OpenClaw 自动化架构：从消息到执行的完整链路'
 description = '从架构视角拆解 OpenClaw 的“自动化原理”：消息如何经由 Gateway 路由到 Agent，如何用 Skills 调工具、跨设备 Nodes 执行，Memory 如何存取，Heartbeat 与 Cron 如何让助手在后台持续工作，并用端到端案例串起完整链路。'
 toc = true
 tags = ['OpenClaw', 'AI Agent', '架构', '自动化', 'Skills']
