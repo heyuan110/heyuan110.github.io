@@ -167,30 +167,31 @@
         }
 
         header {
-            text-align: center;
             margin-bottom: 16px;
-            position: relative;
+        }
+
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
         }
 
         h1 {
-            font-size: 2.4rem;
+            font-size: 2rem;
             font-weight: 700;
             background: linear-gradient(120deg, #00d4ff, #7c3aed, #f472b6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 0;
+            white-space: nowrap;
         }
 
         .subtitle {
             color: #71717a;
-            font-size: 0.95rem;
-            margin-top: 6px;
-            letter-spacing: 0.02em;
-        }
-
-        .badge {
-            display: none;
+            font-size: 0.85rem;
+            margin-top: 2px;
         }
 
         .tools-grid {
@@ -476,7 +477,7 @@
 
         @media (max-width: 768px) {
             h1 {
-                font-size: 2rem;
+                font-size: 1.6rem;
             }
 
             .tools-grid {
@@ -490,12 +491,10 @@
 
         /* 顶部操作区 */
         .top-actions {
-            position: absolute;
-            top: 0;
-            right: 0;
             display: flex;
             align-items: center;
             gap: 8px;
+            flex-shrink: 0;
         }
 
         /* 语言切换器样式 - 下拉菜单 */
@@ -678,10 +677,13 @@
             color: #e4e4e7;
         }
         @media (max-width: 768px) {
+            .header-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
             .top-actions {
-                position: relative;
-                justify-content: center;
-                margin-bottom: 16px;
+                align-self: flex-end;
             }
         }
 
@@ -795,26 +797,26 @@
 <body>
     <div class="container">
         <header>
-            <div class="top-actions">
-                <!-- 主题切换 -->
-                <button class="theme-toggle" id="themeToggle" title="Toggle theme">🌙</button>
-
-                <!-- 语言切换器 -->
-                <div class="lang-switcher" id="langSwitcher">
-                <div class="lang-dropdown" id="langDropdown">
-                    <div class="lang-current" id="langCurrent">🌐 English</div>
-                    <div class="lang-menu">
-                        <button class="lang-btn" data-lang="en">🇺🇸 English</button>
-                        <button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button>
-                        <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
-                        <button class="lang-btn" data-lang="es">🇪🇸 Español</button>
+            <div class="header-row">
+                <div>
+                    <h1>✨ Magic Toolbox</h1>
+                    <p class="subtitle" data-i18n="subtitle">60+ free browser tools. No install. Just use.</p>
+                </div>
+                <div class="top-actions">
+                    <button class="theme-toggle" id="themeToggle" title="Toggle theme">🌙</button>
+                    <div class="lang-switcher" id="langSwitcher">
+                        <div class="lang-dropdown" id="langDropdown">
+                            <div class="lang-current" id="langCurrent">🌐 English</div>
+                            <div class="lang-menu">
+                                <button class="lang-btn" data-lang="en">🇺🇸 English</button>
+                                <button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button>
+                                <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
+                                <button class="lang-btn" data-lang="es">🇪🇸 Español</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            </div>
-            <h1>✨ Magic Toolbox</h1>
-            <p class="subtitle" data-i18n="subtitle">60+ free browser tools. No install. Just use.</p>
-            <span class="badge" data-i18n="badge">No Ads · No Signup · 100% Browser-Based · Free Unlimited</span>
         </header>
 
         <!-- 搜索框 -->
@@ -852,195 +854,8 @@
         </div>
 
         <div class="tools-grid" id="toolsGrid">
-            <!-- M3U8 下载器 -->
-            <div class="tool-card" data-tool="m3u8" data-category="media">
-                <img src="screenshots/m3u8-downloader.webp" alt="M3U8 视频下载器截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">🎬</div>
-                    <h2 class="tool-title" data-i18n="tool_m3u8_title">M3U8 视频下载器</h2>
-                    <p class="tool-desc" data-i18n="tool_m3u8_desc">批量下载 M3U8 流媒体视频并保存为本地 MP4 文件</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_m3u8_f1">单条或批量导入 M3U8 链接</li>
-                        <li data-i18n="tool_m3u8_f2">实时视频预览（自动播放）</li>
-                        <li data-i18n="tool_m3u8_f3">下载进度可视化</li>
-                        <li data-i18n="tool_m3u8_f4">支持暂停/继续下载</li>
-                    </ul>
-                    <a href="m3u8-downloader.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- JSON 查看器 -->
-            <div class="tool-card" data-tool="json" data-category="developer">
-                <img src="screenshots/json-viewer.webp" alt="JSON 查看器截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">📋</div>
-                    <h2 class="tool-title" data-i18n="tool_json_title">JSON 查看器</h2>
-                    <p class="tool-desc" data-i18n="tool_json_desc">美观的 JSON 数据可视化与格式化工具</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_json_f1">语法高亮显示</li>
-                        <li data-i18n="tool_json_f2">节点折叠/展开</li>
-                        <li data-i18n="tool_json_f3">关键字搜索过滤</li>
-                        <li data-i18n="tool_json_f4">支持粘贴或上传文件</li>
-                    </ul>
-                    <a href="json-viewer.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- SQLite 查看器 -->
-            <div class="tool-card" data-tool="sqlite" data-category="developer">
-                <img src="screenshots/sqlite-viewer.webp" alt="SQLite 查看器截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">🗄️</div>
-                    <h2 class="tool-title" data-i18n="tool_sqlite_title">SQLite 查看器</h2>
-                    <p class="tool-desc" data-i18n="tool_sqlite_desc">在浏览器中直接查看和查询 SQLite 数据库</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_sqlite_f1">拖拽上传 .db / .sqlite 文件</li>
-                        <li data-i18n="tool_sqlite_f2">浏览所有表结构</li>
-                        <li data-i18n="tool_sqlite_f3">执行自定义 SQL 查询</li>
-                        <li data-i18n="tool_sqlite_f4">查询结果表格展示</li>
-                    </ul>
-                    <a href="sqlite-viewer.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- OctoVideoSniffer 八爪鱼 -->
-            <div class="tool-card" data-tool="octosniffer" data-category="media">
-                <img src="screenshots/OctoVideoSniffer.webp" alt="OctoVideoSniffer 截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">🐙</div>
-                    <h2 class="tool-title" data-i18n="tool_octo_title">OctoVideoSniffer 八爪鱼</h2>
-                    <p class="tool-desc" data-i18n="tool_octo_desc">Chrome/Edge 浏览器扩展，自动检测并提取网页中的视频链接</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_octo_f1">智能识别网页视频资源链接</li>
-                        <li data-i18n="tool_octo_f2">支持 .m3u8 / .mp4 / .ts 等格式</li>
-                        <li data-i18n="tool_octo_f3">简洁的界面，一键复制链接</li>
-                        <li data-i18n="tool_octo_f4">轻量快速，开箱即用</li>
-                    </ul>
-                    <a href="https://github.com/heyuan110/OctoVideoSniffer" target="_blank" class="tool-btn" data-i18n="viewProject">查看项目 →</a>
-                </div>
-            </div>
-
-            <!-- 加解密编码工具箱 -->
-            <div class="tool-card" data-tool="crypto" data-category="developer">
-                <img src="screenshots/crypto-tools.webp" alt="加解密编码工具箱截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">🔐</div>
-                    <h2 class="tool-title" data-i18n="tool_crypto_title">加解密编码工具箱</h2>
-                    <p class="tool-desc" data-i18n="tool_crypto_desc">集成 20+ 种加密解密和编码转换工具的综合工具箱</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_crypto_f1">MD5/SHA/AES/DES 等加密算法</li>
-                        <li data-i18n="tool_crypto_f2">Base64/URL/Unicode 编码转换</li>
-                        <li data-i18n="tool_crypto_f3">摩尔斯电码/条形码生成器</li>
-                        <li data-i18n="tool_crypto_f4">密码生成/UUID/IP 转换等</li>
-                    </ul>
-                    <a href="crypto-tools.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- WebSocket 测试工具 -->
-            <div class="tool-card" data-tool="websocket" data-category="developer">
-                <img src="screenshots/websocket-tester.webp" alt="WebSocket 测试工具截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">🔌</div>
-                    <h2 class="tool-title" data-i18n="tool_ws_title">WebSocket 测试工具</h2>
-                    <p class="tool-desc" data-i18n="tool_ws_desc">基于 HTML5 WebSocket 的在线调试工具，支持内网和外网</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_ws_f1">支持 ws:// 和 wss:// 协议</li>
-                        <li data-i18n="tool_ws_f2">实时消息收发与日志显示</li>
-                        <li data-i18n="tool_ws_f3">连接状态监控与统计</li>
-                        <li data-i18n="tool_ws_f4">支持 JSON 格式化发送</li>
-                    </ul>
-                    <a href="websocket-tester.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- 在线涂鸦画板 -->
-            <div class="tool-card" data-tool="paint" data-category="image">
-                <img src="screenshots/paint-board.webp" alt="在线涂鸦画板截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">🎨</div>
-                    <h2 class="tool-title" data-i18n="tool_paint_title">在线涂鸦画板</h2>
-                    <p class="tool-desc" data-i18n="tool_paint_desc">功能丰富的在线画板，尽情发挥您的绘画艺术天赋</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_paint_f1">画笔/橡皮/填充/形状工具</li>
-                        <li data-i18n="tool_paint_f2">自定义颜色和透明度</li>
-                        <li data-i18n="tool_paint_f3">撤销/重做/自定义画布</li>
-                        <li data-i18n="tool_paint_f4">保存为 PNG/JPG 格式</li>
-                    </ul>
-                    <a href="paint-board.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- 在线调色板 -->
-            <div class="tool-card" data-tool="color" data-category="image">
-                <img src="screenshots/color-palette.webp" alt="在线调色板截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">🎨</div>
-                    <h2 class="tool-title" data-i18n="tool_color_title">在线调色板</h2>
-                    <p class="tool-desc" data-i18n="tool_color_desc">快速查找颜色编码，支持多种颜色格式转换</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_color_f1">HEX/RGB/HSL/CMYK 多格式</li>
-                        <li data-i18n="tool_color_f2">互补色/相似色/三等分色</li>
-                        <li data-i18n="tool_color_f3">收藏常用颜色</li>
-                        <li data-i18n="tool_color_f4">一键复制颜色代码</li>
-                    </ul>
-                    <a href="color-palette.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- 世界时间查询 -->
-            <div class="tool-card" data-tool="worldclock" data-category="utility">
-                <img src="screenshots/world-clock.webp" alt="世界时间查询截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">🌍</div>
-                    <h2 class="tool-title" data-i18n="tool_clock_title">世界时间查询</h2>
-                    <p class="tool-desc" data-i18n="tool_clock_desc">实时查看全球各地时间，支持时差计算</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_clock_f1">全球 25+ 主要城市时间</li>
-                        <li data-i18n="tool_clock_f2">实时更新，日夜指示</li>
-                        <li data-i18n="tool_clock_f3">自动识别当前时区</li>
-                        <li data-i18n="tool_clock_f4">时差计算与城市搜索</li>
-                    </ul>
-                    <a href="world-clock.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- Whois 域名查询 -->
-            <div class="tool-card" data-tool="whois" data-category="developer">
-                <img src="screenshots/whois-query.webp" alt="Whois 域名查询截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">🔍</div>
-                    <h2 class="tool-title" data-i18n="tool_whois_title">Whois 域名查询</h2>
-                    <p class="tool-desc" data-i18n="tool_whois_desc">查询域名注册信息、所有者、注册商、有效期等详细信息</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_whois_f1">域名注册商/所有者信息</li>
-                        <li data-i18n="tool_whois_f2">注册/到期日期与域名年龄</li>
-                        <li data-i18n="tool_whois_f3">DNS 名称服务器列表</li>
-                        <li data-i18n="tool_whois_f4">域名状态与原始数据</li>
-                    </ul>
-                    <a href="whois-query.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- ICO 图标制作 -->
-            <div class="tool-card" data-tool="ico" data-category="image">
-                <img src="screenshots/ico-maker.webp" alt="ICO 图标制作截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">🎨</div>
-                    <h2 class="tool-title" data-i18n="tool_ico_title">ICO 图标制作</h2>
-                    <p class="tool-desc" data-i18n="tool_ico_desc">将 PNG、JPG、GIF 图片转换为 ICO 图标文件</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_ico_f1">支持 PNG/JPG/GIF 格式转换</li>
-                        <li data-i18n="tool_ico_f2">裁剪功能，多尺寸选择</li>
-                        <li data-i18n="tool_ico_f3">实时预览各尺寸效果</li>
-                        <li data-i18n="tool_ico_f4">一键生成并下载 ICO</li>
-                    </ul>
-                    <a href="ico-maker.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
             <!-- 图片压缩工具 -->
-            <div class="tool-card" data-tool="compress" data-category="image">
+            <div class="tool-card" data-tool="compress" data-category="image" data-sort="1">
                 <img src="screenshots/image-compressor.webp" alt="图片压缩工具截图" class="tool-screenshot">
                 <div class="tool-content">
                     <div class="tool-icon">📦</div>
@@ -1056,110 +871,25 @@
                 </div>
             </div>
 
-            <!-- 万能计算器 -->
-            <div class="tool-card" data-tool="calc" data-category="utility">
-                <img src="screenshots/calculator.webp" alt="万能计算器截图" class="tool-screenshot">
+            <!-- 图片去背景 -->
+            <div class="tool-card" data-tool="background remover cutout" data-category="image" data-sort="2">
+                <img src="screenshots/bg-remover.webp" alt="图片去背景截图" class="tool-screenshot">
                 <div class="tool-content">
-                    <div class="tool-icon">🧮</div>
-                    <h2 class="tool-title" data-i18n="tool_calc_title">万能计算器</h2>
-                    <p class="tool-desc" data-i18n="tool_calc_desc">集成科学计算器、利率计算器、子网掩码及16种单位换算工具</p>
+                    <div class="tool-icon">✂️</div>
+                    <h2 class="tool-title" data-i18n="tool_bgremover_title">图片去背景</h2>
+                    <p class="tool-desc" data-i18n="tool_bgremover_desc">AI 自动抠图，快速导出透明 PNG，适合电商图与设计素材</p>
                     <ul class="tool-features">
-                        <li data-i18n="tool_calc_f1">科学计算器（三角/对数/阶乘）</li>
-                        <li data-i18n="tool_calc_f2">贷款利率计算器</li>
-                        <li data-i18n="tool_calc_f3">子网掩码/IP 计算器</li>
-                        <li data-i18n="tool_calc_f4">长度/面积/体积/温度等换算</li>
+                        <li data-i18n="tool_bgremover_f1">自动识别主体与背景边缘</li>
+                        <li data-i18n="tool_bgremover_f2">输出透明背景 PNG</li>
+                        <li data-i18n="tool_bgremover_f3">无需安装，无需注册</li>
+                        <li data-i18n="tool_bgremover_f4">纯前端处理更安全</li>
                     </ul>
-                    <a href="calculator.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- IP归属地查询 -->
-            <div class="tool-card" data-tool="ip" data-category="developer">
-                <img src="screenshots/ip-lookup.webp" alt="IP归属地查询截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">🌍</div>
-                    <h2 class="tool-title" data-i18n="tool_ip_title">IP归属地查询</h2>
-                    <p class="tool-desc" data-i18n="tool_ip_desc">查询IP地址或域名的地理位置、运营商等信息</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_ip_f1">IP/域名地理位置查询</li>
-                        <li data-i18n="tool_ip_f2">运营商、IP段范围信息</li>
-                        <li data-i18n="tool_ip_f3">显示本机IP及归属地</li>
-                        <li data-i18n="tool_ip_f4">浏览器、系统信息检测</li>
-                    </ul>
-                    <a href="ip-lookup.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- 定时刷新网页 -->
-            <div class="tool-card" data-tool="refresh" data-category="utility">
-                <img src="screenshots/page-refresher.webp" alt="定时刷新网页截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">🔄</div>
-                    <h2 class="tool-title" data-i18n="tool_refresh_title">定时刷新网页</h2>
-                    <p class="tool-desc" data-i18n="tool_refresh_desc">在线定时自动刷新网页，可用于压力测试和增加请求量</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_refresh_f1">自定义刷新间隔时间</li>
-                        <li data-i18n="tool_refresh_f2">刷新次数限制设置</li>
-                        <li data-i18n="tool_refresh_f3">实时刷新日志记录</li>
-                        <li data-i18n="tool_refresh_f4">内嵌预览目标页面</li>
-                    </ul>
-                    <a href="page-refresher.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- 正则表达式测试 -->
-            <div class="tool-card" data-tool="regex" data-category="developer">
-                <img src="screenshots/regex-tester.webp" alt="正则表达式测试截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">🔍</div>
-                    <h2 class="tool-title" data-i18n="tool_regex_title">正则表达式测试</h2>
-                    <p class="tool-desc" data-i18n="tool_regex_desc">在线正则表达式验证、匹配、提取工具，支持多语言代码生成</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_regex_f1">实时正则匹配高亮显示</li>
-                        <li data-i18n="tool_regex_f2">常用正则表达式模板</li>
-                        <li data-i18n="tool_regex_f3">7种编程语言代码生成</li>
-                        <li data-i18n="tool_regex_f4">元字符和语法参考文档</li>
-                    </ul>
-                    <a href="regex-tester.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- 证件照裁剪 & 透明水印 -->
-            <div class="tool-card" data-tool="idphoto" data-category="image">
-                <img src="screenshots/id-photo-tool.webp" alt="证件照裁剪 & 透明水印截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">📷</div>
-                    <h2 class="tool-title" data-i18n="tool_idphoto_title">证件照裁剪 & 透明水印</h2>
-                    <p class="tool-desc" data-i18n="tool_idphoto_desc">本地离线处理证件照：裁剪、改尺寸、压缩、添加透明文字水印</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_idphoto_f1">1寸/2寸/护照照等预设尺寸</li>
-                        <li data-i18n="tool_idphoto_f2">自由裁剪与尺寸调整</li>
-                        <li data-i18n="tool_idphoto_f3">透明文字水印（单点/平铺）</li>
-                        <li data-i18n="tool_idphoto_f4">100%离线处理保护隐私</li>
-                    </ul>
-                    <a href="id-photo-tool.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- 图片合并为PDF -->
-            <div class="tool-card" data-tool="img2pdf" data-category="pdf">
-                <img src="screenshots/image-to-pdf.webp" alt="图片合并为PDF截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">📄</div>
-                    <h2 class="tool-title" data-i18n="tool_img2pdf_title">图片合并为PDF</h2>
-                    <p class="tool-desc" data-i18n="tool_img2pdf_desc">多图拖拽排序、截图粘贴、手机扫码上传，一键生成高质量PDF</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_img2pdf_f1">多种上传方式（拖拽/粘贴/扫码）</li>
-                        <li data-i18n="tool_img2pdf_f2">拖拽调整图片顺序</li>
-                        <li data-i18n="tool_img2pdf_f3">自定义页面尺寸和质量</li>
-                        <li data-i18n="tool_img2pdf_f4">一键生成PDF并下载</li>
-                    </ul>
-                    <a href="image-to-pdf.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                    <a href="bg-remover.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
                 </div>
             </div>
 
             <!-- PDF 合并 -->
-            <div class="tool-card" data-tool="pdfmerge" data-category="pdf">
+            <div class="tool-card" data-tool="pdfmerge" data-category="pdf" data-sort="3">
                 <img src="screenshots/pdf-merge.webp" alt="PDF合并工具截图" class="tool-screenshot">
                 <div class="tool-content">
                     <div class="tool-icon">📚</div>
@@ -1175,8 +905,76 @@
                 </div>
             </div>
 
+            <!-- QR码生成器 -->
+            <div class="tool-card" data-tool="qrcode" data-category="image" data-sort="4">
+                <img src="screenshots/qr-code-generator.webp" alt="QR码生成器截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">📱</div>
+                    <h2 class="tool-title" data-i18n="tool_qrcode_title">QR 码生成器</h2>
+                    <p class="tool-desc" data-i18n="tool_qrcode_desc">生成自定义二维码，支持 URL、文本、WiFi、邮件等多种格式</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_qrcode_f1">支持 URL/文本/WiFi/邮件/电话/短信</li>
+                        <li data-i18n="tool_qrcode_f2">自定义颜色和大小</li>
+                        <li data-i18n="tool_qrcode_f3">4级容错率可选</li>
+                        <li data-i18n="tool_qrcode_f4">一键下载 PNG 图片</li>
+                    </ul>
+                    <a href="qr-code-generator.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- OCR 图片文字识别 -->
+            <div class="tool-card" data-tool="ocr ai image text" data-category="image" data-sort="5">
+                <img src="screenshots/ocr-tool.webp" alt="OCR 图片文字识别截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">🔤</div>
+                    <h2 class="tool-title" data-i18n="tool_ocr_title">OCR 图片文字识别</h2>
+                    <p class="tool-desc" data-i18n="tool_ocr_desc">提取图片中的文本内容，支持多语言识别与本地隐私处理</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_ocr_f1">支持截图、拍照图与扫描图识别</li>
+                        <li data-i18n="tool_ocr_f2">支持中英文等多语言 OCR</li>
+                        <li data-i18n="tool_ocr_f3">识别结果可复制或下载</li>
+                        <li data-i18n="tool_ocr_f4">浏览器本地处理，无需上传</li>
+                    </ul>
+                    <a href="ocr-tool.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- 屏幕录制器 -->
+            <div class="tool-card" data-tool="screen recorder video capture" data-category="media" data-sort="6">
+                <img src="screenshots/screen-recorder.webp" alt="屏幕录制器截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">🖥️</div>
+                    <h2 class="tool-title" data-i18n="tool_screenrec_title">屏幕录制器</h2>
+                    <p class="tool-desc" data-i18n="tool_screenrec_desc">在线录制屏幕内容，可选麦克风音频，完成后一键导出 WebM</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_screenrec_f1">支持标签页、窗口或全屏录制</li>
+                        <li data-i18n="tool_screenrec_f2">可叠加麦克风解说音频</li>
+                        <li data-i18n="tool_screenrec_f3">暂停/继续/停止全流程控制</li>
+                        <li data-i18n="tool_screenrec_f4">录制结束立即下载文件</li>
+                    </ul>
+                    <a href="screen-recorder.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- PDF 转图片 -->
+            <div class="tool-card" data-tool="pdftoimage" data-category="pdf" data-sort="7">
+                <img src="screenshots/pdf-to-image.webp" alt="PDF转图片工具截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">🖼️</div>
+                    <h2 class="tool-title" data-i18n="tool_pdftoimg_title">PDF 转图片</h2>
+                    <p class="tool-desc" data-i18n="tool_pdftoimg_desc">将 PDF 页面批量转换为 PNG/JPG，支持范围导出和 ZIP 下载</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_pdftoimg_f1">支持导出 PNG 或 JPG 格式</li>
+                        <li data-i18n="tool_pdftoimg_f2">可按页码范围选择性导出</li>
+                        <li data-i18n="tool_pdftoimg_f3">多页图片自动打包 ZIP</li>
+                        <li data-i18n="tool_pdftoimg_f4">本地渲染转换速度快更安全</li>
+                    </ul>
+                    <a href="pdf-to-image.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
             <!-- PDF 拆分 -->
-            <div class="tool-card" data-tool="pdfsplit" data-category="pdf">
+            <div class="tool-card" data-tool="pdfsplit" data-category="pdf" data-sort="8">
                 <img src="screenshots/pdf-split.webp" alt="PDF拆分工具截图" class="tool-screenshot">
                 <div class="tool-content">
                     <div class="tool-icon">✂️</div>
@@ -1193,7 +991,7 @@
             </div>
 
             <!-- PDF 压缩 -->
-            <div class="tool-card" data-tool="pdfcompress" data-category="pdf">
+            <div class="tool-card" data-tool="pdfcompress" data-category="pdf" data-sort="9">
                 <img src="screenshots/pdf-compress.webp" alt="PDF压缩工具截图" class="tool-screenshot">
                 <div class="tool-content">
                     <div class="tool-icon">🗜️</div>
@@ -1209,93 +1007,8 @@
                 </div>
             </div>
 
-            <!-- PDF 转图片 -->
-            <div class="tool-card" data-tool="pdftoimage" data-category="pdf">
-                <img src="screenshots/pdf-to-image.webp" alt="PDF转图片工具截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">🖼️</div>
-                    <h2 class="tool-title" data-i18n="tool_pdftoimg_title">PDF 转图片</h2>
-                    <p class="tool-desc" data-i18n="tool_pdftoimg_desc">将 PDF 页面批量转换为 PNG/JPG，支持范围导出和 ZIP 下载</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_pdftoimg_f1">支持导出 PNG 或 JPG 格式</li>
-                        <li data-i18n="tool_pdftoimg_f2">可按页码范围选择性导出</li>
-                        <li data-i18n="tool_pdftoimg_f3">多页图片自动打包 ZIP</li>
-                        <li data-i18n="tool_pdftoimg_f4">本地渲染转换速度快更安全</li>
-                    </ul>
-                    <a href="pdf-to-image.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- 文件批量重命名 -->
-            <div class="tool-card" data-tool="rename" data-category="utility">
-                <img src="screenshots/file-renamer.webp" alt="文件批量重命名截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">📝</div>
-                    <h2 class="tool-title" data-i18n="tool_rename_title">文件批量重命名</h2>
-                    <p class="tool-desc" data-i18n="tool_rename_desc">支持顺序编号、查找替换、添加前后缀等多种模式，完全本地处理</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_rename_f1">顺序编号自动补零</li>
-                        <li data-i18n="tool_rename_f2">查找替换/正则替换</li>
-                        <li data-i18n="tool_rename_f3">拖拽排序调整顺序</li>
-                        <li data-i18n="tool_rename_f4">打包下载/逐个下载</li>
-                    </ul>
-                    <a href="file-renamer.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- 手持弹幕 -->
-            <div class="tool-card" data-tool="danmaku" data-category="utility">
-                <img src="screenshots/handheld-danmaku.webp" alt="手持弹幕截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">📢</div>
-                    <h2 class="tool-title" data-i18n="tool_danmaku_title">手持弹幕</h2>
-                    <p class="tool-desc" data-i18n="tool_danmaku_desc">演唱会应援、活动表白、聚会互动必备的LED滚动字幕生成器</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_danmaku_f1">自定义弹幕内容和颜色</li>
-                        <li data-i18n="tool_danmaku_f2">可调节滚动速度和字体大小</li>
-                        <li data-i18n="tool_danmaku_f3">多种预设配色方案</li>
-                        <li data-i18n="tool_danmaku_f4">双击屏幕快速退出</li>
-                    </ul>
-                    <a href="handheld-danmaku.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- 在线节拍器 -->
-            <div class="tool-card" data-tool="metronome" data-category="utility">
-                <img src="screenshots/metronome.webp" alt="在线节拍器截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">🎵</div>
-                    <h2 class="tool-title" data-i18n="tool_metronome_title">在线节拍器</h2>
-                    <p class="tool-desc" data-i18n="tool_metronome_desc">音乐练习必备工具，帮助你保持精准节奏，支持多种拍号和音色</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_metronome_f1">40-220 BPM 速度调节</li>
-                        <li data-i18n="tool_metronome_f2">支持 2/4、3/4、4/4、6/8 拍号</li>
-                        <li data-i18n="tool_metronome_f3">电子音/钢琴音色可选</li>
-                        <li data-i18n="tool_metronome_f4">可自定义强弱拍</li>
-                    </ul>
-                    <a href="metronome.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- 亲戚关系计算器 -->
-            <div class="tool-card" data-tool="relative" data-category="utility">
-                <img src="screenshots/relative-calculator.webp" alt="亲戚关系计算器截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">👨‍👩‍👧‍👦</div>
-                    <h2 class="tool-title" data-i18n="tool_relative_title">亲戚关系计算器</h2>
-                    <p class="tool-desc" data-i18n="tool_relative_desc">快速查询中国家庭亲戚称呼，再也不怕叫错七大姑八大姨</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_relative_f1">支持复杂亲戚关系链计算</li>
-                        <li data-i18n="tool_relative_f2">覆盖父系母系血亲姻亲</li>
-                        <li data-i18n="tool_relative_f3">提供多种称呼别名</li>
-                        <li data-i18n="tool_relative_f4">快捷按钮一键选择</li>
-                    </ul>
-                    <a href="relative-calculator.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
             <!-- 图片格式转换 -->
-            <div class="tool-card" data-tool="imgconvert" data-category="image">
+            <div class="tool-card" data-tool="imgconvert" data-category="image" data-sort="10">
                 <img src="screenshots/image-converter.webp" alt="图片格式转换截图" class="tool-screenshot">
                 <div class="tool-content">
                     <div class="tool-icon">🔄</div>
@@ -1311,110 +1024,8 @@
                 </div>
             </div>
 
-            <!-- 音频剪辑 -->
-            <div class="tool-card" data-tool="audio" data-category="media">
-                <img src="screenshots/audio-cutter.webp" alt="音频剪辑截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">🎧</div>
-                    <h2 class="tool-title" data-i18n="tool_audio_title">音频剪辑</h2>
-                    <p class="tool-desc" data-i18n="tool_audio_desc">在线音频剪辑工具，可视化波形操作，精准截取音频片段</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_audio_f1">可视化波形展示</li>
-                        <li data-i18n="tool_audio_f2">支持 MP3/WAV/M4A/FLAC/AAC 格式</li>
-                        <li data-i18n="tool_audio_f3">拖拽选择剪辑区间</li>
-                        <li data-i18n="tool_audio_f4">快捷键操作提升效率</li>
-                    </ul>
-                    <a href="audio-cutter.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- 中文简繁体转换 -->
-            <div class="tool-card" data-tool="chinese" data-category="text">
-                <img src="screenshots/chinese-converter.webp" alt="中文简繁体转换截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">繁简</div>
-                    <h2 class="tool-title" data-i18n="tool_chinese_title">中文简繁体转换</h2>
-                    <p class="tool-desc" data-i18n="tool_chinese_desc">简繁体互转工具，支持大陆简体、港澳繁体、台湾正体、马新简体</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_chinese_f1">简繁体单字互转</li>
-                        <li data-i18n="tool_chinese_f2">智能识别地区习惯用语</li>
-                        <li data-i18n="tool_chinese_f3">支持实时转换模式</li>
-                        <li data-i18n="tool_chinese_f4">一键复制/下载结果</li>
-                    </ul>
-                    <a href="chinese-converter.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- Claude Code 历史记录 -->
-            <div class="tool-card" data-tool="claude" data-category="utility">
-                <img src="screenshots/claude-history-viewer.webp" alt="Claude Code 历史记录截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">💬</div>
-                    <h2 class="tool-title" data-i18n="tool_claude_title">Claude Code 历史记录</h2>
-                    <p class="tool-desc" data-i18n="tool_claude_desc">查看和搜索 Claude Code 的历史对话记录，美观易用的可视化界面</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_claude_f1">支持 JSONL 格式导入</li>
-                        <li data-i18n="tool_claude_f2">按项目/时间分组查看</li>
-                        <li data-i18n="tool_claude_f3">全文搜索与内容筛选</li>
-                        <li data-i18n="tool_claude_f4">导出为 Markdown/JSON/文本</li>
-                    </ul>
-                    <a href="claude-history-viewer.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- 在线图片编辑器 -->
-            <div class="tool-card" data-tool="imgedit" data-category="image">
-                <img src="screenshots/image-editor.webp" alt="在线图片编辑器截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">🖼️</div>
-                    <h2 class="tool-title" data-i18n="tool_imgedit_title">在线图片编辑器</h2>
-                    <p class="tool-desc" data-i18n="tool_imgedit_desc">功能强大的在线P图工具，支持裁切、滤镜、调色、标注、抠图等</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_imgedit_f1">裁切/翻转/旋转变换</li>
-                        <li data-i18n="tool_imgedit_f2">12种滤镜（灰度/浮雕/像素化等）</li>
-                        <li data-i18n="tool_imgedit_f3">调色：亮度/对比度/饱和度/色调</li>
-                        <li data-i18n="tool_imgedit_f4">标注绘图与纯色抠图</li>
-                    </ul>
-                    <a href="image-editor.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- 时间戳转换工具 -->
-            <div class="tool-card" data-tool="timestamp" data-category="developer">
-                <img src="screenshots/timestamp-converter.webp" alt="时间戳转换工具截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">🕐</div>
-                    <h2 class="tool-title" data-i18n="tool_timestamp_title">时间戳转换工具</h2>
-                    <p class="tool-desc" data-i18n="tool_timestamp_desc">Unix时间戳与日期时间互转，支持多时区对照，提供各语言代码示例</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_timestamp_f1">时间戳/日期时间互转</li>
-                        <li data-i18n="tool_timestamp_f2">12个时区实时对照</li>
-                        <li data-i18n="tool_timestamp_f3">18种编程语言代码示例</li>
-                        <li data-i18n="tool_timestamp_f4">夏令时说明与常见时间戳</li>
-                    </ul>
-                    <a href="timestamp-converter.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- 社交视频下载器 -->
-            <div class="tool-card" data-tool="social" data-category="media">
-                <img src="screenshots/social-video-downloader.webp" alt="社交视频下载器截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">📥</div>
-                    <h2 class="tool-title" data-i18n="tool_social_title">社交视频下载</h2>
-                    <p class="tool-desc" data-i18n="tool_social_desc">免费下载 X、TikTok、Instagram、Facebook、YouTube 视频，支持无水印高清画质</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_social_f1">支持 5 大主流社交平台</li>
-                        <li data-i18n="tool_social_f2">无水印高清视频下载</li>
-                        <li data-i18n="tool_social_f3">支持音频单独提取</li>
-                        <li data-i18n="tool_social_f4">历史记录快速访问</li>
-                    </ul>
-                    <a href="social-video-downloader.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
             <!-- 密码生成器 -->
-            <div class="tool-card" data-tool="password" data-category="utility">
+            <div class="tool-card" data-tool="password" data-category="utility" data-sort="11">
                 <img src="screenshots/password-generator.webp" alt="密码生成器截图" class="tool-screenshot">
                 <div class="tool-content">
                     <div class="tool-icon">🔐</div>
@@ -1430,25 +1041,110 @@
                 </div>
             </div>
 
-            <!-- QR码生成器 -->
-            <div class="tool-card" data-tool="qrcode" data-category="image">
-                <img src="screenshots/qr-code-generator.webp" alt="QR码生成器截图" class="tool-screenshot">
+            <!-- JSON 查看器 -->
+            <div class="tool-card" data-tool="json" data-category="developer" data-sort="12">
+                <img src="screenshots/json-viewer.webp" alt="JSON 查看器截图" class="tool-screenshot">
                 <div class="tool-content">
-                    <div class="tool-icon">📱</div>
-                    <h2 class="tool-title" data-i18n="tool_qrcode_title">QR 码生成器</h2>
-                    <p class="tool-desc" data-i18n="tool_qrcode_desc">生成自定义二维码，支持 URL、文本、WiFi、邮件等多种格式</p>
+                    <div class="tool-icon">📋</div>
+                    <h2 class="tool-title" data-i18n="tool_json_title">JSON 查看器</h2>
+                    <p class="tool-desc" data-i18n="tool_json_desc">美观的 JSON 数据可视化与格式化工具</p>
                     <ul class="tool-features">
-                        <li data-i18n="tool_qrcode_f1">支持 URL/文本/WiFi/邮件/电话/短信</li>
-                        <li data-i18n="tool_qrcode_f2">自定义颜色和大小</li>
-                        <li data-i18n="tool_qrcode_f3">4级容错率可选</li>
-                        <li data-i18n="tool_qrcode_f4">一键下载 PNG 图片</li>
+                        <li data-i18n="tool_json_f1">语法高亮显示</li>
+                        <li data-i18n="tool_json_f2">节点折叠/展开</li>
+                        <li data-i18n="tool_json_f3">关键字搜索过滤</li>
+                        <li data-i18n="tool_json_f4">支持粘贴或上传文件</li>
                     </ul>
-                    <a href="qr-code-generator.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                    <a href="json-viewer.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- 在线图片编辑器 -->
+            <div class="tool-card" data-tool="imgedit" data-category="image" data-sort="13">
+                <img src="screenshots/image-editor.webp" alt="在线图片编辑器截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">🖼️</div>
+                    <h2 class="tool-title" data-i18n="tool_imgedit_title">在线图片编辑器</h2>
+                    <p class="tool-desc" data-i18n="tool_imgedit_desc">功能强大的在线P图工具，支持裁切、滤镜、调色、标注、抠图等</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_imgedit_f1">裁切/翻转/旋转变换</li>
+                        <li data-i18n="tool_imgedit_f2">12种滤镜（灰度/浮雕/像素化等）</li>
+                        <li data-i18n="tool_imgedit_f3">调色：亮度/对比度/饱和度/色调</li>
+                        <li data-i18n="tool_imgedit_f4">标注绘图与纯色抠图</li>
+                    </ul>
+                    <a href="image-editor.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- Markdown 编辑器 -->
+            <div class="tool-card" data-tool="markdown" data-category="text" data-sort="14">
+                <img src="screenshots/markdown-editor.webp" alt="Markdown 编辑器截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">📝</div>
+                    <h2 class="tool-title" data-i18n="tool_markdown_title">Markdown 编辑器</h2>
+                    <p class="tool-desc" data-i18n="tool_markdown_desc">在线 Markdown 编辑与实时预览，支持代码高亮和 HTML 导出</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_markdown_f1">实时双栏编辑预览</li>
+                        <li data-i18n="tool_markdown_f2">支持代码块语法高亮</li>
+                        <li data-i18n="tool_markdown_f3">一键复制 Markdown/HTML</li>
+                        <li data-i18n="tool_markdown_f4">本地处理，保护隐私</li>
+                    </ul>
+                    <a href="markdown-editor.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- 图片合并为PDF -->
+            <div class="tool-card" data-tool="img2pdf" data-category="pdf" data-sort="15">
+                <img src="screenshots/image-to-pdf.webp" alt="图片合并为PDF截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">📄</div>
+                    <h2 class="tool-title" data-i18n="tool_img2pdf_title">图片合并为PDF</h2>
+                    <p class="tool-desc" data-i18n="tool_img2pdf_desc">多图拖拽排序、截图粘贴、手机扫码上传，一键生成高质量PDF</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_img2pdf_f1">多种上传方式（拖拽/粘贴/扫码）</li>
+                        <li data-i18n="tool_img2pdf_f2">拖拽调整图片顺序</li>
+                        <li data-i18n="tool_img2pdf_f3">自定义页面尺寸和质量</li>
+                        <li data-i18n="tool_img2pdf_f4">一键生成PDF并下载</li>
+                    </ul>
+                    <a href="image-to-pdf.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- 代码格式化器 -->
+            <div class="tool-card" data-tool="code formatter json sql prettier" data-category="developer" data-sort="16">
+                <img src="screenshots/code-formatter.webp" alt="代码格式化器截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">✨</div>
+                    <h2 class="tool-title" data-i18n="tool_codefmt_title">代码格式化器</h2>
+                    <p class="tool-desc" data-i18n="tool_codefmt_desc">一键美化 JSON、JS、TS、HTML、CSS、Markdown、SQL 代码</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_codefmt_f1">集成 Prettier 与 SQL Formatter</li>
+                        <li data-i18n="tool_codefmt_f2">支持压缩与格式化切换</li>
+                        <li data-i18n="tool_codefmt_f3">自动整理缩进与空格风格</li>
+                        <li data-i18n="tool_codefmt_f4">复制结果快速复用</li>
+                    </ul>
+                    <a href="code-formatter.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- 文本对比 -->
+            <div class="tool-card" data-tool="diff" data-category="text" data-sort="17">
+                <img src="screenshots/text-diff.webp" alt="文本对比工具截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">🧾</div>
+                    <h2 class="tool-title" data-i18n="tool_diff_title">文本对比工具</h2>
+                    <p class="tool-desc" data-i18n="tool_diff_desc">快速比较两段文本差异，高亮新增、删除和修改内容</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_diff_f1">增删改差异高亮</li>
+                        <li data-i18n="tool_diff_f2">支持忽略大小写和空格</li>
+                        <li data-i18n="tool_diff_f3">适用于代码和文档审阅</li>
+                        <li data-i18n="tool_diff_f4">比较结果一键复制</li>
+                    </ul>
+                    <a href="text-diff.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
                 </div>
             </div>
 
             <!-- 字数统计工具 -->
-            <div class="tool-card" data-tool="wordcount" data-category="text">
+            <div class="tool-card" data-tool="wordcount" data-category="text" data-sort="18">
                 <img src="screenshots/word-counter.webp" alt="字数统计工具截图" class="tool-screenshot">
                 <div class="tool-content">
                     <div class="tool-icon">📊</div>
@@ -1464,8 +1160,76 @@
                 </div>
             </div>
 
+            <!-- 万能计算器 -->
+            <div class="tool-card" data-tool="calc" data-category="utility" data-sort="19">
+                <img src="screenshots/calculator.webp" alt="万能计算器截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">🧮</div>
+                    <h2 class="tool-title" data-i18n="tool_calc_title">万能计算器</h2>
+                    <p class="tool-desc" data-i18n="tool_calc_desc">集成科学计算器、利率计算器、子网掩码及16种单位换算工具</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_calc_f1">科学计算器（三角/对数/阶乘）</li>
+                        <li data-i18n="tool_calc_f2">贷款利率计算器</li>
+                        <li data-i18n="tool_calc_f3">子网掩码/IP 计算器</li>
+                        <li data-i18n="tool_calc_f4">长度/面积/体积/温度等换算</li>
+                    </ul>
+                    <a href="calculator.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- 单位换算器 -->
+            <div class="tool-card" data-tool="unit converter metric imperial" data-category="utility" data-sort="20">
+                <img src="screenshots/unit-converter.webp" alt="单位换算器截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">📏</div>
+                    <h2 class="tool-title" data-i18n="tool_unitconv_title">单位换算器</h2>
+                    <p class="tool-desc" data-i18n="tool_unitconv_desc">长度、重量、温度、面积、体积、速度等常见单位快速换算</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_unitconv_f1">覆盖公制与英制主流单位</li>
+                        <li data-i18n="tool_unitconv_f2">支持温度公式精确换算</li>
+                        <li data-i18n="tool_unitconv_f3">输入即算，结果实时刷新</li>
+                        <li data-i18n="tool_unitconv_f4">一键复制换算结果</li>
+                    </ul>
+                    <a href="unit-converter.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- 正则表达式测试 -->
+            <div class="tool-card" data-tool="regex" data-category="developer" data-sort="21">
+                <img src="screenshots/regex-tester.webp" alt="正则表达式测试截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">🔍</div>
+                    <h2 class="tool-title" data-i18n="tool_regex_title">正则表达式测试</h2>
+                    <p class="tool-desc" data-i18n="tool_regex_desc">在线正则表达式验证、匹配、提取工具，支持多语言代码生成</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_regex_f1">实时正则匹配高亮显示</li>
+                        <li data-i18n="tool_regex_f2">常用正则表达式模板</li>
+                        <li data-i18n="tool_regex_f3">7种编程语言代码生成</li>
+                        <li data-i18n="tool_regex_f4">元字符和语法参考文档</li>
+                    </ul>
+                    <a href="regex-tester.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- 在线调色板 -->
+            <div class="tool-card" data-tool="color" data-category="image" data-sort="22">
+                <img src="screenshots/color-palette.webp" alt="在线调色板截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">🎨</div>
+                    <h2 class="tool-title" data-i18n="tool_color_title">在线调色板</h2>
+                    <p class="tool-desc" data-i18n="tool_color_desc">快速查找颜色编码，支持多种颜色格式转换</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_color_f1">HEX/RGB/HSL/CMYK 多格式</li>
+                        <li data-i18n="tool_color_f2">互补色/相似色/三等分色</li>
+                        <li data-i18n="tool_color_f3">收藏常用颜色</li>
+                        <li data-i18n="tool_color_f4">一键复制颜色代码</li>
+                    </ul>
+                    <a href="color-palette.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
             <!-- Base64 编解码 -->
-            <div class="tool-card" data-tool="base64" data-category="developer">
+            <div class="tool-card" data-tool="base64" data-category="developer" data-sort="23">
                 <img src="screenshots/base64-tool.webp" alt="Base64编解码截图" class="tool-screenshot">
                 <div class="tool-content">
                     <div class="tool-icon">🔣</div>
@@ -1482,7 +1246,7 @@
             </div>
 
             <!-- URL 编解码 -->
-            <div class="tool-card" data-tool="urlenc" data-category="developer">
+            <div class="tool-card" data-tool="urlenc" data-category="developer" data-sort="24">
                 <img src="screenshots/url-encoder.webp" alt="URL编解码截图" class="tool-screenshot">
                 <div class="tool-content">
                     <div class="tool-icon">🔗</div>
@@ -1498,178 +1262,127 @@
                 </div>
             </div>
 
-            <!-- Lorem Ipsum 生成器 -->
-            <div class="tool-card" data-tool="lorem" data-category="text">
-                <img src="screenshots/lorem-ipsum.webp" alt="Lorem Ipsum生成器截图" class="tool-screenshot">
+            <!-- 社交视频下载器 -->
+            <div class="tool-card" data-tool="social" data-category="media" data-sort="25">
+                <img src="screenshots/social-video-downloader.webp" alt="社交视频下载器截图" class="tool-screenshot">
                 <div class="tool-content">
-                    <div class="tool-icon">📝</div>
-                    <h2 class="tool-title" data-i18n="tool_lorem_title">Lorem Ipsum 生成器</h2>
-                    <p class="tool-desc" data-i18n="tool_lorem_desc">生成占位文本，支持经典拉丁文、中文和 Hipster 三种风格</p>
+                    <div class="tool-icon">📥</div>
+                    <h2 class="tool-title" data-i18n="tool_social_title">社交视频下载</h2>
+                    <p class="tool-desc" data-i18n="tool_social_desc">免费下载 X、TikTok、Instagram、Facebook、YouTube 视频，支持无水印高清画质</p>
                     <ul class="tool-features">
-                        <li data-i18n="tool_lorem_f1">经典/中文/Hipster 三种文本风格</li>
-                        <li data-i18n="tool_lorem_f2">段落/句子/单词三种单位</li>
-                        <li data-i18n="tool_lorem_f3">可自定义生成数量 1-100</li>
-                        <li data-i18n="tool_lorem_f4">实时文本统计和一键复制</li>
+                        <li data-i18n="tool_social_f1">支持 5 大主流社交平台</li>
+                        <li data-i18n="tool_social_f2">无水印高清视频下载</li>
+                        <li data-i18n="tool_social_f3">支持音频单独提取</li>
+                        <li data-i18n="tool_social_f4">历史记录快速访问</li>
                     </ul>
-                    <a href="lorem-ipsum.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                    <a href="social-video-downloader.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
                 </div>
             </div>
 
-            <!-- Markdown 编辑器 -->
-            <div class="tool-card" data-tool="markdown" data-category="text">
-                <img src="screenshots/markdown-editor.webp" alt="Markdown 编辑器截图" class="tool-screenshot">
+            <!-- 跨媒体格式转换 -->
+            <div class="tool-card" data-tool="file converter video gif audio svg base64" data-category="media" data-sort="26">
+                <img src="screenshots/file-converter.webp" alt="跨媒体格式转换截图" class="tool-screenshot">
                 <div class="tool-content">
-                    <div class="tool-icon">📝</div>
-                    <h2 class="tool-title" data-i18n="tool_markdown_title">Markdown 编辑器</h2>
-                    <p class="tool-desc" data-i18n="tool_markdown_desc">在线 Markdown 编辑与实时预览，支持代码高亮和 HTML 导出</p>
+                    <div class="tool-icon">🔄</div>
+                    <h2 class="tool-title" data-i18n="tool_fileconv_title">跨媒体格式转换</h2>
+                    <p class="tool-desc" data-i18n="tool_fileconv_desc">视频转 GIF、视频提取音频、SVG 转 PNG/JPG、图片与 Base64 互转</p>
                     <ul class="tool-features">
-                        <li data-i18n="tool_markdown_f1">实时双栏编辑预览</li>
-                        <li data-i18n="tool_markdown_f2">支持代码块语法高亮</li>
-                        <li data-i18n="tool_markdown_f3">一键复制 Markdown/HTML</li>
-                        <li data-i18n="tool_markdown_f4">本地处理，保护隐私</li>
+                        <li data-i18n="tool_fileconv_f1">视频片段转 GIF 动图</li>
+                        <li data-i18n="tool_fileconv_f2">视频提取音频为 WAV</li>
+                        <li data-i18n="tool_fileconv_f3">SVG 转 PNG/JPG 支持缩放</li>
+                        <li data-i18n="tool_fileconv_f4">图片 ↔ Base64 双向转换</li>
                     </ul>
-                    <a href="markdown-editor.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                    <a href="file-converter.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
                 </div>
             </div>
 
-            <!-- 文本对比 -->
-            <div class="tool-card" data-tool="diff" data-category="text">
-                <img src="screenshots/text-diff.webp" alt="文本对比工具截图" class="tool-screenshot">
+            <!-- 音频剪辑 -->
+            <div class="tool-card" data-tool="audio" data-category="media" data-sort="27">
+                <img src="screenshots/audio-cutter.webp" alt="音频剪辑截图" class="tool-screenshot">
                 <div class="tool-content">
-                    <div class="tool-icon">🧾</div>
-                    <h2 class="tool-title" data-i18n="tool_diff_title">文本对比工具</h2>
-                    <p class="tool-desc" data-i18n="tool_diff_desc">快速比较两段文本差异，高亮新增、删除和修改内容</p>
+                    <div class="tool-icon">🎧</div>
+                    <h2 class="tool-title" data-i18n="tool_audio_title">音频剪辑</h2>
+                    <p class="tool-desc" data-i18n="tool_audio_desc">在线音频剪辑工具，可视化波形操作，精准截取音频片段</p>
                     <ul class="tool-features">
-                        <li data-i18n="tool_diff_f1">增删改差异高亮</li>
-                        <li data-i18n="tool_diff_f2">支持忽略大小写和空格</li>
-                        <li data-i18n="tool_diff_f3">适用于代码和文档审阅</li>
-                        <li data-i18n="tool_diff_f4">比较结果一键复制</li>
+                        <li data-i18n="tool_audio_f1">可视化波形展示</li>
+                        <li data-i18n="tool_audio_f2">支持 MP3/WAV/M4A/FLAC/AAC 格式</li>
+                        <li data-i18n="tool_audio_f3">拖拽选择剪辑区间</li>
+                        <li data-i18n="tool_audio_f4">快捷键操作提升效率</li>
                     </ul>
-                    <a href="text-diff.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                    <a href="audio-cutter.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
                 </div>
             </div>
 
-            <!-- CSV JSON 转换 -->
-            <div class="tool-card" data-tool="csvjson" data-category="developer">
-                <img src="screenshots/csv-json.webp" alt="CSV JSON 转换截图" class="tool-screenshot">
+            <!-- 图片水印工具 -->
+            <div class="tool-card" data-tool="watermark image text" data-category="image" data-sort="28">
+                <img src="screenshots/watermark-tool.webp" alt="图片水印工具截图" class="tool-screenshot">
                 <div class="tool-content">
-                    <div class="tool-icon">🔁</div>
-                    <h2 class="tool-title" data-i18n="tool_csvjson_title">CSV JSON 转换</h2>
-                    <p class="tool-desc" data-i18n="tool_csvjson_desc">CSV 与 JSON 双向转换工具，适合数据清洗和开发调试</p>
+                    <div class="tool-icon">💧</div>
+                    <h2 class="tool-title" data-i18n="tool_watermark_title">图片水印工具</h2>
+                    <p class="tool-desc" data-i18n="tool_watermark_desc">给图片添加文字水印，支持透明度、角度、位置与平铺模式控制</p>
                     <ul class="tool-features">
-                        <li data-i18n="tool_csvjson_f1">CSV 转 JSON，JSON 转 CSV</li>
-                        <li data-i18n="tool_csvjson_f2">支持表头与分隔符配置</li>
-                        <li data-i18n="tool_csvjson_f3">支持 JSON 美化输出</li>
-                        <li data-i18n="tool_csvjson_f4">复制结果快速复用</li>
+                        <li data-i18n="tool_watermark_f1">自定义品牌或版权文字</li>
+                        <li data-i18n="tool_watermark_f2">支持角度/字号/透明度调节</li>
+                        <li data-i18n="tool_watermark_f3">支持单点与平铺两种布局</li>
+                        <li data-i18n="tool_watermark_f4">导出带水印图片</li>
                     </ul>
-                    <a href="csv-json.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                    <a href="watermark-tool.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
                 </div>
             </div>
 
-            <!-- Cron 表达式生成器 -->
-            <div class="tool-card" data-tool="cron" data-category="developer">
-                <img src="screenshots/cron-generator.webp" alt="Cron 表达式生成器截图" class="tool-screenshot">
+            <!-- 证件照裁剪 & 透明水印 -->
+            <div class="tool-card" data-tool="idphoto" data-category="image" data-sort="29">
+                <img src="screenshots/id-photo-tool.webp" alt="证件照裁剪 & 透明水印截图" class="tool-screenshot">
                 <div class="tool-content">
-                    <div class="tool-icon">⏰</div>
-                    <h2 class="tool-title" data-i18n="tool_cron_title">Cron 表达式生成器</h2>
-                    <p class="tool-desc" data-i18n="tool_cron_desc">可视化生成 Cron 表达式并实时查看可读说明</p>
+                    <div class="tool-icon">📷</div>
+                    <h2 class="tool-title" data-i18n="tool_idphoto_title">证件照裁剪 & 透明水印</h2>
+                    <p class="tool-desc" data-i18n="tool_idphoto_desc">本地离线处理证件照：裁剪、改尺寸、压缩、添加透明文字水印</p>
                     <ul class="tool-features">
-                        <li data-i18n="tool_cron_f1">分钟/小时/日期可视化配置</li>
-                        <li data-i18n="tool_cron_f2">内置常用定时模板</li>
-                        <li data-i18n="tool_cron_f3">表达式自动语义化解释</li>
-                        <li data-i18n="tool_cron_f4">一键复制用于 crontab</li>
+                        <li data-i18n="tool_idphoto_f1">1寸/2寸/护照照等预设尺寸</li>
+                        <li data-i18n="tool_idphoto_f2">自由裁剪与尺寸调整</li>
+                        <li data-i18n="tool_idphoto_f3">透明文字水印（单点/平铺）</li>
+                        <li data-i18n="tool_idphoto_f4">100%离线处理保护隐私</li>
                     </ul>
-                    <a href="cron-generator.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                    <a href="id-photo-tool.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
                 </div>
             </div>
 
-            <!-- OCR 图片文字识别 -->
-            <div class="tool-card" data-tool="ocr ai image text" data-category="image">
-                <img src="screenshots/ocr-tool.webp" alt="OCR 图片文字识别截图" class="tool-screenshot">
+            <!-- 电子签名工具 -->
+            <div class="tool-card" data-tool="esign signature pdf" data-category="pdf" data-sort="30">
+                <img src="screenshots/e-sign.webp" alt="电子签名工具截图" class="tool-screenshot">
                 <div class="tool-content">
-                    <div class="tool-icon">🔤</div>
-                    <h2 class="tool-title" data-i18n="tool_ocr_title">OCR 图片文字识别</h2>
-                    <p class="tool-desc" data-i18n="tool_ocr_desc">提取图片中的文本内容，支持多语言识别与本地隐私处理</p>
+                    <div class="tool-icon">✍️</div>
+                    <h2 class="tool-title" data-i18n="tool_esign_title">电子签名工具</h2>
+                    <p class="tool-desc" data-i18n="tool_esign_desc">上传 PDF 并添加手写签名，设置页码坐标后导出签署文件</p>
                     <ul class="tool-features">
-                        <li data-i18n="tool_ocr_f1">支持截图、拍照图与扫描图识别</li>
-                        <li data-i18n="tool_ocr_f2">支持中英文等多语言 OCR</li>
-                        <li data-i18n="tool_ocr_f3">识别结果可复制或下载</li>
-                        <li data-i18n="tool_ocr_f4">浏览器本地处理，无需上传</li>
+                        <li data-i18n="tool_esign_f1">画布手写签名即时预览</li>
+                        <li data-i18n="tool_esign_f2">指定页码和签名位置</li>
+                        <li data-i18n="tool_esign_f3">支持调整签名尺寸</li>
+                        <li data-i18n="tool_esign_f4">导出签署后的 PDF 文件</li>
                     </ul>
-                    <a href="ocr-tool.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                    <a href="e-sign.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
                 </div>
             </div>
 
-            <!-- 图片去背景 -->
-            <div class="tool-card" data-tool="background remover cutout" data-category="image">
-                <img src="screenshots/bg-remover.webp" alt="图片去背景截图" class="tool-screenshot">
+            <!-- 时间戳转换工具 -->
+            <div class="tool-card" data-tool="timestamp" data-category="developer" data-sort="31">
+                <img src="screenshots/timestamp-converter.webp" alt="时间戳转换工具截图" class="tool-screenshot">
                 <div class="tool-content">
-                    <div class="tool-icon">✂️</div>
-                    <h2 class="tool-title" data-i18n="tool_bgremover_title">图片去背景</h2>
-                    <p class="tool-desc" data-i18n="tool_bgremover_desc">AI 自动抠图，快速导出透明 PNG，适合电商图与设计素材</p>
+                    <div class="tool-icon">🕐</div>
+                    <h2 class="tool-title" data-i18n="tool_timestamp_title">时间戳转换工具</h2>
+                    <p class="tool-desc" data-i18n="tool_timestamp_desc">Unix时间戳与日期时间互转，支持多时区对照，提供各语言代码示例</p>
                     <ul class="tool-features">
-                        <li data-i18n="tool_bgremover_f1">自动识别主体与背景边缘</li>
-                        <li data-i18n="tool_bgremover_f2">输出透明背景 PNG</li>
-                        <li data-i18n="tool_bgremover_f3">无需安装，无需注册</li>
-                        <li data-i18n="tool_bgremover_f4">纯前端处理更安全</li>
+                        <li data-i18n="tool_timestamp_f1">时间戳/日期时间互转</li>
+                        <li data-i18n="tool_timestamp_f2">12个时区实时对照</li>
+                        <li data-i18n="tool_timestamp_f3">18种编程语言代码示例</li>
+                        <li data-i18n="tool_timestamp_f4">夏令时说明与常见时间戳</li>
                     </ul>
-                    <a href="bg-remover.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- 屏幕录制器 -->
-            <div class="tool-card" data-tool="screen recorder video capture" data-category="media">
-                <img src="screenshots/screen-recorder.webp" alt="屏幕录制器截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">🖥️</div>
-                    <h2 class="tool-title" data-i18n="tool_screenrec_title">屏幕录制器</h2>
-                    <p class="tool-desc" data-i18n="tool_screenrec_desc">在线录制屏幕内容，可选麦克风音频，完成后一键导出 WebM</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_screenrec_f1">支持标签页、窗口或全屏录制</li>
-                        <li data-i18n="tool_screenrec_f2">可叠加麦克风解说音频</li>
-                        <li data-i18n="tool_screenrec_f3">暂停/继续/停止全流程控制</li>
-                        <li data-i18n="tool_screenrec_f4">录制结束立即下载文件</li>
-                    </ul>
-                    <a href="screen-recorder.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- 番茄钟 -->
-            <div class="tool-card" data-tool="pomodoro focus timer" data-category="utility">
-                <img src="screenshots/pomodoro.webp" alt="番茄钟截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">🍅</div>
-                    <h2 class="tool-title" data-i18n="tool_pomodoro_title">番茄钟</h2>
-                    <p class="tool-desc" data-i18n="tool_pomodoro_desc">专注计时与休息循环管理，支持阶段提醒、快捷键与节奏预设</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_pomodoro_f1">专注/短休息/长休息自动切换</li>
-                        <li data-i18n="tool_pomodoro_f2">支持多组预设计时方案</li>
-                        <li data-i18n="tool_pomodoro_f3">浏览器通知提醒阶段变化</li>
-                        <li data-i18n="tool_pomodoro_f4">记录已完成的专注轮次</li>
-                    </ul>
-                    <a href="pomodoro.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- 单位换算器 -->
-            <div class="tool-card" data-tool="unit converter metric imperial" data-category="utility">
-                <img src="screenshots/unit-converter.webp" alt="单位换算器截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">📏</div>
-                    <h2 class="tool-title" data-i18n="tool_unitconv_title">单位换算器</h2>
-                    <p class="tool-desc" data-i18n="tool_unitconv_desc">长度、重量、温度、面积、体积、速度等常见单位快速换算</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_unitconv_f1">覆盖公制与英制主流单位</li>
-                        <li data-i18n="tool_unitconv_f2">支持温度公式精确换算</li>
-                        <li data-i18n="tool_unitconv_f3">输入即算，结果实时刷新</li>
-                        <li data-i18n="tool_unitconv_f4">一键复制换算结果</li>
-                    </ul>
-                    <a href="unit-converter.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                    <a href="timestamp-converter.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
                 </div>
             </div>
 
             <!-- 发票生成器 -->
-            <div class="tool-card" data-tool="invoice generator pdf business" data-category="utility">
+            <div class="tool-card" data-tool="invoice generator pdf business" data-category="utility" data-sort="32">
                 <img src="screenshots/invoice-generator.webp" alt="发票生成器截图" class="tool-screenshot">
                 <div class="tool-content">
                     <div class="tool-icon">🧾</div>
@@ -1686,7 +1399,7 @@
             </div>
 
             <!-- API 测试器 -->
-            <div class="tool-card" data-tool="api tester http client postman" data-category="developer">
+            <div class="tool-card" data-tool="api tester http client postman" data-category="developer" data-sort="33">
                 <img src="screenshots/api-tester.webp" alt="API 测试器截图" class="tool-screenshot">
                 <div class="tool-content">
                     <div class="tool-icon">🧪</div>
@@ -1702,76 +1415,25 @@
                 </div>
             </div>
 
-            <!-- Hex 文件查看器 -->
-            <div class="tool-card" data-tool="hex viewer binary" data-category="developer">
-                <img src="screenshots/hex-viewer.webp" alt="Hex 文件查看器截图" class="tool-screenshot">
+            <!-- M3U8 下载器 -->
+            <div class="tool-card" data-tool="m3u8" data-category="media" data-sort="34">
+                <img src="screenshots/m3u8-downloader.webp" alt="M3U8 视频下载器截图" class="tool-screenshot">
                 <div class="tool-content">
-                    <div class="tool-icon">🧬</div>
-                    <h2 class="tool-title" data-i18n="tool_hexview_title">Hex 文件查看器</h2>
-                    <p class="tool-desc" data-i18n="tool_hexview_desc">按偏移查看二进制字节内容，支持 HEX 模式搜索和分页浏览</p>
+                    <div class="tool-icon">🎬</div>
+                    <h2 class="tool-title" data-i18n="tool_m3u8_title">M3U8 视频下载器</h2>
+                    <p class="tool-desc" data-i18n="tool_m3u8_desc">批量下载 M3U8 流媒体视频并保存为本地 MP4 文件</p>
                     <ul class="tool-features">
-                        <li data-i18n="tool_hexview_f1">显示偏移地址与 ASCII 对照</li>
-                        <li data-i18n="tool_hexview_f2">支持字节序列签名搜索</li>
-                        <li data-i18n="tool_hexview_f3">大文件分页加载不卡顿</li>
-                        <li data-i18n="tool_hexview_f4">适合调试与取证分析</li>
+                        <li data-i18n="tool_m3u8_f1">单条或批量导入 M3U8 链接</li>
+                        <li data-i18n="tool_m3u8_f2">实时视频预览（自动播放）</li>
+                        <li data-i18n="tool_m3u8_f3">下载进度可视化</li>
+                        <li data-i18n="tool_m3u8_f4">支持暂停/继续下载</li>
                     </ul>
-                    <a href="hex-viewer.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- 代码格式化器 -->
-            <div class="tool-card" data-tool="code formatter json sql prettier" data-category="developer">
-                <img src="screenshots/code-formatter.webp" alt="代码格式化器截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">✨</div>
-                    <h2 class="tool-title" data-i18n="tool_codefmt_title">代码格式化器</h2>
-                    <p class="tool-desc" data-i18n="tool_codefmt_desc">一键美化 JSON、JS、TS、HTML、CSS、Markdown、SQL 代码</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_codefmt_f1">集成 Prettier 与 SQL Formatter</li>
-                        <li data-i18n="tool_codefmt_f2">支持压缩与格式化切换</li>
-                        <li data-i18n="tool_codefmt_f3">自动整理缩进与空格风格</li>
-                        <li data-i18n="tool_codefmt_f4">复制结果快速复用</li>
-                    </ul>
-                    <a href="code-formatter.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- YAML/TOML 编辑器 -->
-            <div class="tool-card" data-tool="yaml toml json converter" data-category="developer">
-                <img src="screenshots/yaml-editor.webp" alt="YAML TOML 编辑器截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">⚙️</div>
-                    <h2 class="tool-title" data-i18n="tool_yamledit_title">YAML/TOML 编辑器</h2>
-                    <p class="tool-desc" data-i18n="tool_yamledit_desc">配置文件校验与互转，支持 YAML、TOML、JSON 三格式工作流</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_yamledit_f1">YAML/TOML/JSON 双向转换</li>
-                        <li data-i18n="tool_yamledit_f2">语法错误定位更直观</li>
-                        <li data-i18n="tool_yamledit_f3">适合 DevOps 与配置调试</li>
-                        <li data-i18n="tool_yamledit_f4">结果可复制与下载</li>
-                    </ul>
-                    <a href="yaml-editor.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
-                </div>
-            </div>
-
-            <!-- 电子签名工具 -->
-            <div class="tool-card" data-tool="esign signature pdf" data-category="pdf">
-                <img src="screenshots/e-sign.webp" alt="电子签名工具截图" class="tool-screenshot">
-                <div class="tool-content">
-                    <div class="tool-icon">✍️</div>
-                    <h2 class="tool-title" data-i18n="tool_esign_title">电子签名工具</h2>
-                    <p class="tool-desc" data-i18n="tool_esign_desc">上传 PDF 并添加手写签名，设置页码坐标后导出签署文件</p>
-                    <ul class="tool-features">
-                        <li data-i18n="tool_esign_f1">画布手写签名即时预览</li>
-                        <li data-i18n="tool_esign_f2">指定页码和签名位置</li>
-                        <li data-i18n="tool_esign_f3">支持调整签名尺寸</li>
-                        <li data-i18n="tool_esign_f4">导出签署后的 PDF 文件</li>
-                    </ul>
-                    <a href="e-sign.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                    <a href="m3u8-downloader.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
                 </div>
             </div>
 
             <!-- PDF 加密解密 -->
-            <div class="tool-card" data-tool="pdf protect encrypt decrypt" data-category="pdf">
+            <div class="tool-card" data-tool="pdf protect encrypt decrypt" data-category="pdf" data-sort="35">
                 <img src="screenshots/pdf-protect.webp" alt="PDF 加密解密截图" class="tool-screenshot">
                 <div class="tool-content">
                     <div class="tool-icon">🔐</div>
@@ -1787,42 +1449,382 @@
                 </div>
             </div>
 
-            <!-- 跨媒体格式转换 -->
-            <div class="tool-card" data-tool="file converter video gif audio svg base64" data-category="media">
-                <img src="screenshots/file-converter.webp" alt="跨媒体格式转换截图" class="tool-screenshot">
+            <!-- CSV JSON 转换 -->
+            <div class="tool-card" data-tool="csvjson" data-category="developer" data-sort="36">
+                <img src="screenshots/csv-json.webp" alt="CSV JSON 转换截图" class="tool-screenshot">
                 <div class="tool-content">
-                    <div class="tool-icon">🔄</div>
-                    <h2 class="tool-title" data-i18n="tool_fileconv_title">跨媒体格式转换</h2>
-                    <p class="tool-desc" data-i18n="tool_fileconv_desc">视频转 GIF、视频提取音频、SVG 转 PNG/JPG、图片与 Base64 互转</p>
+                    <div class="tool-icon">🔁</div>
+                    <h2 class="tool-title" data-i18n="tool_csvjson_title">CSV JSON 转换</h2>
+                    <p class="tool-desc" data-i18n="tool_csvjson_desc">CSV 与 JSON 双向转换工具，适合数据清洗和开发调试</p>
                     <ul class="tool-features">
-                        <li data-i18n="tool_fileconv_f1">视频片段转 GIF 动图</li>
-                        <li data-i18n="tool_fileconv_f2">视频提取音频为 WAV</li>
-                        <li data-i18n="tool_fileconv_f3">SVG 转 PNG/JPG 支持缩放</li>
-                        <li data-i18n="tool_fileconv_f4">图片 ↔ Base64 双向转换</li>
+                        <li data-i18n="tool_csvjson_f1">CSV 转 JSON，JSON 转 CSV</li>
+                        <li data-i18n="tool_csvjson_f2">支持表头与分隔符配置</li>
+                        <li data-i18n="tool_csvjson_f3">支持 JSON 美化输出</li>
+                        <li data-i18n="tool_csvjson_f4">复制结果快速复用</li>
                     </ul>
-                    <a href="file-converter.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                    <a href="csv-json.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
                 </div>
             </div>
 
-            <!-- 图片水印工具 -->
-            <div class="tool-card" data-tool="watermark image text" data-category="image">
-                <img src="screenshots/watermark-tool.webp" alt="图片水印工具截图" class="tool-screenshot">
+            <!-- Cron 表达式生成器 -->
+            <div class="tool-card" data-tool="cron" data-category="developer" data-sort="37">
+                <img src="screenshots/cron-generator.webp" alt="Cron 表达式生成器截图" class="tool-screenshot">
                 <div class="tool-content">
-                    <div class="tool-icon">💧</div>
-                    <h2 class="tool-title" data-i18n="tool_watermark_title">图片水印工具</h2>
-                    <p class="tool-desc" data-i18n="tool_watermark_desc">给图片添加文字水印，支持透明度、角度、位置与平铺模式控制</p>
+                    <div class="tool-icon">⏰</div>
+                    <h2 class="tool-title" data-i18n="tool_cron_title">Cron 表达式生成器</h2>
+                    <p class="tool-desc" data-i18n="tool_cron_desc">可视化生成 Cron 表达式并实时查看可读说明</p>
                     <ul class="tool-features">
-                        <li data-i18n="tool_watermark_f1">自定义品牌或版权文字</li>
-                        <li data-i18n="tool_watermark_f2">支持角度/字号/透明度调节</li>
-                        <li data-i18n="tool_watermark_f3">支持单点与平铺两种布局</li>
-                        <li data-i18n="tool_watermark_f4">导出带水印图片</li>
+                        <li data-i18n="tool_cron_f1">分钟/小时/日期可视化配置</li>
+                        <li data-i18n="tool_cron_f2">内置常用定时模板</li>
+                        <li data-i18n="tool_cron_f3">表达式自动语义化解释</li>
+                        <li data-i18n="tool_cron_f4">一键复制用于 crontab</li>
                     </ul>
-                    <a href="watermark-tool.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                    <a href="cron-generator.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- 加解密编码工具箱 -->
+            <div class="tool-card" data-tool="crypto" data-category="developer" data-sort="38">
+                <img src="screenshots/crypto-tools.webp" alt="加解密编码工具箱截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">🔐</div>
+                    <h2 class="tool-title" data-i18n="tool_crypto_title">加解密编码工具箱</h2>
+                    <p class="tool-desc" data-i18n="tool_crypto_desc">集成 20+ 种加密解密和编码转换工具的综合工具箱</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_crypto_f1">MD5/SHA/AES/DES 等加密算法</li>
+                        <li data-i18n="tool_crypto_f2">Base64/URL/Unicode 编码转换</li>
+                        <li data-i18n="tool_crypto_f3">摩尔斯电码/条形码生成器</li>
+                        <li data-i18n="tool_crypto_f4">密码生成/UUID/IP 转换等</li>
+                    </ul>
+                    <a href="crypto-tools.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- IP归属地查询 -->
+            <div class="tool-card" data-tool="ip" data-category="developer" data-sort="39">
+                <img src="screenshots/ip-lookup.webp" alt="IP归属地查询截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">🌍</div>
+                    <h2 class="tool-title" data-i18n="tool_ip_title">IP归属地查询</h2>
+                    <p class="tool-desc" data-i18n="tool_ip_desc">查询IP地址或域名的地理位置、运营商等信息</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_ip_f1">IP/域名地理位置查询</li>
+                        <li data-i18n="tool_ip_f2">运营商、IP段范围信息</li>
+                        <li data-i18n="tool_ip_f3">显示本机IP及归属地</li>
+                        <li data-i18n="tool_ip_f4">浏览器、系统信息检测</li>
+                    </ul>
+                    <a href="ip-lookup.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- 番茄钟 -->
+            <div class="tool-card" data-tool="pomodoro focus timer" data-category="utility" data-sort="40">
+                <img src="screenshots/pomodoro.webp" alt="番茄钟截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">🍅</div>
+                    <h2 class="tool-title" data-i18n="tool_pomodoro_title">番茄钟</h2>
+                    <p class="tool-desc" data-i18n="tool_pomodoro_desc">专注计时与休息循环管理，支持阶段提醒、快捷键与节奏预设</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_pomodoro_f1">专注/短休息/长休息自动切换</li>
+                        <li data-i18n="tool_pomodoro_f2">支持多组预设计时方案</li>
+                        <li data-i18n="tool_pomodoro_f3">浏览器通知提醒阶段变化</li>
+                        <li data-i18n="tool_pomodoro_f4">记录已完成的专注轮次</li>
+                    </ul>
+                    <a href="pomodoro.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- ICO 图标制作 -->
+            <div class="tool-card" data-tool="ico" data-category="image" data-sort="41">
+                <img src="screenshots/ico-maker.webp" alt="ICO 图标制作截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">🎨</div>
+                    <h2 class="tool-title" data-i18n="tool_ico_title">ICO 图标制作</h2>
+                    <p class="tool-desc" data-i18n="tool_ico_desc">将 PNG、JPG、GIF 图片转换为 ICO 图标文件</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_ico_f1">支持 PNG/JPG/GIF 格式转换</li>
+                        <li data-i18n="tool_ico_f2">裁剪功能，多尺寸选择</li>
+                        <li data-i18n="tool_ico_f3">实时预览各尺寸效果</li>
+                        <li data-i18n="tool_ico_f4">一键生成并下载 ICO</li>
+                    </ul>
+                    <a href="ico-maker.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- 中文简繁体转换 -->
+            <div class="tool-card" data-tool="chinese" data-category="text" data-sort="42">
+                <img src="screenshots/chinese-converter.webp" alt="中文简繁体转换截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">繁简</div>
+                    <h2 class="tool-title" data-i18n="tool_chinese_title">中文简繁体转换</h2>
+                    <p class="tool-desc" data-i18n="tool_chinese_desc">简繁体互转工具，支持大陆简体、港澳繁体、台湾正体、马新简体</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_chinese_f1">简繁体单字互转</li>
+                        <li data-i18n="tool_chinese_f2">智能识别地区习惯用语</li>
+                        <li data-i18n="tool_chinese_f3">支持实时转换模式</li>
+                        <li data-i18n="tool_chinese_f4">一键复制/下载结果</li>
+                    </ul>
+                    <a href="chinese-converter.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- WebSocket 测试工具 -->
+            <div class="tool-card" data-tool="websocket" data-category="developer" data-sort="43">
+                <img src="screenshots/websocket-tester.webp" alt="WebSocket 测试工具截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">🔌</div>
+                    <h2 class="tool-title" data-i18n="tool_ws_title">WebSocket 测试工具</h2>
+                    <p class="tool-desc" data-i18n="tool_ws_desc">基于 HTML5 WebSocket 的在线调试工具，支持内网和外网</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_ws_f1">支持 ws:// 和 wss:// 协议</li>
+                        <li data-i18n="tool_ws_f2">实时消息收发与日志显示</li>
+                        <li data-i18n="tool_ws_f3">连接状态监控与统计</li>
+                        <li data-i18n="tool_ws_f4">支持 JSON 格式化发送</li>
+                    </ul>
+                    <a href="websocket-tester.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- 在线涂鸦画板 -->
+            <div class="tool-card" data-tool="paint" data-category="image" data-sort="44">
+                <img src="screenshots/paint-board.webp" alt="在线涂鸦画板截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">🎨</div>
+                    <h2 class="tool-title" data-i18n="tool_paint_title">在线涂鸦画板</h2>
+                    <p class="tool-desc" data-i18n="tool_paint_desc">功能丰富的在线画板，尽情发挥您的绘画艺术天赋</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_paint_f1">画笔/橡皮/填充/形状工具</li>
+                        <li data-i18n="tool_paint_f2">自定义颜色和透明度</li>
+                        <li data-i18n="tool_paint_f3">撤销/重做/自定义画布</li>
+                        <li data-i18n="tool_paint_f4">保存为 PNG/JPG 格式</li>
+                    </ul>
+                    <a href="paint-board.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- Whois 域名查询 -->
+            <div class="tool-card" data-tool="whois" data-category="developer" data-sort="45">
+                <img src="screenshots/whois-query.webp" alt="Whois 域名查询截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">🔍</div>
+                    <h2 class="tool-title" data-i18n="tool_whois_title">Whois 域名查询</h2>
+                    <p class="tool-desc" data-i18n="tool_whois_desc">查询域名注册信息、所有者、注册商、有效期等详细信息</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_whois_f1">域名注册商/所有者信息</li>
+                        <li data-i18n="tool_whois_f2">注册/到期日期与域名年龄</li>
+                        <li data-i18n="tool_whois_f3">DNS 名称服务器列表</li>
+                        <li data-i18n="tool_whois_f4">域名状态与原始数据</li>
+                    </ul>
+                    <a href="whois-query.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- Lorem Ipsum 生成器 -->
+            <div class="tool-card" data-tool="lorem" data-category="text" data-sort="46">
+                <img src="screenshots/lorem-ipsum.webp" alt="Lorem Ipsum生成器截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">📝</div>
+                    <h2 class="tool-title" data-i18n="tool_lorem_title">Lorem Ipsum 生成器</h2>
+                    <p class="tool-desc" data-i18n="tool_lorem_desc">生成占位文本，支持经典拉丁文、中文和 Hipster 三种风格</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_lorem_f1">经典/中文/Hipster 三种文本风格</li>
+                        <li data-i18n="tool_lorem_f2">段落/句子/单词三种单位</li>
+                        <li data-i18n="tool_lorem_f3">可自定义生成数量 1-100</li>
+                        <li data-i18n="tool_lorem_f4">实时文本统计和一键复制</li>
+                    </ul>
+                    <a href="lorem-ipsum.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- YAML/TOML 编辑器 -->
+            <div class="tool-card" data-tool="yaml toml json converter" data-category="developer" data-sort="47">
+                <img src="screenshots/yaml-editor.webp" alt="YAML TOML 编辑器截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">⚙️</div>
+                    <h2 class="tool-title" data-i18n="tool_yamledit_title">YAML/TOML 编辑器</h2>
+                    <p class="tool-desc" data-i18n="tool_yamledit_desc">配置文件校验与互转，支持 YAML、TOML、JSON 三格式工作流</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_yamledit_f1">YAML/TOML/JSON 双向转换</li>
+                        <li data-i18n="tool_yamledit_f2">语法错误定位更直观</li>
+                        <li data-i18n="tool_yamledit_f3">适合 DevOps 与配置调试</li>
+                        <li data-i18n="tool_yamledit_f4">结果可复制与下载</li>
+                    </ul>
+                    <a href="yaml-editor.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- 世界时间查询 -->
+            <div class="tool-card" data-tool="worldclock" data-category="utility" data-sort="48">
+                <img src="screenshots/world-clock.webp" alt="世界时间查询截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">🌍</div>
+                    <h2 class="tool-title" data-i18n="tool_clock_title">世界时间查询</h2>
+                    <p class="tool-desc" data-i18n="tool_clock_desc">实时查看全球各地时间，支持时差计算</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_clock_f1">全球 25+ 主要城市时间</li>
+                        <li data-i18n="tool_clock_f2">实时更新，日夜指示</li>
+                        <li data-i18n="tool_clock_f3">自动识别当前时区</li>
+                        <li data-i18n="tool_clock_f4">时差计算与城市搜索</li>
+                    </ul>
+                    <a href="world-clock.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- SQLite 查看器 -->
+            <div class="tool-card" data-tool="sqlite" data-category="developer" data-sort="49">
+                <img src="screenshots/sqlite-viewer.webp" alt="SQLite 查看器截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">🗄️</div>
+                    <h2 class="tool-title" data-i18n="tool_sqlite_title">SQLite 查看器</h2>
+                    <p class="tool-desc" data-i18n="tool_sqlite_desc">在浏览器中直接查看和查询 SQLite 数据库</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_sqlite_f1">拖拽上传 .db / .sqlite 文件</li>
+                        <li data-i18n="tool_sqlite_f2">浏览所有表结构</li>
+                        <li data-i18n="tool_sqlite_f3">执行自定义 SQL 查询</li>
+                        <li data-i18n="tool_sqlite_f4">查询结果表格展示</li>
+                    </ul>
+                    <a href="sqlite-viewer.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- 文件批量重命名 -->
+            <div class="tool-card" data-tool="rename" data-category="utility" data-sort="50">
+                <img src="screenshots/file-renamer.webp" alt="文件批量重命名截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">📝</div>
+                    <h2 class="tool-title" data-i18n="tool_rename_title">文件批量重命名</h2>
+                    <p class="tool-desc" data-i18n="tool_rename_desc">支持顺序编号、查找替换、添加前后缀等多种模式，完全本地处理</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_rename_f1">顺序编号自动补零</li>
+                        <li data-i18n="tool_rename_f2">查找替换/正则替换</li>
+                        <li data-i18n="tool_rename_f3">拖拽排序调整顺序</li>
+                        <li data-i18n="tool_rename_f4">打包下载/逐个下载</li>
+                    </ul>
+                    <a href="file-renamer.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- Hex 文件查看器 -->
+            <div class="tool-card" data-tool="hex viewer binary" data-category="developer" data-sort="51">
+                <img src="screenshots/hex-viewer.webp" alt="Hex 文件查看器截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">🧬</div>
+                    <h2 class="tool-title" data-i18n="tool_hexview_title">Hex 文件查看器</h2>
+                    <p class="tool-desc" data-i18n="tool_hexview_desc">按偏移查看二进制字节内容，支持 HEX 模式搜索和分页浏览</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_hexview_f1">显示偏移地址与 ASCII 对照</li>
+                        <li data-i18n="tool_hexview_f2">支持字节序列签名搜索</li>
+                        <li data-i18n="tool_hexview_f3">大文件分页加载不卡顿</li>
+                        <li data-i18n="tool_hexview_f4">适合调试与取证分析</li>
+                    </ul>
+                    <a href="hex-viewer.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- 手持弹幕 -->
+            <div class="tool-card" data-tool="danmaku" data-category="utility" data-sort="52">
+                <img src="screenshots/handheld-danmaku.webp" alt="手持弹幕截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">📢</div>
+                    <h2 class="tool-title" data-i18n="tool_danmaku_title">手持弹幕</h2>
+                    <p class="tool-desc" data-i18n="tool_danmaku_desc">演唱会应援、活动表白、聚会互动必备的LED滚动字幕生成器</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_danmaku_f1">自定义弹幕内容和颜色</li>
+                        <li data-i18n="tool_danmaku_f2">可调节滚动速度和字体大小</li>
+                        <li data-i18n="tool_danmaku_f3">多种预设配色方案</li>
+                        <li data-i18n="tool_danmaku_f4">双击屏幕快速退出</li>
+                    </ul>
+                    <a href="handheld-danmaku.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- Claude Code 历史记录 -->
+            <div class="tool-card" data-tool="claude" data-category="utility" data-sort="53">
+                <img src="screenshots/claude-history-viewer.webp" alt="Claude Code 历史记录截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">💬</div>
+                    <h2 class="tool-title" data-i18n="tool_claude_title">Claude Code 历史记录</h2>
+                    <p class="tool-desc" data-i18n="tool_claude_desc">查看和搜索 Claude Code 的历史对话记录，美观易用的可视化界面</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_claude_f1">支持 JSONL 格式导入</li>
+                        <li data-i18n="tool_claude_f2">按项目/时间分组查看</li>
+                        <li data-i18n="tool_claude_f3">全文搜索与内容筛选</li>
+                        <li data-i18n="tool_claude_f4">导出为 Markdown/JSON/文本</li>
+                    </ul>
+                    <a href="claude-history-viewer.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- Tweet Deleter 推文批量删除 -->
+            <div class="tool-card" data-tool="tweet" data-category="utility" data-sort="54">
+                <img src="screenshots/tweet-deleter.webp" alt="Tweet Deleter 截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">🗑️</div>
+                    <h2 class="tool-title" data-i18n="tool_tweet_title">Tweet Deleter 推文删除</h2>
+                    <p class="tool-desc" data-i18n="tool_tweet_desc">Chrome/Edge 浏览器扩展，批量删除 X (Twitter) 上的推文、回复和转发</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_tweet_f1">批量删除推文/回复/转发</li>
+                        <li data-i18n="tool_tweet_f2">按时间范围和关键词筛选</li>
+                        <li data-i18n="tool_tweet_f3">可调节删除速度（慢/正常/快）</li>
+                        <li data-i18n="tool_tweet_f4">支持7种语言（含中日英）</li>
+                    </ul>
+                    <a href="https://github.com/heyuan110/tweet-deleter" target="_blank" class="tool-btn" data-i18n="viewProject">查看项目 →</a>
+                </div>
+            </div>
+
+            <!-- OctoVideoSniffer 八爪鱼 -->
+            <div class="tool-card" data-tool="octosniffer" data-category="media" data-sort="55">
+                <img src="screenshots/OctoVideoSniffer.webp" alt="OctoVideoSniffer 截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">🐙</div>
+                    <h2 class="tool-title" data-i18n="tool_octo_title">OctoVideoSniffer 八爪鱼</h2>
+                    <p class="tool-desc" data-i18n="tool_octo_desc">Chrome/Edge 浏览器扩展，自动检测并提取网页中的视频链接</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_octo_f1">智能识别网页视频资源链接</li>
+                        <li data-i18n="tool_octo_f2">支持 .m3u8 / .mp4 / .ts 等格式</li>
+                        <li data-i18n="tool_octo_f3">简洁的界面，一键复制链接</li>
+                        <li data-i18n="tool_octo_f4">轻量快速，开箱即用</li>
+                    </ul>
+                    <a href="https://github.com/heyuan110/OctoVideoSniffer" target="_blank" class="tool-btn" data-i18n="viewProject">查看项目 →</a>
+                </div>
+            </div>
+
+            <!-- 亲戚关系计算器 -->
+            <div class="tool-card" data-tool="relative" data-category="utility" data-sort="56">
+                <img src="screenshots/relative-calculator.webp" alt="亲戚关系计算器截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">👨‍👩‍👧‍👦</div>
+                    <h2 class="tool-title" data-i18n="tool_relative_title">亲戚关系计算器</h2>
+                    <p class="tool-desc" data-i18n="tool_relative_desc">快速查询中国家庭亲戚称呼，再也不怕叫错七大姑八大姨</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_relative_f1">支持复杂亲戚关系链计算</li>
+                        <li data-i18n="tool_relative_f2">覆盖父系母系血亲姻亲</li>
+                        <li data-i18n="tool_relative_f3">提供多种称呼别名</li>
+                        <li data-i18n="tool_relative_f4">快捷按钮一键选择</li>
+                    </ul>
+                    <a href="relative-calculator.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
+            <!-- 在线节拍器 -->
+            <div class="tool-card" data-tool="metronome" data-category="utility" data-sort="57">
+                <img src="screenshots/metronome.webp" alt="在线节拍器截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">🎵</div>
+                    <h2 class="tool-title" data-i18n="tool_metronome_title">在线节拍器</h2>
+                    <p class="tool-desc" data-i18n="tool_metronome_desc">音乐练习必备工具，帮助你保持精准节奏，支持多种拍号和音色</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_metronome_f1">40-220 BPM 速度调节</li>
+                        <li data-i18n="tool_metronome_f2">支持 2/4、3/4、4/4、6/8 拍号</li>
+                        <li data-i18n="tool_metronome_f3">电子音/钢琴音色可选</li>
+                        <li data-i18n="tool_metronome_f4">可自定义强弱拍</li>
+                    </ul>
+                    <a href="metronome.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
                 </div>
             </div>
 
             <!-- 天使数字计算器 -->
-            <div class="tool-card" data-tool="angel number birthday spiritual" data-category="utility">
+            <div class="tool-card" data-tool="angel number birthday spiritual" data-category="utility" data-sort="58">
                 <img src="screenshots/angel-number.webp" alt="天使数字计算器截图" class="tool-screenshot">
                 <div class="tool-content">
                     <div class="tool-icon">😇</div>
@@ -1839,7 +1841,7 @@
             </div>
 
             <!-- 命理计算器 -->
-            <div class="tool-card" data-tool="numerology life path expression soul" data-category="utility">
+            <div class="tool-card" data-tool="numerology life path expression soul" data-category="utility" data-sort="59">
                 <img src="screenshots/numerology.webp" alt="命理计算器截图" class="tool-screenshot">
                 <div class="tool-content">
                     <div class="tool-icon">🔢</div>
@@ -1855,25 +1857,25 @@
                 </div>
             </div>
 
-            <!-- Tweet Deleter 推文批量删除 -->
-            <div class="tool-card" data-tool="tweet" data-category="utility">
-                <img src="screenshots/tweet-deleter.webp" alt="Tweet Deleter 截图" class="tool-screenshot">
+            <!-- 定时刷新网页 -->
+            <div class="tool-card" data-tool="refresh" data-category="utility" data-sort="60">
+                <img src="screenshots/page-refresher.webp" alt="定时刷新网页截图" class="tool-screenshot">
                 <div class="tool-content">
-                    <div class="tool-icon">🗑️</div>
-                    <h2 class="tool-title" data-i18n="tool_tweet_title">Tweet Deleter 推文删除</h2>
-                    <p class="tool-desc" data-i18n="tool_tweet_desc">Chrome/Edge 浏览器扩展，批量删除 X (Twitter) 上的推文、回复和转发</p>
+                    <div class="tool-icon">🔄</div>
+                    <h2 class="tool-title" data-i18n="tool_refresh_title">定时刷新网页</h2>
+                    <p class="tool-desc" data-i18n="tool_refresh_desc">在线定时自动刷新网页，可用于压力测试和增加请求量</p>
                     <ul class="tool-features">
-                        <li data-i18n="tool_tweet_f1">批量删除推文/回复/转发</li>
-                        <li data-i18n="tool_tweet_f2">按时间范围和关键词筛选</li>
-                        <li data-i18n="tool_tweet_f3">可调节删除速度（慢/正常/快）</li>
-                        <li data-i18n="tool_tweet_f4">支持7种语言（含中日英）</li>
+                        <li data-i18n="tool_refresh_f1">自定义刷新间隔时间</li>
+                        <li data-i18n="tool_refresh_f2">刷新次数限制设置</li>
+                        <li data-i18n="tool_refresh_f3">实时刷新日志记录</li>
+                        <li data-i18n="tool_refresh_f4">内嵌预览目标页面</li>
                     </ul>
-                    <a href="https://github.com/heyuan110/tweet-deleter" target="_blank" class="tool-btn" data-i18n="viewProject">查看项目 →</a>
+                    <a href="page-refresher.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
                 </div>
             </div>
 
             <!-- XPorts 终端端口管理 -->
-            <div class="tool-card" data-tool="xports" data-category="developer">
+            <div class="tool-card" data-tool="xports" data-category="developer" data-sort="61">
                 <img src="screenshots/xports.webp" alt="XPorts 截图" class="tool-screenshot">
                 <div class="tool-content">
                     <div class="tool-icon">🔌</div>
@@ -1888,7 +1890,7 @@
                     <a href="https://github.com/heyuan110/xports" target="_blank" class="tool-btn" data-i18n="viewProject">查看项目 →</a>
                 </div>
             </div>
-        </div>
+</div>
 
         <footer>
             <p data-i18n="footerCopyright">© 2024-2026 <a href="https://www.heyuan110.com" target="_blank">heyuan110.com</a> All rights reserved.</p>

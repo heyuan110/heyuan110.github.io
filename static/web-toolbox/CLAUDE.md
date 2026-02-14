@@ -9,8 +9,5 @@ see @AGENTS.md
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
-| #2935 | 2:36 PM | 🔵 | Reviewing Image to PDF Tool Structure | ~306 |
-| #2743 | 4:33 AM | 🔴 | Fixed ocr-tool.html for common.js compliance | ~704 |
-| #2737 | 4:32 AM | 🔴 | Relative Calculator HTML Compliance with common.js Framework | ~665 |
-| #2735 | " | ✅ | Removed temporary backup file cron-generator.html.backup | ~199 |
+| #3208 | 10:34 PM | ✅ | Removed footer translation keys from English locale | ~290 |
 </claude-mem-context>
