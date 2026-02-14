@@ -131,15 +131,8 @@
                 var(--bg);
             color: var(--text);
             min-height: 100vh;
-            padding: 24px 16px 60px;
         }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 18px;
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px; }
         h1 {
             text-align: center;
             font-size: 2.1rem;
@@ -158,12 +151,12 @@
             border-radius: var(--radius);
         }
 
-        .tool-card { padding: 14px; }
+        .tool-card { padding: 20px; }
         .toolbar {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
         .btn {
             border: 1px solid var(--border);
@@ -183,8 +176,8 @@
         .layout {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            min-height: 480px;
+            gap: 16px;
+            min-height: 520px;
         }
         .panel {
             border: 1px solid var(--border);
@@ -195,9 +188,10 @@
             min-height: 480px;
         }
         .panel-head {
-            padding: 10px 12px;
+            padding: 12px 16px;
             border-bottom: 1px solid var(--border);
             font-size: 13px;
+            font-weight: 500;
             color: var(--muted);
             background: rgba(2,6,23,0.6);
         }
@@ -207,7 +201,7 @@
             resize: none;
             border: 0;
             outline: none;
-            padding: 14px;
+            padding: 16px;
             background: #020617;
             color: var(--text);
             font-size: 14px;
@@ -215,7 +209,7 @@
             font-family: "JetBrains Mono", "SF Mono", Consolas, monospace;
         }
         .preview {
-            padding: 14px;
+            padding: 16px;
             overflow: auto;
             background: #020617;
             height: 100%;
@@ -224,19 +218,28 @@
         .preview p,.preview li { color: #cbd5e1; line-height: 1.75; }
         .preview code { background: rgba(148,163,184,0.15); padding: 2px 6px; border-radius: 6px; }
         .preview pre { border: 1px solid var(--border); border-radius: 8px; overflow: auto; margin: 10px 0; }
-        .stats { margin-top: 10px; color: var(--muted); font-size: 13px; }
-        .status { margin-top: 10px; color: #93c5fd; font-size: 13px; min-height: 18px; }
+        .stats { margin-top: 14px; color: var(--muted); font-size: 13px; }
+        .status { margin-top: 8px; color: #93c5fd; font-size: 13px; min-height: 18px; }
 
-        .features-section, .faq-section, .features-section h2, .faq-section h2, .features-grid, .feature, .related {
+        .features-section { margin-top: 32px; }
+        .features-section h2, .faq-section h2 {
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 14px;
+        }
+        .feature {
             border: 1px solid var(--border);
             border-radius: 10px;
-            padding: 12px;
+            padding: 16px;
             background: rgba(2,6,23,0.58);
         }
-        .feature h4, .related h4 { margin: 8px 0 6px; font-size: 14px; }
-        .feature p, .related p { color: var(--muted); font-size: 13px; line-height: 1.55; }
-        .related { text-decoration: none; color: inherit; display: block; }
-        .related:hover { border-color: #64748b; }
+        .feature h4 { margin: 8px 0 6px; font-size: 14px; }
+        .feature p { color: var(--muted); font-size: 13px; line-height: 1.55; }
+        .faq-section { margin-top: 28px; }
 
         .faq-item {
             border: 1px solid var(--border);
@@ -245,48 +248,38 @@
             overflow: hidden;
             background: rgba(2,6,23,0.5);
         }
-        .faq-q {
+        .faq-question {
             width: 100%;
             text-align: left;
             background: transparent;
             border: 0;
             color: var(--text);
-            padding: 12px 14px;
+            padding: 14px 16px;
             cursor: pointer;
             font-size: 14px;
         }
-        .faq-a {
+        .faq-answer {
             display: none;
-            padding: 0 14px 12px;
+            padding: 0 16px 14px;
             color: var(--muted);
             font-size: 13px;
             line-height: 1.6;
         }
-        .faq-item.active .faq-a { display: block; }
+        .faq-item.active .faq-answer { display: block; }
 
         @media (max-width: 960px) {
             .layout { grid-template-columns: 1fr; }
         }
         @media (max-width: 640px) {
             h1 { font-size: 1.7rem; }
+            .container { padding: 16px; }
+            .tool-card { padding: 14px; }
         }
     </style>
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
 <div class="container">
-<div class="topbar">
-        <div class="lang-dropdown" id="langDropdown">
-            <div class="lang-current" id="langCurrent">🇺🇸 English</div>
-            <div class="lang-menu">
-                <button class="lang-btn" data-lang="en">🇺🇸 English</button>
-                <button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button>
-                <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
-                <button class="lang-btn" data-lang="es">🇪🇸 Español</button>
-            </div>
-        </div>
-    </div>
-
     <h1 data-i18n="title">Markdown Editor</h1>
     <p class="subtitle" data-i18n="subtitle">Write markdown with instant preview and code highlight</p>
 
@@ -346,20 +339,20 @@
 
     <section class="faq-section">
         <h2 data-i18n="faq_title">Frequently Asked Questions</h2>
-        <div class="faq-item"><button class="faq-q" data-i18n="faq1_q">Can I use this markdown editor for README files?</button><div class="faq-a" data-i18n="faq1_a">Yes. It is ideal for README writing, developer docs, and notes with instant preview.</div></div>
-        <div class="faq-item"><button class="faq-q" data-i18n="faq2_q">Does it support GitHub-style markdown?</button><div class="faq-a" data-i18n="faq2_a">It supports most common markdown syntax including headings, tables, links, lists, and code blocks.</div></div>
-        <div class="faq-item"><button class="faq-q" data-i18n="faq3_q">Can I export markdown to HTML?</button><div class="faq-a" data-i18n="faq3_a">Yes. Use Copy HTML to get rendered HTML markup instantly.</div></div>
-        <div class="faq-item"><button class="faq-q" data-i18n="faq4_q">Is there a usage limit?</button><div class="faq-a" data-i18n="faq4_a">No. You can use this markdown previewer online for free without limits.</div></div>
-        <div class="faq-item"><button class="faq-q" data-i18n="faq_free_q">Is this tool really free with no ads?</button><div class="faq-a" data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</div></div>
+        <div class="faq-item"><button class="faq-question" data-i18n="faq1_q">Can I use this markdown editor for README files?</button><div class="faq-answer" data-i18n="faq1_a">Yes. It is ideal for README writing, developer docs, and notes with instant preview.</div></div>
+        <div class="faq-item"><button class="faq-question" data-i18n="faq2_q">Does it support GitHub-style markdown?</button><div class="faq-answer" data-i18n="faq2_a">It supports most common markdown syntax including headings, tables, links, lists, and code blocks.</div></div>
+        <div class="faq-item"><button class="faq-question" data-i18n="faq3_q">Can I export markdown to HTML?</button><div class="faq-answer" data-i18n="faq3_a">Yes. Use Copy HTML to get rendered HTML markup instantly.</div></div>
+        <div class="faq-item"><button class="faq-question" data-i18n="faq4_q">Is there a usage limit?</button><div class="faq-answer" data-i18n="faq4_a">No. You can use this markdown previewer online for free without limits.</div></div>
+        <div class="faq-item"><button class="faq-question" data-i18n="faq_free_q">Is this tool really free with no ads?</button><div class="faq-answer" data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</div></div>
     </section>
 
     <section class="related-tools">
         <h3 data-i18n="relatedToolsTitle">Related Tools</h3>
         <div class="related-grid">
-            <a class="related" href="text-diff.html"><div>🔍</div><h4 data-i18n="relatedTool1">Text Diff</h4><p data-i18n="relatedTool1Desc">Compare two texts and highlight changes instantly.</p></a>
-            <a class="related" href="csv-json.html"><div>🔄</div><h4 data-i18n="relatedTool2">CSV JSON Converter</h4><p data-i18n="relatedTool2Desc">Convert CSV to JSON and JSON to CSV in browser.</p></a>
-            <a class="related" href="cron-generator.html"><div>⏰</div><h4 data-i18n="relatedTool3">Cron Generator</h4><p data-i18n="relatedTool3Desc">Build cron expressions and read human descriptions.</p></a>
-            <a class="related" href="base64-tool.html"><div>🔣</div><h4 data-i18n="relatedTool4">Base64 Tool</h4><p data-i18n="relatedTool4Desc">Encode and decode content for developer workflows.</p></a>
+            <a class="related-card" href="text-diff.html"><div>🔍</div><h4 data-i18n="relatedTool1">Text Diff</h4><p data-i18n="relatedTool1Desc">Compare two texts and highlight changes instantly.</p></a>
+            <a class="related-card" href="csv-json.html"><div>🔄</div><h4 data-i18n="relatedTool2">CSV JSON Converter</h4><p data-i18n="relatedTool2Desc">Convert CSV to JSON and JSON to CSV in browser.</p></a>
+            <a class="related-card" href="cron-generator.html"><div>⏰</div><h4 data-i18n="relatedTool3">Cron Generator</h4><p data-i18n="relatedTool3Desc">Build cron expressions and read human descriptions.</p></a>
+            <a class="related-card" href="base64-tool.html"><div>🔣</div><h4 data-i18n="relatedTool4">Base64 Tool</h4><p data-i18n="relatedTool4Desc">Encode and decode content for developer workflows.</p></a>
         </div>
     </section>
 </div>
@@ -424,7 +417,7 @@ var i18n = {
     var statusEl = document.getElementById('status');
 
     function getLang() {
-        return localStorage.getItem('markdown-editor_lang') || 'en';
+        return (typeof WebToolbox !== 'undefined') ? WebToolbox.getCurrentLang() : (localStorage.getItem('toolbox_lang') || 'en');
     }
 
     function t(key) {
@@ -476,15 +469,6 @@ var i18n = {
     });
 
     mdInput.addEventListener('input', render);
-
-    document.querySelectorAll('.faq-q').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            var item = btn.parentElement;
-            var wasOpen = item.classList.contains('active');
-            document.querySelectorAll('.faq-item').forEach(function(it) { it.classList.remove('active'); });
-            if (!wasOpen) item.classList.add('active');
-        });
-    });
 
     mdInput.value = sample;
     render();

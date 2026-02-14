@@ -7,5 +7,10 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
+| #3173 | 10:05 PM | ✅ | Updated copyright attribution from "heyuan110" to "heyuan110.com" | ~262 |
+| #2734 | 4:31 AM | ✅ | Mass migration of 56 web toolbox HTML files with common.js integration | ~430 |
+| #2723 | 4:26 AM | 🔵 | Common.css Language Dropdown Styling Structure | ~469 |
+| #2720 | 4:25 AM | 🔵 | Found breadcrumb navigation styling in common.css with z-index positioning | ~356 |
+| #2634 | 4:10 AM | 🔵 | Common.js uses bindLangSwitcher for centralized language switching | ~284 |
 | #2335 | 12:44 AM | 🔵 | Common.js shared component architecture examined | ~404 |
 </claude-mem-context>

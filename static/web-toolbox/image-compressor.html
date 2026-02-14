@@ -745,9 +745,7 @@
 
         /* FAQ 区块 */
         .faq-section {
-            max-width: 1100px;
-            margin: 40px auto;
-            padding: 0 20px;
+            margin: 40px 0;
         }
 
         .faq-title {
@@ -807,10 +805,10 @@
         }
 
         .faq-item.active .faq-answer {
-            max-height: 200px;
+            max-height: 500px;
         }
 
-        .faq-answer-content {
+        .faq-answer p {
             padding: 0 24px 20px;
             color: #a1a1aa;
             line-height: 1.6;
@@ -1021,77 +1019,55 @@
         </div>
 
         <!-- FAQ -->
-        <section class="faq-section" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
-            <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
-                <span style="color: #7c3aed;">❓</span> <span data-i18n="faqTitle">FAQ</span>
-            </h2>
-            <div style="display: flex; flex-direction: column; gap: 16px;">
-                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq1Q">How does image compression work?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq1A">Image compression reduces file size by adjusting quality parameters and optimizing encoding. Our tool uses the browser's built-in Canvas API for lossy compression, removing imperceptible visual details while maintaining overall image clarity.</div>
-                </details>
-                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq2Q">Which image formats are supported?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq2A">Supports JPEG, PNG, WebP, GIF and other common image formats. You can batch upload multiple images and compress them all at once with customizable quality settings.</div>
-                </details>
-                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq3Q">Will compression reduce image quality?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq3A">You can control the balance between file size and quality using the quality slider. At 70-80% quality, most images show no visible quality loss while achieving significant size reduction.</div>
-                </details>
-                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq4Q">Is there a file size limit?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq4A">Since all processing happens in your browser, there's no server-imposed file size limit. However, very large images may take longer to process depending on your device's performance.</div>
-                </details>
-                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq5Q">Can I compress multiple images at once?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq5A">Yes, you can select or drag multiple images at once. All images will be compressed with the same quality settings, and you can download them individually or as a batch ZIP file.</div>
-                </details>
-                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq_free_q">Is this tool really free? Is it safe?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</div>
-                </details>
+        <section class="faq-section">
+            <h2 class="faq-title"><span data-i18n="faqTitle">FAQ</span></h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq1Q">How does image compression work?</div>
+                    <div class="faq-answer"><p data-i18n="faq1A">Image compression reduces file size by adjusting quality parameters and optimizing encoding. Our tool uses the browser's built-in Canvas API for lossy compression, removing imperceptible visual details while maintaining overall image clarity.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq2Q">Which image formats are supported?</div>
+                    <div class="faq-answer"><p data-i18n="faq2A">Supports JPEG, PNG, WebP, GIF and other common image formats. You can batch upload multiple images and compress them all at once with customizable quality settings.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq3Q">Will compression reduce image quality?</div>
+                    <div class="faq-answer"><p data-i18n="faq3A">You can control the balance between file size and quality using the quality slider. At 70-80% quality, most images show no visible quality loss while achieving significant size reduction.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq4Q">Is there a file size limit?</div>
+                    <div class="faq-answer"><p data-i18n="faq4A">Since all processing happens in your browser, there's no server-imposed file size limit. However, very large images may take longer to process depending on your device's performance.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq5Q">Can I compress multiple images at once?</div>
+                    <div class="faq-answer"><p data-i18n="faq5A">Yes, you can select or drag multiple images at once. All images will be compressed with the same quality settings, and you can download them individually or as a batch ZIP file.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq_free_q">Is this tool really free? Is it safe?</div>
+                    <div class="faq-answer"><p data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</p></div>
+                </div>
             </div>
         </section>
 
         <!-- 相关工具 -->
-        <section class="related-tools" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
-            <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
-                <span style="color: #7c3aed;">🔗</span> <span data-i18n="relatedToolsTitle">Related Tools</span>
-            </h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px;">
-                <a href="image-converter.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">🔄</div>
-                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool1">Image Converter</div>
+        <section class="related-tools">
+            <h3 data-i18n="relatedToolsTitle">Related Tools</h3>
+            <div class="related-grid">
+                <a href="image-converter.html" class="related-card">
+                    <div class="related-icon">🔄</div>
+                    <h4 data-i18n="relatedTool1">Image Converter</h4>
                 </a>
-                <a href="ico-maker.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">🎨</div>
-                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool2">ICO Maker</div>
+                <a href="ico-maker.html" class="related-card">
+                    <div class="related-icon">🎨</div>
+                    <h4 data-i18n="relatedTool2">ICO Maker</h4>
                 </a>
-                <a href="image-to-pdf.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">📄</div>
-                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool3">Image to PDF</div>
+                <a href="image-to-pdf.html" class="related-card">
+                    <div class="related-icon">📄</div>
+                    <h4 data-i18n="relatedTool3">Image to PDF</h4>
                 </a>
-                <a href="bg-remover.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">✂️</div>
-                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool4">Background Remover</div>
+                <a href="bg-remover.html" class="related-card">
+                    <div class="related-icon">✂️</div>
+                    <h4 data-i18n="relatedTool4">Background Remover</h4>
                 </a>
             </div>
         </section>

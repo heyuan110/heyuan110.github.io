@@ -464,17 +464,16 @@
         /* Trust Bar */
         /* Features */
         .features-section {
-            max-width: 800px;
-            margin: 40px auto;
+            margin-top: 30px;
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 16px;
         }
         .features-section h2 {
             grid-column: 1 / -1;
-            font-size: 1.5rem;
+            margin: 0 0 16px;
+            font-size: 1.2rem;
             font-weight: 700;
-            margin-bottom: 8px;
             color: #e4e4e7;
         }
         .feature-card {
@@ -495,13 +494,12 @@
 
         /* FAQ */
         .faq-section {
-            max-width: 800px;
-            margin: 40px auto;
+            margin-top: 30px;
         }
         .faq-section h2 {
-            font-size: 1.5rem;
+            margin: 0 0 16px;
+            font-size: 1.2rem;
             font-weight: 700;
-            margin-bottom: 24px;
             color: #e4e4e7;
         }
         .faq-list { display: flex; flex-direction: column; gap: 12px; }
@@ -542,47 +540,28 @@
         .faq-answer p { padding: 0 24px 20px 24px; color: #a1a1aa; font-size: 0.95rem; line-height: 1.6; }
 
         /* Related Tools */
-        .related-tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 16px;
+        .related-tools {
+            margin-top: 30px;
         }
-        .related-tool-card {
-            display: block;
-            padding: 16px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            text-decoration: none;
-            transition: all 0.3s ease;
+        .related-tools h3 {
+            margin: 0 0 16px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #e4e4e7;
         }
-        .related-tool-card:hover {
-            border-color: rgba(124, 58, 237, 0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(124, 58, 237, 0.1);
-        }
-        .related-tool-card .tool-icon { font-size: 24px; margin-bottom: 8px; }
-        .related-tool-card .tool-name { color: #e4e4e7; font-weight: 500; font-size: 0.95rem; }
-        .related-tool-card .tool-desc { color: #71717a; font-size: 0.8rem; margin-top: 4px; }
-
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: #71717a;
-            font-size: 0.9rem;
-        }
-        footer a { color: #818cf8; text-decoration: none; }
-        footer a:hover { text-decoration: underline; }
 
         /* 响应式 */
-        @media (max-width: 600px) {
+        @media (max-width: 960px) {
+            .features-section { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 640px) {
             h1 { font-size: 1.6rem; }
             .big-number { font-size: 4rem; }
             .features-section { grid-template-columns: 1fr; }
             .sequences-grid { grid-template-columns: repeat(3, 1fr); }
             .lucky-grid { grid-template-columns: repeat(3, 1fr); }
             .input-card { padding: 24px 16px; }
-            }
+        }
     </style>
     <link rel="stylesheet" href="common/common.css">
 </head>
@@ -729,29 +708,25 @@
         <!-- Related Tools -->
         <section class="related-tools">
             <h3 data-i18n="relatedTitle">Related Tools</h3>
-            <div class="related-tools-grid">
-                <a href="numerology.html" class="related-tool-card">
-                    <div class="tool-icon">🔢</div>
-                    <div class="tool-name" data-i18n="rel1Name">Numerology Calculator</div>
-                    <div class="tool-desc" data-i18n="rel1Desc">Calculate Life Path, Expression, Soul Urge & Personality numbers</div>
+            <div class="related-grid">
+                <a href="numerology.html" class="related-card">
+                    <div>🔢</div>
+                    <h4 data-i18n="rel1Name">Numerology Calculator</h4>
+                    <p data-i18n="rel1Desc">Calculate Life Path, Expression, Soul Urge & Personality numbers</p>
                 </a>
-                <a href="calculator.html" class="related-tool-card">
-                    <div class="tool-icon">🧮</div>
-                    <div class="tool-name" data-i18n="rel2Name">All-in-One Calculator</div>
-                    <div class="tool-desc" data-i18n="rel2Desc">Scientific calculator with unit conversion</div>
+                <a href="calculator.html" class="related-card">
+                    <div>🧮</div>
+                    <h4 data-i18n="rel2Name">All-in-One Calculator</h4>
+                    <p data-i18n="rel2Desc">Scientific calculator with unit conversion</p>
                 </a>
-                <a href="password-generator.html" class="related-tool-card">
-                    <div class="tool-icon">🔐</div>
-                    <div class="tool-name" data-i18n="rel3Name">Password Generator</div>
-                    <div class="tool-desc" data-i18n="rel3Desc">Generate strong random passwords</div>
+                <a href="password-generator.html" class="related-card">
+                    <div>🔐</div>
+                    <h4 data-i18n="rel3Name">Password Generator</h4>
+                    <p data-i18n="rel3Desc">Generate strong random passwords</p>
                 </a>
             </div>
         </section>
 
-        <!-- Footer -->
-        <footer>
-<p>Made with ❤️ by <a href="https://github.com/heyuan110" target="_blank">@heyuan110</a></p>
-        </footer>
     </div>
 
     <script>
@@ -1227,10 +1202,8 @@
 
         // ===== 语言帮助函数 =====
         function getLang() {
-            return localStorage.getItem('angel-number_lang') || 'en';
+            return (typeof WebToolbox !== 'undefined' && WebToolbox.getCurrentLang) ? WebToolbox.getCurrentLang() : 'en';
         }
-
-        var currentLang = getLang();
 
         function t(key) {
             var lang = getLang();
@@ -1370,15 +1343,6 @@
             showResult(result);
         });
 
-        // FAQ 手风琴
-        document.querySelectorAll('.faq-question').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                var item = this.parentElement;
-                var wasActive = item.classList.contains('active');
-                document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('active'); });
-                if (!wasActive) item.classList.add('active');
-            });
-        });
 
         // 初始化
         renderSequences();

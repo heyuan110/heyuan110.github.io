@@ -148,8 +148,9 @@ h1 {
         /* 主布局 */
         .main-layout {
             display: grid;
-            grid-template-columns: 280px 1fr 320px;
-            gap: 25px;
+            grid-template-columns: 260px 1fr 300px;
+            gap: 20px;
+            overflow: hidden;
         }
 
         @media (max-width: 1200px) {
@@ -591,9 +592,7 @@ h1 {
 
         /* 功能特点区块 */
         .features-section {
-            max-width: 1400px;
-            margin: 0 auto 30px;
-            padding: 0;
+            margin: 0 0 30px;
         }
 
         .features-grid {
@@ -636,9 +635,7 @@ h1 {
 
         /* FAQ 区块 */
         .faq-section {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
+            margin: 40px 0;
         }
 
         .faq-title {
@@ -911,7 +908,7 @@ h1 {
         <h2 class="faq-title" data-i18n="faqTitle">FAQ</h2>
         <div class="faq-list">
             <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
+                <button class="faq-question">
                     <span data-i18n="faq1Q">What is the difference between HEX and RGB?</span>
                     <span class="faq-icon">+</span>
                 </button>
@@ -920,7 +917,7 @@ h1 {
                 </div>
             </div>
             <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
+                <button class="faq-question">
                     <span data-i18n="faq2Q">What are complementary colors?</span>
                     <span class="faq-icon">+</span>
                 </button>
@@ -929,7 +926,7 @@ h1 {
                 </div>
             </div>
             <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
+                <button class="faq-question">
                     <span data-i18n="faq3Q">What is HSL color?</span>
                     <span class="faq-icon">+</span>
                 </button>
@@ -938,7 +935,7 @@ h1 {
                 </div>
             </div>
             <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
+                <button class="faq-question">
                     <span data-i18n="faq4Q">How to save favorite colors?</span>
                     <span class="faq-icon">+</span>
                 </button>
@@ -947,7 +944,7 @@ h1 {
                 </div>
             </div>
             <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
+                <button class="faq-question">
                     <span data-i18n="faq5Q">What is CMYK format?</span>
                     <span class="faq-icon">+</span>
                 </button>
@@ -956,7 +953,7 @@ h1 {
                 </div>
             </div>
             <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
+                <button class="faq-question">
                     <span data-i18n="faq_free_q">Is this tool really free? Is it safe?</span>
                     <span class="faq-icon">+</span>
                 </button>
@@ -969,22 +966,26 @@ h1 {
 
     <!-- Related Tools -->
     <section class="related-tools">
-        <h2 data-i18n="relatedTools">Related Tools</h2>
+        <h3 data-i18n="relatedTools">Related Tools</h3>
         <div class="related-grid">
             <a href="image-editor.html" class="related-card">
-                <h3 data-i18n="imageEditor">Image Editor</h3>
+                <div class="related-icon">🖼️</div>
+                <h4 data-i18n="imageEditor">Image Editor</h4>
                 <p data-i18n="imageEditorDesc">Online image editing and processing</p>
             </a>
             <a href="paint-board.html" class="related-card">
-                <h3 data-i18n="paintBoard">Paint Board</h3>
+                <div class="related-icon">🎨</div>
+                <h4 data-i18n="paintBoard">Paint Board</h4>
                 <p data-i18n="paintBoardDesc">Online drawing and painting</p>
             </a>
             <a href="ico-maker.html" class="related-card">
-                <h3 data-i18n="icoMaker">ICO Maker</h3>
+                <div class="related-icon">🏷️</div>
+                <h4 data-i18n="icoMaker">ICO Maker</h4>
                 <p data-i18n="icoMakerDesc">Create favicon and icon files</p>
             </a>
             <a href="image-converter.html" class="related-card">
-                <h3 data-i18n="imageConverter">Image Converter</h3>
+                <div class="related-icon">🔄</div>
+                <h4 data-i18n="imageConverter">Image Converter</h4>
                 <p data-i18n="imageConverterDesc">Convert between image formats</p>
             </a>
         </div>
@@ -1678,19 +1679,6 @@ function t(key) {
             setTimeout(() => toast.remove(), 2000);
         }
 
-        // FAQ 切换
-        function toggleFaq(btn) {
-            const item = btn.closest('.faq-item');
-            const isActive = item.classList.contains('active');
-
-            // 关闭所有其他 FAQ
-            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-
-            // 切换当前 FAQ
-            if (!isActive) {
-                item.classList.add('active');
-            }
-        }
 
         // 启动
         init();

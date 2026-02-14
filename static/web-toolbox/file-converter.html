@@ -222,12 +222,16 @@
     .status-line{padding:10px 20px;font-size:13px;color:#93c5fd;min-height:38px;border-top:1px solid var(--border)}
 
     /* Trust Bar + SEO 区块 */
-    .features-section,.faq-section,.features-section h2,.faq-section h2,.features-grid,.feature,.related{border:1px solid var(--border);border-radius:12px;padding:14px;background:rgba(2,6,23,.45);transition:border-color .2s,transform .2s}.feature:hover,.related:hover{border-color:rgba(148,163,184,.3);transform:translateY(-2px)}.feature h4,.related h4{margin:8px 0 6px;font-size:14px}.feature p,.related p{color:var(--muted);font-size:13px;line-height:1.6}
-    .related{text-decoration:none;color:inherit;display:block}
-    .faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:8px;overflow:hidden;background:rgba(2,6,23,.4);transition:border-color .2s}.faq-item:hover{border-color:rgba(148,163,184,.25)}.faq-q{width:100%;text-align:left;background:transparent;border:0;color:var(--text);padding:14px 16px;cursor:pointer;font-size:14px;font-weight:500;display:flex;justify-content:space-between;align-items:center}.faq-q::after{content:'+';font-size:18px;color:var(--muted);transition:transform .2s}.faq-item.active .faq-q::after{transform:rotate(45deg)}.faq-a{display:none;padding:0 16px 14px;color:var(--muted);font-size:13px;line-height:1.65}.faq-item.active .faq-a{display:block}
+    .features-section,.faq-section,.related-tools{margin-top:30px}
+    .features-section h2,.faq-section h2,.related-tools h3{margin:0 0 16px;font-size:1.2rem}
+    .features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    .feature,.related-card{border:1px solid var(--border);border-radius:12px;padding:14px;background:rgba(2,6,23,.45);transition:border-color .2s,transform .2s}.feature:hover,.related-card:hover{border-color:rgba(148,163,184,.3);transform:translateY(-2px)}.feature h4,.related-card h4{margin:8px 0 6px;font-size:14px}.feature p,.related-card p{color:var(--muted);font-size:13px;line-height:1.6}
+    .related-card{text-decoration:none;color:inherit;display:block}
+    .faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:8px;overflow:hidden;background:rgba(2,6,23,.4);transition:border-color .2s}.faq-item:hover{border-color:rgba(148,163,184,.25)}.faq-question{width:100%;text-align:left;background:transparent;border:0;color:var(--text);padding:14px 16px;cursor:pointer;font-size:14px;font-weight:500;display:flex;justify-content:space-between;align-items:center}.faq-question::after{content:'+';font-size:18px;color:var(--muted);transition:transform .2s}.faq-item.active .faq-question::after{transform:rotate(45deg)}.faq-answer{display:none;padding:0 16px 14px;color:var(--muted);font-size:13px;line-height:1.65}.faq-item.active .faq-answer{display:block}
 
-    @media(max-width:960px){.features-grid,.params{grid-template-columns:1fr 1fr}}
-    @media(max-width:640px){h1{font-size:1.7rem}.features-grid,.steps{gap:0}.step span:not(.step-num){display:none}.tab{font-size:13px;padding:12px 6px}.params{grid-template-columns:1fr}.result-info{flex-direction:column;align-items:stretch}.result-info .download-btn{justify-content:center}}
+    @media(max-width:960px){.features-grid{grid-template-columns:repeat(2,1fr)}.params{grid-template-columns:1fr 1fr}}
+    @media(max-width:640px){h1{font-size:1.7rem}.features-grid{grid-template-columns:1fr}.steps{gap:0}.step span:not(.step-num){display:none}.tab{font-size:13px;padding:12px 6px}.params{grid-template-columns:1fr}.result-info{flex-direction:column;align-items:stretch}.result-info .download-btn{justify-content:center}.container{padding:20px}}
   </style>
     <link rel="stylesheet" href="common/common.css">
 </head>
@@ -374,22 +378,22 @@
   <!-- FAQ -->
   <section class="faq-section anim anim-d7">
     <h2 data-i18n="faq_title">Frequently Asked Questions</h2>
-    <div class="faq-item"><button class="faq-q"><span data-i18n="faq1_q">What is a cross-media file converter and what formats does it support?</span></button><div class="faq-a" data-i18n="faq1_a">A cross-media file converter bridges different media types: it can turn video clips into animated GIFs, extract audio tracks from video files as WAV, convert vector SVG graphics to raster PNG or JPG images, and encode images to Base64 data URIs. This tool supports all four conversions entirely in the browser with no server upload required.</div></div>
-    <div class="faq-item"><button class="faq-q"><span data-i18n="faq2_q">How does Video to GIF conversion work in the browser?</span></button><div class="faq-a" data-i18n="faq2_a">The Video to GIF feature uses Canvas API to capture video frames at your chosen frame rate, then encodes them into an animated GIF using the gif.js library. You can control start/end time, output width, frame rate (5-20 fps), and quality level. The entire process runs locally in your browser without uploading video to any server.</div></div>
-    <div class="faq-item"><button class="faq-q"><span data-i18n="faq3_q">Can I extract audio from video without installing software?</span></button><div class="faq-a" data-i18n="faq3_a">Yes. The Video to Audio tab uses the Web Audio API to decode the video file and extract its audio track, then exports it as a WAV file. This works entirely in the browser with no FFmpeg or server-side processing needed. For MP3 conversion, you can use our Audio Cutter tool afterwards.</div></div>
-    <div class="faq-item"><button class="faq-q"><span data-i18n="faq4_q">How do I convert SVG to PNG or JPG with high resolution?</span></button><div class="faq-a" data-i18n="faq4_a">Upload your SVG file and choose PNG or JPG output format. Use the scale multiplier (1x to 4x) to control output resolution — 2x doubles the dimensions for crisp retina displays. For JPG output, you can also set a background color since JPG does not support transparency.</div></div>
-    <div class="faq-item"><button class="faq-q"><span data-i18n="faq5_q">What is Base64 encoding for images and when should I use it?</span></button><div class="faq-a" data-i18n="faq5_a">Base64 encoding converts an image file into a text string (data URI) that can be embedded directly in HTML or CSS. This eliminates extra HTTP requests and is useful for small icons, email templates, and inline assets. Our tool supports bidirectional conversion: image to Base64 and Base64 back to image.</div></div>
-    <div class="faq-item"><button class="faq-q"><span data-i18n="faq_free_q">Is this tool really free with no ads?</span></button><div class="faq-a" data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your files are never uploaded to any server. Your privacy is fully protected.</div></div>
+    <div class="faq-item"><button class="faq-question" data-i18n="faq1_q">What is a cross-media file converter and what formats does it support?</button><div class="faq-answer" data-i18n="faq1_a">A cross-media file converter bridges different media types: it can turn video clips into animated GIFs, extract audio tracks from video files as WAV, convert vector SVG graphics to raster PNG or JPG images, and encode images to Base64 data URIs. This tool supports all four conversions entirely in the browser with no server upload required.</div></div>
+    <div class="faq-item"><button class="faq-question" data-i18n="faq2_q">How does Video to GIF conversion work in the browser?</button><div class="faq-answer" data-i18n="faq2_a">The Video to GIF feature uses Canvas API to capture video frames at your chosen frame rate, then encodes them into an animated GIF using the gif.js library. You can control start/end time, output width, frame rate (5-20 fps), and quality level. The entire process runs locally in your browser without uploading video to any server.</div></div>
+    <div class="faq-item"><button class="faq-question" data-i18n="faq3_q">Can I extract audio from video without installing software?</button><div class="faq-answer" data-i18n="faq3_a">Yes. The Video to Audio tab uses the Web Audio API to decode the video file and extract its audio track, then exports it as a WAV file. This works entirely in the browser with no FFmpeg or server-side processing needed. For MP3 conversion, you can use our Audio Cutter tool afterwards.</div></div>
+    <div class="faq-item"><button class="faq-question" data-i18n="faq4_q">How do I convert SVG to PNG or JPG with high resolution?</button><div class="faq-answer" data-i18n="faq4_a">Upload your SVG file and choose PNG or JPG output format. Use the scale multiplier (1x to 4x) to control output resolution — 2x doubles the dimensions for crisp retina displays. For JPG output, you can also set a background color since JPG does not support transparency.</div></div>
+    <div class="faq-item"><button class="faq-question" data-i18n="faq5_q">What is Base64 encoding for images and when should I use it?</button><div class="faq-answer" data-i18n="faq5_a">Base64 encoding converts an image file into a text string (data URI) that can be embedded directly in HTML or CSS. This eliminates extra HTTP requests and is useful for small icons, email templates, and inline assets. Our tool supports bidirectional conversion: image to Base64 and Base64 back to image.</div></div>
+    <div class="faq-item"><button class="faq-question" data-i18n="faq_free_q">Is this tool really free with no ads?</button><div class="faq-answer" data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your files are never uploaded to any server. Your privacy is fully protected.</div></div>
   </section>
 
   <!-- Related Tools -->
   <section class="related-tools anim anim-d7">
     <h3 data-i18n="related_title">Related Tools</h3>
     <div class="related-grid">
-      <a class="related" href="image-converter.html"><div>🖼️</div><h4 data-i18n="r1_t">Image Converter</h4><p data-i18n="r1_d">Convert between PNG, JPG, WebP with quality control.</p></a>
-      <a class="related" href="audio-cutter.html"><div>🎧</div><h4 data-i18n="r2_t">Audio Cutter</h4><p data-i18n="r2_d">Trim audio files and convert WAV to MP3.</p></a>
-      <a class="related" href="screen-recorder.html"><div>📹</div><h4 data-i18n="r3_t">Screen Recorder</h4><p data-i18n="r3_d">Record screen in browser and export HD MP4.</p></a>
-      <a class="related" href="base64-tool.html"><div>🔤</div><h4 data-i18n="r4_t">Base64 Tool</h4><p data-i18n="r4_d">Encode and decode text with Base64.</p></a>
+      <a class="related-card" href="image-converter.html"><div>🖼️</div><h4 data-i18n="r1_t">Image Converter</h4><p data-i18n="r1_d">Convert between PNG, JPG, WebP with quality control.</p></a>
+      <a class="related-card" href="audio-cutter.html"><div>🎧</div><h4 data-i18n="r2_t">Audio Cutter</h4><p data-i18n="r2_d">Trim audio files and convert WAV to MP3.</p></a>
+      <a class="related-card" href="screen-recorder.html"><div>📹</div><h4 data-i18n="r3_t">Screen Recorder</h4><p data-i18n="r3_d">Record screen in browser and export HD MP4.</p></a>
+      <a class="related-card" href="base64-tool.html"><div>🔤</div><h4 data-i18n="r4_t">Base64 Tool</h4><p data-i18n="r4_d">Encode and decode text with Base64.</p></a>
     </div>
   </section>
 </div>
@@ -991,16 +995,6 @@ $('btnDecodeB64').addEventListener('click', () => {
     a.download = 'decoded-image.' + ext;
     a.click();
   };
-});
-
-/* ========== FAQ 手风琴 ========== */
-document.querySelectorAll('.faq-q').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const item = btn.parentElement;
-    const wasActive = item.classList.contains('active');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-    if (!wasActive) item.classList.add('active');
-  });
 });
 
 /* ========== 初始化 ========== */

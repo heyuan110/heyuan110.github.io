@@ -787,8 +787,8 @@
         </div>
 
         <!-- 相关工具推荐 -->
-        <div class="related-section">
-            <h2 data-i18n="relatedTitle">Related Tools</h2>
+        <section class="related-tools">
+            <h3 data-i18n="relatedTitle">Related Tools</h3>
             <div class="related-grid">
                 <a href="lorem-ipsum.html" class="related-card">
                     <div class="related-icon">📝</div>
@@ -807,12 +807,7 @@
                     <span data-i18n="relatedUrl">URL Encoder/Decoder</span>
                 </a>
             </div>
-        </div>
-
-        <!-- 页脚 -->
-        <div class="footer">
-            <p>Word Counter — <a href="index.html">Web Toolbox</a></p>
-        </div>
+        </section>
     </div>
 
     <!-- Toast 提示 -->
@@ -1466,19 +1461,6 @@
             textInput.value = '';
             updateStats();
             showToast(data.cleared);
-        });
-
-        // ========== FAQ 手风琴交互 ==========
-        document.querySelectorAll('.faq-question').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                var item = this.parentElement;
-                var isActive = item.classList.contains('active');
-                if (!isActive) {
-                    item.classList.add('active');
-                } else {
-                    item.classList.remove('active');
-                }
-            });
         });
 
         // ========== 初始化 ==========

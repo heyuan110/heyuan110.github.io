@@ -600,9 +600,7 @@ h1 {
 
         /* FAQ 区块 */
         .faq-section {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
+            margin: 40px 0;
         }
 
         .faq-title {
@@ -667,10 +665,10 @@ h1 {
         }
 
         .faq-item.active .faq-answer {
-            max-height: 200px;
+            max-height: 500px;
         }
 
-        .faq-answer-content {
+        .faq-answer p {
             padding: 0 24px 20px;
             color: #a1a1aa;
             font-size: 0.95rem;
@@ -913,77 +911,55 @@ h1 {
         </div>
 
         <!-- FAQ 问答区块 -->
-        <section class="faq-section" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
-            <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
-                <span style="color: #7c3aed;">❓</span> <span data-i18n="faqTitle">FAQ</span>
-            </h2>
-            <div style="display: flex; flex-direction: column; gap: 16px;">
-                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq1Q">What is WHOIS?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq1A">WHOIS is a protocol for querying domain registration information, allowing you to view domain owner, registrar, and other details. Through WHOIS queries, you can learn about domain registration time, expiration time, DNS server configuration, and registrant contact information.</div>
-                </details>
-                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq2Q">What is the difference between WHOIS and RDAP?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq2A">RDAP (Registration Data Access Protocol) is the modern replacement for the traditional WHOIS protocol. RDAP returns structured JSON data, supports HTTPS encrypted transmission, provides internationalized content, and follows standardized access control. Our tool uses RDAP for more reliable and comprehensive query results.</div>
-                </details>
-                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq3Q">Which domain extensions are supported?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq3A">This tool supports most popular domain extensions including .com, .net, .org, .cn, .io, .dev, .app, and many country-code TLDs. The query is performed via RDAP protocol, which covers the vast majority of domain registries worldwide.</div>
-                </details>
-                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq4Q">Why is some information hidden or redacted?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq4A">Many domain registrars now offer WHOIS privacy protection services that redact personal information like owner name, email, and phone number. This is done to comply with privacy regulations like GDPR. You may see "REDACTED FOR PRIVACY" or similar notices in the query results.</div>
-                </details>
-                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq5Q">How to check when a domain expires?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq5A">Simply enter the domain name in the search box and click "Query". The result will show the registration date, expiration date, and remaining days until expiration. You can use this information to monitor domain renewals or check domain availability.</div>
-                </details>
-                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq_free_q">Is this tool really free? Is it safe?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq_free_a">Yes, this tool is 100% free with no ads, no signup, no usage limits, and no watermarks. All queries are made directly from your browser to the RDAP servers — your data never passes through our servers. It's completely safe and private.</div>
-                </details>
+        <section class="faq-section">
+            <h2 class="faq-title"><span data-i18n="faqTitle">FAQ</span></h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq1Q">What is WHOIS?</div>
+                    <div class="faq-answer"><p data-i18n="faq1A">WHOIS is a protocol for querying domain registration information, allowing you to view domain owner, registrar, and other details. Through WHOIS queries, you can learn about domain registration time, expiration time, DNS server configuration, and registrant contact information.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq2Q">What is the difference between WHOIS and RDAP?</div>
+                    <div class="faq-answer"><p data-i18n="faq2A">RDAP (Registration Data Access Protocol) is the modern replacement for the traditional WHOIS protocol. RDAP returns structured JSON data, supports HTTPS encrypted transmission, provides internationalized content, and follows standardized access control. Our tool uses RDAP for more reliable and comprehensive query results.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq3Q">Which domain extensions are supported?</div>
+                    <div class="faq-answer"><p data-i18n="faq3A">This tool supports most popular domain extensions including .com, .net, .org, .cn, .io, .dev, .app, and many country-code TLDs. The query is performed via RDAP protocol, which covers the vast majority of domain registries worldwide.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq4Q">Why is some information hidden or redacted?</div>
+                    <div class="faq-answer"><p data-i18n="faq4A">Many domain registrars now offer WHOIS privacy protection services that redact personal information like owner name, email, and phone number. This is done to comply with privacy regulations like GDPR. You may see "REDACTED FOR PRIVACY" or similar notices in the query results.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq5Q">How to check when a domain expires?</div>
+                    <div class="faq-answer"><p data-i18n="faq5A">Simply enter the domain name in the search box and click "Query". The result will show the registration date, expiration date, and remaining days until expiration. You can use this information to monitor domain renewals or check domain availability.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq_free_q">Is this tool really free? Is it safe?</div>
+                    <div class="faq-answer"><p data-i18n="faq_free_a">Yes, this tool is 100% free with no ads, no signup, no usage limits, and no watermarks. All queries are made directly from your browser to the RDAP servers — your data never passes through our servers. It's completely safe and private.</p></div>
+                </div>
             </div>
         </section>
 
         <!-- 相关工具 -->
-        <section class="related-tools" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
-            <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
-                <span style="color: #7c3aed;">🔗</span> <span data-i18n="relatedToolsTitle">Related Tools</span>
-            </h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px;">
-                <a href="ip-lookup.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">🌐</div>
-                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool1">IP Lookup</div>
+        <section class="related-tools">
+            <h3 data-i18n="relatedToolsTitle">Related Tools</h3>
+            <div class="related-grid">
+                <a href="ip-lookup.html" class="related-card">
+                    <div class="related-icon">🌐</div>
+                    <h4 data-i18n="relatedTool1">IP Lookup</h4>
                 </a>
-                <a href="websocket-tester.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">🔌</div>
-                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool2">WebSocket Tester</div>
+                <a href="websocket-tester.html" class="related-card">
+                    <div class="related-icon">🔌</div>
+                    <h4 data-i18n="relatedTool2">WebSocket Tester</h4>
                 </a>
-                <a href="json-viewer.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">📋</div>
-                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool3">JSON Viewer</div>
+                <a href="json-viewer.html" class="related-card">
+                    <div class="related-icon">📋</div>
+                    <h4 data-i18n="relatedTool3">JSON Viewer</h4>
                 </a>
-                <a href="crypto-tools.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">🔐</div>
-                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool4">Crypto Tools</div>
+                <a href="crypto-tools.html" class="related-card">
+                    <div class="related-icon">🔐</div>
+                    <h4 data-i18n="relatedTool4">Crypto Tools</h4>
                 </a>
             </div>
         </section>
@@ -1663,11 +1639,6 @@ h1 {
             document.getElementById('resultSection').classList.remove('show');
         }
 
-        // FAQ 折叠展开
-        function toggleFaq(element) {
-            const faqItem = element.parentElement;
-            faqItem.classList.toggle('active');
-        }
 
         // 暴露翻译对象供 common.js 使用
         window._translations = i18n;

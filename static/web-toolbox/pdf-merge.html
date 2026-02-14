@@ -251,8 +251,30 @@
             font-size: 14px;
         }
 
-        .features-section, .faq-section, .features-section h2, .faq-section h2, .features-grid, .feature-card, .feature-card h4, .related-card h4 { margin: 8px 0 6px; font-size: 15px; }
-        .feature-card p, .related-card p { color: #a1a1aa; font-size: 13px; }
+        .features-section { margin: 40px 0; }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .feature-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .feature-card:hover {
+            background: rgba(124,58,237,0.1);
+            border-color: rgba(124,58,237,0.3);
+            transform: translateY(-4px);
+        }
+        .feature-card .feature-icon { font-size: 2.5rem; margin-bottom: 12px; }
+        .feature-card h4 { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 8px; }
+        .feature-card p { font-size: 0.85rem; color: #a1a1aa; line-height: 1.5; }
+        .related-card h4 { margin: 8px 0 6px; font-size: 15px; }
+        .related-card p { color: #a1a1aa; font-size: 13px; }
         .faq-item {
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 10px;
@@ -279,11 +301,12 @@
         .faq-item.active .faq-answer { display: block; }
 
         @media (max-width: 900px) {
-            .features-grid { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 640px) {
             h1 { font-size: 1.7rem; }
-            .features-grid, .file-item { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+            .file-item { grid-template-columns: 1fr; }
             .file-actions { justify-content: flex-start; }
         }
     </style>
@@ -323,28 +346,27 @@
         </div>
 
         <section class="features-section">
-            <h2 data-i18n="featuresTitle">Why Use This PDF Merger</h2>
             <div class="features-grid">
-                <article class="feature-card">
-                    <div>🔒</div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
                     <h4 data-i18n="feature1Title">100% Free & Private</h4>
                     <p data-i18n="feature1Desc">No ads, no signup, no file upload. Everything runs locally in your browser. Your PDF files never leave your device.</p>
-                </article>
-                <article class="feature-card">
-                    <div>🔐</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
                     <h4 data-i18n="feature2Title">Private & Secure</h4>
                     <p data-i18n="feature2Desc">No server upload. Your documents stay on your device.</p>
-                </article>
-                <article class="feature-card">
-                    <div>🧩</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧩</div>
                     <h4 data-i18n="feature3Title">Reorder Before Merge</h4>
                     <p data-i18n="feature3Desc">Sort the exact file sequence to create the final PDF you need.</p>
-                </article>
-                <article class="feature-card">
-                    <div>💯</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💯</div>
                     <h4 data-i18n="feature4Title">Original Quality</h4>
                     <p data-i18n="feature4Desc">Pages are copied directly, preserving text and image quality.</p>
-                </article>
+                </div>
             </div>
         </section>
 
@@ -837,17 +859,6 @@
 
         mergeBtn.addEventListener('click', mergePdf);
 
-        // FAQ accordion
-        document.querySelectorAll('.faq-question').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                var item = btn.closest('.faq-item');
-                var open = item.classList.contains('active');
-                document.querySelectorAll('.faq-item').forEach(function(i) {
-                    i.classList.remove('active');
-                });
-                if (!open) item.classList.add('active');
-            });
-        });
 
         renderFileList();
 

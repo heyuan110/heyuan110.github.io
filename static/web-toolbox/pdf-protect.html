@@ -19,33 +19,51 @@
   <style>
     :root{--bg:#020617;--panel:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:rgba(148,163,184,.24);--pri:#f43f5e;--pri2:#e11d48;--radius:14px}*{box-sizing:border-box;margin:0;padding:0}
     body{font-family:"Space Grotesk","Segoe UI",sans-serif;background:radial-gradient(980px 480px at 10% -10%,rgba(244,63,94,.2),transparent 56%),radial-gradient(900px 420px at 96% 0,rgba(59,130,246,.15),transparent 56%),#020617;color:var(--text);min-height:100vh;padding:24px 16px 60px}
-    .container{max-width: 1200px;margin:0 auto}.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.back{color:var(--text);text-decoration:none;font-size:14px}.back:hover{color:var(--pri)}h1{text-align:center;font-size:2.2rem;background:linear-gradient(120deg,#fda4af,#f43f5e,#93c5fd);-webkit-background-clip:text;background-clip:text;color:transparent}.subtitle{text-align:center;color:var(--muted);margin:10px 0 20px}
+    .container{max-width:1200px;margin:0 auto;padding:40px}h1{text-align:center;font-size:2.2rem;background:linear-gradient(120deg,#fda4af,#f43f5e,#93c5fd);-webkit-background-clip:text;background-clip:text;color:transparent}.subtitle{text-align:center;color:var(--muted);margin:10px 0 20px}
     .card{background:linear-gradient(180deg,rgba(17,24,39,.9),rgba(15,23,42,.88));border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 16px 36px rgba(0,0,0,.35)}.tool{padding:14px}
     .row{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:8px;align-items:center}.btn{border:1px solid var(--border);background:#0a1322;color:var(--text);padding:10px 12px;border-radius:10px;cursor:pointer}.btn.primary{background:linear-gradient(135deg,var(--pri),var(--pri2));border-color:transparent;color:#fff}
     select,input{border:1px solid var(--border);background:#020617;color:var(--text);border-radius:10px;padding:10px;width:100%}.status{font-size:13px;min-height:18px;color:#fda4af;margin-top:8px}.meta{font-size:13px;color:#fda4af;margin-top:8px}
     [data-reveal]{opacity:0;transform:translateY(12px);animation:up .6s ease forwards}[data-reveal="2"]{animation-delay:.08s}[data-reveal="3"]{animation-delay:.16s}[data-reveal="4"]{animation-delay:.24s}@keyframes up{to{opacity:1;transform:none}}
-    .features-section,.faq-section{border:1px solid var(--border);border-radius:10px;padding:12px;background:rgba(2,6,23,.54);margin-top:20px}.features-section h2,.faq-section h2{font-size:1.5rem;margin-bottom:12px}.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}.feature{border:1px solid var(--border);border-radius:10px;padding:12px;background:rgba(2,6,23,.54)}.feature p{color:var(--muted);font-size:13px;line-height:1.55}.feature h4{margin:8px 0 6px;font-size:14px}.related-tools{margin-top:20px;border:1px solid var(--border);border-radius:10px;padding:12px;background:rgba(2,6,23,.54)}.related-tools h3{font-size:1.3rem;margin-bottom:12px}.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}.related{border:1px solid var(--border);border-radius:10px;padding:12px;background:rgba(2,6,23,.54);text-decoration:none;color:inherit;display:block}.related p{color:var(--muted);font-size:13px;line-height:1.55}.related h4{margin:8px 0 6px;font-size:14px}.related:hover{border-color:#fda4af}
-    .faq-item{border:1px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden;background:rgba(2,6,23,.5)}.faq-q{width:100%;text-align:left;background:transparent;border:0;color:var(--text);padding:12px 14px;font-size:14px;cursor:pointer}.faq-a{display:none;padding:0 14px 12px;color:var(--muted);font-size:13px;line-height:1.6}.faq-item.active .faq-a{display:block}
-    @media (max-width:900px){.row{grid-template-columns:1fr}.features-grid{grid-template-columns:1fr}}@media (max-width:640px){.features-grid,.related-grid{grid-template-columns:1fr}}
+    .features-section{margin-top:30px;border:1px solid var(--border);border-radius:10px;padding:12px;background:rgba(2,6,23,.54)}
+    .features-section h2{font-size:1.5rem;margin-bottom:12px}
+    .features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .feature{border:1px solid var(--border);border-radius:10px;padding:12px;background:rgba(2,6,23,.54)}
+    .feature p{color:var(--muted);font-size:13px;line-height:1.55}
+    .feature h4{margin:8px 0 6px;font-size:14px}
+    .faq-section{margin-top:30px;border:1px solid var(--border);border-radius:10px;padding:12px;background:rgba(2,6,23,.54)}
+    .faq-section h2{font-size:1.5rem;margin-bottom:12px}
+    .related-tools{margin-top:30px;border:1px solid var(--border);border-radius:10px;padding:12px;background:rgba(2,6,23,.54)}
+    .related-tools h3{font-size:1.3rem;margin-bottom:12px}
+    .related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+    .related-card{border:1px solid var(--border);border-radius:10px;padding:12px;background:rgba(2,6,23,.54);text-decoration:none;color:inherit;display:block}
+    .related-card p{color:var(--muted);font-size:13px;line-height:1.55}
+    .related-card h4{margin:8px 0 6px;font-size:14px}
+    .related-card:hover{border-color:#fda4af}
+    .faq-item{border:1px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden;background:rgba(2,6,23,.5)}
+    .faq-question{width:100%;text-align:left;background:transparent;border:0;color:var(--text);padding:12px 14px;font-size:14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+    .faq-question::after{content:'+';font-size:18px;transition:transform .2s}
+    .faq-item.active .faq-question::after{transform:rotate(45deg)}
+    .faq-answer{display:none;padding:0 14px 12px;color:var(--muted);font-size:13px;line-height:1.6}
+    .faq-item.active .faq-answer{display:block}
+    @media (max-width:900px){.row{grid-template-columns:1fr}.features-grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:640px){.features-grid,.related-grid{grid-template-columns:1fr}.container{padding:20px}}
   </style>
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
 <div class="container">
-<div class="topbar">
-<div class="lang-dropdown" id="langDropdown"><div class="lang-current" id="langCurrent">🇺🇸 English</div><div class="lang-menu"><button class="lang-btn" data-lang="en">🇺🇸 English</button><button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button><button class="lang-btn" data-lang="fr">🇫🇷 Français</button><button class="lang-btn" data-lang="es">🇪🇸 Español</button></div></div></div>
   <h1 data-i18n="title">PDF Protect</h1><p class="subtitle" data-i18n="subtitle">Encrypt and decrypt PDF bytes with password in browser</p>
   <section class="card tool" data-reveal="1"><div class="row"><select id="mode"><option value="encrypt">Encrypt PDF</option><option value="decrypt">Decrypt File</option></select><button class="btn" id="pickBtn" data-i18n="pick">Choose File</button><input id="pwd" type="password" data-i18n-placeholder="pwdPh" placeholder="Password"><button class="btn primary" id="runBtn" data-i18n="run">Start</button></div><input id="fileInput" type="file" style="display:none"><div class="meta" id="meta">File: -</div><div class="status" id="status"></div></section>
   <div class="trust-bar" data-reveal="2"><span class="trust-item" data-i18n="trust_users">🌍 Used by 50,000+ users</span><span class="trust-item" data-i18n="trust_rating">⭐ 4.9/5 rating</span><span class="trust-item" data-i18n="trust_privacy">🔒 100% Private</span><span class="trust-item" data-i18n="trust_free">🚫 No Ads, No Signup</span></div>
   <section class="features-section" data-reveal="3"><h2 data-i18n="features_title">PDF Protect Features</h2><div class="features-grid"><article class="feature"><div>🔒</div><h4 data-i18n="f1_t">100% Free & Private</h4><p data-i18n="f1_d">No ads, no signup, no watermark. Encryption runs locally with browser crypto APIs.</p></article><article class="feature"><div>🛡️</div><h4 data-i18n="f2_t">AES Password Protection</h4><p data-i18n="f2_d">Encrypt PDF file bytes with password-derived key for secure transport.</p></article><article class="feature"><div>🔓</div><h4 data-i18n="f3_t">Decrypt Workflow</h4><p data-i18n="f3_d">Use the same password to decrypt protected package back to PDF file.</p></article><article class="feature"><div>⚡</div><h4 data-i18n="f4_t">Instant Download</h4><p data-i18n="f4_d">Generate encrypted or decrypted output and download immediately.</p></article></div></section>
   <section class="faq-section" data-reveal="4"><h2 data-i18n="faq_title">Frequently Asked Questions</h2>
-    <div class="faq-item"><button class="faq-q" data-i18n="faq1_q">What does PDF protect tool do?</button><div class="faq-a" data-i18n="faq1_a">This PDF protect tool encrypts PDF file bytes with password-derived AES key and can decrypt the encrypted package back to PDF. It helps protect sensitive document transfer workflows.</div></div>
-    <div class="faq-item"><button class="faq-q" data-i18n="faq2_q">Can I decrypt file with the same password?</button><div class="faq-a" data-i18n="faq2_a">Yes. Use Decrypt mode with the same password used during encryption. Wrong password will fail decryption because key derivation will not match original cipher.</div></div>
-    <div class="faq-item"><button class="faq-q" data-i18n="faq3_q">Is this native PDF permission encryption?</button><div class="faq-a" data-i18n="faq3_a">This tool applies file-level AES encryption package for PDF bytes in browser. It is designed for secure sharing workflow and offline protection scenarios.</div></div>
-    <div class="faq-item"><button class="faq-q" data-i18n="faq4_q">Will my PDF be uploaded during encryption?</button><div class="faq-a" data-i18n="faq4_a">No. Encryption and decryption run in browser using Web Crypto APIs. Files and passwords are not uploaded by this page to any application server.</div></div>
-    <div class="faq-item"><button class="faq-q" data-i18n="faq_free_q">Is this tool really free with no ads?</button><div class="faq-a" data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</div></div>
+    <div class="faq-item"><button class="faq-question" data-i18n="faq1_q">What does PDF protect tool do?</button><div class="faq-answer" data-i18n="faq1_a">This PDF protect tool encrypts PDF file bytes with password-derived AES key and can decrypt the encrypted package back to PDF. It helps protect sensitive document transfer workflows.</div></div>
+    <div class="faq-item"><button class="faq-question" data-i18n="faq2_q">Can I decrypt file with the same password?</button><div class="faq-answer" data-i18n="faq2_a">Yes. Use Decrypt mode with the same password used during encryption. Wrong password will fail decryption because key derivation will not match original cipher.</div></div>
+    <div class="faq-item"><button class="faq-question" data-i18n="faq3_q">Is this native PDF permission encryption?</button><div class="faq-answer" data-i18n="faq3_a">This tool applies file-level AES encryption package for PDF bytes in browser. It is designed for secure sharing workflow and offline protection scenarios.</div></div>
+    <div class="faq-item"><button class="faq-question" data-i18n="faq4_q">Will my PDF be uploaded during encryption?</button><div class="faq-answer" data-i18n="faq4_a">No. Encryption and decryption run in browser using Web Crypto APIs. Files and passwords are not uploaded by this page to any application server.</div></div>
+    <div class="faq-item"><button class="faq-question" data-i18n="faq_free_q">Is this tool really free with no ads?</button><div class="faq-answer" data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</div></div>
   </section>
-  <section class="related-tools" data-reveal="4"><h3 data-i18n="relatedToolsTitle">Related Tools</h3><div class="related-grid"><a class="related" href="e-sign.html"><div>✍️</div><h4 data-i18n="relatedTool1">E-Sign Tool</h4><p data-i18n="relatedTool1Desc">Sign PDF then protect before sharing.</p></a><a class="related" href="pdf-compress.html"><div>📦</div><h4 data-i18n="relatedTool2">PDF Compress</h4><p data-i18n="relatedTool2Desc">Reduce file size before encryption.</p></a><a class="related" href="pdf-merge.html"><div>🧩</div><h4 data-i18n="relatedTool3">PDF Merge</h4><p data-i18n="relatedTool3Desc">Merge files then apply protection.</p></a><a class="related" href="file-converter.html"><div>🔄</div><h4 data-i18n="relatedTool4">File Converter</h4><p data-i18n="relatedTool4Desc">Convert files before secure distribution.</p></a></div></section>
+  <section class="related-tools" data-reveal="4"><h3 data-i18n="relatedToolsTitle">Related Tools</h3><div class="related-grid"><a class="related-card" href="e-sign.html"><div>✍️</div><h4 data-i18n="relatedTool1">E-Sign Tool</h4><p data-i18n="relatedTool1Desc">Sign PDF then protect before sharing.</p></a><a class="related-card" href="pdf-compress.html"><div>📦</div><h4 data-i18n="relatedTool2">PDF Compress</h4><p data-i18n="relatedTool2Desc">Reduce file size before encryption.</p></a><a class="related-card" href="pdf-merge.html"><div>🧩</div><h4 data-i18n="relatedTool3">PDF Merge</h4><p data-i18n="relatedTool3Desc">Merge files then apply protection.</p></a><a class="related-card" href="file-converter.html"><div>🔄</div><h4 data-i18n="relatedTool4">File Converter</h4><p data-i18n="relatedTool4Desc">Convert files before secure distribution.</p></a></div></section>
 </div>
 <script>
 (function(){'use strict';
@@ -58,8 +76,7 @@ var i18n={
 
   var fileBuf=null,fileName='';
   var encHeader='WBT_PDF_AES_V1';
-function getLang(){return localStorage.getItem('pdf_protect_lang')||'en';}
-function t(k){var d=i18n[getLang()]||i18n.en;return d[k]||i18n.en[k]||k;}
+function t(k){var lang=typeof WebToolbox!=='undefined'?WebToolbox.getCurrentLang():'en';var d=i18n[lang]||i18n.en;return d[k]||i18n.en[k]||k;}
 
   function setStatus(v){document.getElementById('status').textContent=v||'';}
 
@@ -102,8 +119,6 @@ function t(k){var d=i18n[getLang()]||i18n.en;return d[k]||i18n.en[k]||k;}
       setStatus(t('done'));
     }catch(err){setStatus(t('err')+': '+err.message);}
   });
-
-  document.querySelectorAll('.faq-q').forEach(function(btn){btn.addEventListener('click',function(){var item=btn.parentElement;var open=item.classList.contains('active');document.querySelectorAll('.faq-item').forEach(function(it){it.classList.remove('active');});if(!open)item.classList.add('active');});});
 
   window._translations=i18n;
 })();

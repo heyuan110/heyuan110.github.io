@@ -37,7 +37,7 @@
             nav_text: 'Text',
             nav_media: 'Media',
             nav_utility: 'Utility',
-            copyright: '© 2024-2026 <a href="https://github.com/heyuan110" target="_blank" rel="noopener">heyuan110</a>. All rights reserved.'
+            copyright: '© 2024-2026 <a href="https://github.com/heyuan110" target="_blank" rel="noopener">heyuan110.com</a>. All rights reserved.'
         },
         'zh-CN': {
             home: '首页',
@@ -55,7 +55,7 @@
             nav_text: '文本',
             nav_media: '媒体',
             nav_utility: '实用',
-            copyright: '© 2024-2026 <a href="https://github.com/heyuan110" target="_blank" rel="noopener">heyuan110</a>. 保留所有权利。'
+            copyright: '© 2024-2026 <a href="https://github.com/heyuan110" target="_blank" rel="noopener">heyuan110.com</a>. 保留所有权利。'
         },
         fr: {
             home: 'Accueil',
@@ -73,7 +73,7 @@
             nav_text: 'Texte',
             nav_media: 'Média',
             nav_utility: 'Utilitaire',
-            copyright: '© 2024-2026 <a href="https://github.com/heyuan110" target="_blank" rel="noopener">heyuan110</a>. Tous droits réservés.'
+            copyright: '© 2024-2026 <a href="https://github.com/heyuan110" target="_blank" rel="noopener">heyuan110.com</a>. Tous droits réservés.'
         },
         es: {
             home: 'Inicio',
@@ -91,7 +91,7 @@
             nav_text: 'Texto',
             nav_media: 'Medios',
             nav_utility: 'Utilidad',
-            copyright: '© 2024-2026 <a href="https://github.com/heyuan110" target="_blank" rel="noopener">heyuan110</a>. Todos los derechos reservados.'
+            copyright: '© 2024-2026 <a href="https://github.com/heyuan110" target="_blank" rel="noopener">heyuan110.com</a>. Todos los derechos reservados.'
         }
     };
 
@@ -218,7 +218,12 @@
     function injectHeader(config, lang) {
         if (document.querySelector('.bc-nav')) return;
         var html = buildHeader(config, lang);
-        document.body.insertAdjacentHTML('afterbegin', html);
+        var container = document.querySelector('.container');
+        if (container) {
+            container.insertAdjacentHTML('afterbegin', html);
+        } else {
+            document.body.insertAdjacentHTML('afterbegin', html);
+        }
     }
 
     // 注入 footer（在 .container 末尾或 </body> 前）

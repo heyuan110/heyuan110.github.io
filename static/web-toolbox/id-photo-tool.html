@@ -132,29 +132,15 @@
         line-height: 1.5;
     }
 
-    .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 40px; }
 
-    /* Header */
-    .header {
-        position: relative;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 20px;
-        background: rgba(255,255,255,0.05);
-        border-radius: var(--radius);
-        margin-bottom: 20px;
-        border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .header h1 {
+    h1 {
         font-size: 1.4rem;
         background: linear-gradient(135deg, #60a5fa, #a78bfa);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        display: flex;
-        align-items: center;
-        gap: 10px;
+        background-clip: text;
+        margin-bottom: 20px;
     }
 
     /* Privacy Banner */
@@ -576,6 +562,16 @@
     .cropper-line { background-color: var(--primary); }
     .cropper-point { background-color: var(--primary); }
     .cropper-modal { background-color: rgba(0,0,0,0.7); }
+    /* FAQ */
+    .faq-section h3 { font-size: 1.2rem; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .faq-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden; margin-bottom: 12px; }
+    .faq-question { width: 100%; padding: 16px 20px; background: transparent; border: none; color: #e4e4e7; font-size: 1rem; font-weight: 500; text-align: left; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; transition: background 0.2s ease; }
+    .faq-question:hover { background: rgba(255,255,255,0.05); }
+    .faq-question::after { content: "+"; font-size: 1.5rem; font-weight: 300; color: #a1a1aa; transition: transform 0.3s ease; flex-shrink: 0; }
+    .faq-item.active .faq-question::after { transform: rotate(45deg); color: #7c3aed; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .faq-item.active .faq-answer { max-height: 500px; }
+    .faq-answer p { padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7; }
     </style>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css">
@@ -583,10 +579,7 @@
 </head>
 <body>
     <div class="container">
-<header class="header">
-            
-            <h1 data-i18n="title">📷 ID Photo Cropper & Watermark</h1>
-</header>
+<h1 data-i18n="title">📷 ID Photo Cropper & Watermark</h1>
 
         <div class="privacy-banner">
             <div class="icon">🔒</div>
@@ -923,87 +916,53 @@
         </div>
 
         <!-- FAQ 问答区块 -->
-        <section class="faq-section" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
-            <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid #30363d;" data-i18n="faqTitle">❓ FAQ</h2>
-            <div class="faq-list" style="display: flex; flex-direction: column; gap: 16px;">
-                <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; font-weight: 500; color: #e6edf3; list-style: none; display: flex; justify-content: space-between; align-items: center;" data-i18n="faq1Question">
-                        What ID photo sizes are supported?
-                        <span style="color: #8b949e; font-size: 18px;">+</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #8b949e; line-height: 1.7;" data-i18n="faq1Answer">
-                        Supports 1-inch (25x35mm), 2-inch (35x49mm), small 1-inch (22x32mm), passport (33x48mm) and other common sizes. You can also choose "Free Crop" mode to customize any size.
-                    </div>
-                </details>
-                <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; font-weight: 500; color: #e6edf3; list-style: none; display: flex; justify-content: space-between; align-items: center;" data-i18n="faq2Question">
-                        What background colors are available?
-                        <span style="color: #8b949e; font-size: 18px;">+</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #8b949e; line-height: 1.7;" data-i18n="faq2Answer">
-                        Supports red, blue, and white - the most common ID photo background colors. In the "Resize" settings, you can use the color picker to customize any background color.
-                    </div>
-                </details>
-                <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; font-weight: 500; color: #e6edf3; list-style: none; display: flex; justify-content: space-between; align-items: center;" data-i18n="faq3Question">
-                        Will my photos be uploaded to a server?
-                        <span style="color: #8b949e; font-size: 18px;">+</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #8b949e; line-height: 1.7;" data-i18n="faq3Answer">
-                        No, all processing is done locally in your browser. Photos never leave your device. This is a completely offline tool, ideal for processing sensitive ID documents. All data is cleared when you refresh the page.
-                    </div>
-                </details>
-                <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; font-weight: 500; color: #e6edf3; list-style: none; display: flex; justify-content: space-between; align-items: center;" data-i18n="faq4Question">
-                        Can I use photos taken with my phone?
-                        <span style="color: #8b949e; font-size: 18px;">+</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #8b949e; line-height: 1.7;" data-i18n="faq4Answer">
-                        Yes, we recommend taking front-facing photos in well-lit environments with a simple background. After uploading, use the crop function to adjust to the appropriate ID photo ratio.
-                    </div>
-                </details>
-                <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; font-weight: 500; color: #e6edf3; list-style: none; display: flex; justify-content: space-between; align-items: center;" data-i18n="faq5Question">
-                        What resolution are the exported photos?
-                        <span style="color: #8b949e; font-size: 18px;">+</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #8b949e; line-height: 1.7;" data-i18n="faq5Answer">
-                        Photos are exported at standard print resolution (300dpi). For example, 1-inch photos are 295x413 pixels, 2-inch photos are 413x531 pixels, meeting all ID photo printing requirements.
-                    </div>
-                </details>
-                <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; font-weight: 500; color: #e6edf3; list-style: none; display: flex; justify-content: space-between; align-items: center;" data-i18n="faq_free_q">
-                        Is this tool really free? Is it safe?
-                        <span style="color: #8b949e; font-size: 18px;">+</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #8b949e; line-height: 1.7;" data-i18n="faq_free_a">
-                        Yes, this tool is 100% free with no ads, no signup, no usage limits, and no watermarks. All processing happens in your browser — your data never leaves your device. It's completely safe and private.
-                    </div>
-                </details>
+        <section class="faq-section" style="margin: 40px 0;">
+            <h3 data-i18n="faqTitle">FAQ</h3>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq1Question">What ID photo sizes are supported?</div>
+                <div class="faq-answer"><p data-i18n="faq1Answer">Supports 1-inch (25x35mm), 2-inch (35x49mm), small 1-inch (22x32mm), passport (33x48mm) and other common sizes. You can also choose "Free Crop" mode to customize any size.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq2Question">What background colors are available?</div>
+                <div class="faq-answer"><p data-i18n="faq2Answer">Supports red, blue, and white - the most common ID photo background colors. In the "Resize" settings, you can use the color picker to customize any background color.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq3Question">Will my photos be uploaded to a server?</div>
+                <div class="faq-answer"><p data-i18n="faq3Answer">No, all processing is done locally in your browser. Photos never leave your device. This is a completely offline tool, ideal for processing sensitive ID documents. All data is cleared when you refresh the page.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq4Question">Can I use photos taken with my phone?</div>
+                <div class="faq-answer"><p data-i18n="faq4Answer">Yes, we recommend taking front-facing photos in well-lit environments with a simple background. After uploading, use the crop function to adjust to the appropriate ID photo ratio.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq5Question">What resolution are the exported photos?</div>
+                <div class="faq-answer"><p data-i18n="faq5Answer">Photos are exported at standard print resolution (300dpi). For example, 1-inch photos are 295x413 pixels, 2-inch photos are 413x531 pixels, meeting all ID photo printing requirements.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq_free_q">Is this tool really free? Is it safe?</div>
+                <div class="faq-answer"><p data-i18n="faq_free_a">Yes, this tool is 100% free with no ads, no signup, no usage limits, and no watermarks. All processing happens in your browser — your data never leaves your device. It's completely safe and private.</p></div>
             </div>
         </section>
 
         <!-- 相关工具 -->
-        <section class="related-tools" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
-            <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
-                <span style="color: #7c3aed;">🔗</span> <span data-i18n="relatedToolsTitle">Related Tools</span>
-            </h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px;">
-                <a href="image-compressor.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">📦</div>
-                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool1">Image Compressor</div>
+        <section class="related-tools">
+            <h3 data-i18n="relatedToolsTitle">Related Tools</h3>
+            <div class="related-grid">
+                <a href="image-compressor.html" class="related-card">
+                    <div class="related-icon">📦</div>
+                    <h4 data-i18n="relatedTool1">Image Compressor</h4>
                 </a>
-                <a href="paint-board.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">🎨</div>
-                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool2">Paint Board</div>
+                <a href="paint-board.html" class="related-card">
+                    <div class="related-icon">🎨</div>
+                    <h4 data-i18n="relatedTool2">Paint Board</h4>
                 </a>
-                <a href="image-converter.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">🔄</div>
-                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool3">Image Converter</div>
+                <a href="image-converter.html" class="related-card">
+                    <div class="related-icon">🔄</div>
+                    <h4 data-i18n="relatedTool3">Image Converter</h4>
                 </a>
-                <a href="bg-remover.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">✂️</div>
-                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool4">Background Remover</div>
+                <a href="bg-remover.html" class="related-card">
+                    <div class="related-icon">✂️</div>
+                    <h4 data-i18n="relatedTool4">Background Remover</h4>
                 </a>
             </div>
         </section>

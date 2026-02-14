@@ -43,10 +43,12 @@
 - 版权行（`site-footer`）：`© 2024-2026 heyuan110. All rights reserved.`，由 `COMMON_I18N` 提供 4 语翻译
 - 禁止在 HTML 中手写 `<footer>` 或版权信息
 
-**Related Tools（各工具自己写内容，必须用 common.css class）：**
-- 使用 `.related-tools` > `.related-grid` > `.related-card` 结构
+**Related Tools（各工具自己写 HTML，所有样式来自 common.css，禁止 inline style）：**
+- 固定结构：`.related-tools` > `h3` + `.related-grid` > `.related-card`（`<a>` 标签）
+- 每张卡片内部：`<div>`（emoji 图标）+ `<h4>`（工具名）+ `<p>`（描述）
 - 3-5 个相关工具内链，内容因工具而异
-- 禁止 inline style，统一使用 common.css 提供的 class
+- common.css 已处理深色/浅色主题下的字体颜色、背景、hover 效果
+- 禁止对 `.related-card`、`h4`、`p` 添加任何 inline style，统一由 common.css 控制
 
 **FAQ 手风琴交互（common.js 自动绑定，禁止手写）：**
 - common.js 的 `bindFaqAccordion()` 自动绑定 `.faq-question` 点击事件

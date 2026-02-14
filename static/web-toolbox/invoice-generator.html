@@ -431,19 +431,48 @@
     /* 通用 section */
     .features-section,
     .faq-section,
+    .related-tools {
+      margin-top: 30px;
+    }
     .features-section h2,
     .faq-section h2,
-    .features-grid,
-    .feature,
-    .related {
+    .related-tools h3 {
+      margin: 0 0 16px;
+      font-size: 1.2rem;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .feature {
       border: 1px solid var(--border);
       border-radius: var(--radius-sm);
       padding: 16px;
       background: rgba(2,6,23,.45);
       transition: all .3s ease;
     }
-    .feature:hover,
-    .related:hover {
+    .feature:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.2);
+    }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .related-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      background: rgba(2,6,23,.45);
+      transition: all .3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .related-card:hover {
       border-color: var(--border-hover);
       transform: translateY(-3px);
       box-shadow: 0 8px 24px rgba(0,0,0,.2);
@@ -459,9 +488,8 @@
       font-size: 20px;
       margin-bottom: 10px;
     }
-    .feature h4, .related h4 { margin: 0 0 6px; font-size: 14px; }
-    .feature p, .related p { color: var(--muted); font-size: 13px; line-height: 1.55; }
-    .related { text-decoration: none; color: inherit; display: block; }
+    .feature h4, .related-card h4 { margin: 0 0 6px; font-size: 14px; }
+    .feature p, .related-card p { color: var(--muted); font-size: 13px; line-height: 1.55; }
 
     /* FAQ */
     .faq-item {
@@ -474,7 +502,7 @@
     }
     .faq-item:hover { border-color: var(--border-hover); }
     .faq-item.active { border-color: rgba(59,130,246,.3); }
-    .faq-q {
+    .faq-question {
       width: 100%;
       text-align: left;
       background: transparent;
@@ -490,17 +518,17 @@
       gap: 12px;
       transition: background .2s;
     }
-    .faq-q:hover { background: rgba(255,255,255,.02); }
-    .faq-q::after {
+    .faq-question:hover { background: rgba(255,255,255,.02); }
+    .faq-question::after {
       content: '+';
-      font-size: 1.3rem;
+      font-size: 18px;
       font-weight: 300;
       color: var(--muted);
-      transition: transform .3s ease;
+      transition: transform .2s ease;
       flex-shrink: 0;
     }
-    .faq-item.active .faq-q::after { transform: rotate(45deg); }
-    .faq-a {
+    .faq-item.active .faq-question::after { transform: rotate(45deg); }
+    .faq-answer {
       max-height: 0;
       overflow: hidden;
       transition: max-height .35s ease, padding .35s ease;
@@ -509,7 +537,7 @@
       font-size: 13px;
       line-height: 1.65;
     }
-    .faq-item.active .faq-a {
+    .faq-item.active .faq-answer {
       max-height: 200px;
       padding: 0 16px 14px;
     }
@@ -517,12 +545,15 @@
     /* 响应式 */
     @media (max-width: 960px) {
       .form-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 640px) {
       h1 { font-size: 1.7rem; }
       .tool-card { padding: 14px; }
       .totals { padding: 12px; }
       .totals .grand { font-size: 18px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .container { padding: 20px; }
     }
   </style>
     <link rel="stylesheet" href="common/common.css">
@@ -612,32 +643,32 @@
 
   <section class="faq-section animate-in">
     <h2 data-i18n="faq_title">Frequently Asked Questions</h2>
-    <div class="faq-item"><button class="faq-q"><span data-i18n="faq1_q">What is an invoice generator and who needs it?</span></button><div class="faq-a" data-i18n="faq1_a">An invoice generator creates itemized billing documents for freelancers, agencies, and businesses. It helps standardize payment requests and improves accounting workflow.</div></div>
-    <div class="faq-item"><button class="faq-q"><span data-i18n="faq2_q">Can I generate invoice PDF without signup?</span></button><div class="faq-a" data-i18n="faq2_a">Yes. This free invoice maker lets you generate invoice PDF directly in browser with no registration and no software installation.</div></div>
-    <div class="faq-item"><button class="faq-q"><span data-i18n="faq3_q">Can I add tax and multiple line items?</span></button><div class="faq-a" data-i18n="faq3_a">Yes. You can add, remove, and edit line items, then apply tax rate to calculate subtotal, tax amount, and grand total.</div></div>
-    <div class="faq-item"><button class="faq-q"><span data-i18n="faq4_q">Is invoice data saved on server?</span></button><div class="faq-a" data-i18n="faq4_a">No. Invoice calculation and PDF generation are handled in browser session. Data is not sent by this page to an application backend.</div></div>
-    <div class="faq-item"><button class="faq-q"><span data-i18n="faq_free_q">Is this tool really free with no ads?</span></button><div class="faq-a" data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</div></div>
+    <div class="faq-item"><button class="faq-question"><span data-i18n="faq1_q">What is an invoice generator and who needs it?</span></button><div class="faq-answer" data-i18n="faq1_a">An invoice generator creates itemized billing documents for freelancers, agencies, and businesses. It helps standardize payment requests and improves accounting workflow.</div></div>
+    <div class="faq-item"><button class="faq-question"><span data-i18n="faq2_q">Can I generate invoice PDF without signup?</span></button><div class="faq-answer" data-i18n="faq2_a">Yes. This free invoice maker lets you generate invoice PDF directly in browser with no registration and no software installation.</div></div>
+    <div class="faq-item"><button class="faq-question"><span data-i18n="faq3_q">Can I add tax and multiple line items?</span></button><div class="faq-answer" data-i18n="faq3_a">Yes. You can add, remove, and edit line items, then apply tax rate to calculate subtotal, tax amount, and grand total.</div></div>
+    <div class="faq-item"><button class="faq-question"><span data-i18n="faq4_q">Is invoice data saved on server?</span></button><div class="faq-answer" data-i18n="faq4_a">No. Invoice calculation and PDF generation are handled in browser session. Data is not sent by this page to an application backend.</div></div>
+    <div class="faq-item"><button class="faq-question"><span data-i18n="faq_free_q">Is this tool really free with no ads?</span></button><div class="faq-answer" data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</div></div>
   </section>
 
   <section class="related-tools animate-in">
     <h3 data-i18n="relatedToolsTitle">Related Tools</h3>
     <div class="related-grid">
-      <a class="related" href="calculator.html">
+      <a class="related-card" href="calculator.html">
         <div class="feature-icon">🧮</div>
         <h4 data-i18n="relatedTool1">Calculator</h4>
         <p data-i18n="relatedTool1Desc">Check additional finance formulas quickly.</p>
       </a>
-      <a class="related" href="unit-converter.html">
+      <a class="related-card" href="unit-converter.html">
         <div class="feature-icon">📏</div>
         <h4 data-i18n="relatedTool2">Unit Converter</h4>
         <p data-i18n="relatedTool2Desc">Convert units in quotes and invoice specs.</p>
       </a>
-      <a class="related" href="timestamp-converter.html">
+      <a class="related-card" href="timestamp-converter.html">
         <div class="feature-icon">🕒</div>
         <h4 data-i18n="relatedTool3">Timestamp Converter</h4>
         <p data-i18n="relatedTool3Desc">Convert invoice dates and UNIX timestamps.</p>
       </a>
-      <a class="related" href="pdf-compress.html">
+      <a class="related-card" href="pdf-compress.html">
         <div class="feature-icon">📦</div>
         <h4 data-i18n="relatedTool4">PDF Compress</h4>
         <p data-i18n="relatedTool4Desc">Reduce invoice PDF size before sharing.</p>
@@ -781,8 +812,7 @@ var i18n = {
     }
   };
 
-  var currentLang = localStorage.getItem('invoice_generator_lang') || 'en';
-  function getLang() { return currentLang; }
+  function getLang() { return (typeof WebToolbox !== 'undefined' && WebToolbox.getCurrentLang) ? WebToolbox.getCurrentLang() : 'en'; }
 
   var itemsBody = document.getElementById('itemsBody');
   var statusEl = document.getElementById('status');
@@ -917,16 +947,6 @@ var i18n = {
   });
 
 
-  /* FAQ 手风琴 */
-  document.querySelectorAll('.faq-q').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var item = btn.parentElement;
-      var open = item.classList.contains('active');
-      document.querySelectorAll('.faq-item').forEach(function(it) { it.classList.remove('active'); });
-      if (!open) item.classList.add('active');
-    });
-  });
-
   /* 初始化 */
   addRow('Service A', 1, 200);
   addRow('Service B', 2, 150);
@@ -935,16 +955,6 @@ var i18n = {
   var due = new Date(today.getTime() + 7 * 24 * 3600 * 1000);
   document.getElementById('dueDate').value = due.toISOString().slice(0, 10);
   calc();
-
-  /* FAQ 手风琴 */
-  document.querySelectorAll('.faq-q').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var item = btn.parentElement;
-      var open = item.classList.contains('active');
-      document.querySelectorAll('.faq-item').forEach(function(it) { it.classList.remove('active'); });
-      if (!open) item.classList.add('active');
-    });
-  });
 
   window._translations = i18n;
 })();

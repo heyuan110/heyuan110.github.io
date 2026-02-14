@@ -144,13 +144,6 @@
 
     .container { max-width: 1200px; margin: 0 auto; }
 
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
     h1 {
       text-align: center;
       font-size: clamp(2rem, 4vw, 2.8rem);
@@ -503,27 +496,22 @@
       margin-top: 4px;
     }
 
-    .features-section,
-    .faq-section,
-    .features-section h2,
-    .faq-section h2,
-    .features-grid,
-    .feature,
-    .related {
+    .features-section, .faq-section, .related-tools { margin-top: 30px; }
+    .features-section h2, .faq-section h2, .related-tools h3 { margin: 0 0 16px; font-size: 1.2rem; }
+    .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+
+    .feature, .related-card {
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 12px;
       background: rgba(2,6,23,.52);
+      transition: transform .2s ease, border-color .2s ease;
     }
-
-    .feature h4,
-    .related h4 { margin: 8px 0 6px; font-size: 14px; }
-
-    .feature p,
-    .related p { color: var(--muted); font-size: 13px; line-height: 1.55; }
-
-    .related { text-decoration: none; color: inherit; display: block; transition: transform .2s ease, border-color .2s ease; }
-    .related:hover { border-color: #38bdf8; transform: translateY(-2px); }
+    .feature:hover, .related-card:hover { border-color: #38bdf8; transform: translateY(-2px); }
+    .feature h4, .related-card h4 { margin: 8px 0 6px; font-size: 14px; }
+    .feature p, .related-card p { color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .related-card { text-decoration: none; color: inherit; display: block; }
 
     .faq-item {
       border: 1px solid var(--border);
@@ -532,8 +520,7 @@
       overflow: hidden;
       background: rgba(2,6,23,.5);
     }
-
-    .faq-q {
+    .faq-question {
       width: 100%;
       text-align: left;
       background: transparent;
@@ -543,17 +530,14 @@
       cursor: pointer;
       font-size: 14px;
       font-family: inherit;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-
-    .faq-a {
-      display: none;
-      padding: 0 14px 12px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    .faq-item.active .faq-a { display: block; }
+    .faq-question::after { content: '+'; font-size: 18px; color: var(--muted); transition: transform .2s; }
+    .faq-item.active .faq-question::after { transform: rotate(45deg); }
+    .faq-answer { display: none; padding: 0 14px 12px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+    .faq-item.active .faq-answer { display: block; }
 
     @media (max-width: 960px) {
       .settings { grid-template-columns: 1fr; }
@@ -563,10 +547,12 @@
     }
 
     @media (max-width: 640px) {
-      .features-grid, .timer-orb, .timer-svg { width: 232px; height: 232px; }
+      .timer-orb, .timer-svg { width: 232px; height: 232px; }
       .timer-core { inset: 28px; }
       .mode-tabs { grid-template-columns: 1fr; }
-      }
+      .features-grid { grid-template-columns: 1fr; }
+      .container { padding: 20px; }
+    }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -577,18 +563,6 @@
 </head>
 <body>
 <div class="container">
-<div class="topbar">
-<div class="lang-dropdown" id="langDropdown">
-      <div class="lang-current" id="langCurrent">🇺🇸 English</div>
-      <div class="lang-menu">
-        <button class="lang-btn" data-lang="en">🇺🇸 English</button>
-        <button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button>
-        <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
-        <button class="lang-btn" data-lang="es">🇪🇸 Español</button>
-      </div>
-    </div>
-  </div>
-
   <h1 data-i18n="title">Pomodoro Timer</h1>
   <p class="subtitle" data-i18n="subtitle">Boost focus with work and break cycles</p>
 
@@ -647,14 +621,14 @@
   <section class="features-section" data-reveal="3"><h2 data-i18n="features_title">Pomodoro Features</h2><div class="features-grid"><article class="feature"><div>🔒</div><h4 data-i18n="f1_t">100% Free & Private</h4><p data-i18n="f1_d">No ads, no signup, no watermark. Everything runs locally in your browser. Your data never leaves your device.</p></article><article class="feature"><div>⏱️</div><h4 data-i18n="f2_t">Focus Timer Cycles</h4><p data-i18n="f2_d">Switch automatically between work, short break, and long break phases.</p></article><article class="feature"><div>🔔</div><h4 data-i18n="f3_t">Notification Reminder</h4><p data-i18n="f3_d">Browser notifications remind you when each pomodoro phase ends.</p></article><article class="feature"><div>📈</div><h4 data-i18n="f4_t">Session Counter</h4><p data-i18n="f4_d">Track completed focus rounds for study planning and productivity review.</p></article></div></section>
 
   <section class="faq-section" data-reveal="4"><h2 data-i18n="faq_title">Frequently Asked Questions</h2>
-    <div class="faq-item"><button class="faq-q" data-i18n="faq1_q">What is pomodoro timer and why is it useful?</button><div class="faq-a" data-i18n="faq1_a">Pomodoro timer is a focus technique that alternates work sessions and breaks. It helps maintain concentration, reduce burnout, and improve daily productivity.</div></div>
-    <div class="faq-item"><button class="faq-q" data-i18n="faq2_q">Can I customize work and break duration?</button><div class="faq-a" data-i18n="faq2_a">Yes. You can set custom minutes for work, short break, and long break to match study or deep work routines.</div></div>
-    <div class="faq-item"><button class="faq-q" data-i18n="faq3_q">Does it support browser notifications?</button><div class="faq-a" data-i18n="faq3_a">Yes. If notification permission is granted, this focus timer will alert you when session phase changes.</div></div>
-    <div class="faq-item"><button class="faq-q" data-i18n="faq4_q">Will timer keep running in background tab?</button><div class="faq-a" data-i18n="faq4_a">Yes. Timer is based on JavaScript intervals and keeps counting in most background tab scenarios, then updates UI accordingly.</div></div>
-    <div class="faq-item"><button class="faq-q" data-i18n="faq_free_q">Is this tool really free with no ads?</button><div class="faq-a" data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</div></div>
+    <div class="faq-item"><button class="faq-question" data-i18n="faq1_q">What is pomodoro timer and why is it useful?</button><div class="faq-answer" data-i18n="faq1_a">Pomodoro timer is a focus technique that alternates work sessions and breaks. It helps maintain concentration, reduce burnout, and improve daily productivity.</div></div>
+    <div class="faq-item"><button class="faq-question" data-i18n="faq2_q">Can I customize work and break duration?</button><div class="faq-answer" data-i18n="faq2_a">Yes. You can set custom minutes for work, short break, and long break to match study or deep work routines.</div></div>
+    <div class="faq-item"><button class="faq-question" data-i18n="faq3_q">Does it support browser notifications?</button><div class="faq-answer" data-i18n="faq3_a">Yes. If notification permission is granted, this focus timer will alert you when session phase changes.</div></div>
+    <div class="faq-item"><button class="faq-question" data-i18n="faq4_q">Will timer keep running in background tab?</button><div class="faq-answer" data-i18n="faq4_a">Yes. Timer is based on JavaScript intervals and keeps counting in most background tab scenarios, then updates UI accordingly.</div></div>
+    <div class="faq-item"><button class="faq-question" data-i18n="faq_free_q">Is this tool really free with no ads?</button><div class="faq-answer" data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</div></div>
   </section>
 
-  <section class="related-tools" data-reveal="5"><h3 data-i18n="relatedToolsTitle">Related Tools</h3><div class="related-grid"><a class="related" href="metronome.html"><div>🎵</div><h4 data-i18n="relatedTool1">Metronome</h4><p data-i18n="relatedTool1Desc">Use stable rhythm for focused practice sessions.</p></a><a class="related" href="word-counter.html"><div>📝</div><h4 data-i18n="relatedTool2">Word Counter</h4><p data-i18n="relatedTool2Desc">Track writing output per pomodoro block.</p></a><a class="related" href="world-clock.html"><div>🌍</div><h4 data-i18n="relatedTool3">World Clock</h4><p data-i18n="relatedTool3Desc">Coordinate focus sessions across time zones.</p></a><a class="related" href="calculator.html"><div>🧮</div><h4 data-i18n="relatedTool4">Calculator</h4><p data-i18n="relatedTool4Desc">Estimate daily focus hours and plans.</p></a></div></section>
+  <section class="related-tools" data-reveal="5"><h3 data-i18n="relatedToolsTitle">Related Tools</h3><div class="related-grid"><a class="related-card" href="metronome.html"><div>🎵</div><h4 data-i18n="relatedTool1">Metronome</h4><p data-i18n="relatedTool1Desc">Use stable rhythm for focused practice sessions.</p></a><a class="related-card" href="word-counter.html"><div>📝</div><h4 data-i18n="relatedTool2">Word Counter</h4><p data-i18n="relatedTool2Desc">Track writing output per pomodoro block.</p></a><a class="related-card" href="world-clock.html"><div>🌍</div><h4 data-i18n="relatedTool3">World Clock</h4><p data-i18n="relatedTool3Desc">Coordinate focus sessions across time zones.</p></a><a class="related-card" href="calculator.html"><div>🧮</div><h4 data-i18n="relatedTool4">Calculator</h4><p data-i18n="relatedTool4Desc">Estimate daily focus hours and plans.</p></a></div></section>
 </div>
 
 <script>
@@ -681,10 +655,9 @@ var phase = 'work';
   var timerOrb = document.getElementById('timerOrb');
   progressCircle.style.strokeDasharray = String(CIRC);
 
-  function getLang() {
-    return localStorage.getItem('pomodoro_lang') || 'en';
+  function getLang(){
+    return (typeof WebToolbox !== 'undefined') ? WebToolbox.getCurrentLang() : (localStorage.getItem('toolbox_lang') || 'en');
   }
-
   function t(k){
     var d=i18n[getLang()]||i18n.en;
     return d[k]||i18n.en[k]||k;
@@ -879,15 +852,6 @@ var phase = 'work';
     });
   });
 
-  document.querySelectorAll('.faq-q').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var item = btn.parentElement;
-      var open = item.classList.contains('active');
-      document.querySelectorAll('.faq-item').forEach(function(it){ it.classList.remove('active'); });
-      if(!open) item.classList.add('active');
-    });
-  });
-
   document.addEventListener('keydown', function(e){
     if(e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
     if(e.code === 'Space'){
@@ -902,6 +866,9 @@ var phase = 'work';
 
   resetPhaseDuration();
   updateUI();
+
+  // 语言切换时更新动态文本
+  document.addEventListener('langChanged', function(){ updateUI(); });
 
   window._translations = i18n;
 })();

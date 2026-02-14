@@ -221,11 +221,16 @@
     [data-state="done"] .done-bar{display:flex}
 
     /* ===== 信任条 + 功能区 + FAQ + 相关工具 ===== */
-    .features-section,.faq-section,.features-section h2,.faq-section h2,.features-grid,.feature,.related{border:1px solid var(--border);border-radius:12px;padding:14px;background:rgba(2,6,23,.45);transition:border-color .2s,transform .2s}.feature:hover,.related:hover{border-color:rgba(148,163,184,.3);transform:translateY(-2px)}.feature h4,.related h4{margin:8px 0 6px;font-size:14px}.feature p,.related p{color:var(--muted);font-size:13px;line-height:1.6}
-    .related{text-decoration:none;color:inherit;display:block}
-    .faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:8px;overflow:hidden;background:rgba(2,6,23,.4);transition:border-color .2s}.faq-item:hover{border-color:rgba(148,163,184,.25)}.faq-q{width:100%;text-align:left;background:transparent;border:0;color:var(--text);padding:14px 16px;cursor:pointer;font-size:14px;font-weight:500;display:flex;justify-content:space-between;align-items:center}.faq-q::after{content:'+';font-size:18px;color:var(--muted);transition:transform .2s}.faq-item.active .faq-q::after{transform:rotate(45deg)}.faq-a{display:none;padding:0 16px 14px;color:var(--muted);font-size:13px;line-height:1.65}.faq-item.active .faq-a{display:block}
+    .features-section,.faq-section,.related-tools{margin-top:30px}
+    .features-section h2,.faq-section h2,.related-tools h3{margin:0 0 16px;font-size:1.2rem}
+    .features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    .feature,.related-card{border:1px solid var(--border);border-radius:12px;padding:14px;background:rgba(2,6,23,.45);transition:border-color .2s,transform .2s}.feature:hover,.related-card:hover{border-color:rgba(148,163,184,.3);transform:translateY(-2px)}.feature h4,.related-card h4{margin:8px 0 6px;font-size:14px}.feature p,.related-card p{color:var(--muted);font-size:13px;line-height:1.6}
+    .related-card{text-decoration:none;color:inherit;display:block}
+    .faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:8px;overflow:hidden;background:rgba(2,6,23,.4);transition:border-color .2s}.faq-item:hover{border-color:rgba(148,163,184,.25)}.faq-question{width:100%;text-align:left;background:transparent;border:0;color:var(--text);padding:14px 16px;cursor:pointer;font-size:14px;font-weight:500;display:flex;justify-content:space-between;align-items:center}.faq-question::after{content:'+';font-size:18px;color:var(--muted);transition:transform .2s}.faq-item.active .faq-question::after{transform:rotate(45deg)}.faq-answer{display:none;padding:0 16px 14px;color:var(--muted);font-size:13px;line-height:1.65}.faq-item.active .faq-answer{display:block}
 
-    @media(max-width:960px){.features-grid,}
+    @media(max-width:960px){.features-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:480px){.features-grid{grid-template-columns:1fr}.container{padding:20px}}
     @media(max-width:640px){h1{font-size:1.7rem}.features-grid,.steps{gap:0}.step span:not(.step-num){display:none}.config-bar{gap:14px}.wm-options{gap:10px;padding:12px 16px}.wm-field{flex-wrap:wrap}.wm-field input[type="text"]{min-width:120px;flex:1}.done-bar{flex-direction:column;align-items:stretch}.done-actions{justify-content:stretch}.done-actions .download-btn,.done-actions .new-btn{flex:1;justify-content:center}.rec-timer{font-size:40px}}
   </style>
     <link rel="stylesheet" href="common/common.css">
@@ -376,18 +381,18 @@
   </div></section>
 
   <section class="faq-section anim anim-d7"><h2 data-i18n="faq_title">Frequently Asked Questions</h2>
-    <div class="faq-item"><button class="faq-q"><span data-i18n="faq1_q">What is an online screen recorder and how does it work?</span></button><div class="faq-a" data-i18n="faq1_a">An online screen recorder captures your screen using browser APIs like getDisplayMedia and MediaRecorder. It records video locally and exports the file without any desktop installation. Modern browsers can record directly in MP4 format, so you get instant downloads with no conversion wait time.</div></div>
-    <div class="faq-item"><button class="faq-q"><span data-i18n="faq2_q">Can I record screen with microphone audio?</span></button><div class="faq-a" data-i18n="faq2_a">Yes. Enable the microphone option before recording to merge your voice input with the screen capture stream. This is perfect for creating tutorials, product demos, and walkthrough videos with live narration.</div></div>
-    <div class="faq-item"><button class="faq-q"><span data-i18n="faq3_q">What format is used for download?</span></button><div class="faq-a" data-i18n="faq3_a">Modern browsers support native MP4 recording, so no extra conversion or transcoding engine is needed — your recording downloads instantly after you stop.</div></div>
-    <div class="faq-item"><button class="faq-q"><span data-i18n="faq4_q">Is recording private and local in browser?</span></button><div class="faq-a" data-i18n="faq4_a">Yes. Screen recording starts only after your explicit permission and runs entirely in the browser context. No data is uploaded to any server.</div></div>
-    <div class="faq-item"><button class="faq-q"><span data-i18n="faq_free_q">Is this tool really free with no ads?</span></button><div class="faq-a" data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</div></div>
+    <div class="faq-item"><button class="faq-question" data-i18n="faq1_q">What is an online screen recorder and how does it work?</button><div class="faq-answer" data-i18n="faq1_a">An online screen recorder captures your screen using browser APIs like getDisplayMedia and MediaRecorder. It records video locally and exports the file without any desktop installation. Modern browsers can record directly in MP4 format, so you get instant downloads with no conversion wait time.</div></div>
+    <div class="faq-item"><button class="faq-question" data-i18n="faq2_q">Can I record screen with microphone audio?</button><div class="faq-answer" data-i18n="faq2_a">Yes. Enable the microphone option before recording to merge your voice input with the screen capture stream. This is perfect for creating tutorials, product demos, and walkthrough videos with live narration.</div></div>
+    <div class="faq-item"><button class="faq-question" data-i18n="faq3_q">What format is used for download?</button><div class="faq-answer" data-i18n="faq3_a">Modern browsers support native MP4 recording, so no extra conversion or transcoding engine is needed — your recording downloads instantly after you stop.</div></div>
+    <div class="faq-item"><button class="faq-question" data-i18n="faq4_q">Is recording private and local in browser?</button><div class="faq-answer" data-i18n="faq4_a">Yes. Screen recording starts only after your explicit permission and runs entirely in the browser context. No data is uploaded to any server.</div></div>
+    <div class="faq-item"><button class="faq-question" data-i18n="faq_free_q">Is this tool really free with no ads?</button><div class="faq-answer" data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</div></div>
   </section>
 
   <section class="related-tools anim anim-d8"><h3 data-i18n="related_title">Related Tools</h3><div class="related-grid">
-    <a class="related" href="audio-cutter.html"><div>🎧</div><h4 data-i18n="r1_t">Audio Cutter</h4><p data-i18n="r1_d">Trim narration audio from recorded videos.</p></a>
-    <a class="related" href="timestamp-converter.html"><div>🕒</div><h4 data-i18n="r2_t">Timestamp Converter</h4><p data-i18n="r2_d">Convert timeline points while editing recordings.</p></a>
-    <a class="related" href="image-to-pdf.html"><div>🗂️</div><h4 data-i18n="r3_t">Image to PDF</h4><p data-i18n="r3_d">Turn captured screenshots into shareable PDFs.</p></a>
-    <a class="related" href="pdf-compress.html"><div>📦</div><h4 data-i18n="r4_t">PDF Compress</h4><p data-i18n="r4_d">Compress docs created from recording snapshots.</p></a>
+    <a class="related-card" href="audio-cutter.html"><div>🎧</div><h4 data-i18n="r1_t">Audio Cutter</h4><p data-i18n="r1_d">Trim narration audio from recorded videos.</p></a>
+    <a class="related-card" href="timestamp-converter.html"><div>🕒</div><h4 data-i18n="r2_t">Timestamp Converter</h4><p data-i18n="r2_d">Convert timeline points while editing recordings.</p></a>
+    <a class="related-card" href="image-to-pdf.html"><div>🗂️</div><h4 data-i18n="r3_t">Image to PDF</h4><p data-i18n="r3_d">Turn captured screenshots into shareable PDFs.</p></a>
+    <a class="related-card" href="pdf-compress.html"><div>📦</div><h4 data-i18n="r4_t">PDF Compress</h4><p data-i18n="r4_d">Compress docs created from recording snapshots.</p></a>
   </div></section>
 </div>
 

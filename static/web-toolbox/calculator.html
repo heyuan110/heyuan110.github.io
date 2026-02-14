@@ -197,18 +197,18 @@
         }
 
         /* 主内容区 */
-        .main-content {
+        .main-content.container {
             margin-left: 260px;
+            margin-right: 0;
             flex: 1;
-            padding: 30px;
+            padding: 40px;
             min-height: 100vh;
             position: relative;
+            max-width: none;
         }
 
         .tool-panel {
             display: none;
-            max-width: 800px;
-            margin: 0 auto;
         }
 
         .tool-panel.active {
@@ -567,11 +567,54 @@
             }
         }
 
+        /* FAQ */
+        .faq-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .faq-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+        .faq-question {
+            width: 100%;
+            padding: 16px 20px;
+            background: transparent;
+            border: none;
+            color: #e4e4e7;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            transition: background 0.2s ease;
+        }
+        .faq-question:hover { background: rgba(255, 255, 255, 0.05); }
+        .faq-question::after {
+            content: "+";
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: #a1a1aa;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+        .faq-item.active .faq-question::after { transform: rotate(45deg); color: #7c3aed; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .faq-item.active .faq-answer { max-height: 500px; }
+        .faq-answer p { padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7; }
+
         </style>
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-<div class="container">
     <aside class="sidebar">
         <div class="sidebar-header">
             <h1 data-i18n="title">🧮 Universal Calculator</h1>
@@ -646,8 +689,8 @@
         </div>
     </aside>
 
-    <main class="main-content">
-<div class="trust-bar">
+    <main class="main-content container">
+        <div class="trust-bar">
             <span class="trust-item" data-i18n="trust_users">🌍 Used by 50,000+ users</span>
             <span class="trust-item" data-i18n="trust_rating">⭐ 4.9/5 rating</span>
             <span class="trust-item" data-i18n="trust_privacy">🔒 100% Private</span>
@@ -1365,96 +1408,61 @@
         </div>
 
         <!-- FAQ Section -->
-        <section class="faq-section" style="margin-top: 40px; padding: 24px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;">
-            <h2 style="color: #f0f0f0; font-size: 1.3rem; margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
-                <span style="font-size: 1.4rem;">&#x2753;</span> <span data-i18n="faqTitle">FAQ</span>
-            </h2>
-            <div style="display: flex; flex-direction: column; gap: 16px;">
-                <details style="background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-                    <summary style="padding: 16px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq1Q">What functions does the scientific calculator support?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">&#x25BC;</span>
-                    </summary>
-                    <div style="padding: 0 16px 16px; color: #a1a1aa; line-height: 1.6;" data-i18n="faq1A">
-                        Supports sin, cos, tan, log, ln, factorial, power, square root and more. Keyboard input supported: Enter to calculate, Escape to clear.
-                    </div>
-                </details>
-                <details style="background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-                    <summary style="padding: 16px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq2Q">What types of unit conversion are supported?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">&#x25BC;</span>
-                    </summary>
-                    <div style="padding: 0 16px 16px; color: #a1a1aa; line-height: 1.6;" data-i18n="faq2A">
-                        Supports 16 types: length, area, volume, temperature, time, speed, pressure, power, energy, angle, data size, density, force. Each includes multiple common units.
-                    </div>
-                </details>
-                <details style="background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-                    <summary style="padding: 16px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq3Q">How to use the subnet mask calculator?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">&#x25BC;</span>
-                    </summary>
-                    <div style="padding: 0 16px 16px; color: #a1a1aa; line-height: 1.6;" data-i18n="faq3A">
-                        Enter IP address and subnet mask or CIDR (e.g., /24). The tool calculates network address, broadcast address, host range, host count, wildcard mask, and binary IP.
-                    </div>
-                </details>
-                <details style="background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-                    <summary style="padding: 16px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq4Q">How to use the interest calculator?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">&#x25BC;</span>
-                    </summary>
-                    <div style="padding: 0 16px 16px; color: #a1a1aa; line-height: 1.6;" data-i18n="faq4A">
-                        Enter principal, rate and term, select repayment method. The tool calculates monthly payment, total payment, and total interest. Equal principal also shows first/last month payment and monthly decrease.
-                    </div>
-                </details>
-                <details style="background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-                    <summary style="padding: 16px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq5Q">What is the calculation precision?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">&#x25BC;</span>
-                    </summary>
-                    <div style="padding: 0 16px 16px; color: #a1a1aa; line-height: 1.6;" data-i18n="faq5A">
-                        Uses JavaScript floating-point arithmetic with precision of about 15-17 significant digits. Unit conversion results automatically remove trailing zeros.
-                    </div>
-                </details>
-                <details style="background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-                    <summary style="padding: 16px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq_free_q">Is this tool really free? Is it safe?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">&#x25BC;</span>
-                    </summary>
-                    <div style="padding: 0 16px 16px; color: #a1a1aa; line-height: 1.6;" data-i18n="faq_free_a">
-                        Yes, this tool is 100% free with no ads, no signup, no usage limits, and no watermarks. All processing happens in your browser — your data never leaves your device. It's completely safe and private.
-                    </div>
-                </details>
+        <section class="faq-section" style="margin: 40px 0 0;">
+            <h3 data-i18n="faqTitle">FAQ</h3>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq1Q">What functions does the scientific calculator support?</div>
+                <div class="faq-answer"><p data-i18n="faq1A">Supports sin, cos, tan, log, ln, factorial, power, square root and more. Keyboard input supported: Enter to calculate, Escape to clear.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq2Q">What types of unit conversion are supported?</div>
+                <div class="faq-answer"><p data-i18n="faq2A">Supports 16 types: length, area, volume, temperature, time, speed, pressure, power, energy, angle, data size, density, force. Each includes multiple common units.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq3Q">How to use the subnet mask calculator?</div>
+                <div class="faq-answer"><p data-i18n="faq3A">Enter IP address and subnet mask or CIDR (e.g., /24). The tool calculates network address, broadcast address, host range, host count, wildcard mask, and binary IP.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq4Q">How to use the interest calculator?</div>
+                <div class="faq-answer"><p data-i18n="faq4A">Enter principal, rate and term, select repayment method. The tool calculates monthly payment, total payment, and total interest. Equal principal also shows first/last month payment and monthly decrease.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq5Q">What is the calculation precision?</div>
+                <div class="faq-answer"><p data-i18n="faq5A">Uses JavaScript floating-point arithmetic with precision of about 15-17 significant digits. Unit conversion results automatically remove trailing zeros.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq_free_q">Is this tool really free? Is it safe?</div>
+                <div class="faq-answer"><p data-i18n="faq_free_a">Yes, this tool is 100% free with no ads, no signup, no usage limits, and no watermarks. All processing happens in your browser — your data never leaves your device. It's completely safe and private.</p></div>
             </div>
         </section>
 
         <!-- Related Tools -->
-        <section class="related-tools" style="margin-top: 40px; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 12px;">
-            <h3 style="color: #f0f0f0; font-size: 18px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #333;">&#x1F517; <span data-i18n="relatedTools">Related Tools</span></h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
-                <a href="timestamp-converter.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">⏰</div>
-                    <div style="color: #f0f0f0; font-weight: 500;" data-i18n="relatedTimestamp">Timestamp Converter</div>
-                    <div style="color: #94a3b8; font-size: 12px; margin-top: 4px;" data-i18n="relatedTimestampDesc">Unix timestamp and date conversion</div>
+        <section class="related-tools" style="margin: 40px 0 0;">
+            <h3 data-i18n="relatedTools">Related Tools</h3>
+            <div class="related-grid">
+                <a href="timestamp-converter.html" class="related-card">
+                    <div class="related-icon">⏰</div>
+                    <h4 data-i18n="relatedTimestamp">Timestamp Converter</h4>
+                    <p data-i18n="relatedTimestampDesc">Unix timestamp and date conversion</p>
                 </a>
-                <a href="crypto-tools.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">🔐</div>
-                    <div style="color: #f0f0f0; font-weight: 500;" data-i18n="relatedCrypto">Crypto Toolbox</div>
-                    <div style="color: #94a3b8; font-size: 12px; margin-top: 4px;" data-i18n="relatedCryptoDesc">Base64/MD5/AES encoding</div>
+                <a href="crypto-tools.html" class="related-card">
+                    <div class="related-icon">🔐</div>
+                    <h4 data-i18n="relatedCrypto">Crypto Toolbox</h4>
+                    <p data-i18n="relatedCryptoDesc">Base64/MD5/AES encoding</p>
                 </a>
-                <a href="relative-calculator.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">👨‍👩‍👧</div>
-                    <div style="color: #f0f0f0; font-weight: 500;" data-i18n="relatedRelative">Relationship Calculator</div>
-                    <div style="color: #94a3b8; font-size: 12px; margin-top: 4px;" data-i18n="relatedRelativeDesc">Calculate family relations</div>
+                <a href="relative-calculator.html" class="related-card">
+                    <div class="related-icon">👨‍👩‍👧</div>
+                    <h4 data-i18n="relatedRelative">Relationship Calculator</h4>
+                    <p data-i18n="relatedRelativeDesc">Calculate family relations</p>
                 </a>
-                <a href="world-clock.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">🌍</div>
-                    <div style="color: #f0f0f0; font-weight: 500;" data-i18n="relatedWorldClock">World Clock</div>
-                    <div style="color: #94a3b8; font-size: 12px; margin-top: 4px;" data-i18n="relatedWorldClockDesc">Global timezone lookup</div>
+                <a href="world-clock.html" class="related-card">
+                    <div class="related-icon">🌍</div>
+                    <h4 data-i18n="relatedWorldClock">World Clock</h4>
+                    <p data-i18n="relatedWorldClockDesc">Global timezone lookup</p>
                 </a>
             </div>
         </section>
     </main>
-</div>
 
     <script>
         // 工具切换

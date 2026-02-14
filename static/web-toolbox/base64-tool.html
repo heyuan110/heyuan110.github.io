@@ -225,7 +225,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px 60px;
+            padding: 40px;
         }
 
         /* ========== Tab 切换 ========== */
@@ -539,9 +539,7 @@
 
         /* ========== 功能特点区域 ========== */
         .seo-section {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
+            margin: 30px 0;
         }
         .seo-section-title {
             font-size: 1.5rem;
@@ -613,14 +611,15 @@
             transition: background 0.2s ease;
         }
         .faq-question:hover { background: rgba(255,255,255,0.03); }
-        .faq-arrow {
-            font-size: 12px;
-            color: #a78bfa;
+        .faq-question::after {
+            content: "+";
+            font-size: 1.4rem;
+            font-weight: 300;
+            color: var(--text-secondary, #a1a1aa);
             transition: transform 0.3s ease;
             flex-shrink: 0;
-            margin-left: 12px;
         }
-        .faq-item.active .faq-arrow { transform: rotate(180deg); }
+        .faq-item.active .faq-question::after { transform: rotate(45deg); }
         .faq-answer {
             max-height: 0;
             overflow: hidden;
@@ -629,30 +628,23 @@
         .faq-item.active .faq-answer {
             max-height: 300px;
         }
-        .faq-answer-inner {
+        .faq-answer p {
             padding: 0 24px 18px;
             font-size: 14px;
             color: #a1a1aa;
             line-height: 1.7;
         }
 
-        /* ========== 相关工具推荐 ========== */
-        .related-title {
-            font-size: 14px;
-            font-weight: 600;
-            color: #a78bfa;
-        }
 </style>
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-<!-- 头部 -->
+    <div class="container">
+    <!-- 头部 -->
     <div class="header">
         <h1 data-i18n="title">Base64 Encoder / Decoder</h1>
         <p data-i18n="subtitle">Encode and decode Base64 strings, files, and images — all in your browser.</p>
     </div>
-
-    <div class="container">
 <!-- Tab 切换 -->
         <div class="tabs">
             <button class="tab-btn active" data-tab="text" data-i18n="tabText">Text Encode/Decode</button>
@@ -797,86 +789,72 @@
         <!-- ===== FAQ 手风琴 ===== -->
         <div class="seo-section faq-section">
         <h2 class="seo-section-title" data-i18n="faqTitle">Frequently Asked Questions</h2>
-        <div class="faq-list" id="faqList">
+        <div class="faq-list">
             <div class="faq-item">
-                <button class="faq-question">
-                    <span data-i18n="faq1Q">What is Base64 encoding?</span>
-                    <span class="faq-arrow">▼</span>
-                </button>
+                <button class="faq-question" data-i18n="faq1Q">What is Base64 encoding?</button>
                 <div class="faq-answer">
-                    <div class="faq-answer-inner" data-i18n="faq1A">Base64 is a binary-to-text encoding scheme that represents binary data using 64 printable ASCII characters (A-Z, a-z, 0-9, +, /). It is commonly used to embed binary data in text-based formats like JSON, XML, HTML, email, and Data URIs.</div>
+                    <p data-i18n="faq1A">Base64 is a binary-to-text encoding scheme that represents binary data using 64 printable ASCII characters (A-Z, a-z, 0-9, +, /). It is commonly used to embed binary data in text-based formats like JSON, XML, HTML, email, and Data URIs.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">
-                    <span data-i18n="faq2Q">Is Base64 encryption?</span>
-                    <span class="faq-arrow">▼</span>
-                </button>
+                <button class="faq-question" data-i18n="faq2Q">Is Base64 encryption?</button>
                 <div class="faq-answer">
-                    <div class="faq-answer-inner" data-i18n="faq2A">No, Base64 is not encryption. It is an encoding scheme designed for data representation, not security. Anyone can decode a Base64 string without a key. Do not use Base64 to protect sensitive information.</div>
+                    <p data-i18n="faq2A">No, Base64 is not encryption. It is an encoding scheme designed for data representation, not security. Anyone can decode a Base64 string without a key. Do not use Base64 to protect sensitive information.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">
-                    <span data-i18n="faq3Q">Does it support Chinese and emoji?</span>
-                    <span class="faq-arrow">▼</span>
-                </button>
+                <button class="faq-question" data-i18n="faq3Q">Does it support Chinese and emoji?</button>
                 <div class="faq-answer">
-                    <div class="faq-answer-inner" data-i18n="faq3A">Yes! This tool fully supports UTF-8 encoding, which means Chinese, Japanese, Korean, emoji, and all other Unicode characters are handled correctly during Base64 encoding and decoding.</div>
+                    <p data-i18n="faq3A">Yes! This tool fully supports UTF-8 encoding, which means Chinese, Japanese, Korean, emoji, and all other Unicode characters are handled correctly during Base64 encoding and decoding.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">
-                    <span data-i18n="faq4Q">What is the file size limit?</span>
-                    <span class="faq-arrow">▼</span>
-                </button>
+                <button class="faq-question" data-i18n="faq4Q">What is the file size limit?</button>
                 <div class="faq-answer">
-                    <div class="faq-answer-inner" data-i18n="faq4A">Since all processing happens in your browser, there is no server-imposed limit. However, very large files (over 50 MB) may cause your browser to slow down depending on your device's memory. For best performance, keep files under 10 MB.</div>
+                    <p data-i18n="faq4A">Since all processing happens in your browser, there is no server-imposed limit. However, very large files (over 50 MB) may cause your browser to slow down depending on your device's memory. For best performance, keep files under 10 MB.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">
-                    <span data-i18n="faq5Q">Is my data safe?</span>
-                    <span class="faq-arrow">▼</span>
-                </button>
+                <button class="faq-question" data-i18n="faq5Q">Is my data safe?</button>
                 <div class="faq-answer">
-                    <div class="faq-answer-inner" data-i18n="faq5A">Absolutely. All encoding and decoding is performed entirely in your browser using JavaScript. No data is ever sent to any server. Your files, text, and images remain completely private on your device.</div>
+                    <p data-i18n="faq5A">Absolutely. All encoding and decoding is performed entirely in your browser using JavaScript. No data is ever sent to any server. Your files, text, and images remain completely private on your device.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">
-                    <span data-i18n="faqFreeQ">Is this tool really free with no ads?</span>
-                    <span class="faq-arrow">▼</span>
-                </button>
+                <button class="faq-question" data-i18n="faqFreeQ">Is this tool really free with no ads?</button>
                 <div class="faq-answer">
-                    <div class="faq-answer-inner" data-i18n="faqFreeA">Yes, this tool is 100% free with no ads, no signup, no login, and no usage limits. It runs entirely in your browser so your data stays private. There are no hidden fees or premium tiers — every feature is available to everyone.</div>
+                    <p data-i18n="faqFreeA">Yes, this tool is 100% free with no ads, no signup, no login, and no usage limits. It runs entirely in your browser so your data stays private. There are no hidden fees or premium tiers — every feature is available to everyone.</p>
                 </div>
             </div>
         </div>
         </div>
 
         <!-- ===== 相关工具推荐 ===== -->
-        <div class="seo-section">
-        <h2 class="seo-section-title" data-i18n="relatedTitle">Related Tools</h2>
+        <section class="related-tools">
+        <h3 data-i18n="relatedTitle">Related Tools</h3>
         <div class="related-grid">
             <a href="url-encoder.html" class="related-card">
-                <span class="related-icon">🔗</span>
-                <div class="related-title" data-i18n="related1">URL Encoder/Decoder</div>
+                <div>🔗</div>
+                <h4 data-i18n="related1">URL Encoder/Decoder</h4>
+                <p data-i18n="related1Desc">Encode and decode URL components</p>
             </a>
             <a href="crypto-tools.html" class="related-card">
-                <span class="related-icon">🛡️</span>
-                <div class="related-title" data-i18n="related2">Crypto & Encoding Toolkit</div>
+                <div>🛡️</div>
+                <h4 data-i18n="related2">Crypto & Encoding Toolkit</h4>
+                <p data-i18n="related2Desc">Hash, encrypt, and encode data</p>
             </a>
             <a href="password-generator.html" class="related-card">
-                <span class="related-icon">🔐</span>
-                <div class="related-title" data-i18n="related3">Password Generator</div>
+                <div>🔐</div>
+                <h4 data-i18n="related3">Password Generator</h4>
+                <p data-i18n="related3Desc">Generate secure random passwords</p>
             </a>
             <a href="image-converter.html" class="related-card">
-                <span class="related-icon">🖼️</span>
-                <div class="related-title" data-i18n="related4">Image Format Converter</div>
+                <div>🖼️</div>
+                <h4 data-i18n="related4">Image Format Converter</h4>
+                <p data-i18n="related4Desc">Convert between image formats</p>
             </a>
         </div>
-        </div>
+        </section>
     </div>
 
     <!-- Toast 通知 -->
@@ -963,9 +941,13 @@
                 relatedTool4: 'Image Format Converter',
                 relatedTool4Desc: 'Convert images between formats',
                 related1: 'URL Encoder/Decoder',
+                related1Desc: 'Encode and decode URL components',
                 related2: 'Crypto & Encoding Toolkit',
+                related2Desc: 'Hash, encrypt, and encode data',
                 related3: 'Password Generator',
+                related3Desc: 'Generate secure random passwords',
                 related4: 'Image Format Converter',
+                related4Desc: 'Convert between image formats',
                 trust_users: '🌍 Used by 50,000+ users',
                 trust_rating: '⭐ 4.9/5 rating',
                 trust_privacy: '🔒 100% Private',
@@ -1044,9 +1026,13 @@
                 relatedTool4Desc: '在不同格式之间转换图片',
                 relatedTitle: '相关工具',
                 related1: 'URL 编码/解码',
+                related1Desc: '编码和解码 URL 组件',
                 related2: '加密与编码工具箱',
+                related2Desc: '哈希、加密和编码数据',
                 related3: '密码生成器',
+                related3Desc: '生成安全的随机密码',
                 related4: '图片格式转换器',
+                related4Desc: '在图片格式之间转换',
                 trust_users: '🌍 超过 50,000 用户使用',
                 trust_rating: '⭐ 4.9/5 好评',
                 trust_privacy: '🔒 100% 隐私安全',
@@ -1125,9 +1111,13 @@
                 relatedTool4Desc: 'Convertir des images entre formats',
                 relatedTitle: 'Outils Connexes',
                 related1: 'Encodeur/Décodeur URL',
+                related1Desc: 'Encoder et décoder les composants URL',
                 related2: 'Boîte à Outils Crypto',
+                related2Desc: 'Hacher, chiffrer et encoder des données',
                 related3: 'Générateur de Mots de Passe',
+                related3Desc: 'Générer des mots de passe sécurisés',
                 related4: 'Convertisseur de Format d\'Image',
+                related4Desc: 'Convertir entre formats d\'image',
                 trust_users: '🌍 Utilisé par 50 000+ utilisateurs',
                 trust_rating: '⭐ Note 4.9/5',
                 trust_privacy: '🔒 100% Privé',
@@ -1206,9 +1196,13 @@
                 relatedTool4Desc: 'Convertir imágenes entre formatos',
                 relatedTitle: 'Herramientas Relacionadas',
                 related1: 'Codificador/Decodificador URL',
+                related1Desc: 'Codificar y decodificar componentes URL',
                 related2: 'Kit de Herramientas Cripto',
+                related2Desc: 'Hash, cifrar y codificar datos',
                 related3: 'Generador de Contraseñas',
+                related3Desc: 'Generar contraseñas seguras aleatorias',
                 related4: 'Convertidor de Formato de Imagen',
+                related4Desc: 'Convertir entre formatos de imagen',
                 trust_users: '🌍 Usado por más de 50,000 usuarios',
                 trust_rating: '⭐ Calificación 4.9/5',
                 trust_privacy: '🔒 100% Privado',

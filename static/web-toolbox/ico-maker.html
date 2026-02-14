@@ -711,9 +711,7 @@ h1 {
 
         /* FAQ 区块 */
         .faq-section {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
+            margin: 40px 0;
         }
 
         .faq-title {
@@ -773,10 +771,10 @@ h1 {
         }
 
         .faq-item.active .faq-answer {
-            max-height: 200px;
+            max-height: 500px;
         }
 
-        .faq-answer-content {
+        .faq-answer p {
             padding: 0 24px 18px;
             color: #a1a1aa;
             line-height: 1.7;
@@ -1046,77 +1044,55 @@ h1 {
         </div>
 
         <!-- FAQ -->
-        <section class="faq-section" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
-            <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
-                <span style="color: #7c3aed;">❓</span> <span data-i18n="faqTitle">FAQ</span>
-            </h2>
-            <div style="display: flex; flex-direction: column; gap: 16px;">
-                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq1Q">What is ICO format used for?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq1A">ICO is the Windows icon format, used for desktop shortcuts, website favicons, etc. It can contain multiple icon sizes, and the system will automatically choose the appropriate size to display.</div>
-                </details>
-                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq2Q">What image size is recommended?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq2A">We recommend using 256x256 or larger square images. The tool will automatically scale to generate various required sizes.</div>
-                </details>
-                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq3Q">Does it support transparent backgrounds?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq3A">Yes, upload a PNG image with transparency to preserve the transparent areas. The generated ICO file will maintain the original image's alpha channel.</div>
-                </details>
-                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq4Q">What sizes are included in the generated ICO?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq4A">It includes common sizes like 16x16, 32x32, 48x48, 64x64, 128x128, 256x256, etc. You can freely select which sizes to include.</div>
-                </details>
-                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq5Q">Can it be used for website favicon?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq5A">Yes, the generated ICO file can be used directly as a website icon. Name the file favicon.ico and place it in the website root directory.</div>
-                </details>
-                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq_free_q">Is this tool really free? Is it safe?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</div>
-                </details>
+        <section class="faq-section">
+            <h2 class="faq-title"><span data-i18n="faqTitle">FAQ</span></h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq1Q">What is ICO format used for?</div>
+                    <div class="faq-answer"><p data-i18n="faq1A">ICO is the Windows icon format, used for desktop shortcuts, website favicons, etc. It can contain multiple icon sizes, and the system will automatically choose the appropriate size to display.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq2Q">What image size is recommended?</div>
+                    <div class="faq-answer"><p data-i18n="faq2A">We recommend using 256x256 or larger square images. The tool will automatically scale to generate various required sizes.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq3Q">Does it support transparent backgrounds?</div>
+                    <div class="faq-answer"><p data-i18n="faq3A">Yes, upload a PNG image with transparency to preserve the transparent areas. The generated ICO file will maintain the original image's alpha channel.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq4Q">What sizes are included in the generated ICO?</div>
+                    <div class="faq-answer"><p data-i18n="faq4A">It includes common sizes like 16x16, 32x32, 48x48, 64x64, 128x128, 256x256, etc. You can freely select which sizes to include.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq5Q">Can it be used for website favicon?</div>
+                    <div class="faq-answer"><p data-i18n="faq5A">Yes, the generated ICO file can be used directly as a website icon. Name the file favicon.ico and place it in the website root directory.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq_free_q">Is this tool really free? Is it safe?</div>
+                    <div class="faq-answer"><p data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</p></div>
+                </div>
             </div>
         </section>
 
         <!-- 相关工具 -->
-        <section class="related-tools" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
-            <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
-                <span style="color: #7c3aed;">🔗</span> <span data-i18n="relatedToolsTitle">Related Tools</span>
-            </h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px;">
-                <a href="image-converter.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">🔄</div>
-                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool1">Image Converter</div>
+        <section class="related-tools">
+            <h3 data-i18n="relatedToolsTitle">Related Tools</h3>
+            <div class="related-grid">
+                <a href="image-converter.html" class="related-card">
+                    <div class="related-icon">🔄</div>
+                    <h4 data-i18n="relatedTool1">Image Converter</h4>
                 </a>
-                <a href="image-compressor.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">📦</div>
-                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool2">Image Compressor</div>
+                <a href="image-compressor.html" class="related-card">
+                    <div class="related-icon">📦</div>
+                    <h4 data-i18n="relatedTool2">Image Compressor</h4>
                 </a>
-                <a href="paint-board.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">🎨</div>
-                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool3">Paint Board</div>
+                <a href="paint-board.html" class="related-card">
+                    <div class="related-icon">🎨</div>
+                    <h4 data-i18n="relatedTool3">Paint Board</h4>
                 </a>
-                <a href="bg-remover.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">✂️</div>
-                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool4">Background Remover</div>
+                <a href="bg-remover.html" class="related-card">
+                    <div class="related-icon">✂️</div>
+                    <h4 data-i18n="relatedTool4">Background Remover</h4>
                 </a>
             </div>
         </section>
@@ -1915,21 +1891,6 @@ function t(key, params = {}) {
             }
         });
 
-        // FAQ 展开/收起功能
-        function toggleFaq(element) {
-            const faqItem = element.parentElement;
-            const isActive = faqItem.classList.contains('active');
-
-            // 关闭其他展开的项
-            document.querySelectorAll('.faq-item.active').forEach(item => {
-                item.classList.remove('active');
-            });
-
-            // 如果当前项未展开，则展开它
-            if (!isActive) {
-                faqItem.classList.add('active');
-            }
-        }
 
         // 暴露翻译对象供 common.js 使用
         window._translations = i18n;

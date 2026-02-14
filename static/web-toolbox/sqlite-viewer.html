@@ -869,6 +869,33 @@
         </div>
     </section>
 
+    <!-- Related Tools -->
+    <section class="related-tools">
+        <h3 data-i18n="relatedToolsTitle">Related Tools</h3>
+        <div class="related-grid">
+            <a class="related-card" href="json-viewer.html">
+                <div>{ }</div>
+                <h4 data-i18n="jsonViewer">JSON Viewer</h4>
+                <p data-i18n="jsonViewerDesc">View and format JSON data online</p>
+            </a>
+            <a class="related-card" href="crypto-tools.html">
+                <div>🔐</div>
+                <h4 data-i18n="cryptoTools">Crypto Toolkit</h4>
+                <p data-i18n="cryptoToolsDesc">Base64/MD5/AES encoding & encryption</p>
+            </a>
+            <a class="related-card" href="regex-tester.html">
+                <div>🔍</div>
+                <h4 data-i18n="regexTester">Regex Tester</h4>
+                <p data-i18n="regexTesterDesc">Online regex matching & debugging</p>
+            </a>
+            <a class="related-card" href="file-renamer.html">
+                <div>📝</div>
+                <h4 data-i18n="fileRenamer">File Renamer</h4>
+                <p data-i18n="fileRenamerDesc">Batch rename files with rules</p>
+            </a>
+        </div>
+    </section>
+
     </div>
 
     <div class="shortcuts">
@@ -1851,53 +1878,6 @@ function t(key, params = {}) {
                             </div>
                         </details>
                     </div>
-                `;
-            }
-        }
-
-        // 动态更新相关工具部分
-        function updateRelatedToolsSection() {
-            const relatedTools = document.querySelector('.related-tools');
-            if (relatedTools) {
-                relatedTools.innerHTML = `
-                    <h3 style="color: #eee; font-size: 18px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #333;">${t('relatedToolsTitle')}</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
-                        <a href="json-viewer.html" style="display: block; padding: 16px; background: #16213e; border: 1px solid #333; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                            <div style="font-size: 24px; margin-bottom: 8px;">{ }</div>
-                            <div style="color: #eee; font-weight: 500;">${t('jsonViewer')}</div>
-                            <div style="color: #888; font-size: 12px; margin-top: 4px;">${t('jsonViewerDesc')}</div>
-                        </a>
-                        <a href="crypto-tools.html" style="display: block; padding: 16px; background: #16213e; border: 1px solid #333; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                            <div style="font-size: 24px; margin-bottom: 8px;">🔐</div>
-                            <div style="color: #eee; font-weight: 500;">${t('cryptoTools')}</div>
-                            <div style="color: #888; font-size: 12px; margin-top: 4px;">${t('cryptoToolsDesc')}</div>
-                        </a>
-                        <a href="regex-tester.html" style="display: block; padding: 16px; background: #16213e; border: 1px solid #333; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                            <div style="font-size: 24px; margin-bottom: 8px;">🔍</div>
-                            <div style="color: #eee; font-weight: 500;">${t('regexTester')}</div>
-                            <div style="color: #888; font-size: 12px; margin-top: 4px;">${t('regexTesterDesc')}</div>
-                        </a>
-                        <a href="file-renamer.html" style="display: block; padding: 16px; background: #16213e; border: 1px solid #333; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
-                            <div style="font-size: 24px; margin-bottom: 8px;">📝</div>
-                            <div style="color: #eee; font-weight: 500;">${t('fileRenamer')}</div>
-                            <div style="color: #888; font-size: 12px; margin-top: 4px;">${t('fileRenamerDesc')}</div>
-                        </a>
-                    </div>
-                `;
-            }
-        }
-
-        // 动态更新 Footer 部分
-        function updateFooterSection() {
-            const footer = document.querySelector('footer');
-            if (footer) {
-                footer.innerHTML = `
-                    <p>${t('footerPrivacy')}</p>
-                    <p style="margin-top: 12px;">
-                        <a href="index.html" style="color: #00d9ff; text-decoration: none;">${t('footerBack')}</a>
-                        <span style="margin: 0 12px;">|</span>
-                        <a href="https://github.com/heyuan110" target="_blank" rel="noopener" style="color: #00d9ff; text-decoration: none;">GitHub</a>
-                    </p>
                 `;
             }
         }

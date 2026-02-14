@@ -255,11 +255,15 @@
             color: #a1a1aa;
             font-size: 1rem;
         }
-/* ===== 主布局 ===== */
-        .main-container {
+/* ===== 容器 ===== */
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px 40px;
+            padding: 40px;
+        }
+
+        /* ===== 主布局 ===== */
+        .main-container {
             display: grid;
             grid-template-columns: 340px 1fr;
             gap: 24px;
@@ -534,9 +538,7 @@
 
         /* ===== 功能特点区域 ===== */
         .seo-section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px 40px;
+            margin: 30px 0;
         }
         .seo-section-title {
             font-size: 1.5rem;
@@ -584,8 +586,6 @@
 
         /* ===== FAQ 手风琴 ===== */
         .faq-list {
-            max-width: 800px;
-            margin: 0 auto;
             display: flex;
             flex-direction: column;
             gap: 12px;
@@ -619,14 +619,16 @@
         .faq-question:hover {
             color: #a78bfa;
         }
-        .faq-arrow {
-            font-size: 12px;
+        .faq-question::after {
+            content: "+";
+            font-size: 1.4rem;
+            font-weight: 300;
             color: #a1a1aa;
             transition: transform 0.3s ease;
             flex-shrink: 0;
         }
-        .faq-item.active .faq-arrow {
-            transform: rotate(180deg);
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
         }
         .faq-answer {
             max-height: 0;
@@ -636,23 +638,16 @@
         .faq-item.active .faq-answer {
             max-height: 300px;
         }
-        .faq-answer-inner {
+        .faq-answer p {
             padding: 0 24px 18px;
             font-size: 14px;
             color: #a1a1aa;
             line-height: 1.7;
         }
 
-        /* ===== 相关工具推荐 ===== */
-        .related-title {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #a78bfa;
-            margin-bottom: 4px;
-        }
-
         /* ===== 响应式 ===== */
         @media (max-width: 800px) {
+            .container { padding: 20px; }
             .main-container {
                 grid-template-columns: 1fr;
             }
@@ -668,9 +663,10 @@
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
-<!-- 头部 -->
+<div class="container">
+    <!-- 头部 -->
     <header class="header">
-<h1 data-i18n="pageTitle">Lorem Ipsum Generator</h1>
+        <h1 data-i18n="pageTitle">Lorem Ipsum Generator</h1>
         <p data-i18n="pageSubtitle">Generate placeholder text for your designs and layouts</p>
     </header>
 
@@ -760,7 +756,6 @@
         </div>
     </div>
 
-    <div class="container">
     <div class="trust-bar">
         <span class="trust-item" data-i18n="trust_users">🌍 Used by 50,000+ users</span>
         <span class="trust-item" data-i18n="trust_rating">⭐ 4.9/5 rating</span>
@@ -795,94 +790,76 @@
         </div>
     </section>
 
-    <!-- FAQ 手风琴 -->
+    <!-- FAQ -->
     <section class="seo-section">
-        <h2 class="seo-section-title" data-i18n="faqTitle">Frequently Asked Questions</h2>
-        <div class="faq-list" id="faqList">
+        <h3 class="seo-section-title" data-i18n="faqTitle">Frequently Asked Questions</h3>
+        <div class="faq-list">
             <div class="faq-item">
-                <button class="faq-question">
-                    <span data-i18n="faqQ1">What is Lorem Ipsum?</span>
-                    <span class="faq-arrow">▼</span>
-                </button>
+                <button class="faq-question" data-i18n="faqQ1">What is Lorem Ipsum?</button>
                 <div class="faq-answer">
-                    <div class="faq-answer-inner" data-i18n="faqA1">Lorem Ipsum is dummy placeholder text used in the printing and typesetting industry since the 1500s. It is derived from sections of "De Finibus Bonorum et Malorum" by Cicero, written in 45 BC. Designers and developers use it to fill layouts with realistic-looking text before final content is available.</div>
+                    <p data-i18n="faqA1">Lorem Ipsum is dummy placeholder text used in the printing and typesetting industry since the 1500s. It is derived from sections of "De Finibus Bonorum et Malorum" by Cicero, written in 45 BC. Designers and developers use it to fill layouts with realistic-looking text before final content is available.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">
-                    <span data-i18n="faqQ2">Where does Lorem Ipsum come from?</span>
-                    <span class="faq-arrow">▼</span>
-                </button>
+                <button class="faq-question" data-i18n="faqQ2">Where does Lorem Ipsum come from?</button>
                 <div class="faq-answer">
-                    <div class="faq-answer-inner" data-i18n="faqA2">Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "De Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, discovered the classical Latin origin of the text.</div>
+                    <p data-i18n="faqA2">Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "De Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, discovered the classical Latin origin of the text.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">
-                    <span data-i18n="faqQ3">Why use placeholder text in design?</span>
-                    <span class="faq-arrow">▼</span>
-                </button>
+                <button class="faq-question" data-i18n="faqQ3">Why use placeholder text in design?</button>
                 <div class="faq-answer">
-                    <div class="faq-answer-inner" data-i18n="faqA3">Placeholder text helps designers and developers visualize how a layout will look with real content. It prevents reviewers from being distracted by readable text and allows focus on visual elements like typography, spacing, and overall design composition.</div>
+                    <p data-i18n="faqA3">Placeholder text helps designers and developers visualize how a layout will look with real content. It prevents reviewers from being distracted by readable text and allows focus on visual elements like typography, spacing, and overall design composition.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">
-                    <span data-i18n="faqQ4">What are the different text styles available?</span>
-                    <span class="faq-arrow">▼</span>
-                </button>
+                <button class="faq-question" data-i18n="faqQ4">What are the different text styles available?</button>
                 <div class="faq-answer">
-                    <div class="faq-answer-inner" data-i18n="faqA4">This generator offers three styles: Classic Lorem Ipsum (standard Latin placeholder text), Chinese placeholder text (random Chinese paragraphs using common characters and idioms), and Hipster Ipsum (trendy modern English text with words like artisan, craft beer, sustainable, etc.).</div>
+                    <p data-i18n="faqA4">This generator offers three styles: Classic Lorem Ipsum (standard Latin placeholder text), Chinese placeholder text (random Chinese paragraphs using common characters and idioms), and Hipster Ipsum (trendy modern English text with words like artisan, craft beer, sustainable, etc.).</p>
                 </div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">
-                    <span data-i18n="faqQ5">Is this generator free to use?</span>
-                    <span class="faq-arrow">▼</span>
-                </button>
+                <button class="faq-question" data-i18n="faqQ5">Is this generator free to use?</button>
                 <div class="faq-answer">
-                    <div class="faq-answer-inner" data-i18n="faqA5">Yes, this Lorem Ipsum generator is completely free to use with no limitations. It runs entirely in your browser with no server required, no registration needed, and no usage limits. You can generate and copy as much placeholder text as you need.</div>
+                    <p data-i18n="faqA5">Yes, this Lorem Ipsum generator is completely free to use with no limitations. It runs entirely in your browser with no server required, no registration needed, and no usage limits. You can generate and copy as much placeholder text as you need.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">
-                    <span data-i18n="faqFreeQ">Is this tool really free with no ads or signup?</span>
-                    <span class="faq-arrow">▼</span>
-                </button>
+                <button class="faq-question" data-i18n="faqFreeQ">Is this tool really free with no ads or signup?</button>
                 <div class="faq-answer">
-                    <div class="faq-answer-inner" data-i18n="faqFreeA">Absolutely! This Lorem Ipsum generator is 100% free with no ads, no signup, no login, and no usage limits. It runs entirely in your browser — no data is sent to any server, no account is needed, and there are no hidden costs. Use it as much as you want, anytime.</div>
+                    <p data-i18n="faqFreeA">Absolutely! This Lorem Ipsum generator is 100% free with no ads, no signup, no login, and no usage limits. It runs entirely in your browser — no data is sent to any server, no account is needed, and there are no hidden costs. Use it as much as you want, anytime.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 相关工具推荐 -->
-    <section class="seo-section">
-        <h2 class="seo-section-title" data-i18n="relatedTitle">Related Tools</h2>
+    <section class="related-tools">
+        <h3 data-i18n="relatedTitle">Related Tools</h3>
         <div class="related-grid">
             <a href="word-counter.html" class="related-card">
-                <span class="related-icon">📊</span>
-                <div class="related-title" data-i18n="relatedWordCounter">Word Counter</div>
-                <div class="related-desc" data-i18n="relatedWordCounterDesc">Count words, characters, sentences, and paragraphs in your text.</div>
+                <div>📊</div>
+                <h4 data-i18n="relatedWordCounter">Word Counter</h4>
+                <p data-i18n="relatedWordCounterDesc">Count words, characters, sentences, and paragraphs in your text.</p>
             </a>
             <a href="chinese-converter.html" class="related-card">
-                <span class="related-icon">🔄</span>
-                <div class="related-title" data-i18n="relatedChineseConverter">Chinese Converter</div>
-                <div class="related-desc" data-i18n="relatedChineseConverterDesc">Convert between Simplified and Traditional Chinese characters.</div>
+                <div>🔄</div>
+                <h4 data-i18n="relatedChineseConverter">Chinese Converter</h4>
+                <p data-i18n="relatedChineseConverterDesc">Convert between Simplified and Traditional Chinese characters.</p>
             </a>
             <a href="json-viewer.html" class="related-card">
-                <span class="related-icon">📋</span>
-                <div class="related-title" data-i18n="relatedJsonViewer">JSON Viewer</div>
-                <div class="related-desc" data-i18n="relatedJsonViewerDesc">View, format, and validate JSON data with syntax highlighting.</div>
+                <div>📋</div>
+                <h4 data-i18n="relatedJsonViewer">JSON Viewer</h4>
+                <p data-i18n="relatedJsonViewerDesc">View, format, and validate JSON data with syntax highlighting.</p>
             </a>
             <a href="base64-tool.html" class="related-card">
-                <span class="related-icon">🔣</span>
-                <div class="related-title" data-i18n="relatedBase64">Base64 Encoder/Decoder</div>
-                <div class="related-desc" data-i18n="relatedBase64Desc">Encode and decode Base64 strings quickly and easily.</div>
+                <div>🔣</div>
+                <h4 data-i18n="relatedBase64">Base64 Encoder/Decoder</h4>
+                <p data-i18n="relatedBase64Desc">Encode and decode Base64 strings quickly and easily.</p>
             </a>
         </div>
     </section>
-    </div>
+</div>
 
     <!-- Toast 提示 -->
     <div class="toast" id="toast"></div>
@@ -1588,25 +1565,6 @@
 
             // 复制按钮
             $btnCopy.addEventListener('click', copyToClipboard);
-
-            // FAQ 手风琴交互
-            var faqItems = document.querySelectorAll('.faq-item');
-            for (var n = 0; n < faqItems.length; n++) {
-                var questionBtn = faqItems[n].querySelector('.faq-question');
-                questionBtn.addEventListener('click', function() {
-                    var parentItem = this.closest('.faq-item');
-                    var isActive = parentItem.classList.contains('active');
-                    // 关闭所有其他项
-                    var allItems = document.querySelectorAll('.faq-item');
-                    for (var p = 0; p < allItems.length; p++) {
-                        allItems[p].classList.remove('active');
-                    }
-                    // 切换当前项
-                    if (!isActive) {
-                        parentItem.classList.add('active');
-                    }
-                });
-            }
 
             // 初始生成
             generateText();

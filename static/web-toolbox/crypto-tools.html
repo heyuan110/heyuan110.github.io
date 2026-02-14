@@ -767,7 +767,7 @@
     </nav>
 
     <!-- 主内容区 -->
-    <main class="main-content">
+    <main class="main-content container">
 <div class="trust-bar">
             <span class="trust-item" data-i18n="trust_users">🌍 Used by 50,000+ users</span>
             <span class="trust-item" data-i18n="trust_rating">⭐ 4.9/5 rating</span>
@@ -1623,7 +1623,7 @@
             <h2 class="faq-title" data-i18n="faqTitle">Frequently Asked Questions</h2>
             <div class="faq-list">
                 <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
+                    <button class="faq-question">
                         <span data-i18n="faqQ1">Is Base64 encoding encryption?</span>
                         <span class="faq-icon">+</span>
                     </button>
@@ -1632,7 +1632,7 @@
                     </div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
+                    <button class="faq-question">
                         <span data-i18n="faqQ2">Can MD5 be decrypted?</span>
                         <span class="faq-icon">+</span>
                     </button>
@@ -1641,7 +1641,7 @@
                     </div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
+                    <button class="faq-question">
                         <span data-i18n="faqQ3">Is AES encryption secure?</span>
                         <span class="faq-icon">+</span>
                     </button>
@@ -1650,7 +1650,7 @@
                     </div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
+                    <button class="faq-question">
                         <span data-i18n="faqQ4">Which is more secure: SHA-256 or MD5?</span>
                         <span class="faq-icon">+</span>
                     </button>
@@ -1659,7 +1659,7 @@
                     </div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
+                    <button class="faq-question">
                         <span data-i18n="faqQ5">Will my data be uploaded to servers?</span>
                         <span class="faq-icon">+</span>
                     </button>
@@ -1668,7 +1668,7 @@
                     </div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
+                    <button class="faq-question">
                         <span data-i18n="faqFreeQ">Is this tool really free with no ads?</span>
                         <span class="faq-icon">+</span>
                     </button>
@@ -1678,15 +1678,36 @@
                 </div>
             </div>
         </section>
+
+        <!-- Related Tools -->
+        <section class="related-tools">
+            <h3 data-i18n="relatedTools">Related Tools</h3>
+            <div class="related-grid">
+                <a class="related-card" href="json-viewer.html">
+                    <div>{ }</div>
+                    <h4 data-i18n="relatedJsonViewer">JSON Viewer</h4>
+                    <p data-i18n="relatedJsonViewerDesc">JSON formatting and visualization</p>
+                </a>
+                <a class="related-card" href="regex-tester.html">
+                    <div>🔍</div>
+                    <h4 data-i18n="relatedRegexTester">Regex Tester</h4>
+                    <p data-i18n="relatedRegexTesterDesc">Online regex matching and debugging</p>
+                </a>
+                <a class="related-card" href="timestamp-converter.html">
+                    <div>⏱️</div>
+                    <h4 data-i18n="relatedTimestamp">Timestamp Converter</h4>
+                    <p data-i18n="relatedTimestampDesc">Convert Unix timestamp and date</p>
+                </a>
+                <a class="related-card" href="websocket-tester.html">
+                    <div>🔌</div>
+                    <h4 data-i18n="relatedWebSocket">WebSocket Tester</h4>
+                    <p data-i18n="relatedWebSocketDesc">WebSocket connection debugging</p>
+                </a>
+            </div>
+        </section>
     </main>
 
     <script>
-        // ==================== FAQ 切换 ====================
-        function toggleFaq(button) {
-            const faqItem = button.parentElement;
-            faqItem.classList.toggle('active');
-        }
-
         // ==================== 导航切换 ====================
         document.querySelectorAll('.nav-item').forEach(item => {
             item.addEventListener('click', function() {

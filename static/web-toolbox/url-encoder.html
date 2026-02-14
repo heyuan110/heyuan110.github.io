@@ -209,7 +209,7 @@
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             color: #e4e4e7;
             min-height: 100vh;
-            padding: 20px;
+            padding: 0;
         }
 
         /* 标题 */
@@ -235,6 +235,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 40px;
         }
 
         /* Tab 栏 */
@@ -582,10 +583,9 @@
 
         /* ==================== 功能特点区域 ==================== */
         .features-section {
-            max-width: 960px;
-            margin: 48px auto 0;
+            margin: 30px 0 0;
         }
-        .features-section h2 {
+        .features-section h3 {
             text-align: center;
             font-size: 22px;
             font-weight: 700;
@@ -629,10 +629,9 @@
 
         /* ==================== FAQ 手风琴 ==================== */
         .faq-section {
-            max-width: 960px;
-            margin: 48px auto 0;
+            margin: 30px 0 0;
         }
-        .faq-section h2 {
+        .faq-section h3 {
             text-align: center;
             font-size: 22px;
             font-weight: 700;
@@ -654,32 +653,33 @@
             border-color: rgba(124,58,237,0.3);
         }
         .faq-question {
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 18px 20px;
+            background: transparent;
+            border: none;
+            color: #e4e4e7;
+            font-size: 15px;
+            font-weight: 500;
+            text-align: left;
             cursor: pointer;
-            user-select: none;
             transition: background 0.3s ease;
         }
         .faq-question:hover {
             background: rgba(255,255,255,0.03);
         }
-        .faq-question span {
-            font-size: 15px;
-            font-weight: 500;
-            color: #e4e4e7;
-            flex: 1;
-        }
-        .faq-arrow {
-            font-size: 12px;
-            color: #a78bfa;
+        .faq-question::after {
+            content: "+";
+            font-size: 1.4rem;
+            font-weight: 300;
+            color: var(--text-secondary, #a1a1aa);
             transition: transform 0.3s ease;
-            margin-left: 12px;
             flex-shrink: 0;
         }
-        .faq-item.active .faq-arrow {
-            transform: rotate(180deg);
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
         }
         .faq-answer {
             max-height: 0;
@@ -689,7 +689,7 @@
         .faq-item.active .faq-answer {
             max-height: 300px;
         }
-        .faq-answer-inner {
+        .faq-answer p {
             padding: 0 20px 18px;
             font-size: 14px;
             color: #a1a1aa;
@@ -697,31 +697,10 @@
         }
 
         /* ==================== 相关工具推荐 ==================== */
-        .related-section {
-            max-width: 960px;
-            margin: 48px auto 0;
-            padding-bottom: 48px;
-        }
-        .related-section h2 {
-            text-align: center;
-            font-size: 22px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #a78bfa, #7c3aed);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 24px;
-        }
-        .related-card h3 {
-            font-size: 14px;
-            font-weight: 600;
-            color: #c4b5fd;
-            line-height: 1.4;
-        }
 
         /* 响应式 */
         @media (max-width: 768px) {
-            body { padding: 12px; }
+            .container { padding: 20px; }
             .page-header h1 { font-size: 22px; }
             .tab-btn { padding: 10px 12px; font-size: 13px; }
             .card { padding: 16px; }
@@ -858,128 +837,110 @@
         </div>
     </div>
 
-    <!-- ==================== FAQ 手风琴 ==================== -->
+    <div class="trust-bar">
+        <span class="trust-item" data-i18n="trust_users">🌍 Used by 50,000+ users</span>
+        <span class="trust-item" data-i18n="trust_rating">⭐ 4.9/5 rating</span>
+        <span class="trust-item" data-i18n="trust_privacy">🔒 100% Private</span>
+        <span class="trust-item" data-i18n="trust_free">🚫 No Ads, No Signup</span>
+    </div>
+
+    <!-- 功能特点 -->
+    <section class="features-section">
+        <h3 data-i18n="featuresTitle">Key Features</h3>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3 data-i18n="feature1Title">100% Free & Private</h3>
+                <p data-i18n="feature1Desc">No ads, no signup, no watermark. Everything runs locally in your browser. Your data never leaves your device.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📋</div>
+                <h3 data-i18n="featureBatchTitle">Batch Processing</h3>
+                <p data-i18n="featureBatchDesc">Batch line-by-line encoding and decoding — process multiple strings at once.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3 data-i18n="featureParserTitle">URL Parser</h3>
+                <p data-i18n="featureParserDesc">Fully parse all URL components and display them visually in a structured breakdown.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✏️</div>
+                <h3 data-i18n="featureEditorTitle">Parameter Editor</h3>
+                <p data-i18n="featureEditorDesc">Interactively edit URL query parameters and rebuild the URL in real time.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
     <section class="faq-section">
-        <h2 data-i18n="faqTitle">Frequently Asked Questions</h2>
+        <h3 data-i18n="faqTitle">Frequently Asked Questions</h3>
         <div class="faq-list">
             <div class="faq-item">
-                <div class="faq-question">
-                    <span data-i18n="faqQ1">What is URL encoding (percent encoding)?</span>
-                    <span class="faq-arrow">▼</span>
-                </div>
+                <button class="faq-question" data-i18n="faqQ1">What is URL encoding (percent encoding)?</button>
                 <div class="faq-answer">
-                    <div class="faq-answer-inner" data-i18n="faqA1">URL encoding, also known as percent-encoding, is a mechanism for encoding information in a URI. Special characters are replaced with a percent sign (%) followed by two hexadecimal digits representing the character's ASCII value. For example, a space becomes %20 and an ampersand (&) becomes %26. This ensures URLs are transmitted correctly over the Internet.</div>
+                    <p data-i18n="faqA1">URL encoding, also known as percent-encoding, is a mechanism for encoding information in a URI. Special characters are replaced with a percent sign (%) followed by two hexadecimal digits representing the character's ASCII value. For example, a space becomes %20 and an ampersand (&) becomes %26. This ensures URLs are transmitted correctly over the Internet.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <div class="faq-question">
-                    <span data-i18n="faqQ2">What's the difference between encodeURI and encodeURIComponent?</span>
-                    <span class="faq-arrow">▼</span>
-                </div>
+                <button class="faq-question" data-i18n="faqQ2">What's the difference between encodeURI and encodeURIComponent?</button>
                 <div class="faq-answer">
-                    <div class="faq-answer-inner" data-i18n="faqA2">encodeURI encodes a complete URI but preserves URL structure characters like ://?#[]@!$&'()*+,;=. It is used when you want to encode a full URL while keeping it valid. encodeURIComponent encodes all special characters including URL structure characters, making it suitable for encoding individual query parameter values or path segments.</div>
+                    <p data-i18n="faqA2">encodeURI encodes a complete URI but preserves URL structure characters like ://?#[]@!$&'()*+,;=. It is used when you want to encode a full URL while keeping it valid. encodeURIComponent encodes all special characters including URL structure characters, making it suitable for encoding individual query parameter values or path segments.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <div class="faq-question">
-                    <span data-i18n="faqQ3">When do I need URL encoding?</span>
-                    <span class="faq-arrow">▼</span>
-                </div>
+                <button class="faq-question" data-i18n="faqQ3">When do I need URL encoding?</button>
                 <div class="faq-answer">
-                    <div class="faq-answer-inner" data-i18n="faqA3">URL encoding is needed when passing special characters in URL query parameters, form data, API requests, or any context where characters like spaces, ampersands, equals signs, or non-ASCII characters (such as Chinese, Japanese, or emoji) appear in a URL. Without encoding, these characters may break the URL or be misinterpreted.</div>
+                    <p data-i18n="faqA3">URL encoding is needed when passing special characters in URL query parameters, form data, API requests, or any context where characters like spaces, ampersands, equals signs, or non-ASCII characters (such as Chinese, Japanese, or emoji) appear in a URL. Without encoding, these characters may break the URL or be misinterpreted.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <div class="faq-question">
-                    <span data-i18n="faqQ4">Can I process multiple URLs at once?</span>
-                    <span class="faq-arrow">▼</span>
-                </div>
+                <button class="faq-question" data-i18n="faqQ4">Can I process multiple URLs at once?</button>
                 <div class="faq-answer">
-                    <div class="faq-answer-inner" data-i18n="faqA4">Yes! This tool supports batch mode. Simply enable the "Batch Mode" toggle and enter one string per line. Each line will be encoded or decoded independently, making it easy to process multiple values at once without repeating the operation.</div>
+                    <p data-i18n="faqA4">Yes! This tool supports batch mode. Simply enable the "Batch Mode" toggle and enter one string per line. Each line will be encoded or decoded independently, making it easy to process multiple values at once without repeating the operation.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <div class="faq-question">
-                    <span data-i18n="faqQ5">Is this tool free and safe?</span>
-                    <span class="faq-arrow">▼</span>
-                </div>
+                <button class="faq-question" data-i18n="faqQ5">Is this tool free and safe?</button>
                 <div class="faq-answer">
-                    <div class="faq-answer-inner" data-i18n="faqA5">Yes, this tool is completely free with no usage limits. All processing happens entirely in your browser using JavaScript — no data is ever sent to any server. Your URLs and data remain 100% private and secure on your device.</div>
+                    <p data-i18n="faqA5">Yes, this tool is completely free with no usage limits. All processing happens entirely in your browser using JavaScript — no data is ever sent to any server. Your URLs and data remain 100% private and secure on your device.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <div class="faq-question">
-                    <span data-i18n="faqFreeQ">Is this tool really free with no ads or signup?</span>
-                    <span class="faq-arrow">▼</span>
-                </div>
+                <button class="faq-question" data-i18n="faqFreeQ">Is this tool really free with no ads or signup?</button>
                 <div class="faq-answer">
-                    <div class="faq-answer-inner" data-i18n="faqFreeA">Absolutely! This URL encoder/decoder is 100% free with no ads, no signup, no login, and no usage limits. It runs entirely in your browser — no data is sent to any server, no account is needed, and there are no hidden costs. Use it as much as you want, anytime.</div>
+                    <p data-i18n="faqFreeA">Absolutely! This URL encoder/decoder is 100% free with no ads, no signup, no login, and no usage limits. It runs entirely in your browser — no data is sent to any server, no account is needed, and there are no hidden costs. Use it as much as you want, anytime.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ==================== 相关工具推荐 ==================== -->
+    <!-- 相关工具推荐 -->
     <section class="related-tools">
-        <h2 data-i18n="relatedToolsTitle">Related Tools</h2>
+        <h3 data-i18n="relatedToolsTitle">Related Tools</h3>
         <div class="related-grid">
             <a href="base64-tool.html" class="related-card">
-                <div class="related-icon">🔣</div>
-                <h3 data-i18n="relatedTool1">Base64 Encoder/Decoder</h3>
+                <div>🔣</div>
+                <h4 data-i18n="relatedTool1">Base64 Encoder/Decoder</h4>
                 <p data-i18n="relatedTool1Desc">Encode and decode Base64 strings</p>
             </a>
             <a href="crypto-tools.html" class="related-card">
-                <div class="related-icon">🛡️</div>
-                <h3 data-i18n="relatedTool2">Crypto & Encoding Toolkit</h3>
+                <div>🛡️</div>
+                <h4 data-i18n="relatedTool2">Crypto & Encoding Toolkit</h4>
                 <p data-i18n="relatedTool2Desc">MD5, SHA, AES encryption tools</p>
             </a>
             <a href="json-viewer.html" class="related-card">
-                <div class="related-icon">📊</div>
-                <h3 data-i18n="relatedTool3">JSON Viewer</h3>
+                <div>📊</div>
+                <h4 data-i18n="relatedTool3">JSON Viewer</h4>
                 <p data-i18n="relatedTool3Desc">Format and validate JSON data</p>
             </a>
             <a href="password-generator.html" class="related-card">
-                <div class="related-icon">🔐</div>
-                <h3 data-i18n="relatedTool4">Password Generator</h3>
+                <div>🔐</div>
+                <h4 data-i18n="relatedTool4">Password Generator</h4>
                 <p data-i18n="relatedTool4Desc">Generate secure random passwords</p>
             </a>
         </div>
     </section>
 </div>
-
-<div class="trust-bar">
-    <span class="trust-item" data-i18n="trust_users">🌍 Used by 50,000+ users</span>
-    <span class="trust-item" data-i18n="trust_rating">⭐ 4.9/5 rating</span>
-    <span class="trust-item" data-i18n="trust_privacy">🔒 100% Private</span>
-    <span class="trust-item" data-i18n="trust_free">🚫 No Ads, No Signup</span>
-</div>
-
-<!-- ==================== 功能特点 ==================== -->
-<section class="features-section">
-    <h2 data-i18n="featuresTitle">Key Features</h2>
-    <div class="features-grid">
-        <div class="feature-card">
-            <div class="feature-icon">🔒</div>
-            <h3 data-i18n="feature1Title">100% Free & Private</h3>
-            <p data-i18n="feature1Desc">No ads, no signup, no watermark. Everything runs locally in your browser. Your data never leaves your device.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">📋</div>
-            <h3 data-i18n="featureBatchTitle">Batch Processing</h3>
-            <p data-i18n="featureBatchDesc">Batch line-by-line encoding and decoding — process multiple strings at once.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">🔍</div>
-            <h3 data-i18n="featureParserTitle">URL Parser</h3>
-            <p data-i18n="featureParserDesc">Fully parse all URL components and display them visually in a structured breakdown.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">✏️</div>
-            <h3 data-i18n="featureEditorTitle">Parameter Editor</h3>
-            <p data-i18n="featureEditorDesc">Interactively edit URL query parameters and rebuild the URL in real time.</p>
-        </div>
-    </div>
-</section>
 
 <div class="toast" id="toast"></div>
 
@@ -1337,7 +1298,7 @@
 
     // ==================== 国际化应用 ====================
     function getLang() {
-        return localStorage.getItem('urlencoder_lang') || 'en';
+        return (typeof WebToolbox !== 'undefined') ? WebToolbox.getCurrentLang() : (localStorage.getItem('toolbox_lang') || 'en');
     }
 
     function t(key) {
@@ -1367,7 +1328,7 @@
     }
 
     function setLang(lang) {
-        localStorage.setItem('urlencoder_lang', lang);
+        localStorage.setItem('toolbox_lang', lang);
         applyI18N();
     }
 
@@ -1734,6 +1695,11 @@
     } else {
         init();
     }
+
+    // 语言切换时更新动态内容
+    document.addEventListener('langChanged', function() {
+        applyI18N();
+    });
 
     // 暴露翻译对象给 common.js
     window._translations = I18N;

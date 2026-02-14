@@ -120,14 +120,20 @@
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             min-height: 100vh;
             color: #e4e4e7;
-            overflow: hidden;
         }
 
         .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .paint-app {
             display: flex;
             flex-direction: column;
-            height: 100vh;
-            padding: 15px;
+            height: calc(100vh - 150px);
+            min-height: 500px;
+            margin-top: 15px;
         }
 
         /* 顶部工具栏 */
@@ -141,6 +147,7 @@
             margin-bottom: 15px;
             flex-wrap: wrap;
             position: relative;
+            z-index: 10;
         }
 
         .toolbar-section {
@@ -694,6 +701,13 @@
 
         /* 响应式 */
         @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+            }
+            .paint-app {
+                height: auto;
+                min-height: 400px;
+            }
             .toolbar {
                 gap: 10px;
                 padding: 10px 15px;
@@ -842,6 +856,7 @@
 </head>
 <body>
 <div class="container">
+<div class="paint-app">
 <!-- 顶部工具栏 -->
         <div class="toolbar">
             
@@ -908,47 +923,6 @@
                 <button class="tool-btn" data-tooltip="Clear Canvas" data-i18n-tooltip="tooltip.clearCanvas" onclick="clearCanvas()">🗑️</button>
             </div>
         </div>
-
-        <div class="trust-bar">
-            <span class="trust-item" data-i18n="trust_users">🌍 Used by 50,000+ users</span>
-            <span class="trust-item" data-i18n="trust_rating">⭐ 4.9/5 rating</span>
-            <span class="trust-item" data-i18n="trust_privacy">🔒 100% Private</span>
-            <span class="trust-item" data-i18n="trust_free">🚫 No Ads, No Signup</span>
-        </div>
-
-        <!-- 功能特点 -->
-        <section class="features-section">
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <div class="feature-content">
-                        <h4 data-i18n="feature.brushes">100% Free & Private</h4>
-                        <p data-i18n="feature.brushesDesc">No ads, no signup, no watermark. Everything runs locally in your browser. Your data never leaves your device.</p>
-                    </div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎨</div>
-                    <div class="feature-content">
-                        <h4 data-i18n="feature.colors">Rich Colors</h4>
-                        <p data-i18n="feature.colorsDesc">Free color selection with opacity adjustment</p>
-                    </div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">↩️</div>
-                    <div class="feature-content">
-                        <h4 data-i18n="feature.undoRedo">Undo/Redo</h4>
-                        <p data-i18n="feature.undoRedoDesc">Support undo and redo for easy editing</p>
-                    </div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💾</div>
-                    <div class="feature-content">
-                        <h4 data-i18n="feature.export">Export & Save</h4>
-                        <p data-i18n="feature.exportDesc">Export artwork as PNG image</p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- 画布区域 -->
         <div class="canvas-container">
@@ -1027,45 +1001,87 @@
                 <button class="action-btn action-btn-primary" onclick="saveImage('jpg')" data-i18n="saveJpg">💾 Save JPG</button>
             </div>
         </div>
+</div><!-- /.paint-app -->
+
+        <div class="trust-bar">
+            <span class="trust-item" data-i18n="trust_users">🌍 Used by 50,000+ users</span>
+            <span class="trust-item" data-i18n="trust_rating">⭐ 4.9/5 rating</span>
+            <span class="trust-item" data-i18n="trust_privacy">🔒 100% Private</span>
+            <span class="trust-item" data-i18n="trust_free">🚫 No Ads, No Signup</span>
+        </div>
+
+        <!-- 功能特点 -->
+        <section class="features-section">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <div class="feature-content">
+                        <h4 data-i18n="feature.brushes">100% Free & Private</h4>
+                        <p data-i18n="feature.brushesDesc">No ads, no signup, no watermark. Everything runs locally in your browser. Your data never leaves your device.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <div class="feature-content">
+                        <h4 data-i18n="feature.colors">Rich Colors</h4>
+                        <p data-i18n="feature.colorsDesc">Free color selection with opacity adjustment</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">↩️</div>
+                    <div class="feature-content">
+                        <h4 data-i18n="feature.undoRedo">Undo/Redo</h4>
+                        <p data-i18n="feature.undoRedoDesc">Support undo and redo for easy editing</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <div class="feature-content">
+                        <h4 data-i18n="feature.export">Export & Save</h4>
+                        <p data-i18n="feature.exportDesc">Export artwork as PNG image</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     <!-- FAQ 问答区块 -->
     <section class="faq-section">
-        <h3>FAQ</h3>
+        <h3 data-i18n="faq_title">FAQ</h3>
         <div class="faq-list">
             <div class="faq-item">
-                <div class="faq-question">What drawing tools are supported?</div>
+                <div class="faq-question" data-i18n="faq1Q">What drawing tools are supported?</div>
                 <div class="faq-answer">
-                    <p>Supports pencil, brush, line, rectangle, circle, eraser and other tools to meet various drawing needs. Each tool can adjust size and opacity.</p>
+                    <p data-i18n="faq1A">Supports pencil, brush, line, rectangle, circle, eraser and other tools to meet various drawing needs. Each tool can adjust size and opacity.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <div class="faq-question">Can I adjust the brush size?</div>
+                <div class="faq-question" data-i18n="faq2Q">Can I adjust the brush size?</div>
                 <div class="faq-answer">
-                    <p>Yes, supports brush size adjustment from 1px to 50px. You can adjust via slider or use mouse scroll wheel for quick adjustment.</p>
+                    <p data-i18n="faq2A">Yes, supports brush size adjustment from 1px to 50px. You can adjust via slider or use mouse scroll wheel for quick adjustment.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <div class="faq-question">How to save artwork?</div>
+                <div class="faq-question" data-i18n="faq3Q">How to save artwork?</div>
                 <div class="faq-answer">
-                    <p>Click "Save PNG" or "Save JPG" button at the bottom to export your artwork as an image file, which will be automatically downloaded to your device.</p>
+                    <p data-i18n="faq3A">Click "Save PNG" or "Save JPG" button at the bottom to export your artwork as an image file, which will be automatically downloaded to your device.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <div class="faq-question">Does it support touch screen drawing?</div>
+                <div class="faq-question" data-i18n="faq4Q">Does it support touch screen drawing?</div>
                 <div class="faq-answer">
-                    <p>Yes, you can draw with finger or stylus on tablets or touch screens with smooth operation, suitable for mobile devices.</p>
+                    <p data-i18n="faq4A">Yes, you can draw with finger or stylus on tablets or touch screens with smooth operation, suitable for mobile devices.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <div class="faq-question">Can I open existing images for editing?</div>
+                <div class="faq-question" data-i18n="faq5Q">Can I open existing images for editing?</div>
                 <div class="faq-answer">
-                    <p>You can import images as background and draw on them, convenient for image annotation and secondary creation. Use "New Canvas" to set appropriate canvas size.</p>
+                    <p data-i18n="faq5A">You can import images as background and draw on them, convenient for image annotation and secondary creation. Use "New Canvas" to set appropriate canvas size.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <div class="faq-question">Is this tool really free with no ads?</div>
+                <div class="faq-question" data-i18n="faq_free_q">Is this tool really free with no ads?</div>
                 <div class="faq-answer">
-                    <p>Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</p>
+                    <p data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</p>
                 </div>
             </div>
         </div>
@@ -1073,23 +1089,27 @@
 
     <!-- Related Tools -->
     <section class="related-tools">
-        <h2>Related Tools</h2>
+        <h3 data-i18n="related_title">🔗 Related Tools</h3>
         <div class="related-grid">
             <a href="color-palette.html" class="related-card">
-                <h3>Color Palette</h3>
-                <p>Color generation and palette tools</p>
+                <div class="related-icon">🎨</div>
+                <h4 data-i18n="related_1">Color Palette</h4>
+                <p data-i18n="related_1_desc">Color selection and conversion</p>
             </a>
             <a href="image-editor.html" class="related-card">
-                <h3>Image Editor</h3>
-                <p>Online image editing and processing</p>
+                <div class="related-icon">🖼️</div>
+                <h4 data-i18n="related_2">Image Editor</h4>
+                <p data-i18n="related_2_desc">Crop, rotate, filters</p>
             </a>
             <a href="image-converter.html" class="related-card">
-                <h3>Image Converter</h3>
-                <p>Convert between image formats</p>
+                <div class="related-icon">🔄</div>
+                <h4 data-i18n="related_3">Image Converter</h4>
+                <p data-i18n="related_3_desc">PNG/JPG/WebP conversion</p>
             </a>
             <a href="ico-maker.html" class="related-card">
-                <h3>ICO Maker</h3>
-                <p>Create favicon and icon files</p>
+                <div class="related-icon">🏷️</div>
+                <h4 data-i18n="related_4">ICO Maker</h4>
+                <p data-i18n="related_4_desc">Generate website icons</p>
             </a>
         </div>
     </section>
@@ -1197,36 +1217,28 @@
                     height: 'Height (px)',
                     create: 'Create'
                 },
-                faq: {
-                    title: 'FAQ',
-                    q1: 'What drawing tools are supported?',
-                    a1: 'Supports pencil, brush, line, rectangle, circle, eraser and other tools to meet various drawing needs. Each tool can adjust size and opacity.',
-                    q2: 'Can I adjust the brush size?',
-                    a2: 'Yes, supports brush size adjustment from 1px to 50px. You can adjust via slider or use mouse scroll wheel for quick adjustment.',
-                    q3: 'How to save artwork?',
-                    a3: 'Click "Save PNG" or "Save JPG" button at the bottom to export your artwork as an image file, which will be automatically downloaded to your device.',
-                    q4: 'Does it support touch screen drawing?',
-                    a4: 'Yes, you can draw with finger or stylus on tablets or touch screens with smooth operation, suitable for mobile devices.',
-                    q5: 'Can I open existing images for editing?',
-                    a5: 'You can import images as background and draw on them, convenient for image annotation and secondary creation. Use "New Canvas" to set appropriate canvas size.',
-                    q6: 'Is this tool really free with no ads?',
-                    a6: 'Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.'
-                },
-                related: {
-                    title: '🔗 Related Tools',
-                    colorPalette: 'Color Palette',
-                    colorPaletteDesc: 'Color selection and conversion',
-                    imageEditor: 'Image Editor',
-                    imageEditorDesc: 'Crop, rotate, filters',
-                    imageConverter: 'Image Converter',
-                    imageConverterDesc: 'PNG/JPG/WebP conversion',
-                    icoMaker: 'ICO Maker',
-                    icoMakerDesc: 'Generate website icons'
-                },
-                footer: {
-                    privacy: 'Pure frontend processing, data is not uploaded to server',
-                    backHome: '← Back to Web Toolbox Home'
-                },
+                faq_title: 'FAQ',
+                faq1Q: 'What drawing tools are supported?',
+                faq1A: 'Supports pencil, brush, line, rectangle, circle, eraser and other tools to meet various drawing needs. Each tool can adjust size and opacity.',
+                faq2Q: 'Can I adjust the brush size?',
+                faq2A: 'Yes, supports brush size adjustment from 1px to 50px. You can adjust via slider or use mouse scroll wheel for quick adjustment.',
+                faq3Q: 'How to save artwork?',
+                faq3A: 'Click "Save PNG" or "Save JPG" button at the bottom to export your artwork as an image file, which will be automatically downloaded to your device.',
+                faq4Q: 'Does it support touch screen drawing?',
+                faq4A: 'Yes, you can draw with finger or stylus on tablets or touch screens with smooth operation, suitable for mobile devices.',
+                faq5Q: 'Can I open existing images for editing?',
+                faq5A: 'You can import images as background and draw on them, convenient for image annotation and secondary creation. Use "New Canvas" to set appropriate canvas size.',
+                faq_free_q: 'Is this tool really free with no ads?',
+                faq_free_a: 'Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.',
+                related_title: '🔗 Related Tools',
+                related_1: 'Color Palette',
+                related_1_desc: 'Color selection and conversion',
+                related_2: 'Image Editor',
+                related_2_desc: 'Crop, rotate, filters',
+                related_3: 'Image Converter',
+                related_3_desc: 'PNG/JPG/WebP conversion',
+                related_4: 'ICO Maker',
+                related_4_desc: 'Generate website icons',
                 toast: {
                     undoSuccess: 'Undo successful',
                     redoSuccess: 'Redo successful',
@@ -1318,36 +1330,28 @@
                     height: '高度 (px)',
                     create: '创建'
                 },
-                faq: {
-                    title: '常见问题',
-                    q1: '支持哪些绘图工具？',
-                    a1: '支持铅笔、毛笔、直线、矩形、圆形、橡皮擦等工具，可以满足各种绘图需求。每种工具都可以调整粗细和透明度。',
-                    q2: '可以调整画笔粗细吗？',
-                    a2: '可以，支持从 1px 到 50px 的画笔粗细调节。您可以通过滑块调整，也可以使用鼠标滚轮快速调节粗细。',
-                    q3: '如何保存画作？',
-                    a3: '点击底部的"保存 PNG"或"保存 JPG"按钮，即可将画作导出为相应格式的图片文件，自动下载到您的设备。',
-                    q4: '支持触摸屏绘图吗？',
-                    a4: '支持，可在平板电脑或触摸屏上使用手指或触控笔绘图，操作流畅自然，适合移动设备使用。',
-                    q5: '可以打开已有图片编辑吗？',
-                    a5: '可以导入图片作为背景，在其上进行绘制，方便进行图片标注和二次创作。使用"新建画布"功能可以设置合适的画布尺寸。',
-                    q6: '这个工具真的完全免费无广告吗？',
-                    a6: '是的，100% 免费，无广告、无需注册、无水印、无使用限制。所有处理都在浏览器本地完成。'
-                },
-                related: {
-                    title: '🔗 相关工具推荐',
-                    colorPalette: '调色板',
-                    colorPaletteDesc: '颜色选择与转换',
-                    imageEditor: '图片编辑器',
-                    imageEditorDesc: '裁剪、旋转、滤镜',
-                    imageConverter: '图片格式转换',
-                    imageConverterDesc: 'PNG/JPG/WebP 互转',
-                    icoMaker: 'ICO 图标制作',
-                    icoMakerDesc: '生成网站图标'
-                },
-                footer: {
-                    privacy: '纯前端处理，数据不会上传到服务器',
-                    backHome: '← 返回 Web Toolbox 首页'
-                },
+                faq_title: '常见问题',
+                faq1Q: '支持哪些绘图工具？',
+                faq1A: '支持铅笔、毛笔、直线、矩形、圆形、橡皮擦等工具，可以满足各种绘图需求。每种工具都可以调整粗细和透明度。',
+                faq2Q: '可以调整画笔粗细吗？',
+                faq2A: '可以，支持从 1px 到 50px 的画笔粗细调节。您可以通过滑块调整，也可以使用鼠标滚轮快速调节粗细。',
+                faq3Q: '如何保存画作？',
+                faq3A: '点击底部的"保存 PNG"或"保存 JPG"按钮，即可将画作导出为相应格式的图片文件，自动下载到您的设备。',
+                faq4Q: '支持触摸屏绘图吗？',
+                faq4A: '支持，可在平板电脑或触摸屏上使用手指或触控笔绘图，操作流畅自然，适合移动设备使用。',
+                faq5Q: '可以打开已有图片编辑吗？',
+                faq5A: '可以导入图片作为背景，在其上进行绘制，方便进行图片标注和二次创作。使用"新建画布"功能可以设置合适的画布尺寸。',
+                faq_free_q: '这个工具真的完全免费无广告吗？',
+                faq_free_a: '是的，100% 免费，无广告、无需注册、无水印、无使用限制。所有处理都在浏览器本地完成。',
+                related_title: '🔗 相关工具推荐',
+                related_1: '调色板',
+                related_1_desc: '颜色选择与转换',
+                related_2: '图片编辑器',
+                related_2_desc: '裁剪、旋转、滤镜',
+                related_3: '图片格式转换',
+                related_3_desc: 'PNG/JPG/WebP 互转',
+                related_4: 'ICO 图标制作',
+                related_4_desc: '生成网站图标',
                 toast: {
                     undoSuccess: '撤销成功',
                     redoSuccess: '重做成功',
@@ -1439,36 +1443,28 @@
                     height: 'Hauteur (px)',
                     create: 'Créer'
                 },
-                faq: {
-                    title: 'FAQ',
-                    q1: 'Quels outils de dessin sont supportés?',
-                    a1: 'Supporte crayon, pinceau, ligne, rectangle, cercle, gomme et autres outils. Chaque outil peut ajuster la taille et l\'opacité.',
-                    q2: 'Puis-je ajuster la taille du pinceau?',
-                    a2: 'Oui, supporte l\'ajustement de 1px à 50px. Vous pouvez utiliser le curseur ou la molette de la souris.',
-                    q3: 'Comment sauvegarder l\'œuvre?',
-                    a3: 'Cliquez sur "Sauver PNG" ou "Sauver JPG" en bas pour exporter votre œuvre en fichier image.',
-                    q4: 'Supporte-t-il le dessin tactile?',
-                    a4: 'Oui, vous pouvez dessiner avec le doigt ou le stylet sur tablettes ou écrans tactiles.',
-                    q5: 'Puis-je ouvrir des images existantes?',
-                    a5: 'Vous pouvez importer des images comme arrière-plan et dessiner dessus, pratique pour l\'annotation.',
-                    q6: 'Cet outil est-il vraiment gratuit sans publicité ?',
-                    a6: 'Oui, 100% gratuit sans publicité, sans inscription, sans filigrane et sans limite d\'utilisation.'
-                },
-                related: {
-                    title: '🔗 Outils connexes',
-                    colorPalette: 'Palette de couleurs',
-                    colorPaletteDesc: 'Sélection et conversion',
-                    imageEditor: 'Éditeur d\'images',
-                    imageEditorDesc: 'Recadrer, rotation, filtres',
-                    imageConverter: 'Convertisseur d\'images',
-                    imageConverterDesc: 'Conversion PNG/JPG/WebP',
-                    icoMaker: 'Créateur d\'ICO',
-                    icoMakerDesc: 'Générer des icônes web'
-                },
-                footer: {
-                    privacy: 'Traitement côté client, données non envoyées au serveur',
-                    backHome: '← Retour à Web Toolbox'
-                },
+                faq_title: 'FAQ',
+                faq1Q: 'Quels outils de dessin sont supportés?',
+                faq1A: 'Supporte crayon, pinceau, ligne, rectangle, cercle, gomme et autres outils. Chaque outil peut ajuster la taille et l\'opacité.',
+                faq2Q: 'Puis-je ajuster la taille du pinceau?',
+                faq2A: 'Oui, supporte l\'ajustement de 1px à 50px. Vous pouvez utiliser le curseur ou la molette de la souris.',
+                faq3Q: 'Comment sauvegarder l\'œuvre?',
+                faq3A: 'Cliquez sur "Sauver PNG" ou "Sauver JPG" en bas pour exporter votre œuvre en fichier image.',
+                faq4Q: 'Supporte-t-il le dessin tactile?',
+                faq4A: 'Oui, vous pouvez dessiner avec le doigt ou le stylet sur tablettes ou écrans tactiles.',
+                faq5Q: 'Puis-je ouvrir des images existantes?',
+                faq5A: 'Vous pouvez importer des images comme arrière-plan et dessiner dessus, pratique pour l\'annotation.',
+                faq_free_q: 'Cet outil est-il vraiment gratuit sans publicité ?',
+                faq_free_a: 'Oui, 100% gratuit sans publicité, sans inscription, sans filigrane et sans limite d\'utilisation.',
+                related_title: '🔗 Outils connexes',
+                related_1: 'Palette de couleurs',
+                related_1_desc: 'Sélection et conversion',
+                related_2: 'Éditeur d\'images',
+                related_2_desc: 'Recadrer, rotation, filtres',
+                related_3: 'Convertisseur d\'images',
+                related_3_desc: 'Conversion PNG/JPG/WebP',
+                related_4: 'Créateur d\'ICO',
+                related_4_desc: 'Générer des icônes web',
                 toast: {
                     undoSuccess: 'Annulation réussie',
                     redoSuccess: 'Refaire réussi',
@@ -1560,36 +1556,28 @@
                     height: 'Alto (px)',
                     create: 'Crear'
                 },
-                faq: {
-                    title: 'Preguntas frecuentes',
-                    q1: '¿Qué herramientas de dibujo se soportan?',
-                    a1: 'Soporta lápiz, pincel, línea, rectángulo, círculo, borrador y otras herramientas. Cada herramienta puede ajustar tamaño y opacidad.',
-                    q2: '¿Puedo ajustar el tamaño del pincel?',
-                    a2: 'Sí, soporta ajuste de 1px a 50px. Puede usar el deslizador o la rueda del ratón.',
-                    q3: '¿Cómo guardar la obra?',
-                    a3: 'Haga clic en "Guardar PNG" o "Guardar JPG" en la parte inferior para exportar su obra como archivo de imagen.',
-                    q4: '¿Soporta dibujo táctil?',
-                    a4: 'Sí, puede dibujar con el dedo o lápiz en tabletas o pantallas táctiles.',
-                    q5: '¿Puedo abrir imágenes existentes?',
-                    a5: 'Puede importar imágenes como fondo y dibujar sobre ellas, conveniente para anotaciones.',
-                    q6: '¿Esta herramienta es realmente gratuita sin anuncios?',
-                    a6: 'Sí, 100% gratuita sin anuncios, sin registro, sin marca de agua y sin límites de uso.'
-                },
-                related: {
-                    title: '🔗 Herramientas relacionadas',
-                    colorPalette: 'Paleta de colores',
-                    colorPaletteDesc: 'Selección y conversión',
-                    imageEditor: 'Editor de imágenes',
-                    imageEditorDesc: 'Recortar, rotar, filtros',
-                    imageConverter: 'Convertidor de imágenes',
-                    imageConverterDesc: 'Conversión PNG/JPG/WebP',
-                    icoMaker: 'Creador de ICO',
-                    icoMakerDesc: 'Generar iconos web'
-                },
-                footer: {
-                    privacy: 'Procesamiento frontend, datos no se envían al servidor',
-                    backHome: '← Volver a Web Toolbox'
-                },
+                faq_title: 'Preguntas frecuentes',
+                faq1Q: '¿Qué herramientas de dibujo se soportan?',
+                faq1A: 'Soporta lápiz, pincel, línea, rectángulo, círculo, borrador y otras herramientas. Cada herramienta puede ajustar tamaño y opacidad.',
+                faq2Q: '¿Puedo ajustar el tamaño del pincel?',
+                faq2A: 'Sí, soporta ajuste de 1px a 50px. Puede usar el deslizador o la rueda del ratón.',
+                faq3Q: '¿Cómo guardar la obra?',
+                faq3A: 'Haga clic en "Guardar PNG" o "Guardar JPG" en la parte inferior para exportar su obra como archivo de imagen.',
+                faq4Q: '¿Soporta dibujo táctil?',
+                faq4A: 'Sí, puede dibujar con el dedo o lápiz en tabletas o pantallas táctiles.',
+                faq5Q: '¿Puedo abrir imágenes existantes?',
+                faq5A: 'Puede importar imágenes como fondo y dibujar sobre ellas, conveniente para anotaciones.',
+                faq_free_q: '¿Esta herramienta es realmente gratuita sin anuncios?',
+                faq_free_a: 'Sí, 100% gratuita sin anuncios, sin registro, sin marca de agua y sin límites de uso.',
+                related_title: '🔗 Herramientas relacionadas',
+                related_1: 'Paleta de colores',
+                related_1_desc: 'Selección y conversión',
+                related_2: 'Editor de imágenes',
+                related_2_desc: 'Recortar, rotar, filtros',
+                related_3: 'Convertidor de imágenes',
+                related_3_desc: 'Conversión PNG/JPG/WebP',
+                related_4: 'Creador de ICO',
+                related_4_desc: 'Generar iconos web',
                 toast: {
                     undoSuccess: 'Deshacer exitoso',
                     redoSuccess: 'Rehacer exitoso',
@@ -1610,83 +1598,6 @@
                 trust_free: '🚫 Sin anuncios, sin registro'
             }
         };
-// 获取嵌套翻译
-        function getNestedTranslation(obj, path) {
-            return path.split('.').reduce((o, k) => (o || {})[k], obj);
-        }
-
-
-        // 更新 FAQ 区块
-        function updateFaqSection() {
-            const t = i18n[WebToolbox.getCurrentLang()].faq;
-            const faqSection = document.querySelector('.faq-section');
-            if (faqSection) {
-                faqSection.querySelector('h3').textContent = t.title;
-                const items = faqSection.querySelectorAll('.faq-item');
-                if (items[0]) {
-                    items[0].querySelector('.faq-question').childNodes[0].textContent = t.q1;
-                    items[0].querySelector('.faq-answer p').textContent = t.a1;
-                }
-                if (items[1]) {
-                    items[1].querySelector('.faq-question').childNodes[0].textContent = t.q2;
-                    items[1].querySelector('.faq-answer p').textContent = t.a2;
-                }
-                if (items[2]) {
-                    items[2].querySelector('.faq-question').childNodes[0].textContent = t.q3;
-                    items[2].querySelector('.faq-answer p').textContent = t.a3;
-                }
-                if (items[3]) {
-                    items[3].querySelector('.faq-question').childNodes[0].textContent = t.q4;
-                    items[3].querySelector('.faq-answer p').textContent = t.a4;
-                }
-                if (items[4]) {
-                    items[4].querySelector('.faq-question').childNodes[0].textContent = t.q5;
-                    items[4].querySelector('.faq-answer p').textContent = t.a5;
-                }
-                if (items[5] && t.q6) {
-                    items[5].querySelector('.faq-question').childNodes[0].textContent = t.q6;
-                    items[5].querySelector('.faq-answer p').textContent = t.a6;
-                }
-            }
-        }
-
-        // 更新相关工具区块
-        function updateRelatedSection() {
-            const t = i18n[WebToolbox.getCurrentLang()].related;
-            const section = document.querySelector('.related-tools');
-            if (section) {
-                section.querySelector('h3').textContent = t.title;
-                const links = section.querySelectorAll('a');
-                if (links[0]) {
-                    links[0].querySelector('div:nth-child(2)').textContent = t.colorPalette;
-                    links[0].querySelector('div:nth-child(3)').textContent = t.colorPaletteDesc;
-                }
-                if (links[1]) {
-                    links[1].querySelector('div:nth-child(2)').textContent = t.imageEditor;
-                    links[1].querySelector('div:nth-child(3)').textContent = t.imageEditorDesc;
-                }
-                if (links[2]) {
-                    links[2].querySelector('div:nth-child(2)').textContent = t.imageConverter;
-                    links[2].querySelector('div:nth-child(3)').textContent = t.imageConverterDesc;
-                }
-                if (links[3]) {
-                    links[3].querySelector('div:nth-child(2)').textContent = t.icoMaker;
-                    links[3].querySelector('div:nth-child(3)').textContent = t.icoMakerDesc;
-                }
-            }
-        }
-
-        // 更新页脚
-        function updateFooter() {
-            const t = i18n[WebToolbox.getCurrentLang()].footer;
-            const footer = document.querySelector('footer');
-            if (footer) {
-                const paragraphs = footer.querySelectorAll('p');
-                if (paragraphs[0]) paragraphs[0].textContent = t.privacy;
-                const links = footer.querySelectorAll('a');
-                if (links[0]) links[0].textContent = t.backHome;
-            }
-        }
 
         // 画布和上下文
         const canvas = document.getElementById('canvas');

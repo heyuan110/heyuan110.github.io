@@ -137,10 +137,16 @@
             overflow-x: hidden;
         }
 
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
         /* 头部 */
         .header {
             background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
-            padding: 15px 20px;
+            padding: 15px 0;
             border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
@@ -491,6 +497,70 @@
             font-size: 1.2rem;
         }
 
+        /* 画布尺寸输入 */
+        .canvas-size-inputs {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .canvas-size-inputs label {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        .canvas-size-inputs input {
+            width: 80px;
+            padding: 6px 8px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-size: 0.85rem;
+        }
+        .canvas-color-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .canvas-color-row input[type="color"] {
+            width: 36px;
+            height: 36px;
+            border: none;
+            cursor: pointer;
+            background: none;
+            padding: 0;
+        }
+        .canvas-color-row span {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* 锚点 3x3 grid */
+        .anchor-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+            width: 90px;
+        }
+        .anchor-btn {
+            width: 26px;
+            height: 26px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .anchor-btn:hover {
+            border-color: var(--accent);
+        }
+        .anchor-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
         /* 文字输入 */
         .text-input {
             width: 100%;
@@ -727,10 +797,107 @@
             pointer-events: auto;
             cursor: crosshair;
         }
+
+        .features-section {
+            margin: 0 0 20px;
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+        .feature-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .feature-card .feature-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+        .feature-card h3 {
+            font-size: 15px;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+        .feature-card p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* FAQ */
+        .faq-section {
+            margin: 30px 0;
+        }
+        .faq-section h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .faq-question {
+            width: 100%;
+            padding: 18px 22px;
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            transition: background 0.2s;
+        }
+        .faq-question:hover {
+            background: var(--bg-hover);
+        }
+        .faq-question::after {
+            content: "+";
+            font-size: 1.4rem;
+            font-weight: 300;
+            color: var(--text-secondary);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+        .faq-answer p {
+            padding: 0 22px 18px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
         </style>
     <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
+<div class="container">
 <header class="header">
         
         <div class="logo">
@@ -745,47 +912,6 @@
             <button id="downloadBtn" class="btn btn-success" disabled data-i18n="saveImage">💾 Save Image</button>
         </div>
     </header>
-
-    <div class="trust-bar" style="max-width: 1200px; margin: 12px auto 24px; padding: 12px 20px;">
-        <span class="trust-item" data-i18n="trust_users">🌍 Used by 50,000+ users</span>
-        <span class="trust-item" data-i18n="trust_rating">⭐ 4.9/5 rating</span>
-        <span class="trust-item" data-i18n="trust_privacy">🔒 100% Private</span>
-        <span class="trust-item" data-i18n="trust_free">🚫 No Ads, No Signup</span>
-    </div>
-
-    <!-- 功能特点区块 -->
-    <section class="features-section" style="max-width: 1200px; margin: 0 auto; padding: 24px 20px; border-bottom: 1px solid var(--border);">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;">
-            <div style="display: flex; align-items: flex-start; gap: 12px;">
-                <span style="font-size: 24px; flex-shrink: 0;">🔒</span>
-                <div>
-                    <h3 style="font-size: 15px; color: var(--text-primary); margin-bottom: 6px;" data-i18n="featureBasicTitle">100% Free & Private</h3>
-                    <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5;" data-i18n="featureBasicDesc">No ads, no signup, no watermark. Everything runs locally in your browser. Your data never leaves your device.</p>
-                </div>
-            </div>
-            <div style="display: flex; align-items: flex-start; gap: 12px;">
-                <span style="font-size: 24px; flex-shrink: 0;">🎨</span>
-                <div>
-                    <h3 style="font-size: 15px; color: var(--text-primary); margin-bottom: 6px;" data-i18n="featureFilterTitle">Filter Effects</h3>
-                    <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5;" data-i18n="featureFilterDesc">Brightness, contrast, saturation, blur and more filters</p>
-                </div>
-            </div>
-            <div style="display: flex; align-items: flex-start; gap: 12px;">
-                <span style="font-size: 24px; flex-shrink: 0;">📝</span>
-                <div>
-                    <h3 style="font-size: 15px; color: var(--text-primary); margin-bottom: 6px;" data-i18n="featureTextTitle">Text Watermark</h3>
-                    <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5;" data-i18n="featureTextDesc">Add custom text watermarks with adjustable font and position</p>
-                </div>
-            </div>
-            <div style="display: flex; align-items: flex-start; gap: 12px;">
-                <span style="font-size: 24px; flex-shrink: 0;">👁️</span>
-                <div>
-                    <h3 style="font-size: 15px; color: var(--text-primary); margin-bottom: 6px;" data-i18n="featurePreviewTitle">Live Preview</h3>
-                    <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5;" data-i18n="featurePreviewDesc">All adjustments preview instantly, what you see is what you get</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <input type="file" id="fileInput" accept="image/*" style="display: none;">
 
@@ -803,6 +929,10 @@
             <button class="tool-btn" data-tool="crop">
                 <span class="icon">✂️</span>
                 <span data-i18n="toolCrop">Crop</span>
+            </button>
+            <button class="tool-btn" data-tool="canvas">
+                <span class="icon">📐</span>
+                <span data-i18n="toolCanvas">Canvas</span>
             </button>
             <button class="tool-btn" data-tool="transform">
                 <span class="icon">🔄</span>
@@ -944,6 +1074,37 @@
                         Click the button below to enter crop mode, drag to adjust crop area
                     </p>
                     <button class="btn btn-primary" id="startCrop" style="width: 100%;" data-i18n="startCrop">Start Crop</button>
+                </div>
+            </div>
+
+            <!-- 画布大小面板 -->
+            <div id="canvasPanel" class="hidden">
+                <div class="panel-header" data-i18n="panelCanvas">📐 Canvas Size</div>
+                <div class="panel-content">
+                    <div class="panel-section">
+                        <div class="panel-section-title" data-i18n="currentSize">Current Size</div>
+                        <div id="currentSizeDisplay" style="font-size:0.9rem;color:var(--text-secondary);">--</div>
+                    </div>
+                    <div class="panel-section">
+                        <div class="panel-section-title" data-i18n="newSize">New Size</div>
+                        <div class="canvas-size-inputs">
+                            <label>W <input type="number" id="canvasWidth" min="1" max="10000"></label>
+                            <span>×</span>
+                            <label>H <input type="number" id="canvasHeight" min="1" max="10000"></label>
+                        </div>
+                    </div>
+                    <div class="panel-section">
+                        <div class="panel-section-title" data-i18n="anchor">Anchor</div>
+                        <div class="anchor-grid" id="anchorGrid"></div>
+                    </div>
+                    <div class="panel-section">
+                        <div class="panel-section-title" data-i18n="bgColor">Background</div>
+                        <div class="canvas-color-row">
+                            <input type="color" id="canvasBgColor" value="#ffffff">
+                            <span id="canvasBgHex">#ffffff</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" id="applyCanvasSize" style="width:100%;" data-i18n="applyCanvasSize">Apply</button>
                 </div>
             </div>
 
@@ -1119,75 +1280,117 @@
         </aside>
     </main>
 
-    <div class="container" style="max-width: 900px; margin: 0 auto; padding: 0 20px;">
+    <div class="trust-bar">
+        <span class="trust-item" data-i18n="trust_users">🌍 Used by 50,000+ users</span>
+        <span class="trust-item" data-i18n="trust_rating">⭐ 4.9/5 rating</span>
+        <span class="trust-item" data-i18n="trust_privacy">🔒 100% Private</span>
+        <span class="trust-item" data-i18n="trust_free">🚫 No Ads, No Signup</span>
+    </div>
+
+    <!-- 功能特点区块 -->
+    <section class="features-section">
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">🔒</span>
+                <div>
+                    <h3 data-i18n="featureBasicTitle">100% Free & Private</h3>
+                    <p data-i18n="featureBasicDesc">No ads, no signup, no watermark. Everything runs locally in your browser. Your data never leaves your device.</p>
+                </div>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🎨</span>
+                <div>
+                    <h3 data-i18n="featureFilterTitle">Filter Effects</h3>
+                    <p data-i18n="featureFilterDesc">Brightness, contrast, saturation, blur and more filters</p>
+                </div>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📝</span>
+                <div>
+                    <h3 data-i18n="featureTextTitle">Text Watermark</h3>
+                    <p data-i18n="featureTextDesc">Add custom text watermarks with adjustable font and position</p>
+                </div>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">👁️</span>
+                <div>
+                    <h3 data-i18n="featurePreviewTitle">Live Preview</h3>
+                    <p data-i18n="featurePreviewDesc">All adjustments preview instantly, what you see is what you get</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- FAQ 问答区块 -->
-    <section class="faq-section" style="margin: 40px auto; padding: 0;">
-        <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid #30363d;" data-i18n="faqTitle">FAQ</h2>
-        <div style="display: flex; flex-direction: column; gap: 16px;">
-            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 16px;">
-                <summary style="color: #e6edf3; font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq1q">What image formats are supported?</span>
-                    <span style="color: #8b949e; font-size: 18px;">+</span>
-                </summary>
-                <p style="color: #8b949e; margin-top: 12px; padding-top: 12px; border-top: 1px solid #30363d; line-height: 1.6;" data-i18n="faq1a">Supports JPG, PNG, WebP, GIF, BMP and other common image formats.</p>
-            </details>
-            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 16px;">
-                <summary style="color: #e6edf3; font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq2q">Can I undo edits?</span>
-                    <span style="color: #8b949e; font-size: 18px;">+</span>
-                </summary>
-                <p style="color: #8b949e; margin-top: 12px; padding-top: 12px; border-top: 1px solid #30363d; line-height: 1.6;" data-i18n="faq2a">Yes, undo and redo functions are supported.</p>
-            </details>
-            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 16px;">
-                <summary style="color: #e6edf3; font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq3q">What format is the edited image?</span>
-                    <span style="color: #8b949e; font-size: 18px;">+</span>
-                </summary>
-                <p style="color: #8b949e; margin-top: 12px; padding-top: 12px; border-top: 1px solid #30363d; line-height: 1.6;" data-i18n="faq3a">You can choose to export as JPG, PNG, or WebP format.</p>
-            </details>
-            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 16px;">
-                <summary style="color: #e6edf3; font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq4q">Can I batch edit images?</span>
-                    <span style="color: #8b949e; font-size: 18px;">+</span>
-                </summary>
-                <p style="color: #8b949e; margin-top: 12px; padding-top: 12px; border-top: 1px solid #30363d; line-height: 1.6;" data-i18n="faq4a">Not currently supported, only one image can be edited at a time.</p>
-            </details>
-            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 16px;">
-                <summary style="color: #e6edf3; font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq5q">Are images uploaded to a server?</span>
-                    <span style="color: #8b949e; font-size: 18px;">+</span>
-                </summary>
-                <p style="color: #8b949e; margin-top: 12px; padding-top: 12px; border-top: 1px solid #30363d; line-height: 1.6;" data-i18n="faq5a">No, all editing is done locally in your browser.</p>
-            </details>
-            <details style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 16px;">
-                <summary style="color: #e6edf3; font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span data-i18n="faq_free_q">Is this tool really free with no ads?</span>
-                    <span style="color: #8b949e; font-size: 18px;">+</span>
-                </summary>
-                <p style="color: #8b949e; margin-top: 12px; padding-top: 12px; border-top: 1px solid #30363d; line-height: 1.6;" data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</p>
-            </details>
+    <section class="faq-section">
+        <h3 data-i18n="faqTitle">FAQ</h3>
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-question" data-i18n="faq1q">What image formats are supported?</button>
+                <div class="faq-answer">
+                    <p data-i18n="faq1a">Supports JPG, PNG, WebP, GIF, BMP and other common image formats.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" data-i18n="faq2q">Can I undo edits?</button>
+                <div class="faq-answer">
+                    <p data-i18n="faq2a">Yes, undo and redo functions are supported.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" data-i18n="faq3q">What format is the edited image?</button>
+                <div class="faq-answer">
+                    <p data-i18n="faq3a">You can choose to export as JPG, PNG, or WebP format.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" data-i18n="faq4q">Can I batch edit images?</button>
+                <div class="faq-answer">
+                    <p data-i18n="faq4a">Not currently supported, only one image can be edited at a time.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" data-i18n="faq5q">Are images uploaded to a server?</button>
+                <div class="faq-answer">
+                    <p data-i18n="faq5a">No, all editing is done locally in your browser.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" data-i18n="faq_free_q">Is this tool really free with no ads?</button>
+                <div class="faq-answer">
+                    <p data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- 相关工具推荐 -->
-    <section class="related-tools" style="margin: 40px auto; padding: 0;">
-        <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid #30363d;" data-i18n="relatedToolsTitle">Related Tools</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
-            <a href="image-compressor.html" style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; text-decoration: none; transition: border-color 0.2s;">
-                <h3 style="color: #e6edf3; font-size: 15px; margin-bottom: 8px;" data-i18n="relatedTool1">Image Compressor</h3>
-                <p style="color: #8b949e; font-size: 13px; line-height: 1.5;" data-i18n="relatedTool1Desc">Compress image size online</p>
+    <section class="related-tools">
+        <h3 data-i18n="relatedToolsTitle">Related Tools</h3>
+        <div class="related-grid">
+            <a href="image-compressor.html" class="related-card">
+                <div>🗜️</div>
+                <h4 data-i18n="relatedTool1">Image Compressor</h4>
+                <p data-i18n="relatedTool1Desc">Compress image size online</p>
             </a>
-            <a href="image-converter.html" style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; text-decoration: none; transition: border-color 0.2s;">
-                <h3 style="color: #e6edf3; font-size: 15px; margin-bottom: 8px;" data-i18n="relatedTool2">Image Converter</h3>
-                <p style="color: #8b949e; font-size: 13px; line-height: 1.5;" data-i18n="relatedTool2Desc">PNG/JPG/WebP conversion</p>
+            <a href="image-converter.html" class="related-card">
+                <div>🔄</div>
+                <h4 data-i18n="relatedTool2">Image Converter</h4>
+                <p data-i18n="relatedTool2Desc">PNG/JPG/WebP conversion</p>
             </a>
-            <a href="color-palette.html" style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; text-decoration: none; transition: border-color 0.2s;">
-                <h3 style="color: #e6edf3; font-size: 15px; margin-bottom: 8px;" data-i18n="relatedTool3">Color Palette</h3>
-                <p style="color: #8b949e; font-size: 13px; line-height: 1.5;" data-i18n="relatedTool3Desc">Color selection and conversion</p>
+            <a href="color-palette.html" class="related-card">
+                <div>🎨</div>
+                <h4 data-i18n="relatedTool3">Color Palette</h4>
+                <p data-i18n="relatedTool3Desc">Color selection and conversion</p>
+            </a>
+            <a href="ico-maker.html" class="related-card">
+                <div>🖼️</div>
+                <h4 data-i18n="relatedTool4">ICO Maker</h4>
+                <p data-i18n="relatedTool4Desc">Create ICO icons from images</p>
             </a>
         </div>
     </section>
-    </div>
+</div>
 
     <!-- Cropper.js -->
     <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.6.1/dist/cropper.min.js"></script>
@@ -1339,6 +1542,13 @@
             document.getElementById('pickColor').addEventListener('click', startPickColor);
             document.getElementById('applyChroma').addEventListener('click', applyChromaKey);
 
+            // 画布大小
+            initAnchorGrid();
+            document.getElementById('canvasBgColor').addEventListener('input', (e) => {
+                document.getElementById('canvasBgHex').textContent = e.target.value;
+            });
+            document.getElementById('applyCanvasSize').addEventListener('click', applyCanvasResize);
+
             // 取色模式
             mainCanvas.addEventListener('click', handleCanvasClick);
 
@@ -1406,6 +1616,13 @@
             // 切换面板
             document.querySelectorAll('#panel > div').forEach(panel => panel.classList.add('hidden'));
             document.getElementById(`${tool}Panel`).classList.remove('hidden');
+
+            // 画布大小面板：填入当前尺寸
+            if (tool === 'canvas' && state.originalImage) {
+                document.getElementById('canvasWidth').value = mainCanvas.width;
+                document.getElementById('canvasHeight').value = mainCanvas.height;
+                document.getElementById('currentSizeDisplay').textContent = `${mainCanvas.width} × ${mainCanvas.height} px`;
+            }
 
             // 绘图模式
             drawCanvas.classList.toggle('active', tool === 'draw');
@@ -2099,6 +2316,106 @@
             saveHistory('抠图');
         }
 
+        // ========== 画布大小 ==========
+        let selectedAnchor = 'middle-center';
+        const anchorPositions = [
+            'top-left','top-center','top-right',
+            'middle-left','middle-center','middle-right',
+            'bottom-left','bottom-center','bottom-right'
+        ];
+
+        function initAnchorGrid() {
+            const grid = document.getElementById('anchorGrid');
+            grid.innerHTML = '';
+            anchorPositions.forEach(pos => {
+                const btn = document.createElement('button');
+                btn.className = 'anchor-btn' + (pos === selectedAnchor ? ' active' : '');
+                btn.dataset.anchor = pos;
+                btn.title = pos;
+                btn.addEventListener('click', () => {
+                    selectedAnchor = pos;
+                    grid.querySelectorAll('.anchor-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+                grid.appendChild(btn);
+            });
+        }
+
+        function applyCanvasResize() {
+            if (!state.originalImage) return;
+
+            const newW = parseInt(document.getElementById('canvasWidth').value);
+            const newH = parseInt(document.getElementById('canvasHeight').value);
+            const oldW = mainCanvas.width;
+            const oldH = mainCanvas.height;
+
+            if (isNaN(newW) || isNaN(newH) || newW < 1 || newH < 1) return;
+            if (newW === oldW && newH === oldH) return;
+            if (newW < oldW || newH < oldH) {
+                alert(t('canvasSizeError'));
+                return;
+            }
+
+            const bgColor = document.getElementById('canvasBgColor').value;
+
+            // 计算锚点偏移
+            let offsetX = 0, offsetY = 0;
+            const parts = selectedAnchor.split('-');
+            const vPos = parts[0]; // top, middle, bottom
+            const hPos = parts[1]; // left, center, right
+
+            if (hPos === 'center') offsetX = Math.floor((newW - oldW) / 2);
+            else if (hPos === 'right') offsetX = newW - oldW;
+
+            if (vPos === 'middle') offsetY = Math.floor((newH - oldH) / 2);
+            else if (vPos === 'bottom') offsetY = newH - oldH;
+
+            // 创建临时画布
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = newW;
+            tempCanvas.height = newH;
+            const tempCtx = tempCanvas.getContext('2d');
+
+            // 填充背景色
+            tempCtx.fillStyle = bgColor;
+            tempCtx.fillRect(0, 0, newW, newH);
+
+            // 绘制原图到正确位置
+            tempCtx.drawImage(mainCanvas, offsetX, offsetY);
+
+            // 同样处理标注图层
+            const tempDraw = document.createElement('canvas');
+            tempDraw.width = newW;
+            tempDraw.height = newH;
+            const tempDrawCtx = tempDraw.getContext('2d');
+            tempDrawCtx.drawImage(drawCanvas, offsetX, offsetY);
+
+            // 转为 Image 更新状态
+            const newImg = new Image();
+            newImg.onload = () => {
+                state.originalImage = newImg;
+                state.currentImage = newImg;
+                state.rotation = 0;
+                state.flipH = false;
+                state.flipV = false;
+                state.adjustments = { brightness: 0, contrast: 0, saturation: 0, hue: 0, exposure: 0, noise: 0 };
+                state.currentFilter = 'none';
+
+                initCanvas(newImg);
+
+                // 恢复标注图层
+                const drawCtx = drawCanvas.getContext('2d');
+                drawCtx.drawImage(tempDraw, 0, 0);
+
+                saveHistory('Canvas Resize');
+                fitToView();
+
+                // 更新面板显示
+                document.getElementById('currentSizeDisplay').textContent = `${newW} × ${newH} px`;
+            };
+            newImg.src = tempCanvas.toDataURL();
+        }
+
         // ========== 历史记录 ==========
         function saveHistory(action) {
             // 合并标注图层
@@ -2340,6 +2657,7 @@
                 toolAdjust: "Adjust",
                 toolFilter: "Filter",
                 toolCrop: "Crop",
+                toolCanvas: "Canvas",
                 toolTransform: "Transform",
                 toolDraw: "Draw",
                 toolText: "Text",
@@ -2395,6 +2713,13 @@
                 tolerance: "Tolerance",
                 feather: "Edge Feather",
                 applyChroma: "Apply Chroma",
+                panelCanvas: "📐 Canvas Size",
+                currentSize: "Current Size",
+                newSize: "New Size",
+                anchor: "Anchor",
+                bgColor: "Background",
+                applyCanvasSize: "Apply",
+                canvasSizeError: "New size must be larger than current size. Use Crop to reduce.",
                 faqTitle: "FAQ",
                 faq1q: "What image formats are supported?",
                 faq1a: "Supports JPG, PNG, WebP, GIF, BMP and other common image formats.",
@@ -2413,6 +2738,8 @@
                 relatedTool2Desc: "PNG/JPG/WebP conversion",
                 relatedTool3: "Color Palette",
                 relatedTool3Desc: "Color selection and conversion",
+                relatedTool4: "ICO Maker",
+                relatedTool4Desc: "Create ICO icons from images",
                 filterNone: "Original",
                 filterGrayscale: "Grayscale",
                 filterInvert: "Invert",
@@ -2451,6 +2778,7 @@
                 toolAdjust: "调色",
                 toolFilter: "滤镜",
                 toolCrop: "裁切",
+                toolCanvas: "画布",
                 toolTransform: "变换",
                 toolDraw: "标注",
                 toolText: "文字",
@@ -2506,6 +2834,13 @@
                 tolerance: "容差",
                 feather: "边缘羽化",
                 applyChroma: "应用抠图",
+                panelCanvas: "📐 画布大小",
+                currentSize: "当前尺寸",
+                newSize: "新尺寸",
+                anchor: "锚点",
+                bgColor: "背景色",
+                applyCanvasSize: "应用",
+                canvasSizeError: "新尺寸必须大于当前尺寸。如需缩小请使用裁切功能。",
                 faqTitle: "常见问题",
                 faq1q: "支持编辑哪些格式的图片？",
                 faq1a: "支持 JPG、PNG、WebP、GIF、BMP 等常见图片格式。",
@@ -2524,6 +2859,8 @@
                 relatedTool2Desc: "PNG/JPG/WebP 互转",
                 relatedTool3: "调色板",
                 relatedTool3Desc: "颜色选择与转换",
+                relatedTool4: "ICO 制作",
+                relatedTool4Desc: "将图片转换为 ICO 图标",
                 filterNone: "原图",
                 filterGrayscale: "灰度",
                 filterInvert: "反色",
@@ -2562,6 +2899,7 @@
                 toolAdjust: "Ajuster",
                 toolFilter: "Filtre",
                 toolCrop: "Recadrer",
+                toolCanvas: "Canevas",
                 toolTransform: "Transformer",
                 toolDraw: "Dessiner",
                 toolText: "Texte",
@@ -2617,6 +2955,13 @@
                 tolerance: "Tolérance",
                 feather: "Contour progressif",
                 applyChroma: "Appliquer",
+                panelCanvas: "📐 Taille du canevas",
+                currentSize: "Taille actuelle",
+                newSize: "Nouvelle taille",
+                anchor: "Ancrage",
+                bgColor: "Arrière-plan",
+                applyCanvasSize: "Appliquer",
+                canvasSizeError: "La nouvelle taille doit être supérieure à la taille actuelle. Utilisez Recadrer pour réduire.",
                 faqTitle: "FAQ",
                 faq1q: "Quels formats d'image sont pris en charge?",
                 faq1a: "JPG, PNG, WebP, GIF, BMP et autres formats courants.",
@@ -2635,6 +2980,8 @@
                 relatedTool2Desc: "Conversion PNG/JPG/WebP",
                 relatedTool3: "Palette de couleurs",
                 relatedTool3Desc: "Sélection et conversion de couleurs",
+                relatedTool4: "Créateur ICO",
+                relatedTool4Desc: "Créer des icônes ICO à partir d'images",
                 filterNone: "Original",
                 filterGrayscale: "Gris",
                 filterInvert: "Inverser",
@@ -2673,6 +3020,7 @@
                 toolAdjust: "Ajustar",
                 toolFilter: "Filtro",
                 toolCrop: "Recortar",
+                toolCanvas: "Lienzo",
                 toolTransform: "Transformar",
                 toolDraw: "Dibujar",
                 toolText: "Texto",
@@ -2728,6 +3076,13 @@
                 tolerance: "Tolerancia",
                 feather: "Difuminar borde",
                 applyChroma: "Aplicar",
+                panelCanvas: "📐 Tamaño del lienzo",
+                currentSize: "Tamaño actual",
+                newSize: "Nuevo tamaño",
+                anchor: "Ancla",
+                bgColor: "Fondo",
+                applyCanvasSize: "Aplicar",
+                canvasSizeError: "El nuevo tamaño debe ser mayor que el actual. Usa Recortar para reducir.",
                 faqTitle: "Preguntas frecuentes",
                 faq1q: "¿Qué formatos de imagen son compatibles?",
                 faq1a: "JPG, PNG, WebP, GIF, BMP y otros formatos comunes.",
@@ -2746,6 +3101,8 @@
                 relatedTool2Desc: "Conversión PNG/JPG/WebP",
                 relatedTool3: "Paleta de colores",
                 relatedTool3Desc: "Selección y conversión de colores",
+                relatedTool4: "Creador ICO",
+                relatedTool4Desc: "Crear iconos ICO desde imágenes",
                 filterNone: "Original",
                 filterGrayscale: "Grises",
                 filterInvert: "Invertir",

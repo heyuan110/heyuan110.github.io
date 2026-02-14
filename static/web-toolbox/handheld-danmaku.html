@@ -128,13 +128,6 @@
             padding: 40px 40px;
         }
 
-        /* 标题 */
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            position: relative;
-        }
-
         h1 {
             font-size: 2rem;
             font-weight: 700;
@@ -142,13 +135,44 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
 
-        .subtitle {
-            color: #a1a1aa;
-            font-size: 0.95rem;
+        /* Features */
+        .features-section { margin-bottom: 30px; }
+        .features-section .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
         }
+        .feature-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .feature-card:hover {
+            background: rgba(124,58,237,0.1);
+            border-color: rgba(124,58,237,0.3);
+            transform: translateY(-4px);
+        }
+        .feature-card .feature-icon { font-size: 2rem; margin-bottom: 10px; }
+        .feature-card h3 { color: #e4e4e7; font-size: 1rem; margin-bottom: 8px; }
+        .feature-card p { color: #a1a1aa; font-size: 0.85rem; line-height: 1.5; }
+
+        /* FAQ */
+        .faq-section { margin: 40px 0; }
+        .faq-section h3 { font-size: 1.2rem; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .faq-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden; margin-bottom: 12px; }
+        .faq-question { width: 100%; padding: 16px 20px; background: transparent; border: none; color: #e4e4e7; font-size: 1rem; font-weight: 500; text-align: left; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; transition: background 0.2s ease; }
+        .faq-question:hover { background: rgba(255,255,255,0.05); }
+        .faq-question::after { content: "+"; font-size: 1.5rem; font-weight: 300; color: #a1a1aa; transition: transform 0.3s ease; flex-shrink: 0; }
+        .faq-item.active .faq-question::after { transform: rotate(45deg); color: #7c3aed; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .faq-item.active .faq-answer { max-height: 500px; }
+        .faq-answer p { padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7; }
 
         /* 设置面板 */
         .settings-panel {
@@ -438,11 +462,15 @@
             90%, 100% { opacity: 0; }
         }
 
+        @media (max-width: 900px) {
+            .features-section .features-grid { grid-template-columns: repeat(2, 1fr); }
+        }
         /* 响应式 */
         @media (max-width: 600px) {
             .container {
-                padding: 20px 15px;
+                padding: 40px 20px;
             }
+            .features-section .features-grid { grid-template-columns: 1fr; }
 
             h1 {
                 font-size: 1.6rem;
@@ -476,10 +504,7 @@
 <body>
 
 <div class="container">
-<header>
-            <h1 data-i18n="title">Handheld Danmaku</h1>
-            <p class="subtitle" data-i18n="subtitle">Essential tool for concerts, events, parties and confessions</p>
-        </header>
+<h1 data-i18n="title">Handheld Danmaku</h1>
 
         <div class="trust-bar">
             <span class="trust-item" data-i18n="trust_users">🌍 Used by 50,000+ users</span>
@@ -489,26 +514,28 @@
         </div>
 
         <!-- 功能特点区块 -->
-        <section class="features-section" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 30px;">
-            <div class="feature-card" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; text-align: center;">
-                <div style="font-size: 2rem; margin-bottom: 10px;">🔒</div>
-                <h3 style="color: #e4e4e7; font-size: 1rem; margin-bottom: 8px;" data-i18n="feature1Title">100% Free & Private</h3>
-                <p style="color: #a1a1aa; font-size: 0.85rem; line-height: 1.5;" data-i18n="feature1Desc">No ads, no signup, no watermark. Everything runs locally in your browser. Your data never leaves your device.</p>
-            </div>
-            <div class="feature-card" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; text-align: center;">
-                <div style="font-size: 2rem; margin-bottom: 10px;">🎨</div>
-                <h3 style="color: #e4e4e7; font-size: 1rem; margin-bottom: 8px;" data-i18n="feature2Title">Custom Styles</h3>
-                <p style="color: #a1a1aa; font-size: 0.85rem; line-height: 1.5;" data-i18n="feature2Desc">Adjust text size, color, scroll speed and background color</p>
-            </div>
-            <div class="feature-card" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; text-align: center;">
-                <div style="font-size: 2rem; margin-bottom: 10px;">📱</div>
-                <h3 style="color: #e4e4e7; font-size: 1rem; margin-bottom: 8px;" data-i18n="feature3Title">Mobile Optimized</h3>
-                <p style="color: #a1a1aa; font-size: 0.85rem; line-height: 1.5;" data-i18n="feature3Desc">Designed for mobile landscape mode, one-tap fullscreen</p>
-            </div>
-            <div class="feature-card" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; text-align: center;">
-                <div style="font-size: 2rem; margin-bottom: 10px;">📴</div>
-                <h3 style="color: #e4e4e7; font-size: 1rem; margin-bottom: 8px;" data-i18n="feature4Title">Works Offline</h3>
-                <p style="color: #a1a1aa; font-size: 0.85rem; line-height: 1.5;" data-i18n="feature4Desc">No network required, use anytime anywhere</p>
+        <section class="features-section">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3 data-i18n="feature1Title">100% Free & Private</h3>
+                    <p data-i18n="feature1Desc">No ads, no signup, no watermark. Everything runs locally in your browser. Your data never leaves your device.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3 data-i18n="feature2Title">Custom Styles</h3>
+                    <p data-i18n="feature2Desc">Adjust text size, color, scroll speed and background color</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3 data-i18n="feature3Title">Mobile Optimized</h3>
+                    <p data-i18n="feature3Desc">Designed for mobile landscape mode, one-tap fullscreen</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📴</div>
+                    <h3 data-i18n="feature4Title">Works Offline</h3>
+                    <p data-i18n="feature4Desc">No network required, use anytime anywhere</p>
+                </div>
             </div>
         </section>
 
@@ -591,92 +618,58 @@
             <p data-i18n="aboutContent">Handheld danmaku is a new interactive communication tool that can easily add fun and interactivity to various outdoor activities, performances and carnivals. It features lightweight, portable and easy-to-operate advantages, making every participant part of the event. Handheld danmaku can also express emotions and ideas through pre-written text and emojis, enabling communication and interaction. In the age of social media, the use of handheld danmaku also brings wider social effects, increasing the interactivity and reach of events. Whether for organizers or participants, handheld danmaku is a valuable interactive tool.</p>
         </div>
 
-        <!-- FAQ 问答区块 -->
-        <section class="faq-section" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
-            <h2 style="color: #e6edf3; font-size: 1.4rem; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #30363d;" data-i18n="faqTitle">FAQ</h2>
-            <div class="faq-list" style="display: flex; flex-direction: column; gap: 12px;">
-                <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq1Q">How to display text in fullscreen?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq1A">
-                        After clicking start, the phone will automatically enter fullscreen mode. Landscape orientation is recommended.
-                    </div>
-                </details>
-                <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq2Q">Can I adjust the scroll speed?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq2A">
-                        Yes, you can adjust the speed in settings, with multiple speed options available from slow to fast.
-                    </div>
-                </details>
-                <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq3Q">Does it support emoji?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq3A">
-                        Yes, you can input emoji and they will display and scroll normally.
-                    </div>
-                </details>
-                <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq4Q">How to exit fullscreen?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq4A">
-                        Double-tap anywhere on the screen or press the back button to exit.
-                    </div>
-                </details>
-                <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq5Q">Does it support portrait mode?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq5A">
-                        Yes, but landscape mode works better with larger and more visible text.
-                    </div>
-                </details>
-                <details style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq_free_q">Is this tool really free with no ads?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq_free_a">
-                        Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.
-                    </div>
-                </details>
+        <!-- FAQ -->
+        <section class="faq-section">
+            <h3 data-i18n="faqTitle">FAQ</h3>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq1Q">How to display text in fullscreen?</div>
+                <div class="faq-answer"><p data-i18n="faq1A">After clicking start, the phone will automatically enter fullscreen mode. Landscape orientation is recommended.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq2Q">Can I adjust the scroll speed?</div>
+                <div class="faq-answer"><p data-i18n="faq2A">Yes, you can adjust the speed in settings, with multiple speed options available from slow to fast.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq3Q">Does it support emoji?</div>
+                <div class="faq-answer"><p data-i18n="faq3A">Yes, you can input emoji and they will display and scroll normally.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq4Q">How to exit fullscreen?</div>
+                <div class="faq-answer"><p data-i18n="faq4A">Double-tap anywhere on the screen or press the back button to exit.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq5Q">Does it support portrait mode?</div>
+                <div class="faq-answer"><p data-i18n="faq5A">Yes, but landscape mode works better with larger and more visible text.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq_free_q">Is this tool really free with no ads?</div>
+                <div class="faq-answer"><p data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</p></div>
             </div>
         </section>
 
         <!-- 相关工具 -->
-        <section class="related-tools" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
-            <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
-                <span style="color: #7c3aed;">🔗</span> <span data-i18n="relatedToolsTitle">Related Tools</span>
-            </h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px;">
-                <a href="qrcode-generator.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">📱</div>
-                    <div style="color: #e4e4e7; font-weight: 500; margin: 4px 0;" data-i18n="relatedTool1">QR Code Generator</div>
-                    <div style="color: #a1a1aa; font-size: 0.85rem;" data-i18n="relatedTool1Desc">Generate QR codes instantly</div>
+        <section class="related-tools">
+            <h3 data-i18n="relatedToolsTitle">Related Tools</h3>
+            <div class="related-grid">
+                <a href="qrcode-generator.html" class="related-card">
+                    <div class="related-icon">📱</div>
+                    <h4 data-i18n="relatedTool1">QR Code Generator</h4>
+                    <p data-i18n="relatedTool1Desc">Generate QR codes instantly</p>
                 </a>
-                <a href="word-counter.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">📝</div>
-                    <div style="color: #e4e4e7; font-weight: 500; margin: 4px 0;" data-i18n="relatedTool2">Word Counter</div>
-                    <div style="color: #a1a1aa; font-size: 0.85rem;" data-i18n="relatedTool2Desc">Count words, characters & lines</div>
+                <a href="word-counter.html" class="related-card">
+                    <div class="related-icon">📝</div>
+                    <h4 data-i18n="relatedTool2">Word Counter</h4>
+                    <p data-i18n="relatedTool2Desc">Count words, characters & lines</p>
                 </a>
-                <a href="paint-board.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">🎨</div>
-                    <div style="color: #e4e4e7; font-weight: 500; margin: 4px 0;" data-i18n="relatedTool3">Paint Board</div>
-                    <div style="color: #a1a1aa; font-size: 0.85rem;" data-i18n="relatedTool3Desc">Free online drawing canvas</div>
+                <a href="paint-board.html" class="related-card">
+                    <div class="related-icon">🎨</div>
+                    <h4 data-i18n="relatedTool3">Paint Board</h4>
+                    <p data-i18n="relatedTool3Desc">Free online drawing canvas</p>
                 </a>
-                <a href="metronome.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">🥁</div>
-                    <div style="color: #e4e4e7; font-weight: 500; margin: 4px 0;" data-i18n="relatedTool4">Metronome</div>
-                    <div style="color: #a1a1aa; font-size: 0.85rem;" data-i18n="relatedTool4Desc">Online metronome tool</div>
+                <a href="metronome.html" class="related-card">
+                    <div class="related-icon">🥁</div>
+                    <h4 data-i18n="relatedTool4">Metronome</h4>
+                    <p data-i18n="relatedTool4Desc">Online metronome tool</p>
                 </a>
             </div>
         </section>

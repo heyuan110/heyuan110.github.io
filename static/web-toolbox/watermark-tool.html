@@ -38,16 +38,7 @@
       min-height: 100vh;
       padding: 24px 16px 60px;
     }
-    .container { max-width: 1200px; margin: 0 auto; }
-    .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-    .back {
-      text-align: center;
-      font-size: 2.2rem;
-      background: linear-gradient(120deg, #5eead4, #14b8a6, #93c5fd);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 40px; }
     h1 {
       text-align: center;
       font-size: 2.2rem;
@@ -63,69 +54,260 @@
       border-radius: var(--radius);
       box-shadow: 0 16px 36px rgba(0,0,0,.35);
     }
-    .tool { padding: 14px; }
+    .tool { padding: 20px; }
+
+    /* Tool header bar */
+    .tool-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      gap: 12px;
+    }
     .btn {
       border: 1px solid var(--border);
       background: #0a1322;
       color: var(--text);
-      padding: 10px 12px;
+      padding: 10px 18px;
       border-radius: 10px;
       cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all .2s;
     }
+    .btn:hover { border-color: var(--pri); background: rgba(20,184,166,.08); }
     .btn.primary {
       background: linear-gradient(135deg, var(--pri), var(--pri2));
       border-color: transparent;
       color: #fff;
     }
+    .btn.primary:hover { opacity: .9; }
     .btn[disabled] { opacity: .55; cursor: not-allowed; }
-    .toolbar {
+
+    /* Editor two-column layout */
+    .editor-layout {
       display: grid;
-      grid-template-columns: auto 1fr auto auto auto;
-      gap: 8px;
-      align-items: center;
-      margin-bottom: 10px;
+      grid-template-columns: 300px 1fr;
+      gap: 16px;
+      min-height: 420px;
     }
-    .settings-grid {
-      display: grid;
-      grid-template-columns: 1.6fr repeat(4, 1fr) 1.3fr;
-      gap: 8px;
-      align-items: end;
+
+    /* Settings panel */
+    .settings-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-height: 600px;
+      overflow-y: auto;
+      padding-right: 4px;
     }
+    .settings-panel::-webkit-scrollbar { width: 4px; }
+    .settings-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
     .field { display: flex; flex-direction: column; gap: 6px; }
-    .field span { font-size: 12px; color: var(--muted); }
-    input, select {
+    .field-label { font-size: 12px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .5px; }
+
+    input[type="text"], select {
       border: 1px solid var(--border);
       background: #020617;
       color: var(--text);
       border-radius: 10px;
-      padding: 10px;
+      padding: 10px 12px;
       width: 100%;
+      font-size: 14px;
+      transition: border-color .2s;
     }
-    .preview {
-      margin-top: 10px;
+    input[type="text"]:focus, select:focus { border-color: var(--pri); outline: none; }
+
+    /* Color field */
+    .color-field {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .color-field input[type="color"] {
+      width: 42px;
+      height: 42px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 2px;
+      cursor: pointer;
+      background: transparent;
+      flex-shrink: 0;
+    }
+    .color-field input[type="color"]::-webkit-color-swatch-wrapper { padding: 2px; }
+    .color-field input[type="color"]::-webkit-color-swatch { border: none; border-radius: 6px; }
+    .color-field input[type="text"] { flex: 1; }
+
+    /* Slider group */
+    .slider-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .slider-value {
+      font-size: 13px;
+      color: var(--pri);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      min-width: 40px;
+      text-align: right;
+    }
+    input[type="range"] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--pri), var(--pri2));
+      outline: none;
+      cursor: pointer;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid var(--pri);
+      box-shadow: 0 2px 6px rgba(0,0,0,.3);
+      transition: transform .15s;
+    }
+    input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+    input[type="range"]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid var(--pri);
+      box-shadow: 0 2px 6px rgba(0,0,0,.3);
+    }
+
+    /* Position grid */
+    .position-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+    }
+    .position-btn {
+      padding: 8px 4px;
       border: 1px solid var(--border);
-      border-radius: 12px;
-      background: rgba(2,6,23,.55);
-      padding: 10px;
+      border-radius: 8px;
+      background: rgba(2,6,23,.6);
+      color: var(--muted);
+      font-size: 11px;
+      cursor: pointer;
       text-align: center;
+      transition: all .2s;
+      white-space: nowrap;
     }
-    .preview canvas { max-width: 100%; border-radius: 8px; background: #0b1220; }
+    .position-btn:hover { border-color: var(--pri); color: var(--text); }
+    .position-btn.active {
+      background: rgba(20,184,166,.15);
+      border-color: var(--pri);
+      color: var(--pri);
+      font-weight: 700;
+    }
+    .tile-btn {
+      grid-column: 1 / -1;
+      padding: 8px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: rgba(2,6,23,.6);
+      color: var(--muted);
+      font-size: 12px;
+      cursor: pointer;
+      text-align: center;
+      transition: all .2s;
+      margin-top: 2px;
+    }
+    .tile-btn:hover { border-color: var(--pri); color: var(--text); }
+    .tile-btn.active {
+      background: rgba(20,184,166,.15);
+      border-color: var(--pri);
+      color: var(--pri);
+      font-weight: 700;
+    }
+
+    /* Preview area */
+    .preview-area {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 400px;
+    }
+    .drop-zone {
+      width: 100%;
+      height: 100%;
+      min-height: 400px;
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: border-color .3s, background .3s;
+      background:
+        repeating-conic-gradient(rgba(255,255,255,.03) 0% 25%, transparent 0% 50%) 0 0 / 20px 20px;
+      overflow: hidden;
+    }
+    .drop-zone.drag-over {
+      border-color: var(--pri);
+      background:
+        repeating-conic-gradient(rgba(20,184,166,.06) 0% 25%, transparent 0% 50%) 0 0 / 20px 20px;
+    }
+    .drop-zone.has-image {
+      border-style: solid;
+      border-color: var(--border);
+    }
+    .drop-hint {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      color: var(--muted);
+      pointer-events: none;
+    }
+    .drop-hint svg { opacity: .5; }
+    .drop-hint p { font-size: 14px; text-align: center; line-height: 1.5; }
+    .drop-zone.has-image .drop-hint { display: none; }
+    .drop-zone canvas {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 8px;
+      display: none;
+    }
+    .drop-zone.has-image canvas { display: block; }
+
     .status { font-size: 13px; min-height: 18px; color: #5eead4; margin-top: 8px; }
+
+    /* Animations */
     [data-reveal] { opacity: 0; transform: translateY(12px); animation: up .6s ease forwards; }
     [data-reveal="2"] { animation-delay: .08s; }
     [data-reveal="3"] { animation-delay: .16s; }
     [data-reveal="4"] { animation-delay: .24s; }
     @keyframes up { to { opacity: 1; transform: none; } }
-    .features-section, .faq-section, .features-section h2, .faq-section h2, .features-grid, .feature, .related {
+
+    /* Features / FAQ / Related */
+    .features-section, .faq-section, .related-tools { margin-top: 30px; }
+    .features-section h2, .faq-section h2, .related-tools h3 { margin: 0 0 16px; font-size: 1.2rem; }
+    .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .feature, .related-card {
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 12px;
       background: rgba(2,6,23,.54);
+      transition: border-color .2s, transform .2s;
     }
-    .feature p, .related p { color: var(--muted); font-size: 13px; line-height: 1.55; }
-    .feature h4, .related h4 { margin: 8px 0 6px; font-size: 14px; }
-    .related { text-decoration: none; color: inherit; display: block; }
-    .related:hover { border-color: #5eead4; }
+    .feature:hover, .related-card:hover { border-color: #5eead4; transform: translateY(-2px); }
+    .feature p, .related-card p { color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .feature h4, .related-card h4 { margin: 8px 0 6px; font-size: 14px; }
+    .related-card { text-decoration: none; color: inherit; display: block; }
     .faq-item {
       border: 1px solid var(--border);
       border-radius: 10px;
@@ -142,16 +324,32 @@
       padding: 12px 14px;
       font-size: 14px;
       cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
+    .faq-question::after { content: '+'; font-size: 18px; color: var(--muted); transition: transform .2s; }
+    .faq-item.active .faq-question::after { transform: rotate(45deg); }
     .faq-answer { display: none; padding: 0 14px 12px; color: var(--muted); font-size: 13px; line-height: 1.6; }
     .faq-item.active .faq-answer { display: block; }
-    @media (max-width: 1000px) {
-      .toolbar { grid-template-columns: 1fr 1fr; }
-      .settings-grid { grid-template-columns: 1fr 1fr; }
-      .features-grid { grid-template-columns: 1fr 1fr; }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .editor-layout {
+        grid-template-columns: 1fr;
+      }
+      .settings-panel {
+        max-height: none;
+        overflow-y: visible;
+      }
+      .preview-area { min-height: 300px; }
+      .drop-zone { min-height: 300px; }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 640px) {
       .features-grid { grid-template-columns: 1fr; }
+      .container { padding: 20px; }
+      .tool-header { flex-wrap: wrap; }
     }
   </style>
     <link rel="stylesheet" href="common/common.css">
@@ -160,23 +358,87 @@
 <div class="container">
   <h1 data-i18n="title">Watermark Tool</h1><p class="subtitle" data-i18n="subtitle">Add custom text watermark to your image</p>
   <section class="card tool" data-reveal="1">
-    <div class="toolbar">
+    <div class="tool-header">
       <button class="btn" id="pickBtn" data-i18n="pick">Choose Image</button>
-      <select id="layerSelect" aria-label="Layer Select"></select>
-      <button class="btn" id="addLayerBtn" data-i18n="addLayer">Add Layer</button>
-      <button class="btn" id="delLayerBtn" data-i18n="delLayer">Delete Layer</button>
-      <button class="btn primary" id="downloadBtn" data-i18n="download">Download</button>
+      <button class="btn primary" id="downloadBtn" data-i18n="download" disabled>Download</button>
     </div>
-    <div class="settings-grid">
-      <label class="field"><span data-i18n="wmTextLabel">Watermark Text</span><input id="wmText" value="© Web Toolbox" data-i18n-placeholder="textPh" placeholder="Watermark text"></label>
-      <label class="field"><span data-i18n="opacityLabel">Opacity</span><input id="opacity" type="number" min="0.05" max="1" step="0.05" value="0.25"></label>
-      <label class="field"><span data-i18n="angleLabel">Angle</span><input id="angle" type="number" value="-30"></label>
-      <label class="field"><span data-i18n="sizeLabel">Font Size</span><input id="size" type="number" value="36"></label>
-      <label class="field"><span data-i18n="positionLabel">Position</span><select id="pos"><option value="center" data-i18n="pos_center">Center</option><option value="top-left" data-i18n="pos_top_left">Top Left</option><option value="top-right" data-i18n="pos_top_right">Top Right</option><option value="bottom-left" data-i18n="pos_bottom_left">Bottom Left</option><option value="bottom-right" data-i18n="pos_bottom_right">Bottom Right</option><option value="repeat" data-i18n="pos_repeat">Repeat</option></select></label>
-      <label class="field"><span data-i18n="layerTipsLabel">Layer Tips</span><input id="layerTips" readonly value="Each layer has independent settings"></label>
+    <div class="editor-layout">
+      <div class="settings-panel">
+        <div class="field">
+          <span class="field-label" data-i18n="wmTextLabel">Watermark Text</span>
+          <input type="text" id="wmText" value="© Web Toolbox" data-i18n-placeholder="textPh" placeholder="Watermark text">
+        </div>
+        <div class="field">
+          <span class="field-label" data-i18n="fontLabel">Font Family</span>
+          <select id="fontSelect">
+            <option value="sans-serif" data-i18n="font_sans">Sans-serif</option>
+            <option value="serif" data-i18n="font_serif">Serif</option>
+            <option value="monospace" data-i18n="font_mono">Monospace</option>
+            <option value="cursive" data-i18n="font_cursive">Cursive</option>
+          </select>
+        </div>
+        <div class="field">
+          <span class="field-label" data-i18n="colorLabel">Text Color</span>
+          <div class="color-field">
+            <input type="color" id="colorPicker" value="#ffffff">
+            <input type="text" id="colorHex" value="#ffffff" maxlength="7">
+          </div>
+        </div>
+        <div class="slider-group">
+          <div class="slider-header">
+            <span class="field-label" data-i18n="sizeLabel">Font Size</span>
+            <span class="slider-value" id="sizeValue">36</span>
+          </div>
+          <input type="range" id="sizeSlider" min="12" max="120" value="36">
+        </div>
+        <div class="slider-group">
+          <div class="slider-header">
+            <span class="field-label" data-i18n="opacityLabel">Opacity</span>
+            <span class="slider-value" id="opacityValue">0.25</span>
+          </div>
+          <input type="range" id="opacitySlider" min="5" max="100" value="25" step="5">
+        </div>
+        <div class="slider-group">
+          <div class="slider-header">
+            <span class="field-label" data-i18n="angleLabel">Angle</span>
+            <span class="slider-value" id="angleValue">-30°</span>
+          </div>
+          <input type="range" id="angleSlider" min="-180" max="180" value="-30">
+        </div>
+        <div class="field">
+          <span class="field-label" data-i18n="positionLabel">Position</span>
+          <div class="position-grid">
+            <button class="position-btn" data-pos="top-left" data-i18n="pos_top_left">TL</button>
+            <button class="position-btn" data-pos="top-center" data-i18n="pos_top_center">TC</button>
+            <button class="position-btn" data-pos="top-right" data-i18n="pos_top_right">TR</button>
+            <button class="position-btn" data-pos="middle-left" data-i18n="pos_middle_left">ML</button>
+            <button class="position-btn active" data-pos="center" data-i18n="pos_center">C</button>
+            <button class="position-btn" data-pos="middle-right" data-i18n="pos_middle_right">MR</button>
+            <button class="position-btn" data-pos="bottom-left" data-i18n="pos_bottom_left">BL</button>
+            <button class="position-btn" data-pos="bottom-center" data-i18n="pos_bottom_center">BC</button>
+            <button class="position-btn" data-pos="bottom-right" data-i18n="pos_bottom_right">BR</button>
+          </div>
+          <button class="tile-btn" id="tileBtn" data-i18n="pos_tile">Tile</button>
+        </div>
+        <div class="slider-group" id="tileGapGroup" style="display:none">
+          <div class="slider-header">
+            <span class="field-label" data-i18n="tileGapLabel">Tile Spacing</span>
+            <span class="slider-value" id="tileGapValue">150</span>
+          </div>
+          <input type="range" id="tileGapSlider" min="60" max="400" value="150">
+        </div>
+      </div>
+      <div class="preview-area">
+        <div class="drop-zone" id="dropZone">
+          <div class="drop-hint">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            <p data-i18n="dropHint">Drop image here or click Choose Image</p>
+          </div>
+          <canvas id="canvas"></canvas>
+        </div>
+      </div>
     </div>
     <input id="fileInput" type="file" accept="image/*" style="display:none">
-    <div class="preview"><canvas id="canvas" width="960" height="540"></canvas></div>
     <div class="status" id="status"></div>
   </section>
   <div class="trust-bar" data-reveal="2"><span class="trust-item" data-i18n="trust_users">🌍 Used by 50,000+ users</span><span class="trust-item" data-i18n="trust_rating">⭐ 4.9/5 rating</span><span class="trust-item" data-i18n="trust_privacy">🔒 100% Private</span><span class="trust-item" data-i18n="trust_free">🚫 No Ads, No Signup</span></div>
@@ -188,38 +450,194 @@
     <div class="faq-item"><button class="faq-question" data-i18n="faq4_q">Will original image be uploaded to server?</button><div class="faq-answer" data-i18n="faq4_a">No. Watermark processing runs locally in your browser canvas pipeline. Source images are not uploaded by this page to application backend.</div></div>
     <div class="faq-item"><button class="faq-question" data-i18n="faq_free_q">Is this tool really free with no ads?</button><div class="faq-answer" data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</div></div>
   </section>
-  <section class="related-tools" data-reveal="4"><h3 data-i18n="relatedToolsTitle">Related Tools</h3><div class="related-grid"><a class="related" href="image-editor.html"><div>🖼️</div><h4 data-i18n="relatedTool1">Image Editor</h4><p data-i18n="relatedTool1Desc">Edit image before adding watermark.</p></a><a class="related" href="image-compressor.html"><div>📦</div><h4 data-i18n="relatedTool2">Image Compressor</h4><p data-i18n="relatedTool2Desc">Compress watermarked images for web upload.</p></a><a class="related" href="e-sign.html"><div>✍️</div><h4 data-i18n="relatedTool3">E-Sign Tool</h4><p data-i18n="relatedTool3Desc">Add signature to documents and images.</p></a><a class="related" href="file-converter.html"><div>🔄</div><h4 data-i18n="relatedTool4">File Converter</h4><p data-i18n="relatedTool4Desc">Convert output format after watermarking.</p></a></div></section>
+  <section class="related-tools" data-reveal="4"><h3 data-i18n="relatedToolsTitle">Related Tools</h3><div class="related-grid"><a class="related-card" href="image-editor.html"><div>🖼️</div><h4 data-i18n="relatedTool1">Image Editor</h4><p data-i18n="relatedTool1Desc">Edit image before adding watermark.</p></a><a class="related-card" href="image-compressor.html"><div>📦</div><h4 data-i18n="relatedTool2">Image Compressor</h4><p data-i18n="relatedTool2Desc">Compress watermarked images for web upload.</p></a><a class="related-card" href="e-sign.html"><div>✍️</div><h4 data-i18n="relatedTool3">E-Sign Tool</h4><p data-i18n="relatedTool3Desc">Add signature to documents and images.</p></a><a class="related-card" href="file-converter.html"><div>🔄</div><h4 data-i18n="relatedTool4">File Converter</h4><p data-i18n="relatedTool4Desc">Convert output format after watermarking.</p></a></div></section>
 </div>
 <script>
 (function() {
   'use strict';
 
   function getLang() {
-    return localStorage.getItem('toolbox_lang') || 'en';
+    return (typeof WebToolbox !== 'undefined') ? WebToolbox.getCurrentLang() : 'en';
   }
 
-var i18n = {
-    en: { tool_name: 'Watermark Tool', back: 'Back to Toolbox', title: 'Watermark Tool', subtitle: 'Add one or multiple custom text watermarks to your image', pick: 'Choose Image', download: 'Download', addLayer: 'Add Layer', delLayer: 'Delete Layer', layerName: 'Layer', layerTips: 'Each layer has independent settings', wmTextLabel: 'Watermark Text', opacityLabel: 'Opacity', angleLabel: 'Angle', sizeLabel: 'Font Size', positionLabel: 'Position', layerTipsLabel: 'Layer Tips', textPh: 'Watermark text', needImg: 'Choose image first', ok: 'Watermark updated', layerAdded: 'New watermark layer added', layerDeleted: 'Watermark layer deleted', keepOneLayer: 'At least one layer is required', pos_center: 'Center', pos_top_left: 'Top Left', pos_top_right: 'Top Right', pos_bottom_left: 'Bottom Left', pos_bottom_right: 'Bottom Right', pos_repeat: 'Repeat', trust_users: '🌍 Used by 50,000+ users', trust_rating: '⭐ 4.9/5 rating', trust_privacy: '🔒 100% Private', trust_free: '🚫 No Ads, No Signup', features_title: 'Watermark Tool Features', f1_t: '100% Free & Private', f1_d: 'No ads, no signup, no watermark. Editing runs locally in browser.', f2_t: 'Custom Text Watermark', f2_d: 'Set your own brand text, copyright name, or ID watermark string.', f3_t: 'Opacity Angle Size Controls', f3_d: 'Tune watermark opacity, rotation, and size for clear but non-invasive marks.', f4_t: 'Position and Repeat Mode', f4_d: 'Place watermark in corners, center, or repeat diagonally across image.', faq_title: 'Frequently Asked Questions', faq1_q: 'What is an image watermark tool?', faq1_a: 'An image watermark tool overlays text or logo on photos to indicate ownership and reduce unauthorized reuse. It is commonly used for portfolio images, ecommerce assets, and social media posts.', faq2_q: 'Can I adjust watermark opacity and angle?', faq2_a: 'Yes. You can control opacity, rotation angle, text size, and position. This helps balance brand visibility with image readability.', faq3_q: 'Does this tool support tiled watermark style?', faq3_a: 'Yes. You can choose repeat mode to draw watermark text diagonally across the image for stronger copyright protection.', faq4_q: 'Will original image be uploaded to server?', faq4_a: 'No. Watermark processing runs locally in your browser canvas pipeline. Source images are not uploaded by this page to application backend.', faq_free_q: 'Is this tool really free with no ads?', faq_free_a: 'Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.', relatedToolsTitle: 'Related Tools', relatedTool1: 'Image Editor', relatedTool1Desc: 'Edit image before adding watermark.', relatedTool2: 'Image Compressor', relatedTool2Desc: 'Compress watermarked images for web upload.', relatedTool3: 'E-Sign Tool', relatedTool3Desc: 'Add signature to documents and images.', relatedTool4: 'File Converter', relatedTool4Desc: 'Convert output format after watermarking.' },
-    'zh-CN': { tool_name: '图片水印工具', back: '返回工具箱', title: '图片水印工具', subtitle: '为图片添加一个或多个自定义文字水印', pick: '选择图片', download: '下载图片', addLayer: '新增图层', delLayer: '删除图层', layerName: '图层', layerTips: '每个图层都有独立参数', wmTextLabel: '水印文字', opacityLabel: '透明度', angleLabel: '角度', sizeLabel: '字体大小', positionLabel: '位置', layerTipsLabel: '图层提示', textPh: '输入水印文字', needImg: '请先选择图片', ok: '水印已更新', layerAdded: '已新增水印图层', layerDeleted: '已删除水印图层', keepOneLayer: '至少保留一个图层', pos_center: '居中', pos_top_left: '左上', pos_top_right: '右上', pos_bottom_left: '左下', pos_bottom_right: '右下', pos_repeat: '平铺', trust_users: '🌍 超过 50,000 用户使用', trust_rating: '⭐ 4.9/5 好评', trust_privacy: '🔒 100% 隐私安全', trust_free: '🚫 无广告、无需注册', features_title: '水印工具功能', f1_t: '100% 免费且安全', f1_d: '无广告、无需注册、无水印。编辑处理在浏览器本地执行。', f2_t: '自定义文字水印', f2_d: '支持品牌名、版权信息、账号 ID 等文字叠加。', f3_t: '透明度角度大小控制', f3_d: '自由调节透明度、旋转角度和字体大小。', f4_t: '位置与平铺模式', f4_d: '支持角落、中心和全图平铺斜向水印。', faq_title: '常见问题', faq1_q: '什么是图片水印工具？', faq1_a: '图片水印工具会在照片上叠加文字或标识，用于声明版权并减少未授权转载，常用于作品集、电商图和社媒内容。', faq2_q: '可以调节透明度和角度吗？', faq2_a: '可以。你可以调整透明度、角度、字号和位置，使品牌可见但不遮挡主体。', faq3_q: '支持平铺水印吗？', faq3_a: '支持。选择 repeat 模式可在整张图上斜向重复绘制水印。', faq4_q: '原图会上传服务器吗？', faq4_a: '不会。处理流程在浏览器 canvas 本地完成，页面不会主动上传你的原图。', faq_free_q: '这个工具真的免费且无广告吗？', faq_free_a: '是的，100% 免费，无广告、无需注册、无水印、无限制。所有处理都在浏览器本地完成，你的数据不会上传到任何服务器。', relatedToolsTitle: '相关工具', relatedTool1: '图片编辑器', relatedTool1Desc: '加水印前先做图像编辑。', relatedTool2: '图片压缩', relatedTool2Desc: '压缩水印图用于网页发布。', relatedTool3: '电子签名', relatedTool3Desc: '给文档和图片添加签名。', relatedTool4: '文件转换', relatedTool4Desc: '水印后转换输出格式。' },
-    fr: { tool_name: 'Outil filigrane', back: 'Retour à la boîte à outils', title: 'Outil filigrane', subtitle: 'Ajouter un ou plusieurs filigranes texte sur votre image', pick: 'Choisir image', download: 'Télécharger', addLayer: 'Ajouter couche', delLayer: 'Supprimer couche', layerName: 'Couche', layerTips: 'Chaque couche a ses propres paramètres', wmTextLabel: 'Texte filigrane', opacityLabel: 'Opacité', angleLabel: 'Angle', sizeLabel: 'Taille police', positionLabel: 'Position', layerTipsLabel: 'Conseil couche', textPh: 'Texte filigrane', needImg: 'Choisissez image', ok: 'Filigrane mis à jour', layerAdded: 'Nouvelle couche ajoutée', layerDeleted: 'Couche supprimée', keepOneLayer: 'Au moins une couche est requise', pos_center: 'Centre', pos_top_left: 'Haut gauche', pos_top_right: 'Haut droite', pos_bottom_left: 'Bas gauche', pos_bottom_right: 'Bas droite', pos_repeat: 'Répéter', trust_users: '🌍 Utilisé par 50 000+ utilisateurs', trust_rating: '⭐ Note 4.9/5', trust_privacy: '🔒 100% Privé', trust_free: '🚫 Sans pub, sans inscription', features_title: 'Fonctions outil filigrane', f1_t: '100% Gratuit et Privé', f1_d: 'Sans publicité, sans inscription, sans filigrane. Traitement local.', f2_t: 'Texte personnalisé', f2_d: 'Ajoutez marque, copyright, identifiant.', f3_t: 'Opacité angle taille', f3_d: 'Réglages fins du filigrane.', f4_t: 'Position et mode répétition', f4_d: 'Coins, centre, répétition diagonale.', faq_title: 'Questions fréquentes', faq1_q: 'Qu est ce qu un outil filigrane image ?', faq1_a: 'Il superpose texte/logo pour marquer propriété et réduire réutilisation non autorisée.', faq2_q: 'Puis-je régler opacité et angle ?', faq2_a: 'Oui, opacité, angle, taille et position sont personnalisables.', faq3_q: 'Supporte-t-il mode répétition ?', faq3_a: 'Oui, mode repeat dessine texte en diagonale sur toute image.', faq4_q: 'Image originale uploadée ?', faq4_a: 'Non, traitement local canvas navigateur.', faq_free_q: 'Cet outil est-il vraiment gratuit et sans pub ?', faq_free_a: 'Oui, 100% gratuit, sans publicité, sans inscription, sans filigrane et sans limites. Tout est traité localement dans votre navigateur — vos données ne sont jamais téléversées.', relatedToolsTitle: 'Outils associés', relatedTool1: 'Éditeur image', relatedTool1Desc: 'Editer avant filigrane.', relatedTool2: 'Compresseur image', relatedTool2Desc: 'Compresser après filigrane.', relatedTool3: 'Outil signature', relatedTool3Desc: 'Ajouter signature.', relatedTool4: 'Convertisseur fichiers', relatedTool4Desc: 'Convertir format final.' },
-    es: { tool_name: 'Herramienta de marca de agua', back: 'Volver a la caja de herramientas', title: 'Herramienta de marca de agua', subtitle: 'Añade una o varias marcas de agua de texto a tu imagen', pick: 'Elegir imagen', download: 'Descargar', addLayer: 'Agregar capa', delLayer: 'Eliminar capa', layerName: 'Capa', layerTips: 'Cada capa tiene configuración independiente', wmTextLabel: 'Texto de marca de agua', opacityLabel: 'Opacidad', angleLabel: 'Ángulo', sizeLabel: 'Tamaño fuente', positionLabel: 'Posición', layerTipsLabel: 'Consejo de capa', textPh: 'Texto de marca de agua', needImg: 'Primero elige imagen', ok: 'Marca de agua actualizada', layerAdded: 'Nueva capa agregada', layerDeleted: 'Capa eliminada', keepOneLayer: 'Se requiere al menos una capa', pos_center: 'Centro', pos_top_left: 'Arriba izquierda', pos_top_right: 'Arriba derecha', pos_bottom_left: 'Abajo izquierda', pos_bottom_right: 'Abajo derecha', pos_repeat: 'Repetir', trust_users: '🌍 Usado por más de 50,000 usuarios', trust_rating: '⭐ Calificación 4.9/5', trust_privacy: '🔒 100% Privado', trust_free: '🚫 Sin anuncios, sin registro', features_title: 'Funciones de marca de agua', f1_t: '100% Gratis y Privado', f1_d: 'Sin anuncios, sin registro, sin marca de agua. Procesamiento local.', f2_t: 'Texto personalizado', f2_d: 'Agrega marca, copyright o ID.', f3_t: 'Controles de opacidad ángulo tamaño', f3_d: 'Ajusta visibilidad y estilo del watermark.', f4_t: 'Posición y modo repetido', f4_d: 'Esquinas, centro y repetición diagonal.', faq_title: 'Preguntas frecuentes', faq1_q: '¿Qué es una herramienta de marca de agua?', faq1_a: 'Superpone texto/logo sobre fotos para indicar propiedad y reducir reutilización no autorizada.', faq2_q: '¿Puedo ajustar opacidad y ángulo?', faq2_a: 'Sí, puedes ajustar opacidad, ángulo, tamaño y posición.', faq3_q: '¿Soporta marca repetida?', faq3_a: 'Sí, modo repeat dibuja texto diagonal por toda la imagen.', faq4_q: '¿Se sube la imagen original?', faq4_a: 'No, el procesamiento se hace localmente en canvas.', faq_free_q: '¿Esta herramienta es realmente gratis y sin anuncios?', faq_free_a: 'Sí, 100% gratis, sin anuncios, sin registro, sin marca de agua y sin límites. Todo el procesamiento ocurre localmente en tu navegador: tus datos nunca se suben a ningún servidor.', relatedToolsTitle: 'Herramientas relacionadas', relatedTool1: 'Editor de imagen', relatedTool1Desc: 'Edita antes de marcar.', relatedTool2: 'Compresor de imagen', relatedTool2Desc: 'Comprime después de marcar.', relatedTool3: 'Herramienta de firma', relatedTool3Desc: 'Añade firma.', relatedTool4: 'Convertidor de archivos', relatedTool4Desc: 'Convierte formato final.' }
+  var i18n = {
+    en: {
+      tool_name: 'Watermark Tool', title: 'Watermark Tool', subtitle: 'Add custom text watermark to your image',
+      pick: 'Choose Image', download: 'Download',
+      wmTextLabel: 'Watermark Text', textPh: 'Watermark text',
+      fontLabel: 'Font Family', colorLabel: 'Text Color',
+      sizeLabel: 'Font Size', opacityLabel: 'Opacity', angleLabel: 'Angle',
+      positionLabel: 'Position', tileGapLabel: 'Tile Spacing',
+      dropHint: 'Drop image here or click Choose Image',
+      needImg: 'Choose image first', ok: 'Watermark updated',
+      pos_center: 'Center', pos_top_left: 'Top Left', pos_top_center: 'Top Center', pos_top_right: 'Top Right',
+      pos_middle_left: 'Middle Left', pos_middle_right: 'Middle Right',
+      pos_bottom_left: 'Bottom Left', pos_bottom_center: 'Bottom Center', pos_bottom_right: 'Bottom Right',
+      pos_tile: 'Tile / Repeat',
+      font_sans: 'Sans-serif', font_serif: 'Serif', font_mono: 'Monospace', font_cursive: 'Cursive',
+      trust_users: '🌍 Used by 50,000+ users', trust_rating: '⭐ 4.9/5 rating', trust_privacy: '🔒 100% Private', trust_free: '🚫 No Ads, No Signup',
+      features_title: 'Watermark Tool Features',
+      f1_t: '100% Free & Private', f1_d: 'No ads, no signup, no watermark. Editing runs locally in browser.',
+      f2_t: 'Custom Text Watermark', f2_d: 'Set your own brand text, copyright name, or ID watermark string.',
+      f3_t: 'Opacity Angle Size Controls', f3_d: 'Tune watermark opacity, rotation, and size for clear but non-invasive marks.',
+      f4_t: 'Position and Repeat Mode', f4_d: 'Place watermark in corners, center, or repeat diagonally across image.',
+      faq_title: 'Frequently Asked Questions',
+      faq1_q: 'What is an image watermark tool?', faq1_a: 'An image watermark tool overlays text or logo on photos to indicate ownership and reduce unauthorized reuse. It is commonly used for portfolio images, ecommerce assets, and social media posts.',
+      faq2_q: 'Can I adjust watermark opacity and angle?', faq2_a: 'Yes. You can control opacity, rotation angle, text size, and position. This helps balance brand visibility with image readability.',
+      faq3_q: 'Does this tool support tiled watermark style?', faq3_a: 'Yes. You can choose repeat mode to draw watermark text diagonally across the image for stronger copyright protection.',
+      faq4_q: 'Will original image be uploaded to server?', faq4_a: 'No. Watermark processing runs locally in your browser canvas pipeline. Source images are not uploaded by this page to application backend.',
+      faq_free_q: 'Is this tool really free with no ads?', faq_free_a: 'Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.',
+      relatedToolsTitle: 'Related Tools',
+      relatedTool1: 'Image Editor', relatedTool1Desc: 'Edit image before adding watermark.',
+      relatedTool2: 'Image Compressor', relatedTool2Desc: 'Compress watermarked images for web upload.',
+      relatedTool3: 'E-Sign Tool', relatedTool3Desc: 'Add signature to documents and images.',
+      relatedTool4: 'File Converter', relatedTool4Desc: 'Convert output format after watermarking.'
+    },
+    'zh-CN': {
+      tool_name: '图片水印工具', title: '图片水印工具', subtitle: '为图片添加自定义文字水印',
+      pick: '选择图片', download: '下载图片',
+      wmTextLabel: '水印文字', textPh: '输入水印文字',
+      fontLabel: '字体', colorLabel: '文字颜色',
+      sizeLabel: '字体大小', opacityLabel: '透明度', angleLabel: '角度',
+      positionLabel: '位置', tileGapLabel: '平铺间距',
+      dropHint: '拖拽图片到此处或点击选择图片',
+      needImg: '请先选择图片', ok: '水印已更新',
+      pos_center: '居中', pos_top_left: '左上', pos_top_center: '上中', pos_top_right: '右上',
+      pos_middle_left: '左中', pos_middle_right: '右中',
+      pos_bottom_left: '左下', pos_bottom_center: '下中', pos_bottom_right: '右下',
+      pos_tile: '平铺',
+      font_sans: '无衬线体', font_serif: '衬线体', font_mono: '等宽体', font_cursive: '手写体',
+      trust_users: '🌍 超过 50,000 用户使用', trust_rating: '⭐ 4.9/5 好评', trust_privacy: '🔒 100% 隐私安全', trust_free: '🚫 无广告、无需注册',
+      features_title: '水印工具功能',
+      f1_t: '100% 免费且安全', f1_d: '无广告、无需注册、无水印。编辑处理在浏览器本地执行。',
+      f2_t: '自定义文字水印', f2_d: '支持品牌名、版权信息、账号 ID 等文字叠加。',
+      f3_t: '透明度角度大小控制', f3_d: '自由调节透明度、旋转角度和字体大小。',
+      f4_t: '位置与平铺模式', f4_d: '支持角落、中心和全图平铺斜向水印。',
+      faq_title: '常见问题',
+      faq1_q: '什么是图片水印工具？', faq1_a: '图片水印工具会在照片上叠加文字或标识，用于声明版权并减少未授权转载，常用于作品集、电商图和社媒内容。',
+      faq2_q: '可以调节透明度和角度吗？', faq2_a: '可以。你可以调整透明度、角度、字号和位置，使品牌可见但不遮挡主体。',
+      faq3_q: '支持平铺水印吗？', faq3_a: '支持。选择 repeat 模式可在整张图上斜向重复绘制水印。',
+      faq4_q: '原图会上传服务器吗？', faq4_a: '不会。处理流程在浏览器 canvas 本地完成，页面不会主动上传你的原图。',
+      faq_free_q: '这个工具真的免费且无广告吗？', faq_free_a: '是的，100% 免费，无广告、无需注册、无水印、无限制。所有处理都在浏览器本地完成，你的数据不会上传到任何服务器。',
+      relatedToolsTitle: '相关工具',
+      relatedTool1: '图片编辑器', relatedTool1Desc: '加水印前先做图像编辑。',
+      relatedTool2: '图片压缩', relatedTool2Desc: '压缩水印图用于网页发布。',
+      relatedTool3: '电子签名', relatedTool3Desc: '给文档和图片添加签名。',
+      relatedTool4: '文件转换', relatedTool4Desc: '水印后转换输出格式。'
+    },
+    fr: {
+      tool_name: 'Outil filigrane', title: 'Outil filigrane', subtitle: 'Ajouter un filigrane texte sur votre image',
+      pick: 'Choisir image', download: 'Télécharger',
+      wmTextLabel: 'Texte filigrane', textPh: 'Texte filigrane',
+      fontLabel: 'Police', colorLabel: 'Couleur texte',
+      sizeLabel: 'Taille police', opacityLabel: 'Opacité', angleLabel: 'Angle',
+      positionLabel: 'Position', tileGapLabel: 'Espacement',
+      dropHint: 'Déposez image ici ou cliquez Choisir',
+      needImg: 'Choisissez image', ok: 'Filigrane mis à jour',
+      pos_center: 'Centre', pos_top_left: 'Haut gauche', pos_top_center: 'Haut centre', pos_top_right: 'Haut droite',
+      pos_middle_left: 'Milieu gauche', pos_middle_right: 'Milieu droite',
+      pos_bottom_left: 'Bas gauche', pos_bottom_center: 'Bas centre', pos_bottom_right: 'Bas droite',
+      pos_tile: 'Mosaïque',
+      font_sans: 'Sans empattement', font_serif: 'Avec empattement', font_mono: 'Monospace', font_cursive: 'Cursive',
+      trust_users: '🌍 Utilisé par 50 000+ utilisateurs', trust_rating: '⭐ Note 4.9/5', trust_privacy: '🔒 100% Privé', trust_free: '🚫 Sans pub, sans inscription',
+      features_title: 'Fonctions outil filigrane',
+      f1_t: '100% Gratuit et Privé', f1_d: 'Sans publicité, sans inscription, sans filigrane. Traitement local.',
+      f2_t: 'Texte personnalisé', f2_d: 'Ajoutez marque, copyright, identifiant.',
+      f3_t: 'Opacité angle taille', f3_d: 'Réglages fins du filigrane.',
+      f4_t: 'Position et mode répétition', f4_d: 'Coins, centre, répétition diagonale.',
+      faq_title: 'Questions fréquentes',
+      faq1_q: 'Qu est ce qu un outil filigrane image ?', faq1_a: 'Il superpose texte/logo pour marquer propriété et réduire réutilisation non autorisée.',
+      faq2_q: 'Puis-je régler opacité et angle ?', faq2_a: 'Oui, opacité, angle, taille et position sont personnalisables.',
+      faq3_q: 'Supporte-t-il mode répétition ?', faq3_a: 'Oui, mode repeat dessine texte en diagonale sur toute image.',
+      faq4_q: 'Image originale uploadée ?', faq4_a: 'Non, traitement local canvas navigateur.',
+      faq_free_q: 'Cet outil est-il vraiment gratuit et sans pub ?', faq_free_a: 'Oui, 100% gratuit, sans publicité, sans inscription, sans filigrane et sans limites. Tout est traité localement dans votre navigateur — vos données ne sont jamais téléversées.',
+      relatedToolsTitle: 'Outils associés',
+      relatedTool1: 'Éditeur image', relatedTool1Desc: 'Editer avant filigrane.',
+      relatedTool2: 'Compresseur image', relatedTool2Desc: 'Compresser après filigrane.',
+      relatedTool3: 'Outil signature', relatedTool3Desc: 'Ajouter signature.',
+      relatedTool4: 'Convertisseur fichiers', relatedTool4Desc: 'Convertir format final.'
+    },
+    es: {
+      tool_name: 'Herramienta de marca de agua', title: 'Herramienta de marca de agua', subtitle: 'Añade marca de agua de texto a tu imagen',
+      pick: 'Elegir imagen', download: 'Descargar',
+      wmTextLabel: 'Texto de marca de agua', textPh: 'Texto de marca de agua',
+      fontLabel: 'Fuente', colorLabel: 'Color de texto',
+      sizeLabel: 'Tamaño fuente', opacityLabel: 'Opacidad', angleLabel: 'Ángulo',
+      positionLabel: 'Posición', tileGapLabel: 'Espaciado',
+      dropHint: 'Suelta imagen aquí o haz clic en Elegir',
+      needImg: 'Primero elige imagen', ok: 'Marca de agua actualizada',
+      pos_center: 'Centro', pos_top_left: 'Arriba izquierda', pos_top_center: 'Arriba centro', pos_top_right: 'Arriba derecha',
+      pos_middle_left: 'Centro izquierda', pos_middle_right: 'Centro derecha',
+      pos_bottom_left: 'Abajo izquierda', pos_bottom_center: 'Abajo centro', pos_bottom_right: 'Abajo derecha',
+      pos_tile: 'Mosaico',
+      font_sans: 'Sin serifas', font_serif: 'Con serifas', font_mono: 'Monoespaciada', font_cursive: 'Cursiva',
+      trust_users: '🌍 Usado por más de 50,000 usuarios', trust_rating: '⭐ Calificación 4.9/5', trust_privacy: '🔒 100% Privado', trust_free: '🚫 Sin anuncios, sin registro',
+      features_title: 'Funciones de marca de agua',
+      f1_t: '100% Gratis y Privado', f1_d: 'Sin anuncios, sin registro, sin marca de agua. Procesamiento local.',
+      f2_t: 'Texto personalizado', f2_d: 'Agrega marca, copyright o ID.',
+      f3_t: 'Controles de opacidad ángulo tamaño', f3_d: 'Ajusta visibilidad y estilo del watermark.',
+      f4_t: 'Posición y modo repetido', f4_d: 'Esquinas, centro y repetición diagonal.',
+      faq_title: 'Preguntas frecuentes',
+      faq1_q: '¿Qué es una herramienta de marca de agua?', faq1_a: 'Superpone texto/logo sobre fotos para indicar propiedad y reducir reutilización no autorizada.',
+      faq2_q: '¿Puedo ajustar opacidad y ángulo?', faq2_a: 'Sí, puedes ajustar opacidad, ángulo, tamaño y posición.',
+      faq3_q: '¿Soporta marca repetida?', faq3_a: 'Sí, modo repeat dibuja texto diagonal por toda la imagen.',
+      faq4_q: '¿Se sube la imagen original?', faq4_a: 'No, el procesamiento se hace localmente en canvas.',
+      faq_free_q: '¿Esta herramienta es realmente gratis y sin anuncios?', faq_free_a: 'Sí, 100% gratis, sin anuncios, sin registro, sin marca de agua y sin límites. Todo el procesamiento ocurre localmente en tu navegador: tus datos nunca se suben a ningún servidor.',
+      relatedToolsTitle: 'Herramientas relacionadas',
+      relatedTool1: 'Editor de imagen', relatedTool1Desc: 'Edita antes de marcar.',
+      relatedTool2: 'Compresor de imagen', relatedTool2Desc: 'Comprime después de marcar.',
+      relatedTool3: 'Herramienta de firma', relatedTool3Desc: 'Añade firma.',
+      relatedTool4: 'Convertidor de archivos', relatedTool4Desc: 'Convierte formato final.'
+    }
   };
-var img = null;
+
+  /* Font mapping */
+  var FONTS = {
+    'sans-serif': '"Inter", "SF Pro Text", -apple-system, sans-serif',
+    'serif': '"Georgia", "Times New Roman", serif',
+    'monospace': '"SF Mono", "Fira Code", "Courier New", monospace',
+    'cursive': '"Segoe Script", "Comic Sans MS", cursive'
+  };
+
+  /* State */
+  var img = null;
+  var config = {
+    text: '© Web Toolbox',
+    font: 'sans-serif',
+    color: '#ffffff',
+    size: 36,
+    opacity: 0.25,
+    angle: -30,
+    position: 'center',
+    tileMode: false,
+    tileGap: 150
+  };
+
+  /* DOM refs */
   var canvas = document.getElementById('canvas');
   var ctx = canvas.getContext('2d');
-  var layerSelect = document.getElementById('layerSelect');
-  var delLayerBtn = document.getElementById('delLayerBtn');
-  var layerTipsInput = document.getElementById('layerTips');
-  var layers = [createDefaultLayer()];
-  var currentLayerIndex = 0;
-
-  function createDefaultLayer() {
-    return { text: '© Web Toolbox', opacity: 0.25, angle: -30, size: 36, pos: 'center' };
-  }
+  var dropZone = document.getElementById('dropZone');
+  var fileInput = document.getElementById('fileInput');
+  var downloadBtn = document.getElementById('downloadBtn');
+  var wmText = document.getElementById('wmText');
+  var fontSelect = document.getElementById('fontSelect');
+  var colorPicker = document.getElementById('colorPicker');
+  var colorHex = document.getElementById('colorHex');
+  var sizeSlider = document.getElementById('sizeSlider');
+  var sizeValue = document.getElementById('sizeValue');
+  var opacitySlider = document.getElementById('opacitySlider');
+  var opacityValue = document.getElementById('opacityValue');
+  var angleSlider = document.getElementById('angleSlider');
+  var angleValue = document.getElementById('angleValue');
+  var tileBtn = document.getElementById('tileBtn');
+  var tileGapGroup = document.getElementById('tileGapGroup');
+  var tileGapSlider = document.getElementById('tileGapSlider');
+  var tileGapValue = document.getElementById('tileGapValue');
+  var positionBtns = document.querySelectorAll('.position-btn');
 
   function t(k) {
-    var currentLang = getLang();
-    var d = i18n[currentLang] || i18n.en;
+    var lang = getLang();
+    var d = i18n[lang] || i18n.en;
     return d[k] || i18n.en[k] || k;
   }
 
@@ -227,160 +645,196 @@ var img = null;
     document.getElementById('status').textContent = v || '';
   }
 
-
-  function renderLayerSelect() {
-    layerSelect.innerHTML = '';
-    layers.forEach(function(_, idx) {
-      var opt = document.createElement('option');
-      opt.value = String(idx);
-      opt.textContent = t('layerName') + ' ' + (idx + 1);
-      if (idx === currentLayerIndex) opt.selected = true;
-      layerSelect.appendChild(opt);
-    });
-    delLayerBtn.disabled = layers.length <= 1;
-  }
-
-  function syncInputsFromLayer() {
-    var layer = layers[currentLayerIndex];
-    document.getElementById('wmText').value = layer.text;
-    document.getElementById('opacity').value = layer.opacity;
-    document.getElementById('angle').value = layer.angle;
-    document.getElementById('size').value = layer.size;
-    document.getElementById('pos').value = layer.pos;
-  }
-
-  function syncLayerFromInputs() {
-    var layer = layers[currentLayerIndex];
-    layer.text = document.getElementById('wmText').value || '© Web Toolbox';
-    layer.opacity = Math.max(0.05, Math.min(1, parseFloat(document.getElementById('opacity').value) || 0.25));
-    layer.angle = parseFloat(document.getElementById('angle').value) || -30;
-    layer.size = Math.max(12, parseFloat(document.getElementById('size').value) || 36);
-    layer.pos = document.getElementById('pos').value;
-  }
-
-  function drawLayer(layer) {
-    var text = layer.text || '© Web Toolbox';
-    var opacity = layer.opacity;
-    var angle = layer.angle * Math.PI / 180;
-    var size = layer.size;
-    var pos = layer.pos;
-    var pad = 30;
-
-    ctx.save();
-    ctx.globalAlpha = opacity;
-    ctx.fillStyle = '#FFFFFF';
-    ctx.font = '700 ' + size + 'px "Space Grotesk",sans-serif';
-    ctx.textBaseline = 'middle';
-
-    var textWidth = ctx.measureText(text).width;
-    function drawOne(x, y) {
-      ctx.save();
-      ctx.translate(x, y);
-      ctx.rotate(angle);
-      ctx.fillText(text, 0, 0);
-      ctx.restore();
-    }
-
-    if (pos === 'repeat') {
-      var gapX = Math.max(textWidth + 80, size * 4);
-      var gapY = Math.max(90, size * 2.8);
-      for (var y = 60; y < canvas.height + gapY; y += gapY) {
-        for (var x = 40; x < canvas.width + gapX; x += gapX) {
-          drawOne(x, y);
-        }
-      }
-    } else {
-      var x = (canvas.width - textWidth) / 2;
-      var y = canvas.height / 2;
-      if (pos === 'top-left') { x = pad; y = pad + size / 2; }
-      if (pos === 'top-right') { x = canvas.width - pad - textWidth; y = pad + size / 2; }
-      if (pos === 'bottom-left') { x = pad; y = canvas.height - pad; }
-      if (pos === 'bottom-right') { x = canvas.width - pad - textWidth; y = canvas.height - pad; }
-      drawOne(x, y);
-    }
-
-    ctx.restore();
-  }
-
+  /* Drawing */
   function draw() {
     if (!img) return;
     canvas.width = img.naturalWidth;
     canvas.height = img.naturalHeight;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(img, 0, 0);
-    layers.forEach(drawLayer);
+
+    var text = config.text || '© Web Toolbox';
+    var angle = config.angle * Math.PI / 180;
+    var size = config.size;
+    var fontStr = '700 ' + size + 'px ' + (FONTS[config.font] || FONTS['sans-serif']);
+    var pad = Math.max(30, size);
+
+    ctx.save();
+    ctx.globalAlpha = config.opacity;
+    ctx.fillStyle = config.color;
+    ctx.font = fontStr;
+    ctx.textBaseline = 'middle';
+
+    var textWidth = ctx.measureText(text).width;
+
+    function drawOne(x, y) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(angle);
+      ctx.fillText(text, -textWidth / 2, 0);
+      ctx.restore();
+    }
+
+    if (config.tileMode) {
+      var gap = config.tileGap;
+      var diagLen = Math.sqrt(canvas.width * canvas.width + canvas.height * canvas.height);
+      for (var y = -diagLen / 2; y < canvas.height + diagLen / 2; y += gap) {
+        for (var x = -diagLen / 2; x < canvas.width + diagLen / 2; x += gap + textWidth) {
+          drawOne(x, y);
+        }
+      }
+    } else {
+      var cx = canvas.width / 2;
+      var cy = canvas.height / 2;
+      switch (config.position) {
+        case 'top-left':      cx = pad + textWidth / 2; cy = pad; break;
+        case 'top-center':    cy = pad; break;
+        case 'top-right':     cx = canvas.width - pad - textWidth / 2; cy = pad; break;
+        case 'middle-left':   cx = pad + textWidth / 2; break;
+        case 'center':        break;
+        case 'middle-right':  cx = canvas.width - pad - textWidth / 2; break;
+        case 'bottom-left':   cx = pad + textWidth / 2; cy = canvas.height - pad; break;
+        case 'bottom-center': cy = canvas.height - pad; break;
+        case 'bottom-right':  cx = canvas.width - pad - textWidth / 2; cy = canvas.height - pad; break;
+      }
+      drawOne(cx, cy);
+    }
+
+    ctx.restore();
     setStatus(t('ok'));
   }
 
-  function addLayer() {
-    syncLayerFromInputs();
-    var base = layers[currentLayerIndex] || createDefaultLayer();
-    layers.push({ text: base.text, opacity: base.opacity, angle: base.angle, size: base.size, pos: base.pos });
-    currentLayerIndex = layers.length - 1;
-    renderLayerSelect();
-    syncInputsFromLayer();
-    draw();
-    setStatus(t('layerAdded'));
-  }
-
-  function deleteLayer() {
-    if (layers.length <= 1) {
-      setStatus(t('keepOneLayer'));
-      return;
-    }
-    layers.splice(currentLayerIndex, 1);
-    currentLayerIndex = Math.max(0, currentLayerIndex - 1);
-    renderLayerSelect();
-    syncInputsFromLayer();
-    draw();
-    setStatus(t('layerDeleted'));
-  }
-
-  document.getElementById('pickBtn').addEventListener('click', function() {
-    document.getElementById('fileInput').click();
-  });
-  document.getElementById('fileInput').addEventListener('change', function(e) {
-    var f = e.target.files[0];
-    if (!f) return;
+  /* Load image */
+  function loadImage(file) {
+    if (!file || !file.type.startsWith('image/')) return;
     var reader = new FileReader();
     reader.onload = function() {
       img = new Image();
-      img.onload = draw;
+      img.onload = function() {
+        dropZone.classList.add('has-image');
+        downloadBtn.disabled = false;
+        draw();
+      };
       img.src = reader.result;
     };
-    reader.readAsDataURL(f);
+    reader.readAsDataURL(file);
+  }
+
+  /* File pick */
+  document.getElementById('pickBtn').addEventListener('click', function() {
+    fileInput.click();
+  });
+  fileInput.addEventListener('change', function(e) {
+    if (e.target.files[0]) loadImage(e.target.files[0]);
   });
 
-  document.getElementById('addLayerBtn').addEventListener('click', addLayer);
-  document.getElementById('delLayerBtn').addEventListener('click', deleteLayer);
-  layerSelect.addEventListener('change', function() {
-    syncLayerFromInputs();
-    currentLayerIndex = parseInt(layerSelect.value, 10) || 0;
-    syncInputsFromLayer();
+  /* Drag & drop */
+  dropZone.addEventListener('dragenter', function(e) { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragover', function(e) { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', function(e) { e.preventDefault(); dropZone.classList.remove('drag-over'); });
+  dropZone.addEventListener('drop', function(e) {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    var file = e.dataTransfer.files[0];
+    if (file) loadImage(file);
+  });
+  dropZone.addEventListener('click', function(e) {
+    if (e.target === dropZone || e.target.closest('.drop-hint')) {
+      fileInput.click();
+    }
+  });
+
+  /* Text input */
+  wmText.addEventListener('input', function() { config.text = wmText.value; draw(); });
+
+  /* Font select */
+  fontSelect.addEventListener('change', function() { config.font = fontSelect.value; draw(); });
+
+  /* Color */
+  colorPicker.addEventListener('input', function() {
+    config.color = colorPicker.value;
+    colorHex.value = colorPicker.value;
+    draw();
+  });
+  colorHex.addEventListener('input', function() {
+    var v = colorHex.value;
+    if (/^#[0-9a-fA-F]{6}$/.test(v)) {
+      config.color = v;
+      colorPicker.value = v;
+      draw();
+    }
+  });
+
+  /* Font size slider */
+  sizeSlider.addEventListener('input', function() {
+    config.size = parseInt(sizeSlider.value, 10);
+    sizeValue.textContent = config.size;
     draw();
   });
 
-  ['wmText', 'opacity', 'angle', 'size', 'pos'].forEach(function(id) {
-    var el = document.getElementById(id);
-    el.addEventListener('input', function() { syncLayerFromInputs(); draw(); });
-    el.addEventListener('change', function() { syncLayerFromInputs(); draw(); });
+  /* Opacity slider */
+  opacitySlider.addEventListener('input', function() {
+    config.opacity = parseInt(opacitySlider.value, 10) / 100;
+    opacityValue.textContent = config.opacity.toFixed(2);
+    draw();
   });
 
-  document.getElementById('downloadBtn').addEventListener('click', function() {
+  /* Angle slider */
+  angleSlider.addEventListener('input', function() {
+    config.angle = parseInt(angleSlider.value, 10);
+    angleValue.textContent = config.angle + '\u00B0';
+    draw();
+  });
+
+  /* Position grid */
+  positionBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      config.tileMode = false;
+      config.position = btn.getAttribute('data-pos');
+      positionBtns.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      tileBtn.classList.remove('active');
+      tileGapGroup.style.display = 'none';
+      draw();
+    });
+  });
+
+  /* Tile button */
+  tileBtn.addEventListener('click', function() {
+    config.tileMode = !config.tileMode;
+    if (config.tileMode) {
+      positionBtns.forEach(function(b) { b.classList.remove('active'); });
+      tileBtn.classList.add('active');
+      tileGapGroup.style.display = '';
+    } else {
+      tileBtn.classList.remove('active');
+      tileGapGroup.style.display = 'none';
+      var centerBtn = document.querySelector('.position-btn[data-pos="center"]');
+      if (centerBtn) centerBtn.classList.add('active');
+      config.position = 'center';
+    }
+    draw();
+  });
+
+  /* Tile gap slider */
+  tileGapSlider.addEventListener('input', function() {
+    config.tileGap = parseInt(tileGapSlider.value, 10);
+    tileGapValue.textContent = config.tileGap;
+    draw();
+  });
+
+  /* Download */
+  downloadBtn.addEventListener('click', function() {
     if (!img) {
       setStatus(t('needImg'));
       return;
     }
-    syncLayerFromInputs();
     draw();
     var a = document.createElement('a');
     a.href = canvas.toDataURL('image/png');
     a.download = 'watermarked.png';
     a.click();
   });
-
-  renderLayerSelect();
-  syncInputsFromLayer();
 
   window._translations = i18n;
 })();

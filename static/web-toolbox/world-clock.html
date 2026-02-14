@@ -413,6 +413,49 @@ h1 {
             animation: pulse 1s ease-in-out infinite;
         }
 
+        /* FAQ */
+        .faq-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .faq-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+        .faq-question {
+            width: 100%;
+            padding: 16px 20px;
+            background: transparent;
+            border: none;
+            color: #e4e4e7;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            transition: background 0.2s ease;
+        }
+        .faq-question:hover { background: rgba(255, 255, 255, 0.05); }
+        .faq-question::after {
+            content: "+";
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: #a1a1aa;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+        .faq-item.active .faq-question::after { transform: rotate(45deg); color: #7c3aed; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 20px; color: #a1a1aa; line-height: 1.7; }
+        .faq-item.active .faq-answer { max-height: 500px; padding-bottom: 16px; }
+
         </style>
     <link rel="stylesheet" href="common/common.css">
 </head>
@@ -436,7 +479,7 @@ h1 {
             <h2 style="font-size: 1.1rem; color: #e4e4e7; margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
                 <span style="color: #7c3aed;">✦</span> <span data-i18n="featuresTitle">Features</span>
             </h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
                 <div style="display: flex; align-items: flex-start; gap: 12px;">
                     <span style="font-size: 1.5rem;">🔒</span>
                     <div>
@@ -485,89 +528,53 @@ h1 {
         <div class="timezone-grid" id="timezoneGrid"></div>
 
         <!-- FAQ 常见问题 -->
-        <section class="faq-section" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
-            <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
-                <span style="color: #7c3aed;">❓</span> <span data-i18n="faqTitle">Frequently Asked Questions</span>
-            </h2>
-            <div style="display: flex; flex-direction: column; gap: 16px;">
-                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq1Q">How many cities does the world clock support?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq1A">
-                        Supports 20+ major cities and time zones worldwide, covering important cities in Asia, Europe, Americas, and Oceania, including Beijing, Tokyo, New York, London, Paris, Sydney, etc.
-                    </div>
-                </details>
-                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq2Q">Is the time accurate?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq2A">
-                        The time is based on your device's system time. Ensure correct time for accurate display. We recommend enabling automatic time sync on your device.
-                    </div>
-                </details>
-                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq3Q">What is UTC time?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq3A">
-                        UTC (Coordinated Universal Time) is the international standard time and basis for global time zone calculations. Beijing time is UTC+8, meaning 8 hours ahead of UTC; New York is UTC-5 (winter) or UTC-4 (summer).
-                    </div>
-                </details>
-                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq4Q">Why does some city time differ from expected?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq4A">
-                        This may be due to daylight saving time. Some countries (like the US and most of Europe) adjust clocks during certain seasons, typically advancing by one hour in spring and reverting in fall.
-                    </div>
-                </details>
-                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq5Q">Can I add custom cities?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq5A">
-                        Custom city addition is not supported yet. Currently displays preset major cities worldwide, covering most commonly used regions. Use the search function to quickly locate cities in nearby timezones.
-                    </div>
-                </details>
-                <details style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden;">
-                    <summary style="padding: 16px 20px; cursor: pointer; color: #e4e4e7; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span data-i18n="faq_free_q">Is this tool really free? Is it safe?</span>
-                        <span style="color: #7c3aed; transition: transform 0.2s;">▼</span>
-                    </summary>
-                    <div style="padding: 0 20px 16px; color: #a1a1aa; line-height: 1.7;" data-i18n="faq_free_a">
-                        Yes, this tool is 100% free with no ads, no signup, no usage limits, and no watermarks. All processing happens in your browser — your data never leaves your device. It's completely safe and private.
-                    </div>
-                </details>
+        <section class="faq-section" style="margin: 40px 0;">
+            <h3 data-i18n="faqTitle">Frequently Asked Questions</h3>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq1Q">How many cities does the world clock support?</div>
+                <div class="faq-answer" data-i18n="faq1A">Supports 20+ major cities and time zones worldwide, covering important cities in Asia, Europe, Americas, and Oceania, including Beijing, Tokyo, New York, London, Paris, Sydney, etc.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq2Q">Is the time accurate?</div>
+                <div class="faq-answer" data-i18n="faq2A">The time is based on your device's system time. Ensure correct time for accurate display. We recommend enabling automatic time sync on your device.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq3Q">What is UTC time?</div>
+                <div class="faq-answer" data-i18n="faq3A">UTC (Coordinated Universal Time) is the international standard time and basis for global time zone calculations. Beijing time is UTC+8, meaning 8 hours ahead of UTC; New York is UTC-5 (winter) or UTC-4 (summer).</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq4Q">Why does some city time differ from expected?</div>
+                <div class="faq-answer" data-i18n="faq4A">This may be due to daylight saving time. Some countries (like the US and most of Europe) adjust clocks during certain seasons, typically advancing by one hour in spring and reverting in fall.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq5Q">Can I add custom cities?</div>
+                <div class="faq-answer" data-i18n="faq5A">Custom city addition is not supported yet. Currently displays preset major cities worldwide, covering most commonly used regions. Use the search function to quickly locate cities in nearby timezones.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq_free_q">Is this tool really free? Is it safe?</div>
+                <div class="faq-answer" data-i18n="faq_free_a">Yes, this tool is 100% free with no ads, no signup, no usage limits, and no watermarks. All processing happens in your browser — your data never leaves your device. It's completely safe and private.</div>
             </div>
         </section>
 
         <!-- 相关工具 -->
-        <section class="related-tools" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
-            <h2 style="color: #e6edf3; font-size: 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
-                <span style="color: #7c3aed;">🔗</span> <span data-i18n="relatedToolsTitle">Related Tools</span>
-            </h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px;">
-                <a href="timestamp-converter.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">🕐</div>
-                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool1">Timestamp Converter</div>
+        <section class="related-tools">
+            <h3 data-i18n="relatedToolsTitle">Related Tools</h3>
+            <div class="related-grid">
+                <a href="timestamp-converter.html" class="related-card">
+                    <div class="related-icon">🕐</div>
+                    <h4 data-i18n="relatedTool1">Timestamp Converter</h4>
                 </a>
-                <a href="unit-converter.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">📏</div>
-                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool2">Unit Converter</div>
+                <a href="unit-converter.html" class="related-card">
+                    <div class="related-icon">📏</div>
+                    <h4 data-i18n="relatedTool2">Unit Converter</h4>
                 </a>
-                <a href="pomodoro.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">🍅</div>
-                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool3">Pomodoro Timer</div>
+                <a href="pomodoro.html" class="related-card">
+                    <div class="related-icon">🍅</div>
+                    <h4 data-i18n="relatedTool3">Pomodoro Timer</h4>
                 </a>
-                <a href="calculator.html" style="display: block; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
-                    <div style="font-size: 24px; margin-bottom: 8px;">🧮</div>
-                    <div style="color: #e4e4e7; font-weight: 500;" data-i18n="relatedTool4">Calculator</div>
+                <a href="calculator.html" class="related-card">
+                    <div class="related-icon">🧮</div>
+                    <h4 data-i18n="relatedTool4">Calculator</h4>
                 </a>
             </div>
         </section>

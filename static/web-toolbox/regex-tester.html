@@ -125,35 +125,23 @@
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             min-height: 100vh;
             color: #fff;
-            padding: 20px;
+            padding: 0;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 40px;
         }
 
-        /* 顶部导航 */
-        .top-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            padding: 15px 25px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-        }
-
-        .nav-brand {
-            font-size: 1.3rem;
+        h1 {
+            font-size: 1.5rem;
             font-weight: 700;
             background: linear-gradient(135deg, #00d4ff, #7b2cbf);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            margin-bottom: 20px;
         }
 /* 主布局 */
         .main-grid {
@@ -668,9 +656,7 @@
 
         /* FAQ 区块 */
         .faq-section {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
+            margin: 40px 0;
         }
 
         .faq-title {
@@ -731,7 +717,7 @@
         }
 
         .faq-item.active .faq-answer {
-            max-height: 200px;
+            max-height: 500px;
         }
 
         .faq-answer p {
@@ -746,11 +732,7 @@
 </head>
 <body>
 <div class="container">
-<!-- 顶部导航 -->
-        <nav class="top-nav">
-            
-            <div class="nav-brand" data-i18n="navBrand">🔍 Regex Tester</div>
-</nav>
+        <h1 data-i18n="navBrand">🔍 Regex Tester</h1>
 
         <div class="trust-bar">
             <span class="trust-item" data-i18n="trust_users">🌍 Used by 50,000+ users</span>
@@ -1079,23 +1061,27 @@
 
         <!-- 相关工具 -->
         <section class="related-tools">
-            <h2 class="section-title" data-i18n="relatedToolsTitle">🔗 Related Tools</h2>
+            <h3 data-i18n="relatedToolsTitle">Related Tools</h3>
             <div class="related-grid">
                 <a href="json-viewer.html" class="related-card">
-                    <div class="related-name" data-i18n="relatedTool1">JSON Viewer</div>
-                    <div class="related-desc" data-i18n="relatedTool1Desc">JSON formatting & visualization</div>
+                    <div class="related-icon">📋</div>
+                    <h4 data-i18n="relatedTool1">JSON Viewer</h4>
+                    <p data-i18n="relatedTool1Desc">JSON formatting & visualization</p>
                 </a>
                 <a href="crypto-tools.html" class="related-card">
-                    <div class="related-name" data-i18n="relatedTool2">Crypto Tools</div>
-                    <div class="related-desc" data-i18n="relatedTool2Desc">Base64/MD5/AES etc.</div>
+                    <div class="related-icon">🔐</div>
+                    <h4 data-i18n="relatedTool2">Crypto Tools</h4>
+                    <p data-i18n="relatedTool2Desc">Base64/MD5/AES etc.</p>
                 </a>
                 <a href="timestamp-converter.html" class="related-card">
-                    <div class="related-name" data-i18n="relatedTool3">Timestamp Converter</div>
-                    <div class="related-desc" data-i18n="relatedTool3Desc">Unix timestamp & date conversion</div>
+                    <div class="related-icon">⏰</div>
+                    <h4 data-i18n="relatedTool3">Timestamp Converter</h4>
+                    <p data-i18n="relatedTool3Desc">Unix timestamp & date conversion</p>
                 </a>
                 <a href="chinese-converter.html" class="related-card">
-                    <div class="related-name" data-i18n="relatedTool4">Chinese Converter</div>
-                    <div class="related-desc" data-i18n="relatedTool4Desc">Simplified & Traditional conversion</div>
+                    <div class="related-icon">🔄</div>
+                    <h4 data-i18n="relatedTool4">Chinese Converter</h4>
+                    <p data-i18n="relatedTool4Desc">Simplified & Traditional conversion</p>
                 </a>
             </div>
         </section>

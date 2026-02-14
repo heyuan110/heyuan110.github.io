@@ -167,7 +167,7 @@
         .star { position: absolute; background: #fff; border-radius: 50%; animation: twinkle var(--dur) ease-in-out infinite alternate; }
         @keyframes twinkle { 0% { opacity: 0.2; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1.2); } }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 40px; position: relative; z-index: 1; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px; position: relative; z-index: 1; }
 
         .fade-in-d1 { animation-delay: 0.2s; }
         .fade-in-d2 { animation-delay: 0.4s; }
@@ -297,10 +297,10 @@
         .calc-step { padding: 3px 0; }
         .step-arrow { color: #7c3aed; }
 
-        /* Trust Bar */
         /* Features */
-        .features-section { max-width: 800px; margin: 40px auto; display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
-        .features-section h2 { grid-column: 1/-1; font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; color: #e4e4e7; }
+        .features-section { margin-top: 30px; }
+        .features-section h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 16px; color: #e4e4e7; }
+        .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
         .feature-card { background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; transition: all 0.3s ease; }
         .feature-card:hover { border-color: rgba(124,58,237,0.3); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(124,58,237,0.15); }
         .feature-icon { font-size: 2rem; margin-bottom: 12px; }
@@ -308,7 +308,7 @@
         .feature-card p { color: #a1a1aa; font-size: 0.9rem; }
 
         /* FAQ */
-        .faq-section { max-width: 800px; margin: 40px auto; }
+        .faq-section { margin-top: 30px; }
         .faq-section h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 24px; color: #e4e4e7; }
         .faq-list { display: flex; flex-direction: column; gap: 12px; }
         .faq-item { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden; }
@@ -321,22 +321,17 @@
         .faq-answer p { padding: 0 24px 20px 24px; color: #a1a1aa; font-size: 0.95rem; line-height: 1.6; }
 
         /* Related Tools */
-        .related-tools-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 16px; }
-        .related-tool-card { display: block; padding: 16px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; text-decoration: none; transition: all 0.3s ease; }
-        .related-tool-card:hover { border-color: rgba(124,58,237,0.3); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(124,58,237,0.1); }
-        .related-tool-card .tool-icon { font-size: 24px; margin-bottom: 8px; }
-        .related-tool-card .tool-name { color: #e4e4e7; font-weight: 500; font-size: 0.95rem; }
-        .related-tool-card .tool-desc { color: #71717a; font-size: 0.8rem; margin-top: 4px; }
+        .related-tools { margin-top: 30px; }
 
-        footer { text-align: center; padding: 40px 20px; color: #71717a; font-size: 0.9rem; }
-        footer a { color: #818cf8; text-decoration: none; }
-        footer a:hover { text-decoration: underline; }
-
-        @media (max-width: 600px) {
+        @media (max-width: 960px) {
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 640px) {
+            .container { padding: 20px; }
             h1 { font-size: 1.6rem; }
             .results-grid { grid-template-columns: 1fr; }
             .num-card.expanded { grid-column: 1; }
-            .features-section { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
             .input-card { padding: 24px 16px; }
             .steps-indicator { gap: 8px; }
             .step-dot { padding: 6px 10px; font-size: 0.8rem; }
@@ -417,25 +412,27 @@
         <!-- Features -->
         <section class="features-section">
             <h2 data-i18n="featTitle">Key Features</h2>
-            <div class="feature-card">
-                <div class="feature-icon">🔐</div>
-                <h3 data-i18n="feat1Title">100% Free & Private</h3>
-                <p data-i18n="feat1Desc">No ads, no signup, no data collection. Your name and birthday never leave your browser. All calculations run 100% locally.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔮</div>
-                <h3 data-i18n="feat2Title">4 Core Numbers</h3>
-                <p data-i18n="feat2Desc">Calculate Life Path, Expression, Soul Urge and Personality numbers in one place — no need to visit multiple sites.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📅</div>
-                <h3 data-i18n="feat3Title">Personal Year Number</h3>
-                <p data-i18n="feat3Desc">Discover your Personal Year Number for the current year to understand the themes and energies influencing your life right now.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📊</div>
-                <h3 data-i18n="feat4Title">Transparent Calculation</h3>
-                <p data-i18n="feat4Desc">See the complete Pythagorean chart and step-by-step calculation process so you can verify every result yourself.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3 data-i18n="feat1Title">100% Free & Private</h3>
+                    <p data-i18n="feat1Desc">No ads, no signup, no data collection. Your name and birthday never leave your browser. All calculations run 100% locally.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔮</div>
+                    <h3 data-i18n="feat2Title">4 Core Numbers</h3>
+                    <p data-i18n="feat2Desc">Calculate Life Path, Expression, Soul Urge and Personality numbers in one place — no need to visit multiple sites.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <h3 data-i18n="feat3Title">Personal Year Number</h3>
+                    <p data-i18n="feat3Desc">Discover your Personal Year Number for the current year to understand the themes and energies influencing your life right now.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 data-i18n="feat4Title">Transparent Calculation</h3>
+                    <p data-i18n="feat4Desc">See the complete Pythagorean chart and step-by-step calculation process so you can verify every result yourself.</p>
+                </div>
             </div>
         </section>
 
@@ -473,28 +470,25 @@
         <!-- Related Tools -->
         <section class="related-tools">
             <h3 data-i18n="relatedTitle">Related Tools</h3>
-            <div class="related-tools-grid">
-                <a href="angel-number.html" class="related-tool-card">
-                    <div class="tool-icon">😇</div>
-                    <div class="tool-name" data-i18n="rel1Name">Angel Number Calculator</div>
-                    <div class="tool-desc" data-i18n="rel1Desc">Discover your angel number and its spiritual meaning</div>
+            <div class="related-grid">
+                <a class="related-card" href="angel-number.html">
+                    <div>😇</div>
+                    <h4 data-i18n="rel1Name">Angel Number Calculator</h4>
+                    <p data-i18n="rel1Desc">Discover your angel number and its spiritual meaning</p>
                 </a>
-                <a href="calculator.html" class="related-tool-card">
-                    <div class="tool-icon">🧮</div>
-                    <div class="tool-name" data-i18n="rel2Name">All-in-One Calculator</div>
-                    <div class="tool-desc" data-i18n="rel2Desc">Scientific calculator with unit conversion</div>
+                <a class="related-card" href="calculator.html">
+                    <div>🧮</div>
+                    <h4 data-i18n="rel2Name">All-in-One Calculator</h4>
+                    <p data-i18n="rel2Desc">Scientific calculator with unit conversion</p>
                 </a>
-                <a href="password-generator.html" class="related-tool-card">
-                    <div class="tool-icon">🔐</div>
-                    <div class="tool-name" data-i18n="rel3Name">Password Generator</div>
-                    <div class="tool-desc" data-i18n="rel3Desc">Generate strong random passwords</div>
+                <a class="related-card" href="password-generator.html">
+                    <div>🔐</div>
+                    <h4 data-i18n="rel3Name">Password Generator</h4>
+                    <p data-i18n="rel3Desc">Generate strong random passwords</p>
                 </a>
             </div>
         </section>
 
-        <footer>
-<p>Made with ❤️ by <a href="https://github.com/heyuan110" target="_blank">@heyuan110</a></p>
-        </footer>
     </div>
 
     <script>
@@ -710,19 +704,7 @@
             }
         };
 
-        function getLang() {
-            var saved = localStorage.getItem('numerology_lang');
-            if (saved && i18n[saved]) return saved;
-            var browserLang = navigator.language || navigator.userLanguage;
-            if (browserLang.startsWith('zh')) return 'zh-CN';
-            if (browserLang.startsWith('fr')) return 'fr';
-            if (browserLang.startsWith('es')) return 'es';
-            return 'en';
-        }
-
-        var currentLang = getLang();
-
-        function t(key) { return (i18n[currentLang] && i18n[currentLang][key]) || i18n['en'][key] || key; }
+        function t(key) { var lang = WebToolbox.getCurrentLang(); return (i18n[lang] && i18n[lang][key]) || i18n['en'][key] || key; }
 
         // 星空背景
         (function() {
@@ -811,6 +793,7 @@
         });
 
         function renderResults(lp, ex, su, pn, py, dateVal, nameVal) {
+            var currentLang = WebToolbox.getCurrentLang();
             var grid = document.getElementById('resultsGrid');
             grid.innerHTML = '';
 
@@ -891,17 +874,6 @@
             resultSection.classList.add('show');
             resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-
-        // FAQ 手风琴
-        var faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(function(item) {
-            var question = item.querySelector('.faq-question');
-            question.addEventListener('click', function() {
-                var wasActive = item.classList.contains('active');
-                faqItems.forEach(function(i) { i.classList.remove('active'); });
-                if (!wasActive) item.classList.add('active');
-            });
-        });
 
         // 导出翻译对象供 common.js 使用
         window._translations = i18n;
