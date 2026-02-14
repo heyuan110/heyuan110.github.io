@@ -1,5 +1,5 @@
 +++
-date = '2026-02-15T12:00:00+08:00'
+date = '2026-02-15T01:00:00+08:00'
 draft = false
 title = 'Draw Things 完全指南：Mac 本地 AI 生图从入门到精通'
 description = 'Draw Things 深度教程：从零开始学会 Mac 本地 AI 生图，涵盖模型选择、提示词技巧、ControlNet、本地 LoRA 训练、脚本自动化到 MCP 集成，小白到高手的完整进阶路线。'

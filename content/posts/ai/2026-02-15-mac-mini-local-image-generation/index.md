@@ -1,5 +1,5 @@
 +++
-date = '2026-02-15T10:00:00+08:00'
+date = '2026-02-15T00:30:00+08:00'
 draft = false
 title = 'Mac Mini 本地 AI 生图选型指南：ComfyUI、DiffusionBee、Draw Things 深度对比'
 description = 'Mac Mini M4 本地运行 AI 图像生成工具的完整选型指南。深度对比 ComfyUI、DiffusionBee、Draw Things 三大工具的性能、易用性和适用场景，帮你找到最适合的本地生图方案。'
