@@ -104,12 +104,12 @@
     // 类目配置
     var CATEGORIES = [
         { key: 'home',      emoji: '🏠', i18nKey: 'nav_home',      href: 'index.html' },
-        { key: 'pdf',       emoji: '📄', i18nKey: 'nav_pdf',       href: 'pdf-tools.html' },
-        { key: 'image',     emoji: '🖼️', i18nKey: 'nav_image',     href: 'image-tools.html' },
-        { key: 'developer', emoji: '💻', i18nKey: 'nav_developer', href: 'developer-tools.html' },
-        { key: 'text',      emoji: '📝', i18nKey: 'nav_text',      href: 'text-tools.html' },
-        { key: 'media',     emoji: '🎬', i18nKey: 'nav_media',     href: 'media-tools.html' },
-        { key: 'utility',   emoji: '⚡', i18nKey: 'nav_utility',   href: 'utility-tools.html' }
+        { key: 'pdf',       emoji: '📄', i18nKey: 'nav_pdf',       href: 'category/pdf-tools.html' },
+        { key: 'image',     emoji: '🖼️', i18nKey: 'nav_image',     href: 'category/image-tools.html' },
+        { key: 'developer', emoji: '💻', i18nKey: 'nav_developer', href: 'category/developer-tools.html' },
+        { key: 'text',      emoji: '📝', i18nKey: 'nav_text',      href: 'category/text-tools.html' },
+        { key: 'media',     emoji: '🎬', i18nKey: 'nav_media',     href: 'category/media-tools.html' },
+        { key: 'utility',   emoji: '⚡', i18nKey: 'nav_utility',   href: 'category/utility-tools.html' }
     ];
 
     // 语言显示名称
@@ -129,7 +129,8 @@
             toolId:   script.getAttribute('data-tool-id')   || '',
             toolName: script.getAttribute('data-tool-name') || '',
             category: script.getAttribute('data-category')  || 'utility',
-            pageType: script.getAttribute('data-page-type') || 'tool'
+            pageType: script.getAttribute('data-page-type') || 'tool',
+            showThemeToggle: script.getAttribute('data-show-theme-toggle') === 'true'
         };
     }
 
@@ -174,12 +175,15 @@
             if (c.key === config.category) catHref = c.href;
         });
 
+        // 分类页在 category/ 子目录，需要 ../index.html
+        var indexHref = config.pageType === 'category' ? '../index.html' : 'index.html';
+
         var breadcrumb;
         if (config.pageType === 'category') {
             // 分类页：3 级面包屑 Home > Web Toolbox > 分类名
             breadcrumb =
                 '<a href="/" data-common-i18n="home">' + ct(lang, 'home') + '</a><span class="bc-sep">›</span>' +
-                '<a href="index.html" data-common-i18n="toolbox">' + ct(lang, 'toolbox') + '</a><span class="bc-sep">›</span>' +
+                '<a href="' + indexHref + '" data-common-i18n="toolbox">' + ct(lang, 'toolbox') + '</a><span class="bc-sep">›</span>' +
                 '<span class="bc-cur" data-common-i18n="' + catKey + '">' + ct(lang, catKey) + '</span>';
         } else {
             // 工具页：4 级面包屑 Home > Web Toolbox > 分类 > 工具名
@@ -193,10 +197,14 @@
                 '<span class="bc-cur" data-i18n="tool_name">' + config.toolName + '</span>';
         }
 
+        var themeBtn = config.showThemeToggle
+            ? '<button class="theme-toggle" id="themeToggle" title="Toggle theme">🌙</button>'
+            : '';
+
         return '<nav class="bc-nav" aria-label="Breadcrumb">' +
             '<div class="bc-left">' + breadcrumb + '</div>' +
             '<div class="bc-right">' +
-                '<button class="theme-toggle" id="themeToggle" title="Toggle theme">🌙</button>' +
+                themeBtn +
                 '<div class="lang-switcher">' +
                     '<div class="lang-dropdown" id="langDropdown">' +
                         '<div class="lang-current" id="langCurrent">🌐 English</div>' +

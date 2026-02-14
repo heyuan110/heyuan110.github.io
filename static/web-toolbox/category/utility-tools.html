@@ -19,16 +19,16 @@
     <meta name="rating" content="general">
     <meta name="distribution" content="global">
     <meta name="language" content="en">
-    <link rel="canonical" href="https://www.heyuan110.com/web-toolbox/utility-tools.html">
-    <link rel="alternate" hreflang="en" href="https://www.heyuan110.com/web-toolbox/utility-tools.html">
-    <link rel="alternate" hreflang="zh-CN" href="https://www.heyuan110.com/web-toolbox/utility-tools.html">
-    <link rel="alternate" hreflang="fr" href="https://www.heyuan110.com/web-toolbox/utility-tools.html">
-    <link rel="alternate" hreflang="es" href="https://www.heyuan110.com/web-toolbox/utility-tools.html">
-    <link rel="alternate" hreflang="x-default" href="https://www.heyuan110.com/web-toolbox/utility-tools.html">
+    <link rel="canonical" href="https://www.heyuan110.com/web-toolbox/category/utility-tools.html">
+    <link rel="alternate" hreflang="en" href="https://www.heyuan110.com/web-toolbox/category/utility-tools.html">
+    <link rel="alternate" hreflang="zh-CN" href="https://www.heyuan110.com/web-toolbox/category/utility-tools.html">
+    <link rel="alternate" hreflang="fr" href="https://www.heyuan110.com/web-toolbox/category/utility-tools.html">
+    <link rel="alternate" hreflang="es" href="https://www.heyuan110.com/web-toolbox/category/utility-tools.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.heyuan110.com/web-toolbox/category/utility-tools.html">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.heyuan110.com/web-toolbox/utility-tools.html">
+    <meta property="og:url" content="https://www.heyuan110.com/web-toolbox/category/utility-tools.html">
     <meta property="og:title" content="Free Online Utility Tools - Calculator, Timer, Generator | No Ads">
     <meta property="og:description" content="14 free browser-based utility tools: calculator, unit converter, password generator, world clock, pomodoro timer, invoice generator and more. No ads, no signup.">
     <meta property="og:image" content="https://www.heyuan110.com/web-toolbox/screenshots/utility-tools.webp">
@@ -52,7 +52,7 @@
         "@type": "WebApplication",
         "name": "Free Online Utility Tools",
         "alternateName": ["Utility Toolbox", "效率工具合集", "Outils utilitaires en ligne", "Herramientas de utilidad en línea"],
-        "url": "https://www.heyuan110.com/web-toolbox/utility-tools.html",
+        "url": "https://www.heyuan110.com/web-toolbox/category/utility-tools.html",
         "description": "14 free online utility tools including calculator, unit converter, password generator, world clock, pomodoro timer, invoice generator and more. All browser-based, no ads, no signup.",
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "Web Browser",
@@ -108,7 +108,7 @@
         "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.heyuan110.com/"},
             {"@type": "ListItem", "position": 2, "name": "Magic ToolBox", "item": "https://www.heyuan110.com/web-toolbox/"},
-            {"@type": "ListItem", "position": 3, "name": "Utility Tools", "item": "https://www.heyuan110.com/web-toolbox/utility-tools.html"}
+            {"@type": "ListItem", "position": 3, "name": "Utility Tools", "item": "https://www.heyuan110.com/web-toolbox/category/utility-tools.html"}
         ]
     }
     </script>
@@ -186,77 +186,10 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 40px;
         }
 
         a { color: inherit; text-decoration: none; }
-
-        /* === 语言切换器 === */
-        .lang-switcher {
-            position: fixed;
-            top: 20px;
-            right: 24px;
-            z-index: 1000;
-        }
-        .lang-dropdown { position: relative; display: inline-block; }
-        .lang-current {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 8px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            color: #e0e0e0;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-        .lang-current:hover { background: rgba(255,255,255,0.15); }
-        .lang-menu {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            margin-top: 4px;
-            background: #1e1e2e;
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 8px;
-            padding: 4px;
-            min-width: 140px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            z-index: 1001;
-        }
-        .lang-dropdown.active .lang-menu { opacity: 1; visibility: visible; transform: translateY(0); }
-        .lang-btn {
-            display: block;
-            width: 100%;
-            padding: 10px 16px;
-            background: none;
-            border: none;
-            color: #e0e0e0;
-            font-size: 14px;
-            text-align: left;
-            cursor: pointer;
-            border-radius: 6px;
-            transition: background 0.2s ease;
-        }
-        .lang-btn:hover { background: rgba(255,255,255,0.1); }
-        .lang-btn.active { background: rgba(124,58,237,0.3); color: #a78bfa; }
-
-        /* === 返回链接 === */
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: #a1a1aa;
-            font-size: 0.9rem;
-            padding: 12px 0;
-            transition: color 0.2s ease;
-            margin-top: 20px;
-        }
-        .back-link:hover { color: #e4e4e7; }
-        .back-link svg { width: 16px; height: 16px; }
 
         /* === Hero === */
         .hero {
@@ -540,15 +473,6 @@
         .related-card-icon { font-size: 1.8rem; margin-bottom: 10px; }
         .related-card-name { font-size: 0.9rem; font-weight: 600; color: #e4e4e7; }
 
-        /* === Footer === */
-        .page-footer {
-            text-align: center;
-            padding: 30px 0;
-            border-top: 1px solid rgba(255,255,255,0.06);
-            color: #71717a;
-            font-size: 0.8rem;
-        }
-
         /* === 入场动画 === */
         .fade-in {
             opacity: 0;
@@ -568,7 +492,6 @@
             .trust-bar { grid-template-columns: repeat(2, 1fr); gap: 12px; }
             .features-grid { grid-template-columns: 1fr; }
             .related-grid { grid-template-columns: repeat(2, 1fr); }
-            .lang-switcher { top: 12px; right: 12px; }
         }
         @media (max-width: 480px) {
             .hero { padding: 40px 0 24px; }
@@ -578,41 +501,12 @@
             .tool-card { padding: 20px 18px; }
         }
 
-        /* === 主题切换按钮 === */
-        .theme-toggle {
-            position: fixed;
-            top: 16px;
-            right: 120px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #a1a1aa;
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            transition: all 0.2s ease;
-            z-index: 1000;
-        }
-        .theme-toggle:hover {
-            background: rgba(124, 58, 237, 0.2);
-            border-color: rgba(124, 58, 237, 0.4);
-            color: #e4e4e7;
-        }
-
         /* ========== 浅色主题 ========== */
         [data-theme="light"] {
             background: #fafafa !important;
             color: #09090b;
         }
         [data-theme="light"] .container { color: #09090b; }
-        [data-theme="light"] .back-link { color: #71717a; }
-        [data-theme="light"] .back-link:hover { color: #7c3aed; }
         [data-theme="light"] .hero h1 {
             background: linear-gradient(120deg, #7c3aed, #6366f1, #ec4899);
             -webkit-background-clip: text;
@@ -632,8 +526,12 @@
             border-color: #d4d4d8;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
-        [data-theme="light"] .tool-card h3 { color: #09090b; }
-        [data-theme="light"] .tool-card p { color: #71717a; }
+        [data-theme="light"] .tool-card h3, [data-theme="light"] .tool-card-title { color: #09090b; }
+        [data-theme="light"] .tool-card p, [data-theme="light"] .tool-card-desc { color: #71717a; }
+        [data-theme="light"] .tool-card-arrow { color: #6d28d9; }
+        [data-theme="light"] .related-card { background: #ffffff; border-color: #e4e4e7; }
+        [data-theme="light"] .related-card:hover { background: #f3f0ff; border-color: rgba(124,58,237,0.4); }
+        [data-theme="light"] .related-card-name { color: #09090b; }
         [data-theme="light"] .trust-bar {
             background: #ffffff;
             border-color: #e4e4e7;
@@ -659,86 +557,12 @@
         [data-theme="light"] .faq-question { color: #09090b; }
         [data-theme="light"] .faq-question:hover { color: #7c3aed; }
         [data-theme="light"] .faq-answer-inner { color: #71717a; }
-        [data-theme="light"] .related-link {
-            background: #ffffff;
-            border-color: #e4e4e7;
-            color: #3f3f46;
-        }
-        [data-theme="light"] .related-link:hover {
-            background: #f3f0ff;
-            border-color: rgba(124, 58, 237, 0.4);
-            color: #7c3aed;
-        }
-        [data-theme="light"] .page-footer {
-            border-top-color: #e4e4e7;
-            color: #a1a1aa;
-        }
-        [data-theme="light"] .page-footer a { color: #71717a; }
-        [data-theme="light"] .page-footer a:hover { color: #7c3aed; }
-        [data-theme="light"] .theme-toggle {
-            background: #ffffff;
-            border-color: #e4e4e7;
-            color: #3f3f46;
-        }
-        [data-theme="light"] .theme-toggle:hover {
-            background: #f4f4f5;
-            border-color: #7c3aed;
-            color: #7c3aed;
-        }
-        [data-theme="light"] .lang-current {
-            background: #ffffff;
-            border-color: #e4e4e7;
-            color: #3f3f46;
-        }
-        [data-theme="light"] .lang-current:hover {
-            background: #f4f4f5;
-            border-color: #7c3aed;
-        }
-        [data-theme="light"] .lang-menu {
-            background: #ffffff;
-            border-color: #e4e4e7;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-        [data-theme="light"] .lang-btn { color: #3f3f46; }
-        [data-theme="light"] .lang-btn:hover { background: #f4f4f5; color: #09090b; }
-        [data-theme="light"] .lang-btn.active { background: #f3f0ff; color: #7c3aed; }
-        [data-theme="light"] .breadcrumb a { color: #71717a; }
-        [data-theme="light"] .breadcrumb a:hover { color: #7c3aed; }
-        [data-theme="light"] .breadcrumb-current { color: #09090b; }
-
-        @media (max-width: 768px) {
-            .theme-toggle {
-                right: 70px;
-                top: 12px;
-            }
-        }
     </style>
+    <link rel="stylesheet" href="../common/common.css">
 </head>
 <body>
 
-<!-- 主题切换 -->
-<button class="theme-toggle" id="themeToggle" title="Toggle theme">🌙</button>
-
-<!-- 语言切换器 -->
-<div class="lang-switcher">
-    <div class="lang-dropdown" id="langDropdown">
-        <button class="lang-current" id="langCurrent">English</button>
-        <div class="lang-menu">
-            <button class="lang-btn active" data-lang="en">English</button>
-            <button class="lang-btn" data-lang="zh-CN">中文</button>
-            <button class="lang-btn" data-lang="fr">Fran&ccedil;ais</button>
-            <button class="lang-btn" data-lang="es">Espa&ntilde;ol</button>
-        </div>
-    </div>
-</div>
-
 <div class="container">
-
-    <!-- 返回链接 -->
-    <a href="index.html" class="back-link">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-        <span data-i18n="back">Back to Magic ToolBox</span>
-    </a>
 
     <!-- Hero -->
     <section class="hero fade-in">
@@ -754,98 +578,98 @@
     <!-- 工具卡片网格 -->
     <section class="tools-grid">
 
-        <a href="calculator.html" class="tool-card fade-in">
+        <a href="../calculator.html" class="tool-card fade-in">
             <div class="tool-card-icon">&#129518;</div>
             <div class="tool-card-arrow">&rarr;</div>
             <div class="tool-card-title" data-i18n="tool_calculator_title">All-in-One Calculator</div>
             <div class="tool-card-desc" data-i18n="tool_calculator_desc">Scientific, financial & subnet calculator with 16 unit converters</div>
         </a>
 
-        <a href="unit-converter.html" class="tool-card fade-in">
+        <a href="../unit-converter.html" class="tool-card fade-in">
             <div class="tool-card-icon">&#128207;</div>
             <div class="tool-card-arrow">&rarr;</div>
             <div class="tool-card-title" data-i18n="tool_unit_title">Unit Converter</div>
             <div class="tool-card-desc" data-i18n="tool_unit_desc">Convert length, weight, temperature, speed, data size and more</div>
         </a>
 
-        <a href="password-generator.html" class="tool-card fade-in">
+        <a href="../password-generator.html" class="tool-card fade-in">
             <div class="tool-card-icon">&#128272;</div>
             <div class="tool-card-arrow">&rarr;</div>
             <div class="tool-card-title" data-i18n="tool_password_title">Password Generator</div>
             <div class="tool-card-desc" data-i18n="tool_password_desc">Generate strong, secure passwords with customizable rules</div>
         </a>
 
-        <a href="world-clock.html" class="tool-card fade-in">
+        <a href="../world-clock.html" class="tool-card fade-in">
             <div class="tool-card-icon">&#127758;</div>
             <div class="tool-card-arrow">&rarr;</div>
             <div class="tool-card-title" data-i18n="tool_clock_title">World Clock</div>
             <div class="tool-card-desc" data-i18n="tool_clock_desc">View time across timezones with city search and comparison</div>
         </a>
 
-        <a href="pomodoro.html" class="tool-card fade-in">
+        <a href="../pomodoro.html" class="tool-card fade-in">
             <div class="tool-card-icon">&#127813;</div>
             <div class="tool-card-arrow">&rarr;</div>
             <div class="tool-card-title" data-i18n="tool_pomodoro_title">Pomodoro Timer</div>
             <div class="tool-card-desc" data-i18n="tool_pomodoro_desc">Focus timer with work/break cycles and desktop notifications</div>
         </a>
 
-        <a href="page-refresher.html" class="tool-card fade-in">
+        <a href="../page-refresher.html" class="tool-card fade-in">
             <div class="tool-card-icon">&#128260;</div>
             <div class="tool-card-arrow">&rarr;</div>
             <div class="tool-card-title" data-i18n="tool_refresher_title">Page Auto Refresher</div>
             <div class="tool-card-desc" data-i18n="tool_refresher_desc">Auto-refresh any webpage at custom intervals with embedded preview</div>
         </a>
 
-        <a href="file-renamer.html" class="tool-card fade-in">
+        <a href="../file-renamer.html" class="tool-card fade-in">
             <div class="tool-card-icon">&#128221;</div>
             <div class="tool-card-arrow">&rarr;</div>
             <div class="tool-card-title" data-i18n="tool_renamer_title">Batch File Renamer</div>
             <div class="tool-card-desc" data-i18n="tool_renamer_desc">Rename multiple files at once with patterns, regex and preview</div>
         </a>
 
-        <a href="relative-calculator.html" class="tool-card fade-in">
+        <a href="../relative-calculator.html" class="tool-card fade-in">
             <div class="tool-card-icon">&#128106;</div>
             <div class="tool-card-arrow">&rarr;</div>
             <div class="tool-card-title" data-i18n="tool_relative_title">Family Relationship Calculator</div>
             <div class="tool-card-desc" data-i18n="tool_relative_desc">Calculate Chinese family relationship titles step by step</div>
         </a>
 
-        <a href="handheld-danmaku.html" class="tool-card fade-in">
+        <a href="../handheld-danmaku.html" class="tool-card fade-in">
             <div class="tool-card-icon">&#128244;</div>
             <div class="tool-card-arrow">&rarr;</div>
             <div class="tool-card-title" data-i18n="tool_led_title">LED Scrolling Banner</div>
             <div class="tool-card-desc" data-i18n="tool_led_desc">Turn your phone into a scrolling LED sign with custom colors</div>
         </a>
 
-        <a href="metronome.html" class="tool-card fade-in">
+        <a href="../metronome.html" class="tool-card fade-in">
             <div class="tool-card-icon">&#127926;</div>
             <div class="tool-card-arrow">&rarr;</div>
             <div class="tool-card-title" data-i18n="tool_metronome_title">Metronome</div>
             <div class="tool-card-desc" data-i18n="tool_metronome_desc">Precise BPM metronome with adjustable tempo and time signatures</div>
         </a>
 
-        <a href="invoice-generator.html" class="tool-card fade-in">
+        <a href="../invoice-generator.html" class="tool-card fade-in">
             <div class="tool-card-icon">&#128196;</div>
             <div class="tool-card-arrow">&rarr;</div>
             <div class="tool-card-title" data-i18n="tool_invoice_title">Invoice Generator</div>
             <div class="tool-card-desc" data-i18n="tool_invoice_desc">Create professional invoices and export as PDF instantly</div>
         </a>
 
-        <a href="claude-history-viewer.html" class="tool-card fade-in">
+        <a href="../claude-history-viewer.html" class="tool-card fade-in">
             <div class="tool-card-icon">&#129302;</div>
             <div class="tool-card-arrow">&rarr;</div>
             <div class="tool-card-title" data-i18n="tool_claude_title">Claude History Viewer</div>
             <div class="tool-card-desc" data-i18n="tool_claude_desc">Browse and search your Claude Code conversation history locally</div>
         </a>
 
-        <a href="angel-number.html" class="tool-card fade-in">
+        <a href="../angel-number.html" class="tool-card fade-in">
             <div class="tool-card-icon">&#128300;</div>
             <div class="tool-card-arrow">&rarr;</div>
             <div class="tool-card-title" data-i18n="tool_angel_title">Angel Number Calculator</div>
             <div class="tool-card-desc" data-i18n="tool_angel_desc">Discover the spiritual meaning behind repeating number patterns</div>
         </a>
 
-        <a href="numerology.html" class="tool-card fade-in">
+        <a href="../numerology.html" class="tool-card fade-in">
             <div class="tool-card-icon">&#128302;</div>
             <div class="tool-card-arrow">&rarr;</div>
             <div class="tool-card-title" data-i18n="tool_numerology_title">Numerology Calculator</div>
@@ -999,37 +823,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="page-footer">
-        <p data-i18n="footerCopyright">&copy; 2025 <a href="https://www.heyuan110.com" target="_blank">heyuan110.com</a> All rights reserved.</p>
-        <p style="margin-top: 8px;"><a href="https://www.heyuan110.com/" data-i18n="footerBlog">Blog</a> &middot; <a href="index.html" data-i18n="footerHome">Magic ToolBox</a></p>
-    </footer>
-
 </div>
-
-<script>
-// 主题切换
-(function() {
-    var toggle = document.getElementById('themeToggle');
-    var saved = localStorage.getItem('magic_toolbox_theme');
-    if (saved === 'light') {
-        document.body.setAttribute('data-theme', 'light');
-        toggle.textContent = '☀️';
-    }
-    toggle.addEventListener('click', function() {
-        var isLight = document.body.getAttribute('data-theme') === 'light';
-        if (isLight) {
-            document.body.removeAttribute('data-theme');
-            toggle.textContent = '🌙';
-            localStorage.setItem('magic_toolbox_theme', 'dark');
-        } else {
-            document.body.setAttribute('data-theme', 'light');
-            toggle.textContent = '☀️';
-            localStorage.setItem('magic_toolbox_theme', 'light');
-        }
-    });
-})();
-</script>
 
 <script>
 (function() {
@@ -1038,7 +832,7 @@
     /* ===== 多语言翻译 ===== */
     var translations = {
         en: {
-            back: 'Back to Magic ToolBox',
+            tool_name: 'Utility Tools',
             hero_title: 'Free Online Utility Tools',
             hero_subtitle: 'All-in-one collection of 14 free browser-based utility tools. No ads, no signup, no installation. Calculate, convert, generate, and boost productivity right from your browser.',
             hero_badge: '14 Free Tools',
@@ -1104,13 +898,10 @@
             related_image: 'Image Tools',
             related_dev: 'Developer Tools',
             related_text: 'Text Tools',
-            related_media: 'Media Tools',
-            footerCopyright: '© 2025 <a href="https://www.heyuan110.com" target="_blank">heyuan110.com</a> All rights reserved.',
-            footerBlog: 'Blog',
-            footerHome: 'Magic ToolBox'
+            related_media: 'Media Tools'
         },
         'zh-CN': {
-            back: '\u8fd4\u56de Magic ToolBox',
+            tool_name: '\u5b9e\u7528\u5de5\u5177',
             hero_title: '\u514d\u8d39\u5728\u7ebf\u6548\u7387\u5de5\u5177',
             hero_subtitle: '14 \u6b3e\u514d\u8d39\u7684\u6d4f\u89c8\u5668\u7aef\u6548\u7387\u5de5\u5177\u5408\u96c6\u3002\u65e0\u5e7f\u544a\u3001\u65e0\u6ce8\u518c\u3001\u65e0\u5b89\u88c5\u3002\u8ba1\u7b97\u3001\u8f6c\u6362\u3001\u751f\u6210\uff0c\u4e00\u7ad9\u5f0f\u63d0\u5347\u5de5\u4f5c\u6548\u7387\u3002',
             hero_badge: '14 \u6b3e\u514d\u8d39\u5de5\u5177',
@@ -1176,13 +967,10 @@
             related_image: '\u56fe\u7247\u5de5\u5177',
             related_dev: '\u5f00\u53d1\u8005\u5de5\u5177',
             related_text: '\u6587\u672c\u5de5\u5177',
-            related_media: '\u5a92\u4f53\u5de5\u5177',
-            footerCopyright: '© 2025 <a href="https://www.heyuan110.com" target="_blank">heyuan110.com</a> All rights reserved.',
-            footerBlog: '\u535a\u5ba2',
-            footerHome: 'Magic ToolBox'
+            related_media: '\u5a92\u4f53\u5de5\u5177'
         },
         fr: {
-            back: 'Retour au Magic ToolBox',
+            tool_name: 'Outils Utilitaires',
             hero_title: 'Outils Utilitaires Gratuits en Ligne',
             hero_subtitle: 'Collection de 14 outils utilitaires gratuits dans le navigateur. Sans publicit\u00e9, sans inscription, sans installation. Calculez, convertissez, g\u00e9n\u00e9rez et boostez votre productivit\u00e9.',
             hero_badge: '14 Outils Gratuits',
@@ -1248,13 +1036,10 @@
             related_image: 'Outils Image',
             related_dev: 'Outils D\u00e9veloppeur',
             related_text: 'Outils Texte',
-            related_media: 'Outils M\u00e9dia',
-            footerCopyright: '© 2025 <a href="https://www.heyuan110.com" target="_blank">heyuan110.com</a> Tous droits r\u00e9serv\u00e9s.',
-            footerBlog: 'Blog',
-            footerHome: 'Magic ToolBox'
+            related_media: 'Outils M\u00e9dia'
         },
         es: {
-            back: 'Volver a Magic ToolBox',
+            tool_name: 'Herramientas de Utilidad',
             hero_title: 'Herramientas de Utilidad Gratuitas en L\u00ednea',
             hero_subtitle: 'Colecci\u00f3n de 14 herramientas de utilidad gratuitas basadas en navegador. Sin anuncios, sin registro, sin instalaci\u00f3n. Calcula, convierte, genera y mejora tu productividad.',
             hero_badge: '14 Herramientas Gratis',
@@ -1320,97 +1105,12 @@
             related_image: 'Herramientas de Imagen',
             related_dev: 'Herramientas de Desarrollo',
             related_text: 'Herramientas de Texto',
-            related_media: 'Herramientas de Medios',
-            footerCopyright: '© 2025 <a href="https://www.heyuan110.com" target="_blank">heyuan110.com</a> Todos los derechos reservados.',
-            footerBlog: 'Blog',
-            footerHome: 'Magic ToolBox'
+            related_media: 'Herramientas de Medios'
         }
     };
 
-    var currentLang = localStorage.getItem('utility-tools_lang') || 'en';
-
-    /* 应用语言 */
-    function applyLang(lang) {
-        currentLang = lang;
-        localStorage.setItem('utility-tools_lang', lang);
-        var t = translations[lang] || translations['en'];
-
-        /* data-i18n 文本 */
-        document.querySelectorAll('[data-i18n]').forEach(function(el) {
-            var key = el.getAttribute('data-i18n');
-            if (t[key]) {
-                if (key === 'footerCopyright') {
-                    el.innerHTML = t[key];
-                } else {
-                    el.textContent = t[key];
-                }
-            }
-        });
-
-        /* data-i18n-placeholder */
-        document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
-            var key = el.getAttribute('data-i18n-placeholder');
-            if (t[key]) el.placeholder = t[key];
-        });
-
-        /* 更新语言按钮高亮 */
-        document.querySelectorAll('.lang-btn').forEach(function(btn) {
-            btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-        });
-
-        /* 更新当前语言显示 */
-        var langNames = { en: 'English', 'zh-CN': '\u4e2d\u6587', fr: 'Fran\u00e7ais', es: 'Espa\u00f1ol' };
-        var langCurrent = document.getElementById('langCurrent');
-        if (langCurrent) langCurrent.textContent = langNames[lang] || 'English';
-
-        /* 更新 html lang 属性 */
-        document.documentElement.lang = lang === 'zh-CN' ? 'zh-CN' : lang;
-    }
-
-    /* 语言下拉菜单 */
-    var dropdown = document.getElementById('langDropdown');
-    var langCurrent = document.getElementById('langCurrent');
-
-    if (langCurrent) {
-        langCurrent.addEventListener('click', function(e) {
-            e.stopPropagation();
-            dropdown.classList.toggle('active');
-        });
-    }
-
-    document.querySelectorAll('.lang-btn').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            var lang = this.getAttribute('data-lang');
-            applyLang(lang);
-            dropdown.classList.remove('active');
-        });
-    });
-
-    document.addEventListener('click', function() {
-        dropdown.classList.remove('active');
-    });
-
-    /* 初始化语言 */
-    applyLang(currentLang);
-
-    /* ===== FAQ 手风琴 ===== */
-    document.querySelectorAll('.faq-question').forEach(function(question) {
-        question.addEventListener('click', function() {
-            var item = this.parentElement;
-            var isActive = item.classList.contains('active');
-
-            /* 关闭所有其他 */
-            document.querySelectorAll('.faq-item.active').forEach(function(activeItem) {
-                activeItem.classList.remove('active');
-            });
-
-            /* 切换当前 */
-            if (!isActive) {
-                item.classList.add('active');
-            }
-        });
-    });
+    /* 暴露翻译对象供 common.js 使用 */
+    window._translations = translations;
 
     /* ===== 入场动画（Intersection Observer） ===== */
     var observerOptions = { threshold: 0.1, rootMargin: '0px 0px -40px 0px' };
@@ -1430,6 +1130,12 @@
 
 })();
 </script>
+<script src="../common/common.js"
+    data-page-type="category"
+    data-show-theme-toggle="true"
+    data-category="utility"
+    data-tool-name="Utility Tools"></script>
+<script>WebToolbox.init(window._translations);</script>
 
 </body>
 </html>

@@ -30,17 +30,20 @@ pdf-merge/
 
 ### 基础功能
 - [ ] 1. 创建工具文件（单文件 `xxx.html` 或多文件 `xxx/index.html`）
-- [ ] 2. 深色主题，配色遵循设计规范
+- [ ] 2. 默认深色主题，配色遵循设计规范
 - [ ] 3. 响应式布局（PC + 平板 + 手机适配）
 - [ ] 4. JavaScript 使用 IIFE 模式避免全局污染
+- [ ] 5. 引入 `common/common.css` 和 `common/common.js`（由 common.js 注入 header/footer）
 
-### 多语言（强制）
-- [ ] 5. 支持 4 种语言：English (en)、中文 (zh-CN)、Français (fr)、Español (es)
-- [ ] 6. HTML 元素使用 `data-i18n="key"` 属性标记
-- [ ] 7. 输入框 placeholder 使用 `data-i18n-placeholder="key"` 属性
-- [ ] 8. 页面右上角放置语言切换器（下拉菜单）
-- [ ] 9. 语言偏好存入 `localStorage`，key 格式为 `{tool}_lang`
-- [ ] 10. 默认语言为 English
+### 多语言（强制，common.js 统管）
+- [ ] 6. 支持 4 种语言：English (en)、中文 (zh-CN)、Français (fr)、Español (es)
+- [ ] 7. HTML 元素使用 `data-i18n="key"` 属性标记
+- [ ] 8. 输入框 placeholder 使用 `data-i18n-placeholder="key"` 属性
+- [ ] 9. 翻译对象必须包含 `tool_name` 键（面包屑工具名多语言）
+- [ ] 10. 翻译对象通过 `window._translations = translations;` 暴露
+- [ ] 11. 工具内部 `t()` 函数使用 `WebToolbox.getCurrentLang()` 获取当前语言
+- [ ] 12. 禁止手写语言切换器 HTML/JS，由 common.js 自动注入
+- [ ] 13. 默认语言为 English
 
 ### SEO — Head Meta（强制）
 - [ ] 11. `<title>` 必须包含 `No Ads` + 核心卖点（`No Signup`/`No Upload`/`No Watermark`）+ 中文名 + "Web Toolbox"
@@ -122,12 +125,16 @@ pdf-merge/
 
 ```html
 <div class="faq-item">
-  <button class="faq-q" data-i18n="faq_free_q">Is this tool really free with no ads?</button>
-  <div class="faq-a" data-i18n="faq_free_a">
+  <button class="faq-question">
+    <span data-i18n="faq_free_q">Is this tool really free with no ads?</span>
+    <span class="arrow">▼</span>
+  </button>
+  <div class="faq-answer"><p data-i18n="faq_free_a">
     Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.
-  </div>
+  </p></div>
 </div>
 ```
+> FAQ 交互由 common.js `bindFaqAccordion()` 自动绑定，禁止手写 `onclick` 或 `toggleFaq`。
 
 ### 5) FAQ 深度示例（科普 + 热词）
 
@@ -145,6 +152,9 @@ A: JSON (JavaScript Object Notation) is a lightweight data format used by modern
 
 ## HTML 文件完整模板
 
+> 注意：语言切换器、FAQ 手风琴交互、header/footer 均由 common.js 自动注入，**禁止手写**。
+> 所有可见内容（trust-bar、features、faq、related-tools）必须在 `.container` 内部。
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -157,7 +167,6 @@ A: JSON (JavaScript Object Notation) is a lightweight data format used by modern
     <title>{工具英文名} - Free Online {类型} | No Ads, No Signup | {中文名} | Web Toolbox</title>
 
     <!-- ========== A. Head Meta 标签 ========== -->
-    <!-- 基础 SEO -->
     <meta name="description" content="{英文描述 150-160字符}. ✅ No ads ✅ No signup ✅ No limits. Runs entirely in your browser.">
     <meta name="keywords" content="{英文关键词},{中文关键词},{长尾词},no ads,no signup,no login,no watermark,free unlimited,browser-based,no installation,local processing">
     <meta name="author" content="heyuan110">
@@ -197,7 +206,7 @@ A: JSON (JavaScript Object Notation) is a lightweight data format used by modern
 
     <!-- ========== B. JSON-LD 结构化数据（4 种全部包含） ========== -->
 
-    <!-- B1. WebApplication（增强版） -->
+    <!-- B1. WebApplication -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -217,7 +226,7 @@ A: JSON (JavaScript Object Notation) is a lightweight data format used by modern
     }
     </script>
 
-    <!-- B2. BreadcrumbList（3 级面包屑） -->
+    <!-- B2. BreadcrumbList -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -230,7 +239,7 @@ A: JSON (JavaScript Object Notation) is a lightweight data format used by modern
     }
     </script>
 
-    <!-- B3. HowTo（使用步骤） -->
+    <!-- B3. HowTo -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -245,7 +254,7 @@ A: JSON (JavaScript Object Notation) is a lightweight data format used by modern
     }
     </script>
 
-    <!-- B4. FAQPage（至少 5 个问题） -->
+    <!-- B4. FAQPage -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -260,6 +269,9 @@ A: JSON (JavaScript Object Notation) is a lightweight data format used by modern
     }
     </script>
 
+    <!-- 公共样式（必须引入） -->
+    <link rel="stylesheet" href="common/common.css">
+
     <style>
         /* ========== 基础样式 ========== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -269,214 +281,66 @@ A: JSON (JavaScript Object Notation) is a lightweight data format used by modern
             color: #e0e0e0;
             min-height: 100vh;
         }
-
-        /* ========== 语言切换器 ========== */
-        .lang-switcher {
-            position: fixed;
-            top: 16px;
-            right: 16px;
-            z-index: 1000;
-        }
-        .lang-switcher .lang-current {
-            background: rgba(124, 58, 237, 0.3);
-            border: 1px solid rgba(124, 58, 237, 0.5);
-            color: #e0e0e0;
-            padding: 8px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        .lang-switcher .lang-dropdown {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: #1a1a2e;
-            border: 1px solid rgba(124, 58, 237, 0.3);
-            border-radius: 8px;
-            margin-top: 4px;
-            overflow: hidden;
-        }
-        .lang-switcher:hover .lang-dropdown,
-        .lang-switcher .lang-dropdown.active { display: block; }
-        .lang-dropdown button {
-            display: block;
-            width: 100%;
-            padding: 8px 16px;
-            background: none;
-            border: none;
-            color: #e0e0e0;
-            cursor: pointer;
-            text-align: left;
-            white-space: nowrap;
-            font-size: 14px;
-        }
-        .lang-dropdown button:hover { background: rgba(124, 58, 237, 0.2); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px; }
 
         /* ========== 工具主体区域样式 ========== */
         /* ... 根据工具需要自定义 ... */
 
-        /* ========== Trust Bar（强制） ========== */
-        .trust-bar {
-            max-width: 1000px;
-            margin: 16px auto 24px;
-            padding: 12px 20px;
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
-            background: rgba(124, 58, 237, 0.1);
-            border: 1px solid rgba(124, 58, 237, 0.2);
-            border-radius: 12px;
-        }
-        .trust-item {
-            font-size: 13px;
-            color: #a78bfa;
-            white-space: nowrap;
-        }
+        /* ========== Trust Bar ========== */
+        /* 使用 common.css 的 .trust-bar / .trust-item 类名即可 */
 
-        /* ========== C. 功能特点区域 ========== */
-        .features-section {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-        .features-section h2 {
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 24px;
-            color: #fff;
-        }
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
+        /* ========== 功能特点区域 ========== */
+        .features-section { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+        .features-section h2 { text-align: center; font-size: 24px; margin-bottom: 24px; color: #fff; }
+        .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
         .feature-card {
             background: rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 24px;
+            border-radius: 16px; padding: 24px;
             transition: transform 0.3s, box-shadow 0.3s;
         }
-        .feature-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.3);
-        }
+        .feature-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(124, 58, 237, 0.3); }
         .feature-card .icon { font-size: 32px; margin-bottom: 12px; }
         .feature-card h3 { color: #a78bfa; margin-bottom: 8px; font-size: 16px; }
         .feature-card p { color: #9ca3af; font-size: 14px; line-height: 1.5; }
 
         /* ========== FAQ 手风琴 ========== */
-        .faq-section {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-        .faq-section h2 {
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 24px;
-            color: #fff;
-        }
+        .faq-section { max-width: 800px; margin: 40px auto; padding: 0 20px; }
+        .faq-section h2 { text-align: center; font-size: 24px; margin-bottom: 24px; color: #fff; }
         .faq-item {
             background: rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            margin-bottom: 12px;
-            overflow: hidden;
+            border-radius: 12px; margin-bottom: 12px; overflow: hidden;
         }
         .faq-question {
-            padding: 16px 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 500;
-            color: #e0e0e0;
+            width: 100%; background: none; border: none;
+            padding: 16px 20px; cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+            font-weight: 500; color: #e0e0e0; font-size: inherit;
         }
         .faq-question:hover { background: rgba(124, 58, 237, 0.1); }
-        .faq-question .arrow {
-            transition: transform 0.3s;
-            font-size: 14px;
-            color: #7c3aed;
-        }
+        .faq-question .arrow { transition: transform 0.3s; font-size: 14px; color: #7c3aed; }
         .faq-item.active .faq-question .arrow { transform: rotate(180deg); }
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
         .faq-item.active .faq-answer { max-height: 200px; }
-        .faq-answer p {
-            padding: 0 20px 16px;
-            color: #9ca3af;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        /* ========== 相关工具推荐 ========== */
-        .related-tools {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px 60px;
-        }
-        .related-tools h2 {
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 24px;
-            color: #fff;
-        }
-        .related-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-        }
-        .related-card {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            text-decoration: none;
-            color: #e0e0e0;
-            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-        }
-        .related-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.3);
-            border-color: rgba(124, 58, 237, 0.5);
-        }
-        .related-card .icon { font-size: 28px; margin-bottom: 8px; }
-        .related-card h3 { font-size: 14px; color: #a78bfa; margin-bottom: 6px; }
-        .related-card p { font-size: 12px; color: #9ca3af; }
+        .faq-answer p { padding: 0 20px 16px; color: #9ca3af; font-size: 14px; line-height: 1.6; }
 
         /* ========== 响应式 ========== */
         @media (max-width: 768px) {
+            .container { padding: 20px; }
             .features-grid { grid-template-columns: 1fr; }
-            .related-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
-    <!-- 语言切换器 -->
-    <div class="lang-switcher">
-        <button class="lang-current" id="langCurrent">🇺🇸 English</button>
-        <div class="lang-dropdown" id="langDropdown">
-            <button onclick="applyLanguage('en')">🇺🇸 English</button>
-            <button onclick="applyLanguage('zh-CN')">🇨🇳 中文</button>
-            <button onclick="applyLanguage('fr')">🇫🇷 Français</button>
-            <button onclick="applyLanguage('es')">🇪🇸 Español</button>
-        </div>
-    </div>
+<!-- ===== 所有可见内容在 .container 内 ===== -->
+<div class="container">
 
     <!-- ==================== 工具主体区域 ==================== -->
-    <div class="container">
-        <h1 data-i18n="title">{工具标题}</h1>
-        <!-- 工具功能 HTML -->
-    </div>
+    <h1 data-i18n="title">{工具标题}</h1>
+    <!-- 工具功能 HTML -->
 
-    <!-- ==================== Trust Bar（强制） ==================== -->
+    <!-- ==================== Trust Bar ==================== -->
     <div class="trust-bar">
         <span class="trust-item" data-i18n="trust_users">🌍 Used by 50,000+ users</span>
         <span class="trust-item" data-i18n="trust_rating">⭐ 4.9/5 rating</span>
@@ -484,14 +348,14 @@ A: JSON (JavaScript Object Notation) is a lightweight data format used by modern
         <span class="trust-item" data-i18n="trust_free">🚫 No Ads, No Signup</span>
     </div>
 
-    <!-- ==================== C1. 功能特点区域 ==================== -->
+    <!-- ==================== 功能特点区域 ==================== -->
     <section class="features-section">
         <h2 data-i18n="features_title">Key Features</h2>
         <div class="features-grid">
             <div class="feature-card">
                 <div class="icon">🔒</div>
                 <h3 data-i18n="feature1_title">100% Free & Private</h3>
-                <p data-i18n="feature1_desc">No ads, no signup, no watermark. Everything runs locally in your browser. Your data never leaves your device.</p>
+                <p data-i18n="feature1_desc">No ads, no signup, no watermark. Everything runs locally in your browser.</p>
             </div>
             <div class="feature-card">
                 <div class="icon">{emoji2}</div>
@@ -511,225 +375,130 @@ A: JSON (JavaScript Object Notation) is a lightweight data format used by modern
         </div>
     </section>
 
-    <!-- ==================== C2. FAQ 常见问题区域 ==================== -->
+    <!-- ==================== FAQ 区域（交互由 common.js 自动绑定） ==================== -->
     <section class="faq-section">
         <h2 data-i18n="faq_title">Frequently Asked Questions</h2>
         <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">
+            <button class="faq-question">
                 <span data-i18n="faq1_q">{问题1}?</span>
                 <span class="arrow">▼</span>
-            </div>
+            </button>
             <div class="faq-answer"><p data-i18n="faq1_a">{回答1}</p></div>
         </div>
         <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">
+            <button class="faq-question">
                 <span data-i18n="faq2_q">{问题2}?</span>
                 <span class="arrow">▼</span>
-            </div>
+            </button>
             <div class="faq-answer"><p data-i18n="faq2_a">{回答2}</p></div>
         </div>
         <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">
+            <button class="faq-question">
                 <span data-i18n="faq3_q">{问题3}?</span>
                 <span class="arrow">▼</span>
-            </div>
+            </button>
             <div class="faq-answer"><p data-i18n="faq3_a">{回答3}</p></div>
         </div>
         <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">
+            <button class="faq-question">
                 <span data-i18n="faq4_q">{问题4}?</span>
                 <span class="arrow">▼</span>
-            </div>
+            </button>
             <div class="faq-answer"><p data-i18n="faq4_a">{回答4}</p></div>
         </div>
         <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">
+            <button class="faq-question">
                 <span data-i18n="faq_free_q">Is this tool really free with no ads?</span>
                 <span class="arrow">▼</span>
-            </div>
-            <div class="faq-answer"><p data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.</p></div>
+            </button>
+            <div class="faq-answer"><p data-i18n="faq_free_a">Yes, 100% free with no ads, no registration, no watermark, and no usage limits.</p></div>
         </div>
     </section>
 
-    <!-- ==================== C3. 相关工具推荐区域 ==================== -->
+    <!-- ==================== 相关工具推荐（样式由 common.css 控制） ==================== -->
     <section class="related-tools">
-        <h2 data-i18n="related_title">Related Tools</h2>
+        <h3 data-i18n="related_title">Related Tools</h3>
         <div class="related-grid">
             <a href="{工具1链接}" class="related-card">
-                <div class="icon">{emoji}</div>
-                <h3 data-i18n="related1_name">{相关工具1名称}</h3>
+                <div>{emoji}</div>
+                <h4 data-i18n="related1_name">{相关工具1名称}</h4>
                 <p data-i18n="related1_desc">{相关工具1描述}</p>
             </a>
             <a href="{工具2链接}" class="related-card">
-                <div class="icon">{emoji}</div>
-                <h3 data-i18n="related2_name">{相关工具2名称}</h3>
+                <div>{emoji}</div>
+                <h4 data-i18n="related2_name">{相关工具2名称}</h4>
                 <p data-i18n="related2_desc">{相关工具2描述}</p>
             </a>
             <a href="{工具3链接}" class="related-card">
-                <div class="icon">{emoji}</div>
-                <h3 data-i18n="related3_name">{相关工具3名称}</h3>
+                <div>{emoji}</div>
+                <h4 data-i18n="related3_name">{相关工具3名称}</h4>
                 <p data-i18n="related3_desc">{相关工具3描述}</p>
-            </a>
-            <a href="{工具4链接}" class="related-card">
-                <div class="icon">{emoji}</div>
-                <h3 data-i18n="related4_name">{相关工具4名称}</h3>
-                <p data-i18n="related4_desc">{相关工具4描述}</p>
             </a>
         </div>
     </section>
 
-    <script>
-    (function() {
-        'use strict';
+</div><!-- .container end -->
 
-        // ========== 多语言系统 ==========
-        const langNames = { en: "🇺🇸 English", "zh-CN": "🇨🇳 中文", fr: "🇫🇷 Français", es: "🇪🇸 Español" };
+<!-- ===== 脚本区（在 container 外部） ===== -->
+<script>
+(function() {
+    'use strict';
 
-        const i18n = {
-            en: {
-                title: "{Tool Title}",
-                // 工具功能区翻译...
-                trust_users: "🌍 Used by 50,000+ users",
-                trust_rating: "⭐ 4.9/5 rating",
-                trust_privacy: "🔒 100% Private",
-                trust_free: "🚫 No Ads, No Signup",
-                features_title: "Key Features",
-                feature1_title: "100% Free & Private", feature1_desc: "No ads, no signup, no watermark. Everything runs locally in your browser. Your data never leaves your device.",
-                feature2_title: "{Feature 2}", feature2_desc: "{Feature 2 description}",
-                feature3_title: "{Feature 3}", feature3_desc: "{Feature 3 description}",
-                feature4_title: "{Feature 4}", feature4_desc: "{Feature 4 description}",
-                faq_title: "Frequently Asked Questions",
-                faq1_q: "{Question 1}?", faq1_a: "{Answer 1}",
-                faq2_q: "{Question 2}?", faq2_a: "{Answer 2}",
-                faq3_q: "{Question 3}?", faq3_a: "{Answer 3}",
-                faq4_q: "{Question 4}?", faq4_a: "{Answer 4}",
-                faq_free_q: "Is this tool really free with no ads?", faq_free_a: "Yes, 100% free with no ads, no registration, no watermark, and no usage limits. All processing happens locally in your browser — your data is never uploaded to any server.",
-                related_title: "Related Tools",
-                related1_name: "{Related Tool 1}", related1_desc: "{Description}",
-                related2_name: "{Related Tool 2}", related2_desc: "{Description}",
-                related3_name: "{Related Tool 3}", related3_desc: "{Description}",
-                related4_name: "{Related Tool 4}", related4_desc: "{Description}"
-            },
-            "zh-CN": {
-                title: "{工具标题}",
-                // 工具功能区翻译...
-                trust_users: "🌍 超过 50,000 用户使用",
-                trust_rating: "⭐ 4.9/5 好评",
-                trust_privacy: "🔒 100% 隐私安全",
-                trust_free: "🚫 无广告、无需注册",
-                features_title: "功能特点",
-                feature1_title: "100% 免费且安全", feature1_desc: "无广告、无需注册、无水印。所有处理都在浏览器本地完成，数据不会上传到任何服务器。",
-                feature2_title: "{功能2}", feature2_desc: "{功能2描述}",
-                feature3_title: "{功能3}", feature3_desc: "{功能3描述}",
-                feature4_title: "{功能4}", feature4_desc: "{功能4描述}",
-                faq_title: "常见问题",
-                faq1_q: "{问题1}？", faq1_a: "{回答1}",
-                faq2_q: "{问题2}？", faq2_a: "{回答2}",
-                faq3_q: "{问题3}？", faq3_a: "{回答3}",
-                faq4_q: "{问题4}？", faq4_a: "{回答4}",
-                faq_free_q: "这个工具真的免费且无广告吗？", faq_free_a: "是的，100% 免费，无广告、无需注册、无水印、无限制。所有处理都在浏览器本地完成，你的数据不会上传到任何服务器。",
-                related_title: "相关工具",
-                related1_name: "{相关工具1}", related1_desc: "{描述}",
-                related2_name: "{相关工具2}", related2_desc: "{描述}",
-                related3_name: "{相关工具3}", related3_desc: "{描述}",
-                related4_name: "{相关工具4}", related4_desc: "{描述}"
-            },
-            fr: {
-                title: "{Titre de l'outil}",
-                // 工具功能区翻译...
-                trust_users: "🌍 Utilisé par 50 000+ utilisateurs",
-                trust_rating: "⭐ Note 4.9/5",
-                trust_privacy: "🔒 100% Privé",
-                trust_free: "🚫 Sans pub, sans inscription",
-                features_title: "Caractéristiques",
-                feature1_title: "100% Gratuit et Privé", feature1_desc: "Sans publicité, sans inscription, sans filigrane. Tout est traité localement dans votre navigateur.",
-                feature2_title: "{Fonctionnalité 2}", feature2_desc: "{Description}",
-                feature3_title: "{Fonctionnalité 3}", feature3_desc: "{Description}",
-                feature4_title: "{Fonctionnalité 4}", feature4_desc: "{Description}",
-                faq_title: "Questions Fréquentes",
-                faq1_q: "{Question 1} ?", faq1_a: "{Réponse 1}",
-                faq2_q: "{Question 2} ?", faq2_a: "{Réponse 2}",
-                faq3_q: "{Question 3} ?", faq3_a: "{Réponse 3}",
-                faq4_q: "{Question 4} ?", faq4_a: "{Réponse 4}",
-                faq_free_q: "Cet outil est-il vraiment gratuit et sans pub ?", faq_free_a: "Oui, 100% gratuit, sans publicité, sans inscription, sans filigrane et sans limites. Tout est traité localement dans votre navigateur — vos données ne sont jamais téléversées.",
-                related_title: "Outils Connexes",
-                related1_name: "{Outil 1}", related1_desc: "{Description}",
-                related2_name: "{Outil 2}", related2_desc: "{Description}",
-                related3_name: "{Outil 3}", related3_desc: "{Description}",
-                related4_name: "{Outil 4}", related4_desc: "{Description}"
-            },
-            es: {
-                title: "{Título de la herramienta}",
-                // 工具功能区翻译...
-                trust_users: "🌍 Usado por más de 50,000 usuarios",
-                trust_rating: "⭐ Calificación 4.9/5",
-                trust_privacy: "🔒 100% Privado",
-                trust_free: "🚫 Sin anuncios, sin registro",
-                features_title: "Características",
-                feature1_title: "100% Gratis y Privado", feature1_desc: "Sin anuncios, sin registro, sin marca de agua. Todo se procesa localmente en tu navegador.",
-                feature2_title: "{Característica 2}", feature2_desc: "{Descripción}",
-                feature3_title: "{Característica 3}", feature3_desc: "{Descripción}",
-                feature4_title: "{Característica 4}", feature4_desc: "{Descripción}",
-                faq_title: "Preguntas Frecuentes",
-                faq1_q: "¿{Pregunta 1}?", faq1_a: "{Respuesta 1}",
-                faq2_q: "¿{Pregunta 2}?", faq2_a: "{Respuesta 2}",
-                faq3_q: "¿{Pregunta 3}?", faq3_a: "{Respuesta 3}",
-                faq4_q: "¿{Pregunta 4}?", faq4_a: "{Respuesta 4}",
-                faq_free_q: "¿Esta herramienta es realmente gratis y sin anuncios?", faq_free_a: "Sí, 100% gratis, sin anuncios, sin registro, sin marca de agua y sin límites. Todo el procesamiento ocurre localmente en tu navegador: tus datos nunca se suben a ningún servidor.",
-                related_title: "Herramientas Relacionadas",
-                related1_name: "{Herramienta 1}", related1_desc: "{Descripción}",
-                related2_name: "{Herramienta 2}", related2_desc: "{Descripción}",
-                related3_name: "{Herramienta 3}", related3_desc: "{Descripción}",
-                related4_name: "{Herramienta 4}", related4_desc: "{Descripción}"
-            }
-        };
-
-        // 语言切换
-        function applyLanguage(lang) {
-            localStorage.setItem("{tool}_lang", lang);
-            document.getElementById("langCurrent").textContent = langNames[lang];
-            document.querySelectorAll("[data-i18n]").forEach(el => {
-                const key = el.getAttribute("data-i18n");
-                if (i18n[lang] && i18n[lang][key]) el.textContent = i18n[lang][key];
-            });
-            document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
-                const key = el.getAttribute("data-i18n-placeholder");
-                if (i18n[lang] && i18n[lang][key]) el.placeholder = i18n[lang][key];
-            });
-            // 保留 FAQ 箭头
-            document.querySelectorAll('.faq-question .arrow').forEach(a => a.textContent = '▼');
+    // ========== 翻译对象 ==========
+    var translations = {
+        en: {
+            tool_name: '{Tool Name}',  // 必须：面包屑工具名
+            title: '{Tool Title}',
+            // 工具功能区翻译...
+            trust_users: '🌍 Used by 50,000+ users',
+            trust_rating: '⭐ 4.9/5 rating',
+            trust_privacy: '🔒 100% Private',
+            trust_free: '🚫 No Ads, No Signup',
+            features_title: 'Key Features',
+            feature1_title: '100% Free & Private',
+            feature1_desc: 'No ads, no signup, no watermark. Everything runs locally in your browser.',
+            // ... 其余翻译键 ...
+            faq_free_q: 'Is this tool really free with no ads?',
+            faq_free_a: 'Yes, 100% free with no ads, no registration, no watermark, and no usage limits.',
+            related_title: 'Related Tools',
+            related1_name: '{Related Tool 1}', related1_desc: '{Description}'
+        },
+        'zh-CN': {
+            tool_name: '{工具中文名}',
+            title: '{工具标题}',
+            // ... 中文翻译 ...
+        },
+        fr: {
+            tool_name: '{Nom de l\'outil}',
+            title: '{Titre}',
+            // ... 法文翻译 ...
+        },
+        es: {
+            tool_name: '{Nombre de la herramienta}',
+            title: '{Título}',
+            // ... 西文翻译 ...
         }
-        window.applyLanguage = applyLanguage;
+    };
 
-        // FAQ 手风琴交互
-        function toggleFaq(el) {
-            const item = el.parentElement;
-            const wasActive = item.classList.contains('active');
-            // 关闭所有
-            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-            // 切换当前
-            if (!wasActive) item.classList.add('active');
-        }
-        window.toggleFaq = toggleFaq;
+    // 获取当前语言（由 common.js 管理）
+    function t(key) {
+        var lang = typeof WebToolbox !== 'undefined' ? WebToolbox.getCurrentLang() : 'en';
+        return (translations[lang] && translations[lang][key]) || translations.en[key] || key;
+    }
 
-        // 初始化语言
-        const savedLang = localStorage.getItem("{tool}_lang") || "en";
-        applyLanguage(savedLang);
+    // ========== 工具核心逻辑 ==========
+    // ... 工具功能代码 ...
 
-        // 语言下拉菜单
-        document.getElementById("langCurrent").addEventListener("click", function(e) {
-            e.stopPropagation();
-            document.getElementById("langDropdown").classList.toggle("active");
-        });
-        document.addEventListener("click", function() {
-            document.getElementById("langDropdown").classList.remove("active");
-        });
-
-        // ========== 工具逻辑 ==========
-        // ... 工具核心功能代码 ...
-
-    })();
-    </script>
+    // 暴露翻译对象供 common.js 使用
+    window._translations = translations;
+})();
+</script>
+<!-- common.js 集成（禁止修改 common 目录） -->
+<script src="common/common.js"
+    data-tool-id="{tool-id}"
+    data-tool-name="{Tool Name}"
+    data-category="{category}"></script>
+<script>WebToolbox.init(window._translations);</script>
 </body>
 </html>
 ```
@@ -834,6 +603,7 @@ A: JSON (JavaScript Object Notation) is a lightweight data format used by modern
 
 | 属性 | 值 |
 |------|-----|
+| 默认主题 | **深色（夜晚模式）** |
 | 主色 | `#7c3aed` (紫色) |
 | 辅助色 | `#a78bfa` (浅紫) |
 | 背景 | `linear-gradient(135deg, #1a1a2e, #16213e, #0f3460)` |
@@ -844,3 +614,4 @@ A: JSON (JavaScript Object Notation) is a lightweight data format used by modern
 | 描述文字色 | `#9ca3af` |
 | hover 效果 | `translateY(-4px)` + 紫色阴影 |
 | 按钮 | 渐变紫色，hover 发光 |
+| 主题切换 | 默认隐藏，需 `data-show-theme-toggle="true"` 启用 |

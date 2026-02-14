@@ -19,16 +19,16 @@
     <meta name="rating" content="general">
     <meta name="distribution" content="global">
     <meta name="language" content="en">
-    <link rel="canonical" href="https://www.heyuan110.com/web-toolbox/media-tools.html">
-    <link rel="alternate" hreflang="en" href="https://www.heyuan110.com/web-toolbox/media-tools.html">
-    <link rel="alternate" hreflang="zh-CN" href="https://www.heyuan110.com/web-toolbox/media-tools.html">
-    <link rel="alternate" hreflang="fr" href="https://www.heyuan110.com/web-toolbox/media-tools.html">
-    <link rel="alternate" hreflang="es" href="https://www.heyuan110.com/web-toolbox/media-tools.html">
-    <link rel="alternate" hreflang="x-default" href="https://www.heyuan110.com/web-toolbox/media-tools.html">
+    <link rel="canonical" href="https://www.heyuan110.com/web-toolbox/category/media-tools.html">
+    <link rel="alternate" hreflang="en" href="https://www.heyuan110.com/web-toolbox/category/media-tools.html">
+    <link rel="alternate" hreflang="zh-CN" href="https://www.heyuan110.com/web-toolbox/category/media-tools.html">
+    <link rel="alternate" hreflang="fr" href="https://www.heyuan110.com/web-toolbox/category/media-tools.html">
+    <link rel="alternate" hreflang="es" href="https://www.heyuan110.com/web-toolbox/category/media-tools.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.heyuan110.com/web-toolbox/category/media-tools.html">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.heyuan110.com/web-toolbox/media-tools.html">
+    <meta property="og:url" content="https://www.heyuan110.com/web-toolbox/category/media-tools.html">
     <meta property="og:title" content="Free Online Video & Audio Tools | No Ads, No Signup | 视频音频工具">
     <meta property="og:description" content="5 free online video & audio tools: M3U8 downloader, audio cutter, screen recorder, social video downloader, file converter. 100% browser-based.">
     <meta property="og:image" content="https://www.heyuan110.com/web-toolbox/screenshots/media-tools.webp">
@@ -53,7 +53,7 @@
         "@type": "WebApplication",
         "name": "Free Online Video & Audio Tools",
         "alternateName": ["视频音频工具", "Media Tools", "Outils Vidéo & Audio", "Herramientas de Video y Audio"],
-        "url": "https://www.heyuan110.com/web-toolbox/media-tools.html",
+        "url": "https://www.heyuan110.com/web-toolbox/category/media-tools.html",
         "description": "A collection of 5 free online video and audio tools including M3U8 downloader, audio cutter, screen recorder, social video downloader, and file converter. All tools run entirely in your browser with no ads, no signup, and no upload required.",
         "inLanguage": ["en", "zh-CN", "fr", "es"],
         "applicationCategory": "MultimediaApplication",
@@ -92,7 +92,7 @@
         "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.heyuan110.com/" },
             { "@type": "ListItem", "position": 2, "name": "Magic ToolBox", "item": "https://www.heyuan110.com/web-toolbox/" },
-            { "@type": "ListItem", "position": 3, "name": "Media Tools", "item": "https://www.heyuan110.com/web-toolbox/media-tools.html" }
+            { "@type": "ListItem", "position": 3, "name": "Media Tools", "item": "https://www.heyuan110.com/web-toolbox/category/media-tools.html" }
         ]
     }
     </script>
@@ -166,67 +166,8 @@
             overflow-x: hidden;
         }
 
-        /* 语言切换器 */
-        .lang-switcher {
-            position: fixed;
-            top: 16px;
-            right: 16px;
-            z-index: 1000;
-        }
-        .lang-switcher .lang-current {
-            background: rgba(124, 58, 237, 0.3);
-            border: 1px solid rgba(124, 58, 237, 0.5);
-            color: #e0e0e0;
-            padding: 8px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-        .lang-switcher .lang-current:hover {
-            background: rgba(124, 58, 237, 0.5);
-        }
-        .lang-switcher .lang-dropdown {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: #1a1a2e;
-            border: 1px solid rgba(124, 58, 237, 0.3);
-            border-radius: 8px;
-            margin-top: 4px;
-            overflow: hidden;
-            min-width: 140px;
-        }
-        .lang-switcher:hover .lang-dropdown,
-        .lang-switcher .lang-dropdown.active { display: block; }
-        .lang-dropdown button {
-            display: block;
-            width: 100%;
-            padding: 8px 16px;
-            background: none;
-            border: none;
-            color: #e0e0e0;
-            cursor: pointer;
-            text-align: left;
-            white-space: nowrap;
-            font-size: 14px;
-        }
-        .lang-dropdown button:hover { background: rgba(124, 58, 237, 0.2); }
-
-        /* 返回链接 */
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: #a1a1aa;
-            text-decoration: none;
-            font-size: 14px;
-            padding: 24px 0 0 32px;
-            transition: color 0.3s;
-        }
-        .back-link:hover { color: #a78bfa; }
-        .back-link svg { width: 16px; height: 16px; }
+        /* Container */
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px; }
 
         /* Hero 区域 */
         .hero {
@@ -271,9 +212,6 @@
             font-size: 14px;
             font-weight: 600;
             letter-spacing: 0.5px;
-        }
-        /* 脉冲动画 */
-        .hero-badge {
             animation: badgePulse 2s ease-in-out infinite;
         }
         @keyframes badgePulse {
@@ -285,7 +223,7 @@
         .tools-grid {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 0 24px 32px;
+            padding: 0 0 32px;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 24px;
@@ -303,7 +241,6 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
             position: relative;
             overflow: hidden;
-            /* 入场动画 */
             opacity: 0;
             transform: translateY(30px);
         }
@@ -317,7 +254,6 @@
             box-shadow: 0 12px 40px rgba(124, 58, 237, 0.25);
             border-color: rgba(124, 58, 237, 0.5);
         }
-        /* 卡片光晕效果 */
         .tool-card::before {
             content: '';
             position: absolute;
@@ -379,7 +315,7 @@
         .features-section {
             max-width: 1100px;
             margin: 40px auto;
-            padding: 0 24px;
+            padding: 0;
         }
         .features-section h2 {
             text-align: center;
@@ -411,7 +347,7 @@
         .faq-section {
             max-width: 800px;
             margin: 48px auto;
-            padding: 0 24px;
+            padding: 0;
         }
         .faq-section h2 {
             text-align: center;
@@ -436,6 +372,10 @@
             color: #e0e0e0;
             font-size: 15px;
             transition: background 0.2s;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
         }
         .faq-question:hover { background: rgba(124, 58, 237, 0.1); }
         .faq-question .arrow {
@@ -463,7 +403,7 @@
         .related-tools {
             max-width: 1100px;
             margin: 48px auto;
-            padding: 0 24px 64px;
+            padding: 0 0 64px;
         }
         .related-tools h2 {
             text-align: center;
@@ -500,196 +440,91 @@
             .related-grid { grid-template-columns: repeat(3, 1fr); }
         }
         @media (max-width: 768px) {
+            .container { padding: 20px 16px; }
             .hero h1 { font-size: 28px; }
             .hero-subtitle { font-size: 15px; }
             .hero-icon { font-size: 48px; }
-            .tools-grid { grid-template-columns: 1fr; padding: 0 16px 24px; }
+            .tools-grid { grid-template-columns: 1fr; }
             .features-grid { grid-template-columns: 1fr; }
             .related-grid { grid-template-columns: repeat(2, 1fr); }
-            .trust-bar { gap: 16px; margin: 0 16px 24px; }
-            .back-link { padding-left: 16px; }
+            .trust-bar { gap: 16px; }
         }
         @media (max-width: 480px) {
             .related-grid { grid-template-columns: 1fr 1fr; }
             .trust-bar { flex-direction: column; align-items: center; gap: 8px; }
         }
-/* Footer */
-.page-footer {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 24px;
-    text-align: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    color: #71717a;
-    font-size: 14px;
-}
-.page-footer a {
-    color: #a1a1aa;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-.page-footer a:hover {
-    color: #a78bfa;
-}
 
-/* === 主题切换按钮 === */
-.theme-toggle {
-    position: fixed;
-    top: 16px;
-    right: 120px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #a1a1aa;
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    transition: all 0.2s ease;
-    z-index: 1000;
-}
-.theme-toggle:hover {
-    background: rgba(124, 58, 237, 0.2);
-    border-color: rgba(124, 58, 237, 0.4);
-    color: #e4e4e7;
-}
-
-/* ========== 浅色主题 ========== */
-[data-theme="light"] {
-    background: #fafafa !important;
-    color: #09090b;
-}
-[data-theme="light"] .container { color: #09090b; }
-[data-theme="light"] .back-link { color: #71717a; }
-[data-theme="light"] .back-link:hover { color: #7c3aed; }
-[data-theme="light"] .hero h1 {
-    background: linear-gradient(120deg, #7c3aed, #6366f1, #ec4899);
-    -webkit-background-clip: text;
-    background-clip: text;
-}
-[data-theme="light"] .hero-subtitle { color: #71717a; }
-[data-theme="light"] .hero-badge {
-    background: rgba(124, 58, 237, 0.1);
-    border-color: rgba(124, 58, 237, 0.3);
-}
-[data-theme="light"] .tool-card {
-    background: #ffffff;
-    border: 1px solid #e4e4e7;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-}
-[data-theme="light"] .tool-card:hover {
-    border-color: #d4d4d8;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-[data-theme="light"] .tool-card h3 { color: #09090b; }
-[data-theme="light"] .tool-card p { color: #71717a; }
-[data-theme="light"] .trust-bar {
-    background: #ffffff;
-    border-color: #e4e4e7;
-}
-[data-theme="light"] .trust-item { color: #71717a; }
-[data-theme="light"] .trust-item span { color: #09090b; }
-[data-theme="light"] .feature-card {
-    background: #ffffff;
-    border: 1px solid #e4e4e7;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-}
-[data-theme="light"] .feature-card:hover {
-    border-color: #d4d4d8;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-[data-theme="light"] .feature-card h3 { color: #09090b; }
-[data-theme="light"] .feature-card p { color: #71717a; }
-[data-theme="light"] .section-subtitle { color: #a1a1aa; }
-[data-theme="light"] .faq-item {
-    background: #ffffff;
-    border-color: #e4e4e7;
-}
-[data-theme="light"] .faq-question { color: #09090b; }
-[data-theme="light"] .faq-question:hover { color: #7c3aed; }
-[data-theme="light"] .faq-answer-inner { color: #71717a; }
-[data-theme="light"] .related-link {
-    background: #ffffff;
-    border-color: #e4e4e7;
-    color: #3f3f46;
-}
-[data-theme="light"] .related-link:hover {
-    background: #f3f0ff;
-    border-color: rgba(124, 58, 237, 0.4);
-    color: #7c3aed;
-}
-[data-theme="light"] .page-footer {
-    border-top-color: #e4e4e7;
-    color: #a1a1aa;
-}
-[data-theme="light"] .page-footer a { color: #71717a; }
-[data-theme="light"] .page-footer a:hover { color: #7c3aed; }
-[data-theme="light"] .theme-toggle {
-    background: #ffffff;
-    border-color: #e4e4e7;
-    color: #3f3f46;
-}
-[data-theme="light"] .theme-toggle:hover {
-    background: #f4f4f5;
-    border-color: #7c3aed;
-    color: #7c3aed;
-}
-[data-theme="light"] .lang-current {
-    background: #ffffff;
-    border-color: #e4e4e7;
-    color: #3f3f46;
-}
-[data-theme="light"] .lang-current:hover {
-    background: #f4f4f5;
-    border-color: #7c3aed;
-}
-[data-theme="light"] .lang-menu {
-    background: #ffffff;
-    border-color: #e4e4e7;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-[data-theme="light"] .lang-btn { color: #3f3f46; }
-[data-theme="light"] .lang-btn:hover { background: #f4f4f5; color: #09090b; }
-[data-theme="light"] .lang-btn.active { background: #f3f0ff; color: #7c3aed; }
-[data-theme="light"] .breadcrumb a { color: #71717a; }
-[data-theme="light"] .breadcrumb a:hover { color: #7c3aed; }
-[data-theme="light"] .breadcrumb-current { color: #09090b; }
-
-@media (max-width: 768px) {
-    .theme-toggle {
-        right: 70px;
-        top: 12px;
-    }
-}
+        /* ========== 浅色主题 ========== */
+        [data-theme="light"] {
+            background: #fafafa !important;
+            color: #09090b;
+        }
+        [data-theme="light"] .container { color: #09090b; }
+        [data-theme="light"] .hero h1 {
+            background: linear-gradient(120deg, #7c3aed, #6366f1, #ec4899);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+        [data-theme="light"] .hero-subtitle { color: #71717a; }
+        [data-theme="light"] .hero-badge {
+            background: rgba(124, 58, 237, 0.1);
+            border-color: rgba(124, 58, 237, 0.3);
+        }
+        [data-theme="light"] .tool-card {
+            background: #ffffff;
+            border: 1px solid #e4e4e7;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+        [data-theme="light"] .tool-card:hover {
+            border-color: #d4d4d8;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        [data-theme="light"] .tool-card h3, [data-theme="light"] .tool-card-title { color: #09090b; }
+        [data-theme="light"] .tool-card p, [data-theme="light"] .tool-card-desc { color: #71717a; }
+        [data-theme="light"] .tool-card-arrow { color: #6d28d9; }
+        [data-theme="light"] .related-card h3 { color: #09090b; }
+        [data-theme="light"] .related-card p { color: #71717a; }
+        [data-theme="light"] .trust-bar {
+            background: #ffffff;
+            border-color: #e4e4e7;
+        }
+        [data-theme="light"] .trust-item { color: #71717a; }
+        [data-theme="light"] .trust-item span { color: #09090b; }
+        [data-theme="light"] .feature-card {
+            background: #ffffff;
+            border: 1px solid #e4e4e7;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+        [data-theme="light"] .feature-card:hover {
+            border-color: #d4d4d8;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        [data-theme="light"] .feature-card h3 { color: #09090b; }
+        [data-theme="light"] .feature-card p { color: #71717a; }
+        [data-theme="light"] .section-subtitle { color: #a1a1aa; }
+        [data-theme="light"] .faq-item {
+            background: #ffffff;
+            border-color: #e4e4e7;
+        }
+        [data-theme="light"] .faq-question { color: #09090b; }
+        [data-theme="light"] .faq-question:hover { color: #7c3aed; }
+        [data-theme="light"] .faq-answer-inner { color: #71717a; }
+        [data-theme="light"] .related-card {
+            background: #ffffff;
+            border-color: #e4e4e7;
+            color: #3f3f46;
+        }
+        [data-theme="light"] .related-card:hover {
+            background: #f3f0ff;
+            border-color: rgba(124, 58, 237, 0.4);
+            color: #7c3aed;
+        }
     </style>
+    <link rel="stylesheet" href="../common/common.css">
 </head>
 <body>
 
-    <!-- 主题切换 -->
-    <button class="theme-toggle" id="themeToggle" title="Toggle theme">🌙</button>
-
-    <!-- 语言切换器 -->
-    <div class="lang-switcher">
-        <button class="lang-current" id="langCurrent">English</button>
-        <div class="lang-dropdown" id="langDropdown">
-            <button onclick="applyLanguage('en')">English</button>
-            <button onclick="applyLanguage('zh-CN')">中文</button>
-            <button onclick="applyLanguage('fr')">Français</button>
-            <button onclick="applyLanguage('es')">Español</button>
-        </div>
-    </div>
-
-    <!-- 返回链接 -->
-    <a href="index.html" class="back-link">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
-        <span data-i18n="back">Back to Magic ToolBox</span>
-    </a>
-
+<div class="container">
     <!-- Hero 区域 -->
     <section class="hero">
         <div class="hero-icon">🎬</div>
@@ -701,35 +536,35 @@
     <!-- 工具卡片网格 -->
     <div class="tools-grid">
         <!-- 1. M3U8 Video Downloader -->
-        <a href="m3u8-downloader.html" class="tool-card">
+        <a href="../m3u8-downloader.html" class="tool-card">
             <div class="tool-card-icon">📡</div>
             <h3 data-i18n="tool1_name">M3U8 Video Downloader</h3>
             <p data-i18n="tool1_desc">Download M3U8/HLS streaming videos. Batch download with real-time progress, pause/resume support. Save streaming content directly from your browser.</p>
             <span class="tool-card-arrow" data-i18n="tool_open">Open Tool →</span>
         </a>
         <!-- 2. Audio Cutter -->
-        <a href="audio-cutter.html" class="tool-card">
+        <a href="../audio-cutter.html" class="tool-card">
             <div class="tool-card-icon">✂️</div>
             <h3 data-i18n="tool2_name">Audio Cutter</h3>
             <p data-i18n="tool2_desc">Cut and trim audio files with visual waveform. Supports MP3, WAV, M4A, FLAC, AAC, OGG. Precise selection with keyboard shortcuts and drag markers.</p>
             <span class="tool-card-arrow" data-i18n="tool_open">Open Tool →</span>
         </a>
         <!-- 3. Screen Recorder -->
-        <a href="screen-recorder.html" class="tool-card">
+        <a href="../screen-recorder.html" class="tool-card">
             <div class="tool-card-icon">🎥</div>
             <h3 data-i18n="tool3_name">Screen Recorder</h3>
             <p data-i18n="tool3_desc">Record your screen, app windows, or browser tabs. Optional webcam overlay, microphone and system audio. Export as WebM or MP4 with no watermark.</p>
             <span class="tool-card-arrow" data-i18n="tool_open">Open Tool →</span>
         </a>
         <!-- 4. Social Video Downloader -->
-        <a href="social-video-downloader.html" class="tool-card">
+        <a href="../social-video-downloader.html" class="tool-card">
             <div class="tool-card-icon">📱</div>
             <h3 data-i18n="tool4_name">Social Video Downloader</h3>
             <p data-i18n="tool4_desc">Download videos from social media platforms. Paste the video URL and save to your device. Fast, free, and no login required.</p>
             <span class="tool-card-arrow" data-i18n="tool_open">Open Tool →</span>
         </a>
         <!-- 5. File Converter -->
-        <a href="file-converter.html" class="tool-card">
+        <a href="../file-converter.html" class="tool-card">
             <div class="tool-card-icon">🔄</div>
             <h3 data-i18n="tool5_name">File Converter</h3>
             <p data-i18n="tool5_desc">Cross-media format bridge: Video→GIF, Video→Audio, SVG→PNG, Image↔Base64. Convert between multimedia formats instantly in your browser.</p>
@@ -776,45 +611,45 @@
     <section class="faq-section">
         <h2 data-i18n="faq_title">Frequently Asked Questions</h2>
         <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">
+            <button class="faq-question">
                 <span data-i18n="faq1_q">What are online video and audio tools?</span>
                 <span class="arrow">▼</span>
-            </div>
+            </button>
             <div class="faq-answer"><p data-i18n="faq1_a">Online video and audio tools are browser-based utilities that let you process multimedia files directly in your web browser. They include video downloaders, audio editors, screen recorders, and format converters. Unlike desktop software, these tools require no installation — just open the page and start working. All processing happens locally on your device using modern Web APIs.</p></div>
         </div>
         <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">
+            <button class="faq-question">
                 <span data-i18n="faq2_q">How does the M3U8 video downloader work?</span>
                 <span class="arrow">▼</span>
-            </div>
+            </button>
             <div class="faq-answer"><p data-i18n="faq2_a">The M3U8 downloader parses HLS (HTTP Live Streaming) playlist files that contain references to video segments. It fetches each segment in parallel, combines them, and lets you download the complete video. It supports batch downloading, real-time progress display, and pause/resume — all running in your browser with no server involvement.</p></div>
         </div>
         <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">
+            <button class="faq-question">
                 <span data-i18n="faq3_q">Can I record my screen without installing any software?</span>
                 <span class="arrow">▼</span>
-            </div>
+            </button>
             <div class="faq-answer"><p data-i18n="faq3_a">Yes! Our Screen Recorder uses the browser's built-in Screen Capture API to record your screen, application windows, or browser tabs. It supports optional webcam overlay, microphone audio, and system audio. The recorded video is saved directly to your device as WebM or MP4 — no extensions, no plugins, and no watermarks.</p></div>
         </div>
         <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">
+            <button class="faq-question">
                 <span data-i18n="faq4_q">What audio and video formats are supported?</span>
                 <span class="arrow">▼</span>
-            </div>
+            </button>
             <div class="faq-answer"><p data-i18n="faq4_a">Our tools support a wide range of formats. The Audio Cutter handles MP3, WAV, M4A, FLAC, AAC, and OGG. The File Converter supports Video→GIF, Video→Audio, SVG→PNG, and Image↔Base64 conversions. The Screen Recorder exports WebM and MP4. The M3U8 downloader works with HLS/TS streams.</p></div>
         </div>
         <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">
+            <button class="faq-question">
                 <span data-i18n="faq5_q">Do these tools work on mobile devices?</span>
                 <span class="arrow">▼</span>
-            </div>
+            </button>
             <div class="faq-answer"><p data-i18n="faq5_a">Most of our tools work on mobile browsers. The Audio Cutter, File Converter, and M3U8 Downloader are fully responsive and mobile-friendly. Screen recording may have limited support depending on your mobile browser's capabilities. We recommend using Chrome or Edge on desktop for the best screen recording experience.</p></div>
         </div>
         <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">
+            <button class="faq-question">
                 <span data-i18n="faq_free_q">Are these tools really free with no ads?</span>
                 <span class="arrow">▼</span>
-            </div>
+            </button>
             <div class="faq-answer"><p data-i18n="faq_free_a">Yes, all 5 video and audio tools are 100% free with no ads, no registration required, no watermarks, and no usage limits. Every tool runs entirely in your browser — your files are processed locally on your device and are never uploaded to any server. There are no hidden fees, no premium tiers, and no data collection.</p></div>
         </div>
     </section>
@@ -850,47 +685,15 @@
             </a>
         </div>
     </section>
-
-<footer class="page-footer">
-    <p data-i18n="footerCopyright">© 2025 <a href="https://www.heyuan110.com" target="_blank">heyuan110.com</a> All rights reserved.</p>
-    <p style="margin-top: 8px;"><a href="https://www.heyuan110.com/" data-i18n="footerBlog">Blog</a> · <a href="index.html" data-i18n="footerHome">Magic ToolBox</a></p>
-</footer>
-
-<script>
-// 主题切换
-(function() {
-    var toggle = document.getElementById('themeToggle');
-    var saved = localStorage.getItem('magic_toolbox_theme');
-    if (saved === 'light') {
-        document.body.setAttribute('data-theme', 'light');
-        toggle.textContent = '☀️';
-    }
-    toggle.addEventListener('click', function() {
-        var isLight = document.body.getAttribute('data-theme') === 'light';
-        if (isLight) {
-            document.body.removeAttribute('data-theme');
-            toggle.textContent = '🌙';
-            localStorage.setItem('magic_toolbox_theme', 'dark');
-        } else {
-            document.body.setAttribute('data-theme', 'light');
-            toggle.textContent = '☀️';
-            localStorage.setItem('magic_toolbox_theme', 'light');
-        }
-    });
-})();
-</script>
+</div>
 
 <script>
 (function() {
     'use strict';
 
-    /* ========== 多语言系统 ========== */
-    var LANG_KEY = 'media-tools_lang';
-    var langNames = { en: "English", "zh-CN": "中文", fr: "Français", es: "Español" };
-
-    var i18n = {
+    var translations = {
         en: {
-            back: "Back to Magic ToolBox",
+            tool_name: 'Media Tools',
             hero_title: "Free Online Video & Audio Tools",
             hero_subtitle: "Download, record, cut, convert — all in your browser. No ads, no signup, no upload. 100% private and free.",
             hero_badge: "5 Tools",
@@ -936,13 +739,10 @@
             related2_name: "Image Tools", related2_desc: "Compress, convert & edit images",
             related3_name: "Developer Tools", related3_desc: "JSON, API, Regex & more",
             related4_name: "Text Tools", related4_desc: "Text processing & conversion",
-            related5_name: "Utility Tools", related5_desc: "Calculator, clock & daily utilities",
-            footerCopyright: '© 2025 <a href="https://www.heyuan110.com" target="_blank">heyuan110.com</a> All rights reserved.',
-            footerBlog: 'Blog',
-            footerHome: 'Magic ToolBox'
+            related5_name: "Utility Tools", related5_desc: "Calculator, clock & daily utilities"
         },
         "zh-CN": {
-            back: "返回 Magic ToolBox",
+            tool_name: '媒体工具',
             hero_title: "免费在线视频音频工具",
             hero_subtitle: "下载、录屏、剪辑、转换 — 全部在浏览器中完成。无广告、无需注册、无需上传。100% 隐私安全且免费。",
             hero_badge: "5 个工具",
@@ -988,13 +788,10 @@
             related2_name: "图片工具", related2_desc: "压缩、转换和编辑图片",
             related3_name: "开发者工具", related3_desc: "JSON、API、正则等",
             related4_name: "文本工具", related4_desc: "文本处理与转换",
-            related5_name: "实用工具", related5_desc: "计算器、时钟和日常工具",
-            footerCopyright: '© 2025 <a href="https://www.heyuan110.com" target="_blank">heyuan110.com</a> All rights reserved.',
-            footerBlog: '博客',
-            footerHome: 'Magic ToolBox'
+            related5_name: "实用工具", related5_desc: "计算器、时钟和日常工具"
         },
         fr: {
-            back: "Retour à Magic ToolBox",
+            tool_name: 'Outils Média',
             hero_title: "Outils Vidéo & Audio Gratuits en Ligne",
             hero_subtitle: "Télécharger, enregistrer, couper, convertir — tout dans votre navigateur. Sans publicité, sans inscription, sans téléchargement. 100% privé et gratuit.",
             hero_badge: "5 Outils",
@@ -1040,13 +837,10 @@
             related2_name: "Outils Image", related2_desc: "Compresser, convertir et éditer des images",
             related3_name: "Outils Développeur", related3_desc: "JSON, API, Regex et plus",
             related4_name: "Outils Texte", related4_desc: "Traitement et conversion de texte",
-            related5_name: "Outils Utilitaires", related5_desc: "Calculatrice, horloge et outils quotidiens",
-            footerCopyright: '© 2025 <a href="https://www.heyuan110.com" target="_blank">heyuan110.com</a> Tous droits réservés.',
-            footerBlog: 'Blog',
-            footerHome: 'Magic ToolBox'
+            related5_name: "Outils Utilitaires", related5_desc: "Calculatrice, horloge et outils quotidiens"
         },
         es: {
-            back: "Volver a Magic ToolBox",
+            tool_name: 'Herramientas de Medios',
             hero_title: "Herramientas de Video y Audio Gratis en Línea",
             hero_subtitle: "Descargar, grabar, cortar, convertir — todo en tu navegador. Sin anuncios, sin registro, sin subir archivos. 100% privado y gratuito.",
             hero_badge: "5 Herramientas",
@@ -1092,62 +886,9 @@
             related2_name: "Herramientas de Imagen", related2_desc: "Comprimir, convertir y editar imágenes",
             related3_name: "Herramientas de Desarrollo", related3_desc: "JSON, API, Regex y más",
             related4_name: "Herramientas de Texto", related4_desc: "Procesamiento y conversión de texto",
-            related5_name: "Herramientas de Utilidad", related5_desc: "Calculadora, reloj y utilidades diarias",
-            footerCopyright: '© 2025 <a href="https://www.heyuan110.com" target="_blank">heyuan110.com</a> Todos los derechos reservados.',
-            footerBlog: 'Blog',
-            footerHome: 'Magic ToolBox'
+            related5_name: "Herramientas de Utilidad", related5_desc: "Calculadora, reloj y utilidades diarias"
         }
     };
-
-    /* ========== 语言应用函数 ========== */
-    function applyLanguage(lang) {
-        if (!i18n[lang]) lang = 'en';
-        localStorage.setItem(LANG_KEY, lang);
-        document.documentElement.lang = lang === 'zh-CN' ? 'zh' : lang;
-
-        var dict = i18n[lang];
-
-        // 更新语言按钮
-        var langBtn = document.getElementById('langCurrent');
-        if (langBtn) langBtn.textContent = langNames[lang] || lang;
-
-        // 更新 data-i18n 元素
-        var elems = document.querySelectorAll('[data-i18n]');
-        for (var j = 0; j < elems.length; j++) {
-            var key = elems[j].getAttribute('data-i18n');
-            if (dict[key] !== undefined) {
-                elems[j].innerHTML = dict[key];
-            }
-        }
-
-        // 更新 data-i18n-placeholder 元素
-        var placeholders = document.querySelectorAll('[data-i18n-placeholder]');
-        for (var k = 0; k < placeholders.length; k++) {
-            var pKey = placeholders[k].getAttribute('data-i18n-placeholder');
-            if (dict[pKey] !== undefined) {
-                placeholders[k].placeholder = dict[pKey];
-            }
-        }
-    }
-
-    // 暴露到全局供 onclick 调用
-    window.applyLanguage = applyLanguage;
-
-    /* ========== FAQ 手风琴 ========== */
-    function toggleFaq(el) {
-        var item = el.parentElement;
-        var isActive = item.classList.contains('active');
-        // 先关闭所有
-        var allItems = document.querySelectorAll('.faq-item');
-        for (var i = 0; i < allItems.length; i++) {
-            allItems[i].classList.remove('active');
-        }
-        // 切换当前
-        if (!isActive) {
-            item.classList.add('active');
-        }
-    }
-    window.toggleFaq = toggleFaq;
 
     /* ========== 卡片入场动画（IntersectionObserver） ========== */
     function initCardAnimations() {
@@ -1156,7 +897,6 @@
             var observer = new IntersectionObserver(function(entries) {
                 entries.forEach(function(entry) {
                     if (entry.isIntersecting) {
-                        // 按索引延时，产生依次出现的效果
                         var idx = Array.prototype.indexOf.call(cards, entry.target);
                         setTimeout(function() {
                             entry.target.classList.add('visible');
@@ -1169,7 +909,6 @@
                 observer.observe(cards[i]);
             }
         } else {
-            // 回退：直接显示
             for (var j = 0; j < cards.length; j++) {
                 cards[j].classList.add('visible');
             }
@@ -1178,13 +917,18 @@
 
     /* ========== 初始化 ========== */
     document.addEventListener('DOMContentLoaded', function() {
-        var savedLang = localStorage.getItem(LANG_KEY) || 'en';
-        applyLanguage(savedLang);
         initCardAnimations();
     });
 
+    window._translations = translations;
 })();
 </script>
+<script src="../common/common.js"
+    data-page-type="category"
+    data-show-theme-toggle="true"
+    data-category="media"
+    data-tool-name="Media Tools"></script>
+<script>WebToolbox.init(window._translations);</script>
 
 </body>
 </html>

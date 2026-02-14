@@ -20,27 +20,50 @@
 
 - 站点：`https://www.heyuan110.com/web-toolbox/`
 - 技术栈：纯前端 HTML/CSS/JavaScript（无后端）
-- 组织方式：
-  - 简单工具：`xxx.html`
-  - 复杂工具：`xxx/index.html` + `style.css` + `app.js`
+- 目录结构：
+  - 工具页（简单）：`xxx.html`（根目录）
+  - 工具页（复杂）：`xxx/index.html` + `style.css` + `app.js`
+  - 分类页：`category/xxx-tools.html`（6 个分类页统一放在 `category/` 目录）
+  - 公共资源：`common/common.js` + `common/common.css`
+  - 首页：`index.html`
 
 ## 强制规则
 
+### -1) common 目录保护（最高优先级）
+
+`common/common.js` 和 `common/common.css` 是**所有工具页和分类页的共享基础设施**，修改它们会影响全站 60+ 页面。
+
+**严格禁止在日常工具开发中修改 common 目录下的任何文件。**
+
+- 开发或修复单个工具页时，**禁止**修改 `common/common.js` 或 `common/common.css`
+- 如果工具页需要特殊样式，在工具页自身的 `<style>` 或独立 CSS 文件中覆写
+- 如果发现 common 代码有 bug 或需要新功能，**必须先与用户确认**，说明改动原因和影响范围
+- 修改 common 文件后，**必须回归验证至少 3 个不同类目的现有工具页**，确认无破坏性影响
+
+**唯一允许修改 common 的场景：**
+1. 用户明确要求修改公共组件
+2. 全站范围的统一重构（如本次分类页统一改造）
+3. 修复影响全站的公共 bug
+
 ### 0) 公共结构（common.js / common.css 统管，禁止手写）
 
-每个工具页必须引入 `common/common.css` 和 `common/common.js`，由它们统一注入和管理以下公共 UI：
+每个工具页和分类页必须引入 `common/common.css` 和 `common/common.js`，由它们统一注入和管理以下公共 UI：
 
 **Header（common.js 自动注入，禁止手写）：**
-- 面包屑导航（左）：`Home › Web Toolbox › {Category} › {ToolName}`
+- 面包屑导航（左）：
+  - 工具页（4 级）：`Home › Web Toolbox › {Category} › {ToolName}`
+  - 分类页（3 级）：`Home › Web Toolbox › {CategoryName}`（末项不可点击）
 - 面包屑中的 Home、Web Toolbox、Category 由 common.js 内置 `COMMON_I18N` 提供 4 语翻译
-- 面包屑最后一项（工具名）使用 `data-i18n="tool_name"` 自动翻译，需工具翻译中提供 `tool_name` 键
+- 面包屑最后一项（工具名/分类名）使用 `data-i18n="tool_name"` 自动翻译
 - 语言切换器（右）：4 语下拉菜单
-- 禁止在 HTML 中手写 `<nav>` 返回链接、`lang-dropdown`、`lang-switcher` 等元素
-- 禁止在 JS 中手写 `langDropdown`、`langCurrent` 相关事件绑定
+- 主题切换按钮（右，默认隐藏）：仅当 `data-show-theme-toggle="true"` 时显示
+- 禁止在 HTML 中手写 `<nav>` 返回链接、`lang-dropdown`、`lang-switcher`、`theme-toggle` 等元素
+- 禁止在 JS 中手写 `langDropdown`、`langCurrent`、`themeToggle` 相关事件绑定
 
 **Footer（common.js 自动注入，禁止手写）：**
-- 类目导航栏（`category-nav`）：7 类入口，当前类目高亮，标签文案由 `COMMON_I18N` 提供 4 语翻译
-- 版权行（`site-footer`）：`© 2024-2026 heyuan110. All rights reserved.`，由 `COMMON_I18N` 提供 4 语翻译
+- 工具页：类目导航栏（`category-nav`）+ 版权行（`site-footer`）
+- 分类页（`data-page-type="category"`）：仅版权行（跳过类目导航）
+- 版权文案：`© 2024-2026 heyuan110.com`，由 `COMMON_I18N` 提供 4 语翻译
 - 禁止在 HTML 中手写 `<footer>` 或版权信息
 
 **Related Tools（各工具自己写 HTML，所有样式来自 common.css，禁止 inline style）：**
@@ -60,20 +83,19 @@
 - 与 header 的 `bc-nav`（`max-width: 1200px; padding: 12px 40px`）左右对齐
 - 所有内容区块（features、faq、related-tools）必须在 `.container` 内部
 
-**集成方式（固定模式）：**
+**集成方式（工具页，固定模式）：**
 ```html
-<!-- </head> 之前 -->
 <link rel="stylesheet" href="common/common.css">
 </head>
 <body>
 <div class="container">
   <!-- 工具主体内容 -->
+  <!-- trust-bar -->
   <!-- features-section -->
   <!-- faq-section -->
   <!-- related-tools -->
 </div>
-<!-- 脚本区（在 container 外部） -->
-<script>/* 工具 IIFE，翻译对象暴露到 window */</script>
+<script>/* 工具 IIFE，翻译对象暴露到 window._translations */</script>
 <script src="common/common.js"
   data-tool-id="{tool-id}"
   data-tool-name="{Tool Name}"
@@ -81,6 +103,25 @@
 <script>WebToolbox.init(window._translations);</script>
 </body>
 ```
+
+**集成方式（分类页，固定模式）：**
+```html
+<link rel="stylesheet" href="../common/common.css">
+</head>
+<body>
+<div class="container">
+  <!-- 分类页内容（hero、tools-grid、features、faq、related-tools） -->
+</div>
+<script>/* 分类页 IIFE，翻译对象暴露到 window._translations */</script>
+<script src="../common/common.js"
+  data-page-type="category"
+  data-show-theme-toggle="true"
+  data-category="{category}"
+  data-tool-name="{Category Name}"></script>
+<script>WebToolbox.init(window._translations);</script>
+</body>
+```
+注意：分类页在 `category/` 子目录，引用 common 资源需加 `../` 前缀。
 
 **翻译对象暴露规则：**
 - 翻译定义在 IIFE 内部时，必须通过 `window._xxxI18n = translations;` 暴露
@@ -93,7 +134,7 @@
 
 ### 1) 页面基础要求
 
-- 必须为支持浅色和深色主题、默认是浅色、响应式设计（桌面/平板/手机）。
+- 默认深色主题（夜晚模式），支持浅色/深色切换（通过 `data-show-theme-toggle="true"` 启用切换按钮），响应式设计（桌面/平板/手机）。
 - JavaScript 必须使用 IIFE 或等价作用域隔离，避免全局污染。
 - 新增/重构工具默认采用 **shadcn/ui 视觉语言**（卡片、边框、层次、间距、控件风格一致）。
 - 关键交互区必须包含**有意义的动效设计**（至少 2 类）：如首屏入场动画 + 状态反馈动画（进度、切换、完成反馈），做到“第一眼有吸引力、交互时有反馈”，禁止纯静态工具页。

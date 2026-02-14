@@ -109,8 +109,8 @@ h1{text-align:center;font-size:2.1rem;letter-spacing:-.02em;margin-bottom:10px}.
     .layout{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     .panel{border:1px solid var(--border);border-radius:10px;background:rgba(2,6,23,.58);overflow:hidden}
     .panel-head{padding:10px 12px;border-bottom:1px solid var(--border);font-size:13px;color:var(--muted)}
-    .drop{padding:16px;display:flex;flex-direction:column;gap:10px;align-items:center;justify-content:center;min-height:280px;text-align:center;color:var(--muted)}
-    .drop.drag{background:rgba(59,130,246,.12)}.preview{max-width:100%;max-height:240px;border-radius:8px;display:none;background-image:linear-gradient(45deg,#0f172a 25%,#111827 25%,#111827 50%,#0f172a 50%,#0f172a 75%,#111827 75%,#111827 100%);background-size:16px 16px}
+    .drop{padding:16px;display:flex;flex-direction:column;gap:10px;align-items:center;justify-content:center;min-height:420px;text-align:center;color:var(--muted)}
+    .drop.drag{background:rgba(59,130,246,.12)}.drop.has-image>p{display:none}.drop.has-image>small{display:none}.preview{max-width:100%;max-height:420px;border-radius:8px;display:none;background-image:linear-gradient(45deg,#0f172a 25%,#111827 25%,#111827 50%,#0f172a 50%,#0f172a 75%,#111827 75%,#111827 100%);background-size:16px 16px}
     .status{margin-top:8px;color:#93c5fd;font-size:13px;min-height:18px}
     .features-section,.faq-section,.related-tools{margin-top:30px}
     .features-section h2,.faq-section h2,.related-tools h3{margin:0 0 16px;font-size:1.2rem}
@@ -191,41 +191,35 @@ h1{text-align:center;font-size:2.1rem;letter-spacing:-.02em;margin-bottom:10px}.
     }
     @keyframes btnGlow { 0%,100%{box-shadow:0 0 8px rgba(59,130,246,.3)} 50%{box-shadow:0 0 20px rgba(59,130,246,.6)} }
 
-    /* 原图扫描线动画 */
+    /* 原图扫描线动画 — 使用 transform 确保 compositor 线程运行，不受 WASM 阻塞 */
     .panel.scanning { position: relative; overflow: hidden; }
     .panel.scanning::before {
       content: ''; position: absolute; left: 0; right: 0;
-      height: 60%;
+      top: -2%; height: 60%;
       background: linear-gradient(180deg,
         transparent 0%,
         rgba(59,130,246,.03) 30%,
         rgba(59,130,246,.08) 45%,
         rgba(6,182,212,.15) 49%,
-        rgba(59,130,246,.6) 50%,
+        rgba(59,130,246,.7) 49.7%,
+        rgba(6,182,212,1) 50%,
+        rgba(59,130,246,.7) 50.3%,
         rgba(6,182,212,.15) 51%,
         rgba(59,130,246,.08) 55%,
         rgba(59,130,246,.03) 70%,
         transparent 100%
       );
-      animation: scanBounce 2.4s ease-in-out infinite;
+      animation: scanSweep 2.4s ease-in-out infinite;
       z-index: 10;
       pointer-events: none;
+      will-change: transform;
     }
-    .panel.scanning::after {
-      content: ''; position: absolute; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent 5%, #3b82f6 30%, #06b6d4 50%, #3b82f6 70%, transparent 95%);
-      box-shadow: 0 0 20px 4px rgba(59,130,246,.7), 0 0 60px 8px rgba(6,182,212,.3);
-      animation: scanBounce 2.4s ease-in-out infinite;
-      z-index: 11;
-      pointer-events: none;
-    }
-    @keyframes scanBounce {
-      0%   { top: -2%; opacity: 0; }
+    @keyframes scanSweep {
+      0%   { transform: translateY(0); opacity: 0; }
       5%   { opacity: 1; }
-      50%  { top: 98%; opacity: 1; }
+      50%  { transform: translateY(167%); opacity: 1; }
       95%  { opacity: 1; }
-      100% { top: -2%; opacity: 0; }
+      100% { transform: translateY(0); opacity: 0; }
     }
 
     /* 结果面板等待动画 */
@@ -250,6 +244,29 @@ h1{text-align:center;font-size:2.1rem;letter-spacing:-.02em;margin-bottom:10px}.
 
     /* 完成状态文字 */
     .status.success { color: #34d399 !important; }
+
+    /* AI 模型状态徽章 */
+    .model-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 600;
+      border: 1px solid var(--border); background: rgba(15,23,42,.6);
+      color: var(--muted); transition: all .4s ease;
+    }
+    .model-badge .badge-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--muted); flex-shrink: 0;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    .model-badge.ready {
+      border-color: rgba(16,185,129,.4); background: rgba(16,185,129,.1);
+      color: #34d399;
+    }
+    .model-badge.ready .badge-dot {
+      background: #10b981; animation: none;
+      box-shadow: 0 0 8px rgba(16,185,129,.6);
+    }
+    .model-badge.error { border-color: rgba(248,113,113,.3); color: #f87171; }
+    .model-badge.error .badge-dot { background: #f87171; animation: none; }
   </style>
     <link rel="stylesheet" href="common/common.css">
 </head>
@@ -266,6 +283,7 @@ h1{text-align:center;font-size:2.1rem;letter-spacing:-.02em;margin-bottom:10px}.
       <button class="btn primary" id="removeBtn" data-i18n="remove">Remove Background</button>
       <button class="btn" id="downloadBtn" data-i18n="download">Download PNG</button>
       <button class="btn" id="clearBtn" data-i18n="clear">Clear</button>
+      <span class="model-badge" id="modelBadge"><span class="badge-dot"></span><span id="badgeText">AI Loading...</span></span>
     </div>
     <div class="layout">
       <div class="panel"><div class="panel-head" data-i18n="before">Original Image</div><div class="drop" id="dropZone"><p data-i18n="dropHint">Drag and drop image here or click Choose Image</p><img id="beforeImg" class="preview" alt="before"><small id="fileName"></small></div></div>
@@ -351,10 +369,11 @@ let modelLoading = null; // Promise，防止重复加载
 
   function setFile(file){
     currentFile=file;
-    if(!file){beforeImg.style.display='none';beforeImg.src='';fileNameEl.textContent='';return;}
+    if(!file){beforeImg.style.display='none';beforeImg.src='';fileNameEl.textContent='';dropZone.classList.remove('has-image');return;}
     fileNameEl.textContent=file.name+' ('+Math.round(file.size/1024)+' KB)';
     beforeImg.src=URL.createObjectURL(file);
     beforeImg.style.display='block';
+    dropZone.classList.add('has-image');
   }
 
   /* 自动下载模型（页面加载后立即开始） */
@@ -368,6 +387,10 @@ let modelLoading = null; // Promise，防止重复加载
 
     prog.classList.remove('hidden');
     titleEl.textContent = t('loadingModel');
+    // 更新徽章为加载中
+    const badge0 = document.getElementById('modelBadge');
+    const badgeText0 = document.getElementById('badgeText');
+    if (badge0) badgeText0.textContent = t('downloading');
 
     try {
       remover = await pipeline('background-removal', 'briaai/RMBG-1.4', {
@@ -392,12 +415,23 @@ let modelLoading = null; // Promise，防止重复加载
       titleEl.textContent = '\u2713 ' + t('modelReady');
       prog.classList.add('ready');
 
+      // 更新模型徽章为就绪状态
+      const badge = document.getElementById('modelBadge');
+      const badgeText = document.getElementById('badgeText');
+      badge.classList.add('ready');
+      badgeText.textContent = '\u2713 ' + t('modelReady');
+
       // 1.5s 后收起进度条
       setTimeout(() => { prog.classList.add('hidden'); }, 1500);
     } catch(e) {
       console.error('Auto model load error:', e);
       titleEl.textContent = t('loadErr');
       titleEl.style.color = '#f87171';
+      // 徽章显示错误
+      const badge = document.getElementById('modelBadge');
+      const badgeText = document.getElementById('badgeText');
+      badge.classList.add('error');
+      badgeText.textContent = t('loadErr');
     }
   }
 
@@ -503,6 +537,7 @@ let modelLoading = null; // Promise，防止重复加载
 
   document.getElementById('clearBtn').addEventListener('click',()=>{
     setFile(null);fileInput.value='';setStatus('');
+    dropZone.classList.remove('has-image');
     if(outputUrl){URL.revokeObjectURL(outputUrl);outputUrl='';}
     afterImg.style.display='none';afterImg.src='';emptyAfter.style.display='block';
   });

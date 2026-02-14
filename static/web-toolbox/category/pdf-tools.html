@@ -22,16 +22,16 @@
     <meta name="language" content="en">
 
     <!-- Canonical & Hreflang -->
-    <link rel="canonical" href="https://www.heyuan110.com/web-toolbox/pdf-tools.html">
-    <link rel="alternate" hreflang="en" href="https://www.heyuan110.com/web-toolbox/pdf-tools.html">
-    <link rel="alternate" hreflang="zh-CN" href="https://www.heyuan110.com/web-toolbox/pdf-tools.html">
-    <link rel="alternate" hreflang="fr" href="https://www.heyuan110.com/web-toolbox/pdf-tools.html">
-    <link rel="alternate" hreflang="es" href="https://www.heyuan110.com/web-toolbox/pdf-tools.html">
-    <link rel="alternate" hreflang="x-default" href="https://www.heyuan110.com/web-toolbox/pdf-tools.html">
+    <link rel="canonical" href="https://www.heyuan110.com/web-toolbox/category/pdf-tools.html">
+    <link rel="alternate" hreflang="en" href="https://www.heyuan110.com/web-toolbox/category/pdf-tools.html">
+    <link rel="alternate" hreflang="zh-CN" href="https://www.heyuan110.com/web-toolbox/category/pdf-tools.html">
+    <link rel="alternate" hreflang="fr" href="https://www.heyuan110.com/web-toolbox/category/pdf-tools.html">
+    <link rel="alternate" hreflang="es" href="https://www.heyuan110.com/web-toolbox/category/pdf-tools.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.heyuan110.com/web-toolbox/category/pdf-tools.html">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.heyuan110.com/web-toolbox/pdf-tools.html">
+    <meta property="og:url" content="https://www.heyuan110.com/web-toolbox/category/pdf-tools.html">
     <meta property="og:title" content="Free Online PDF Tools - Merge, Split, Compress, Convert | No Ads, No Signup">
     <meta property="og:description" content="7 free browser-based PDF tools: merge, split, compress, convert, protect & e-sign. No ads, no signup, no upload. 100% private and free unlimited.">
     <meta property="og:image" content="https://www.heyuan110.com/web-toolbox/screenshots/pdf-tools.webp">
@@ -56,7 +56,7 @@
         "@type": "WebApplication",
         "name": "Free Online PDF Tools",
         "alternateName": ["PDF 工具合集", "在线 PDF 工具", "Outils PDF en ligne", "Herramientas PDF en línea"],
-        "url": "https://www.heyuan110.com/web-toolbox/pdf-tools.html",
+        "url": "https://www.heyuan110.com/web-toolbox/category/pdf-tools.html",
         "description": "7 free browser-based PDF tools: merge, split, compress, convert PDF to image, images to PDF, protect & e-sign. No ads, no signup, no upload. 100% private and free unlimited.",
         "inLanguage": ["en", "zh-CN", "fr", "es"],
         "applicationCategory": "UtilitiesApplication",
@@ -125,7 +125,7 @@
                 "@type": "ListItem",
                 "position": 3,
                 "name": "PDF Tools",
-                "item": "https://www.heyuan110.com/web-toolbox/pdf-tools.html"
+                "item": "https://www.heyuan110.com/web-toolbox/category/pdf-tools.html"
             }
         ]
     }
@@ -256,128 +256,11 @@
         .delay-6 { animation-delay: 0.6s; }
         .delay-7 { animation-delay: 0.7s; }
 
-        /* === 语言切换器 === */
-        .lang-switcher {
-            position: fixed;
-            top: 16px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .lang-dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .lang-current {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 8px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            color: #e0e0e0;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .lang-current:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(124, 58, 237, 0.5);
-        }
-
-        .lang-current::after {
-            content: '';
-            display: inline-block;
-            width: 0;
-            height: 0;
-            border-left: 4px solid transparent;
-            border-right: 4px solid transparent;
-            border-top: 5px solid #a1a1aa;
-            transition: transform 0.3s ease;
-        }
-
-        .lang-dropdown.active .lang-current::after {
-            transform: rotate(180deg);
-        }
-
-        .lang-menu {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            margin-top: 4px;
-            background: rgba(30, 30, 46, 0.98);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            padding: 4px;
-            min-width: 150px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            z-index: 1001;
-        }
-
-        .lang-dropdown.active .lang-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .lang-btn {
-            display: block;
-            width: 100%;
-            padding: 10px 16px;
-            background: none;
-            border: none;
-            color: #e0e0e0;
-            font-size: 14px;
-            text-align: left;
-            cursor: pointer;
-            border-radius: 6px;
-            transition: background 0.2s ease;
-        }
-
-        .lang-btn:hover {
-            background: rgba(124, 58, 237, 0.3);
-        }
-
-        .lang-btn.active {
-            background: rgba(124, 58, 237, 0.2);
-            color: #a78bfa;
-        }
-
         /* === 容器 === */
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 30px 24px 60px;
-        }
-
-        /* === 返回链接 === */
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: #a1a1aa;
-            font-size: 0.9rem;
-            margin-bottom: 30px;
-            transition: color 0.2s ease;
-        }
-
-        .back-link:hover {
-            color: #a78bfa;
-        }
-
-        .back-link svg {
-            width: 16px;
-            height: 16px;
+            padding: 40px;
         }
 
         /* === Hero 区 === */
@@ -696,24 +579,6 @@
             font-size: 1.3rem;
         }
 
-        /* === Footer === */
-        .page-footer {
-            text-align: center;
-            padding: 30px 0 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            color: #71717a;
-            font-size: 0.82rem;
-        }
-
-        .page-footer a {
-            color: #a78bfa;
-            transition: color 0.2s;
-        }
-
-        .page-footer a:hover {
-            color: #c4b5fd;
-        }
-
         /* === 响应式 === */
         @media (max-width: 768px) {
             .container {
@@ -753,11 +618,6 @@
             .section-title {
                 font-size: 1.4rem;
             }
-
-            .lang-switcher {
-                top: 12px;
-                right: 12px;
-            }
         }
 
         @media (max-width: 480px) {
@@ -778,41 +638,12 @@
             }
         }
 
-        /* === 主题切换按钮 === */
-        .theme-toggle {
-            position: fixed;
-            top: 16px;
-            right: 120px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #a1a1aa;
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            transition: all 0.2s ease;
-            z-index: 1000;
-        }
-        .theme-toggle:hover {
-            background: rgba(124, 58, 237, 0.2);
-            border-color: rgba(124, 58, 237, 0.4);
-            color: #e4e4e7;
-        }
-
         /* ========== 浅色主题 ========== */
         [data-theme="light"] {
             background: #fafafa !important;
             color: #09090b;
         }
         [data-theme="light"] .container { color: #09090b; }
-        [data-theme="light"] .back-link { color: #71717a; }
-        [data-theme="light"] .back-link:hover { color: #7c3aed; }
         [data-theme="light"] .hero h1 {
             background: linear-gradient(120deg, #7c3aed, #6366f1, #ec4899);
             -webkit-background-clip: text;
@@ -832,8 +663,9 @@
             border-color: #d4d4d8;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
-        [data-theme="light"] .tool-card h3 { color: #09090b; }
-        [data-theme="light"] .tool-card p { color: #71717a; }
+        [data-theme="light"] .tool-card h3, [data-theme="light"] .tool-card-title { color: #09090b; }
+        [data-theme="light"] .tool-card p, [data-theme="light"] .tool-card-desc { color: #71717a; }
+        [data-theme="light"] .tool-card-arrow { color: #6d28d9; }
         [data-theme="light"] .trust-bar {
             background: #ffffff;
             border-color: #e4e4e7;
@@ -869,76 +701,15 @@
             border-color: rgba(124, 58, 237, 0.4);
             color: #7c3aed;
         }
-        [data-theme="light"] .page-footer {
-            border-top-color: #e4e4e7;
-            color: #a1a1aa;
-        }
-        [data-theme="light"] .page-footer a { color: #71717a; }
-        [data-theme="light"] .page-footer a:hover { color: #7c3aed; }
-        [data-theme="light"] .theme-toggle {
-            background: #ffffff;
-            border-color: #e4e4e7;
-            color: #3f3f46;
-        }
-        [data-theme="light"] .theme-toggle:hover {
-            background: #f4f4f5;
-            border-color: #7c3aed;
-            color: #7c3aed;
-        }
-        [data-theme="light"] .lang-current {
-            background: #ffffff;
-            border-color: #e4e4e7;
-            color: #3f3f46;
-        }
-        [data-theme="light"] .lang-current:hover {
-            background: #f4f4f5;
-            border-color: #7c3aed;
-        }
-        [data-theme="light"] .lang-menu {
-            background: #ffffff;
-            border-color: #e4e4e7;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-        [data-theme="light"] .lang-btn { color: #3f3f46; }
-        [data-theme="light"] .lang-btn:hover { background: #f4f4f5; color: #09090b; }
-        [data-theme="light"] .lang-btn.active { background: #f3f0ff; color: #7c3aed; }
         [data-theme="light"] .breadcrumb a { color: #71717a; }
         [data-theme="light"] .breadcrumb a:hover { color: #7c3aed; }
         [data-theme="light"] .breadcrumb-current { color: #09090b; }
-
-        @media (max-width: 768px) {
-            .theme-toggle {
-                right: 70px;
-                top: 12px;
-            }
-        }
     </style>
+    <link rel="stylesheet" href="../common/common.css">
 </head>
 <body>
 
-<!-- 主题切换 -->
-<button class="theme-toggle" id="themeToggle" title="Toggle theme">🌙</button>
-
-<!-- 语言切换器 -->
-<div class="lang-switcher">
-    <div class="lang-dropdown" id="langDropdown">
-        <div class="lang-current" id="langCurrent">English</div>
-        <div class="lang-menu">
-            <button class="lang-btn active" data-lang="en">🇺🇸 English</button>
-            <button class="lang-btn" data-lang="zh-CN">🇨🇳 中文</button>
-            <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
-            <button class="lang-btn" data-lang="es">🇪🇸 Español</button>
-        </div>
-    </div>
-</div>
-
 <div class="container">
-
-    <!-- 返回链接 -->
-    <a href="index.html" class="back-link animate-in delay-1">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
-        <span data-i18n="back_link">Back to Magic ToolBox</span>
-    </a>
 
     <!-- Hero 区 -->
     <section class="hero">
@@ -954,49 +725,49 @@
     <!-- 工具卡片网格 -->
     <section class="tools-grid">
         <!-- PDF Merge -->
-        <a href="pdf-merge.html" class="tool-card animate-in delay-2">
+        <a href="../pdf-merge.html" class="tool-card animate-in delay-2">
             <div class="tool-card-icon">📎</div>
             <h3 data-i18n="tool_merge_title">PDF Merge</h3>
             <p data-i18n="tool_merge_desc">Combine multiple PDF files into a single document. Drag to reorder pages before merging.</p>
             <span class="tool-card-btn" data-i18n="open_tool">Open Tool →</span>
         </a>
         <!-- PDF Split -->
-        <a href="pdf-split.html" class="tool-card animate-in delay-3">
+        <a href="../pdf-split.html" class="tool-card animate-in delay-3">
             <div class="tool-card-icon">✂️</div>
             <h3 data-i18n="tool_split_title">PDF Split</h3>
             <p data-i18n="tool_split_desc">Split a PDF into individual pages or custom page ranges. Extract exactly what you need.</p>
             <span class="tool-card-btn" data-i18n="open_tool">Open Tool →</span>
         </a>
         <!-- PDF Compress -->
-        <a href="pdf-compress.html" class="tool-card animate-in delay-4">
+        <a href="../pdf-compress.html" class="tool-card animate-in delay-4">
             <div class="tool-card-icon">📦</div>
             <h3 data-i18n="tool_compress_title">PDF Compress</h3>
             <p data-i18n="tool_compress_desc">Reduce PDF file size while maintaining quality. Perfect for email attachments and sharing.</p>
             <span class="tool-card-btn" data-i18n="open_tool">Open Tool →</span>
         </a>
         <!-- PDF to Image -->
-        <a href="pdf-to-image.html" class="tool-card animate-in delay-5">
+        <a href="../pdf-to-image.html" class="tool-card animate-in delay-5">
             <div class="tool-card-icon">🖼️</div>
             <h3 data-i18n="tool_pdf2img_title">PDF to Image</h3>
             <p data-i18n="tool_pdf2img_desc">Convert PDF pages to high-quality PNG or JPEG images. Export all pages or select specific ones.</p>
             <span class="tool-card-btn" data-i18n="open_tool">Open Tool →</span>
         </a>
         <!-- Images to PDF -->
-        <a href="image-to-pdf.html" class="tool-card animate-in delay-5">
+        <a href="../image-to-pdf.html" class="tool-card animate-in delay-5">
             <div class="tool-card-icon">📷</div>
             <h3 data-i18n="tool_img2pdf_title">Images to PDF</h3>
             <p data-i18n="tool_img2pdf_desc">Convert JPG, PNG, WebP and other images into a single PDF document. Adjust page size and margins.</p>
             <span class="tool-card-btn" data-i18n="open_tool">Open Tool →</span>
         </a>
         <!-- PDF Protect -->
-        <a href="pdf-protect.html" class="tool-card animate-in delay-6">
+        <a href="../pdf-protect.html" class="tool-card animate-in delay-6">
             <div class="tool-card-icon">🔐</div>
             <h3 data-i18n="tool_protect_title">PDF Protect</h3>
             <p data-i18n="tool_protect_desc">Add password protection and encryption to your PDF files. Control who can view or edit your documents.</p>
             <span class="tool-card-btn" data-i18n="open_tool">Open Tool →</span>
         </a>
         <!-- E-Sign -->
-        <a href="e-sign.html" class="tool-card animate-in delay-7">
+        <a href="../e-sign.html" class="tool-card animate-in delay-7">
             <div class="tool-card-icon">✍️</div>
             <h3 data-i18n="tool_esign_title">E-Sign</h3>
             <p data-i18n="tool_esign_desc">Add electronic signatures to PDFs. Draw, type or upload your signature and place it anywhere on the document.</p>
@@ -1141,46 +912,16 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="page-footer">
-        <p data-i18n="footerCopyright">© 2025 <a href="https://www.heyuan110.com" target="_blank">heyuan110.com</a> All rights reserved.</p>
-        <p style="margin-top: 8px;"><a href="https://www.heyuan110.com/" data-i18n="footerBlog">Blog</a> · <a href="index.html" data-i18n="footerHome">Magic ToolBox</a></p>
-    </footer>
-
 </div>
-
-<script>
-// 主题切换
-(function() {
-    var toggle = document.getElementById('themeToggle');
-    var saved = localStorage.getItem('magic_toolbox_theme');
-    if (saved === 'light') {
-        document.body.setAttribute('data-theme', 'light');
-        toggle.textContent = '☀️';
-    }
-    toggle.addEventListener('click', function() {
-        var isLight = document.body.getAttribute('data-theme') === 'light';
-        if (isLight) {
-            document.body.removeAttribute('data-theme');
-            toggle.textContent = '🌙';
-            localStorage.setItem('magic_toolbox_theme', 'dark');
-        } else {
-            document.body.setAttribute('data-theme', 'light');
-            toggle.textContent = '☀️';
-            localStorage.setItem('magic_toolbox_theme', 'light');
-        }
-    });
-})();
-</script>
 
 <script>
 (function() {
     'use strict';
 
     /* ==================== 多语言数据 ==================== */
-    var i18n = {
+    var translations = {
         en: {
-            back_link: 'Back to Magic ToolBox',
+            tool_name: 'PDF Tools',
             hero_title: 'Free Online PDF Tools',
             hero_subtitle: 'Merge, split, compress, convert, protect and sign your PDFs — all in your browser, no upload needed. 100% free and private.',
             hero_badge: '7 Tools',
@@ -1233,13 +974,10 @@
             related_developer: 'Developer Tools',
             related_text: 'Text Tools',
             related_media: 'Media Tools',
-            related_utility: 'Utility Tools',
-            footerCopyright: '© 2025 <a href="https://www.heyuan110.com" target="_blank">heyuan110.com</a> All rights reserved.',
-            footerBlog: 'Blog',
-            footerHome: 'Magic ToolBox'
+            related_utility: 'Utility Tools'
         },
         'zh-CN': {
-            back_link: '返回工具箱首页',
+            tool_name: 'PDF 工具',
             hero_title: '免费在线 PDF 工具',
             hero_subtitle: '在浏览器中合并、拆分、压缩、转换、加密和签署 PDF —— 无需上传文件，100% 免费且保护隐私。',
             hero_badge: '7 个工具',
@@ -1292,13 +1030,10 @@
             related_developer: '开发者工具',
             related_text: '文本工具',
             related_media: '媒体工具',
-            related_utility: '实用工具',
-            footerCopyright: '© 2025 <a href="https://www.heyuan110.com" target="_blank">heyuan110.com</a> All rights reserved.',
-            footerBlog: '博客',
-            footerHome: 'Magic ToolBox'
+            related_utility: '实用工具'
         },
         fr: {
-            back_link: 'Retour à Magic ToolBox',
+            tool_name: 'Outils PDF',
             hero_title: 'Outils PDF en Ligne Gratuits',
             hero_subtitle: 'Fusionnez, divisez, compressez, convertissez, protégez et signez vos PDF — directement dans votre navigateur, sans téléchargement. 100% gratuit et privé.',
             hero_badge: '7 Outils',
@@ -1351,13 +1086,10 @@
             related_developer: 'Outils Développeur',
             related_text: 'Outils Texte',
             related_media: 'Outils Média',
-            related_utility: 'Outils Utilitaires',
-            footerCopyright: '© 2025 <a href="https://www.heyuan110.com" target="_blank">heyuan110.com</a> Tous droits réservés.',
-            footerBlog: 'Blog',
-            footerHome: 'Magic ToolBox'
+            related_utility: 'Outils Utilitaires'
         },
         es: {
-            back_link: 'Volver a Magic ToolBox',
+            tool_name: 'Herramientas PDF',
             hero_title: 'Herramientas PDF en Línea Gratis',
             hero_subtitle: 'Combina, divide, comprime, convierte, protege y firma tus PDFs — todo en tu navegador, sin subir archivos. 100% gratis y privado.',
             hero_badge: '7 Herramientas',
@@ -1410,124 +1142,9 @@
             related_developer: 'Herramientas de Desarrollador',
             related_text: 'Herramientas de Texto',
             related_media: 'Herramientas de Media',
-            related_utility: 'Herramientas de Utilidad',
-            footerCopyright: '© 2025 <a href="https://www.heyuan110.com" target="_blank">heyuan110.com</a> Todos los derechos reservados.',
-            footerBlog: 'Blog',
-            footerHome: 'Magic ToolBox'
+            related_utility: 'Herramientas de Utilidad'
         }
     };
-
-    /* ==================== 语言切换逻辑 ==================== */
-    var STORAGE_KEY = 'pdf-tools_lang';
-    var currentLang = localStorage.getItem(STORAGE_KEY) || 'en';
-
-    var langNames = {
-        'en': 'English',
-        'zh-CN': '中文',
-        'fr': 'Français',
-        'es': 'Español'
-    };
-
-    // 初始化语言
-    function applyLanguage(lang) {
-        if (!i18n[lang]) lang = 'en';
-        currentLang = lang;
-        localStorage.setItem(STORAGE_KEY, lang);
-
-        // 更新 html lang 属性
-        document.documentElement.lang = lang === 'zh-CN' ? 'zh-CN' : lang;
-
-        // 需要使用 innerHTML 的键名集合（包含 HTML 标签的翻译）
-        var htmlKeys = { footerCopyright: true };
-
-        // 更新所有 data-i18n 元素
-        var elements = document.querySelectorAll('[data-i18n]');
-        for (var i = 0; i < elements.length; i++) {
-            var key = elements[i].getAttribute('data-i18n');
-            if (i18n[lang][key]) {
-                if (htmlKeys[key]) {
-                    elements[i].innerHTML = i18n[lang][key];
-                } else {
-                    elements[i].textContent = i18n[lang][key];
-                }
-            }
-        }
-
-        // 更新 placeholder
-        var placeholders = document.querySelectorAll('[data-i18n-placeholder]');
-        for (var j = 0; j < placeholders.length; j++) {
-            var pKey = placeholders[j].getAttribute('data-i18n-placeholder');
-            if (i18n[lang][pKey]) {
-                placeholders[j].placeholder = i18n[lang][pKey];
-            }
-        }
-
-        // 更新语言切换按钮状态
-        var langCurrent = document.getElementById('langCurrent');
-        if (langCurrent) {
-            langCurrent.textContent = langNames[lang] || 'English';
-        }
-
-        var langBtns = document.querySelectorAll('.lang-btn');
-        for (var k = 0; k < langBtns.length; k++) {
-            langBtns[k].classList.toggle('active', langBtns[k].getAttribute('data-lang') === lang);
-        }
-    }
-
-    // 语言切换下拉菜单
-    var langDropdown = document.getElementById('langDropdown');
-    var langCurrentBtn = document.getElementById('langCurrent');
-
-    if (langCurrentBtn) {
-        langCurrentBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            langDropdown.classList.toggle('active');
-        });
-    }
-
-    // 语言按钮点击
-    var langBtns = document.querySelectorAll('.lang-btn');
-    for (var i = 0; i < langBtns.length; i++) {
-        langBtns[i].addEventListener('click', function(e) {
-            e.stopPropagation();
-            var lang = this.getAttribute('data-lang');
-            applyLanguage(lang);
-            langDropdown.classList.remove('active');
-        });
-    }
-
-    // 点击页面其他区域关闭下拉菜单
-    document.addEventListener('click', function() {
-        if (langDropdown) {
-            langDropdown.classList.remove('active');
-        }
-    });
-
-    // 初始化默认语言
-    applyLanguage(currentLang);
-
-    /* ==================== FAQ 手风琴交互 ==================== */
-    var faqItems = document.querySelectorAll('.faq-item');
-    for (var f = 0; f < faqItems.length; f++) {
-        var questionBtn = faqItems[f].querySelector('.faq-question');
-        if (questionBtn) {
-            questionBtn.addEventListener('click', function() {
-                var item = this.closest('.faq-item');
-                var isActive = item.classList.contains('active');
-
-                // 关闭所有其他 FAQ
-                var allItems = document.querySelectorAll('.faq-item');
-                for (var a = 0; a < allItems.length; a++) {
-                    allItems[a].classList.remove('active');
-                }
-
-                // 切换当前项
-                if (!isActive) {
-                    item.classList.add('active');
-                }
-            });
-        }
-    }
 
     /* ==================== 滚动入场动画（Intersection Observer） ==================== */
     if ('IntersectionObserver' in window) {
@@ -1554,8 +1171,15 @@
         });
     }
 
+    window._translations = translations;
 })();
 </script>
+<script src="../common/common.js"
+    data-page-type="category"
+    data-show-theme-toggle="true"
+    data-category="pdf"
+    data-tool-name="PDF Tools"></script>
+<script>WebToolbox.init(window._translations);</script>
 
 </body>
 </html>

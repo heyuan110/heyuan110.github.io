@@ -20,18 +20,18 @@
     <meta name="rating" content="general">
     <meta name="distribution" content="global">
     <meta name="language" content="en">
-    <link rel="canonical" href="https://www.heyuan110.com/web-toolbox/image-tools.html">
+    <link rel="canonical" href="https://www.heyuan110.com/web-toolbox/category/image-tools.html">
 
     <!-- Alternate Hreflang -->
-    <link rel="alternate" hreflang="en" href="https://www.heyuan110.com/web-toolbox/image-tools.html">
-    <link rel="alternate" hreflang="zh-CN" href="https://www.heyuan110.com/web-toolbox/image-tools.html">
-    <link rel="alternate" hreflang="fr" href="https://www.heyuan110.com/web-toolbox/image-tools.html">
-    <link rel="alternate" hreflang="es" href="https://www.heyuan110.com/web-toolbox/image-tools.html">
-    <link rel="alternate" hreflang="x-default" href="https://www.heyuan110.com/web-toolbox/image-tools.html">
+    <link rel="alternate" hreflang="en" href="https://www.heyuan110.com/web-toolbox/category/image-tools.html">
+    <link rel="alternate" hreflang="zh-CN" href="https://www.heyuan110.com/web-toolbox/category/image-tools.html">
+    <link rel="alternate" hreflang="fr" href="https://www.heyuan110.com/web-toolbox/category/image-tools.html">
+    <link rel="alternate" hreflang="es" href="https://www.heyuan110.com/web-toolbox/category/image-tools.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.heyuan110.com/web-toolbox/category/image-tools.html">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.heyuan110.com/web-toolbox/image-tools.html">
+    <meta property="og:url" content="https://www.heyuan110.com/web-toolbox/category/image-tools.html">
     <meta property="og:title" content="Free Online Image Tools - Compress, Convert, Edit, OCR | No Ads, No Watermark">
     <meta property="og:description" content="11 free browser-based image tools: compress, convert, edit, OCR, remove background, watermark, QR code and more. No ads, no signup, no watermark.">
     <meta property="og:image" content="https://www.heyuan110.com/web-toolbox/screenshots/image-tools.webp">
@@ -45,7 +45,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@heyuan110">
     <meta name="twitter:creator" content="@heyuan110">
-    <meta name="twitter:url" content="https://www.heyuan110.com/web-toolbox/image-tools.html">
+    <meta name="twitter:url" content="https://www.heyuan110.com/web-toolbox/category/image-tools.html">
     <meta name="twitter:title" content="Free Online Image Tools - Compress, Convert, Edit, OCR | No Ads, No Watermark">
     <meta name="twitter:description" content="11 free browser-based image tools. Compress, convert, edit images, remove backgrounds, OCR and more. No ads, no signup needed.">
     <meta name="twitter:image" content="https://www.heyuan110.com/web-toolbox/screenshots/image-tools.webp">
@@ -57,7 +57,7 @@
         "@type": "WebApplication",
         "name": "Free Online Image Tools",
         "alternateName": ["Image Toolbox", "图片工具合集", "Outils d'image en ligne", "Herramientas de imagen en linea"],
-        "url": "https://www.heyuan110.com/web-toolbox/image-tools.html",
+        "url": "https://www.heyuan110.com/web-toolbox/category/image-tools.html",
         "description": "11 free online image tools: compress, convert, edit, OCR, remove background, watermark, QR code generator, paint board, color palette and more. 100% browser-based, no ads, no signup.",
         "inLanguage": ["en", "zh-CN", "fr", "es"],
         "applicationCategory": "MultimediaApplication",
@@ -129,7 +129,7 @@
                 "@type": "ListItem",
                 "position": 3,
                 "name": "Image Tools",
-                "item": "https://www.heyuan110.com/web-toolbox/image-tools.html"
+                "item": "https://www.heyuan110.com/web-toolbox/category/image-tools.html"
             }
         ]
     }
@@ -193,133 +193,13 @@
     }
     </script>
 
+    <link rel="stylesheet" href="../common/common.css">
     <style>
-        /* ========== 基础重置 ========== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            min-height: 100vh;
-            color: #e4e4e7;
-            line-height: 1.6;
-        }
-
         /* ========== 容器 ========== */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* ========== 语言切换器 ========== */
-        .lang-switcher {
-            position: fixed;
-            top: 16px;
-            right: 24px;
-            z-index: 1000;
-        }
-
-        .lang-dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .lang-current {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 8px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            color: #e0e0e0;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .lang-current:hover {
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .lang-current::after {
-            content: '';
-            border: 4px solid transparent;
-            border-top-color: #e0e0e0;
-            margin-top: 3px;
-        }
-
-        .lang-menu {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            margin-top: 4px;
-            background: #1e1e2e;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            padding: 4px;
-            min-width: 140px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            z-index: 1001;
-        }
-
-        .lang-dropdown.active .lang-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .lang-btn {
-            display: block;
-            width: 100%;
-            padding: 10px 16px;
-            background: none;
-            border: none;
-            color: #e0e0e0;
-            font-size: 14px;
-            text-align: left;
-            cursor: pointer;
-            border-radius: 6px;
-            transition: background 0.2s ease;
-        }
-
-        .lang-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .lang-btn.active {
-            background: rgba(124, 58, 237, 0.3);
-            color: #a78bfa;
-        }
-
-        /* ========== 返回链接 ========== */
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: #a1a1aa;
-            text-decoration: none;
-            font-size: 14px;
-            padding: 24px 0 0;
-            transition: color 0.3s ease;
-        }
-
-        .back-link:hover {
-            color: #7c3aed;
-        }
-
-        .back-link svg {
-            width: 16px;
-            height: 16px;
+            padding: 40px;
         }
 
         /* ========== Hero 区 ========== */
@@ -672,24 +552,6 @@
             color: #e4e4e7;
         }
 
-        /* ========== Footer ========== */
-        .page-footer {
-            text-align: center;
-            padding: 32px 0;
-            color: #71717a;
-            font-size: 0.82rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        .page-footer a {
-            color: #7c3aed;
-            text-decoration: none;
-        }
-
-        .page-footer a:hover {
-            text-decoration: underline;
-        }
-
         /* ========== 入场动画 ========== */
         @keyframes fadeInUp {
             from {
@@ -749,11 +611,6 @@
             .related-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-
-            .lang-switcher {
-                top: 12px;
-                right: 16px;
-            }
         }
 
         @media (max-width: 480px) {
@@ -774,41 +631,7 @@
             }
         }
 
-        /* === 主题切换按钮 === */
-        .theme-toggle {
-            position: fixed;
-            top: 16px;
-            right: 120px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #a1a1aa;
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            transition: all 0.2s ease;
-            z-index: 1000;
-        }
-        .theme-toggle:hover {
-            background: rgba(124, 58, 237, 0.2);
-            border-color: rgba(124, 58, 237, 0.4);
-            color: #e4e4e7;
-        }
-
         /* ========== 浅色主题 ========== */
-        [data-theme="light"] {
-            background: #fafafa !important;
-            color: #09090b;
-        }
-        [data-theme="light"] .container { color: #09090b; }
-        [data-theme="light"] .back-link { color: #71717a; }
-        [data-theme="light"] .back-link:hover { color: #7c3aed; }
         [data-theme="light"] .hero h1 {
             background: linear-gradient(120deg, #7c3aed, #6366f1, #ec4899);
             -webkit-background-clip: text;
@@ -828,8 +651,9 @@
             border-color: #d4d4d8;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
-        [data-theme="light"] .tool-card h3 { color: #09090b; }
-        [data-theme="light"] .tool-card p { color: #71717a; }
+        [data-theme="light"] .tool-card h3, [data-theme="light"] .tool-card-title { color: #09090b; }
+        [data-theme="light"] .tool-card p, [data-theme="light"] .tool-card-desc { color: #71717a; }
+        [data-theme="light"] .tool-card-arrow { color: #6d28d9; }
         [data-theme="light"] .trust-bar {
             background: #ffffff;
             border-color: #e4e4e7;
@@ -855,86 +679,20 @@
         [data-theme="light"] .faq-question { color: #09090b; }
         [data-theme="light"] .faq-question:hover { color: #7c3aed; }
         [data-theme="light"] .faq-answer-inner { color: #71717a; }
-        [data-theme="light"] .related-link {
+        [data-theme="light"] .related-card {
             background: #ffffff;
             border-color: #e4e4e7;
-            color: #3f3f46;
         }
-        [data-theme="light"] .related-link:hover {
+        [data-theme="light"] .related-card:hover {
             background: #f3f0ff;
             border-color: rgba(124, 58, 237, 0.4);
-            color: #7c3aed;
         }
-        [data-theme="light"] .page-footer {
-            border-top-color: #e4e4e7;
-            color: #a1a1aa;
-        }
-        [data-theme="light"] .page-footer a { color: #71717a; }
-        [data-theme="light"] .page-footer a:hover { color: #7c3aed; }
-        [data-theme="light"] .theme-toggle {
-            background: #ffffff;
-            border-color: #e4e4e7;
-            color: #3f3f46;
-        }
-        [data-theme="light"] .theme-toggle:hover {
-            background: #f4f4f5;
-            border-color: #7c3aed;
-            color: #7c3aed;
-        }
-        [data-theme="light"] .lang-current {
-            background: #ffffff;
-            border-color: #e4e4e7;
-            color: #3f3f46;
-        }
-        [data-theme="light"] .lang-current:hover {
-            background: #f4f4f5;
-            border-color: #7c3aed;
-        }
-        [data-theme="light"] .lang-menu {
-            background: #ffffff;
-            border-color: #e4e4e7;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-        [data-theme="light"] .lang-btn { color: #3f3f46; }
-        [data-theme="light"] .lang-btn:hover { background: #f4f4f5; color: #09090b; }
-        [data-theme="light"] .lang-btn.active { background: #f3f0ff; color: #7c3aed; }
-        [data-theme="light"] .breadcrumb a { color: #71717a; }
-        [data-theme="light"] .breadcrumb a:hover { color: #7c3aed; }
-        [data-theme="light"] .breadcrumb-current { color: #09090b; }
-
-        @media (max-width: 768px) {
-            .theme-toggle {
-                right: 70px;
-                top: 12px;
-            }
-        }
+        [data-theme="light"] .related-card-name { color: #09090b; }
     </style>
 </head>
 <body>
 
-    <!-- 主题切换 -->
-    <button class="theme-toggle" id="themeToggle" title="Toggle theme">🌙</button>
-
-    <!-- 语言切换器 -->
-    <div class="lang-switcher">
-        <div class="lang-dropdown" id="langDropdown">
-            <div class="lang-current" id="langCurrent">English</div>
-            <div class="lang-menu">
-                <button class="lang-btn active" data-lang="en">English</button>
-                <button class="lang-btn" data-lang="zh-CN">中文</button>
-                <button class="lang-btn" data-lang="fr">Francais</button>
-                <button class="lang-btn" data-lang="es">Espanol</button>
-            </div>
-        </div>
-    </div>
-
     <div class="container">
-
-        <!-- 返回链接 -->
-        <a href="index.html" class="back-link">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
-            <span data-i18n="back_link">Back to Magic ToolBox</span>
-        </a>
 
         <!-- Hero 区 -->
         <section class="hero hero-animate">
@@ -950,7 +708,7 @@
         <!-- 工具卡片网格 -->
         <div class="tools-grid">
             <!-- 1. 图片压缩 -->
-            <a href="image-compressor.html" class="tool-card animate-in">
+            <a href="../image-compressor.html" class="tool-card animate-in">
                 <div class="tool-card-icon">📦</div>
                 <div class="tool-card-title" data-i18n="tool_compressor_title">Image Compressor</div>
                 <div class="tool-card-desc" data-i18n="tool_compressor_desc">Reduce image file size while maintaining quality. Supports JPEG, PNG, WebP. Adjustable compression ratio.</div>
@@ -958,7 +716,7 @@
             </a>
 
             <!-- 2. 图片格式转换 -->
-            <a href="image-converter.html" class="tool-card animate-in">
+            <a href="../image-converter.html" class="tool-card animate-in">
                 <div class="tool-card-icon">🔄</div>
                 <div class="tool-card-title" data-i18n="tool_converter_title">Image Converter</div>
                 <div class="tool-card-desc" data-i18n="tool_converter_desc">Convert images between PNG, JPEG, WebP, BMP, GIF, TIFF and more. Batch processing supported.</div>
@@ -966,7 +724,7 @@
             </a>
 
             <!-- 3. 图片编辑器 -->
-            <a href="image-editor.html" class="tool-card animate-in">
+            <a href="../image-editor.html" class="tool-card animate-in">
                 <div class="tool-card-icon">🎨</div>
                 <div class="tool-card-title" data-i18n="tool_editor_title">Image Editor</div>
                 <div class="tool-card-desc" data-i18n="tool_editor_desc">Crop, rotate, resize, adjust brightness/contrast, and apply filters. Full-featured online image editor.</div>
@@ -974,7 +732,7 @@
             </a>
 
             <!-- 4. ICO 图标制作 -->
-            <a href="ico-maker.html" class="tool-card animate-in">
+            <a href="../ico-maker.html" class="tool-card animate-in">
                 <div class="tool-card-icon">🎯</div>
                 <div class="tool-card-title" data-i18n="tool_ico_title">ICO Maker</div>
                 <div class="tool-card-desc" data-i18n="tool_ico_desc">Create ICO favicon files from any image. Multiple size presets: 16x16, 32x32, 48x48, 64x64, 128x128, 256x256.</div>
@@ -982,7 +740,7 @@
             </a>
 
             <!-- 5. 证件照工具 -->
-            <a href="id-photo-tool.html" class="tool-card animate-in">
+            <a href="../id-photo-tool.html" class="tool-card animate-in">
                 <div class="tool-card-icon">🪪</div>
                 <div class="tool-card-title" data-i18n="tool_idphoto_title">ID Photo Tool</div>
                 <div class="tool-card-desc" data-i18n="tool_idphoto_desc">Create passport and ID photos with standard size presets. Change background color and crop to exact dimensions.</div>
@@ -990,7 +748,7 @@
             </a>
 
             <!-- 6. 背景移除 -->
-            <a href="bg-remover.html" class="tool-card animate-in">
+            <a href="../bg-remover.html" class="tool-card animate-in">
                 <div class="tool-card-icon">✂️</div>
                 <div class="tool-card-title" data-i18n="tool_bgremover_title">Background Remover</div>
                 <div class="tool-card-desc" data-i18n="tool_bgremover_desc">AI-powered automatic background removal. Perfect for portraits, products, and logos. Get transparent PNG instantly.</div>
@@ -998,7 +756,7 @@
             </a>
 
             <!-- 7. 水印工具 -->
-            <a href="watermark-tool.html" class="tool-card animate-in">
+            <a href="../watermark-tool.html" class="tool-card animate-in">
                 <div class="tool-card-icon">💧</div>
                 <div class="tool-card-title" data-i18n="tool_watermark_title">Watermark Tool</div>
                 <div class="tool-card-desc" data-i18n="tool_watermark_desc">Add text or image watermarks to your photos. Customizable position, size, opacity, and rotation.</div>
@@ -1006,7 +764,7 @@
             </a>
 
             <!-- 8. OCR 文字识别 -->
-            <a href="ocr-tool.html" class="tool-card animate-in">
+            <a href="../ocr-tool.html" class="tool-card animate-in">
                 <div class="tool-card-icon">🔍</div>
                 <div class="tool-card-title" data-i18n="tool_ocr_title">OCR Tool</div>
                 <div class="tool-card-desc" data-i18n="tool_ocr_desc">Extract text from images using advanced OCR. Supports multiple languages including English, Chinese, Japanese, Korean.</div>
@@ -1014,7 +772,7 @@
             </a>
 
             <!-- 9. 在线画板 -->
-            <a href="paint-board.html" class="tool-card animate-in">
+            <a href="../paint-board.html" class="tool-card animate-in">
                 <div class="tool-card-icon">🖌️</div>
                 <div class="tool-card-title" data-i18n="tool_paint_title">Paint Board</div>
                 <div class="tool-card-desc" data-i18n="tool_paint_desc">Free-form drawing canvas with brushes, shapes, colors, and layers. Export your artwork as PNG or SVG.</div>
@@ -1022,7 +780,7 @@
             </a>
 
             <!-- 10. 调色板 -->
-            <a href="color-palette.html" class="tool-card animate-in">
+            <a href="../color-palette.html" class="tool-card animate-in">
                 <div class="tool-card-icon">🎨</div>
                 <div class="tool-card-title" data-i18n="tool_palette_title">Color Palette</div>
                 <div class="tool-card-desc" data-i18n="tool_palette_desc">Pick colors, generate palettes, convert between HEX, RGB, HSL, and CMYK. Extract colors from images.</div>
@@ -1030,7 +788,7 @@
             </a>
 
             <!-- 11. 二维码生成 -->
-            <a href="qr-code-generator.html" class="tool-card animate-in">
+            <a href="../qr-code-generator.html" class="tool-card animate-in">
                 <div class="tool-card-icon">📱</div>
                 <div class="tool-card-title" data-i18n="tool_qrcode_title">QR Code Generator</div>
                 <div class="tool-card-desc" data-i18n="tool_qrcode_desc">Generate QR codes for URLs, text, WiFi, vCard and more. Customize colors, add logos, download as PNG or SVG.</div>
@@ -1185,36 +943,7 @@
             </div>
         </section>
 
-        <!-- Footer -->
-        <footer class="page-footer">
-            <p data-i18n="footerCopyright">© 2025 <a href="https://www.heyuan110.com" target="_blank">heyuan110.com</a> All rights reserved.</p>
-            <p style="margin-top: 8px;"><a href="https://www.heyuan110.com/" data-i18n="footerBlog">Blog</a> · <a href="index.html" data-i18n="footerHome">Magic ToolBox</a></p>
-        </footer>
     </div>
-
-    <script>
-    // 主题切换
-    (function() {
-        var toggle = document.getElementById('themeToggle');
-        var saved = localStorage.getItem('magic_toolbox_theme');
-        if (saved === 'light') {
-            document.body.setAttribute('data-theme', 'light');
-            toggle.textContent = '☀️';
-        }
-        toggle.addEventListener('click', function() {
-            var isLight = document.body.getAttribute('data-theme') === 'light';
-            if (isLight) {
-                document.body.removeAttribute('data-theme');
-                toggle.textContent = '🌙';
-                localStorage.setItem('magic_toolbox_theme', 'dark');
-            } else {
-                document.body.setAttribute('data-theme', 'light');
-                toggle.textContent = '☀️';
-                localStorage.setItem('magic_toolbox_theme', 'light');
-            }
-        });
-    })();
-    </script>
 
     <script>
     (function() {
@@ -1223,7 +952,7 @@
         // ========== 多语言翻译 ==========
         var translations = {
             en: {
-                back_link: 'Back to Magic ToolBox',
+                tool_name: 'Image Tools',
                 hero_title: 'Free Online Image Tools',
                 hero_subtitle: 'Compress, convert, edit, and process images directly in your browser. No ads, no signup, no watermark. 100% free and private.',
                 hero_badge: '11 Tools Available',
@@ -1286,13 +1015,10 @@
                 related_dev: 'Developer Tools',
                 related_text: 'Text Tools',
                 related_media: 'Media Tools',
-                related_utility: 'Utility Tools',
-                footerCopyright: '© 2025 <a href="https://www.heyuan110.com" target="_blank">heyuan110.com</a> All rights reserved.',
-                footerBlog: 'Blog',
-                footerHome: 'Magic ToolBox'
+                related_utility: 'Utility Tools'
             },
             'zh-CN': {
-                back_link: '返回工具箱首页',
+                tool_name: '图片工具',
                 hero_title: '免费在线图片工具',
                 hero_subtitle: '在浏览器中直接压缩、转换、编辑和处理图片。无广告、无需注册、无水印，100% 免费且隐私安全。',
                 hero_badge: '11 个工具可用',
@@ -1350,13 +1076,10 @@
                 related_dev: '开发者工具',
                 related_text: '文本工具',
                 related_media: '媒体工具',
-                related_utility: '实用工具',
-                footerCopyright: '© 2025 <a href="https://www.heyuan110.com" target="_blank">heyuan110.com</a> All rights reserved.',
-                footerBlog: '博客',
-                footerHome: 'Magic ToolBox'
+                related_utility: '实用工具'
             },
             fr: {
-                back_link: 'Retour a Magic ToolBox',
+                tool_name: 'Outils Image',
                 hero_title: 'Outils d\'image en ligne gratuits',
                 hero_subtitle: 'Compressez, convertissez, editez et traitez des images directement dans votre navigateur. Sans publicite, sans inscription, sans filigrane. 100% gratuit et prive.',
                 hero_badge: '11 outils disponibles',
@@ -1414,13 +1137,10 @@
                 related_dev: 'Outils developpeur',
                 related_text: 'Outils texte',
                 related_media: 'Outils media',
-                related_utility: 'Outils utilitaires',
-                footerCopyright: '© 2025 <a href="https://www.heyuan110.com" target="_blank">heyuan110.com</a> Tous droits réservés.',
-                footerBlog: 'Blog',
-                footerHome: 'Magic ToolBox'
+                related_utility: 'Outils utilitaires'
             },
             es: {
-                back_link: 'Volver a Magic ToolBox',
+                tool_name: 'Herramientas de Imagen',
                 hero_title: 'Herramientas de imagen en linea gratis',
                 hero_subtitle: 'Comprime, convierte, edita y procesa imagenes directamente en tu navegador. Sin anuncios, sin registro, sin marca de agua. 100% gratis y privado.',
                 hero_badge: '11 herramientas disponibles',
@@ -1472,119 +1192,25 @@
                 faq_ocr_q: 'Que tan precisa es la herramienta de reconocimiento de texto OCR?',
                 faq_ocr_a: 'Nuestra herramienta OCR usa Tesseract.js, un motor OCR de codigo abierto que se ejecuta completamente en tu navegador. Soporta multiples idiomas. La precision depende de la calidad de la imagen — texto claro con alto contraste tipicamente logra 95%+ de precision. El texto extraido puede copiarse, editarse o exportarse directamente.',
                 faq_free_q: 'Son estas herramientas de imagen realmente gratis sin anuncios ni recopilacion de datos?',
-                faq_free_a: 'Si, las 11 herramientas de imagen son 100% gratuitas sin anuncios, sin registro requerido, sin marcas de agua y sin limites de uso. Cada herramienta se ejecuta completamente en tu navegador — tus imagenes nunca se suben. No hay recopilacion de datos, no hay seguimiento de tus imagenes y no hay costos ocultos.'
-                ,
+                faq_free_a: 'Si, las 11 herramientas de imagen son 100% gratuitas sin anuncios, sin registro requerido, sin marcas de agua y sin limites de uso. Cada herramienta se ejecuta completamente en tu navegador — tus imagenes nunca se suben. No hay recopilacion de datos, no hay seguimiento de tus imagenes y no hay costos ocultos.',
                 related_title: 'Explora mas categorias de herramientas',
                 related_pdf: 'Herramientas PDF',
                 related_dev: 'Herramientas de desarrollo',
                 related_text: 'Herramientas de texto',
                 related_media: 'Herramientas multimedia',
-                related_utility: 'Herramientas utilitarias',
-                footerCopyright: '© 2025 <a href="https://www.heyuan110.com" target="_blank">heyuan110.com</a> Todos los derechos reservados.',
-                footerBlog: 'Blog',
-                footerHome: 'Magic ToolBox'
+                related_utility: 'Herramientas utilitarias'
             }
         };
 
-        // 语言显示名称
-        var langNames = {
-            en: 'English',
-            'zh-CN': '中文',
-            fr: 'Francais',
-            es: 'Espanol'
-        };
-
-        // 当前语言
-        var currentLang = localStorage.getItem('image-tools_lang') || 'en';
-
-        // 应用翻译
-        function applyTranslation(lang) {
-            var t = translations[lang];
-            if (!t) return;
-
-            // 更新所有 data-i18n 元素
-            var elements = document.querySelectorAll('[data-i18n]');
-            elements.forEach(function(el) {
-                var key = el.getAttribute('data-i18n');
-                if (t[key] !== undefined) {
-                    if (t[key].indexOf('<') !== -1) {
-                        el.innerHTML = t[key];
-                    } else {
-                        el.textContent = t[key];
-                    }
-                }
-            });
-
-            // 更新所有 data-i18n-placeholder 元素
-            var placeholders = document.querySelectorAll('[data-i18n-placeholder]');
-            placeholders.forEach(function(el) {
-                var key = el.getAttribute('data-i18n-placeholder');
-                if (t[key] !== undefined) {
-                    el.placeholder = t[key];
-                }
-            });
-
-            // 更新语言切换器显示
-            document.getElementById('langCurrent').textContent = langNames[lang] || lang;
-
-            // 更新活跃状态
-            document.querySelectorAll('.lang-btn').forEach(function(btn) {
-                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-            });
-
-            // 更新 html lang 属性
-            document.documentElement.lang = lang === 'zh-CN' ? 'zh-CN' : lang;
-
-            // 保存到 localStorage
-            currentLang = lang;
-            localStorage.setItem('image-tools_lang', lang);
-        }
-
-        // 语言下拉菜单交互
-        var dropdown = document.getElementById('langDropdown');
-        var langCurrentBtn = document.getElementById('langCurrent');
-
-        langCurrentBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            dropdown.classList.toggle('active');
-        });
-
-        document.querySelectorAll('.lang-btn').forEach(function(btn) {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                var lang = this.getAttribute('data-lang');
-                applyTranslation(lang);
-                dropdown.classList.remove('active');
-            });
-        });
-
-        // 点击外部关闭下拉菜单
-        document.addEventListener('click', function() {
-            dropdown.classList.remove('active');
-        });
-
-        // FAQ 手风琴交互
-        document.querySelectorAll('.faq-question').forEach(function(question) {
-            question.addEventListener('click', function() {
-                var item = this.parentElement;
-                var wasOpen = item.classList.contains('open');
-
-                // 关闭所有其他 FAQ
-                document.querySelectorAll('.faq-item').forEach(function(faqItem) {
-                    faqItem.classList.remove('open');
-                });
-
-                // 如果之前没有打开，则打开当前项
-                if (!wasOpen) {
-                    item.classList.add('open');
-                }
-            });
-        });
-
-        // 初始化语言
-        applyTranslation(currentLang);
+        window._translations = translations;
 
     })();
     </script>
+    <script src="../common/common.js"
+        data-page-type="category"
+        data-show-theme-toggle="true"
+        data-category="image"
+        data-tool-name="Image Tools"></script>
+    <script>WebToolbox.init(window._translations);</script>
 </body>
 </html>

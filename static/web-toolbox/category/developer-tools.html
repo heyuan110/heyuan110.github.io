@@ -19,16 +19,16 @@
     <meta name="rating" content="general">
     <meta name="distribution" content="global">
     <meta name="language" content="en">
-    <link rel="canonical" href="https://www.heyuan110.com/web-toolbox/developer-tools.html">
-    <link rel="alternate" hreflang="en" href="https://www.heyuan110.com/web-toolbox/developer-tools.html">
-    <link rel="alternate" hreflang="zh-CN" href="https://www.heyuan110.com/web-toolbox/developer-tools.html">
-    <link rel="alternate" hreflang="fr" href="https://www.heyuan110.com/web-toolbox/developer-tools.html">
-    <link rel="alternate" hreflang="es" href="https://www.heyuan110.com/web-toolbox/developer-tools.html">
-    <link rel="alternate" hreflang="x-default" href="https://www.heyuan110.com/web-toolbox/developer-tools.html">
+    <link rel="canonical" href="https://www.heyuan110.com/web-toolbox/category/developer-tools.html">
+    <link rel="alternate" hreflang="en" href="https://www.heyuan110.com/web-toolbox/category/developer-tools.html">
+    <link rel="alternate" hreflang="zh-CN" href="https://www.heyuan110.com/web-toolbox/category/developer-tools.html">
+    <link rel="alternate" hreflang="fr" href="https://www.heyuan110.com/web-toolbox/category/developer-tools.html">
+    <link rel="alternate" hreflang="es" href="https://www.heyuan110.com/web-toolbox/category/developer-tools.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.heyuan110.com/web-toolbox/category/developer-tools.html">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.heyuan110.com/web-toolbox/developer-tools.html">
+    <meta property="og:url" content="https://www.heyuan110.com/web-toolbox/category/developer-tools.html">
     <meta property="og:title" content="Free Online Developer Tools - JSON, API, Regex, Code Formatter | No Ads, No Signup">
     <meta property="og:description" content="16 free online developer tools: JSON viewer, API tester, regex tester, code formatter, Base64, URL encoder & more. No ads, no signup. 100% browser-based.">
     <meta property="og:image" content="https://www.heyuan110.com/web-toolbox/screenshots/developer-tools.webp">
@@ -54,7 +54,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
-    <link rel="stylesheet" href="common/common.css">
+    <link rel="stylesheet" href="../common/common.css">
 
     <!-- ========== JSON-LD: WebApplication ========== -->
     <script type="application/ld+json">
@@ -63,7 +63,7 @@
         "@type": "WebApplication",
         "name": "Free Online Developer Tools",
         "alternateName": ["Developer Tools Collection", "开发者工具集", "Outils de Développeur", "Herramientas de Desarrollador"],
-        "url": "https://www.heyuan110.com/web-toolbox/developer-tools.html",
+        "url": "https://www.heyuan110.com/web-toolbox/category/developer-tools.html",
         "description": "16 free online developer tools: JSON viewer, API tester, regex tester, code formatter, Base64, URL encoder, CSV/JSON converter, cron generator & more. No ads, no signup, 100% browser-based.",
         "inLanguage": ["en", "zh-CN", "fr", "es"],
         "applicationCategory": "DeveloperApplication",
@@ -125,7 +125,7 @@
         "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.heyuan110.com/" },
             { "@type": "ListItem", "position": 2, "name": "Magic ToolBox", "item": "https://www.heyuan110.com/web-toolbox/" },
-            { "@type": "ListItem", "position": 3, "name": "Developer Tools", "item": "https://www.heyuan110.com/web-toolbox/developer-tools.html" }
+            { "@type": "ListItem", "position": 3, "name": "Developer Tools", "item": "https://www.heyuan110.com/web-toolbox/category/developer-tools.html" }
         ]
     }
     </script>
@@ -371,41 +371,12 @@
             .hero{padding:30px 16px 24px;}
         }
 
-/* === 主题切换按钮 === */
-.theme-toggle {
-    position: fixed;
-    top: 16px;
-    right: 120px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #a1a1aa;
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    transition: all 0.2s ease;
-    z-index: 1000;
-}
-.theme-toggle:hover {
-    background: rgba(124, 58, 237, 0.2);
-    border-color: rgba(124, 58, 237, 0.4);
-    color: #e4e4e7;
-}
-
 /* ========== 浅色主题 ========== */
 [data-theme="light"] {
     background: #fafafa !important;
     color: #09090b;
 }
 [data-theme="light"] .container { color: #09090b; }
-[data-theme="light"] .back-link { color: #71717a; }
-[data-theme="light"] .back-link:hover { color: #7c3aed; }
 [data-theme="light"] .hero h1 {
     background: linear-gradient(120deg, #7c3aed, #6366f1, #ec4899);
     -webkit-background-clip: text;
@@ -425,8 +396,11 @@
     border-color: #d4d4d8;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
-[data-theme="light"] .tool-card h3 { color: #09090b; }
-[data-theme="light"] .tool-card p { color: #71717a; }
+[data-theme="light"] .tool-card h3, [data-theme="light"] .tool-card-title { color: #09090b; }
+[data-theme="light"] .tool-card p, [data-theme="light"] .tool-card-desc { color: #71717a; }
+[data-theme="light"] .tool-card-arrow { color: #6d28d9; }
+[data-theme="light"] .related-card h3 { color: #09090b; }
+[data-theme="light"] .related-card p { color: #71717a; }
 [data-theme="light"] .trust-bar {
     background: #ffffff;
     border-color: #e4e4e7;
@@ -462,70 +436,10 @@
     border-color: rgba(124, 58, 237, 0.4);
     color: #7c3aed;
 }
-[data-theme="light"] .page-footer {
-    border-top-color: #e4e4e7;
-    color: #a1a1aa;
-}
-[data-theme="light"] .page-footer a { color: #71717a; }
-[data-theme="light"] .page-footer a:hover { color: #7c3aed; }
-[data-theme="light"] .theme-toggle {
-    background: #ffffff;
-    border-color: #e4e4e7;
-    color: #3f3f46;
-}
-[data-theme="light"] .theme-toggle:hover {
-    background: #f4f4f5;
-    border-color: #7c3aed;
-    color: #7c3aed;
-}
-[data-theme="light"] .lang-current {
-    background: #ffffff;
-    border-color: #e4e4e7;
-    color: #3f3f46;
-}
-[data-theme="light"] .lang-current:hover {
-    background: #f4f4f5;
-    border-color: #7c3aed;
-}
-[data-theme="light"] .lang-menu {
-    background: #ffffff;
-    border-color: #e4e4e7;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-[data-theme="light"] .lang-btn { color: #3f3f46; }
-[data-theme="light"] .lang-btn:hover { background: #f4f4f5; color: #09090b; }
-[data-theme="light"] .lang-btn.active { background: #f3f0ff; color: #7c3aed; }
-[data-theme="light"] .breadcrumb a { color: #71717a; }
-[data-theme="light"] .breadcrumb a:hover { color: #7c3aed; }
-[data-theme="light"] .breadcrumb-current { color: #09090b; }
-
-@media (max-width: 768px) {
-    .theme-toggle {
-        right: 70px;
-        top: 12px;
-    }
-}
     </style>
 </head>
 <body>
-
-    <!-- 主题切换 -->
-    <button class="theme-toggle" id="themeToggle" title="Toggle theme">🌙</button>
-
-    <!-- 语言切换器 -->
-    <div class="lang-switcher">
-        <button class="lang-current" id="langCurrent">English</button>
-        <div class="lang-dropdown" id="langDropdown">
-            <button onclick="applyLanguage('en')">English</button>
-            <button onclick="applyLanguage('zh-CN')">中文</button>
-            <button onclick="applyLanguage('fr')">Francais</button>
-            <button onclick="applyLanguage('es')">Espanol</button>
-        </div>
-    </div>
-
-    <!-- 返回链接 -->
-    <a href="index.html" class="back-link" data-i18n="back_link">&#8592; Back to Magic ToolBox</a>
-
+<div class="container">
     <!-- ==================== Hero 区域 ==================== -->
     <section class="hero">
         <div class="hero-icon">&#x1F4BB;</div>
@@ -537,7 +451,7 @@
     <!-- ==================== 工具卡片网格 ==================== -->
     <div class="tools-grid" id="toolsGrid">
         <!-- 1. JSON Viewer -->
-        <a href="json-viewer.html" class="tool-card" style="animation-delay:0.05s">
+        <a href="../json-viewer.html" class="tool-card" style="animation-delay:0.05s">
             <div class="tool-card-header">
                 <div class="tool-card-icon">&#x1F4CB;</div>
                 <div class="tool-card-title" data-i18n="tool1_title">JSON Viewer</div>
@@ -546,7 +460,7 @@
             <span class="tool-card-arrow" data-i18n="tool_open">Open Tool &#8594;</span>
         </a>
         <!-- 2. SQLite Viewer -->
-        <a href="sqlite-viewer.html" class="tool-card" style="animation-delay:0.1s">
+        <a href="../sqlite-viewer.html" class="tool-card" style="animation-delay:0.1s">
             <div class="tool-card-header">
                 <div class="tool-card-icon">&#x1F5C4;</div>
                 <div class="tool-card-title" data-i18n="tool2_title">SQLite Viewer</div>
@@ -555,7 +469,7 @@
             <span class="tool-card-arrow" data-i18n="tool_open">Open Tool &#8594;</span>
         </a>
         <!-- 3. Crypto & Encoding Toolkit -->
-        <a href="crypto-tools.html" class="tool-card" style="animation-delay:0.15s">
+        <a href="../crypto-tools.html" class="tool-card" style="animation-delay:0.15s">
             <div class="tool-card-header">
                 <div class="tool-card-icon">&#x1F510;</div>
                 <div class="tool-card-title" data-i18n="tool3_title">Crypto &amp; Encoding Toolkit</div>
@@ -564,7 +478,7 @@
             <span class="tool-card-arrow" data-i18n="tool_open">Open Tool &#8594;</span>
         </a>
         <!-- 4. WebSocket Tester -->
-        <a href="websocket-tester.html" class="tool-card" style="animation-delay:0.2s">
+        <a href="../websocket-tester.html" class="tool-card" style="animation-delay:0.2s">
             <div class="tool-card-header">
                 <div class="tool-card-icon">&#x1F50C;</div>
                 <div class="tool-card-title" data-i18n="tool4_title">WebSocket Tester</div>
@@ -573,7 +487,7 @@
             <span class="tool-card-arrow" data-i18n="tool_open">Open Tool &#8594;</span>
         </a>
         <!-- 5. Regex Tester -->
-        <a href="regex-tester.html" class="tool-card" style="animation-delay:0.25s">
+        <a href="../regex-tester.html" class="tool-card" style="animation-delay:0.25s">
             <div class="tool-card-header">
                 <div class="tool-card-icon">&#x1F50D;</div>
                 <div class="tool-card-title" data-i18n="tool5_title">Regex Tester</div>
@@ -582,7 +496,7 @@
             <span class="tool-card-arrow" data-i18n="tool_open">Open Tool &#8594;</span>
         </a>
         <!-- 6. API Tester -->
-        <a href="api-tester.html" class="tool-card" style="animation-delay:0.3s">
+        <a href="../api-tester.html" class="tool-card" style="animation-delay:0.3s">
             <div class="tool-card-header">
                 <div class="tool-card-icon">&#x1F680;</div>
                 <div class="tool-card-title" data-i18n="tool6_title">API Tester</div>
@@ -591,7 +505,7 @@
             <span class="tool-card-arrow" data-i18n="tool_open">Open Tool &#8594;</span>
         </a>
         <!-- 7. Code Formatter -->
-        <a href="code-formatter.html" class="tool-card" style="animation-delay:0.35s">
+        <a href="../code-formatter.html" class="tool-card" style="animation-delay:0.35s">
             <div class="tool-card-header">
                 <div class="tool-card-icon">&#x2728;</div>
                 <div class="tool-card-title" data-i18n="tool7_title">Code Formatter</div>
@@ -600,7 +514,7 @@
             <span class="tool-card-arrow" data-i18n="tool_open">Open Tool &#8594;</span>
         </a>
         <!-- 8. YAML/TOML Editor -->
-        <a href="yaml-editor.html" class="tool-card" style="animation-delay:0.4s">
+        <a href="../yaml-editor.html" class="tool-card" style="animation-delay:0.4s">
             <div class="tool-card-header">
                 <div class="tool-card-icon">&#x1F4DD;</div>
                 <div class="tool-card-title" data-i18n="tool8_title">YAML/TOML Editor</div>
@@ -609,7 +523,7 @@
             <span class="tool-card-arrow" data-i18n="tool_open">Open Tool &#8594;</span>
         </a>
         <!-- 9. Hex Viewer -->
-        <a href="hex-viewer.html" class="tool-card" style="animation-delay:0.45s">
+        <a href="../hex-viewer.html" class="tool-card" style="animation-delay:0.45s">
             <div class="tool-card-header">
                 <div class="tool-card-icon">&#x1F522;</div>
                 <div class="tool-card-title" data-i18n="tool9_title">Hex Viewer</div>
@@ -618,7 +532,7 @@
             <span class="tool-card-arrow" data-i18n="tool_open">Open Tool &#8594;</span>
         </a>
         <!-- 10. Base64 Tool -->
-        <a href="base64-tool.html" class="tool-card" style="animation-delay:0.5s">
+        <a href="../base64-tool.html" class="tool-card" style="animation-delay:0.5s">
             <div class="tool-card-header">
                 <div class="tool-card-icon">&#x1F504;</div>
                 <div class="tool-card-title" data-i18n="tool10_title">Base64 Tool</div>
@@ -627,7 +541,7 @@
             <span class="tool-card-arrow" data-i18n="tool_open">Open Tool &#8594;</span>
         </a>
         <!-- 11. URL Encoder/Decoder -->
-        <a href="url-encoder.html" class="tool-card" style="animation-delay:0.55s">
+        <a href="../url-encoder.html" class="tool-card" style="animation-delay:0.55s">
             <div class="tool-card-header">
                 <div class="tool-card-icon">&#x1F517;</div>
                 <div class="tool-card-title" data-i18n="tool11_title">URL Encoder/Decoder</div>
@@ -636,7 +550,7 @@
             <span class="tool-card-arrow" data-i18n="tool_open">Open Tool &#8594;</span>
         </a>
         <!-- 12. CSV/JSON Converter -->
-        <a href="csv-json.html" class="tool-card" style="animation-delay:0.6s">
+        <a href="../csv-json.html" class="tool-card" style="animation-delay:0.6s">
             <div class="tool-card-header">
                 <div class="tool-card-icon">&#x1F501;</div>
                 <div class="tool-card-title" data-i18n="tool12_title">CSV/JSON Converter</div>
@@ -645,7 +559,7 @@
             <span class="tool-card-arrow" data-i18n="tool_open">Open Tool &#8594;</span>
         </a>
         <!-- 13. Cron Generator -->
-        <a href="cron-generator.html" class="tool-card" style="animation-delay:0.65s">
+        <a href="../cron-generator.html" class="tool-card" style="animation-delay:0.65s">
             <div class="tool-card-header">
                 <div class="tool-card-icon">&#x23F0;</div>
                 <div class="tool-card-title" data-i18n="tool13_title">Cron Generator</div>
@@ -654,7 +568,7 @@
             <span class="tool-card-arrow" data-i18n="tool_open">Open Tool &#8594;</span>
         </a>
         <!-- 14. Timestamp Converter -->
-        <a href="timestamp-converter.html" class="tool-card" style="animation-delay:0.7s">
+        <a href="../timestamp-converter.html" class="tool-card" style="animation-delay:0.7s">
             <div class="tool-card-header">
                 <div class="tool-card-icon">&#x1F552;</div>
                 <div class="tool-card-title" data-i18n="tool14_title">Timestamp Converter</div>
@@ -663,7 +577,7 @@
             <span class="tool-card-arrow" data-i18n="tool_open">Open Tool &#8594;</span>
         </a>
         <!-- 15. IP Geolocation -->
-        <a href="ip-lookup.html" class="tool-card" style="animation-delay:0.75s">
+        <a href="../ip-lookup.html" class="tool-card" style="animation-delay:0.75s">
             <div class="tool-card-header">
                 <div class="tool-card-icon">&#x1F30D;</div>
                 <div class="tool-card-title" data-i18n="tool15_title">IP Geolocation</div>
@@ -672,7 +586,7 @@
             <span class="tool-card-arrow" data-i18n="tool_open">Open Tool &#8594;</span>
         </a>
         <!-- 16. Whois Lookup -->
-        <a href="whois-query.html" class="tool-card" style="animation-delay:0.8s">
+        <a href="../whois-query.html" class="tool-card" style="animation-delay:0.8s">
             <div class="tool-card-header">
                 <div class="tool-card-icon">&#x1F50E;</div>
                 <div class="tool-card-title" data-i18n="tool16_title">Whois Lookup</div>
@@ -723,7 +637,7 @@
 
         <!-- FAQ 1: 科普 -->
         <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">
+            <div class="faq-question">
                 <span data-i18n="faq1_q">What are online developer tools and why should I use them?</span>
                 <span class="arrow">&#x25BC;</span>
             </div>
@@ -732,7 +646,7 @@
 
         <!-- FAQ 2 -->
         <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">
+            <div class="faq-question">
                 <span data-i18n="faq2_q">Can I test REST APIs and WebSocket connections directly in my browser?</span>
                 <span class="arrow">&#x25BC;</span>
             </div>
@@ -741,7 +655,7 @@
 
         <!-- FAQ 3 -->
         <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">
+            <div class="faq-question">
                 <span data-i18n="faq3_q">How do I format and validate JSON, YAML, or code snippets online?</span>
                 <span class="arrow">&#x25BC;</span>
             </div>
@@ -750,7 +664,7 @@
 
         <!-- FAQ 4 -->
         <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">
+            <div class="faq-question">
                 <span data-i18n="faq4_q">What encoding, decoding, and data conversion tools are available?</span>
                 <span class="arrow">&#x25BC;</span>
             </div>
@@ -759,7 +673,7 @@
 
         <!-- FAQ 5 -->
         <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">
+            <div class="faq-question">
                 <span data-i18n="faq5_q">Can I use cron expression generator and regex tester for DevOps workflows?</span>
                 <span class="arrow">&#x25BC;</span>
             </div>
@@ -768,7 +682,7 @@
 
         <!-- FAQ 6: 免费隐私 (强制最后一条) -->
         <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">
+            <div class="faq-question">
                 <span data-i18n="faq_free_q">Are these developer tools really free with no ads and no signup?</span>
                 <span class="arrow">&#x25BC;</span>
             </div>
@@ -807,46 +721,16 @@
             </a>
         </div>
     </section>
-
-    <footer class="page-footer">
-        <p data-i18n="footerCopyright">© 2025 <a href="https://www.heyuan110.com" target="_blank">heyuan110.com</a> All rights reserved.</p>
-        <p style="margin-top: 8px;"><a href="https://www.heyuan110.com/" data-i18n="footerBlog">Blog</a> · <a href="index.html" data-i18n="footerHome">Magic ToolBox</a></p>
-    </footer>
-
-    <script>
-    // 主题切换
-    (function() {
-        var toggle = document.getElementById('themeToggle');
-        var saved = localStorage.getItem('magic_toolbox_theme');
-        if (saved === 'light') {
-            document.body.setAttribute('data-theme', 'light');
-            toggle.textContent = '☀️';
-        }
-        toggle.addEventListener('click', function() {
-            var isLight = document.body.getAttribute('data-theme') === 'light';
-            if (isLight) {
-                document.body.removeAttribute('data-theme');
-                toggle.textContent = '🌙';
-                localStorage.setItem('magic_toolbox_theme', 'dark');
-            } else {
-                document.body.setAttribute('data-theme', 'light');
-                toggle.textContent = '☀️';
-                localStorage.setItem('magic_toolbox_theme', 'light');
-            }
-        });
-    })();
-    </script>
+</div>
 
     <script>
     (function() {
         'use strict';
 
         // ========== 多语言翻译 ==========
-        var langNames = {en:"English","zh-CN":"中文",fr:"Francais",es:"Espanol"};
-
-        var i18n = {
+        var translations = {
             en: {
-                back_link: "\u2190 Back to Magic ToolBox",
+                tool_name: 'Developer Tools',
                 hero_title: "Free Online Developer Tools",
                 hero_subtitle: "A comprehensive collection of browser-based developer utilities. No ads, no signup, no installation. Just open and use.",
                 hero_badge: "16 Tools",
@@ -894,13 +778,10 @@
                 related2_name: "Image Tools", related2_desc: "Compress, convert, edit, remove background",
                 related3_name: "Text Tools", related3_desc: "Markdown editor, word counter, text diff",
                 related4_name: "Media Tools", related4_desc: "Screen recorder, audio cutter, video tools",
-                related5_name: "Utility Tools", related5_desc: "Calculator, password generator, QR code",
-                footerCopyright: '© 2025 <a href="https://www.heyuan110.com" target="_blank">heyuan110.com</a> All rights reserved.',
-                footerBlog: 'Blog',
-                footerHome: 'Magic ToolBox'
+                related5_name: "Utility Tools", related5_desc: "Calculator, password generator, QR code"
             },
             "zh-CN": {
-                back_link: "\u2190 \u8FD4\u56DE\u5DE5\u5177\u7BB1",
+                tool_name: '\u5F00\u53D1\u8005\u5DE5\u5177',
                 hero_title: "\u514D\u8D39\u5728\u7EBF\u5F00\u53D1\u8005\u5DE5\u5177",
                 hero_subtitle: "\u4E00\u5957\u5168\u9762\u7684\u6D4F\u89C8\u5668\u7AEF\u5F00\u53D1\u5DE5\u5177\u96C6\u3002\u65E0\u5E7F\u544A\u3001\u65E0\u9700\u6CE8\u518C\u3001\u65E0\u9700\u5B89\u88C5\u3002\u6253\u5F00\u5373\u7528\u3002",
                 hero_badge: "16 \u4E2A\u5DE5\u5177",
@@ -948,13 +829,10 @@
                 related2_name: "\u56FE\u7247\u5DE5\u5177", related2_desc: "\u538B\u7F29\u3001\u8F6C\u6362\u3001\u7F16\u8F91\u3001\u53BB\u80CC\u666F",
                 related3_name: "\u6587\u672C\u5DE5\u5177", related3_desc: "Markdown \u7F16\u8F91\u5668\u3001\u5B57\u6570\u7EDF\u8BA1\u3001\u6587\u672C\u5BF9\u6BD4",
                 related4_name: "\u5A92\u4F53\u5DE5\u5177", related4_desc: "\u5F55\u5C4F\u3001\u97F3\u9891\u526A\u8F91\u3001\u89C6\u9891\u5DE5\u5177",
-                related5_name: "\u5B9E\u7528\u5DE5\u5177", related5_desc: "\u8BA1\u7B97\u5668\u3001\u5BC6\u7801\u751F\u6210\u3001\u4E8C\u7EF4\u7801",
-                footerCopyright: '© 2025 <a href="https://www.heyuan110.com" target="_blank">heyuan110.com</a> All rights reserved.',
-                footerBlog: '\u535A\u5BA2',
-                footerHome: 'Magic ToolBox'
+                related5_name: "\u5B9E\u7528\u5DE5\u5177", related5_desc: "\u8BA1\u7B97\u5668\u3001\u5BC6\u7801\u751F\u6210\u3001\u4E8C\u7EF4\u7801"
             },
             fr: {
-                back_link: "\u2190 Retour a Magic ToolBox",
+                tool_name: 'Outils D\u00e9veloppeur',
                 hero_title: "Outils de Developpeur Gratuits en Ligne",
                 hero_subtitle: "Une collection complete d'utilitaires de developpement dans le navigateur. Sans pub, sans inscription, sans installation. Ouvrez et utilisez.",
                 hero_badge: "16 Outils",
@@ -1002,13 +880,10 @@
                 related2_name: "Outils Image", related2_desc: "Compresser, convertir, editer, supprimer l'arriere-plan",
                 related3_name: "Outils Texte", related3_desc: "Editeur Markdown, compteur de mots, diff texte",
                 related4_name: "Outils Media", related4_desc: "Enregistreur d'ecran, decoupeur audio, outils video",
-                related5_name: "Utilitaires", related5_desc: "Calculatrice, generateur de mots de passe, QR code",
-                footerCopyright: '© 2025 <a href="https://www.heyuan110.com" target="_blank">heyuan110.com</a> Tous droits r\u00e9serv\u00e9s.',
-                footerBlog: 'Blog',
-                footerHome: 'Magic ToolBox'
+                related5_name: "Utilitaires", related5_desc: "Calculatrice, generateur de mots de passe, QR code"
             },
             es: {
-                back_link: "\u2190 Volver a Magic ToolBox",
+                tool_name: 'Herramientas de Desarrollador',
                 hero_title: "Herramientas de Desarrollador Gratuitas en Linea",
                 hero_subtitle: "Una coleccion completa de utilidades de desarrollo en el navegador. Sin anuncios, sin registro, sin instalacion. Solo abre y usa.",
                 hero_badge: "16 Herramientas",
@@ -1056,61 +931,9 @@
                 related2_name: "Herramientas de Imagen", related2_desc: "Comprimir, convertir, editar, eliminar fondo",
                 related3_name: "Herramientas de Texto", related3_desc: "Editor Markdown, contador de palabras, diff de texto",
                 related4_name: "Herramientas de Medios", related4_desc: "Grabador de pantalla, cortador de audio, herramientas de video",
-                related5_name: "Herramientas Utiles", related5_desc: "Calculadora, generador de contrasenas, codigo QR",
-                footerCopyright: '© 2025 <a href="https://www.heyuan110.com" target="_blank">heyuan110.com</a> Todos los derechos reservados.',
-                footerBlog: 'Blog',
-                footerHome: 'Magic ToolBox'
+                related5_name: "Herramientas Utiles", related5_desc: "Calculadora, generador de contrasenas, codigo QR"
             }
         };
-
-        // 语言切换函数
-        function applyLanguage(lang) {
-            localStorage.setItem("developer-tools_lang", lang);
-            document.getElementById("langCurrent").textContent = langNames[lang];
-            var texts = i18n[lang];
-            if (!texts) return;
-            // 文本内容
-            document.querySelectorAll("[data-i18n]").forEach(function(el) {
-                var key = el.getAttribute("data-i18n");
-                if (texts[key]) {
-                    if (texts[key].indexOf('<') !== -1) {
-                        el.innerHTML = texts[key];
-                    } else {
-                        el.textContent = texts[key];
-                    }
-                }
-            });
-            // placeholder
-            document.querySelectorAll("[data-i18n-placeholder]").forEach(function(el) {
-                var key = el.getAttribute("data-i18n-placeholder");
-                if (texts[key]) el.placeholder = texts[key];
-            });
-            // 保留 FAQ 箭头
-            document.querySelectorAll('.faq-question .arrow').forEach(function(a) { a.textContent = '\u25BC'; });
-        }
-        window.applyLanguage = applyLanguage;
-
-        // FAQ 手风琴
-        function toggleFaq(el) {
-            var item = el.parentElement;
-            var wasActive = item.classList.contains('active');
-            document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('active'); });
-            if (!wasActive) item.classList.add('active');
-        }
-        window.toggleFaq = toggleFaq;
-
-        // 初始化语言
-        var savedLang = localStorage.getItem("developer-tools_lang") || "en";
-        applyLanguage(savedLang);
-
-        // 语言下拉菜单
-        document.getElementById("langCurrent").addEventListener("click", function(e) {
-            e.stopPropagation();
-            document.getElementById("langDropdown").classList.toggle("active");
-        });
-        document.addEventListener("click", function() {
-            document.getElementById("langDropdown").classList.remove("active");
-        });
 
         // 卡片入场动画：使用 IntersectionObserver 实现滚动触发
         var cards = document.querySelectorAll('.tool-card');
@@ -1135,7 +958,15 @@
             });
         }
 
+        window._translations = translations;
+
     })();
     </script>
+    <script src="../common/common.js"
+        data-page-type="category"
+        data-show-theme-toggle="true"
+        data-category="developer"
+        data-tool-name="Developer Tools"></script>
+    <script>WebToolbox.init(window._translations);</script>
 </body>
 </html>
