@@ -1,157 +1,114 @@
 # Web Toolbox
 
-> 一套纯前端的实用工具集，无需安装，浏览器直接打开即可使用。
+> 一套 55+ 纯前端实用工具集，无需安装、无广告、无需注册，浏览器直接打开即可使用。所有处理都在本地完成，数据不会上传。
 >
-> A collection of pure frontend utility tools. No installation required, just open in browser.
+> A collection of 55+ pure frontend utility tools. No installation, no ads, no signup required. All processing happens locally in your browser.
 
-## 🚀 在线使用 / Live Demo
+## Live Demo
 
-| 工具 / Tool | 在线链接 / Link |
-|-------------|----------------|
-| M3U8 视频下载器 | <a href="https://heyuan110.github.io/web-toolbox/m3u8-downloader.html" target="_blank">打开 / Open</a> |
-| JSON 查看器 | <a href="https://heyuan110.github.io/web-toolbox/json-viewer.html" target="_blank">打开 / Open</a> |
-| SQLite 查看器 | <a href="https://heyuan110.github.io/web-toolbox/sqlite-viewer.html" target="_blank">打开 / Open</a> |
-| X/TikTok 视频下载器 | <a href="https://heyuan110.github.io/web-toolbox/social-video-downloader.html" target="_blank">打开 / Open</a> |
-
-> 💡 需要先启用 GitHub Pages：仓库 Settings → Pages → Source 选择 `main` 分支 → Save
+**https://www.heyuan110.com/web-toolbox/**
 
 ---
 
-## 工具列表 / Tool List
+## Tool Categories
 
-| 文件 / File | 功能 / Function | 说明 / Description |
-|-------------|-----------------|-------------------|
-| `m3u8-downloader.html` | M3U8 视频下载器 | 批量下载 M3U8 视频，支持预览、暂停续传 |
-| `json-viewer.html` | JSON 查看器 | 格式化显示 JSON，支持折叠展开、搜索 |
-| `sqlite-viewer.html` | SQLite 查看器 | 浏览器内打开 SQLite 数据库，执行 SQL 查询 |
-| `social-video-downloader.html` | X/TikTok 视频下载器 | 下载 X (Twitter) 和 TikTok 视频，支持多种画质 |
+### Image Tools
 
----
+| Tool | File | Description |
+|------|------|-------------|
+| Paint Board | `paint-board.html` | Online drawing and painting tool |
+| Color Palette | `color-palette.html` | Color picker and palette generator |
+| ICO Maker | `ico-maker.html` | Convert images to ICO favicon format |
+| Image Compressor | `image-compressor.html` | Compress images for web use |
+| ID Photo Tool | `id-photo-tool.html` | Create passport/ID photos |
+| Image Converter | `image-converter.html` | Convert between PNG/JPG/WebP formats |
+| Image Editor | `image-editor.html` | Crop, resize, rotate and edit images |
+| QR Code Generator | `qr-code-generator.html` | Generate QR codes from text/URLs |
+| OCR Tool | `ocr-tool.html` | Extract text from images using AI |
+| BG Remover | `bg-remover.html` | AI-powered background removal |
+| Watermark Tool | `watermark-tool.html` | Add text watermarks to images |
 
-## 中文说明
+### PDF Tools
 
-### M3U8 视频下载器
-批量下载 M3U8 流媒体视频并保存为本地文件。
+| Tool | File | Description |
+|------|------|-------------|
+| Image to PDF | `image-to-pdf.html` | Convert images to PDF documents |
+| PDF Merge | `pdf-merge.html` | Merge multiple PDFs into one |
+| PDF Split | `pdf-split.html` | Split PDF into separate pages |
+| PDF Compress | `pdf-compress.html` | Compress PDF file size |
+| PDF to Image | `pdf-to-image.html` | Convert PDF pages to images |
+| E-Sign | `e-sign.html` | Add electronic signatures to PDFs |
+| PDF Protect | `pdf-protect.html` | Encrypt and password-protect PDFs |
 
-**功能特点：**
-- 单条或批量导入 M3U8 链接
-- 实时视频预览（自动播放）
-- 下载进度可视化
-- 支持暂停/继续下载
-- 批量保存已完成的视频
+### Developer Tools
 
-![M3U8 视频下载器](screenshots/m3u8-downloader.png)
+| Tool | File | Description |
+|------|------|-------------|
+| JSON Viewer | `json-viewer.html` | Format and visualize JSON data |
+| SQLite Viewer | `sqlite-viewer.html` | Browse SQLite databases in browser |
+| Crypto Tools | `crypto-tools.html` | Hash, encrypt and decode utilities |
+| WebSocket Tester | `websocket-tester.html` | Test WebSocket connections |
+| WHOIS Query | `whois-query.html` | Domain WHOIS lookup |
+| IP Lookup | `ip-lookup.html` | IP address geolocation lookup |
+| Regex Tester | `regex-tester.html` | Test regular expressions |
+| Base64 Tool | `base64-tool.html` | Encode/decode Base64 strings |
+| URL Encoder | `url-encoder.html` | URL encode/decode tool |
+| CSV/JSON | `csv-json.html` | Convert between CSV and JSON |
+| Cron Generator | `cron-generator.html` | Build and explain cron expressions |
+| Timestamp Converter | `timestamp-converter.html` | Unix timestamp converter |
+| API Tester | `api-tester.html` | HTTP API testing client |
+| Hex Viewer | `hex-viewer.html` | View binary files in hex format |
+| Code Formatter | `code-formatter.html` | Format JSON, SQL, HTML, CSS, JS |
+| YAML Editor | `yaml-editor.html` | YAML/TOML/JSON converter and editor |
 
-### JSON 查看器
-美观的 JSON 数据可视化工具。
+### Text Tools
 
-**功能特点：**
-- 语法高亮显示
-- 节点折叠/展开
-- 关键字搜索
-- 支持粘贴或上传 JSON 文件
+| Tool | File | Description |
+|------|------|-------------|
+| Chinese Converter | `chinese-converter.html` | Simplified/Traditional Chinese conversion |
+| Word Counter | `word-counter.html` | Count words, characters and lines |
+| Lorem Ipsum | `lorem-ipsum.html` | Generate placeholder text |
+| Markdown Editor | `markdown-editor.html` | Write and preview Markdown |
+| Text Diff | `text-diff.html` | Compare two texts side by side |
 
-![JSON 查看器](screenshots/json-viewer.png)
+### Media Tools
 
-### SQLite 查看器
-在浏览器中直接查看和查询 SQLite 数据库。
+| Tool | File | Description |
+|------|------|-------------|
+| M3U8 Downloader | `m3u8-downloader.html` | Download M3U8 streaming videos |
+| Audio Cutter | `audio-cutter.html` | Trim and cut audio files |
+| Screen Recorder | `screen-recorder.html` | Record screen and webcam |
+| File Converter | `file-converter.html` | Convert video, audio, image formats |
+| Social Video Downloader | `social-video-downloader.html` | Download X/TikTok videos |
 
-**功能特点：**
-- 拖拽上传 .db / .sqlite 文件
-- 浏览所有表结构
-- 执行自定义 SQL 查询
-- 查询结果表格展示
+### Utility Tools
 
-![SQLite 查看器](screenshots/sqlite-viewer.png)
-
-### X/TikTok 视频下载器
-下载 X (Twitter) 和 TikTok 平台的视频内容。
-
-**功能特点：**
-- 支持 X (Twitter) 和 TikTok 视频链接
-- 多 API 回退策略确保高可用性
-- TikTok 支持无水印/有水印/音频下载
-- X 视频支持多种画质选择
-- 本地历史记录保存
-- 响应式深色主题界面
-
-![X/TikTok 视频下载器](screenshots/social-video-downloader.png)
-
----
-
-## English
-
-### M3U8 Video Downloader
-Batch download M3U8 streaming videos and save locally.
-
-**Features:**
-- Import single or multiple M3U8 URLs
-- Real-time video preview (auto-play)
-- Visual download progress
-- Pause/Resume downloads
-- Batch save completed videos
-
-![M3U8 Video Downloader](screenshots/m3u8-downloader.png)
-
-### JSON Viewer
-Beautiful JSON data visualization tool.
-
-**Features:**
-- Syntax highlighting
-- Collapsible nodes
-- Keyword search
-- Paste or upload JSON files
-
-![JSON Viewer](screenshots/json-viewer.png)
-
-### SQLite Viewer
-View and query SQLite databases directly in browser.
-
-**Features:**
-- Drag & drop .db / .sqlite files
-- Browse all table structures
-- Execute custom SQL queries
-- Display results in table format
-
-![SQLite Viewer](screenshots/sqlite-viewer.png)
-
-### X/TikTok Video Downloader
-Download videos from X (Twitter) and TikTok platforms.
-
-**Features:**
-- Support X (Twitter) and TikTok video links
-- Multi-API fallback strategy for high availability
-- TikTok: watermark-free/watermarked/audio downloads
-- X: multiple quality options
-- Local history storage
-- Responsive dark theme UI
-
-![X/TikTok Video Downloader](screenshots/social-video-downloader.png)
+| Tool | File | Description |
+|------|------|-------------|
+| World Clock | `world-clock.html` | World time zones display |
+| Calculator | `calculator.html` | Scientific calculator |
+| Page Refresher | `page-refresher.html` | Auto-refresh web pages |
+| File Renamer | `file-renamer.html` | Batch rename files |
+| Handheld Danmaku | `handheld-danmaku.html` | LED scrolling text display |
+| Metronome | `metronome.html` | Musical metronome |
+| Relative Calculator | `relative-calculator.html` | Chinese kinship title calculator |
+| Claude History Viewer | `claude-history-viewer.html` | Browse Claude conversation exports |
+| Password Generator | `password-generator.html` | Generate secure passwords |
+| Pomodoro | `pomodoro.html` | Pomodoro focus timer |
+| Unit Converter | `unit-converter.html` | Metric/Imperial unit converter |
+| Invoice Generator | `invoice-generator.html` | Create PDF invoices |
+| Angel Number | `angel-number.html` | Angel number calculator |
+| Numerology | `numerology.html` | Numerology life path calculator |
 
 ---
 
-## 使用方法 / Usage
+## Tech Stack
 
-直接用浏览器打开对应的 HTML 文件即可：
-
-Just open the HTML file in your browser:
-
-```bash
-open m3u8-downloader.html
-open json-viewer.html
-open sqlite-viewer.html
-open social-video-downloader.html
-```
-
----
-
-## 技术栈 / Tech Stack
-
-- 纯 HTML + CSS + JavaScript
-- 无需后端服务
-- 依赖库：HLS.js (M3U8), sql.js (SQLite)
-
----
+- Pure HTML + CSS + JavaScript (no backend)
+- Common UI framework: `common/common.js` + `common/common.css`
+- Multi-language: English, Chinese, French, Spanish
+- Dark theme with responsive design
+- AI tools: Transformers.js (OCR, BG Remover)
 
 ## License
 

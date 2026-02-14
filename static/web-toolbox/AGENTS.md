@@ -16,6 +16,13 @@
 - Git 工作分支为 `code`，推送 `code` 会触发部署。
 - commit message 使用中文、简洁描述变更。
 
+## 品牌信息
+
+- 中文名：**魔法工具箱**（口头简称：魔盒）
+- 英文名：**Magic Toolbox**
+- 主 Slogan：免安装、即开即用的在线工具箱
+- English Slogan：No install. Just use.
+
 ## 项目范围
 
 - 站点：`https://www.heyuan110.com/web-toolbox/`
@@ -233,9 +240,10 @@ features 第一张卡必须是“100% Free & Private”卖点（含无广告、�
 
 1. `index.html` 工具卡片
 2. `index.html` JSON-LD `hasPart`
-3. `sitemap.xml`
-4. `docs/ROADMAP.md`
-5. `screenshots/{tool}.webp`
+3. 对应分类页 `category/xxx-tools.html`（添加工具卡片到该分类）
+4. `sitemap.xml`
+5. `docs/ROADMAP.md`
+6. `screenshots/{tool}.webp`
 
 ### 12) 截图规范（强制）
 
