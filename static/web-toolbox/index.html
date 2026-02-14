@@ -2098,8 +2098,8 @@
             const translations = {
                 'zh-CN': {
                     homeLink: '返回首页',
-                    subtitle: '免安装、即开即用的在线工具箱',
-                    badge: '无广告 · 无需注册 · 浏览器直接使用 · 完全免费',
+                    subtitle: '60+ 款免费浏览器工具，免安装，即开即用',
+                    badge: '',
                     searchPlaceholder: '搜索工具名称、功能或关键词...',
                     clear: '清除',
                     hotLabel: '🔥 热门：',
@@ -2493,8 +2493,8 @@
                 },
                 'en': {
                     homeLink: 'Home',
-                    subtitle: 'No install. Just use.',
-                    badge: 'No Ads · No Signup · 100% Browser-Based · Free Unlimited',
+                    subtitle: '60+ free browser tools. No install. Just use.',
+                    badge: '',
                     searchPlaceholder: 'Search tool name, feature or keyword...',
                     clear: 'Clear',
                     hotLabel: '🔥 Hot:',
@@ -2887,8 +2887,8 @@
                 },
                 'fr': {
                     homeLink: 'Accueil',
-                    subtitle: 'Sans installation. Utilisez directement.',
-                    badge: 'Sans pub · Sans inscription · 100% dans le navigateur · Gratuit illimité',
+                    subtitle: '60+ outils gratuits dans le navigateur. Sans installation.',
+                    badge: '',
                     searchPlaceholder: 'Rechercher un outil, une fonction ou un mot-clé...',
                     clear: 'Effacer',
                     hotLabel: '🔥 Populaire:',
@@ -3281,8 +3281,8 @@
                 },
                 'es': {
                     homeLink: 'Inicio',
-                    subtitle: 'Sin instalación. Solo úsalo.',
-                    badge: 'Sin anuncios · Sin registro · 100% en el navegador · Gratis ilimitado',
+                    subtitle: '60+ herramientas gratuitas en el navegador. Sin instalación.',
+                    badge: '',
                     searchPlaceholder: 'Buscar herramienta, función o palabra clave...',
                     clear: 'Limpiar',
                     hotLabel: '🔥 Popular:',
@@ -3742,7 +3742,7 @@
                 });
             }
 
-            // 更新工具计数显示
+            // 更新工具计数显示 — 仅搜索时显示
             function updateToolCount(lang) {
                 const t = translations[lang] || translations['en'];
                 const resultCount = document.getElementById('resultCount');
@@ -3753,7 +3753,7 @@
                 if (searchInput && searchInput.value.trim()) {
                     resultCount.textContent = t.foundTools.replace('{visible}', visibleCount).replace('{total}', totalCount);
                 } else {
-                    resultCount.textContent = t.totalTools.replace('{count}', totalCount);
+                    resultCount.textContent = '';
                 }
             }
 
