@@ -145,7 +145,16 @@
 - JavaScript 必须使用 IIFE 或等价作用域隔离，避免全局污染。
 - 新增/重构工具默认采用 **shadcn/ui 视觉语言**（卡片、边框、层次、间距、控件风格一致）。
 - 关键交互区必须包含**有意义的动效设计**（至少 2 类）：如首屏入场动画 + 状态反馈动画（进度、切换、完成反馈），做到“第一眼有吸引力、交互时有反馈”，禁止纯静态工具页。
-- UI/UX 必须同时满足“**美观有质感** + **首次使用可直觉完成**”：核心流程应步骤清晰（推荐 1-2-3），主操作按钮突出，参数输入必须有明确标签/含义（禁止只放裸数字输入框让用户猜）。
+- UI/UX 必须同时满足"**美观有质感** + **首次使用可直觉完成**"：核心流程应步骤清晰（推荐 1-2-3），主操作按钮突出，参数输入必须有明确标签/含义（禁止只放裸数字输入框让用户猜）。
+
+**CSS 基础（强制，每个工具页必须包含）：**
+- `* { margin: 0; padding: 0; box-sizing: border-box; }` — 全局 reset，**禁止遗漏 `box-sizing`**
+- `body { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: #e0e0e0; min-height: 100vh; }` — common.css **不提供** body 背景
+- `.container { max-width: 1200px; margin: 0 auto; padding: 40px; }` — common.css **不提供** container 布局
+
+**common.css 样式职责边界（重要）：**
+- common.css **提供**：面包屑、语言切换器、主题按钮、类目导航、版权页脚、Trust Bar、Related Tools、入场动画
+- common.css **不提供**（必须在工具页 `<style>` 中自行定义）：body 背景、container 布局、features-section / features-grid / feature-card、faq-section / faq-item / faq-question / faq-answer
 
 ### 2) 多语言（必须 4 语）
 
@@ -251,6 +260,33 @@ features 第一张卡必须是“100% Free & Private”卖点（含无广告、�
 - 文件名与工具文件名一致
 - 推荐使用 `cwebp` 转换
 
+### 13) 浅色主题 CSS（强制）
+
+启用主题切换后（`data-show-theme-toggle="true"`），工具页必须提供完整的浅色主题覆写。
+
+**选择器规则（关键）：**
+- common.js 将 `data-theme="light"` 设置在 `<body>` 元素上
+- body 自身的样式必须用 `body[data-theme="light"]`（属性在 body 上，不能用后代选择器）
+- 其他元素用 `[data-theme="light"] .class-name`（标准后代选择器）
+
+**必须覆写的组件清单：**
+1. `body` — 背景色 `#fafafa`、文字色 `#09090b`
+2. 工具主体区域 — 所有自定义卡片、输入框、按钮
+3. 工具特有面板 — 背景、边框、文字色
+4. `.features-section .feature-card` — 白色背景 `#ffffff`、浅灰边框 `#e4e4e7`
+5. `.faq-section` — `.faq-item` 白色背景、`.faq-question` 深色文字
+6. 统计卡片、进度条等装饰性组件
+
+**标准配色表（浅色模式）：**
+| 用途 | 色值 |
+|------|------|
+| 页面背景 | `#fafafa` |
+| 卡片/面板背景 | `#ffffff` |
+| 边框 | `#e4e4e7` |
+| 主文字 | `#09090b` |
+| 次要文字 | `#71717a` |
+| 交互强调色 | `#7c3aed`（保持与深色主题一致） |
+
 ## 最小验收清单（PR/提交前）
 
 - [ ] **公共结构**：无手写 header/footer/语言切换器，全部由 common.js 注入
@@ -269,6 +305,9 @@ features 第一张卡必须是“100% Free & Private”卖点（含无广告、�
 - [ ] `index.html` 卡片与 `hasPart` 已更新
 - [ ] `sitemap.xml`、`docs/ROADMAP.md` 已更新
 - [ ] 截图为 `screenshots/*.webp`
+- [ ] **CSS 基础**：`* { box-sizing: border-box }` 全局 reset 存在
+- [ ] **CSS 基础**：body 背景渐变、container max-width/padding 已定义（非依赖 common.css）
+- [ ] **浅色主题**：如启用 `data-show-theme-toggle`，浅色覆写完整（body + 卡片 + features + faq + 工具组件）
 
 ## 实现参考
 

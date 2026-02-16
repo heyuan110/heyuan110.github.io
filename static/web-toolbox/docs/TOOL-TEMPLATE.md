@@ -34,6 +34,11 @@ pdf-merge/
 - [ ] 3. 响应式布局（PC + 平板 + 手机适配）
 - [ ] 4. JavaScript 使用 IIFE 模式避免全局污染
 - [ ] 5. 引入 `common/common.css` 和 `common/common.js`（由 common.js 注入 header/footer）
+- [ ] 2a. CSS 首行必须包含 `* { margin: 0; padding: 0; box-sizing: border-box; }`
+- [ ] 2b. body 必须定义背景渐变和文字色（common.css 不提供）
+- [ ] 2c. `.features-grid` / `.feature-card` / `.faq-section` / `.faq-item` 必须在工具 CSS 中定义（common.css 不提供）
+- [ ] 2d. 如需主题切换，common.js 脚本标签加 `data-show-theme-toggle="true"`
+- [ ] 2e. 如启用主题切换，必须提供完整的 `[data-theme="light"]` 覆写（参见浅色主题模板）
 
 ### 多语言（强制，common.js 统管）
 - [ ] 6. 支持 4 种语言：English (en)、中文 (zh-CN)、Français (fr)、Español (es)
@@ -325,6 +330,26 @@ A: JSON (JavaScript Object Notation) is a lightweight data format used by modern
         .faq-item.active .faq-answer { max-height: 200px; }
         .faq-answer p { padding: 0 20px 16px; color: #9ca3af; font-size: 14px; line-height: 1.6; }
 
+        /* ========== 浅色主题覆写 ========== */
+        /* 注意：data-theme 属性在 <body> 上，body 自身样式用 body[data-theme="light"] */
+        body[data-theme="light"] { background: #fafafa !important; color: #09090b; }
+
+        /* 工具主体 */
+        [data-theme="light"] .container { color: #09090b; }
+
+        /* Features */
+        [data-theme="light"] .features-section h2 { color: #09090b; }
+        [data-theme="light"] .feature-card { background: #ffffff; border-color: #e4e4e7; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+        [data-theme="light"] .feature-card:hover { border-color: #d4d4d8; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        [data-theme="light"] .feature-card h3 { color: #09090b; }
+        [data-theme="light"] .feature-card p { color: #71717a; }
+
+        /* FAQ */
+        [data-theme="light"] .faq-section h2 { color: #09090b; }
+        [data-theme="light"] .faq-item { background: #ffffff; border-color: #e4e4e7; }
+        [data-theme="light"] .faq-question { color: #09090b; }
+        [data-theme="light"] .faq-answer p { color: #71717a; }
+
         /* ========== 响应式 ========== */
         @media (max-width: 768px) {
             .container { padding: 20px; }
@@ -615,3 +640,11 @@ A: JSON (JavaScript Object Notation) is a lightweight data format used by modern
 | hover 效果 | `translateY(-4px)` + 紫色阴影 |
 | 按钮 | 渐变紫色，hover 发光 |
 | 主题切换 | 默认隐藏，需 `data-show-theme-toggle="true"` 启用 |
+| box-sizing | **`border-box`（全局 `*` 必须设置，禁止遗漏）** |
+| common.css 不提供 | body 背景、container、features-grid/card、faq-section/item |
+| 浅色主题 body 选择器 | **`body[data-theme="light"]`**（不是 `[data-theme="light"] body`） |
+| 浅色主题页面背景 | `#fafafa` |
+| 浅色主题卡片背景 | `#ffffff` |
+| 浅色主题边框 | `#e4e4e7` |
+| 浅色主题主文字 | `#09090b` |
+| 浅色主题次文字 | `#71717a` |

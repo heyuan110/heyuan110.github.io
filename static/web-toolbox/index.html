@@ -140,7 +140,8 @@
             {"@type": "WebApplication", "name": "Angel Number Calculator", "url": "https://www.heyuan110.com/web-toolbox/angel-number.html", "description": "Calculate your angel number from birthday. Discover its meaning, personality traits, strengths and challenges."},
             {"@type": "WebApplication", "name": "Numerology Calculator", "url": "https://www.heyuan110.com/web-toolbox/numerology.html", "description": "Calculate Life Path, Expression, Soul Urge and Personality numbers from birthday and name with Pythagorean chart."},
             {"@type": "WebApplication", "name": "Tweet Deleter", "url": "https://github.com/heyuan110/tweet-deleter", "description": "Bulk delete tweets from your Twitter/X account using archive data."},
-            {"@type": "WebApplication", "name": "XPorts - Terminal Port Manager", "url": "https://github.com/heyuan110/xports", "description": "macOS terminal port manager to view and kill processes by port number."}
+            {"@type": "WebApplication", "name": "XPorts - Terminal Port Manager", "url": "https://github.com/heyuan110/xports", "description": "macOS terminal port manager to view and kill processes by port number."},
+            {"@type": "WebApplication", "name": "Keyboard Tester", "url": "https://www.heyuan110.com/web-toolbox/keyboard-tester.html", "description": "Online keyboard tester with virtual keyboard visualization, N-key rollover testing, ghost key detection, and developer key event info."}
         ]
     }
     </script>
@@ -1721,6 +1722,23 @@
                 </div>
             </div>
 
+            <!-- 键盘检测器 -->
+            <div class="tool-card" data-tool="keyboard-tester" data-category="developer" data-sort="59">
+                <img src="screenshots/keyboard-tester.webp" alt="键盘检测器截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">⌨️</div>
+                    <h2 class="tool-title" data-i18n="tool_keyboard_title">键盘检测器</h2>
+                    <p class="tool-desc" data-i18n="tool_keyboard_desc">在线测试键盘按键、检测N键无冲、查看按键事件详情</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_keyboard_f1">虚拟键盘实时可视化</li>
+                        <li data-i18n="tool_keyboard_f2">N键无冲 & 鬼键检测</li>
+                        <li data-i18n="tool_keyboard_f3">开发者按键事件信息</li>
+                        <li data-i18n="tool_keyboard_f4">多布局切换 (Full/TKL/60%)</li>
+                    </ul>
+                    <a href="keyboard-tester.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
+
             <!-- Lorem Ipsum 生成器 -->
             <div class="tool-card" data-tool="lorem" data-category="text" data-sort="46">
                 <img src="screenshots/lorem-ipsum.webp" alt="Lorem Ipsum生成器截图" class="tool-screenshot">
@@ -2293,6 +2311,12 @@
                     tool_whois_f2: '注册/到期日期与域名年龄',
                     tool_whois_f3: 'DNS 名称服务器列表',
                     tool_whois_f4: '域名状态与原始数据',
+                    tool_keyboard_title: '键盘检测器',
+                    tool_keyboard_desc: '在线测试键盘按键、检测N键无冲、查看按键事件详情',
+                    tool_keyboard_f1: '虚拟键盘实时可视化',
+                    tool_keyboard_f2: 'N键无冲 & 鬼键检测',
+                    tool_keyboard_f3: '开发者按键事件信息',
+                    tool_keyboard_f4: '多布局切换 (Full/TKL/60%)',
                     tool_ico_title: 'ICO 图标制作',
                     tool_ico_desc: '将 PNG、JPG、GIF 图片转换为 ICO 图标文件',
                     tool_ico_f1: '支持 PNG/JPG/GIF 格式转换',
@@ -2687,6 +2711,12 @@
                     tool_whois_f2: 'Registration/expiry dates & age',
                     tool_whois_f3: 'DNS name server list',
                     tool_whois_f4: 'Domain status & raw data',
+                    tool_keyboard_title: 'Keyboard Tester',
+                    tool_keyboard_desc: 'Test keyboard keys online, check N-key rollover, view key event details',
+                    tool_keyboard_f1: 'Real-time virtual keyboard visualization',
+                    tool_keyboard_f2: 'N-key rollover & ghost key detection',
+                    tool_keyboard_f3: 'Developer key event info',
+                    tool_keyboard_f4: 'Multi-layout switch (Full/TKL/60%)',
                     tool_ico_title: 'ICO Maker',
                     tool_ico_desc: 'Convert PNG, JPG, GIF images to ICO icon files',
                     tool_ico_f1: 'Support PNG/JPG/GIF conversion',
@@ -3081,6 +3111,12 @@
                     tool_whois_f2: 'Dates d\'enregistrement/expiration',
                     tool_whois_f3: 'Liste des serveurs DNS',
                     tool_whois_f4: 'Statut et données brutes',
+                    tool_keyboard_title: 'Testeur de Clavier',
+                    tool_keyboard_desc: 'Tester les touches du clavier, vérifier le N-key rollover, voir les détails des événements',
+                    tool_keyboard_f1: 'Clavier virtuel en temps réel',
+                    tool_keyboard_f2: 'Test N-key rollover & touches fantômes',
+                    tool_keyboard_f3: 'Infos événements développeur',
+                    tool_keyboard_f4: 'Multi-disposition (Complet/TKL/60%)',
                     tool_ico_title: 'Créateur ICO',
                     tool_ico_desc: 'Convertir PNG, JPG, GIF en fichiers icônes ICO',
                     tool_ico_f1: 'Support PNG/JPG/GIF',
@@ -3475,6 +3511,12 @@
                     tool_whois_f2: 'Fechas de registro/expiración',
                     tool_whois_f3: 'Lista de servidores DNS',
                     tool_whois_f4: 'Estado y datos crudos',
+                    tool_keyboard_title: 'Probador de Teclado',
+                    tool_keyboard_desc: 'Probar teclas del teclado, verificar N-key rollover, ver detalles de eventos',
+                    tool_keyboard_f1: 'Teclado virtual en tiempo real',
+                    tool_keyboard_f2: 'Prueba N-key rollover & teclas fantasma',
+                    tool_keyboard_f3: 'Info de eventos para desarrolladores',
+                    tool_keyboard_f4: 'Multi-disposición (Completo/TKL/60%)',
                     tool_ico_title: 'Creador ICO',
                     tool_ico_desc: 'Convertir PNG, JPG, GIF a archivos de iconos ICO',
                     tool_ico_f1: 'Soporte PNG/JPG/GIF',

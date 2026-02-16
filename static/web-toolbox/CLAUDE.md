@@ -12,5 +12,4 @@ see @AGENTS.md
 | #3288 | 11:53 PM | 🔵 | Magic Toolbox Landing Page Structure Review | ~429 |
 | #2743 | 4:33 AM | 🔴 | Fixed ocr-tool.html for common.js compliance | ~704 |
 | #2737 | 4:32 AM | 🔴 | Relative Calculator HTML Compliance with common.js Framework | ~665 |
-| #2735 | " | ✅ | Removed temporary backup file cron-generator.html.backup | ~199 |
 </claude-mem-context>
