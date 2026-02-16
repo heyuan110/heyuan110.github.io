@@ -43,10 +43,12 @@
 - **文件**：`content/posts/ai/2026-01-28-claude-code-browser-automation/index.md`
 - **原因**：竞品分析发现 Playwright CLI 是新方案（号称 Token 消耗降低 4 倍），你的文章目前未覆盖，可能被竞品超越
 - **操作**：
-  - [ ] 研究 Playwright CLI（参考 https://testcollab.com/blog/playwright-cli）
-  - [ ] 在文章中新增一个章节介绍这个方案
-  - [ ] 更新对比表格，加入第四个方案
-  - [ ] 更新 description 和 keywords
+  - [x] 研究 Playwright CLI（参考 https://testcollab.com/blog/playwright-cli）
+  - [x] 在文章中新增一个章节介绍这个方案
+  - [x] 更新对比表格，加入第四个方案
+  - [x] 更新 description 和 keywords
+  - [x] 标题添加「2026 最新」提升时效性搜索匹配
+  - [x] 更新实战选型指南、FAQ、总结推荐
 
 ### P1：检查其余文章的 Front Matter 规范性
 
