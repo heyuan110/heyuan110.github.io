@@ -171,3 +171,10 @@ SubAgent 是更高级的玩法。你可以让主 Agent 派一个"小弟"去干�
 Claude Code 的潜力比很多人想象的大。但它毕竟只是工具，用好用坏取决于你怎么驾驭。
 
 与其抱怨 AI 不够聪明，不如想想自己的使用方式有没有优化空间。
+
+## 相关阅读
+
+- [Claude Code 浏览器自动化方案对比：Agent Browser、Playwright、DevTools](/posts/ai/2026-01-28-claude-code-browser-automation/)
+- [Anthropic 发布 Claude Cowork：让 AI 直接操作你的电脑文件](/posts/ai/2026-01-13-claude-cowork/)
+- [Claude Code Skills 完全指南](/posts/ai/2026-01-08-claudecode-skill-guide/)
+- [Agent Skills：AI 编程的新范式](/posts/ai/2026-01-19-agent-skills-new-programming/)

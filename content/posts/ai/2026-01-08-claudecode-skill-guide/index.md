@@ -606,3 +606,10 @@ Skill 的本质，是把你的专业知识结构化。
 Skill 就是让 AI 学会你的专业知识的最简单方式。不需要写代码，不需要训练模型，只需要把你的经验写成一份说明书。
 
 动手试试吧。
+
+## 相关阅读
+
+- [Claude Code 浏览器自动化方案对比：Agent Browser、Playwright、DevTools](/posts/ai/2026-01-28-claude-code-browser-automation/)
+- [Claude Code 最佳实践指南](/posts/ai/2026-01-06-claudecode-best-practices/)
+- [Claude Code Skill 高级模式详解](/posts/ai/2026-01-13-claudecode-skill-patterns/)
+- [Agent Skills：AI 编程的新范式](/posts/ai/2026-01-19-agent-skills-new-programming/)

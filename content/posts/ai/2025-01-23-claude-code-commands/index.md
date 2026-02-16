@@ -713,3 +713,9 @@ $ claude -p --max-budget-usd 2.00 --max-turns 5 "优化性能"
 - [Claude Code 官方文档](https://docs.anthropic.com/en/docs/claude-code)
 - [Claude Code CLI 参考](https://docs.anthropic.com/en/docs/claude-code/cli-reference)
 - [Anthropic 工程团队最佳实践](https://www.anthropic.com/engineering/claude-code-best-practices)
+
+## 相关阅读
+
+- [Claude Code 浏览器自动化方案对比：Agent Browser、Playwright、DevTools](/posts/ai/2026-01-28-claude-code-browser-automation/)
+- [Claude Code 最佳实践指南](/posts/ai/2026-01-06-claudecode-best-practices/)
+- [Anthropic 发布 Claude Cowork：让 AI 直接操作你的电脑文件](/posts/ai/2026-01-13-claude-cowork/)

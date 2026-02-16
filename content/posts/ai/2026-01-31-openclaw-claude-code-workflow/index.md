@@ -525,4 +525,11 @@ Spec 越清晰，AI 执行越准确。文档越完善，Agent 越少犯错。这
 - [My Current AI Dev Workflow - Peter Steinberger](https://steipete.me/posts/2025/optimal-ai-development-workflow)
 - [Just Talk To It - Peter Steinberger](https://steipete.me/posts/just-talk-to-it)
 - [Shipping at Inference-Speed - Peter Steinberger](https://steipete.me/posts/2025/shipping-at-inference-speed)
+
+## 相关阅读
+
+- [Claude Code 浏览器自动化方案对比：Agent Browser、Playwright、DevTools](/posts/ai/2026-01-28-claude-code-browser-automation/)
+- [Claude Code 最佳实践指南](/posts/ai/2026-01-06-claudecode-best-practices/)
+- [Claude Code Skills 完全指南](/posts/ai/2026-01-08-claudecode-skill-guide/)
+- [Moltbot 深度解析：从爆火到改名，个人 AI Agent 的机遇与暗礁](/posts/ai/2026-01-29-moltbot-deep-dive/)
 - [steipete/agent-scripts](https://github.com/steipete/agent-scripts)

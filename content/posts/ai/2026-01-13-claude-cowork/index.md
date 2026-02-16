@@ -1,19 +1,13 @@
----
-title: "Anthropic 发布 Claude Cowork：让 AI 直接操作你的电脑文件"
-date: 2026-01-13T19:00:00+08:00
-author: "bruce"
-description: "Anthropic 推出 Claude Cowork 研究预览版，这是一个可以直接访问本地文件、运行代码并与第三方应用集成的桌面 AI 代理，目前仅限 macOS 上的 Max 订阅用户使用。"
-toc: true
-images:
-tags:
-  - AI
-  - Claude
-  - Anthropic
-  - Agent
-  - Desktop
-categories:
-  - AI工具
----
++++
+date = '2026-01-13T19:00:00+08:00'
+draft = false
+title = 'Anthropic 发布 Claude Cowork：让 AI 直接操作你的电脑文件'
+description = 'Anthropic 推出 Claude Cowork 研究预览版，这是一个可以直接访问本地文件、运行代码并与第三方应用集成的桌面 AI 代理，目前仅限 macOS 上的 Max 订阅用户使用。'
+toc = true
+tags = ['Claude Cowork', 'Claude Desktop', 'Anthropic', 'AI Agent', 'MCP']
+categories = ['AI实战']
+keywords = ['Claude Cowork', 'Anthropic AI 桌面代理', 'Claude Desktop Agent', 'AI 文件操作', 'Claude MCP 集成']
++++
 
 ![Claude Cowork](cover.webp)
 
@@ -171,4 +165,11 @@ Claude Cowork 代表了 AI 助手的重大进化方向——从"对话"走向"�
 **相关链接**：
 - [官方博客公告](https://claude.com/blog/cowork-research-preview)
 - [Claude 桌面应用](https://claude.ai/download)
+
+## 相关阅读
+
+- [Claude Code 浏览器自动化方案对比：Agent Browser、Playwright、DevTools](/posts/ai/2026-01-28-claude-code-browser-automation/)
+- [Claude Code 最佳实践指南](/posts/ai/2026-01-06-claudecode-best-practices/)
+- [Agent Skills：AI 编程的新范式](/posts/ai/2026-01-19-agent-skills-new-programming/)
+- [Claude Code Skills 完全指南](/posts/ai/2026-01-08-claudecode-skill-guide/)
 
