@@ -1,98 +1,285 @@
-# 工具开发模板规范
+# 工具开发完整指南
 
-> 新建工具时的 checklist 和完整模板，**必须严格遵循 AGENTS.md 中的所有规范**
-
-## 文件组织规则
-
-| 场景 | 结构 | 示例 |
-|------|------|------|
-| 单文件工具（纯 HTML/CSS/JS，第三方库走 CDN） | 直接放根目录 `xxx.html` | `password-generator.html` |
-| 多文件工具（有独立 JS/CSS 模块、本地资源等） | 建子目录 `xxx/index.html` | `pdf-merge/index.html` |
-
-**多文件工具目录结构示例：**
-```
-pdf-merge/
-├── index.html       # 入口页（SEO 标签在这里）
-├── style.css        # 样式
-├── app.js           # 主逻辑
-└── worker.js        # Web Worker（可选）
-```
-
-**URL 规则：**
-- 单文件：`https://www.heyuan110.com/web-toolbox/xxx.html`
-- 多文件：`https://www.heyuan110.com/web-toolbox/xxx/`（目录自动解析 index.html）
-
----
+> 新建/修改工具时的完整参考。规则权威来源：AGENTS.md
+>
+> 文件组织：工具页 `xxx.html`（简单）或 `xxx/index.html`（复杂）— 详见 AGENTS.md 项目范围
 
 ## 开发 Checklist
 
-每完成一个工具，按以下步骤逐项检查：
+> R# 引用对应下方"规则详解"章节
 
 ### 基础功能
-- [ ] 1. 创建工具文件（单文件 `xxx.html` 或多文件 `xxx/index.html`）
-- [ ] 2. 默认深色主题，配色遵循设计规范
-- [ ] 3. 响应式布局（PC + 平板 + 手机适配）
-- [ ] 4. JavaScript 使用 IIFE 模式避免全局污染
-- [ ] 5. 引入 `common/common.css` 和 `common/common.js`（由 common.js 注入 header/footer）
-- [ ] 2a. CSS 首行必须包含 `* { margin: 0; padding: 0; box-sizing: border-box; }`
-- [ ] 2b. body 必须定义背景渐变和文字色（common.css 不提供）
-- [ ] 2c. `.features-grid` / `.feature-card` / `.faq-section` / `.faq-item` 必须在工具 CSS 中定义（common.css 不提供）
-- [ ] 2d. 如需主题切换，common.js 脚本标签加 `data-show-theme-toggle="true"`
-- [ ] 2e. 如启用主题切换，必须提供完整的 `[data-theme="light"]` 覆写（参见浅色主题模板）
+- [ ] 1. 创建工具文件 → AGENTS.md 项目范围
+- [ ] 2. 深色主题 + 响应式 + IIFE → R1
+- [ ] 3. 引入 `common/common.css` + `common/common.js` → R0
+- [ ] 4. CSS reset `* { margin:0; padding:0; box-sizing:border-box }` → R1
+- [ ] 5. body 背景渐变 + container max-width:1200px → R1
+- [ ] 6. features-grid/feature-card/faq-section/faq-item 样式自定义 → R1
+- [ ] 7. 如需主题切换：`data-show-theme-toggle="true"` + 完整浅色覆写 → R13
 
-### 多语言（强制，common.js 统管）
-- [ ] 6. 支持 4 种语言：English (en)、中文 (zh-CN)、Français (fr)、Español (es)
-- [ ] 7. HTML 元素使用 `data-i18n="key"` 属性标记
-- [ ] 8. 输入框 placeholder 使用 `data-i18n-placeholder="key"` 属性
-- [ ] 9. 翻译对象必须包含 `tool_name` 键（面包屑工具名多语言）
-- [ ] 10. 翻译对象通过 `window._translations = translations;` 暴露
-- [ ] 11. 工具内部 `t()` 函数使用 `WebToolbox.getCurrentLang()` 获取当前语言
-- [ ] 12. 禁止手写语言切换器 HTML/JS，由 common.js 自动注入
-- [ ] 13. 默认语言为 English
+### 多语言
+- [ ] 8. 4 语言翻译对象（en/zh-CN/fr/es），含 `tool_name` 键 → R2
+- [ ] 9. HTML 用 `data-i18n="key"`，placeholder 用 `data-i18n-placeholder="key"` → R2
+- [ ] 10. `window._translations = translations;` 暴露翻译对象
+- [ ] 11. `t()` 函数用 `WebToolbox.getCurrentLang()`，禁止自定义 currentLang
+- [ ] 12. 禁止手写语言切换器 → R0
 
-### SEO — Head Meta（强制）
-- [ ] 11. `<title>` 必须包含 `No Ads` + 核心卖点（`No Signup`/`No Upload`/`No Watermark`）+ 中文名 + "Web Toolbox"
-- [ ] 12. `<meta name="description">` 英文 150-160 字符，并明确 free/no ads/no signup/no limits
-- [ ] 13. `<meta name="keywords">` 英文长尾词 + 中文关键词 + 痛点关键词（no ads/no signup/no upload 等）
-- [ ] 14. `<meta name="robots">` 包含 `max-image-preview:large, max-snippet:-1, max-video-preview:-1`
-- [ ] 15. `<meta name="googlebot">` 和 `<meta name="bingbot">` 抓取指令
-- [ ] 16. `<meta name="revisit-after">`, `rating`, `distribution`, `language` 标签
-- [ ] 17. `<link rel="canonical">` 规范 URL
-- [ ] 18. `<link rel="alternate" hreflang="...">` 4 种语言 + `x-default`
-- [ ] 19. Open Graph 完整标签（og:type, url, title, description, image, image:width/height, locale, site_name）
-- [ ] 20. Twitter Card 完整标签（card, site, creator, title, description, image）
+### SEO
+- [ ] 13. Head Meta 齐全（title/desc/keywords/robots/canonical/hreflang/OG/Twitter） → R3
+- [ ] 14. JSON-LD 四件套（WebApplication/BreadcrumbList/HowTo/FAQPage） → R4
+- [ ] 15. 痛点关键词 6 层埋词 → R6
 
-### SEO — JSON-LD 结构化数据（强制，4 种全部包含）
-- [ ] 21. **WebApplication** — 含 alternateName、publisher、featureList、screenshot
-- [ ] 22. **BreadcrumbList** — 3 级面包屑（Home → Web Toolbox → 工具名）
-- [ ] 23. **HowTo** — 3 步使用指南
-- [ ] 24. **FAQPage** — 至少 5 个常见问题
-
-### SEO — 页面可见内容（强制，3 个区域）
-- [ ] 25. **功能特点区域** `<section class="features-section">` — 4 个 feature 卡片
-- [ ] 26. **FAQ 区域** `<section class="faq-section">` — 至少 5 个手风琴问答
-- [ ] 27. **相关工具推荐** `<section class="related-tools">` — 3-5 个工具链接卡片
-- [ ] 28. 以上 3 个区域所有文本用 `data-i18n` 标记，4 语言翻译完整
-- [ ] 29. features 第 1 张卡必须是 `100% Free & Private` 卖点
-- [ ] 30. 功能区与 features 之间必须有 `trust-bar`（4 个 trust 文案键）
-- [ ] 31. FAQ 最后一条必须是 `faq_free_q` / `faq_free_a`
-- [ ] 32. FAQ 每条答案建议 2-4 句，至少 1 条基础科普（What is X）
-- [ ] 33. FAQ 与 JSON-LD FAQPage 语义一致，且自然埋入 Google 热词
+### 页面区块
+- [ ] 16. Trust Bar（4 项文案键）→ R7
+- [ ] 17. features-section（4 卡，首卡 "100% Free & Private"）→ R5 R9
+- [ ] 18. faq-section（≥5 问答，末条 faq_free_q/a，禁止手写 onclick）→ R8
+- [ ] 19. related-tools（3-5 内链，样式由 common.css 控制）→ R0 R5
 
 ### 集成
-- [ ] 34. 用 Playwright 截图工具页面
-- [ ] 35. 截图转 webp 格式：`cwebp -q 80 screenshot.png -o screenshots/xxx.webp`
-- [ ] 36. 更新 index.html — 添加工具卡片到 tools-grid（含 `data-i18n` 4 语言翻译）
-- [ ] 37. 更新 index.html — 添加 JSON-LD hasPart 条目
-- [ ] 38. 更新 sitemap.xml — 添加 URL 条目
-- [ ] 39. 更新 ROADMAP.md — 标记为已完成
+- [ ] 20. 截图：`cwebp -q 80 screenshot.png -o screenshots/xxx.webp` → R12
+- [ ] 21. index.html 添加工具卡片 + JSON-LD hasPart → R11
+- [ ] 22. sitemap.xml + ROADMAP.md + 分类页 → R11
 
 ---
 
-## 强制规则速用片段（建议复制后改词）
+## 规则详解
 
-### 1) 痛点埋词（Head）
+> 以下为 AGENTS.md 各规则的完整实现细节与代码示例
 
+### R0) 公共结构详解
+
+**Header（common.js 自动注入，禁止手写）：**
+- 面包屑导航（左）：
+  - 工具页（4 级）：`Home › Web Toolbox › {Category} › {ToolName}`
+  - 分类页（3 级）：`Home › Web Toolbox › {CategoryName}`（末项不可点击）
+- 面包屑中的 Home、Web Toolbox、Category 由 common.js 内置 `COMMON_I18N` 提供 4 语翻译
+- 面包屑最后一项（工具名/分类名）使用 `data-i18n="tool_name"` 自动翻译
+- 语言切换器（右）：4 语下拉菜单
+- 主题切换按钮（右，默认隐藏）：仅当 `data-show-theme-toggle="true"` 时显示
+- 禁止在 HTML 中手写 `<nav>` 返回链接、`lang-dropdown`、`lang-switcher`、`theme-toggle` 等元素
+- 禁止在 JS 中手写 `langDropdown`、`langCurrent`、`themeToggle` 相关事件绑定
+
+**Footer（common.js 自动注入，禁止手写）：**
+- 工具页：类目导航栏（`category-nav`）+ 版权行（`site-footer`）
+- 分类页（`data-page-type="category"`）：仅版权行（跳过类目导航）
+- 版权文案：`© 2024-2026 heyuan110.com`，由 `COMMON_I18N` 提供 4 语翻译
+- 禁止在 HTML 中手写 `<footer>` 或版权信息
+
+**Related Tools（工具自写 HTML，样式 common.css 控制）：**
+- 固定结构：`.related-tools` > `h3` + `.related-grid` > `.related-card`（`<a>` 标签）
+- 每张卡片内部：`<div>`（emoji 图标）+ `<h4>`（工具名）+ `<p>`（描述）
+- 3-5 个相关工具内链，内容因工具而异
+- common.css 已处理深色/浅色主题下的字体颜色、背景、hover 效果
+- 禁止对 `.related-card`、`h4`、`p` 添加任何 inline style
+
+**FAQ 手风琴交互（common.js 自动绑定）：**
+- common.js 的 `bindFaqAccordion()` 自动绑定 `.faq-question` 点击事件
+- 工具只需按 `.faq-item` > `.faq-question` + 答案内容结构编写 HTML
+- 禁止在工具 JS 中手写 FAQ 展开/收起逻辑
+
+**Container 对齐规则：**
+- `.container` 必须 `max-width: 1200px; padding: 40px;`
+- 与 header 的 `bc-nav`（`max-width: 1200px; padding: 12px 40px`）左右对齐
+- 所有内容区块（features、faq、related-tools）必须在 `.container` 内部
+
+**工具页集成（固定模式）：**
+```html
+<link rel="stylesheet" href="common/common.css">
+</head>
+<body>
+<div class="container">
+  <!-- 工具主体内容 -->
+  <!-- trust-bar -->
+  <!-- features-section -->
+  <!-- faq-section -->
+  <!-- related-tools -->
+</div>
+<script>/* 工具 IIFE，翻译对象暴露到 window._translations */</script>
+<script src="common/common.js"
+  data-tool-id="{tool-id}"
+  data-tool-name="{Tool Name}"
+  data-category="{category}"></script>
+<script>WebToolbox.init(window._translations);</script>
+</body>
+```
+
+**分类页集成（固定模式）：**
+```html
+<link rel="stylesheet" href="../common/common.css">
+</head>
+<body>
+<div class="container">
+  <!-- 分类页内容（hero、tools-grid、features、faq、related-tools） -->
+</div>
+<script>/* 分类页 IIFE，翻译对象暴露到 window._translations */</script>
+<script src="../common/common.js"
+  data-page-type="category"
+  data-show-theme-toggle="true"
+  data-category="{category}"
+  data-tool-name="{Category Name}"></script>
+<script>WebToolbox.init(window._translations);</script>
+</body>
+```
+> 分类页在 `category/` 子目录，引用 common 资源需加 `../` 前缀。
+
+**翻译对象暴露规则：**
+- 翻译定义在 IIFE 内部时，必须通过 `window._translations = translations;` 暴露
+- 工具内部 `t()` 函数使用 `WebToolbox.getCurrentLang()` 获取当前语言，禁止自定义 `currentLang` 变量
+
+**工具翻译 `tool_name` 键：**
+- 每个工具的 4 语言翻译对象中必须包含 `tool_name` 键，用于面包屑工具名的多语言显示
+- `tool_name` 值为工具短名称（不含副标题/营销语），如：`'File Converter'` / `'文件格式转换'`
+- `data-tool-name` 属性值作为英文默认值，`tool_name` 提供各语言翻译覆盖
+
+### R1) 页面基础要求
+
+- 默认深色主题（夜晚模式），支持浅色/深色切换（通过 `data-show-theme-toggle="true"` 启用切换按钮），响应式设计（桌面/平板/手机）。
+- JavaScript 必须使用 IIFE 或等价作用域隔离，避免全局污染。
+- 新增/重构工具默认采用 **shadcn/ui 视觉语言**（卡片、边框、层次、间距、控件风格一致）。
+- 关键交互区必须包含**有意义的动效设计**（至少 2 类）：如首屏入场动画 + 状态反馈动画（进度、切换、完成反馈），做到"第一眼有吸引力、交互时有反馈"，禁止纯静态工具页。
+- UI/UX 必须同时满足"**美观有质感** + **首次使用可直觉完成**"：核心流程应步骤清晰（推荐 1-2-3），主操作按钮突出，参数输入必须有明确标签/含义（禁止只放裸数字输入框让用户猜）。
+
+**CSS 基础（强制，每个工具页必须包含）：**
+- `* { margin: 0; padding: 0; box-sizing: border-box; }` — 全局 reset，**禁止遗漏 `box-sizing`**
+- `body { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: #e0e0e0; min-height: 100vh; }` — common.css **不提供** body 背景
+- `.container { max-width: 1200px; margin: 0 auto; padding: 40px; }` — common.css **不提供** container 布局
+
+**common.css 样式职责边界（重要）：**
+- common.css **提供**：面包屑、语言切换器、主题按钮、类目导航、版权页脚、Trust Bar、Related Tools、入场动画
+- common.css **不提供**（必须在工具页 `<style>` 中自行定义）：body 背景、container 布局、features-section / features-grid / feature-card、faq-section / faq-item / faq-question / faq-answer
+
+### R2) 多语言（4 语）
+
+每个工具必须支持：`en`、`zh-CN`、`fr`、`es`。
+
+**工具翻译职责：**
+- 文本元素：`data-i18n="key"` → common.js 的 `applyTranslations()` 自动替换 innerHTML
+- placeholder：`data-i18n-placeholder="key"` → 自动替换 placeholder 属性
+- 翻译对象必须包含 `tool_name` 键（详见 R0）
+- 默认语言：English (`en`)
+
+**由 common.js 统管（禁止手写）：**
+- 语言切换器 UI 及交互事件
+- `localStorage` 键名 `toolbox_lang` 的读写
+- 公共 UI 翻译（面包屑、类目导航、版权）通过 `COMMON_I18N` 内置
+- 语言检测与旧键名迁移
+
+### R3) SEO Head
+
+每个工具页必须包含完整 SEO 头部标签：
+
+- `title` / `description` / `keywords` / `author`
+- `robots` / `googlebot` / `bingbot`
+- `revisit-after` / `rating` / `distribution` / `language`
+- `canonical`
+- `alternate hreflang`：`en`、`zh-CN`、`fr`、`es`、`x-default`
+- Open Graph 全套
+- Twitter Card 全套
+
+### R4) JSON-LD（4 种）
+
+必须同时包含：
+
+1. `WebApplication`（必须含 `alternateName`、`publisher`、`featureList`、`screenshot`）
+2. `BreadcrumbList`（3 级）
+3. `HowTo`（3 步）
+4. `FAQPage`（至少 5 个问答）
+
+### R5) 页面可见 SEO 区块
+
+在主体功能区后，必须有（均在 `.container` 内部）：
+
+1. `features-section`（4 张卡，grid，自适应）
+2. `faq-section`（≥5 问答，手风琴交互由 common.js 自动绑定）
+3. `related-tools`（3-5 个相关工具内链）
+
+### R6) 痛点关键词埋词
+
+必须围绕用户痛点埋词：`No Ads`、`No Signup/No Login`、`No Watermark`、`No Upload`、`browser-based`、`free unlimited` 等。
+
+必须覆盖 6 层位置：
+
+1. `<title>`（含 `No Ads` + 核心卖点）
+2. `meta description`
+3. `meta keywords`
+4. JSON-LD `WebApplication.featureList`
+5. `og:title` 与 `twitter:title`
+6. 页面可见内容（features + FAQ）
+
+### R7) Trust Bar
+
+功能区与 features 之间必须有 Trust Bar，使用 common.css 类名 `.trust-bar` > `.trust-item`。
+
+包含 4 项文案键：`trust_users`、`trust_rating`、`trust_privacy`、`trust_free`
+
+### R8) FAQ 深度与热词
+
+- HTML 结构：`.faq-item` > `.faq-question`（按钮）+ 答案容器，手风琴交互由 common.js 自动绑定
+- 每条 FAQ 答案必须有解释深度（建议 3-8 句），不能是空泛一句话
+- 至少 1 条 FAQ 必须是基础科普（What is X / X 是什么，有什么用）
+- FAQ 与 JSON-LD FAQPage 必须语义一致
+- FAQ 文案必须自然包含 Google 热词，禁止机械堆砌
+- FAQ 最后一条必须是免费隐私问答，键名固定：`faq_free_q` / `faq_free_a`
+
+### R9) 免费隐私卖点卡
+
+features 第一张卡必须是"100% Free & Private"卖点（含无广告、无需注册、本地处理等核心信息），4 语言翻译。
+
+### R10) 合规禁止项
+
+- 禁止在 JSON-LD 中伪造 `aggregateRating`
+- Trust Bar 仅作页面可见信任元素，不写入结构化评分数据
+
+### R11) 上线集成
+
+每个新工具上线必须同步更新：
+
+1. `index.html` 工具卡片
+2. `index.html` JSON-LD `hasPart`
+3. 对应分类页 `category/xxx-tools.html`（添加工具卡片到该分类）
+4. `sitemap.xml`
+5. `docs/ROADMAP.md`
+6. `screenshots/{tool}.webp`
+
+### R12) 截图规范
+
+- 截图必须为 `webp`，文件名与工具文件名一致
+- 转换命令：`cwebp -q 80 screenshot.png -o screenshots/xxx.webp`
+
+### R13) 浅色主题 CSS
+
+启用主题切换后（`data-show-theme-toggle="true"`），工具页必须提供完整的浅色主题覆写。
+
+**选择器规则（关键）：**
+- common.js 将 `data-theme="light"` 设置在 `<body>` 元素上
+- body 自身的样式必须用 `body[data-theme="light"]`（属性在 body 上，不能用后代选择器）
+- 其他元素用 `[data-theme="light"] .class-name`（标准后代选择器）
+
+**必须覆写的组件清单：**
+1. `body` — 背景色 `#fafafa`、文字色 `#09090b`
+2. 工具主体区域 — 所有自定义卡片、输入框、按钮
+3. 工具特有面板 — 背景、边框、文字色
+4. `.features-section .feature-card` — 白色背景 `#ffffff`、浅灰边框 `#e4e4e7`
+5. `.faq-section` — `.faq-item` 白色背景、`.faq-question` 深色文字
+6. 统计卡片、进度条等装饰性组件
+
+**标准配色表（浅色模式）：**
+| 用途 | 色值 |
+|------|------|
+| 页面背景 | `#fafafa` |
+| 卡片/面板背景 | `#ffffff` |
+| 边框 | `#e4e4e7` |
+| 主文字 | `#09090b` |
+| 次要文字 | `#71717a` |
+| 交互强调色 | `#7c3aed`（保持与深色主题一致） |
+
+---
+
+## 速用片段（复制后改词）
+
+> 规则详情见上方对应 R# 编号
+
+### 痛点埋词 → R6
 ```html
 <title>{Tool Name} - Free Online {Type} | No Ads, No Signup | {中文名} | Web Toolbox</title>
 <meta name="description" content="{核心描述}. ✅ No ads ✅ No signup ✅ No limits. Runs entirely in your browser.">
@@ -101,8 +288,7 @@ pdf-merge/
 <meta name="twitter:title" content="{Tool Name} - Free Online {Type} | No Ads, No Signup">
 ```
 
-### 2) WebApplication featureList（含卖点词）
-
+### featureList → R4 R6
 ```json
 "featureList": [
   "{核心功能1}",
@@ -115,8 +301,7 @@ pdf-merge/
 ]
 ```
 
-### 3) Trust Bar（必须）
-
+### Trust Bar → R7
 ```html
 <div class="trust-bar">
   <span class="trust-item" data-i18n="trust_users">🌍 Used by 50,000+ users</span>
@@ -126,8 +311,7 @@ pdf-merge/
 </div>
 ```
 
-### 4) FAQ 最后一条（必须）
-
+### FAQ 末条 → R8
 ```html
 <div class="faq-item">
   <button class="faq-question">
@@ -139,25 +323,18 @@ pdf-merge/
   </p></div>
 </div>
 ```
-> FAQ 交互由 common.js `bindFaqAccordion()` 自动绑定，禁止手写 `onclick` 或 `toggleFaq`。
 
-### 5) FAQ 深度示例（科普 + 热词）
-
+### FAQ 深度示例 → R8
 ```text
 Q: What is JSON and what is it used for?
 A: JSON (JavaScript Object Notation) is a lightweight data format used by modern APIs and web apps. In CSV to JSON workflows, JSON is often used as API-ready structured payload.
 ```
 
-### 6) 合规提醒（禁止项）
-
-- 不要在 JSON-LD 中添加伪造 `aggregateRating`。
-- Trust Bar 仅用于页面可见信任表达，不作为结构化评分数据提交。
-
 ---
 
-## HTML 文件完整模板
+## HTML 完整模板
 
-> 注意：语言切换器、FAQ 手风琴交互、header/footer 均由 common.js 自动注入，**禁止手写**。
+> 语言切换器、FAQ 手风琴交互、header/footer 均由 common.js 自动注入，**禁止手写**。
 > 所有可见内容（trust-bar、features、faq、related-tools）必须在 `.container` 内部。
 
 ```html
