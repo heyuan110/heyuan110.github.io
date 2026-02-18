@@ -2,7 +2,7 @@
 date = '2026-01-28T23:55:00+08:00'
 lastmod = '2026-02-16T18:00:00+08:00'
 draft = false
-title = 'Claude Code 浏览器自动化怎么选？4 套方案实测对比（Agent Browser vs Playwright CLI/MCP vs DevTools）'
+title = 'Claude Code 浏览器自动化怎么选？(2026最新)4 套方案实测对比（Agent Browser vs Playwright CLI/MCP vs DevTools）'
 description = '2026 实测对比 Claude Code 四种浏览器自动化方案：速度、Token 成本、稳定性、适用场景一次讲清，附选型结论与落地命令。'
 toc = true
 tags = ['Claude Code', '浏览器自动化', 'MCP', 'Playwright CLI', 'Playwright MCP', 'Agent Browser']
