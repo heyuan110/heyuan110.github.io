@@ -1,14 +1,15 @@
 +++
-title = 'curl 命令完全指南：HTTP 请求与 API 调试必备工具'
+title = 'curl 命令详解：Linux 常用参数与用法大全'
 date = '2020-06-29'
 draft = false
-description = 'curl 命令完整使用教程，涵盖 GET/POST/PUT/DELETE 请求、JSON 数据发送、文件上传下载、认证鉴权、代理设置、HTTPS 证书处理等实战技巧。运维开发调试 API 必备工具，附常用命令速查表。'
-tags = ['curl', 'linux', 'HTTP', 'API', '运维', '命令行']
+toc = true
+description = 'curl 命令详解与用法大全，涵盖 GET/POST/PUT/DELETE 请求、JSON 数据发送、文件上传下载、认证鉴权、代理设置、HTTPS 证书处理、请求耗时测量等常用参数和实战技巧，附选项速查表。'
+tags = ['curl', 'Linux', 'HTTP', 'API', '运维', '命令行']
 categories = ['Linux']
-keywords = ['curl 命令', 'curl 教程', 'HTTP 请求', 'API 调试', 'REST API 测试']
+keywords = ['curl 命令详解', 'curl 用法大全', 'curl 常用参数', 'curl post 请求', 'curl get 请求', 'curl 下载文件', 'curl json', 'curl 代理', 'curl 证书', 'curl linux', 'curl 教程']
 +++
 
-**curl** 是 Linux/macOS 下最强大的[命令行](/posts/linux/2020-03-19-linux-mac-commands/)数据传输工具，支持 HTTP、HTTPS、FTP 等 20+ 种协议。无论是调试 API、下载文件还是测试网络连接，curl 都是运维开发的必备神器。本文将系统介绍 curl 的常用技巧，帮你快速掌握这个强大的工具。
+**curl 命令**是 Linux/macOS 下最常用的[命令行](/posts/linux/2020-03-19-linux-mac-commands/)数据传输工具，支持 HTTP、HTTPS、FTP 等 20+ 种协议。无论是发送 GET/POST 请求调试 REST API、下载文件还是测试网络连接，curl 都是运维开发人员的必备工具。本文是一份 curl 命令详解与用法大全，系统介绍 curl 的常用参数和实战技巧，包括 HTTP 请求方法、JSON 数据发送、文件上传下载、认证鉴权、代理设置等，帮你快速掌握 curl 的全部核心用法。
 
 <!--more-->
 
@@ -379,6 +380,59 @@ curl --compressed https://example.com
 | `-m` | 超时时间 | `-m 30` |
 | `-A` | User-Agent | `-A "Mozilla/5.0"` |
 | `-e` | Referer | `-e "https://ref.com"` |
+
+## 十一、curl 与 wget 对比
+
+| 对比项 | curl | wget |
+|--------|------|------|
+| 协议支持 | 20+ 种（HTTP、FTP、SMTP 等） | HTTP、HTTPS、FTP |
+| 输出方式 | 默认输出到 stdout | 默认保存到文件 |
+| 递归下载 | 不支持 | 支持（`-r`） |
+| HTTP 方法 | 全部支持（GET/POST/PUT/DELETE 等） | 仅 GET/POST |
+| 上传功能 | 支持 | 不支持 |
+| 管道处理 | 非常方便（配合 jq 等） | 不便 |
+| 适用场景 | API 调试、脚本集成、数据传输 | 批量下载、网站镜像 |
+
+简单来说：**调试 API 用 curl，批量下载用 wget**。
+
+## 十二、常见问题
+
+### Q1：curl 返回乱码怎么办？
+
+可能是服务端返回了压缩数据，使用 `--compressed` 参数自动解压：
+
+```bash
+curl --compressed https://example.com
+```
+
+### Q2：如何用 curl 发送 JSON 请求？
+
+```bash
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"name":"test","value":123}' \
+  https://httpbin.org/post
+```
+
+关键是添加 `Content-Type: application/json` 请求头，并用 `-d` 传递 JSON 字符串。
+
+### Q3：curl 如何忽略 SSL 证书错误？
+
+使用 `-k` 或 `--insecure` 参数（仅限测试环境）：
+
+```bash
+curl -k https://self-signed.example.com
+```
+
+### Q4：如何查看 curl 请求的完整过程？
+
+使用 `-v`（verbose）参数查看详细的请求和响应信息：
+
+```bash
+curl -v https://example.com
+```
+
+---
 
 ## 总结
 

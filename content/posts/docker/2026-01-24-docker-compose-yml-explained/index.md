@@ -1,15 +1,17 @@
 +++
 date = '2026-01-24'
 draft = false
-title = 'Docker Compose 配置文件完全指南：从入门到实战'
-description = '全面讲解 compose.yaml 的每个字段含义、必选与可选配置、YAML 嵌套规范，附实战案例和官方参考链接'
+title = 'docker-compose.yml 详解：Docker Compose 配置教程与实战案例'
+description = 'Docker Compose 配置文件详解教程，逐字段讲解 docker-compose.yml / compose.yaml 的 services、volumes、networks 等配置项，附 YAML 语法规范、WordPress 实战案例和常用命令速查表。'
 toc = true
-tags = ['Docker', 'Docker Compose', '容器化', '入门教程']
+tags = ['Docker', 'Docker Compose', '容器化', '入门教程', 'YAML']
 categories = ['AI实战']
-keywords = ['docker compose', 'compose.yaml', 'docker compose 教程', '容器编排']
+keywords = ['docker-compose.yml 详解', 'docker compose 教程', 'docker compose 配置', 'compose.yaml', 'docker compose yml', 'docker compose 入门', 'docker compose volumes', 'docker compose networks', 'docker compose ports', '容器编排']
 +++
 
-很多人一看到 `compose.yaml` 就头大，一堆冒号、缩进，不知道从何下手。其实它没那么复杂，今天我用最通俗的方式，带你彻底搞懂这个文件。
+**docker-compose.yml**（新版推荐命名为 `compose.yaml`）是 Docker Compose 的核心配置文件，用于定义和管理多容器应用的服务、网络和数据卷。本文是一份完整的 docker-compose.yml 详解教程，将逐字段讲解 services、volumes、networks、ports、environment 等所有配置项的含义和用法，并通过实战案例帮你快速掌握 Docker Compose 配置。
+
+很多人一看到 `compose.yaml` 就头大，一堆冒号、缩进，不知道从何下手。其实它没那么复杂，下面我用最通俗的方式，带你彻底搞懂这个文件。
 
 > **重要提示**：旧版 `docker-compose`（带连字符）是用 Python 写的独立工具，**已于 2023 年 7 月停止维护**。现在应该使用 `docker compose`（空格分隔），它是 Docker CLI 的内置插件，用 Go 重写，性能更好，功能更全。本文所有命令均使用新版语法。
 
@@ -867,3 +869,35 @@ compose.yaml = services（必选）+ 每个服务的配置（image/build 必选�
 ```
 
 嵌套规则只有一条：**每深一层，多缩进 2 个空格**。搞不清楚就跑 `docker compose config` 验证。
+
+---
+
+## 十二、docker-compose.yml 最佳实践
+
+在实际项目中，以下几点经验可以帮你避免常见的坑：
+
+1. **镜像版本锁定** -- 生产环境永远不要用 `latest` 标签，指定明确的版本号（如 `nginx:1.25`、`mysql:8.0`），确保环境可复现
+2. **敏感信息外置** -- 密码、密钥等不要直接写在 compose.yaml 中，使用 `env_file` 或 Docker Secrets，并把 `.env` 文件加入 `.gitignore`
+3. **健康检查必加** -- 对数据库等基础服务配置 `healthcheck`，配合 `depends_on` 的 `condition: service_healthy`，确保服务真正就绪后再启动依赖服务
+4. **数据持久化** -- 重要数据（数据库、上传文件等）必须使用命名卷或绑定挂载，否则容器删除后数据会丢失
+5. **资源限制** -- 通过 `deploy.resources` 限制 CPU 和内存使用，防止单个容器耗尽宿主机资源
+6. **日志管理** -- 配置 `logging` 驱动限制日志文件大小，避免磁盘被日志撑满
+
+```yaml
+# 日志管理示例
+services:
+  web:
+    image: nginx:1.25
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"    # 单个日志文件最大 10MB
+        max-file: "3"      # 最多保留 3 个日志文件
+```
+
+---
+
+## 相关阅读
+
+- [Docker 入门教程](/posts/docker/2019-05-13-learn-docker/) - Docker 基础概念和安装配置
+- [Docker 常用命令速查](/posts/docker/2019-11-14-docker-commands/) - 容器、镜像、网络等管理命令
