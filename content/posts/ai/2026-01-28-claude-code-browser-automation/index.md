@@ -2,8 +2,8 @@
 date = '2026-01-28T23:55:00+08:00'
 lastmod = '2026-02-16T18:00:00+08:00'
 draft = false
-title = 'Claude Code 浏览器自动化方案对比（2026 最新）：Agent Browser、Playwright CLI/MCP、DevTools'
-description = '深入对比 Claude Code 四大浏览器自动化方案：Vercel Agent Browser、Playwright CLI（Token 省 4 倍）、Playwright MCP、DevTools MCP，含实战选型指南。'
+title = 'Claude Code 浏览器自动化怎么选？4 套方案实测对比（Agent Browser vs Playwright CLI/MCP vs DevTools）'
+description = '2026 实测对比 Claude Code 四种浏览器自动化方案：速度、Token 成本、稳定性、适用场景一次讲清，附选型结论与落地命令。'
 toc = true
 tags = ['Claude Code', '浏览器自动化', 'MCP', 'Playwright CLI', 'Playwright MCP', 'Agent Browser']
 categories = ['AI实战']
@@ -577,3 +577,8 @@ chrome.exe --remote-debugging-port=9222
 - [Playwright CLI 深度评测 - TestCollab](https://testcollab.com/blog/playwright-cli)
 - [MCP vs CLI 对比分析 - SupaTest](https://supatest.ai/blog/playwright-mcp-vs-cli-ai-browser-automation)
 - [Chrome DevTools Protocol 文档](https://chromedevtools.github.io/devtools-protocol/)
+## 相关阅读 / Related
+
+- [AI 自动化导航 Hub](/posts/ai/ai-automation-hub/)
+- [Claude Code 使用教程（OpenClaw 实战）](/posts/ai/2026-02-12-openclaw-usage-tutorial/)
+- [Codex CLI 实战指南](/posts/ai/2026-02-12-codex-cli-mastery-guide/)

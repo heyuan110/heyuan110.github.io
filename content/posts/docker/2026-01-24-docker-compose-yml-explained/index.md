@@ -1,8 +1,8 @@
 +++
 date = '2026-01-24'
 draft = false
-title = 'docker-compose.yml 详解：Docker Compose 配置教程与实战案例'
-description = 'Docker Compose 配置文件详解教程，逐字段讲解 docker-compose.yml / compose.yaml 的 services、volumes、networks 等配置项，附 YAML 语法规范、WordPress 实战案例和常用命令速查表。'
+title = 'docker-compose.yml 详解（含 compose.yaml）：services、volumes、networks 实战模板'
+description = '逐字段讲透 docker-compose.yml/compose.yaml：services、volumes、networks、depends_on、healthcheck，并附可直接复用的配置模板。'
 toc = true
 tags = ['Docker', 'Docker Compose', '容器化', '入门教程', 'YAML']
 categories = ['AI实战']
@@ -901,3 +901,8 @@ services:
 
 - [Docker 入门教程](/posts/docker/2019-05-13-learn-docker/) - Docker 基础概念和安装配置
 - [Docker 常用命令速查](/posts/docker/2019-11-14-docker-commands/) - 容器、镜像、网络等管理命令
+## 相关阅读 / Related
+
+- [Linux 运维基础 Hub](/posts/linux/linux-ops-basics-hub/)
+- [Docker Compose 完全指南](/posts/docker/2026-01-19-docker-compose-complete-guide/)
+- [Docker 常用命令速查](/posts/docker/2019-11-14-docker-commands/)

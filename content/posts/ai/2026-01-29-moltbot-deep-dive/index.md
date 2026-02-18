@@ -1,8 +1,8 @@
 +++
 date = '2026-01-29T21:00:00+08:00'
 draft = false
-title = 'Moltbot 深度解析：从爆火到改名，个人 AI Agent 的机遇与暗礁'
-description = 'Moltbot（原 Clawdbot）是 2026 年初最火的开源个人 AI 助手项目，GitHub 星标破 8 万。本文深度解析其技术架构、改名风波、安全隐患、加密骗局，以及它对个人 AI Agent 时代的启示。'
+title = 'Moltbot 深度解析（2026）：为什么爆火、为何改名、有哪些安全风险？'
+description = '一文看懂 Moltbot（原 Clawdbot）的爆火逻辑、改名始末与真实安全风险，含架构拆解、骗局复盘与部署避坑建议。'
 toc = true
 tags = ['Moltbot', 'Clawdbot', 'AI Agent', '开源', '安全']
 categories = ['AI原理']
@@ -313,3 +313,8 @@ Moltbot（原 Clawdbot）在短短一周内从默默无闻到 8 万 Star，再�
 - [ClawdHub 技能市场](https://clawdhub.com)
 - [TechCrunch 深度报道](https://techcrunch.com/2026/01/27/everything-you-need-to-know-about-viral-personal-ai-assistant-clawdbot-now-moltbot/)
 - [苏打白原帖](https://x.com/sodawhite_dev/status/2016486967932817705)
+## 相关阅读 / Related
+
+- [AI 自动化导航 Hub](/posts/ai/ai-automation-hub/)
+- [Clawdbot：个人 AI 助手实战](/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/)
+- [OpenClaw 自动化的坑与避坑](/posts/ai/2026-02-14-openclaw-automation-pitfalls/)

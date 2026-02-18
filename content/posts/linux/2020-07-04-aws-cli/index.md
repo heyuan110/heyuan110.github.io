@@ -1,8 +1,8 @@
 +++
-title = "AWS CLI 完全指南：安装配置与常用命令速查"
+title = 'AWS CLI 完全指南：安装配置、S3/EC2 常用命令与权限排错'
 date = 2020-07-04T00:16:54+08:00
 author = "bruce"
-description = "AWS CLI 命令行工具完全指南，涵盖安装配置、S3 存储操作、EC2 实例管理、IAM 权限配置等核心功能，附带实用命令速查表和最佳实践"
+description = 'AWS CLI 从零上手：安装、aws configure、S3/EC2/IAM 高频命令、常见报错与权限问题排查，适合运维与开发日常使用。'
 toc = true
 tags = ["AWS", "AWS CLI", "S3", "EC2", "云计算", "运维", "命令行"]
 categories = ["Linux"]

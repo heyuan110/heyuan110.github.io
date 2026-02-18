@@ -1,8 +1,8 @@
 ---
-title: "Docker 常用命令速查手册：镜像、容器、数据卷完整操作指南"
+title: "Docker 常用命令速查（2026更新）：镜像、容器、网络、数据卷一页掌握"
 date: 2019-11-14 20:37:13
 author: "bruce"
-description: "Docker 常用命令速查手册，涵盖服务启停、镜像管理（pull/push/rmi）、容器操作（run/exec/logs）、数据卷挂载，附 MySQL、Nginx、Redis、MongoDB 等常用容器启动命令"
+description: "高频 Docker 命令速查：pull/run/exec/logs、镜像清理、网络管理、数据卷挂载，附 MySQL/Nginx/Redis 常用启动示例。"
 toc: true
 tags:
     - Docker
@@ -293,4 +293,3 @@ docker run --name redis -d -p 6379:6379 -v redis-data:/data docker.patpat.vip:95
 - [Docker 入门指南：核心概念、安装配置与容器化实践](/posts/docker/2019-05-13-learn-docker/) - Docker 基础概念与入门教程
 - [Docker Compose 完全指南：从入门到生产实践](/posts/docker/2026-01-19-docker-compose-complete-guide/) - 多容器编排与生产环境最佳实践
 - [使用 Nexus3 搭建 Docker 私有镜像仓库](/posts/docker/2019-06-12-next3-dockerhub/) - 企业级私有仓库搭建方案
-

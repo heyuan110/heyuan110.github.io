@@ -1,9 +1,9 @@
 +++
-title = 'curl 命令详解：Linux 常用参数与用法大全'
+title = 'curl 命令大全（Linux/macOS）：GET/POST、文件上传下载、鉴权与调试实战'
 date = '2020-06-29'
 draft = false
 toc = true
-description = 'curl 命令详解与用法大全，涵盖 GET/POST/PUT/DELETE 请求、JSON 数据发送、文件上传下载、认证鉴权、代理设置、HTTPS 证书处理、请求耗时测量等常用参数和实战技巧，附选项速查表。'
+description = '最常用 curl 命令一文速查：GET/POST/PUT/DELETE、JSON 请求、上传下载、代理、证书、耗时分析与故障排查示例。'
 tags = ['curl', 'Linux', 'HTTP', 'API', '运维', '命令行']
 categories = ['Linux']
 keywords = ['curl 命令详解', 'curl 用法大全', 'curl 常用参数', 'curl post 请求', 'curl get 请求', 'curl 下载文件', 'curl json', 'curl 代理', 'curl 证书', 'curl linux', 'curl 教程']
@@ -458,3 +458,8 @@ curl 是一个功能强大的命令行工具，掌握它能大幅提升你的工
 - [curl Man Page](https://curl.se/docs/manpage.html)
 - [Test a REST API with curl - Baeldung](https://www.baeldung.com/curl-rest)
 - [httpbin.org](https://httpbin.org/) - HTTP 请求测试服务
+## 相关阅读 / Related
+
+- [Linux 运维基础 Hub](/posts/linux/linux-ops-basics-hub/)
+- [traceroute 命令详解](/posts/linux/2020-06-28-traceroute/)
+- [AWS CLI 完全指南](/posts/linux/2020-07-04-aws-cli/)

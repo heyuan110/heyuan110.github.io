@@ -1,8 +1,8 @@
 ---
-title: "Docker & Docker Compose 完全指南：从入门到精通"
+title: "Docker Compose 完全指南（2026）：安装、docker-compose.yml、实战部署一篇搞定"
 date: 2026-01-19T10:00:00+08:00
 author: "bruce"
-description: "零基础也能看懂的 Docker 教程，用生活化比喻讲解核心概念，从安装到实战，从单容器到多容器编排，一文掌握容器化技术"
+description: "从 Docker 基础到 Docker Compose 实战：安装配置、compose.yml 核心字段、WordPress/Node+MySQL 案例与生产环境最佳实践。"
 toc: true
 images:
 tags:
@@ -1579,3 +1579,8 @@ docker stack deploy -c docker-compose.yml myapp
 ---
 
 *如果这篇文章对你有帮助，欢迎分享给更多的朋友！*
+## 相关阅读 / Related
+
+- [Linux 运维基础 Hub](/posts/linux/linux-ops-basics-hub/)
+- [docker-compose.yml 详解](/posts/docker/2026-01-24-docker-compose-yml-explained/)
+- [Docker 常用命令速查](/posts/docker/2019-11-14-docker-commands/)

@@ -1,8 +1,8 @@
 +++
 date = '2026-02-12T16:02:00+08:00'
 draft = false
-title = 'Codex CLI 深度指南：20+ 实战技巧，从入门到精通'
-description = 'OpenAI Codex CLI 全面深度指南，涵盖别名配置、模型切换、授权模式、会话恢复、MCP 集成、AGENTS.md 等 20+ 实战技巧，比基础教程更深入的进阶用法。'
+title = 'Codex CLI 实战指南：20+ 高效技巧（模型切换、会话恢复、MCP 集成）'
+description = '面向开发者的 Codex CLI 进阶教程：别名配置、模型选择、会话恢复、授权模式、MCP 集成与 AGENTS.md 工作流实战。'
 toc = true
 tags = ['Codex CLI', 'AI 编程', 'OpenAI', '终端工具', 'AI Agent']
 categories = ['AI实战']

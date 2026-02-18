@@ -1,8 +1,8 @@
 +++
-title = 'traceroute 命令详解：Linux 网络路由追踪与故障排查指南'
+title = 'traceroute 命令详解：网络延迟定位与路由故障排查（Linux/macOS/Windows）'
 date = '2020-06-28T12:12:04+08:00'
 draft = false
-description = 'traceroute 命令完整使用教程，详解 TTL 工作原理、Linux/macOS/Windows 用法差异、常用参数、输出解读技巧和网络故障排查实战案例。掌握 traceroute 快速定位网络延迟瓶颈和故障节点。'
+description = '从 TTL 原理到输出解读，系统讲解 traceroute 在 Linux/macOS/Windows 的用法差异，快速定位网络慢点与故障节点。'
 toc = true
 images = ['cover.webp']
 tags = ['traceroute', 'Linux', '网络诊断', 'TTL', 'ICMP', '运维', '命令行']

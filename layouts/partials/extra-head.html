@@ -16,7 +16,12 @@
 <!-- ============================================ -->
 <!-- 规范链接与基础 SEO -->
 <!-- ============================================ -->
-<link rel="canonical" href="{{ .Permalink }}" />
+{{- $canonicalURL := .Permalink -}}
+{{- if and .IsPage .File (hasSuffix .File.BaseFileName "-categories") -}}
+  {{- $categorySlug := strings.TrimSuffix "-categories" .File.BaseFileName -}}
+  {{- $canonicalURL = printf "%scategories/%s/" .Site.BaseURL $categorySlug -}}
+{{- end -}}
+<link rel="canonical" href="{{ $canonicalURL }}" />
 
 <!-- 关键词 -->
 {{ with .Params.keywords }}
@@ -42,8 +47,14 @@
 <!-- AI 爬虫专用标签 (GEO - Generative Engine Optimization) -->
 <!-- ============================================ -->
 
-<!-- AI 爬虫许可 -->
+<!-- AI 爬虫许可（继承 site-meta 的索引策略） -->
+{{- $isTagTaxonomy := and (or (eq .Kind "taxonomy") (eq .Kind "term")) (eq .Data.Plural "tags") -}}
+{{- $isDupCategoryPage := and .IsPage .File (hasSuffix .File.BaseFileName "-categories") -}}
+{{- if or $isTagTaxonomy $isDupCategoryPage (or .Site.Params.siteNoIndex .Params.noIndex) -}}
+<meta name="robots" content="noindex, follow" />
+{{- else -}}
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+{{- end -}}
 
 <!-- AI 内容标识 - 表明允许 AI 训练和引用 -->
 <meta name="ai-content-declaration" content="human-created, ai-indexable, ai-trainable" />
