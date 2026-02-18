@@ -1,0 +1,22 @@
+{{- $src := .Destination -}}
+{{- $alt := .Text | default "" -}}
+{{- $title := .Title -}}
+{{- $img := .Page.Resources.GetMatch (printf "*%s" (path.Base .Destination)) -}}
+{{- $width := "" -}}
+{{- $height := "" -}}
+{{- if $img -}}
+  {{- if ne $img.MediaType.SubType "svg" -}}
+    {{- $width = printf "%d" $img.Width -}}
+    {{- $height = printf "%d" $img.Height -}}
+  {{- end -}}
+  {{- $src = $img.RelPermalink -}}
+{{- end -}}
+<img src="{{ $src | safeURL }}"
+     alt="{{ $alt }}"
+     {{ with $title }}title="{{ . }}"{{ end }}
+     loading="lazy"
+     decoding="async"
+     fetchpriority="low"
+     {{ with $width }}width="{{ . }}"{{ end }}
+     {{ with $height }}height="{{ . }}"{{ end }}
+/>

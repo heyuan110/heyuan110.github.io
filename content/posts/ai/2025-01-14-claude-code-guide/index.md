@@ -3459,3 +3459,12 @@ Claude Code 是一个强大的 AI 编程助手，它的核心优势在于：
 - [Claude Code 最佳实践](https://www.anthropic.com/engineering/claude-code-best-practices)
 - [CLAUDE.md 写作指南](https://www.humanlayer.dev/blog/writing-a-good-claude-md)
 - [Claude Code 命令速查表](https://shipyard.build/blog/claude-code-cheat-sheet/)
+
+
+## 延伸阅读（AI 自动化内链）
+
+- [Claude Code 命令大全（高频命令速查）](/posts/ai/2025-01-23-claude-code-commands/)
+- [Claude Code Hooks 机制详解（自动化关键）](/posts/ai/2026-02-18-claude-code-hooks-guide/)
+- [Claude Code 浏览器自动化方案对比](/posts/ai/2026-01-28-claude-code-browser-automation/)
+- [OpenClaw 使用教程（从单工具到多 Agent）](/posts/ai/2026-02-12-openclaw-usage-tutorial/)
+- [Codex CLI 实战指南（跨工具工作流）](/posts/ai/2026-02-12-codex-cli-mastery-guide/)

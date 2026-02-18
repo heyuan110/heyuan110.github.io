@@ -1,70 +1,30 @@
-<!-- ============================================ -->
-<!-- SEO & GEO 优化 - 搜索引擎和 AI 爬虫友好 -->
-<!-- 更新日期: 2025-01 -->
-<!-- ============================================ -->
-
-<!-- 搜索引擎站长验证 -->
-<!-- Google Search Console: https://search.google.com/search-console -->
-<!-- <meta name="google-site-verification" content="你的验证码" /> -->
-
-<!-- Bing Webmaster: https://www.bing.com/webmasters -->
-<!-- <meta name="msvalidate.01" content="你的验证码" /> -->
-
-<!-- Baidu 站长平台: https://ziyuan.baidu.com/ -->
-<!-- <meta name="baidu-site-verification" content="你的验证码" /> -->
-
-<!-- ============================================ -->
-<!-- 规范链接与基础 SEO -->
-<!-- ============================================ -->
+<!-- SEO: canonical / structured data / crawler hints -->
 {{- $canonicalURL := .Permalink -}}
+{{- $canonicalURL = replaceRE "^http://" "https://" $canonicalURL -}}
+{{- $canonicalURL = replaceRE "^https://heyuan110\\.com/" "https://www.heyuan110.com/" $canonicalURL -}}
+{{- if and (not (hasSuffix $canonicalURL "/")) (not (strings.HasSuffix $canonicalURL ".xml")) (not (strings.HasSuffix $canonicalURL ".json")) -}}
+  {{- $canonicalURL = printf "%s/" (strings.TrimSuffix "/" $canonicalURL) -}}
+{{- end -}}
 {{- if and .IsPage .File (hasSuffix .File.BaseFileName "-categories") -}}
   {{- $categorySlug := strings.TrimSuffix "-categories" .File.BaseFileName -}}
   {{- $canonicalURL = printf "%scategories/%s/" .Site.BaseURL $categorySlug -}}
 {{- end -}}
 <link rel="canonical" href="{{ $canonicalURL }}" />
 
-<!-- 关键词 -->
+<!-- 标题/描述模板化 A/B 规则说明见 docs/seo/title-description-playbook.md -->
 {{ with .Params.keywords }}
-<meta name="keywords" content="{{ . }}" />
+<meta name="keywords" content="{{ delimit . ", " }}" />
 {{ else }}
 {{ with .Site.Params.keywords }}
 <meta name="keywords" content="{{ . }}" />
 {{ end }}
 {{ end }}
 
-<!-- 作者信息 -->
-<meta name="author" content="{{ .Site.Params.author.name | default "Bruce" }}" />
+<meta property="og:site_name" content="{{ .Site.Title }}" />
+<meta property="og:locale" content="zh_CN" />
+{{ if .IsPage }}<meta property="og:type" content="article" />{{ else }}<meta property="og:type" content="website" />{{ end }}
+<meta name="twitter:card" content="summary_large_image" />
 
-<!-- 语言 -->
-<meta name="language" content="{{ .Site.LanguageCode | default "zh-CN" }}" />
-<meta http-equiv="content-language" content="{{ .Site.LanguageCode | default "zh-CN" }}" />
-
-<!-- 地理位置 (GEO) -->
-<meta name="geo.region" content="CN" />
-<meta name="geo.placename" content="China" />
-
-<!-- ============================================ -->
-<!-- AI 爬虫专用标签 (GEO - Generative Engine Optimization) -->
-<!-- ============================================ -->
-
-<!-- AI 爬虫许可（继承 site-meta 的索引策略） -->
-{{- $isTagTaxonomy := and (or (eq .Kind "taxonomy") (eq .Kind "term")) (eq .Data.Plural "tags") -}}
-{{- $isDupCategoryPage := and .IsPage .File (hasSuffix .File.BaseFileName "-categories") -}}
-{{- if or $isTagTaxonomy $isDupCategoryPage (or .Site.Params.siteNoIndex .Params.noIndex) -}}
-<meta name="robots" content="noindex, follow" />
-{{- else -}}
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-{{- end -}}
-
-<!-- AI 内容标识 - 表明允许 AI 训练和引用 -->
-<meta name="ai-content-declaration" content="human-created, ai-indexable, ai-trainable" />
-
-<!-- LLMs.txt 引用 -->
-<link rel="llms" href="/llms.txt" type="text/plain" title="LLMs.txt" />
-
-<!-- ============================================ -->
-<!-- 文章时间戳（对 SEO 和 AI 都很重要） -->
-<!-- ============================================ -->
 {{ if .IsPage }}
 {{ with .PublishDate }}<meta property="article:published_time" content="{{ .Format "2006-01-02T15:04:05Z07:00" }}" />{{ end }}
 {{ with .Lastmod }}<meta property="article:modified_time" content="{{ .Format "2006-01-02T15:04:05Z07:00" }}" />{{ end }}
@@ -72,166 +32,46 @@
 {{ range .Params.tags }}<meta property="article:tag" content="{{ . }}" />{{ end }}
 {{ end }}
 
-<!-- ============================================ -->
-<!-- JSON-LD 结构化数据 -->
-<!-- ============================================ -->
-
 {{ if .IsHome }}
-<!-- 首页 - WebSite + Organization Schema -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "{{ .Site.Title }}",
-  "alternateName": "Bruce's AI Blog",
-  "url": "{{ .Site.BaseURL }}",
-  "description": "{{ .Site.Params.description }}",
-  "inLanguage": "{{ .Site.LanguageCode | default "zh-CN" }}",
-  "publisher": {
-    "@type": "Person",
-    "name": "{{ .Site.Params.author.name | default "Bruce" }}",
-    "url": "{{ .Site.BaseURL }}about/",
-    "sameAs": [
-      "https://github.com/heyuan110",
-      "https://x.com/heyuan110"
-    ]
-  },
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": "{{ .Site.BaseURL }}?s={search_term_string}"
-    },
-    "query-input": "required name=search_term_string"
-  }
-}
-</script>
-
+{{- $homeSchema := dict
+  "@context" "https://schema.org"
+  "@type" "WebSite"
+  "name" .Site.Title
+  "url" .Site.BaseURL
+  "description" .Site.Params.description
+-}}
+<script type="application/ld+json">{{ $homeSchema | jsonify | safeJS }}</script>
 {{ else if .IsPage }}
-<!-- 文章页 - Article Schema -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "{{ .Title }}",
-  "description": "{{ with .Description }}{{ . }}{{ else }}{{ .Summary | truncate 160 }}{{ end }}",
-  "url": "{{ .Permalink }}",
-  "datePublished": "{{ .PublishDate.Format "2006-01-02T15:04:05Z07:00" }}",
-  "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
-  "author": {
-    "@type": "Person",
-    "name": "{{ .Site.Params.author.name | default "Bruce" }}",
-    "url": "{{ .Site.BaseURL }}about/"
-  },
-  "publisher": {
-    "@type": "Person",
-    "name": "{{ .Site.Params.author.name | default "Bruce" }}",
-    "url": "{{ .Site.BaseURL }}"
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "{{ .Permalink }}"
-  },
-  "inLanguage": "{{ .Site.LanguageCode | default "zh-CN" }}",
-  "keywords": "{{ with .Params.tags }}{{ delimit . ", " }}{{ end }}",
-  "articleSection": "{{ with .Section }}{{ . }}{{ end }}",
-  "wordCount": {{ .WordCount }}
-  {{ with .Params.images }}
-  ,"image": [
-    {{ range $i, $e := . }}{{ if $i }},{{ end }}"{{ $e | absURL }}"{{ end }}
-  ]
-  {{ end }}
-}
-</script>
+{{- $desc := or .Description (.Summary | plainify | truncate 160) -}}
+{{- $postSchema := dict
+  "@context" "https://schema.org"
+  "@type" "BlogPosting"
+  "headline" (.Title | plainify)
+  "description" $desc
+  "url" $canonicalURL
+  "datePublished" (.PublishDate.Format "2006-01-02T15:04:05Z07:00")
+  "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
+  "author" (dict "@type" "Person" "name" (.Site.Params.author.name | default "Bruce"))
+  "mainEntityOfPage" (dict "@type" "WebPage" "@id" $canonicalURL)
+  "inLanguage" (.Site.LanguageCode | default "zh-CN")
+-}}
+<script type="application/ld+json">{{ $postSchema | jsonify | safeJS }}</script>
 
-<!-- 面包屑导航 Schema -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "首页",
-      "item": "{{ .Site.BaseURL }}"
-    }
-    {{ if .Section }},
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "{{ .Section | title }}",
-      "item": "{{ .Site.BaseURL }}{{ .Section }}/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "{{ .Title }}",
-      "item": "{{ .Permalink }}"
-    }
-    {{ else }},
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "{{ .Title }}",
-      "item": "{{ .Permalink }}"
-    }
-    {{ end }}
-  ]
-}
-</script>
-
-{{ else if .IsSection }}
-<!-- 分类/标签页 - CollectionPage Schema -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "{{ .Title }}",
-  "description": "{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}",
-  "url": "{{ .Permalink }}",
-  "inLanguage": "{{ .Site.LanguageCode | default "zh-CN" }}",
-  "isPartOf": {
-    "@type": "WebSite",
-    "name": "{{ .Site.Title }}",
-    "url": "{{ .Site.BaseURL }}"
-  }
-}
-</script>
+{{- $items := slice (dict "@type" "ListItem" "position" 1 "name" "首页" "item" .Site.BaseURL) -}}
+{{- if .Section -}}
+  {{- $items = $items | append (dict "@type" "ListItem" "position" 2 "name" (.Section | title) "item" (printf "%s%s/" .Site.BaseURL .Section)) -}}
+  {{- $items = $items | append (dict "@type" "ListItem" "position" 3 "name" .Title "item" $canonicalURL) -}}
+{{- else -}}
+  {{- $items = $items | append (dict "@type" "ListItem" "position" 2 "name" .Title "item" $canonicalURL) -}}
+{{- end -}}
+{{- $breadcrumb := dict "@context" "https://schema.org" "@type" "BreadcrumbList" "itemListElement" $items -}}
+<script type="application/ld+json">{{ $breadcrumb | jsonify | safeJS }}</script>
 {{ end }}
 
-<!-- ============================================ -->
-<!-- 额外的 Open Graph 增强 -->
-<!-- ============================================ -->
-<meta property="og:site_name" content="{{ .Site.Title }}" />
-<meta property="og:locale" content="zh_CN" />
-{{ if .IsPage }}
-<meta property="og:type" content="article" />
-{{ else }}
-<meta property="og:type" content="website" />
-{{ end }}
-
-<!-- Twitter Card 增强 -->
-<meta name="twitter:card" content="summary_large_image" />
-{{ with .Site.Params.socialLinks }}
-{{ range . }}
-{{ if eq .name "x" }}
-<meta name="twitter:site" content="@{{ index (split .url "/") (sub (len (split .url "/")) 1) }}" />
-<meta name="twitter:creator" content="@{{ index (split .url "/") (sub (len (split .url "/")) 1) }}" />
-{{ end }}
-{{ end }}
-{{ end }}
-
-<!-- ============================================ -->
-<!-- 预连接优化 -->
-<!-- ============================================ -->
 <link rel="preconnect" href="https://www.google-analytics.com" />
 <link rel="preconnect" href="https://www.googletagmanager.com" />
 <link rel="dns-prefetch" href="https://www.google-analytics.com" />
 <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-
-<!-- RSS 自动发现 -->
 <link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }} RSS Feed" href="{{ .Site.BaseURL }}index.xml" />
-
-<!-- Sitemap -->
 <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ .Site.BaseURL }}sitemap.xml" />
+<link rel="llms" href="/llms.txt" type="text/plain" title="LLMs.txt" />

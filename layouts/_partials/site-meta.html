@@ -1,14 +1,18 @@
 <meta charset="UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimal-ui">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
 {{- $isTagTaxonomy := and (or (eq .Kind "taxonomy") (eq .Kind "term")) (eq .Data.Plural "tags") -}}
 {{- $isDupCategoryPage := and .IsPage .File (hasSuffix .File.BaseFileName "-categories") -}}
-{{- if or (in .Page.RelPermalink "404") (or .Site.Params.siteNoIndex .Params.noIndex) (in .Site.Params.noIndexPages .Title) $isTagTaxonomy $isDupCategoryPage -}}
+{{- $isPaginationPage := in .RelPermalink "/page/" -}}
+{{- $isLowValuePage := or $isTagTaxonomy $isDupCategoryPage $isPaginationPage (eq .RelPermalink "/privacy/") -}}
+{{- if or (in .Page.RelPermalink "404") (or .Site.Params.siteNoIndex .Params.noIndex) (in .Site.Params.noIndexPages .Title) $isLowValuePage -}}
 <meta name="robots" content="noindex, follow">
 {{- else -}}
 <meta name="robots" content="{{ .Site.Params.allowRobots | default "index, follow" }}">
 {{- end -}}
+
 <meta name="author" content="{{ .Params.author | default .Site.Params.author.name }}">
 <meta name="description" content="{{ .Page.Params.description | default .Site.Params.description }}">
 {{- if or (fileExists "static/humans.txt") (templates.Exists "humans.txt") -}}<link rel="author" type="text/plain" href="{{"humans.txt" | relURL}}">{{- end -}}

@@ -1,28 +1,23 @@
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  {{- range .Data.Pages }}
+  {{- range .Site.AllPages }}
     {{- $p := .Permalink -}}
-    {{- $isPost := eq .Kind "page" -}}
+    {{- $isPost := and (eq .Kind "page") (eq .Section "posts") -}}
     {{- $isHome := eq .Kind "home" -}}
     {{- $isPostsSection := and (eq .Kind "section") (eq .Section "posts") -}}
-    {{- $isHighValueCategory := or (in $p "/categories/ai%E5%AE%9E%E6%88%98/") (in $p "/categories/ai%E5%8E%9F%E7%90%86/") (in $p "/categories/docker/") (in $p "/categories/linux/") -}}
-    {{- if or $isPost $isHome $isPostsSection $isHighValueCategory }}
+    {{- $isHighValueCategory := or (eq .RelPermalink "/categories/ai实战/") (eq .RelPermalink "/categories/ai原理/") (eq .RelPermalink "/categories/docker/") (eq .RelPermalink "/categories/linux/") -}}
+    {{- $isIndexable := not (or .Params.noIndex (in .RelPermalink "/tags/") (in .RelPermalink "/page/") (in .RelPermalink "404") (eq .RelPermalink "/privacy/")) -}}
+    {{- if and $isIndexable (or $isPost $isHome $isPostsSection $isHighValueCategory) }}
   <url>
-    <loc>{{ .Permalink }}</loc>{{ if not .Lastmod.IsZero }}
-    <lastmod>{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" }}</lastmod>{{ end }}{{ with .Sitemap.ChangeFreq }}
-    <changefreq>{{ . }}</changefreq>{{ end }}{{ if ge .Sitemap.Priority 0.0 }}
-    <priority>{{ .Sitemap.Priority }}</priority>{{ end }}{{ if .IsTranslated }}{{ range .Translations }}
-    <xhtml:link
-                rel="alternate"
-                hreflang="{{ .Language.Lang }}"
-                href="{{ .Permalink }}"
-                />{{ end }}
-    <xhtml:link
-                rel="alternate"
-                hreflang="{{ .Language.Lang }}"
-                href="{{ .Permalink }}"
-                />{{ end }}
+    <loc>{{ .Permalink }}</loc>
+    {{- $lastmod := .Lastmod -}}
+    {{- with .GitInfo }}{{ $lastmod = .AuthorDate }}{{ end -}}
+    {{- if not $lastmod.IsZero }}
+    <lastmod>{{ $lastmod.Format "2006-01-02T15:04:05-07:00" }}</lastmod>
+    {{- end }}
+    <changefreq>{{ if $isPost }}monthly{{ else }}weekly{{ end }}</changefreq>
+    <priority>{{ if $isHome }}1.0{{ else if $isPost }}0.8{{ else }}0.6{{ end }}</priority>
   </url>
     {{- end }}
   {{- end }}

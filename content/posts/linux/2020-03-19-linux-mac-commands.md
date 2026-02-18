@@ -722,3 +722,12 @@ sudo killall -HUP mDNSResponder
 - [Shell 脚本特殊变量详解：$$、$?、$@、$# 等用法](/posts/linux/2019-05-13-linux-shell-vars/) - Shell 脚本编程必备知识
 - [Linux curl 命令完全指南：HTTP 请求调试必备工具](/posts/linux/2020-06-29-curl/) - HTTP 请求调试神器
 - [Traceroute 网络诊断命令详解：追踪数据包路由路径](/posts/linux/2020-06-28-traceroute/) - 网络故障定位必备工具
+
+
+## 相关阅读（Linux / Docker 深度内链）
+
+- [curl 命令大全：从基础到高级用法](/posts/linux/2020-06-29-curl/)
+- [traceroute 命令详解：网络路径排障](/posts/linux/2020-06-28-traceroute/)
+- [Docker 常用命令速查手册](/posts/docker/2019-11-14-docker-commands/)
+- [Docker Compose 完全指南（安装到实战）](/posts/docker/2026-01-19-docker-compose-complete-guide/)
+- [docker-compose.yml 详解（字段级拆解）](/posts/docker/2026-01-24-docker-compose-yml-explained/)
