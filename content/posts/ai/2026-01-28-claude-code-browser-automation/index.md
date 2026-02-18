@@ -119,11 +119,22 @@ AI 看到的就是这么简洁的结构。当它想点击"登录"按钮时，只
 #### 安装和使用
 
 ```bash
-# 安装
-npm install -g @anthropic-ai/agent-browser
+# 全局安装（推荐，性能最优）
+npm install -g agent-browser
 
-# 在 Claude Code 中使用（作为 Skill）
-# 直接用自然语言指挥即可
+# 安装 Chromium 浏览器（首次安装必须执行）
+agent-browser install
+
+# 开始使用
+agent-browser open https://example.com
+
+# 也可以用 npx 免安装试用（但比全局安装慢）
+npx agent-browser open https://example.com
+```
+
+在 Claude Code 中，Agent Browser 通常以 **Skill** 的方式接入，直接用自然语言指挥即可：
+
+```
 "用 Agent Browser 打开 https://example.com，截个图"
 ```
 
@@ -561,7 +572,7 @@ chrome.exe --remote-debugging-port=9222
 ---
 
 **参考资料**：
-- [Vercel Agent Browser GitHub](https://github.com/anthropics/agent-browser)
+- [Vercel Agent Browser GitHub](https://github.com/vercel-labs/agent-browser)
 - [Playwright MCP 官方仓库](https://github.com/microsoft/playwright-mcp)
 - [Playwright CLI 深度评测 - TestCollab](https://testcollab.com/blog/playwright-cli)
 - [MCP vs CLI 对比分析 - SupaTest](https://supatest.ai/blog/playwright-mcp-vs-cli-ai-browser-automation)
