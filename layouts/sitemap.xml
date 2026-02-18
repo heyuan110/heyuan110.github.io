@@ -2,8 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   {{- range .Data.Pages }}
-    {{- $isTagTaxonomy := and (or (eq .Kind "taxonomy") (eq .Kind "term")) (eq .Data.Plural "tags") -}}
-    {{- if not $isTagTaxonomy }}
+    {{- $p := .Permalink -}}
+    {{- $isPost := eq .Kind "page" -}}
+    {{- $isHome := eq .Kind "home" -}}
+    {{- $isPostsSection := and (eq .Kind "section") (eq .Section "posts") -}}
+    {{- $isHighValueCategory := or (in $p "/categories/ai%E5%AE%9E%E6%88%98/") (in $p "/categories/ai%E5%8E%9F%E7%90%86/") (in $p "/categories/docker/") (in $p "/categories/linux/") -}}
+    {{- if or $isPost $isHome $isPostsSection $isHighValueCategory }}
   <url>
     <loc>{{ .Permalink }}</loc>{{ if not .Lastmod.IsZero }}
     <lastmod>{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" }}</lastmod>{{ end }}{{ with .Sitemap.ChangeFreq }}
