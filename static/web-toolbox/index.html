@@ -141,7 +141,8 @@
             {"@type": "WebApplication", "name": "Numerology Calculator", "url": "https://www.heyuan110.com/web-toolbox/numerology.html", "description": "Calculate Life Path, Expression, Soul Urge and Personality numbers from birthday and name with Pythagorean chart."},
             {"@type": "WebApplication", "name": "Tweet Deleter", "url": "https://github.com/heyuan110/tweet-deleter", "description": "Bulk delete tweets from your Twitter/X account using archive data."},
             {"@type": "WebApplication", "name": "XPorts - Terminal Port Manager", "url": "https://github.com/heyuan110/xports", "description": "macOS terminal port manager to view and kill processes by port number."},
-            {"@type": "WebApplication", "name": "Keyboard Tester", "url": "https://www.heyuan110.com/web-toolbox/keyboard-tester.html", "description": "Online keyboard tester with virtual keyboard visualization, N-key rollover testing, ghost key detection, and developer key event info."}
+            {"@type": "WebApplication", "name": "Keyboard Tester", "url": "https://www.heyuan110.com/web-toolbox/keyboard-tester.html", "description": "Online keyboard tester with virtual keyboard visualization, N-key rollover testing, ghost key detection, and developer key event info."},
+            {"@type": "WebApplication", "name": "Transparent PNG Maker", "url": "https://www.heyuan110.com/web-toolbox/transparent-png.html", "description": "Remove any color from images to create transparent PNGs with multi-color removal, real-time preview, and edge smoothing."}
         ]
     }
     </script>
@@ -2012,6 +2013,23 @@
                     <a href="https://github.com/heyuan110/xports" target="_blank" class="tool-btn" data-i18n="viewProject">查看项目 →</a>
                 </div>
             </div>
+
+            <!-- 透明PNG生成器 -->
+            <div class="tool-card" data-tool="transparent png color remover" data-category="image" data-sort="62">
+                <img src="screenshots/transparent-png.webp" alt="透明PNG生成器截图" class="tool-screenshot">
+                <div class="tool-content">
+                    <div class="tool-icon">🎨</div>
+                    <h2 class="tool-title" data-i18n="tool_transpng_title">透明PNG生成器</h2>
+                    <p class="tool-desc" data-i18n="tool_transpng_desc">移除图片中的任意颜色，生成透明PNG，支持多颜色移除与实时预览</p>
+                    <ul class="tool-features">
+                        <li data-i18n="tool_transpng_f1">点击图片拾取颜色，支持多色同时移除</li>
+                        <li data-i18n="tool_transpng_f2">实时 Before/After 对比滑块</li>
+                        <li data-i18n="tool_transpng_f3">智能边缘平滑与外围匹配</li>
+                        <li data-i18n="tool_transpng_f4">撤销/重做，自定义背景预览</li>
+                    </ul>
+                    <a href="transparent-png.html" class="tool-btn" data-i18n="openTool">打开工具 →</a>
+                </div>
+            </div>
 </div>
 
         <footer>
@@ -2467,6 +2485,12 @@
                     tool_xports_f2: '交互式 TUI 界面，键盘导航',
                     tool_xports_f3: '自动识别常见服务（MySQL/Redis/Nginx）',
                     tool_xports_f4: '支持批量选择和终止进程',
+                    tool_transpng_title: '透明PNG生成器',
+                    tool_transpng_desc: '移除图片中的任意颜色，生成透明PNG，支持多颜色移除与实时预览',
+                    tool_transpng_f1: '点击图片拾取颜色，支持多色同时移除',
+                    tool_transpng_f2: '实时 Before/After 对比滑块',
+                    tool_transpng_f3: '智能边缘平滑与外围匹配',
+                    tool_transpng_f4: '撤销/重做，自定义背景预览',
                     tool_pwgen_title: '密码生成器',
                     tool_pwgen_desc: '生成安全随机密码，支持自定义长度、字符类型和批量生成',
                     tool_pwgen_f1: '使用 crypto API 安全随机生成',
@@ -2867,6 +2891,12 @@
                     tool_xports_f2: 'Interactive TUI with keyboard navigation',
                     tool_xports_f3: 'Auto-detect services (MySQL/Redis/Nginx)',
                     tool_xports_f4: 'Batch select and kill processes',
+                    tool_transpng_title: 'Transparent PNG Maker',
+                    tool_transpng_desc: 'Remove any color from images to create transparent PNGs with multi-color removal and real-time preview',
+                    tool_transpng_f1: 'Click to pick colors, multi-color removal',
+                    tool_transpng_f2: 'Real-time before/after comparison slider',
+                    tool_transpng_f3: 'Smart edge smoothing & outer pixel matching',
+                    tool_transpng_f4: 'Undo/redo, custom background preview',
                     tool_pwgen_title: 'Password Generator',
                     tool_pwgen_desc: 'Generate secure random passwords with custom length, character types, and batch generation',
                     tool_pwgen_f1: 'Cryptographically secure generation',
@@ -3267,6 +3297,12 @@
                     tool_xports_f2: 'Interface TUI interactive avec navigation clavier',
                     tool_xports_f3: 'Détection auto des services (MySQL/Redis/Nginx)',
                     tool_xports_f4: 'Sélection et terminaison en lot',
+                    tool_transpng_title: 'Créateur PNG Transparent',
+                    tool_transpng_desc: 'Supprimez les couleurs des images pour créer des PNG transparents avec suppression multi-couleurs et aperçu en temps réel',
+                    tool_transpng_f1: 'Cliquez pour choisir, suppression multi-couleurs',
+                    tool_transpng_f2: 'Curseur de comparaison avant/après en temps réel',
+                    tool_transpng_f3: 'Lissage intelligent des bords',
+                    tool_transpng_f4: 'Annuler/rétablir, aperçu arrière-plan personnalisé',
                     tool_pwgen_title: 'Générateur de mots de passe',
                     tool_pwgen_desc: 'Générer des mots de passe aléatoires sécurisés avec longueur et types personnalisables',
                     tool_pwgen_f1: 'Génération crypto sécurisée',
@@ -3667,6 +3703,12 @@
                     tool_xports_f2: 'Interfaz TUI interactiva con navegación por teclado',
                     tool_xports_f3: 'Detección automática de servicios (MySQL/Redis/Nginx)',
                     tool_xports_f4: 'Selección y terminación en lote',
+                    tool_transpng_title: 'Creador PNG Transparente',
+                    tool_transpng_desc: 'Elimina colores de imágenes para crear PNG transparentes con eliminación multicolor y vista previa en tiempo real',
+                    tool_transpng_f1: 'Clic para seleccionar, eliminación multicolor',
+                    tool_transpng_f2: 'Control deslizante de comparación en tiempo real',
+                    tool_transpng_f3: 'Suavizado inteligente de bordes',
+                    tool_transpng_f4: 'Deshacer/rehacer, vista previa de fondo personalizado',
                     tool_pwgen_title: 'Generador de contraseñas',
                     tool_pwgen_desc: 'Generar contraseñas aleatorias seguras con longitud y tipos personalizables',
                     tool_pwgen_f1: 'Generación criptográficamente segura',
