@@ -98,7 +98,7 @@ summaryLength = 150
     name = "Bruce"
     about = "/about/"
 
-  homeSubtitle = "专注大模型、AI Agent、工程落地与真实案例"
+  homeSubtitle = "聚焦 AI Agent / Claude Code / OpenClaw 的工程实战与增长复盘"
 
   # 功能开关
   footerHideThemeName = true

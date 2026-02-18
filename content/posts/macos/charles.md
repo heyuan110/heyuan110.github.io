@@ -1,8 +1,8 @@
 ---
-title: "Charles 抓包工具使用教程：HTTP/HTTPS 请求拦截与接口调试实战"
+title: "Charles 抓包教程（2026）：HTTP/HTTPS 拦截、Mock 调试与证书配置"
 date: 2015-08-15 11:33:11
 author: "bruce"
-description: "Charles 网络抓包工具完整使用教程，实现 HTTP/HTTPS 请求拦截、数据模拟（Mock）、接口调试和网络限速等功能，附代理配置和证书安装步骤"
+description: "Charles 抓包实战指南：HTTP/HTTPS 请求拦截、Mock 数据、网络限速与断点调试，补充 2026 证书安装与常见问题排查。"
 toc: true
 tags:
     - Charles
@@ -10,8 +10,15 @@ tags:
     - 调试
     - HTTPS
     - 网络
+    - API 调试
 categories:
     - macOS
+keywords:
+    - Charles 抓包教程
+    - Charles HTTPS 证书
+    - Charles Mock
+    - HTTP 抓包
+    - 接口调试
 ---
 
 
@@ -137,5 +144,40 @@ PS:补充breakpoints调试
 ![post_man](/images/charles/charles_breakpoints4.webp)
 
 编辑完成点execute，搞定!
+
+## 十. 2026 补充：HTTPS 抓包证书与系统设置
+
+随着系统安全策略越来越严格，Charles 在新版本 macOS / iOS 上常见的问题集中在证书信任：
+
+1. macOS 端安装 Charles Root Certificate 后，要在钥匙串里将其设置为“始终信任”。
+2. iOS 端安装描述文件后，还需要到“设置 -> 通用 -> 关于本机 -> 证书信任设置”手动开启完全信任。
+3. 若 App 启用了证书固定（SSL Pinning），仅靠 Charles 代理可能无法解密 HTTPS，需要结合测试开关或专用调试方案。
+
+## 十一. 常见问题排查（高频）
+
+### 1) 手机连了代理但 Charles 没流量
+- 先确认手机和电脑在同一局域网
+- 检查 Charles 弹窗是否允许该设备连接
+- 防火墙是否拦截了 Charles 端口（默认 8888）
+
+### 2) HTTPS 全是 CONNECT，看不到请求内容
+- 证书没安装完整，或系统未信任
+- 目标应用启用了 SSL Pinning
+
+### 3) Rewrite/Map Local 不生效
+- 规则 Host / Path 匹配过严（建议先放宽再收紧）
+- 勾选状态未启用（很多人只配不勾）
+
+### 4) 限速后请求超时太多
+- Throttling 参数过低，建议先模拟 3G 再逐步压到 2G
+- 对单个 Host 限速比全局限速更可控
+
+## 相关阅读
+
+- [curl 命令大全（Linux/macOS）](/posts/linux/2020-06-29-curl/)
+- [traceroute 命令详解：网络延迟定位与路由故障排查](/posts/linux/2020-06-28-traceroute/)
+- [Linux/macOS 常用命令大全](/posts/linux/2020-03-19-linux-mac-commands/)
+- [Docker Compose 完全指南（2026）](/posts/docker/2026-01-19-docker-compose-complete-guide/)
+- [OpenClaw 超详细上手教程：小白友好 + 老鸟技巧](/posts/ai/2026-02-12-openclaw-usage-tutorial/)
 
 
