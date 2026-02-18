@@ -1,12 +1,12 @@
 +++
 date = '2026-01-29T21:00:00+08:00'
 draft = false
-title = 'Moltbot 深度解析（2026）：为什么爆火、为何改名、有哪些安全风险？'
-description = '一文看懂 Moltbot（原 Clawdbot）的爆火逻辑、改名始末与真实安全风险，含架构拆解、骗局复盘与部署避坑建议。'
+title = 'Moltbot/OpenClaw 深度解析（2026）：爆火、改名与安全风险'
+description = '一文看懂 OpenClaw（原 Moltbot/Clawdbot）的爆火逻辑、改名始末与真实安全风险，含架构拆解、骗局复盘与部署避坑建议。'
 toc = true
-tags = ['Moltbot', 'Clawdbot', 'AI Agent', '开源', '安全']
+tags = ['OpenClaw', 'Moltbot', 'Clawdbot', 'AI Agent', '开源', '安全']
 categories = ['AI原理']
-keywords = ['Moltbot', 'Clawdbot', '个人AI助手', 'AI Agent', 'Peter Steinberger', '安全风险']
+keywords = ['OpenClaw', 'Moltbot', 'Clawdbot', 'OpenClaw 安全', 'Moltbot OpenClaw', '个人AI助手', 'AI Agent', 'Peter Steinberger', '安全风险']
 +++
 
 2026 年 1 月，一只龙虾搅动了整个 AI 圈。
@@ -16,6 +16,8 @@ keywords = ['Moltbot', 'Clawdbot', '个人AI助手', 'AI Agent', 'Peter Steinber
 这个项目到底有什么魔力？它是不是名副其实的"个人贾维斯"？背后又藏着多少你不知道的坑？
 
 这篇文章，我们不聊安装教程（想看搭建指南可以移步[这篇文章](/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/)），而是从更深的角度来剖析这个现象级项目。
+
+> 名称沿革说明：本文统一使用 **OpenClaw（原 Clawdbot，后更名 Moltbot）** 来指代同一项目在不同阶段的名称，便于你对照搜索结果与历史资料。
 
 ---
 
@@ -318,3 +320,6 @@ Moltbot（原 Clawdbot）在短短一周内从默默无闻到 8 万 Star，再�
 - [AI 自动化导航 Hub](/posts/ai/ai-automation-hub/)
 - [Clawdbot：个人 AI 助手实战](/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/)
 - [OpenClaw 自动化的坑与避坑](/posts/ai/2026-02-14-openclaw-automation-pitfalls/)
+- [OpenClaw 超详细上手教程](/posts/ai/2026-02-12-openclaw-usage-tutorial/)
+- [OpenClaw 与 OpenAI 关系深度分析](/posts/ai/2026-02-16-openclaw-openai-analysis/)
+- [Moltbot 是什么？3 分钟看懂](/posts/ai/2026-02-18-what-is-moltbot/)

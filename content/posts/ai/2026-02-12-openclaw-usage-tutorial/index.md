@@ -6,12 +6,22 @@ description = 'OpenClaw 从零到精通的完整教程，涵盖安装、Gateway 
 toc = true
 tags = ['OpenClaw', 'AI Agent', 'Telegram', '个人助手', '开源']
 categories = ['AI实战']
-keywords = ['OpenClaw 教程', 'OpenClaw 安装', 'AI Agent 网关', 'Telegram 机器人', 'OpenClaw TUI']
+keywords = ['OpenClaw 教程', 'OpenClaw 安装', 'AI Agent 网关', 'Telegram 机器人', 'OpenClaw TUI', 'Moltbot 教程', 'Clawdbot 教程', 'OpenClaw Moltbot']
 +++
 
 ![OpenClaw 超详细上手教程封面](cover.webp)
 
 想拥有一个 7×24 小时在线的私人 AI 助手，能在 Telegram、WhatsApp、Discord 等平台随时响应你的消息？[OpenClaw](https://github.com/openclaw/openclaw) 就是为此而生的开源 AI Agent 网关。本文是一份**从 0 到精通**的完整教程，无论你是刚入门的小白还是想深度玩转多智能体的老鸟，都能找到适合自己的内容。
+
+## OpenClaw / Moltbot / Clawdbot 名称关系（30 秒看懂）
+
+如果你在搜索时看到三个名字，不用慌：它们本质上是同一条项目演进线。
+
+- **Clawdbot**：最早期名称（社区爆红阶段）
+- **Moltbot**：过渡期名称（改名后短期沿用）
+- **OpenClaw**：当前主名称（官方仓库与生态统一）
+
+一句话记忆：**现在看教程和文档，优先认 `OpenClaw`；查历史资料时会频繁遇到 `Moltbot/Clawdbot`。**
 
 > 适用：macOS/Linux/WSL2。本文默认你在一台"跑 Gateway 的主机"上操作（比如你的 Mac mini）。
 >
@@ -419,6 +429,16 @@ openclaw status --deep
 - 用 `openclaw logs --follow` 看真实原因
 - 把长任务放到后台（或拆分）
 
+### 8.4 FAQ：搜 Moltbot 找到 OpenClaw，是同一个项目吗？
+
+是同一个项目的不同阶段命名。你可以把它理解为同一套代码与生态在不同时间点的名称演进：
+
+- 早期资料常写 **Clawdbot**
+- 中间过渡会看到 **Moltbot**
+- 现在统一使用 **OpenClaw**
+
+所以你在搜索结果里看到这三个词混用是正常的，优先以 OpenClaw 官方仓库与文档为准。
+
 ---
 
 ## 9. 一页速查（建议收藏）
@@ -656,6 +676,7 @@ OpenClaw 的核心价值在于：**一个本地网关，连接所有聊天平台
 
 - [ClawdBot：海外爆火的个人 AI 管家，30 分钟搭建指南](/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/)
 - [Moltbot 深度解析：从爆火到改名，个人 AI Agent 的机遇与暗礁](/posts/ai/2026-01-29-moltbot-deep-dive/)
+- [Moltbot 是什么？3 分钟看懂定位、能力与风险](/posts/ai/2026-02-18-what-is-moltbot/)
 - [Moltbot Wizard 完全指南：打造你的私人 AI 助手](/posts/ai/2026-01-28-moltbot-wizard-guide/)
 - [OpenClaw 作者的 Claude Code 开发方法论](/posts/ai/2026-01-31-openclaw-claude-code-workflow/)
 - [OpenClaw 记忆实施策略解析：工具驱动的 RAG 与"按需回忆"](/posts/ai/2026-01-31-openclaw-memory-strategy/)
