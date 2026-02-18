@@ -1,18 +1,43 @@
 ---
-title: "Supervisor 进程管理完全指南：安装配置与实战"
+title: "Supervisor 教程（2026）：安装配置、常见问题与 Supervisor vs systemd 选型"
 date: 2018-10-07 00:35:04
 author: "bruce"
-description: "Supervisor 进程管理工具完整教程，从安装配置到实战，实现 Linux 服务器上多进程的统一启动、监控和自动重启，附 Nginx 配置示例"
+description: "面向 Linux 运维与开发者的 Supervisor 实战指南：安装配置、进程托管、常见故障排查，以及与 systemd/PM2 的选型对比。"
 toc: true
 tags:
     - supervisor
     - linux
     - 进程管理
+    - systemd
+    - 运维
 categories:
     - Linux
+keywords:
+    - Supervisor 教程
+    - Supervisor vs systemd
+    - Linux 进程管理
+    - supervisord 配置
+    - supervisorctl
 ---
 
-Supervisor (http://supervisord.org) 是一个用 Python 写的进程管理工具，可以很方便的用来启动、重启、关闭进程（不仅仅是 Python 进程）。除了对单个进程的控制，还可以同时启动、关闭多个进程，比如很不幸的服务器出问题导致所有应用程序都被杀死，此时可以用 supervisor 同时启动所有应用程序而不是一个一个地敲命令启动。
+Supervisor (http://supervisord.org) 是一个用 Python 写的进程管理工具，可以很方便地启动、重启、关闭进程（不仅仅是 Python 进程）。除了对单个进程的控制，还可以同时启动、关闭多个进程，比如服务器异常后快速拉起整组服务。
+
+先说结论（给赶时间的你）：
+- 你在维护**多个业务进程**（队列 worker、定时任务、爬虫、脚本服务）时，Supervisor 依然非常好用。
+- 如果你追求系统原生管理、与 Linux 服务深度集成，优先考虑 **systemd**。
+- Node.js 生态下，如果只托管单个应用，**PM2** 也可选，但跨语言统一托管时 Supervisor 更顺手。
+
+## Supervisor vs systemd vs PM2（先选型）
+
+| 维度 | Supervisor | systemd | PM2 |
+|---|---|---|---|
+| 适用场景 | 多进程统一托管（跨语言） | Linux 系统级服务管理 | Node.js 应用管理 |
+| 学习成本 | 中等 | 偏高 | 低 |
+| 开机自启 | 支持 | 强（原生） | 支持 |
+| 日志管理 | 基础可用 | 强 | 友好 |
+| 推荐人群 | 运维/后端/多脚本场景 | 强 Linux 运维团队 | Node 开发者 |
+
+> 实战建议：已有 systemd 体系的生产环境，优先 systemd；需要快速统一托管多类进程时，Supervisor 依然是高性价比方案。
 
 ## 安装
 
@@ -261,5 +286,63 @@ exit 0
 
 保存并退出。
 最后修改rc.local权限 `chmod +x /etc/rc.local`
+
+> 更新说明（2026）：在较新的 Ubuntu/Debian 上，`rc.local` 方案已不推荐，建议使用 systemd 托管 `supervisord` 服务。
+
+## 推荐的 systemd 启动方式（替代 rc.local）
+
+创建服务文件：`/etc/systemd/system/supervisord.service`
+
+```ini
+[Unit]
+Description=Supervisor daemon
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/usr/local/bin/supervisord -c /usr/local/programs/supervisor/supervisord.conf
+ExecStop=/usr/local/bin/supervisorctl shutdown
+ExecReload=/usr/local/bin/supervisorctl reload
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+
+执行：
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable supervisord
+sudo systemctl start supervisord
+sudo systemctl status supervisord
+```
+
+## 常见故障排查（实战高频）
+
+### 1) `unix:///tmp/supervisor.sock no such file`
+- 原因：`supervisord` 没启动或 socket 路径不一致。
+- 处理：先 `supervisord -c ...`，再确认 `supervisord.conf` 与 `supervisorctl` 的 `serverurl` 配置一致。
+
+### 2) 程序一直 `BACKOFF` / `FATAL`
+- 原因：`command` 写错、依赖没装、启动即退出。
+- 处理：检查 `stdout_logfile` / `stderr_logfile`，手动执行一次 command 验证可运行。
+
+### 3) `autorestart` 不生效
+- 原因：`exitcodes` 与进程实际退出码不匹配，或 `startsecs` 太短。
+- 处理：设置 `autorestart=unexpected`，并调整 `startsecs`、`startretries`。
+
+### 4) `permission denied`
+- 原因：运行用户无执行或目录权限。
+- 处理：确认 `user=`、日志目录可写、可执行文件权限正确。
+
+## 相关阅读
+
+- [Linux/macOS 常用命令大全](/posts/linux/2020-03-19-linux-mac-commands/)
+- [curl 命令大全（Linux/macOS）](/posts/linux/2020-06-29-curl/)
+- [traceroute 命令详解](/posts/linux/2020-06-28-traceroute/)
+- [Docker Compose 完全指南（2026）](/posts/docker/2026-01-19-docker-compose-complete-guide/)
+- [docker-compose.yml 详解](/posts/docker/2026-01-24-docker-compose-yml-explained/)
 
 
