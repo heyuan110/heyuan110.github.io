@@ -173,7 +173,7 @@ summaryLength = 150
   # 工具箱
   [[menu.main]]
     name = "工具箱"
-    url="web-toolbox/"
+    url="https://www.usemagictools.com/"
     weight = 30
 
   # 关于

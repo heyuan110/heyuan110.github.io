@@ -39,16 +39,6 @@
 - AI Agent 开发框架与实战
 - 真实项目案例与踩坑记录
 
-### 工具箱 (web-toolbox/)
-在线开发工具集：
-- JSON 查看器、SQLite 浏览器
-- 图片压缩、格式转换工具
-- 时间戳转换、正则测试
-- Claude Code 历史记录查看器
-- M3U8 视频下载器
-- 加解密编码工具箱
-- 更多 28+ 实用工具...
-
 ### 归档内容
 早期技术文章（仍可访问）：
 - Java 后端开发
@@ -69,7 +59,6 @@ Transformer, 后端架构, 系统设计
 - AI实战分类: https://www.heyuan110.com/categories/ai实战/
 - 所有文章: https://www.heyuan110.com/posts/
 - 标签索引: https://www.heyuan110.com/tags/
-- 工具箱: https://www.heyuan110.com/web-toolbox/
 - 关于页面: https://www.heyuan110.com/about/
 - RSS 订阅: https://www.heyuan110.com/index.xml
 - Sitemap: https://www.heyuan110.com/sitemap.xml
