@@ -1,15 +1,17 @@
 +++
-title = 'curl 命令大全（Linux/macOS）：GET/POST、文件上传下载、鉴权与调试实战'
+title = 'curl 命令详解（2026）：GET/POST 请求、文件传输与 API 调试实战'
 date = '2020-06-29'
 draft = false
 toc = true
-description = '最常用 curl 命令一文速查：GET/POST/PUT/DELETE、JSON 请求、上传下载、代理、证书、耗时分析与故障排查示例。'
+description = 'curl 命令完整教程：GET/POST/PUT/DELETE 请求、JSON 数据发送、文件上传下载、鉴权认证、代理配置与耗时分析，一文速查全部用法。'
 tags = ['curl', 'Linux', 'HTTP', 'API', '运维', '命令行']
 categories = ['Linux']
-keywords = ['curl 命令详解', 'curl 用法大全', 'curl 常用参数', 'curl post 请求', 'curl get 请求', 'curl 下载文件', 'curl json', 'curl 代理', 'curl 证书', 'curl linux', 'curl 教程']
+keywords = ['curl 命令详解', 'curl 用法大全', 'curl 常用参数', 'curl post 请求', 'curl get 请求', 'curl 下载文件', 'curl json', 'curl 代理', 'curl 证书', 'curl linux', 'curl 教程', 'curl 命令 2026']
 +++
 
-**curl 命令**是 Linux/macOS 下最常用的[命令行](/posts/linux/2020-03-19-linux-mac-commands/)数据传输工具，支持 HTTP、HTTPS、FTP 等 20+ 种协议。无论是发送 GET/POST 请求调试 REST API、下载文件还是测试网络连接，curl 都是运维开发人员的必备工具。本文是一份 curl 命令详解与用法大全，系统介绍 curl 的常用参数和实战技巧，包括 HTTP 请求方法、JSON 数据发送、文件上传下载、认证鉴权、代理设置等，帮你快速掌握 curl 的全部核心用法。
+在日常开发和运维中，**curl 命令**几乎是使用频率最高的[命令行](/posts/linux/2020-03-19-linux-mac-commands/)工具之一。它支持 HTTP、HTTPS、FTP 等 20+ 种协议，无论是调试 REST API、发送 POST 请求、下载文件还是测试网络连通性，一条 curl 命令就能搞定。
+
+本文是一份系统的 curl 命令详解教程，涵盖 GET/POST/PUT/DELETE 等 HTTP 请求方法、JSON 数据发送、文件上传下载、Bearer Token 认证、代理配置、耗时分析等全部核心用法。如果你还需要排查网络链路问题，可以配合 [traceroute 命令详解](/posts/linux/2020-06-28-traceroute/) 一起使用。
 
 <!--more-->
 
@@ -432,6 +434,27 @@ curl -k https://self-signed.example.com
 curl -v https://example.com
 ```
 
+### Q5：curl 如何设置超时时间？
+
+使用 `--connect-timeout` 设置连接超时，`-m`（或 `--max-time`）设置总超时：
+
+```bash
+# 连接超时 5 秒，总超时 30 秒
+curl --connect-timeout 5 -m 30 https://example.com
+```
+
+### Q6：curl 和 Postman 有什么区别？
+
+curl 是命令行工具，轻量、可脚本化、适合自动化和 CI/CD 流水线；Postman 是 GUI 工具，可视化操作更友好，适合团队协作和复杂的 API 测试集合管理。两者可互补，Postman 还支持将请求导出为 curl 命令。
+
+### Q7：如何用 curl 测量网站响应速度？
+
+使用 `-w` 参数输出各阶段耗时：
+
+```bash
+curl -w "DNS: %{time_namelookup}s\nTCP: %{time_connect}s\n首字节: %{time_starttransfer}s\n总耗时: %{time_total}s\n" -o /dev/null -s https://example.com
+```
+
 ---
 
 ## 总结
@@ -448,8 +471,10 @@ curl 是一个功能强大的命令行工具，掌握它能大幅提升你的工
 
 ## 相关阅读
 
-- [Linux/macOS 常用命令速查手册](/posts/linux/2020-03-19-linux-mac-commands/) - 更多实用命令
-- [Traceroute 网络诊断命令详解](/posts/linux/2020-06-28-traceroute/) - 网络故障排查
+- [traceroute 命令详解：路由追踪与网络故障排查](/posts/linux/2020-06-28-traceroute/) - 定位网络延迟瓶颈，与 curl 配合排查问题
+- [Linux/macOS 常用命令速查手册](/posts/linux/2020-03-19-linux-mac-commands/) - 运维开发常用命令参考
+- [Linux 运维基础 Hub](/posts/linux/linux-ops-basics-hub/) - 系统运维知识汇总
+- [AWS CLI 完全指南](/posts/linux/2020-07-04-aws-cli/) - 云服务命令行管理
 - [Oh My Zsh 安装配置指南](/posts/linux/2015-06-17-shell-zsh/) - 打造高效终端环境
 
 ## 参考资源
@@ -458,8 +483,3 @@ curl 是一个功能强大的命令行工具，掌握它能大幅提升你的工
 - [curl Man Page](https://curl.se/docs/manpage.html)
 - [Test a REST API with curl - Baeldung](https://www.baeldung.com/curl-rest)
 - [httpbin.org](https://httpbin.org/) - HTTP 请求测试服务
-## 相关阅读 / Related
-
-- [Linux 运维基础 Hub](/posts/linux/linux-ops-basics-hub/)
-- [traceroute 命令详解](/posts/linux/2020-06-28-traceroute/)
-- [AWS CLI 完全指南](/posts/linux/2020-07-04-aws-cli/)

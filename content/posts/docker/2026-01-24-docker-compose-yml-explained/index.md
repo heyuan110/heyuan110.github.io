@@ -1,15 +1,17 @@
 +++
 date = '2026-01-24'
 draft = false
-title = 'docker-compose.yml 详解（含 compose.yaml）：services、volumes、networks 实战模板'
-description = '逐字段讲透 docker-compose.yml/compose.yaml：services、volumes、networks、depends_on、healthcheck，并附可直接复用的配置模板。'
+title = 'Docker Compose 教程（2026）：compose.yaml 配置详解与实战模板'
+description = '2026 最新 Docker Compose 教程，逐字段讲透 compose.yaml 的 services、volumes、networks、healthcheck 配置，附可直接复用的生产级模板。'
 toc = true
 tags = ['Docker', 'Docker Compose', '容器化', '入门教程', 'YAML']
 categories = ['AI实战']
-keywords = ['docker-compose.yml 详解', 'docker compose 教程', 'docker compose 配置', 'compose.yaml', 'docker compose yml', 'docker compose 入门', 'docker compose volumes', 'docker compose networks', 'docker compose ports', '容器编排']
+keywords = ['docker compose 教程', 'docker-compose.yml 详解', 'docker compose 配置', 'compose.yaml', 'docker compose yml', 'docker compose 入门', 'docker compose volumes', 'docker compose networks', 'docker compose ports', '容器编排', 'docker compose 2026']
 +++
 
-**docker-compose.yml**（新版推荐命名为 `compose.yaml`）是 Docker Compose 的核心配置文件，用于定义和管理多容器应用的服务、网络和数据卷。本文是一份完整的 docker-compose.yml 详解教程，将逐字段讲解 services、volumes、networks、ports、environment 等所有配置项的含义和用法，并通过实战案例帮你快速掌握 Docker Compose 配置。
+Docker Compose 是目前最流行的多容器编排工具，而 **docker-compose.yml**（新版推荐命名为 `compose.yaml`）就是它的核心配置文件。无论你是刚接触容器化的新手，还是想系统梳理配置细节的老手，这篇 Docker Compose 教程都适合你。
+
+本文将逐字段讲解 compose.yaml 中 services、volumes、networks、ports、environment、healthcheck 等所有配置项的含义和用法，并通过 WordPress + MySQL 等实战案例帮你快速上手。配合 [Docker 常用命令速查](/posts/docker/2019-11-14-docker-commands/) 一起使用效果更佳。
 
 很多人一看到 `compose.yaml` 就头大，一堆冒号、缩进，不知道从何下手。其实它没那么复杂，下面我用最通俗的方式，带你彻底搞懂这个文件。
 
@@ -897,12 +899,34 @@ services:
 
 ---
 
+## 十三、Docker Compose 常见问题 FAQ
+
+### Docker Compose 和 Docker Swarm 有什么区别？
+
+Docker Compose 用于**单机多容器编排**，适合开发环境和小规模生产部署；Docker Swarm 是 Docker 原生的**集群编排**方案，用于跨多台主机部署容器。如果你的应用只在一台服务器上运行，用 Docker Compose 就够了。
+
+### docker compose up 和 docker compose run 有什么区别？
+
+`docker compose up` 启动 compose.yaml 中定义的所有服务（或指定服务及其依赖），是最常用的启动命令。`docker compose run` 则是针对某个服务运行一次性命令，比如 `docker compose run api npm test`，执行完就退出，适合跑测试或数据库迁移。
+
+### 如何在 Docker Compose 中使用 .env 文件？
+
+在 compose.yaml 同级目录下创建 `.env` 文件，Docker Compose 会自动加载其中的变量。你可以在 compose.yaml 中通过 `${变量名}` 引用这些变量。务必将 `.env` 加入 `.gitignore` 以避免泄露敏感信息。
+
+### Docker Compose 如何实现零停机更新？
+
+可以使用 `docker compose up -d --no-deps --build <服务名>` 单独重建和重启某个服务，其他服务不受影响。对于更严格的零停机需求，建议结合反向代理（如 Nginx 或 Traefik）实现蓝绿部署或滚动更新。
+
+### compose.yaml 中的 volumes 数据在 docker compose down 后还在吗？
+
+如果使用 `docker compose down`，命名卷（named volumes）中的数据**会保留**。只有加了 `-v` 参数（`docker compose down -v`）才会删除命名卷。绑定挂载（bind mounts）的数据始终在宿主机上，不受影响。
+
+---
+
 ## 相关阅读
 
 - [Docker 入门教程](/posts/docker/2019-05-13-learn-docker/) - Docker 基础概念和安装配置
 - [Docker 常用命令速查](/posts/docker/2019-11-14-docker-commands/) - 容器、镜像、网络等管理命令
-## 相关阅读 / Related
-
+- [Docker Compose 完全指南](/posts/docker/2026-01-19-docker-compose-complete-guide/) - 从安装到部署的全流程指南
+- [Linux/macOS 常用命令速查手册](/posts/linux/2020-03-19-linux-mac-commands/) - 运维开发常用命令参考
 - [Linux 运维基础 Hub](/posts/linux/linux-ops-basics-hub/)
-- [Docker Compose 完全指南](/posts/docker/2026-01-19-docker-compose-complete-guide/)
-- [Docker 常用命令速查](/posts/docker/2019-11-14-docker-commands/)

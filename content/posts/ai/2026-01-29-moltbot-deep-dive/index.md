@@ -1,21 +1,21 @@
 +++
 date = '2026-01-29T21:00:00+08:00'
 draft = false
-title = 'Moltbot/OpenClaw 深度解析（2026）：爆火、改名与安全风险'
-description = '一文看懂 OpenClaw（原 Moltbot/Clawdbot）的爆火逻辑、改名始末与真实安全风险，含架构拆解、骗局复盘与部署避坑建议。'
+title = 'Moltbot 是什么？OpenClaw 改名始末与安全风险深度解析'
+description = 'Moltbot 是一个开源个人 AI Agent，原名 Clawdbot/OpenClaw，可 24 小时自主操作电脑。本文深度解析 Moltbot 的技术架构、改名原因、安全隐患与部署避坑指南。'
 toc = true
 tags = ['OpenClaw', 'Moltbot', 'Clawdbot', 'AI Agent', '开源', '安全']
 categories = ['AI原理']
-keywords = ['OpenClaw', 'Moltbot', 'Clawdbot', 'OpenClaw 安全', 'Moltbot OpenClaw', '个人AI助手', 'AI Agent', 'Peter Steinberger', '安全风险']
+keywords = ['Moltbot 是什么', 'Moltbot', 'OpenClaw', 'Moltbot 改名', 'Moltbot AI Agent', 'Clawdbot', 'Moltbot 介绍', 'Moltbot 原理', 'Moltbot 安全', '个人AI助手']
 +++
 
-2026 年 1 月，一只龙虾搅动了整个 AI 圈。
+**Moltbot 是什么？** 简单来说，Moltbot 是一个开源的个人 AI Agent（智能助手），它能 24 小时运行在你的电脑上，通过 Telegram、WhatsApp 等聊天工具接收指令，自主操作浏览器、处理邮件、执行各种任务——不只是聊天，而是真的帮你"干活"。它原名 Clawdbot，后改名 OpenClaw，是 2026 年初最火爆的开源 AI 项目之一。
 
-一个名叫 **Clawdbot** 的开源项目，在不到一周内拿下 8 万+ GitHub Star，让全球开发者疯狂下单 Mac Mini，甚至引发了一场加密货币骗局。随后，它因 Anthropic 的商标要求被迫改名为 **Moltbot**——"蜕壳"重生。
+2026 年 1 月，一只龙虾搅动了整个 AI 圈。这个名叫 Clawdbot 的开源项目在不到一周内拿下 8 万+ GitHub Star，让全球开发者疯狂下单 Mac Mini，甚至引发了一场加密货币骗局。随后，它因 Anthropic 的商标要求被迫改名为 **Moltbot**（"蜕壳"之意），又衍生出 **OpenClaw** 这一社区常用名称。围绕 Moltbot 改名的风波，至今仍是开源圈的热门话题。
 
-这个项目到底有什么魔力？它是不是名副其实的"个人贾维斯"？背后又藏着多少你不知道的坑？
+这个 Moltbot AI Agent 到底有什么魔力？它是不是名副其实的"个人贾维斯"？背后又藏着多少你不知道的坑？
 
-这篇文章，我们不聊安装教程（想看搭建指南可以移步[这篇文章](/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/)），而是从更深的角度来剖析这个现象级项目。
+这篇文章，我们不聊安装教程（想看搭建指南可以移步[这篇文章](/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/)），而是从架构原理、改名始末、安全风险等角度来深度剖析这个现象级项目，帮你全面了解 Moltbot 的背景与真相。
 
 > 名称沿革说明：本文统一使用 **OpenClaw（原 Clawdbot，后更名 Moltbot）** 来指代同一项目在不同阶段的名称，便于你对照搜索结果与历史资料。
 
@@ -315,6 +315,31 @@ Moltbot（原 Clawdbot）在短短一周内从默默无闻到 8 万 Star，再�
 - [ClawdHub 技能市场](https://clawdhub.com)
 - [TechCrunch 深度报道](https://techcrunch.com/2026/01/27/everything-you-need-to-know-about-viral-personal-ai-assistant-clawdbot-now-moltbot/)
 - [苏打白原帖](https://x.com/sodawhite_dev/status/2016486967932817705)
+
+---
+
+## 常见问题（FAQ）
+
+### Moltbot 是什么？
+
+Moltbot 是一个开源的个人 AI Agent 项目，由 Peter Steinberger 创建。它可以 24 小时运行在你的电脑或服务器上，通过 Telegram、WhatsApp、iMessage 等聊天工具接收你的指令，自主操作浏览器、处理邮件、管理文件、执行 Shell 命令等。简单理解就是：**一个真正能帮你干活的 AI 助手，而不是只会聊天的 AI**。它支持 Claude、GPT 等多种大模型作为"大脑"，并拥有 50+ 技能集成。
+
+### Moltbot 为什么改名？
+
+Moltbot 最初叫 **Clawdbot**，因为 "Clawd" 与 Anthropic 的产品 "Claude" 发音和拼写过于相似，Anthropic 出于商标保护要求项目更改名称。2026 年 1 月 27 日，创始人 Peter Steinberger 将项目改名为 Moltbot。"Molt" 是英文"蜕壳"的意思，寓意龙虾脱掉旧壳、长出新壳的成长过程，与项目的龙虾吉祥物完美呼应。
+
+### Moltbot 和 OpenClaw 是什么关系？
+
+Moltbot 和 OpenClaw 指的是**同一个项目在不同阶段的名称**。该项目最初叫 Clawdbot，因商标问题改名为 Moltbot，社区中又常被称为 OpenClaw。三个名字指向同一个开源 AI Agent 项目，只是称呼不同。在搜索资料时，用任意一个名字都能找到相关内容。
+
+### Moltbot 安全吗？
+
+**目前 Moltbot 存在多个已知安全隐患**，使用时需要格外谨慎。主要风险包括：明文存储 API Key 等敏感凭证、反向代理场景下认证可被绕过、容易遭受提示注入攻击等。安全研究员已演示过通过一封恶意邮件就能窃取用户数据的攻击路径。如果你决定使用，务必做到：不以 root 运行、不暴露端口、使用 Docker 沙箱、从只读权限开始。详细的安全部署建议请参考本文第四章。
+
+### Moltbot 和 Claude Code 有什么区别？
+
+两者的定位不同。**Claude Code** 是 Anthropic 官方推出的终端 AI 编程助手，专注于代码开发场景，在终端中使用。**Moltbot** 则是一个通用的个人 AI Agent，覆盖生活和工作的各种场景（邮件、日程、浏览器操作、文件管理等），通过聊天工具远程控制。如果你只需要编程辅助，Claude Code 更简单安全；如果你想要一个全能的 AI 管家，可以考虑 Moltbot，但需要做好安全防护。
+
 ## 相关阅读 / Related
 
 - [AI 自动化导航 Hub](/posts/ai/ai-automation-hub/)
