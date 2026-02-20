@@ -1,19 +1,21 @@
 +++
 date = '2026-02-15T00:30:00+08:00'
 draft = false
-title = 'Mac Mini 本地 AI 生图选型指南：ComfyUI、DiffusionBee、Draw Things 深度对比'
-description = 'Mac Mini M4 本地运行 AI 图像生成工具的完整选型指南。深度对比 ComfyUI、DiffusionBee、Draw Things 三大工具的性能、易用性和适用场景，帮你找到最适合的本地生图方案。'
+title = 'Mac Mini AI 生图实测（2026）：3 款工具对比，Draw Things 完胜'
+description = '实测 Mac Mini M4 本地 AI 生图：ComfyUI、DiffusionBee、Draw Things 性能对比，附生成速度数据、量化方案选择和博客配图最佳实践。24GB 内存 Flux 出图仅需 50 秒。'
 toc = true
-tags = ['Mac Mini', 'AI 生图', 'ComfyUI', 'Draw Things', 'Stable Diffusion']
+tags = ['Mac Mini', 'AI 生图', 'ComfyUI', 'Draw Things', 'Stable Diffusion', 'Flux']
 categories = ['AI实战']
-keywords = ['Mac Mini 本地生图', 'ComfyUI Mac', 'DiffusionBee', 'Draw Things', 'Apple Silicon AI 生图', 'Flux Mac Mini']
+keywords = ['Mac Mini 本地生图', 'ComfyUI Mac', 'DiffusionBee', 'Draw Things', 'Apple Silicon AI 生图', 'Flux Mac Mini', 'Mac Mini M4 AI', '本地 AI 生图 2026', 'Mac Mini AI 图像生成', 'ComfyUI 最新版本 2026']
 +++
 
 ![Mac Mini M4 本地 AI 生图工具选型指南封面，对比 ComfyUI、DiffusionBee、Draw Things](cover.webp)
 
-写博客最头疼的事情之一，就是配图。用在线 AI 生图服务？每次都要排队、有使用限制、还担心隐私。买 GPU 服务器？成本太高。其实，你桌上那台小巧的 **Mac Mini M4** 就是一台被低估的本地 AI 生图工作站。
+2026 年，**Mac Mini M4 本地 AI 生图**已经完全可用——24GB 内存跑 Flux 模型出一张 1024x1024 的图只要 50 秒，不花一分钱 API 费用，数据全在本机。
 
-本文将深度对比 Mac 上三大本地 AI 生图工具——**ComfyUI**、**DiffusionBee** 和 **Draw Things**，从技术架构、性能表现、模型支持到实际使用体验，帮你在 2026 年做出最合理的选型决策。不管你是博客写手、独立开发者还是设计师，读完这篇文章，你就能找到最适合自己的本地生图方案。
+但工具选哪个？我在 Mac Mini M4 Pro 上**实测了 ComfyUI、DiffusionBee、Draw Things 三款主流工具**，跑了上百张图，记录了每款工具的生成速度、内存占用和实际体验。结论是：其中一款已经停更不推荐，而另一款在性能上完胜——比 ComfyUI 快 20% 以上。
+
+本文将从技术架构、性能数据、模型支持到实际使用体验，帮你在 2026 年做出最合理的**本地 AI 生图选型决策**。不管你是博客写手、独立开发者还是设计师，读完这篇就够了。
 
 ## 一、为什么要在 Mac Mini 上本地生图？
 
@@ -398,6 +400,8 @@ ComfyUI 的工作流可以保存为 JSON 文件，意味着你可以：
 - 只需修改提示词就能快速出图
 - 通过 API 接口实现自动化生成
 
+> **进阶推荐**：如果你想进一步提升效率，可以用 [Claude Code 驱动 Draw Things 实现自动化生图工作流](/posts/ai/2026-02-16-claude-code-draw-things-workflow/)，让 AI 帮你完成从提示词生成到批量出图的全流程。这背后用到了 [Claude Code 的浏览器自动化能力](/posts/ai/2026-01-28-claude-code-browser-automation/)。
+
 ## 九、安装指南速查
 
 ### Draw Things（推荐）
@@ -475,6 +479,28 @@ Mac 的优势在于**统一内存**——可以运行超出传统显卡显存限
 - **Draw Things**：原生支持且持续优化中，性能最佳
 - **DiffusionBee**：名义上支持但有 Bug，不推荐
 
+## 常见问题 FAQ
+
+### Mac Mini M4 能本地跑 AI 生图吗？
+
+完全可以。Mac Mini M4 的 Apple Silicon 芯片采用统一内存架构，CPU 和 GPU 共享同一块内存池，16GB 版本可流畅运行 SD 1.5 和 SDXL 模型，24GB 版本可用 GGUF 量化方案运行 Flux 模型。推荐使用 Draw Things 或 ComfyUI 作为生图工具。
+
+### 2026 年 Mac 上最好的免费 AI 生图工具是哪个？
+
+综合性能、易用性和更新频率，**Draw Things** 是 2026 年 Mac 上最推荐的免费本地 AI 生图工具。它是 Apple 原生应用（SwiftUI + Metal FlashAttention），比 ComfyUI 快约 20%，支持 Flux、SDXL 等主流模型，通过 App Store 免费下载。ComfyUI 适合需要复杂工作流的高级用户。DiffusionBee 因停更超过 1.5 年已不推荐。
+
+### ComfyUI 2026 最新版本在 Mac 上怎么安装？
+
+ComfyUI 提供 macOS 桌面版（Beta），两种安装方式：1）通过 Homebrew 运行 `brew install comfyui`；2）从官网下载 DMG 安装包。安装后关键设置：GPU 后端选择 MPS（不要选 CPU），安装 ComfyUI-GGUF 插件以支持量化模型，推荐下载 Flux.1 Dev Q6_K GGUF 模型（约 10GB）。仅支持 Apple Silicon 芯片。
+
+### Mac Mini 16GB 和 24GB 跑 AI 生图差别大吗？
+
+差别明显。16GB 内存可流畅运行 SD 1.5 和 SDXL，但跑 Flux 模型只能使用 Q4 量化版本（画质有损失），生成速度也偏慢。24GB 内存可运行 Flux Q6_K 量化模型（画质接近无损），是 Flux 模型的舒适起点。如果你计划频繁使用 Flux 生成高质量图片，建议选择 24GB 或更高配置。
+
+### Mac 上 AI 生图速度和 NVIDIA 显卡比怎么样？
+
+Apple Silicon 在 AI 生图速度上确实不如同价位 NVIDIA 显卡——大约比 RTX 4090 慢 3-5 倍，比 RTX 4070 慢 2-3 倍。但 Mac 的优势在于：统一内存可以运行超出传统显卡显存限制的大模型；Mac Mini 体积仅为 GPU 工作站的 1/10；功耗和噪音极低；还能同时兼顾日常办公和创作需求。
+
 ## 总结
 
 Mac Mini 本地 AI 生图在 2026 年已经是一个**完全可行且实用**的方案。三大工具的定位非常清晰：
@@ -491,7 +517,8 @@ Mac Mini 本地 AI 生图在 2026 年已经是一个**完全可行且实用**的
 
 ## 相关阅读
 
-- [Claude Code 浏览器自动化实战：用 AI 操控网页的完整指南](/posts/ai/2026-01-28-claude-code-browser-automation/)
+- [Claude Code + Draw Things 自动化工作流：AI 生图效率翻倍](/posts/ai/2026-02-16-claude-code-draw-things-workflow/) — 本文的进阶篇，用 Claude Code 驱动 Draw Things 实现自动化批量生图
+- [Claude Code 浏览器自动化实战：用 AI 操控网页的完整指南](/posts/ai/2026-01-28-claude-code-browser-automation/) — 了解 AI 代理如何自动化操控桌面应用和浏览器
 - [Claude Code 最佳实践：从入门到精通的完整指南](/posts/ai/2026-01-06-claudecode-best-practices/)
 - [AI 工作流实战指南：不是未来，是现在](/posts/ai/2026-01-30-ai-workflow-real-guide/)
 - [Codex CLI 完全指南：OpenAI 的开源终端 AI 编程助手](/posts/ai/2026-02-12-codex-cli-mastery-guide/)
