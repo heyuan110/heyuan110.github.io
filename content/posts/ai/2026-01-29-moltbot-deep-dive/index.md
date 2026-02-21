@@ -1,5 +1,6 @@
 +++
 date = '2026-01-29T21:00:00+08:00'
+lastmod = '2026-02-22T10:00:00+08:00'
 draft = false
 title = 'Moltbot 是什么？8 万 Star 爆红项目的改名真相与安全避坑指南'
 description = 'Moltbot（原 Clawdbot/OpenClaw）是 2026 年最火的开源 AI Agent，一周 8 万 Star，能 24 小时自主操控电脑。本文解析 Moltbot 改名原因、核心架构、安全隐患，帮你决定要不要用。'
@@ -242,9 +243,39 @@ Aikido 研究人员发现了一个伪装成 Clawdbot 的恶意 VSCode 扩展，�
 
 ---
 
-## 六、冷静思考：这事儿到底意味着什么？
+## 六、2026 年 2 月最新动态
 
-### 6.1 它是"iPhone 时刻"吗？
+本文初版写于 2026 年 1 月底。仅仅一个月后，OpenClaw/Moltbot 生态又发生了几件大事，这里做个集中更新。
+
+### 6.1 创始人加入 OpenAI，项目转社区维护
+
+2026 年 2 月 15 日，Peter Steinberger 宣布**加入 OpenAI**，OpenClaw 转为基金会维护的社区项目。这意味着 OpenClaw 不再是一个人的作品，而是正式进入社区化运营阶段。对用户来说，项目不会消失，但发展方向可能出现变化。
+
+### 6.2 星标突破 18 万，成为 2026 年增长最快开源项目
+
+截至 2026 年 2 月底，OpenClaw 在 GitHub 上的星标数已从 1 月底的 8 万飙升至 **18.6 万**，Fork 数超过 3.2 万，核心贡献者 130+，Discord 社区在线超 1.1 万人。[ClawHub 技能市场](https://clawdhub.com)已收录 **1700+** 技能插件。
+
+### 6.3 Meta 等企业禁用 OpenClaw
+
+与火爆形成鲜明对比的是，[Meta 等大型科技公司开始禁止员工在公司设备上使用 OpenClaw](https://www.resultsense.com/news/2026-02-20-openclaw-security-fears-lead-meta-and-other-firms-to-restrict-use)。SecurityScorecard 的报告显示，互联网上有超过 **13.5 万个暴露的 OpenClaw 实例**，其中 63% 存在安全漏洞。这进一步印证了本文第四章的安全警告——**部署不当，后果严重**。
+
+### 6.4 Moltbook：150 万 AI Agent 的社交网络
+
+最有趣的发展是 [Moltbook](https://www.techbrew.com/stories/2026/02/02/moltbook-ai-agent-social-network)——一个专为 AI Agent 设计的社交网络。由 Octane AI 联合创始人 Matt Schlicht 的 OpenClaw Agent（名叫 Clawd Clawderberg）自主创建，上线不到一个月就吸引了超过 **150 万 AI Agent** 入驻。这可能是 AI Agent 互操作的早期雏形。
+
+### 6.5 版本快速迭代
+
+| 版本 | 日期 | 关键更新 |
+|------|------|---------|
+| v2026.2.1 | 2月初 | 安全强化、系统提示升级、UI 优化 |
+| v2026.2.17 | 2月17日 | 集成 Sonnet 4.6 模型、1M 上下文、子代理生成、iOS 分享扩展 |
+| v2026.2.19 | 2月19日 | **Apple Watch MVP**、网关认证重构、40+ 安全修复 |
+
+---
+
+## 七、冷静思考：这事儿到底意味着什么？
+
+### 7.1 它是"iPhone 时刻"吗？
 
 有人说 Moltbot 是"个人 AI 的 iPhone 时刻"，也有人说它是"AGI 的早期体验"。但如果你冷静看，它更像是**一个方向的验证**——个人 AI Agent 的方向是对的，但现在的实现还很粗糙。
 
@@ -252,7 +283,7 @@ MacStories 称它为"个人 AI 助手的未来"。Andrej Karpathy 公开点赞�
 
 但热度不等于成熟度。
 
-### 6.2 真正的价值
+### 7.2 真正的价值
 
 Moltbot 最大的贡献不是技术本身，而是**打开了大众对"个人 AI Agent"的想象力**：
 
@@ -263,7 +294,7 @@ Moltbot 最大的贡献不是技术本身，而是**打开了大众对"个人 AI
 
 这些理念，之前只在技术圈讨论。Moltbot 把它变成了一个普通人可以体验的东西。
 
-### 6.3 需要警惕的问题
+### 7.3 需要警惕的问题
 
 但我们也要清醒地看到：
 
@@ -272,7 +303,7 @@ Moltbot 最大的贡献不是技术本身，而是**打开了大众对"个人 AI
 3. **明文存储凭证**是不可接受的设计缺陷
 4. **"自主 Agent"的哲学问题**：你真的信任 AI 自主替你做决策吗？从只读权限开始，而非上来就给完整系统访问
 
-### 6.4 理性建议
+### 7.4 理性建议
 
 苏打白在原帖开头说了一句话，我觉得非常中肯：
 
@@ -309,7 +340,7 @@ Moltbot（原 Clawdbot）在短短一周内从默默无闻到 8 万 Star，再�
 ## 参考资源
 
 - [Moltbot 官网](https://molt.bot)（原 clawd.bot）
-- [Moltbot GitHub](https://github.com/moltbot/moltbot)（⭐ 80,000+ Star）
+- [Moltbot GitHub](https://github.com/moltbot/moltbot)（⭐ 186,000+ Star）
 - [Moltbot 官方文档](https://docs.molt.bot)
 - [Moltbot Discord 社区](https://discord.com/invite/clawd)
 - [ClawdHub 技能市场](https://clawdhub.com)
@@ -335,6 +366,18 @@ Moltbot 和 OpenClaw 指的是**同一个项目在不同阶段的名称**。该�
 ### Moltbot 安全吗？
 
 **目前 Moltbot 存在多个已知安全隐患**，使用时需要格外谨慎。主要风险包括：明文存储 API Key 等敏感凭证、反向代理场景下认证可被绕过、容易遭受提示注入攻击等。安全研究员已演示过通过一封恶意邮件就能窃取用户数据的攻击路径。如果你决定使用，务必做到：不以 root 运行、不暴露端口、使用 Docker 沙箱、从只读权限开始。详细的安全部署建议请参考本文第四章。
+
+### Moltbot 能做什么？
+
+Moltbot 可以帮你完成各种实际工作任务，主要包括：**浏览器自动化**（自动打开网页、填表、提交）、**邮件处理**（读取、回复、转发邮件）、**日程管理**（创建、查询日历事件）、**文件操作**（读写、整理文件）、**Shell 命令执行**、**信息搜索和总结**等。通过 ClawHub 技能市场的 1700+ 插件，还能对接 Spotify、Obsidian、GitHub 等服务。简单来说，你能在电脑上做的事，Moltbot 基本都能帮你做。
+
+### Moltbot 创始人 Peter Steinberger 是谁？
+
+Peter Steinberger 是奥地利软件开发者，OpenClaw（原 Clawdbot/Moltbot）的创始人。他此前创立了 PSPDFKit（一家 PDF SDK 公司），在 iOS/macOS 开发社区颇有影响力。2026 年 2 月 15 日，Steinberger 宣布加入 OpenAI，OpenClaw 项目转为基金会维护的社区项目。
+
+### Moltbot 现在有多少 Star？
+
+截至 2026 年 2 月底，OpenClaw（Moltbot）在 GitHub 上已获得 **18.6 万+ Star**，Fork 数超过 3.2 万，是 2026 年增长最快的开源项目之一。ClawHub 技能市场收录了 1700+ 插件。
 
 ### Moltbot 和 Claude Code 有什么区别？
 
