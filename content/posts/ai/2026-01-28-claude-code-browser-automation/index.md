@@ -3,11 +3,11 @@ date = '2026-01-28T23:55:00+08:00'
 lastmod = '2026-02-16T18:00:00+08:00'
 draft = false
 title = 'Claude Code 浏览器自动化怎么选？(2026最新)4 套方案实测对比（Agent Browser vs Playwright CLI/MCP vs DevTools）'
-description = '【2026最新】实测对比 Claude Code 四种浏览器自动化方案：速度、Token 成本、稳定性、适用场景一次讲清，附选型结论与落地命令。'
+description = 'Agent Browser vs Playwright CLI vs Playwright MCP vs DevTools MCP，实测 Token 消耗差 10 倍+。本文对比速度、成本、稳定性，附安装命令和选型结论，帮你选对方案。'
 toc = true
 tags = ['Claude Code', '浏览器自动化', 'MCP', 'Playwright CLI', 'Playwright MCP', 'Agent Browser']
 categories = ['AI实战']
-keywords = ['Claude Code 浏览器自动化', 'Playwright CLI', 'Playwright MCP', 'Agent Browser', 'DevTools MCP', 'AI 自动化 2026']
+keywords = ['Claude Code 浏览器自动化', 'Claude Code 操作浏览器', 'Playwright CLI', 'Playwright MCP', 'Agent Browser', 'DevTools MCP', 'agent browser vs playwright', 'claude code 浏览器', 'AI 浏览器自动化 2026']
 +++
 
 用 AI 写代码已经不稀奇了，但让 AI **操控浏览器**——打开网页、点击按钮、填写表单、抓取数据——这才是真正的"解放双手"。
