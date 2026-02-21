@@ -1,12 +1,12 @@
 +++
 date = '2026-01-29T21:00:00+08:00'
 draft = false
-title = 'Moltbot 是什么？OpenClaw 改名始末与安全风险深度解析'
-description = 'Moltbot 是一个开源个人 AI Agent，原名 Clawdbot/OpenClaw，可 24 小时自主操作电脑。本文深度解析 Moltbot 的技术架构、改名原因、安全隐患与部署避坑指南。'
+title = 'Moltbot 是什么？8 万 Star 爆红项目的改名真相与安全避坑指南'
+description = 'Moltbot（原 Clawdbot/OpenClaw）是 2026 年最火的开源 AI Agent，一周 8 万 Star，能 24 小时自主操控电脑。本文解析 Moltbot 改名原因、核心架构、安全隐患，帮你决定要不要用。'
 toc = true
 tags = ['OpenClaw', 'Moltbot', 'Clawdbot', 'AI Agent', '开源', '安全']
 categories = ['AI原理']
-keywords = ['Moltbot 是什么', 'Moltbot', 'OpenClaw', 'Moltbot 改名', 'Moltbot AI Agent', 'Clawdbot', 'Moltbot 介绍', 'Moltbot 原理', 'Moltbot 安全', '个人AI助手']
+keywords = ['Moltbot 是什么', 'Moltbot', 'OpenClaw', 'Moltbot 改名', 'Moltbot AI Agent', 'Clawdbot', 'Moltbot 介绍', 'Moltbot 原理', 'Moltbot 安全', 'moltbot是什么', 'moltbot改名', 'moltbot能做什么']
 +++
 
 **Moltbot 是什么？** 简单来说，Moltbot 是一个开源的个人 AI Agent（智能助手），它能 24 小时运行在你的电脑上，通过 Telegram、WhatsApp 等聊天工具接收指令，自主操作浏览器、处理邮件、执行各种任务——不只是聊天，而是真的帮你"干活"。它原名 Clawdbot，后改名 OpenClaw，是 2026 年初最火爆的开源 AI 项目之一。
