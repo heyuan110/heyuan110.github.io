@@ -1,13 +1,13 @@
 +++
 date = '2026-01-24'
-lastmod = '2026-02-22T10:00:00+08:00'
+lastmod = '2026-02-23T10:00:00+08:00'
 draft = false
-title = 'Docker Compose 教程（2026）：compose.yaml 配置详解与实战模板'
-description = '从零学 Docker Compose：逐字段讲透 compose.yaml 的 services、volumes、networks、healthcheck，附 WordPress+MySQL 实战案例和生产级最佳实践模板。'
+title = 'Docker Compose 教程：docker-compose.yml 配置详解与实战案例（2026）'
+description = '最全 Docker Compose 教程：逐字段讲透 docker-compose.yml 的 services、volumes、networks、healthcheck 配置，附 WordPress+MySQL 实战案例和生产级模板。'
 toc = true
 tags = ['Docker', 'Docker Compose', '容器化', '入门教程', 'YAML']
 categories = ['AI实战']
-keywords = ['docker compose 教程', 'docker-compose.yml 详解', 'docker compose 配置', 'compose.yaml', 'docker compose yml', 'docker compose 入门', 'docker compose volumes', 'docker compose networks', 'docker compose ports', '容器编排', 'docker compose 2026']
+keywords = ['docker compose 教程', 'docker-compose.yml 详解', 'docker compose 配置', 'compose.yaml', 'docker compose yml', 'docker compose 入门', 'docker compose volumes', 'docker compose networks', 'docker compose ports', '容器编排', 'docker compose 2026', 'docker compose yaml 教程', 'docker-compose.yml 怎么写', 'docker compose services', 'docker compose healthcheck']
 +++
 
 Docker Compose 是目前最流行的多容器编排工具，而 **docker-compose.yml**（新版推荐命名为 `compose.yaml`）就是它的核心配置文件。无论你是刚接触容器化的新手，还是想系统梳理配置细节的老手，这篇 Docker Compose 教程都适合你。

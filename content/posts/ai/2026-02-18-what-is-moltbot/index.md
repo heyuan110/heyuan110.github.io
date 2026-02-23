@@ -1,12 +1,13 @@
 +++
 date = '2026-02-18T10:00:00+08:00'
+lastmod = '2026-02-23T10:00:00+08:00'
 draft = false
-title = 'MoltBot 是什么？一文读懂这个现象级 AI Agent 的前世今生'
-description = 'MoltBot（现 OpenClaw）是 2026 年最火的开源个人 AI Agent，能通过 Telegram/WhatsApp 远程操控电脑执行真实任务。本文从零详解 MoltBot 原理、核心功能、三次改名历史、与其他 AI Agent 对比及快速上手教程。'
+title = 'MoltBot 是什么？改名 OpenClaw 全解析：原理、功能与上手教程'
+description = 'MoltBot 是什么？为什么改名 OpenClaw？本文详解 MoltBot 原理、核心功能、三次改名历史、与 Claude Code 等 AI Agent 对比，附快速上手教程。'
 toc = true
 tags = ['MoltBot', 'AI Agent', 'OpenClaw', 'Clawdbot', '个人AI助手']
 categories = ['AI原理']
-keywords = ['moltbot 是什么', 'moltbot ai agent', 'moltbot 改名', 'moltbot 原理', 'moltbot 介绍', 'moltbot 能做什么', 'openclaw', 'clawdbot']
+keywords = ['moltbot 是什么', 'moltbot ai agent', 'moltbot 改名', 'moltbot 原理', 'moltbot 介绍', 'moltbot 能做什么', 'openclaw', 'clawdbot', 'moltbot 个人资料和背景', 'moltbot openclaw 区别', 'moltbot是什么']
 +++
 
 如果你最近在技术社区看到 "MoltBot" 这个词却一头雾水，这篇文章就是为你写的。
@@ -489,6 +490,26 @@ MoltBot（现 OpenClaw）代表了 AI 发展的一个重要方向：**从对话�
 从 2025 年 11 月创建到 2026 年 2 月创始人加入 OpenAI，这个项目在短短几个月内经历了爆发式增长、三次改名、加密骗局、安全争议和商业化转型。它的故事本身就是 AI Agent 时代的一个缩影。
 
 对于大多数人来说，**MoltBot 的意义不在于你是否需要立刻使用它，而在于它展示了一种全新的人机交互范式**——AI 在后台持续运行，记住你的一切偏好，随时准备为你工作。这个方向，大概率会成为未来几年 AI 产品的主流形态。
+
+---
+
+## 常见问题 FAQ
+
+### MoltBot 和 OpenClaw 是同一个东西吗？
+
+是的。MoltBot 经历了三次改名：Clawdbot → MoltBot → OpenClaw。目前官方名称是 OpenClaw，但很多人仍然习惯叫它 MoltBot。项目代码和功能完全一致，只是品牌名变了。
+
+### MoltBot 是免费的吗？
+
+OpenClaw（MoltBot）本身是开源免费的，你可以在自己的电脑上免费运行。但它需要调用大语言模型 API（如 Claude、GPT 等），这部分会产生费用。社区版完全免费，Pro 版提供额外的云端功能和技术支持。
+
+### MoltBot 安全吗？会不会泄露我的数据？
+
+MoltBot 运行在你自己的电脑上，数据默认不上传到任何第三方服务器。但由于它能执行 Shell 命令和操作浏览器，使用不当存在安全风险。建议在沙箱环境中运行，并仔细审查第三方技能插件。详细安全分析见 [OpenClaw 自动化的那些坑](/posts/ai/2026-02-14-openclaw-automation-pitfalls/)。
+
+### MoltBot 和 Claude Code 有什么区别？
+
+MoltBot（OpenClaw）是通用个人 AI 助手，通过聊天工具操控电脑执行日常任务；Claude Code 是专业的 AI 编程工具，专注于代码开发。两者定位不同：MoltBot 面向所有用户的生活和工作任务，Claude Code 面向开发者的编程场景。详细对比见 [Claude Code 完全指南](/posts/ai/2025-01-14-claude-code-guide/)。
 
 ---
 
