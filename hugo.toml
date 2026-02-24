@@ -124,7 +124,7 @@ summaryLength = 150
     strict = "0"
     reactionsEnabled = "1"
     inputPosition = "bottom"
-    theme = "preferred_color_scheme"
+    theme = "dark_dimmed"
     lang = "zh-CN"
 
   # 外部库

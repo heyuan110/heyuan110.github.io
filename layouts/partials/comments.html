@@ -1,18 +1,24 @@
 {{- if .Site.Params.giscus -}}
 {{- $giscus := .Site.Params.giscus -}}
-<script src="https://giscus.app/client.js"
-        data-repo="{{ $giscus.repo }}"
-        data-repo-id="{{ $giscus.repoID }}"
-        data-category="{{ $giscus.category }}"
-        data-category-id="{{ $giscus.categoryID }}"
-        data-mapping="{{ default "pathname" $giscus.mapping }}"
-        data-strict="{{ default "0" $giscus.strict }}"
-        data-reactions-enabled="{{ default "1" $giscus.reactionsEnabled }}"
-        data-emit-metadata="0"
-        data-input-position="{{ default "top" $giscus.inputPosition }}"
-        data-theme="{{ default "preferred_color_scheme" $giscus.theme }}"
-        data-lang="{{ default "zh-CN" $giscus.lang }}"
-        crossorigin="anonymous"
-        async>
-</script>
+<div class="comments-section">
+  <h2 class="comments-title">💬 评论</h2>
+  <p class="comments-desc">欢迎留言讨论，需要 GitHub 账号登录</p>
+  <div class="giscus-wrapper">
+    <script src="https://giscus.app/client.js"
+            data-repo="{{ $giscus.repo }}"
+            data-repo-id="{{ $giscus.repoID }}"
+            data-category="{{ $giscus.category }}"
+            data-category-id="{{ $giscus.categoryID }}"
+            data-mapping="{{ default "pathname" $giscus.mapping }}"
+            data-strict="{{ default "0" $giscus.strict }}"
+            data-reactions-enabled="{{ default "1" $giscus.reactionsEnabled }}"
+            data-emit-metadata="0"
+            data-input-position="{{ default "bottom" $giscus.inputPosition }}"
+            data-theme="{{ default "dark_dimmed" $giscus.theme }}"
+            data-lang="{{ default "zh-CN" $giscus.lang }}"
+            crossorigin="anonymous"
+            async>
+    </script>
+  </div>
+</div>
 {{- end -}}

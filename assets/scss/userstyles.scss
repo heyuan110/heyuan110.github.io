@@ -1,0 +1,36 @@
+// 评论区样式
+#comments {
+  margin-top: 2rem;
+}
+
+.comments-section {
+  margin-top: 0.5rem;
+}
+
+.comments-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: $bright-grey;
+  margin-bottom: 0.25rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid var(--accent, $pine-green);
+  display: inline-block;
+}
+
+.comments-desc {
+  font-size: 0.85rem;
+  color: $css-grey;
+  margin-bottom: 1.5rem;
+}
+
+.giscus-wrapper {
+  background: rgba(#3b3e48, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.5rem;
+
+  .giscus,
+  .giscus-frame {
+    width: 100%;
+  }
+}
