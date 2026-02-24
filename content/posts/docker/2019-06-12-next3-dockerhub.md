@@ -1,19 +1,11 @@
----
-title: "Nexus3 搭建 Docker 私有镜像仓库：企业级 Registry 完整教程"
-date: 2019-06-12 20:50:36
-author: "bruce"
-description: "使用 Nexus3 搭建企业级 Docker 私有镜像仓库完整教程，详解 hosted、proxy、group 三种仓库类型配置，实现镜像的推送和拉取，附 Ubuntu 客户端 insecure-registries 配置"
-toc: true
-tags:
-    - Docker
-    - Nexus3
-    - Registry
-    - 私有仓库
-    - DevOps
-categories:
-    - Docker
----
-
++++
+date = '2019-06-12T20:50:36+08:00'
+title = 'Nexus3 搭建 Docker 私有镜像仓库：企业级 Registry 完整教程'
+description = '使用 Nexus3 搭建企业级 Docker 私有镜像仓库完整教程，详解 hosted、proxy、group 三种仓库类型配置，实现镜像的推送和拉取，附 Ubuntu 客户端 insecure-registries 配置'
+toc = true
+tags = ['Docker', 'Nexus3', 'Registry', '私有仓库', 'DevOps']
+categories = ['Docker']
++++
 [Nexus](https://www.sonatype.com/nexus-repository-oss)是有名的Maven仓库管理器。如果你使用Maven，你可以从Maven中央仓库下载所需要的构件（artifact），但这通常不是一个好的做法，你应该在本地架设一个Maven仓库服务器，在代理远程仓库的同时维护本地仓库，以节省带宽和时间，Nexus就可以满足这样的需要。此外，他还提供了强大的仓库管理功能，构件搜索功能，它基于REST，友好的UI是一个extjs的REST客户端，它占用较少的内存，基于简单文件系统而非数据库。这些优点使其日趋成为最流行的Maven仓库管理器。除此之外，最新Nexus3还可以管理多种格式的镜像<!-- more -->，如下：
 
 ![](https://raw.githubusercontent.com/heyuan110/static-source/master/media/15604059653679/15604059653679.jpg)

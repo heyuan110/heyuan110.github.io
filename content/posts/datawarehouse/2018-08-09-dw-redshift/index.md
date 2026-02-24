@@ -1,14 +1,12 @@
 +++
 title = 'Amazon Redshift 性能优化指南：VACUUM、ANALYZE 与运维最佳实践'
 date = '2018-08-09T16:03:05+08:00'
-author = 'bruce'
 description = 'Amazon Redshift 数据仓库性能优化完全指南，详解 VACUUM 六种类型（FULL、DELETE ONLY、SORT ONLY、REINDEX、RECLUSTER、BOOST）、ANALYZE 统计更新、表设计最佳实践和常用运维命令。'
 toc = true
 tags = ['Redshift', 'AWS', '数据仓库', '性能优化', 'VACUUM']
 categories = ['数据仓库']
 keywords = ['Amazon Redshift', 'Redshift VACUUM', 'Redshift 优化', '数据仓库运维', 'AWS 数据仓库']
 +++
-
 ![Amazon Redshift 数据仓库性能优化指南](cover.webp)
 
 **Amazon Redshift** 是 AWS 推出的云端数据仓库服务，采用列式存储和大规模并行处理（MPP）架构，能够在 PB 级数据上实现亚秒级查询响应。但随着数据不断写入和删除，表的性能会逐渐下降——这时就需要 VACUUM 和 ANALYZE 来维护。

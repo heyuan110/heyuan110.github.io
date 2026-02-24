@@ -313,7 +313,7 @@ OpenClaw 项目将移交给一个独立的开源基金会，由 OpenAI 提供支
 **不适合你的场景**：
 
 - 你没有技术背景，不想折腾部署
-- 你只需要一个编程助手（用 [Claude Code](/posts/ai/2025-01-14-claude-code-guide/) 更合适）
+- 你只需要一个编程助手（用 [Claude Code](/posts/ai/2026-01-14-claude-code-guide/) 更合适）
 - 你对安全风险零容忍（MoltBot 的安全机制仍在完善中）
 - 你只是偶尔需要 AI 帮忙（直接用 ChatGPT/Claude 网页版就够了）
 
@@ -509,7 +509,7 @@ MoltBot 运行在你自己的电脑上，数据默认不上传到任何第三方
 
 ### MoltBot 和 Claude Code 有什么区别？
 
-MoltBot（OpenClaw）是通用个人 AI 助手，通过聊天工具操控电脑执行日常任务；Claude Code 是专业的 AI 编程工具，专注于代码开发。两者定位不同：MoltBot 面向所有用户的生活和工作任务，Claude Code 面向开发者的编程场景。详细对比见 [Claude Code 完全指南](/posts/ai/2025-01-14-claude-code-guide/)。
+MoltBot（OpenClaw）是通用个人 AI 助手，通过聊天工具操控电脑执行日常任务；Claude Code 是专业的 AI 编程工具，专注于代码开发。两者定位不同：MoltBot 面向所有用户的生活和工作任务，Claude Code 面向开发者的编程场景。详细对比见 [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/)。
 
 ---
 
@@ -523,7 +523,7 @@ MoltBot（OpenClaw）是通用个人 AI 助手，通过聊天工具操控电脑�
 - [OpenClaw 创始人加入 OpenAI 意味着什么](/posts/ai/2026-02-16-openclaw-openai-analysis/) - 最新动态分析
 - [MoltBook：当 AI Agent 有了自己的社交网络](/posts/ai/2026-02-01-moltbook-ai-agent-social-network/) - 生态延伸
 - [ClawdBot 搭建指南](/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/) - 新手安装教程
-- [Claude Code 完全指南](/posts/ai/2025-01-14-claude-code-guide/) - 另一种 AI Agent 体验
+- [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/) - 另一种 AI Agent 体验
 
 ---
 

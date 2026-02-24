@@ -11,7 +11,7 @@ keywords = ['Claude Code Agent Teams', 'Claude Code 多Agent协作', 'AI 多智�
 
 2 月 5 日，Anthropic 随 Claude Opus 4.6 一同发布了 **Claude Code Agent Teams** —— 一项让多个 Claude Code 实例组成团队、并行协作的实验性功能。如果说之前的 Subagent 是"你派出去跑腿的助手"，那 Agent Teams 就是"一支能互相讨论、自主协调的工程小队"。对于需要跨模块开发、多视角审查、并行调试的复杂场景，Agent Teams 可以将小时级的串行工作压缩到分钟级完成。
 
-本文基于[官方文档](https://code.claude.com/docs/en/agent-teams)和实际使用经验，从架构原理到实战案例，完整拆解 Agent Teams 的核心能力。如果你还不熟悉 Claude Code 的基础用法，建议先阅读 [Claude Code 完全指南](/posts/ai/2025-01-14-claude-code-guide/)。
+本文基于[官方文档](https://code.claude.com/docs/en/agent-teams)和实际使用经验，从架构原理到实战案例，完整拆解 Agent Teams 的核心能力。如果你还不熟悉 Claude Code 的基础用法，建议先阅读 [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/)。
 
 ## 什么是 Agent Teams
 
@@ -178,7 +178,7 @@ Teammate 会进入只读的 Plan 模式，提交方案后由 Lead 审批。被�
 
 ### 用 Hooks 强制质量门禁
 
-通过 [Hooks](/posts/ai/2025-01-14-claude-code-guide/) 机制，可以在关键节点插入自动检查：
+通过 [Hooks](/posts/ai/2026-01-14-claude-code-guide/) 机制，可以在关键节点插入自动检查：
 
 - **`TeammateIdle`**：Teammate 即将空闲时触发。返回 exit code 2 可以发送反馈让 Teammate 继续工作。
 - **`TaskCompleted`**：任务被标记完成时触发。返回 exit code 2 可以阻止完成并发送反馈。

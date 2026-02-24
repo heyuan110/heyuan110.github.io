@@ -1,19 +1,11 @@
----
-title: "Java 入门教程（一）：JDK/JRE/JVM 概念解析与 IDEA 开发环境配置"
-date: 2024-05-04 21:00:00
-author: "bruce"
-description: "Java 零基础入门教程第一篇，涵盖 Java 发展历史、SE/EE/ME 技术体系，详解 JDK、JRE、JVM 概念区别，IDEA 开发环境配置和常用快捷键"
-toc: true
-tags:
-    - Java
-    - JDK
-    - JVM
-    - IDEA
-    - 入门教程
-categories:
-    - Java
----
-
++++
+date = '2024-05-04T21:00:00+08:00'
+title = 'Java 入门教程（一）：JDK/JRE/JVM 概念解析与 IDEA 开发环境配置'
+description = 'Java 零基础入门教程第一篇，涵盖 Java 发展历史、SE/EE/ME 技术体系，详解 JDK、JRE、JVM 概念区别，IDEA 开发环境配置和常用快捷键'
+toc = true
+tags = ['Java', 'JDK', 'JVM', 'IDEA', '入门教程']
+categories = ['Java']
++++
 ![image](java-logo.webp)
 
 ## 一、背景
@@ -22,16 +14,16 @@ categories:
 
 ## 二、整体学习路线
 
-![](Pasted-image-20240504163728.webp)
-![](Pasted%20image%2020240504163749.webp)
+![Java 整体学习路线](java-roadmap-overview.webp)
+![Java 学习路线详细图](java-roadmap-detail.webp)
 
 Java 技术体系（JAVA SE、JAVA EE、JAVA ME）。
 Java基本啥都能干，但主要做互联网系统的开发.
 
 ## 三、JDK 
 
-![](Pasted%20image%2020240504194249.webp)
-![](Pasted%20image%2020240504200330.webp)
+![Java 技术体系](java-tech-stack.webp)
+![Java SE/EE/ME 版本区别](java-editions.webp)
 
 javac：编译工具
 
@@ -46,7 +38,7 @@ JDK(Java Development Kit): Java开发工具包(包含上面所有)
 
 ## 四、IDE IDEA
 
-![](Pasted%20image%2020240504200858.webp)
+![IDEA 开发环境](java-platform.webp)
 
 IDEA几种常见的快捷键，以及他们的作用
 

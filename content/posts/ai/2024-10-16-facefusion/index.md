@@ -1,16 +1,12 @@
----
-title: "全面解析FaceFusion：从原理到实战"
-date: 2024-10-16T14:56:30+08:00
-author: "bruce"
-description: "FaceFusion 换脸工具的完整使用指南，包括硬件选型、环境搭建、参数调优和常见问题解决"
-toc: true
-tags:
-  - AI
-  - FaceFusion
-categories:
-  - AI实战
----
-
++++
+date = '2024-10-16T14:56:30+08:00'
+title = '全面解析FaceFusion：从原理到实战'
+description = 'FaceFusion 换脸工具的完整使用指南，包括硬件选型、环境搭建、参数调优和常见问题解决'
+toc = true
+tags = ['AI', 'FaceFusion']
+categories = ['AI实战']
+keywords = ['FaceFusion 教程', 'AI 换脸工具', 'FaceFusion 安装', '开源换脸', 'FaceFusion 参数调优']
++++
 ![FaceFusion](FaceFusion.webp)
 
 ## 这东西是干嘛的

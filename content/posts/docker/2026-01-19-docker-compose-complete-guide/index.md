@@ -1,19 +1,11 @@
----
-title: "Docker Compose 完全指南（2026）：安装、docker-compose.yml、实战部署一篇搞定"
-date: 2026-01-19T10:00:00+08:00
-author: "bruce"
-description: "从 Docker 基础到 Docker Compose 实战：安装配置、compose.yml 核心字段、WordPress/Node+MySQL 案例与生产环境最佳实践。"
-toc: true
-images:
-tags:
-  - docker
-  - docker-compose
-  - 容器化
-  - DevOps
-categories:
-  - Docker
----
-
++++
+date = '2026-01-19T10:00:00+08:00'
+title = 'Docker Compose 完全指南（2026）：安装、docker-compose.yml、实战部署一篇搞定'
+description = '从 Docker 基础到 Docker Compose 实战：安装配置、compose.yml 核心字段、WordPress/Node+MySQL 案例与生产环境最佳实践。'
+toc = true
+tags = ['docker', 'docker-compose', '容器化', 'DevOps']
+categories = ['Docker']
++++
 ![Docker Complete Guide](docker-cover.webp)
 
 如果你是一名开发者，一定听过这句话："在我电脑上明明能跑啊！" 这个困扰了无数程序员的问题，Docker 给出了优雅的解决方案。本文将用最通俗的语言，带你从零开始掌握 Docker 和 Docker Compose。

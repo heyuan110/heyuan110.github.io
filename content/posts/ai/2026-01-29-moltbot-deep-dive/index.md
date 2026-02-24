@@ -330,7 +330,7 @@ Moltbot（原 Clawdbot）在短短一周内从默默无闻到 8 万 Star，再�
 ## 相关阅读
 
 - [ClawdBot：海外爆火的个人 AI 管家，30 分钟搭建指南](/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/) - 新手友好的搭建教程
-- [Claude Code 完全指南：终端里的全能 AI 助手](/posts/ai/2025-01-14-claude-code-guide/) - 程序员专属的 AI 编程助手
+- [Claude Code 完全指南：终端里的全能 AI 助手](/posts/ai/2026-01-14-claude-code-guide/) - 程序员专属的 AI 编程助手
 - [Agent Skills：AI 编程的新范式](/posts/ai/2026-01-19-agent-skills-new-programming/) - 理解 AI Agent 的技能系统
 - [AI 开发工作流的变革](/posts/ai/2026-01-19-ai-dev-workflow/) - AI Agent 如何改变我们的工作方式
 - [AGI 已经来了？Anthropic CEO 的深度分析](/posts/ai/2026-01-26-agi-is-here/) - AI 发展的宏观趋势

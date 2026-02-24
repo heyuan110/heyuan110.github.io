@@ -7,6 +7,7 @@ draft = true
 toc = true
 tags = ['AI 自动化', 'Claude Code', 'OpenClaw', 'Codex CLI']
 categories = ['AI实战']
+keywords = ['AI 自动化导航', 'Claude Code 教程合集', 'OpenClaw 教程', 'Codex CLI 指南', 'AI 编程工具']
 +++
 
 > 本页为 AI 自动化专题导航草稿，持续补充中。
@@ -17,7 +18,7 @@ categories = ['AI实战']
 
 ## 核心文章列表
 
-1. [Claude Code 使用指南](/posts/ai/2025-01-14-claude-code-guide/)
+1. [Claude Code 使用指南](/posts/ai/2026-01-14-claude-code-guide/)
 2. [Claude Code 浏览器自动化方案对比](/posts/ai/2026-01-28-claude-code-browser-automation/)
 3. [OpenClaw 使用教程](/posts/ai/2026-02-12-openclaw-usage-tutorial/)
 4. [Moltbot 深度解析](/posts/ai/2026-01-29-moltbot-deep-dive/)

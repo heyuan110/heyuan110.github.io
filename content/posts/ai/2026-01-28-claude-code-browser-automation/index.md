@@ -563,7 +563,7 @@ chrome.exe --remote-debugging-port=9222
 
 ### 相关阅读
 
-- [Claude Code 完全指南：从入门到精通](/posts/ai/2025-01-14-claude-code-guide/)
+- [Claude Code 完全指南：从入门到精通](/posts/ai/2026-01-14-claude-code-guide/)
 - [Claude Code 最佳实践](/posts/ai/2026-01-06-claudecode-best-practices/)
 - [Claude Code 常用命令速查](/posts/ai/2025-01-23-claude-code-commands/)
 - [Anthropic 发布 Claude Cowork：让 AI 直接操作你的电脑文件](/posts/ai/2026-01-13-claude-cowork/)

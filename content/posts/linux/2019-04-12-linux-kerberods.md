@@ -1,20 +1,11 @@
----
-title: "Linux 挖矿病毒 kerberods 入侵排查与清理实战"
-date: 2019-04-12 16:15:53
-author: "bruce"
-description: "记录 Linux 服务器遭受 kerberods 挖矿病毒入侵的完整排查和处理过程，CPU 持续 100%、top 只显示 1 个 CPU 的诡异现象分析，附清理脚本和 Confluence 漏洞修复"
-toc: true
-tags:
-    - Linux
-    - 安全
-    - 挖矿病毒
-    - Confluence
-    - 故障排查
-    - CPU
-categories:
-    - Linux
----
-
++++
+date = '2019-04-12T16:15:53+08:00'
+title = 'Linux 挖矿病毒 kerberods 入侵排查与清理实战'
+description = '记录 Linux 服务器遭受 kerberods 挖矿病毒入侵的完整排查和处理过程，CPU 持续 100%、top 只显示 1 个 CPU 的诡异现象分析，附清理脚本和 Confluence 漏洞修复'
+toc = true
+tags = ['Linux', '安全', '挖矿病毒', 'Confluence', '故障排查', 'CPU']
+categories = ['Linux']
++++
 最近经常听到挖矿病毒kerberods肆虐，大量linux主机沦陷，导致的结果显著特征CPU持续100%，正常的应用服务无法提供。不幸昨天我们有一台机器中招了，下面记录整个事件发生、处理过程。
 
 ## 事件发生

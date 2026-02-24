@@ -1,21 +1,12 @@
----
-title: "Claude Code从入门到精通：终端里的全能AI助手完全指南"
-date: 2026-01-14T14:38:00+08:00
-author: "bruce"
-description: "全面介绍 Anthropic 官方 AI 工具 Claude Code，从基础概念到高级用法，涵盖安装配置、日常使用、CLAUDE.md、Skills、Subagent 等核心功能。无论你是开发者、产品经理、运维人员还是行政财务，都能从中找到提升效率的方法。"
-toc: true
-images:
-tags:
-  - Claude Code
-  - AI 工具
-  - Anthropic
-  - 命令行工具
-  - 效率工具
-  - 自动化
-categories:
-  - AI实战
----
-
++++
+date = '2026-01-14T14:38:00+08:00'
+title = 'Claude Code从入门到精通：终端里的全能AI助手完全指南'
+description = '全面介绍 Anthropic 官方 AI 工具 Claude Code，从基础概念到高级用法，涵盖安装配置、日常使用、CLAUDE.md、Skills、Subagent 等核心功能。无论你是开发者、产品经理、运维人员还是行政财务，都能从中找到提升效率的方法。'
+toc = true
+tags = ['Claude Code', 'AI 工具', 'Anthropic', '命令行工具', '效率工具', '自动化']
+categories = ['AI实战']
+keywords = ['Claude Code 使用指南', 'Claude Code 教程', 'Anthropic CLI 工具', 'AI 编程助手', 'Claude Code 入门']
++++
 ![Claude Code 终端 AI 助手](cover.webp)
 
 你是否曾经希望有一个真正能「动手干活」的 AI 助手——不只是给你建议，而是能直接帮你处理文件、执行命令、完成各种重复性工作？**Claude Code** 正是 Anthropic 官方推出的这样一款工具——它运行在终端里，是一个能够理解你的需求并付诸行动的全能助手。

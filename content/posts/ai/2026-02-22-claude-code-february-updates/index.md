@@ -251,5 +251,5 @@ Simple Mode 适合两类人：一是非开发者，只需要 Claude 帮忙处理
 
 - [Claude Code Worktree 实战指南](/posts/ai/2026-02-20-claude-code-worktree/) - Worktree 的完整教程和最佳实践
 - [Claude Code 浏览器自动化方案对比](/posts/ai/2026-01-28-claude-code-browser-automation/) - 测试和调试方案选择
-- [Claude Code 完全指南](/posts/ai/2025-01-14-claude-code-guide/) - 从入门到进阶的全面指南
+- [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/) - 从入门到进阶的全面指南
 - [Claude Code Skills Top20](/posts/ai/2026-01-20-claude-code-skills-top20/) - 最实用的 Skills 排行

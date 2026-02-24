@@ -480,5 +480,5 @@ v2 的主要变化包括：包名从 `@modelcontextprotocol/sdk` 拆分为 `@mod
 ## 相关阅读
 
 - [Claude Code 浏览器自动化实战](/posts/ai/2026-01-28-claude-code-browser-automation/)
-- [Claude Code 完全指南](/posts/ai/2025-01-14-claude-code-guide/)
+- [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/)
 - [OpenClaw Skills Top20 排行榜](/posts/ai/2026-01-20-claude-code-skills-top20/)

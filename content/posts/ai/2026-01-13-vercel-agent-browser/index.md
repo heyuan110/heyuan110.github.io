@@ -1,20 +1,12 @@
----
-title: "Vercel 发布 Agent Browser：专为 AI 代理打造的浏览器自动化工具"
-date: 2026-01-13T08:00:00+08:00
-author: "bruce"
-description: "Vercel 开源了 Agent Browser，一个专为 AI 代理设计的浏览器自动化 CLI 工具，采用 Rust + Node.js 架构，支持快照驱动的交互模式"
-toc: true
-images:
-tags:
-  - AI
-  - Vercel
-  - Browser Automation
-  - Agent
-  - CLI
-categories:
-  - AI工具
----
-
++++
+date = '2026-01-13T08:00:00+08:00'
+title = 'Vercel 发布 Agent Browser：专为 AI 代理打造的浏览器自动化工具'
+description = 'Vercel 开源了 Agent Browser，一个专为 AI 代理设计的浏览器自动化 CLI 工具，采用 Rust + Node.js 架构，支持快照驱动的交互模式'
+toc = true
+tags = ['AI', 'Vercel', 'Browser Automation', 'Agent', 'CLI']
+categories = ['AI工具']
+keywords = ['Vercel Agent Browser', 'AI 浏览器自动化', '无头浏览器 CLI', 'Playwright 替代方案', 'AI Agent 浏览器工具']
++++
 ![Agent Browser](cover.webp)
 
 Vercel 近期开源了一款名为 **Agent Browser** 的命令行工具，这是一个专为 AI 代理设计的浏览器自动化解决方案。它结合了 Rust 的高性能与 Node.js 的灵活性，为 AI 工作流提供了可靠的浏览器交互能力。

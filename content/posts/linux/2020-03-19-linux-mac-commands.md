@@ -1,19 +1,11 @@
----
-title: "Linux/macOS 常用命令速查手册（持续更新）"
-date: 2020-03-19 10:55:52
-author: "bruce"
-description: "Linux 和 macOS 常用命令速查手册，涵盖文件操作、网络调试、进程管理、文本处理、磁盘管理等日常运维开发必备命令，附带实用示例"
-toc: true
-tags:
-    - Linux
-    - macOS
-    - Shell
-    - 命令行
-    - 运维
-categories:
-    - Linux
----
-
++++
+date = '2020-03-19T10:55:52+08:00'
+title = 'Linux/macOS 常用命令速查手册（持续更新）'
+description = 'Linux 和 macOS 常用命令速查手册，涵盖文件操作、网络调试、进程管理、文本处理、磁盘管理等日常运维开发必备命令，附带实用示例'
+toc = true
+tags = ['Linux', 'macOS', 'Shell', '命令行', '运维']
+categories = ['Linux']
++++
 Linux/macOS 命令行是开发者必备技能。本文整理了日常工作中高频使用的命令，按功能分类便于查找，持续更新中。
 
 ## 一、网络相关

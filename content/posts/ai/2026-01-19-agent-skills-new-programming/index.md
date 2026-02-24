@@ -1,19 +1,12 @@
----
-title: "Agent Skills：用大白话写程序的时代来了"
-date: 2026-01-19T16:45:00+08:00
-author: "bruce"
-description: "当 Markdown 文件变成可执行的程序，当人人都能用母语编写软件，Agent Skills 正在重新定义什么是编程。这不是简单的提示词，而是新一代的程序。"
-toc: true
-images:
-tags:
-  - Agent
-  - Skills
-  - AI 编程
-  - 自然语言编程
-categories:
-  - AI原理
----
-
++++
+date = '2026-01-19T16:45:00+08:00'
+title = 'Agent Skills：用大白话写程序的时代来了'
+description = '当 Markdown 文件变成可执行的程序，当人人都能用母语编写软件，Agent Skills 正在重新定义什么是编程。这不是简单的提示词，而是新一代的程序。'
+toc = true
+tags = ['Agent', 'Skills', 'AI 编程', '自然语言编程']
+categories = ['AI原理']
+keywords = ['Agent Skills 编程', '自然语言编程', 'AI 编程范式', 'Markdown 编程', 'Skills 新编程']
++++
 ![Agent Skills 新编程范式](cover.webp)
 
 最近，推特上关于 Agent Skills 的讨论越来越火。起初我和很多程序员一样，觉得 Skills 不过就是 Workflow Prompt——有用，但没什么大不了的。
@@ -262,6 +255,6 @@ Skills 的门槛是什么？**会说话就行。**
 
 - [Claude Code 浏览器自动化方案对比：Agent Browser、Playwright、DevTools](/posts/ai/2026-01-28-claude-code-browser-automation/)
 - [Claude Code Skills 完全指南](/posts/ai/2026-01-08-claudecode-skill-guide/)
-- [Claude Code Skill 高级模式详解](/posts/ai/2026-01-13-claudecode-skill-patterns/)
+- [Claude Code Skill 高级模式详解](/posts/ai/2026-01-12-claudecode-skill-patterns/)
 - [Moltbot 深度解析：从爆火到改名，个人 AI Agent 的机遇与暗礁](/posts/ai/2026-01-29-moltbot-deep-dive/)
 - [Claude Code 官方文档](https://docs.anthropic.com/claude/docs/claude-code)

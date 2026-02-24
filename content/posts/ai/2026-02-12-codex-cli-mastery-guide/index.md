@@ -1165,7 +1165,7 @@ Codex CLI 是一个**功能远比表面看起来丰富得多**的工具。从五
 
 ## 相关阅读
 
-- [Claude Code 实战指南：从入门到进阶的完整攻略](/posts/ai/2025-01-14-claude-code-guide/)
+- [Claude Code 实战指南：从入门到进阶的完整攻略](/posts/ai/2026-01-14-claude-code-guide/)
 - [CLAUDE.md 写作指南：让 AI 真正理解你的项目](/posts/ai/2026-01-12-claudemd-memory-guide/)
 - [AI 时代的开发工作流](/posts/ai/2026-01-19-ai-dev-workflow/)
 - [Cursor Agent 最佳实践](/posts/ai/2026-01-19-cursor-agent-best-practices/)

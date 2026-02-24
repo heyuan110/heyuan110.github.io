@@ -129,7 +129,7 @@ Berkeley 的函数调用排行榜显示：**每个模型在获得更多工具时
 
 这就是为什么 Anthropic 在 [Writing Effective Tools for Agents](https://www.anthropic.com/engineering/writing-tools-for-agents) 中强调："少而精的工具优于面面俱到的 API 封装"。不是把所有能力都暴露给 AI，而是只给它当前任务需要的工具。关于[工具设计的实战经验](/posts/ai/2026-02-22-claude-code-mcp-server-tutorial/)，可以参考 MCP Server 开发教程。
 
-**对策**：根据任务动态加载工具和上下文。比如在 [Claude Code](/posts/ai/2025-01-14-claude-code-guide/) 中，不要一次性加载所有可用的 MCP Server。
+**对策**：根据任务动态加载工具和上下文。比如在 [Claude Code](/posts/ai/2026-01-14-claude-code-guide/) 中，不要一次性加载所有可用的 MCP Server。
 
 ### 失败模式四：上下文冲突（Context Conflict）
 
@@ -298,7 +298,7 @@ CS146S Week 3 教会我们的核心认知可以浓缩为一句话：
 
 - [CLAUDE.md 记忆术：一个文件让 AI 永远记住你是谁](/posts/ai/2026-01-12-claudemd-memory-guide/) — 上下文工程最直接的实践
 - [MCP 协议全面解析](/posts/ai/2026-02-20-mcp-protocol-guide/) — 通过 MCP 扩展 AI 的上下文感知范围
-- [Claude Code 从入门到精通完全指南](/posts/ai/2025-01-14-claude-code-guide/) — 上下文工程的最佳实践平台
+- [Claude Code 从入门到精通完全指南](/posts/ai/2026-01-14-claude-code-guide/) — 上下文工程的最佳实践平台
 - [Claude Code 最佳实践](/posts/ai/2026-01-06-claudecode-best-practices/) — Claude Code 创始人分享的实操经验
 - [从零手搓一个 Claude Code](/posts/ai/2026-02-24-build-magic-code/) — 动手理解 AI 编程助手的底层架构
 

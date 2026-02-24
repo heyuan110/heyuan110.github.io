@@ -1,20 +1,12 @@
----
-title: "Nginx 代理 AWS ELB 报 No Route to Host 错误解决方案"
-date: 2020-07-03T13:19:44+08:00
-author: "bruce"
-draft: true
-description: "解决 Nginx 反向代理 AWS ELB 时出现 No route to host (113) 错误，使用 jdomain 模块实现 DNS 动态解析，适用于 ELB IP 变化场景"
-toc: true
-tags:
-  - Nginx
-  - AWS
-  - ELB
-  - DNS
-  - 故障排查
-categories:
-  - Linux
----
-
++++
+date = '2020-07-03T13:19:44+08:00'
+draft = true
+title = 'Nginx 代理 AWS ELB 报 No Route to Host 错误解决方案'
+description = '解决 Nginx 反向代理 AWS ELB 时出现 No route to host (113) 错误，使用 jdomain 模块实现 DNS 动态解析，适用于 ELB IP 变化场景'
+toc = true
+tags = ['Nginx', 'AWS', 'ELB', 'DNS', '故障排查']
+categories = ['Linux']
++++
 
 最近调整了后端站点架构为：`user------->nginx proxy server--------》internal host ------(cname)----》elb host`，跑一段时间后经常出现诡异的情况，访问时不时会挂掉，只要重启nginx proxy集群里所有机器的nginx就能恢复，
 经过检查发现集群里部分机器往后转发时报如下错误:

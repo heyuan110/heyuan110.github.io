@@ -113,7 +113,7 @@ Agent 不是一个聪明的聊天机器人，而是一个**带工具的自主系
 
 这周的核心问题是：**Agent 的自治度应该设到多高？人类应该在什么节点介入？**
 
-阅读材料几乎是 [Claude Code](/posts/ai/2025-01-14-claude-code-guide/) 生态的全景：
+阅读材料几乎是 [Claude Code](/posts/ai/2026-01-14-claude-code-guide/) 生态的全景：
 
 - **[How Anthropic Uses Claude Code](https://www-cdn.anthropic.com/58284b19e702b49db9302d5b6f135ad8871e7658.pdf)**——Anthropic 内部如何使用自家工具的第一手材料
 - **[Claude Code Best Practices](https://www.anthropic.com/engineering/claude-code-best-practices)**——官方最佳实践
@@ -282,7 +282,7 @@ CS146S 的课程结构暗合了一个更大的叙事：Vibe Coding 只是起点�
 
 如果你对 Vibe Coding 和 AI 编程工具的实战感兴趣，推荐这些文章：
 
-- [Claude Code 从入门到精通完全指南](/posts/ai/2025-01-14-claude-code-guide/) — 课程中高频提及的核心工具
+- [Claude Code 从入门到精通完全指南](/posts/ai/2026-01-14-claude-code-guide/) — 课程中高频提及的核心工具
 - [Vibe Coding 完全指南](/posts/ai/2026-02-22-vibe-coding-guide/) — Vibe Coding 的理念、工具与实战
 - [MCP 协议全面解析](/posts/ai/2026-02-20-mcp-protocol-guide/) — Week 2-3 核心主题的深入解读
 - [CLAUDE.md 记忆术](/posts/ai/2026-01-12-claudemd-memory-guide/) — 理解 AI 编程助手的项目感知机制

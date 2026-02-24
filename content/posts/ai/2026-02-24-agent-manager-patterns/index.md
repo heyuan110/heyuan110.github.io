@@ -21,7 +21,7 @@ CS146S 第四周的课程标题叫"Coding Agent Patterns"（编程 Agent 模式�
 2. **任务分解力**：能把复杂需求拆成 Agent 能独立完成的子任务
 3. **沟通精确度**：能用最少的信息量传达最准确的意图
 
-这周的嘉宾是 **Boris Cherney**——[Claude Code](/posts/ai/2025-01-14-claude-code-guide/) 的创始人。直接从工具创造者的口中学习如何使用工具，这个含金量不言而喻。
+这周的嘉宾是 **Boris Cherney**——[Claude Code](/posts/ai/2026-01-14-claude-code-guide/) 的创始人。直接从工具创造者的口中学习如何使用工具，这个含金量不言而喻。
 
 ## Agent 的自治度光谱
 
@@ -291,7 +291,7 @@ Boris Cherney 创造 Claude Code 的初衷正是如此——不是做一个更�
 
 ## 相关阅读
 
-- [Claude Code 从入门到精通完全指南](/posts/ai/2025-01-14-claude-code-guide/) — Boris Cherney 创造的这个工具，值得深入了解
+- [Claude Code 从入门到精通完全指南](/posts/ai/2026-01-14-claude-code-guide/) — Boris Cherney 创造的这个工具，值得深入了解
 - [Claude Code 最佳实践](/posts/ai/2026-01-06-claudecode-best-practices/) — 创始人亲自分享的使用之道
 - [Claude Code Agent Teams 完全指南](/posts/ai/2026-02-22-claude-code-agent-teams/) — 从单 Agent 到多 Agent 协作
 - [CLAUDE.md 记忆术](/posts/ai/2026-01-12-claudemd-memory-guide/) — 项目级上下文管理的核心实践

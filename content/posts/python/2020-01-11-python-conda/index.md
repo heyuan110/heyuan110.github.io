@@ -1,14 +1,12 @@
 +++
 title = 'Conda 完全指南：Python 多版本环境管理从入门到精通'
 date = '2020-01-11T20:33:33+08:00'
-author = 'bruce'
 description = 'Conda 是 Python 开发者必备的环境管理工具，本文详解 Conda 与 pip 的区别、Anaconda 与 Miniconda 的选择、环境创建与管理、常用命令及最佳实践，帮助你轻松管理 Python 2/3 多版本环境。'
 toc = true
 tags = ['Python', 'Conda', 'Anaconda', 'Miniconda', '环境管理', '版本控制']
 categories = ['Python']
 keywords = ['Conda', 'Anaconda', 'Miniconda', 'Python 环境管理', '虚拟环境', 'pip vs conda']
 +++
-
 作为 Python 开发者，你是否遇到过这些问题：项目 A 需要 Python 2.7，项目 B 需要 Python 3.10，不同项目依赖的包版本相互冲突……**Conda** 正是解决这些问题的终极方案。本文将全面介绍 Conda 的使用方法，帮助你轻松管理多版本 Python 环境。
 
 <!--more-->

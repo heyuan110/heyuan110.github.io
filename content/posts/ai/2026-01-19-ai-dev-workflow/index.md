@@ -1,20 +1,12 @@
----
-title: "我的AI开发工作流：从需求到上线"
-date: 2026-01-19T17:00:00+08:00
-author: "bruce"
-description: "分享我在软件开发全流程中使用AI工具的实战经验，涵盖需求分析、架构设计、编码实现、测试部署等环节，帮助开发者构建高效的AI辅助开发工作流。"
-toc: true
-images:
-tags:
-  - AI
-  - Claude Code
-  - Cursor
-  - 开发效率
-  - 工作流
-categories:
-  - AI实战
----
-
++++
+date = '2026-01-19T17:00:00+08:00'
+title = '我的AI开发工作流：从需求到上线'
+description = '分享我在软件开发全流程中使用AI工具的实战经验，涵盖需求分析、架构设计、编码实现、测试部署等环节，帮助开发者构建高效的AI辅助开发工作流。'
+toc = true
+tags = ['AI', 'Claude Code', 'Cursor', '开发效率', '工作流']
+categories = ['AI实战']
+keywords = ['AI 开发工作流', 'Claude Code 开发流程', 'AI 辅助编程', 'Cursor 开发效率', 'AI 结对编程']
++++
 ![AI开发工作流](cover.webp)
 
 2026年，AI编程工具已经从"尝鲜玩具"变成了开发者的"标配装备"。据统计，约85%的开发者已经在日常工作中使用AI工具。

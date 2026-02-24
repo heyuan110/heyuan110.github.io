@@ -5,6 +5,8 @@ title = 'ClawdBot：海外爆火的个人 AI 管家，30 分钟搭建指南'
 description = 'ClawdBot 是一个开源的 AI Agent 个人助手，可以在你的电脑上 24 小时运行，通过 Telegram、WhatsApp 等聊天工具与你互动，自动处理邮件、日程、提醒等任务。本文手把手教你从零开始搭建自己的 AI 管家，一看就懂，一学就会。'
 tags = ['ClawdBot', 'AI Agent', 'AI 助手', '开源', '自动化', '个人助理', 'Anthropic', 'Claude']
 categories = ['AI实战']
+keywords = ['ClawdBot 搭建指南', 'AI 个人助手', 'AI Agent 开源', 'Telegram AI 助手', 'ClawdBot 教程']
+toc = true
 +++
 
 ![ClawdBot 个人 AI 管家搭建指南](cover.webp)
@@ -55,7 +57,7 @@ categories = ['AI实战']
 
 ### 2.4 和 Claude Code 有什么不同？
 
-可能有人听说过 [Claude Code](/posts/ai/2025-01-14-claude-code-guide/)，它也是基于 Claude 的工具，但定位完全不同：
+可能有人听说过 [Claude Code](/posts/ai/2026-01-14-claude-code-guide/)，它也是基于 Claude 的工具，但定位完全不同：
 
 | 对比项 | Claude Code | ClawdBot |
 |--------|-------------|----------|
@@ -70,7 +72,7 @@ categories = ['AI实战']
 - **Claude Code** = 你雇的一个程序员，坐在你旁边帮你写代码
 - **ClawdBot** = 你雇的一个私人秘书，24 小时待命处理杂事
 
-如果你是程序员，两个都可以用——[Claude Code 帮你写代码](/posts/ai/2025-01-14-claude-code-guide/)，ClawdBot 帮你处理生活琐事。如果你不是程序员，那 ClawdBot 更适合你。
+如果你是程序员，两个都可以用——[Claude Code 帮你写代码](/posts/ai/2026-01-14-claude-code-guide/)，ClawdBot 帮你处理生活琐事。如果你不是程序员，那 ClawdBot 更适合你。
 
 ### 2.5 谁做的？
 
@@ -452,7 +454,7 @@ ClawdBot 是一个真正能帮你"干活"的 AI Agent：
 
 ## 十三、延伸阅读
 
-- [Claude Code 完全指南：终端里的全能 AI 助手](/posts/ai/2025-01-14-claude-code-guide/) - 程序员专属的 AI 编程助手
+- [Claude Code 完全指南：终端里的全能 AI 助手](/posts/ai/2026-01-14-claude-code-guide/) - 程序员专属的 AI 编程助手
 - [AI 开发工作流的变革](/posts/ai/2026-01-19-ai-dev-workflow/) - AI Agent 如何改变我们的工作方式
 - [2025 年最值得使用的 20 个 Claude Code Skills](/posts/ai/2026-01-20-claude-code-skills-top20/) - 提升效率的 Skill 合集
 - [终端工具推荐：23 款高效终端对比](/posts/macos/2025-01-22-terminal-tools-guide/) - 选择适合你的终端

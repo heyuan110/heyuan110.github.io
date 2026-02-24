@@ -4,7 +4,7 @@ draft = false
 title = 'OpenClaw 自动化别踩坑：装 3 个 Skill 不等于真的好用'
 description = '很多人以为给 OpenClaw 装上 tavily-search、find-skills、proactive-agent 就能自动化起飞。真正决定可用性的，是会话隔离、任务调度、进度汇报这些系统工程。本文用真实翻车案例和完整配置模板，帮你避开最常见的坑。'
 toc = true
-tags = ['OpenClaw', 'Agent', '自动化', 'Skill', '产品方法']
+tags = ['OpenClaw', 'Agent', '自动化', 'Skills', '产品方法']
 categories = ['AI实战']
 keywords = ['OpenClaw 配置优化', '会话隔离', '任务隔离', 'Agent 调度', 'AI 助手团队协作', 'dmScope', 'clawdhub', 'clawhub', 'proactive-agent-1-2-4', 'proactive-agent']
 +++
@@ -457,5 +457,5 @@ tavily-search 给了助手搜索能力，find-skills 给了它工具发现能力
 - [拆解 OpenClaw 自动化架构：从消息到执行的完整链路](/posts/ai/2026-02-14-openclaw-architecture-deep-dive/)
 - [OpenClaw × Claude Code 工作流实践](/posts/ai/2026-01-31-openclaw-claude-code-workflow/)
 - [OpenClaw 记忆系统策略（MEMORY.md 实战）](/posts/ai/2026-01-31-openclaw-memory-strategy/)
-- [Claude Code 的 Skill 设计模式](/posts/ai/2026-01-13-claudecode-skill-patterns/)
+- [Claude Code 的 Skill 设计模式](/posts/ai/2026-01-12-claudecode-skill-patterns/)
 - [AI 时代的工作流：从想法到交付的完整指南](/posts/ai/2026-01-30-ai-workflow-real-guide/)

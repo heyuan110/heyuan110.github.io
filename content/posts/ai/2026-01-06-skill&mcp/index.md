@@ -1,19 +1,12 @@
----
-title: "Skill与MCP的区别：两种扩展AI能力的方式"
-date: 2026-01-06T17:00:00+08:00
-author: "bruce"
-description: "深入对比 Claude Code 中 Skill 和 MCP 两种扩展 AI Agent 能力的方式，分析它们的设计理念、工作原理和适用场景"
-toc: true
-images:
-tags:
-  - AI
-  - Claude Code
-  - Skill
-  - MCP
-categories:
-  - AI原理
----
-
++++
+date = '2026-01-06T17:00:00+08:00'
+title = 'Skill与MCP的区别：两种扩展AI能力的方式'
+description = '深入对比 Claude Code 中 Skill 和 MCP 两种扩展 AI Agent 能力的方式，分析它们的设计理念、工作原理和适用场景'
+toc = true
+tags = ['AI', 'Claude Code', 'Skills', 'MCP']
+categories = ['AI原理']
+keywords = ['Skill 和 MCP 的区别', 'Claude Code Skill', 'Model Context Protocol', 'AI Agent 扩展能力', 'Claude Code MCP']
++++
 ![Skill vs MCP](skill-vs-mcp.webp)
 
 用 Claude Code 久了，你会发现它有两套看起来很像但本质不同的能力扩展系统：**Skill** 和 **MCP**。

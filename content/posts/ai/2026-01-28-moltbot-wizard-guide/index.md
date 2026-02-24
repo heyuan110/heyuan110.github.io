@@ -533,7 +533,7 @@ Moltbot Wizard 把复杂的配置过程简化成了"回答几个问题"。通过
 ### 相关阅读
 
 - [Clawdbot（Moltbot）：打造你的私人 AI 助手](/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/)
-- [Claude Code 完全指南](/posts/ai/2025-01-14-claude-code-guide/)
+- [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/)
 
 ---
 

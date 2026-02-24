@@ -2,14 +2,12 @@
 title = "MySQL EXPLAIN 执行计划详解：从入门到精通的 SQL 性能分析指南"
 date = 2019-09-06T20:10:21+08:00
 lastmod = 2026-01-22T15:49:45+08:00
-author = "bruce"
 description = "深入解析 MySQL EXPLAIN 执行计划的 12 个关键字段，掌握 type 访问类型、key 索引选择、Extra 额外信息的含义，学会通过执行计划分析和优化 SQL 查询性能。"
 toc = true
 tags = ["MySQL", "EXPLAIN", "SQL优化", "性能调优", "索引", "数据库"]
 categories = ["MySQL"]
 keywords = ["MySQL EXPLAIN", "执行计划", "SQL优化", "查询性能", "索引优化", "type类型"]
 +++
-
 ![MySQL EXPLAIN 执行计划分析](cover.webp)
 
 **EXPLAIN** 是 MySQL 中最重要的性能分析工具之一。当你的 SQL 查询变慢时，第一件事就应该用 EXPLAIN 看看执行计划。它能告诉你 MySQL 是如何执行查询的，包括使用了哪些索引、扫描了多少行、采用了什么连接方式等关键信息。

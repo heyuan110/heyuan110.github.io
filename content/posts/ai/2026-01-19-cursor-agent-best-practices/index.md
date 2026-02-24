@@ -1,19 +1,12 @@
----
-title: "Cursor Agent 编码最佳实践：官方指南完整解读"
-date: 2026-01-19T16:33:00+08:00
-author: "bruce"
-description: "Cursor 官方发布的 Agent 编码最佳实践指南，涵盖计划模式、上下文管理、Rules 与 Skills 配置、测试驱动开发、并行执行等核心技巧，帮助你充分发挥 AI 编程助手的潜力。"
-toc: true
-images:
-tags:
-  - Cursor
-  - AI 编程
-  - Agent
-  - 最佳实践
-categories:
-  - AI实战
----
-
++++
+date = '2026-01-19T16:33:00+08:00'
+title = 'Cursor Agent 编码最佳实践：官方指南完整解读'
+description = 'Cursor 官方发布的 Agent 编码最佳实践指南，涵盖计划模式、上下文管理、Rules 与 Skills 配置、测试驱动开发、并行执行等核心技巧，帮助你充分发挥 AI 编程助手的潜力。'
+toc = true
+tags = ['Cursor', 'AI 编程', 'Agent', '最佳实践']
+categories = ['AI实战']
+keywords = ['Cursor Agent 最佳实践', 'Cursor 使用技巧', 'AI 编程助手', 'Cursor Rules 配置', 'Cursor 计划模式']
++++
 ![Cursor Agent 编码最佳实践](cover.webp)
 
 随着 AI 编程助手的快速发展，如何高效地与 AI Agent 协作编码成为每个开发者需要掌握的技能。Cursor 作为目前最受欢迎的 AI 编程工具之一，官方近期发布了一份详细的 Agent 编码最佳实践指南。本文将深入解读这份指南的核心内容，帮助你更好地利用 Cursor Agent 提升开发效率。

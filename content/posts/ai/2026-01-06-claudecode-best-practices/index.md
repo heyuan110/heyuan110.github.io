@@ -1,19 +1,12 @@
----
-title: "Claude Code创始人的几个最佳实践"
-date: 2026-01-06T18:00:00+08:00
-author: "bruce"
-description: "Claude Code 创始人在 X 上分享的几条使用心得，关于并行工作、模型选择、CLAUDE.md 维护和验证循环"
-toc: true
-images:
-tags:
-  - AI
-  - Claude Code
-  - 最佳实践
-  - Anthropic
-categories:
-  - AI实战
----
-
++++
+date = '2026-01-06T18:00:00+08:00'
+title = 'Claude Code创始人的几个最佳实践'
+description = 'Claude Code 创始人在 X 上分享的几条使用心得，关于并行工作、模型选择、CLAUDE.md 维护和验证循环'
+toc = true
+tags = ['AI', 'Claude Code', '最佳实践', 'Anthropic']
+categories = ['AI实战']
+keywords = ['Claude Code 最佳实践', 'Claude Code 并行工作', 'CLAUDE.md 维护', 'Claude Code 使用技巧', 'AI 编程效率']
++++
 ![Claude Code Best Practices](claude-code-best-practices.webp)
 
 Claude Code 的创始人最近在 X 上分享了几条使用心得，看完之后深有同感。不是那种官方文档式的教程，而是实际用下来的体会。

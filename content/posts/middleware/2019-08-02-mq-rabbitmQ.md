@@ -1,18 +1,11 @@
----
-title: "RabbitMQ 入门教程：AMQP 协议、Exchange 交换机与消息投递详解"
-date: 2019-08-02 11:47:04
-author: "bruce"
-description: "RabbitMQ 消息队列入门教程，详解 AMQP 协议原理、四种 Exchange 交换机类型（Direct、Fanout、Topic、Headers）、队列绑定和消息投递工作流程"
-toc: true
-tags:
-    - RabbitMQ
-    - 消息队列
-    - AMQP
-    - 中间件
-categories:
-    - 中间件
----
-
++++
+date = '2019-08-02T11:47:04+08:00'
+title = 'RabbitMQ 入门教程：AMQP 协议、Exchange 交换机与消息投递详解'
+description = 'RabbitMQ 消息队列入门教程，详解 AMQP 协议原理、四种 Exchange 交换机类型（Direct、Fanout、Topic、Headers）、队列绑定和消息投递工作流程'
+toc = true
+tags = ['RabbitMQ', '消息队列', 'AMQP', '中间件']
+categories = ['中间件']
++++
 前面文章[《消息队列 MQ 技术选型指南》](/posts/middleware/2019-07-31-mq/)我们了解了消息队列技术选型，本文我们来学习开源消息队列RabbitMQ。
 
 

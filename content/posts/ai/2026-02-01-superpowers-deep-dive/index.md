@@ -332,7 +332,7 @@ Superpowers 代表了 AI 编程的一个重要思路转变：**与其让 AI 写�
 
 ## 相关阅读
 
-- [Claude Code 实用指南：从入门到进阶](/posts/ai/2025-01-14-claude-code-guide/)
+- [Claude Code 实用指南：从入门到进阶](/posts/ai/2026-01-14-claude-code-guide/)
 - [Claude Code Skills 排行榜：20 个最受欢迎的技能](/posts/ai/2026-01-20-claude-code-skills-top20/)
 - [Claude Code Skill 开发完全指南](/posts/ai/2026-01-08-claudecode-skill-guide/)
 - [Claude Code 最佳实践](/posts/ai/2026-01-06-claudecode-best-practices/)

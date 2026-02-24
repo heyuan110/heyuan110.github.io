@@ -5,6 +5,8 @@ title = 'Claude Code + Remotion：用 AI 对话生成专业视频，程序员的
 description = 'Remotion 是一个用 React 代码生成视频的开源框架，结合 Claude Code 的 AI 能力，只需用自然语言描述，就能自动生成专业级动画视频。本文手把手教你安装配置，让你 10 分钟上手 AI 视频制作。'
 tags = ['Claude Code', 'Remotion', 'AI 视频', 'React', '视频制作', 'AI Agent', '开源', '效率工具']
 categories = ['AI实战']
+keywords = ['Claude Code Remotion', 'AI 视频制作', 'React 生成视频', 'Remotion 教程', '程序员做视频']
+toc = true
 +++
 
 ![Claude Code + Remotion](cover.webp)
@@ -23,7 +25,7 @@ categories = ['AI实战']
 
 **Claude Code 做**：自动生成 React 代码，渲染出一个专业的 MP4 视频文件。
 
-是的，你没看错。现在用 [Claude Code](/posts/ai/2025-01-14-claude-code-guide/) 配合 Remotion，真的可以用聊天的方式做视频了。
+是的，你没看错。现在用 [Claude Code](/posts/ai/2026-01-14-claude-code-guide/) 配合 Remotion，真的可以用聊天的方式做视频了。
 
 ---
 
@@ -510,7 +512,7 @@ brew install node
 
 ### 5.2 安装 Claude Code
 
-如果你还没装 Claude Code，参考这篇文章：[Claude Code 完全指南](/posts/ai/2025-01-14-claude-code-guide/)
+如果你还没装 Claude Code，参考这篇文章：[Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/)
 
 ```bash
 # 安装 Claude Code
@@ -538,7 +540,7 @@ claude --version
 
 ### 6.1 安装 Remotion Skill
 
-确保你已经安装了 [Claude Code](/posts/ai/2025-01-14-claude-code-guide/)，然后运行：
+确保你已经安装了 [Claude Code](/posts/ai/2026-01-14-claude-code-guide/)，然后运行：
 
 ```bash
 npx skills add remotion-dev/skills
@@ -753,7 +755,7 @@ Remotion 更适合做：产品演示、数据报告、动态图表、文字动�
 
 ## 十四、延伸阅读
 
-- [Claude Code 完全指南](/posts/ai/2025-01-14-claude-code-guide/) - 从零开始学习 Claude Code
+- [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/) - 从零开始学习 Claude Code
 - [Claude Code Skills 指南](/posts/ai/2026-01-08-claudecode-skill-guide/) - 深入理解 Skills 系统
 - [2026 年最值得安装的 20 个 Claude Code Skills](/posts/ai/2026-01-20-claude-code-skills-top20/) - 精选技能推荐
 - [AI 开发工作流](/posts/ai/2026-01-19-ai-dev-workflow/) - 如何用 AI 提升开发效率

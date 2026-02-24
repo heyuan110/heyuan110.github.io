@@ -5,6 +5,7 @@ draft = false
 description = 'IP 地址与 CIDR 完整教程，详解 IPv4 地址结构、A/B/C/D/E 类地址划分、子网掩码计算、CIDR 无类别域间路由。附子网速查表，网络工程师和运维必备的网络基础知识。'
 tags = ['IP', 'CIDR', '网络基础', '子网掩码', 'Linux', '运维']
 categories = ['Linux']
+toc = true
 keywords = ['IP 地址', 'CIDR', '子网掩码', 'IPv4', '网络基础', '子网划分']
 +++
 

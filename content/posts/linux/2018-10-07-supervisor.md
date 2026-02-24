@@ -1,25 +1,12 @@
----
-title: "Supervisor 教程（2026）：安装配置、常见问题与 Supervisor vs systemd 选型"
-date: 2018-10-07 00:35:04
-author: "bruce"
-description: "面向 Linux 运维与开发者的 Supervisor 实战指南：安装配置、进程托管、常见故障排查，以及与 systemd/PM2 的选型对比。"
-toc: true
-tags:
-    - supervisor
-    - linux
-    - 进程管理
-    - systemd
-    - 运维
-categories:
-    - Linux
-keywords:
-    - Supervisor 教程
-    - Supervisor vs systemd
-    - Linux 进程管理
-    - supervisord 配置
-    - supervisorctl
----
-
++++
+date = '2018-10-07T00:35:04+08:00'
+title = 'Supervisor 教程（2026）：安装配置、常见问题与 Supervisor vs systemd 选型'
+description = '面向 Linux 运维与开发者的 Supervisor 实战指南：安装配置、进程托管、常见故障排查，以及与 systemd/PM2 的选型对比。'
+toc = true
+tags = ['supervisor', 'linux', '进程管理', 'systemd', '运维']
+categories = ['Linux']
+keywords = ['Supervisor 教程', 'Supervisor vs systemd', 'Linux 进程管理', 'supervisord 配置', 'supervisorctl']
++++
 Supervisor (http://supervisord.org) 是一个用 Python 写的进程管理工具，可以很方便地启动、重启、关闭进程（不仅仅是 Python 进程）。除了对单个进程的控制，还可以同时启动、关闭多个进程，比如服务器异常后快速拉起整组服务。
 
 先说结论（给赶时间的你）：

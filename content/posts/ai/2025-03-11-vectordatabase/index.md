@@ -1,18 +1,12 @@
----
-title: "向量数据库到底解决了什么问题？从原理到工程实践一次讲清"
-date: 2025-03-11T14:40:02+08:00
-author: "bruce"
-description: "从原理到工程实践，讲清楚向量数据库为什么火、怎么用、怎么选，以及实际落地中的坑"
-toc: true
-images:
-tags:
-  - AI
-  - VectorDatabase
-  - RAG
-categories:
-  - AI原理
----
-
++++
+date = '2025-03-11T14:40:02+08:00'
+title = '向量数据库到底解决了什么问题？从原理到工程实践一次讲清'
+description = '从原理到工程实践，讲清楚向量数据库为什么火、怎么用、怎么选，以及实际落地中的坑'
+toc = true
+tags = ['AI', 'VectorDatabase', 'RAG']
+categories = ['AI原理']
+keywords = ['向量数据库', 'RAG 检索增强生成', 'Embedding 向量化', '语义检索', '向量数据库选型']
++++
 ![VectorDatabase](vector-db.webp)
 
 ## 1. 向量数据库为什么突然火了？

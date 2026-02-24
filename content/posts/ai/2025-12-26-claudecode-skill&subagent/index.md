@@ -1,19 +1,12 @@
----
-title: "Claude Code的Skill与SubAgent区别 "
-date: 2025-12-26T12:40:02+08:00
-author: "bruce"
-description: "深入对比Claude Code中Skill和SubAgent两种扩展AI Agent能力的方式，分析上下文管理差异和各自适用场景"
-toc: true
-images:
-tags:
-  - AI
-  - Claude Code
-  - Skill
-  - SubAgent
-categories:
-  - AI原理
----
-
++++
+date = '2025-12-26T12:40:02+08:00'
+title = 'Claude Code的Skill与SubAgent区别 '
+description = '深入对比Claude Code中Skill和SubAgent两种扩展AI Agent能力的方式，分析上下文管理差异和各自适用场景'
+toc = true
+tags = ['AI', 'Claude Code', 'Skills', 'SubAgent']
+categories = ['AI原理']
+keywords = ['Skill 和 SubAgent 区别', 'Claude Code SubAgent', 'AI Agent 上下文管理', 'Claude Code 能力扩展', 'Agent 架构模式']
++++
 ![ClaudeCode Skill](cc-skill-agent.webp)
 
 AI Agent 要变强，有两条完全不同的路。

@@ -1,26 +1,12 @@
----
-title: "Charles 抓包教程（2026）：HTTP/HTTPS 拦截、Mock 调试与证书配置"
-date: 2015-08-15 11:33:11
-author: "bruce"
-description: "Charles 抓包实战指南：HTTP/HTTPS 请求拦截、Mock 数据、网络限速与断点调试，补充 2026 证书安装与常见问题排查。"
-toc: true
-tags:
-    - Charles
-    - 抓包
-    - 调试
-    - HTTPS
-    - 网络
-    - API 调试
-categories:
-    - macOS
-keywords:
-    - Charles 抓包教程
-    - Charles HTTPS 证书
-    - Charles Mock
-    - HTTP 抓包
-    - 接口调试
----
-
++++
+date = '2015-08-15T11:33:11+08:00'
+title = 'Charles 抓包教程（2026）：HTTP/HTTPS 拦截、Mock 调试与证书配置'
+description = 'Charles 抓包实战指南：HTTP/HTTPS 请求拦截、Mock 数据、网络限速与断点调试，补充 2026 证书安装与常见问题排查。'
+toc = true
+tags = ['Charles', '抓包', '调试', 'HTTPS', '网络', 'API 调试']
+categories = ['macOS']
+keywords = ['Charles 抓包教程', 'Charles HTTPS 证书', 'Charles Mock', 'HTTP 抓包', '接口调试']
++++
 
 Charles是Mac下常用的网络抓包工具，常用来模拟数据和网络辅助接口调试，作为代理抓取网络请求数据，这篇文章记录了几个实用场景，希望对你有帮助。
 

@@ -1,19 +1,11 @@
----
-title: "Docker 常用命令速查（2026更新）：镜像、容器、网络、数据卷一页掌握"
-date: 2019-11-14 20:37:13
-author: "bruce"
-description: "高频 Docker 命令速查：pull/run/exec/logs、镜像清理、网络管理、数据卷挂载，附 MySQL/Nginx/Redis 常用启动示例。"
-toc: true
-tags:
-    - Docker
-    - 命令行
-    - 容器
-    - 运维
-    - 速查手册
-categories:
-    - Docker
----
-
++++
+date = '2019-11-14T20:37:13+08:00'
+title = 'Docker 常用命令速查（2026更新）：镜像、容器、网络、数据卷一页掌握'
+description = '高频 Docker 命令速查：pull/run/exec/logs、镜像清理、网络管理、数据卷挂载，附 MySQL/Nginx/Redis 常用启动示例。'
+toc = true
+tags = ['Docker', '命令行', '容器', '运维', '速查手册']
+categories = ['Docker']
++++
 Docker常用命令记录
 
 <!-- more -->

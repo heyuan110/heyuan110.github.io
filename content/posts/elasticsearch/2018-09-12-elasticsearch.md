@@ -1,18 +1,11 @@
----
-title: "Elasticsearch 入门教程：索引、文档、查询 API 核心概念详解"
-date: 2018-09-12 18:52:59
-author: "bruce"
-description: "Elasticsearch 入门教程，理解索引、类型、文档等核心概念（类比关系型数据库），掌握 _cat、_search 等常用查询命令和 REST API 操作"
-toc: true
-tags:
-    - Elasticsearch
-    - 搜索引擎
-    - 全文检索
-    - API
-categories:
-    - Elasticsearch
----
-
++++
+date = '2018-09-12T18:52:59+08:00'
+title = 'Elasticsearch 入门教程：索引、文档、查询 API 核心概念详解'
+description = 'Elasticsearch 入门教程，理解索引、类型、文档等核心概念（类比关系型数据库），掌握 _cat、_search 等常用查询命令和 REST API 操作'
+toc = true
+tags = ['Elasticsearch', '搜索引擎', '全文检索', 'API']
+categories = ['Elasticsearch']
++++
 ![](https://raw.githubusercontent.com/heyuan110/static-source/master/cover/es.jpg)
 
 

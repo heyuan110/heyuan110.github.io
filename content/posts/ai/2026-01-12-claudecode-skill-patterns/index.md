@@ -1,19 +1,12 @@
----
-title: "小白也能解锁 Claude Code 的秘密武器：Skills"
-date: 2026-01-12T10:00:00+08:00
-author: "bruce"
-description: "该如何让 AI 学习到我的能力呢？Skills 彻底改变了我对 AI 协作的看法"
-toc: true
-images:
-tags:
-  - AI
-  - Claude Code
-  - Skill
-  - 效率工具
-categories:
-  - AI实战
----
-
++++
+date = '2026-01-12T10:00:00+08:00'
+title = '小白也能解锁 Claude Code 的秘密武器：Skills'
+description = '该如何让 AI 学习到我的能力呢？Skills 彻底改变了我对 AI 协作的看法'
+toc = true
+tags = ['AI', 'Claude Code', 'Skills', '效率工具']
+categories = ['AI实战']
+keywords = ['Claude Code Skills 入门', 'Skills 创建教程', 'AI 协作技巧', 'Claude Code 能力扩展', 'SKILL.md 编写']
++++
 ![Skills Secret](skills-secret-compressed.webp)
 
 ## 引言

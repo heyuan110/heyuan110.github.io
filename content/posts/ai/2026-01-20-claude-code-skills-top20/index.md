@@ -1,20 +1,12 @@
----
-title: "2026 年 Claude Code Skills 排行榜 Top 20"
-date: 2026-01-20T10:51:00+08:00
-author: "bruce"
-description: "Claude Code Skills 是 Anthropic 推出的 Agent 技能系统，让 Claude 能根据上下文自动调用专业技能。本文整理了 2026 年 1 月最热门的 20 个 Skills，涵盖开发工作流、AI/LLM 开发、专项技术等领域，帮你快速找到最值得安装的技能包。"
-toc: true
-images:
-tags:
-  - Claude Code
-  - AI 编程
-  - Skills
-  - Agent
-  - 开发工具
-categories:
-  - AI实战
----
-
++++
+date = '2026-01-20T10:51:00+08:00'
+title = '2026 年 Claude Code Skills 排行榜 Top 20'
+description = 'Claude Code Skills 是 Anthropic 推出的 Agent 技能系统，让 Claude 能根据上下文自动调用专业技能。本文整理了 2026 年 1 月最热门的 20 个 Skills，涵盖开发工作流、AI/LLM 开发、专项技术等领域，帮你快速找到最值得安装的技能包。'
+toc = true
+tags = ['Claude Code', 'AI 编程', 'Skills', 'Agent', '开发工具']
+categories = ['AI实战']
+keywords = ['Claude Code Skills 排行榜', 'Claude Code 技能推荐', 'Skills 安装', 'Agent Skills 生态', 'Claude Code 插件']
++++
 ![Claude Code Skills 生态系统](cover.webp)
 
 2025 年 10 月，Anthropic 正式推出了 **Agent Skills 系统**，这是 Claude Code 最重要的功能更新之一。三个月过去，GitHub 上的 Skills 生态已经爆发式增长。

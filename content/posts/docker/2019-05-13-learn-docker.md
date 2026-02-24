@@ -1,19 +1,11 @@
----
-title: "Docker 入门教程：镜像、容器、仓库核心概念与 Dockerfile 详解"
-date: 2019-05-13 20:33:33
-author: "bruce"
-description: "Docker 零基础入门教程，详解镜像、容器、仓库三大核心概念，深入理解分层存储原理，Dockerfile 指令全解析（FROM、RUN、COPY、CMD、ENTRYPOINT 等），附私有仓库搭建和数据卷实战"
-toc: true
-tags:
-    - Docker
-    - Dockerfile
-    - 容器化
-    - DevOps
-    - 镜像
-categories:
-    - Docker
----
-
++++
+date = '2019-05-13T20:33:33+08:00'
+title = 'Docker 入门教程：镜像、容器、仓库核心概念与 Dockerfile 详解'
+description = 'Docker 零基础入门教程，详解镜像、容器、仓库三大核心概念，深入理解分层存储原理，Dockerfile 指令全解析（FROM、RUN、COPY、CMD、ENTRYPOINT 等），附私有仓库搭建和数据卷实战'
+toc = true
+tags = ['Docker', 'Dockerfile', '容器化', 'DevOps', '镜像']
+categories = ['Docker']
++++
 
 Docker 是一个开源的应用容器引擎，基于 Go 语言 并遵从Apache2.0协议开源。Docker 可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。
 

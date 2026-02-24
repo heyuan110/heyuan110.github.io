@@ -5,6 +5,7 @@ title = 'Claude Code 高手都在用的 24 个技巧'
 description = 'Claude Code 24 个实用技巧合集：从安装启动、快捷键、CLAUDE.md 配置到 MCP 集成、自定义 Slash 命令和 Hooks 自动化，助你把终端 AI 编程助手用到极致'
 tags = ['AI', 'Claude Code', 'CLI', '开发工具', '效率']
 categories = ['AI实战']
+toc = true
 keywords = ['Claude Code 技巧', 'Claude Code 教程', 'AI 编程助手', 'Claude CLI']
 +++
 

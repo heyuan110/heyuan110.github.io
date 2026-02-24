@@ -2,14 +2,12 @@
 title = 'Redis 从入门到精通：安装配置与实战指南'
 date = '2026-01-22T17:00:00+08:00'
 draft = false
-author = 'bruce'
 description = 'Redis 完全指南，详解 macOS 和 Windows 安装方法、五大数据类型、常用命令、持久化机制、主从复制与集群配置。从零基础到精通 Redis 的最佳学习路径。'
 toc = true
 tags = ['Redis', '数据库', '缓存', 'NoSQL', '中间件']
 categories = ['中间件']
 keywords = ['Redis安装', 'Redis教程', 'Redis数据类型', 'Redis持久化', 'Redis集群']
 +++
-
 ![Redis 从入门到精通：完整教程指南](cover.webp)
 
 **Redis**（Remote Dictionary Server）是一款开源的高性能键值存储数据库，以其出色的读写速度和丰富的数据结构支持，成为现代应用架构中不可或缺的组件。本文将带你从零开始，系统学习 Redis 的安装配置、核心概念、数据类型、持久化机制以及高可用集群部署。

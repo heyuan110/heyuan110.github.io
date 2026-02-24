@@ -1,19 +1,12 @@
----
-title: "Nginx 配置部分页面 HTTPS：HTTP/HTTPS 混合站点实战"
-date: 2016-04-22 20:33:37
-author: "bruce"
-draft: true
-description: "Nginx 配置部分页面 HTTPS 加密访问完整教程，通过 location 和 proxy_pass 实现 HTTP/HTTPS 自动跳转，附完整配置示例"
-toc: true
-tags:
-    - Nginx
-    - HTTPS
-    - SSL
-    - 反向代理
-categories:
-    - Linux
----
-
++++
+date = '2016-04-22T20:33:37+08:00'
+draft = true
+title = 'Nginx 配置部分页面 HTTPS：HTTP/HTTPS 混合站点实战'
+description = 'Nginx 配置部分页面 HTTPS 加密访问完整教程，通过 location 和 proxy_pass 实现 HTTP/HTTPS 自动跳转，附完整配置示例'
+toc = true
+tags = ['Nginx', 'HTTPS', 'SSL', '反向代理']
+categories = ['Linux']
++++
 由于业务需要，在checkout页面需要实现https加密访问，之前只做过nginx的全站https，对于部分页面https搜索方法有说在代码里直接写成https，有说服务器上直接配置的，做了对比觉得还是nginx上直接配置靠谱，开始动手.
 
 

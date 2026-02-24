@@ -396,7 +396,7 @@ def divide(a, b):
 
 ### 5.1 AI 生成测试用例
 
-[Claude Code](/posts/ai/2025-01-14-claude-code-guide/) 和 GitHub Copilot 都能根据源代码自动生成测试用例。以 Claude Code 为例：
+[Claude Code](/posts/ai/2026-01-14-claude-code-guide/) 和 GitHub Copilot 都能根据源代码自动生成测试用例。以 Claude Code 为例：
 
 ```bash
 # 在项目目录下，直接告诉 Claude Code 你要什么
@@ -531,7 +531,7 @@ CI/CD 平台是什么？
 ### 相关阅读
 
 - [AI 工作流实战手册：从提示词到编程，真正把 AI 用起来](/posts/ai/2026-01-30-ai-workflow-real-guide/)
-- [Claude Code 从入门到精通：终端里的全能 AI 助手完全指南](/posts/ai/2025-01-14-claude-code-guide/)
+- [Claude Code 从入门到精通：终端里的全能 AI 助手完全指南](/posts/ai/2026-01-14-claude-code-guide/)
 - [我的 AI 开发工作流：从需求到上线](/posts/ai/2026-01-19-ai-dev-workflow/)
 - [高频提交不等于失控：日均百次 Commit 的工程方法与落地清单](/posts/ai/2026-01-31-high-frequency-commits-strategy/)
 

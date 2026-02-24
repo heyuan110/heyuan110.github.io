@@ -11,7 +11,7 @@ keywords = ['手搓 Claude Code', 'MagicCode', '终端 AI 编程助手', 'Agenti
 
 ![MagicCode 终端 AI 编程助手演示效果](cover.webp)
 
-[Claude Code](/posts/ai/2025-01-14-claude-code-guide/) 是目前最强的终端 AI 编程工具，但你有没有想过——**它到底是怎么工作的？**
+[Claude Code](/posts/ai/2026-01-14-claude-code-guide/) 是目前最强的终端 AI 编程工具，但你有没有想过——**它到底是怎么工作的？**
 
 用别人的工具是一回事，理解它的核心原理是另一回事。当你搞懂了 Claude Code 的底层架构，你就能自己造一个、改一个、甚至造出更适合自己工作流的版本。
 
@@ -880,7 +880,7 @@ console.print(f"[dim]本次会话 Token 用量：输入 {total_input_tokens} | �
 | V3 | 终端美化 | 35 行 | Rich + Markdown |
 | V4 | 工具系统 + Agentic Loop | 250 行 | Function Calling + 自主循环 |
 
-**核心就三个东西**：LLM API + 工具定义 + Agentic Loop。掌握了这三个，你就掌握了 [Claude Code](/posts/ai/2025-01-14-claude-code-guide/)、[Cursor Agent](/posts/ai/2026-01-19-cursor-agent-best-practices/)、Copilot Workspace 等所有 AI 编程工具的核心架构。
+**核心就三个东西**：LLM API + 工具定义 + Agentic Loop。掌握了这三个，你就掌握了 [Claude Code](/posts/ai/2026-01-14-claude-code-guide/)、[Cursor Agent](/posts/ai/2026-01-19-cursor-agent-best-practices/)、Copilot Workspace 等所有 AI 编程工具的核心架构。
 
 完整代码已在文中给出，复制粘贴就能跑。如果你在实践中遇到问题，欢迎留言交流。
 
@@ -890,7 +890,7 @@ console.print(f"[dim]本次会话 Token 用量：输入 {total_input_tokens} | �
 
 如果你对 AI 编程工具的原理和实战感兴趣，推荐继续阅读：
 
-- [Claude Code 从入门到精通完全指南](/posts/ai/2025-01-14-claude-code-guide/) — 想深入使用 Claude Code，从这篇开始
+- [Claude Code 从入门到精通完全指南](/posts/ai/2026-01-14-claude-code-guide/) — 想深入使用 Claude Code，从这篇开始
 - [CLAUDE.md 记忆术：一个文件让 AI 永远记住你是谁](/posts/ai/2026-01-12-claudemd-memory-guide/) — 理解 AI 编程助手的"项目感知"机制
 - [上下文工程：AI 编程最被低估的核心能力](/posts/ai/2026-02-24-context-engineering-deep-dive/) — 深入理解 system prompt 和上下文设计
 - [MCP 协议全面解析：AI 连接万物的通用标准](/posts/ai/2026-02-20-mcp-protocol-guide/) — 了解 AI 工具扩展的未来方向

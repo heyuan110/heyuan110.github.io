@@ -308,4 +308,4 @@ Agent 起草了一封联系邮件，提到了她最近的演讲，提到了和�
 - [2026: This is AGI - Sequoia Capital 原文](https://sequoiacap.com/article/2026-this-is-agi/)
 - [METR - AI 能力追踪机构](https://metr.org/)
 - [Agent Skills：用大白话写程序的时代来了](/posts/ai/2026-01-19-agent-skills-new-programming/)
-- [Claude Code 入门指南](/posts/ai/2025-01-14-claude-code-guide/)
+- [Claude Code 入门指南](/posts/ai/2026-01-14-claude-code-guide/)

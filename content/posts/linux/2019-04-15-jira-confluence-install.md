@@ -1,19 +1,11 @@
----
-title: "Ubuntu 搭建 Jira + Confluence 完整教程：安装配置与数据迁移"
-date: 2019-04-15 13:53:32
-author: "bruce"
-description: "Ubuntu 16.04 搭建 Jira 项目管理和 Confluence 知识库完整教程，包含 MySQL 配置、破解激活、账号整合、数据备份恢复和安全漏洞修复"
-toc: true
-tags:
-    - Jira
-    - Confluence
-    - Atlassian
-    - Linux
-    - MySQL
-categories:
-    - Linux
----
-
++++
+date = '2019-04-15T13:53:32+08:00'
+title = 'Ubuntu 搭建 Jira + Confluence 完整教程：安装配置与数据迁移'
+description = 'Ubuntu 16.04 搭建 Jira 项目管理和 Confluence 知识库完整教程，包含 MySQL 配置、破解激活、账号整合、数据备份恢复和安全漏洞修复'
+toc = true
+tags = ['Jira', 'Confluence', 'Atlassian', 'Linux', 'MySQL']
+categories = ['Linux']
++++
 jira和confluence都是Atlassian公司产品。jira是项目与事务跟踪工具，可以完成项目执行管理、敏捷开发管理、体系流程管理、产品Bug跟踪、提案跟踪、需求管理、客户服务等工作。confluence是一个专业的企业知识管理与协同软件，可以用于构建企业wiki，通过它可以实现团队成员之间的协作和知识共享。
 <!--more-->
 

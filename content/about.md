@@ -2,6 +2,7 @@
 title: "关于"
 description: "Bruce - AI 实战与工程笔记作者，专注大模型、AI Agent、Prompt Engineering 与工程化落地"
 date: "2010-03-15"
+comments: true
 ---
 
 Hi，我是 Bruce，一名有 10 年以上经验的技术从业者，目前专注于 AI 工程化落地。

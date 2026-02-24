@@ -1,14 +1,12 @@
 +++
 title = "MySQL SQL 完全指南：从小白到高手的进阶之路（含面试宝典）"
 date = 2026-01-23T20:06:36+08:00
-author = "bruce"
 description = "全面掌握 MySQL SQL 核心知识：从基础语法到高级特性，涵盖索引原理、事务隔离、锁机制、查询优化。包含大量实战案例和高频面试题，助你快速从 SQL 小白进阶为数据库高手。"
 toc = true
 tags = ["MySQL", "SQL", "数据库", "面试", "索引", "事务", "性能优化"]
 categories = ["MySQL"]
 keywords = ["MySQL教程", "SQL入门", "MySQL面试题", "索引优化", "事务隔离级别", "MVCC", "B+树"]
 +++
-
 ![MySQL SQL 完全指南：从基础到精通](cover.webp)
 
 **SQL（Structured Query Language）** 是与数据库交流的通用语言。无论你是后端开发、数据分析还是运维工程师，掌握 SQL 都是必备技能。本文以 MySQL 为例，从零基础带你系统学习 SQL，并深入讲解面试高频考点，助你快速进阶。

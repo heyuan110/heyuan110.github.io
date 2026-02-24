@@ -1,14 +1,12 @@
 +++
 title = 'AWS CLI 完全指南：安装配置、S3/EC2 常用命令与权限排错'
 date = 2020-07-04T00:16:54+08:00
-author = "bruce"
 description = 'AWS CLI 从零上手：安装、aws configure、S3/EC2/IAM 高频命令、常见报错与权限问题排查，适合运维与开发日常使用。'
 toc = true
 tags = ["AWS", "AWS CLI", "S3", "EC2", "云计算", "运维", "命令行"]
 categories = ["Linux"]
 keywords = ["AWS CLI", "AWS 命令行", "S3 命令", "EC2 命令", "aws configure"]
 +++
-
 ![AWS CLI 命令行工具完全指南](cover.webp)
 
 **AWS CLI**（Amazon Web Services Command Line Interface）是 AWS 官方提供的统一命令行工具，让你能够通过终端直接管理所有 AWS 服务。本文将详细介绍 AWS CLI 的安装配置方法和常用命令，帮助你快速上手云资源管理。

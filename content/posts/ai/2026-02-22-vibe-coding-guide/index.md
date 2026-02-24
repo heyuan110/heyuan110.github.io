@@ -69,7 +69,7 @@ Claude Code 是 Anthropic 推出的命令行 AI 编程工具，直接在终端�
 - **Agent Teams**：多个 Claude Code 实例协作完成复杂任务（详见 [Claude Code Agent Teams 多智能体协作](/posts/ai/2026-02-22-claude-code-agent-teams/)）
 - **MCP 协议**：通过 Model Context Protocol 扩展能力（浏览器自动化、数据库等）
 
-想深入了解 Claude Code，推荐阅读 [Claude Code 完全指南](/posts/ai/2025-01-14-claude-code-guide/)。
+想深入了解 Claude Code，推荐阅读 [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/)。
 
 ### Cursor
 

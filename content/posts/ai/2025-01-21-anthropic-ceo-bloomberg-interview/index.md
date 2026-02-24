@@ -3,13 +3,11 @@ title = 'Anthropic CEO 彭博社访谈：AI 指数增长、芯片出口与超级
 date = '2026-01-21T15:09:00+08:00'
 draft = false
 toc = true
-author = 'bruce'
 description = 'Anthropic CEO Dario Amodei 在彭博社最新访谈中分享了对 AI 未来的深度见解：从指数级增长的本质，到首席工程师两个月不写代码的现实，再到芯片出口管制和经济影响的预测。本文整理访谈核心观点。'
 tags = ['AI', 'Anthropic', 'Claude', 'AI 趋势', 'AI 经济']
 categories = ['AI原理']
 keywords = ['Anthropic CEO', 'Dario Amodei', 'AI 指数增长', 'Claude', '芯片出口', 'AI 安全']
 +++
-
 ![Anthropic CEO Dario Amodei 彭博社访谈，讨论 AI 发展趋势与未来](cover.webp)
 
 **Dario Amodei** 是 Anthropic 的 CEO，这家公司创造了被认为是与 GPT 并驾齐驱的最强 AI 模型之一——[Claude](https://claude.ai)。在彭博社的最新访谈中，Amodei 分享了他对 AI 发展的深度见解，从技术预测到地缘政治，从经济影响到公司战略，内容极为丰富。
@@ -50,7 +48,7 @@ Anthropic 内部有一个负责「Code」产品的团队。这个团队的**首�
 
 更夸张的是，他们最近发布了一个叫「Coachwork」的工具，整个开发过程只用了一个半星期，几乎完全是 Claude 写的。
 
-这与我们在 [Claude Code 实战指南](/posts/ai/2025-01-14-claude-code-guide/) 中介绍的趋势一致——AI 正在从辅助工具变成主力开发者。
+这与我们在 [Claude Code 实战指南](/posts/ai/2026-01-14-claude-code-guide/) 中介绍的趋势一致——AI 正在从辅助工具变成主力开发者。
 
 ---
 
@@ -180,7 +178,7 @@ Anthropic 不这样。他们专注于**企业和开发者市场**。目标是「
 
 这种商业模式有一个好处：更稳定、更可预测、利润率更高。
 
-这也解释了为什么 [Claude Code](/posts/ai/2025-01-14-claude-code-guide/) 和 [Claude 的 Skill 系统](/posts/ai/2026-01-20-claude-code-skills-top20/) 如此注重开发者体验——这是 Anthropic 的核心战略。
+这也解释了为什么 [Claude Code](/posts/ai/2026-01-14-claude-code-guide/) 和 [Claude 的 Skill 系统](/posts/ai/2026-01-20-claude-code-skills-top20/) 如此注重开发者体验——这是 Anthropic 的核心战略。
 
 ---
 
@@ -247,6 +245,6 @@ AI 做的事情，是让这种超级智能变得更加集中、更加强大、�
 
 ## 相关阅读
 
-- [Claude Code 实战指南：从入门到精通](/posts/ai/2025-01-14-claude-code-guide/)
+- [Claude Code 实战指南：从入门到精通](/posts/ai/2026-01-14-claude-code-guide/)
 - [2025 年最值得使用的 20 个 Claude Code Skills](/posts/ai/2026-01-20-claude-code-skills-top20/)
 - [AI 开发工作流的变革](/posts/ai/2026-01-19-ai-dev-workflow/)

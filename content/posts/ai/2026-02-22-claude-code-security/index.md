@@ -15,7 +15,7 @@ keywords = ['Claude Code Security', 'AI 代码安全扫描', 'Claude 漏洞检�
 
 ## Claude Code Security 是什么
 
-Claude Code Security 是 Anthropic 在 [Claude Code](/posts/ai/2025-01-14-claude-code-guide/) 中内置的代码安全扫描能力。它基于最新的 Claude Opus 4.6 模型，能够自主扫描整个代码库，发现安全漏洞并生成针对性的修复补丁建议。
+Claude Code Security 是 Anthropic 在 [Claude Code](/posts/ai/2026-01-14-claude-code-guide/) 中内置的代码安全扫描能力。它基于最新的 Claude Opus 4.6 模型，能够自主扫描整个代码库，发现安全漏洞并生成针对性的修复补丁建议。
 
 与传统安全扫描工具最大的区别在于：它不依赖预定义的规则库或模式匹配，而是**像人类安全研究员一样推理你的代码**。用 Anthropic 官方的说法：
 
@@ -116,7 +116,7 @@ Claude Code Security 目前以有限的研究预览形式提供，获取途径�
 
 该功能经过 Anthropic 内部红队超过一年的压力测试，包括 Capture the Flag 竞赛和与太平洋西北国家实验室（Pacific Northwest National Laboratory）的合作，以确保扫描准确性。
 
-如果你还没有使用过 Claude Code，建议先阅读 [Claude Code 完全指南](/posts/ai/2025-01-14-claude-code-guide/) 了解基础功能。如果你关注 Claude Code 的最新动态，[2 月更新汇总](/posts/ai/2026-02-22-claude-code-february-updates/)中也有相关信息。
+如果你还没有使用过 Claude Code，建议先阅读 [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/) 了解基础功能。如果你关注 Claude Code 的最新动态，[2 月更新汇总](/posts/ai/2026-02-22-claude-code-february-updates/)中也有相关信息。
 
 ## 对开发者的意义
 

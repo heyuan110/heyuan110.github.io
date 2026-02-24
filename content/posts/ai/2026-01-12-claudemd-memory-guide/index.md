@@ -1,19 +1,12 @@
----
-title: "Claude Code 记忆术：一个文件让 AI 永远记住你是谁"
-date: 2026-01-12T00:00:00+08:00
-author: "bruce"
-description: "手把手教你配置 CLAUDE.md，让 Claude Code 记住你的开发环境、代码风格和工作习惯，告别重复自我介绍"
-toc: true
-images:
-tags:
-  - AI
-  - Claude Code
-  - CLAUDE.md
-  - 效率工具
-categories:
-  - AI实战
----
-
++++
+date = '2026-01-12T00:00:00+08:00'
+title = 'Claude Code 记忆术：一个文件让 AI 永远记住你是谁'
+description = '手把手教你配置 CLAUDE.md，让 Claude Code 记住你的开发环境、代码风格和工作习惯，告别重复自我介绍'
+toc = true
+tags = ['AI', 'Claude Code', 'CLAUDE.md', '效率工具']
+categories = ['AI实战']
+keywords = ['CLAUDE.md 配置教程', 'Claude Code 记忆', 'CLAUDE.md 怎么写', 'Claude Code 开发环境配置', 'AI 代码规范']
++++
 ![Memory Guide](memory-guide.webp)
 
 ## 一、每次都要自我介绍，烦不烦？

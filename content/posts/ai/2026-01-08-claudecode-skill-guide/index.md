@@ -1,19 +1,12 @@
----
-title: "Claude Code Skill 完全指南：让 AI 学会你的工作流程"
-date: 2026-01-08T10:00:00+08:00
-author: "bruce"
-description: "手把手教你创建 Claude Code Skill，附带财务分析、面试问题生成、亚马逊 Listing 优化三个实战案例"
-toc: true
-images:
-tags:
-  - AI
-  - Claude Code
-  - Skill
-  - 效率工具
-categories:
-  - AI实战
----
-
++++
+date = '2026-01-08T10:00:00+08:00'
+title = 'Claude Code Skill 完全指南：让 AI 学会你的工作流程'
+description = '手把手教你创建 Claude Code Skill，附带财务分析、面试问题生成、亚马逊 Listing 优化三个实战案例'
+toc = true
+tags = ['AI', 'Claude Code', 'Skills', '效率工具']
+categories = ['AI实战']
+keywords = ['Claude Code Skill 教程', 'Skill 创建指南', 'Claude Code 技能', 'AI 工作流自动化', 'SKILL.md']
++++
 ![Skill Guide](skill-guide.webp)
 
 ## 一、Skill 为什么突然火了
@@ -611,5 +604,5 @@ Skill 就是让 AI 学会你的专业知识的最简单方式。不需要写代�
 
 - [Claude Code 浏览器自动化方案对比：Agent Browser、Playwright、DevTools](/posts/ai/2026-01-28-claude-code-browser-automation/)
 - [Claude Code 最佳实践指南](/posts/ai/2026-01-06-claudecode-best-practices/)
-- [Claude Code Skill 高级模式详解](/posts/ai/2026-01-13-claudecode-skill-patterns/)
+- [Claude Code Skill 高级模式详解](/posts/ai/2026-01-12-claudecode-skill-patterns/)
 - [Agent Skills：AI 编程的新范式](/posts/ai/2026-01-19-agent-skills-new-programming/)

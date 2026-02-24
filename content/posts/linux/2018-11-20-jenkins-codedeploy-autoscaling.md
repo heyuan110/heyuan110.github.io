@@ -1,21 +1,11 @@
----
-title: "Jenkins + AWS CodeDeploy + AutoScaling 持续集成实战指南"
-date: 2018-11-20 11:05:40
-author: "bruce"
-description: "基于 Jenkins、AWS CodeDeploy 和 AutoScaling 搭建 CI/CD 持续集成流水线完整教程，详解蓝绿部署、就地部署原理，AppSpec 配置和生命周期钩子"
-toc: true
-tags:
-    - Jenkins
-    - AWS
-    - CodeDeploy
-    - AutoScaling
-    - CI/CD
-    - 蓝绿部署
-    - DevOps
-categories:
-    - Linux
----
-
++++
+date = '2018-11-20T11:05:40+08:00'
+title = 'Jenkins + AWS CodeDeploy + AutoScaling 持续集成实战指南'
+description = '基于 Jenkins、AWS CodeDeploy 和 AutoScaling 搭建 CI/CD 持续集成流水线完整教程，详解蓝绿部署、就地部署原理，AppSpec 配置和生命周期钩子'
+toc = true
+tags = ['Jenkins', 'AWS', 'CodeDeploy', 'AutoScaling', 'CI/CD', '蓝绿部署', 'DevOps']
+categories = ['Linux']
++++
 本文主要记录如何结合jenkins,codedeploy,s3, autoscaling等相关服务搭建一套可持续交付和应用部署的服务。
 
 ## Aws AutoScaling部分

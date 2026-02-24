@@ -5,6 +5,7 @@ draft = false
 description = '2025年终端工具完整指南，深度对比23款主流终端模拟器：iTerm2、Warp、Ghostty、Windows Terminal、Tabby等。涵盖macOS、Windows、Linux三大平台，包含SSH客户端推荐和AI终端新趋势，助你找到最适合的命令行工具。'
 tags = ['终端', '开发工具', '效率工具', 'macOS', 'Windows', 'Linux']
 categories = ['macOS']
+toc = true
 keywords = ['终端工具', '终端模拟器', 'iTerm2', 'Warp', 'Ghostty', 'Tabby', 'Windows Terminal', '跨平台终端', 'SSH客户端', '命令行工具']
 +++
 
@@ -23,7 +24,7 @@ keywords = ['终端工具', '终端模拟器', 'iTerm2', 'Warp', 'Ghostty', 'Tab
 - **主题定制**：支持自定义配色、字体等，打造个性化工作环境
 - **跨平台支持**：在不同操作系统上保持一致的使用体验
 - **SSH 管理**：方便地连接和管理远程服务器
-- **AI 集成**：2025 年的新趋势，让 AI 辅助你的命令行操作（推荐了解 [Claude Code 终端 AI 助手](/posts/ai/2025-01-14-claude-code-guide/)）
+- **AI 集成**：2025 年的新趋势，让 AI 辅助你的命令行操作（推荐了解 [Claude Code 终端 AI 助手](/posts/ai/2026-01-14-claude-code-guide/)）
 
 ## macOS 平台终端推荐
 
@@ -381,7 +382,7 @@ keywords = ['终端工具', '终端模拟器', 'iTerm2', 'Warp', 'Ghostty', 'Tab
 
 - [Oh My Zsh 安装配置指南：打造高效终端环境](/posts/linux/2015-06-17-shell-zsh/) - 终端配好了，Shell 也要配置好
 - [Linux/macOS 常用命令速查手册](/posts/linux/2020-03-19-linux-mac-commands/) - 常用命令快速查阅
-- [Claude Code 完全指南：终端里的全能 AI 助手](/posts/ai/2025-01-14-claude-code-guide/) - 用 AI 提升终端效率
+- [Claude Code 完全指南：终端里的全能 AI 助手](/posts/ai/2026-01-14-claude-code-guide/) - 用 AI 提升终端效率
 
 ## 参考资源
 
