@@ -1,4 +1,4 @@
-# Bruce's AI Engineering Blog - LLMs.txt
+# AI Engineering Hub - LLMs.txt
 # Spec: llmstxt.org v1.0
 # Updated: 2026-02
 
@@ -6,7 +6,7 @@
 
 ## Site Info
 
-- **Name**: Bruce's AI Engineering Blog
+- **Name**: AI Engineering Hub
 - **URL**: https://www.heyuan110.com/
 - **Author**: Bruce
 - **Language**: English (with archived Chinese content)
