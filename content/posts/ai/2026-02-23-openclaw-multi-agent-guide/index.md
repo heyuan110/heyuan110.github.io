@@ -216,7 +216,11 @@ openclaw agents set-identity --agent brainstorm --name "脑暴搭子" --emoji "�
 openclaw agents set-identity --agent coder --name "代码工匠" --emoji "⚡"
 ```
 
-### 3.4 绑定飞书群组
+### 3.4 绑定消息渠道
+
+创建好 Agent 后，需要把它们和具体的消息渠道绑定起来。OpenClaw 支持多种渠道，这里以最常用的**飞书**和 **Telegram** 为例。
+
+#### 飞书绑定
 
 在飞书中为每个 Agent 创建专属群组，并获取**群会话 ID**（`oc_` 开头的字符串）。
 
@@ -260,6 +264,65 @@ openclaw agents set-identity --agent coder --name "代码工匠" --emoji "⚡"
 ```
 
 **核心原理**：同一个飞书 Bot，被拉进三个不同的群。当消息从不同群进来时，Bindings 机制会根据群 ID 精确路由到对应的 Agent。对用户来说，看起来是同一个机器人，但底层连接的是完全不同的"大脑"。
+
+#### Telegram 绑定
+
+Telegram 的绑定逻辑和飞书一样，区别在于 `channel` 改为 `telegram`，`peer.id` 使用 Telegram 的 **Chat ID**（数字格式，群组通常为负数）。
+
+获取 Chat ID 的方法：把 Bot 拉进群后，访问 `https://api.telegram.org/bot<YOUR_TOKEN>/getUpdates`，在返回的 JSON 中找到 `chat.id` 字段。
+
+配置示例：
+
+```json
+{
+  "bindings": [
+    {
+      "agentId": "writer",
+      "match": {
+        "channel": "telegram",
+        "peer": {
+          "kind": "group",
+          "id": "-1001234567890"
+        }
+      }
+    },
+    {
+      "agentId": "coder",
+      "match": {
+        "channel": "telegram",
+        "peer": {
+          "kind": "group",
+          "id": "-1009876543210"
+        }
+      }
+    }
+  ]
+}
+```
+
+同时需要在 `openclaw.json` 的 `channels` 中启用 Telegram 渠道：
+
+```json
+{
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "botToken": "123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11"
+    }
+  }
+}
+```
+
+**飞书 vs Telegram 对比**：
+
+| 维度 | 飞书 | Telegram |
+|------|------|----------|
+| **peer.id 格式** | `oc_` 开头的字符串 | 数字（群组为负数） |
+| **Bot 创建** | 飞书开放平台 | @BotFather |
+| **免@模式** | 需额外配置 `requireMention` | 设置 Bot 为群管理员或使用 `/` 命令 |
+| **适合场景** | 企业内部、团队协作 | 个人使用、跨境沟通 |
+
+> 你完全可以**同时绑定两个渠道**——飞书群绑写作 Agent 用于日常工作，Telegram 群绑编码 Agent 用于随时随地处理技术问题。多渠道混合使用才是多 Agent 架构的真正威力。
 
 ### 3.5 开启免@模式
 
