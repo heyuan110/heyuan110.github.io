@@ -1,136 +1,140 @@
 +++
 date = '2026-02-24T10:00:00+08:00'
 draft = false
-title = '从零手搓一个 Claude Code：用 Python 打造你自己的终端 AI 编程助手'
-description = '深度拆解 Claude Code 核心架构——Agentic Loop 原理，用 Python + OpenAI API 从零构建一个支持工具调用（Function Calling）、流式输出、多轮自主决策的终端 AI 编程助手 MagicCode。从 20 行代码到 250 行完整实现，附源码和逐步演进教程。'
+title = 'Build Your Own Claude Code from Scratch in Python (250 Lines)'
+description = 'A hands-on tutorial that demystifies Claude Code by rebuilding its core architecture — the Agentic Loop, Tool Use, and streaming — from scratch in Python. Go from 20 lines to a fully working terminal AI coding assistant.'
 toc = true
-tags = ['Claude Code', 'AI 编程', 'Python', 'Agentic Loop', 'Tool Use']
-categories = ['AI实战']
-keywords = ['手搓 Claude Code', 'MagicCode', '终端 AI 编程助手', 'Agentic Loop', 'Tool Use', 'OpenAI API', 'Function Calling']
+tags = ['Claude Code', 'Python', 'Agentic Loop', 'Tool Use', 'AI Agent']
+categories = ['AI Guides']
+keywords = ['build your own Claude Code', 'agentic loop tutorial', 'AI coding assistant Python', 'function calling tutorial', 'tool use OpenAI', 'terminal AI assistant', 'MagicCode']
 +++
 
-![MagicCode 终端 AI 编程助手演示效果](cover.webp)
+![MagicCode terminal AI coding assistant demo](cover.webp)
 
-[Claude Code](/posts/ai/2026-01-14-claude-code-guide/) 是目前最强的终端 AI 编程工具，但你有没有想过——**它到底是怎么工作的？**
+You've probably used [Claude Code](/posts/ai/2026-01-14-claude-code-guide/) — or at least heard the hype. It reads your codebase, writes files, runs tests, and fixes bugs, all from a terminal prompt. It feels like magic.
 
-用别人的工具是一回事，理解它的核心原理是另一回事。当你搞懂了 Claude Code 的底层架构，你就能自己造一个、改一个、甚至造出更适合自己工作流的版本。
+But here's the thing: **the core architecture behind it is surprisingly simple.** Simple enough that you can rebuild it from scratch in an afternoon with Python and about 250 lines of code.
 
-本文将从零开始，用 Python 一步步构建一个名为 **MagicCode** 的终端 AI 编程助手。从第一行代码写起，让你彻底搞懂 Claude Code 这类工具的核心原理。
+That's exactly what we'll do in this article. We'll build **MagicCode** — a terminal AI coding assistant that can read files, write code, execute shell commands, and make autonomous multi-step decisions — just like Claude Code does under the hood.
 
-读完这篇文章，你将收获：
+More importantly, by the end, you'll deeply understand three concepts that power every modern AI coding tool:
 
-- 理解 Claude Code 的核心架构——**Agentic Loop**
-- 掌握 AI **Tool Use（工具调用/Function Calling）** 的完整实现
-- 获得一个可运行的终端 AI 编程助手源码
-- 具备扩展和定制自己 AI 工具的能力
+1. **The Agentic Loop** — the decision-making engine that lets AI act autonomously
+2. **Tool Use (Function Calling)** — how LLMs interact with the real world
+3. **The message protocol** — how conversations with tool calls actually work at the API level
 
-## 一、先搞懂原理：Claude Code 为什么这么强？
+We'll build incrementally: V1 (basic chat, 20 lines) → V2 (streaming) → V3 (rich terminal UI) → V4 (full tool system with Agentic Loop, 250 lines). Each version builds on the last. No hand-waving, no magic — just code you can run.
 
-在写代码之前，我们得先搞清楚一个核心问题：**Claude Code 和普通的 AI 聊天有什么本质区别？**
+## Why Build This?
 
-答案是三个字：**[工具调用（Tool Use）](/posts/ai/2026-01-19-agent-skills-new-programming/)**。
+Using a tool is one thing. Understanding how it works is another.
 
-### 1.1 普通 AI 聊天 vs 终端 AI 助手
+When you understand the architecture behind Claude Code, you gain the ability to customize it, extend it, or build something entirely different on top of the same principles. Every AI coding tool — Claude Code, Cursor Agent, Copilot Workspace, Windsurf, Cline — runs on fundamentally the same architecture. Learn it once, understand them all.
 
-普通 AI 聊天是这样的：
+## The Architecture: What Makes Claude Code Different
+
+Before we write any code, let's answer a foundational question: **what separates Claude Code from a regular chatbot?**
+
+The answer is two words: **[Tool Use](/posts/ai/2026-01-19-agent-skills-new-programming/)**.
+
+### Regular Chatbot vs. AI Coding Agent
+
+A regular chatbot works like this:
 
 ```
-你：帮我写个 hello world
-AI：好的，这是代码 print("hello world")
-你：（复制粘贴到编辑器，手动保存，手动运行）
+You: Write me a hello world program.
+AI: Sure! Here's the code: print("hello world")
+You: (manually copy-paste into editor, save, run)
 ```
 
-Claude Code 是这样的：
+An AI coding agent works like this:
 
 ```
-你：帮我写个 hello world
-AI：（自动创建 hello.py → 写入代码 → 运行 → 告诉你结果）
+You: Write me a hello world program.
+AI: (creates hello.py → writes code → runs it → reports the result)
 ```
 
-区别在哪？**AI 不只是"说"，它能"做"。** 它拥有一组工具——读文件、写文件、执行命令——并且能自主决定什么时候用哪个工具。
+The difference? **The AI doesn't just talk — it acts.** It has tools (read files, write files, execute commands) and can autonomously decide when and how to use them.
 
-### 1.2 核心架构：Agentic Loop
+### The Agentic Loop
 
-Claude Code 的灵魂是一个叫 **[Agentic Loop（自主决策循环）](/posts/ai/2026-02-23-agentic-coding-trends-2026/)** 的模式：
+The soul of Claude Code — and every AI coding agent — is a pattern called the **[Agentic Loop](/posts/ai/2026-02-23-agentic-coding-trends-2026/)**:
 
-![MagicCode 核心架构 - Agentic Loop 流程图](02-architecture.webp)
+![MagicCode core architecture — Agentic Loop flowchart](02-architecture.webp)
 
-用大白话说就是：
+Here's how it works:
 
-1. **用户说话** → 传给 LLM
-2. **LLM 思考** → 决定是直接回答，还是先用个工具
-3. **如果用工具** → 执行工具，把结果传回给 LLM
-4. **LLM 继续想** → 可能再用一个工具，也可能直接回答
-5. **重复 3-4** → 直到 LLM 认为任务完成
+1. **User sends a message** → forwarded to the LLM
+2. **LLM thinks** → decides whether to respond directly or use a tool first
+3. **If it uses a tool** → your code executes the tool and sends the result back
+4. **LLM thinks again** → maybe uses another tool, maybe responds
+5. **Repeat steps 3–4** → until the LLM decides the task is complete
 
-这就是为什么 Claude Code 能处理复杂任务的原因——它不是一次性给你答案，而是像人一样 **"看一看、想一想、做一做、再看看"**，循环往复直到搞定。
+This is why Claude Code can handle complex, multi-step tasks. It doesn't give you a one-shot answer. Instead, it works like a developer would: **look at the code, think about what to do, make a change, verify it works, repeat.** The loop continues until the task is done.
 
-### 1.3 Tool Use / Function Calling 是怎么工作的？
+### How Tool Use / Function Calling Works
 
-OpenAI 和 Anthropic 的 API 都原生支持 Tool Use（OpenAI 叫 Function Calling）。原理很简单：
+Both OpenAI and Anthropic APIs natively support Tool Use (OpenAI calls it "Function Calling"). The mechanism is straightforward:
 
-1. 你告诉 AI："你有这些工具可以用"（传入工具定义）
-2. AI 在回复时可以选择调用工具（返回 `tool_calls` 列表）
-3. 你执行工具，把结果传回去（`role: "tool"` 消息）
-4. AI 根据工具结果继续回答
+1. You define a set of tools (name, description, parameters) and pass them to the API
+2. The LLM can choose to call one or more tools in its response (returns a `tool_calls` array)
+3. Your code executes the tools and sends the results back (as `role: "tool"` messages)
+4. The LLM uses the results to continue its reasoning
 
-**AI 不执行工具，你的代码执行。** AI 只是决定"我要用什么工具、传什么参数"，真正的执行逻辑在你的 Python 代码里。这也是为什么你可以完全控制安全边界。
+Here's the critical insight: **the AI never executes tools itself.** It only decides *which* tool to call and *what arguments* to pass. The actual execution happens in your Python code. This is what makes the architecture safe — you control the execution boundary completely.
 
-## 二、环境准备
+## Setup
 
-### 2.1 前置条件
+### Prerequisites
 
-- Python 3.10+（推荐 3.12+）
-- 一个 OpenAI API Key（[platform.openai.com](https://platform.openai.com)）
-- 终端工具（iTerm2 / Terminal / Windows Terminal 都行）
+- Python 3.10+ (3.12+ recommended)
+- An OpenAI API key ([platform.openai.com](https://platform.openai.com))
+- A terminal (iTerm2, Terminal.app, Windows Terminal — anything works)
 
-### 2.2 创建项目
+### Project Setup
 
 ```bash
-# 创建项目目录
 mkdir magiccode && cd magiccode
 
-# 创建虚拟环境
 python3 -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
 
-# 安装依赖
 pip install openai rich prompt_toolkit
 ```
 
-三个依赖，各司其职：
+Three dependencies, each with a clear purpose:
 
-| 库 | 作用 | 为什么需要 |
-|---|---|---|
-| `openai` | OpenAI 官方 SDK | 调用 GPT API，支持 Function Calling |
-| `rich` | 终端 UI 美化 | Markdown 渲染、彩色输出、面板 |
-| `prompt_toolkit` | 增强输入 | 历史记录、自动补全（可选） |
+| Library | Purpose | Why |
+|---------|---------|-----|
+| `openai` | OpenAI Python SDK | API calls with native Function Calling support |
+| `rich` | Terminal UI | Markdown rendering, syntax highlighting, panels |
+| `prompt_toolkit` | Enhanced input | History, auto-complete (optional but nice) |
 
-### 2.3 配置 API Key
+### Configure Your API Key
 
 ```bash
 export OPENAI_API_KEY="sk-your-key-here"
 ```
 
-> 建议写到 `~/.zshrc` 或 `~/.bashrc` 里，避免每次手动设置。
+> Tip: Add this to your `~/.zshrc` or `~/.bashrc` so you don't have to set it every time.
 
-## 三、从 20 行代码开始：V1 最简版
+## V1: The 20-Line Foundation
 
-**不要上来就搞大而全。** 先用最少的代码跑通核心流程，再逐步添加功能。这是 AI 时代的开发哲学——**先让它能说话，再让它能干活。**
+The best way to build anything complex is to start embarrassingly simple. V1 is just a chat loop — no streaming, no tools, no fancy UI. Twenty lines that prove the core API call works.
 
-![MagicCode V1 基础版代码](04-v1-code.webp)
+![MagicCode V1 basic version code](04-v1-code.webp)
 
 ```python
 #!/usr/bin/env python3
-"""MagicCode v1 — 20 行实现终端 AI 助手"""
+"""MagicCode v1 — A 20-line terminal AI assistant."""
 from openai import OpenAI
 
-client = OpenAI()  # 自动读取 OPENAI_API_KEY
-history = [{"role": "system", "content": "你是 MagicCode，一个终端 AI 编程助手。用中文回答，代码用英文。"}]
+client = OpenAI()  # Reads OPENAI_API_KEY from environment
+history = [{"role": "system", "content": "You are MagicCode, a terminal AI coding assistant. Be concise and helpful."}]
 
-print("🪄 MagicCode v1 - 输入 exit 退出")
+print("🪄 MagicCode v1 — Type 'exit' to quit")
 while True:
-    user_input = input("\n你 > ")
+    user_input = input("\nYou > ")
     if user_input.strip().lower() in ("exit", "quit"):
         break
 
@@ -146,50 +150,49 @@ while True:
     print(f"\n🤖 {reply}")
 ```
 
-保存为 `v1_basic.py`，运行：
+Save as `v1_basic.py` and run it:
 
 ```bash
 python v1_basic.py
 ```
 
-**这就是一个能用的 AI 聊天助手了。** 但它只能"说"不能"做"——就像一个只会纸上谈兵的军师。
+It works. It's a functional AI chat assistant. But it can only *talk* — it can't *do* anything. It's a strategist who can plan battles but has no army.
 
-### 关键概念解析
+### Key Concepts Worth Understanding
 
-**`history` 列表**：这是对话记忆。每次对话都把用户消息和 AI 回复追加进去，这样 AI 才能记住之前聊过什么。这也是为什么你跟 ChatGPT 聊天时它能记住上下文——本质就是把历史消息全部传给 API。
+**The `history` list** is conversation memory. Every user message and AI response gets appended to it, and the entire list gets sent with each API call. This is how LLMs "remember" context — there's no magic persistence, just an ever-growing message array. (This is also why long conversations eventually hit token limits and get expensive.)
 
-**`system` 消息**：系统提示词，定义 AI 的角色和行为规范。这相当于 Claude Code 的 [`CLAUDE.md`](/posts/ai/2026-01-12-claudemd-memory-guide/)——告诉 AI 它是谁、该怎么做。注意 OpenAI 的 system 消息是作为 messages 列表的第一条传入的。
+**The `system` message** defines the AI's persona and behavioral rules. It's the programmatic equivalent of Claude Code's [`CLAUDE.md`](/posts/ai/2026-01-12-claudemd-memory-guide/) — it tells the model who it is and how to behave. In OpenAI's API, it's the first message in the `messages` list.
 
-## 四、加入流式输出：V2 打字机效果
+## V2: Streaming — The Typewriter Effect
 
-V1 有个大问题：AI 思考的时候你只能干等，等它想完了一次性把整段回复扔出来。体验很糟。
+V1 has a UX problem: during long responses, you stare at a blank terminal while the model generates its full response, then the entire answer appears at once. This feels broken.
 
-**流式输出（Streaming）** 是解决方案——AI 每生成一个 token 就实时传过来，就像有人在打字一样。
+**Streaming** fixes this. The API sends tokens as they're generated, so the response appears character by character — like watching someone type in real time.
 
 ```python
 #!/usr/bin/env python3
-"""MagicCode v2 — 流式输出版"""
+"""MagicCode v2 — With streaming output."""
 from openai import OpenAI
 
 client = OpenAI()
-history = [{"role": "system", "content": "你是 MagicCode，一个终端 AI 编程助手。用中文回答，代码用英文。简洁专业。"}]
+history = [{"role": "system", "content": "You are MagicCode, a terminal AI coding assistant. Be concise and professional."}]
 
-print("🪄 MagicCode v2 (streaming) - 输入 exit 退出")
+print("🪄 MagicCode v2 (streaming) — Type 'exit' to quit")
 while True:
-    user_input = input("\n你 > ")
+    user_input = input("\nYou > ")
     if user_input.strip().lower() in ("exit", "quit"):
         break
 
     history.append({"role": "user", "content": user_input})
 
-    # 关键改动：加上 stream=True
     print("\n🤖 ", end="", flush=True)
     full_reply = ""
 
     stream = client.chat.completions.create(
         model="gpt-4o",
         messages=history,
-        stream=True,  # ← 开启流式输出
+        stream=True,  # ← The key change
     )
     for chunk in stream:
         delta = chunk.choices[0].delta.content
@@ -197,21 +200,21 @@ while True:
             print(delta, end="", flush=True)
             full_reply += delta
 
-    print()  # 换行
+    print()  # Newline after response
     history.append({"role": "assistant", "content": full_reply})
 ```
 
-关键变化：加上 `stream=True`，然后遍历 `chunk.choices[0].delta.content` 逐 token 输出。
+The changes are minimal: set `stream=True`, then iterate over chunks and print each `delta.content` as it arrives.
 
-> `flush=True` 很重要，它告诉 Python 立即把字符写到终端，而不是等缓冲区满了再输出。没有这个参数，你会看到文字一块一块蹦出来，而不是一个字一个字流出来。
+> `flush=True` matters more than you'd think. Without it, Python buffers the output and you get text appearing in bursts rather than smooth character-by-character streaming. It forces Python to write each character to the terminal immediately.
 
-## 五、终端美化：V3 用 Rich 渲染 Markdown
+## V3: A Beautiful Terminal — Rich Markdown Rendering
 
-终端不等于丑。用 `rich` 库，我们可以让输出像 IDE 一样漂亮——代码高亮、列表格式化、面板边框、彩色标签。
+Terminals don't have to look ugly. With the `rich` library, we can render Markdown with syntax highlighting, formatted tables, colored panels, and clean typography — all in the terminal.
 
 ```python
 #!/usr/bin/env python3
-"""MagicCode v3 — Rich Markdown 渲染版"""
+"""MagicCode v3 — Rich Markdown rendering with live streaming."""
 from openai import OpenAI
 from rich.console import Console
 from rich.markdown import Markdown
@@ -220,22 +223,21 @@ from rich.live import Live
 
 client = OpenAI()
 console = Console()
-history = [{"role": "system", "content": "你是 MagicCode，一个终端 AI 编程助手。用 Markdown 格式回答。"}]
+history = [{"role": "system", "content": "You are MagicCode, a terminal AI coding assistant. Format responses in Markdown."}]
 
 console.print(Panel(
-    "🪄 [bold cyan]MagicCode v3[/] - 终端 AI 编程助手\n输入 exit 退出",
+    "🪄 [bold cyan]MagicCode v3[/] — Terminal AI Coding Assistant\nType 'exit' to quit",
     border_style="cyan"
 ))
 
 while True:
     console.print()
-    user_input = console.input("[bold green]你 >[/] ")
+    user_input = console.input("[bold green]You >[/] ")
     if user_input.strip().lower() in ("exit", "quit"):
         break
 
     history.append({"role": "user", "content": user_input})
 
-    # 流式输出 + 实时 Markdown 渲染
     full_reply = ""
     stream = client.chat.completions.create(
         model="gpt-4o", messages=history, stream=True,
@@ -254,17 +256,17 @@ while True:
     history.append({"role": "assistant", "content": full_reply})
 ```
 
-`Rich.Live` 组件会不断刷新显示区域，实现"实时渲染"效果——你能看到 Markdown 表格、代码块随着内容的增加逐渐成型，就像看着一幅画被一笔一笔画出来。
+The `Rich.Live` component continuously re-renders the panel as new content streams in. You can watch Markdown tables, code blocks, and formatted text materialize in real time — like watching a document being written before your eyes.
 
-## 六、灵魂登场——工具系统：V4 让 AI 能"做事"
+## V4: The Tool System — Giving AI Hands
 
-前面三个版本，AI 只是在"聊天"。现在，我们要给它装上手脚——**让它能读文件、写文件、执行命令。**
+The first three versions are chatbots with increasing polish. Now we give the AI actual capabilities — the ability to **read files, write files, and execute commands**. This is where it stops being a chatbot and becomes an agent.
 
-这是 Claude Code 和普通聊天机器人的根本区别，也是本文最核心的部分。
+This is the most important section of this article.
 
-### 6.1 定义工具
+### Defining Tools
 
-OpenAI 的 Function Calling 工具定义格式如下——外层包一个 `type: "function"`，函数的参数描述用 `parameters`：
+OpenAI's Function Calling requires tool definitions in a specific JSON schema format. Each tool needs a name, description, and parameter schema:
 
 ```python
 TOOLS = [
@@ -272,13 +274,13 @@ TOOLS = [
         "type": "function",
         "function": {
             "name": "read_file",
-            "description": "读取文件内容。支持任意文本文件。",
+            "description": "Read the contents of a file. Returns the content with line numbers.",
             "parameters": {
                 "type": "object",
                 "properties": {
                     "path": {
                         "type": "string",
-                        "description": "文件路径"
+                        "description": "File path to read"
                     }
                 },
                 "required": ["path"],
@@ -289,12 +291,12 @@ TOOLS = [
         "type": "function",
         "function": {
             "name": "write_file",
-            "description": "将内容写入文件。文件不存在会自动创建。",
+            "description": "Write content to a file. Creates parent directories if needed.",
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "path": {"type": "string", "description": "文件路径"},
-                    "content": {"type": "string", "description": "完整文件内容"},
+                    "path": {"type": "string", "description": "File path"},
+                    "content": {"type": "string", "description": "Complete file content"},
                 },
                 "required": ["path", "content"],
             },
@@ -304,11 +306,11 @@ TOOLS = [
         "type": "function",
         "function": {
             "name": "run_command",
-            "description": "执行终端命令。有 30 秒超时。",
+            "description": "Execute a shell command. Times out after 30 seconds.",
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "command": {"type": "string", "description": "shell 命令"}
+                    "command": {"type": "string", "description": "Shell command to execute"}
                 },
                 "required": ["command"],
             },
@@ -318,11 +320,11 @@ TOOLS = [
         "type": "function",
         "function": {
             "name": "list_files",
-            "description": "列出目录结构（自动忽略 node_modules、.git 等）。",
+            "description": "List directory contents (ignores node_modules, .git, etc.).",
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "path": {"type": "string", "description": "目录路径", "default": "."},
+                    "path": {"type": "string", "description": "Directory path", "default": "."},
                 },
                 "required": [],
             },
@@ -331,45 +333,46 @@ TOOLS = [
 ]
 ```
 
-一个好的工具定义需要做到：
-- **名字直觉化**：`read_file` 比 `rf` 清晰
-- **描述够具体**：AI 根据描述来判断什么时候用什么工具
-- **参数有约束**：必填/选填、类型、默认值都要写清楚
+Tool definitions matter more than you might think. The model reads these descriptions to decide *when* and *how* to use each tool. Good descriptions lead to better tool selection. A few principles:
 
-### 6.2 实现工具执行
+- **Intuitive names**: `read_file` is immediately clear; `rf` is not
+- **Specific descriptions**: The model uses these to judge when a tool is appropriate
+- **Precise parameter schemas**: Required vs. optional, types, and defaults all guide the model's behavior
 
-AI 只决定"用什么工具、传什么参数"，**真正的执行逻辑由我们的 Python 代码负责**。这是安全性的基石——你可以在这里加任何校验和限制：
+### Implementing Tool Execution
+
+The AI decides what tool to call and what arguments to pass. **Your code does the actual work.** This separation is the security foundation of the entire architecture — you control exactly what happens:
 
 ```python
 import os
 import subprocess
 
 def execute_tool(name: str, params: dict) -> str:
-    """执行工具调用，返回字符串结果"""
+    """Execute a tool call and return the result as a string."""
     try:
         if name == "read_file":
             with open(params["path"], "r", encoding="utf-8") as f:
                 content = f.read()
             lines = content.split("\n")
-            # 加行号，方便 AI 精确定位
+            # Add line numbers so the AI can reference specific lines later
             numbered = "\n".join(
                 f"{i+1:4d} | {line}" for i, line in enumerate(lines)
             )
-            return f"📄 {params['path']}（{len(lines)} 行）\n{numbered}"
+            return f"📄 {params['path']} ({len(lines)} lines)\n{numbered}"
 
         elif name == "write_file":
             path = params["path"]
             os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
             with open(path, "w", encoding="utf-8") as f:
                 f.write(params["content"])
-            return f"✅ 已写入 {path}（{len(params['content'])} 字符）"
+            return f"✅ Written to {path} ({len(params['content'])} chars)"
 
         elif name == "run_command":
             cmd = params["command"]
-            # 🛡️ 安全检查：拒绝危险命令
+            # 🛡️ Safety check: block destructive commands
             dangerous = ["rm -rf /", "mkfs", "dd if=", "> /dev/sd"]
             if any(d in cmd for d in dangerous):
-                return "❌ 拒绝执行危险命令"
+                return "❌ Refused to execute dangerous command"
             result = subprocess.run(
                 cmd, shell=True, capture_output=True,
                 text=True, timeout=30
@@ -377,7 +380,7 @@ def execute_tool(name: str, params: dict) -> str:
             output = result.stdout
             if result.stderr:
                 output += "\n--- stderr ---\n" + result.stderr
-            return output.strip() or "（命令执行成功，无输出）"
+            return output.strip() or "(Command completed with no output)"
 
         elif name == "list_files":
             path = params.get("path", ".")
@@ -387,51 +390,51 @@ def execute_tool(name: str, params: dict) -> str:
                 full = os.path.join(path, entry)
                 icon = "📁" if os.path.isdir(full) else "📄"
                 result.append(f"{icon} {entry}")
-            return "\n".join(result) or "目录为空"
+            return "\n".join(result) or "Empty directory"
 
     except Exception as e:
         return f"❌ {type(e).__name__}: {e}"
 ```
 
-几个重要的设计决策：
+Several design decisions here are worth calling out:
 
-1. **read_file 返回带行号的内容**：这样 AI 在后续的 edit_file 操作中能精确定位要修改的位置
-2. **write_file 自动创建目录**：`os.makedirs(exist_ok=True)` 避免"目录不存在"的报错
-3. **run_command 有安全检查**：黑名单机制，防止 AI 执行危险操作（关于 AI 编程的安全最佳实践，推荐阅读 [Secure Vibe Coding 安全攻防指南](/posts/ai/2026-02-24-secure-vibe-coding/)）
-4. **统一返回字符串**：工具结果必须是字符串类型，这是 API 的要求
+1. **`read_file` returns line-numbered content**: This lets the AI precisely reference locations when it later needs to edit a file — exactly how Claude Code's Read tool works.
+2. **`write_file` auto-creates directories**: `os.makedirs(exist_ok=True)` eliminates "directory not found" errors. The AI shouldn't have to worry about creating parent directories.
+3. **`run_command` has a safety blocklist**: A simple but effective guard against destructive operations. (For a deeper dive into AI coding security, see [Secure Vibe Coding](/posts/ai/2026-02-24-secure-vibe-coding/).)
+4. **All tools return strings**: This is an API requirement — tool results must be serializable text.
 
-### 6.3 实现 Agentic Loop
+### The Agentic Loop — The Core of Everything
 
-这是整个项目的**灵魂代码**——不到 40 行，却实现了 AI 自主决策、多轮工具调用、循环执行直到任务完成的完整逻辑：
+This is the **soul of the entire project**. In under 40 lines, it implements the complete cycle of autonomous decision-making, multi-step tool execution, and self-directed task completion:
 
-![Agentic Loop 核心代码](05-agentic-loop.webp)
+![Agentic Loop core code](05-agentic-loop.webp)
 
 ```python
 def chat(user_input: str):
-    """Agentic Loop：AI 自主决策循环"""
+    """The Agentic Loop: autonomous AI decision-making."""
     history.append({"role": "user", "content": user_input})
 
     while True:
-        # 1️⃣ 调用 LLM（携带工具定义）
+        # 1️⃣ Call the LLM with tool definitions
         response = client.chat.completions.create(
             model="gpt-4o",
             messages=history,
-            tools=TOOLS,          # ← 关键：传入工具列表
+            tools=TOOLS,          # ← Pass the tool definitions
         )
         message = response.choices[0].message
 
-        # 2️⃣ 把 AI 的完整回复存入历史
+        # 2️⃣ Store the AI's full response in history
         history.append(message)
 
-        # 3️⃣ 处理文本回复
+        # 3️⃣ Display any text content
         if message.content:
             console.print(Panel(Markdown(message.content), title="🤖 MagicCode"))
 
-        # 4️⃣ 如果没有工具调用，说明任务完成，退出循环
+        # 4️⃣ No tool calls? Task is complete — exit the loop
         if not message.tool_calls:
             break
 
-        # 5️⃣ 执行每个工具调用，把结果反馈给 AI
+        # 5️⃣ Execute each tool call and feed results back
         for tool_call in message.tool_calls:
             name = tool_call.function.name
             args = json.loads(tool_call.function.arguments)
@@ -439,106 +442,107 @@ def chat(user_input: str):
             console.print(f"  🔧 {name}({args})")
             result = execute_tool(name, args)
 
-            # 工具结果以 role="tool" 消息反馈
+            # Send tool results back as role="tool" messages
             history.append({
                 "role": "tool",
                 "tool_call_id": tool_call.id,
                 "content": result,
             })
-        # → 回到 while 循环顶部，AI 继续思考
+        # → Back to the top of the while loop — AI continues thinking
 ```
 
-**这段代码的精妙之处在于 `while True` 循环。** AI 的一次回复里可能同时包含文本和工具调用：
+**The elegance is in the `while True` loop.** A single AI response can contain both text *and* tool calls simultaneously. Here's what a real multi-turn execution looks like:
 
 ```
-AI 第 1 轮回复：
-  content: "好的，让我先看看项目结构"
+AI Turn 1:
+  content: "Let me look at the project structure first."
   tool_calls: [list_files("."), read_file("package.json")]
 
-→ 执行工具，把结果反馈给 AI
+→ Execute tools, send results back to AI
 
-AI 第 2 轮回复：
-  content: "我看到这是个 Node.js 项目，让我修改..."
+AI Turn 2:
+  content: "This is a Node.js project. I'll modify the entry point..."
   tool_calls: [write_file("index.js", ...)]
 
-→ 执行工具，把结果反馈给 AI
+→ Execute tools, send results back to AI
 
-AI 第 3 轮回复：
-  content: "修改完成，让我运行测试验证"
+AI Turn 3:
+  content: "Done. Let me verify with tests."
   tool_calls: [run_command("npm test")]
 
-→ 执行工具，把结果反馈给 AI
+→ Execute tools, send results back to AI
 
-AI 第 4 轮回复：
-  content: "✅ 所有测试通过！我做了以下改动..."
-  tool_calls: null（没有工具调用 → 循环结束）
+AI Turn 4:
+  content: "✅ All tests pass. Here's what I changed..."
+  tool_calls: null → loop exits
 ```
 
-**一个用户请求，AI 可能调用十几次工具**，每次都基于上一步的结果决定下一步做什么。这就是 Agentic 的含义——AI 具有自主性。
+**A single user request can trigger a dozen tool calls**, each one informed by the results of the last. The AI plans, acts, observes, and adapts — autonomously. This is what "agentic" means. The model isn't just answering questions; it's *completing tasks*.
 
-### 6.4 消息格式详解
+### The Message Protocol — What's Actually Happening
 
-理解消息格式对调试至关重要。整个对话的 `history` 看起来像这样：
+Understanding the message format is essential for debugging. The `history` array that gets sent to the API looks like this:
 
 ```python
 [
-    # 系统消息
-    {"role": "system", "content": "你是 MagicCode..."},
+    # System message — defines the AI's behavior
+    {"role": "system", "content": "You are MagicCode..."},
 
-    # 用户消息
-    {"role": "user", "content": "帮我写个 hello world"},
+    # User message
+    {"role": "user", "content": "Write me a hello world program"},
 
-    # AI 回复（包含工具调用）
+    # AI response — includes tool calls
     {
         "role": "assistant",
-        "content": "好的，我来创建文件",
+        "content": "I'll create the file for you.",
         "tool_calls": [{
-            "id": "call_xxx",
+            "id": "call_abc123",
             "type": "function",
             "function": {
                 "name": "write_file",
-                "arguments": '{"path":"hello.py","content":"print(\'hello\')"}'
+                "arguments": '{"path":"hello.py","content":"print(\'hello world\')"}'
             }
         }]
     },
 
-    # 工具执行结果
+    # Tool result — matched by tool_call_id
     {
         "role": "tool",
-        "tool_call_id": "call_xxx",
-        "content": "✅ 已写入 hello.py（16 字符）"
+        "tool_call_id": "call_abc123",
+        "content": "✅ Written to hello.py (20 chars)"
     },
 
-    # AI 继续回复
+    # AI continues reasoning
     {
         "role": "assistant",
-        "content": "文件已创建，现在运行它",
+        "content": "File created. Let me run it now.",
         "tool_calls": [{
-            "id": "call_yyy",
+            "id": "call_def456",
             "type": "function",
             "function": {"name": "run_command", "arguments": '{"command":"python hello.py"}'}
         }]
     },
 
-    # ... 循环继续
+    # ... the loop continues
 ]
 ```
 
-注意两个关键点：
-- **工具结果用 `role: "tool"` 发送**：和普通 user 消息区分开，AI 知道这是工具执行的结果
-- **`tool_call_id` 必须匹配**：每个工具结果都要带上对应 `tool_call` 的 `id`，这样 AI 才知道哪个结果对应哪个工具调用
+Two details that will save you hours of debugging:
 
-## 七、完整源码：MagicCode 终极版
+- **Tool results use `role: "tool"`**, not `role: "user"`. The model treats these differently — it knows this data came from tool execution, not from the human.
+- **`tool_call_id` must match exactly.** Every tool result must reference the `id` of the corresponding `tool_call`. If there's a mismatch, the API will reject the request. This is how the model maps results to the tools that produced them.
 
-把前面所有能力组合起来，再加上一些实用的增强（edit_file 精确编辑、search_code 代码搜索、安全阀防止无限循环），就是完整的 MagicCode。
+## The Complete Source Code: MagicCode Final Version
 
-以下是核心文件 `magic.py` 的完整代码，约 250 行：
+Now let's combine everything — all four versions' capabilities — into a single, production-quality implementation. We'll add two more tools (`edit_file` for precise text replacement and `search_code` for codebase search), a safety valve to prevent infinite loops, and a clean class-based structure.
+
+Here's the complete `magic.py` — approximately 250 lines:
 
 ```python
 #!/usr/bin/env python3
 """
-MagicCode - 从零手搓的终端 AI 编程助手
-功能：工具调用 | Markdown 渲染 | Agentic Loop
+MagicCode — A terminal AI coding assistant built from scratch.
+Features: Tool Use | Markdown rendering | Agentic Loop
 """
 import os
 import json
@@ -549,28 +553,27 @@ from rich.console import Console
 from rich.markdown import Markdown
 from rich.panel import Panel
 
-# ========== 配置 ==========
+# ========== Configuration ==========
 MODEL = os.getenv("MAGIC_MODEL", "gpt-4o")
-client = OpenAI()  # 自动读取 OPENAI_API_KEY
+client = OpenAI()  # Reads OPENAI_API_KEY from environment
 
-SYSTEM_PROMPT = """你是 MagicCode，一个强大的终端 AI 编程助手。
+SYSTEM_PROMPT = """You are MagicCode, a powerful terminal AI coding assistant.
 
-## 核心能力
-你拥有以下工具：
-- read_file: 读取文件内容（带行号）
-- write_file: 写入文件（自动创建目录）
-- edit_file: 精确替换文件中的指定内容
-- run_command: 执行终端命令（30s 超时）
-- list_files: 列出目录结构
-- search_code: 在代码中搜索关键词
+## Your Tools
+- read_file: Read file contents (with line numbers)
+- write_file: Write to files (auto-creates directories)
+- edit_file: Replace specific text in a file
+- run_command: Execute shell commands (30s timeout)
+- list_files: List directory structure
+- search_code: Search for patterns in code
 
-## 工作原则
-1. 修改文件前必须先 read_file 查看当前内容
-2. 复杂任务分步完成，每步验证
-3. 不执行危险命令（rm -rf、格式化等）
-4. 用中文回答，代码用英文，Markdown 格式输出"""
+## Working Principles
+1. Always read a file before modifying it
+2. Break complex tasks into steps; verify each step
+3. Never execute destructive commands (rm -rf, format, etc.)
+4. Respond in Markdown format"""
 
-# ========== 工具定义 ==========
+# ========== Tool Definitions ==========
 def _fn(name, desc, params, required):
     return {"type": "function", "function": {
         "name": name, "description": desc,
@@ -578,27 +581,27 @@ def _fn(name, desc, params, required):
     }}
 
 TOOLS = [
-    _fn("read_file", "读取文件内容，返回带行号的文本。",
-        {"path": {"type": "string", "description": "文件路径"}}, ["path"]),
-    _fn("write_file", "将内容写入文件，自动创建不存在的目录。",
-        {"path": {"type": "string", "description": "文件路径"},
-         "content": {"type": "string", "description": "完整文件内容"}}, ["path", "content"]),
-    _fn("edit_file", "精确编辑：将文件中的 old_text 替换为 new_text。",
-        {"path": {"type": "string", "description": "文件路径"},
-         "old_text": {"type": "string", "description": "要替换的原文本"},
-         "new_text": {"type": "string", "description": "替换后的新文本"}}, ["path", "old_text", "new_text"]),
-    _fn("run_command", "执行 shell 命令，30 秒超时。",
-        {"command": {"type": "string", "description": "命令"}}, ["command"]),
-    _fn("list_files", "递归列出目录结构（最多 3 层，自动忽略 .git 等）。",
-        {"path": {"type": "string", "description": "目录路径"}}, []),
-    _fn("search_code", "在项目中搜索包含关键词的代码行。",
-        {"pattern": {"type": "string", "description": "搜索关键词"},
-         "path": {"type": "string", "description": "搜索目录"}}, ["pattern"]),
+    _fn("read_file", "Read file contents. Returns text with line numbers.",
+        {"path": {"type": "string", "description": "File path"}}, ["path"]),
+    _fn("write_file", "Write content to a file. Creates directories if needed.",
+        {"path": {"type": "string", "description": "File path"},
+         "content": {"type": "string", "description": "Complete file content"}}, ["path", "content"]),
+    _fn("edit_file", "Replace old_text with new_text in a file (first occurrence).",
+        {"path": {"type": "string", "description": "File path"},
+         "old_text": {"type": "string", "description": "Text to find"},
+         "new_text": {"type": "string", "description": "Replacement text"}}, ["path", "old_text", "new_text"]),
+    _fn("run_command", "Execute a shell command with 30-second timeout.",
+        {"command": {"type": "string", "description": "Shell command"}}, ["command"]),
+    _fn("list_files", "Recursively list directory structure (max 3 levels, ignores .git etc.).",
+        {"path": {"type": "string", "description": "Directory path"}}, []),
+    _fn("search_code", "Search for a pattern across all files in a directory.",
+        {"pattern": {"type": "string", "description": "Search pattern"},
+         "path": {"type": "string", "description": "Search directory"}}, ["pattern"]),
 ]
 
 IGNORED_DIRS = {".git", "node_modules", "__pycache__", ".venv", "venv", "dist", "build"}
 
-# ========== 工具执行 ==========
+# ========== Tool Execution ==========
 def execute_tool(name: str, params: dict) -> str:
     try:
         if name == "read_file":
@@ -606,38 +609,38 @@ def execute_tool(name: str, params: dict) -> str:
                 content = f.read()
             lines = content.split("\n")
             numbered = "\n".join(f"{i+1:4d} | {line}" for i, line in enumerate(lines))
-            return f"📄 {params['path']}（{len(lines)} 行）\n{numbered}"
+            return f"📄 {params['path']} ({len(lines)} lines)\n{numbered}"
 
         elif name == "write_file":
             path = params["path"]
             os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
             with open(path, "w", encoding="utf-8") as f:
                 f.write(params["content"])
-            return f"✅ 已写入 {path}（{len(params['content'])} 字符）"
+            return f"✅ Written to {path} ({len(params['content'])} chars)"
 
         elif name == "edit_file":
             path = params["path"]
             with open(path, "r", encoding="utf-8") as f:
                 content = f.read()
             if params["old_text"] not in content:
-                return "❌ 未找到要替换的文本"
+                return "❌ Target text not found in file"
             new_content = content.replace(params["old_text"], params["new_text"], 1)
             with open(path, "w", encoding="utf-8") as f:
                 f.write(new_content)
-            return f"✅ 已编辑 {path}"
+            return f"✅ Edited {path}"
 
         elif name == "run_command":
             cmd = params["command"]
             dangerous = ["rm -rf /", "mkfs", "dd if=", "> /dev/sd"]
             if any(d in cmd for d in dangerous):
-                return "❌ 拒绝执行危险命令"
+                return "❌ Refused to execute dangerous command"
             result = subprocess.run(
                 cmd, shell=True, capture_output=True, text=True, timeout=30
             )
             output = result.stdout
             if result.stderr:
                 output += "\n--- stderr ---\n" + result.stderr
-            return output.strip() or "（无输出）"
+            return output.strip() or "(No output)"
 
         elif name == "list_files":
             path = params.get("path", ".")
@@ -655,7 +658,7 @@ def execute_tool(name: str, params: dict) -> str:
                     else:
                         lines.append(f"{prefix}📄 {e}")
             walk(path)
-            return "\n".join(lines[:200]) or "目录为空"
+            return "\n".join(lines[:200]) or "Empty directory"
 
         elif name == "search_code":
             pattern = params["pattern"]
@@ -672,12 +675,12 @@ def execute_tool(name: str, params: dict) -> str:
                                 if len(matches) >= 50: break
                 except OSError: continue
                 if len(matches) >= 50: break
-            return "\n".join(matches) or f"未找到 '{pattern}'"
+            return "\n".join(matches) or f"No matches for '{pattern}'"
 
     except Exception as e:
         return f"❌ {type(e).__name__}: {e}"
 
-# ========== Agentic Loop ==========
+# ========== The Agentic Loop ==========
 class MagicCode:
     def __init__(self):
         self.console = Console()
@@ -694,18 +697,18 @@ class MagicCode:
             message = response.choices[0].message
             self.history.append(message)
 
-            # 显示文本回复
+            # Display text response
             if message.content:
                 self.console.print(Panel(
                     Markdown(message.content),
                     title="🤖 MagicCode", border_style="blue", padding=(1, 2),
                 ))
 
-            # 没有工具调用 → 任务完成
+            # No tool calls → task complete
             if not message.tool_calls:
                 break
 
-            # 执行每个工具调用
+            # Execute each tool call
             for tc in message.tool_calls:
                 tool_count += 1
                 name = tc.function.name
@@ -724,15 +727,16 @@ class MagicCode:
                     "content": result,
                 })
 
+            # Safety valve: prevent infinite loops
             if tool_count > 20:
-                self.console.print("[red]⚠️ 已达到工具调用上限（20次）[/]")
+                self.console.print("[red]⚠️ Tool call limit reached (20)[/]")
                 break
 
     def run(self):
         self.console.print(Panel(
-            "[bold cyan]🪄 MagicCode[/] — 你的终端 AI 编程助手\n\n"
-            "  [green]能力[/]：读写文件 | 执行命令 | 搜索代码 | 精确编辑\n"
-            "  [green]命令[/]：exit 退出 | clear 清空历史",
+            "[bold cyan]🪄 MagicCode[/] — Your Terminal AI Coding Assistant\n\n"
+            "  [green]Tools[/]: Read/write files | Run commands | Search code | Edit files\n"
+            "  [green]Commands[/]: exit to quit | clear to reset history",
             border_style="cyan", padding=(1, 2),
         ))
         self.console.print(f"  [dim]📂 {os.getcwd()}[/]")
@@ -740,67 +744,69 @@ class MagicCode:
 
         while True:
             try:
-                user_input = self.console.input("[bold green]✦ 你 >[/] ")
+                user_input = self.console.input("[bold green]✦ You >[/] ")
                 cmd = user_input.strip().lower()
                 if cmd in ("exit", "quit"): break
                 elif cmd == "clear":
                     self.history = [{"role": "system", "content": SYSTEM_PROMPT}]
-                    self.console.print("[dim]🗑️ 历史已清空[/]")
+                    self.console.print("[dim]🗑️ History cleared[/]")
                     continue
                 elif not cmd: continue
                 self.chat(user_input)
                 self.console.print()
             except KeyboardInterrupt:
-                self.console.print("\n[cyan]👋 再见！[/]")
+                self.console.print("\n[cyan]👋 Goodbye![/]")
                 break
 
 if __name__ == "__main__":
     MagicCode().run()
 ```
 
-保存为 `magic.py`，运行：
+Save as `magic.py` and run:
 
 ```bash
 python magic.py
 ```
 
-## 八、工具能力对照
+Try asking it to create a file, read it back, modify it, or run a command. Watch the Agentic Loop in action — the AI autonomously chains multiple tool calls to complete your request.
 
-你可能好奇：这 6 个工具够用吗？来看看和 Claude Code 的对照：
+## How Our 6 Tools Compare to Claude Code
 
-![MagicCode 与 Claude Code 工具能力对照](03-tools-table.webp)
+You might wonder: are 6 tools enough? Let's compare with what Claude Code ships:
 
-Claude Code 的 15 个内置工具中，我们用 6 个工具覆盖了 **80% 的日常使用场景**。剩下的 20% 主要是 [MCP 集成](/posts/ai/2026-02-20-mcp-protocol-guide/)、多文件 diff、notebook 编辑等高级功能——这些是锦上添花，不影响核心体验。如果你对 MCP 集成感兴趣，可以看看 [MCP Server 开发教程](/posts/ai/2026-02-22-claude-code-mcp-server-tutorial/)。
+![MagicCode vs Claude Code tool comparison](03-tools-table.webp)
 
-## 九、进阶：五个值得继续做的方向
+Claude Code has about 15 built-in tools. Our 6 tools cover roughly **80% of everyday use cases**. The remaining 20% is mostly advanced features like [MCP integration](/posts/ai/2026-02-20-mcp-protocol-guide/), multi-file diffs, and notebook editing — nice to have, but not core to the experience. If MCP integration interests you, check out the [MCP Server development tutorial](/posts/ai/2026-02-22-claude-code-mcp-server-tutorial/).
 
-基础版搞定后，下面五个方向可以让你的 MagicCode 更接近生产级工具：
+## Five Directions to Take This Further
 
-### 9.1 权限确认机制
+The foundation is solid. Here are five extensions that would bring MagicCode closer to a production-grade tool:
 
-Claude Code 在执行写文件或命令前会弹窗让你确认（更多关于 Claude Code 的安全机制，可以参考 [Claude Code Security 深度解析](/posts/ai/2026-02-22-claude-code-security/)）。实现起来很简单：
+### 1. Permission Confirmation
+
+Claude Code asks for confirmation before writing files or executing commands (for more on Claude Code's security model, see [Claude Code Security Deep Dive](/posts/ai/2026-02-22-claude-code-security/)). Easy to implement:
 
 ```python
 def execute_tool_with_confirm(name, params):
-    # 读操作直接执行
+    # Read-only operations: execute immediately
     if name in ("read_file", "list_files", "search_code"):
         return execute_tool(name, params)
 
-    # 写操作需要用户确认
+    # Write operations: require user approval
     console.print(f"[yellow]⚠️ {name}({params})[/]")
-    confirm = console.input("[bold]允许执行？(y/n) [/]")
+    confirm = console.input("[bold]Allow? (y/n) [/]")
     if confirm.lower() == "y":
         return execute_tool(name, params)
-    return "用户拒绝了此操作"
+    return "User denied this operation"
 ```
 
-### 9.2 CLAUDE.md 项目感知
+### 2. Project Context Loading (CLAUDE.md)
 
-[Claude Code 会自动读取项目根目录的 `CLAUDE.md` 文件来理解项目上下文](/posts/ai/2026-01-12-claudemd-memory-guide/)。我们可以在启动时做同样的事：
+[Claude Code automatically reads `CLAUDE.md` from the project root to understand context](/posts/ai/2026-01-12-claudemd-memory-guide/). We can do the same:
 
 ```python
 def load_project_context():
-    """读取项目配置文件作为上下文"""
+    """Load project config files as context."""
     context = ""
     for name in ["CLAUDE.md", "AGENTS.md", "README.md"]:
         if os.path.exists(name):
@@ -808,15 +814,15 @@ def load_project_context():
                 context += f"\n\n--- {name} ---\n{f.read()}"
     return context
 
-# 在 SYSTEM_PROMPT 后追加项目上下文
+# Append project context to the system prompt
 project_ctx = load_project_context()
 if project_ctx:
-    SYSTEM_PROMPT += f"\n\n## 项目上下文\n{project_ctx}"
+    SYSTEM_PROMPT += f"\n\n## Project Context\n{project_ctx}"
 ```
 
-### 9.3 对话历史持久化
+### 3. Conversation Persistence
 
-目前退出程序对话历史就没了。可以用 JSON 文件保存：
+Currently, conversation history vanishes when you exit. Persist it to a JSON file:
 
 ```python
 import json
@@ -834,66 +840,64 @@ def load_history():
     return []
 ```
 
-### 9.4 换用其他模型
+### 4. Model Swapping
 
-MagicCode 不绑定 GPT。只要模型支持 Function Calling，都能用。通过 OpenAI 兼容接口接入其他模型：
+MagicCode isn't locked to GPT. Any model that supports Function Calling works. The OpenAI SDK's compatible interface makes switching trivial:
 
 ```python
 from openai import OpenAI
 
-# 使用 DeepSeek
+# DeepSeek
 client = OpenAI(api_key="your-key", base_url="https://api.deepseek.com/v1")
 
-# 使用 Qwen（通义千问）
+# Qwen
 client = OpenAI(api_key="your-key", base_url="https://dashscope.aliyuncs.com/compatible-mode/v1")
 
-# 使用本地 Ollama
+# Local Ollama
 client = OpenAI(api_key="ollama", base_url="http://localhost:11434/v1")
 ```
 
-因为用了 OpenAI SDK，所有兼容 OpenAI 格式的模型都能无缝切换——这也是为什么我们选择 OpenAI SDK 的原因。
+This is one reason we chose the OpenAI SDK — it's the de facto standard interface, and virtually every model provider offers a compatible endpoint.
 
-### 9.5 Token 用量监控
+### 5. Token Usage Tracking
 
-API 是按 token 计费的，加个用量统计很有必要：
+API calls cost money. Adding usage tracking is straightforward and immediately useful:
 
 ```python
 total_input_tokens = 0
 total_output_tokens = 0
 
-# 在每次 API 调用后累计
+# After each API call:
 total_input_tokens += response.usage.prompt_tokens
 total_output_tokens += response.usage.completion_tokens
 
-# 在 exit 时显示
-console.print(f"[dim]本次会话 Token 用量：输入 {total_input_tokens} | 输出 {total_output_tokens}[/]")
+# On exit:
+console.print(f"[dim]Session tokens — Input: {total_input_tokens} | Output: {total_output_tokens}[/]")
 ```
 
-## 十、总结
+## What We Built — And What It Teaches
 
-通过这篇文章，我们从 20 行的基础聊天开始，逐步构建了一个具备完整能力的终端 AI 编程助手：
+Starting from a 20-line chatbot, we incrementally built a fully functional terminal AI coding assistant:
 
-| 版本 | 能力 | 代码量 | 关键技术 |
-|------|------|--------|----------|
-| V1 | 基础对话 | 20 行 | Chat Completions API |
-| V2 | 流式输出 | 30 行 | Streaming |
-| V3 | 终端美化 | 35 行 | Rich + Markdown |
-| V4 | 工具系统 + Agentic Loop | 250 行 | Function Calling + 自主循环 |
+| Version | Capability | Lines | Key Technology |
+|---------|-----------|-------|---------------|
+| V1 | Basic chat | 20 | Chat Completions API |
+| V2 | Streaming output | 30 | Streaming |
+| V3 | Rich terminal UI | 35 | Rich + Markdown rendering |
+| V4 | Tool system + Agentic Loop | 250 | Function Calling + autonomous loop |
 
-**核心就三个东西**：LLM API + 工具定义 + Agentic Loop。掌握了这三个，你就掌握了 [Claude Code](/posts/ai/2026-01-14-claude-code-guide/)、[Cursor Agent](/posts/ai/2026-01-19-cursor-agent-best-practices/)、Copilot Workspace 等所有 AI 编程工具的核心架构。
+The entire architecture boils down to **three things**: an LLM API, tool definitions, and an Agentic Loop. That's it. Master these three concepts and you understand the core architecture of [Claude Code](/posts/ai/2026-01-14-claude-code-guide/), [Cursor Agent](/posts/ai/2026-01-19-cursor-agent-best-practices/), Copilot Workspace, and every other AI coding tool on the market.
 
-完整代码已在文中给出，复制粘贴就能跑。如果你在实践中遇到问题，欢迎留言交流。
+The complete code is in this article — copy, paste, run. If you build something interesting on top of it, I'd love to hear about it in the comments.
 
-> 授人以鱼不如授人以渔。比起用别人的工具，不如搞懂它是怎么造的——然后造一个更适合自己的。
+> Understanding how the tools you use are built is what separates a user from an engineer. Don't just use Claude Code — understand it, then build something better.
 
-## 相关阅读
+## Related Reading
 
-如果你对 AI 编程工具的原理和实战感兴趣，推荐继续阅读：
-
-- [Claude Code 从入门到精通完全指南](/posts/ai/2026-01-14-claude-code-guide/) — 想深入使用 Claude Code，从这篇开始
-- [CLAUDE.md 记忆术：一个文件让 AI 永远记住你是谁](/posts/ai/2026-01-12-claudemd-memory-guide/) — 理解 AI 编程助手的"项目感知"机制
-- [上下文工程：AI 编程最被低估的核心能力](/posts/ai/2026-02-24-context-engineering-deep-dive/) — 深入理解 system prompt 和上下文设计
-- [MCP 协议全面解析：AI 连接万物的通用标准](/posts/ai/2026-02-20-mcp-protocol-guide/) — 了解 AI 工具扩展的未来方向
-- [2026 Agentic Coding 趋势报告](/posts/ai/2026-02-23-agentic-coding-trends-2026/) — Agentic Loop 模式正在重塑整个编程行业
-- [Claude Code Hooks 实战指南](/posts/ai/2026-02-18-claude-code-hooks-guide/) — Claude Code 的自动化扩展机制
-- [Vibe Coding 完全指南](/posts/ai/2026-02-22-vibe-coding-guide/) — 用自然语言驱动 AI 编程的方法论
+- [Claude Code: The Complete Guide](/posts/ai/2026-01-14-claude-code-guide/) — Deep dive into using Claude Code effectively
+- [CLAUDE.md Memory: Make AI Remember Your Project](/posts/ai/2026-01-12-claudemd-memory-guide/) — How AI coding assistants understand project context
+- [Context Engineering: The Most Underrated AI Skill](/posts/ai/2026-02-24-context-engineering-deep-dive/) — System prompt design and context management
+- [MCP Protocol: The Universal Standard for AI Integration](/posts/ai/2026-02-20-mcp-protocol-guide/) — The future of AI tool extensibility
+- [2026 Agentic Coding Trends Report](/posts/ai/2026-02-23-agentic-coding-trends-2026/) — How the Agentic Loop is reshaping software development
+- [Claude Code Hooks: Automation Guide](/posts/ai/2026-02-18-claude-code-hooks-guide/) — Extending Claude Code with custom automation
+- [Vibe Coding: The Complete Guide](/posts/ai/2026-02-22-vibe-coding-guide/) — Natural language-driven AI programming methodology
