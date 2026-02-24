@@ -127,7 +127,7 @@ source ~/.zshrc
 
 首次加载会自动启动配置向导，跟随提示选择你喜欢的样式：
 
-![Powerlevel10k 配置向导，交互式选择提示符样式](p10k-configure.gif)
+![Powerlevel10k 配置向导，交互式选择提示符样式](p10k-configure.webp)
 
 如果需要重新配置，运行：
 

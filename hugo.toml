@@ -87,7 +87,7 @@ summaryLength = 150
   # AI 主定位：一句话讲清楚你是什么
   description = "Bruce 的 AI 实战与工程笔记：聚焦大模型、AI Agent、RAG、Prompt 工程与工程化落地（旧的 Java/Go/Docker/Linux 文章仍保留归档）。"
   keywords = "AI,AI Agent,LLM,RAG,Prompt Engineering,Claude Code,AI编程,大模型,Agent工程,系统设计,后端架构,Java,Go,Docker,Linux"
-  images = ["/images/og-image.png"]
+  images = ["/images/og-image.webp"]
 
   # 主题配色
   themeColor = "#494f5c"
@@ -113,6 +113,19 @@ summaryLength = 150
   shareSocial = true
   noIndexPages = ["404 Page not found"]
   usesAnimation = true
+
+  # Giscus 评论系统（基于 GitHub Discussions）
+  [params.giscus]
+    repo = "heyuan110/heyuan110.github.io"
+    repoID = "R_kgDOOGpYkg"
+    category = "Announcements"
+    categoryID = "DIC_kwDOOGpYks4C3HL9"
+    mapping = "pathname"
+    strict = "0"
+    reactionsEnabled = "1"
+    inputPosition = "bottom"
+    theme = "preferred_color_scheme"
+    lang = "zh-CN"
 
   # 外部库
   mathjaxLib = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
