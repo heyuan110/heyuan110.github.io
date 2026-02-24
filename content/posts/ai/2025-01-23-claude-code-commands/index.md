@@ -3,6 +3,7 @@ date = '2026-01-23'
 draft = false
 title = 'Claude Code 高手都在用的 24 个技巧'
 tags = ['AI', 'Claude Code', 'CLI', '开发工具', '效率']
+categories = ['AI实战']
 +++
 
 Claude Code 是 Anthropic 推出的命令行 AI 编程助手。它不是一个简单的聊天机器人，而是一个能直接在你的终端里读代码、写代码、执行命令的智能助手。本文整理了 24 个实用技巧，帮你把 Claude Code 用到极致。

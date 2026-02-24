@@ -2,6 +2,7 @@
 title: "Nginx 配置部分页面 HTTPS：HTTP/HTTPS 混合站点实战"
 date: 2016-04-22 20:33:37
 author: "bruce"
+draft: true
 description: "Nginx 配置部分页面 HTTPS 加密访问完整教程，通过 location 和 proxy_pass 实现 HTTP/HTTPS 自动跳转，附完整配置示例"
 toc: true
 tags:
