@@ -1,5 +1,5 @@
 +++
-date = '2026-02-24T10:00:00+08:00'
+date = '2026-02-24T07:00:00+08:00'
 draft = false
 title = '斯坦福 CS146S 课程全解读：当 Vibe Coding 成为正式学科'
 description = '深度拆解斯坦福大学 CS146S The Modern Software Developer 课程，10 周课程大纲、豪华嘉宾阵容、免费学习资源全收录，看全球顶级高校如何系统教授 Vibe Coding。'
@@ -9,7 +9,7 @@ categories = ['AI原理']
 keywords = ['Stanford CS146S', '斯坦福 Vibe Coding 课程', 'The Modern Software Developer', 'AI 编程课程', 'Vibe Coding 学什么']
 +++
 
-从 Andrej Karpathy 在 2025 年 2 月发推提出 Vibe Coding，到斯坦福大学在同年秋季正式开设 CS146S 课程，前后不到 8 个月。一个社交媒体上的热词，以这样的速度进入全球顶级高校的课程体系，在计算机科学的历史上极为罕见。
+从 Andrej Karpathy 在 2025 年 2 月发推提出 [Vibe Coding](/posts/ai/2026-02-22-vibe-coding-guide/)，到斯坦福大学在同年秋季正式开设 CS146S 课程，前后不到 8 个月。一个社交媒体上的热词，以这样的速度进入全球顶级高校的课程体系，在计算机科学的历史上极为罕见。
 
 这不是一门"教你用 ChatGPT 写代码"的水课。CS146S 覆盖了从 LLM 原理到 Agent 架构、从上下文工程到安全攻防、从自动化构建到生产运维的完整软件工程生命周期。它的嘉宾名单读起来像一份 AI 编程领域的"名人堂"——Claude Code 创始人、Vercel AI 研究负责人、Semgrep CEO、a16z 合伙人……
 
@@ -66,7 +66,7 @@ keywords = ['Stanford CS146S', '斯坦福 Vibe Coding 课程', 'The Modern Softw
 
 ### Week 2：Coding Agent 解剖学
 
-**主题**：Agent architecture and components / Tool use and function calling / MCP (Model Context Protocol)
+**主题**：Agent architecture and components / Tool use and function calling / [MCP (Model Context Protocol)](/posts/ai/2026-02-20-mcp-protocol-guide/)
 
 如果说第一周教你"怎么跟 LLM 对话"，第二周教你"怎么给 LLM 装上手脚"。
 
@@ -113,7 +113,7 @@ Agent 不是一个聪明的聊天机器人，而是一个**带工具的自主系
 
 这周的核心问题是：**Agent 的自治度应该设到多高？人类应该在什么节点介入？**
 
-阅读材料几乎是 Claude Code 生态的全景：
+阅读材料几乎是 [Claude Code](/posts/ai/2025-01-14-claude-code-guide/) 生态的全景：
 
 - **[How Anthropic Uses Claude Code](https://www-cdn.anthropic.com/58284b19e702b49db9302d5b6f135ad8871e7658.pdf)**——Anthropic 内部如何使用自家工具的第一手材料
 - **[Claude Code Best Practices](https://www.anthropic.com/engineering/claude-code-best-practices)**——官方最佳实践
@@ -270,13 +270,24 @@ CS146S 不是孤例。Vibe Coding 正在全球高校遍地开花：
 
 ## 从 Vibe Coding 到 Agentic Engineering
 
-CS146S 的课程结构暗合了一个更大的叙事：Vibe Coding 只是起点，终点是 **Agentic Engineering**。
+CS146S 的课程结构暗合了一个更大的叙事：Vibe Coding 只是起点，终点是 **[Agentic Engineering](/posts/ai/2026-02-23-agentic-coding-trends-2026/)**。
 
 课程的前半段（Week 1-5）教你如何作为个体用 AI 编程工具提效——这是 Vibe Coding 的基本形态。后半段（Week 6-10）转向工程体系：安全、审查、构建、运维、趋势——这是从个人生产力到组织级工程范式的跃迁。
 
 正如 Karpathy 在 2026 年 2 月的新推文中所说：Agentic Engineering 是 Vibe Coding 的进化形态。以前是让 AI 帮你写代码，以后是你指挥一群 AI Agent 完成整个软件工程的全流程。
 
 而 CS146S 恰好就是在系统性地教这件事。
+
+## 相关阅读
+
+如果你对 Vibe Coding 和 AI 编程工具的实战感兴趣，推荐这些文章：
+
+- [Claude Code 从入门到精通完全指南](/posts/ai/2025-01-14-claude-code-guide/) — 课程中高频提及的核心工具
+- [Vibe Coding 完全指南](/posts/ai/2026-02-22-vibe-coding-guide/) — Vibe Coding 的理念、工具与实战
+- [MCP 协议全面解析](/posts/ai/2026-02-20-mcp-protocol-guide/) — Week 2-3 核心主题的深入解读
+- [CLAUDE.md 记忆术](/posts/ai/2026-01-12-claudemd-memory-guide/) — 理解 AI 编程助手的项目感知机制
+- [2026 Agentic Coding 趋势报告](/posts/ai/2026-02-23-agentic-coding-trends-2026/) — 从 Vibe Coding 到 Agentic Engineering 的演进
+- [Claude Code Hooks 实战指南](/posts/ai/2026-02-18-claude-code-hooks-guide/) — Claude Code 的自动化扩展能力
 
 ## 系列文章导航
 

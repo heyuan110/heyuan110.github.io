@@ -1,5 +1,5 @@
 +++
-date = '2026-02-24T14:00:00+08:00'
+date = '2026-02-24T09:00:00+08:00'
 draft = false
 title = '从原型到生产：AI 应用的完整生命周期（斯坦福 CS146S Week 8-9 精读）'
 description = '深度解读斯坦福 CS146S 第八九周课程：一句话做 App 只是起点，如何将 AI 快速原型纳入测试、安全、运维的完整工程体系，从 Demo 到 Production 的完整路径。'
@@ -19,7 +19,7 @@ Week 8 的嘉宾是 Vercel AI 研究负责人 Gaspar Garcia，他现场演示了
 
 CS146S 的态度很明确：**快速原型只是起点。** Week 8 教你怎么快速造出来，Week 9 教你怎么让它在生产环境中活下去。这两周合在一起，讲的是 AI 应用从 demo 到 production 的完整路径。
 
-而"从 demo 到 production"之间的那道鸿沟，恰恰是大多数 Vibe Coder 倒下的地方。
+而"从 demo 到 production"之间的那道鸿沟，恰恰是大多数 [Vibe Coder](/posts/ai/2026-02-22-vibe-coding-guide/) 倒下的地方。
 
 ## 一句话做 App：能力与边界
 
@@ -298,6 +298,14 @@ Week 8 的作业 [Multi-stack Web App Builds](https://github.com/mihail911/moder
 
 课程官网：[themodernsoftware.dev](https://themodernsoftware.dev)
 作业代码：[GitHub](https://github.com/mihail911/modern-software-dev-assignments)
+
+## 相关阅读
+
+- [Vibe Coding 完全指南](/posts/ai/2026-02-22-vibe-coding-guide/) — 从原型到生产，Vibe Coding 的完整方法论
+- [Claude Code vs Cursor vs Windsurf 实测对比](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/) — 不同 AI 编程工具在生产场景中的表现
+- [MCP 协议全面解析](/posts/ai/2026-02-20-mcp-protocol-guide/) — 通过 MCP 扩展 AI 的运维能力
+- [Claude Code Hooks 实战指南](/posts/ai/2026-02-18-claude-code-hooks-guide/) — CI/CD 自动化的实用配置
+- [从零手搓一个 Claude Code](/posts/ai/2026-02-24-build-magic-code/) — 理解 AI 编程工具的底层原理
 
 ## 系列文章导航
 
