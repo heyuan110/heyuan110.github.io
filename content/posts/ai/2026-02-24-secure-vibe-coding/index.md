@@ -1,7 +1,7 @@
 +++
 date = '2026-02-24T08:30:00+08:00'
 draft = false
-title = 'Secure Vibe Coding：AI 代码的安全攻防全指南（斯坦福 CS146S Week 6-7 精读）'
+title = '斯坦福 CS146S 精读（四）：Secure Vibe Coding——AI 代码安全攻防全指南'
 description = '深度解读斯坦福 CS146S 第六七周课程：Prompt Injection 导致远程代码执行的真实案例、OWASP Top 10 在 Agent 时代的新威胁、AI 代码审查方法论，以及如何建立安全的 Vibe Coding 实践。'
 toc = true
 tags = ['AI 安全', 'Vibe Coding', 'Stanford CS146S', 'Prompt Injection', 'Code Review']
@@ -319,8 +319,8 @@ CS146S 的回答是：**不安全的快，是假的快。**
 
 本文是「斯坦福 Vibe Coding 课程精读」系列第 4 篇：
 
-1. [斯坦福 CS146S 课程全解读 — 当 Vibe Coding 成为正式学科](/posts/ai/2026-02-24-stanford-cs146s-overview/)
-2. [上下文工程 — AI 编程最被低估的核心能力](/posts/ai/2026-02-24-context-engineering-deep-dive/)（Week 3 精读）
-3. [如何成为 Agent Manager — 人机协作的最佳实践](/posts/ai/2026-02-24-agent-manager-patterns/)（Week 4 精读）
-4. **本文**：Secure Vibe Coding — AI 代码的安全攻防全指南（Week 6-7 精读）
-5. [从原型到生产 — AI 应用的完整生命周期](/posts/ai/2026-02-24-prototype-to-production/)（Week 8-9 精读）
+1. [斯坦福 CS146S 精读（一）：Vibe Coding 如何成为正式学科](/posts/ai/2026-02-24-stanford-cs146s-overview/)
+2. [斯坦福 CS146S 精读（二）：上下文工程](/posts/ai/2026-02-24-context-engineering-deep-dive/)（Week 3）
+3. [斯坦福 CS146S 精读（三）：Agent Manager](/posts/ai/2026-02-24-agent-manager-patterns/)（Week 4）
+4. **本文**：斯坦福 CS146S 精读（四）：Secure Vibe Coding（Week 6-7）
+5. [斯坦福 CS146S 精读（五）：从原型到生产](/posts/ai/2026-02-24-prototype-to-production/)（Week 8-9）

@@ -1,7 +1,7 @@
 +++
 date = '2026-02-24T08:00:00+08:00'
 draft = false
-title = '如何成为 Agent Manager：人机协作的最佳实践（斯坦福 CS146S Week 4 精读）'
+title = '斯坦福 CS146S 精读（三）：Agent Manager——人机协作的最佳实践'
 description = '深度解读斯坦福 CS146S 第四周课程：从 Claude Code 创始人 Boris Cherney 的演讲到 Anthropic 官方最佳实践，系统学习 Coding Agent 的自治度管控和人机协作模式设计。'
 toc = true
 tags = ['Agent Manager', 'Claude Code', 'AI 编程', 'Stanford CS146S', '人机协作']
@@ -301,8 +301,8 @@ Boris Cherney 创造 Claude Code 的初衷正是如此——不是做一个更�
 
 本文是「斯坦福 Vibe Coding 课程精读」系列第 3 篇：
 
-1. [斯坦福 CS146S 课程全解读 — 当 Vibe Coding 成为正式学科](/posts/ai/2026-02-24-stanford-cs146s-overview/)
-2. [上下文工程 — AI 编程最被低估的核心能力](/posts/ai/2026-02-24-context-engineering-deep-dive/)（Week 3 精读）
-3. **本文**：如何成为 Agent Manager — 人机协作的最佳实践（Week 4 精读）
-4. [Secure Vibe Coding — AI 代码的安全攻防全指南](/posts/ai/2026-02-24-secure-vibe-coding/)（Week 6-7 精读）
-5. [从原型到生产 — AI 应用的完整生命周期](/posts/ai/2026-02-24-prototype-to-production/)（Week 8-9 精读）
+1. [斯坦福 CS146S 精读（一）：Vibe Coding 如何成为正式学科](/posts/ai/2026-02-24-stanford-cs146s-overview/)
+2. [斯坦福 CS146S 精读（二）：上下文工程](/posts/ai/2026-02-24-context-engineering-deep-dive/)（Week 3）
+3. **本文**：斯坦福 CS146S 精读（三）：Agent Manager（Week 4）
+4. [斯坦福 CS146S 精读（四）：Secure Vibe Coding](/posts/ai/2026-02-24-secure-vibe-coding/)（Week 6-7）
+5. [斯坦福 CS146S 精读（五）：从原型到生产](/posts/ai/2026-02-24-prototype-to-production/)（Week 8-9）

@@ -1,7 +1,7 @@
 +++
 date = '2026-02-24T07:30:00+08:00'
 draft = false
-title = '上下文工程：AI 编程最被低估的核心能力（斯坦福 CS146S Week 3 精读）'
+title = '斯坦福 CS146S 精读（二）：上下文工程——AI 编程最被低估的核心能力'
 description = '深度解读斯坦福 CS146S 第三周课程：从 Prompt Engineering 到 Context Engineering 的范式跃迁，Spec 为何成为新的源代码，长上下文的四种失败模式与应对策略。'
 toc = true
 tags = ['Context Engineering', 'AI 编程', 'Stanford CS146S', 'Vibe Coding', 'Prompt Engineering']
@@ -306,8 +306,8 @@ CS146S Week 3 教会我们的核心认知可以浓缩为一句话：
 
 本文是「斯坦福 Vibe Coding 课程精读」系列第 2 篇：
 
-1. [斯坦福 CS146S 课程全解读 — 当 Vibe Coding 成为正式学科](/posts/ai/2026-02-24-stanford-cs146s-overview/)
-2. **本文**：上下文工程 — AI 编程最被低估的核心能力（Week 3 精读）
-3. [如何成为 Agent Manager — 人机协作的最佳实践](/posts/ai/2026-02-24-agent-manager-patterns/)（Week 4 精读）
-4. [Secure Vibe Coding — AI 代码的安全攻防全指南](/posts/ai/2026-02-24-secure-vibe-coding/)（Week 6-7 精读）
-5. [从原型到生产 — AI 应用的完整生命周期](/posts/ai/2026-02-24-prototype-to-production/)（Week 8-9 精读）
+1. [斯坦福 CS146S 精读（一）：Vibe Coding 如何成为正式学科](/posts/ai/2026-02-24-stanford-cs146s-overview/)
+2. **本文**：斯坦福 CS146S 精读（二）：上下文工程（Week 3）
+3. [斯坦福 CS146S 精读（三）：Agent Manager](/posts/ai/2026-02-24-agent-manager-patterns/)（Week 4）
+4. [斯坦福 CS146S 精读（四）：Secure Vibe Coding](/posts/ai/2026-02-24-secure-vibe-coding/)（Week 6-7）
+5. [斯坦福 CS146S 精读（五）：从原型到生产](/posts/ai/2026-02-24-prototype-to-production/)（Week 8-9）

@@ -1,7 +1,7 @@
 +++
 date = '2026-02-24T07:00:00+08:00'
 draft = false
-title = '斯坦福 CS146S 课程全解读：当 Vibe Coding 成为正式学科'
+title = '斯坦福 CS146S 精读（一）：Vibe Coding 如何成为正式学科'
 description = '深度拆解斯坦福大学 CS146S The Modern Software Developer 课程，10 周课程大纲、豪华嘉宾阵容、免费学习资源全收录，看全球顶级高校如何系统教授 Vibe Coding。'
 toc = true
 tags = ['Vibe Coding', 'Stanford CS146S', 'AI 编程', '课程解读', 'Agentic Engineering']
@@ -105,7 +105,7 @@ Agent 不是一个聪明的聊天机器人，而是一个**带工具的自主系
 
 **核心认知**：从 Prompt Engineering 到 Context Engineering，这是 AI 编程范式的第二次跃迁。好代码是好上下文的副产品。
 
-> 关于上下文工程的深度解读，请看系列第 2 篇：[上下文工程 — AI 编程最被低估的核心能力](/posts/ai/2026-02-24-context-engineering-deep-dive/)
+> 关于上下文工程的深度解读，请看系列第 2 篇：[斯坦福 CS146S 精读（二）：上下文工程](/posts/ai/2026-02-24-context-engineering-deep-dive/)
 
 ### Week 4：Coding Agent 模式
 
@@ -126,7 +126,7 @@ Agent 不是一个聪明的聊天机器人，而是一个**带工具的自主系
 
 **核心认知**：Devin 的 Agents 101 文档总结得很好：Agent 的自治度从简单任务（直接描述即可）到中等任务（预期节省 80% 时间但需要人类打磨）到复杂任务（需要多个检查点审查）。关键不在于 Agent 多强，而在于**你多会管理它**。
 
-> 关于 Agent Manager 模式的深度解读，请看系列第 3 篇：[如何成为 Agent Manager — 人机协作的最佳实践](/posts/ai/2026-02-24-agent-manager-patterns/)
+> 关于 Agent Manager 模式的深度解读，请看系列第 3 篇：[斯坦福 CS146S 精读（三）：Agent Manager](/posts/ai/2026-02-24-agent-manager-patterns/)
 
 ### Week 5：现代终端
 
@@ -161,7 +161,7 @@ AI IDE 解决的是"写代码"的问题，AI 终端解决的是"跑代码、管�
 
 **核心认知**：很多 AI 编程课只教你怎么写得快，这门课把**交付的底线**拉出来了：可测、可审、可防。
 
-> 关于安全主题的深度解读，请看系列第 4 篇：[Secure Vibe Coding — AI 代码的安全攻防全指南](/posts/ai/2026-02-24-secure-vibe-coding/)
+> 关于安全主题的深度解读，请看系列第 4 篇：[斯坦福 CS146S 精读（四）：Secure Vibe Coding](/posts/ai/2026-02-24-secure-vibe-coding/)
 
 ### Week 7：代码审查与软件支持
 
@@ -191,7 +191,7 @@ AI IDE 解决的是"写代码"的问题，AI 终端解决的是"跑代码、管�
 
 **核心认知**：快速原型只是起点。课程真正想传达的是：你得能把这个原型**纳入测试、安全、Code Review 这些工程规范中**。很多人用 AI 做了 demo 就觉得大功告成，但从 demo 到 production 之间还有一道鸿沟。
 
-> 关于从原型到生产的深度解读，请看系列第 5 篇：[从原型到生产 — AI 应用的完整生命周期](/posts/ai/2026-02-24-prototype-to-production/)
+> 关于从原型到生产的深度解读，请看系列第 5 篇：[斯坦福 CS146S 精读（五）：从原型到生产](/posts/ai/2026-02-24-prototype-to-production/)
 
 ### Week 9：部署后运维
 
@@ -293,10 +293,10 @@ CS146S 的课程结构暗合了一个更大的叙事：Vibe Coding 只是起点�
 
 这是「斯坦福 Vibe Coding 课程精读」系列的第 1 篇。后续文章将对课程中最有价值的主题做深度解读：
 
-1. **本文**：斯坦福 CS146S 课程全解读 — 当 Vibe Coding 成为正式学科
-2. [上下文工程 — AI 编程最被低估的核心能力](/posts/ai/2026-02-24-context-engineering-deep-dive/)（Week 3 精读）
-3. [如何成为 Agent Manager — 人机协作的最佳实践](/posts/ai/2026-02-24-agent-manager-patterns/)（Week 4 精读）
-4. [Secure Vibe Coding — AI 代码的安全攻防全指南](/posts/ai/2026-02-24-secure-vibe-coding/)（Week 6-7 精读）
-5. [从原型到生产 — AI 应用的完整生命周期](/posts/ai/2026-02-24-prototype-to-production/)（Week 8-9 精读）
+1. **本文**：斯坦福 CS146S 精读（一）：Vibe Coding 如何成为正式学科
+2. [斯坦福 CS146S 精读（二）：上下文工程](/posts/ai/2026-02-24-context-engineering-deep-dive/)（Week 3）
+3. [斯坦福 CS146S 精读（三）：Agent Manager](/posts/ai/2026-02-24-agent-manager-patterns/)（Week 4）
+4. [斯坦福 CS146S 精读（四）：Secure Vibe Coding](/posts/ai/2026-02-24-secure-vibe-coding/)（Week 6-7）
+5. [斯坦福 CS146S 精读（五）：从原型到生产](/posts/ai/2026-02-24-prototype-to-production/)（Week 8-9）
 
 课程资源全部免费公开，你需要的只是行动力。

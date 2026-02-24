@@ -1,7 +1,7 @@
 +++
 date = '2026-02-24T09:00:00+08:00'
 draft = false
-title = '从原型到生产：AI 应用的完整生命周期（斯坦福 CS146S Week 8-9 精读）'
+title = '斯坦福 CS146S 精读（五）：从原型到生产——AI 应用完整生命周期'
 description = '深度解读斯坦福 CS146S 第八九周课程：一句话做 App 只是起点，如何将 AI 快速原型纳入测试、安全、运维的完整工程体系，从 Demo 到 Production 的完整路径。'
 toc = true
 tags = ['AI 应用开发', 'DevOps', 'Stanford CS146S', 'Vibe Coding', '部署运维']
@@ -286,10 +286,10 @@ Week 8 的作业 [Multi-stack Web App Builds](https://github.com/mihail911/moder
 
 这个系列覆盖了 CS146S 课程的核心内容：
 
-1. [斯坦福 CS146S 课程全解读](/posts/ai/2026-02-24-stanford-cs146s-overview/) — 全局认知
-2. [上下文工程](/posts/ai/2026-02-24-context-engineering-deep-dive/) — AI 编程的核心能力
-3. [Agent Manager](/posts/ai/2026-02-24-agent-manager-patterns/) — 人机协作的最佳实践
-4. [Secure Vibe Coding](/posts/ai/2026-02-24-secure-vibe-coding/) — 安全攻防底线
+1. [精读（一）：课程全解读](/posts/ai/2026-02-24-stanford-cs146s-overview/) — 全局认知
+2. [精读（二）：上下文工程](/posts/ai/2026-02-24-context-engineering-deep-dive/) — AI 编程的核心能力
+3. [精读（三）：Agent Manager](/posts/ai/2026-02-24-agent-manager-patterns/) — 人机协作的最佳实践
+4. [精读（四）：Secure Vibe Coding](/posts/ai/2026-02-24-secure-vibe-coding/) — 安全攻防底线
 5. **本文**：从原型到生产 — 完整生命周期
 
 如果你只有时间读一篇，读第 1 篇获得全局认知。如果有时间读两篇，加上第 2 篇理解上下文工程。如果五篇都读了——恭喜你，你已经具备了一个"斯坦福水平"的 Vibe Coding 知识框架。
@@ -311,8 +311,8 @@ Week 8 的作业 [Multi-stack Web App Builds](https://github.com/mihail911/moder
 
 本文是「斯坦福 Vibe Coding 课程精读」系列第 5 篇（完结）：
 
-1. [斯坦福 CS146S 课程全解读 — 当 Vibe Coding 成为正式学科](/posts/ai/2026-02-24-stanford-cs146s-overview/)
-2. [上下文工程 — AI 编程最被低估的核心能力](/posts/ai/2026-02-24-context-engineering-deep-dive/)（Week 3 精读）
-3. [如何成为 Agent Manager — 人机协作的最佳实践](/posts/ai/2026-02-24-agent-manager-patterns/)（Week 4 精读）
-4. [Secure Vibe Coding — AI 代码的安全攻防全指南](/posts/ai/2026-02-24-secure-vibe-coding/)（Week 6-7 精读）
-5. **本文**：从原型到生产 — AI 应用的完整生命周期（Week 8-9 精读）
+1. [斯坦福 CS146S 精读（一）：Vibe Coding 如何成为正式学科](/posts/ai/2026-02-24-stanford-cs146s-overview/)
+2. [斯坦福 CS146S 精读（二）：上下文工程](/posts/ai/2026-02-24-context-engineering-deep-dive/)（Week 3）
+3. [斯坦福 CS146S 精读（三）：Agent Manager](/posts/ai/2026-02-24-agent-manager-patterns/)（Week 4）
+4. [斯坦福 CS146S 精读（四）：Secure Vibe Coding](/posts/ai/2026-02-24-secure-vibe-coding/)（Week 6-7）
+5. **本文**：斯坦福 CS146S 精读（五）：从原型到生产（Week 8-9）
