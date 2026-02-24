@@ -1,123 +1,121 @@
----
-title: "隐私政策"
-date: 2020-01-01
-author: "bruce"
-description: "本站隐私政策，说明我们如何收集、使用和保护您的个人信息"
-toc: false
----
++++
+title = 'Privacy Policy'
+date = '2020-01-01'
+description = 'Privacy policy for heyuan110.com — how we collect, use, and protect your information.'
+toc = false
++++
 
-## 概述
+## Overview
 
-欢迎访问 heyuan110.com（以下简称"本站"）。本隐私政策说明了我们如何收集、使用和保护您在访问本站时的信息。
+Welcome to heyuan110.com ("this site"). This privacy policy explains how we collect, use, and protect your information when you visit.
 
-使用本站即表示您同意本隐私政策中描述的数据处理方式。
-
----
-
-## 信息收集
-
-### 自动收集的信息
-
-当您访问本站时，我们可能会自动收集以下信息：
-
-- **访问数据**：IP 地址、浏览器类型、操作系统、访问时间、浏览页面
-- **设备信息**：设备类型、屏幕分辨率
-- **引荐来源**：您从哪个网站或搜索引擎访问本站
-
-### Cookie 使用
-
-本站使用 Cookie 来：
-
-- 分析网站流量和用户行为
-- 改善用户体验
-- 提供个性化内容和广告
-
-您可以通过浏览器设置禁用 Cookie，但这可能影响部分功能的正常使用。
+By using this site, you agree to the data practices described in this policy.
 
 ---
 
-## 第三方服务
+## Information We Collect
 
-本站使用以下第三方服务，这些服务可能会收集您的信息：
+### Automatically Collected Information
+
+When you visit this site, we may automatically collect:
+
+- **Usage data**: IP address, browser type, operating system, visit time, pages viewed
+- **Device information**: Device type, screen resolution
+- **Referral source**: The website or search engine that brought you here
+
+### Cookies
+
+This site uses cookies to:
+
+- Analyze website traffic and user behavior
+- Improve user experience
+- Serve relevant content and advertisements
+
+You can disable cookies through your browser settings, but this may affect site functionality.
+
+---
+
+## Third-Party Services
+
+This site uses the following third-party services that may collect your information:
 
 ### Google Analytics
 
-我们使用 Google Analytics 分析网站流量。Google Analytics 会使用 Cookie 收集匿名的访问数据。
+We use Google Analytics to analyze website traffic. Google Analytics uses cookies to collect anonymous usage data.
 
-- [Google 隐私政策](https://policies.google.com/privacy)
-- [如何停用 Google Analytics](https://tools.google.com/dlpage/gaoptout)
+- [Google Privacy Policy](https://policies.google.com/privacy)
+- [Opt out of Google Analytics](https://tools.google.com/dlpage/gaoptout)
 
 ### Google AdSense
 
-本站可能展示 Google AdSense 广告。Google 会根据您的访问历史展示相关广告。
+This site may display Google AdSense advertisements. Google serves ads based on your browsing history.
 
-- [Google 广告隐私政策](https://policies.google.com/technologies/ads)
-- [广告个性化设置](https://adssettings.google.com/)
+- [Google Ads Privacy Policy](https://policies.google.com/technologies/ads)
+- [Ad Personalization Settings](https://adssettings.google.com/)
 
-### 评论系统
+### Comments (Giscus)
 
-如果本站使用第三方评论系统，该系统可能会收集您的：
+This site uses Giscus for comments, powered by GitHub Discussions. When you comment, the following may be collected:
 
-- 昵称
-- 邮箱地址
-- 评论内容
-
----
-
-## 信息使用
-
-我们收集的信息用于：
-
-- 分析和改进网站内容
-- 了解用户需求和偏好
-- 提供更好的用户体验
-- 展示相关广告
-
-我们不会出售、交易或以其他方式向外部转让您的个人身份信息。
+- GitHub username
+- Comment content
 
 ---
 
-## 数据安全
+## How We Use Information
 
-我们采取合理的技术和组织措施保护您的信息安全。但请注意，互联网传输不能保证 100% 安全。
+We use collected information to:
 
----
+- Analyze and improve site content
+- Understand user needs and preferences
+- Provide a better user experience
+- Display relevant advertisements
 
-## 外部链接
-
-本站可能包含指向其他网站的链接。我们对这些外部网站的隐私政策和内容不承担责任。建议您查阅所访问网站的隐私政策。
-
----
-
-## 儿童隐私
-
-本站不面向 13 岁以下儿童。我们不会有意收集儿童的个人信息。
+We do not sell, trade, or otherwise transfer your personal information to third parties.
 
 ---
 
-## 您的权利
+## Data Security
 
-您有权：
-
-- 了解我们收集的关于您的信息
-- 要求删除您的个人数据
-- 选择退出数据收集（如禁用 Cookie）
+We take reasonable technical and organizational measures to protect your information. However, no internet transmission is 100% secure.
 
 ---
 
-## 政策变更
+## External Links
 
-我们可能会不时更新本隐私政策。更新后的政策将在本页面发布，并注明生效日期。
-
----
-
-## 联系我们
-
-如果您对本隐私政策有任何疑问，请通过以下方式联系我们：
-
-- 邮箱：heyuan110@gmail.com
-- GitHub：[heyuan110](https://github.com/heyuan110)
+This site may contain links to other websites. We are not responsible for the privacy practices or content of external sites. We recommend reviewing the privacy policy of any site you visit.
 
 ---
 
-**最后更新日期**：2025 年 1 月
+## Children's Privacy
+
+This site is not directed at children under 13. We do not knowingly collect personal information from children.
+
+---
+
+## Your Rights
+
+You have the right to:
+
+- Know what information we collect about you
+- Request deletion of your personal data
+- Opt out of data collection (e.g., disable cookies)
+
+---
+
+## Policy Changes
+
+We may update this privacy policy from time to time. Updated policies will be posted on this page with the effective date.
+
+---
+
+## Contact
+
+If you have questions about this privacy policy, contact us:
+
+- Email: heyuan110@gmail.com
+- GitHub: [heyuan110](https://github.com/heyuan110)
+
+---
+
+**Last updated**: February 2026

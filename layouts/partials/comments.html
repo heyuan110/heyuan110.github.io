@@ -1,8 +1,8 @@
 {{- if .Site.Params.giscus -}}
 {{- $giscus := .Site.Params.giscus -}}
 <div class="comments-section">
-  <h2 class="comments-title">💬 评论</h2>
-  <p class="comments-desc">欢迎留言讨论，需要 GitHub 账号登录</p>
+  <h2 class="comments-title">Comments</h2>
+  <p class="comments-desc">Join the discussion — requires a GitHub account</p>
   <div class="giscus-wrapper">
     <script src="https://giscus.app/client.js"
             data-repo="{{ $giscus.repo }}"
@@ -15,7 +15,7 @@
             data-emit-metadata="0"
             data-input-position="{{ default "bottom" $giscus.inputPosition }}"
             data-theme="{{ default "dark_dimmed" $giscus.theme }}"
-            data-lang="{{ default "zh-CN" $giscus.lang }}"
+            data-lang="{{ default "en" $giscus.lang }}"
             crossorigin="anonymous"
             async>
     </script>

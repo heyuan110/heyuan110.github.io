@@ -1,20 +1,20 @@
 baseURL = "https://www.heyuan110.com/"
-languageCode = "zh-hans"
-defaultContentLanguage = "zh-hans"
-title = "Bruce's Blog"
+languageCode = "en"
+defaultContentLanguage = "en"
+title = "Bruce's AI Engineering Blog"
 theme = "hermit-V2"
 googleAnalytics = "G-CT8E5N460D"
 
 # ============================================
-# SEO / Indexing 配置
+# SEO / Indexing
 # ============================================
 enableRobotsTXT = true
 canonifyURLs = true
 
-# 启用 Git 信息（用于自动获取文章最后修改时间）
+# Git info for last modified time
 enableGitInfo = true
 
-# 摘要长度
+# Summary length
 summaryLength = 150
 
 # GA4
@@ -23,7 +23,7 @@ summaryLength = 150
     id = 'G-CT8E5N460D'
 
 # ============================================
-# Sitemap 配置 - SEO 优化
+# Sitemap
 # ============================================
 [sitemap]
   changeFreq = "weekly"
@@ -31,14 +31,14 @@ summaryLength = 150
   priority = 0.5
 
 # ============================================
-# 分类法
+# Taxonomies
 # ============================================
 [taxonomies]
   tag = "tags"
   category = "categories"
 
 # ============================================
-# 输出格式 - 包含 JSON 用于搜索
+# Output formats (JSON for search)
 # ============================================
 [outputs]
   home = ["HTML", "RSS", "JSON"]
@@ -47,7 +47,7 @@ summaryLength = 150
   term = ["HTML", "RSS"]
 
 # ============================================
-# RSS 配置
+# RSS
 # ============================================
 [outputFormats]
   [outputFormats.RSS]
@@ -55,7 +55,7 @@ summaryLength = 150
     baseName = "index"
 
 # ============================================
-# Markup 配置
+# Markup
 # ============================================
 [markup]
   [markup.goldmark]
@@ -72,7 +72,7 @@ summaryLength = 150
     endLevel = 4
 
 # ============================================
-# 隐私配置 - GDPR 友好
+# Privacy - GDPR friendly
 # ============================================
 [privacy]
   [privacy.googleAnalytics]
@@ -81,26 +81,25 @@ summaryLength = 150
     useSessionStorage = false
 
 # ============================================
-# 参数配置
+# Params
 # ============================================
 [params]
-  # AI 主定位：一句话讲清楚你是什么
-  description = "Bruce 的 AI 实战与工程笔记：聚焦大模型、AI Agent、RAG、Prompt 工程与工程化落地（旧的 Java/Go/Docker/Linux 文章仍保留归档）。"
-  keywords = "AI,AI Agent,LLM,RAG,Prompt Engineering,Claude Code,AI编程,大模型,Agent工程,系统设计,后端架构,Java,Go,Docker,Linux"
+  description = "Practical AI engineering guides: Claude Code, AI Agents, LLM workflows, tool comparisons, and hands-on tutorials for developers."
+  keywords = "Claude Code,AI Agent,AI coding tools,AI engineering,LLM,RAG,Prompt Engineering,AI workflow,Cursor,Codex CLI,MCP,AI programming"
   images = ["/images/og-image.webp"]
 
-  # 主题配色
+  # Theme
   themeColor = "#494f5c"
   accentColor = "#018472"
 
-  # 作者信息
+  # Author
   [params.author]
     name = "Bruce"
     about = "/about/"
 
-  homeSubtitle = "聚焦 AI Agent / Claude Code / OpenClaw 的工程实战与增长复盘"
+  homeSubtitle = "AI Engineering Guides — Claude Code / AI Agents / Tool Comparisons / Workflows"
 
-  # 功能开关
+  # Features
   footerHideThemeName = true
   justifyContent = false
   relatedPosts = true
@@ -114,7 +113,7 @@ summaryLength = 150
   noIndexPages = ["404 Page not found"]
   usesAnimation = true
 
-  # Giscus 评论系统（基于 GitHub Discussions）
+  # Giscus comments (GitHub Discussions)
   [params.giscus]
     repo = "heyuan110/heyuan110.github.io"
     repoID = "R_kgDOOGpYkg"
@@ -125,18 +124,18 @@ summaryLength = 150
     reactionsEnabled = "1"
     inputPosition = "bottom"
     theme = "dark_dimmed"
-    lang = "zh-CN"
+    lang = "en"
 
-  # 外部库
+  # External libs
   mathjaxLib = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
   mermaidLib = "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs"
 
-  # 图片画廊
+  # Image gallery
   [params.gallery]
     enable = true
     thumbnail = "300"
 
-  # 日期格式
+  # Date formats
   [params.dateform]
     CopyrightDate = "2006"
     LongDate = "Jan 2, 2006"
@@ -144,7 +143,7 @@ summaryLength = 150
     NumDateShort = "2006-01-02"
     NumDateLong = "2006-01-02 15:04 -0700"
 
-  # 社交链接
+  # Social links
   [[params.socialLinks]]
     name = "x"
     url = "https://x.com/heyuan110"
@@ -158,45 +157,45 @@ summaryLength = 150
     url = "/index.xml"
 
 # ============================================
-# 菜单配置
+# Menu
 # ============================================
 [menu]
-  # AI 两大分类
+  # New English categories (for future content)
   [[menu.main]]
-    name = "AI原理"
-    url = "categories/ai原理/"
+    name = "AI Guides"
+    url = "categories/ai-guides/"
     weight = 10
 
   [[menu.main]]
-    name = "AI实战"
-    url = "categories/ai实战/"
+    name = "Comparisons"
+    url = "categories/comparisons/"
     weight = 11
 
-  # 通用入口（老内容仍可通过"文章/标签"访问）
+  # All posts (includes both English and legacy Chinese)
   [[menu.main]]
-    name = "文章"
+    name = "Posts"
     url = "posts/"
     weight = 20
 
   [[menu.main]]
-    name = "标签"
+    name = "Tags"
     url = "tags/"
     weight = 21
 
-  # 工具箱
+  # Tools
   [[menu.main]]
-    name = "工具箱"
-    url="https://www.usemagictools.com/"
+    name = "Tools"
+    url = "https://www.usemagictools.com/"
     weight = 30
 
-  # 关于
+  # About
   [[menu.main]]
-    name = "关于"
+    name = "About"
     url = "about/"
     weight = 90
 
 # ============================================
-# 相关内容配置
+# Related content
 # ============================================
 [related]
   includeNewer = true

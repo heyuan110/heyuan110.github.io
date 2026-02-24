@@ -15,7 +15,6 @@
 {{- end -}}
 <link rel="canonical" href="{{ $canonicalURL }}" />
 
-<!-- 标题/描述模板化 A/B 规则说明见 docs/seo/title-description-playbook.md -->
 {{ with .Params.keywords }}
 <meta name="keywords" content="{{ delimit . ", " }}" />
 {{ else }}
@@ -25,7 +24,7 @@
 {{ end }}
 
 <meta property="og:site_name" content="{{ .Site.Title }}" />
-<meta property="og:locale" content="zh_CN" />
+<meta property="og:locale" content="en_US" />
 {{ if .IsPage }}<meta property="og:type" content="article" />{{ else }}<meta property="og:type" content="website" />{{ end }}
 <meta name="twitter:card" content="summary_large_image" />
 
@@ -57,11 +56,11 @@
   "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
   "author" (dict "@type" "Person" "name" (.Site.Params.author.name | default "Bruce"))
   "mainEntityOfPage" (dict "@type" "WebPage" "@id" $canonicalURL)
-  "inLanguage" (.Site.LanguageCode | default "zh-CN")
+  "inLanguage" "en"
 -}}
 <script type="application/ld+json">{{ $postSchema | jsonify | safeJS }}</script>
 
-{{- $items := slice (dict "@type" "ListItem" "position" 1 "name" "首页" "item" .Site.BaseURL) -}}
+{{- $items := slice (dict "@type" "ListItem" "position" 1 "name" "Home" "item" .Site.BaseURL) -}}
 {{- if .Section -}}
   {{- $items = $items | append (dict "@type" "ListItem" "position" 2 "name" (.Section | title) "item" (printf "%s%s/" .Site.BaseURL .Section)) -}}
   {{- $items = $items | append (dict "@type" "ListItem" "position" 3 "name" .Title "item" $canonicalURL) -}}

@@ -1,5 +1,5 @@
 <p>
 	&copy; {{ now.Format (default "2006" .Site.Params.dateform.CopyrightDate) }} <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
-	&#183; <a href="/privacy/">隐私政策</a>
+	&#183; <a href="/privacy/">Privacy Policy</a>
 	{{ with .OutputFormats.Get "RSS" }} <a href="{{ "index.xml" | absLangURL }}" target="_blank" title="rss">{{- partial "svg.html" (dict "context" . "name" "rss") -}}</a>{{- end -}}
 </p>
