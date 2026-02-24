@@ -6,7 +6,7 @@ description = '很多人以为给 OpenClaw 装上 tavily-search、find-skills、
 toc = true
 tags = ['OpenClaw', 'Agent', '自动化', 'Skill', '产品方法']
 categories = ['AI实战']
-keywords = ['OpenClaw 配置优化', '会话隔离', '任务隔离', 'Agent 调度', 'AI 助手团队协作', 'dmScope']
+keywords = ['OpenClaw 配置优化', '会话隔离', '任务隔离', 'Agent 调度', 'AI 助手团队协作', 'dmScope', 'clawdhub', 'clawhub', 'proactive-agent-1-2-4', 'proactive-agent']
 +++
 
 ![OpenClaw 自动化配置与团队协作实践封面图](cover.webp)
@@ -14,10 +14,15 @@ keywords = ['OpenClaw 配置优化', '会话隔离', '任务隔离', 'Agent 调�
 你在社区里一定刷到过这种推荐：
 
 ```bash
-clawhub install tavily-search
-clawhub install find-skills
-clawhub install proactive-agent-1-2-4
+clawdhub install tavily-search
+clawdhub install find-skills
+clawdhub install proactive-agent   # 原名 proactive-agent-1-2-4，已更名
 ```
+
+> **⚠️ 重要更新（2026-02）**：社区里很多教程写的是 `clawhub install proactive-agent-1-2-4`，这里有两个坑需要注意：
+>
+> 1. **命令名称**：正确的 CLI 工具是 **`clawdhub`**（有个 d），不是 `clawhub`。`clawdhub` 是 [ClawHub](https://clawhub.ai/) 的官方命令行工具，通过 `npm i -g clawdhub` 安装。
+> 2. **Skill 改名**：`proactive-agent-1-2-4` 这个 Skill 在 ClawHub 上已经找不到了，作者 [halthelobster](https://clawhub.ai/halthelobster/proactive-agent) 已将其**更名为 `proactive-agent`**（当前版本 v3.1.0）。如果你按照旧教程执行 `clawdhub install proactive-agent-1-2-4` 会报 "Skill not found" 错误，改用 `clawdhub install proactive-agent` 即可。
 
 "给 AI 助手开眼、找工具、变主动，体验直接起飞。"
 
@@ -28,6 +33,56 @@ clawhub install proactive-agent-1-2-4
 这篇文章不讲"该装哪些 Skill"——那些文章到处都是。我要讲的是：**装完之后，你需要做哪些系统配置，才能让这些 Skill 真正稳定地跑起来。**
 
 如果你还没装过 OpenClaw，建议先看这篇入门教程：[OpenClaw 超详细上手教程](/posts/ai/2026-02-12-openclaw-usage-tutorial/)。
+
+---
+
+## 零、先把 ClawdHub CLI 装好
+
+在安装任何 Skill 之前，你需要先装好 [ClawdHub CLI](https://docs.openclaw.ai/tools/clawhub)——这是 OpenClaw 生态的 Skill 包管理器，用来搜索、安装、更新和发布 Skill。
+
+### 安装
+
+```bash
+# 通过 npm 全局安装
+npm i -g clawdhub
+
+# 或者用 pnpm
+pnpm add -g clawdhub
+```
+
+安装完成后验证一下：
+
+```bash
+clawdhub --version
+```
+
+### 登录（可选，发布 Skill 时需要）
+
+```bash
+clawdhub login    # 浏览器授权登录
+clawdhub whoami   # 查看当前登录用户
+```
+
+### 常用命令速查
+
+| 命令 | 说明 |
+|------|------|
+| `clawdhub search "关键词"` | 搜索 Skill（支持自然语言） |
+| `clawdhub install <slug>` | 安装指定 Skill |
+| `clawdhub install <slug> --version <ver>` | 安装指定版本 |
+| `clawdhub update --all` | 更新所有已安装 Skill |
+| `clawdhub list` | 列出已安装 Skill |
+| `clawdhub publish <path>` | 发布 Skill 到 ClawHub |
+
+### 配置项
+
+ClawdHub 支持以下环境变量覆盖默认行为：
+
+- `CLAWHUB_WORKDIR`：覆盖默认工作目录
+- `CLAWHUB_CONFIG_PATH`：自定义令牌存储路径
+- `CLAWHUB_DISABLE_TELEMETRY=1`：禁用遥测数据
+
+安装好的 Skill 默认存放在 `<workspace>/skills` 目录下，OpenClaw 会在下次启动会话时自动加载新 Skill。更多细节参考 [ClawdHub 官方文档](https://docs.openclaw.ai/tools/clawhub)。
 
 ---
 
@@ -48,6 +103,8 @@ OpenClaw 默认不能联网。没有搜索能力的助手做调研，就像闭�
 打个比方：没有 find-skills 的助手像一个只带了螺丝刀的维修工；有了它，维修工旁边多了一个五金店，缺什么工具自己去拿。
 
 ### proactive-agent：给助手装上"主动性"
+
+> **注意**：这个 Skill 的旧版本叫 `proactive-agent-1-2-4`，目前在 ClawHub 上已搜不到这个名字。作者 halthelobster 将其重新整合并更名为 **[`proactive-agent`](https://clawhub.ai/halthelobster/proactive-agent)**，最新版本 v3.1.0 新增了 WAL 协议（Write-Ahead Logging）、Working Buffer、自治 Cron 等实战功能。如果你之前装的是旧版，建议执行 `clawdhub install proactive-agent` 升级到新版。
 
 默认的 OpenClaw 是被动的——你不说话，它就不动。proactive-agent 让它能在后台持续检查条件、主动执行任务、主动汇报结果。
 
