@@ -1,7 +1,7 @@
 baseURL = "https://www.heyuan110.com/"
 languageCode = "en"
 defaultContentLanguage = "en"
-title = "AI Engineering Hub"
+title = "Bruce on AI Engineering"
 theme = "hermit-V2"
 googleAnalytics = "G-CT8E5N460D"
 
