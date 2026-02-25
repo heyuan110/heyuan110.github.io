@@ -22,15 +22,15 @@
 | # | 类型 | 标题 | 商业意图 | 状态 |
 |---|------|------|---------|------|
 | 1 | Pillar | Claude Code Complete Guide 2026: From Setup to Advanced Workflows | 高 | ⬜ |
-| 2 | Setup | Claude Code Installation & First Project: Step-by-Step | 高 | ⬜ |
+| 2 | Setup | Claude Code Installation & First Project: Step-by-Step | 高 | ✅ |
 | 3 | Guide | CLAUDE.md Guide: Give AI Perfect Project Context Every Time | 中 | ⬜ |
 | 4 | Guide | Claude Code MCP Setup: Connect AI to Any External Service | 高 | ⬜ |
 | 5 | Guide | Claude Code Hooks: 12 Ready-to-Use Automation Configs | 中 | ⬜ |
 | 6 | Guide | Claude Code Skills: Teach AI Your Custom Workflows | 中 | ⬜ |
 | 7 | Guide | Claude Code Worktree: Run Multiple AI Tasks in Parallel | 中 | ⬜ |
 | 8 | Guide | Claude Code for Teams: Multi-Agent Collaboration Patterns | 高 | ⬜ |
-| 9 | Pricing | Claude Code Pricing 2026: Is the Max Plan Worth $200/Month? | 高 | ⬜ |
-| 10 | Guide | 10 Claude Code Mistakes Beginners Make (And How to Fix Them) | 中 | ⬜ |
+| 9 | Pricing | Claude Code Pricing 2026: Is the Max Plan Worth $200/Month? | 高 | ✅ |
+| 10 | Guide | 10 Claude Code Mistakes Beginners Make (And How to Fix Them) | 中 | ✅ |
 
 ### Claude Code 推荐写作顺序
 
