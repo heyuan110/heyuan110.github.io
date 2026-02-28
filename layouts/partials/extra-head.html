@@ -57,8 +57,25 @@
   "author" (dict "@type" "Person" "name" (.Site.Params.author.name | default "Bruce"))
   "mainEntityOfPage" (dict "@type" "WebPage" "@id" $canonicalURL)
   "inLanguage" "en"
+  "wordCount" .WordCount
+  "articleSection" (.Section | title)
 -}}
+{{- with .Params.keywords -}}
+  {{- $postSchema = merge $postSchema (dict "keywords" (delimit . ", ")) -}}
+{{- end -}}
+{{- $coverImg := .Resources.GetMatch "cover.*" -}}
+{{- if $coverImg -}}
+  {{- $postSchema = merge $postSchema (dict "image" (dict "@type" "ImageObject" "url" ($coverImg.Permalink) "width" 1200 "height" 630)) -}}
+{{- end -}}
 <script type="application/ld+json">{{ $postSchema | jsonify | safeJS }}</script>
+{{- if .Params.faqItems -}}
+{{- $faqMainEntity := slice -}}
+{{- range .Params.faqItems -}}
+  {{- $faqMainEntity = $faqMainEntity | append (dict "@type" "Question" "name" .question "acceptedAnswer" (dict "@type" "Answer" "text" .answer)) -}}
+{{- end -}}
+{{- $faqSchema := dict "@context" "https://schema.org" "@type" "FAQPage" "mainEntity" $faqMainEntity -}}
+<script type="application/ld+json">{{ $faqSchema | jsonify | safeJS }}</script>
+{{- end -}}
 
 {{- $items := slice (dict "@type" "ListItem" "position" 1 "name" "Home" "item" .Site.BaseURL) -}}
 {{- if .Section -}}

@@ -1,8 +1,8 @@
 +++
 date = '2026-02-28T10:00:00+08:00'
 draft = false
-title = 'Claude Code Hooks: 12 Ready-to-Use Automation Configs'
-description = '12 ready-to-use Claude Code Hook configs for auto-formatting, file protection, and command blocking. All 15 lifecycle events covered.'
+title = 'Claude Code Hooks Guide: 12 Automation Configs (2026)'
+description = '12 ready-to-use Claude Code Hook configs for auto-formatting, file protection, and command blocking. Complete guide to all lifecycle events.'
 toc = true
 tags = ['Claude Code', 'Hooks', 'Automation', 'Configuration']
 categories = ['AI Guides']

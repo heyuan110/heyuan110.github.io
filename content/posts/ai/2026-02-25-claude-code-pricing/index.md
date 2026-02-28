@@ -7,6 +7,34 @@ toc = true
 tags = ['Claude Code', 'Pricing', 'AI Coding Tools', 'Comparison']
 categories = ['AI Guides']
 keywords = ['Claude pricing 2026', 'Claude Pro price', 'Claude Max plan cost', 'Claude rate limits', 'Claude Code pricing', 'Claude free tier', 'Claude Pro vs Max', 'Anthropic pricing', 'Claude Pro messages per 5 hours']
+
+[[params.faqItems]]
+question = "Is Claude AI free to use?"
+answer = "Yes, Claude offers a free tier with approximately 15 messages per 5-hour window using Sonnet. However, the free tier does not include Claude Code, Opus model access, or Projects. For coding, you need Pro ($20/month) or an API key."
+
+[[params.faqItems]]
+question = "Does Claude Pro include Claude Code?"
+answer = "Yes. The Pro plan ($20/month) includes Claude Code access with standard 1x message rate limits. For heavy Claude Code usage, Max 5x ($100/month) or Max 20x ($200/month) provide 5x and 20x more capacity respectively."
+
+[[params.faqItems]]
+question = "How many messages do I get with Claude Pro?"
+answer = "Approximately 10-45 messages per 5-hour rolling window with Sonnet 4.6, fewer with Opus 4.6. The exact number varies based on message length and model complexity."
+
+[[params.faqItems]]
+question = "What happens when I hit the Claude Pro rate limit?"
+answer = "Claude Code slows down rather than stopping. You'll experience longer wait times between responses, and Opus requests may temporarily fall back to Sonnet. The 5-hour window is rolling, so limits gradually reset."
+
+[[params.faqItems]]
+question = "Claude Pro vs Max: Which should I choose?"
+answer = "Start with Pro ($20/month) for occasional use. Upgrade to Max 5x ($100/month) if you use Claude Code daily as your primary tool and hit rate limits. Go Max 20x ($200/month) if you code with Claude all day or run concurrent sessions."
+
+[[params.faqItems]]
+question = "Can I use Claude Code for free?"
+answer = "No. You need at least a Pro subscription ($20/month) or an API key with credits. There is no free tier for Claude Code."
+
+[[params.faqItems]]
+question = "Is the Claude Max 20x plan worth $200/month?"
+answer = "If you spend 6+ hours per day in Claude Code and hit 5x limits, yes. A senior developer's hourly rate is $75-150+. If Max 20x saves you 2+ hours per day by never hitting limits, the extra $100/month pays for itself in a single day."
 +++
 
 ![Claude Code pricing comparison chart for all plans in 2026](cover.webp)
