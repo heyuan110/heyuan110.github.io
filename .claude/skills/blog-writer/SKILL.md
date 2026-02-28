@@ -40,18 +40,14 @@ description: "技术博客写作专家，专注于 AI、编程、运维等技术
 
 | 分类 | 适用内容 |
 |------|----------|
-| **AI原理** | 概念、理论、访谈、思考、趋势分析 |
-| **AI实战** | 教程、指南、工具使用、最佳实践、产品评测 |
-| **Go** | Go 语言相关 |
-| **Java** | Java 相关 |
-| **Python** | Python 相关 |
-| **Docker** | Docker 相关 |
-| **Linux** | Linux 相关 |
-| **MySQL** | MySQL 相关 |
-| **macOS** | macOS 相关 |
+| **AI Guides** | 教程、指南、安装配置、工具使用、最佳实践、产品评测、工作流 |
+| **Comparisons** | 工具对比、定价对比、基准测试 |
 
-❌ 错误示例：`Go实战`、`Docker教程`、`AI工具`（这些都是无效分类）
-✅ 正确示例：写 Go 教程用 `categories = ['Go']`，写 AI 工具教程用 `categories = ['AI实战']`
+> ⚠️ 以下为归档的旧中文分类，**仅用于已有旧文章**，新文章禁止使用：
+> AI原理、AI实战、Go、Java、Python、Docker、Linux、MySQL、macOS
+
+❌ 错误示例：`AI实战`、`Go实战`、`Docker教程`（这些都是无效分类）
+✅ 正确示例：写 AI 工具教程用 `categories = ['AI Guides']`，写工具对比用 `categories = ['Comparisons']`
 
 #### 目录命名
 
@@ -176,12 +172,12 @@ python3 -c "
 from PIL import Image, ImageDraw, ImageFont
 import subprocess
 
-# === 配置区：根据文章修改以下内容 ===
-TITLE = '文章标题'           # 封面大标题
-SUBTITLE = '副标题或简短描述'  # 副标题
-TAGS = ['标签1', '标签2', '标签3']  # 关键词标签
-OUTPUT_DIR = 'content/posts/ai/目录名'  # 文章目录路径
-# === 配置区结束 ===
+# === Config: modify per article ===
+TITLE = 'Article Title Here'           # Cover title (English)
+SUBTITLE = 'Brief description'         # Subtitle (English)
+TAGS = ['Tag1', 'Tag2', 'Tag3']        # Keyword tags (English)
+OUTPUT_DIR = 'content/posts/ai/directory-name'  # Article directory path
+# === End config ===
 
 WIDTH, HEIGHT = 1200, 630
 img = Image.new('RGB', (WIDTH, HEIGHT))
@@ -199,9 +195,9 @@ for x in range(WIDTH):
     alpha = int(255 * (1 - abs(x - WIDTH/2) / (WIDTH/2)))
     draw.line([(x, 0), (x, 3)], fill=(100, 149, 237, alpha))
 
-# 加载中文字体（macOS 系统字体，按优先级尝试多个）
-# ⚠️ 所有字体必须支持中文，否则会出现乱码
-CJK_FONT_PATHS = [
+# 加载字体（macOS 系统字体，按优先级尝试多个）
+# 新文章为英文，以下字体均支持英文显示
+FONT_PATHS = [
     '/System/Library/Fonts/STHeiti Medium.ttc',
     '/System/Library/Fonts/STHeiti Light.ttc',
     '/Library/Fonts/Arial Unicode.ttf',
@@ -210,17 +206,17 @@ CJK_FONT_PATHS = [
     '/System/Library/Fonts/Supplemental/Songti.ttc',
 ]
 
-def load_cjk_font(size):
-    for path in CJK_FONT_PATHS:
+def load_font(size):
+    for path in FONT_PATHS:
         try:
             return ImageFont.truetype(path, size)
         except (IOError, OSError):
             continue
-    raise RuntimeError('未找到任何中文字体，无法生成封面图。请安装中文字体后重试。')
+    raise RuntimeError('No suitable font found. Please check font paths.')
 
-font_title = load_cjk_font(52)
-font_subtitle = load_cjk_font(28)
-font_tag = load_cjk_font(20)
+font_title = load_font(52)
+font_subtitle = load_font(28)
+font_tag = load_font(20)
 
 # 绘制标题（自动换行）
 max_width = WIDTH - 120
@@ -288,7 +284,7 @@ if size_kb > 200:
 img.save(f'{OUTPUT_DIR}/cover.webp', 'WEBP', quality=85)
 ```
 
-⚠️ **方案 B 生成后必须验证**：用 Read 工具查看生成的封面图，确认中文标题、副标题、标签均正常显示，**不存在任何方框、问号、乱码字符**。如果出现乱码，说明字体不支持中文，必须排查字体路径后重新生成。
+⚠️ **方案 B 生成后必须验证**：用 Read 工具查看生成的封面图，确认英文标题、副标题、标签均正常显示，**不存在任何方框、问号、乱码字符**。如果出现异常，必须排查字体路径后重新生成。
 
 #### 封面图检查清单（无论哪种方案都必须满足）
 
@@ -308,15 +304,15 @@ img.save(f'{OUTPUT_DIR}/cover.webp', 'WEBP', quality=85)
 +++
 date = '2026-01-26T10:00:00+08:00'
 draft = false
-title = '文章标题（20-60字符，核心关键词靠前）'
-description = '文章描述，用于 SEO 和社交分享（120-160字符）'
+title = 'Article Title (50-60 chars, primary keyword first)'
+description = 'SEO description for search results and social sharing (120-160 chars)'
 toc = true
-tags = ['标签1', '标签2', '标签3']
-categories = ['AI实战']
-keywords = ['搜索关键词1', '搜索关键词2']
+tags = ['Claude Code', 'AI Agent', 'specific-tag']
+categories = ['AI Guides']
+keywords = ['search keyword 1', 'search keyword 2']
 +++
 
-![封面图 ALT 文本，包含核心关键词的描述](cover.webp)
+![Descriptive ALT text with primary keyword](cover.webp)
 ```
 
 ⚠️ **封面图必须在正文中引用**：在 Front Matter（`+++`）结束后的**第一行**，必须用 `![ALT 文本](cover.webp)` 引用封面图。不引用则封面图不会显示在文章中。ALT 文本应包含核心关键词，描述图片内容。
@@ -327,8 +323,9 @@ keywords = ['搜索关键词1', '搜索关键词2']
 | `title` | ✓ | 50-60 字符，关键词前置 |
 | `description` | ✓ | 120-160 字符，包含核心关键词 |
 | `categories` | ✓ | 只能使用 Step 1 中的预设值 |
-| `tags` | ✓ | 3-5 个标签 |
+| `tags` | ✓ | 3-5 个标签（英文） |
 | `toc` | 推荐 | 长文设为 `true` |
+| `keywords` | 推荐 | SEO 补充关键词（英文） |
 | `draft` | 可选 | 默认 `false` |
 
 #### 4.2 写作规范检查项
@@ -344,29 +341,29 @@ keywords = ['搜索关键词1', '搜索关键词2']
 - ✅ 每个核心概念都配实际案例，让读者能举一反三
 - ✅ 复杂概念必须用类比或比喻解释（让小学生也能听懂）
 - ✅ 不浮于表面，深入讲解原理和细节
-- ✅ 代码示例完整可运行，有中文注释
+- ✅ 代码示例完整可运行，有英文注释（新文章全英文，禁止混合中英）
 
-**推荐的内容结构**：
+**推荐的内容结构**（所有新文章必须用英文撰写）：
 
 ```markdown
-## 一、背景与问题（为什么需要）
-## 二、核心概念（是什么）
-## 三、基本用法（怎么用）
-## 四、实战案例（真实场景）
-## 五、进阶技巧（深入理解）
-## 六、常见问题（避坑指南）
-## 总结
+## Background / Why You Need This
+## Core Concepts
+## Getting Started / Basic Usage
+## Real-World Examples
+## Advanced Tips
+## FAQ / Common Issues
+## Related Reading
 ```
 
-**通俗化表达示例**：
+**通俗化表达示例**（所有新文章用英文撰写）：
 
 ```markdown
-# ❌ 不好的写法
-Docker 容器是一种轻量级虚拟化技术，通过 namespace 和 cgroup 实现资源隔离。
+# ❌ Bad — too jargon-heavy
+Docker containers are a lightweight virtualization technology that uses namespaces and cgroups for resource isolation.
 
-# ✅ 好的写法
-Docker 容器就像一个"打包好的便当盒"。你把应用程序和它需要的所有东西都放进这个盒子里，
-不管带到哪台电脑上打开，里面的东西都一模一样。
+# ✅ Good — use analogies
+Think of a Docker container as a "packed lunchbox." You put your app and everything it needs inside the box —
+no matter which computer you open it on, the contents are exactly the same.
 ```
 
 **SEO 要点**：
@@ -387,13 +384,13 @@ Docker 容器就像一个"打包好的便当盒"。你把应用程序和它需�
 **内链（3-8 个）**：
 - 在正文中自然引用已有相关文章
 - 添加内链前确认目标文章确实存在（基于 Step 2.3 的文章列表）
-- 文末添加「相关阅读」板块
+- 文末添加「Related Reading」板块
 
 ```markdown
-## 相关阅读
+## Related Reading
 
-- [相关文章标题1](/posts/ai/2026-xx-xx-article-name/)
-- [相关文章标题2](/posts/ai/2026-xx-xx-article-name/)
+- [Article Title 1](/posts/ai/2026-xx-xx-article-name/) — Brief description
+- [Article Title 2](/posts/ai/2026-xx-xx-article-name/) — Brief description
 ```
 
 **外链（3-5 个）**：
@@ -436,10 +433,10 @@ print("Hello World")
 - [ ] 开头三要素齐全：背景、定义、价值
 - [ ] 每个核心概念都配了实际案例
 - [ ] 复杂概念有通俗类比
-- [ ] 代码示例完整可运行，有中文注释
+- [ ] 代码示例完整可运行，有英文注释
 - [ ] 内链数量 ≥ 3，且目标文章确实存在
 - [ ] 外链数量 ≥ 3，指向权威来源
-- [ ] 文末有「相关阅读」板块
+- [ ] 文末有「Related Reading」板块
 
 #### Hugo 构建验证
 
@@ -453,11 +450,48 @@ hugo --minify
 
 ---
 
+## 内容策略（与 AGENTS.md 对齐）
+
+### 文章类型（按优先级）
+
+1. **Guide** — "How to set up X", "Complete guide to Y"
+2. **Setup** — Step-by-step installation and configuration
+3. **Comparison** — "X vs Y: Which is better for Z?"
+4. **Best Tools** — "Top 10 tools for X in 2026"
+5. **Workflow** — "My AI development workflow"
+6. **Review** — In-depth tool/framework evaluation
+
+### 禁止内容类型
+
+- 个人日记
+- 没有搜索意图的日志式帖子
+- 没有商业或信息价值的内容
+
+### 主题集群（每个需 10+ 篇文章）
+
+- Claude Code
+- AI Agent Frameworks
+- AI Coding Tools
+- AI Engineering Workflows
+- Tool Comparisons
+
+### 迁移规则
+
+- **禁止**批量翻译旧中文文章
+- **禁止**修改已有的中文文章
+- **禁止**更改已被索引的中文 URL
+- **禁止**在同一页面混合中英文
+- 旧中文内容作为归档遗留保留
+
+---
+
 ## 注意事项
 
 1. **日期必须真实**：使用 `date` 命令获取当前日期
-2. **URL 必须英文**：目录名使用英文或拼音
+2. **URL 必须英文**：目录名使用英文
 3. **Front Matter 用 TOML**：使用 `+++` 而非 `---`
 4. **图片必须 webp**：封面图命名为 `cover.webp`
 5. **素材必须实际阅读**：不可仅凭链接标题猜测内容
-6. **分类只能用预设值**：禁止自创分类
+6. **分类只能用预设值**：`AI Guides` 或 `Comparisons`，禁止使用旧中文分类
+7. **所有新文章必须英文**：正文、标题、描述、标签、ALT 文本、代码注释全部用英文（遵循 AGENTS.md 规范）
+8. **禁止混合中英文**：同一页面内不得混合中英文内容
