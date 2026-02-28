@@ -2,12 +2,14 @@
 date = '2026-02-28T08:00:00+08:00'
 draft = false
 title = 'CLAUDE.md Guide: Give AI Perfect Project Context Every Time'
-description = 'Master CLAUDE.md to make Claude Code understand your project, coding style, and workflow from the first prompt. Three-layer config, templates, advanced tips, and real-world examples.'
+description = 'Master CLAUDE.md to give Claude Code perfect project context every session. Three-layer config, templates, and real examples included.'
 toc = true
 tags = ['Claude Code', 'CLAUDE.md', 'Configuration', 'Best Practices']
 categories = ['AI Guides']
 keywords = ['CLAUDE.md guide', 'CLAUDE.md tutorial', 'Claude Code configuration', 'Claude Code project context', 'CLAUDE.md best practices', 'Claude Code memory', 'CLAUDE.md template']
 +++
+
+![CLAUDE.md configuration guide for Claude Code project context](cover.webp)
 
 Every time you start a new Claude Code session, you repeat the same things: "We use pnpm, not npm." "Follow ESLint rules." "Commit messages in conventional format." "This is a Next.js 15 project with TypeScript."
 
@@ -15,11 +17,11 @@ Day after day. Session after session.
 
 CLAUDE.md fixes this permanently. It's a plain Markdown file that Claude Code reads automatically at the start of every session. Write your project context once, and Claude follows it forever — no reminders needed.
 
-This guide covers everything: what CLAUDE.md is, the three-layer configuration system, four ways to manage it, copy-paste templates, and advanced tips from real-world projects. If you're new to Claude Code, start with our [setup guide](/posts/ai/2026-02-25-claude-code-setup-guide/) first.
+This guide covers everything: what CLAUDE.md is, the three-layer configuration system, four ways to manage it, copy-paste templates, and advanced tips from real-world projects. If you're new to [Claude Code](https://docs.anthropic.com/en/docs/claude-code), start with our [setup guide](/posts/ai/2026-02-25-claude-code-setup-guide/) first.
 
 ## What Is CLAUDE.md?
 
-CLAUDE.md is Claude Code's memory file. It's a standard Markdown document placed in your project root (or other locations — more on that later) that gets loaded into context automatically every time you start a conversation.
+CLAUDE.md is [Claude Code's memory file](https://docs.anthropic.com/en/docs/claude-code/memory). It's a standard Markdown document placed in your project root (or other locations — more on that later) that gets loaded into context automatically every time you start a conversation.
 
 Think of it this way: when a new developer joins your team, you hand them an onboarding doc. CLAUDE.md is that onboarding doc — except the new hire is an AI agent.
 
@@ -501,7 +503,7 @@ As of early 2026, AGENTS.md is supported by:
 - **Cursor**
 - **Windsurf**
 - **Devin**
-- **Claude Code** (via `@` import)
+- **[Claude Code](https://github.com/anthropics/claude-code)** (via `@` import)
 - And 20+ more tools
 
 Over 60,000 open-source repositories have adopted AGENTS.md.
@@ -753,7 +755,7 @@ Not sure where to begin? Follow these steps:
 9. **Set up global config** — Add your universal preferences to `~/.claude/CLAUDE.md`
 10. **Maintain it** — Review monthly, update when the project evolves
 
-## Related Articles
+## Related Reading
 
 If you're building a complete Claude Code workflow, these guides cover the other pieces:
 

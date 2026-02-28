@@ -2,12 +2,14 @@
 date = '2026-02-28T12:00:00+08:00'
 draft = false
 title = 'Claude Code Worktree: Run Multiple AI Tasks in Parallel'
-description = 'Master Claude Code worktree mode to run multiple AI coding sessions simultaneously. Covers Git worktree basics, parallel development, experiment branches, auto-cleanup, and real team workflows.'
+description = 'Run multiple Claude Code sessions simultaneously with Git worktree mode. Parallel development, auto-cleanup, and team workflows.'
 toc = true
 tags = ['Claude Code', 'Git Worktree', 'Productivity', 'Parallel Development']
 categories = ['AI Guides']
 keywords = ['Claude Code worktree', 'Claude Code parallel development', 'git worktree', 'Claude Code -w', 'run multiple Claude sessions', 'Claude Code productivity']
 +++
+
+![Claude Code worktree mode running multiple parallel AI coding sessions](cover.webp)
 
 You open your terminal. Claude Code is halfway through building a new authentication module. Then Slack pings: there's a production bug that needs fixing now.
 
@@ -15,7 +17,7 @@ What do you do? Stash your half-finished changes and hope you remember to pop th
 
 This is the fundamental constraint of single-directory development: **one working directory can only hold one task at a time**. Switching branches changes your files, but it doesn't give you isolation. If two Claude Code sessions operate on the same directory, they will step on each other's changes.
 
-Claude Code's `--worktree` flag (short: `-w`) solves this. It combines Git worktree's isolation with Claude Code's AI workflow, letting you spin up independent coding sessions in seconds -- each with its own directory, its own branch, and zero interference with your other work.
+[Claude Code's](https://docs.anthropic.com/en/docs/claude-code) `--worktree` flag (short: `-w`) solves this. It combines Git worktree's isolation with Claude Code's AI workflow, letting you spin up independent coding sessions in seconds -- each with its own directory, its own branch, and zero interference with your other work.
 
 This guide covers everything: Git worktree fundamentals, Claude Code's worktree mode, auto-cleanup behavior, practical scenarios, best practices, and a real team case study.
 
@@ -45,7 +47,7 @@ This works, but it has real costs:
 
 ### How Git Worktree Solves This
 
-Git worktree lets you check out multiple branches from the same repository into separate directories. Each directory has its own independent file state, but they all share the same `.git` data underneath:
+[Git worktree](https://git-scm.com/docs/git-worktree) lets you check out multiple branches from the same repository into separate directories. Each directory has its own independent file state, but they all share the same `.git` data underneath:
 
 ```bash
 # Create a new working directory for a hotfix
@@ -521,9 +523,7 @@ If you're still running a single Claude session in a single directory, working o
 
 The bottleneck in AI-assisted development is no longer how fast the model thinks. It's how many tasks you can feed it at once. Worktrees remove that bottleneck.
 
----
-
-**Related articles**:
+## Related Reading
 
 - [Claude Code Setup Guide 2026](/posts/ai/2026-02-25-claude-code-setup-guide/) -- Install and configure Claude Code from scratch
 - [Claude Code for Teams: Multi-Agent Collaboration](/posts/ai/2026-02-28-claude-code-teams-guide/) -- Advanced patterns for running multiple Claude instances

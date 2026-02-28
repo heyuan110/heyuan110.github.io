@@ -2,14 +2,16 @@
 date = '2026-02-28T10:00:00+08:00'
 draft = false
 title = 'Claude Code Hooks: 12 Ready-to-Use Automation Configs'
-description = 'Complete guide to Claude Code Hooks with 12 copy-paste configs for auto-formatting, file protection, dangerous command blocking, Slack notifications, and more. Covers all 15 lifecycle events and 3 hook types.'
+description = '12 ready-to-use Claude Code Hook configs for auto-formatting, file protection, and command blocking. All 15 lifecycle events covered.'
 toc = true
 tags = ['Claude Code', 'Hooks', 'Automation', 'Configuration']
 categories = ['AI Guides']
 keywords = ['Claude Code Hooks', 'Claude Code automation', 'Claude Code configuration', 'PreToolUse', 'PostToolUse', 'Claude Code hooks guide', 'Claude Code auto format']
 +++
 
-Claude Code is probabilistic. You give it the same prompt twice and get different results. That's fine for creative work — but your engineering workflow needs deterministic guarantees.
+![Claude Code Hooks automation workflow with 12 ready-to-use configs](cover.webp)
+
+[Claude Code](https://github.com/anthropics/claude-code) is probabilistic. You give it the same prompt twice and get different results. That's fine for creative work — but your engineering workflow needs deterministic guarantees.
 
 You need files auto-formatted on every save. You need `.env` files locked down. You need `rm -rf /` blocked before it ever reaches your shell. You need these things to happen every single time, not just when the AI remembers.
 
@@ -735,7 +737,7 @@ Add them to `.claude/settings.json` in your project, and they'll work immediatel
 
 From there, layer on more hooks as your workflow demands. The combined config example above is a good target to work toward.
 
-## Related Links
+## Related Reading
 
 - [Claude Code Setup Guide](/posts/ai/2026-02-25-claude-code-setup-guide/) — Installation and initial configuration
 - [CLAUDE.md Guide](/posts/ai/2026-02-28-claude-code-claudemd-guide/) — Project context and memory configuration

@@ -1,13 +1,15 @@
 +++
 date = '2026-02-25T12:00:00+08:00'
 draft = false
-title = 'Claude Code Setup Guide 2026: Installation to First Project in 10 Minutes'
-description = 'Step-by-step guide to installing Claude Code in 2026 — native installer, authentication, model selection, CLAUDE.md setup, IDE integration, and your first real project. Works on macOS, Linux, and Windows.'
+title = 'Claude Code Setup Guide 2026: Install to First Project'
+description = 'Install Claude Code in 10 minutes — native installer, authentication, model selection, IDE setup, and your first real project.'
 toc = true
 tags = ['Claude Code', 'Setup', 'Tutorial', 'Getting Started']
 categories = ['AI Guides']
 keywords = ['Claude Code install', 'Claude Code setup', 'Claude Code tutorial', 'how to install Claude Code', 'Claude Code getting started', 'Claude Code 2026', 'Claude Code VS Code']
 +++
+
+![Claude Code setup guide showing terminal installation and IDE integration](cover.webp)
 
 You've heard about Claude Code. Maybe you've seen the demos. Now you want to try it yourself.
 

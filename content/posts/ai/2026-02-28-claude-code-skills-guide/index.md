@@ -2,12 +2,14 @@
 date = '2026-02-28T11:00:00+08:00'
 draft = false
 title = 'Claude Code Skills: Teach AI Your Custom Workflows'
-description = 'Learn to create Claude Code Skills — package your domain knowledge into reusable SKILL.md files that Claude auto-triggers. Includes templates, real-world examples, and the Skills ecosystem (Top 20 community Skills).'
+description = 'Create Claude Code Skills to package domain knowledge into reusable SKILL.md files. Templates, examples, and top community Skills.'
 toc = true
 tags = ['Claude Code', 'Skills', 'Automation', 'Workflow']
 categories = ['AI Guides']
 keywords = ['Claude Code Skills', 'SKILL.md guide', 'Claude Code skill tutorial', 'custom Claude Code skills', 'Claude Code automation', 'Claude Code plugins', 'agent skills']
 +++
+
+![Claude Code Skills guide for teaching AI custom workflows](cover.webp)
 
 Claude Code is one of the most powerful AI coding tools available. But out of the box, it's generic. It doesn't know your team's code review checklist. It doesn't know your API documentation format. It doesn't know your commit message conventions.
 

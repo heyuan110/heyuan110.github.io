@@ -2,14 +2,16 @@
 date = '2026-02-25T14:00:00+08:00'
 draft = false
 title = '10 Claude Code Mistakes Beginners Make (And How to Fix Them)'
-description = 'The most common mistakes new Claude Code users make — from skipping CLAUDE.md to burning tokens on Opus for simple tasks. Learn what to avoid and how to get 10x more value from your AI coding assistant.'
+description = 'The 10 most common Claude Code mistakes and how to fix them. From skipping CLAUDE.md to overusing Opus — save tokens and time.'
 toc = true
 tags = ['Claude Code', 'Tips', 'Best Practices', 'Beginner']
 categories = ['AI Guides']
 keywords = ['Claude Code mistakes', 'Claude Code tips', 'Claude Code best practices', 'Claude Code beginner guide', 'how to use Claude Code effectively', 'Claude Code productivity']
 +++
 
-Claude Code is the most capable AI coding tool available. It's also one of the easiest to use badly.
+![10 common Claude Code mistakes beginners make and how to fix them](cover.webp)
+
+[Claude Code](https://docs.anthropic.com/en/docs/claude-code) is the most capable AI coding tool available. It's also one of the easiest to use badly.
 
 I've watched dozens of developers adopt Claude Code — myself included — and the same mistakes come up again and again. Developers who fix these issues typically see a 5–10x improvement in output quality and a 50%+ reduction in token costs.
 
@@ -97,7 +99,7 @@ Ctrl+C → claude    → Start a fresh session
 
 **Why it's costly**: Every manual verification request is an extra agentic turn — more tokens, more time. And when you forget to verify, you end up with broken code that takes more turns to fix later.
 
-**The fix**: Set up [Hooks](/posts/ai/2026-02-18-claude-code-hooks-guide/) to automate post-change verification. Hooks run shell commands at specific lifecycle points — before/after tool calls, before/after commits, etc.
+**The fix**: Set up [Hooks](/posts/ai/2026-02-18-claude-code-hooks-guide/) to automate post-change verification. Hooks run shell commands at [specific lifecycle points](https://docs.anthropic.com/en/docs/claude-code/hooks) — before/after tool calls, before/after commits, etc.
 
 Example: Auto-lint after every file write:
 
@@ -214,7 +216,7 @@ Or consider Sandbox mode, which gives Claude Code freedom within defined boundar
 
 **Why it's costly**: Context switching in a single session pollutes the conversation history with unrelated information. Each new task carries the baggage of previous tasks, making Claude Code less focused and more expensive.
 
-**The fix**: Use [Worktree mode](/posts/ai/2026-02-20-claude-code-worktree/) to run parallel tasks in isolated Git branches:
+**The fix**: Use [Worktree mode](/posts/ai/2026-02-20-claude-code-worktree/) to run parallel tasks in isolated [Git worktree](https://git-scm.com/docs/git-worktree) branches:
 
 ```bash
 # Start a task in a new worktree

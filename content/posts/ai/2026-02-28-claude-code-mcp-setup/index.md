@@ -2,16 +2,18 @@
 date = '2026-02-28T09:00:00+08:00'
 draft = false
 title = 'Claude Code MCP Setup: Connect AI to Any External Service'
-description = 'Complete guide to setting up MCP servers with Claude Code — from installing community servers to building your own TypeScript MCP server. Includes debugging tips, real examples, and production patterns.'
+description = 'Complete guide to MCP servers with Claude Code — install community servers, build your own in TypeScript, and debug like a pro.'
 toc = true
 tags = ['Claude Code', 'MCP', 'TypeScript', 'Tutorial']
 categories = ['AI Guides']
 keywords = ['Claude Code MCP', 'MCP setup guide', 'MCP server tutorial', 'Model Context Protocol', 'Claude Code MCP server', 'build MCP server', 'MCP TypeScript tutorial']
 +++
 
+![Claude Code MCP setup connecting AI to external services](cover.webp)
+
 Out of the box, Claude Code can read files, run shell commands, and search code. But what if you need it to query your Postgres database, send a Slack message, or hit your company's internal API?
 
-That's exactly what MCP solves. The **Model Context Protocol** is an open standard that lets you plug any external service into Claude Code — no prompt hacking, no copy-pasting data, no brittle workarounds. Think of it as **USB-C for AI**: a single, universal connector between your AI assistant and every tool you care about.
+That's exactly what MCP solves. The **[Model Context Protocol](https://modelcontextprotocol.io)** is an open standard that lets you plug any external service into Claude Code — no prompt hacking, no copy-pasting data, no brittle workarounds. Think of it as **USB-C for AI**: a single, universal connector between your AI assistant and every tool you care about.
 
 This guide covers everything from installing your first community MCP server to building a custom one from scratch in TypeScript. By the end, you'll know how to make Claude Code talk to anything.
 
@@ -60,7 +62,7 @@ Three reasons:
 
 ## Installing Community MCP Servers
 
-The fastest way to start is by installing servers that other people have already built. The community has created MCP servers for GitHub, Slack, PostgreSQL, filesystem operations, and dozens of other services.
+The fastest way to start is by installing servers that other people have already built. The community has created [MCP servers](https://github.com/modelcontextprotocol/servers) for GitHub, Slack, PostgreSQL, filesystem operations, and dozens of other services.
 
 ### The `claude mcp add` Command
 
@@ -969,7 +971,7 @@ Now that you understand MCP, here are some project ideas to try:
 
 Each of these follows the same patterns we covered in this guide: initialize a project, define tools with Zod schemas, handle errors properly, and register with `claude mcp add`.
 
-## Related Articles
+## Related Reading
 
 - [Claude Code Setup Guide 2026](/posts/ai/2026-02-25-claude-code-setup-guide/) — Get Claude Code installed and configured
 - [10 Claude Code Mistakes Beginners Make](/posts/ai/2026-02-25-claude-code-mistakes/) — Avoid the most common pitfalls

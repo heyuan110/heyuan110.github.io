@@ -2,16 +2,18 @@
 date = '2026-02-28T13:00:00+08:00'
 draft = false
 title = 'Claude Code for Teams: Multi-Agent Collaboration Patterns'
-description = 'Master Claude Code Agent Teams — multi-agent collaboration with shared task lists, inter-agent messaging, and parallel execution. Covers architecture, setup, real-world patterns, cost optimization, and comparison with Subagents and Worktrees.'
+description = 'Master Claude Code Agent Teams for multi-agent collaboration. Shared task lists, parallel execution, and real-world patterns.'
 toc = true
 tags = ['Claude Code', 'Agent Teams', 'Multi-Agent', 'Collaboration']
 categories = ['AI Guides']
 keywords = ['Claude Code Agent Teams', 'multi-agent collaboration', 'Claude Code teams', 'AI team collaboration', 'Claude Code multi-agent', 'agent teams tutorial']
 +++
 
+![Claude Code Agent Teams multi-agent collaboration patterns](cover.webp)
+
 One agent is good. A coordinated team of agents is transformative.
 
-Since Anthropic released Agent Teams on February 5, 2026, alongside the Opus 4.6 model, Claude Code has crossed a fundamental threshold: you're no longer limited to a single agent working sequentially through your codebase. You can now spin up multiple Claude agents that communicate with each other, divide work, and execute tasks in parallel — like a small engineering team that happens to operate at machine speed.
+Since Anthropic released Agent Teams on February 5, 2026, alongside the Opus 4.6 model, [Claude Code](https://docs.anthropic.com/en/docs/claude-code) has crossed a fundamental threshold: you're no longer limited to a single agent working sequentially through your codebase. You can now spin up multiple Claude agents that communicate with each other, divide work, and execute tasks in parallel — like a small engineering team that happens to operate at machine speed.
 
 This guide covers everything you need to know about Claude Code Agent Teams: architecture, setup, real-world collaboration patterns, cost management, and how it compares to the older Subagent and Worktree approaches.
 
@@ -27,6 +29,8 @@ When you create an Agent Team, one agent acts as the **Team Lead** and the other
 - **Teammates**: Independent Claude Code agents, each with their own context window, tool access, and working state. They can read and write files, run commands, and perform any action a normal Claude Code session can.
 - **Shared Task List**: A structured, visible list of tasks that the Team Lead creates and Teammates pick up. You can view and modify this list at any time with `Ctrl+T`.
 - **Mailbox Messaging**: Teammates communicate with each other and the Team Lead through an internal message-passing system. This is the key architectural innovation — agents don't just work in isolation, they coordinate.
+
+The [Claude Code GitHub repository](https://github.com/anthropics/claude-code) tracks the latest features including Agent Teams.
 
 Think of it like this: the Team Lead is a tech lead who breaks down a feature request into tickets, assigns them to developers, and reviews the output. The Teammates are the developers who do the actual work and can ask each other questions when their tasks overlap.
 
@@ -391,7 +395,7 @@ A single agent doing the same work might use ~120K tokens (~$3.60). So the team 
 
 ### Cost Optimization Strategies
 
-1. **Use Sonnet for mechanical tasks**: Assign Opus only to design and architecture tasks. Sonnet is ~5x cheaper per token and handles straightforward implementation well.
+1. **Use Sonnet for mechanical tasks**: Assign Opus only to design and architecture tasks. Sonnet is ~5x cheaper per token (see [Claude model pricing](https://docs.anthropic.com/en/docs/about-claude/models)) and handles straightforward implementation well.
 
 2. **Don't use teams for simple tasks**: If a single agent can handle it in under 10 minutes, the coordination overhead isn't worth it.
 
@@ -534,6 +538,11 @@ Here's a practical starting point:
 
 The future of AI coding isn't a single, all-powerful agent. It's coordinated teams of specialized agents, each focused on what they do best, communicating and collaborating like human engineers — just faster.
 
----
+## Related Reading
 
-*Looking for more Claude Code guides? Check out our [Setup Guide](/posts/ai/2026-02-25-claude-code-setup-guide/) to get started, our [Pricing Guide](/posts/ai/2026-02-25-claude-code-pricing/) to pick the right plan, and our [Hooks Guide](/posts/ai/2026-02-28-claude-code-hooks-guide/) to automate your workflow.*
+- [Claude Code Setup Guide 2026](/posts/ai/2026-02-25-claude-code-setup-guide/) — Get started with installation and configuration
+- [Claude Code Pricing 2026](/posts/ai/2026-02-25-claude-code-pricing/) — Pick the right plan for your usage
+- [Claude Code Hooks Guide](/posts/ai/2026-02-28-claude-code-hooks-guide/) — Automate your workflow with lifecycle hooks
+- [Claude Code Worktree Guide](/posts/ai/2026-02-28-claude-code-worktree-guide/) — Run parallel AI tasks with Git worktree isolation
+- [Claude Code Skills Guide](/posts/ai/2026-02-28-claude-code-skills-guide/) — Build reusable slash commands and workflows
+- [CLAUDE.md Guide](/posts/ai/2026-02-28-claude-code-claudemd-guide/) — Give AI perfect project context every session
