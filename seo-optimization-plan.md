@@ -18,7 +18,7 @@
 
 ---
 
-## Priority 1: Fix Pricing Article CTR (Immediate — This Week)
+## Priority 1: Fix Pricing Article CTR ✅ DONE
 
 ### Problem Analysis
 
@@ -104,7 +104,7 @@ Add contextual internal links from top Chinese articles to new English articles:
 
 ---
 
-## Priority 3: Title/Description Optimization for All English Articles
+## Priority 3: Title/Description Optimization for All English Articles ✅ DONE
 
 ### Hooks Guide (Already Indexed — 92 impressions, 5 clicks)
 
@@ -134,11 +134,11 @@ Target queries: "claude code tips", "claude code best practices", "claude code m
 
 Based on GSC query data, reprioritize the content plan:
 
-### 4.1 Claude Rate Limits Article (NEW — Not in Content Plan)
+### 4.1 Claude Rate Limits Article ✅ DONE
 
 **Evidence:** 70 rate-limit queries with 141 impressions and 0 coverage.
 
-Create a dedicated article: **"Claude Rate Limits 2026: Messages Per Hour for Every Plan"**
+Created: **"Claude Rate Limits 2026: Messages Per Plan Explained"** at `/posts/ai/2026-02-28-claude-rate-limits/`
 
 Target queries:
 - "claude pro rate limits 2026"
@@ -176,12 +176,10 @@ Since the site has both Chinese and English content on the same domain, consider
 ```
 This tells Google which language each page targets. May not be needed if URLs are distinct.
 
-### 5.2 Structured Data (Schema.org)
-Add Article schema to all English posts for rich snippets:
-- `@type: Article`
-- `datePublished`, `dateModified`
-- `author`, `publisher`
-- FAQ schema for articles with FAQ sections
+### 5.2 Structured Data (Schema.org) ✅ DONE
+Enhanced BlogPosting schema with wordCount, keywords, image, articleSection.
+Added FAQPage schema support via front matter `[[params.faqItems]]`.
+Applied to Pricing and Rate Limits articles.
 
 ### 5.3 Page Speed
 Run Lighthouse on key pages. Cover images are small (17-18 KB) which is good. Check for render-blocking resources.
