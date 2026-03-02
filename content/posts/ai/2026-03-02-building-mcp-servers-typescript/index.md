@@ -1,5 +1,5 @@
 +++
-date = '2026-03-02T12:00:00+08:00'
+date = '2026-03-02T10:00:00+08:00'
 draft = false
 title = 'Building MCP Servers with TypeScript: Zero to Deploy Tutorial'
 description = 'Step-by-step guide to building MCP servers with TypeScript. Learn to create tools, resources, and prompts using the MCP SDK v2, test with Claude Code, debug common issues, and publish to npm.'
