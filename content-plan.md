@@ -58,7 +58,7 @@
 | 11 | Pillar | AI Agent Frameworks Compared 2026: LangChain vs CrewAI vs AutoGen | 高 | ⬜ | — |
 | 12 | Guide | How to Build an AI Agent from Scratch with Python | 高 | ⬜ | ✅ `build-magic-code`（已英文） |
 | 13 | Guide | MCP Protocol Explained: The Universal Standard for AI Tools | 高 | ✅ | ✅ `mcp-protocol-guide` |
-| 14 | Setup | Building MCP Servers: TypeScript Tutorial from Zero to Deploy | 高 | ⬜ | ✅ `claude-code-mcp-server-tutorial` |
+| 14 | Setup | Building MCP Servers: TypeScript Tutorial from Zero to Deploy | 高 | ✅ | ✅ `claude-code-mcp-server-tutorial` |
 | 15 | Guide | Multi-Agent Orchestration: Patterns That Actually Work | 中 | ⬜ | ✅ `openclaw-multi-agent-guide` + `agent-manager-patterns` |
 | 16 | Guide | RAG Pipeline Setup: Vector Database + LLM Integration Guide | 高 | ⬜ | ✅ `vectordatabase`（部分） |
 | 17 | Guide | AI Agent Memory Systems: RAG vs Context Engineering | 中 | ⬜ | ✅ `claude-mem-deep-dive` + `context-engineering-deep-dive` |
@@ -153,7 +153,7 @@
 |---|------|------|---------|------|---------|
 | 41 | Pillar | AI Developer Tools Landscape 2026: The Complete Map | 高 | ⬜ | — |
 | 42 | Comparison | Claude Code vs Cursor: Which Wins for Real Projects? | 高 | ✅ | ✅ `claude-code-vs-cursor-vs-windsurf-2026`（部分） |
-| 43 | Comparison | Claude vs GPT-4o vs Gemini: Best LLM for Coding in 2026 | 高 | ⬜ | ✅ `claude-code-vs-codex`（部分） |
+| 43 | Comparison | Claude vs GPT-4o vs Gemini: Best LLM for Coding in 2026 | 高 | ✅ | ✅ `claude-code-vs-codex`（部分） |
 | 44 | Comparison | Vector Databases Compared: Pinecone vs Weaviate vs Qdrant | 高 | ⬜ | ✅ `vectordatabase` |
 | 45 | Comparison | LangChain vs LlamaIndex: Which RAG Framework to Use | 高 | ⬜ | — |
 | 46 | Comparison | Browser Automation 2026: Playwright vs Puppeteer vs Selenium | 高 | ⬜ | — |
@@ -231,10 +231,38 @@
 | 项目 | 数量 |
 |------|------|
 | 规划文章总数 | 50 篇 |
-| 已完成英文文章 | 16 篇（#1-10 全集群1 + Rate Limits + #13 + #23 + #36 + #42 + Copilot三方） |
+| 已完成英文文章 | 18 篇（#1-10 全集群1 + Rate Limits + #13 + #14 + #23 + #36 + #42 + #43 + Copilot三方） |
 | 有中文素材可改写 | 27 篇 |
 | 需全新创作 | 20 篇 |
 | 改写效率提升 | 有素材的文章预计写作时间减少 50-60% |
+
+---
+
+## 写作规范（强制遵守）
+
+> ⚠️ **每篇文章必须严格遵守 `AGENTS.md` 项目规则和 `/blog-writer` skill 的完整流程。**
+
+### 必须遵守的规则来源
+
+1. **`AGENTS.md`** — 项目级规则（语言、分支、分类、目录结构、Front Matter 格式、图片规范等）
+2. **`.claude/skills/blog-writer/SKILL.md`** — 写作流程和质量标准
+
+### 写作流程 Checklist（每篇文章必须完成）
+
+- [ ] **Step 0**: 确认主题、素材、目标关键词
+- [ ] **Step 1**: 确定分类（只能用 `AI Guides` 或 `Comparisons`）和目录命名
+- [ ] **Step 2**: 收集素材 — 读取用户素材 + WebSearch 主动研究 + `ls content/posts/ai/` 获取已有文章列表
+- [ ] **Step 3**: 生成封面图 cover.webp（1200×630px, < 200KB）— 首选 Rube MCP Gemini 生图，兜底 Python/Pillow
+- [ ] **Step 4**: 撰写文章 — Front Matter 后第一行引用封面图 `![ALT](cover.webp)` + 开头三要素 + 内链≥3 + 外链≥3 + Related Reading
+- [ ] **Step 5**: 发布前检查 — 格式检查 + 内容质量检查 + `hugo --minify` 构建验证
+
+### 内容质量硬性要求
+
+- 所有新文章**全英文**（标题、正文、标签、代码注释、ALT 文本）
+- 每篇 **2000+ 字**
+- 复杂概念必须用**类比/比喻**解释
+- 代码示例**完整可运行**
+- **禁止**混合中英文、自创分类、修改旧中文文章
 
 ---
 
