@@ -56,6 +56,16 @@ Traditional tmux benefits (session persistence, multi-tasking) become **superpow
 
 The combination of tmux + Claude Code has become the standard setup for serious AI-assisted development. Let's start from the basics.
 
+### How to Check If You're Inside Tmux
+
+Not sure whether you're already in a tmux session? Check the `$TMUX` environment variable:
+
+```bash
+echo $TMUX
+# If output is non-empty → you're inside tmux
+# If output is empty → you're in a regular terminal
+```
+
 ## Installation
 
 **macOS** (recommended: use Homebrew):
@@ -150,6 +160,7 @@ tmux ls
 
 # Reattach to a named session
 tmux attach -t dev
+tmux a -t dev  # shorthand
 
 # Reattach to the last session
 tmux attach
@@ -175,6 +186,9 @@ tmux kill-session -t dev
 
 # Kill all sessions except current
 tmux kill-session -a
+
+# Kill the entire tmux server (all sessions)
+tmux kill-server
 
 # Rename a session
 tmux rename-session -t old-name new-name
@@ -240,7 +254,7 @@ tmux split-window -v
 | `Ctrl+b o` | Cycle through panes |
 | `Ctrl+b q` | Show pane numbers (press number to switch) |
 | `Ctrl+b z` | Toggle zoom (fullscreen current pane) |
-| `Ctrl+b x` | Close current pane |
+| `Ctrl+b x` | Close current pane (or just type `exit`) |
 | `Ctrl+b {` | Swap pane with previous |
 | `Ctrl+b }` | Swap pane with next |
 | `Ctrl+b Space` | Cycle through pane layouts |
