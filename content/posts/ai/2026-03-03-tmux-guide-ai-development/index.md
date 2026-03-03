@@ -261,7 +261,7 @@ tmux split-window -v
 
 ### Resizing Panes
 
-Hold `Ctrl+b`, then press arrow keys while holding `Ctrl`:
+Press the prefix `Ctrl+b`, release, then hold `Ctrl` and press an arrow key:
 
 ```
 Ctrl+b Ctrl+←  # Shrink left
@@ -526,7 +526,7 @@ If you want Claude Code available as a **popup overlay** without leaving your cu
 ```bash
 # Add to ~/.tmux.conf
 bind -r y run-shell '\
-  SESSION="claude-$(echo #{pane_current_path} | md5 | cut -c1-8)"; \
+  SESSION="claude-$(echo #{pane_current_path} | md5 | cut -c1-8)"; \ # macOS; use md5sum on Linux
   tmux has-session -t "$SESSION" 2>/dev/null || \
   tmux new-session -d -s "$SESSION" -c "#{pane_current_path}" "claude"; \
   tmux display-popup -w80% -h80% -E "tmux attach-session -t $SESSION"'
