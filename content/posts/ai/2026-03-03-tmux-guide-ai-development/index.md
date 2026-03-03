@@ -451,7 +451,7 @@ tmux attach -t claude
 # Your entire conversation is preserved
 ```
 
-This alone is worth learning tmux. Your Claude Code sessions become **persistent workspaces** that survive:
+If you haven't set up Claude Code yet, check our [complete setup guide](/posts/ai/2026-02-25-claude-code-setup-guide/) first. Once installed, this alone is worth learning tmux. Your Claude Code sessions become **persistent workspaces** that survive:
 
 - Laptop sleep/wake
 - SSH disconnections
@@ -544,7 +544,7 @@ The cost? Roughly 4x the tokens. But the time savings are massive — instead of
 
 ### Method 1: Manual Tmux + Git Worktrees
 
-Git worktrees give each agent an **isolated copy** of your repository, preventing file conflicts:
+Git worktrees give each agent an **isolated copy** of your repository, preventing file conflicts. For a deep dive into Claude Code's native worktree support, see our [Claude Code Worktree guide](/posts/ai/2026-02-28-claude-code-worktree-guide/).
 
 ```bash
 # Create worktrees for parallel agents
@@ -570,7 +570,7 @@ Now switch between agents with `Ctrl+a n` (next window) or `Ctrl+a 1/2/3`.
 
 ### Method 2: Claude Code Agent Teams (Built-in)
 
-Claude Code has experimental native support for multi-agent teams that uses tmux for display:
+Claude Code has experimental native support for multi-agent teams that uses tmux for display. We cover this in detail in our [Agent Teams collaboration guide](/posts/ai/2026-02-28-claude-code-teams-guide/).
 
 **Enable agent teams**:
 
@@ -738,7 +738,7 @@ Both terminals share the same session, but can view different windows independen
 
 ### Hooks and Notifications
 
-Get notified when an AI agent finishes:
+Get notified when an AI agent finishes. For more advanced automation, see our [Claude Code Hooks guide](/posts/ai/2026-02-28-claude-code-hooks-guide/) — hooks can trigger scripts at various lifecycle events.
 
 ```bash
 # Add to ~/.tmux.conf
@@ -840,3 +840,11 @@ Tmux is one of those tools that pays exponential dividends the more you use it. 
 Start with the basics: install tmux, create a named session, learn to detach and reattach. Then gradually add pane splitting, custom configuration, and eventually parallel AI agents. Within a week, you'll wonder how you ever developed without it.
 
 The terminal is not dead. With tmux and AI, it's more alive than ever.
+
+## Related Reading
+
+- [Claude Code Worktree: Run Multiple AI Tasks in Parallel](/posts/ai/2026-02-28-claude-code-worktree-guide/) — Deep dive into Git worktree mode for parallel Claude Code sessions
+- [Claude Code for Teams: Multi-Agent Collaboration Patterns](/posts/ai/2026-02-28-claude-code-teams-guide/) — Master Agent Teams for coordinated multi-agent development
+- [Claude Code Hooks Guide: 12 Automation Configs](/posts/ai/2026-02-28-claude-code-hooks-guide/) — Automate formatting, file protection, and notifications with lifecycle hooks
+- [How to Install Claude Code: Complete Setup Guide](/posts/ai/2026-02-25-claude-code-setup-guide/) — Get started with Claude Code from scratch
+- [Claude Code Guide 2026: Everything You Need to Know](/posts/ai/2026-02-28-claude-code-complete-guide/) — The comprehensive reference covering all Claude Code features
