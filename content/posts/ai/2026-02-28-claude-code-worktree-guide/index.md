@@ -1,5 +1,5 @@
 +++
-date = '2026-02-28T12:00:00+08:00'
+date = '2026-02-28T10:00:00+08:00'
 draft = false
 title = 'Claude Code Worktree: Run Multiple AI Tasks in Parallel'
 description = 'Run multiple Claude Code sessions simultaneously with Git worktree mode. Parallel development, auto-cleanup, and team workflows.'

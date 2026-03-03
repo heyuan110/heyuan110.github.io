@@ -1,5 +1,5 @@
 +++
-date = '2026-02-28T19:00:00+08:00'
+date = '2026-02-28T10:00:00+08:00'
 draft = false
 title = 'Claude Code vs Cursor 2026: Which AI Coding Tool Wins?'
 description = 'Claude Code vs Cursor head-to-head comparison for 2026. Agent capabilities, pricing, code quality, and real-world performance tested across 5 dimensions.'

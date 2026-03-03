@@ -1,5 +1,5 @@
 +++
-date = '2026-02-28T13:00:00+08:00'
+date = '2026-02-28T10:00:00+08:00'
 draft = false
 title = 'Claude Code for Teams: Multi-Agent Collaboration Patterns'
 description = 'Master Claude Code Agent Teams for multi-agent collaboration. Shared task lists, parallel execution, and real-world patterns.'

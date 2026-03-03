@@ -1,5 +1,5 @@
 +++
-date = '2026-02-28T16:00:00+08:00'
+date = '2026-02-28T10:00:00+08:00'
 draft = false
 title = 'Claude Rate Limits 2026: Messages Per Plan Explained'
 description = 'Complete guide to Claude rate limits in 2026. Pro, Max 5x, Max 20x message caps per 5 hours, weekly limits, API tiers, and how to avoid hitting limits.'

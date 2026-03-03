@@ -1,5 +1,5 @@
 +++
-date = '2026-02-28T20:00:00+08:00'
+date = '2026-02-28T10:00:00+08:00'
 draft = false
 title = 'GitHub Copilot vs Claude Code vs Cursor: 2026 Comparison'
 description = 'GitHub Copilot vs Claude Code vs Cursor compared across pricing, agent mode, code completion, and IDE support. Find the best AI coding tool for 2026.'
