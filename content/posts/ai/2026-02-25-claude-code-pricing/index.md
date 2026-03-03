@@ -1,12 +1,12 @@
 +++
-date = '2026-02-25T10:00:00+08:00'
+date = '2026-03-03T10:00:00+08:00'
 draft = false
-title = 'Claude Pricing 2026: Every Plan from Free to Max $200'
-description = 'Claude pricing guide for 2026. Free, Pro ($20), Max ($100-200), Team plans compared with rate limits, Claude Code access, and AI coding tool benchmarks.'
+title = 'Claude Pricing 2026 (March Updated): Pro $20 vs Max $100 vs $200 — Which Plan?'
+description = 'Updated March 2026. Compare Claude Pro ($20/mo), Max 5x ($100), Max 20x ($200), Team & API pricing side by side. Includes exact rate limits, real-world cost breakdowns, and tips to cut your bill by 50%.'
 toc = true
 tags = ['Claude Code', 'Pricing', 'AI Coding Tools', 'Comparison']
 categories = ['AI Guides']
-keywords = ['Claude pricing 2026', 'Claude Pro price', 'Claude Max plan cost', 'Claude rate limits', 'Claude Code pricing', 'Claude free tier', 'Claude Pro vs Max', 'Anthropic pricing', 'Claude Pro messages per 5 hours']
+keywords = ['Claude pricing 2026', 'Claude Pro price', 'Claude Max plan cost', 'Claude rate limits', 'Claude Code pricing', 'Claude free tier', 'Claude Pro vs Max', 'Anthropic pricing', 'Claude Pro messages per 5 hours', 'claude code pricing march 2026', 'claude pro pricing march 2026', 'claude ai pricing 2026']
 
 [[params.faqItems]]
 question = "Is Claude AI free to use?"
@@ -376,7 +376,7 @@ The real competitor isn't another tool's pricing — it's your own hourly rate. 
 
 ---
 
-*Pricing data current as of February 2026. Anthropic updates pricing periodically — check [anthropic.com/pricing](https://www.anthropic.com/pricing) for the latest.*
+*Pricing data current as of March 2026. Anthropic updates pricing periodically — check [anthropic.com/pricing](https://www.anthropic.com/pricing) for the latest.*
 
 ## Related Reading
 
