@@ -2,8 +2,8 @@
 date = '2026-02-19T10:00:00+08:00'
 lastmod = '2026-02-23T10:00:00+08:00'
 draft = false
-title = 'Claude Code vs ChatGPT Codex：谁才是 2026 最强 AI 编程工具？'
-description = 'Claude Code（Opus 4.6）vs ChatGPT Codex（GPT-5.3）深度对比：模型能力、编码质量、Agent 协作、价格到实战体验，附选型建议帮你选最合适的 AI 编程工具。'
+title = 'Claude Code vs Codex CLI 深度对比（2026）：8 个维度实测谁更强'
+description = 'Claude Code Opus 4.6 和 ChatGPT Codex GPT-5.3 全方位对比：编码质量、上下文理解、Agent 协作、价格、安全模型等 8 个维度实测，帮你选对 AI 编程工具。'
 toc = true
 tags = ['Claude Code', 'ChatGPT Codex', 'AI 编程', '工具对比']
 categories = ['AI实战']
