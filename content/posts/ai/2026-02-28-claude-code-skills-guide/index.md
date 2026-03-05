@@ -1,8 +1,8 @@
 +++
 date = '2026-02-28T10:00:00+08:00'
 draft = false
-title = 'Claude Code Skills: Teach AI Your Custom Workflows'
-description = 'Create Claude Code Skills to package domain knowledge into reusable SKILL.md files. Templates, examples, and top community Skills.'
+title = 'Claude Code Skills Guide: Create Custom SKILL.md Workflows (With Examples)'
+description = 'Learn to build Claude Code Skills with SKILL.md files. 3 ready-to-use templates, top community Skills, and how Skills compare to CLAUDE.md and Hooks.'
 toc = true
 tags = ['Claude Code', 'Skills', 'Automation', 'Workflow']
 categories = ['AI Guides']

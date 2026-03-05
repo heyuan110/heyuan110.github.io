@@ -1,8 +1,8 @@
 +++
 date = '2026-03-03T10:00:00+08:00'
 draft = false
-title = 'Claude Pricing 2026 (March Updated): Pro $20 vs Max $100 vs $200 — Which Plan?'
-description = 'Updated March 2026. Compare Claude Pro ($20/mo), Max 5x ($100), Max 20x ($200), Team & API pricing side by side. Includes exact rate limits, real-world cost breakdowns, and tips to cut your bill by 50%.'
+title = 'Claude Code Pricing 2026: Free vs Pro vs Max — Complete Cost Breakdown'
+description = 'How much does Claude Code cost? Free tier, Pro $20/mo, Max $100-$200, Team, and API pricing compared. Real usage costs, rate limits, and tips to save 50% on your Claude bill.'
 toc = true
 tags = ['Claude Code', 'Pricing', 'AI Coding Tools', 'Comparison']
 categories = ['AI Guides']

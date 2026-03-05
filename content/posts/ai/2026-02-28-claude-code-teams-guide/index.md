@@ -1,8 +1,8 @@
 +++
 date = '2026-02-28T10:00:00+08:00'
 draft = false
-title = 'Claude Code for Teams: Multi-Agent Collaboration Patterns'
-description = 'Master Claude Code Agent Teams for multi-agent collaboration. Shared task lists, parallel execution, and real-world patterns.'
+title = 'Claude Code Agent Teams: How to Run Multiple AI Agents in Parallel'
+description = 'Use Claude Code Agent Teams to run multiple AI agents simultaneously. Setup guide, collaboration patterns, shared task lists, worktree isolation, and cost tips.'
 toc = true
 tags = ['Claude Code', 'Agent Teams', 'Multi-Agent', 'Collaboration']
 categories = ['AI Guides']

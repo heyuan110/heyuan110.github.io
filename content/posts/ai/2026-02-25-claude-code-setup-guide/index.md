@@ -1,8 +1,8 @@
 +++
 date = '2026-02-25T12:00:00+08:00'
 draft = false
-title = 'How to Install Claude Code: Complete Setup Guide (2026)'
-description = 'Step-by-step Claude Code installation guide for 2026. Covers native installer, API keys, VS Code integration, model selection, and your first real project.'
+title = 'Install Claude Code in 5 Minutes: Step-by-Step Setup Guide (2026)'
+description = 'Get Claude Code running fast. Native installer, API key setup, VS Code integration, model selection, and your first AI-powered coding session — all in 5 minutes.'
 toc = true
 tags = ['Claude Code', 'Setup', 'Tutorial', 'Getting Started']
 categories = ['AI Guides']
