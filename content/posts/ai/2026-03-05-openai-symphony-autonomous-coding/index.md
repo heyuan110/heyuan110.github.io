@@ -1,5 +1,5 @@
 +++
-date = '2026-03-05T19:56:00+08:00'
+date = '2026-03-06T22:00:00+08:00'
 draft = false
 title = 'OpenAI Symphony Deep Dive: Autonomous Coding Orchestration'
 description = 'How OpenAI Symphony turns issue tickets into verified pull requests using autonomous AI agents. Architecture, state machine, WORKFLOW.md, and setup guide.'

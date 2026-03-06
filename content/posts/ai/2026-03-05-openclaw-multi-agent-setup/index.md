@@ -1,5 +1,5 @@
 +++
-date = '2026-03-05T10:00:00+08:00'
+date = '2026-03-04T19:00:00+08:00'
 draft = false
 title = 'OpenClaw Multi-Agent Setup: Build AI Teams That Work'
 description = 'Step-by-step OpenClaw multi-agent setup guide. Configure agent teams, communication patterns, Tavily search, messaging bindings, and 4 collaboration patterns.'

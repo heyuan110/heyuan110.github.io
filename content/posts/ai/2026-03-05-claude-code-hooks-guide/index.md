@@ -1,5 +1,5 @@
 +++
-date = '2026-03-05T10:00:00+08:00'
+date = '2026-03-04T09:00:00+08:00'
 draft = false
 title = 'Claude Code Hooks: Automate Your AI Workflow (2026)'
 description = 'Complete guide to Claude Code hooks with practical examples. Learn to auto-format code, block dangerous commands, and automate workflows with lifecycle hooks.'

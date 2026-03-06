@@ -1,5 +1,5 @@
 +++
-date = '2026-03-05T10:00:00+08:00'
+date = '2026-03-05T09:00:00+08:00'
 draft = false
 title = 'OpenClaw Setup Guide: Install and Configure Your AI Agent'
 description = 'Complete OpenClaw setup guide. Step-by-step installation, Telegram/WhatsApp config, AI model setup, Skills, multi-agent basics, and security best practices.'

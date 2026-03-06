@@ -1,5 +1,5 @@
 +++
-date = '2026-03-05T14:00:00+08:00'
+date = '2026-03-05T19:00:00+08:00'
 draft = false
 title = 'Claude Code Slash Commands, Shortcuts & CLI Reference'
 description = 'Complete reference for every Claude Code slash command, keyboard shortcut, CLI flag, and environment variable. Plus custom commands with Skills.'

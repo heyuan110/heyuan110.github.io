@@ -1,5 +1,5 @@
 +++
-date = '2026-03-05T10:00:00+08:00'
+date = '2026-03-03T19:00:00+08:00'
 draft = false
 title = 'CLAUDE.md Best Practices: Write Files That Actually Work'
 description = 'How to write effective CLAUDE.md files for Claude Code. Practical patterns, examples for 7 project types, and CLAUDE.md vs .cursorrules vs AGENTS.md compared.'

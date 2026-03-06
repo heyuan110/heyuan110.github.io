@@ -1,5 +1,5 @@
 +++
-date = '2026-03-05T14:00:00+08:00'
+date = '2026-03-06T09:00:00+08:00'
 draft = false
 title = 'OpenClaw Pitfalls: 15 Automation Mistakes and Fixes'
 description = 'Avoid costly OpenClaw automation mistakes. Learn 15 common pitfalls in setup, agent behavior, cost control, and security — with real examples and fixes.'

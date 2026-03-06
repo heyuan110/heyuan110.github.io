@@ -1,5 +1,5 @@
 +++
-date = '2026-03-05T14:00:00+08:00'
+date = '2026-03-06T14:00:00+08:00'
 draft = false
 title = 'OpenClaw Tavily Integration: Add Web Search to Your AI Agent'
 description = 'Step-by-step guide to integrating Tavily search into OpenClaw. Covers API setup, tavily-search vs extract vs crawl, agent-specific config, and cost management.'
