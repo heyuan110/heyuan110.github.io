@@ -1,12 +1,12 @@
 +++
 date = '2026-03-03T10:00:00+08:00'
 draft = false
-title = 'Claude Code Pricing 2026: Free vs Pro vs Max — Complete Cost Breakdown'
-description = 'How much does Claude Code cost? Free tier, Pro $20/mo, Max $100-$200, Team, and API pricing compared. Real usage costs, rate limits, and tips to save 50% on your Claude bill.'
+title = 'Claude Code Pricing 2026: Every Plan from $0 to $200/Month Compared'
+description = 'Claude Code costs $0 (free tier, no Code access), $20 (Pro), $100 (Max 5x), or $200/month (Max 20x). See exact rate limits, API token costs, and how it compares to Cursor and Copilot pricing.'
 toc = true
 tags = ['Claude Code', 'Pricing', 'AI Coding Tools', 'Comparison']
 categories = ['AI Guides']
-keywords = ['Claude pricing 2026', 'Claude Pro price', 'Claude Max plan cost', 'Claude rate limits', 'Claude Code pricing', 'Claude free tier', 'Claude Pro vs Max', 'Anthropic pricing', 'Claude Pro messages per 5 hours', 'claude code pricing march 2026', 'claude pro pricing march 2026', 'claude ai pricing 2026']
+keywords = ['claude code pricing 2026', 'claude code pricing', 'claude pro price', 'claude max plan cost', 'claude ai pricing 2026', 'claude pro pricing 2026', 'claude max plan pricing 2026', 'anthropic claude pricing', 'claude code free', 'claude pro vs max', 'claude rate limits 2026', 'claude pro messages per 5 hours', 'how much does claude code cost', 'is claude code free']
 
 [[params.faqItems]]
 question = "Is Claude AI free to use?"
