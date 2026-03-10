@@ -120,10 +120,10 @@
 | # | 类型 | 标题 | 商业意图 | 状态 | 中文素材 |
 |---|------|------|---------|------|---------|
 | 31 | Pillar | AI Engineering Workflow 2026: Idea to Production Playbook | 高 | ⬜ | — |
-| 32 | Guide | Context Engineering: The Most Underrated AI Development Skill | 中 | ⬜ | ✅ `context-engineering-deep-dive` |
+| 32 | Guide | Context Engineering: The Most Underrated AI Development Skill | 中 | ✅ | ✅ `context-engineering-deep-dive` |
 | 33 | Guide | Prompt Engineering for Production: Patterns That Scale | 高 | ⬜ | — |
 | 34 | Guide | AI-Assisted Testing: Generate Unit Tests with Claude Code | 中 | ⬜ | ✅ `unit-test-report-tools`（部分） |
-| 35 | Guide | AI Dev Environment Setup: Tools, Configs, and Dotfiles | 高 | ⬜ | ✅ `ai-dev-workflow` + `ai-workflow-real-guide` |
+| 35 | Guide | AI Dev Environment Setup: Tools, Configs, and Dotfiles | 高 | ✅ | ✅ `ai-dev-workflow` + `ai-workflow-real-guide` |
 | 36 | Guide | Vibe Coding Explained: What It Is and How to Do It Right | 中 | ✅ | ✅ `vibe-coding-guide` + `secure-vibe-coding` |
 | 37 | Guide | AI Pair Programming Patterns for Maximum Productivity | 中 | ⬜ | — |
 | 38 | Guide | High-Frequency Commits: Ship 100+ Commits/Day Without Chaos | 中 | ⬜ | ✅ `high-frequency-commits-strategy` |
@@ -196,7 +196,7 @@
 | Phase 1 | 第 1 周 | Claude Code 集群前 3 篇（#9 Pricing → #2 Setup → #10 Mistakes） | ✅ 已完成 |
 | Phase 2 | 第 2-3 周 | Claude Code 剩余 7 篇（#3→#4→#5→#6→#7→#8→#1） | ✅ 全部完成 |
 | Phase 3 | 第 4-5 周 | 每个集群首篇高搜索量文章（#13、#23、#36、#42） | ✅ 全部完成 |
-| Phase 4 | 第 6-8 周 | 有中文素材的文章优先改写（约 20 篇） | 🔄 进行中（#24 已完成） |
+| Phase 4 | 第 6-8 周 | 有中文素材的文章优先改写（约 20 篇） | 🔄 进行中（#24 #32 #35 已完成） |
 | Phase 5 | 第 9-12 周 | 无素材的新文章 + 5 篇 Pillar | ⬜ |
 
 ### Phase 2 详细计划（当前阶段）
@@ -231,7 +231,7 @@
 | 项目 | 数量 |
 |------|------|
 | 规划文章总数 | 50 篇 |
-| 已完成英文文章 | 21 篇（#1-10 全集群1 + Rate Limits + #13 + #14 + #23 + #24 + #36 + #42 + #43 + Copilot三方 + Antigravity Review + Kiro Review） |
+| 已完成英文文章 | 25 篇（#1-10 全集群1 + Rate Limits + #13 + #14 + #23 + #24 + #32 + #35 + #36 + #42 + #43 + Copilot三方 + Antigravity Review + Kiro Review + AI Agents Comparison + MCP Security） |
 | 有中文素材可改写 | 27 篇 |
 | 需全新创作 | 20 篇 |
 | 改写效率提升 | 有素材的文章预计写作时间减少 50-60% |
