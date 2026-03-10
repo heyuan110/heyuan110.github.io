@@ -56,14 +56,14 @@
 | # | 类型 | 标题 | 商业意图 | 状态 | 中文素材 |
 |---|------|------|---------|------|---------|
 | 11 | Pillar | AI Agent Frameworks Compared 2026: LangChain vs CrewAI vs AutoGen | 高 | ⬜ | — |
-| 12 | Guide | How to Build an AI Agent from Scratch with Python | 高 | ⬜ | ✅ `build-magic-code`（已英文） |
+| 12 | Guide | How to Build an AI Agent from Scratch with Python | 高 | ✅ | ✅ `build-magic-code`（已英文） |
 | 13 | Guide | MCP Protocol Explained: The Universal Standard for AI Tools | 高 | ✅ | ✅ `mcp-protocol-guide` |
 | 14 | Setup | Building MCP Servers: TypeScript Tutorial from Zero to Deploy | 高 | ✅ | ✅ `claude-code-mcp-server-tutorial` |
-| 15 | Guide | Multi-Agent Orchestration: Patterns That Actually Work | 中 | ⬜ | ✅ `openclaw-multi-agent-guide` + `agent-manager-patterns` |
-| 16 | Guide | RAG Pipeline Setup: Vector Database + LLM Integration Guide | 高 | ⬜ | ✅ `vectordatabase`（部分） |
-| 17 | Guide | AI Agent Memory Systems: RAG vs Context Engineering | 中 | ⬜ | ✅ `claude-mem-deep-dive` + `context-engineering-deep-dive` |
-| 18 | Guide | AI Agent Security: Protecting Automated Workflows | 中 | ⬜ | ✅ `mcp-security-guide` + `claude-code-security` |
-| 19 | Guide | From Prototype to Production: AI Agent Deployment Checklist | 高 | ⬜ | ✅ `prototype-to-production` |
+| 15 | Guide | Multi-Agent Orchestration: Patterns That Actually Work | 中 | ✅ | ✅ `openclaw-multi-agent-guide` + `agent-manager-patterns` |
+| 16 | Guide | RAG Pipeline Setup: Vector Database + LLM Integration Guide | 高 | ✅ | ✅ `vectordatabase`（部分） |
+| 17 | Guide | AI Agent Memory Systems: RAG vs Context Engineering | 中 | ✅ | ✅ `claude-mem-deep-dive` + `context-engineering-deep-dive` |
+| 18 | Guide | AI Agent Security: Protecting Automated Workflows | 中 | ✅ | ✅ `mcp-security-guide` + `claude-code-security` |
+| 19 | Guide | From Prototype to Production: AI Agent Deployment Checklist | 高 | ✅ | ✅ `prototype-to-production` |
 | 20 | Review | OpenClaw Deep Dive: Architecture, Setup, and Real-World Usage | 中 | ⬜ | ✅ `openclaw-architecture-deep-dive` + `openclaw-usage-tutorial` |
 
 ### AI Agent Framework 推荐写作顺序
@@ -88,7 +88,7 @@
 | # | 类型 | 标题 | 商业意图 | 状态 | 中文素材 |
 |---|------|------|---------|------|---------|
 | 21 | Pillar | Best AI Coding Tools 2026: Complete Comparison & Ranking | 高 | ⬜ | — |
-| 22 | Setup | Cursor Setup Guide: Installation to Advanced Agent Mode | 高 | ⬜ | ✅ `cursor-agent-best-practices` |
+| 22 | Setup | Cursor Setup Guide: Installation to Advanced Agent Mode | 高 | ✅ | ✅ `cursor-agent-best-practices` |
 | 23 | Comparison | GitHub Copilot vs Claude Code vs Cursor: Real-World Benchmarks | 高 | ✅ | ✅ `claude-code-vs-cursor-vs-windsurf-2026` |
 | 24 | Review | Codex CLI Deep Dive: OpenAI's Terminal AI Assistant | 高 | ✅ | ✅ `codex-cli-mastery-guide` |
 | 25 | Review | Windsurf Review: Is Codeium's AI IDE Worth Switching To? | 高 | ⬜ | — |
@@ -126,7 +126,7 @@
 | 35 | Guide | AI Dev Environment Setup: Tools, Configs, and Dotfiles | 高 | ✅ | ✅ `ai-dev-workflow` + `ai-workflow-real-guide` |
 | 36 | Guide | Vibe Coding Explained: What It Is and How to Do It Right | 中 | ✅ | ✅ `vibe-coding-guide` + `secure-vibe-coding` |
 | 37 | Guide | AI Pair Programming Patterns for Maximum Productivity | 中 | ⬜ | — |
-| 38 | Guide | High-Frequency Commits: Ship 100+ Commits/Day Without Chaos | 中 | ⬜ | ✅ `high-frequency-commits-strategy` |
+| 38 | Guide | High-Frequency Commits: Ship 100+ Commits/Day Without Chaos | 中 | ✅ | ✅ `high-frequency-commits-strategy` |
 | 39 | Guide | CI/CD for AI-Assisted Development: Quality at Scale | 中 | ⬜ | — |
 | 40 | Guide | Technical Writing with AI: Better Docs in Half the Time | 中 | ⬜ | — |
 
@@ -196,7 +196,7 @@
 | Phase 1 | 第 1 周 | Claude Code 集群前 3 篇（#9 Pricing → #2 Setup → #10 Mistakes） | ✅ 已完成 |
 | Phase 2 | 第 2-3 周 | Claude Code 剩余 7 篇（#3→#4→#5→#6→#7→#8→#1） | ✅ 全部完成 |
 | Phase 3 | 第 4-5 周 | 每个集群首篇高搜索量文章（#13、#23、#36、#42） | ✅ 全部完成 |
-| Phase 4 | 第 6-8 周 | 有中文素材的文章优先改写（约 20 篇） | 🔄 进行中（#24 #32 #35 已完成） |
+| Phase 4 | 第 6-8 周 | 有中文素材的文章优先改写（约 20 篇） | 🔄 进行中（#12 #15 #16 #17 #18 #19 #22 #24 #32 #35 #38 已完成） |
 | Phase 5 | 第 9-12 周 | 无素材的新文章 + 5 篇 Pillar | ⬜ |
 
 ### Phase 2 详细计划（当前阶段）
@@ -231,7 +231,7 @@
 | 项目 | 数量 |
 |------|------|
 | 规划文章总数 | 50 篇 |
-| 已完成英文文章 | 25 篇（#1-10 全集群1 + Rate Limits + #13 + #14 + #23 + #24 + #32 + #35 + #36 + #42 + #43 + Copilot三方 + Antigravity Review + Kiro Review + AI Agents Comparison + MCP Security） |
+| 已完成英文文章 | 33 篇（#1-10 全集群1 + Rate Limits + #12 #13 #14 #15 #16 #17 #18 #19 #22 #23 #24 #32 #35 #36 #38 #42 #43 + Copilot三方 + Antigravity Review + Kiro Review + AI Agents Comparison + MCP Security + TS AI Tools + TS vs Python） |
 | 有中文素材可改写 | 27 篇 |
 | 需全新创作 | 20 篇 |
 | 改写效率提升 | 有素材的文章预计写作时间减少 50-60% |
