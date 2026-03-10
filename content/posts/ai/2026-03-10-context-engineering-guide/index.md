@@ -1,5 +1,5 @@
 +++
-date = '2026-03-05T10:00:00+08:00'
+date = '2026-03-10T10:00:00+08:00'
 draft = false
 title = 'Context Engineering: The Most Underrated AI Development Skill in 2026'
 description = 'Master context engineering to build better AI systems. Learn the five dimensions, four failure modes, and practical frameworks that separate hobbyist prompting from production-grade AI development.'

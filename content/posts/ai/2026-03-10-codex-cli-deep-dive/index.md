@@ -1,5 +1,5 @@
 +++
-date = '2026-03-02T10:00:00+08:00'
+date = '2026-03-07T14:00:00+08:00'
 draft = false
 title = 'Codex CLI Deep Dive: Setup, Config, and 20+ Power User Tips'
 description = 'Master OpenAI Codex CLI with this complete guide. Installation, model switching, session recovery, MCP integration, security modes, and real Codex CLI vs Claude Code comparison.'
