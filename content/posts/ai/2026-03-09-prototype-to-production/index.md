@@ -1,5 +1,5 @@
 +++
-date = '2026-03-13T10:00:00+08:00'
+date = '2026-03-09T18:00:00+08:00'
 draft = false
 title = 'Prototype to Production: AI App Deployment Checklist'
 description = 'A complete checklist for deploying AI applications from prototype to production, covering testing, security, scalability, observability, and automated ops.'

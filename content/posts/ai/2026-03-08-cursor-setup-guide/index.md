@@ -1,5 +1,5 @@
 +++
-date = '2026-03-12T10:00:00+08:00'
+date = '2026-03-08T18:00:00+08:00'
 draft = false
 title = 'Cursor Setup Guide 2026: From Install to Advanced Agent Mode'
 description = 'Complete Cursor IDE setup guide covering installation, configuration, Agent Mode, Rules, TDD workflows, and parallel execution for maximum AI coding productivity.'
