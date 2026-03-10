@@ -90,7 +90,7 @@
 | 21 | Pillar | Best AI Coding Tools 2026: Complete Comparison & Ranking | 高 | ⬜ | — |
 | 22 | Setup | Cursor Setup Guide: Installation to Advanced Agent Mode | 高 | ⬜ | ✅ `cursor-agent-best-practices` |
 | 23 | Comparison | GitHub Copilot vs Claude Code vs Cursor: Real-World Benchmarks | 高 | ✅ | ✅ `claude-code-vs-cursor-vs-windsurf-2026` |
-| 24 | Review | Codex CLI Deep Dive: OpenAI's Terminal AI Assistant | 高 | ⬜ | ✅ `codex-cli-mastery-guide` |
+| 24 | Review | Codex CLI Deep Dive: OpenAI's Terminal AI Assistant | 高 | ✅ | ✅ `codex-cli-mastery-guide` |
 | 25 | Review | Windsurf Review: Is Codeium's AI IDE Worth Switching To? | 高 | ⬜ | — |
 | 26 | Best Tools | Best VS Code AI Extensions 2026: Ranked by Real Usage | 高 | ⬜ | — |
 | 27 | Pricing | AI Coding Tools Pricing 2026: Free vs Paid Tier Breakdown | 高 | ⬜ | — |
@@ -196,7 +196,7 @@
 | Phase 1 | 第 1 周 | Claude Code 集群前 3 篇（#9 Pricing → #2 Setup → #10 Mistakes） | ✅ 已完成 |
 | Phase 2 | 第 2-3 周 | Claude Code 剩余 7 篇（#3→#4→#5→#6→#7→#8→#1） | ✅ 全部完成 |
 | Phase 3 | 第 4-5 周 | 每个集群首篇高搜索量文章（#13、#23、#36、#42） | ✅ 全部完成 |
-| Phase 4 | 第 6-8 周 | 有中文素材的文章优先改写（约 20 篇） | ⬜ |
+| Phase 4 | 第 6-8 周 | 有中文素材的文章优先改写（约 20 篇） | 🔄 进行中（#24 已完成） |
 | Phase 5 | 第 9-12 周 | 无素材的新文章 + 5 篇 Pillar | ⬜ |
 
 ### Phase 2 详细计划（当前阶段）
@@ -231,7 +231,7 @@
 | 项目 | 数量 |
 |------|------|
 | 规划文章总数 | 50 篇 |
-| 已完成英文文章 | 18 篇（#1-10 全集群1 + Rate Limits + #13 + #14 + #23 + #36 + #42 + #43 + Copilot三方） |
+| 已完成英文文章 | 21 篇（#1-10 全集群1 + Rate Limits + #13 + #14 + #23 + #24 + #36 + #42 + #43 + Copilot三方 + Antigravity Review + Kiro Review） |
 | 有中文素材可改写 | 27 篇 |
 | 需全新创作 | 20 篇 |
 | 改写效率提升 | 有素材的文章预计写作时间减少 50-60% |
