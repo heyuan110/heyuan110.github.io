@@ -1,5 +1,5 @@
 +++
-date = '2026-03-10T14:00:00+08:00'
+date = '2026-03-07T10:00:00+08:00'
 draft = false
 title = 'Google Antigravity Review 2026: The Free Agent-First IDE That Changes Everything'
 description = 'Hands-on review of Google Antigravity IDE — free agent-first development platform powered by Gemini 3. Setup, features, Manager View, and comparison with Cursor and Claude Code.'

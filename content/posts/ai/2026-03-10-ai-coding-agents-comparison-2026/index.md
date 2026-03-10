@@ -1,5 +1,5 @@
 +++
-date = '2026-03-10T10:00:00+08:00'
+date = '2026-03-03T10:00:00+08:00'
 draft = false
 title = 'AI Coding Agents 2026: The Complete Comparison (7 Tools Tested)'
 description = 'Compare 7 AI coding agents in 2026: Claude Code, Cursor, Google Antigravity, GitHub Copilot, Kiro, Codex CLI, and Windsurf. Pricing, features, benchmarks, and real-world testing.'

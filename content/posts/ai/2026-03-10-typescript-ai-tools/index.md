@@ -1,5 +1,5 @@
 +++
-date = '2026-03-10T18:00:00+08:00'
+date = '2026-03-09T10:00:00+08:00'
 draft = false
 title = 'Why TypeScript Surged 66%: How AI Tools Are Reshaping Language Choice'
 description = 'TypeScript became GitHub #1 language with 66% growth, driven by AI coding tools. Learn why static types help LLMs generate better code and how the convenience loop works.'
