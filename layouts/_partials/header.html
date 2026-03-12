@@ -27,7 +27,37 @@
 		</div>
 	</div>
 </header>
-{{- partial "lang-switcher.html" . -}}
+{{- if or .IsHome .IsTranslated -}}
+<div class="lang-dropdown lang-dropdown-fixed">
+	<button class="lang-dropdown-btn" aria-label="Switch language">
+		{{- if eq site.Language.Lang "zh" -}}&#127464;&#127475; 中文{{- else -}}&#127482;&#127480; EN{{- end -}}
+		<svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+	</button>
+	<div class="lang-dropdown-menu">
+		{{- $path := .RelPermalink -}}
+		{{- if eq site.Language.Lang "zh" -}}
+			{{- $enPath := replaceRE "^/zh/" "/" $path -}}
+			<a href="{{ $enPath }}">&#127482;&#127480; EN</a>
+		{{- else -}}
+			<a href="/zh{{ $path }}">&#127464;&#127475; 中文</a>
+		{{- end -}}
+	</div>
+</div>
+<script>
+(function(){
+	var dd = document.querySelectorAll('.lang-dropdown');
+	dd.forEach(function(d){
+		d.querySelector('.lang-dropdown-btn').addEventListener('click', function(e){
+			e.stopPropagation();
+			d.classList.toggle('open');
+		});
+	});
+	document.addEventListener('click', function(){
+		dd.forEach(function(d){ d.classList.remove('open'); });
+	});
+})();
+</script>
+{{- end -}}
 <div id="mobile-menu" {{- if ne false .Site.Params.usesAnimation }} class="animated fast" {{- end -}}>
 	<ul>
 		{{- range .Site.Menus.main }}

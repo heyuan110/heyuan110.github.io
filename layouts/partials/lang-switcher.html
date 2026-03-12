@@ -5,27 +5,13 @@
 		<svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
 	</button>
 	<div class="lang-dropdown-menu">
-		{{- if .IsTranslated -}}
-			{{- range .Translations }}
-			<a href="{{ .Permalink }}">
-				{{- if eq .Language.Lang "zh" -}}&#127464;&#127475; 中文{{- else -}}&#127482;&#127480; EN{{- end -}}
-			</a>
-			{{- end }}
+		{{- $path := .RelPermalink -}}
+		{{- if eq site.Language.Lang "zh" -}}
+			{{- $enPath := replaceRE "^/zh/" "/" $path -}}
+			<a href="{{ $enPath }}">&#127482;&#127480; EN</a>
 		{{- else -}}
-			{{- range site.Languages -}}
-				{{- if ne .Lang site.Language.Lang }}
-				{{- if eq .Lang (index site.Languages 0).Lang }}
-				<a href="{{ "" | absURL }}">
-					{{- if eq .Lang "zh" -}}&#127464;&#127475; 中文{{- else -}}&#127482;&#127480; EN{{- end -}}
-				</a>
-				{{- else }}
-				<a href="{{ (printf "/%s/" .Lang) | absURL }}">
-					{{- if eq .Lang "zh" -}}&#127464;&#127475; 中文{{- else -}}&#127482;&#127480; EN{{- end -}}
-				</a>
-				{{- end -}}
-				{{- end -}}
-			{{- end -}}
-		{{- end }}
+			<a href="/zh{{ $path }}">&#127464;&#127475; 中文</a>
+		{{- end -}}
 	</div>
 </div>
 <script>
