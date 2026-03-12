@@ -1,349 +1,348 @@
 +++
 date = '2026-02-01T17:00:00+08:00'
 draft = false
-title = 'Superpowers 深度解析：让 Claude Code 变身高级工程师的技能框架'
-description = 'Superpowers 是 GitHub 上 4 万星的 Claude Code 技能框架，通过 TDD、子代理驱动开发、系统化调试等技能，将 AI 编码助手变成遵循工程纪律的高级开发者。本文深度解析其原理、安装、工作流与实战。'
+title = 'Superpowers Deep Dive: The Skills Framework That Makes Claude Code a Senior Engineer'
+description = 'Superpowers is a 40K-star agentic skills framework for Claude Code. It enforces TDD, subagent-driven development, and structured planning to transform AI coding assistants into disciplined senior developers.'
 toc = true
-tags = ['Claude Code', 'Superpowers', 'TDD', 'Agent Skills', 'AI 编程']
-categories = ['AI实战']
-keywords = ['Superpowers', 'Claude Code 插件', 'Agent Skills', '测试驱动开发', '子代理开发', 'obra superpowers']
+tags = ['Claude Code', 'Superpowers', 'TDD', 'Agent Skills', 'AI Coding']
+categories = ['AI Guides']
+keywords = ['Superpowers Claude Code', 'agentic skills framework', 'Claude Code plugin', 'test driven development AI', 'subagent driven development', 'obra superpowers']
 +++
 
-![Superpowers 深度解析](cover.webp)
+![Superpowers Deep Dive](cover.webp)
 
-你有没有遇到过这样的场景——让 Claude Code 帮你写一个功能，它二话不说直接开始码代码，写完发现没测试、没规划、逻辑也不太对，你得反反复复纠正好几轮？
+Have you ever asked Claude Code to build a feature, only to watch it immediately start writing code with no tests, no plan, and questionable logic -- forcing you to course-correct over multiple rounds?
 
-**问题不在 AI 的能力，而在于缺乏结构化的工作方式。**
+**The problem isn't AI capability. It's the lack of a structured workflow.**
 
-[Superpowers](https://github.com/obra/superpowers) 就是为了解决这个问题而生的。它是一个由 Jesse Vincent（GitHub ID: [obra](https://github.com/obra)）开发的「AI 代理技能框架」，通过一组可组合的 **Skills（技能）** 和一套严格的开发方法论，让 Claude Code 从一个「随意写代码的助手」变成一个「遵循工程纪律的高级开发者」。
+[Superpowers](https://github.com/obra/superpowers) was built to solve exactly this. Created by Jesse Vincent (GitHub: [obra](https://github.com/obra)), it's an **agentic skills framework** that uses composable **Skills** and a strict development methodology to transform Claude Code from a "write code on demand" assistant into a "disciplined senior developer."
 
-这个项目在 GitHub 上获得了超过 **4 万颗星**，是目前最受欢迎的 Claude Code 技能库。读完这篇文章，你将了解 Superpowers 的核心原理、完整工作流、安装配置方法，以及如何用它真正提升你的 AI 编程效率。
+With over **40,000 GitHub stars**, Superpowers is the most popular Claude Code skills library available today. This article covers its core principles, complete workflow, installation, and how to use it to genuinely improve your AI-assisted development.
 
-## 一、Superpowers 是什么
+## What Is Superpowers?
 
-### 一句话定义
+### One-Line Definition
 
-Superpowers 是一个**代理技能框架（Agentic Skills Framework）**，它通过 SKILL.md 文件定义的「技能」，让 AI 编码代理自动遵循结构化的软件开发流程——从头脑风暴到 TDD、从计划制定到代码审查，每个环节都有对应的技能来规范行为。
+Superpowers is an **agentic skills framework** that uses SKILL.md files to make AI coding agents automatically follow structured software development processes -- from brainstorming to TDD, from planning to code review, with a dedicated skill governing each phase.
 
-### 它不是什么
+### What It Is Not
 
-Superpowers **不是**一个 Prompt 模板集合，也不是简单的 `.cursorrules` 文件。它的核心创新在于：
+Superpowers is **not** a prompt template collection or a simple `.cursorrules` file. Its key innovations include:
 
-- **自动触发**：技能根据上下文自动激活，不需要你记住命令
-- **强制执行**：不是「建议」而是「强制」——如果 Claude 试图不写测试就写代码，技能会让它删掉代码重来
-- **可组合**：14 个核心技能像乐高积木一样组合，覆盖完整开发生命周期
-- **Token 轻量**：核心引导文档不到 2000 Token，技能按需加载，不会撑爆上下文
+- **Automatic activation**: Skills trigger based on context -- you don't need to remember commands
+- **Enforcement, not suggestion**: If Claude tries to write implementation code without tests, the skill forces it to delete the code and start over
+- **Composable**: 14 core skills combine like building blocks to cover the full development lifecycle
+- **Token-efficient**: The core bootstrap is under 2,000 tokens, with skills loaded on demand
 
-### 作者背景
+### Background on the Author
 
-Jesse Vincent 是开源社区的老兵，他在 [博客](https://blog.fsck.com/2025/10/09/superpowers/) 中分享了 Superpowers 的诞生过程。他发现，与 AI 编码代理合作的关键不是让 AI 写更多代码，而是让 AI **像专业工程师一样思考和工作**。他把自己多年积累的开发方法论——TDD、系统化调试、结构化规划——编码成了一个个「技能」，让 Claude 在任何项目中都能自动运用。
+Jesse Vincent is a veteran open-source developer who shared the origin story of Superpowers on his [blog](https://blog.fsck.com/2025/10/09/superpowers/). He discovered that the key to working with AI coding agents isn't getting them to write more code -- it's making them **think and work like professional engineers**. He encoded decades of development methodology -- TDD, systematic debugging, structured planning -- into a set of skills that Claude can automatically apply in any project.
 
-## 二、七阶段工作流：从想法到交付
+## The Seven-Stage Workflow: From Idea to Delivery
 
-Superpowers 最核心的价值，是定义了一套**七阶段的完整开发工作流**。当你告诉 Claude 你想做什么时，它不会立刻开始写代码，而是按照以下流程有序推进：
+The core value of Superpowers is its **seven-stage development workflow**. When you describe what you want to build, Claude doesn't jump straight into coding. Instead, it progresses through a structured pipeline:
 
-### 阶段 1：头脑风暴（Brainstorming）
+### Stage 1: Brainstorming
 
-> 在动手之前，先把事情想清楚。
+> Think before you build.
 
-当你提出一个需求，Claude 会激活 `brainstorming` 技能，通过苏格拉底式提问来帮你**厘清真正的需求**：
+When you describe a requirement, Claude activates the `brainstorming` skill and uses Socratic questioning to **clarify the real problem**:
 
-- 你要解决的核心问题是什么？
-- 有哪些可选方案？各自的 trade-off 是什么？
-- 边界条件和异常情况有哪些？
+- What is the core problem you're solving?
+- What alternative approaches exist? What are the trade-offs?
+- What are the edge cases and failure modes?
 
-它会把讨论结果整理成一份**设计文档**，分段呈现给你确认。这个过程通常会持续十几轮对话，确保方案在动手前就经过充分推敲。
+It compiles the discussion into a **design document**, presenting it section by section for your approval. This process typically spans a dozen or more exchanges to ensure the approach is thoroughly vetted before any code is written.
 
-### 阶段 2：Git Worktree 隔离（Git Worktrees）
+### Stage 2: Git Worktree Isolation
 
-> 不要在主分支上做实验。
+> Never experiment on the main branch.
 
-设计通过后，Claude 会激活 `using-git-worktrees` 技能：
+Once the design is approved, Claude activates the `using-git-worktrees` skill:
 
-1. 在新分支上创建 Git Worktree（隔离工作空间）
-2. 运行项目初始化
-3. 确认现有测试全部通过（干净的基线）
+1. Creates a Git Worktree on a new branch (an isolated workspace)
+2. Runs project initialization
+3. Confirms all existing tests pass (establishing a clean baseline)
 
-这样即使实验失败，你的主分支也不会被污染。
+If the experiment fails, your main branch remains untouched.
 
-### 阶段 3：制定计划（Writing Plans）
+### Stage 3: Writing Plans
 
-> 把大象拆成可以吃的小块。
+> Break the elephant into bite-sized pieces.
 
-`writing-plans` 技能会把整个实现拆分成**一个个小任务**，每个任务设计为几分钟内可完成的粒度。每个任务包含：
+The `writing-plans` skill decomposes the implementation into **small, discrete tasks**, each designed to be completable in minutes. Every task includes:
 
-- 精确的文件路径
-- 具体的代码变更
-- 明确的验证步骤
+- Exact file paths
+- Specific code changes
+- Clear verification steps
 
-这不是模糊的 TODO 列表，而是**可执行的工程计划**。
+This isn't a vague TODO list -- it's an **executable engineering plan**.
 
-### 阶段 4：子代理驱动开发（Subagent-Driven Development）
+### Stage 4: Subagent-Driven Development
 
-> 让专注的小代理逐个攻克任务。
+> Let focused subagents tackle tasks one by one.
 
-这是 Superpowers 最强大的能力之一。`subagent-driven-development` 技能会为每个任务**分派一个全新的子代理（Subagent）**：
+This is one of Superpowers' most powerful capabilities. The `subagent-driven-development` skill **dispatches a fresh subagent** for each task:
 
-- 每个子代理只关注一个任务，上下文干净
-- 子代理完成后，主代理进行**两阶段审查**：先检查是否符合规范，再检查代码质量
-- 关键问题会阻塞流程，必须修复后才能继续
+- Each subagent focuses on a single task with a clean context
+- After completion, the main agent performs a **two-phase review**: first checking compliance with the spec, then checking code quality
+- Critical issues block progress and must be fixed before continuing
 
-这种模式让 Claude 可以**自主工作几个小时**而不偏离计划。
+This pattern lets Claude **work autonomously for hours** without drifting from the plan.
 
-### 阶段 5：测试驱动开发（TDD）
+### Stage 5: Test-Driven Development (TDD)
 
-> 先写测试，再写代码，没有例外。
+> Write the test first. No exceptions.
 
-`test-driven-development` 技能在整个实现过程中强制执行经典的 **RED-GREEN-REFACTOR** 循环：
+The `test-driven-development` skill enforces the classic **RED-GREEN-REFACTOR** cycle throughout implementation:
 
-1. **RED**：先写一个会失败的测试
-2. **GREEN**：写最少的代码让测试通过
-3. **REFACTOR**：重构代码，保持测试通过
-4. **COMMIT**：提交这个完整的循环
+1. **RED**: Write a failing test
+2. **GREEN**: Write the minimum code to make it pass
+3. **REFACTOR**: Clean up the code while keeping tests green
+4. **COMMIT**: Commit the complete cycle
 
-**如果 Claude 试图跳过测试直接写实现代码，这个技能会让它删掉代码重新来过。** 没有商量的余地。
+**If Claude tries to skip tests and write implementation code directly, the skill forces it to delete the code and start over.** No negotiation.
 
-### 阶段 6：代码审查（Code Review）
+### Stage 6: Code Review
 
-> 自己写的代码，也要有人 Review。
+> Even your own code needs a review.
 
-在任务之间，`requesting-code-review` 技能会自动触发，对已完成的工作进行审查：
+Between tasks, the `requesting-code-review` skill automatically triggers to review completed work:
 
-- 按严重程度分级：Critical / Major / Minor
-- **Critical 级别的问题会阻塞进度**，必须修复后才能继续
-- 就像有一个资深工程师在持续做 Code Review
+- Issues are classified by severity: Critical / Major / Minor
+- **Critical issues block progress** and must be resolved before continuing
+- It's like having a senior engineer doing continuous code review
 
-Superpowers 4.0 进一步将审查拆分为两个独立代理：**规范审查代理**（检查实现是否符合计划）和**代码质量审查代理**（检查代码质量），各司其职。
+Superpowers 4.0 further splits the review into two independent agents: a **spec compliance agent** (checking if the implementation matches the plan) and a **code quality agent** (checking code quality), each with a distinct focus.
 
-### 阶段 7：分支完成（Branch Completion）
+### Stage 7: Branch Completion
 
-> 善始善终。
+> Finish what you started.
 
-所有任务完成后，`finishing-a-development-branch` 技能会：
+Once all tasks are done, the `finishing-a-development-branch` skill:
 
-1. 验证所有测试通过
-2. 提供选择：合并到主分支、创建 PR、继续开发、或丢弃分支
-3. 清理 Worktree
+1. Verifies all tests pass
+2. Offers options: merge to main, create a PR, continue development, or discard the branch
+3. Cleans up the Worktree
 
-一个完整的开发闭环。
+A complete development cycle from start to finish.
 
-## 三、技能系统：Superpowers 的灵魂
+## The Skills System: The Heart of Superpowers
 
-### 什么是 Skill？
+### What Is a Skill?
 
-Skill 就是一个 `SKILL.md` 文件，外加可能关联的脚本和文档。每个 Skill 定义了：
+A Skill is a `SKILL.md` file, potentially accompanied by scripts and documentation. Each Skill defines:
 
-| 要素 | 说明 |
-|------|------|
-| **用途** | 这个技能解决什么问题 |
-| **触发条件** | 什么时候应该使用这个技能 |
-| **执行流程** | 一步步该怎么做 |
-| **反模式** | 常见的错误做法 |
-| **验证标准** | 怎么确认技能被正确执行了 |
+| Element | Description |
+|---------|-------------|
+| **Purpose** | What problem this skill solves |
+| **Trigger conditions** | When this skill should be used |
+| **Execution flow** | Step-by-step instructions |
+| **Anti-patterns** | Common mistakes to avoid |
+| **Verification criteria** | How to confirm the skill was executed correctly |
 
-### 14 个核心技能一览
+### The 14 Core Skills
 
-Superpowers 内置 14 个核心技能，分为四大类：
+Superpowers ships with 14 core skills organized into four categories:
 
-**测试类**
-- `test-driven-development`：RED-GREEN-REFACTOR 循环 + 测试反模式参考
+**Testing**
+- `test-driven-development`: RED-GREEN-REFACTOR cycle + test anti-pattern reference
 
-**调试类**
-- `systematic-debugging`：四阶段根因分析（复现 → 采集数据 → 分析原因 → 验证修复）
-- `verification-before-completion`：完成前的证据验证
+**Debugging**
+- `systematic-debugging`: Four-stage root cause analysis (reproduce, collect data, analyze cause, verify fix)
+- `verification-before-completion`: Evidence-based verification before marking work as done
 
-**协作类**
-- `brainstorming`：结构化头脑风暴
-- `writing-plans`：工程计划制定
-- `executing-plans`：计划执行
-- `dispatching-parallel-agents`：并行子代理调度
-- `requesting-code-review`：发起代码审查
-- `receiving-code-review`：接收和处理审查反馈
-- `using-git-worktrees`：Git Worktree 工作流
-- `finishing-a-development-branch`：分支完成和清理
-- `subagent-driven-development`：子代理驱动开发
+**Collaboration**
+- `brainstorming`: Structured brainstorming
+- `writing-plans`: Engineering plan creation
+- `executing-plans`: Plan execution
+- `dispatching-parallel-agents`: Parallel subagent orchestration
+- `requesting-code-review`: Initiating code review
+- `receiving-code-review`: Processing review feedback
+- `using-git-worktrees`: Git Worktree workflow
+- `finishing-a-development-branch`: Branch completion and cleanup
+- `subagent-driven-development`: Subagent-driven development
 
-**元技能**
-- `writing-skills`：编写新技能的技能（元技能）
-- `using-superpowers`：系统引导
+**Meta-Skills**
+- `writing-skills`: The skill for writing new skills (a meta-skill)
+- `using-superpowers`: System bootstrap
 
-### 技能的自动触发机制
+### How Automatic Skill Activation Works
 
-你不需要手动告诉 Claude「现在用 TDD 技能」。Superpowers 的引导系统会在启动时告诉 Claude：
+You don't need to manually tell Claude "use the TDD skill now." The Superpowers bootstrap system tells Claude at startup:
 
-1. 你有一系列技能，它们赋予你「超能力」
-2. 通过运行一个 shell 脚本来搜索技能
-3. 读取技能内容并按照要求执行
-4. **如果某个活动有对应技能，必须使用**
+1. You have a set of skills that give you "superpowers"
+2. Search for skills using a shell script
+3. Read the skill content and follow its instructions
+4. **If an activity has a corresponding skill, you must use it**
 
-这个机制非常 Token 高效——核心引导不到 2000 Token，具体技能按需加载。
+This mechanism is highly token-efficient -- the core bootstrap is under 2,000 tokens, with specific skills loaded on demand.
 
-### 两层技能架构
+### Two-Layer Skill Architecture
 
-Superpowers 采用两层架构：
+Superpowers uses a two-layer architecture:
 
-- **核心技能**（Core Skills）：随插件安装，全局通用的方法论
-- **个人技能**（Personal Skills）：存放在 `~/.config/superpowers/skills/`，你可以为自己的技术栈和工作习惯定制专属技能
+- **Core Skills**: Installed with the plugin, providing universal methodology
+- **Personal Skills**: Stored in `~/.config/superpowers/skills/`, allowing you to create custom skills for your tech stack and workflow preferences
 
-个人技能具有**覆盖优先级**——如果路径匹配，你的个人技能会覆盖核心技能。
+Personal skills have **override priority** -- if a path matches, your personal skill takes precedence over the core skill.
 
-## 四、安装与快速上手
+## Installation and Quick Start
 
-### 安装（两条命令）
+### Installation (Two Commands)
 
-确保你的 Claude Code 版本 >= 2.0.13，然后执行：
+Make sure your Claude Code version is >= 2.0.13, then run:
 
 ```bash
-# 注册 Superpowers 市场
+# Register the Superpowers marketplace
 /plugin marketplace add obra/superpowers-marketplace
 
-# 安装 Superpowers 插件
+# Install the Superpowers plugin
 /plugin install superpowers@superpowers-marketplace
 ```
 
-退出并重启 Claude Code。输入 `/help`，如果看到 `/superpowers:brainstorm`、`/superpowers:write-plan`、`/superpowers:execute-plan` 等命令，说明安装成功。
+Exit and restart Claude Code. Type `/help` -- if you see commands like `/superpowers:brainstorm`, `/superpowers:write-plan`, and `/superpowers:execute-plan`, the installation was successful.
 
-### 三种使用方式
+### Three Ways to Use Superpowers
 
-**方式一：斜杠命令**
+**Option 1: Slash Commands**
 
 ```bash
-/superpowers:brainstorm 我想做一个 CLI 工具来管理 dotfiles
+/superpowers:brainstorm I want to build a CLI tool for managing dotfiles
 /superpowers:write-plan
 /superpowers:execute-plan
 ```
 
-**方式二：对话式调用**
+**Option 2: Conversational Invocation**
 
-直接用自然语言：
+Use natural language:
 
 ```
-帮我用 superpower 来头脑风暴这个任务
+Use superpowers to brainstorm this task
 ```
 
-Claude 会识别意图并激活对应技能。
+Claude will recognize the intent and activate the appropriate skill.
 
-**方式三：自动触发**
+**Option 3: Automatic Activation**
 
-最推荐的方式——你只需要正常描述需求，Superpowers 会根据上下文自动激活对应技能。比如你说「我想给这个项目加一个用户认证功能」，它会自动进入头脑风暴阶段。
+The recommended approach -- simply describe your requirements naturally, and Superpowers will automatically activate the appropriate skill based on context. For example, saying "I want to add user authentication to this project" will automatically trigger the brainstorming phase.
 
-### 推荐的实战工作流
+### Recommended Workflow in Practice
 
-根据多位开发者的实践经验，以下工作流效果最佳：
+Based on the experience of multiple developers, this workflow produces the best results:
 
-1. **`/superpowers:brainstorm`** — 输入你的需求，让 Claude 充分提问讨论
-2. **`/superpowers:write-plan`** — 生成计划文档
-3. **手动审查计划** — 这一步非常重要！和 Claude 来回修改，确保细节正确
-4. **`/superpowers:execute-plan`** — 让子代理按计划执行
+1. **`/superpowers:brainstorm`** -- Describe your requirements and let Claude ask thorough questions
+2. **`/superpowers:write-plan`** -- Generate the plan document
+3. **Manual plan review** -- This step is critical! Go back and forth with Claude to refine details
+4. **`/superpowers:execute-plan`** -- Let subagents execute the plan
 
-> 关键心得：**不要跳过手动审查计划这一步。** 计划的质量直接决定了执行的质量。花一些时间在计划上，可以节省大量返工的时间。
+> Key takeaway: **Never skip the manual plan review step.** Plan quality directly determines execution quality. Time invested in planning saves hours of rework.
 
-## 五、进阶：理解 Superpowers 的设计哲学
+## Advanced: Understanding the Design Philosophy
 
-### 为什么 TDD 是强制的？
+### Why Is TDD Mandatory?
 
-很多人觉得让 AI 写测试是浪费 Token。但 Jesse Vincent 的实践表明，强制 TDD 带来的好处远超成本：
+Many developers feel that having AI write tests wastes tokens. But Jesse Vincent's experience shows that mandatory TDD delivers benefits far exceeding the cost:
 
-- **测试就是规范**：测试明确定义了"正确"是什么，减少 AI 的歧义理解
-- **快速反馈**：RED-GREEN 循环让每个小步骤都有确定性的验证
-- **防止回归**：当子代理修改代码时，测试套件保证之前的功能不被破坏
-- **YAGNI 强制执行**：只写让测试通过的最少代码，避免 AI 过度工程化
+- **Tests are specifications**: Tests explicitly define what "correct" means, reducing AI ambiguity
+- **Fast feedback**: The RED-GREEN cycle provides deterministic verification at each step
+- **Regression prevention**: When subagents modify code, the test suite ensures previous functionality isn't broken
+- **YAGNI enforcement**: Writing only the minimum code to pass tests prevents AI over-engineering
 
-### 说服力原则（Persuasion Principles）
+### Persuasion Principles
 
-这是 Superpowers 最有趣的设计细节之一。Jesse 在博客中提到，他参考了 Robert Cialdini 的说服力研究，发现 **LLM 对权威（Authority）、承诺（Commitment）、稀缺性（Scarcity）和社会认同（Social Proof）等框架确实有响应**。
+This is one of Superpowers' most fascinating design details. Jesse mentioned in his blog that he drew on Robert Cialdini's persuasion research, finding that **LLMs do respond to frameworks like Authority, Commitment, Scarcity, and Social Proof**.
 
-他把这些原则嵌入到了技能的设计中，让 Claude 更愿意遵循技能的指引。甚至「Superpowers」这个名字本身可能就在起作用——当 Claude 被告知它拥有「超能力」时，它似乎更愿意去使用这些技能。
+He embedded these principles into the skill designs to make Claude more willing to follow skill guidance. Even the name "Superpowers" itself may play a role -- when Claude is told it possesses "superpowers," it appears more inclined to use these skills.
 
-### GraphViz 流程图记法
+### GraphViz Flowchart Notation
 
-从 Superpowers 4.0 开始，内部流程文档开始使用 GraphViz 的 `dot` 记法。原因是 Claude 特别擅长理解和遵循用 `dot` 写的流程图——比自然语言的散文描述**更少歧义**，执行的一致性更好。
+Starting with Superpowers 4.0, internal process documentation uses GraphViz `dot` notation. The reason: Claude is particularly good at understanding and following flowcharts written in `dot` -- they produce **less ambiguity** than prose descriptions and result in more consistent execution.
 
-### 技能的 TDD
+### TDD for Skills Themselves
 
-Jesse 不仅对代码做 TDD，还对**技能本身**做 TDD。具体做法是：
+Jesse doesn't just apply TDD to code -- he applies it to **the skills themselves**. The process works like this:
 
-1. 写一个新技能
-2. 让一组子代理在压力场景下测试这个技能（比如模拟生产事故、时间紧迫、沉没成本等）
-3. 观察子代理是否正确遵循技能
-4. 根据结果迭代改进技能
+1. Write a new skill
+2. Have a group of subagents test the skill under stress scenarios (simulating production incidents, time pressure, sunk-cost situations, etc.)
+3. Observe whether subagents correctly follow the skill
+4. Iterate and improve the skill based on results
 
-Claude 现在把这个过程称为「技能的 RED/GREEN TDD」。
+Claude now refers to this process as "RED/GREEN TDD for skills."
 
-## 六、生态系统
+## Ecosystem
 
-Superpowers 不是一个孤立的项目，它有一个完整的生态系统：
+Superpowers is not an isolated project -- it has a complete ecosystem:
 
-| 仓库 | 说明 |
-|------|------|
-| [obra/superpowers](https://github.com/obra/superpowers) | 核心插件 |
-| [obra/superpowers-marketplace](https://github.com/obra/superpowers-marketplace) | Claude Code 插件市场 |
-| [obra/superpowers-skills](https://github.com/obra/superpowers-skills) | 社区技能库 |
-| [obra/superpowers-lab](https://github.com/obra/superpowers-lab) | 实验性技能 |
-| [obra/superpowers-chrome](https://github.com/obra/superpowers-chrome) | Chrome 浏览器控制插件 |
+| Repository | Description |
+|------------|-------------|
+| [obra/superpowers](https://github.com/obra/superpowers) | Core plugin |
+| [obra/superpowers-marketplace](https://github.com/obra/superpowers-marketplace) | Claude Code plugin marketplace |
+| [obra/superpowers-skills](https://github.com/obra/superpowers-skills) | Community skill library |
+| [obra/superpowers-lab](https://github.com/obra/superpowers-lab) | Experimental skills |
+| [obra/superpowers-chrome](https://github.com/obra/superpowers-chrome) | Chrome browser control plugin |
 
-### 跨平台支持
+### Cross-Platform Support
 
-Superpowers 不仅支持 Claude Code，还扩展到了其他平台：
+Superpowers extends beyond Claude Code to other platforms:
 
-- **OpenAI Codex**：从 Superpowers 3.3 开始支持
-- **OpenCode**：开源的代理编码工具，不绑定特定模型
+- **OpenAI Codex**: Supported since Superpowers 3.3
+- **OpenCode**: An open-source agentic coding tool, not locked to a specific model
 
-### 版本演进
+### Version History
 
-| 版本 | 关键变化 |
-|------|----------|
-| **1.0** | 初始发布，基本技能系统 |
-| **2.0** | 技能提取为独立 Git 仓库，支持 fork 和自定义 |
-| **3.3** | 移植到 OpenAI Codex |
-| **4.0** | 代码审查拆分为双代理，引入 GraphViz 流程图，优化 Opus 4.5 兼容性 |
-| **4.1** | 当前稳定版（v4.1.1） |
+| Version | Key Changes |
+|---------|-------------|
+| **1.0** | Initial release with basic skills system |
+| **2.0** | Skills extracted to independent Git repos, supporting forks and customization |
+| **3.3** | Ported to OpenAI Codex |
+| **4.0** | Code review split into dual agents, GraphViz flowcharts introduced, Opus 4.5 compatibility |
+| **4.1** | Current stable release (v4.1.1) |
 
-## 七、适用场景与局限
+## Use Cases and Limitations
 
-### 适合使用的场景
+### Best Suited For
 
-- 多文件重构
-- 需要测试覆盖的生产功能
-- 团队需要一致性的项目
-- 长时间运行的迁移任务
-- 需要架构设计的复杂功能
+- Multi-file refactoring
+- Production features requiring test coverage
+- Projects needing team consistency
+- Long-running migration tasks
+- Complex features requiring architectural design
 
-### 不太适合的场景
+### Less Ideal For
 
-- 快速 Bug 修复（一两行代码）
-- 原型和 Demo（不需要工程纪律）
-- 单文件小改动
-- 简单的配置变更
+- Quick bug fixes (one or two lines of code)
+- Prototypes and demos (where engineering discipline is overkill)
+- Single-file minor changes
+- Simple configuration updates
 
-### 已知局限
+### Known Limitations
 
-- **子代理上下文注入问题**：子代理会话可能不会接收到 `using-superpowers` 的注入上下文，导致技能触发不一致。这是一个[已知 issue](https://github.com/obra/superpowers/issues/237)，社区正在探索通过 `SubagentStart` Hook 来解决。
-- **Opus 4.5 的过度推断**：Claude Opus 4.5 有时会根据技能描述「猜测」技能内容而不去实际读取，Superpowers 4.0 通过修改技能描述来缓解这个问题。
-- **Token 消耗**：虽然核心引导很轻量，但完整的 brainstorm → plan → execute 流程会消耗更多 Token。
+- **Subagent context injection issues**: Subagent sessions may not receive the `using-superpowers` injection context, causing inconsistent skill activation. This is a [known issue](https://github.com/obra/superpowers/issues/237), and the community is exploring a `SubagentStart` hook as a solution.
+- **Opus 4.5 over-inference**: Claude Opus 4.5 sometimes "guesses" skill content from descriptions instead of actually reading them. Superpowers 4.0 mitigates this by modifying skill descriptions.
+- **Token consumption**: While the core bootstrap is lightweight, the full brainstorm-plan-execute pipeline does consume more tokens.
 
-## 总结
+## Conclusion
 
-Superpowers 代表了 AI 编程的一个重要思路转变：**与其让 AI 写更多代码，不如让 AI 用正确的方式写代码。**
+Superpowers represents a fundamental shift in AI-assisted development: **instead of getting AI to write more code, teach it to write code the right way.**
 
-它通过一套精心设计的技能系统，将数十年的软件工程最佳实践——TDD、系统化调试、结构化规划、代码审查——编码成 AI 可以理解和执行的指令。结果是，Claude Code 不再是一个随意输出代码的聊天机器人，而是一个遵循工程纪律、能够自主工作数小时的高级开发者。
+Through a carefully designed skills system, it encodes decades of software engineering best practices -- TDD, systematic debugging, structured planning, code review -- into instructions that AI can understand and execute. The result is that Claude Code transforms from a chatbot that outputs code on demand into a disciplined developer capable of working autonomously for hours.
 
-如果你正在用 Claude Code 做真实项目开发，Superpowers 值得一试。从一个小项目开始，感受「结构化 AI 开发」和「随意 Vibe Coding」之间的差异。
+If you're using Claude Code for real-world project development, Superpowers is worth trying. Start with a small project and experience the difference between structured AI development and casual vibe coding.
 
-## 相关阅读
+## Further Reading
 
-- [Claude Code 实用指南：从入门到进阶](/posts/ai/2026-01-14-claude-code-guide/)
-- [Claude Code Skills 排行榜：20 个最受欢迎的技能](/posts/ai/2026-01-20-claude-code-skills-top20/)
-- [Claude Code Skill 开发完全指南](/posts/ai/2026-01-08-claudecode-skill-guide/)
-- [Claude Code 最佳实践](/posts/ai/2026-01-06-claudecode-best-practices/)
-- [Agent Skills：编程的新范式](/posts/ai/2026-01-19-agent-skills-new-programming/)
-- [CLAUDE.md 记忆管理完全指南](/posts/ai/2026-01-12-claudemd-memory-guide/)
+- [Claude Code Practical Guide: From Beginner to Advanced](/posts/ai/2026-01-14-claude-code-guide/)
+- [Claude Code Skills Leaderboard: Top 20 Most Popular Skills](/posts/ai/2026-01-20-claude-code-skills-top20/)
+- [Complete Guide to Claude Code Skill Development](/posts/ai/2026-01-08-claudecode-skill-guide/)
+- [Claude Code Best Practices](/posts/ai/2026-01-06-claudecode-best-practices/)
+- [Agent Skills: The New Programming Paradigm](/posts/ai/2026-01-19-agent-skills-new-programming/)
+- [CLAUDE.md Memory Management Complete Guide](/posts/ai/2026-01-12-claudemd-memory-guide/)
 
-## 参考资料
+## References
 
-- [Superpowers GitHub 仓库](https://github.com/obra/superpowers)
-- [Jesse Vincent 的博客：Superpowers 诞生记](https://blog.fsck.com/2025/10/09/superpowers/)
-- [Superpowers 4.0 发布说明](https://blog.fsck.com/2025/12/18/superpowers-4/)
-- [实战工作流分享 by Stan Lo](https://st0012.dev/links/2026-01-15-a-claude-code-workflow-with-the-superpowers-plugin/)
-- [Superpowers 详细用法教程](https://www.cnblogs.com/gyc567/p/19510203)
-- [Superpowers 深度评测 by betazeta.dev](https://betazeta.dev/blog/claude-code-superpowers/)
+- [Superpowers GitHub Repository](https://github.com/obra/superpowers)
+- [Jesse Vincent's Blog: The Birth of Superpowers](https://blog.fsck.com/2025/10/09/superpowers/)
+- [Superpowers 4.0 Release Notes](https://blog.fsck.com/2025/12/18/superpowers-4/)
+- [Practical Workflow by Stan Lo](https://st0012.dev/links/2026-01-15-a-claude-code-workflow-with-the-superpowers-plugin/)
+- [Superpowers In-Depth Review by betazeta.dev](https://betazeta.dev/blog/claude-code-superpowers/)

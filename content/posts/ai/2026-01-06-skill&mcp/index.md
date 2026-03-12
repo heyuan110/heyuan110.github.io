@@ -1,144 +1,142 @@
 +++
 date = '2026-01-06T17:00:00+08:00'
-title = 'Skill与MCP的区别：两种扩展AI能力的方式'
-description = '深入对比 Claude Code 中 Skill 和 MCP 两种扩展 AI Agent 能力的方式，分析它们的设计理念、工作原理和适用场景'
+title = 'Skills vs MCP in Claude Code: Two Ways to Extend AI Capabilities'
+description = 'Understand the key differences between Skills and MCP (Model Context Protocol) in Claude Code — when to use each, how they manage context, and how they work together.'
 toc = true
 tags = ['AI', 'Claude Code', 'Skills', 'MCP']
-categories = ['AI原理']
-keywords = ['Skill 和 MCP 的区别', 'Claude Code Skill', 'Model Context Protocol', 'AI Agent 扩展能力', 'Claude Code MCP']
+categories = ['AI Guides']
+keywords = ['Claude Code Skills vs MCP', 'Model Context Protocol explained', 'Claude Code MCP setup', 'AI agent tools', 'Claude Code extensions']
 +++
 ![Skill vs MCP](skill-vs-mcp.webp)
 
-用 Claude Code 久了，你会发现它有两套看起来很像但本质不同的能力扩展系统：**Skill** 和 **MCP**。
+If you have spent any time with Claude Code, you have probably noticed two different systems for extending what it can do: **Skills** and **MCP**. They look similar on the surface, but they solve fundamentally different problems.
 
-很多人分不清这两者的区别，甚至把它们混为一谈。今天就来聊聊这两种扩展方式到底有什么不同。
+This guide breaks down exactly how they differ, when to use each one, and how they complement each other.
 
-## 什么是 MCP
+## What Is MCP
 
-MCP 全称 **Model Context Protocol**（模型上下文协议），是 Anthropic 开发的一个开放协议标准。
+MCP stands for **Model Context Protocol**, an open protocol standard developed by Anthropic.
 
-你可以把 MCP 理解成 AI 世界的"USB 接口"。就像 USB 让各种设备能插到电脑上一样，MCP 让各种外部工具和服务能接入 AI 模型。
+Think of MCP as the "USB port" of the AI world. Just as USB gives any device a standard way to connect to a computer, MCP gives any external tool or service a standard way to connect to an AI model.
 
-MCP 服务器可以提供三种东西：
+An MCP server can expose three types of capabilities:
 
-- **Tools（工具）**：可执行的操作，比如发邮件、查数据库、操作浏览器
-- **Resources（资源）**：可读取的数据源，比如文档、配置文件
-- **Prompts（提示）**：预设的提示模板
+- **Tools** — Executable actions like sending emails, querying databases, or controlling a browser
+- **Resources** — Readable data sources like documents or configuration files
+- **Prompts** — Pre-built prompt templates
 
-举个例子，Playwright MCP 服务器提供了一系列浏览器操作工具：
+For example, the Playwright MCP server exposes a set of browser automation tools:
 
 ```
-browser_navigate    - 导航到指定 URL
-browser_click       - 点击页面元素
-browser_type        - 在输入框中输入文字
-browser_snapshot    - 获取页面快照
-browser_screenshot  - 截取页面截图
+browser_navigate    - Navigate to a URL
+browser_click       - Click a page element
+browser_type        - Type text into an input field
+browser_snapshot    - Capture a page snapshot
+browser_screenshot  - Take a screenshot
 ...
 ```
 
-每个工具都有明确的输入参数和输出格式。AI 通过调用这些工具来完成任务，就像程序员调用 API 一样。
+Each tool has well-defined input parameters and output formats. The AI calls these tools to accomplish tasks, much like a developer calling an API.
 
-## 什么是 Skill
+## What Is a Skill
 
-Skill 是 Claude Code 特有的概念，翻译过来就是"技能"。
+A Skill is a concept unique to Claude Code. While MCP gives you "tools in a toolbox," a Skill is "the expertise to use those tools effectively."
 
-如果说 MCP 是"工具箱里的工具"，那 Skill 就是"使用这些工具的手艺"。
+At its core, a Skill is a **bundle of instructions, domain knowledge, and workflows**. It tells Claude Code:
 
-一个 Skill 本质上是一组**指令、知识和工作流程的组合**。它告诉 AI：
+- How to handle specific scenarios
+- What best practices and pitfalls to watch for
+- Which tools to use and in what order
+- What the expected output format should be
 
-- 遇到什么场景该怎么做
-- 有哪些注意事项和最佳实践
-- 应该用什么工具、按什么顺序
-- 输出应该是什么格式
+Take the built-in `commit` Skill as an example. It does not just run git commands. It encapsulates:
 
-比如 `commit` 这个 Skill，它不只是调用 git 命令那么简单。它包含了：
+- How to analyze code changes for meaningful grouping
+- How to write clear, conventional commit messages
+- When to split changes into multiple commits
+- How to handle sensitive files
+- Output formatting standards
 
-- 如何分析代码变更
-- 怎样写出好的 commit message
-- 什么时候应该拆分成多个 commit
-- 敏感文件的处理规则
-- 输出格式的规范
+Similarly, the `pdf` Skill packages everything needed to work with PDF documents — reading, parsing, extracting content, generating, merging, and form-filling — each with its own handling strategy.
 
-再比如 `pdf` Skill，它封装了处理 PDF 文档的完整知识体系：从读取、解析、提取内容，到生成、合并、填表，各种场景都有对应的处理策略。
-
-## 核心区别
+## Key Differences at a Glance
 
 |  | MCP | Skill |
 |--|-----|-------|
-| **本质** | 协议标准 / 工具接口 | 能力模板 / 知识封装 |
-| **粒度** | 原子操作（单个工具） | 复合能力（工作流程） |
-| **触发方式** | AI 自动判断调用 | 用户显式触发（如 `/commit`）或 AI 根据场景加载 |
-| **来源** | 外部 MCP 服务器 | 内置或插件提供 |
-| **上下文占用** | 工具定义常驻上下文 | 按需加载，用完可卸载 |
-| **可组合性** | 工具之间相互独立 | 可以组合使用多个 MCP 工具 |
+| **Nature** | Protocol standard / tool interface | Capability template / knowledge package |
+| **Granularity** | Atomic operations (single tool) | Composite workflows (multi-step) |
+| **Trigger** | AI decides when to call | User invokes (e.g., `/commit`) or AI loads by context |
+| **Source** | External MCP servers | Built-in or plugin-provided |
+| **Context cost** | Tool definitions stay in context | Loaded on demand, unloaded after use |
+| **Composability** | Tools are independent | Can orchestrate multiple MCP tools |
 
-用一个类比来理解：
+A helpful analogy:
 
-- **MCP 工具** 就像乐高积木——标准化的基础组件
-- **Skill** 就像乐高说明书——告诉你怎么把积木拼成一个具体的东西
+- **MCP tools** are like LEGO bricks — standardized building blocks
+- **Skills** are like LEGO instruction manuals — they tell you how to assemble those blocks into something specific
 
-## 从实际例子看区别
+## Real-World Examples
 
-### 例子1：创建 Git Commit
+### Example 1: Creating a Git Commit
 
-**纯 MCP 方式**：
-你需要手动告诉 AI 每一步该做什么——先执行 `git status`，再执行 `git diff`，然后分析变更，最后执行 `git commit`。每一步都是独立的工具调用。
+**MCP-only approach:**
+You manually guide the AI through each step — run `git status`, then `git diff`, analyze the changes, craft a message, and finally run `git commit`. Every step is a separate tool call that you orchestrate.
 
-**使用 Skill 方式**：
-输入 `/commit`，Skill 自动接管整个流程。它知道应该先查看状态、分析变更、生成符合规范的 commit message，最后执行提交。你只需要确认。
+**Skill approach:**
+Type `/commit` and the Skill takes over. It automatically checks status, analyzes diffs, generates a well-formatted commit message following project conventions, and executes the commit. You just review and confirm.
 
-### 例子2：处理 PDF 文档
+### Example 2: Working with PDF Documents
 
-**纯 MCP 方式**：
-你可能需要调用多个工具：文件读取工具、PDF 解析工具、文本提取工具...每个工具的调用方式和参数格式都不同，AI 需要逐个学习。
+**MCP-only approach:**
+You might need to chain several tools — a file reader, a PDF parser, a text extractor — each with different calling conventions and parameter formats. The AI has to figure out the right sequence every time.
 
-**使用 Skill 方式**：
-`/pdf` Skill 封装了所有 PDF 处理相关的知识。不管你是要读取、提取、合并还是生成 PDF，Skill 都知道应该用什么方法、注意什么问题。
+**Skill approach:**
+The `/pdf` Skill already knows the best approach for any PDF task. Whether you need to read, extract, merge, or generate a PDF, the Skill selects the right method and handles edge cases automatically.
 
-## 上下文管理的差异
+## Context Management: The Hidden Difference
 
-这是两者最关键的区别之一。
+This is one of the most important practical distinctions between the two.
 
-**MCP 工具的上下文占用是"硬性"的**。
+**MCP tools have a "fixed" context footprint.**
 
-当你连接一个 MCP 服务器，它所有工具的定义（名称、描述、参数格式）都会被加载到上下文中。工具越多，占用越大。而且这些定义是常驻的，不管你用不用，它们都在那里。
+When you connect an MCP server, all of its tool definitions (names, descriptions, parameter schemas) get loaded into the context window. More tools means more context consumed. These definitions stay resident whether you use the tools or not.
 
-**Skill 的上下文管理是"弹性"的**。
+**Skills have an "elastic" context footprint.**
 
-Skill 支持懒加载：平时只在上下文中保留简短的触发词和描述，真正要用时才加载完整内容。用完后，详细指令可以从上下文中移除，只保留执行结果。
+Skills support lazy loading: only a short trigger phrase and description sit in the context by default. The full instructions load only when the Skill is actually invoked. After execution, the detailed instructions can be unloaded, leaving only the results.
 
-这就像：
-- MCP 是把所有工具说明书都摊在桌上
-- Skill 是把说明书放在抽屉里，需要时才拿出来看
+To visualize the difference:
+- MCP is like spreading all your tool manuals across the desk
+- Skills are like keeping manuals in a drawer and pulling one out only when needed
 
-当你的 AI 需要接入大量工具时，这个差异会变得非常显著。
+This distinction becomes critical when your AI agent connects to many tools — context window space is finite and expensive.
 
-## 什么时候用 MCP，什么时候用 Skill
+## When to Use MCP vs Skills
 
-**优先使用 MCP 的场景**：
+**Prefer MCP when:**
 
-- 需要与外部服务交互（数据库、API、浏览器等）
-- 任务是标准化的原子操作
-- 需要让多个 AI 应用共享同一套工具
+- You need to interact with external services (databases, APIs, browsers)
+- The task is a standardized atomic operation
+- Multiple AI applications need to share the same toolset
 
-**优先使用 Skill 的场景**：
+**Prefer Skills when:**
 
-- 任务有固定的工作流程
-- 需要封装领域知识和最佳实践
-- 希望减少用户的操作步骤
-- 需要精细控制上下文占用
+- The task follows a repeatable workflow
+- You want to encode domain knowledge and best practices
+- You want to minimize manual steps for the user
+- You need fine-grained control over context usage
 
-**两者结合的场景**：
+**Combine both when:**
 
-实际上，很多 Skill 内部就是在调用 MCP 工具。Skill 负责编排和决策，MCP 工具负责具体执行。这种组合方式能同时获得两者的优势。
+In practice, many Skills call MCP tools internally. The Skill handles orchestration and decision-making while MCP tools handle execution. This layered approach gives you the best of both worlds.
 
-## 总结
+## Summary
 
-MCP 和 Skill 是两种不同层次的抽象：
+MCP and Skills operate at different layers of abstraction:
 
-- **MCP** 解决的是"AI 怎么跟外部世界交互"的问题，它是基础设施层
-- **Skill** 解决的是"AI 怎么优雅地完成特定任务"的问题，它是应用层
+- **MCP** solves "how does AI interact with the outside world" — it is the infrastructure layer
+- **Skills** solve "how does AI complete a specific task elegantly" — they are the application layer
 
-理解这个区别，能帮你更好地扩展 AI 的能力：需要接入新工具时，找或写 MCP 服务器；需要让 AI 掌握新"手艺"时，创建 Skill。
+Understanding this distinction helps you extend AI capabilities more effectively: when you need to connect a new tool, look for or build an MCP server; when you need the AI to master a new "craft," create a Skill.
 
-就像软件开发中的分层设计：底层库提供基础能力，上层框架封装最佳实践。两者各司其职，配合使用才能发挥最大价值。
+It mirrors the layered design pattern in software engineering — low-level libraries provide foundational capabilities, higher-level frameworks encode best practices. Each layer has its role, and the real power comes from using them together.

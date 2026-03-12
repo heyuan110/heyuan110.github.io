@@ -1,238 +1,232 @@
 +++
 date = '2026-01-23T20:30:00+08:00'
 draft = false
-title = 'AI 时代，一个人的 Taste 比以往任何时候都重要'
-description = '当AI能够瞬间生成无限内容时，真正的瓶颈不再是创造能力，而是判断什么值得被创造的智慧。本文深度探讨为什么个人品味成为AI时代最稀缺的能力，以及如何培养这种无法被算法复制的核心竞争力。'
+title = 'Taste Matters More Than Ever in the AI Era: Your Only Moat'
+description = 'When AI can generate infinite content instantly, the real bottleneck is no longer creation but judgment. Learn why personal taste is the scarcest skill in the AI age and how to develop this irreplaceable competitive advantage.'
 toc = true
-tags = ['AI', '品味', 'Taste', '创造力', '个人成长']
-categories = ['AI原理']
-keywords = ['AI时代品味', 'Taste重要性', '人工智能创造力', '审美能力', '个人竞争力']
+tags = ['AI', 'Taste', 'Creativity', 'Personal Growth', 'Career']
+categories = ['AI Guides']
+keywords = ['taste in AI era', 'AI creativity', 'personal taste importance', 'AI competitive advantage', 'curation vs creation']
 +++
 
-![AI时代个人品味的重要性](cover.webp)
+![Why taste matters in the AI era](cover.webp)
 
-前几天和一个做设计的朋友聊天，他说了句让我印象很深的话："现在用 AI 生成一张图只要几秒钟，但我花了十年才知道什么样的图是好的。"
+A designer friend recently told me something that stuck: "AI can generate an image in seconds, but it took me ten years to learn what makes an image good."
 
-这句话点出了一个很多人还没意识到的变化：**当「做出来」变得越来越容易时，「选什么做」反而成了最难的事**。
+That single observation captures a shift many people haven't fully grasped yet: **when "making things" becomes trivially easy, "choosing what to make" becomes the hardest part.**
 
-## 一、从稀缺到泛滥：创造的门槛消失了
+## The Barrier to Creation Has Disappeared
 
-还记得几年前学一门手艺要多久吗？
+Think about how long it used to take to learn a craft.
 
-写代码、画画、剪视频、做音乐——每一项都需要几个月甚至几年的练习。而现在呢？
+Coding, illustration, video editing, music production — each required months or years of deliberate practice. Now?
 
-- 用 [Claude Code](/posts/ai/2026-01-14-claude-code-guide/) 写代码，只需要描述你想要什么
-- 用 Midjourney 画图，打几个关键词就能出图
-- 用 Suno 作曲，哼一段旋律就能生成完整的歌
+- [Claude Code](/posts/ai/2026-01-14-claude-code-guide/) writes software from natural language descriptions
+- Midjourney turns a handful of keywords into polished artwork
+- Suno composes a full song from a hummed melody
 
-**创造的门槛，在我们这代人眼前，几乎被抹平了。**
+**The barrier to creation has effectively been erased in our lifetime.**
 
-这本该是件好事。但问题来了：当每个人都能轻松生成内容，真正的挑战变成了——在这片内容的汪洋大海里，**什么才是值得存在的？**
+This should be a good thing. But it raises a harder question: when everyone can generate content effortlessly, what actually deserves to exist in the resulting ocean of output?
 
-这就是为什么「Taste」（品味）突然变得如此重要。
+That is why **taste** has suddenly become the most valuable skill.
 
-## 二、什么是 Taste？
+## What Is Taste, Exactly?
 
-先说清楚一件事：**Taste 不是装腔作势，不是「我觉得这个高级那个 low」**。
+Let's be clear about what taste is not. It's not snobbery. It's not "I like expensive things and you don't."
 
-[Debris Studio 的一篇文章](https://debris.studio/the-rise-of-taste) 把 Taste 定义得很好：
+[Debris Studio defines it well](https://debris.studio/the-rise-of-taste):
 
-> Taste 不是肤浅的偏好，而是一种素养——读懂世界的能力。它是训练有素的本能，通过接触、学习、反思积累而成。
+> Taste isn't a shallow preference — it's a form of literacy, the ability to read the world. It's a trained instinct, built through exposure, study, and reflection.
 
-简单说，Taste 是你对「好」的判断力。
+In practical terms, taste is your ability to judge what "good" looks like.
 
-这种判断力体现在很多地方：
+That judgment shows up everywhere:
 
-| 场景 | 有 Taste | 没 Taste |
-|------|----------|----------|
-| 选择工具 | 知道什么场景用什么工具最合适 | 什么火用什么，或者只用自己熟悉的 |
-| 写代码 | 写出来的代码清晰、优雅、易维护 | 能跑就行，管它好不好看 |
-| 做产品 | 知道哪些功能是核心，哪些是噪音 | 功能堆砌，什么都想要 |
-| 用 AI | 能分辨 AI 输出的好坏，取其精华 | AI 说啥就是啥，不会筛选 |
+| Context | With Taste | Without Taste |
+|---------|-----------|---------------|
+| Choosing tools | Picks the right tool for the job | Follows hype or sticks to what's familiar |
+| Writing code | Clean, elegant, maintainable | "It runs, ship it" |
+| Building products | Knows which features are core vs. noise | Piles on features indiscriminately |
+| Using AI | Filters AI output, keeps only what's excellent | Accepts whatever AI produces |
 
-乔布斯 1995 年说过一句话，放到今天更加贴切：
+Steve Jobs put it bluntly in 1995:
 
-> "The only problem with Microsoft is they just have no taste... I don't mean that in a small way, I mean that in a big way."（微软唯一的问题就是他们没有品味……我不是随便说说，我是认真的。）
+> "The only problem with Microsoft is they just have no taste... I don't mean that in a small way, I mean that in a big way."
 
-他接着说：**"Great products are a triumph of taste."**（伟大的产品是品味的胜利。）
+He followed that with: **"Great products are a triumph of taste."**
 
-## 三、为什么 Taste 在 AI 时代变得更重要了？
+That statement has aged remarkably well.
 
-### 1. AI 是镜子，不是指南针
+## Why Taste Matters More in the AI Era
 
-[杨植麟](https://www.jiemian.com/article/13868639.html)（月之暗面创始人）有个观点很有意思：
+### AI Is a Mirror, Not a Compass
 
-> "做模型的过程，本质上是在创造一种世界观，它体现了我们对于'一个好的 AI 应该是什么样、应该追求何种价值观'的理解。"
+Jia Yangqing, one of the architects behind modern AI frameworks, has noted that building models is fundamentally an exercise in worldview — it reflects what the creators believe "good AI" should look like.
 
-他还提到：**"All comes down to taste"**——最终都归结于品味。
+Yang Zhilin, founder of Moonshot AI (Kimi), put it even more directly: **"All comes down to taste."**
 
-这说明什么？
+The point is clear: **AI can generate endlessly, but it doesn't know what should be generated.** It mirrors whatever you feed it. It has no sense of direction.
 
-**AI 可以无限生成，但它不知道什么该被生成。** 它是一面镜子，能映照出你给它的任何指令，但它没有自己的方向感。
+Direction comes only from humans. That's taste.
 
-方向感，只有人才有。这就是 Taste。
+### When Production Cost Hits Zero, Curation Becomes the Core Skill
 
-### 2. 当生产成本趋近于零，策展成为核心能力
+Skilled painters used to be scarce. Now, people who can **select** the right painting are scarce.
 
-以前，会画画的人稀缺。现在，会「选画」的人稀缺。
+This is a fundamental shift.
 
-这是一个根本性的转变。
+According to [Bain & Company's innovation research](https://medium.com/tnb-ink/generative-ai-and-the-role-of-human-taste-in-creativity-a664605b2dfa):
 
-根据 [Bain & Company 的 2025 创新报告](https://medium.com/tnb-ink/generative-ai-and-the-role-of-human-taste-in-creativity-a664605b2dfa)：
+> "AI struggles to produce truly disruptive ideas, making humans an essential part of the process."
 
-> "AI struggles to produce truly disruptive ideas, making humans an essential part of the process."（AI 难以产出真正颠覆性的想法，人类仍然是不可或缺的一环。）
+AI excels at pattern matching — learning from existing data and recombining within known spaces. But **defining what "new good" looks like** is something it cannot do.
 
-**AI 能做的是模式匹配，它学习已有的数据，在已知的空间里组合。但定义「什么是新的好」，这件事它做不了。**
+### Taste Is the Only Moat That Can't Be Copied
 
-### 3. Taste 是唯一无法被复制的护城河
+Skills can be learned. Knowledge can be retrieved. Processes can be automated.
 
-技能可以被学会，知识可以被检索，流程可以被自动化。
+But taste?
 
-但 Taste？
+Taste is the compound product of every experience, every book, every failure, every conversation you've ever had. It fuses cultural context, aesthetic intuition, and value judgment into something uniquely yours.
 
-它是你过去所有经历、学习、思考的综合产物。它融合了你的文化背景、审美积累、价值判断。
+As Han Xu, Vice Dean of the China Academy of Art, noted:
 
-中国美术学院副院长韩绪说得好：
+> "AI can generate works faster and faster, but it cannot generate a person's intuition, experience, judgment, emotion, and the originality that emerges from a specific cultural background."
 
-> "AI 可以越来越快速地生成作品，但它生成不了一个人的直觉、经验、判断、情感以及与文化背景融合在一起的'独创'。"
+That "originality" is what taste looks like from the outside.
 
-这种「独创」，就是 Taste 的外在表现。
+## Taste in Practice: Three Examples
 
-## 四、Taste 具体长什么样？
+### Example 1: AI-Assisted Coding
 
-说几个实际的例子，让这个概念更落地。
+**Without taste:** Accept whatever code AI generates. If it runs, ship it.
 
-### 例1：用 AI 写代码
+**With taste:**
+- Know which design patterns fit the situation
+- Judge whether AI output aligns with the project's existing architecture
+- Proactively refactor AI code for clarity and maintainability
 
-没有 Taste 的人：让 AI 生成代码，能跑就用，不管结构好不好。
+Same AI, same tools — radically different output quality.
 
-有 Taste 的人：
-- 知道什么情况该用什么设计模式
-- 能判断 AI 生成的代码是否符合项目的整体风格
-- 会主动重构 AI 的输出，让它更简洁、更可维护
+### Example 2: Content Creation
 
-**同样是用 AI，输出的质量天差地别。**
+**Without taste:** Publish whatever AI generates. Optimize for volume.
 
-### 例2：内容创作
+**With taste:**
+- Use AI for rapid first drafts, then invest time in refinement
+- Understand what content delivers genuine reader value vs. empty clickbait
+- Maintain a distinctive point of view instead of chasing algorithmic trends
 
-没有 Taste 的人：AI 生成什么就发什么，追求数量。
+### Example 3: Product Design
 
-有 Taste 的人：
-- 用 AI 快速生成初稿，然后花时间打磨
-- 知道什么样的内容对读者有价值，而不只是有流量
-- 保持自己的独特视角，而不是被算法牵着走
+**Without taste:** Add every feature users request. More is better.
 
-### 例3：做产品
+**With taste:**
+- Distinguish core features from distractions
+- Find the "just right" solution among infinite possibilities
+- Have the courage to say no and remove features
 
-没有 Taste 的人：用户要什么就加什么，功能越多越好。
+This is what Jobs meant by: **"Focus is about saying no."**
 
-有 Taste 的人：
-- 知道什么功能是核心，什么是干扰
-- 能在无数可能性中找到那个「刚刚好」的方案
-- 敢于说「不」，敢于删功能
+## How to Develop Taste
 
-这就是乔布斯说的：**"Focus is about saying no."**
+The good news: taste can be cultivated.
 
-## 五、如何培养 Taste？
+The bad news: there are no shortcuts. It takes time.
 
-好消息是：Taste 是可以培养的。
+### 1. Expose Yourself to Great Work
 
-坏消息是：没有捷径，需要时间。
+This is the foundation.
 
-### 1. 大量接触好东西
+- Study excellent design, read insightful writing, use well-crafted products
+- Step outside your comfort zone regularly
+- Actively investigate **why** something is considered good
 
-这是基础中的基础。
+**Taste is built through exposure, not imagination.**
 
-- 看好的设计、读好的文章、用好的产品
-- 不要只在自己的舒适区里打转
-- 主动去了解「为什么这个被认为是好的」
+A practical tip: build your own "reference library." Collect things that make you think, "This is genuinely good" — a code snippet, a product interaction, an article, a piece of music. Review it periodically and articulate what makes each example excellent.
 
-**Taste 是通过接触培养的，不是凭空想象的。**
+### 2. Analyze Deliberately
 
-建议：建立自己的「素材库」，收集那些让你觉得「这真好」的东西。可以是一段代码、一个产品设计、一篇文章、一首歌。定期回顾，思考它们好在哪里。
+Seeing isn't enough. You have to think.
 
-### 2. 刻意分析
+- When you encounter great work, ask: what specifically makes it great?
+- When you encounter bad work, ask: what specifically makes it bad?
+- Compare: how do different people approach the same problem? Where do they diverge?
 
-光看不够，还得想。
+Deliberate analysis transforms taste from a vague "feeling" into a structured understanding.
 
-- 看到好东西，问自己：好在哪里？
-- 看到烂东西，也问：烂在哪里？
-- 对比：同样的功能/主题，不同人怎么做的？差异在哪？
+### 3. Practice Extensively
 
-这种刻意分析，能让你的 Taste 从「感觉」变成「认知」。
+Theory without practice stays shallow.
 
-### 3. 大量实践
+- Build things, even if the results are imperfect
+- Reflect afterward: what could be better?
+- Compare your work to work you admire and identify the gaps
 
-纸上得来终觉浅。
+Ken Kocienda, a former Apple engineer, described Apple's design philosophy:
 
-- 自己动手做，哪怕做得不好
-- 做完之后反思：哪里可以更好？
-- 对比自己的作品和你欣赏的作品，找差距
+> "Use past work as a benchmark for developing good taste."
 
-Ken Kocienda（前苹果工程师）在谈到苹果的设计哲学时说：
+**Every piece of work you create trains your taste.**
 
-> "使用过去的作品作为培养好品味的基准。"
+### 4. Seek Honest Feedback
 
-**你做的每一件作品，都在训练你的 Taste。**
+Your own taste has blind spots.
 
-### 4. 获取反馈
+- Find people with better taste and ask for their honest assessment
+- Listen for criticism, not just compliments
+- Treat negative feedback as a directional signal, not a personal attack
 
-自己的 Taste 会有盲区。
+### 5. Be Patient
 
-- 找比你有品味的人给你反馈
-- 不要只听好话，要听真话
-- 把批评当作调整方向的信号
+Taste develops over years, not weeks.
 
-### 5. 保持耐心
+Don't expect to develop refined taste from reading a few articles or learning a few techniques. It requires sustained effort and reflection.
 
-Taste 的培养是以年为单位的。
+**But here's the upside: in an era of instant gratification, fewer people are willing to invest that time. Your patience is itself a competitive advantage.**
 
-不要指望看几篇文章、学几个技巧就能拥有好的 Taste。它需要时间沉淀。
+## A Counterintuitive Prediction
 
-**但好消息是：这个时代，愿意花时间培养 Taste 的人越来越少了。所以你的耐心本身就是优势。**
+Many worry that AI will homogenize human output — everyone uses the same tools, so everything starts looking the same.
 
-## 六、一个反直觉的预测
+My view is the opposite:
 
-很多人担心 AI 会让人类变得同质化——大家都用同样的 AI，输出的东西越来越像。
+**AI will widen the gap between people with taste and people without it.**
 
-我的看法恰恰相反：
+Why?
 
-**AI 会让有 Taste 的人和没有 Taste 的人之间的差距变得更大。**
+- **Without taste:** AI homogenizes your output. Everything looks generic.
+- **With taste:** AI amplifies your uniqueness. Your output becomes more distinctively yours.
 
-为什么？
+[Research from Fudan University](https://www.fdsm.fudan.edu.cn/nwmba/2025/0410/c256a11110/page.htm) supports this:
 
-- 没 Taste 的人：被 AI 同质化，输出的东西千篇一律
-- 有 Taste 的人：用 AI 放大自己的独特性，输出的东西更加个人化
+> "AI's strength lies in efficiency and precision, while humanity's unique value lies in creativity, insight, and leadership — core capabilities that cannot be replaced by algorithms."
 
-[复旦大学的研究](https://www.fdsm.fudan.edu.cn/nwmba/2025/0410/c256a11110/page.htm)指出：
+**Taste is the heart of those irreplaceable capabilities.**
 
-> "AI 的强大在于其效率与精准，而人类的独特价值则在于创造力、洞察力与领导力——这些无法被算法替代的核心能力。"
+## The Bottom Line
 
-**Taste 就是这种无法被替代的能力的核心。**
+Back to my designer friend.
 
-## 七、写在最后
+What he spent ten years developing wasn't the ability to use design software — AI can do that in seconds.
 
-回到开头那位设计师朋友的话。
+What he developed was: **knowing what's good, understanding why it's good, and figuring out how to make it better.**
 
-他用十年培养的，不是「会用设计软件」这个技能——这个 AI 几秒钟就能做到。
+That's taste.
 
-他培养的是：**知道什么是好的，为什么是好的，以及如何让它变得更好。**
+In the AI era, everyone needs to ask themselves one question:
 
-这就是 Taste。
+**When anyone can easily "make things," what will set you apart?**
 
-在 AI 时代，每个人都需要思考一个问题：
-
-**当所有人都能轻松「做出来」的时候，你凭什么脱颖而出？**
-
-答案可能不是你学了多少新工具，而是你对「好」的理解有多深。
+The answer probably isn't how many new tools you've learned. It's how deeply you understand what "good" actually means.
 
 ---
 
-## 参考资料
+## References
 
 - [The Rise of Taste - Debris Studio](https://debris.studio/the-rise-of-taste)
-- [唐杰、姚顺雨、杨植麟、林俊旸同台对话：2026年最重要的AI趋势观察](https://www.jiemian.com/article/13868639.html)
-- [AI时代，重新定义"人的价值" - 复旦大学](https://www.fdsm.fudan.edu.cn/nwmba/2025/0410/c256a11110/page.htm)
 - [Generative AI and the Role of Human Taste in Creative Direction](https://medium.com/tnb-ink/generative-ai-and-the-role-of-human-taste-in-creativity-a664605b2dfa)
 - [Sam Altman: The Intelligence Age](https://ia.samaltman.com/)
 - [The 6 Pillars Of Steve Jobs's Design Philosophy](https://www.fastcompany.com/1665375/the-6-pillars-of-steve-jobss-design-philosophy)

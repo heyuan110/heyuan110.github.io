@@ -1,326 +1,326 @@
 +++
 date = '2026-02-24T08:30:00+08:00'
 draft = false
-title = '斯坦福 CS146S 精读（四）：Secure Vibe Coding——AI 代码安全攻防全指南'
-description = '深度解读斯坦福 CS146S 第六七周课程：Prompt Injection 导致远程代码执行的真实案例、OWASP Top 10 在 Agent 时代的新威胁、AI 代码审查方法论，以及如何建立安全的 Vibe Coding 实践。'
+title = 'Stanford CS146S Deep Dive (4): Secure Vibe Coding — AI Code Security Guide'
+description = 'Deep dive into Stanford CS146S Weeks 6-7: real-world Prompt Injection to RCE exploit, OWASP Top 10 in the Agent era, AI code review methodology, and how to build secure Vibe Coding practices.'
 toc = true
-tags = ['AI 安全', 'Vibe Coding', 'Stanford CS146S', 'Prompt Injection', 'Code Review']
-categories = ['AI实战']
-keywords = ['Secure Vibe Coding', 'AI 代码安全', 'Prompt Injection RCE', 'AI Code Review', 'OWASP AI 安全']
+tags = ['AI Security', 'Vibe Coding', 'Stanford CS146S', 'Prompt Injection', 'Code Review']
+categories = ['AI Guides']
+keywords = ['Secure Vibe Coding', 'AI code security', 'Prompt Injection RCE', 'AI Code Review', 'OWASP AI security']
 +++
 
-> 本文是「斯坦福 Vibe Coding 课程精读」系列第 4 篇。系列导航见文末。
+> This is Part 4 of the "Stanford Vibe Coding Course Deep Dive" series. See the series navigation at the end of this article.
 
-CS146S 的 Week 6 和 Week 7 是整门课最让人"脊背发凉"的两周。
+Weeks 6 and 7 of CS146S are the most spine-chilling weeks of the entire course.
 
-Week 6 讲安全：当 AI 帮你写代码时，谁来保证代码不被攻击？更可怕的是——当 AI 本身就是攻击面呢？
+Week 6 covers security: when AI writes your code, who ensures it's not vulnerable to attacks? Even scarier — what happens when the AI itself becomes the attack surface?
 
-Week 7 讲审查：AI 产出的代码，我们到底能信任到什么程度？
+Week 7 covers review: how much can we actually trust AI-generated code?
 
-很多 AI 编程课只教你怎么写得快。CS146S 把**交付的底线**拉了出来：可测、可审、可防。这两周的内容，是从"Vibe Coder"升级为"Professional Vibe Coder"的必经之路。
+Many AI coding courses only teach you how to code faster. CS146S raises **the bar for what's shippable**: testable, auditable, and defensible. These two weeks are the essential path from "Vibe Coder" to "Professional Vibe Coder."
 
-## 真实案例：Prompt Injection 导致远程代码执行
+## Real-World Case: Prompt Injection Leading to Remote Code Execution
 
-让我们从一个真实的安全漏洞开始。
+Let's start with a real security vulnerability.
 
-2025 年，安全研究员发现了 GitHub Copilot 的一个严重漏洞（CVE-2025-53773）：**攻击者可以通过 Prompt Injection，让 Copilot 在你的电脑上执行任意命令。**
+In 2025, security researchers discovered a critical vulnerability in GitHub Copilot (CVE-2025-53773): **an attacker could use Prompt Injection to make Copilot execute arbitrary commands on your machine.**
 
-### 攻击链条
+### The Attack Chain
 
-1. **植入恶意指令**：攻击者在源代码文件、网页或 GitHub Issue 中嵌入隐藏的指令。这些指令对人类不可见或不引人注意，但 AI 会读取并执行。
+1. **Planting malicious instructions**: Attackers embed hidden instructions in source code files, web pages, or GitHub Issues. These instructions are invisible or inconspicuous to humans, but the AI reads and executes them.
 
-2. **操控配置文件**：Copilot Agent Mode 在读取这些内容后，被操控去修改 VS Code 的配置文件 `.vscode/settings.json`。具体来说，添加一行：
+2. **Manipulating configuration files**: After reading this content, Copilot Agent Mode is manipulated into modifying VS Code's configuration file `.vscode/settings.json`. Specifically, it adds:
    ```json
    {
      "chat.tools.autoApprove": true
    }
    ```
 
-3. **激活 YOLO 模式**：这个配置项会禁用所有用户确认提示。从此以后，Copilot 执行任何操作——包括在终端运行命令——都不需要你点"确认"。
+3. **Activating YOLO mode**: This configuration disables all user confirmation prompts. From this point on, Copilot can perform any action — including running terminal commands — without requiring your approval.
 
-4. **执行任意命令**：攻击者的后续指令通过同样的 Prompt Injection 传入，Copilot 在无人监督的情况下执行终端命令——下载恶意软件、窃取凭证、加入僵尸网络。
+4. **Executing arbitrary commands**: Subsequent attacker instructions are delivered through the same Prompt Injection vector, and Copilot executes terminal commands unsupervised — downloading malware, stealing credentials, or enrolling in botnets.
 
-最让人不安的细节：**配置文件的修改是即时写入磁盘的，不是以 diff 形式让你审查。** 也就是说，当你看到修改时，为时已晚。
+The most unsettling detail: **the configuration file changes are written to disk immediately, not presented as a diff for your review.** By the time you notice the change, it's already too late.
 
-### 影响范围
+### Impact Scope
 
-- 跨平台：Windows、macOS、Linux 全部受影响
-- 潜在后果：勒索软件、信息窃取、僵尸网络招募
-- 攻击向量多样：可通过代码仓库、网页内容、Issue 评论等多种渠道植入
+- Cross-platform: Windows, macOS, and Linux all affected
+- Potential consequences: ransomware, information theft, botnet recruitment
+- Multiple attack vectors: can be planted via code repositories, web content, Issue comments, and more
 
-微软在 2025 年 8 月修补了这个漏洞，但它揭示了一个根本性的问题：**AI 编程工具天然就是一个攻击面**。它们读取外部输入（代码、文档、网页），并且有修改文件和执行命令的能力。这两个特征的组合，恰恰构成了 Prompt Injection 攻击的完美条件。
+Microsoft patched this vulnerability in August 2025, but it revealed a fundamental problem: **AI coding tools are inherently an attack surface.** They read external input (code, documentation, web pages) and have the ability to modify files and execute commands. This combination of capabilities creates the perfect conditions for Prompt Injection attacks.
 
-### 对所有 AI 编程工具的警示
+### A Warning for All AI Coding Tools
 
-这不只是 Copilot 的问题。任何具有以下特征的 AI 编程工具都面临类似风险：
+This isn't just a Copilot problem. Any AI coding tool with the following characteristics faces similar risks:
 
-- 能读取外部内容（代码库、网页、文档）
-- 能修改文件
-- 能执行 shell 命令
-- 有"自动批准"模式
+- Can read external content (codebases, web pages, documentation)
+- Can modify files
+- Can execute shell commands
+- Has an "auto-approve" mode
 
-[Claude Code](/posts/ai/2026-01-14-claude-code-guide/) 通过权限模型来缓解这个风险——高风险操作需要明确授权，而且操作会显示给用户确认。但这也意味着：**作为用户，你不能无脑批准 AI 的每个操作。** 每次点"确认"之前，你需要理解它要做什么。
+[Claude Code](/posts/ai/2026-01-14-claude-code-guide/) mitigates this risk through its permission model — high-risk operations require explicit authorization, and operations are displayed for user confirmation. But this also means: **as a user, you can't blindly approve every AI operation.** Before each confirmation, you need to understand what it's about to do.
 
-## OWASP Top 10 在 Agent 时代的新威胁
+## OWASP Top 10: New Threats in the Agent Era
 
-[OWASP Top 10](https://owasp.org/www-project-top-ten/) 是 Web 应用安全的经典框架。但在 AI Agent 时代，这些传统威胁有了新的表现形式。
+The [OWASP Top 10](https://owasp.org/www-project-top-ten/) is the classic framework for web application security. But in the AI Agent era, these traditional threats have taken on new forms.
 
-### 注入攻击的进化
+### The Evolution of Injection Attacks
 
-传统的 SQL 注入、XSS 等注入攻击依然存在，但现在有了一个新成员：**Prompt Injection**。
+Traditional injection attacks like SQL injection and XSS still exist, but now there's a new member: **Prompt Injection**.
 
-| 注入类型 | 传统形态 | Agent 时代新形态 |
-|---------|---------|---------------|
-| SQL 注入 | 用户输入直接拼接到 SQL | AI 生成的 SQL 可能包含注入漏洞 |
-| XSS | 用户输入未转义渲染到页面 | AI 生成的前端代码可能遗漏转义 |
-| 命令注入 | 用户输入传入 shell 命令 | AI Agent 被操控执行恶意命令 |
-| **Prompt Injection** | 无 | 外部内容操控 AI 的行为 |
+| Injection Type | Traditional Form | Agent Era Form |
+|---------------|-----------------|----------------|
+| SQL Injection | User input directly concatenated into SQL | AI-generated SQL may contain injection vulnerabilities |
+| XSS | User input rendered to page without escaping | AI-generated frontend code may miss escaping |
+| Command Injection | User input passed to shell commands | AI Agent manipulated to execute malicious commands |
+| **Prompt Injection** | N/A | External content manipulates AI behavior |
 
-Prompt Injection 特别危险，因为它攻击的不是你的应用，而是**帮你写应用的 AI**。一旦 AI 被操控，它生成的所有代码都可能带有后门。
+Prompt Injection is particularly dangerous because it doesn't attack your application — it attacks **the AI that builds your application**. Once the AI is compromised, all the code it generates could contain backdoors.
 
-### AI 生成代码的系统性安全盲区
+### Systemic Security Blind Spots in AI-Generated Code
 
-Palo Alto Networks Unit42 的研究揭示了 AI Agent 在安全方面的几个系统性弱点：
+Research from Palo Alto Networks Unit42 reveals several systemic weaknesses of AI Agents regarding security:
 
-1. **身份欺骗和冒充**：攻击者可以伪装成合法服务，通过 [MCP](/posts/ai/2026-02-20-mcp-protocol-guide/) 等协议与你的 AI Agent 交互。
-2. **过度信任外部数据**：AI Agent 倾向于信任它读取的所有内容，包括可能被篡改的文档和配置。
-3. **权限边界模糊**：当 AI Agent 连接了多个 MCP Server 时，一个被攻破的 Server 可能影响整个系统。
+1. **Identity spoofing and impersonation**: Attackers can masquerade as legitimate services and interact with your AI Agent through protocols like [MCP](/posts/ai/2026-02-20-mcp-protocol-guide/).
+2. **Over-trusting external data**: AI Agents tend to trust all content they read, including potentially tampered documentation and configurations.
+3. **Blurred permission boundaries**: When an AI Agent is connected to multiple MCP Servers, a compromised Server could affect the entire system.
 
-## AI 发现安全漏洞的能力与局限
+## AI's Ability and Limitations in Finding Security Vulnerabilities
 
-让我们换个角度——AI 不仅可能引入安全漏洞，也可以用来**发现**安全漏洞。
+Let's flip the perspective — AI can not only introduce security vulnerabilities but also **discover** them.
 
-Week 6 的阅读材料中，[Semgrep 的研究](https://semgrep.dev/blog/2025/finding-vulnerabilities-in-modern-web-apps-using-claude-code-and-openai-codex/) 对此做了迄今为止最系统的评估。
+In the Week 6 reading materials, [Semgrep's research](https://semgrep.dev/blog/2025/finding-vulnerabilities-in-modern-web-apps-using-claude-code-and-openai-codex/) provides the most systematic evaluation to date.
 
-### 实验设计
+### Experiment Design
 
-- **对象**：11 个大型、活跃维护的开源 Python 项目（Django、Flask、FastAPI 框架）
-- **代码量**：共 800+ 万行代码
-- **工具**：Claude Code 和 OpenAI Codex
-- **目标漏洞**：身份认证绕过、IDOR、路径遍历、SQL 注入、SSRF、XSS
+- **Subjects**: 11 large, actively maintained open-source Python projects (Django, Flask, FastAPI frameworks)
+- **Code volume**: 8+ million lines of code total
+- **Tools**: Claude Code and OpenAI Codex
+- **Target vulnerabilities**: authentication bypass, IDOR, path traversal, SQL injection, SSRF, XSS
 
-### 关键发现
+### Key Findings
 
-**Claude Code** 报告了 329 个发现，其中 46 个是真实漏洞——**真正例率 14%，误报率 86%**。
+**Claude Code** reported 329 findings, of which 46 were real vulnerabilities — **14% true positive rate, 86% false positive rate**.
 
-**OpenAI Codex** 报告了 116 个发现，其中 21 个是真实漏洞——**真正例率 18%，误报率 82%**。
+**OpenAI Codex** reported 116 findings, of which 21 were real vulnerabilities — **18% true positive rate, 82% false positive rate**.
 
-两者共计发现约 20 个高严重性漏洞。
+Combined, they discovered approximately 20 high-severity vulnerabilities.
 
-更细分的数据揭示了各自的强项和弱点：
+More granular data reveals each tool's strengths and weaknesses:
 
-| 漏洞类型 | Claude Code 真正例率 | Codex 真正例率 |
-|---------|-------------------|--------------|
+| Vulnerability Type | Claude Code True Positive Rate | Codex True Positive Rate |
+|-------------------|-------------------------------|-------------------------|
 | IDOR | 22% | 0% |
-| 路径遍历 | 10% | 47% |
-| 认证绕过 | 14% | 18% |
-| SQL 注入 | 5% | N/A |
+| Path Traversal | 10% | 47% |
+| Auth Bypass | 14% | 18% |
+| SQL Injection | 5% | N/A |
 | XSS | 16% | 0% |
 
-### 最可怕的发现：非确定性
+### The Scariest Finding: Non-Determinism
 
-**同一段代码、同一个 AI、同一个 prompt，三次运行得到 3、6、11 个完全不同的发现。**
+**Same code, same AI, same prompt — three runs produced 3, 6, and 11 completely different findings.**
 
-这源于 AI 的"上下文衰退"——在分析大型代码库的过程中，AI 会逐渐丢失早期的上下文细节。第一次运行时注意到的漏洞，第二次运行时可能因为上下文压缩而被忽略。
+This stems from AI's "context decay" — during the analysis of large codebases, the AI gradually loses earlier context details. A vulnerability noticed during the first run might be overlooked in the second run due to context compression.
 
-这个发现的实践意义巨大：**不要用 AI 做一次性的安全扫描就认为万事大吉。** 多次运行、交叉验证、结合传统静态分析工具，才是可靠的安全策略。
+The practical implication is huge: **don't run a one-time AI security scan and consider yourself safe.** Multiple runs, cross-validation, and combining traditional static analysis tools is the only reliable security strategy.
 
-### 结论
+### Conclusion
 
-AI 安全扫描的现状可以类比为：一个有直觉但不太靠谱的初级安全研究员。它能发现一些人类容易忽视的问题，但误报率高、结果不稳定。正确的用法是把它作为安全工具链中的一环，而不是唯一手段（关于 Claude Code 内置的安全扫描能力，可参考 [Claude Code Security 深度解析](/posts/ai/2026-02-22-claude-code-security/)）。
+The current state of AI security scanning is analogous to: a junior security researcher with intuition but questionable reliability. It can catch issues humans might overlook, but the false positive rate is high and results are unstable. The correct approach is to use it as one link in the security toolchain, not the only one (for Claude Code's built-in security scanning capabilities, see [Claude Code Security Deep Dive](/posts/ai/2026-02-22-claude-code-security/)).
 
-## Context Rot 与安全的隐秘关联
+## Context Rot and Its Hidden Connection to Security
 
-Week 6 还引用了 Chroma 团队关于 [Context Rot](https://research.trychroma.com/context-rot) 的研究。这项研究看似与安全无关，实际上揭示了一个关键的安全隐患。
+Week 6 also references Chroma team's research on [Context Rot](https://research.trychroma.com/context-rot). This research may seem unrelated to security, but it reveals a critical security implication.
 
-Context Rot 指的是模型性能随输入长度增加而持续退化的现象。在安全领域，这意味着：
+Context Rot refers to the continuous degradation of model performance as input length increases. In the security domain, this means:
 
-1. **安全规则在长对话中被"遗忘"**：你在对话开头强调"不要使用 eval()"，但经过 50 轮对话后，AI 可能在某个角落用了 eval()——因为早期的安全约束在上下文压缩中被降权了。
+1. **Security rules get "forgotten" in long conversations**: You emphasize "don't use eval()" at the start of a conversation, but after 50 turns, the AI might use eval() somewhere — because the early security constraints were deprioritized during context compression.
 
-2. **复杂代码库中的漏洞更难被发现**：当 AI 需要分析大量代码时，它对每个文件的"注意力"会被稀释。一些隐藏在边角的安全问题更容易被忽略。
+2. **Vulnerabilities in complex codebases are harder to detect**: When the AI needs to analyze large amounts of code, its "attention" to each file gets diluted. Security issues hidden in edge cases are more likely to be overlooked.
 
-3. **AI 的安全意识不是恒定的**：同一个模型在短上下文中可能正确拒绝不安全的操作，但在长上下文中可能因为"注意力衰减"而放过。
+3. **AI's security awareness is not constant**: The same model might correctly refuse an unsafe operation in a short context, but allow it in a long context due to "attention decay."
 
-**对策**：安全相关的约束应该放在上下文中最显著的位置（如 [CLAUDE.md](/posts/ai/2026-01-12-claudemd-memory-guide/) 的开头），并且定期在新会话中重申。不要指望 AI 在 100 轮对话后还能记住第 1 轮的安全要求。
+**Countermeasure**: Security-related constraints should be placed in the most prominent position in context (such as the beginning of [CLAUDE.md](/posts/ai/2026-01-12-claudemd-memory-guide/)), and periodically restated in new sessions. Don't expect the AI to remember the security requirements from turn 1 after 100 turns of conversation.
 
-## AI Code Review：信任边界在哪里
+## AI Code Review: Where Is the Trust Boundary?
 
-Week 7 转向另一个关键问题：**AI 生成的代码，应该怎么审查？**
+Week 7 shifts to another critical question: **how should we review AI-generated code?**
 
-传统的 Code Review 有成熟的方法论，但 AI 代码有其独特的"味道"，需要不同的审查策略。
+Traditional Code Review has mature methodologies, but AI code has its own unique "smell" that requires different review strategies.
 
-### AI 代码的特征
+### Characteristics of AI-Generated Code
 
-通过百万次 AI Code Review 的经验（[Graphite 分享](https://www.youtube.com/watch?v=TswQeKftnaw)），可以总结出 AI 生成代码的几个典型特征：
+Based on the experience of millions of AI Code Reviews ([Graphite's presentation](https://www.youtube.com/watch?v=TswQeKftnaw)), several typical characteristics of AI-generated code can be summarized:
 
-1. **表面正确，深层有坑**：AI 擅长生成语法正确、看起来合理的代码，但在边界条件、错误处理、并发安全等方面可能有隐患。
+1. **Superficially correct, deeply flawed**: AI excels at generating syntactically correct, seemingly reasonable code, but may have hidden issues in boundary conditions, error handling, and concurrency safety.
 
-2. **过度工程化**：AI 倾向于添加不必要的抽象层、多余的错误处理、过度的类型注解。代码看起来"专业"，但实际上增加了复杂度。
+2. **Over-engineered**: AI tends to add unnecessary abstraction layers, redundant error handling, and excessive type annotations. The code looks "professional" but actually increases complexity.
 
-3. **拷贝式学习的痕迹**：AI 会从训练数据中"记住"某些模式，即使这些模式在当前场景不适用。比如在一个简单的工具脚本中使用企业级架构模式。
+3. **Traces of pattern copying**: AI "memorizes" certain patterns from training data, even when those patterns don't apply to the current scenario. For example, using enterprise-grade architecture patterns in a simple utility script.
 
-4. **安全处理不一致**：AI 可能在某些地方做了完美的输入验证，但在另一些类似的地方完全忽略。这种不一致性比完全不做更危险——它给人一种"已经处理好了"的错觉。
+4. **Inconsistent security handling**: AI might implement perfect input validation in some places but completely ignore it in other similar places. This inconsistency is more dangerous than no validation at all — it creates a false sense of security.
 
-5. **"幻觉"API 和库**：AI 可能调用不存在的函数或使用已废弃的 API。这些在编译时可能会被发现，但在动态语言中可能直到运行时才暴露。
+5. **Hallucinated APIs and libraries**: AI might call non-existent functions or use deprecated APIs. These might be caught at compile time, but in dynamic languages they may not surface until runtime.
 
-### AI Code Review 的七步方法
+### Seven-Step AI Code Review Method
 
-基于 CS146S 的材料和 GitHub 工程师的 [Code Review 哲学](https://github.blog/developer-skills/github/how-to-review-code-effectively-a-github-staff-engineers-philosophy/)，我总结了一套适用于 AI 生成代码的审查方法：
+Based on CS146S materials and GitHub engineers' [Code Review philosophy](https://github.blog/developer-skills/github/how-to-review-code-effectively-a-github-staff-engineers-philosophy/), here's a review method tailored for AI-generated code:
 
-#### 1. 意图验证
+#### 1. Intent Verification
 
-**问**：这段代码做的是不是我想要的？
+**Ask**: Is this code doing what I actually wanted?
 
-AI 可能完美地实现了一个你没要求的功能，或者对你的需求做了不符合预期的"创造性解读"。先确认方向对，再看细节。
+AI might perfectly implement a feature you didn't ask for, or apply an unexpected "creative interpretation" of your requirements. Confirm the direction is right before examining details.
 
-#### 2. 安全扫描
+#### 2. Security Scan
 
-**查**：有没有常见的安全问题？
+**Check**: Are there common security issues?
 
-重点检查：
-- 用户输入是否做了验证和转义
-- SQL 查询是否使用参数化
-- 文件操作是否有路径遍历风险
-- HTTP 请求是否容易被 SSRF
-- 认证和授权逻辑是否完整
-- 敏感信息是否泄露到日志或响应中
+Focus on:
+- Is user input validated and escaped?
+- Do SQL queries use parameterized statements?
+- Do file operations have path traversal risks?
+- Are HTTP requests vulnerable to SSRF?
+- Is authentication and authorization logic complete?
+- Is sensitive information leaking into logs or responses?
 
-#### 3. 边界条件
+#### 3. Boundary Conditions
 
-**测**：极端情况下会怎样？
+**Test**: What happens in extreme cases?
 
-AI 倾向于处理 happy path，对以下场景的处理经常不够：
-- 空值、null、undefined
-- 超大输入、超小输入
-- 并发访问
-- 网络超时、服务不可用
-- 磁盘满、内存不足
+AI tends to handle the happy path, often falling short on:
+- Empty values, null, undefined
+- Extremely large or small inputs
+- Concurrent access
+- Network timeouts, service unavailability
+- Full disk, out of memory
 
-#### 4. 依赖审计
+#### 4. Dependency Audit
 
-**验**：引入的依赖是否可靠？
+**Verify**: Are the introduced dependencies reliable?
 
-AI 可能推荐一些不可靠的第三方包——star 很少、长期未维护、存在已知漏洞，甚至根本不存在（幻觉包名）。每个新依赖都应该手动验证。
+AI might recommend unreliable third-party packages — few stars, long unmaintained, with known vulnerabilities, or even non-existent (hallucinated package names). Every new dependency should be manually verified.
 
-#### 5. 性能评估
+#### 5. Performance Assessment
 
-**估**：在真实负载下性能如何？
+**Evaluate**: How does it perform under real-world load?
 
-AI 可能写出在小数据集上正常、但在生产数据量下会崩溃的代码。特别注意：
-- N+1 查询
-- 无限循环的可能性
-- 内存泄漏（特别是在长期运行的服务中）
-- 不合理的全表扫描
+AI might write code that works fine on small datasets but crashes at production scale. Pay special attention to:
+- N+1 queries
+- Potential infinite loops
+- Memory leaks (especially in long-running services)
+- Unreasonable full table scans
 
-#### 6. 一致性检查
+#### 6. Consistency Check
 
-**比**：与现有代码风格一致吗？
+**Compare**: Is it consistent with existing code style?
 
-AI 生成的代码可能在命名、错误处理、日志格式等方面与项目的既有风格不一致。一个项目里混用多种风格会大幅降低可维护性。
+AI-generated code might be inconsistent with the project's established patterns in naming, error handling, log formatting, etc. Mixing multiple styles in one project significantly reduces maintainability.
 
-#### 7. 可维护性评估
+#### 7. Maintainability Assessment
 
-**想**：三个月后的你能看懂吗？
+**Think**: Will you understand this in three months?
 
-AI 倾向于生成"一次性"代码——能跑就行，但不考虑后续维护。检查：
-- 关键逻辑是否有注释
-- 函数职责是否单一
-- 代码结构是否易于修改
-- 测试是否覆盖了核心逻辑
+AI tends to generate "disposable" code — it works but doesn't consider future maintenance. Check:
+- Do critical logic sections have comments?
+- Are function responsibilities single-purpose?
+- Is the code structure easy to modify?
+- Do tests cover core logic?
 
-### 自动化辅助手段
+### Automated Assistance
 
-纯手工 Review 效率太低。以下工具可以作为辅助：
+Pure manual review is too inefficient. The following tools can help:
 
-| 工具类型 | 代表产品 | 用途 |
-|---------|---------|------|
-| 静态分析 | Semgrep、ESLint、Pylint | 自动发现代码规范和安全问题 |
-| 类型检查 | TypeScript、mypy | 编译期发现类型错误 |
-| 安全扫描 | Snyk、Dependabot | 依赖漏洞检测 |
-| AI Review | Graphite、CodeRabbit | 用 AI 审查 AI 代码（以毒攻毒） |
-| 测试覆盖 | Coverage.py、Istanbul | 确保关键路径有测试 |
+| Tool Type | Representative Products | Purpose |
+|-----------|----------------------|---------|
+| Static Analysis | Semgrep, ESLint, Pylint | Auto-detect code standards and security issues |
+| Type Checking | TypeScript, mypy | Catch type errors at compile time |
+| Security Scanning | Snyk, Dependabot | Dependency vulnerability detection |
+| AI Review | Graphite, CodeRabbit | Use AI to review AI code (fighting fire with fire) |
+| Test Coverage | Coverage.py, Istanbul | Ensure critical paths have tests |
 
-Graphite 的 CPO Tomas Reimers 在 Week 7 的演讲中分享了百万次 AI Code Review 的经验——AI Review 工具不是替代人工审查，而是作为第一道过滤网，让人类审查者可以把精力集中在更高层次的问题上。
+Graphite's CPO Tomas Reimers shared insights from millions of AI Code Reviews in his Week 7 talk — AI Review tools don't replace human review but serve as a first filter, allowing human reviewers to focus their energy on higher-level concerns.
 
-## 构建安全的 Vibe Coding 工作流
+## Building a Secure Vibe Coding Workflow
 
-综合 Week 6-7 的内容，一个安全的 Vibe Coding 工作流应该包含以下防线：
+Synthesizing the content from Weeks 6-7, a secure Vibe Coding workflow should include the following defense layers:
 
-### 第一道防线：安全的上下文
+### First Line of Defense: Secure Context
 
-在 CLAUDE.md 或项目配置中明确安全规则：
+Define security rules explicitly in CLAUDE.md or project configuration:
 
 ```markdown
-## 安全规范
-- 所有用户输入必须做验证和转义
-- SQL 查询必须使用参数化查询，禁止字符串拼接
-- 文件操作必须验证路径，防止目录遍历
-- API 响应禁止包含敏感信息（密码、token、密钥）
-- 新依赖需要检查安全性和维护状态
-- 不要使用 eval()、exec() 或类似的动态代码执行
+## Security Standards
+- All user input must be validated and escaped
+- SQL queries must use parameterized queries, no string concatenation
+- File operations must validate paths to prevent directory traversal
+- API responses must not contain sensitive information (passwords, tokens, keys)
+- New dependencies must be checked for security and maintenance status
+- Do not use eval(), exec(), or similar dynamic code execution
 ```
 
-把安全规则写在上下文中，AI 在生成代码时就会自动遵守。这不能保证 100% 安全，但能消除大部分低级安全错误。
+Writing security rules into context makes the AI automatically comply when generating code. This doesn't guarantee 100% security, but it eliminates most low-level security mistakes.
 
-### 第二道防线：自动化检查
+### Second Line of Defense: Automated Checks
 
-在 CI/CD 流程中集成自动化安全检查：
+Integrate automated security checks into the CI/CD pipeline:
 
-- **[Pre-commit hook](/posts/ai/2026-02-18-claude-code-hooks-guide/)**：运行 lint 和基础安全检查
-- **CI Pipeline**：运行完整的测试套件 + 静态分析 + 依赖扫描
-- **PR Review**：自动运行 AI Code Review 工具
+- **[Pre-commit hooks](/posts/ai/2026-02-18-claude-code-hooks-guide/)**: Run linting and basic security checks
+- **CI Pipeline**: Run full test suite + static analysis + dependency scanning
+- **PR Review**: Automatically run AI Code Review tools
 
-### 第三道防线：人工审查
+### Third Line of Defense: Human Review
 
-对于涉及安全的代码变更，人工审查不可跳过。重点审查：
+For code changes involving security, human review is non-negotiable. Focus on:
 
-- 认证/授权逻辑的变更
-- 数据库 schema 的变更
-- 新的外部服务集成
-- 配置文件的变更（特别是权限相关）
+- Changes to authentication/authorization logic
+- Database schema changes
+- New external service integrations
+- Configuration file changes (especially permission-related)
 
-### 第四道防线：权限最小化
+### Fourth Line of Defense: Least Privilege
 
-- 不要给 AI Agent "root 权限"。限制它能访问的文件和目录。
-- 不要使用"自动批准所有操作"模式。
-- 定期审查 AI Agent 的操作日志。
-- 敏感凭证不要放在代码仓库或 AI 能访问的位置。
+- Don't give AI Agents "root access." Restrict the files and directories they can access.
+- Don't use "auto-approve all operations" mode.
+- Regularly audit AI Agent operation logs.
+- Don't store sensitive credentials in code repositories or locations accessible to AI.
 
-### 第五道防线：纵深防御
+### Fifth Line of Defense: Defense in Depth
 
-假设上面的防线都可能被突破。部署运行时安全措施：
+Assume all the above defenses can be breached. Deploy runtime security measures:
 
-- WAF（Web 应用防火墙）
-- 运行时应用自我保护（RASP）
-- 异常行为检测
-- 定期安全审计和渗透测试
+- WAF (Web Application Firewall)
+- RASP (Runtime Application Self-Protection)
+- Anomaly behavior detection
+- Regular security audits and penetration testing
 
-## 安全与速度的平衡
+## Balancing Security and Speed
 
-可能有人会说：这么多安全检查，不是拖慢了 Vibe Coding 的速度吗？
+Some might say: don't all these security checks slow down Vibe Coding?
 
-CS146S 的回答是：**不安全的快，是假的快。**
+CS146S's answer is: **insecure speed is false speed.**
 
-一个安全漏洞造成的损失——数据泄露、法律风险、声誉损害——远超你用 Vibe Coding 省下的那些时间。而且，大部分安全措施（上下文配置、CI 自动检查、AI Review）一旦建立就是**零边际成本**的——它们自动运行，不需要你每次都手动介入。
+The damage from a single security vulnerability — data breaches, legal liability, reputational harm — far exceeds the time you saved with Vibe Coding. Moreover, most security measures (context configuration, CI automated checks, AI Review) are **zero marginal cost** once established — they run automatically without manual intervention each time.
 
-真正的 Professional Vibe Coding 不是放弃速度选择安全，而是**建立一次性的安全基础设施，然后在安全的框架内快速前进**。
+True Professional Vibe Coding isn't about choosing between speed and security, but **building one-time security infrastructure and then moving fast within a secure framework**.
 
-这就是 CS146S 这两周最有价值的教训：快速原型只是起点，**可测、可审、可防**才是终点。
+This is the most valuable lesson from these two weeks of CS146S: rapid prototyping is just the starting point — **testable, auditable, and defensible** is the finish line.
 
-## 相关阅读
+## Related Reading
 
-- [Claude Code Security 深度解析](/posts/ai/2026-02-22-claude-code-security/) — Claude Code 内置的安全扫描能力详解
-- [Claude Code Hooks 实战指南](/posts/ai/2026-02-18-claude-code-hooks-guide/) — 用 Hooks 自动化安全检查流程
-- [MCP 协议全面解析](/posts/ai/2026-02-20-mcp-protocol-guide/) — 理解 MCP 安全边界的前提
-- [MCP 安全指南](/posts/ai/2026-02-23-mcp-security-guide/) — MCP Server 的安全最佳实践
-- [从零手搓一个 Claude Code](/posts/ai/2026-02-24-build-magic-code/) — 亲手实现安全检查机制，理解更深
+- [Claude Code Security Deep Dive](/posts/ai/2026-02-22-claude-code-security/) — Detailed look at Claude Code's built-in security scanning capabilities
+- [Claude Code Hooks Practical Guide](/posts/ai/2026-02-18-claude-code-hooks-guide/) — Automate security checks with Hooks
+- [MCP Protocol Complete Guide](/posts/ai/2026-02-20-mcp-protocol-guide/) — A prerequisite for understanding MCP security boundaries
+- [MCP Security Guide](/posts/ai/2026-02-23-mcp-security-guide/) — Best practices for MCP Server security
+- [Build a Claude Code from Scratch](/posts/ai/2026-02-24-build-magic-code/) — Implement security checks yourself for deeper understanding
 
-## 系列文章导航
+## Series Navigation
 
-本文是「斯坦福 Vibe Coding 课程精读」系列第 4 篇：
+This is Part 4 of the "Stanford Vibe Coding Course Deep Dive" series:
 
-1. [斯坦福 CS146S 精读（一）：Vibe Coding 如何成为正式学科](/posts/ai/2026-02-24-stanford-cs146s-overview/)
-2. [斯坦福 CS146S 精读（二）：上下文工程](/posts/ai/2026-02-24-context-engineering-deep-dive/)（Week 3）
-3. [斯坦福 CS146S 精读（三）：Agent Manager](/posts/ai/2026-02-24-agent-manager-patterns/)（Week 4）
-4. **本文**：斯坦福 CS146S 精读（四）：Secure Vibe Coding（Week 6-7）
-5. [斯坦福 CS146S 精读（五）：从原型到生产](/posts/ai/2026-02-24-prototype-to-production/)（Week 8-9）
+1. [Stanford CS146S Deep Dive (1): How Vibe Coding Became an Academic Discipline](/posts/ai/2026-02-24-stanford-cs146s-overview/)
+2. [Stanford CS146S Deep Dive (2): Context Engineering](/posts/ai/2026-02-24-context-engineering-deep-dive/) (Week 3)
+3. [Stanford CS146S Deep Dive (3): Agent Manager](/posts/ai/2026-02-24-agent-manager-patterns/) (Week 4)
+4. **This article**: Stanford CS146S Deep Dive (4): Secure Vibe Coding (Week 6-7)
+5. [Stanford CS146S Deep Dive (5): From Prototype to Production](/posts/ai/2026-02-24-prototype-to-production/) (Week 8-9)

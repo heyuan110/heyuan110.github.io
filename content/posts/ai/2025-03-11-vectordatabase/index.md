@@ -1,363 +1,363 @@
 +++
 date = '2025-03-11T14:40:02+08:00'
-title = '向量数据库到底解决了什么问题？从原理到工程实践一次讲清'
-description = '从原理到工程实践，讲清楚向量数据库为什么火、怎么用、怎么选，以及实际落地中的坑'
+title = 'Vector Database Explained: From Core Concepts to Production'
+description = 'Learn what vector databases actually solve, how ANN indexing works, when to use semantic search vs keyword search, and how to choose between Milvus, Pinecone, Qdrant, and pgvector.'
 toc = true
-tags = ['AI', 'VectorDatabase', 'RAG']
-categories = ['AI原理']
-keywords = ['向量数据库', 'RAG 检索增强生成', 'Embedding 向量化', '语义检索', '向量数据库选型']
+tags = ['AI', 'Vector Database', 'RAG']
+categories = ['AI Guides']
+keywords = ['vector database', 'RAG retrieval augmented generation', 'embedding model', 'semantic search', 'ANN indexing', 'Milvus vs Pinecone', 'vector database comparison']
 +++
 ![VectorDatabase](vector-db.webp)
 
-## 1. 向量数据库为什么突然火了？
+## 1. Why Vector Databases Suddenly Took Off
 
-2023 年之前，向量数据库是个小众领域，圈外人基本没听过。
+Before 2023, vector databases were a niche technology that most engineers had never heard of.
 
-然后 ChatGPT 爆了，大模型成了全民话题。紧接着大家发现一个问题：大模型的知识是训练时固定的，不知道你公司的内部文档，不知道最新的新闻，不知道你私有的数据。
+Then ChatGPT happened. Large language models became mainstream overnight, and people quickly ran into a fundamental limitation: an LLM's knowledge is frozen at training time. It doesn't know your company's internal docs, yesterday's news, or your proprietary data.
 
-怎么办？把私有数据喂给它。
+The obvious fix? Feed it your private data at query time.
 
-怎么喂？总不能每次都把几百页文档塞进 prompt 里吧，token 费用先不说，还超长度限制。
+But you can't shove hundreds of pages into every prompt. Token costs aside, there are hard context length limits.
 
-于是 RAG（Retrieval-Augmented Generation）火了。思路很简单：先从你的知识库里找到和问题相关的内容，再把这些内容塞给大模型，让它基于这些内容回答。
+That's where RAG (Retrieval-Augmented Generation) comes in. The idea is simple: find the most relevant content from your knowledge base first, then pass it to the LLM so it can answer based on actual context.
 
-问题来了：怎么"找到相关内容"？
+The question then becomes: how do you "find relevant content"?
 
-传统数据库做关键词匹配，搜"苹果手机"只能匹配到包含"苹果手机"这几个字的文档，搜不到写着"iPhone"的文档。
+Traditional databases do keyword matching. Search for "Apple phone" and you'll only find documents containing those exact words — not documents that say "iPhone."
 
-但人知道"苹果手机"和"iPhone"是一回事。怎么让机器也知道？
+But humans know "Apple phone" and "iPhone" mean the same thing. How do you teach a machine that?
 
-答案是：把文本转成向量，用向量的相似度来衡量语义的相似度。
+The answer: convert text into vectors and measure semantic similarity through vector distance.
 
-这就是向量数据库火起来的根本原因——**大模型时代需要语义检索，向量数据库是做语义检索最直接的方案**。
+This is the fundamental reason vector databases exploded — **the LLM era demands semantic retrieval, and vector databases are the most direct solution for it**.
 
-## 2. 什么是向量？Embedding 到底在干什么
+## 2. What Are Vectors and What Does Embedding Actually Do
 
-### 向量是什么
+### What Is a Vector
 
-向量就是一串数字。
+A vector is simply an array of numbers.
 
-比如 `[0.12, -0.34, 0.56, ..., 0.78]`，可能有 768 个数，也可能有 1536 个数，取决于用什么模型生成的。
+Something like `[0.12, -0.34, 0.56, ..., 0.78]` — it might have 768 numbers, or 1536, depending on the model that generated it.
 
-这串数字代表什么？代表这段内容的"语义特征"。
+What do these numbers represent? They encode the "semantic features" of the content.
 
-你可以把它理解成一个坐标点。在一个 768 维的空间里，每段文本都有一个位置。语义相近的文本，位置就靠得近；语义不同的，位置就离得远。
+Think of it as coordinates in a high-dimensional space. In a 768-dimensional space, every piece of text occupies a position. Semantically similar texts sit close together; unrelated texts are far apart.
 
-### Embedding 模型在干什么
+### What Embedding Models Do
 
-Embedding 模型就是负责把文本转成向量的。
+An embedding model converts text into vectors.
 
-输入一段话，输出一串数字。这个过程叫"向量化"或者"Embedding"。
+Input: a piece of text. Output: an array of numbers. This process is called "embedding" or "vectorization."
 
-比如：
+For example:
 
 ```
-输入："今天天气真好"
-输出：[0.12, -0.34, 0.56, ..., 0.78]  （768维向量）
+Input:  "The weather is great today"
+Output: [0.12, -0.34, 0.56, ..., 0.78]  (768-dimensional vector)
 ```
 
-不同的 Embedding 模型，输出的向量维度不一样，质量也不一样。常见的：
+Different embedding models produce different dimensions and quality levels. Common choices include:
 
-- OpenAI 的 `text-embedding-3-small`：1536 维
-- BGE 系列：768 或 1024 维
-- GTE 系列：768 或 1024 维
-- M3E：768 维
+- OpenAI `text-embedding-3-small`: 1536 dimensions
+- BGE series: 768 or 1024 dimensions
+- GTE series: 768 or 1024 dimensions
+- Cohere Embed v3: 1024 dimensions
 
-中文场景下，BGE 和 M3E 效果还不错，而且是开源的，可以本地部署。
+For English-language use cases, OpenAI and Cohere models work well out of the box. For multilingual or specialized domains, open-source models like BGE and GTE are strong alternatives that you can self-host.
 
-### 怎么衡量两个向量"像不像"
+### How to Measure Whether Two Vectors Are Similar
 
-最常用的是**余弦相似度**。
+The most common method is **cosine similarity**.
 
-数学上就是两个向量夹角的余弦值。夹角越小，余弦值越接近 1，表示越相似。
+Mathematically, it's the cosine of the angle between two vectors. The smaller the angle, the closer the cosine value is to 1, meaning higher similarity.
 
-还有欧氏距离、点积等方法，但余弦相似度最常用，因为它对向量的长度不敏感，只看方向。
+There are other approaches — Euclidean distance, dot product — but cosine similarity is the most widely used because it's insensitive to vector magnitude and only considers direction.
 
-## 3. 为什么传统数据库不适合做向量检索
+## 3. Why Traditional Databases Can't Handle Vector Search
 
-有人会问：向量不就是一堆数字吗？MySQL 也能存啊，为什么非得用专门的向量数据库？
+You might ask: vectors are just arrays of numbers, right? MySQL can store those. Why do we need a specialized database?
 
-### 问题一：查询方式不同
+### Problem 1: Different Query Paradigm
 
-传统数据库的查询是"精确匹配"或"范围查询"：
+Traditional databases do exact match or range queries:
 
 ```sql
 SELECT * FROM users WHERE age = 25;
 SELECT * FROM products WHERE price BETWEEN 100 AND 200;
 ```
 
-向量检索是"相似度查询"：
+Vector search is a similarity query:
 
 ```
-找出和这个向量最相似的 Top 10 个向量
+Find the Top 10 vectors most similar to this query vector
 ```
 
-这是完全不同的查询模式，传统的 B+ 树索引根本用不上。
+This is a fundamentally different query pattern. B+ tree indexes are useless here.
 
-### 问题二：维度灾难
+### Problem 2: The Curse of Dimensionality
 
-向量动辄 768 维、1536 维。在高维空间里，传统的索引结构会失效。
+Vectors routinely have 768 or 1536 dimensions. In high-dimensional spaces, traditional index structures break down.
 
-这叫"维度灾难"——维度越高，数据点之间的距离差异越小，所有点看起来都差不多远。普通索引在这种情况下退化成全表扫描。
+This is the "curse of dimensionality" — as dimensions increase, the distance between all data points converges, making everything appear roughly equidistant. Standard indexes degrade to brute-force full table scans.
 
-### 问题三：性能要求
+### Problem 3: Performance Requirements
 
-实际业务中，向量检索通常要在**百万甚至千万级**的向量里，**毫秒级**返回最相似的 Top K。
+In production, vector search typically needs to return the Top K most similar results from **millions or tens of millions** of vectors in **single-digit milliseconds**.
 
-MySQL 存 100 万个 768 维向量，每次查询都算一遍余弦相似度？服务器会哭的。
+Imagine storing 1 million 768-dimensional vectors in MySQL and computing cosine similarity for every query. Your server would melt.
 
-所以需要专门的**近似最近邻（ANN）**算法和索引结构。
+That's why we need specialized **Approximate Nearest Neighbor (ANN)** algorithms and index structures.
 
-## 4. 向量数据库的核心能力拆解
+## 4. Core Capabilities of a Vector Database
 
-一个向量数据库，核心要解决这几件事：
+A vector database needs to solve several key problems:
 
-### 4.1 高效的 ANN 索引
+### 4.1 Efficient ANN Indexing
 
-ANN = Approximate Nearest Neighbor，近似最近邻。
+ANN = Approximate Nearest Neighbor.
 
-"近似"是关键词。为了速度，我们允许结果不是 100% 精确的最近邻，而是"足够近"的近邻。
+"Approximate" is the key word. For speed, we accept results that aren't the mathematically exact nearest neighbors — just "close enough."
 
-常见的 ANN 索引算法：
+Common ANN index algorithms:
 
-**HNSW（Hierarchical Navigable Small World）**
+**HNSW (Hierarchical Navigable Small World)**
 
-目前最主流的算法。构建一个多层图结构，查询时从顶层开始，一层层往下找，很快就能定位到目标附近。
+The most popular algorithm today. It builds a multi-layer graph structure. During queries, it starts from the top layer and navigates downward, quickly converging on the target neighborhood.
 
-优点：查询快、召回率高
-缺点：内存占用大，索引构建慢
+Pros: fast queries, high recall
+Cons: high memory usage, slow index construction
 
-**IVF（Inverted File Index）**
+**IVF (Inverted File Index)**
 
-先用 K-means 把向量聚成若干簇，查询时先定位到最近的几个簇，再在簇内精确查找。
+Uses K-means to cluster vectors into groups. During queries, it first identifies the nearest clusters, then searches within them.
 
-优点：内存占用小，可以配合量化压缩
-缺点：召回率比 HNSW 低一些
+Pros: lower memory usage, works well with quantization
+Cons: slightly lower recall than HNSW
 
-**PQ（Product Quantization）**
+**PQ (Product Quantization)**
 
-把向量切成小段，每段用一个码本压缩。查询时用压缩后的表示计算距离。
+Splits vectors into sub-segments and compresses each with a codebook. Queries use the compressed representations to compute distances.
 
-主要用来**省内存**，通常和 IVF 配合使用（IVF-PQ）。
+Primarily used to **reduce memory footprint**. Usually combined with IVF (IVF-PQ).
 
-### 4.2 向量 + 元数据混合查询
+### 4.2 Hybrid Queries: Vectors + Metadata Filtering
 
-实际业务中，很少只按向量相似度查。通常还有过滤条件：
+In practice, you rarely search by vector similarity alone. There are usually filter conditions:
 
 ```
-找和这个问题最相关的文档，但只要最近 7 天发布的
-找最相似的商品，但只要价格在 100-500 之间的
+Find the most relevant documents, but only those published in the last 7 days
+Find the most similar products, but only those priced between $100 and $500
 ```
 
-这就需要向量数据库支持**混合查询**：先按条件过滤，再在过滤后的集合里做向量检索。
+This requires **hybrid queries**: filter by metadata first, then run vector search on the filtered set.
 
-有的数据库是先过滤再检索（pre-filter），有的是先检索再过滤（post-filter），性能差异很大，选型时要注意。
+Some databases use pre-filtering (filter then search), others use post-filtering (search then filter). The performance difference can be massive — this is a critical factor when choosing a database.
 
-### 4.3 实时增删改
+### 4.3 Real-Time CRUD Operations
 
-有些场景数据是动态变化的，比如电商商品库、新闻文章库。
+Some use cases involve dynamic data — e-commerce product catalogs, news articles, support tickets.
 
-需要支持：
-- 实时插入新向量
-- 删除过期向量
-- 更新已有向量
+The database needs to support:
+- Inserting new vectors in real time
+- Deleting expired vectors
+- Updating existing vectors
 
-这对索引结构有要求，有些索引（比如纯 IVF）更新代价很高。
+This places demands on the index structure. Some indexes (like pure IVF) have high update costs.
 
-### 4.4 分布式和高可用
+### 4.4 Distributed Architecture and High Availability
 
-数据量大了，单机扛不住，需要分片、副本、故障恢复。
+As data grows, a single machine can't keep up. You need sharding, replicas, and failover.
 
-这块各家实现差异很大，有的是天生分布式架构，有的是单机加分布式壳。
+Implementations vary widely here. Some databases are built distributed from the ground up; others bolt distribution onto a single-node core.
 
-## 5. 向量数据库在真实系统中是怎么用的
+## 5. How Vector Databases Are Used in Real Systems
 
-### 场景一：RAG 知识库
+### Use Case 1: RAG Knowledge Base
 
-最火的场景。
+The hottest use case by far.
 
-流程：
-1. 把文档切成小块（chunk）
-2. 每个 chunk 用 Embedding 模型转成向量
-3. 向量存入向量数据库
-4. 用户提问时，把问题也转成向量
-5. 在向量数据库里搜最相似的 chunk
-6. 把搜到的 chunk 和问题一起喂给大模型
+The workflow:
+1. Split documents into chunks
+2. Convert each chunk into a vector using an embedding model
+3. Store vectors in the vector database
+4. When a user asks a question, convert the question into a vector
+5. Search the vector database for the most similar chunks
+6. Pass the retrieved chunks + question to the LLM
 
-这套流程，向量数据库是核心组件之一。
+The vector database is one of the core components in this pipeline.
 
-### 场景二：语义搜索
+### Use Case 2: Semantic Search
 
-传统搜索是关键词匹配，语义搜索是"理解意图"。
+Traditional search matches keywords. Semantic search understands intent.
 
-用户搜"便宜又好用的手机"，能搜到标题是"性价比神机推荐"的文章，虽然一个关键词都没匹配上。
+A user searching "affordable and reliable phone" can find an article titled "Best Budget Smartphones of 2025" — even though not a single keyword matches.
 
-很多产品已经在用了，只是你可能没注意到。
+Many products already use this. You may just not have noticed.
 
-### 场景三：推荐系统
+### Use Case 3: Recommendation Systems
 
-把用户行为、商品特征都转成向量，用向量相似度做召回。
+Convert user behaviors and item features into vectors, then use vector similarity for candidate retrieval.
 
-比如：用户看过的商品向量取平均，找和这个平均向量最近的商品推荐给他。
+For example: average the vectors of products a user has viewed, then find the nearest products to that average vector for recommendations.
 
-这个场景其实比 RAG 更早用向量检索，只是当时不叫"向量数据库"，叫 Faiss、叫 ANN 服务。
+This use case actually predates RAG. Back then it wasn't called a "vector database" — it was Faiss, or an ANN service.
 
-### 场景四：去重 / 相似检测
+### Use Case 4: Deduplication and Similarity Detection
 
-判断两张图是不是同一张（抄袭检测、版权检查）。
+Determine whether two images are the same (plagiarism detection, copyright checks).
 
-把图片转成向量，新图进来时搜一下有没有相似的。
+Convert images into vectors. When a new image arrives, search for similar ones.
 
-文本去重也一样。
+Text deduplication works the same way.
 
-## 6. 工程实践中的常见误区与坑
+## 6. Common Mistakes and Pitfalls in Production
 
-### 误区一：以为向量数据库能解决一切检索问题
+### Mistake 1: Thinking Vector Search Solves Everything
 
-向量检索是**语义相似度**检索，不是万能的。
+Vector search is **semantic similarity** search. It's not a universal solution.
 
-有些场景关键词匹配更合适。比如搜订单号、搜 SKU 编码，这种精确匹配的需求，用向量检索是脱裤子放屁。
+Some scenarios are better served by keyword matching. Searching for order numbers or SKU codes with vector search is like using a sledgehammer to hang a picture frame.
 
-好的方案通常是**混合检索**：关键词检索 + 向量检索，结果做融合排序。
+The right approach is usually **hybrid search**: keyword retrieval + vector retrieval, with result fusion and re-ranking.
 
-### 误区二：Embedding 模型随便选一个就行
+### Mistake 2: Picking Any Embedding Model
 
-Embedding 模型的质量**直接决定**检索效果。
+Embedding model quality **directly determines** retrieval effectiveness.
 
-模型不行，向量数据库再牛也白搭。
+If the model is weak, no vector database can save you.
 
-建议：
-- 用 MTEB 榜单看看各模型的评分
-- 针对自己的场景做评测，通用榜单不一定准
-- 中文场景，BGE、M3E、GTE 都可以试试
+Recommendations:
+- Check the MTEB leaderboard for model scores
+- Benchmark on your own data — generic leaderboards don't always translate
+- For English, OpenAI, Cohere, and BGE models are solid starting points
 
-### 误区三：Chunk 切得越小越好 / 越大越好
+### Mistake 3: Making Chunks Too Small or Too Large
 
-都不对。
+Both are wrong.
 
-Chunk 太小：上下文丢失，检索到的内容不完整
-Chunk 太大：噪音太多，语义被稀释
+Too small: context is lost, retrieved content is incomplete
+Too large: too much noise, semantics get diluted
 
-没有万能的切分策略，要根据内容类型调。一般经验：
+There's no universal chunking strategy. Tune it based on your content type. General guidelines:
 
-- 结构化文档（有标题层级的）：按章节切
-- 纯文本：300-500 字一块，可以有重叠
-- 代码：按函数 / 类切
+- Structured documents (with heading hierarchy): chunk by section
+- Plain text: 300-500 words per chunk, with overlap
+- Code: chunk by function or class
 
-### 误区四：只看召回率，不看排序
+### Mistake 4: Only Measuring Recall, Ignoring Ranking
 
-召回了 100 条结果，但最相关的排在第 50 名，有什么用？
+Recall of 100 results means nothing if the most relevant one is ranked 50th.
 
-要关注**Top K 的准确率**，而不只是"能不能召回"。
+Focus on **Top K precision**, not just "can it be recalled."
 
-这跟 Embedding 模型、索引参数、查询方式都有关。
+This depends on the embedding model, index parameters, and query strategy.
 
-### 误区五：忽略元数据过滤的性能
+### Mistake 5: Ignoring Metadata Filtering Performance
 
-前面说了，混合查询（向量 + 过滤）很常见。
+As mentioned, hybrid queries (vector + filter) are extremely common.
 
-但有些数据库的过滤实现很慢，特别是 post-filter 模式——先召回 10000 条，再过滤，可能最后只剩 10 条，效率很差。
+But some databases implement filtering poorly — especially in post-filter mode. You retrieve 10,000 candidates, filter them, and end up with only 10 results. Terrible efficiency.
 
-如果你的业务过滤条件很重要，选型时一定要测混合查询的性能。
+If your use case relies heavily on filtering, you must benchmark hybrid query performance during evaluation.
 
-## 7. 向量数据库该怎么选（工程视角）
+## 7. How to Choose a Vector Database (Engineering Perspective)
 
-市面上的选择很多，大致分几类：
+There are many options on the market, roughly categorized as follows:
 
-### 专用向量数据库
+### Purpose-Built Vector Databases
 
 **Milvus**
 
-- 开源、功能全、社区活跃
-- 支持分布式，能扛大规模
-- 缺点是部署有点重，依赖 etcd、MinIO 这些组件
+- Open source, feature-rich, active community
+- Built for distributed, large-scale workloads
+- Downside: heavyweight deployment, depends on etcd and MinIO
 
-适合：正经做向量检索的团队，数据量大，对功能和性能有要求
+Best for: teams serious about vector search at scale with strong feature and performance requirements
 
 **Pinecone**
 
-- 全托管 SaaS，开箱即用
-- 不用操心运维
-- 缺点是贵，而且数据在别人那
+- Fully managed SaaS, zero ops
+- No infrastructure to maintain
+- Downside: expensive, and your data lives on their servers
 
-适合：不想运维、预算充足、数据不敏感的团队
+Best for: teams that don't want to manage infrastructure, have budget, and aren't concerned about data residency
 
 **Qdrant**
 
-- Rust 写的，性能不错
-- 支持丰富的过滤条件
-- 部署比 Milvus 简单
+- Written in Rust, strong performance
+- Rich filtering capabilities
+- Simpler to deploy than Milvus
 
-适合：中等规模，对过滤查询有要求
+Best for: mid-scale deployments with significant filtering requirements
 
 **Weaviate**
 
-- 支持多模态（文本、图像）
-- 内置一些 Embedding 模型
-- GraphQL 接口
+- Supports multimodal data (text, images)
+- Built-in embedding model integrations
+- GraphQL API
 
-适合：想要一站式方案的
+Best for: teams wanting an all-in-one solution
 
-### 传统数据库 + 向量插件
+### Traditional Databases + Vector Extensions
 
 **PostgreSQL + pgvector**
 
-- 如果你已经在用 PG，加个插件就能用
-- 性能一般，但对小规模够用
-- 优点是不用引入新组件
+- If you're already running Postgres, just add an extension
+- Performance is modest but sufficient for small scale
+- Advantage: no new infrastructure to manage
 
-适合：数据量小（几十万以内）、想简单搞搞的
+Best for: datasets under a few hundred thousand vectors, quick prototyping
 
 **Elasticsearch 8.x**
 
-- ES 8 开始原生支持向量检索
-- 可以和全文检索无缝结合
-- 适合已经在用 ES 的团队
+- Native vector search support starting from ES 8
+- Seamlessly combines with full-text search
+- Great for teams already running Elasticsearch
 
-### 纯库（需要自己封装）
+### Libraries (Build Your Own)
 
 **Faiss**
 
-- Facebook 出品，业界标杆
-- 纯索引库，不是数据库，没有持久化、没有 API
-- 需要自己包一层
+- Built by Meta, industry benchmark
+- A pure indexing library — not a database, no persistence, no API
+- You have to wrap it yourself
 
-适合：有工程能力，想深度定制的
+Best for: teams with strong engineering capability who want full control
 
-### 怎么选？
+### Decision Matrix
 
-| 场景 | 推荐 |
-|------|------|
-| 快速验证、数据量小 | pgvector / SQLite-VSS |
-| 已有 ES，想加向量能力 | Elasticsearch |
-| 正经生产环境、数据量中等 | Qdrant / Weaviate |
-| 大规模、高性能要求 | Milvus |
-| 不想运维、预算充足 | Pinecone |
-| 深度定制、自己造轮子 | Faiss |
+| Scenario | Recommendation |
+|----------|---------------|
+| Quick prototyping, small data | pgvector / SQLite-VSS |
+| Already running ES, want to add vector capability | Elasticsearch |
+| Production use, medium scale | Qdrant / Weaviate |
+| Large scale, high performance | Milvus |
+| No-ops, sufficient budget | Pinecone |
+| Deep customization, full control | Faiss |
 
-别被营销忽悠了，先搞清楚自己的需求：
+Don't get swayed by marketing. Start by understanding your requirements:
 
-- 数据量多大？
-- QPS 要求多少？
-- 需不需要混合查询？
-- 需不需要实时更新？
-- 团队有没有运维能力？
+- How much data do you have?
+- What's your QPS target?
+- Do you need hybrid queries (vector + metadata)?
+- Do you need real-time updates?
+- Does your team have the ops capability?
 
-然后再选。
+Then choose.
 
-## 8. 写在最后：向量数据库的边界
+## 8. Final Thoughts: The Boundaries of Vector Databases
 
-向量数据库不是银弹。
+A vector database is not a silver bullet.
 
-它解决的是**语义相似度检索**这一个问题，而且是"近似"解决。
+It solves one problem: **semantic similarity retrieval** — and it solves it approximately.
 
-不要指望它：
-- 替代传统数据库的精确查询
-- 替代全文搜索引擎的关键词检索
-- 自动理解你的业务逻辑
+Don't expect it to:
+- Replace traditional databases for exact queries
+- Replace full-text search engines for keyword retrieval
+- Automatically understand your business logic
 
-它只是工具链的一环。在 RAG 系统里，Embedding 模型、Chunk 策略、Prompt 设计、大模型本身，每一环都会影响最终效果。向量数据库选得再好，其他环节拉胯也没用。
+It's one link in the chain. In a RAG system, the embedding model, chunking strategy, prompt design, and the LLM itself all affect the end result. The best vector database in the world won't save a pipeline where other components are weak.
 
-另外，这个领域还在快速发展。今天的最佳实践，半年后可能就过时了。保持关注，但别盲目追新。
+This field is also evolving rapidly. Today's best practices may be obsolete in six months. Stay informed, but don't chase every new shiny thing.
 
-先把基础搞明白，再折腾花活。
+Master the fundamentals first. Then experiment.

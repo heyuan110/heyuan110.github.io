@@ -1,339 +1,339 @@
 +++
-title = "MySQL EXPLAIN 执行计划详解：从入门到精通的 SQL 性能分析指南"
+title = "MySQL EXPLAIN Explained: A Complete Guide to Reading Query Execution Plans"
 date = 2019-09-06T20:10:21+08:00
 lastmod = 2026-01-22T15:49:45+08:00
-description = "深入解析 MySQL EXPLAIN 执行计划的 12 个关键字段，掌握 type 访问类型、key 索引选择、Extra 额外信息的含义，学会通过执行计划分析和优化 SQL 查询性能。"
+description = "Learn how to read MySQL EXPLAIN output, understand all 12 fields including type, key, and Extra, and use execution plans to diagnose and optimize slow SQL queries."
 toc = true
-tags = ["MySQL", "EXPLAIN", "SQL优化", "性能调优", "索引", "数据库"]
+tags = ["MySQL", "EXPLAIN", "SQL Optimization", "Performance Tuning", "Index", "Database"]
 categories = ["MySQL"]
-keywords = ["MySQL EXPLAIN", "执行计划", "SQL优化", "查询性能", "索引优化", "type类型"]
+keywords = ["MySQL EXPLAIN", "execution plan", "SQL optimization", "query performance", "index optimization", "EXPLAIN type"]
 +++
-![MySQL EXPLAIN 执行计划分析](cover.webp)
+![MySQL EXPLAIN execution plan analysis](cover.webp)
 
-**EXPLAIN** 是 MySQL 中最重要的性能分析工具之一。当你的 SQL 查询变慢时，第一件事就应该用 EXPLAIN 看看执行计划。它能告诉你 MySQL 是如何执行查询的，包括使用了哪些索引、扫描了多少行、采用了什么连接方式等关键信息。
+**EXPLAIN** is the single most useful tool for understanding MySQL query performance. When a query runs slower than expected, the first thing you should do is prefix it with EXPLAIN to inspect the execution plan. It reveals how MySQL processes your query -- which indexes it picks, how many rows it expects to scan, and what join strategy it uses.
 
-本文将详细介绍 EXPLAIN 输出的每个字段含义，帮助你快速定位 SQL 性能问题。
+This guide walks through every field in the EXPLAIN output so you can quickly pinpoint performance bottlenecks.
 
-## 一、EXPLAIN 基本用法
+## Basic Usage
 
-使用方法很简单，在 SQL 语句前加上 `EXPLAIN` 关键字即可：
+Using EXPLAIN is straightforward -- just add the keyword before any SELECT statement:
 
 ```sql
 EXPLAIN SELECT * FROM users WHERE id = 1;
 ```
 
-MySQL 8.0+ 还支持不同的输出格式：
+MySQL 8.0 and later support several output formats:
 
 ```sql
--- 传统表格格式（默认）
+-- Traditional tabular format (default)
 EXPLAIN SELECT * FROM users;
 
--- JSON 格式，信息更详细
+-- JSON format with additional detail
 EXPLAIN FORMAT=JSON SELECT * FROM users;
 
--- 树形格式，展示执行顺序
+-- Tree format showing execution order
 EXPLAIN FORMAT=TREE SELECT * FROM users;
 
--- 实际执行并显示运行时统计（MySQL 8.0.18+）
+-- Actually runs the query and reports runtime stats (MySQL 8.0.18+)
 EXPLAIN ANALYZE SELECT * FROM users;
 ```
 
-> **提示**：`EXPLAIN ANALYZE` 会真正执行查询，所以对于修改数据的语句要谨慎使用。
+> **Warning**: `EXPLAIN ANALYZE` executes the query for real, so be careful with statements that modify data.
 
-## 二、EXPLAIN 输出字段详解
+## The 12 EXPLAIN Output Fields
 
-EXPLAIN 的输出包含 12 个字段，每个字段都提供了重要的执行信息：
+EXPLAIN returns a row per table involved in the query. Each row contains 12 columns:
 
-| 字段 | 说明 |
-|------|------|
-| **id** | SELECT 查询的序列号 |
-| **select_type** | SELECT 的类型 |
-| **table** | 查询的表名 |
-| **partitions** | 匹配的分区 |
-| **type** | 访问类型（重要） |
-| **possible_keys** | 可能使用的索引 |
-| **key** | 实际使用的索引 |
-| **key_len** | 使用的索引长度 |
-| **ref** | 与索引比较的列 |
-| **rows** | 预估扫描的行数 |
-| **filtered** | 按条件过滤的行百分比 |
-| **Extra** | 额外信息（重要） |
+| Field | Meaning |
+|-------|---------|
+| **id** | Sequence number of the SELECT |
+| **select_type** | Type of SELECT (simple, subquery, derived, etc.) |
+| **table** | The table this row refers to |
+| **partitions** | Matched partitions (NULL if not partitioned) |
+| **type** | Access method (critical for performance) |
+| **possible_keys** | Indexes the optimizer considered |
+| **key** | Index the optimizer actually chose |
+| **key_len** | Number of bytes used from the chosen index |
+| **ref** | Columns or constants compared against the index |
+| **rows** | Estimated number of rows to examine |
+| **filtered** | Percentage of rows remaining after WHERE filtering |
+| **Extra** | Additional execution details (critical for performance) |
 
-下面逐一详解每个字段。
+Let's examine each field in detail.
 
-### 2.1 id - 查询序列号
+### id -- Query Sequence Number
 
-`id` 表示 SELECT 语句的执行顺序：
+The `id` indicates execution order:
 
-- **id 相同**：从上往下依次执行
-- **id 不同**：id 值越大优先级越高，越先执行
-- **id 为 NULL**：表示这是一个结果集，不需要用来查询
+- **Same id**: rows execute top to bottom
+- **Different ids**: higher id executes first
+- **NULL id**: represents a result set (e.g., UNION RESULT) rather than a table access
 
 ```sql
--- 示例：子查询
+-- Subquery example
 EXPLAIN
 SELECT * FROM orders
 WHERE user_id IN (SELECT id FROM users WHERE status = 1);
 ```
 
-### 2.2 select_type - 查询类型
+### select_type -- Query Type
 
-`select_type` 表示查询的类型，常见值如下：
+The `select_type` tells you what kind of SELECT each row belongs to:
 
-| 类型 | 说明 |
-|------|------|
-| **SIMPLE** | 简单查询，不包含子查询或 UNION |
-| **PRIMARY** | 最外层的 SELECT |
-| **SUBQUERY** | SELECT 或 WHERE 中的子查询 |
-| **DERIVED** | FROM 子句中的子查询（派生表） |
-| **UNION** | UNION 中第二个及之后的 SELECT |
-| **UNION RESULT** | UNION 的结果集 |
-| **DEPENDENT SUBQUERY** | 依赖外部查询的子查询 |
-| **DEPENDENT UNION** | 依赖外部查询的 UNION |
-| **MATERIALIZED** | 物化子查询 |
+| Type | Meaning |
+|------|---------|
+| **SIMPLE** | Plain query with no subqueries or UNIONs |
+| **PRIMARY** | Outermost SELECT |
+| **SUBQUERY** | Subquery in SELECT or WHERE clause |
+| **DERIVED** | Subquery in the FROM clause (derived table) |
+| **UNION** | Second or later SELECT in a UNION |
+| **UNION RESULT** | Result-merging step of a UNION |
+| **DEPENDENT SUBQUERY** | Correlated subquery (re-evaluated per outer row) |
+| **DEPENDENT UNION** | Correlated UNION |
+| **MATERIALIZED** | Materialized subquery |
 
 ```sql
--- SIMPLE 示例
+-- SIMPLE
 EXPLAIN SELECT * FROM users WHERE id = 1;
 
--- SUBQUERY 示例
+-- SUBQUERY
 EXPLAIN SELECT * FROM orders
 WHERE user_id = (SELECT id FROM users WHERE name = 'test');
 
--- DERIVED 示例
+-- DERIVED
 EXPLAIN SELECT * FROM (SELECT * FROM users WHERE status = 1) AS t;
 ```
 
-### 2.3 table - 表名
+### table -- Table Name
 
-`table` 显示这一行数据是关于哪张表的。特殊值：
+Shows which table the row describes. Special values include:
 
-- `<derived_N_>`：id 为 N 的派生表
-- `<union_M_,_N_>`：id 为 M 和 N 的 UNION 结果
-- `<subquery_N_>`：id 为 N 的物化子查询
+- `<derivedN>`: derived table from subquery with id N
+- `<unionM,N>`: UNION result of ids M and N
+- `<subqueryN>`: materialized subquery with id N
 
-### 2.4 partitions - 分区
+### partitions
 
-如果表进行了分区，这里会显示查询涉及的分区。非分区表显示 NULL。
+If the table is partitioned, this shows which partitions were accessed. NULL for non-partitioned tables.
 
-### 2.5 type - 访问类型（重要）
+### type -- Access Method (Critical)
 
-`type` 是 EXPLAIN 中最重要的字段之一，它表示 MySQL 如何查找表中的行。**性能从好到差排序**：
+The `type` column is one of the most important things to check. It describes how MySQL finds rows in the table. **Ranked from best to worst performance**:
 
 ```
 system > const > eq_ref > ref > fulltext > ref_or_null >
 index_merge > unique_subquery > index_subquery > range > index > ALL
 ```
 
-#### type 类型详解
+#### Access Type Reference
 
-| type | 性能 | 说明 | 触发条件 |
-|------|------|------|----------|
-| **system** | 最好 | 表只有一行 | const 的特例 |
-| **const** | 极好 | 通过索引一次找到，最多一行 | PRIMARY KEY 或 UNIQUE 索引等值查询 |
-| **eq_ref** | 很好 | 唯一索引扫描，每个索引键只有一条记录 | 多表 JOIN 时使用 PRIMARY KEY 或 UNIQUE NOT NULL 索引 |
-| **ref** | 好 | 非唯一索引扫描，可能返回多行 | 使用普通索引或唯一索引的前缀 |
-| **fulltext** | 一般 | 全文索引 | 使用 FULLTEXT 索引 |
-| **ref_or_null** | 一般 | 类似 ref，但额外搜索 NULL 值 | WHERE col = value OR col IS NULL |
-| **index_merge** | 一般 | 索引合并优化 | 同时使用多个索引 |
-| **range** | 一般 | 索引范围扫描 | BETWEEN、<、>、IN 等范围条件 |
-| **index** | 差 | 全索引扫描 | 遍历整个索引树 |
-| **ALL** | 最差 | 全表扫描 | 没有可用索引 |
+| type | Performance | Description | When It Happens |
+|------|-------------|-------------|-----------------|
+| **system** | Best | Table has exactly one row | Special case of const |
+| **const** | Excellent | At most one matching row, read once | Equality on PRIMARY KEY or UNIQUE index |
+| **eq_ref** | Very good | One row per combination from previous tables | JOIN on PRIMARY KEY or UNIQUE NOT NULL |
+| **ref** | Good | All matching rows from an index | Equality on non-unique index or leftmost prefix of unique index |
+| **fulltext** | Fair | Full-text index lookup | MATCH ... AGAINST query |
+| **ref_or_null** | Fair | Like ref, plus a second pass for NULLs | `WHERE col = val OR col IS NULL` |
+| **index_merge** | Fair | Multiple indexes merged | Optimizer combines results from several indexes |
+| **range** | Fair | Index range scan | BETWEEN, <, >, IN with an indexed column |
+| **index** | Poor | Full index scan (reads every entry in the index) | Covers the query but no usable range condition |
+| **ALL** | Worst | Full table scan | No usable index at all |
 
-#### 实际示例
+#### Practical Examples
 
 ```sql
--- const：主键等值查询
+-- const: primary key equality
 EXPLAIN SELECT * FROM users WHERE id = 1;
 -- type: const
 
--- ref：普通索引查询
+-- ref: non-unique index lookup
 EXPLAIN SELECT * FROM users WHERE email = 'test@example.com';
--- type: ref（假设 email 有普通索引）
+-- type: ref (assuming a non-unique index on email)
 
--- range：范围查询
+-- range: range scan
 EXPLAIN SELECT * FROM orders WHERE created_at > '2024-01-01';
--- type: range（假设 created_at 有索引）
+-- type: range (assuming an index on created_at)
 
--- ALL：全表扫描
+-- ALL: full table scan
 EXPLAIN SELECT * FROM users WHERE name LIKE '%test%';
--- type: ALL（前缀模糊查询无法使用索引）
+-- type: ALL (leading wildcard prevents index use)
 ```
 
-> **优化目标**：让查询至少达到 `range` 级别，最好能达到 `ref` 或更好。如果出现 `ALL`，通常需要考虑添加索引。
+> **Rule of thumb**: aim for `range` or better. If you see `ALL` on a large table, you almost certainly need an index.
 
-### 2.6 possible_keys - 可能使用的索引
+### possible_keys -- Candidate Indexes
 
-显示可能应用到这张表的索引。这些索引不一定会被实际使用，只是 MySQL 认为可能有用的候选。
+Lists every index that MySQL considered for this table. An index appearing here does not guarantee it will be used -- it's just a candidate.
 
-### 2.7 key - 实际使用的索引
+### key -- Chosen Index
 
-显示 MySQL 实际选择使用的索引。如果为 NULL，说明没有使用索引。
+The index MySQL actually picked. NULL means no index was used.
 
-有时候 `key` 列显示的索引不在 `possible_keys` 中，这是因为 MySQL 发现了覆盖索引（Covering Index），可以直接从索引获取所有需要的数据。
+Sometimes `key` shows an index not listed in `possible_keys`. This happens when MySQL discovers a covering index that satisfies the query entirely from the index without touching the table data.
 
-### 2.8 key_len - 索引长度
+### key_len -- Index Bytes Used
 
-表示使用的索引字节数。通过这个值可以判断是否充分利用了复合索引：
+The number of bytes from the index that MySQL actually uses. This is especially useful for composite indexes -- it tells you how many columns of the index are being utilized:
 
 ```sql
--- 假设有复合索引 idx_name_age (name, age)
+-- Suppose there is a composite index idx_name_age(name, age)
 -- name VARCHAR(50), age INT
 
 EXPLAIN SELECT * FROM users WHERE name = 'test';
--- key_len: 152 (50*3+2，VARCHAR 使用 3 倍字符长度 + 2)
+-- key_len: 152 (50*3 + 2 for VARCHAR with utf8)
 
 EXPLAIN SELECT * FROM users WHERE name = 'test' AND age = 25;
--- key_len: 157 (152+4+1，额外使用了 INT 的 4 字节，NULL 标志 1 字节)
+-- key_len: 157 (152 + 4 for INT + 1 for NULL flag)
 ```
 
-**key_len 计算规则**：
-- `CHAR(n)`：n × 字符集字节数
-- `VARCHAR(n)`：n × 字符集字节数 + 2
-- `INT`：4 字节
-- `BIGINT`：8 字节
-- `DATE`：3 字节
-- `DATETIME`：8 字节
-- 允许 NULL 的列额外 +1 字节
+**key_len calculation rules**:
+- `CHAR(n)`: n x character set bytes
+- `VARCHAR(n)`: n x character set bytes + 2
+- `INT`: 4 bytes
+- `BIGINT`: 8 bytes
+- `DATE`: 3 bytes
+- `DATETIME`: 8 bytes
+- Nullable columns add 1 extra byte
 
-### 2.9 ref - 参考列
+### ref -- What's Compared to the Index
 
-显示哪些列或常量被用于与 `key` 列中的索引进行比较。常见值：
+Shows which columns or constants are matched against the index named in `key`. Common values:
 
-- `const`：常量比较
-- `字段名`：与某个字段比较
-- `func`：使用了函数
+- `const`: a literal value
+- `schema.table.column`: a column from another table in a JOIN
+- `func`: a function result
 
-### 2.10 rows - 预估行数
+### rows -- Estimated Row Count
 
-MySQL 估算需要检查的行数。这个数字是估计值，不是精确值。
+MySQL's estimate of how many rows it needs to examine. This is an approximation based on index statistics, not an exact count.
 
-**rows 值越小越好**。如果 rows 很大，说明查询效率可能不高。
+**Lower is better.** A high rows value signals that the query may be doing more work than necessary.
 
-### 2.11 filtered - 过滤比例
+### filtered -- Post-filter Percentage
 
-表示存储引擎返回的数据经过 WHERE 条件过滤后，剩余数据的百分比。
+The estimated percentage of rows that survive the WHERE clause after the initial access method.
 
-`rows × filtered%` = 最终返回的行数估计
+`rows x filtered%` gives the estimated number of rows passed to the next step.
 
 ```sql
--- 如果 rows = 1000, filtered = 10.00
--- 预计最终返回约 100 行
+-- If rows = 1000 and filtered = 10.00
+-- roughly 100 rows are expected to reach the next stage
 ```
 
-### 2.12 Extra - 额外信息（重要）
+### Extra -- Additional Execution Details (Critical)
 
-`Extra` 列包含了很多重要的执行细节：
+The `Extra` column packs a lot of actionable information.
 
-#### 需要关注的值（可能影响性能）
+#### Performance Warning Signs
 
-| 值 | 说明 | 建议 |
-|-----|------|------|
-| **Using filesort** | 需要额外排序操作 | 考虑添加合适的索引来避免排序 |
-| **Using temporary** | 使用了临时表 | 通常出现在 GROUP BY、DISTINCT、ORDER BY 中 |
-| **Using where** | 存储引擎检索后再由 Server 层过滤 | 正常现象，但大量过滤可能需要优化 |
+| Value | Meaning | What to Do |
+|-------|---------|------------|
+| **Using filesort** | MySQL must perform an extra sorting pass | Add an index that covers both the WHERE and ORDER BY columns |
+| **Using temporary** | A temp table is created | Common with GROUP BY, DISTINCT, or ORDER BY on non-indexed columns |
+| **Using where** | Rows are filtered by the server layer after the storage engine fetches them | Normal in many cases, but heavy filtering may indicate a missing index |
 
-#### 较好的值
+#### Good Signs
 
-| 值 | 说明 |
-|-----|------|
-| **Using index** | 覆盖索引，无需回表 |
-| **Using index condition** | 索引下推（ICP），在存储引擎层过滤 |
-| **Using index for group-by** | 使用索引优化 GROUP BY |
-| **Using index for skip scan** | 索引跳跃扫描（MySQL 8.0+） |
+| Value | Meaning |
+|-------|---------|
+| **Using index** | Covering index -- all needed data comes from the index, no table lookup required |
+| **Using index condition** | Index Condition Pushdown (ICP) -- filtering happens inside the storage engine |
+| **Using index for group-by** | GROUP BY resolved via index |
+| **Using index for skip scan** | Skip scan optimization (MySQL 8.0+) |
 
-#### 其他常见值
+#### Other Common Values
 
-| 值 | 说明 |
-|-----|------|
-| **Impossible WHERE** | WHERE 条件永远为 false |
-| **Select tables optimized away** | 优化阶段已确定结果（如 MIN/MAX） |
-| **No matching min/max row** | 没有满足条件的行 |
-| **Distinct** | 找到第一个匹配后停止搜索 |
-| **Using join buffer** | 使用连接缓冲区（Block Nested Loop 或 Hash Join） |
-| **Using MRR** | 多范围读取优化 |
+| Value | Meaning |
+|-------|---------|
+| **Impossible WHERE** | WHERE condition is always false |
+| **Select tables optimized away** | Result determined during optimization (e.g., MIN/MAX on an indexed column) |
+| **No matching min/max row** | No rows satisfy the MIN/MAX condition |
+| **Distinct** | MySQL stops searching after finding the first match |
+| **Using join buffer** | Join buffer used (Block Nested Loop or Hash Join) |
+| **Using MRR** | Multi-Range Read optimization |
 
-#### Extra 示例
+#### Examples
 
 ```sql
--- Using index（覆盖索引）
+-- Using index (covering index)
 EXPLAIN SELECT id, name FROM users WHERE name = 'test';
--- 假设有索引 idx_name(name)，且只查询 id 和 name
+-- With index idx_name(name), only id and name are needed
 
 -- Using filesort
 EXPLAIN SELECT * FROM orders ORDER BY amount;
--- 假设 amount 列没有索引
+-- No index on amount
 
 -- Using temporary; Using filesort
 EXPLAIN SELECT department, COUNT(*) FROM employees
 GROUP BY department ORDER BY COUNT(*) DESC;
 ```
 
-## 三、Visual Explain 可视化分析
+## Visual Explain in MySQL Workbench
 
-MySQL Workbench 提供了 Visual Explain 功能，可以将执行计划可视化展示。
+MySQL Workbench provides a Visual Explain feature that renders execution plans as interactive diagrams.
 
-![MySQL Workbench Visual Explain 示例](visual-explain.webp)
+![MySQL Workbench Visual Explain example](visual-explain.webp)
 
-### 颜色含义
+### Color Coding
 
-| 颜色 | 访问类型 | 成本级别 |
-|------|----------|----------|
-| 蓝色 | system、const | 很低（最优） |
-| 绿色 | eq_ref、ref、ref_or_null、index_merge | 低 |
-| 黄色 | fulltext | 低 |
-| 橙色 | unique_subquery、index_subquery、range | 中等 |
-| 红色 | index、ALL | 高（需要优化） |
+| Color | Access Types | Cost Level |
+|-------|-------------|------------|
+| Blue | system, const | Very low (optimal) |
+| Green | eq_ref, ref, ref_or_null, index_merge | Low |
+| Yellow | fulltext | Low |
+| Orange | unique_subquery, index_subquery, range | Medium |
+| Red | index, ALL | High (needs optimization) |
 
-### 执行顺序
+### Reading Order
 
-Visual Explain 的执行顺序是 **从下到上，从左到右**。
+Visual Explain diagrams read **bottom to top, left to right**.
 
-## 四、EXPLAIN 实战案例
+## Real-World Optimization Examples
 
-### 案例 1：优化全表扫描
+### Example 1: Eliminating a Full Table Scan
 
 ```sql
--- 问题 SQL
+-- Problem: full table scan
 EXPLAIN SELECT * FROM orders WHERE status = 'pending';
 -- type: ALL, rows: 100000
 
--- 添加索引后
+-- Fix: add an index
 ALTER TABLE orders ADD INDEX idx_status(status);
 
 EXPLAIN SELECT * FROM orders WHERE status = 'pending';
 -- type: ref, rows: 500
 ```
 
-### 案例 2：优化 filesort
+### Example 2: Removing filesort
 
 ```sql
--- 问题 SQL
+-- Problem: extra sort operation
 EXPLAIN SELECT * FROM orders WHERE user_id = 100 ORDER BY created_at;
 -- Extra: Using filesort
 
--- 创建复合索引
+-- Fix: composite index matching both WHERE and ORDER BY
 ALTER TABLE orders ADD INDEX idx_user_created(user_id, created_at);
 
 EXPLAIN SELECT * FROM orders WHERE user_id = 100 ORDER BY created_at;
--- Extra: Using index condition
+-- Extra: Using index condition (filesort gone)
 ```
 
-### 案例 3：利用覆盖索引
+### Example 3: Using a Covering Index
 
 ```sql
--- 原 SQL（需要回表）
+-- Problem: table lookup required
 EXPLAIN SELECT id, name, email FROM users WHERE name = 'test';
 -- Extra: NULL
 
--- 创建覆盖索引
+-- Fix: covering index that includes all selected columns
 ALTER TABLE users ADD INDEX idx_name_email(name, email);
 
 EXPLAIN SELECT id, name, email FROM users WHERE name = 'test';
--- Extra: Using index
+-- Extra: Using index (no table access needed)
 ```
 
-### 案例 4：多表 JOIN 优化
+### Example 4: Optimizing a Multi-Table JOIN
 
 ```sql
 EXPLAIN
@@ -343,59 +343,59 @@ LEFT JOIN customers c ON c.id = o.customer_id
 WHERE o.created_at > '2024-01-01';
 ```
 
-分析要点：
-1. 检查每个表的 type，尽量达到 eq_ref 或 ref
-2. 确认 JOIN 字段都有索引
-3. 关注 rows 的乘积，这是预估的总扫描行数
+Key things to check:
+1. **type for each table** -- aim for eq_ref or ref on the joined table
+2. **Indexes on join columns** -- `c.id` and `o.customer_id` should both be indexed
+3. **rows product** -- multiply the rows values across tables to estimate total work
 
-## 五、EXPLAIN 使用技巧
+## Pro Tips
 
-### 1. 结合 SHOW WARNINGS 查看优化后的 SQL
+### 1. Use SHOW WARNINGS to See the Rewritten Query
 
 ```sql
 EXPLAIN SELECT * FROM users WHERE id IN (1, 2, 3);
 SHOW WARNINGS;
 ```
 
-`SHOW WARNINGS` 可以显示 MySQL 优化器重写后的查询语句。
+The output reveals how the optimizer rewrote your query internally, which can explain unexpected execution plans.
 
-### 2. 使用 FORMAT=JSON 获取更多信息
+### 2. Use FORMAT=JSON for Cost Details
 
 ```sql
 EXPLAIN FORMAT=JSON SELECT * FROM users WHERE id = 1\G
 ```
 
-JSON 格式包含更多细节，如成本估算（cost_info）、实际使用的 key_parts 等。
+The JSON output includes cost estimates (`cost_info`), actual index parts used, and other details not shown in the tabular format.
 
-### 3. 使用 EXPLAIN ANALYZE 获取实际执行数据
+### 3. Use EXPLAIN ANALYZE for Runtime Statistics
 
 ```sql
 EXPLAIN ANALYZE SELECT * FROM users WHERE status = 1;
 ```
 
-`EXPLAIN ANALYZE` 会实际执行查询，显示每个步骤的真实耗时和行数。
+Unlike plain EXPLAIN, this actually runs the query and reports real execution times, actual row counts, and loop iterations for each step.
 
-## 六、总结
+## Summary
 
-EXPLAIN 是 MySQL 性能分析的必备工具，重点关注以下几个方面：
+EXPLAIN is an essential tool for MySQL performance work. Focus on these four columns first:
 
-| 关注点 | 说明 |
-|--------|------|
-| **type** | 至少达到 range 级别，最好是 ref 或更好 |
-| **key** | 确保使用了合适的索引 |
-| **rows** | 数值越小越好 |
-| **Extra** | 避免 Using filesort 和 Using temporary |
+| Column | What to Look For |
+|--------|-----------------|
+| **type** | At least `range`; ideally `ref` or better |
+| **key** | Confirm a suitable index is being used |
+| **rows** | Lower is better |
+| **Extra** | Watch out for `Using filesort` and `Using temporary` |
 
-优化建议：
+General optimization strategies:
 
-1. **添加合适的索引**：针对 WHERE、JOIN、ORDER BY 的字段
-2. **利用覆盖索引**：避免回表查询
-3. **避免索引失效**：不要对索引列使用函数、不要前缀模糊查询
-4. **优化 JOIN**：小表驱动大表，确保关联字段有索引
+1. **Add targeted indexes** for columns in WHERE, JOIN, and ORDER BY clauses
+2. **Use covering indexes** to eliminate table lookups
+3. **Avoid index-killing patterns** like wrapping indexed columns in functions or using leading wildcards in LIKE
+4. **Optimize JOINs** by driving from the smaller table and ensuring all join columns are indexed
 
-## 参考资料
+## References
 
-- [MySQL 官方文档：EXPLAIN Output Format](https://dev.mysql.com/doc/refman/8.0/en/explain-output.html)
+- [MySQL Official Docs: EXPLAIN Output Format](https://dev.mysql.com/doc/refman/8.0/en/explain-output.html)
 - [MySQL Workbench Visual Explain](https://dev.mysql.com/doc/workbench/en/wb-performance-explain.html)
-- [PlanetScale：How to Read MySQL EXPLAINs](https://planetscale.com/blog/how-read-mysql-explains)
-- [MySQL Visual Explain 在线工具](https://mysqlexplain.com/)
+- [PlanetScale: How to Read MySQL EXPLAINs](https://planetscale.com/blog/how-read-mysql-explains)
+- [MySQL Visual Explain Online Tool](https://mysqlexplain.com/)

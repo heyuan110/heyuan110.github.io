@@ -1,158 +1,152 @@
 +++
-title = 'Redis 从入门到精通：安装配置与实战指南'
+title = 'Redis Complete Guide: Installation, Data Types, Persistence, and Clustering'
 date = '2026-01-22T17:00:00+08:00'
 draft = false
-description = 'Redis 完全指南，详解 macOS 和 Windows 安装方法、五大数据类型、常用命令、持久化机制、主从复制与集群配置。从零基础到精通 Redis 的最佳学习路径。'
+description = 'A comprehensive Redis guide covering installation on macOS, Windows, and Docker, all five core data types with commands, RDB/AOF persistence, replication, Sentinel, and Cluster deployment.'
 toc = true
-tags = ['Redis', '数据库', '缓存', 'NoSQL', '中间件']
-categories = ['中间件']
-keywords = ['Redis安装', 'Redis教程', 'Redis数据类型', 'Redis持久化', 'Redis集群']
+tags = ['Redis', 'Database', 'Cache', 'NoSQL', 'Middleware']
+categories = ['AI Guides']
+keywords = ['Redis installation', 'Redis tutorial', 'Redis data types', 'Redis persistence', 'Redis cluster']
 +++
-![Redis 从入门到精通：完整教程指南](cover.webp)
+![Redis Complete Guide: From Beginner to Production](cover.webp)
 
-**Redis**（Remote Dictionary Server）是一款开源的高性能键值存储数据库，以其出色的读写速度和丰富的数据结构支持，成为现代应用架构中不可或缺的组件。本文将带你从零开始，系统学习 Redis 的安装配置、核心概念、数据类型、持久化机制以及高可用集群部署。
+**Redis** (Remote Dictionary Server) is an open-source, in-memory key-value store renowned for blazing-fast read/write performance and versatile data structure support. It has become a cornerstone of modern application architectures, powering everything from caching layers to real-time leaderboards. This guide walks you through Redis from the ground up — installation, core data types, persistence strategies, and high-availability deployments.
 
-## 一、Redis 简介
+## What Is Redis?
 
-### 1. 什么是 Redis
+Redis is written in ANSI C and operates primarily in memory, though it supports durable persistence to disk. Unlike simple key-value stores, Redis offers rich data structures — strings, hashes, lists, sets, and sorted sets — each with dedicated commands optimized for specific access patterns.
 
-Redis 是一个使用 ANSI C 语言编写、支持网络、可基于内存亦可持久化的键值对（Key-Value）数据库。它支持多种数据结构，包括字符串、哈希、列表、集合和有序集合，并提供多种语言的 API。
+**Key characteristics:**
 
-**核心特性**：
+- **High throughput** — Pure in-memory operations deliver 100,000+ QPS on commodity hardware
+- **Rich data structures** — String, Hash, List, Set, Sorted Set, and more
+- **Atomic operations** — Every command is atomic; transactions are supported via MULTI/EXEC
+- **Durable persistence** — RDB snapshots and AOF write-ahead logging
+- **High availability** — Built-in replication, Sentinel failover, and native clustering
 
-- **高性能**：纯内存操作，读写速度可达 10 万+ QPS
-- **丰富的数据类型**：String、Hash、List、Set、Sorted Set 等
-- **原子性操作**：所有操作都是原子的，支持事务
-- **持久化**：支持 RDB 和 AOF 两种持久化方式
-- **高可用**：支持主从复制、哨兵和集群模式
+### Common Use Cases
 
-### 2. Redis 应用场景
+| Use Case | How Redis Helps |
+|----------|----------------|
+| **Caching** | Store hot data in memory to offload your primary database |
+| **Session storage** | Share sessions across distributed application servers |
+| **Leaderboards** | Sorted Sets provide real-time ranking out of the box |
+| **Message queues** | Lists support blocking pop operations for simple queuing |
+| **Rate limiting / counters** | Atomic INCR makes counting requests trivial |
+| **Distributed locks** | SETNX with expiration enables cross-process mutual exclusion |
 
-| 场景 | 说明 |
-|------|------|
-| **缓存** | 热点数据缓存，减轻数据库压力 |
-| **会话存储** | 分布式系统中的 Session 共享 |
-| **排行榜** | 利用有序集合实现实时排名 |
-| **消息队列** | 利用 List 实现简单的消息队列 |
-| **计数器** | 利用原子操作实现访问计数、点赞数等 |
-| **分布式锁** | 实现跨进程的资源互斥访问 |
+## Installation and Configuration
 
-## 二、Redis 安装与配置
+### macOS (Homebrew)
 
-### 1. macOS 安装
-
-在 macOS 上推荐使用 [Homebrew](https://brew.sh/) 安装 Redis：
+[Homebrew](https://brew.sh/) is the easiest way to install Redis on macOS:
 
 ```bash
-# 更新 Homebrew（可选但推荐）
+# Update Homebrew (optional but recommended)
 brew update
 
-# 安装 Redis
+# Install Redis
 brew install redis
 ```
 
-**启动方式**：
+**Starting the server:**
 
 ```bash
-# 方式 A：作为后台服务自启（推荐）
+# Option A: Run as a background service (recommended)
 brew services start redis
 
-# 查看服务状态
+# Check service status
 brew services list
 
-# 方式 B：前台运行（调试用）
+# Option B: Run in the foreground (useful for debugging)
 redis-server
 ```
 
-**验证安装**：
+**Verify the installation:**
 
 ```bash
-# 测试连接
 redis-cli ping
-# 期望返回：PONG
+# Expected response: PONG
 ```
 
-**服务管理**：
+**Managing the service:**
 
 ```bash
-# 停止服务
+# Stop Redis
 brew services stop redis
 
-# 重启服务
+# Restart Redis
 brew services restart redis
 ```
 
-### 2. Windows 安装
+### Windows
 
-Redis 官方不直接支持 Windows，但有以下几种安装方式：
+Redis does not officially ship Windows binaries, but there are several solid options.
 
-#### 方式一：使用 WSL（推荐）
+#### Option 1: WSL (Recommended)
 
-Windows Subsystem for Linux 可以运行原生的 Linux 版本 Redis：
+Windows Subsystem for Linux runs native Linux Redis with full feature parity:
 
 ```bash
-# 1. 启用 WSL 并安装 Ubuntu
+# 1. Install WSL with Ubuntu
 wsl --install
 
-# 2. 在 WSL 中安装 Redis
+# 2. Install Redis inside WSL
 sudo apt update
 sudo apt install redis-server
 
-# 3. 启动 Redis
+# 3. Start the server
 sudo service redis-server start
 
-# 4. 验证
+# 4. Verify
 redis-cli ping
 ```
 
-#### 方式二：使用 Windows 移植版
+#### Option 2: Windows Port (MSI Installer)
 
-从 [tporadowski/redis](https://github.com/tporadowski/redis/releases) 下载 MSI 安装包：
+Download the MSI package from [tporadowski/redis](https://github.com/tporadowski/redis/releases):
 
-1. 下载 `Redis-x64-5.0.14.1.msi`
-2. 双击运行安装程序
-3. 安装完成后，Redis 会作为 Windows 服务自动启动
+1. Download `Redis-x64-5.0.14.1.msi`
+2. Run the installer
+3. Redis registers as a Windows service and starts automatically
 
-**服务管理**：
+**Service management via PowerShell:**
 
 ```powershell
-# 查看服务状态
+# Check status
 Get-Service redis
 
-# 停止服务
+# Stop
 Stop-Service redis
 
-# 启动服务
+# Start
 Start-Service redis
 ```
 
-#### 方式三：使用最新版本（无 MSI）
+#### Option 3: Latest Versions (No MSI)
 
-从 [redis-windows/redis-windows](https://github.com/redis-windows/redis-windows/releases) 下载：
+The [redis-windows/redis-windows](https://github.com/redis-windows/redis-windows/releases) project provides Redis 6.x, 7.x, and 8.x builds for Windows. Extract the archive and run `start.bat`.
 
-- 支持 Redis 6.x、7.x、8.x 版本
-- 解压后运行 `start.bat` 即可启动
+### Docker
 
-### 3. Docker 安装
-
-使用 Docker 是最简单、最一致的安装方式：
+Docker gives you the most consistent cross-platform experience:
 
 ```bash
-# 拉取最新镜像
+# Pull the latest image
 docker pull redis:latest
 
-# 启动容器
+# Start a container with persistent storage
 docker run -d \
   --name redis \
   -p 6379:6379 \
   -v redis-data:/data \
   redis:latest
 
-# 连接测试
+# Verify
 docker exec -it redis redis-cli ping
 ```
 
-**带配置文件启动**：
+**With a custom configuration file:**
 
 ```bash
 docker run -d \
@@ -163,437 +157,375 @@ docker run -d \
   redis:latest redis-server /usr/local/etc/redis/redis.conf
 ```
 
-### 4. 基本配置
+### Essential Configuration
 
-Redis 配置文件 `redis.conf` 的常用配置项：
+Here are the most important settings in `redis.conf`:
 
 ```conf
-# 绑定地址（生产环境建议绑定具体 IP）
+# Bind to localhost only (restrict to specific IPs in production)
 bind 127.0.0.1
 
-# 端口
+# Default port
 port 6379
 
-# 密码（生产环境必须设置）
+# Require authentication (always set this in production)
 requirepass your_password
 
-# 最大内存
+# Memory limit
 maxmemory 256mb
 
-# 内存淘汰策略
+# Eviction policy when memory limit is reached
 maxmemory-policy allkeys-lru
 
-# 持久化配置
-save 900 1      # 900 秒内至少 1 次修改则保存
-save 300 10     # 300 秒内至少 10 次修改则保存
-save 60 10000   # 60 秒内至少 10000 次修改则保存
+# RDB snapshot rules
+save 900 1      # Snapshot if >= 1 write in 900 seconds
+save 300 10     # Snapshot if >= 10 writes in 300 seconds
+save 60 10000   # Snapshot if >= 10,000 writes in 60 seconds
 
-# 日志级别
+# Logging
 loglevel notice
-
-# 日志文件
 logfile "/var/log/redis/redis-server.log"
 ```
 
-## 三、Redis 数据类型详解
+## Core Data Types
 
-![Redis 五大数据类型](datatypes.webp)
+![Redis five core data types](datatypes.webp)
 
-Redis 提供了 5 种核心数据类型，每种类型都有其特定的使用场景和操作命令。
+Redis ships with five primary data types. Each one is backed by purpose-built internal encodings that automatically adapt based on the size and shape of your data.
 
-### 1. String（字符串）
+### 1. String
 
-String 是 Redis 最基本的数据类型，一个 key 对应一个 value。它是二进制安全的，可以存储任何数据（文本、数字、序列化对象、图片等），最大 512MB。
-
-**常用命令**：
+The most fundamental type. A single key maps to a single value — binary-safe, up to 512 MB. Strings handle text, integers, serialized objects, and even raw bytes.
 
 ```bash
-# 设置值
+# Basic get/set
 SET name "Redis"
 SET counter 100
-
-# 获取值
 GET name
 
-# 设置过期时间（秒）
+# Set with expiration (seconds)
 SET session "abc123" EX 3600
 
-# 不存在时才设置（分布式锁常用）
+# Set only if the key does not exist (useful for distributed locks)
 SETNX lock "1"
 
-# 数值操作
-INCR counter      # 自增 1，返回 101
-DECR counter      # 自减 1，返回 100
-INCRBY counter 10 # 增加 10，返回 110
+# Atomic arithmetic
+INCR counter        # 101
+DECR counter        # 100
+INCRBY counter 10   # 110
 
-# 批量操作
+# Batch operations (fewer round trips)
 MSET k1 "v1" k2 "v2" k3 "v3"
 MGET k1 k2 k3
 
-# 追加字符串
+# Append and measure
 APPEND name " Database"
-GET name  # 返回 "Redis Database"
-
-# 获取长度
-STRLEN name
+GET name      # "Redis Database"
+STRLEN name   # 14
 ```
 
-**应用场景**：缓存、计数器、分布式锁、Session 存储。
+**Typical uses:** caching, counters, distributed locks, session tokens.
 
-### 2. Hash（哈希）
+### 2. Hash
 
-Hash 是一个键值对集合，适合存储对象。相比将对象序列化为 String 存储，Hash 可以对单个字段进行读写，更加高效。
-
-**常用命令**：
+A Hash is a collection of field-value pairs attached to a single key — essentially a small dictionary. Compared to serializing an entire object into a String, Hashes let you read and write individual fields without touching the rest.
 
 ```bash
-# 设置字段
-HSET user:1001 name "张三"
+# Set individual fields
+HSET user:1001 name "Alice"
 HSET user:1001 age 25
-HSET user:1001 email "zhangsan@example.com"
+HSET user:1001 email "alice@example.com"
 
-# 批量设置
-HMSET user:1002 name "李四" age 30 email "lisi@example.com"
+# Set multiple fields at once
+HMSET user:1002 name "Bob" age 30 email "bob@example.com"
 
-# 获取字段
+# Read fields
 HGET user:1001 name
-
-# 获取多个字段
 HMGET user:1001 name age
-
-# 获取所有字段和值
 HGETALL user:1001
 
-# 判断字段是否存在
+# Check existence and delete
 HEXISTS user:1001 name
-
-# 删除字段
 HDEL user:1001 email
 
-# 获取所有字段名
+# Introspect the hash
 HKEYS user:1001
-
-# 获取所有值
 HVALS user:1001
-
-# 获取字段数量
 HLEN user:1001
 
-# 数值增减
+# Atomic field increment
 HINCRBY user:1001 age 1
 ```
 
-**应用场景**：用户信息、商品信息、配置信息等对象存储。
+**Typical uses:** user profiles, product details, configuration objects.
 
-### 3. List（列表）
+### 3. List
 
-List 是一个双向链表，可以从两端进行插入和删除操作。按照插入顺序排序，支持正向和反向遍历。
-
-**常用命令**：
+A doubly-linked list that supports push/pop from both ends and range queries. Elements are ordered by insertion time.
 
 ```bash
-# 从左侧插入
+# Push from the left
 LPUSH queue "task1"
 LPUSH queue "task2" "task3"
 
-# 从右侧插入
+# Push from the right
 RPUSH queue "task4"
 
-# 查看列表（0 到 -1 表示所有元素）
+# Read all elements (index 0 to -1)
 LRANGE queue 0 -1
 
-# 从左侧弹出
+# Pop from either end
 LPOP queue
-
-# 从右侧弹出
 RPOP queue
 
-# 获取指定位置的元素
+# Access by index and measure length
 LINDEX queue 0
-
-# 获取列表长度
 LLEN queue
 
-# 阻塞式弹出（消息队列常用）
-BLPOP queue 30  # 等待 30 秒
+# Blocking pop — waits up to 30 seconds for an element
+BLPOP queue 30
 
-# 删除指定元素
-LREM queue 1 "task1"  # 删除 1 个 "task1"
+# Remove specific elements
+LREM queue 1 "task1"   # Remove 1 occurrence of "task1"
 
-# 截取列表
-LTRIM queue 0 99  # 只保留前 100 个元素
+# Trim to keep only the first 100 elements
+LTRIM queue 0 99
 ```
 
-**应用场景**：消息队列、最新动态、历史记录。
+**Typical uses:** message queues, activity feeds, recent-history lists.
 
-### 4. Set（集合）
+### 4. Set
 
-Set 是无序的字符串集合，元素唯一不重复。支持集合运算（交集、并集、差集），非常适合处理标签、好友关系等场景。
-
-**常用命令**：
+An unordered collection of unique strings. Sets shine when you need membership tests or set-theoretic operations (intersection, union, difference).
 
 ```bash
-# 添加元素
+# Add members
 SADD tags "redis" "database" "cache"
 
-# 查看所有元素
+# List all members
 SMEMBERS tags
 
-# 判断元素是否存在
+# Membership check
 SISMEMBER tags "redis"
 
-# 获取元素数量
+# Cardinality and removal
 SCARD tags
-
-# 删除元素
 SREM tags "cache"
 
-# 随机获取元素
+# Random sampling
 SRANDMEMBER tags 2
-
-# 随机弹出元素
 SPOP tags
 
-# 集合运算
+# Set operations
 SADD set1 "a" "b" "c"
 SADD set2 "b" "c" "d"
 
-# 交集
-SINTER set1 set2      # 返回 b, c
-
-# 并集
-SUNION set1 set2      # 返回 a, b, c, d
-
-# 差集
-SDIFF set1 set2       # 返回 a
+SINTER set1 set2    # {"b", "c"}
+SUNION set1 set2    # {"a", "b", "c", "d"}
+SDIFF set1 set2     # {"a"}
 ```
 
-**应用场景**：标签系统、共同好友、唯一访客统计。
+**Typical uses:** tagging systems, mutual-friends queries, unique visitor tracking.
 
-### 5. Sorted Set（有序集合）
+### 5. Sorted Set (ZSet)
 
-Sorted Set（ZSet）与 Set 类似，但每个元素都关联一个分数（score），元素按分数从小到大排序。元素唯一，但分数可以重复。
-
-**常用命令**：
+Like a Set, but every member carries a floating-point score. Members are always sorted by score (ascending), which makes range queries extremely fast.
 
 ```bash
-# 添加元素（分数 元素）
+# Add members with scores
 ZADD leaderboard 100 "player1"
 ZADD leaderboard 200 "player2"
 ZADD leaderboard 150 "player3"
 
-# 查看排名（从小到大）
+# Range queries (ascending / descending)
 ZRANGE leaderboard 0 -1 WITHSCORES
-
-# 查看排名（从大到小）
 ZREVRANGE leaderboard 0 -1 WITHSCORES
 
-# 获取元素分数
+# Score and rank lookups
 ZSCORE leaderboard "player1"
+ZRANK leaderboard "player1"       # Ascending rank (0-based)
+ZREVRANK leaderboard "player1"    # Descending rank
 
-# 获取元素排名（从 0 开始）
-ZRANK leaderboard "player1"     # 升序排名
-ZREVRANK leaderboard "player1"  # 降序排名
-
-# 增加分数
+# Increment a score atomically
 ZINCRBY leaderboard 50 "player1"
 
-# 按分数范围查询
+# Score-range query
 ZRANGEBYSCORE leaderboard 100 200
 
-# 删除元素
+# Remove and count
 ZREM leaderboard "player1"
-
-# 获取元素数量
 ZCARD leaderboard
-
-# 统计分数范围内的元素数量
 ZCOUNT leaderboard 100 200
 ```
 
-**应用场景**：排行榜、延时队列、带权重的任务调度。
+**Typical uses:** leaderboards, delayed job queues, priority scheduling.
 
-## 四、Redis 持久化机制
+## Persistence
 
-![Redis 持久化：RDB 与 AOF](persistence.webp)
+![Redis persistence: RDB vs AOF](persistence.webp)
 
-Redis 是内存数据库，为了保证数据不丢失，提供了两种持久化方式：RDB 和 AOF。
+Because Redis is an in-memory database, it needs a persistence strategy to survive restarts. Redis offers two mechanisms — and a hybrid mode that combines both.
 
-### 1. RDB（Redis Database）
+### RDB (Snapshotting)
 
-RDB 是 Redis 的默认持久化方式，通过生成数据快照（snapshot）保存到磁盘。
+RDB is the default persistence mode. Redis periodically forks a child process that writes a point-in-time snapshot of the entire dataset to a compact binary file.
 
-**触发方式**：
+**Trigger methods:**
 
-- **自动触发**：根据配置的 save 规则
-- **手动触发**：
-  - `SAVE`：同步保存，会阻塞主线程
-  - `BGSAVE`：异步保存，fork 子进程执行
+- **Automatic** — Based on `save` rules in the config
+- **Manual** — `SAVE` (blocks the main thread) or `BGSAVE` (forks a background process)
 
-**配置示例**：
+**Configuration:**
 
 ```conf
-# 触发规则
-save 900 1      # 900 秒内 1 次修改
-save 300 10     # 300 秒内 10 次修改
-save 60 10000   # 60 秒内 10000 次修改
+# Snapshot rules
+save 900 1        # After 900s if >= 1 key changed
+save 300 10       # After 300s if >= 10 keys changed
+save 60 10000     # After 60s if >= 10,000 keys changed
 
-# 文件名
+# Output file
 dbfilename dump.rdb
-
-# 存储目录
 dir /var/lib/redis/
 
-# 压缩（建议关闭，节省 CPU）
+# Compression (disable to save CPU at the cost of disk space)
 rdbcompression no
 
-# 校验（建议开启）
+# Checksum verification on load
 rdbchecksum yes
 ```
 
-**优点**：
-- 文件紧凑，适合备份和灾难恢复
-- 恢复速度快
-- 对性能影响小（子进程执行）
+**Pros:** Compact files ideal for backups; fast restores; minimal impact on the main thread.
 
-**缺点**：
-- 可能丢失最后一次快照后的数据
-- fork 子进程时，大数据量会有短暂卡顿
+**Cons:** Data written after the last snapshot is lost on crash; forking can cause a brief latency spike with large datasets.
 
-### 2. AOF（Append Only File）
+### AOF (Append Only File)
 
-AOF 通过记录每个写操作命令，以追加的方式保存到文件。恢复时重新执行这些命令来重建数据。
+AOF logs every write command in the order it was received. On restart, Redis replays the log to reconstruct the dataset.
 
-**配置示例**：
+**Configuration:**
 
 ```conf
-# 开启 AOF
+# Enable AOF
 appendonly yes
 
-# 文件名
+# File name
 appendfilename "appendonly.aof"
 
-# 同步策略
-appendfsync everysec  # 每秒同步（推荐）
-# appendfsync always  # 每次写操作都同步（最安全但最慢）
-# appendfsync no      # 由操作系统决定（最快但可能丢数据）
+# Sync policy
+appendfsync everysec    # Flush to disk every second (recommended)
+# appendfsync always    # Flush after every write (safest, slowest)
+# appendfsync no        # Let the OS decide (fastest, least safe)
 
-# 重写配置
-auto-aof-rewrite-percentage 100  # 文件增长 100% 时重写
-auto-aof-rewrite-min-size 64mb   # 最小 64MB 才重写
+# Automatic rewrite thresholds
+auto-aof-rewrite-percentage 100   # Rewrite when the file doubles in size
+auto-aof-rewrite-min-size 64mb    # Only rewrite if the file is >= 64 MB
 ```
 
-**优点**：
-- 数据安全性高，最多丢失 1 秒数据
-- 文件可读，便于分析和修复
+**Pros:** At most 1 second of data loss with `everysec`; human-readable log for debugging.
 
-**缺点**：
-- 文件体积通常比 RDB 大
-- 恢复速度比 RDB 慢
+**Cons:** Larger file size than RDB; slower restores because commands must be replayed.
 
-### 3. 混合持久化（Redis 4.0+）
+### Hybrid Persistence (Redis 4.0+)
 
-结合 RDB 和 AOF 的优点，重写后的 AOF 文件前半部分是 RDB 格式的全量数据，后半部分是 AOF 格式的增量数据。
+Hybrid mode writes the full dataset in RDB format at the beginning of the AOF file, then appends subsequent write commands in AOF format. This gives you fast restores *and* minimal data loss.
 
 ```conf
-# 开启混合持久化（Redis 5.0 默认开启）
+# Enable hybrid persistence (default since Redis 5.0)
 aof-use-rdb-preamble yes
 ```
 
-### 4. 持久化策略选择
+### Choosing a Strategy
 
-| 场景 | 推荐策略 |
-|------|----------|
-| 数据可以丢失 | 关闭持久化，获得最高性能 |
-| 允许丢失几分钟数据 | 仅使用 RDB |
-| 数据非常重要 | RDB + AOF 混合持久化 |
-| 最高数据安全 | AOF（appendfsync always） |
+| Scenario | Recommended Approach |
+|----------|---------------------|
+| Data loss is acceptable | Disable persistence entirely for maximum speed |
+| A few minutes of data loss is fine | RDB only |
+| Data is critical | Hybrid persistence (RDB + AOF) |
+| Zero data loss required | AOF with `appendfsync always` |
 
-## 五、Redis 高可用架构
+## High Availability
 
-### 1. 主从复制
+### Replication
 
-主从复制是 Redis 高可用的基础，实现数据的多机备份和读写分离。
+Replication is the foundation of Redis high availability. A primary node handles writes, and one or more replica nodes receive an asynchronous copy of the data to serve reads.
 
-**配置从节点**：
+**Configuring a replica:**
 
 ```conf
-# 在从节点的 redis.conf 中配置
+# In the replica's redis.conf
 replicaof 192.168.1.100 6379
 
-# 如果主节点有密码
+# If the primary requires authentication
 masterauth your_master_password
 ```
 
-**或使用命令**：
+**Or at runtime:**
 
 ```bash
-# 在从节点执行
 REPLICAOF 192.168.1.100 6379
 ```
 
-**特点**：
-- 主节点负责写，从节点负责读
-- 数据异步复制，可能有短暂延迟
-- 一个主节点可以有多个从节点
+**Key points:**
+- The primary handles writes; replicas handle reads (read scaling)
+- Replication is asynchronous — replicas may lag slightly behind
+- A single primary can serve multiple replicas
 
-### 2. 哨兵模式（Sentinel）
+### Sentinel (Automatic Failover)
 
-哨兵模式在主从复制的基础上，实现了自动故障转移。
+Sentinel adds monitoring and automatic failover on top of standard replication. If the primary goes down, Sentinel promotes a replica and reconfigures the others — no manual intervention required.
 
-**哨兵配置文件** `sentinel.conf`：
+**Sentinel configuration** (`sentinel.conf`):
 
 ```conf
-# 监控的主节点
+# Monitor the primary node; quorum of 2 sentinels must agree it is down
 sentinel monitor mymaster 192.168.1.100 6379 2
 
-# 主节点密码
+# Primary password
 sentinel auth-pass mymaster your_password
 
-# 主节点无响应时间（毫秒）
+# Consider the primary down after 30 seconds of no response
 sentinel down-after-milliseconds mymaster 30000
 
-# 故障转移超时时间
+# Failover timeout
 sentinel failover-timeout mymaster 180000
 
-# 同时同步的从节点数量
+# How many replicas sync simultaneously during failover
 sentinel parallel-syncs mymaster 1
 ```
 
-**启动哨兵**：
+**Start Sentinel:**
 
 ```bash
 redis-sentinel /etc/redis/sentinel.conf
 ```
 
-**工作原理**：
-1. 哨兵监控主从节点的运行状态
-2. 当主节点故障时，哨兵选举出一个从节点升级为新主节点
-3. 通知其他从节点切换到新主节点
-4. 通知客户端主节点地址变更
+**How it works:**
+1. Sentinel processes continuously ping the primary and its replicas
+2. When the primary becomes unreachable (confirmed by a quorum), Sentinel triggers a failover
+3. One replica is promoted to primary; the others reconfigure to follow the new primary
+4. Clients are notified of the topology change
 
-### 3. 集群模式（Cluster）
+### Cluster (Sharding + HA)
 
-![Redis 集群架构](cluster.webp)
+![Redis Cluster architecture](cluster.webp)
 
-Redis Cluster 提供了数据分片和高可用能力，适合大规模数据场景。
+Redis Cluster partitions data across multiple primary nodes and provides built-in failover for each shard. It is the right choice when your dataset outgrows a single server.
 
-**集群特点**：
-- 数据自动分片到多个节点
-- 使用 16384 个哈希槽（Hash Slot）
-- 每个主节点可以有多个从节点
-- 支持自动故障转移
+**How it works:**
+- The keyspace is divided into **16,384 hash slots**
+- Each primary owns a subset of slots
+- Every primary can have one or more replicas for failover
+- Clients are redirected to the correct node automatically
 
-**创建集群**：
+**Creating a cluster (3 primaries + 3 replicas):**
 
 ```bash
-# 启动 6 个 Redis 实例（3 主 3 从）
-# 每个实例配置：
+# Each instance needs these settings in redis.conf:
 cluster-enabled yes
 cluster-config-file nodes-6379.conf
 cluster-node-timeout 5000
 
-# 创建集群
+# Create the cluster
 redis-cli --cluster create \
   192.168.1.101:6379 \
   192.168.1.102:6379 \
@@ -604,111 +536,98 @@ redis-cli --cluster create \
   --cluster-replicas 1
 ```
 
-**连接集群**：
+**Connecting to a cluster:**
 
 ```bash
+# The -c flag enables cluster-aware redirection
 redis-cli -c -h 192.168.1.101 -p 6379
 ```
 
-**常用集群命令**：
+**Useful cluster commands:**
 
 ```bash
-# 查看集群信息
-CLUSTER INFO
-
-# 查看节点
-CLUSTER NODES
-
-# 查看槽分配
-CLUSTER SLOTS
+CLUSTER INFO     # Overall cluster health
+CLUSTER NODES    # List all nodes and their roles
+CLUSTER SLOTS    # Show slot-to-node mapping
 ```
 
-## 六、Redis 性能优化
+## Performance Tuning
 
-### 1. 内存优化
+### Memory Management
 
 ```conf
-# 设置最大内存
+# Set a hard memory limit
 maxmemory 4gb
 
-# 内存淘汰策略
+# Eviction policy (what happens when the limit is reached)
 maxmemory-policy allkeys-lru
 
-# 可选策略：
-# volatile-lru: 在设置了过期时间的键中使用 LRU 算法
-# allkeys-lru: 在所有键中使用 LRU 算法
-# volatile-random: 在设置了过期时间的键中随机删除
-# allkeys-random: 在所有键中随机删除
-# volatile-ttl: 删除最近要过期的键
-# noeviction: 不删除，写入报错
+# Available policies:
+# volatile-lru    — LRU among keys with an expiration set
+# allkeys-lru     — LRU among all keys
+# volatile-random — Random eviction among keys with an expiration
+# allkeys-random  — Random eviction among all keys
+# volatile-ttl    — Evict keys closest to expiration
+# noeviction      — Return errors on write when memory is full
 ```
 
-### 2. 连接优化
+### Connection Tuning
 
 ```conf
-# 最大客户端连接数
+# Maximum simultaneous client connections
 maxclients 10000
 
-# 客户端超时时间（秒，0 表示不超时）
+# Close idle connections after N seconds (0 = never)
 timeout 300
 
-# TCP keepalive
+# TCP keepalive interval
 tcp-keepalive 300
 ```
 
-### 3. 慢查询日志
+### Slow Log
+
+The slow log captures commands that exceed a configurable execution-time threshold — invaluable for finding performance bottlenecks.
 
 ```conf
-# 慢查询阈值（微秒）
+# Threshold in microseconds (10 ms)
 slowlog-log-slower-than 10000
 
-# 慢查询日志最大长度
+# Maximum number of entries to retain
 slowlog-max-len 128
 ```
 
-**查看慢查询**：
+**Querying the slow log:**
 
 ```bash
-# 获取最近 10 条慢查询
-SLOWLOG GET 10
-
-# 获取慢查询数量
-SLOWLOG LEN
-
-# 清空慢查询日志
-SLOWLOG RESET
+SLOWLOG GET 10    # Last 10 slow commands
+SLOWLOG LEN       # Total entries
+SLOWLOG RESET     # Clear the log
 ```
 
-### 4. 最佳实践
+### Best Practices
 
-| 建议 | 说明 |
-|------|------|
-| **合理设计 Key** | 使用业务前缀，如 `user:1001:profile` |
-| **控制 Key 大小** | Key 不超过 1KB，Value 不超过 10KB |
-| **设置过期时间** | 避免内存无限增长 |
-| **避免大 Key** | 大 Hash/List/Set 拆分存储 |
-| **使用 Pipeline** | 批量操作减少网络往返 |
-| **避免阻塞命令** | `KEYS *`、`FLUSHALL` 等在生产环境慎用 |
+| Recommendation | Why It Matters |
+|----------------|----------------|
+| **Use structured key names** | Prefixes like `user:1001:profile` keep the keyspace organized |
+| **Keep values small** | Keys under 1 KB, values under 10 KB for optimal performance |
+| **Set TTLs on everything you can** | Prevents unbounded memory growth |
+| **Avoid big keys** | Split large Hashes/Lists/Sets into smaller shards |
+| **Use pipelines for batch operations** | Dramatically reduces round-trip latency |
+| **Ban dangerous commands in production** | `KEYS *`, `FLUSHALL`, `FLUSHDB` can block or destroy data |
 
-## 七、总结
+## Summary
 
-本文系统介绍了 Redis 的核心知识：
+This guide covered the essential Redis knowledge you need to go from installation to production:
 
-1. **安装配置**：macOS 使用 Homebrew，Windows 推荐 WSL 或 Docker
-2. **五大数据类型**：String、Hash、List、Set、Sorted Set 各有特点
-3. **持久化机制**：RDB 快照 + AOF 日志，推荐混合持久化
-4. **高可用架构**：主从复制 → 哨兵模式 → 集群模式，按需选择
+1. **Installation** — Homebrew on macOS, WSL or Docker on Windows, Docker anywhere
+2. **Five data types** — String, Hash, List, Set, and Sorted Set each solve distinct problems
+3. **Persistence** — RDB snapshots for fast recovery, AOF for durability, hybrid mode for both
+4. **High availability** — Replication for read scaling, Sentinel for automatic failover, Cluster for horizontal sharding
 
-Redis 的学习是一个循序渐进的过程，建议：
-- 先掌握基础命令和数据类型
-- 在项目中实践缓存、会话、排行榜等场景
-- 深入学习持久化和高可用配置
-- 关注性能优化和最佳实践
+The best way to internalize Redis is to build with it. Start with caching and session storage in a real project, then layer on persistence and replication as your reliability requirements grow.
 
-## 参考资料
+## References
 
-- [Redis 官方文档](https://redis.io/docs/)
-- [Redis 命令参考](https://redis.io/commands/)
+- [Redis Official Documentation](https://redis.io/docs/)
+- [Redis Command Reference](https://redis.io/commands/)
 - [GitHub: redis/redis](https://github.com/redis/redis)
-- [菜鸟教程 - Redis](https://www.runoob.com/redis/redis-tutorial.html)
-- [JavaGuide - Redis](https://javaguide.cn/database/redis/redis-data-structures-01.html)

@@ -1,32 +1,37 @@
 +++
-title = 'Linux 运维基础 Hub（命令行 / 网络排障 / Docker）'
-description = 'Linux 运维基础专题导航：命令行基础、网络排障、Docker 容器与 AWS CLI，适合开发与运维日常速查。'
+title = 'Linux Ops Fundamentals Hub: CLI, Network Troubleshooting & Docker'
+description = 'A curated hub for essential Linux operations skills — command-line basics, network diagnostics, Docker containers, and AWS CLI for everyday dev and ops work.'
 date = '2026-02-18T21:35:00+08:00'
 lastmod = '2026-02-18T21:35:00+08:00'
 draft = true
 toc = true
-tags = ['Linux', '运维', 'Docker', '网络排障']
+tags = ['Linux', 'DevOps', 'Docker', 'Networking']
 categories = ['Linux']
+keywords = ['Linux operations', 'command line basics', 'network troubleshooting', 'Docker containers', 'AWS CLI']
 +++
 
-> 本页为 Linux 运维基础导航草稿，持续补充中。
+> This page is a living hub for Linux ops fundamentals — updated regularly as new content is added.
 
-## 简介
+## What This Hub Covers
 
-本 Hub 聚焦最常用、最能提升效率的 Linux 运维基础能力：命令行、网络诊断、容器化与云命令行工具。
+Whether you're a developer who needs to debug a production server or an ops engineer building infrastructure, certain Linux skills come up again and again: working efficiently on the command line, diagnosing network issues, running containers, and managing cloud resources.
 
-## 核心文章列表
+This hub collects the most practical, high-impact articles on these core topics in one place for quick reference.
 
-1. [Linux/Mac 常用命令汇总](/posts/linux/2020-03-19-linux-mac-commands/)
-2. [curl 命令大全](/posts/linux/2020-06-29-curl/)
-3. [traceroute 命令详解](/posts/linux/2020-06-28-traceroute/)
-4. [Docker Compose 完全指南](/posts/docker/2026-01-19-docker-compose-complete-guide/)
-5. [AWS CLI 完全指南](/posts/linux/2020-07-04-aws-cli/)
+## Core Articles
 
-## 推荐阅读（用于内链）
+1. [Essential Linux & Mac Commands](/posts/linux/2020-03-19-linux-mac-commands/) — The everyday commands you'll reach for most often
+2. [curl Command Reference](/posts/linux/2020-06-29-curl/) — Making HTTP requests, testing APIs, and transferring data from the terminal
+3. [traceroute Explained](/posts/linux/2020-06-28-traceroute/) — Tracing network paths and diagnosing connectivity issues
+4. [Docker Compose Complete Guide](/posts/docker/2026-01-19-docker-compose-complete-guide/) — Defining and running multi-container applications
+5. [AWS CLI Complete Guide](/posts/linux/2020-07-04-aws-cli/) — Managing AWS resources from the command line
 
-- [Shell + Zsh 配置](/posts/linux/2015-06-17-shell-zsh/)
-- [Shell 变量详解](/posts/linux/2019-05-13-linux-shell-vars/)
-- [IP/CIDR 入门](/posts/linux/2018-10-06-ip-cidr/)
-- [Docker 常用命令速查](/posts/docker/2019-11-14-docker-commands/)
-- [docker-compose.yml 详解](/posts/docker/2026-01-24-docker-compose-yml-explained/)
+## Further Reading
+
+These related articles go deeper into specific areas:
+
+- [Shell & Zsh Configuration](/posts/linux/2015-06-17-shell-zsh/) — Setting up a productive shell environment
+- [Shell Variables Explained](/posts/linux/2019-05-13-linux-shell-vars/) — Understanding environment variables, scope, and common patterns
+- [IP Addressing & CIDR Primer](/posts/linux/2018-10-06-ip-cidr/) — The networking fundamentals behind subnets and routing
+- [Docker Commands Cheat Sheet](/posts/docker/2019-11-14-docker-commands/) — Quick reference for the most-used Docker CLI commands
+- [docker-compose.yml Explained](/posts/docker/2026-01-24-docker-compose-yml-explained/) — Breaking down every section of a Compose file

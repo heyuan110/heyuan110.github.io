@@ -1,98 +1,98 @@
 +++
 date = '2026-01-31T22:50:00+08:00'
 draft = false
-title = 'OpenClaw 作者的 Claude Code 开发方法论：一个人如何用 AI 写出 10 万星项目'
-description = '深度拆解 OpenClaw 作者 Peter Steinberger 的 Claude Code 开发方法论，从 AGENTS.md 文档驱动、多 Agent 并行开发到 Spec 驱动构建，手把手教你用同样的方法让 Claude Code 帮你做项目。'
+title = 'OpenClaw Claude Code Workflow: How One Dev Built a 100K-Star Project'
+description = 'Deep dive into Peter Steinberger OpenClaw development methodology using Claude Code. Learn AGENTS.md documentation-driven development, multi-agent parallel workflows, and spec-driven building.'
 toc = true
-tags = ['Claude Code', 'OpenClaw', 'AI 编程', 'Agent Engineering', 'AGENTS.md']
-categories = ['AI实战']
-keywords = ['Claude Code 开发流程', 'OpenClaw 开发方法', 'AGENTS.md', 'AI 编程实战', '多Agent并行开发']
+tags = ['Claude Code', 'OpenClaw', 'AI Coding', 'Agent Engineering', 'AGENTS.md']
+categories = ['AI Guides']
+keywords = ['Claude Code workflow', 'OpenClaw development method', 'AGENTS.md guide', 'AI coding workflow', 'multi-agent parallel development', 'spec-driven development']
 +++
 
-![OpenClaw 的 Claude Code 开发方法论：文档驱动、多 Agent 并行开发](cover.webp)
+![OpenClaw Claude Code development methodology: documentation-driven, multi-agent parallel development](cover.webp)
 
-最近有个项目彻底火了——**OpenClaw**（前身 Clawdbot），一个开源 AI 助手，72 小时拿下 6 万 GitHub stars，一周吸引 200 万访客，现在已经突破 **10 万星**。
+A project recently took the developer world by storm — **OpenClaw** (formerly Clawdbot), an open-source AI assistant that hit 60K GitHub stars in 72 hours, attracted 2 million visitors in a week, and has now surpassed **100K stars**.
 
-最让人震惊的不是它有多火，而是它背后只有**一个人**——奥地利开发者 Peter Steinberger（[@steipete](https://github.com/steipete)）。他没有团队，没有 996，全靠 Claude Code 和 Codex CLI 同时开 5-10 个 Agent 并行开发，日均提交 **600+ 次 commit**。
+The most striking part is not how popular it became, but that there is only **one person** behind it — Austrian developer Peter Steinberger ([@steipete](https://github.com/steipete)). No team, no crunch time. He relied entirely on Claude Code and Codex CLI, running 5-10 agents in parallel and averaging **600+ commits per day**.
 
-从提交记录来看，你会以为这是一家公司在做：
+Looking at the commit history, you would think it was a company:
 
 > "From the commits, it might appear like it's a company. But it's not. This is one dude sitting at home having fun."
 
-这篇文章会完整拆解他的开发方法论，让你读完就能用同样的方式让 Claude Code 帮你做项目。
+This article breaks down his entire development methodology so you can apply the same approach to your own projects with Claude Code.
 
-## 一、背景：一个退休开发者如何重新出山
+## Background: A Retired Developer Returns to the Arena
 
-Peter Steinberger 是 PSPDFKit（后以 1.19 亿美元出售）的创始人。2021 年退休后，他消失了三年。2025 年 4 月，他重新开始写代码，但这次，他的"手"变了——不再亲手敲键盘，而是让 AI 来干。
+Peter Steinberger founded PSPDFKit (later sold for $119 million). After retiring in 2021, he disappeared for three years. In April 2025, he started coding again — but this time, his "hands" had changed. Instead of typing code himself, he let AI do the work.
 
-他的第一次尝试是这样的：
+His first attempt went like this:
 
-1. 把一个 1.3MB 的 Markdown 文件拖进 Gemini，说："Write a specification"
-2. Gemini 输出了 400 行规范文档
-3. 把规范文档拖进 Claude Code，说："Build"
-4. 不停点 "continue"
+1. Dragged a 1.3MB Markdown file into Gemini and said: "Write a specification"
+2. Gemini produced a 400-line spec document
+3. Dragged the spec into Claude Code and said: "Build"
+4. Kept clicking "continue"
 
-程序崩溃了。但他看到了潜力。
+The program crashed. But he saw the potential.
 
-从那以后，他花了 8 个月时间打磨出一套完整的 AI 开发方法论，从"Claude Code 是我的电脑"到"我发布自己不读的代码"，最终造出了 10 万星的 OpenClaw。
+Over the next 8 months, he refined a complete AI development methodology — from "Claude Code is my computer" to "I ship code I don't read" — ultimately building the 100K-star OpenClaw.
 
-## 二、核心理念：Agent Engineering，不是 Vibe Coding
+## Core Philosophy: Agent Engineering, Not Vibe Coding
 
-Peter 明确拒绝"Vibe Coding"（氛围编程）这个说法。他更倾向于叫它 **Agent Engineering（代理工程）**：
+Peter explicitly rejects the term "Vibe Coding." He prefers to call it **Agent Engineering**:
 
-- **人类负责**：系统架构、产品设计、技术选型、质量把控
-- **AI 负责**：代码实现、调试、测试、重构
+- **Humans handle**: System architecture, product design, technology choices, quality control
+- **AI handles**: Code implementation, debugging, testing, refactoring
 
-这不是"随便让 AI 写写看"，而是一套有纪律的工程方法。他对此的总结是：
+This is not "let AI write something and see what happens." It is a disciplined engineering methodology. His summary:
 
-> "Using AI simply means that expectations what to ship went up."（使用 AI 只是意味着对交付物的期望提高了。）
+> "Using AI simply means that expectations what to ship went up."
 
-## 三、文档驱动开发——OpenClaw 的核心秘密
+## Documentation-Driven Development — OpenClaw's Core Secret
 
-打开 [OpenClaw 的 GitHub 仓库](https://github.com/openclaw/openclaw)，你会发现根目录有两个关键文件：
+Open the [OpenClaw GitHub repository](https://github.com/openclaw/openclaw) and you will find two critical files in the root directory:
 
-- `AGENTS.md`——**800+ 行**的 AI Agent 指导手册
-- `CLAUDE.md`——指向 `AGENTS.md` 的符号链接
+- `AGENTS.md` — an **800+ line** AI agent guidebook
+- `CLAUDE.md` — a symlink pointing to `AGENTS.md`
 
-这两个文件是整个项目的"大脑"。每次 Claude Code 或 Codex 启动时，都会读取这个文件，就像给新入职员工发的《工作手册》。
+These two files are the project's "brain." Every time Claude Code or Codex launches, it reads this file — like handing a new employee their operations manual.
 
-### 3.1 AGENTS.md 里写了什么？
+### What Does AGENTS.md Contain?
 
-Peter 把 AGENTS.md 描述为：
+Peter describes AGENTS.md as:
 
-> "a collection of organizational scar tissue"（一份组织伤疤的集合）
+> "a collection of organizational scar tissue"
 
-意思是——每次踩坑后，他都让 AI 在这个文件里记一笔，防止同样的错误再犯。这个文件不是他自己写的，而是 **AI 自己写、自己维护**的。
+Meaning — every time they hit a bug or mistake, he had the AI add a note to this file to prevent the same error from recurring. He did not write this file himself; **the AI writes and maintains it**.
 
-AGENTS.md 的核心内容包括 7 大模块：
+AGENTS.md covers 7 core modules:
 
-**模块一：项目结构**
+**Module 1: Project Structure**
 
 ```
 - Source code: src/ (CLI in src/cli, commands in src/commands)
-- Tests: colocated *.test.ts（测试文件和源码放一起）
-- Docs: docs/（文档目录）
-- Plugins: extensions/*（插件目录）
+- Tests: colocated *.test.ts (test files live next to source)
+- Docs: docs/ (documentation directory)
+- Plugins: extensions/* (plugin directory)
 ```
 
-告诉 Agent 代码在哪、测试在哪、文档在哪——不需要每次都问。
+This tells the agent where the code lives, where tests go, and where docs are — no need to ask every time.
 
-**模块二：构建/测试命令**
+**Module 2: Build/Test Commands**
 
 ```bash
-pnpm install          # 安装依赖
-pnpm build            # 构建
-pnpm test             # 跑测试 (vitest)
-pnpm lint             # 代码检查 (oxlint)
-pnpm format           # 格式化 (oxfmt)
-pnpm test:coverage    # 覆盖率测试
+pnpm install          # install dependencies
+pnpm build            # build
+pnpm test             # run tests (vitest)
+pnpm lint             # lint (oxlint)
+pnpm format           # format (oxfmt)
+pnpm test:coverage    # coverage tests
 ```
 
-为什么这很重要？因为 **AI 代理必须能自我验证**——能编译、能测试、能检查自己的输出。这是 Peter 反复强调的核心原则：
+Why does this matter? Because **AI agents must be able to self-verify** — compile, test, and check their own output. This is a core principle Peter emphasizes repeatedly:
 
 > "The key is that the AI can verify its own work. It must be able to compile, lint, execute, and verify the output."
 
-**模块三：编码风格**
+**Module 3: Coding Style**
 
 ```
 - Language: TypeScript (ESM). Prefer strict typing; avoid any.
@@ -101,16 +101,16 @@ pnpm test:coverage    # 覆盖率测试
 - Naming: OpenClaw for product/docs; openclaw for CLI/package/paths
 ```
 
-**模块四：Git 提交规范**
+**Module 4: Git Commit Conventions**
 
 ```bash
-# 使用自定义脚本提交，避免手动 git add/commit
+# Use a custom script to commit, avoiding manual git add/commit
 scripts/committer "<msg>" <file...>
 ```
 
-这个自定义脚本确保每次提交只包含指定文件，不会误提交其他 Agent 修改的内容。
+This custom script ensures each commit only includes specified files, preventing accidental inclusion of changes from other agents.
 
-**模块五：多 Agent 安全规则（最关键的部分）**
+**Module 5: Multi-Agent Safety Rules (The Most Critical Part)**
 
 ```
 - do NOT create/apply/drop git stash unless explicitly requested
@@ -120,9 +120,9 @@ scripts/committer "<msg>" <file...>
 - when you see unrecognized changes, keep going; focus your changes
 ```
 
-这段规则解决了一个关键问题：**多个 AI Agent 同时在同一个代码库工作时，如何避免互相踩踏？** 答案是——每个 Agent 只管自己的事，看到不认识的改动不要碰。
+These rules solve a critical problem: **How do multiple AI agents work simultaneously in the same codebase without stepping on each other?** The answer — each agent minds its own business and ignores changes it does not recognize.
 
-**模块六：文档规范**
+**Module 6: Documentation Standards**
 
 ```
 - Internal doc links: root-relative, no .md/.mdx
@@ -130,406 +130,406 @@ scripts/committer "<msg>" <file...>
 - Docs content must be generic: no personal device names/hostnames
 ```
 
-**模块七：特殊规则**
+**Module 7: Special Rules**
 
 ```
-- Vocabulary: "makeup" = "mac app"（Peter 的个人黑话）
+- Vocabulary: "makeup" = "mac app" (Peter's personal shorthand)
 - Never edit node_modules
 - Never update the Carbon dependency
 - Bug investigations: read source code of npm deps AND local code
 ```
 
-### 3.2 docs/ 目录：给 AI 看的需求文档
+### The docs/ Directory: Requirement Documents for AI
 
-OpenClaw 的 `docs/` 目录下有 30+ 个子目录，其中最关键的是：
+OpenClaw's `docs/` directory contains 30+ subdirectories. The most critical ones include:
 
-**`docs/concepts/`（30 个概念文档）**
+**`docs/concepts/` (30 concept documents)**
 
-| 文件 | 内容 |
-|------|------|
-| `architecture.md` | 系统架构（WebSocket 控制平面） |
-| `agent.md` | 代理运行时 |
-| `agent-loop.md` | 代理执行循环 |
-| `multi-agent.md` | 多代理路由 |
-| `system-prompt.md` | 系统提示组装 |
-| `memory.md` | 记忆管理 |
-| `session.md` | 会话管理 |
-| `streaming.md` | 数据流 |
-| `context.md` | 上下文管理 |
+| File | Content |
+|------|---------|
+| `architecture.md` | System architecture (WebSocket control plane) |
+| `agent.md` | Agent runtime |
+| `agent-loop.md` | Agent execution loop |
+| `multi-agent.md` | Multi-agent routing |
+| `system-prompt.md` | System prompt assembly |
+| `memory.md` | Memory management |
+| `session.md` | Session management |
+| `streaming.md` | Data streaming |
+| `context.md` | Context management |
 
-这些文档的作用是——当 Agent 需要修改某个子系统时，它可以先读对应的概念文档，理解系统设计意图后再动手。
+These documents serve one purpose: when an agent needs to modify a subsystem, it can read the corresponding concept document to understand the design intent before making changes.
 
-**`docs/refactor/`（重构规划文档）**
+**`docs/refactor/` (Refactoring Plan Documents)**
 
-这是最有启发性的部分。Peter 不是直接让 AI 重构代码，而是先写好**重构计划书**，然后让 AI 按计划执行。
+This is the most inspiring part. Peter does not just tell the AI to refactor code. He writes a **refactoring plan** first, then has the AI execute it step by step.
 
-以 `plugin-sdk.md` 为例，它包含：
+Take `plugin-sdk.md` as an example:
 
 ```markdown
-## 目标
+## Goal
 Every messaging connector is a plugin (bundled or external) using one stable API
 
-## 非目标
-不在此次重构范围内的内容
+## Non-Goals
+Items explicitly out of scope for this refactor
 
-## 实施阶段
-- Phase 0: 准备工作
-- Phase 1: 定义 Plugin SDK 接口
-- Phase 2: 迁移第一个内置通道
-- Phase 3: 迁移所有内置通道
-- Phase 4: 外部插件支持
-- Phase 5: 清理和文档
+## Implementation Phases
+- Phase 0: Preparation
+- Phase 1: Define Plugin SDK interface
+- Phase 2: Migrate the first built-in channel
+- Phase 3: Migrate all built-in channels
+- Phase 4: External plugin support
+- Phase 5: Cleanup and documentation
 
-## 成功标准
-- 所有内置通道迁移为插件
-- 外部插件能使用相同 API
-- 测试覆盖率 > 70%
+## Success Criteria
+- All built-in channels migrated to plugins
+- External plugins can use the same API
+- Test coverage > 70%
 ```
 
-这种文档结构让 AI Agent 清楚知道：**做什么、不做什么、分几步做、什么算完成**。
+This document structure ensures the AI agent knows exactly: **what to do, what not to do, how many steps, and what counts as done**.
 
-### 3.3 Bootstrap 文件系统：AI 的"入职培训包"
+### Bootstrap File System: AI "Onboarding Kit"
 
-OpenClaw 还有一套"人格注入"系统，每个新 AI 会话启动时自动加载：
+OpenClaw also has a "personality injection" system that auto-loads at the start of each new AI session:
 
-| 文件 | 用途 |
-|------|------|
-| `AGENTS.md` | 操作指令和记忆 |
-| `SOUL.md` | 人格、边界、语气 |
-| `TOOLS.md` | 工具使用笔记 |
-| `IDENTITY.md` | 代理名称/风格 |
-| `USER.md` | 用户个人资料 |
-| `BOOTSTRAP.md` | 首次运行仪式 |
+| File | Purpose |
+|------|---------|
+| `AGENTS.md` | Operational instructions and memory |
+| `SOUL.md` | Personality, boundaries, tone |
+| `TOOLS.md` | Tool usage notes |
+| `IDENTITY.md` | Agent name/style |
+| `USER.md` | User profile |
+| `BOOTSTRAP.md` | First-run ceremony |
 
-这套系统确保每次新会话的 AI 都"知道自己是谁、用户是谁、项目是什么"。
+This system ensures every new session AI "knows who it is, who the user is, and what the project is."
 
-## 四、Spec 驱动构建——从需求到代码的完整流程
+## Spec-Driven Building — The Complete Workflow from Requirements to Code
 
-这是 Peter 最核心的工作流，也是你最容易复制的部分。完整流程分 6 步：
+This is Peter's most important workflow and the easiest part for you to replicate. The complete process has 6 steps:
 
-### 第 1 步：收集需求素材
+### Step 1: Gather Requirements Material
 
-用 [repo2txt](https://repo2txt.simplebasedomain.com/) 把参考项目的 GitHub 仓库转成 Markdown 文本，或者手动收集需求文档、API 文档、竞品分析等。
+Use [repo2txt](https://repo2txt.simplebasedomain.com/) to convert a reference project's GitHub repository into Markdown text, or manually collect requirement docs, API docs, competitive analyses, etc.
 
-### 第 2 步：用 Gemini 生成规范
+### Step 2: Generate the Spec with Gemini
 
-把素材拖入 [Google AI Studio](https://aistudio.google.com/)（Gemini 有超大上下文窗口），让它生成软件设计文档（SDD），大约 500 行。
+Drag the material into [Google AI Studio](https://aistudio.google.com/) (Gemini has a massive context window) and have it generate a Software Design Document (SDD), roughly 500 lines.
 
-### 第 3 步：反复审查规范
+### Step 3: Review the Spec Iteratively
 
-在新的 Gemini 会话中，对 SDD 进行"拆解审查"：
+In a new Gemini session, conduct a "teardown review" of the SDD:
 
 > "Take this SDD apart. Give me 20 points that are underspecified, weird, or inconsistent."
 
-把审查意见反馈回原始文档，迭代 3-5 轮，直到规范足够清晰。
+Feed the review feedback back into the original document and iterate 3-5 rounds until the spec is sufficiently clear.
 
-### 第 4 步：保存为 spec.md
+### Step 4: Save as spec.md
 
-把最终规范保存到项目的 `docs/spec.md`。
+Save the final specification to your project's `docs/spec.md`.
 
-### 第 5 步：让 Claude Code 执行
+### Step 5: Let Claude Code Execute
 
-打开 Claude Code，输入一句话：
+Open Claude Code and type one line:
 
 ```
 Build spec.md
 ```
 
-不需要复杂的提示词，因为规范文档已经包含了一切：目标、约束、API 设计、数据模型、分阶段计划。
+No complex prompts needed because the spec document already contains everything: goals, constraints, API design, data models, phased plans.
 
-### 第 6 步：AI 自主实现
+### Step 6: AI Autonomous Implementation
 
-Claude Code 会在 2-4 小时内完成实现，期间只需要你偶尔确认方向，大部分时间都是 AI 自主工作。
+Claude Code will complete the implementation in 2-4 hours. You only need to occasionally confirm direction; the AI works autonomously most of the time.
 
 > "Claude Code doesn't need complex prompting because the spec contains everything it needs, eliminating ambiguity."
 
-## 五、多 Agent 并行开发——一个人的"团队"
+## Multi-Agent Parallel Development — A One-Person "Team"
 
-这是 Peter 最疯狂也最高效的实践：**同时运行 5-10 个 AI Agent**，在 3×3 终端网格中并行工作。
+This is Peter's most audacious and most efficient practice: **running 5-10 AI agents simultaneously** in a 3x3 terminal grid working in parallel.
 
-### 5.1 硬件设置
+### Hardware Setup
 
-| 设备 | 用途 |
-|------|------|
-| Dell 40" 曲面屏 (3840×1620) | 主屏，同时显示 4 个 Claude + Chrome |
-| Ghostty 终端 | 替代 VS Code 终端（更稳定） |
-| WisprFlow | 语音转文字输入 |
+| Device | Purpose |
+|--------|---------|
+| Dell 40" curved monitor (3840x1620) | Main display, showing 4 Claude instances + Chrome |
+| Ghostty terminal | Replaces VS Code terminal (more stable) |
+| WisprFlow | Voice-to-text input |
 
-### 5.2 并行策略
+### Parallelization Strategy
 
-Agent 数量根据工作类型动态调整：
+Agent count adjusts dynamically based on work type:
 
-| 工作类型 | Agent 数量 | 原因 |
-|----------|-----------|------|
-| 重构 | 1-2 个 | 影响范围大，需要串行 |
-| 测试/清理 | ~4 个 | 互不干扰 |
-| UI + 后端 + 文档 | 5-8 个 | 不同模块并行 |
+| Work Type | Agent Count | Reason |
+|-----------|-------------|--------|
+| Refactoring | 1-2 | Large blast radius, needs serialization |
+| Testing/cleanup | ~4 | Non-interfering tasks |
+| UI + backend + docs | 5-8 | Different modules in parallel |
 
-### 5.3 协作规则
+### Collaboration Rules
 
-所有 Agent 在同一个文件夹、同一个 main 分支工作，不用 worktree，不用分支。靠 AGENTS.md 里的规则保持秩序：
+All agents work in the same folder, on the same main branch — no worktrees, no branches. Order is maintained through the rules in AGENTS.md:
 
-- 每个 Agent 只提交自己修改的文件
-- 使用 `scripts/committer` 脚本做原子提交
-- 看到不认识的改动，忽略它，专注自己的任务
-- 拉取代码时用 `git pull --rebase`，不丢弃其他 Agent 的工作
+- Each agent only commits files it modified
+- Uses `scripts/committer` for atomic commits
+- Sees unrecognized changes? Ignore them and focus on your task
+- Pulls with `git pull --rebase` to preserve other agents' work
 
-### 5.4 为什么不用分支？
+### Why No Branches?
 
-Peter 的理由很直接：
+Peter's reasoning is straightforward:
 
 > "Once you parallelize, execution time of one agent does not matter that much anymore."
 
-分支意味着合并冲突。在 main 上直接工作，每个 Agent 做原子提交，冲突反而更少。
+Branches mean merge conflicts. Working directly on main with atomic commits from each agent actually produces fewer conflicts.
 
-## 六、CLI 优于 MCP——Peter 的反直觉选择
+## CLI Over MCP — Peter's Counterintuitive Choice
 
-很多人用 Claude Code 时会装一堆 MCP Server（GitHub MCP、文件系统 MCP 等）。Peter 的做法恰好相反——**他不用任何 MCP**：
+Many Claude Code users install numerous MCP servers (GitHub MCP, filesystem MCP, etc.). Peter does the exact opposite — **he uses no MCPs at all**:
 
 > "I don't use any MCPs... keeping your context as clean as possible is important. If you add MCPs, you just bloat the context."
 
-他的核心论点：
+His core argument:
 
-| 方式 | Context 开销 |
-|------|-------------|
+| Approach | Context Overhead |
+|----------|-----------------|
 | GitHub MCP | **23,000 tokens** |
-| `gh` CLI | **0 tokens**（模型原生会用） |
+| `gh` CLI | **0 tokens** (the model natively knows how to use it) |
 
-怎么让 Claude Code 用 CLI 工具？只需要在 CLAUDE.md 写一行：
+How do you get Claude Code to use CLI tools? Just write one line in CLAUDE.md:
 
 ```markdown
 Use `gh` CLI for all GitHub operations.
 ```
 
-模型会自己尝试，失败了会看帮助文档，然后学会怎么用。
+The model will try it on its own, fail, read the help output, and then figure out how to use the CLI.
 
 > "The beauty is all you need is like one line in your CLAUDE file... And then the model will eventually try some random shit. It will fail. It will print the help message... And then the model knows how to use the CLI."
 
-Peter 推荐的 CLI 工具：
+Peter's recommended CLI tools:
 
-- `gh` — GitHub 操作
-- `vercel` — 部署
-- `psql` — 数据库
-- `axiom` — 日志查询
-- 自建 CLI：`bslog`（日志）、`xl`（Twitter API）
+- `gh` — GitHub operations
+- `vercel` — deployment
+- `psql` — database
+- `axiom` — log queries
+- Custom CLIs: `bslog` (logs), `xl` (Twitter API)
 
-## 七、实操指南：照搬 Peter 的方法做你的项目
+## Practical Guide: Apply Peter's Method to Your Project
 
-说了这么多理论，现在是实操环节。以下是你可以立即复制的步骤：
+Enough theory — here is how to put it into practice. These are steps you can copy immediately:
 
-### 第 1 步：创建 CLAUDE.md
+### Step 1: Create CLAUDE.md
 
-在你的项目根目录创建 `CLAUDE.md`，写入以下内容（根据你的项目调整）：
+Create a `CLAUDE.md` in your project root with the following content (adapt to your project):
 
 ````markdown
 # CLAUDE.md
 
-## 项目概述
-[一段话描述项目是什么、解决什么问题]
+## Project Overview
+[One paragraph describing what the project is and what problem it solves]
 
-## 技术栈
-- 语言：TypeScript
-- 框架：Next.js
-- 数据库：PostgreSQL
-- 测试：vitest
+## Tech Stack
+- Language: TypeScript
+- Framework: Next.js
+- Database: PostgreSQL
+- Testing: vitest
 
-## 项目结构
+## Project Structure
 ```
 src/
-├── app/          # 页面路由
-├── components/   # UI 组件
-├── lib/          # 工具函数
-├── services/     # 业务逻辑
-└── types/        # 类型定义
+├── app/          # page routes
+├── components/   # UI components
+├── lib/          # utility functions
+├── services/     # business logic
+└── types/        # type definitions
 ```
 
-## 常用命令
+## Common Commands
 ```bash
-pnpm dev          # 启动开发服务器
-pnpm build        # 构建
-pnpm test         # 跑测试
-pnpm lint         # 代码检查
+pnpm dev          # start dev server
+pnpm build        # build
+pnpm test         # run tests
+pnpm lint         # lint
 ```
 
-## 编码规范
-- 使用 TypeScript strict 模式
-- 文件保持在 500 行以内
-- 测试文件与源码放在一起
+## Coding Standards
+- Use TypeScript strict mode
+- Keep files under 500 lines
+- Colocate test files with source
 
-## Git 规范
-- 原子提交：每次只提交一个功能的改动
-- 提交信息使用英文，格式：`type: description`
-- 不要动 node_modules 和 .env 文件
+## Git Conventions
+- Atomic commits: one feature per commit
+- Commit messages in English, format: `type: description`
+- Never touch node_modules or .env files
 
-## 已知问题
-[AI 踩过的坑记在这里，防止重复]
+## Known Issues
+[Record AI pitfalls here to prevent repeats]
 ````
 
-### 第 2 步：写 Spec 文档
+### Step 2: Write Spec Documents
 
-在 `docs/` 目录下创建功能规范文档。模板：
+Create feature specification documents under `docs/`. Template:
 
 ```markdown
-# Feature: [功能名称]
+# Feature: [Feature Name]
 
-## 目标
-[这个功能要实现什么]
+## Goal
+[What this feature should accomplish]
 
-## 非目标
-[明确不在这次实现范围内的内容]
+## Non-Goals
+[What is explicitly out of scope]
 
-## 设计方案
+## Design
 
-### 数据模型
-[数据库表结构或接口定义]
+### Data Model
+[Database schema or interface definitions]
 
-### API 设计
-[接口路径、请求/响应格式]
+### API Design
+[Endpoint paths, request/response formats]
 
-### UI 设计
-[页面结构、交互流程]
+### UI Design
+[Page structure, interaction flows]
 
-## 实施计划
-- Phase 1: [基础框架]
-- Phase 2: [核心逻辑]
-- Phase 3: [UI 完善]
-- Phase 4: [测试和优化]
+## Implementation Plan
+- Phase 1: [Foundation]
+- Phase 2: [Core logic]
+- Phase 3: [UI polish]
+- Phase 4: [Testing and optimization]
 
-## 成功标准
-- [ ] [具体的验收条件]
-- [ ] [测试覆盖率要求]
+## Success Criteria
+- [ ] [Specific acceptance conditions]
+- [ ] [Test coverage requirements]
 ```
 
-### 第 3 步：让 Claude Code 执行
+### Step 3: Let Claude Code Execute
 
 ```bash
-# 启动 Claude Code
+# Launch Claude Code
 claude
 
-# 告诉它执行 spec
+# Tell it to execute the spec
 > Read docs/spec.md and implement Phase 1.
 ```
 
-每完成一个阶段，再给下一个：
+After each phase completes, move to the next:
 
 ```
 > Phase 1 is done. Now implement Phase 2.
 ```
 
-### 第 4 步：让 AI 维护 CLAUDE.md
+### Step 4: Let AI Maintain CLAUDE.md
 
-遇到问题时，不要自己改 CLAUDE.md，让 AI 来：
+When you hit problems, do not edit CLAUDE.md yourself — let the AI do it:
 
 ```
 > We just hit a bug where the API returns 500 when the request body is empty.
 > Add a note about this in CLAUDE.md so we don't make the same mistake again.
 ```
 
-随着项目推进，CLAUDE.md 会自然积累越来越多的"组织记忆"。
+As the project progresses, CLAUDE.md will naturally accumulate more and more "organizational memory."
 
-### 第 5 步：尝试多 Agent 并行
+### Step 5: Try Multi-Agent Parallel Development
 
-如果你有一个中大型项目，可以同时开多个终端窗口：
+If you have a medium-to-large project, open multiple terminal windows simultaneously:
 
 ```bash
-# 终端 1：实现后端 API
+# Terminal 1: Implement backend API
 claude
 > Implement the user authentication API based on docs/auth-spec.md
 
-# 终端 2：实现前端页面
+# Terminal 2: Implement frontend pages
 claude
 > Build the login page UI based on docs/auth-spec.md
 
-# 终端 3：写测试
+# Terminal 3: Write tests
 claude
 > Write comprehensive tests for src/services/auth.ts
 ```
 
-**注意**：在 CLAUDE.md 中加上多 Agent 安全规则：
+**Important**: Add multi-agent safety rules to your CLAUDE.md:
 
 ```markdown
-## 多 Agent 规则
-- 只提交你自己修改的文件
-- 看到不认识的改动不要碰
-- 不要 git stash 或切换分支
+## Multi-Agent Rules
+- Only commit files you modified
+- Do not touch unrecognized changes
+- Do not git stash or switch branches
 ```
 
-## 八、Peter 的反直觉经验
+## Peter's Counterintuitive Lessons
 
-最后，分享几个 Peter 在实践中总结的反直觉经验：
+Finally, here are several counterintuitive insights Peter distilled from practice:
 
-### "不读代码也能发布"
+### "Ship Code You Don't Read"
 
 > "These days, I don't read much code anymore. I watch the stream and sometimes look at key parts."
 
-他不逐行审查代码，而是关注架构和组件关系。让 AI 写测试来验证正确性，而不是靠人肉 Review。
+He does not review code line by line. Instead, he focuses on architecture and component relationships. He has the AI write tests to verify correctness rather than relying on manual code review.
 
-### "20% 时间专门用于重构"
+### "Dedicate 20% of Time to Refactoring"
 
-AI 生成的代码初始比较松散，需要定期整理：
+AI-generated code starts out loose and needs periodic cleanup:
 
-- 用 `jscpd` 查代码重复
-- 用 `knip` 查死代码
-- 拆分超过 700 行的大文件
-- 更新依赖版本
+- Use `jscpd` to find code duplication
+- Use `knip` to find dead code
+- Split files exceeding 700 lines
+- Update dependency versions
 
-这些清理工作全部交给 AI Agent 做，人只需要发出指令。
+All of this cleanup work is delegated to AI agents — humans only need to give the instruction.
 
-### "截图比文字描述更高效"
+### "Screenshots Beat Text Descriptions"
 
 > "A screenshot takes 2 seconds to drag into the terminal."
 
-Peter 约 50% 的提示包含截图。特别是 UI 开发时，截图一张效果比写三段描述更好。
+About 50% of Peter's prompts include screenshots. Especially for UI development, one screenshot is worth more than three paragraphs of description.
 
-### "别浪费时间在花哨的工具上"
+### "Don't Waste Time on Fancy Tools"
 
 > "Don't waste your time on stuff like RAG, subagents, Agents 2.0 or other things that are mostly just charade. Just talk to it. Play with it. Develop intuition."
 
-不需要 RAG，不需要复杂的多 Agent 框架，就用最简单的方式——跟 AI 对话，给它足够的上下文（CLAUDE.md + spec），让它干活。
+No RAG needed, no complex multi-agent frameworks — just use the simplest approach. Talk to the AI, give it sufficient context (CLAUDE.md + spec), and let it work.
 
-### "AI 反而逼出了更好的架构"
+### "AI Actually Forces Better Architecture"
 
-因为 AI 需要能自我验证，所以系统必须模块化、可测试。这反过来让代码质量比以前更高。
+Because AI needs to self-verify, the system must be modular and testable. This paradoxically results in higher code quality than before.
 
-## 总结
+## Conclusion
 
-Peter Steinberger 用 Claude Code 开发 OpenClaw 的方法论，核心就三个字：**写文档**。
+Peter Steinberger's methodology for building OpenClaw with Claude Code boils down to three words: **write documentation**.
 
-| 层次 | 文档 | 作用 |
-|------|------|------|
-| 项目级 | `CLAUDE.md` / `AGENTS.md` | Agent 的"工作手册"，持续积累项目记忆 |
-| 功能级 | `docs/spec.md` | 给 Agent 的任务书，写清目标和分阶段计划 |
-| 子系统级 | `docs/concepts/*.md` | Agent 理解系统设计的参考文档 |
-| 重构级 | `docs/refactor/*.md` | 分阶段重构计划，Agent 按步骤执行 |
+| Level | Document | Purpose |
+|-------|----------|---------|
+| Project | `CLAUDE.md` / `AGENTS.md` | Agent "operations manual," continuously accumulating project memory |
+| Feature | `docs/spec.md` | Task brief for the agent with clear goals and phased plans |
+| Subsystem | `docs/concepts/*.md` | Reference docs for agents to understand system design |
+| Refactoring | `docs/refactor/*.md` | Phased refactoring plans for agents to execute step by step |
 
-工作流也很简单：
+The workflow is equally straightforward:
 
-1. **人类写 Spec**（或用 Gemini 生成 + 审查）
-2. **CLAUDE.md 提供上下文**（项目结构、编码规范、已知问题）
-3. **Claude Code 执行**（"Build spec.md"）
-4. **AI 自我验证**（编译、测试、lint）
-5. **踩坑后更新 CLAUDE.md**（让 AI 自己记录）
-6. **定期重构清理**（20% 时间）
+1. **Humans write the spec** (or generate + review with Gemini)
+2. **CLAUDE.md provides context** (project structure, coding standards, known issues)
+3. **Claude Code executes** ("Build spec.md")
+4. **AI self-verifies** (compile, test, lint)
+5. **Update CLAUDE.md after hitting bugs** (let the AI record them)
+6. **Regular refactoring cleanup** (20% of time)
 
-这不是什么高深的理论。它的核心逻辑就是——**你不需要亲手写代码，但你需要亲手写清楚你要什么**。
+This is not some advanced theory. The core logic is simple: **you don't need to write the code yourself, but you do need to clearly write what you want**.
 
-Spec 越清晰，AI 执行越准确。文档越完善，Agent 越少犯错。这套方法，一个人就能做出"一家公司"的产出。
+The clearer the spec, the more accurately AI executes. The more complete the documentation, the fewer mistakes agents make. With this methodology, one person can produce the output of an entire company.
 
 ---
 
-**参考链接**：
+**References**:
 
-- [OpenClaw GitHub 仓库](https://github.com/openclaw/openclaw)
+- [OpenClaw GitHub Repository](https://github.com/openclaw/openclaw)
 - [OpenClaw AGENTS.md](https://github.com/openclaw/openclaw/blob/main/AGENTS.md)
 - [Claude Code is My Computer - Peter Steinberger](https://steipete.me/posts/2025/claude-code-is-my-computer)
 - [My Current AI Dev Workflow - Peter Steinberger](https://steipete.me/posts/2025/optimal-ai-development-workflow)
 - [Just Talk To It - Peter Steinberger](https://steipete.me/posts/just-talk-to-it)
 - [Shipping at Inference-Speed - Peter Steinberger](https://steipete.me/posts/2025/shipping-at-inference-speed)
 
-## 相关阅读
+## Related Reading
 
-- [Claude Code 浏览器自动化方案对比：Agent Browser、Playwright、DevTools](/posts/ai/2026-01-28-claude-code-browser-automation/)
-- [Claude Code 最佳实践指南](/posts/ai/2026-01-06-claudecode-best-practices/)
-- [Claude Code Skills 完全指南](/posts/ai/2026-01-08-claudecode-skill-guide/)
-- [Moltbot 深度解析：从爆火到改名，个人 AI Agent 的机遇与暗礁](/posts/ai/2026-01-29-moltbot-deep-dive/)
+- [Claude Code Browser Automation: Agent Browser, Playwright, DevTools Compared](/posts/ai/2026-01-28-claude-code-browser-automation/)
+- [Claude Code Best Practices Guide](/posts/ai/2026-01-06-claudecode-best-practices/)
+- [Claude Code Skills Complete Guide](/posts/ai/2026-01-08-claudecode-skill-guide/)
+- [Moltbot Deep Dive: From Viral Hit to Rebrand, Opportunities and Pitfalls of Personal AI Agents](/posts/ai/2026-01-29-moltbot-deep-dive/)
 - [steipete/agent-scripts](https://github.com/steipete/agent-scripts)

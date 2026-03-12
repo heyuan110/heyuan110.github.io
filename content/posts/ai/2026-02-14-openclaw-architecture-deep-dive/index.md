@@ -1,296 +1,293 @@
 +++
 date = '2026-02-14T08:10:00+08:00'
 draft = false
-title = '拆解 OpenClaw 自动化架构：从消息到执行的完整链路'
-description = '从架构视角拆解 OpenClaw 的“自动化原理”：消息如何经由 Gateway 路由到 Agent，如何用 Skills 调工具、跨设备 Nodes 执行，Memory 如何存取，Heartbeat 与 Cron 如何让助手在后台持续工作，并用端到端案例串起完整链路。'
+title = 'OpenClaw Architecture Deep Dive: How Automation Actually Works'
+description = 'A complete walkthrough of OpenClaw internals — how Gateway routes messages to Agents, how Skills orchestrate tools, how Nodes enable cross-device execution, and how Heartbeat and Cron power always-on automation.'
 toc = true
-tags = ['OpenClaw', 'AI Agent', '架构', '自动化', 'Skills']
-categories = ['AI原理']
-keywords = ['OpenClaw 架构', 'OpenClaw Gateway', 'OpenClaw Heartbeat', 'OpenClaw Cron', 'AI Agent 自动化原理']
+tags = ['OpenClaw', 'AI Agent', 'Architecture', 'Automation', 'Skills']
+categories = ['AI Guides']
+keywords = ['OpenClaw architecture', 'OpenClaw Gateway', 'OpenClaw Heartbeat', 'OpenClaw Cron', 'AI agent automation', 'OpenClaw internals', 'AI assistant platform']
 +++
 
-![OpenClaw 架构深度解析封面：自动化如何发生](cover.webp)
+![OpenClaw architecture deep dive cover: how automation actually happens](cover.webp)
 
-很多“AI 助手”看起来能自动干活，但当你真的要把它跑成 **7×24 小时在线、跨设备、可控可审计** 的系统时，问题会立刻变成：
+Many "AI assistants" can do things on demand, but when you try to run one as a **24/7, cross-device, auditable production system**, the real questions surface quickly:
 
-- 为什么它能在 Telegram/WhatsApp/网页里同时接消息？
-- 为什么同一条指令能调用浏览器、写文件、跑命令、甚至让手机拍照？
-- 为什么它能“隔一段时间自己来汇报”，又不会把聊天刷屏？
+- How can it receive messages from Telegram, WhatsApp, and web simultaneously?
+- How can a single instruction trigger a browser, write files, run commands, and even take a photo on your phone?
+- How can it proactively report back on a schedule without flooding your chat?
 
-OpenClaw 的答案不是“更聪明的模型”，而是一套**清晰的控制平面（Gateway）+ 可插拔执行面（Skills/Tools/Nodes）+ 可持续调度（Heartbeat/Cron）** 的工程架构。
+OpenClaw's answer is not "a smarter model." It is an engineering architecture built on a **clear control plane (Gateway) + pluggable execution layer (Skills/Tools/Nodes) + persistent scheduling (Heartbeat/Cron)**.
 
-如果你还没上手安装，建议先读这篇入门（实战视角）：
-- [OpenClaw 超详细上手教程](/posts/ai/2026-02-12-openclaw-usage-tutorial/)
+If you have not set up OpenClaw yet, start with this hands-on tutorial:
+- [OpenClaw Complete Setup Tutorial](/posts/ai/2026-02-12-openclaw-usage-tutorial/)
 
-本文则从“系统是怎么运转的”出发，把 OpenClaw 的关键组件拆开讲清楚。
+This article takes you inside the system — breaking down each key component and how they work together.
 
 ---
 
-## 0. 先给你一个“最短心智模型”
+## 0. The Shortest Mental Model
 
-把 OpenClaw 想象成一家公司：
+Think of OpenClaw as a company:
 
-- **Gateway（网关/中枢）**：前台 + 总机 + 调度中心。负责鉴权、连接管理、路由、调度。
-- **Agent（员工/执行者）**：拿到任务后做推理、拆解步骤、决定调用哪些工具。
-- **Skills（SOP/工具使用说明书）**：告诉员工“这类事怎么做”，以及“工具该怎么调用”。
-- **Channels（客服入口）**：Telegram/WhatsApp/Slack/WebChat… 统一进件、统一出件。
-- **Nodes（外包团队/外设）**：你的另一台电脑、手机、平板，能执行命令、拍照、录屏、展示 Canvas。
-- **Memory（知识库/档案）**：短期上下文 + 长期资料（文件化 + 检索）。
-- **Heartbeat（巡逻机制）**：每隔一段时间“主动抬头看一眼”，但有“没事就别打扰”的协议。
-- **Cron（排班表/定时器）**：把“什么时候该做什么”固化成可持久化的计划。
+- **Gateway (Headquarters)**: Reception, switchboard, and dispatch center. Handles authentication, connection management, routing, and scheduling.
+- **Agent (Employee)**: Receives tasks, reasons through steps, and decides which tools to call.
+- **Skills (SOPs / Playbooks)**: Tell employees "how to handle this type of task" and "how to use each tool."
+- **Channels (Customer Service Desks)**: Telegram, WhatsApp, Slack, WebChat — unified inbound and outbound messaging.
+- **Nodes (Remote Teams / Peripherals)**: Your other computer, phone, or tablet — capable of running commands, taking photos, recording screens, or rendering Canvas.
+- **Memory (Knowledge Base / Archives)**: Short-term conversation context + long-term files (file-based + retrievable).
+- **Heartbeat (Patrol System)**: Periodically "looks up to check," but follows a "don't disturb if nothing's happening" protocol.
+- **Cron (Shift Schedule / Timer)**: Persists "what to do and when" as durable scheduled jobs.
 
-接下来我们把这套公司机制，拆成一张架构图。
+Here is how these components connect:
 
 ```mermaid
 flowchart LR
-  U[用户: Telegram/WhatsApp/WebChat] --> C[Channels: 统一消息格式]
-  C --> G[Gateway: 鉴权/会话/路由/调度]
+  U[User: Telegram/WhatsApp/WebChat] --> C[Channels: Unified message format]
+  C --> G[Gateway: Auth/Session/Routing/Scheduling]
 
-  G --> A[Agent runtime: 推理 + 工具调用]
-  A --> S[Skills: 工具SOP/提示词/约束]
+  G --> A[Agent runtime: Reasoning + Tool calls]
+  A --> S[Skills: Tool SOPs/Prompts/Constraints]
 
   A --> T[Tools: read/exec/browser/message/...]
-  T --> H[(Host 本机)]
-  T --> N[Nodes: iOS/Android/macOS/远程主机]
+  T --> H[(Host machine)]
+  T --> N[Nodes: iOS/Android/macOS/Remote hosts]
 
-  A <--> M[Memory: workspace + 长期资料]
+  A <--> M[Memory: workspace + long-term files]
 
-  CR[Cron: 持久化定时] --> G
-  HB[Heartbeat: 周期性主会话轮询] --> A
+  CR[Cron: Persistent scheduler] --> G
+  HB[Heartbeat: Periodic main session polling] --> A
 
-  A --> R[回报: 同步回复/异步汇报]
+  A --> R[Response: Sync reply / Async report]
   R --> C --> U
 ```
 
 ---
 
-## 1. Gateway：为什么它是“控制平面”而不是“聊天机器人”
+## 1. Gateway: A Control Plane, Not a Chatbot
 
-在 OpenClaw 的官方定义里，Gateway 是一个常驻进程：**负责路由、控制、连接与安全边界**，而 Agent 只是其中被唤醒执行的一段运行时。
+In OpenClaw's official architecture, the Gateway is a long-running process responsible for **routing, control, connection management, and security boundaries**. The Agent is merely a runtime that gets invoked when needed.
 
-你可以把它理解为：
+Here is what the Gateway handles:
 
-1) **统一入口**：所有渠道（Telegram/WhatsApp/Slack/WebChat…）的入站消息，都会先到 Gateway。
+1) **Unified entry point**: All inbound messages from every channel (Telegram, WhatsApp, Slack, WebChat) hit the Gateway first.
 
-2) **鉴权与隔离**：Gateway 默认要求鉴权（token/password），并支持多实例/多 profile 做更严格隔离（不同端口、不同 state dir、不同 workspace）。
+2) **Authentication and isolation**: The Gateway requires authentication by default (token/password) and supports multi-instance / multi-profile configurations for stricter isolation (different ports, state directories, and workspaces).
 
-3) **会话与事件**：Gateway 维护 session transcript（JSONL），并通过 WebSocket 协议对外提供控制/事件流（连接挑战、presence、tick、heartbeat…）。
+3) **Sessions and events**: The Gateway maintains session transcripts (JSONL) and exposes a WebSocket-based control/event stream (connection challenges, presence, ticks, heartbeats, etc.).
 
-4) **请求路由**：把“某个 channel 的某个对话”路由到**哪个 agent**（以及哪个 workspace/工具权限）。这也是多用户隔离与多角色（main/work/research…）的基础。
+4) **Request routing**: Routes "a conversation from a specific channel" to the **correct agent** (with the right workspace and tool permissions). This is the foundation for multi-user isolation and multi-role setups (main/work/research, etc.).
 
-官方文档：
-- Gateway 运行手册（端口/绑定/热重载/协议概览）：https://docs.openclaw.ai/gateway
-- 协议与控制面概念（WS connect/hello-ok 等）：https://docs.openclaw.ai/gateway/protocol
+Official docs:
+- Gateway runbook (ports, binding, hot reload, protocol overview): https://docs.openclaw.ai/gateway
+- Protocol and control plane concepts (WS connect/hello-ok): https://docs.openclaw.ai/gateway/protocol
 
-> 这也是为什么 OpenClaw 更像“你自己的本地 AI 助理平台”，而不仅是一个 Bot：它把渠道、会话、调度、工具都收敛在一个可运维的控制平面里。
-
----
-
-## 2. Agent：不是“一个提示词”，而是一个可被调度的运行时
-
-很多人理解的 Agent = “system prompt + LLM”。在 OpenClaw 里，Agent 更接近一个运行时：
-
-- 有自己的 **workspace**（工具默认 cwd 与上下文注入来源）
-- 有自己的 **skills 集**（指导如何调用工具）
-- 有自己的 **sessions**（对话历史的持久化）
-- 有自己的 **队列策略**（steer/followup/collect 等，决定并发消息如何影响当前运行）
-
-官方文档里提到：OpenClaw 内置一个嵌入式 runtime（派生自 pi-mono），并把 session 管理、工具 wiring 这部分作为 OpenClaw 自己的能力来做。
-
-文档：
-- Agent runtime 概念说明：https://docs.openclaw.ai/concepts/agent
-- Workspace 作为“家”的规范：https://docs.openclaw.ai/concepts/agent-workspace
-
-你也可以结合站内文章理解“多角色 + 隔离”的价值：
-- [OpenClaw + Claude Code 的协作工作流](/posts/ai/2026-01-31-openclaw-claude-code-workflow/)
+> This is why OpenClaw feels more like "your own local AI assistant platform" than just a bot — it consolidates channels, sessions, scheduling, and tools into a single, operable control plane.
 
 ---
 
-## 3. Skills：把“会用工具”从模型能力变成工程能力
+## 2. Agent: Not Just a Prompt — A Schedulable Runtime
 
-你在草稿里把 Skills 写成“工具箱/标准接口”，这个方向是对的，但还可以更精确一点：
+Many people think of an Agent as "system prompt + LLM." In OpenClaw, the Agent is closer to a full runtime:
 
-- **Tools（工具）** 是“能力的 API”（例如 browser、exec、read/write、nodes、message…）
-- **Skills（技能）** 是“如何用这些 API 完成任务的可复用方法论 + 约束”
+- Has its own **workspace** (the default working directory for tools, and the source for context injection)
+- Has its own **skills set** (guides how tools are invoked)
+- Has its own **sessions** (persisted conversation history)
+- Has its own **queue strategy** (steer/followup/collect — controls how concurrent messages affect the current run)
 
-OpenClaw 使用的是与 AgentSkills 兼容的 skill 文件夹规范：一个 skill 目录里有 `SKILL.md`（带 YAML front matter），描述技能用途、触发方式、以及操作步骤。
+OpenClaw ships an embedded runtime (derived from pi-mono) and handles session management and tool wiring as first-class platform capabilities.
 
-这带来两个非常工程化的收益：
+Docs:
+- Agent runtime concepts: https://docs.openclaw.ai/concepts/agent
+- Workspace as "home": https://docs.openclaw.ai/concepts/agent-workspace
 
-1) **可审计**：你能读 skill 的文本，知道它会怎么做；它不是黑箱“模型自己想出来的”。
-2) **可移植**：同一个 skill 可以在不同 agent / 不同机器复用（甚至同步/发布）。
-
-官方文档：
-- Skills 机制（加载顺序、workspace 覆盖、gating、安全注意）：https://docs.openclaw.ai/tools/skills
-- AgentSkills 规范（生态层面）：https://agentskills.io
-
-站内延伸阅读（技能=新编程范式）：
-- [Agent Skills：AI 时代的新编程方式](/posts/ai/2026-01-19-agent-skills-new-programming/)
+Related reading on multi-role isolation:
+- [OpenClaw + Claude Code Collaboration Workflow](/posts/ai/2026-01-31-openclaw-claude-code-workflow/)
 
 ---
 
-## 4. Channels：把“多平台消息”统一成系统事件
+## 3. Skills: Turning Tool Usage from Model Talent into Engineering Discipline
 
-Channels 的价值不是“支持很多 IM”，而是把每个平台不同的消息结构（文本/图片/音频/引用/群规则）统一成：
+The distinction matters:
 
-- **入站事件**：来自谁、在哪个会话、是什么内容、带哪些媒体
-- **出站交付**：如何分块、如何格式化、怎么避免刷屏
+- **Tools** are capability APIs (browser, exec, read/write, nodes, message, etc.)
+- **Skills** are reusable methodologies + constraints for how to use those APIs to accomplish tasks
 
-这也是为什么 Heartbeat/Cron 的“输出交付”可以统一处理：它们最终仍走 channel adapter。
+OpenClaw uses the AgentSkills-compatible folder convention: each skill directory contains a `SKILL.md` (with YAML front matter) describing the skill's purpose, trigger conditions, and step-by-step procedures.
 
-官方文档（按平台拆分）：https://docs.openclaw.ai/channels
+This yields two critical engineering benefits:
 
----
+1) **Auditable**: You can read the skill text and know exactly what it will do. It is not a black box "the model figured out on its own."
+2) **Portable**: The same skill can be reused across different agents, different machines, and even published to a shared registry.
 
-## 5. Nodes：让“执行”跨出 Gateway 所在那台机器
+Official docs:
+- Skills mechanism (loading order, workspace overrides, gating, security): https://docs.openclaw.ai/tools/skills
+- AgentSkills specification (ecosystem-level): https://agentskills.io
 
-你草稿里提到“跨设备执行、心跳重连”。准确地说：
-
-- **Node 是外设/伴生设备**，连接到 Gateway 的同一个 WebSocket 端口，但以 role: node 身份握手。
-- Gateway 可以把某些 tool 调用（例如 system.run、camera、screen record、canvas）转发给 node 去执行。
-
-这让 OpenClaw 具备一个很关键的能力：
-
-> 模型运行在 Gateway 主机上，但执行面可以分散到多台设备（手机/平板/另一台电脑）。
-
-官方文档：
-- Nodes 概念与配对（devices approve、node host、exec approvals）：https://docs.openclaw.ai/nodes
-
-站内延伸（你会更关注“怎么用”，不是“是什么”）：
-- [OpenClaw 使用教程（含多渠道/配对/排障）](/posts/ai/2026-02-12-openclaw-usage-tutorial/)
+Related reading:
+- [Agent Skills: The New Programming Paradigm for AI](/posts/ai/2026-01-19-agent-skills-new-programming/)
 
 ---
 
-## 6. Memory：短期上下文 + 长期资料，为什么“文件化”比“塞进提示词”更可靠
+## 4. Channels: Unifying Multi-Platform Messages into System Events
 
-在 OpenClaw 体系里，Memory 通常分两层：
+The value of Channels is not "supporting lots of messengers." It is normalizing each platform's different message structures (text, images, audio, quotes, group rules) into:
 
-- **短期**：当前 session 的对话历史（由 Gateway 持久化为 JSONL）
-- **长期**：workspace 里的文件（例如 `memory/YYYY-MM-DD.md`、`MEMORY.md`、项目资料 Markdown 等），必要时再配合检索/摘要
+- **Inbound events**: Who sent it, which conversation, what content, which media attachments
+- **Outbound delivery**: How to chunk, how to format, how to avoid flooding
 
-这种“文件化记忆”的思路，在长期运行的个人助手里特别关键：
+This is also why Heartbeat and Cron outputs can be delivered uniformly — they ultimately go through channel adapters.
 
-- 你可以手动编辑/纠错（对抗模型幻觉）
-- 你可以做版本管理（git）
-- 你可以做隐私边界（哪些文件只在 main 私聊加载，哪些不加载）
-
-站内文章建议你配套阅读：
-- [OpenClaw 的 Memory Strategy（怎么组织长期记忆）](/posts/ai/2026-01-31-openclaw-memory-strategy/)
-- [ClaudeMD vs README：把知识放在哪更有效](/posts/ai/2026-01-31-claudemd-vs-readme/)
-- [Claude 的记忆与文档协作指南](/posts/ai/2026-01-12-claudemd-memory-guide/)
+Official docs (organized by platform): https://docs.openclaw.ai/channels
 
 ---
 
-## 7. Heartbeat：为什么它能“主动”，又不会一直打扰你
+## 5. Nodes: Extending Execution Beyond the Gateway Machine
 
-Heartbeat 的核心不是“定时跑一下模型”，而是一个**响应契约（response contract）**：
+Nodes are companion devices that connect to the Gateway's WebSocket port with a `role: node` handshake. The Gateway can then forward specific tool calls (system.run, camera, screen record, canvas) to a node for execution.
 
-- Gateway 会周期性触发 main session 的 agent turn
-- 如果模型判断“没事”，必须回复 `HEARTBEAT_OK`
-- Gateway 会把 `HEARTBEAT_OK` 当作 ack，并在内容很短时**直接丢弃**，避免把“我没事”刷到你的聊天里
+This gives OpenClaw a critical capability:
 
-这很像一个“巡逻系统”的设计：
+> The model runs on the Gateway host, but the execution surface can span multiple devices — phones, tablets, and other computers.
 
-- 有事才报警
-- 没事就静默
+Official docs:
+- Nodes concepts and pairing (device approval, node hosting, exec approvals): https://docs.openclaw.ai/nodes
 
-官方文档（强烈建议读）：
-- Heartbeat 机制与配置：https://docs.openclaw.ai/gateway/heartbeat
+Related reading:
+- [OpenClaw Setup Tutorial (including multi-channel, pairing, troubleshooting)](/posts/ai/2026-02-12-openclaw-usage-tutorial/)
 
 ---
 
-## 8. Cron：把“什么时候做什么”变成可持久化的调度系统
+## 6. Memory: Why File-Based Storage Beats Prompt Stuffing
 
-Cron 是 Gateway 内置 scheduler。它和 Heartbeat 的关系可以这样理解：
+In OpenClaw's system, Memory operates on two layers:
 
-- **Cron 负责“到点叫醒谁”**（持久化、重启不丢）
-- **Heartbeat 负责“被叫醒后用主会话上下文巡逻/执行 system event”**
+- **Short-term**: Current session conversation history (persisted by the Gateway as JSONL)
+- **Long-term**: Files in the workspace (`memory/YYYY-MM-DD.md`, `MEMORY.md`, project documentation in Markdown, etc.), with retrieval and summarization as needed
 
-更关键的点在于：Cron 有两种执行风格：
+This file-based memory approach is especially powerful for long-running personal assistants:
 
-1) **Main session job（systemEvent）**
-- Cron 只是往主会话塞一个系统事件
-- 事件通常在下一次 Heartbeat 执行（也可以 wake now 立即触发）
+- You can manually edit and correct entries (fighting hallucinations)
+- You can version-control everything (git)
+- You can set privacy boundaries (which files load in private main chat vs. which do not)
 
-2) **Isolated job（agentTurn）**
-- Cron 直接跑一个隔离会话 `cron:<jobId>` 的 agent turn
-- 默认可“announce”把结果投递到目标聊天，同时给主会话留一条摘要
-
-这解决了后台自动化最常见的问题：
-
-- “每天早上汇总”这种任务，不应该污染你的主对话上下文
-- 但你仍然希望它**按时运行 + 结果可交付**
-
-官方文档：
-- Cron jobs（执行风格、存储位置、交付模式）：https://docs.openclaw.ai/automation/cron-jobs
+Related reading:
+- [OpenClaw Memory Strategy: How to Organize Long-Term Memory](/posts/ai/2026-01-31-openclaw-memory-strategy/)
+- [ClaudeMD vs README: Where to Put Knowledge Effectively](/posts/ai/2026-01-31-claudemd-vs-readme/)
+- [Claude Memory and Documentation Collaboration Guide](/posts/ai/2026-01-12-claudemd-memory-guide/)
 
 ---
 
-## 9. 端到端例子：一条指令如何从消息变成“真正干活”
+## 7. Heartbeat: Proactive Without Being Annoying
 
-我们用一个具体例子串起来：
+The Heartbeat is not "run the model on a timer." It is a **response contract**:
 
-> “每周一早上 9 点，帮我汇总上周 GitHub 的 PR 和本周日历安排，发到 Telegram。”
+- The Gateway periodically triggers an agent turn in the main session
+- If the model determines "nothing to report," it must respond with `HEARTBEAT_OK`
+- The Gateway treats `HEARTBEAT_OK` as an acknowledgment and **silently discards** short responses, preventing "I'm fine" messages from flooding your chat
 
-### 9.1 一次性配置（Cron 创建）
+Think of it as a patrol system:
 
-- 你用 CLI / UI 创建 cron job（持久化在 Gateway）：
-  - schedule：每周一 09:00（带时区）
-  - sessionTarget：isolated（避免污染主对话）
-  - payload：agentTurn（一个明确的汇总指令）
-  - delivery：announce → telegram/to=<chatId>
+- Sound the alarm only when something needs attention
+- Stay silent otherwise
 
-### 9.2 到点触发（Cron → Gateway）
-
-- Cron 到点触发
-- Gateway 创建一次 isolated agent turn（新的 session，不继承历史）
-
-### 9.3 推理与执行（Agent → Skills → Tools）
-
-- Agent 读取 skill：知道怎么调用 browser（登录 GitHub、筛选 PR）、怎么读取日历（取决于你装的 skill/plugin）
-- Agent 调用工具：
-  - browser：打开 GitHub 页面、抓取列表
-  - read/write：生成 Markdown 摘要（落盘到 workspace，形成长期资料）
-
-### 9.4 结果交付（delivery → Channels）
-
-- Cron “announce” 把结果走 Telegram adapter 发出去
-- 同时在 main session 留一个简短 summary（可选）
-
-这个链路里，**Gateway 永远是调度与路由者**，Agent 永远是被唤醒的执行者；Skills 让执行可复制；Nodes 让执行跨设备；Heartbeat/Cron 让它可持续。
+Official docs (strongly recommended):
+- Heartbeat mechanism and configuration: https://docs.openclaw.ai/gateway/heartbeat
 
 ---
 
-## 10. 常见误解与工程建议（少踩坑）
+## 8. Cron: Persistent Scheduling That Survives Restarts
 
-1) **把“自动化”理解成“模型自己会”**
-- 更可靠的做法：把 SOP 写成 skills，把状态写进文件（workspace/memory），让自动化变成可维护的系统。
+Cron is the Gateway's built-in scheduler. Its relationship to Heartbeat:
 
-2) **后台任务污染主对话**
-- 优先用 cron isolated + announce。
-- 主会话只保留高价值上下文。
+- **Cron decides "when to wake whom"** (persistent, survives restarts)
+- **Heartbeat handles "what to do once awake in the main session context"**
 
-3) **跨设备执行不等于远程控制一切**
-- Nodes 的执行权限要配合 allowlist/approvals；默认应该保守。
+Cron supports two execution styles:
 
-如果你对“OpenClaw 自动化会踩的坑”更感兴趣，可以读我同日写的排坑清单：
-- [OpenClaw 自动化常见坑与规避策略](/posts/ai/2026-02-14-openclaw-automation-pitfalls/)
+1) **Main session job (systemEvent)**
+- Cron injects a system event into the main session
+- The event is typically processed during the next Heartbeat cycle (or immediately via "wake now")
+
+2) **Isolated job (agentTurn)**
+- Cron runs an agent turn in an isolated session (`cron:<jobId>`)
+- Can "announce" results to a target chat while leaving a brief summary in the main session
+
+This solves the most common background automation problem:
+
+- A "daily morning summary" task should not pollute your main conversation context
+- But you still want it to **run on schedule and deliver results**
+
+Official docs:
+- Cron jobs (execution styles, storage, delivery modes): https://docs.openclaw.ai/automation/cron-jobs
 
 ---
 
-## 相关阅读（站内）
+## 9. End-to-End Example: From Message to Execution
 
-- [OpenClaw 超详细上手教程](/posts/ai/2026-02-12-openclaw-usage-tutorial/)
-- [OpenClaw 的 Memory Strategy](/posts/ai/2026-01-31-openclaw-memory-strategy/)
-- [OpenClaw + Claude Code 的协作工作流](/posts/ai/2026-01-31-openclaw-claude-code-workflow/)
-- [Agent Skills：AI 时代的新编程方式](/posts/ai/2026-01-19-agent-skills-new-programming/)
+Let us trace a concrete example through the entire system:
+
+> "Every Monday at 9 AM, summarize last week's GitHub PRs and this week's calendar, then send it to Telegram."
+
+### 9.1 One-Time Setup (Creating the Cron Job)
+
+- You create a cron job via CLI or UI (persisted in the Gateway):
+  - schedule: Every Monday 09:00 (with timezone)
+  - sessionTarget: isolated (avoid polluting the main conversation)
+  - payload: agentTurn (an explicit summarization instruction)
+  - delivery: announce to telegram/to=\<chatId\>
+
+### 9.2 Trigger (Cron to Gateway)
+
+- Cron fires at the scheduled time
+- Gateway creates an isolated agent turn (new session, no inherited history)
+
+### 9.3 Reasoning and Execution (Agent to Skills to Tools)
+
+- Agent loads the relevant skill: knows how to call browser (log into GitHub, filter PRs) and how to read calendar (depends on installed skill/plugin)
+- Agent invokes tools:
+  - browser: Opens GitHub page, extracts PR list
+  - read/write: Generates a Markdown summary (saved to workspace for long-term reference)
+
+### 9.4 Result Delivery (Delivery to Channels)
+
+- Cron's "announce" sends results through the Telegram adapter
+- Optionally leaves a brief summary in the main session
+
+In this pipeline, **the Gateway is always the scheduler and router**, the Agent is always the invoked executor. Skills make execution reproducible. Nodes make execution cross-device. Heartbeat and Cron make it continuous.
+
+---
+
+## 10. Common Misconceptions and Engineering Advice
+
+1) **Assuming "automation" means "the model just knows"**
+- The reliable approach: Write SOPs as skills, persist state as files (workspace/memory), and turn automation into a maintainable system.
+
+2) **Background tasks polluting the main conversation**
+- Prefer cron isolated + announce.
+- Keep only high-value context in the main session.
+
+3) **Cross-device execution does not mean remote-control everything**
+- Node execution permissions should use allowlists and approvals. Default to conservative settings.
+
+For more on automation pitfalls, see my companion article:
+- [OpenClaw Automation Pitfalls and How to Avoid Them](/posts/ai/2026-02-14-openclaw-automation-pitfalls/)
+
+---
+
+## Related Reading (Internal)
+
+- [OpenClaw Complete Setup Tutorial](/posts/ai/2026-02-12-openclaw-usage-tutorial/)
+- [OpenClaw Memory Strategy](/posts/ai/2026-01-31-openclaw-memory-strategy/)
+- [OpenClaw + Claude Code Collaboration Workflow](/posts/ai/2026-01-31-openclaw-claude-code-workflow/)
+- [Agent Skills: The New Programming Paradigm for AI](/posts/ai/2026-01-19-agent-skills-new-programming/)
 - [ClaudeMD vs README](/posts/ai/2026-01-31-claudemd-vs-readme/)
 
-## 相关阅读（外链）
+## Related Reading (External)
 
-- OpenClaw GitHub：https://github.com/openclaw/openclaw
-- Gateway Runbook：https://docs.openclaw.ai/gateway
-- Heartbeat：https://docs.openclaw.ai/gateway/heartbeat
-- Cron jobs：https://docs.openclaw.ai/automation/cron-jobs
-- Skills（AgentSkills 兼容）：https://docs.openclaw.ai/tools/skills
-- AgentSkills 规范：https://agentskills.io
+- OpenClaw GitHub: https://github.com/openclaw/openclaw
+- Gateway Runbook: https://docs.openclaw.ai/gateway
+- Heartbeat: https://docs.openclaw.ai/gateway/heartbeat
+- Cron jobs: https://docs.openclaw.ai/automation/cron-jobs
+- Skills (AgentSkills compatible): https://docs.openclaw.ai/tools/skills
+- AgentSkills specification: https://agentskills.io

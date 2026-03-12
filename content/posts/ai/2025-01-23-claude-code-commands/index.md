@@ -1,197 +1,196 @@
 +++
 date = '2026-01-23'
 draft = false
-title = 'Claude Code 高手都在用的 24 个技巧'
-description = 'Claude Code 24 个实用技巧合集：从安装启动、快捷键、CLAUDE.md 配置到 MCP 集成、自定义 Slash 命令和 Hooks 自动化，助你把终端 AI 编程助手用到极致'
-tags = ['AI', 'Claude Code', 'CLI', '开发工具', '效率']
-categories = ['AI实战']
+title = 'Claude Code: 24 Power Tips to Master the AI Terminal'
+description = 'Master Claude Code with 24 practical tips covering shortcuts, CLAUDE.md config, MCP integration, custom slash commands, session management, and cost control for AI-powered terminal coding.'
 toc = true
-keywords = ['Claude Code 技巧', 'Claude Code 教程', 'AI 编程助手', 'Claude CLI']
+tags = ['AI', 'Claude Code', 'CLI', 'Developer Tools', 'Productivity']
+categories = ['AI Guides']
+keywords = ['Claude Code tips', 'Claude Code tutorial', 'AI coding assistant', 'Claude CLI tricks', 'Claude Code shortcuts', 'Claude Code MCP']
 +++
 
-Claude Code 是 Anthropic 推出的命令行 AI 编程助手。它不是一个简单的聊天机器人，而是一个能直接在你的终端里读代码、写代码、执行命令的智能助手。本文整理了 24 个实用技巧，帮你把 Claude Code 用到极致。
+Claude Code is Anthropic's command-line AI coding assistant. It's not just a chatbot — it reads your code, writes files, and executes commands directly in your terminal. Here are 24 power tips to help you get the most out of it.
 
+![Claude Code Homepage](claude-code-homepage.webp)
 
+## Part 1: Getting Started in 5 Minutes
 
-![Claude Code 官网](claude-code-homepage.webp)
-
-## 第一部分：5 分钟快速上手
-
-### 安装 Claude Code
+### Installing Claude Code
 
 ```bash
-# 一行命令安装
+# One-line install
 curl -fsSL https://claude.ai/install.sh | bash
 ```
 
-### 三种启动方式
+### Three Ways to Launch
 
 ```bash
-# 方式一：直接启动交互式会话
+# Option 1: Start an interactive session
 claude
 
-# 方式二：带问题启动
-claude "帮我看看这个项目的目录结构"
+# Option 2: Launch with a prompt
+claude "Show me the directory structure of this project"
 
-# 方式三：非交互模式（适合脚本调用）
-claude -p "生成一个 .gitignore 文件"
+# Option 3: Non-interactive mode (great for scripts)
+claude -p "Generate a .gitignore file"
 ```
 
-启动后，你会看到一个交互界面，直接输入问题即可开始对话。输入 `/help` 查看帮助，输入 `/exit` 退出。
+Once launched, you'll see an interactive interface where you can type questions directly. Type `/help` for help or `/exit` to quit.
 
 ---
 
-## 第二部分：核心操作技巧
+## Part 2: Core Usage Tips
 
-这部分是日常使用最频繁的技巧，建议优先掌握。
+These are the most frequently used techniques. Master them first.
 
-### 技巧 1：描述需求要具体
+### Tip 1: Be Specific in Your Requests
 
-Claude 不是你肚子里的蛔虫，模糊的描述只会得到模糊的回答。
-
-```bash
-# ❌ 模糊的需求
-> 优化一下这个函数
-
-# ✅ 具体的需求
-> 优化 src/utils/parser.js 中的 parseJSON 函数，
-> 当前处理 10MB 文件需要 5 秒，希望能降到 1 秒以内，
-> 可以考虑流式解析或分块处理
-```
-
-**要点**：说清楚「哪个文件」「什么问题」「期望结果」。
-
-### 技巧 2：复杂任务分步执行
-
-一次性让 Claude 完成整个系统，它可能会遗漏细节或超出上下文限制。
+Vague prompts produce vague results. Give Claude the details it needs.
 
 ```bash
-# ❌ 一步到位（容易出问题）
-> 帮我开发一个完整的博客系统，包含用户、文章、评论功能
+# ❌ Too vague
+> Optimize this function
 
-# ✅ 分步推进（可控且可验证）
-> 第一步：设计博客系统的数据库表结构，包含用户、文章、评论三个实体
-# 确认设计后...
-> 第二步：根据刚才的设计，实现用户注册和登录的 API
-# 测试通过后...
-> 第三步：实现文章的 CRUD 接口
+# ✅ Specific and actionable
+> Optimize the parseJSON function in src/utils/parser.js.
+> It currently takes 5 seconds to process a 10MB file.
+> Target: under 1 second. Consider streaming or chunked parsing.
 ```
 
-**要点**：每完成一步，验证后再进行下一步。
+**Key rule**: Always specify the file, the problem, and the expected outcome.
 
-### 技巧 3：先让 Claude 熟悉项目
+### Tip 2: Break Complex Tasks Into Steps
 
-在让 Claude 写代码之前，先让它了解你的项目。
+Asking Claude to build an entire system at once often leads to missed details or context overflow.
 
 ```bash
-# 了解项目全貌
-> 分析这个项目的目录结构和技术栈，告诉我主要模块的功能
+# ❌ All at once (error-prone)
+> Build a complete blog system with users, posts, and comments
 
-# 理解特定模块
-> 阅读 src/services/payment 目录，理解支付流程是怎么实现的
-
-# 学习代码风格
-> 看看 src/controllers 目录下的代码，总结这个项目的代码规范
+# ✅ Step by step (controllable and verifiable)
+> Step 1: Design the database schema for users, posts, and comments
+# Review the design...
+> Step 2: Implement user registration and login APIs based on that schema
+# Test it...
+> Step 3: Implement CRUD endpoints for posts
 ```
 
-Claude 熟悉项目后，写出的代码会更符合你的项目风格。
+**Key rule**: Verify each step before moving to the next.
 
-### 技巧 4：方向不对立即打断
+### Tip 3: Let Claude Understand Your Project First
 
-Claude 执行任务时，如果发现方向偏了，**立即按 `Esc` 键中断**。
+Before asking Claude to write code, let it explore your codebase.
 
 ```bash
-> 重构用户认证模块
-# Claude 开始执行，但你发现它在改不该改的文件...
+# Get an overview
+> Analyze this project's directory structure and tech stack
 
-# 按 Esc 中断（不是 Ctrl+C，那个会退出程序）
+# Understand a specific module
+> Read through src/services/payment and explain the payment flow
 
-> 停一下，只重构 src/auth 目录，不要动 src/user 目录的代码
+# Learn the code style
+> Look at the code in src/controllers and summarize the coding conventions
 ```
 
-**要点**：`Esc` 是中断，`Ctrl+C` 是退出。发现问题及时止损。
+Once Claude understands your project, its output will better match your existing patterns.
 
-### 技巧 5：截图辅助沟通
+### Tip 4: Interrupt Immediately When Things Go Wrong
 
-遇到 UI 问题？截图发给 Claude 比描述半天更高效。
+If Claude starts heading in the wrong direction, **press `Esc` to interrupt immediately**.
 
 ```bash
-# Mac 截图到剪贴板：Cmd + Ctrl + Shift + 4
-# 然后在 Claude Code 中按 Ctrl+V 粘贴（注意不是 Cmd+V）
+> Refactor the authentication module
+# Claude starts executing but touches files it shouldn't...
 
-> [粘贴截图]
-> 这个登录表单的样式有问题，输入框应该有圆角，按钮颜色应该是 #1890ff
+# Press Esc to interrupt (NOT Ctrl+C — that exits the program)
+
+> Stop. Only refactor files in src/auth. Don't touch src/user.
 ```
 
-也可以直接把图片文件拖拽到终端窗口。
+**Key rule**: `Esc` interrupts the task. `Ctrl+C` exits the program. Catch mistakes early.
 
-### 技巧 6：@ 符号快速引用文件
+### Tip 5: Use Screenshots for UI Issues
 
-用 `@` 可以快速引用文件，让 Claude 直接读取：
+Got a UI problem? A screenshot is worth a thousand words.
 
 ```bash
-# 引用单个文件
-> 帮我优化 @src/utils/helper.ts 这个文件的性能
+# Mac: Cmd + Ctrl + Shift + 4 to capture to clipboard
+# Then press Ctrl+V in Claude Code (not Cmd+V)
 
-# 引用多个文件
-> 对比 @package.json 和 @package-lock.json，检查依赖版本是否一致
-
-# 引用目录
-> 分析 @src/components/ 目录的组件结构
+> [paste screenshot]
+> The login form styling is broken. Inputs should have rounded corners
+> and the button color should be #1890ff.
 ```
 
-比起让 Claude 自己去找文件，直接 `@` 引用更精准。
+You can also drag and drop image files directly into the terminal window.
+
+### Tip 6: Reference Files with @
+
+Use `@` to quickly reference files so Claude reads them directly:
+
+```bash
+# Reference a single file
+> Optimize the performance of @src/utils/helper.ts
+
+# Reference multiple files
+> Compare @package.json and @package-lock.json for version mismatches
+
+# Reference a directory
+> Analyze the component structure in @src/components/
+```
+
+Direct `@` references are faster and more precise than having Claude search for files.
 
 ---
 
-## 第三部分：效率提升技巧
+## Part 3: Productivity Boosters
 
-掌握这些技巧，工作效率翻倍。
+Master these to dramatically speed up your workflow.
 
-### 技巧 7：掌握常用快捷键
+### Tip 7: Learn the Essential Shortcuts
 
-记住这几个核心快捷键，手不用离开键盘：
+Memorize these core shortcuts to keep your hands on the keyboard:
 
-| 场景 | 快捷键 | 说明 |
-|------|--------|------|
-| 中断任务 | `Esc` | 停止当前执行 |
-| 撤销操作 | `Esc` + `Esc` | 回滚代码和对话 |
-| 输入换行 | `Option+Enter` (Mac) | 输入多行内容 |
-| 切换模型 | `Option+P` (Mac) | 快速切换模型 |
-| 粘贴图片 | `Ctrl+V` (Mac) | 发送截图 |
-| 后台运行 | `Ctrl+B` | 任务放后台 |
+| Action | Shortcut | Notes |
+|--------|----------|-------|
+| Interrupt task | `Esc` | Stop current execution |
+| Undo operation | `Esc` + `Esc` | Roll back code and conversation |
+| Newline in input | `Option+Enter` (Mac) | Enter multi-line content |
+| Switch model | `Option+P` (Mac) | Quick model toggle |
+| Paste image | `Ctrl+V` (Mac) | Send screenshot |
+| Background task | `Ctrl+B` | Send task to background |
 
-完整快捷键列表见文末附录。
+See the full shortcut reference in the appendix.
 
-### 技巧 8：Bash 快捷模式
+### Tip 8: Quick Bash Execution
 
-用 `!` 前缀可以直接执行命令，无需 Claude 解释执行：
+Prefix commands with `!` to execute them directly without Claude's interpretation:
 
 ```bash
-# 直接执行，不经过 Claude 解释
+# Direct execution, bypassing Claude
 > ! npm test
 > ! git status
 > ! docker ps
 
-# 支持 Tab 自动补全
-> ! npm run b<Tab>  # 自动补全为 npm run build
+# Supports Tab auto-completion
+> ! npm run b<Tab>  # Auto-completes to npm run build
 ```
 
-适合执行简单命令，省去确认步骤。
+Great for simple commands where you don't need Claude's analysis.
 
-### 技巧 9：免授权模式
+### Tip 9: Skip Permission Prompts
 
-频繁弹出的授权确认很打断心流，可以预设允许的操作：
+Constant permission prompts break your flow. Pre-approve operations you trust:
 
-**方式一：启动时跳过所有权限（⚠️ 仅在可信环境使用）**
+**Option 1: Skip all permissions at startup (use only in trusted environments)**
 
 ```bash
 claude --dangerously-skip-permissions
 ```
 
-**方式二：在配置中预设允许的命令（推荐）**
+**Option 2: Pre-configure allowed commands (recommended)**
 
-编辑 `~/.claude/settings.json`：
+Edit `~/.claude/settings.json`:
 
 ```json
 {
@@ -207,519 +206,519 @@ claude --dangerously-skip-permissions
 }
 ```
 
-这样 npm、git、docker 相关命令以及文件读写就不会再弹确认了。
+This allows npm, git, docker commands plus file read/write without confirmation prompts.
 
-### 技巧 10：会话恢复
+### Tip 10: Resume Previous Sessions
 
-下班关机，第二天继续昨天的工作：
+Pick up where you left off across sessions:
 
 ```bash
-# 继续最近一次对话
+# Continue the most recent conversation
 claude -c
-# 或
+# or
 claude --continue
 
-# 查看历史会话列表
+# Browse session history
 claude -r
-# 或
+# or
 claude --resume
 
-# 恢复指定会话（支持模糊匹配）
-claude -r "重构认证"
+# Resume a specific session (supports fuzzy matching)
+claude -r "auth refactor"
 ```
 
-**给会话起个好名字**，方便以后查找：
+**Name your sessions** for easy retrieval:
 
 ```bash
-# 在会话中重命名
-> /rename 支付模块重构
+# Rename the current session
+> /rename payment-module-refactor
 
-# 下次直接恢复
-$ claude -r "支付模块"
+# Resume it later
+$ claude -r "payment"
 ```
 
-### 技巧 11：后台任务不阻塞
+### Tip 11: Background Long-Running Tasks
 
-长任务放后台，继续做其他事：
+Send time-consuming tasks to the background and keep working:
 
 ```bash
-# 按 Ctrl+B 把当前任务放后台
-> 帮我重构整个 services 目录
-# 执行中... 按 Ctrl+B
+# Press Ctrl+B to background the current task
+> Refactor the entire services directory
+# While executing... press Ctrl+B
 
-# 任务在后台继续运行，你可以继续输入其他问题
-> 另一个问题：这个 bug 怎么修？
+# The task continues in the background while you work on other things
+> Different question: how do I fix this bug?
 
-# 查看后台任务状态
+# Check background task status
 > /tasks
 ```
 
-适合耗时较长的任务，比如大规模重构、批量文件处理。
+Ideal for large refactors, batch file processing, or any task that takes a while.
 
 ---
 
-## 第四部分：智能助手用法
+## Part 4: AI-Powered Terminal
 
-让 Claude 成为你的智能终端。
+Turn Claude into your intelligent command-line interface.
 
-### 技巧 12：自然语言操作 Git
+### Tip 12: Natural Language Git Operations
 
-忘记 Git 命令？用自然语言就行：
+Forget Git command syntax — just describe what you want:
 
 ```bash
-# 查看状态
-> 我今天改了哪些文件？
-> 最近一周的提交记录
+# Check status
+> What files did I change today?
+> Show me the commits from the last week
 
-# 提交代码
-> 把修改提交一下，消息写"修复用户头像上传失败的问题"
+# Commit changes
+> Commit my changes with message "Fix avatar upload failure"
 
-# 分支操作
-> 基于 main 创建新分支 feature/payment
-> 把 feature/payment 合并到 develop
+# Branch operations
+> Create a new branch feature/payment from main
+> Merge feature/payment into develop
 
-# 回滚操作
-> 撤销上一次提交，但保留代码修改
-> 把 config.js 恢复到上一个版本
+# Rollback
+> Undo the last commit but keep the code changes
+> Revert config.js to the previous version
 ```
 
-### 技巧 13：自然语言执行系统命令
+### Tip 13: Natural Language System Commands
 
-不用记复杂的命令参数：
+No need to memorize complex command flags:
 
 ```bash
-# 查找文件
-> 找出 src 目录下所有超过 500 行的 TypeScript 文件
-> 列出最近 24 小时内修改过的 .vue 文件
+# Find files
+> Find all TypeScript files over 500 lines in src/
+> List .vue files modified in the last 24 hours
 
-# 进程管理
-> 看看 3000 端口被谁占用了
-> 把所有 node 进程都杀掉
+# Process management
+> What's using port 3000?
+> Kill all node processes
 
-# 日志分析
-> 统计 nginx access.log 中状态码 500 的请求数量
-> 找出 error.log 中出现最频繁的 10 种错误
+# Log analysis
+> Count HTTP 500 errors in nginx access.log
+> Find the 10 most frequent errors in error.log
 
-# 批量操作
-> 把 src 目录下所有 .jsx 文件重命名为 .tsx
-> 删除项目中所有的 .DS_Store 文件
+# Batch operations
+> Rename all .jsx files to .tsx in the src directory
+> Delete all .DS_Store files in the project
 ```
 
-### 技巧 14：管道输入分析数据
+### Tip 14: Pipe Data for Analysis
 
-把命令输出直接喂给 Claude 分析：
+Feed command output directly to Claude for analysis:
 
 ```bash
-# 分析测试结果
-$ npm test 2>&1 | claude -p "分析测试失败的原因"
+# Analyze test results
+$ npm test 2>&1 | claude -p "Analyze why these tests are failing"
 
-# 分析日志
-$ tail -100 error.log | claude -p "这些错误有什么共同点？"
+# Analyze logs
+$ tail -100 error.log | claude -p "What do these errors have in common?"
 
-# 分析 Git 历史
-$ git log --oneline -20 | claude -p "总结最近的开发工作"
+# Analyze Git history
+$ git log --oneline -20 | claude -p "Summarize recent development work"
 
-# 分析依赖
-$ npm outdated | claude -p "哪些依赖需要优先升级？"
+# Analyze dependencies
+$ npm outdated | claude -p "Which dependencies should I upgrade first?"
 ```
 
-### 技巧 15：激活深度思考
+### Tip 15: Trigger Deep Thinking
 
-遇到复杂问题，用关键词触发更深入的分析：
+For complex problems, use keywords to activate deeper reasoning:
 
-| 关键词 | 思考深度 | 适用场景 | Token 消耗 |
-|--------|----------|----------|------------|
-| `think` | 基础 | 简单问题 | 低 |
-| `think hard` | 中等 | 需要权衡的问题 | 中 |
-| `think harder` | 深入 | 架构设计问题 | 高 |
-| `ultrathink` | 最深 | 复杂系统设计 | 很高 |
+| Keyword | Depth | Best For | Token Cost |
+|---------|-------|----------|------------|
+| `think` | Basic | Simple questions | Low |
+| `think hard` | Medium | Trade-off decisions | Medium |
+| `think harder` | Deep | Architecture design | High |
+| `ultrathink` | Maximum | Complex system design | Very high |
 
 ```bash
-# 简单问题用 think
-> think 这个正则表达式为什么匹配不到
+# Simple problems
+> think Why doesn't this regex match?
 
-# 架构问题用 think harder
-> think harder 设计一个支持百万用户的消息推送系统，
-> 要考虑实时性、可靠性、成本
+# Architecture decisions
+> think harder Design a push notification system for 1M users,
+> considering real-time delivery, reliability, and cost
 
-# 最复杂的问题用 ultrathink（谨慎使用，消耗大）
-> ultrathink 重新设计这个单体应用的微服务拆分方案
+# Most complex problems (use sparingly — expensive)
+> ultrathink Redesign this monolith's microservice decomposition
 ```
 
-### 技巧 16：计划模式先想后做
+### Tip 16: Plan Mode — Think Before Acting
 
-面对复杂任务，让 Claude 先出方案再动手，避免返工：
+For complex tasks, have Claude create a plan before making changes:
 
 ```bash
-# 进入计划模式
+# Enter plan mode
 > /plan
 
-# 或者启动时指定
+# Or start with plan mode
 $ claude --permission-mode plan
 ```
 
-计划模式下，Claude 会：
-1. 分析任务需求
-2. 列出实现步骤
-3. 标注要修改的文件
-4. **等你确认后才开始执行**
+In plan mode, Claude will:
+1. Analyze the requirements
+2. List implementation steps
+3. Identify files to modify
+4. **Wait for your approval before executing**
 
 ```bash
-# 示例：重构一个复杂模块
+# Example: refactoring a complex module
 > /plan
-> 重构订单模块，把单体代码拆分成独立的服务层、仓储层、控制层
+> Refactor the order module into separate service, repository, and controller layers
 
-# Claude 会输出详细计划：
-# 1. 创建 services/order.service.ts
-# 2. 创建 repositories/order.repository.ts
-# 3. 修改 controllers/order.controller.ts
-# 4. 更新相关的测试文件
+# Claude outputs a detailed plan:
+# 1. Create services/order.service.ts
+# 2. Create repositories/order.repository.ts
+# 3. Modify controllers/order.controller.ts
+# 4. Update related test files
 # ...
 
-# 确认计划没问题后，输入 y 开始执行
+# Approve the plan to start execution
 ```
 
-**适用场景**：重构、架构调整、涉及多文件的改动。
+**Best for**: Refactoring, architecture changes, multi-file modifications.
 
-### 技巧 17：多目录协同工作
+### Tip 17: Multi-Directory Workspaces
 
-前后端分离？微服务架构？用 `/add-dir` 让 Claude 同时理解多个项目：
+Working with a split frontend/backend or microservices? Use `/add-dir` to give Claude visibility across projects:
 
 ```bash
-# 添加关联目录
+# Add related directories
 > /add-dir ../backend-api
 > /add-dir ../shared-types
 
-# 现在 Claude 可以跨项目理解代码
-> 前端调用了 /api/users 接口，帮我看看后端是怎么实现的
+# Now Claude can understand cross-project relationships
+> The frontend calls /api/users — show me the backend implementation
 
-> shared-types 里定义的 UserDTO 类型，前后端用的是同一个吗？
+> Is the UserDTO type in shared-types the same one used by both frontend and backend?
 ```
 
-**典型场景**：
+**Common scenarios**:
 
 ```bash
-# 全栈项目
-> /add-dir ../server    # 添加后端
-> /add-dir ../mobile    # 添加移动端
+# Full-stack project
+> /add-dir ../server    # Add backend
+> /add-dir ../mobile    # Add mobile app
 
-# 微服务项目
+# Microservices
 > /add-dir ../user-service
 > /add-dir ../order-service
 > /add-dir ../gateway
 
-# 然后可以问跨服务的问题
-> 用户服务和订单服务之间是怎么通信的？
+# Then ask cross-service questions
+> How do the user service and order service communicate?
 ```
 
 ---
 
-## 第五部分：个性化配置
+## Part 5: Personalization
 
-打造专属的 AI 编程助手。
+Customize Claude Code to fit your workflow.
 
-### 技巧 18：善用记忆系统（CLAUDE.md）
+### Tip 18: Use the Memory System (CLAUDE.md)
 
-CLAUDE.md 是 Claude 的「记忆文件」，用来存储项目信息和你的偏好。
+CLAUDE.md is Claude's memory file for storing project context and your preferences.
 
-**文件位置优先级**（从高到低）：
+**File priority** (highest to lowest):
 
 ```
-./CLAUDE.md              # 项目级，随代码提交，团队共享
-./.claude/CLAUDE.md      # 项目配置
-~/.claude/CLAUDE.md      # 全局个人偏好
+./CLAUDE.md              # Project-level, committed to repo, shared with team
+./.claude/CLAUDE.md      # Project config
+~/.claude/CLAUDE.md      # Global personal preferences
 ```
 
-**快速添加记忆**：
+**Quick memory entries**:
 
 ```bash
-# 用 # 前缀快速添加
-> # 这个项目用 pnpm 不是 npm
-> # 提交信息用中文
-> # API 响应统一用 { code, data, message } 格式
+# Use the # prefix to add memories on the fly
+> # This project uses pnpm, not npm
+> # Commit messages should be in English
+> # API responses use { code, data, message } format
 ```
 
-**编辑记忆文件**：
+**Edit the memory file**:
 
 ```bash
 > /memory
 ```
 
-**CLAUDE.md 示例**：
+**Example CLAUDE.md**:
 
 ```markdown
-# 项目规范
+# Project Standards
 
-## 技术栈
-- 前端：Vue 3 + TypeScript + Vite
-- 后端：Go + Gin + GORM
-- 数据库：PostgreSQL + Redis
+## Tech Stack
+- Frontend: Vue 3 + TypeScript + Vite
+- Backend: Go + Gin + GORM
+- Database: PostgreSQL + Redis
 
-## 代码规范
-- 组件用 PascalCase，工具函数用 camelCase
-- 每个函数不超过 50 行
-- 必须写单元测试
+## Code Style
+- Components use PascalCase, utility functions use camelCase
+- Functions should not exceed 50 lines
+- Unit tests are required
 
-## 常用命令
-- `make dev` 启动开发环境
-- `make test` 运行测试
-- `make lint` 代码检查
+## Common Commands
+- `make dev` — start dev environment
+- `make test` — run tests
+- `make lint` — lint code
 ```
 
-### 技巧 19：创建自定义命令
+### Tip 19: Create Custom Slash Commands
 
-把常用操作封装成命令，一键执行。
+Package common workflows into reusable commands.
 
-**项目级命令**（`.claude/commands/` 目录）：
+**Project-level commands** (`.claude/commands/` directory):
 
 ```bash
-# 创建文件 .claude/commands/review.md
-请对当前 Git 暂存区的代码进行审查：
+# Create file .claude/commands/review.md
+Review the currently staged code:
 
-1. 检查是否有明显的 bug 或逻辑错误
-2. 检查是否符合项目的代码规范
-3. 检查是否有安全隐患
-4. 给出具体的改进建议
+1. Check for obvious bugs or logic errors
+2. Verify compliance with project coding standards
+3. Identify security concerns
+4. Provide specific improvement suggestions
 ```
 
-使用：
+Usage:
 ```bash
 > /project:review
 ```
 
-**个人全局命令**（`~/.claude/commands/` 目录）：
+**Personal global commands** (`~/.claude/commands/` directory):
 
 ```bash
-# 创建文件 ~/.claude/commands/standup.md
-帮我准备今日站会内容：
+# Create file ~/.claude/commands/standup.md
+Prepare my daily standup update:
 
-1. 用 git log 查看我昨天的提交，总结完成的工作
-2. 查看我负责的 issue 状态
-3. 识别可能的阻碍或需要协调的事项
+1. Check git log for yesterday's commits and summarize completed work
+2. Check the status of issues assigned to me
+3. Identify potential blockers or coordination needs
 
-输出格式：
-## 昨日完成
-## 今日计划
-## 阻碍/协调
+Output format:
+## Yesterday
+## Today
+## Blockers
 ```
 
-使用：
+Usage:
 ```bash
 > /user:standup
 ```
 
-**带参数的命令**：
+**Commands with arguments**:
 
 ```bash
 # .claude/commands/fix-issue.md
-请修复 GitHub Issue #$ARGUMENTS
+Fix GitHub Issue #$ARGUMENTS
 
-步骤：
-1. 用 gh issue view $ARGUMENTS 获取 issue 详情
-2. 分析问题原因
-3. 编写修复代码
-4. 编写测试用例
-5. 运行测试确保通过
+Steps:
+1. Run gh issue view $ARGUMENTS to get issue details
+2. Analyze the root cause
+3. Write the fix
+4. Write test cases
+5. Run tests to verify
 ```
 
-使用：
+Usage:
 ```bash
 > /project:fix-issue 42
 ```
 
-### 技巧 20：灵活切换模型
+### Tip 20: Switch Models Strategically
 
-不同任务用不同模型：
+Use different models for different tasks:
 
-| 模型 | 特点 | 适用场景 |
-|------|------|----------|
-| Opus | 最强推理能力 | 架构设计、复杂 bug |
-| Sonnet | 均衡型（默认） | 日常开发 |
-| Haiku | 最快响应 | 简单问题、代码补全 |
+| Model | Strengths | Best For |
+|-------|-----------|----------|
+| Opus | Strongest reasoning | Architecture design, complex bugs |
+| Sonnet | Balanced (default) | Daily development |
+| Haiku | Fastest response | Simple questions, code completion |
 
 ```bash
-# 查看当前模型
+# Check current model
 > /model
 
-# 切换模型
-> /model opus     # 处理复杂问题
-> /model sonnet   # 日常使用
-> /model haiku    # 简单任务
+# Switch models
+> /model opus     # For complex problems
+> /model sonnet   # For everyday tasks
+> /model haiku    # For quick tasks
 
-# 快捷键切换
+# Keyboard shortcut
 # Mac: Option+P
 # Win/Linux: Alt+P
 ```
 
-### 技巧 21：MCP 服务器扩展能力
+### Tip 21: Extend Capabilities with MCP Servers
 
-MCP（Model Context Protocol）让 Claude 可以连接外部工具：
+MCP (Model Context Protocol) lets Claude connect to external tools:
 
 ```bash
-# 添加 GitHub MCP 服务器
+# Add GitHub MCP server
 $ claude mcp add github -- npx -y @anthropic/github-mcp
 
-# 添加数据库 MCP 服务器
+# Add database MCP server
 $ claude mcp add postgres -- npx -y @anthropic/postgres-mcp
 
-# 查看已安装的 MCP 服务器
+# List installed MCP servers
 $ claude mcp list
 
-# 在会话中管理
+# Manage MCP in a session
 > /mcp
 ```
 
-安装后，Claude 可以直接：
-- 操作 GitHub PR、Issue
-- 查询数据库
-- 调用各种 API
+With MCP servers installed, Claude can:
+- Manage GitHub PRs and Issues
+- Query databases
+- Call external APIs
 
 ---
 
-## 第六部分：成本与状态管理
+## Part 6: Cost and Session Management
 
-### 技巧 22：监控消耗与压缩上下文
+### Tip 22: Monitor Usage and Compress Context
 
-**查看消耗**：
+**Check usage**:
 
 ```bash
-# 当前会话的 Token 消耗
+# Token usage for current session
 > /cost
 
-# 上下文使用情况（可视化）
+# Context window utilization (visual)
 > /context
-# 输出示例：[████████████░░░░░░░░] 58%
+# Example output: [████████████░░░░░░░░] 58%
 
-# 整体使用统计
+# Overall statistics
 > /stats
 
-# 订阅额度
+# Subscription quota
 > /usage
 ```
 
-**压缩上下文**：
+**Compress context**:
 
-对话太长会影响效果且增加成本，及时压缩：
+Long conversations degrade quality and increase costs. Compress regularly:
 
 ```bash
-# 智能压缩，保留重点
-> /compact 保留数据库设计相关的讨论
+# Smart compression, preserving key topics
+> /compact Keep the database design discussion
 
-# 完全清空（开始新话题时）
+# Full reset (when starting a new topic)
 > /clear
 ```
 
-**建议**：当 `/context` 显示超过 70%，考虑压缩或新开会话。
+**Guideline**: When `/context` shows over 70%, consider compressing or starting a new session.
 
-### 技巧 23：限制预算和轮数
+### Tip 23: Set Budget and Turn Limits
 
-自动化任务时，防止失控：
+Prevent runaway costs in automated tasks:
 
 ```bash
-# 限制最大花费（美元）
-$ claude -p --max-budget-usd 5.00 "重构整个项目的测试"
+# Set maximum spend (USD)
+$ claude -p --max-budget-usd 5.00 "Refactor all project tests"
 
-# 限制对话轮数
-$ claude -p --max-turns 10 "修复这个 bug"
+# Limit conversation turns
+$ claude -p --max-turns 10 "Fix this bug"
 
-# 组合使用
-$ claude -p --max-budget-usd 2.00 --max-turns 5 "优化性能"
+# Combine both
+$ claude -p --max-budget-usd 2.00 --max-turns 5 "Optimize performance"
 ```
 
-适合在 CI/CD 或脚本中使用，避免意外消耗。
+Essential for CI/CD pipelines and scripts to avoid unexpected charges.
 
-### 技巧 24：导出对话保存记录
+### Tip 24: Export Conversations
 
-重要的对话可以导出保存：
+Save important conversations for future reference:
 
 ```bash
-# 导出到文件
+# Export to file
 > /export session-2024-01-15.md
 
-# 导出到剪贴板
+# Export to clipboard
 > /export
 
-# 导出后可以：
-# - 作为文档保存
-# - 分享给团队成员
-# - 作为后续会话的参考
+# Exported conversations can be:
+# - Saved as documentation
+# - Shared with team members
+# - Used as context for future sessions
 ```
 
 ---
 
-## 附录：命令速查表
+## Appendix: Quick Reference
 
-### 斜杠命令
+### Slash Commands
 
-| 命令 | 说明 |
-|------|------|
-| `/help` | 查看帮助 |
-| `/exit` | 退出程序 |
-| `/clear` | 清空对话 |
-| `/compact [重点]` | 压缩对话历史 |
-| `/resume [会话名]` | 恢复历史会话 |
-| `/rename <名称>` | 重命名当前会话 |
-| `/init` | 初始化项目配置 |
-| `/memory` | 编辑记忆文件 |
-| `/model [模型名]` | 查看/切换模型 |
-| `/plan` | 进入计划模式 |
-| `/add-dir <路径>` | 添加工作目录 |
-| `/cost` | 查看 Token 消耗 |
-| `/context` | 查看上下文使用量 |
-| `/tasks` | 查看后台任务 |
-| `/export [文件名]` | 导出对话 |
-| `/doctor` | 检查安装状态 |
-| `/mcp` | 管理 MCP 服务器 |
+| Command | Description |
+|---------|-------------|
+| `/help` | Show help |
+| `/exit` | Exit program |
+| `/clear` | Clear conversation |
+| `/compact [focus]` | Compress conversation history |
+| `/resume [name]` | Resume a previous session |
+| `/rename <name>` | Rename current session |
+| `/init` | Initialize project config |
+| `/memory` | Edit memory file |
+| `/model [name]` | View/switch model |
+| `/plan` | Enter plan mode |
+| `/add-dir <path>` | Add working directory |
+| `/cost` | View token usage |
+| `/context` | View context utilization |
+| `/tasks` | View background tasks |
+| `/export [filename]` | Export conversation |
+| `/doctor` | Check installation status |
+| `/mcp` | Manage MCP servers |
 
-### CLI 参数
+### CLI Arguments
 
-| 参数 | 说明 |
-|------|------|
-| `-c, --continue` | 继续上次对话 |
-| `-r, --resume [名称]` | 恢复指定会话 |
-| `-p, --print` | 非交互模式 |
-| `--model <模型>` | 指定模型 |
-| `--permission-mode plan` | 计划模式启动 |
-| `--max-turns <数量>` | 限制对话轮数 |
-| `--max-budget-usd <金额>` | 限制最大花费 |
-| `--dangerously-skip-permissions` | 跳过所有权限确认 |
+| Argument | Description |
+|----------|-------------|
+| `-c, --continue` | Continue last conversation |
+| `-r, --resume [name]` | Resume a specific session |
+| `-p, --print` | Non-interactive mode |
+| `--model <model>` | Specify model |
+| `--permission-mode plan` | Start in plan mode |
+| `--max-turns <count>` | Limit conversation turns |
+| `--max-budget-usd <amount>` | Set maximum spend |
+| `--dangerously-skip-permissions` | Skip all permission prompts |
 
-### 键盘快捷键
+### Keyboard Shortcuts
 
-| 快捷键 | 功能 |
-|--------|------|
-| `Esc` | 中断当前任务 |
-| `Esc + Esc` | 回滚操作 |
-| `Ctrl+C` | 退出程序 |
-| `Ctrl+L` | 清屏 |
-| `Ctrl+B` | 后台运行任务 |
-| `Option+Enter` | 换行输入 |
-| `Option+P` | 切换模型 |
-| `Ctrl+V` | 粘贴图片 |
-| `Up/Down` | 历史命令 |
+| Shortcut | Action |
+|----------|--------|
+| `Esc` | Interrupt current task |
+| `Esc + Esc` | Undo operation |
+| `Ctrl+C` | Exit program |
+| `Ctrl+L` | Clear screen |
+| `Ctrl+B` | Background task |
+| `Option+Enter` | Newline in input |
+| `Option+P` | Switch model |
+| `Ctrl+V` | Paste image |
+| `Up/Down` | Command history |
 
 ---
 
-## 总结
+## Conclusion
 
-本文介绍了 Claude Code 的 24 个实用技巧：
+This guide covered 24 practical tips for Claude Code:
 
-1. **核心操作（1-6）**：具体描述、分步执行、熟悉项目、及时打断、截图沟通、@ 引用文件
-2. **效率提升（7-11）**：快捷键、Bash 模式、免授权、会话恢复、后台任务
-3. **智能助手（12-17）**：Git 操作、系统命令、管道输入、深度思考、计划模式、多目录协同
-4. **个性化（18-21）**：记忆系统、自定义命令、模型切换、MCP 扩展
-5. **成本管理（22-24）**：监控消耗、限制预算、导出对话
+1. **Core Usage (1-6)**: Be specific, break tasks down, explore projects first, interrupt early, use screenshots, reference files with @
+2. **Productivity (7-11)**: Shortcuts, bash mode, skip permissions, resume sessions, background tasks
+3. **AI Terminal (12-17)**: Natural language Git, system commands, pipe input, deep thinking, plan mode, multi-directory workspaces
+4. **Personalization (18-21)**: Memory system, custom commands, model switching, MCP extensions
+5. **Cost Management (22-24)**: Monitor usage, set budgets, export conversations
 
-建议从核心操作的 6 个技巧开始练习，熟练后再逐步掌握其他技巧。
+Start with the 6 core usage tips and gradually work your way through the rest as you get comfortable.
 
-## 参考资料
+## References
 
-- [Claude Code 官方文档](https://docs.anthropic.com/en/docs/claude-code)
-- [Claude Code CLI 参考](https://docs.anthropic.com/en/docs/claude-code/cli-reference)
-- [Anthropic 工程团队最佳实践](https://www.anthropic.com/engineering/claude-code-best-practices)
+- [Claude Code Official Documentation](https://docs.anthropic.com/en/docs/claude-code)
+- [Claude Code CLI Reference](https://docs.anthropic.com/en/docs/claude-code/cli-reference)
+- [Anthropic Engineering Team Best Practices](https://www.anthropic.com/engineering/claude-code-best-practices)
 
-## 相关阅读
+## Related Articles
 
-- [Claude Code 浏览器自动化方案对比：Agent Browser、Playwright、DevTools](/posts/ai/2026-01-28-claude-code-browser-automation/)
-- [Claude Code 最佳实践指南](/posts/ai/2026-01-06-claudecode-best-practices/)
-- [Anthropic 发布 Claude Cowork：让 AI 直接操作你的电脑文件](/posts/ai/2026-01-13-claude-cowork/)
+- [Claude Code Browser Automation: Agent Browser vs Playwright vs DevTools](/posts/ai/2026-01-28-claude-code-browser-automation/)
+- [Claude Code Best Practices Guide](/posts/ai/2026-01-06-claudecode-best-practices/)
+- [Anthropic Launches Claude Cowork: AI That Operates Your Computer Files](/posts/ai/2026-01-13-claude-cowork/)

@@ -1,275 +1,281 @@
 +++
 date = '2026-01-30T10:00:00+08:00'
 draft = false
-title = 'AI 工作流实战手册：从提示词到编程，真正把 AI 用起来'
-description = '一套经过实战验证的 AI 工作流方法论，涵盖提示词技巧、AI 编程规范、工具选型和企业落地场景，帮你把 AI 从聊天玩具变成生产力工具。'
+title = 'AI Workflow Playbook: From Prompts to Production Code'
+description = 'A battle-tested AI workflow methodology covering prompt engineering, AI-assisted coding, tool selection, and enterprise deployment — turn AI from a chat toy into a real productivity engine.'
 toc = true
-tags = ['AI 工作流', 'AI 编程', '提示词工程', 'AI 工具', '效率提升']
-categories = ['AI实战']
-keywords = ['AI工作流', 'AI编程', '提示词技巧', 'AI工具推荐', 'AI企业落地']
+tags = ['AI Workflow', 'AI Coding', 'Prompt Engineering', 'AI Tools', 'Productivity']
+categories = ['AI Guides']
+keywords = ['AI workflow', 'AI coding best practices', 'prompt engineering tips', 'AI tools for developers', 'enterprise AI deployment']
 +++
 
-很多人用了半年 AI，依然停留在"问一句答一句"的阶段。ChatGPT 聊了不少，但真正落到工作里，总觉得差点意思——要么回答太泛，要么代码跑不起来，要么写出来的东西一看就是 AI 味儿。
+Most people have been using AI for months, yet they're still stuck in "ask a question, get an answer" mode. They've had plenty of conversations with ChatGPT, but when it comes to real work, the results always feel lacking — answers are too generic, generated code won't run, or the output screams "written by AI."
 
-问题出在哪？不是 AI 不行，是我们**用 AI 的方式不对**。
+The problem isn't that AI is bad. It's that **we're using it wrong**.
 
-这篇文章是我在日常工作中总结出的一套 AI 工作流方法论，从如何提问、如何写提示词、如何用 AI 编程，到企业级场景怎么落地，全都是踩过坑之后的实战经验。如果你也在摸索怎么把 AI 真正用起来，这篇应该能帮到你。
+This article is a practical AI workflow methodology distilled from real-world experience — covering how to ask better questions, how to write effective prompts, how to use AI for programming, and how to deploy AI in enterprise settings. If you're still figuring out how to make AI genuinely useful, this guide is for you.
 
-## 一、先搭好你的 AI 工具栈
+## 1. Build Your AI Tool Stack First
 
-工欲善其事，必先利其器。在动手之前，先看看我日常在用的 AI 工具组合：
+Before diving in, here's the AI tool combination I use daily:
 
-| 场景 | 工具 | 说明 |
-|------|------|------|
-| **日常聊天** | ChatGPT、Gemini、Qwen | 多模型交叉使用，各有所长 |
-| **深度学习** | NotebookLM | Google 出品，专啃长文档和视频，能把 YouTube 视频 2 分钟转成信息图，还能生成播客式音频复盘 |
-| **内容输出** | YouMind | 写作 Agent，结构化输出很方便 |
-| **前端编程** | Antigravity | Google 推出的 AI 原生 IDE，集成 Gemini、Claude 等顶级模型，关键是免费 |
-| **后端编程** | Codex | OpenAI 的编程 Agent，适合后端逻辑 |
-| **图片生成** | Nano Banana Pro | Google 的图像生成工具，角色一致性碾压同类产品 |
-| **设计** | Lovart | 设计 Agent，适合快速出设计稿 |
+| Use Case | Tool | Notes |
+|----------|------|-------|
+| **General chat** | ChatGPT, Gemini, Qwen | Cross-reference multiple models — each has different strengths |
+| **Deep research** | NotebookLM | Google's tool for digesting long documents and videos — turns a YouTube video into an infographic in 2 minutes, generates podcast-style audio reviews |
+| **Content creation** | YouMind | Writing agent with structured output |
+| **Frontend coding** | Antigravity | Google's AI-native IDE with Gemini and Claude built in — and it's free |
+| **Backend coding** | Codex | OpenAI's coding agent, solid for backend logic |
+| **Image generation** | Nano Banana Pro | Google's image gen tool — character consistency far ahead of competitors |
+| **Design** | Lovart | Design agent for rapid mockups |
 
-**选工具的核心原则**：不追最新最火的，只用解决问题最顺手的。每个环节找到一个"主力工具 + 备选工具"的组合就够了。
+**The core principle for tool selection**: Don't chase the latest hype. Use whatever solves the problem most efficiently. A "primary tool + backup" combo for each workflow step is all you need.
 
-## 二、让 AI 真正听懂你：四象限提问法
+## 2. Make AI Actually Understand You: The Four-Quadrant Framework
 
-很多人用 AI 就是一句话扔过去，看天吃饭。今天效果好算运气，明天效果差怪 AI 笨。
+Many people just throw a single sentence at AI and hope for the best. Good results feel like luck; bad results get blamed on "dumb AI."
 
-其实问题不在 AI，在于你没搞清楚：**你的问题属于哪个类型**。
+The real issue isn't the AI — it's that you haven't figured out **what type of question you're asking**.
 
-我习惯用一个"**四象限法则**"来判断怎么跟 AI 对话：
+I use a **Four-Quadrant Framework** to decide how to communicate with AI:
 
-### 象限一：共识区（明确的事实性任务）
+### Quadrant 1: Common Ground (Clear Factual Tasks)
 
-你知道要什么，AI 也能直接做。
+You know exactly what you want, and AI can deliver it directly.
 
-**策略：直接下指令**，别废话。
-
-```
-把这份 CSV 数据清洗成标准表格，去除重复行，日期格式统一为 YYYY-MM-DD
-```
-
-### 象限二：盲区（你不知道的领域）
-
-你对这个领域不了解，需要 AI 先帮你建立认知。
-
-**策略：让 AI 先做背景科普**，别上来就要答案。
+**Strategy: Give direct instructions.** Don't over-explain.
 
 ```
-我想了解 WebSocket 和 SSE 的区别，请先给我做一个背景科普，
-包括各自的适用场景、优缺点、性能对比
+Clean this CSV data into a standardized table. Remove duplicate rows
+and normalize all dates to YYYY-MM-DD format.
 ```
 
-### 象限三：私密区（你的独特经验）
+### Quadrant 2: Blind Spots (Unfamiliar Domains)
 
-这类问题涉及你自己的业务、数据、经验，AI 无法直接知道。
+You don't know much about the topic and need AI to build your understanding first.
 
-**策略：先输入足够的上下文**，把你的背景喂给它。
-
-```
-我们公司是做跨境电商的，主要市场是东南亚，SKU 有 5000+，
-目前退货率 15%。请基于这些信息，帮我分析退货率偏高的可能原因
-```
-
-### 象限四：未知区（探索性问题）
-
-连你自己也不确定要什么，需要在对话中逐步发现。
-
-**策略：用苏格拉底式提问，让 AI 反问你**。
+**Strategy: Ask for background context first** — don't jump straight to answers.
 
 ```
-我想做一个 AI 相关的副业项目，但还没想好方向。
-请用苏格拉底式提问法来帮我梳理思路，每次只问我一个问题
+I want to understand the difference between WebSocket and SSE.
+Start with a background overview including use cases, pros/cons,
+and performance comparison for each.
 ```
 
-### 框架就是 AI 的"操作系统"
+### Quadrant 3: Private Knowledge (Your Unique Context)
 
-一个超实用的技巧：**让 AI 基于思维框架来回答**，效果会好很多。
+These questions involve your own business data, experience, or domain knowledge that AI can't access.
 
-比如：
-- 用 **SMART 原则** 拆解目标
-- 用 **第一性原理** 分析问题本质
-- 用 **5W2H** 做全面分析
-- 用 **奥卡姆剃刀** 简化方案
-- 用 **二八法则** 找关键因素
-
-这些框架就像给 AI 装上了操作系统——没有系统，它只能随机输出；有了系统，它的思考就有了方向和结构。
+**Strategy: Feed sufficient context first.**
 
 ```
-请用 SMART 原则帮我拆解以下目标：
-"我想在 3 个月内把博客月访问量从 1000 提升到 10000"
+We're a cross-border e-commerce company focused on Southeast Asia,
+with 5,000+ SKUs and a current return rate of 15%.
+Based on this context, analyze possible reasons for the high return rate.
 ```
 
-## 三、写提示词不是玄学，是工程
+### Quadrant 4: Unknown Territory (Exploratory Questions)
 
-很多人觉得提示词是"灵感活"，写得好全靠天赋。其实不是，它是一门可以系统化学习的**工程技能**。
+You're not even sure what you want yet — you need the conversation itself to help you discover it.
 
-### 文本类提示词：三步迭代法
-
-**第一步：先做调研**
-
-别上来就写。先用 Deep Research（或任何搜索工具）做调研。
-
-比如你要写一个儿童绘本的提示词，先让 AI 搞清楚"好绘本的核心要素是什么"——故事结构、语言风格、画面节奏、年龄适配……这些都搞明白了，提示词才写得出来。
-
-**第二步：生成元提示词**
-
-把调研结果喂给 AI：
+**Strategy: Use Socratic questioning — let AI ask you questions.**
 
 ```
-我要写一个XX类型的提示词，以下是我的调研资料：[粘贴资料]
-请帮我生成一个结构化的元提示词
+I want to start an AI-related side project, but I haven't
+decided on a direction yet. Use the Socratic method to help me
+clarify my thinking. Ask me one question at a time.
 ```
 
-**第三步：迭代优化**
+### Mental Frameworks Are AI's "Operating System"
 
-拿到初稿后，实际跑一遍。把生成结果截图或复制给 AI，告诉它哪里不对：
+Here's an incredibly useful technique: **ask AI to answer using a thinking framework**. The output quality jumps dramatically.
 
-```
-这是按照你给的提示词生成的结果：[粘贴结果]
-问题是：角色表情太僵硬，背景色太暗
-请优化提示词，解决这两个问题
-```
+For example:
+- Use the **SMART framework** to break down goals
+- Use **First Principles thinking** to analyze root causes
+- Use **5W2H** for comprehensive analysis
+- Use **Occam's Razor** to simplify solutions
+- Use the **80/20 Rule** to identify key factors
 
-反复迭代 3-5 轮，提示词就会越来越精准。
-
-### 图片类提示词：对标复刻法
-
-**有对标图的情况**：
-
-1. 找到你想要的风格参考图
-2. 发给 AI，要求生成 JSON 格式的元提示词（限制 800 字以内）
-3. 拿到提示词后，替换主体内容
-
-这种方法基本能复刻 90% 的风格。
-
-**没有对标图的情况**：
-
-别硬憋提示词，让 AI 反过来问你：
+These frameworks act like an operating system for AI — without one, it produces random output; with one, its thinking gains direction and structure.
 
 ```
-我想生成一张图片，但还没想好具体风格。
-请依次问我以下问题来帮我明确需求：
-1. 想达成什么效果？
-2. 面向什么人群？
-3. 有没有参考案例？
-4. 偏好什么色调/风格？
+Use the SMART framework to break down this goal:
+"I want to increase my blog's monthly traffic from 1,000 to 10,000
+within 3 months"
 ```
 
-**核心原则：不清楚就别硬写，让 AI 帮你理清思路再动手。**
+## 3. Prompt Engineering Is Engineering, Not Magic
 
-## 四、AI 编程的正确姿势：规范驱动开发
+Many people think prompt writing is an art that requires natural talent. It's not — it's a **systematic engineering skill** that can be learned.
 
-很多人用 AI 写代码的方式是：扔一段需求描述过去，等 AI 吐出一坨代码，然后复制粘贴，跑不了就再问。
+### Text Prompts: The Three-Step Iteration Method
 
-这种方式能写个小脚本，但做不了正经项目。
+**Step 1: Research first**
 
-正确的 AI 编程流程应该遵循**规范驱动开发**：
+Don't start writing immediately. Use Deep Research (or any search tool) to investigate first.
 
-```
-PRD → 技术文档 → 开发计划 → 编码 → 测试
-```
+For example, if you're crafting a prompt for a children's picture book, first have AI figure out "what makes a great picture book" — story structure, language style, visual pacing, age appropriateness. Only after understanding these fundamentals can you write an effective prompt.
 
-### 第一步：写 PRD（产品需求文档）
+**Step 2: Generate a meta-prompt**
 
-跟 AI 聊需求，但**不要看第一版**。直接开始"PUA"——不断追问、挑刺：
+Feed your research to AI:
 
 ```
-这个功能的边界情况考虑了吗？
-如果用户网络断了怎么办？
-并发量上来性能扛得住吗？
-这个交互流程不够直觉，用户会迷路
+I need to write a prompt for [X type of content].
+Here is my research: [paste research]
+Generate a structured meta-prompt for me.
 ```
 
-逼 AI 把 PRD 打磨到位，而不是接受一个 60 分的初稿。
+**Step 3: Iterate and refine**
 
-### 第二步：快速原型
+Run the initial prompt, then share the results with AI and explain what's wrong:
 
-用 AI IDE 的 Build 模式快速搭出前端功能，先跑通核心交互逻辑，不纠结细节。
+```
+Here's the output from your prompt: [paste result]
+Issues: character expressions are too stiff, background colors are too dark
+Optimize the prompt to fix these two problems.
+```
 
-### 第三步：代码调优
+Repeat for 3-5 rounds, and the prompt will become increasingly precise.
 
-把初版代码拉到正式 IDE 里精修。AI 生成的代码往往"能跑但不够好"——变量命名不规范、缺少错误处理、架构不清晰，这些都需要人工把关。
+### Image Prompts: The Reference Replication Method
 
-关于 AI 编程的更多细节，可以看我之前写的 [我的 AI 开发工作流：从需求到上线](/posts/ai/2026-01-19-ai-dev-workflow/) 和 [Cursor Agent 编码最佳实践](/posts/ai/2026-01-19-cursor-agent-best-practices/)。
+**When you have a reference image:**
 
-### 第四步：自动化测试
+1. Find your desired style reference
+2. Send it to AI and request a JSON-format meta-prompt (limited to 800 words)
+3. Swap in your actual subject matter
 
-让 AI 写测试用例，配合 chrome-dev-tool MCP 跑自动化测试。这一步很多人会跳过，但它能帮你发现大量边界问题。
+This approach replicates roughly 90% of the target style.
 
-如果你在用 Claude Code，可以参考 [Claude Code 浏览器自动化方案对比](/posts/ai/2026-01-28-claude-code-browser-automation/)，了解不同自动化测试方案的优劣。
+**When you don't have a reference:**
 
-### 第五步：后端开发
+Don't force a prompt from scratch. Let AI guide you instead:
 
-后端比前端更需要"上下文"。我的做法是：
+```
+I want to generate an image but haven't decided on the style yet.
+Ask me these questions one by one to clarify my requirements:
+1. What effect do I want to achieve?
+2. Who is the target audience?
+3. Are there any reference examples?
+4. What color palette/style do I prefer?
+```
 
-1. 先让 AI 总结项目的文档文件夹，建立全局认知
-2. 导入私域知识库（API 文档、数据库 schema、业务规则）
-3. 再开始写代码
+**Core principle: When in doubt, don't force it. Let AI help you clarify before you start.**
 
-**核心原则：上下文越清晰，AI 生成质量越高。**
+## 4. AI Coding Done Right: Spec-Driven Development
 
-架构设计必须提前做好。如果你不做架构就让 AI 写代码，它吐出来的东西就是一堆补丁——能跑，但改不动、扩展不了。
+Most people use AI for coding like this: paste a vague requirement, wait for a blob of code, copy-paste it, and ask again when it breaks.
 
-## 五、企业落地 AI：从哪些场景切入
+This works for small scripts. It fails for real projects.
 
-如果你的公司想开始用 AI，别上来就搞"全面智能化"。从已经跑通的成熟场景切入，风险最低、效果最快：
+The right approach follows **spec-driven development**:
 
-### 问答类
+```
+PRD → Technical Spec → Development Plan → Code → Test
+```
 
-- **企业内知识库问答**：把公司文档、制度、FAQ 导入，员工随时问答
-- **ToC 智能客服**：替代传统客服机器人，理解能力强很多
+### Step 1: Write the PRD (Product Requirements Document)
 
-### 审核类
+Discuss requirements with AI, but **don't accept the first draft**. Push back relentlessly:
 
-- **合同审核**：AI 逐条检查合同条款，标记风险点
-- **流程审核**：自动检查审批流程是否合规
+```
+Have you considered edge cases for this feature?
+What happens if the user loses network connectivity?
+Can it handle high concurrency?
+This interaction flow isn't intuitive — users will get lost.
+```
 
-### 写作类
+Force AI to refine the PRD until it's solid, rather than settling for a mediocre first attempt.
 
-- **PRD 撰写**：产品经理效率翻倍
-- **研报生成**：基于数据自动生成分析报告
-- **季度汇报**：输入关键数据，输出结构化汇报
+### Step 2: Rapid Prototyping
 
-### 查询类
+Use an AI IDE's Build mode to quickly scaffold the frontend. Get the core interaction logic running first — don't obsess over details.
 
-- **Text-to-SQL**：老板说"给我看第一季度的销售报表"，AI 自动查数据库，输出可视化结果
+### Step 3: Code Refinement
 
-### 推荐一个开源平台
+Move the initial code to a proper IDE for polish. AI-generated code typically "runs but isn't great" — naming conventions are off, error handling is missing, architecture is unclear. These all need human oversight.
 
-如果你们团队想快速试水，可以看看 [BISHENG](https://github.com/dataelement/bisheng)——这是一个专注企业办公场景的 LLM 应用开发平台，Apache 2.0 协议，完全免费可商用。部署一套就能快速搭建各种办公 AI 应用，省去了从零造轮子的麻烦。
+For more on AI-assisted coding, check out my earlier posts on [My AI Development Workflow: From Requirements to Deployment](/posts/ai/2026-01-19-ai-dev-workflow/) and [Cursor Agent Coding Best Practices](/posts/ai/2026-01-19-cursor-agent-best-practices/).
 
-## 六、我的 AI 信息源推荐
+### Step 4: Automated Testing
 
-AI 领域变化太快，工具半年一换、模型月月更新。保持信息敏感度很重要，以下是我常用的信息源：
+Have AI write test cases and run automated tests using chrome-dev-tool MCP. Many people skip this step, but it catches a huge number of edge cases.
 
-| 信息源 | 特点 |
-|--------|------|
-| [WaytoAGI 飞书知识库](https://waytoagi.feishu.cn/wiki) | 国内最大的 AI 开源知识库，500 万+ 访问量，从基础概念到实战案例都有 |
-| [AIBase](https://www.aibase.com/) | AI 导航 + 资讯一体化，中文友好，适合快速找工具 |
-| 自建信息抓取站 | 用 AI 自动抓取海外技术社区的最新动态，针对个人需求定制 |
+If you're using Claude Code, see [Claude Code Browser Automation: 5 Methods Compared](/posts/ai/2026-01-28-claude-code-browser-automation/) for a comparison of different automation approaches.
 
-**建议**：不要只看中文内容。海外的 AI 信息比国内快 1-2 周，搭一个自动翻译 + 摘要的信息流，能让你始终保持信息差优势。
+### Step 5: Backend Development
 
-## 总结
+Backend work needs even more context than frontend. My approach:
 
-说到底，AI 就是一面镜子：
+1. Have AI summarize the project's documentation folder to build global understanding
+2. Import your private knowledge base (API docs, database schemas, business rules)
+3. Then start coding
 
-> **你的思维清晰，它帮你提速；你的思维混乱，它只会帮你批量生产垃圾。**
+**Core principle: The clearer the context, the higher the output quality.**
 
-别指望 AI 替你思考，但可以让它替你干活。关键在于：
+Architecture decisions must be made upfront. If you let AI write code without defining the architecture first, you'll get a pile of patches — it runs, but it's impossible to modify or extend.
 
-1. **分清问题类型**：四象限法则，对症下药
-2. **系统化写提示词**：调研 → 生成 → 迭代，不是一锤子买卖
-3. **规范驱动编程**：PRD → 技术文档 → 开发 → 测试，别跳步骤
-4. **上下文决定质量**：喂给 AI 的信息越充分，输出越靠谱
-5. **框架是AI的操作系统**：SMART、5W2H、第一性原理……给 AI 装上思维框架，输出立刻上一个台阶
+## 5. Enterprise AI Adoption: Where to Start
 
-这不是一篇看完就忘的文章。建议你挑一个最痛的场景，今天就开始用上面的方法试一试。AI 的能力上限，取决于使用它的人。
+If your company wants to adopt AI, don't try to "go fully intelligent" overnight. Start with proven, low-risk scenarios for the fastest ROI:
 
-### 相关阅读
+### Q&A Systems
 
-- [我的 AI 开发工作流：从需求到上线](/posts/ai/2026-01-19-ai-dev-workflow/)
-- [Cursor Agent 编码最佳实践：官方指南完整解读](/posts/ai/2026-01-19-cursor-agent-best-practices/)
-- [Claude Code 浏览器自动化方案对比](/posts/ai/2026-01-28-claude-code-browser-automation/)
-- [AI 时代，一个人的 Taste 比以往任何时候都重要](/posts/ai/2026-01-23-taste-matters-in-ai-era/)
+- **Internal knowledge base Q&A**: Import company documents, policies, and FAQs — employees can query anytime
+- **Customer-facing chatbots**: Far more capable than traditional rule-based bots
+
+### Review & Compliance
+
+- **Contract review**: AI checks contract clauses line by line, flagging risk items
+- **Process compliance**: Automated verification that approval workflows follow regulations
+
+### Content Generation
+
+- **PRD writing**: Double product manager productivity
+- **Research reports**: Auto-generate analysis reports from data
+- **Quarterly reviews**: Input key metrics, output structured presentations
+
+### Data Queries
+
+- **Text-to-SQL**: When someone says "Show me Q1 sales," AI automatically queries the database and returns visualized results
+
+### A Recommended Open-Source Platform
+
+If your team wants to experiment quickly, check out [BISHENG](https://github.com/dataelement/bisheng) — an LLM application development platform built for enterprise office scenarios. It's Apache 2.0 licensed, fully free for commercial use. Deploy one instance and you can rapidly build various office AI applications without reinventing the wheel.
+
+## 6. Staying Up to Date: My AI Information Sources
+
+The AI field moves incredibly fast — tools get replaced every six months, models update monthly. Staying informed matters. Here are my go-to sources:
+
+| Source | Why It's Useful |
+|--------|-----------------|
+| [WaytoAGI Knowledge Base](https://waytoagi.feishu.cn/wiki) | One of the largest open AI knowledge bases (5M+ visits), covering fundamentals through real-world case studies |
+| [AIBase](https://www.aibase.com/) | AI tool directory + news aggregator, great for quickly finding tools |
+| Custom news scraper | AI-powered scraping of international tech communities, customized to personal needs |
+
+**Pro tip**: Don't limit yourself to local-language content. International AI news leads by 1-2 weeks. Build an automated translate-and-summarize pipeline to maintain your information advantage.
+
+## Key Takeaways
+
+At the end of the day, AI is a mirror:
+
+> **If your thinking is clear, AI accelerates you. If your thinking is muddled, AI just mass-produces garbage faster.**
+
+Don't expect AI to think for you — but absolutely let it do the heavy lifting. The key principles:
+
+1. **Classify your question type**: Use the Four-Quadrant Framework to match your approach
+2. **Systematize prompt writing**: Research, generate, iterate — it's never a one-shot process
+3. **Follow spec-driven development**: PRD, tech spec, code, test — don't skip steps
+4. **Context determines quality**: The more context you feed AI, the better the output
+5. **Frameworks are AI's operating system**: SMART, 5W2H, First Principles — give AI a thinking framework and output quality jumps immediately
+
+This isn't an article to read and forget. Pick your most painful workflow bottleneck and start applying these methods today. AI's ceiling is defined by the person using it.
+
+### Related Reading
+
+- [My AI Development Workflow: From Requirements to Deployment](/posts/ai/2026-01-19-ai-dev-workflow/)
+- [Cursor Agent Coding Best Practices: Complete Official Guide](/posts/ai/2026-01-19-cursor-agent-best-practices/)
+- [Claude Code Browser Automation: 5 Methods Compared](/posts/ai/2026-01-28-claude-code-browser-automation/)
+- [Why Personal Taste Matters More Than Ever in the AI Era](/posts/ai/2026-01-23-taste-matters-in-ai-era/)

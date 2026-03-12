@@ -1,324 +1,324 @@
 +++
-title = 'IP 地址与 CIDR 详解：网络基础知识必备指南'
+title = 'IP Addresses and CIDR Explained: A Complete Networking Guide'
 date = '2018-10-06'
 draft = false
-description = 'IP 地址与 CIDR 完整教程，详解 IPv4 地址结构、A/B/C/D/E 类地址划分、子网掩码计算、CIDR 无类别域间路由。附子网速查表，网络工程师和运维必备的网络基础知识。'
-tags = ['IP', 'CIDR', '网络基础', '子网掩码', 'Linux', '运维']
+description = 'Learn IPv4 address structure, classful addressing (A/B/C/D/E), subnet masks, and CIDR notation. Includes a subnet cheat sheet and practical Linux commands for network engineers and developers.'
+tags = ['IP', 'CIDR', 'Networking', 'Subnet Mask', 'Linux']
 categories = ['Linux']
 toc = true
-keywords = ['IP 地址', 'CIDR', '子网掩码', 'IPv4', '网络基础', '子网划分']
+keywords = ['IP address', 'CIDR notation', 'subnet mask', 'IPv4', 'subnetting', 'network fundamentals']
 +++
 
-**IP 地址**是互联网通信的基础，每一台联网设备都需要一个唯一的 IP 地址来标识自己。无论你是网络工程师、运维人员还是开发者，理解 IP 地址和 CIDR 都是必备的基础知识。本文将系统介绍 IPv4 地址的结构、分类以及 CIDR 表示法，帮你彻底搞懂网络寻址的核心概念。
+Every device on the internet needs an **IP address** to communicate. Whether you are configuring cloud infrastructure, debugging connectivity issues, or setting up container networks, a solid grasp of IP addressing and CIDR is essential. This guide walks through IPv4 address structure, the legacy class system, subnet masks, and modern CIDR notation from the ground up.
 
 <!--more-->
 
-## 为什么要了解 IP 地址？
+## Why IP Addressing Matters
 
-| 场景 | 应用 |
-|------|------|
-| 服务器配置 | 设置静态 IP、配置防火墙规则 |
-| 网络排障 | 分析网络连通性、定位故障 |
-| 云服务 | VPC 网络规划、安全组配置 |
-| 容器编排 | Kubernetes 网络、Docker 网络模式 |
+| Scenario | What You Need to Know |
+|----------|----------------------|
+| Server setup | Static IPs, firewall rules |
+| Troubleshooting | Connectivity analysis, fault isolation |
+| Cloud services | VPC design, security group configuration |
+| Container orchestration | Kubernetes networking, Docker network modes |
 
-> 掌握 IP 地址基础知识，是理解更复杂网络技术的前提。
+> Understanding IP fundamentals is a prerequisite for every other networking topic.
 
-## 一、IPv4 地址基础
+## IPv4 Address Basics
 
-### 1. 地址结构
+### Address Structure
 
-IPv4 地址是一个 **32 位（4 字节）的二进制数**，为了便于阅读，通常表示为用点分隔的 4 个十进制数，称为**点分十进制表示法**（Dotted Decimal Notation）。
+An IPv4 address is a **32-bit binary number**. For readability, it is written as four decimal numbers separated by dots — a format called **dotted decimal notation**.
 
-![IPv4 地址结构与表示方式，展示二进制与十进制的对应关系](ip-classes.svg)
-
-```
-二进制表示：11000000.10101000.00000001.00000001
-十进制表示：192.168.1.1
-```
-
-每个十进制数（称为**八位组 / Octet**）的范围是 0-255，因为 8 位二进制数的最大值是 2^8 - 1 = 255。
-
-### 2. 网络 ID 与主机 ID
-
-IP 地址由两部分组成：
-
-| 部分 | 说明 | 作用 |
-|------|------|------|
-| **网络 ID**（Network ID） | 标识设备所在的网络 | 用于路由选择 |
-| **主机 ID**（Host ID） | 标识网络中的具体设备 | 用于本地寻址 |
-
-这种划分带来一个重要优势：**路由器只需要存储网络信息而非每台主机的信息**，大大简化了路由表，提高了路由效率。
-
-### 3. 特殊地址
-
-有些 IP 地址有特殊用途，不能分配给普通主机：
-
-| 地址类型 | 说明 | 示例 |
-|----------|------|------|
-| 网络地址 | 主机 ID 全为 0 | 192.168.1.0 |
-| 广播地址 | 主机 ID 全为 1 | 192.168.1.255 |
-| 环回地址 | 本地测试用 | 127.0.0.1 |
-| 私有地址 | 内网使用，不可路由 | 10.x.x.x, 192.168.x.x |
-
-## 二、IP 地址分类（有类网络）
-
-早期的 IP 地址采用**有类寻址**（Classful Addressing），将 IP 地址分为 A、B、C、D、E 五类。虽然 1993 年后被 CIDR 取代，但了解这些分类有助于理解网络的演进历史。
-
-### 1. A 类地址
-
-- **网络 ID**：前 8 位（第 1 字节）
-- **主机 ID**：后 24 位（第 2-4 字节）
-- **首位固定**：`0`（二进制以 0 开头）
+![Diagram showing the IPv4 address structure and the relationship between binary and decimal representations](ip-classes.svg)
 
 ```
-地址格式：0NNNNNNN.HHHHHHHH.HHHHHHHH.HHHHHHHH
-         └─网络ID─┘└────────主机ID────────┘
+Binary:  11000000.10101000.00000001.00000001
+Decimal: 192.168.1.1
 ```
 
-| 属性 | 值 |
-|------|-----|
-| 地址范围 | 1.0.0.0 ~ 126.255.255.255 |
-| 网络数量 | 126 个（0 和 127 保留） |
-| 每网络主机数 | 2^24 - 2 = 16,777,214 |
-| 默认子网掩码 | 255.0.0.0（/8） |
+Each decimal number is called an **octet** (8 bits). Its range is 0 to 255 because the maximum value of 8 binary digits is 2^8 - 1 = 255.
 
-> **注意**：127.x.x.x 是环回地址，用于本地测试（如 127.0.0.1）。
+### Network ID vs. Host ID
 
-### 2. B 类地址
+Every IP address consists of two logical parts:
 
-- **网络 ID**：前 16 位（第 1-2 字节）
-- **主机 ID**：后 16 位（第 3-4 字节）
-- **首两位固定**：`10`（二进制以 10 开头）
+| Part | Purpose | Used For |
+|------|---------|----------|
+| **Network ID** | Identifies the network the device belongs to | Routing decisions |
+| **Host ID** | Identifies a specific device within that network | Local addressing |
 
-```
-地址格式：10NNNNNN.NNNNNNNN.HHHHHHHH.HHHHHHHH
-         └────网络ID────┘└────主机ID────┘
-```
+This split is what makes routing scalable: **routers only need to store network-level entries**, not an entry for every single host on the internet.
 
-| 属性 | 值 |
-|------|-----|
-| 地址范围 | 128.0.0.0 ~ 191.255.255.255 |
-| 网络数量 | 2^14 = 16,384 个 |
-| 每网络主机数 | 2^16 - 2 = 65,534 |
-| 默认子网掩码 | 255.255.0.0（/16） |
+### Reserved Addresses
 
-### 3. C 类地址
+Certain IP addresses serve special purposes and cannot be assigned to regular hosts:
 
-- **网络 ID**：前 24 位（第 1-3 字节）
-- **主机 ID**：后 8 位（第 4 字节）
-- **首三位固定**：`110`（二进制以 110 开头）
+| Type | Description | Example |
+|------|-------------|---------|
+| Network address | Host bits all set to 0 | 192.168.1.0 |
+| Broadcast address | Host bits all set to 1 | 192.168.1.255 |
+| Loopback address | Used for local testing | 127.0.0.1 |
+| Private addresses | Internal use only, non-routable | 10.x.x.x, 192.168.x.x |
 
-```
-地址格式：110NNNNN.NNNNNNNN.NNNNNNNN.HHHHHHHH
-         └──────────网络ID──────────┘└主机ID┘
-```
+## Classful Addressing (Legacy)
 
-| 属性 | 值 |
-|------|-----|
-| 地址范围 | 192.0.0.0 ~ 223.255.255.255 |
-| 网络数量 | 2^21 = 2,097,152 个 |
-| 每网络主机数 | 2^8 - 2 = 254 |
-| 默认子网掩码 | 255.255.255.0（/24） |
+In the early days of the internet, IP addresses were divided into five **classes** — A through E. Although CIDR replaced this system in 1993, understanding classful addressing helps explain why modern notation exists.
 
-### 4. D 类地址（组播）
+### Class A
 
-- **首四位固定**：`1110`
-- **地址范围**：224.0.0.0 ~ 239.255.255.255
-- **用途**：组播（Multicast），一对多通信
-
-D 类地址没有网络 ID 和主机 ID 之分，用于向一组设备同时发送数据。
-
-### 5. E 类地址（保留）
-
-- **首四位固定**：`1111`
-- **地址范围**：240.0.0.0 ~ 255.255.255.255
-- **用途**：保留用于实验和研究
-
-> **注意**：255.255.255.255 是受限广播地址，用于向本地网络所有设备广播。
-
-### 6. 地址分类总结
-
-| 类别 | 首位模式 | 第一字节范围 | 默认掩码 | 用途 |
-|------|----------|--------------|----------|------|
-| A | 0 | 1-126 | /8 | 大型网络 |
-| B | 10 | 128-191 | /16 | 中型网络 |
-| C | 110 | 192-223 | /24 | 小型网络 |
-| D | 1110 | 224-239 | - | 组播 |
-| E | 1111 | 240-255 | - | 保留 |
-
-## 三、子网掩码
-
-### 1. 什么是子网掩码？
-
-**子网掩码**（Subnet Mask）是一个 32 位的数值，用于区分 IP 地址中的网络部分和主机部分。
-
-- **网络位**：子网掩码中为 `1` 的位
-- **主机位**：子网掩码中为 `0` 的位
+- **Network ID**: First 8 bits (1st octet)
+- **Host ID**: Remaining 24 bits (octets 2-4)
+- **Leading bit**: `0`
 
 ```
-IP 地址：     192.168.1.100
-            11000000.10101000.00000001.01100100
-
-子网掩码：   255.255.255.0
-            11111111.11111111.11111111.00000000
-            └──────────网络位──────────┘└主机位┘
-
-网络地址：   192.168.1.0（IP 与掩码做 AND 运算）
+Format: 0NNNNNNN.HHHHHHHH.HHHHHHHH.HHHHHHHH
+        └─Net ID─┘└──────── Host ID ────────┘
 ```
 
-### 2. 子网掩码的作用
+| Property | Value |
+|----------|-------|
+| Range | 1.0.0.0 – 126.255.255.255 |
+| Number of networks | 126 (0 and 127 are reserved) |
+| Hosts per network | 2^24 - 2 = 16,777,214 |
+| Default subnet mask | 255.0.0.0 (/8) |
 
-通过将 IP 地址与子网掩码进行**按位与（AND）运算**，可以得到网络地址：
+> **Note:** The entire 127.x.x.x block is reserved for loopback (e.g., 127.0.0.1).
+
+### Class B
+
+- **Network ID**: First 16 bits (octets 1-2)
+- **Host ID**: Remaining 16 bits (octets 3-4)
+- **Leading bits**: `10`
+
+```
+Format: 10NNNNNN.NNNNNNNN.HHHHHHHH.HHHHHHHH
+        └──── Net ID ────┘└── Host ID ──┘
+```
+
+| Property | Value |
+|----------|-------|
+| Range | 128.0.0.0 – 191.255.255.255 |
+| Number of networks | 2^14 = 16,384 |
+| Hosts per network | 2^16 - 2 = 65,534 |
+| Default subnet mask | 255.255.0.0 (/16) |
+
+### Class C
+
+- **Network ID**: First 24 bits (octets 1-3)
+- **Host ID**: Remaining 8 bits (4th octet)
+- **Leading bits**: `110`
+
+```
+Format: 110NNNNN.NNNNNNNN.NNNNNNNN.HHHHHHHH
+        └────────── Net ID ──────────┘└Host┘
+```
+
+| Property | Value |
+|----------|-------|
+| Range | 192.0.0.0 – 223.255.255.255 |
+| Number of networks | 2^21 = 2,097,152 |
+| Hosts per network | 2^8 - 2 = 254 |
+| Default subnet mask | 255.255.255.0 (/24) |
+
+### Class D (Multicast)
+
+- **Leading bits**: `1110`
+- **Range**: 224.0.0.0 – 239.255.255.255
+- **Purpose**: Multicast — one-to-many communication
+
+Class D addresses have no network/host split. They are used to send data to a group of receivers simultaneously.
+
+### Class E (Reserved)
+
+- **Leading bits**: `1111`
+- **Range**: 240.0.0.0 – 255.255.255.255
+- **Purpose**: Reserved for experimental use
+
+> **Note:** 255.255.255.255 is the limited broadcast address, used to reach all devices on the local network.
+
+### Class Summary
+
+| Class | Leading Bits | 1st Octet Range | Default Mask | Use Case |
+|-------|-------------|-----------------|--------------|----------|
+| A | 0 | 1-126 | /8 | Large networks |
+| B | 10 | 128-191 | /16 | Medium networks |
+| C | 110 | 192-223 | /24 | Small networks |
+| D | 1110 | 224-239 | — | Multicast |
+| E | 1111 | 240-255 | — | Reserved |
+
+## Subnet Masks
+
+### What Is a Subnet Mask?
+
+A **subnet mask** is a 32-bit value that tells you which bits of an IP address belong to the network and which belong to the host.
+
+- **1-bits** mark the network portion
+- **0-bits** mark the host portion
+
+```
+IP address:  192.168.1.100
+             11000000.10101000.00000001.01100100
+
+Subnet mask: 255.255.255.0
+             11111111.11111111.11111111.00000000
+             └────────── Network ──────────┘└Host┘
+
+Network address: 192.168.1.0 (IP AND mask)
+```
+
+### How Subnet Masks Work
+
+Performing a **bitwise AND** between an IP address and its subnet mask yields the network address:
 
 ```bash
-# 判断两台主机是否在同一网络
+# Are these two hosts on the same network?
 192.168.1.100 AND 255.255.255.0 = 192.168.1.0
 192.168.1.200 AND 255.255.255.0 = 192.168.1.0
-# 结果相同，说明在同一网络，可以直接通信
+# Same result — they can communicate directly.
 
 192.168.1.100 AND 255.255.255.0 = 192.168.1.0
 192.168.2.100 AND 255.255.255.0 = 192.168.2.0
-# 结果不同，说明在不同网络，需要通过路由器通信
+# Different result — traffic must go through a router.
 ```
 
-### 3. 计算可用主机数
+### Calculating Usable Hosts
 
-可用主机数的计算公式：
-
-```
-可用主机数 = 2^(主机位数) - 2
-```
-
-**为什么要减 2？** 因为每个网络中有两个特殊地址不能分配给主机：
-- **网络地址**：主机位全为 0（如 192.168.1.0）
-- **广播地址**：主机位全为 1（如 192.168.1.255）
-
-## 四、CIDR（无类别域间路由）
-
-### 1. 为什么需要 CIDR？
-
-有类寻址存在严重的**地址浪费**问题：
-
-| 场景 | 需求 | 有类分配 | 浪费 |
-|------|------|----------|------|
-| 公司有 300 台主机 | 300 个 IP | C 类（254 个）不够，B 类（65534 个） | 65,234 个 |
-| 公司有 2000 台主机 | 2000 个 IP | B 类（65534 个） | 63,534 个 |
-
-1993 年，IETF 发布了 RFC 1518 和 RFC 1519，引入了 **CIDR**（Classless Inter-Domain Routing，无类别域间路由），彻底解决了这个问题。
-
-### 2. CIDR 表示法
-
-CIDR 使用**斜线记法**（Slash Notation）表示网络前缀长度：
+The formula for usable host addresses in a subnet:
 
 ```
-格式：IP地址/前缀长度
-示例：192.168.1.0/24
+Usable hosts = 2^(host bits) - 2
 ```
 
-`/24` 表示前 24 位是网络 ID，后 8 位是主机 ID，等同于子网掩码 255.255.255.0。
+**Why subtract 2?** Because two addresses in every subnet are reserved:
+- **Network address**: all host bits set to 0 (e.g., 192.168.1.0)
+- **Broadcast address**: all host bits set to 1 (e.g., 192.168.1.255)
 
-### 3. CIDR 计算示例
+## CIDR (Classless Inter-Domain Routing)
 
-假设需要容纳 2000 台主机：
+### Why CIDR Was Needed
 
-```
-计算所需主机位：2^11 = 2048 > 2000，需要 11 位主机位
-网络位：32 - 11 = 21 位
-CIDR 表示：xxx.xxx.xxx.xxx/21
-子网掩码：11111111.11111111.11100000.00000000 = 255.255.224.0
-可用主机：2^11 - 2 = 2046 台
-```
+Classful addressing led to massive **address waste**:
 
-### 4. CIDR 的优势
+| Scenario | Need | Classful Allocation | Wasted |
+|----------|------|---------------------|--------|
+| 300 hosts | 300 IPs | Class C (254) too small, Class B (65,534) | 65,234 |
+| 2,000 hosts | 2,000 IPs | Class B (65,534) | 63,534 |
 
-| 优势 | 说明 |
-|------|------|
-| 灵活分配 | 按需分配 IP，减少浪费 |
-| 路由聚合 | 多个网络可聚合为一条路由（Supernetting） |
-| 延缓枯竭 | 更高效利用 IPv4 地址空间 |
+In 1993, the IETF published RFC 1518 and RFC 1519, introducing **CIDR** (Classless Inter-Domain Routing) to solve this problem once and for all.
 
-## 五、子网划分实战
+### CIDR Notation
 
-### 1. 划分子网的步骤
-
-1. 确定需要的子网数量或每个子网的主机数量
-2. 计算需要借用的主机位数
-3. 计算新的子网掩码
-4. 列出所有子网的地址范围
-
-### 2. 示例：将 192.168.1.0/24 划分为 4 个子网
+CIDR uses **slash notation** to express the network prefix length:
 
 ```
-原始网络：192.168.1.0/24
-需要子网：4 个
-借用位数：2 位（2^2 = 4）
-新掩码：/26（255.255.255.192）
+Format:  IP_address/prefix_length
+Example: 192.168.1.0/24
 ```
 
-划分结果：
+`/24` means the first 24 bits are the network ID and the remaining 8 bits are for hosts — equivalent to the subnet mask 255.255.255.0.
 
-| 子网 | 网络地址 | 可用范围 | 广播地址 | 可用主机 |
-|------|----------|----------|----------|----------|
-| 1 | 192.168.1.0/26 | .1 ~ .62 | .63 | 62 |
-| 2 | 192.168.1.64/26 | .65 ~ .126 | .127 | 62 |
-| 3 | 192.168.1.128/26 | .129 ~ .190 | .191 | 62 |
-| 4 | 192.168.1.192/26 | .193 ~ .254 | .255 | 62 |
+### CIDR Calculation Example
 
-## 六、子网速查表
+Suppose you need a subnet that supports 2,000 hosts:
 
-以下是常用的 CIDR 与子网掩码对照表：
+```
+Required host bits: 2^11 = 2048 > 2000, so 11 host bits
+Network bits:       32 - 11 = 21
+CIDR notation:      xxx.xxx.xxx.xxx/21
+Subnet mask:        11111111.11111111.11100000.00000000 = 255.255.224.0
+Usable hosts:       2^11 - 2 = 2,046
+```
 
-| CIDR | 子网掩码 | 可用主机数 | 常用场景 |
-|------|----------|------------|----------|
-| /30 | 255.255.255.252 | 2 | 点对点链路 |
-| /29 | 255.255.255.248 | 6 | 小型子网 |
-| /28 | 255.255.255.240 | 14 | 小型办公室 |
-| /27 | 255.255.255.224 | 30 | 小型部门 |
-| /26 | 255.255.255.192 | 62 | 中型部门 |
-| /25 | 255.255.255.128 | 126 | 大型部门 |
-| /24 | 255.255.255.0 | 254 | 标准 C 类网络 |
-| /23 | 255.255.254.0 | 510 | 中型网络 |
-| /22 | 255.255.252.0 | 1022 | 大型网络 |
-| /21 | 255.255.248.0 | 2046 | 大型网络 |
-| /20 | 255.255.240.0 | 4094 | 数据中心 |
-| /16 | 255.255.0.0 | 65,534 | 标准 B 类网络 |
-| /8 | 255.0.0.0 | 16,777,214 | 标准 A 类网络 |
+### Advantages of CIDR
 
-## 七、私有 IP 地址
+| Advantage | Description |
+|-----------|-------------|
+| Flexible allocation | Assign exactly the number of IPs you need |
+| Route aggregation | Combine multiple networks into a single route (supernetting) |
+| Slower exhaustion | More efficient use of the IPv4 address space |
 
-RFC 1918 定义了三个私有地址段，用于内部网络，不会在公网路由：
+## Subnetting in Practice
 
-| 地址段 | CIDR | 可用 IP 数量 | 传统分类 |
-|--------|------|--------------|----------|
-| 10.0.0.0 ~ 10.255.255.255 | 10.0.0.0/8 | 16,777,216 | A 类 |
-| 172.16.0.0 ~ 172.31.255.255 | 172.16.0.0/12 | 1,048,576 | B 类 |
-| 192.168.0.0 ~ 192.168.255.255 | 192.168.0.0/16 | 65,536 | C 类 |
+### Steps to Subnet a Network
 
-家庭路由器和企业内网通常使用这些私有地址，通过 NAT 访问公网。
+1. Determine how many subnets you need (or how many hosts per subnet)
+2. Calculate how many host bits to borrow
+3. Derive the new subnet mask
+4. List the address range for each subnet
 
-## 八、实用命令
+### Example: Split 192.168.1.0/24 into 4 Subnets
 
-### 1. Linux 查看 IP 配置
+```
+Original network: 192.168.1.0/24
+Subnets needed:   4
+Bits borrowed:    2 (2^2 = 4)
+New mask:         /26 (255.255.255.192)
+```
+
+Results:
+
+| Subnet | Network Address | Usable Range | Broadcast | Usable Hosts |
+|--------|----------------|--------------|-----------|--------------|
+| 1 | 192.168.1.0/26 | .1 – .62 | .63 | 62 |
+| 2 | 192.168.1.64/26 | .65 – .126 | .127 | 62 |
+| 3 | 192.168.1.128/26 | .129 – .190 | .191 | 62 |
+| 4 | 192.168.1.192/26 | .193 – .254 | .255 | 62 |
+
+## Subnet Cheat Sheet
+
+A quick reference for common CIDR prefixes:
+
+| CIDR | Subnet Mask | Usable Hosts | Typical Use |
+|------|------------|--------------|-------------|
+| /30 | 255.255.255.252 | 2 | Point-to-point links |
+| /29 | 255.255.255.248 | 6 | Tiny subnets |
+| /28 | 255.255.255.240 | 14 | Small offices |
+| /27 | 255.255.255.224 | 30 | Small departments |
+| /26 | 255.255.255.192 | 62 | Medium departments |
+| /25 | 255.255.255.128 | 126 | Large departments |
+| /24 | 255.255.255.0 | 254 | Standard Class C equivalent |
+| /23 | 255.255.254.0 | 510 | Medium networks |
+| /22 | 255.255.252.0 | 1,022 | Large networks |
+| /21 | 255.255.248.0 | 2,046 | Large networks |
+| /20 | 255.255.240.0 | 4,094 | Data centers |
+| /16 | 255.255.0.0 | 65,534 | Standard Class B equivalent |
+| /8 | 255.0.0.0 | 16,777,214 | Standard Class A equivalent |
+
+## Private IP Addresses
+
+RFC 1918 defines three private address ranges for internal networks. These addresses are not routed on the public internet:
+
+| Range | CIDR | Available IPs | Legacy Class |
+|-------|------|---------------|-------------|
+| 10.0.0.0 – 10.255.255.255 | 10.0.0.0/8 | 16,777,216 | A |
+| 172.16.0.0 – 172.31.255.255 | 172.16.0.0/12 | 1,048,576 | B |
+| 192.168.0.0 – 192.168.255.255 | 192.168.0.0/16 | 65,536 | C |
+
+Home routers and corporate LANs use these private ranges and reach the public internet through NAT (Network Address Translation).
+
+## Useful Commands
+
+### Viewing IP Configuration on Linux
 
 ```bash
-# 查看所有网络接口
+# Show all network interfaces
 ip addr show
 
-# 查看路由表
+# Show the routing table
 ip route show
 
-# 查看特定接口
+# Show a specific interface
 ip addr show eth0
 ```
 
-### 2. 计算网络地址
+### Calculating Network Addresses
 
 ```bash
-# 使用 ipcalc 工具
+# Use the ipcalc utility
 ipcalc 192.168.1.100/24
 
-# 输出示例：
+# Sample output:
 # Network:   192.168.1.0/24
 # Netmask:   255.255.255.0
 # Broadcast: 192.168.1.255
@@ -327,40 +327,40 @@ ipcalc 192.168.1.100/24
 # Hosts/Net: 254
 ```
 
-### 3. 测试网络连通性
+### Testing Connectivity
 
 ```bash
-# ping 测试
+# Ping test
 ping 192.168.1.1
 
-# 路由跟踪
+# Trace the route
 traceroute 8.8.8.8
 ```
 
-更多 Linux 网络命令，可以参考 [Linux/macOS 常用命令速查手册](/posts/linux/2020-03-19-linux-mac-commands/)。
+For more Linux networking commands, see [Linux/macOS Command Cheat Sheet](/posts/linux/2020-03-19-linux-mac-commands/).
 
-## 总结
+## Summary
 
-本文介绍了 IP 地址和 CIDR 的核心概念：
+Here are the key takeaways:
 
-1. **IPv4 地址**是 32 位的二进制数，由网络 ID 和主机 ID 组成
-2. **有类寻址**将地址分为 A/B/C/D/E 五类，但存在地址浪费问题
-3. **子网掩码**用于区分网络部分和主机部分
-4. **CIDR** 提供了灵活的地址分配方式，使用斜线记法表示前缀长度
-5. **子网划分**可以将大网络分割成多个小网络，提高管理效率
+1. **IPv4 addresses** are 32-bit numbers split into a network ID and a host ID
+2. **Classful addressing** divided addresses into five classes (A–E) but wasted large blocks of address space
+3. **Subnet masks** separate the network portion from the host portion using a bitwise AND operation
+4. **CIDR** replaced classful addressing with flexible prefix-length notation, enabling right-sized allocations
+5. **Subnetting** lets you carve a large network into smaller, more manageable segments
 
-掌握这些基础知识，对于理解云服务网络配置、容器网络、防火墙规则等都非常有帮助。
+These fundamentals underpin everything from cloud VPC design and Kubernetes pod networking to firewall rules and DNS configuration.
 
-## 相关阅读
+## Further Reading
 
-- [Linux/macOS 常用命令速查手册](/posts/linux/2020-03-19-linux-mac-commands/) - 网络诊断命令
-- [Traceroute 网络诊断命令详解](/posts/linux/2020-06-28-traceroute/) - 网络路由跟踪
-- [curl 命令完全指南](/posts/linux/2020-06-29-curl/) - HTTP 请求与 API 调试
+- [Linux/macOS Command Cheat Sheet](/posts/linux/2020-03-19-linux-mac-commands/) — Network diagnostic commands
+- [Traceroute Explained](/posts/linux/2020-06-28-traceroute/) — Tracing network routes
+- [The Complete curl Guide](/posts/linux/2020-06-29-curl/) — HTTP requests and API debugging
 
-## 参考资源
+## References
 
-- [Understanding IP Addresses, Subnets, and CIDR - DigitalOcean](https://www.digitalocean.com/community/tutorials/understanding-ip-addresses-subnets-and-cidr-notation-for-networking)
-- [What is CIDR? - AWS](https://aws.amazon.com/what-is/cidr/)
-- [Subnet Cheat Sheet - freeCodeCamp](https://www.freecodecamp.org/news/subnet-cheat-sheet-24-subnet-mask-30-26-27-29-and-other-ip-address-cidr-network-references/)
-- [CIDR - Wikipedia](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
-- [RFC 1918 - Private Address Space](https://tools.ietf.org/html/rfc1918)
+- [Understanding IP Addresses, Subnets, and CIDR — DigitalOcean](https://www.digitalocean.com/community/tutorials/understanding-ip-addresses-subnets-and-cidr-notation-for-networking)
+- [What is CIDR? — AWS](https://aws.amazon.com/what-is/cidr/)
+- [Subnet Cheat Sheet — freeCodeCamp](https://www.freecodecamp.org/news/subnet-cheat-sheet-24-subnet-mask-30-26-27-29-and-other-ip-address-cidr-network-references/)
+- [CIDR — Wikipedia](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+- [RFC 1918 — Private Address Space](https://tools.ietf.org/html/rfc1918)

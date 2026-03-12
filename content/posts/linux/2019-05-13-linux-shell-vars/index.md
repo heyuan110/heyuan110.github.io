@@ -1,436 +1,436 @@
 +++
-title = 'Shell 特殊变量完全指南：$$、$?、$@、$# 等用法详解'
+title = 'Bash Special Variables Explained: $$, $?, $@, $# and More'
 date = '2026-01-22T15:47:58+08:00'
-description = 'Bash Shell 特殊变量完全指南，详解 $$、$!、$?、$-、$*、$@、$#、$0 等变量的含义和实际用法。包含 $* 与 $@ 的区别对比、退出状态码说明、完整示例代码和最佳实践。'
+description = 'A complete guide to Bash special variables including $$, $!, $?, $-, $*, $@, $#, and $0. Learn the difference between $* and $@, exit status codes, and best practices with practical examples.'
 toc = true
-tags = ['shell', 'bash', 'linux', '脚本', '特殊变量']
+tags = ['Shell', 'Bash', 'Linux', 'Scripting']
 categories = ['Linux']
-keywords = ['Shell 特殊变量', 'Bash 变量', '$@ $* 区别', 'Shell 脚本', 'Linux 变量']
+keywords = ['Bash special variables', 'Shell variables', '$@ vs $* difference', 'Shell scripting', 'Linux variables', 'exit status code']
 +++
-![Shell 特殊变量完全指南，掌握 Bash 脚本的核心知识](cover.webp)
+![A complete guide to Bash special variables for Shell scripting](cover.webp)
 
-编写 Shell 脚本时，你一定见过 `$?`、`$@`、`$$` 这些以美元符号开头的特殊变量。它们是 Bash 内置的**特殊参数**，用于获取脚本运行状态、命令行参数等关键信息。掌握这些变量，是写出健壮 Shell 脚本的基础。
+If you have written any Bash scripts, you have almost certainly encountered cryptic-looking variables like `$?`, `$@`, and `$$`. These are **special parameters** built into Bash that give you access to script metadata, command-line arguments, and process information. Understanding them is essential for writing robust Shell scripts.
 
-本文将系统讲解每个特殊变量的含义、使用场景，并通过实际示例帮助你深入理解。
+This guide walks through every special variable with clear explanations, real-world use cases, and runnable examples.
 
 <!--more-->
 
-## 一、特殊变量速查表
+## Quick Reference Table
 
-先来看一个快速参考表，方便日后查阅：
+Here is a cheat sheet you can bookmark for later:
 
-| 变量 | 含义 | 示例值 |
-|------|------|--------|
-| `$0` | 当前脚本的文件名 | `./test.sh` |
-| `$1`~`$9` | 第 1~9 个位置参数 | `arg1` |
-| `${10}` | 第 10 个及以后的参数（需要大括号） | `arg10` |
-| `$#` | 传入参数的个数（不含 `$0`） | `3` |
-| `$*` | 所有参数，作为**一个字符串** | `"arg1 arg2 arg3"` |
-| `$@` | 所有参数，作为**独立字符串数组** | `"arg1" "arg2" "arg3"` |
-| `$?` | 上一条命令的退出状态码 | `0`（成功） |
-| `$$` | 当前 Shell 进程的 PID | `12345` |
-| `$!` | 最近一个后台进程的 PID | `12346` |
-| `$-` | 当前 Shell 的选项标志 | `himBHs` |
-| `$_` | 上一条命令的最后一个参数 | `/path/to/file` |
+| Variable | Meaning | Example Value |
+|----------|---------|---------------|
+| `$0` | Name of the current script | `./test.sh` |
+| `$1`–`$9` | Positional parameters 1 through 9 | `arg1` |
+| `${10}` | 10th parameter and beyond (braces required) | `arg10` |
+| `$#` | Number of arguments (excluding `$0`) | `3` |
+| `$*` | All arguments as a **single string** | `"arg1 arg2 arg3"` |
+| `$@` | All arguments as **separate strings** | `"arg1" "arg2" "arg3"` |
+| `$?` | Exit status of the last command | `0` (success) |
+| `$$` | PID of the current Shell process | `12345` |
+| `$!` | PID of the most recent background process | `12346` |
+| `$-` | Current Shell option flags | `himBHs` |
+| `$_` | Last argument of the previous command | `/path/to/file` |
 
-> 记忆技巧：`$#` 的 `#` 像是在数数（count），`$?` 的 `?` 像是在问"结果如何"，`$$` 两个 `$` 表示"我自己的身份"。
+> **Memory trick:** The `#` in `$#` looks like it is counting, the `?` in `$?` is asking "how did it go?", and the double `$` in `$$` means "my own identity."
 
 ---
 
-## 二、位置参数详解
+## Positional Parameters
 
-### 1. $0 - 脚本名称
+### $0 — Script Name
 
-`$0` 保存当前执行脚本的名称（包含路径）。
+`$0` holds the name (including path) of the currently running script.
 
 ```bash
 #!/bin/bash
-echo "脚本名称: $0"
+echo "Script name: $0"
 ```
 
-**运行结果：**
+**Output:**
 
 ```bash
 $ ./scripts/deploy.sh
-脚本名称: ./scripts/deploy.sh
+Script name: ./scripts/deploy.sh
 
 $ bash /home/user/scripts/deploy.sh
-脚本名称: /home/user/scripts/deploy.sh
+Script name: /home/user/scripts/deploy.sh
 ```
 
-**应用场景**：打印帮助信息时显示正确的脚本名。
+**Common use case:** displaying the correct script name in help messages.
 
 ```bash
 usage() {
-    echo "用法: $0 [选项] <参数>"
-    echo "示例: $0 -f config.yml"
+    echo "Usage: $0 [options] <argument>"
+    echo "Example: $0 -f config.yml"
 }
 ```
 
-### 2. $1~$9 和 ${n} - 位置参数
+### $1–$9 and ${n} — Positional Parameters
 
-`$1` 到 `$9` 分别表示传入脚本的第 1 到第 9 个参数。超过 9 个时，必须用 `${10}`、`${11}` 这种大括号形式。
+`$1` through `$9` represent the first through ninth arguments passed to the script. For the 10th argument and beyond, you must use braces: `${10}`, `${11}`, etc.
 
 ```bash
 #!/bin/bash
-echo "第一个参数: $1"
-echo "第二个参数: $2"
-echo "第十个参数: ${10}"
+echo "First argument: $1"
+echo "Second argument: $2"
+echo "Tenth argument: ${10}"
 ```
 
-**注意**：如果写成 `$10`，Shell 会解析为 `$1` 加上字符 `0`，而不是第 10 个参数。
+**Watch out:** Writing `$10` without braces is interpreted as `$1` followed by the literal character `0`, not as the tenth parameter.
 
-### 3. $# - 参数个数
+### $# — Argument Count
 
-`$#` 返回传入参数的数量，**不包括 `$0`**。
+`$#` returns the number of arguments passed to the script, **excluding `$0`**.
 
 ```bash
 #!/bin/bash
-echo "参数个数: $#"
+echo "Number of arguments: $#"
 
 if [ $# -lt 2 ]; then
-    echo "错误: 至少需要 2 个参数"
+    echo "Error: at least 2 arguments required"
     exit 1
 fi
 ```
 
-**运行结果：**
+**Output:**
 
 ```bash
 $ ./test.sh a b c
-参数个数: 3
+Number of arguments: 3
 
 $ ./test.sh
-参数个数: 0
+Number of arguments: 0
 ```
 
 ---
 
-## 三、$* 与 $@ 的区别（重点）
+## $* vs $@ — The Critical Difference
 
-![终端中运行 Shell 脚本的示例](terminal.webp)
+![Example of running a Shell script in the terminal](terminal.webp)
 
-这两个变量都表示"所有参数"，但在加引号时行为不同。这是 Shell 脚本面试中的经典问题。
+Both variables represent "all arguments," but they behave very differently when quoted. This is a classic Shell scripting interview question.
 
-### 不加引号时：行为相同
+### Without Quotes: Identical Behavior
 
 ```bash
 #!/bin/bash
-echo "使用 \$*:"
+echo "Using \$*:"
 for arg in $*; do
     echo "  - $arg"
 done
 
-echo "使用 \$@:"
+echo "Using \$@:"
 for arg in $@; do
     echo "  - $arg"
 done
 ```
 
-**运行 `./test.sh "hello world" foo bar`：**
+**Running `./test.sh "hello world" foo bar`:**
 
 ```
-使用 $*:
+Using $*:
   - hello
   - world
   - foo
   - bar
-使用 $@:
+Using $@:
   - hello
   - world
   - foo
   - bar
 ```
 
-不加引号时，包含空格的参数 `"hello world"` 被拆分成两个词。
+Without quotes, the argument `"hello world"` gets split into two separate words by word splitting.
 
-### 加引号时：关键区别
+### With Quotes: The Key Difference
 
 ```bash
 #!/bin/bash
-echo "使用 \"\$*\":"
+echo "Using \"\$*\":"
 for arg in "$*"; do
     echo "  [$arg]"
 done
 
-echo "使用 \"\$@\":"
+echo "Using \"\$@\":"
 for arg in "$@"; do
     echo "  [$arg]"
 done
 ```
 
-**运行 `./test.sh "hello world" foo bar`：**
+**Running `./test.sh "hello world" foo bar`:**
 
 ```
-使用 "$*":
+Using "$*":
   [hello world foo bar]
-使用 "$@":
+Using "$@":
   [hello world]
   [foo]
   [bar]
 ```
 
-### 区别总结
+### Summary
 
-| 形式 | 结果 | 说明 |
-|------|------|------|
-| `$*` | `hello world foo bar` | 所有参数拆分为单词 |
-| `$@` | `hello world foo bar` | 所有参数拆分为单词 |
-| `"$*"` | `"hello world foo bar"` | **一个**字符串 |
-| `"$@"` | `"hello world" "foo" "bar"` | **三个**独立字符串 |
+| Form | Result | Explanation |
+|------|--------|-------------|
+| `$*` | `hello world foo bar` | All arguments subject to word splitting |
+| `$@` | `hello world foo bar` | All arguments subject to word splitting |
+| `"$*"` | `"hello world foo bar"` | Everything joined into **one** string |
+| `"$@"` | `"hello world" "foo" "bar"` | Each argument preserved as a **separate** string |
 
-> **最佳实践**：几乎所有情况下都应该使用 `"$@"`，它能正确保留参数中的空格和特殊字符。
+> **Best practice:** Almost always use `"$@"`. It correctly preserves spaces and special characters within arguments.
 
 ---
 
-## 四、进程相关变量
+## Process-Related Variables
 
-### 1. $$ - 当前进程 PID
+### $$ — Current Process PID
 
-`$$` 返回当前 Shell 脚本运行时的进程 ID，常用于创建临时文件。
+`$$` returns the process ID of the running Shell script. It is commonly used to create unique temporary files.
 
 ```bash
 #!/bin/bash
 TEMP_FILE="/tmp/myapp_$$.tmp"
-echo "临时文件: $TEMP_FILE"
-echo "数据内容" > "$TEMP_FILE"
+echo "Temp file: $TEMP_FILE"
+echo "some data" > "$TEMP_FILE"
 
-# 脚本结束时清理
+# Clean up on exit
 trap "rm -f $TEMP_FILE" EXIT
 ```
 
-**为什么用 PID？** 保证文件名唯一，避免多个脚本实例冲突。
+**Why use the PID?** It guarantees a unique filename, preventing collisions when multiple instances of the script run simultaneously.
 
-### 2. $! - 后台进程 PID
+### $! — Background Process PID
 
-`$!` 保存最近一个后台执行命令的进程 ID。
+`$!` stores the process ID of the most recently backgrounded command.
 
 ```bash
 #!/bin/bash
-# 启动后台任务
+# Start a background task
 long_running_task &
 TASK_PID=$!
 
-echo "后台任务 PID: $TASK_PID"
+echo "Background task PID: $TASK_PID"
 
-# 等待任务完成
+# Wait for it to finish
 wait $TASK_PID
-echo "任务已完成"
+echo "Task completed"
 ```
 
-**应用场景**：管理后台进程、实现超时控制。
+**Use case:** managing background processes and implementing timeouts.
 
 ```bash
 #!/bin/bash
-# 带超时的命令执行
+# Run a command with a timeout
 slow_command &
 PID=$!
 
-# 5秒后检查
+# Check after 5 seconds
 sleep 5
 if kill -0 $PID 2>/dev/null; then
-    echo "命令执行超时，终止进程"
+    echo "Command timed out, killing process"
     kill $PID
 fi
 ```
 
 ---
 
-## 五、退出状态 $?
+## Exit Status — $?
 
-`$?` 保存上一条命令的退出状态码（Exit Code），是脚本流程控制的核心。
+`$?` holds the exit status code of the last executed command. It is the backbone of flow control in Shell scripts.
 
-### 状态码含义
+### Exit Code Reference
 
-| 状态码 | 含义 |
-|--------|------|
-| `0` | 命令执行成功 |
-| `1` | 通用错误 |
-| `2` | 命令使用错误（如参数错误） |
-| `126` | 命令存在但无执行权限 |
-| `127` | 命令不存在 |
-| `128+N` | 被信号 N 终止 |
-| `130` | 被 Ctrl+C 中断（128+2） |
-| `255` | 退出码超出范围 |
+| Code | Meaning |
+|------|---------|
+| `0` | Success |
+| `1` | General error |
+| `2` | Misuse of command (e.g., invalid arguments) |
+| `126` | Command found but not executable |
+| `127` | Command not found |
+| `128+N` | Terminated by signal N |
+| `130` | Interrupted by Ctrl+C (128+2) |
+| `255` | Exit code out of range |
 
-### 实际应用
+### Practical Usage
 
 ```bash
 #!/bin/bash
-# 检查命令是否成功
+# Check whether a command succeeded
 grep "error" /var/log/app.log
 if [ $? -eq 0 ]; then
-    echo "发现错误日志"
+    echo "Errors found in log"
 else
-    echo "没有错误"
+    echo "No errors"
 fi
 
-# 更简洁的写法
+# A cleaner approach
 if grep -q "error" /var/log/app.log; then
-    echo "发现错误日志"
+    echo "Errors found in log"
 fi
 ```
 
-### 设置脚本退出码
+### Setting Your Own Exit Codes
 
-使用 `exit` 命令设置脚本的退出状态码：
+Use the `exit` command to return a specific status from your script:
 
 ```bash
 #!/bin/bash
 if [ ! -f "$1" ]; then
-    echo "错误: 文件不存在" >&2
+    echo "Error: file not found" >&2
     exit 1
 fi
 
-# 正常执行
+# Normal execution
 process_file "$1"
 exit 0
 ```
 
 ---
 
-## 六、Shell 选项 $-
+## Shell Option Flags — $-
 
-`$-` 显示当前 Shell 启用的选项标志。
+`$-` shows the option flags currently enabled in the Shell.
 
 ```bash
 $ echo $-
 himBHs
 ```
 
-常见标志含义：
+Common flags:
 
-| 标志 | 含义 |
-|------|------|
-| `h` | hashall - 记住命令位置 |
-| `i` | interactive - 交互式 Shell |
-| `m` | monitor - 作业控制 |
-| `B` | braceexpand - 启用花括号展开 |
-| `H` | histexpand - 启用历史展开 |
-| `s` | stdin - 从标准输入读取命令 |
+| Flag | Meaning |
+|------|---------|
+| `h` | hashall — remember command locations |
+| `i` | interactive — this is an interactive Shell |
+| `m` | monitor — job control enabled |
+| `B` | braceexpand — brace expansion enabled |
+| `H` | histexpand — history expansion enabled |
+| `s` | stdin — reading commands from standard input |
 
-**应用场景**：判断脚本是否在交互式 Shell 中运行。
+**Use case:** detecting whether a script is running in an interactive Shell.
 
 ```bash
 #!/bin/bash
 case $- in
-    *i*) echo "交互式 Shell" ;;
-    *)   echo "非交互式 Shell" ;;
+    *i*) echo "Interactive Shell" ;;
+    *)   echo "Non-interactive Shell" ;;
 esac
 ```
 
 ---
 
-## 七、完整示例脚本
+## Putting It All Together
 
-下面是一个综合运用特殊变量的实用脚本：
+Here is a comprehensive script that demonstrates every special variable in action:
 
 ```bash
 #!/bin/bash
-# 文件: show_vars.sh
-# 说明: 演示 Shell 特殊变量的用法
+# File: show_vars.sh
+# Demonstrates Bash special variables
 
-echo "===== 基本信息 ====="
-echo "脚本名称: $0"
-echo "进程 PID: $$"
-echo "参数个数: $#"
-echo "Shell 选项: $-"
+echo "===== Basic Info ====="
+echo "Script name: $0"
+echo "Process PID: $$"
+echo "Argument count: $#"
+echo "Shell options: $-"
 
 echo ""
-echo "===== 位置参数 ====="
-echo "第一个参数: ${1:-'(空)'}"
-echo "第二个参数: ${2:-'(空)'}"
-echo "第三个参数: ${3:-'(空)'}"
+echo "===== Positional Parameters ====="
+echo "First argument: ${1:-'(empty)'}"
+echo "Second argument: ${2:-'(empty)'}"
+echo "Third argument: ${3:-'(empty)'}"
 
 echo ""
 echo '===== $* vs $@ ====='
-echo "使用 \"\$*\":"
+echo "Using \"\$*\":"
 for arg in "$*"; do
     echo "  -> [$arg]"
 done
 
-echo "使用 \"\$@\":"
+echo "Using \"\$@\":"
 for arg in "$@"; do
     echo "  -> [$arg]"
 done
 
 echo ""
-echo "===== 退出状态演示 ====="
+echo "===== Exit Status Demo ====="
 ls /nonexistent 2>/dev/null
-echo "ls 不存在目录的退出码: $?"
+echo "Exit code for missing directory: $?"
 
 ls / >/dev/null
-echo "ls 存在目录的退出码: $?"
+echo "Exit code for existing directory: $?"
 
 echo ""
-echo "===== 后台进程 ====="
+echo "===== Background Process ====="
 sleep 1 &
-echo "后台进程 PID: $!"
+echo "Background PID: $!"
 wait
-echo "后台进程已结束"
+echo "Background process finished"
 ```
 
-**运行结果：**
+**Output:**
 
 ```bash
 $ ./show_vars.sh "hello world" foo bar
 
-===== 基本信息 =====
-脚本名称: ./show_vars.sh
-进程 PID: 28547
-参数个数: 3
-Shell 选项: hB
+===== Basic Info =====
+Script name: ./show_vars.sh
+Process PID: 28547
+Argument count: 3
+Shell options: hB
 
-===== 位置参数 =====
-第一个参数: hello world
-第二个参数: foo
-第三个参数: bar
+===== Positional Parameters =====
+First argument: hello world
+Second argument: foo
+Third argument: bar
 
 ===== $* vs $@ =====
-使用 "$*":
+Using "$*":
   -> [hello world foo bar]
-使用 "$@":
+Using "$@":
   -> [hello world]
   -> [foo]
   -> [bar]
 
-===== 退出状态演示 =====
-ls 不存在目录的退出码: 2
-ls 存在目录的退出码: 0
+===== Exit Status Demo =====
+Exit code for missing directory: 2
+Exit code for existing directory: 0
 
-===== 后台进程 =====
-后台进程 PID: 28548
-后台进程已结束
+===== Background Process =====
+Background PID: 28548
+Background process finished
 ```
 
 ---
 
-## 八、最佳实践
+## Best Practices
 
-### 1. 始终用 "$@" 而不是 $*
+### 1. Always Use "$@" Instead of $*
 
 ```bash
-# 推荐
+# Recommended
 for arg in "$@"; do
     process "$arg"
 done
 
-# 不推荐
+# Avoid — breaks on arguments with spaces
 for arg in $*; do
     process "$arg"
 done
 ```
 
-### 2. 检查参数数量
+### 2. Validate Argument Count Early
 
 ```bash
 if [ $# -eq 0 ]; then
-    echo "用法: $0 <文件名>" >&2
+    echo "Usage: $0 <filename>" >&2
     exit 1
 fi
 ```
 
-### 3. 使用有意义的退出码
+### 3. Use Meaningful Exit Codes
 
 ```bash
 readonly E_SUCCESS=0
@@ -442,7 +442,7 @@ if [ $# -eq 0 ]; then
 fi
 ```
 
-### 4. 临时文件使用 $$ 确保唯一
+### 4. Use $$ for Unique Temp Files
 
 ```bash
 TMPFILE="/tmp/${0##*/}.$$"
@@ -451,27 +451,26 @@ trap "rm -f $TMPFILE" EXIT
 
 ---
 
-## 总结
+## Summary
 
-Shell 特殊变量是脚本编程的基础工具：
+Bash special variables are fundamental tools for scripting:
 
-- **位置参数**（`$0`~`$9`、`$#`、`$@`）用于处理命令行输入
-- **进程变量**（`$$`、`$!`）用于进程管理和临时文件
-- **状态变量**（`$?`）用于流程控制和错误处理
-- **`"$@"`** 几乎总是比 `$*` 更安全的选择
+- **Positional parameters** (`$0`–`$9`, `$#`, `$@`) handle command-line input
+- **Process variables** (`$$`, `$!`) manage processes and temp files
+- **Exit status** (`$?`) drives flow control and error handling
+- **`"$@"`** is almost always the safer choice over `$*`
 
-掌握这些变量，你就能写出更健壮、更专业的 Shell 脚本。
+Master these variables and you will write cleaner, more reliable Shell scripts.
 
 ---
 
-## 相关阅读
+## Further Reading
 
-- [Oh My Zsh 安装配置指南：打造高效终端环境](/posts/linux/2015-06-17-shell-zsh/) - 强大的 Zsh 配置框架
-- [Linux/macOS 常用命令速查手册](/posts/linux/2020-03-19-linux-mac-commands/) - 运维开发常用命令参考
+- [Oh My Zsh Setup Guide: Build a Productive Terminal](/posts/linux/2015-06-17-shell-zsh/) — A powerful Zsh configuration framework
+- [Linux/macOS Command Cheat Sheet](/posts/linux/2020-03-19-linux-mac-commands/) — Common commands for daily use
 
-## 参考资料
+## References
 
 - [Bash Reference Manual - Special Parameters](https://www.gnu.org/software/bash/manual/html_node/Special-Parameters.html)
-- [Shell 传递参数 - 菜鸟教程](https://www.runoob.com/linux/linux-shell-passing-arguments.html)
 - [Bash Special Variables - Linux Handbook](https://linuxhandbook.com/bash-special-variables/)
 - [Devhints - Bash Scripting Cheatsheet](https://devhints.io/bash)

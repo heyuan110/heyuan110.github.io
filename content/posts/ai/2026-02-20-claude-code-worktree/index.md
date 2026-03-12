@@ -1,107 +1,107 @@
 +++
 date = '2026-02-20T12:00:00+08:00'
 draft = false
-title = 'Claude Code Worktree 实战：一个仓库同时跑多个 AI 任务的正确姿势'
-description = '详解 Claude Code --worktree (-w) 模式，从 Git Worktree 基础到并行开发实战，涵盖自动创建、隔离开发、清理机制、最佳实践与常见问题。帮你在一个仓库里同时跑多个 Claude 任务互不干扰。'
+title = 'Claude Code Worktree: Run Multiple AI Tasks in One Repo'
+description = 'Learn how to use Claude Code --worktree (-w) mode to run parallel AI coding sessions in isolated directories. Covers setup, auto-cleanup, best practices, and real-world workflows.'
 toc = true
-tags = ['Claude Code', 'Git Worktree', 'AI 编程', '开发效率']
-categories = ['AI实战']
-keywords = ['Claude Code worktree', 'Claude Code 并行开发', 'git worktree', 'AI 编程工作流', 'Claude Code -w']
+tags = ['Claude Code', 'Git Worktree', 'AI Coding', 'Developer Productivity']
+categories = ['AI Guides']
+keywords = ['Claude Code worktree', 'Claude Code parallel development', 'git worktree AI coding', 'claude code -w flag', 'parallel AI coding sessions']
 +++
 
-你有没有遇到过这种情况：
+Have you ever run into these situations?
 
-- 让 Claude 改一个功能改到一半，突然要修一个线上 bug，只能 stash 或者硬着头皮 commit 一堆半成品
-- 想同时让 Claude 做两件事——一个写新功能，一个补测试——但两个会话操作同一份代码，改着改着就冲突了
-- 想做一次大胆的实验性重构，又怕搞砸了回不去
+- Claude is halfway through a feature when an urgent production bug comes in. You have to `git stash` your half-done work or force-commit a messy WIP.
+- You want Claude to work on two things at once -- one building a new feature, the other writing tests -- but both sessions edit the same files and create conflicts.
+- You want to try a risky refactor but worry about messing up your working directory beyond recovery.
 
-这些问题的本质是：**一个工作目录只能承载一个进行中的任务**。你切分支可以隔离 Git 记录，但文件系统只有一份，两个 Claude 会话还是会踩到同一块地盘。
+The root cause is simple: **one working directory can only support one in-progress task**. Switching branches isolates Git history, but the file system is shared. Two Claude sessions operating on the same directory will inevitably step on each other.
 
-Claude Code 的 `--worktree`（简写 `-w`）模式就是为解决这个问题而生的。它把 Git Worktree 的能力直接集成进了 Claude Code，让你用一条命令就能在隔离的工作目录中启动新的 Claude 会话。
+Claude Code's `--worktree` (shorthand `-w`) mode solves this problem. It integrates Git worktree functionality directly into Claude Code, letting you spin up an isolated working directory and a new Claude session with a single command.
 
-## 一、Git Worktree 基础：一个仓库，多个工作目录
+## Git Worktree Basics: One Repo, Multiple Working Directories
 
-在讲 Claude Code 的 worktree 模式之前，先快速理解 Git Worktree 本身。如果你已经熟悉这个概念，可以直接跳到下一节。
+Before diving into Claude Code's worktree mode, let's quickly cover how Git worktree works. If you're already familiar, skip to the next section.
 
-### 1.1 传统工作流的痛点
+### The Problem with Traditional Workflows
 
-通常一个 Git 仓库对应一个工作目录。当你需要在不同分支间切换时：
+Normally, one Git repo maps to one working directory. When you need to switch between branches:
 
 ```bash
-# 正在 feature-a 上开发，突然要修 bug
-git stash                    # 先存起来
-git checkout hotfix-branch   # 切过去
-# ... 修完 bug ...
-git checkout feature-a       # 切回来
-git stash pop                # 恢复之前的工作
+# Working on feature-a, suddenly need to fix a bug
+git stash                    # Save current work
+git checkout hotfix-branch   # Switch to hotfix
+# ... fix the bug ...
+git checkout feature-a       # Switch back
+git stash pop                # Restore saved work
 ```
 
-这个流程有几个问题：stash 容易忘记 pop、切换分支可能导致 node_modules 等依赖需要重新安装、而且全程你只能做一件事。
+This workflow has several problems: you might forget to `git stash pop`, switching branches can invalidate `node_modules` and require reinstalling dependencies, and you can only work on one thing at a time.
 
-### 1.2 Git Worktree 的解法
+### How Git Worktree Solves It
 
-Git Worktree 允许你从同一个仓库检出多个工作目录，每个目录对应一个独立分支，但共享底层的 `.git` 仓库数据：
+Git worktree lets you check out multiple working directories from the same repository. Each directory has its own branch, but they all share the underlying `.git` repository data:
 
 ```bash
-# 在当前仓库旁边创建一个新的工作目录
+# Create a new working directory alongside the current repo
 git worktree add ../project-hotfix -b hotfix-branch
 
-# 现在你有两个目录，各自独立
-# /project/           -> feature-a 分支
-# /project-hotfix/    -> hotfix-branch 分支
+# Now you have two directories, each independent
+# /project/           -> feature-a branch
+# /project-hotfix/    -> hotfix-branch branch
 ```
 
-两个目录拥有各自独立的文件状态，互不影响。你可以在一个目录里写代码，同时在另一个目录里跑测试，不用 stash，不用切分支。
+Each directory has its own independent file state. You can write code in one while running tests in the other -- no stashing, no branch switching.
 
-### 1.3 核心命令速查
+### Quick Reference
 
-| 命令 | 作用 |
-|------|------|
-| `git worktree add <path> -b <branch>` | 创建新 worktree 并新建分支 |
-| `git worktree add <path> <existing-branch>` | 创建新 worktree 并检出已有分支 |
-| `git worktree list` | 查看所有 worktree |
-| `git worktree remove <path>` | 删除指定 worktree |
+| Command | Purpose |
+|---------|---------|
+| `git worktree add <path> -b <branch>` | Create worktree with a new branch |
+| `git worktree add <path> <existing-branch>` | Create worktree from existing branch |
+| `git worktree list` | List all worktrees |
+| `git worktree remove <path>` | Remove a worktree |
 
-理解了这个基础，Claude Code 的 worktree 模式就很好懂了——它帮你自动完成了上面这些操作，并加上了会话管理。
+With this foundation, Claude Code's worktree mode is straightforward -- it automates these operations and adds session management on top.
 
-## 二、Claude Code --worktree 模式详解
+## Claude Code --worktree Mode Explained
 
-### 2.1 基本用法
+### Basic Usage
 
-最简单的方式，给 worktree 指定一个名字：
+The simplest approach is to give your worktree a name:
 
 ```bash
-# 创建名为 "feature-auth" 的 worktree 并启动 Claude
+# Create a worktree named "feature-auth" and launch Claude
 claude -w feature-auth
 ```
 
-这条命令会：
+This command does three things:
 
-1. 在 `<仓库根目录>/.claude/worktrees/feature-auth/` 创建一个新的工作目录
-2. 从默认远程分支（通常是 main）新建一个名为 `worktree-feature-auth` 的分支
-3. 在这个隔离的工作目录中启动 Claude Code 会话
+1. Creates a new working directory at `<repo-root>/.claude/worktrees/feature-auth/`
+2. Creates a new branch called `worktree-feature-auth` from the default remote branch (usually `main`)
+3. Launches a Claude Code session inside this isolated directory
 
-如果你懒得起名字，也可以让 Claude 自动生成一个：
+If you don't want to choose a name, let Claude generate one automatically:
 
 ```bash
-# 自动生成随机名称，比如 "bright-running-fox"
+# Auto-generates a random name like "bright-running-fox"
 claude -w
 ```
 
-### 2.2 在会话中创建 Worktree
+### Creating a Worktree from Within a Session
 
-你也可以在一个已启动的 Claude Code 会话中，通过自然语言让 Claude 创建 worktree：
+You can also ask Claude to create a worktree from an active session using natural language:
 
 ```
-> 在一个新的 worktree 里帮我做这个功能
-> start a worktree for this task
+> Start a worktree for this task
+> Work on this feature in a new worktree
 ```
 
-Claude 会自动处理 worktree 的创建并切换到隔离环境中工作。
+Claude handles the worktree creation and switches to the isolated environment automatically.
 
-### 2.3 目录结构
+### Directory Structure
 
-所有通过 `claude -w` 创建的 worktree 都存放在统一的位置：
+All worktrees created via `claude -w` are stored in a consistent location:
 
 ```
 my-project/
@@ -110,253 +110,253 @@ my-project/
 │       ├── feature-auth/      # worktree: feature-auth
 │       │   ├── src/
 │       │   ├── package.json
-│       │   └── ...            # 完整的项目文件副本
+│       │   └── ...            # Full copy of project files
 │       └── bugfix-123/        # worktree: bugfix-123
 │           ├── src/
 │           ├── package.json
 │           └── ...
-├── src/                       # 主工作目录
+├── src/                       # Main working directory
 ├── package.json
 └── ...
 ```
 
-建议在 `.gitignore` 中添加以下规则，避免 worktree 内容出现在主仓库的 `git status` 中：
+Add this rule to your `.gitignore` to keep worktree contents out of `git status`:
 
 ```gitignore
 .claude/worktrees/
 ```
 
-### 2.4 自动清理机制
+### Automatic Cleanup
 
-退出 worktree 会话时，Claude Code 会根据是否有变更来决定如何处理：
+When you exit a worktree session, Claude Code decides what to do based on whether changes exist:
 
-- **没有任何改动**：自动删除 worktree 和对应的分支，干干净净
-- **有未提交的改动或已提交的 commit**：Claude 会提示你选择保留还是删除。保留则目录和分支都在，下次可以通过 `--resume` 继续；删除则清理一切，包括未提交的改动和已有的 commit
+- **No changes made**: Automatically deletes the worktree and its branch. Clean and simple.
+- **Uncommitted changes or new commits exist**: Claude prompts you to keep or delete. Keeping preserves the directory and branch for later `--resume`. Deleting removes everything, including uncommitted changes and commits.
 
-这个设计非常合理——实验性改动如果没价值就自动回收，有价值的工作不会被误删。
+This design is sensible -- throwaway experiments get automatically recycled, while meaningful work is never accidentally lost.
 
-### 2.5 手动管理 Worktree
+### Manual Worktree Management
 
-如果你需要更精细的控制，比如把 worktree 放在仓库外面，或者检出一个已有的远程分支，可以用 Git 原生命令：
+For finer control -- such as placing worktrees outside the repo or checking out an existing remote branch -- use native Git commands:
 
 ```bash
-# 在仓库外创建 worktree
+# Create worktree outside the repo
 git worktree add ../project-feature-a -b feature-a
 
-# 检出已有的远程分支
+# Check out an existing remote branch
 git worktree add ../project-bugfix bugfix-123
 
-# 进入 worktree 启动 Claude
+# Enter the worktree and launch Claude
 cd ../project-feature-a && claude
 
-# 用完后清理
+# Clean up when done
 git worktree remove ../project-feature-a
 ```
 
-## 三、实战场景
+## Real-World Scenarios
 
-### 场景一：并行开发多个功能
+### Scenario 1: Parallel Feature Development
 
-这是最典型的场景。你手头有两个独立的任务，想让 Claude 同时做：
+This is the most common use case. You have two independent tasks and want Claude working on both simultaneously:
 
 ```bash
-# 终端 1：让 Claude 写用户认证模块
+# Terminal 1: Claude builds the auth module
 claude -w feature-auth
-> 帮我实现 OAuth2 登录功能，参考现有的 auth 模块
+> Implement OAuth2 login, referencing the existing auth module
 
-# 终端 2：让 Claude 优化数据库查询
+# Terminal 2: Claude optimizes database queries
 claude -w optimize-queries
-> 分析 src/db/queries.ts 中的 N+1 查询问题并修复
+> Analyze and fix N+1 query issues in src/db/queries.ts
 ```
 
-两个 Claude 会话各自在独立的文件系统中工作，互相看不到对方的改动，不会出现代码冲突。
+Both Claude sessions work in isolated file systems. They cannot see each other's changes, eliminating code conflicts entirely.
 
-### 场景二：实验性重构
+### Scenario 2: Experimental Refactoring
 
-想尝试一个激进的架构改动，但不确定效果？
+Want to try an aggressive architectural change without risking your main codebase?
 
 ```bash
-# 在 worktree 里大胆实验
+# Experiment boldly in a worktree
 claude -w experiment-new-arch
-> 把现有的 MVC 架构重构为事件驱动架构，先从 order 模块开始
+> Refactor the current MVC architecture to event-driven, starting with the order module
 ```
 
-实验成功了，把改动合并回主分支。失败了，退出时选择删除，一切回到原样。主工作目录全程不受影响。
+If the experiment succeeds, merge the changes back. If it fails, choose to delete on exit and everything reverts. Your main working directory stays untouched throughout.
 
-### 场景三：代码审查与修复
+### Scenario 3: Code Review and Fixes
 
-收到一个 PR 需要审查，同时不想打断当前的开发工作：
+Need to review a PR without interrupting your current work?
 
 ```bash
-# 在 worktree 里审查和修复 PR
+# Review and fix in a worktree
 claude -w review-pr-456
-> 审查 PR #456 的改动，检查安全问题和性能隐患
+> Review PR #456 changes, check for security issues and performance concerns
 
-# 主目录继续你手头的开发
+# Continue your current development in the main directory
 ```
 
-### 场景四：多实例协作模式
+### Scenario 4: Multi-Instance Collaboration
 
-一些团队采用"规划者 + 执行者"的双 Claude 协作模式：
+Some teams use a "planner + executor" dual-Claude pattern:
 
-- **Claude A**（主目录）：负责代码分析、方案设计、任务拆分
-- **Claude B**（worktree）：负责具体的代码实现
+- **Claude A** (main directory): Analyzes code, designs solutions, breaks down tasks
+- **Claude B** (worktree): Implements the actual code changes
 
-这种模式下，规划者在主目录里读代码、出方案，执行者在 worktree 里按方案写代码，两者上下文完全隔离，不会互相污染。关于多 Agent 协作的更多玩法，可以参考[Claude 多 Agent 协作实践](/posts/ai/2026-01-13-claude-cowork/)。
+The planner reads code and produces plans in the main directory while the executor writes code in the worktree. Their contexts are completely isolated, preventing any cross-contamination. For more on multi-agent patterns, see [Claude Multi-Agent Collaboration](/posts/ai/2026-01-13-claude-cowork/).
 
-## 四、使用技巧和最佳实践
+## Tips and Best Practices
 
-### 4.1 命名规范
+### Use Descriptive Names
 
-给 worktree 起个有意义的名字，方便在 `/resume` 会话列表中快速识别：
+Give worktrees meaningful names so they're easy to identify in the `/resume` session list:
 
 ```bash
-# 好的命名：一看就知道在做什么
+# Good names: immediately clear what the task is
 claude -w feat-oauth-login
 claude -w fix-memory-leak
 claude -w refactor-db-layer
 
-# 不好的命名
+# Bad names
 claude -w test1
 claude -w tmp
 ```
 
-### 4.2 记得安装依赖
+### Install Dependencies
 
-新的 worktree 拥有完整的项目文件，但 `node_modules`、虚拟环境等不在 Git 管理范围内的东西需要重新安装：
+New worktrees contain all Git-tracked project files, but untracked items like `node_modules` or virtual environments need to be reinstalled:
 
 ```bash
-# 启动 worktree 后，先让 Claude 安装依赖
-> 先运行 npm install，然后再开始开发
+# After launching a worktree, have Claude install dependencies first
+> Run npm install before starting development
 ```
 
-或者在 CLAUDE.md 中加一条规则：
+Or add a rule in your CLAUDE.md:
 
 ```markdown
-## Worktree 规范
-- 在新的 worktree 中开始工作前，先运行 `npm install` 安装依赖
+## Worktree Rules
+- Run `npm install` before starting work in a new worktree
 ```
 
-### 4.3 环境变量处理
+### Handle Environment Variables
 
-`.env` 文件通常在 `.gitignore` 中，所以新 worktree 不会自动包含。两种解决方案：
+`.env` files are typically in `.gitignore`, so new worktrees won't include them. Two solutions:
 
-**方案 A**：手动复制
+**Option A**: Copy manually
 
 ```bash
 cp .env .claude/worktrees/feature-auth/.env
 ```
 
-**方案 B**：在启动时告诉 Claude
+**Option B**: Tell Claude at session start
 
 ```
-> 先把根目录的 .env 文件复制到当前目录，然后开始工作
+> Copy the .env file from the root directory to the current directory, then start working
 ```
 
-### 4.4 及时清理
+### Clean Up Regularly
 
-养成用完就清理的习惯。长期积累的 worktree 不仅占磁盘空间，还会让 `git worktree list` 输出变得混乱：
+Make it a habit to clean up finished worktrees. Accumulated worktrees waste disk space and clutter `git worktree list` output:
 
 ```bash
-# 查看当前所有 worktree
+# View all current worktrees
 git worktree list
 
-# 手动清理不用的 worktree
+# Manually remove unused worktrees
 git worktree remove .claude/worktrees/old-feature
 ```
 
-### 4.5 结合 --resume 使用
+### Combine with --resume
 
-Worktree 中的 Claude 会话和普通会话一样，支持通过 `/resume` 或 `--resume` 恢复。会话选择器会显示同一 Git 仓库下所有 worktree 的会话，方便你在不同任务间切换。
+Worktree Claude sessions support `/resume` and `--resume` just like regular sessions. The session selector shows all sessions across worktrees in the same Git repo, making it easy to switch between tasks.
 
-## 五、Worktree 模式 vs 直接切分支
+## Worktree Mode vs Branch Switching
 
-| 对比维度 | Worktree 模式 | 直接切分支 |
-|---------|--------------|-----------|
-| **文件隔离** | 每个任务有独立的文件系统 | 共享同一份文件，切换时覆盖 |
-| **并行性** | 可以同时运行多个 Claude 会话 | 同一时间只能在一个分支上工作 |
-| **依赖安装** | 每个 worktree 需要独立安装 | 切分支可能需要重新安装（依赖有差异时） |
-| **磁盘占用** | 每个 worktree 占一份文件空间 | 只占一份 |
-| **上下文隔离** | Claude 会话完全独立，不互相污染 | 同一目录的会话可能读到其他任务的改动 |
-| **清理成本** | 退出时自动清理或一键删除 | 需要手动管理 stash / commit |
-| **适用场景** | 多任务并行、实验性修改、AI 辅助开发 | 简单的单线程开发 |
-| **学习成本** | 需要理解 worktree 概念 | Git 基础操作，几乎零成本 |
+| Dimension | Worktree Mode | Branch Switching |
+|-----------|--------------|-----------------|
+| **File isolation** | Each task has its own file system | Shared files, overwritten on switch |
+| **Parallelism** | Multiple Claude sessions simultaneously | One branch at a time |
+| **Dependency install** | Each worktree needs its own install | May need reinstall if deps differ |
+| **Disk usage** | Each worktree uses file space | Single copy |
+| **Context isolation** | Claude sessions fully independent | Sessions may read other task's changes |
+| **Cleanup cost** | Auto-cleanup or one-click delete | Manual stash / commit management |
+| **Best for** | Parallel tasks, experiments, AI-assisted dev | Simple sequential development |
+| **Learning curve** | Need to understand worktree concept | Basic Git, nearly zero |
 
-**简单结论**：如果你只是顺序处理任务（做完一个再做下一个），切分支就够了。如果你想让多个 Claude 会话同时干活，或者想做无风险的实验，worktree 是更好的选择。
+**Bottom line**: If you process tasks sequentially (finish one, start the next), branch switching is fine. If you want multiple Claude sessions working simultaneously or need risk-free experimentation, worktree mode is the better choice.
 
-## 六、实战案例：团队如何用 Worktree 提速
+## Case Study: How Teams Use Worktree to Ship Faster
 
-incident.io 团队分享了他们使用 Claude Code + Git Worktree 的经验：
+The incident.io team shared their experience using Claude Code with Git worktrees:
 
-- **效率提升显著**：一个 JavaScript 编辑器功能增强，原本预估 2 小时，用 worktree 并行开发只花了 10 分钟
-- **4-5 个 Claude 实例并行**：团队成员日常同时运行 4-5 个 Claude 会话，每个在独立的 worktree 中
-- **搭配 Plan Mode**：在执行前先用 Plan Mode 审查方案，让并行开发更安全可控
-- **渐进式采用**：从实验性使用到全面推广，用了大约四个月时间
+- **Dramatic efficiency gains**: A JavaScript editor enhancement estimated at 2 hours took just 10 minutes with parallel worktree development
+- **4-5 parallel Claude instances**: Team members routinely run 4-5 Claude sessions, each in its own worktree
+- **Combined with Plan Mode**: Reviewing plans before execution makes parallel development safer and more predictable
+- **Gradual adoption**: The team went from experimental usage to full adoption over about four months
 
-他们封装了一个简单的 bash 函数 `w`，进一步降低使用门槛：
+They wrapped the workflow in a simple bash function `w` to lower the barrier even further:
 
 ```bash
-# 一行命令：创建 worktree + 启动 Claude
+# One command: create worktree + launch Claude
 w myproject new-feature claude
 ```
 
-这个案例说明，worktree 模式不仅适合个人开发者，在团队协作中同样能发挥很大价值。
+This case demonstrates that worktree mode works well not just for solo developers but also in team settings.
 
-## 七、FAQ
+## FAQ
 
-### Q1：Worktree 和 git clone 有什么区别？
+### Q1: What's the difference between worktree and git clone?
 
-Worktree 共享同一个 `.git` 仓库，不需要重新下载代码，创建速度更快，分支操作也更直接。Clone 是完全独立的仓库副本，适合需要完全隔离的场景（比如不同的远程配置）。
+Worktrees share the same `.git` repository, so there's no re-downloading of code. Creation is faster and branch operations are more direct. A clone creates a fully independent repository copy, which is better when you need complete isolation (e.g., different remote configurations).
 
-### Q2：能在 worktree 里提交代码吗？
+### Q2: Can I commit from inside a worktree?
 
-可以。Worktree 里的 commit 和在主目录里提交完全一样，会反映在同一个仓库的 Git 历史中。你可以在 worktree 里提交、推送、创建 PR。
+Yes. Commits in a worktree work exactly like commits in the main directory -- they appear in the same repository's Git history. You can commit, push, and create PRs from a worktree.
 
-### Q3：两个 worktree 能在同一个分支上吗？
+### Q3: Can two worktrees be on the same branch?
 
-不能。Git 不允许两个 worktree 同时检出同一个分支。这也是为什么 `claude -w feature-auth` 会自动创建一个新分支 `worktree-feature-auth`。
+No. Git does not allow two worktrees to check out the same branch simultaneously. This is why `claude -w feature-auth` automatically creates a new branch named `worktree-feature-auth`.
 
-### Q4：worktree 里的改动怎么合回主分支？
+### Q4: How do I merge worktree changes back to main?
 
-和普通分支一样，通过 merge 或 rebase：
+The same way as any branch -- via merge or rebase:
 
 ```bash
-# 在主目录里
+# From the main directory
 git merge worktree-feature-auth
-# 或者创建 PR
+# Or create a PR
 ```
 
-### Q5：Worktree 占的磁盘空间大吗？
+### Q5: How much disk space do worktrees use?
 
-Worktree 只复制工作文件，不复制 `.git` 目录（所有 worktree 共享同一个）。实际占用约等于项目源码大小。但如果你对每个 worktree 都执行 `npm install`，依赖目录会额外占空间。
+Worktrees copy only working files, not the `.git` directory (all worktrees share the same one). Actual usage roughly equals the size of your source code. However, running `npm install` in each worktree adds dependency directory space on top.
 
-### Q6：退出 Claude 后 worktree 还在吗？
+### Q6: Does the worktree persist after exiting Claude?
 
-取决于是否有改动。无改动时自动清理；有改动时 Claude 会询问你是否保留。手动清理可以用 `git worktree remove <path>`。
+It depends on whether changes were made. No changes means automatic cleanup; with changes, Claude asks whether to keep or delete. For manual cleanup, use `git worktree remove <path>`.
 
-### Q7：能和 Hooks 配合使用吗？
+### Q7: Does it work with Hooks?
 
-可以。Hooks 配置对 worktree 中的 Claude 会话同样生效。比如你在 [Hooks 配置](/posts/ai/2026-02-18-claude-code-hooks-guide/) 中设置了自动格式化或文件保护规则，这些规则在 worktree 会话中也会自动执行。
+Yes. Hook configurations apply to worktree Claude sessions as well. For example, if you configured auto-formatting or file protection rules in your [Hooks setup](/posts/ai/2026-02-18-claude-code-hooks-guide/), those rules execute automatically in worktree sessions too.
 
-## 总结
+## Summary
 
-Claude Code 的 `--worktree` 模式把 Git Worktree 的隔离能力和 AI 编程工作流无缝结合。核心价值就一句话：**让你在同一个仓库里安全地并行多个 AI 任务**。
+Claude Code's `--worktree` mode seamlessly combines Git worktree isolation with AI-powered coding workflows. The core value in one sentence: **safely run multiple parallel AI tasks within a single repository**.
 
-要点回顾：
+Key takeaways:
 
-1. **`claude -w <name>`** 一条命令搞定 worktree 创建和 Claude 启动
-2. Worktree 存放在 `.claude/worktrees/` 下，记得加到 `.gitignore`
-3. 退出时自动清理无改动的 worktree，有改动的会提示你选择
-4. 适合并行开发、实验性修改、代码审查等需要隔离环境的场景
-5. 手动管理用 `git worktree add/remove`，精细控制用 Git 原生命令
+1. **`claude -w <name>`** -- one command to create a worktree and launch Claude
+2. Worktrees live under `.claude/worktrees/` -- add this to `.gitignore`
+3. Unchanged worktrees are automatically cleaned up on exit; changed ones prompt you to decide
+4. Ideal for parallel development, experimental changes, code review, and any scenario requiring isolation
+5. Use `git worktree add/remove` for manual control when you need finer-grained management
 
-如果你还在用一个终端、一个目录、一个 Claude 会话串行工作，不妨试试 worktree 模式。当你看到两三个 Claude 同时在不同任务上推进时，就回不去了。
+If you're still working with a single terminal, a single directory, and a single Claude session in sequence, give worktree mode a try. Once you see two or three Claude instances making progress on different tasks simultaneously, there's no going back.
 
 ---
 
-**相关阅读**：
+**Related reading**:
 
-- [Claude Code Hooks 实战指南](/posts/ai/2026-02-18-claude-code-hooks-guide/) -- 用 Hooks 让 AI 自动守规矩
-- [Claude Code vs Codex CLI 深度对比](/posts/ai/2026-02-19-claude-code-vs-codex/) -- 两大 AI 编程工具的全方位对决
-- [Claude 多 Agent 协作实践](/posts/ai/2026-01-13-claude-cowork/) -- 多 Claude 实例的协作模式
-- [Claude Code 浏览器自动化实战](/posts/ai/2026-01-28-claude-code-browser-automation/) -- 用 Claude Code 驱动浏览器测试
+- [Claude Code Hooks Guide](/posts/ai/2026-02-18-claude-code-hooks-guide/) -- Automate guardrails with Hooks
+- [Claude Code vs Codex CLI](/posts/ai/2026-02-19-claude-code-vs-codex/) -- In-depth comparison of two AI coding tools
+- [Claude Multi-Agent Collaboration](/posts/ai/2026-01-13-claude-cowork/) -- Patterns for running multiple Claude instances
+- [Claude Code Browser Automation](/posts/ai/2026-01-28-claude-code-browser-automation/) -- Drive browser testing with Claude Code

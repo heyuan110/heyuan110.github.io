@@ -1,9 +1,27 @@
 baseURL = "https://www.heyuan110.com/"
-languageCode = "en"
 defaultContentLanguage = "en"
-title = "Bruce on AI Engineering"
+defaultContentLanguageInSubdir = false
 theme = "hermit-V2"
 googleAnalytics = "G-CT8E5N460D"
+
+# ============================================
+# Languages
+# ============================================
+[languages]
+  [languages.en]
+    languageCode = "en"
+    languageName = "EN"
+    title = "Bruce on AI Engineering"
+    weight = 1
+  [languages.zh]
+    languageCode = "zh"
+    languageName = "中文"
+
+    title = "Bruce AI 工程笔记"
+    weight = 2
+    [languages.zh.params]
+      description = "AI 工程实战指南：Claude Code、AI Agent、LLM 工作流、工具对比与开发者教程"
+      homeSubtitle = ""
 
 # ============================================
 # SEO / Indexing
@@ -159,40 +177,51 @@ summaryLength = 150
 # ============================================
 # Menu
 # ============================================
-[menu]
-  # New English categories (for future content)
-  [[menu.main]]
-    name = "AI Guides"
-    url = "categories/ai-guides/"
-    weight = 10
+# ============================================
+# Menu (English)
+# ============================================
+[[languages.en.menu.main]]
+  name = "Posts"
+  url = "posts/"
+  weight = 10
 
-  [[menu.main]]
-    name = "Comparisons"
-    url = "categories/comparisons/"
-    weight = 11
+[[languages.en.menu.main]]
+  name = "Tags"
+  url = "tags/"
+  weight = 20
 
-  # All posts (includes both English and legacy Chinese)
-  [[menu.main]]
-    name = "Posts"
-    url = "posts/"
-    weight = 20
+[[languages.en.menu.main]]
+  name = "Tools"
+  url = "https://www.usemagictools.com/"
+  weight = 30
 
-  [[menu.main]]
-    name = "Tags"
-    url = "tags/"
-    weight = 21
+[[languages.en.menu.main]]
+  name = "About"
+  url = "about/"
+  weight = 90
 
-  # Tools
-  [[menu.main]]
-    name = "Tools"
-    url = "https://www.usemagictools.com/"
-    weight = 30
+# ============================================
+# Menu (Chinese)
+# ============================================
+[[languages.zh.menu.main]]
+  name = "文章"
+  url = "posts/"
+  weight = 10
 
-  # About
-  [[menu.main]]
-    name = "About"
-    url = "about/"
-    weight = 90
+[[languages.zh.menu.main]]
+  name = "标签"
+  url = "tags/"
+  weight = 20
+
+[[languages.zh.menu.main]]
+  name = "工具"
+  url = "https://www.usemagictools.com/"
+  weight = 30
+
+[[languages.zh.menu.main]]
+  name = "关于"
+  url = "about/"
+  weight = 90
 
 # ============================================
 # Related content

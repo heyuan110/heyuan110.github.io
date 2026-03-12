@@ -1,77 +1,77 @@
 +++
 date = '2026-02-22T12:00:00+08:00'
 draft = false
-title = '用 Claude Code 从零开发 MCP Server：TypeScript 实战教程（2026）'
-description = '手把手教你用 Claude Code 开发自定义 MCP Server，从项目初始化到工具定义、调试、发布，附完整代码和避坑指南。适合想给 AI 扩展能力的开发者。'
+title = 'Build an MCP Server with Claude Code: TypeScript Tutorial (2026)'
+description = 'Learn how to build a custom MCP Server using Claude Code and TypeScript. Covers project setup, tool registration, debugging, and publishing to npm with full code examples.'
 toc = true
-tags = ['Claude Code', 'MCP', 'TypeScript', 'AI 编程', 'MCP Server']
-categories = ['AI实战']
-keywords = ['MCP Server 开发', 'MCP Server 教程', 'Claude Code MCP', 'MCP TypeScript', 'Model Context Protocol', 'AI 工具开发', 'MCP Server 中文教程']
+tags = ['Claude Code', 'MCP', 'TypeScript', 'AI Development', 'MCP Server']
+categories = ['AI Guides']
+keywords = ['MCP Server tutorial', 'build MCP Server', 'Claude Code MCP', 'MCP TypeScript', 'Model Context Protocol', 'MCP Server development', 'MCP tools']
 +++
 
-**MCP Server** 是 2026 年 AI 工具生态的核心基础设施。Gartner 预测，到 2026 年底将有 40% 的企业应用嵌入 AI Agent。而 **Claude Code** 作为当下最强的 AI 编程工具之一，本身就是一个强大的 MCP 客户端。学会开发 MCP Server，就等于掌握了给 AI 装上新手脚的能力。
+**MCP Servers** are becoming the backbone of the AI tool ecosystem in 2026. Gartner predicts that 40% of enterprise applications will embed AI agents by end of year. **Claude Code**, one of the most capable AI coding tools available today, doubles as a full-featured MCP client. Learning to build MCP Servers means learning to extend what AI can do.
 
-这篇文章将带你从零开始，用 Claude Code + TypeScript 开发一个完整的 MCP Server，从项目初始化到调试发布，全程实战。
+This tutorial walks you through building a complete MCP Server from scratch using Claude Code and TypeScript -- from project initialization to debugging and publishing.
 
-## MCP 是什么？一个类比就够了
+## What Is MCP? One Analogy Is All You Need
 
-**MCP（Model Context Protocol）** 是 Anthropic 在 2024 年底提出的开放协议。官方给了一个很精准的类比：**MCP 就是 AI 世界的 USB-C**。
+**MCP (Model Context Protocol)** is an open protocol introduced by Anthropic in late 2024. The official analogy nails it: **MCP is the USB-C of the AI world**.
 
-就像 USB-C 让你的笔记本电脑可以连接显示器、硬盘、键盘等各种设备一样，MCP 让 AI 模型可以连接数据库、API、文件系统等各种外部工具。
+Just as USB-C lets your laptop connect to monitors, drives, keyboards, and other peripherals through a single standard, MCP lets AI models connect to databases, APIs, file systems, and other external tools through a unified protocol.
 
-MCP 架构分三层：
+The MCP architecture has three layers:
 
 ```
 ┌─────────────────────────────────────────────┐
-│           MCP 客户端（Host）                 │
+│           MCP Client (Host)                 │
 │   Claude Code / Cursor / VS Code Copilot    │
 ├─────────────────────────────────────────────┤
-│           MCP 协议层（Protocol）              │
+│           MCP Protocol Layer                │
 │         JSON-RPC 2.0 + STDIO/HTTP           │
 ├─────────────────────────────────────────────┤
-│           MCP 服务端（Server）                │
-│   你开发的工具 / 数据源 / 提示模板            │
+│           MCP Server                        │
+│   Your tools / data sources / prompts       │
 └─────────────────────────────────────────────┘
 ```
 
-一个 MCP Server 可以提供三种能力：
+An MCP Server can expose three types of capabilities:
 
-| 能力 | 说明 | 举例 |
-|------|------|------|
-| **Tools（工具）** | 让 AI 执行操作 | 查天气、查数据库、发消息 |
-| **Resources（资源）** | 让 AI 读取数据 | 配置文件、用户信息、日志 |
-| **Prompts（提示模板）** | 预定义的交互模板 | 代码审查模板、摘要模板 |
+| Capability | What It Does | Examples |
+|------------|-------------|----------|
+| **Tools** | Let AI perform actions | Check weather, query databases, send messages |
+| **Resources** | Let AI read data | Config files, user profiles, logs |
+| **Prompts** | Predefined interaction templates | Code review templates, summary templates |
 
-其中 **Tools** 是最常用的能力，也是本文重点。
+**Tools** are by far the most commonly used capability, and they are the focus of this tutorial.
 
-## 为什么用 Claude Code 开发 MCP Server
+## Why Build MCP Servers with Claude Code
 
-你可能会问：开发 MCP Server 用什么 IDE 都行，为什么特别推荐 Claude Code？
+You might wonder: you can build an MCP Server in any editor, so why use Claude Code specifically?
 
-三个理由：
+Three reasons:
 
-1. **Claude Code 本身就是 MCP 客户端**。开发完直接 `claude mcp add` 就能测试，不需要额外配置客户端。
-2. **边写边测的开发体验**。Claude Code 可以直接调用你新注册的 Tool，实时验证效果。
-3. **AI 辅助开发 AI 工具**。用 Claude Code 写 MCP Server 的代码，本身就是一种"AI 开发 AI 插件"的体验，效率极高。
+1. **Claude Code is already an MCP client.** Once you build your server, just run `claude mcp add` and start testing immediately -- no separate client setup needed.
+2. **Instant feedback loop.** Claude Code can call your newly registered tools in real time, so you see results as you build.
+3. **AI building AI tools.** Using Claude Code to write MCP Server code is the ultimate meta-experience -- AI helping you build AI plugins. It is remarkably productive.
 
-## 环境准备
+## Prerequisites
 
-开始之前，确保你的开发环境满足以下条件：
+Before we start, make sure your development environment meets these requirements:
 
-| 依赖 | 最低版本 | 检查命令 |
-|------|----------|----------|
+| Dependency | Minimum Version | Check Command |
+|------------|----------------|---------------|
 | Node.js | >= 18 | `node -v` |
 | npm | >= 9 | `npm -v` |
-| Claude Code | 最新版 | `claude --version` |
+| Claude Code | Latest | `claude --version` |
 | TypeScript | >= 5.0 | `npx tsc --version` |
 
-如果都准备好了，开始动手。
+All set? Let's build.
 
-## 实战：开发一个天气查询 MCP Server
+## Hands-On: Building a Weather MCP Server
 
-我们先从最经典的入门案例开始 -- 一个天气查询工具。麻雀虽小，五脏俱全，它涵盖了 MCP Server 开发的核心流程。
+We will start with the classic starter project -- a weather lookup tool. It is small but covers every core concept of MCP Server development.
 
-### 第一步：初始化项目
+### Step 1: Initialize the Project
 
 ```bash
 mkdir weather-mcp-server
@@ -79,19 +79,19 @@ cd weather-mcp-server
 npm init -y
 ```
 
-安装依赖：
+Install dependencies:
 
 ```bash
 npm install @modelcontextprotocol/server zod
 npm install -D typescript @types/node
 ```
 
-这里用到两个核心包：
+Two key packages here:
 
-- **@modelcontextprotocol/server**：MCP Server SDK，提供 `McpServer`、`StdioServerTransport` 等核心类
-- **zod**：Schema 验证库，MCP SDK v2 用它来定义工具的输入输出格式
+- **@modelcontextprotocol/server**: The MCP Server SDK, providing core classes like `McpServer` and `StdioServerTransport`
+- **zod**: Schema validation library used by MCP SDK v2 to define input and output shapes for tools
 
-创建 `tsconfig.json`：
+Create `tsconfig.json`:
 
 ```json
 {
@@ -110,7 +110,7 @@ npm install -D typescript @types/node
 }
 ```
 
-更新 `package.json`，添加关键字段：
+Update `package.json` with the required fields:
 
 ```json
 {
@@ -127,11 +127,11 @@ npm install -D typescript @types/node
 }
 ```
 
-**注意**：`"type": "module"` 是必须的，MCP SDK 使用 ESM 模块。
+**Important**: `"type": "module"` is mandatory. The MCP SDK uses ESM modules.
 
-### 第二步：编写 MCP Server 核心代码
+### Step 2: Write the MCP Server Code
 
-创建 `src/index.ts`，这是整个 Server 的入口文件：
+Create `src/index.ts` -- this is the entry point for your entire server:
 
 ```typescript
 #!/usr/bin/env node
@@ -140,48 +140,47 @@ import { McpServer } from "@modelcontextprotocol/server";
 import { StdioServerTransport } from "@modelcontextprotocol/server";
 import * as z from "zod";
 
-// 1. 创建 Server 实例
+// 1. Create the server instance
 const server = new McpServer({
   name: "weather-server",
   version: "1.0.0",
 });
 
-// 2. 模拟天气数据（实际项目中替换为真实 API 调用）
+// 2. Mock weather data (replace with a real API in production)
 function getWeatherData(city: string): {
   city: string;
   temperature: number;
   condition: string;
   humidity: number;
 } {
-  // 模拟数据，实际开发中这里调用天气 API
   const weatherMap: Record<string, { temperature: number; condition: string; humidity: number }> = {
-    "北京": { temperature: -2, condition: "晴", humidity: 30 },
-    "上海": { temperature: 8, condition: "多云", humidity: 65 },
-    "广州": { temperature: 18, condition: "阴", humidity: 75 },
-    "深圳": { temperature: 20, condition: "晴", humidity: 70 },
-    "杭州": { temperature: 6, condition: "小雨", humidity: 80 },
+    "New York": { temperature: 3, condition: "Cloudy", humidity: 55 },
+    "London": { temperature: 8, condition: "Rainy", humidity: 80 },
+    "Tokyo": { temperature: 12, condition: "Sunny", humidity: 45 },
+    "Sydney": { temperature: 25, condition: "Sunny", humidity: 60 },
+    "Berlin": { temperature: 1, condition: "Overcast", humidity: 70 },
   };
 
   const data = weatherMap[city];
   if (!data) {
-    return { city, temperature: 15, condition: "未知", humidity: 50 };
+    return { city, temperature: 15, condition: "Unknown", humidity: 50 };
   }
   return { city, ...data };
 }
 
-// 3. 注册工具：获取天气
+// 3. Register tool: get weather
 server.registerTool(
   "get_weather",
   {
-    title: "获取天气",
-    description: "查询指定城市的当前天气信息，包括温度、天气状况和湿度",
+    title: "Get Weather",
+    description: "Get current weather for a specified city, including temperature, conditions, and humidity",
     inputSchema: z.object({
-      city: z.string().describe("城市名称，如：北京、上海、广州"),
+      city: z.string().describe("City name, e.g.: New York, London, Tokyo"),
     }),
   },
   async ({ city }) => {
     const weather = getWeatherData(city);
-    const text = `${weather.city}当前天气：${weather.condition}，温度 ${weather.temperature}°C，湿度 ${weather.humidity}%`;
+    const text = `Current weather in ${weather.city}: ${weather.condition}, ${weather.temperature}°C, humidity ${weather.humidity}%`;
 
     return {
       content: [{ type: "text", text }],
@@ -189,15 +188,15 @@ server.registerTool(
   }
 );
 
-// 4. 注册工具：对比两个城市天气
+// 4. Register tool: compare weather between two cities
 server.registerTool(
   "compare_weather",
   {
-    title: "对比天气",
-    description: "对比两个城市的天气情况",
+    title: "Compare Weather",
+    description: "Compare the weather between two cities",
     inputSchema: z.object({
-      city1: z.string().describe("第一个城市"),
-      city2: z.string().describe("第二个城市"),
+      city1: z.string().describe("First city"),
+      city2: z.string().describe("Second city"),
     }),
   },
   async ({ city1, city2 }) => {
@@ -206,12 +205,12 @@ server.registerTool(
     const diff = w1.temperature - w2.temperature;
 
     const text = [
-      `天气对比：${w1.city} vs ${w2.city}`,
+      `Weather Comparison: ${w1.city} vs ${w2.city}`,
       `---`,
-      `${w1.city}：${w1.condition}，${w1.temperature}°C，湿度 ${w1.humidity}%`,
-      `${w2.city}：${w2.condition}，${w2.temperature}°C，湿度 ${w2.humidity}%`,
+      `${w1.city}: ${w1.condition}, ${w1.temperature}°C, humidity ${w1.humidity}%`,
+      `${w2.city}: ${w2.condition}, ${w2.temperature}°C, humidity ${w2.humidity}%`,
       `---`,
-      `温差：${Math.abs(diff)}°C（${diff > 0 ? w1.city + "更暖" : w2.city + "更暖"}）`,
+      `Temperature difference: ${Math.abs(diff)}°C (${diff > 0 ? w1.city + " is warmer" : w2.city + " is warmer"})`,
     ].join("\n");
 
     return {
@@ -220,102 +219,102 @@ server.registerTool(
   }
 );
 
-// 5. 启动 STDIO Transport
+// 5. Start the STDIO transport
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("Weather MCP Server 已启动"); // 注意：用 console.error
+  console.error("Weather MCP Server started"); // Note: use console.error, not console.log
 }
 
 main().catch(console.error);
 ```
 
-代码解析几个关键点：
+A few key points about this code:
 
-- **`McpServer`**：MCP Server 的核心类，所有工具、资源、提示模板都注册到它上面
-- **`registerTool`**：v2 SDK 的工具注册方法，接收工具名、配置对象、处理函数三个参数
-- **`inputSchema`**：用 Zod 定义输入参数的类型和描述，AI 客户端会根据这个 schema 来构造调用参数
-- **`StdioServerTransport`**：通过标准输入输出通信，这是本地 MCP Server 最常用的传输方式
-- **`console.error` 而不是 `console.log`**：这一点非常重要，下面会专门讲
+- **`McpServer`**: The core class of an MCP Server. All tools, resources, and prompts get registered on this instance.
+- **`registerTool`**: The v2 SDK method for registering tools. It takes three arguments: tool name, config object, and handler function.
+- **`inputSchema`**: Uses Zod to define parameter types and descriptions. AI clients use this schema to construct their tool calls.
+- **`StdioServerTransport`**: Communicates over standard input/output. This is the most common transport for local MCP Servers.
+- **`console.error` instead of `console.log`**: This is critical -- more on that in the debugging section below.
 
-### 第三步：编译和测试
+### Step 3: Compile and Test
 
-编译 TypeScript：
+Compile the TypeScript:
 
 ```bash
 npx tsc
 ```
 
-给入口文件添加执行权限：
+Make the entry file executable:
 
 ```bash
 chmod +x dist/index.js
 ```
 
-### 第四步：在 Claude Code 中测试
+### Step 4: Test in Claude Code
 
-这是最激动人心的环节。用 `claude mcp add` 把你的 Server 注册到 Claude Code：
+This is the payoff. Register your server with Claude Code using `claude mcp add`:
 
 ```bash
-claude mcp add weather-server node /你的项目绝对路径/dist/index.js
+claude mcp add weather-server node /absolute/path/to/your/project/dist/index.js
 ```
 
-然后启动 Claude Code，直接和它对话：
+Then launch Claude Code and try it out:
 
 ```
-> 帮我查一下北京的天气
+> What's the weather like in Tokyo?
 
-> 对比一下上海和广州的天气
+> Compare the weather in New York and London
 ```
 
-Claude Code 会自动发现你注册的 `get_weather` 和 `compare_weather` 工具，并调用它们返回结果。
+Claude Code will automatically discover your `get_weather` and `compare_weather` tools and call them to return results.
 
-要验证 MCP Server 是否正确加载，可以用：
+To verify that your MCP Server loaded correctly:
 
 ```bash
 claude mcp list
 ```
 
-## 进阶：添加 Resources 和 Prompts
+## Going Further: Adding Resources and Prompts
 
-掌握了 Tools 之后，我们来看另外两种能力。
+Now that you have Tools down, let's explore the other two capabilities.
 
-### 注册 Resource（资源）
+### Registering a Resource
 
-Resources 让 AI 可以读取你的数据。比如暴露一个支持的城市列表：
+Resources let AI read your data. For example, you can expose a list of supported cities:
 
 ```typescript
 server.registerResource(
   "supported-cities",
   "weather://cities",
   {
-    title: "支持的城市列表",
-    description: "返回所有支持查询天气的城市",
+    title: "Supported Cities",
+    description: "Returns all cities available for weather queries",
     mimeType: "application/json",
   },
   async (uri) => ({
     contents: [
       {
         uri: uri.href,
-        text: JSON.stringify(["北京", "上海", "广州", "深圳", "杭州"]),
+        text: JSON.stringify(["New York", "London", "Tokyo", "Sydney", "Berlin"]),
       },
     ],
   })
 );
 ```
 
-### 注册 Prompt（提示模板）
+### Registering a Prompt
 
-Prompts 是预定义的交互模板，可以让用户快速触发常见场景：
+Prompts are predefined interaction templates that help users quickly trigger common workflows:
 
 ```typescript
 server.registerPrompt(
   "travel-advice",
   {
-    title: "出行建议",
-    description: "根据目的地天气给出出行穿搭建议",
+    title: "Travel Advice",
+    description: "Get clothing and travel tips based on destination weather",
     argsSchema: z.object({
-      destination: z.string().describe("目的地城市"),
+      destination: z.string().describe("Destination city"),
     }),
   },
   ({ destination }) => ({
@@ -324,7 +323,7 @@ server.registerPrompt(
         role: "user" as const,
         content: {
           type: "text" as const,
-          text: `请根据${destination}的当前天气，给出出行穿搭和注意事项建议。`,
+          text: `Based on the current weather in ${destination}, please suggest what to wear and any travel tips.`,
         },
       },
     ],
@@ -332,46 +331,46 @@ server.registerPrompt(
 );
 ```
 
-## MCP Server 调试技巧
+## Debugging MCP Servers
 
-开发 MCP Server 时，调试是最容易踩坑的环节。以下是几个关键技巧。
+Debugging is where most developers run into trouble when building MCP Servers. Here are the essential techniques.
 
-### console.error 而不是 console.log
+### Use console.error, Not console.log
 
-这是新手最常犯的错误。MCP 使用 **STDIO 协议**通信，`stdout`（标准输出）是数据通道，你的 `console.log` 会被当成协议消息解析，导致通信错乱。
+This is the most common mistake beginners make. MCP communicates over the **STDIO protocol**, which means `stdout` (standard output) is the data channel. If you use `console.log`, your debug messages get mixed into the protocol stream and corrupt communication.
 
-**正确做法**：所有日志输出使用 `console.error`，它走的是 `stderr`（标准错误输出），不会干扰协议通信。
+**The fix**: Use `console.error` for all logging. It writes to `stderr` (standard error), which stays out of the protocol channel.
 
 ```typescript
-// 错误 - 会破坏 STDIO 协议
-console.log("调试信息");
+// Wrong -- breaks the STDIO protocol
+console.log("debug info");
 
-// 正确 - 走 stderr，不影响通信
-console.error("调试信息");
+// Correct -- writes to stderr, doesn't interfere
+console.error("debug info");
 ```
 
-### 使用 SDK 内置日志
+### Use the SDK's Built-in Logging
 
-MCP SDK v2 提供了结构化日志能力，可以在工具处理函数中向客户端发送日志：
+MCP SDK v2 includes structured logging that lets you send log messages from tool handlers directly to the client:
 
 ```typescript
 server.registerTool(
   "fetch-data",
   {
-    description: "获取数据",
+    description: "Fetch data from a URL",
     inputSchema: z.object({ url: z.string() }),
   },
   async ({ url }, ctx) => {
-    await ctx.mcpReq.log("info", `正在请求 ${url}`);
+    await ctx.mcpReq.log("info", `Fetching ${url}`);
     const res = await fetch(url);
-    await ctx.mcpReq.log("debug", `响应状态: ${res.status}`);
+    await ctx.mcpReq.log("debug", `Response status: ${res.status}`);
     const text = await res.text();
     return { content: [{ type: "text", text }] };
   }
 );
 ```
 
-需要在创建 Server 时启用 logging 能力：
+You need to enable the logging capability when creating the server:
 
 ```typescript
 const server = new McpServer(
@@ -380,42 +379,42 @@ const server = new McpServer(
 );
 ```
 
-### Claude Code 中查看 MCP 日志
+### Checking MCP Logs in Claude Code
 
-如果 MCP Server 启动失败或行为异常，可以用以下方式排查：
+If your MCP Server fails to start or behaves unexpectedly, use these commands to troubleshoot:
 
 ```bash
-# 查看已注册的 MCP Server 状态
+# Check the status of registered MCP Servers
 claude mcp list
 
-# 移除并重新添加（重启 Server）
+# Remove and re-add to restart the server
 claude mcp remove weather-server
 claude mcp add weather-server node /path/to/dist/index.js
 ```
 
-### 常见错误速查
+### Common Error Reference
 
-| 现象 | 原因 | 解决方案 |
-|------|------|----------|
-| Server 无法启动 | package.json 缺少 `"type": "module"` | 添加 `"type": "module"` |
-| 工具不被识别 | `inputSchema` 格式错误 | 确保用 `z.object()` 包裹 |
-| 通信错乱 | 使用了 `console.log` | 改为 `console.error` |
-| 类型错误 | SDK 版本不匹配 | 确认使用 `@modelcontextprotocol/server` v2 |
-| 工具调用无响应 | 处理函数未返回 content | 确保返回 `{ content: [...] }` |
+| Symptom | Cause | Fix |
+|---------|-------|-----|
+| Server won't start | Missing `"type": "module"` in package.json | Add `"type": "module"` |
+| Tools not recognized | Invalid `inputSchema` format | Wrap schemas with `z.object()` |
+| Garbled communication | Using `console.log` | Switch to `console.error` |
+| Type errors | SDK version mismatch | Verify you're using `@modelcontextprotocol/server` v2 |
+| Tool calls return nothing | Handler doesn't return content | Ensure handlers return `{ content: [...] }` |
 
-## 发布你的 MCP Server
+## Publishing Your MCP Server
 
-当你的 MCP Server 开发测试完成后，可以发布到 npm 让更多人使用。
+Once your MCP Server is built and tested, you can publish it to npm so others can use it.
 
-### 准备发布
+### Prepare for Publishing
 
-确保 `package.json` 包含以下字段：
+Make sure `package.json` includes these fields:
 
 ```json
 {
   "name": "@your-scope/weather-mcp-server",
   "version": "1.0.0",
-  "description": "一个查询天气的 MCP Server",
+  "description": "An MCP Server for weather queries",
   "type": "module",
   "bin": {
     "weather-mcp-server": "./dist/index.js"
@@ -426,59 +425,59 @@ claude mcp add weather-server node /path/to/dist/index.js
 }
 ```
 
-### 发布到 npm
+### Publish to npm
 
 ```bash
 npm run build
 npm publish --access public
 ```
 
-发布后，其他人只需要一行命令就能使用：
+Once published, anyone can start using your server with a single command:
 
 ```bash
 claude mcp add weather-server npx @your-scope/weather-mcp-server
 ```
 
-### 提交到社区
+### Submit to the Community
 
-你还可以把项目提交到 [awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers) 仓库，让更多开发者发现你的工具。
+You can also submit your project to the [awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers) repository to help other developers discover your tool.
 
-## 总结
+## Wrapping Up
 
-通过这篇教程，你已经掌握了 MCP Server 开发的核心流程：
+By following this tutorial, you have learned the complete MCP Server development workflow:
 
-1. **理解 MCP 架构**：Client - Protocol - Server 三层模型
-2. **用 TypeScript + SDK v2 开发**：`McpServer` + `registerTool` + `StdioServerTransport`
-3. **在 Claude Code 中测试**：`claude mcp add` 一行命令即测
-4. **调试避坑**：`console.error` 代替 `console.log`，善用结构化日志
-5. **发布分享**：npm publish + awesome-mcp-servers
+1. **Understanding the MCP architecture**: The three-layer model of Client, Protocol, and Server
+2. **Building with TypeScript and SDK v2**: `McpServer` + `registerTool` + `StdioServerTransport`
+3. **Testing in Claude Code**: One `claude mcp add` command to start testing
+4. **Debugging effectively**: `console.error` over `console.log`, plus structured logging
+5. **Publishing and sharing**: npm publish + awesome-mcp-servers
 
-MCP 的生态正在快速成长，越早上手，越早享受 AI 工具链的红利。
+The MCP ecosystem is growing fast. The earlier you start building, the sooner you benefit from the expanding AI tool chain.
 
-## 常见问题（FAQ）
+## FAQ
 
-### MCP Server 和传统 REST API 有什么区别？
+### How is an MCP Server different from a traditional REST API?
 
-MCP Server 是专为 AI 客户端设计的协议，使用 JSON-RPC 2.0 通信。与 REST API 的最大区别在于：MCP 提供了标准化的工具发现机制（AI 可以自动列出所有可用工具和参数），而 REST API 需要人工阅读文档。此外，MCP 支持 STDIO 传输，可以作为本地进程运行，不需要启动 HTTP 服务。
+MCP is a protocol designed specifically for AI clients, using JSON-RPC 2.0 for communication. The biggest difference from REST APIs is that MCP provides standardized tool discovery -- AI clients can automatically list all available tools and their parameters without reading documentation. REST APIs require developers to manually consult API docs. Additionally, MCP supports STDIO transport, meaning servers can run as local processes without spinning up an HTTP service.
 
-### 开发 MCP Server 必须用 TypeScript 吗？
+### Do I have to use TypeScript to build MCP Servers?
 
-不是必须的。MCP 官方提供了 TypeScript、Python、C# 等多语言 SDK。但 TypeScript SDK 是生态最成熟、文档最完善的，推荐优先使用。
+No. MCP has official SDKs for TypeScript, Python, C#, and other languages. That said, the TypeScript SDK has the most mature ecosystem and the most thorough documentation, making it the recommended choice for getting started.
 
-### MCP SDK v1 和 v2 有什么区别？
+### What changed between MCP SDK v1 and v2?
 
-v2 的主要变化包括：包名从 `@modelcontextprotocol/sdk` 拆分为 `@modelcontextprotocol/server` 和 `@modelcontextprotocol/client`；工具注册方法从 `server.tool()` 变为 `server.registerTool()`；输入校验必须使用 `z.object()` 包裹完整的 Zod Schema。如果你看到的教程还在用 `server.tool()`，说明是 v1 的写法，建议迁移到 v2。
+The major changes in v2 include: the package was split from `@modelcontextprotocol/sdk` into separate `@modelcontextprotocol/server` and `@modelcontextprotocol/client` packages; the tool registration method changed from `server.tool()` to `server.registerTool()`; and input validation now requires wrapping schemas in `z.object()`. If a tutorial you're following still uses `server.tool()`, it's based on v1 and should be updated to v2.
 
-### 一个 MCP Server 可以注册多少个工具？
+### How many tools can a single MCP Server register?
 
-协议本身没有限制。但实际使用中，建议一个 MCP Server 聚焦一个领域，注册 3-10 个相关工具即可。工具太多会影响 AI 的工具选择准确率。
+The protocol itself imposes no limit. In practice, though, it's best to keep each MCP Server focused on a single domain with 3 to 10 related tools. Registering too many tools can reduce the accuracy of the AI's tool selection.
 
-### Claude Code 以外的客户端也能用我开发的 MCP Server 吗？
+### Can clients other than Claude Code use my MCP Server?
 
-可以。任何支持 MCP 协议的客户端都能使用，包括 Cursor、VS Code Copilot（通过插件）、Continue 等。这就是标准协议的好处 -- 一次开发，到处使用。
+Absolutely. Any client that supports the MCP protocol can use your server, including Cursor, VS Code Copilot (via extensions), Continue, and others. That's the beauty of an open standard -- build once, use everywhere.
 
-## 相关阅读
+## Related Articles
 
-- [Claude Code 浏览器自动化实战](/posts/ai/2026-01-28-claude-code-browser-automation/)
-- [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/)
-- [OpenClaw Skills Top20 排行榜](/posts/ai/2026-01-20-claude-code-skills-top20/)
+- [Claude Code Browser Automation in Practice](/posts/ai/2026-01-28-claude-code-browser-automation/)
+- [The Complete Guide to Claude Code](/posts/ai/2026-01-14-claude-code-guide/)
+- [OpenClaw Skills Top 20 Ranking](/posts/ai/2026-01-20-claude-code-skills-top20/)

@@ -1,308 +1,309 @@
 +++
 date = '2026-02-24T08:00:00+08:00'
 draft = false
-title = '斯坦福 CS146S 精读（三）：Agent Manager——人机协作的最佳实践'
-description = '深度解读斯坦福 CS146S 第四周课程：从 Claude Code 创始人 Boris Cherney 的演讲到 Anthropic 官方最佳实践，系统学习 Coding Agent 的自治度管控和人机协作模式设计。'
+title = 'Stanford CS146S Deep Dive (3): Agent Manager — Best Practices for Human-AI Collaboration'
+description = "A deep dive into Stanford CS146S Week 4: from Claude Code creator Boris Cherney's talk to Anthropic's official best practices, learn how to manage Coding Agents and design human-AI collaboration patterns."
 toc = true
-tags = ['Agent Manager', 'Claude Code', 'AI 编程', 'Stanford CS146S', '人机协作']
-categories = ['AI实战']
-keywords = ['Agent Manager', 'Claude Code 最佳实践', 'Coding Agent 模式', '人机协作 AI 编程', 'Agent 自治度']
+tags = ['Agent Manager', 'Claude Code', 'AI Coding', 'Stanford CS146S', 'Human-AI Collaboration']
+categories = ['AI Guides']
+keywords = ['Agent Manager', 'Claude Code best practices', 'Coding Agent patterns', 'human-AI collaboration coding', 'Agent autonomy']
 +++
 
-> 本文是「斯坦福 Vibe Coding 课程精读」系列第 3 篇。系列导航见文末。
+> This is Part 3 of the "Stanford Vibe Coding Course Deep Dive" series. See the series navigation at the end of this article.
 
-CS146S 第四周的课程标题叫"Coding Agent Patterns"（编程 Agent 模式），但它真正在教的是一个全新的职业技能：**Agent Manager**。
+The title of CS146S Week 4 is "Coding Agent Patterns," but what it really teaches is an entirely new professional skill: **Agent Manager**.
 
-什么是 Agent Manager？就是不直接写代码，而是指挥 AI Agent 写代码的人。听起来像是"甩手掌柜"，但实际上这可能是 AI 编程时代最难、最有价值的技能之一。
+What is an Agent Manager? Someone who doesn't write code directly but directs AI Agents to write code. It might sound like being a "hands-off boss," but in reality, this may be one of the hardest and most valuable skills of the AI coding era.
 
-为什么难？因为你需要同时具备三种能力：
+Why is it hard? Because you need three capabilities simultaneously:
 
-1. **技术判断力**：能评估 AI 生成的代码质量，知道什么能过、什么不能过
-2. **任务分解力**：能把复杂需求拆成 Agent 能独立完成的子任务
-3. **沟通精确度**：能用最少的信息量传达最准确的意图
+1. **Technical judgment**: The ability to evaluate AI-generated code quality and know what passes and what doesn't
+2. **Task decomposition**: The ability to break complex requirements into subtasks an Agent can complete independently
+3. **Communication precision**: The ability to convey the most accurate intent with the least amount of information
 
-这周的嘉宾是 **Boris Cherney**——[Claude Code](/posts/ai/2026-01-14-claude-code-guide/) 的创始人。直接从工具创造者的口中学习如何使用工具，这个含金量不言而喻。
+This week's guest was **Boris Cherney** — the creator of [Claude Code](/posts/ai/2026-01-14-claude-code-guide/). Learning how to use a tool directly from its creator — the value speaks for itself.
 
-## Agent 的自治度光谱
+## The Autonomy Spectrum of Agents
 
-AI 编程 Agent 不是一个二元开关——"全自动"或"纯手动"。它是一个**自治度光谱**，你需要根据任务类型动态调整。
+AI coding Agents are not a binary switch — "fully automatic" or "fully manual." They exist on an **autonomy spectrum**, and you need to dynamically adjust based on task type.
 
-Devin（Cognition）的 [Agents 101](https://devin.ai/agents101) 文档把这个光谱分为三个区间：
+Devin (Cognition)'s [Agents 101](https://devin.ai/agents101) documentation divides this spectrum into three zones:
 
-### 低自治度：简单任务
+### Low Autonomy: Simple Tasks
 
-- **特征**：明确的输入输出、有限的决策空间
-- **示例**：重命名变量、添加类型注解、写单元测试、修复 lint 错误
-- **管理方式**：直接描述需求，几乎不需要干预
-- **时间节省**：接近 100%
+- **Characteristics**: Clear input/output, limited decision space
+- **Examples**: Renaming variables, adding type annotations, writing unit tests, fixing lint errors
+- **Management approach**: Describe the requirement directly, almost no intervention needed
+- **Time saved**: Close to 100%
 
-在这个区间，Agent 就像一个熟练的打字员——你告诉它做什么，它就做什么。你的角色更像是"下达指令的人"。
+In this zone, the Agent is like a skilled typist — you tell it what to do, and it does it. Your role is more like "the person giving orders."
 
-### 中自治度：中等任务
+### Medium Autonomy: Moderate Tasks
 
-- **特征**：需要一定的设计决策、涉及多个文件、有一些模糊地带
-- **示例**：实现一个新 API 端点、重构一个模块、添加新功能
-- **管理方式**：提供详细上下文 + 中间检查 + 人工打磨
-- **时间节省**：约 80%
+- **Characteristics**: Requires some design decisions, involves multiple files, has some ambiguity
+- **Examples**: Implementing a new API endpoint, refactoring a module, adding a new feature
+- **Management approach**: Provide detailed context + intermediate checks + manual polishing
+- **Time saved**: About 80%
 
-这是大部分日常开发工作所在的区间。Agent 能完成 80% 的工作，但剩下的 20% 需要人类来打磨——处理边界条件、优化性能、确保与现有代码风格一致。
+This is the zone where most daily development work falls. The Agent can complete 80% of the work, but the remaining 20% needs human polishing — handling edge cases, optimizing performance, ensuring consistency with existing code style.
 
-你的角色从"下达指令"变成了"协作伙伴"——你和 Agent 像结对编程一样工作。
+Your role shifts from "giving orders" to "collaborative partner" — you work with the Agent like pair programming.
 
-### 高自治度：复杂任务
+### High Autonomy: Complex Tasks
 
-- **特征**：跨多个系统、需要架构决策、有大量不确定性
-- **示例**：设计数据库 schema、实现微服务通信、性能优化、安全加固
-- **管理方式**：分阶段推进 + 多个检查点 + 深度审查
-- **时间节省**：30-60%
+- **Characteristics**: Spans multiple systems, requires architectural decisions, has significant uncertainty
+- **Examples**: Designing database schemas, implementing microservice communication, performance optimization, security hardening
+- **Management approach**: Phased progression + multiple checkpoints + deep review
+- **Time saved**: 30-60%
 
-在这个区间，Agent 更像是一个初级工程师——能做很多执行工作，但需要高级工程师在关键决策点把关。你的角色变成了真正的"Manager"——规划、分解、审查、纠正。
+In this zone, the Agent is more like a junior engineer — capable of doing a lot of execution work, but needs a senior engineer to make calls at critical decision points. Your role becomes that of a true "Manager" — planning, decomposing, reviewing, and correcting.
 
-关键心态调整：**不要期望 Agent 一次性完美完成复杂任务。** 把复杂任务拆成多个中等任务，分阶段推进，每个阶段都有明确的验收标准。
+Key mindset shift: **Don't expect the Agent to perfectly complete complex tasks in one shot.** Break complex tasks into multiple moderate tasks, progress in phases, and have clear acceptance criteria for each phase.
 
-## Anthropic 的官方最佳实践
+## Anthropic's Official Best Practices
 
-CS146S 这周的必读材料之一是 [How Anthropic Uses Claude Code](https://www-cdn.anthropic.com/58284b19e702b49db9302d5b6f135ad8871e7658.pdf)——这是 Anthropic 内部工程团队使用 Claude Code 的第一手经验。
+One of the required readings for CS146S this week was [How Anthropic Uses Claude Code](https://www-cdn.anthropic.com/58284b19e702b49db9302d5b6f135ad8871e7658.pdf) — first-hand experience from Anthropic's internal engineering team using Claude Code.
 
-配合 [Claude Code Best Practices](https://www.anthropic.com/engineering/claude-code-best-practices)（[中文解读](/posts/ai/2026-01-06-claudecode-best-practices/)），可以提炼出以下核心模式：
+Combined with [Claude Code Best Practices](https://www.anthropic.com/engineering/claude-code-best-practices) ([Chinese analysis](/posts/ai/2026-01-06-claudecode-best-practices/)), we can distill the following core patterns:
 
-### 模式一：从规划开始，而非从编码开始
+### Pattern 1: Start with Planning, Not Coding
 
-最常见的错误是直接让 Agent 写代码。更好的做法是先让 Agent 做规划：
-
-```
-# 差的做法
-"实现用户认证系统"
-
-# 好的做法
-"分析当前项目的认证方案，列出需要修改的文件和步骤，
-先给我一个实施计划，不要开始写代码"
-```
-
-先拿到计划，审查计划的合理性，然后再让 Agent 按计划执行。这比让 Agent 一路狂奔、最后发现方向错误要高效得多。
-
-### 模式二：使用 CLAUDE.md 建立项目规范
-
-[CLAUDE.md](/posts/ai/2026-01-12-claudemd-memory-guide/) 是 Claude Code 读取的项目级配置文件。它的作用就像"给新员工的入职手册"——告诉 Agent 这个项目的约定、技术栈、编码风格和禁忌。
-
-一个好的 CLAUDE.md 至少包含：
-
-- 项目概述和技术栈
-- 编码规范和风格指南
-- 常用命令（构建、测试、部署）
-- 文件结构说明
-- 明确的"不要做"清单
-
-CLAUDE.md 的 ROI 极高——写一次，每次对话都自动生效。这是系列第 2 篇中讲的"上下文工程"的最直接应用。
-
-### 模式三：给 Agent 接入反馈循环
-
-Agent 不应该在真空中工作。让它能看到：
-
-- **测试结果**：运行测试套件，让 Agent 看到哪些通过、哪些失败
-- **Lint/Type Check 输出**：让 Agent 知道代码是否符合规范
-- **构建日志**：编译错误、依赖问题
-- **CI/CD 结果**：在 PR 流程中让 Agent 看到 CI 反馈
-
-这些反馈就像"自动化的 Code Review"——Agent 能根据反馈自动修正，减少人工干预的次数。
-
-### 模式四：分而治之
-
-大任务拆小。每个子任务有明确的输入、输出和验收标准。
+The most common mistake is jumping straight into having the Agent write code. A better approach is to have the Agent plan first:
 
 ```
-# 差的做法
-"把整个前端从 Vue 2 迁移到 Vue 3"
+# Bad approach
+"Implement the user authentication system"
 
-# 好的做法
-"我们要把前端从 Vue 2 迁移到 Vue 3，分步进行：
-第 1 步：先迁移 src/components/Button.vue，
-使用 Composition API 重写，保持相同的 props 接口。
-完成后运行 npm test -- --grep Button 确认测试通过。"
+# Better approach
+"Analyze the current project's authentication approach, list the files
+that need modification and the steps involved.
+Give me an implementation plan first, don't start writing code."
 ```
 
-小步前进，每步验证。这不仅降低了出错的概率，也让你更容易发现和定位问题。
+Get the plan first, review its feasibility, then have the Agent execute according to the plan. This is far more efficient than letting the Agent charge ahead only to discover the direction was wrong.
 
-### 模式五：保持会话聚焦
+### Pattern 2: Use CLAUDE.md to Establish Project Standards
 
-一个对话做一件事。当上下文变得过长或偏离主题时，新开一个会话。
+[CLAUDE.md](/posts/ai/2026-01-12-claudemd-memory-guide/) is the project-level configuration file that Claude Code reads. It functions like an "onboarding handbook for new employees" — telling the Agent about the project's conventions, tech stack, coding style, and taboos.
 
-这与系列第 2 篇中讲的"上下文分心"直接相关——超过一定长度后，AI 的注意力会被分散，输出质量下降。及时"刷新"会话是保持输出质量的有效手段。
+A good CLAUDE.md should include at minimum:
 
-## 从 Claude Code 创始人口中学到什么
+- Project overview and tech stack
+- Coding standards and style guide
+- Common commands (build, test, deploy)
+- File structure description
+- An explicit "do not do" list
 
-Boris Cherney 是 Claude Code 的创造者。他在 Week 4 的嘉宾演讲中分享了 Claude Code 的设计哲学和使用之道。
+The ROI of CLAUDE.md is extremely high — write it once, and it takes effect automatically in every conversation. This is the most direct application of "context engineering" discussed in Part 2 of the series.
 
-结合公开的演讲 [Slides](https://docs.google.com/presentation/d/1bv7Zozn6z45CAh-IyX99dMPMyXCHC7zj95UfwErBYQ8/edit?usp=sharing)，核心理念可以概括为：
+### Pattern 3: Give the Agent Feedback Loops
 
-### Terminal-first 的设计哲学
+An Agent shouldn't work in a vacuum. Let it see:
 
-Claude Code 选择在终端中运行，而不是嵌入 IDE。这不是退步，而是深思熟虑的选择：
+- **Test results**: Run the test suite and let the Agent see what passes and what fails
+- **Lint/Type Check output**: Let the Agent know if the code meets standards
+- **Build logs**: Compilation errors, dependency issues
+- **CI/CD results**: Let the Agent see CI feedback in the PR workflow
 
-- **终端是最通用的开发环境**：不绑定任何特定的编辑器
-- **终端天然支持自动化**：可以被脚本调用、可以并行运行、可以嵌入 CI/CD
-- **终端给了 Agent 完整的系统访问**：不仅能读写代码，还能运行测试、查看日志、操作 Git
+These feedback loops act as "automated Code Review" — the Agent can self-correct based on feedback, reducing the number of human interventions needed.
 
-这种设计哲学的深层含义是：Claude Code 不是一个"更智能的代码补全工具"，而是一个**能做软件工程师做的一切事情的 Agent**。
+### Pattern 4: Divide and Conquer
 
-### 信任但验证
-
-Claude Code 的权限模型是"信任但验证"——它会主动告诉你即将执行什么操作，你可以选择批准或拒绝。对于高风险操作（删除文件、执行 shell 命令），需要明确授权。
-
-这个模型的启示是：**好的 Agent 管理不是不信任 Agent，而是在关键节点设置检查门**。就像管理一个初级工程师——你信任他的日常工作，但 merge 到 main 分支前要 review。
-
-### 上下文就是一切
-
-Boris 反复强调的一个主题：Claude Code 的输出质量完全取决于它获得的上下文。相同的 prompt，在不同的上下文下（不同的 CLAUDE.md、不同的代码库状态、不同的历史对话），会产生完全不同的结果。
-
-这呼应了整个 Week 3 的主题，也解释了为什么"同一个问题别人用 Claude Code 很好用、我用就不行"——**差异不在于 prompt，而在于上下文**。
-
-## Good Context Good Code：2.5 倍生产力的秘密
-
-Week 4 的阅读材料中，[Good Context Good Code](https://blog.stockapp.com/good-context-good-code/) 是最具实操价值的一篇。StockApp 团队声称实现了**约 2.5 倍的生产力提升**（相比纯手工开发），远超通常报道的 30-50% 提升。
-
-他们的秘诀？一套完整的上下文管理体系。
-
-### 分层开发流程
+Break big tasks into small ones. Each subtask has clear input, output, and acceptance criteria.
 
 ```
-设计(Design) → 计划(Plan) → 实现(Implement) → 测试(Test) → 审查(Review) → 更新(Update)
+# Bad approach
+"Migrate the entire frontend from Vue 2 to Vue 3"
+
+# Better approach
+"We need to migrate the frontend from Vue 2 to Vue 3, step by step:
+Step 1: First migrate src/components/Button.vue,
+rewrite it using Composition API while keeping the same props interface.
+After completion, run npm test -- --grep Button to confirm tests pass."
 ```
 
-每个阶段都有对应的文档和 AI 交互模式：
+Small steps forward, verified at each step. This not only reduces the probability of errors but also makes it easier to spot and locate problems.
 
-- **设计阶段**：用 AI 辅助需求分析和技术方案设计，输出到 `docs/designs/`
-- **计划阶段**：用 AI 将设计拆解为具体的实施步骤，输出到 `docs/plans/`
-- **实现阶段**：AI 按照计划编写代码，参考 `schema.sql` 和 `docs/guides/`
-- **测试阶段**：AI 根据设计和计划生成测试用例
-- **审查阶段**：多个 AI 模型交叉审查代码（集合方法）
-- **更新阶段**：根据反馈更新文档和代码
+### Pattern 5: Keep Sessions Focused
 
-### MCP Server 矩阵
+One conversation, one task. When the context gets too long or drifts off topic, start a new session.
 
-StockApp 部署了多个 [MCP Server](/posts/ai/2026-02-20-mcp-protocol-guide/) 来扩展 AI 的感知范围：
+This directly relates to the "context distraction" discussed in Part 2 of the series — beyond a certain length, the AI's attention gets scattered and output quality drops. Timely "refreshing" of sessions is an effective way to maintain output quality.
 
-| MCP Server | 用途 |
-|-----------|------|
-| Notion | 访问产品文档和知识库 |
-| Linear | 读取任务和 issue |
-| AWS | 查看基础设施状态 |
-| GitHub | 管理代码仓库和 PR |
-| 数据库 | 查询 schema 和数据样本 |
+## What We Learn from the Claude Code Creator
 
-每个 MCP Server 都是 AI 的一双"眼睛"——让它不仅能看到代码，还能看到围绕代码的整个业务上下文。
+Boris Cherney is the creator of Claude Code. In his Week 4 guest lecture, he shared Claude Code's design philosophy and usage wisdom.
 
-### 集合方法（Ensemble Method）
+Combined with the publicly available [Slides](https://docs.google.com/presentation/d/1bv7Zozn6z45CAh-IyX99dMPMyXCHC7zj95UfwErBYQ8/edit?usp=sharing), the core ideas can be summarized as:
 
-最有趣的实践是用多个 AI 模型交叉审查工作。一个 AI 写的代码，让另一个 AI（甚至是不同模型）来 review。不同模型有不同的盲区和强项，多样性带来了更全面的审查覆盖。
+### Terminal-First Design Philosophy
 
-这就像人类团队的 Code Review——不是因为写代码的人不行，而是第二双眼睛总能发现第一双眼睛漏掉的东西。
+Claude Code chose to run in the terminal rather than embed in an IDE. This isn't a step backward — it's a deliberate choice:
 
-## Agent Manager 的核心能力模型
+- **The terminal is the most universal development environment**: Not tied to any specific editor
+- **The terminal naturally supports automation**: Can be called by scripts, run in parallel, embedded in CI/CD
+- **The terminal gives the Agent full system access**: Not just reading and writing code, but also running tests, viewing logs, operating Git
 
-综合 CS146S Week 4 的所有材料，我认为一个优秀的 Agent Manager 需要具备以下能力：
+The deeper implication of this design philosophy: Claude Code is not a "smarter code completion tool" — it's an **Agent capable of doing everything a software engineer does**.
 
-### 1. 任务分解能力
+### Trust but Verify
 
-**核心问题**：如何把一个复杂需求拆成 Agent 能独立完成的子任务？
+Claude Code's permission model is "trust but verify" — it proactively tells you what operation it's about to execute, and you can choose to approve or reject. For high-risk operations (deleting files, executing shell commands), explicit authorization is required.
 
-**方法论**：
-- 每个子任务有明确的输入和输出
-- 子任务之间的依赖关系清晰
-- 每个子任务可以独立测试
-- 子任务的粒度不超过"一个 PR 能 review 的量"
+The takeaway from this model: **Good Agent management isn't about distrusting the Agent, but about setting up checkpoints at critical junctures.** Like managing a junior engineer — you trust their daily work, but you review before merging to the main branch.
 
-**反模式**：
-- 一口气让 Agent 做整个功能
-- 子任务之间有隐含的依赖（没说清楚但你心里知道）
-- 无法验证单个子任务是否正确完成
+### Context Is Everything
 
-### 2. 上下文策展能力
+A recurring theme Boris emphasized: Claude Code's output quality depends entirely on the context it receives. The same prompt, under different contexts (different CLAUDE.md, different codebase states, different conversation histories), produces completely different results.
 
-**核心问题**：给 Agent 提供什么信息、以什么形式提供？
+This echoes the entire Week 3 theme and explains why "the same question works great for someone else with Claude Code but not for me" — **the difference isn't in the prompt, it's in the context**.
 
-**方法论**：
-- 遵循"最小充分原则"——只给完成当前任务需要的信息
-- 使用分层结构——从全局到局部、从抽象到具体
-- 确保信息的一致性——上下文中不能有矛盾
-- 及时更新——完成一个子任务后，更新后续任务的上下文
+## Good Context Good Code: The Secret to 2.5x Productivity
 
-**反模式**：
-- 把整个代码库扔给 Agent（信息过载）
-- 给了 README 但 README 已经过时（上下文中毒）
-- 前后给的信息矛盾（上下文冲突）
+Among Week 4's reading materials, [Good Context Good Code](https://blog.stockapp.com/good-context-good-code/) is the most practically valuable piece. The StockApp team claimed to have achieved **approximately 2.5x productivity improvement** (compared to purely manual development), far exceeding the commonly reported 30-50% improvement.
 
-### 3. 质量把控能力
+Their secret? A complete context management system.
 
-**核心问题**：如何评估 Agent 的输出质量？
-
-**方法论**：
-- 有明确的验收标准（测试通过、lint 通过、符合规范）
-- 重点审查 Agent 的"盲区"——边界条件、安全处理、性能影响
-- 对于关键代码路径，手动走查逻辑
-- 利用集合方法——让另一个 AI 或人类交叉审查
-
-**反模式**：
-- 看了一眼"能跑就行"
-- 只看 happy path，忽略 error handling
-- 完全依赖测试通过作为质量标准（AI 可能生成"通过但无意义"的测试）
-
-### 4. 自治度调控能力
-
-**核心问题**：什么时候放手让 Agent 自主工作、什么时候需要人工介入？
-
-**判断框架**：
-
-| 维度 | 低风险（放手） | 高风险（介入） |
-|------|-------------|-------------|
-| **影响范围** | 单文件修改 | 跨多个系统 |
-| **可逆性** | 容易回滚 | 难以撤销 |
-| **安全性** | 内部逻辑 | 涉及用户数据/认证 |
-| **确定性** | 有明确标准 | 需要主观判断 |
-| **先例** | 有类似的成功案例 | 全新场景 |
-
-### 5. 持续学习能力
-
-**核心问题**：如何不断提升 Agent 的表现？
-
-**方法论**：
-- 记录 Agent 的常见错误模式，在 CLAUDE.md 中增加对应规则
-- 总结成功的任务描述模板，形成可复用的 prompt 库
-- 追踪不同类型任务的时间节省比例，优化投入分配
-- 关注工具更新，及时调整使用策略
-
-## 从"会写代码"到"会管 Agent"
-
-CS146S Week 4 描绘了一个清晰的职业进化路径：
+### Layered Development Workflow
 
 ```
-传统开发者：手写代码 → 审查代码 → 部署代码
-AI 辅助开发者：指导 AI 写代码 → 审查 AI 代码 → 部署代码
-Agent Manager：规划任务 → 配置上下文 → 管理多个 Agent → 审查结果 → 持续优化
+Design → Plan → Implement → Test → Review → Update
 ```
 
-每一步进化，人类的角色都在**上移**——从执行层到管理层到战略层。
+Each phase has corresponding documentation and AI interaction patterns:
 
-这不是"取代"，而是"解放"。当 Agent 承担了 80% 的执行工作时，你有更多精力做只有人类能做的事：理解业务需求、做架构决策、保障质量底线、预判技术方向。
+- **Design phase**: Use AI for requirements analysis and technical solution design, output to `docs/designs/`
+- **Plan phase**: Use AI to break designs into specific implementation steps, output to `docs/plans/`
+- **Implementation phase**: AI writes code following the plan, referencing `schema.sql` and `docs/guides/`
+- **Test phase**: AI generates test cases based on designs and plans
+- **Review phase**: Multiple AI models cross-review code (ensemble method)
+- **Update phase**: Update documentation and code based on feedback
 
-Boris Cherney 创造 Claude Code 的初衷正是如此——不是做一个更快的代码编辑器，而是做一个**能独立完成软件工程任务的 Agent**，让人类工程师升级为 Agent Manager。
+### MCP Server Matrix
 
-你准备好升级了吗？
+StockApp deployed multiple [MCP Servers](/posts/ai/2026-02-20-mcp-protocol-guide/) to extend AI's perception:
 
-## 相关阅读
+| MCP Server | Purpose |
+|-----------|---------|
+| Notion | Access product docs and knowledge base |
+| Linear | Read tasks and issues |
+| AWS | View infrastructure status |
+| GitHub | Manage code repositories and PRs |
+| Database | Query schema and data samples |
 
-- [Claude Code 从入门到精通完全指南](/posts/ai/2026-01-14-claude-code-guide/) — Boris Cherney 创造的这个工具，值得深入了解
-- [Claude Code 最佳实践](/posts/ai/2026-01-06-claudecode-best-practices/) — 创始人亲自分享的使用之道
-- [Claude Code Agent Teams 完全指南](/posts/ai/2026-02-22-claude-code-agent-teams/) — 从单 Agent 到多 Agent 协作
-- [CLAUDE.md 记忆术](/posts/ai/2026-01-12-claudemd-memory-guide/) — 项目级上下文管理的核心实践
-- [从零手搓一个 Claude Code](/posts/ai/2026-02-24-build-magic-code/) — 理解 Agent 底层架构的最佳方式
+Each MCP Server acts as a pair of "eyes" for the AI — allowing it to see not just the code, but the entire business context surrounding the code.
 
-## 系列文章导航
+### Ensemble Method
 
-本文是「斯坦福 Vibe Coding 课程精读」系列第 3 篇：
+The most interesting practice is using multiple AI models for cross-review. Code written by one AI is reviewed by another AI (or even a different model). Different models have different blind spots and strengths — diversity brings more comprehensive review coverage.
 
-1. [斯坦福 CS146S 精读（一）：Vibe Coding 如何成为正式学科](/posts/ai/2026-02-24-stanford-cs146s-overview/)
-2. [斯坦福 CS146S 精读（二）：上下文工程](/posts/ai/2026-02-24-context-engineering-deep-dive/)（Week 3）
-3. **本文**：斯坦福 CS146S 精读（三）：Agent Manager（Week 4）
-4. [斯坦福 CS146S 精读（四）：Secure Vibe Coding](/posts/ai/2026-02-24-secure-vibe-coding/)（Week 6-7）
-5. [斯坦福 CS146S 精读（五）：从原型到生产](/posts/ai/2026-02-24-prototype-to-production/)（Week 8-9）
+This is like Code Review in human teams — not because the person who wrote the code is incompetent, but because a second pair of eyes always catches what the first pair missed.
+
+## The Core Competency Model for Agent Managers
+
+Synthesizing all materials from CS146S Week 4, I believe an excellent Agent Manager needs the following capabilities:
+
+### 1. Task Decomposition
+
+**Core question**: How do you break a complex requirement into subtasks an Agent can complete independently?
+
+**Methodology**:
+- Each subtask has clear input and output
+- Dependencies between subtasks are explicit
+- Each subtask can be tested independently
+- Subtask granularity doesn't exceed "the amount one PR can review"
+
+**Anti-patterns**:
+- Having the Agent do an entire feature in one go
+- Implicit dependencies between subtasks (unclear but assumed)
+- Unable to verify whether a single subtask was completed correctly
+
+### 2. Context Curation
+
+**Core question**: What information do you provide to the Agent, and in what form?
+
+**Methodology**:
+- Follow the "minimum sufficiency principle" — only provide information needed for the current task
+- Use a layered structure — from global to local, from abstract to concrete
+- Ensure information consistency — no contradictions in the context
+- Update timely — after completing a subtask, update the context for subsequent tasks
+
+**Anti-patterns**:
+- Dumping the entire codebase on the Agent (information overload)
+- Providing a README that's outdated (context poisoning)
+- Giving contradictory information (context conflict)
+
+### 3. Quality Control
+
+**Core question**: How do you evaluate the Agent's output quality?
+
+**Methodology**:
+- Have clear acceptance criteria (tests pass, lint passes, meets standards)
+- Focus review on the Agent's "blind spots" — edge cases, security handling, performance impact
+- For critical code paths, manually walk through the logic
+- Use the ensemble method — have another AI or human cross-review
+
+**Anti-patterns**:
+- Glancing at it and thinking "it runs, good enough"
+- Only looking at the happy path, ignoring error handling
+- Relying entirely on test passage as a quality standard (AI may generate "passing but meaningless" tests)
+
+### 4. Autonomy Calibration
+
+**Core question**: When do you let the Agent work autonomously, and when do you intervene?
+
+**Decision framework**:
+
+| Dimension | Low Risk (Let Go) | High Risk (Intervene) |
+|-----------|-------------------|----------------------|
+| **Impact scope** | Single file change | Across multiple systems |
+| **Reversibility** | Easy to rollback | Hard to undo |
+| **Security** | Internal logic | Involves user data/auth |
+| **Certainty** | Clear standards exist | Requires subjective judgment |
+| **Precedent** | Similar successful cases | Entirely new scenario |
+
+### 5. Continuous Learning
+
+**Core question**: How do you continuously improve Agent performance?
+
+**Methodology**:
+- Record the Agent's common error patterns and add corresponding rules to CLAUDE.md
+- Summarize successful task description templates to build a reusable prompt library
+- Track time savings ratios across different task types to optimize resource allocation
+- Follow tool updates and adjust usage strategies accordingly
+
+## From "Writing Code" to "Managing Agents"
+
+CS146S Week 4 outlines a clear career evolution path:
+
+```
+Traditional developer: Write code → Review code → Deploy code
+AI-assisted developer: Guide AI to write code → Review AI code → Deploy code
+Agent Manager: Plan tasks → Configure context → Manage multiple Agents → Review results → Continuously optimize
+```
+
+With each step in this evolution, the human role **moves upward** — from execution layer to management layer to strategy layer.
+
+This isn't "replacement" — it's "liberation." When Agents handle 80% of execution work, you have more energy for what only humans can do: understanding business requirements, making architectural decisions, safeguarding quality baselines, and anticipating technical directions.
+
+Boris Cherney's original vision for Claude Code was exactly this — not to build a faster code editor, but to build an **Agent capable of independently completing software engineering tasks**, enabling human engineers to level up into Agent Managers.
+
+Are you ready to level up?
+
+## Related Reading
+
+- [The Complete Guide to Claude Code](/posts/ai/2026-01-14-claude-code-guide/) — The tool Boris Cherney created, worth a deep dive
+- [Claude Code Best Practices](/posts/ai/2026-01-06-claudecode-best-practices/) — Usage wisdom shared by the creator himself
+- [Complete Guide to Claude Code Agent Teams](/posts/ai/2026-02-22-claude-code-agent-teams/) — From single Agent to multi-Agent collaboration
+- [CLAUDE.md Memory Guide](/posts/ai/2026-01-12-claudemd-memory-guide/) — Core practices for project-level context management
+- [Build a Claude Code from Scratch](/posts/ai/2026-02-24-build-magic-code/) — The best way to understand Agent architecture under the hood
+
+## Series Navigation
+
+This is Part 3 of the "Stanford Vibe Coding Course Deep Dive" series:
+
+1. [Stanford CS146S Deep Dive (1): How Vibe Coding Became an Academic Discipline](/posts/ai/2026-02-24-stanford-cs146s-overview/)
+2. [Stanford CS146S Deep Dive (2): Context Engineering](/posts/ai/2026-02-24-context-engineering-deep-dive/) (Week 3)
+3. **This article**: Stanford CS146S Deep Dive (3): Agent Manager (Week 4)
+4. [Stanford CS146S Deep Dive (4): Secure Vibe Coding](/posts/ai/2026-02-24-secure-vibe-coding/) (Week 6-7)
+5. [Stanford CS146S Deep Dive (5): From Prototype to Production](/posts/ai/2026-02-24-prototype-to-production/) (Week 8-9)

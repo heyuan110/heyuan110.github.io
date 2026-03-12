@@ -1,0 +1,35 @@
+[tableOfContents]
+other = "目录"
+
+[newer]
+other = "较新"
+
+[older]
+other = "较旧"
+
+[notFound]
+other = "页面未找到…"
+
+[home]
+other = "首页"
+
+[archives]
+other = "归档"
+
+[seeAlso]
+other = "相关文章"
+
+[wordCount]
+other = "字"
+
+[humanMade]
+other = "我不讨厌 AI，但我更爱人类！"
+
+[featuredImage]
+other = "封面图"
+
+[menu]
+other = "菜单"
+
+[share]
+other = "分享"

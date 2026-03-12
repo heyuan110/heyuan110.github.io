@@ -1,318 +1,318 @@
 +++
 date = '2026-02-24T09:00:00+08:00'
 draft = false
-title = '斯坦福 CS146S 精读（五）：从原型到生产——AI 应用完整生命周期'
-description = '深度解读斯坦福 CS146S 第八九周课程：一句话做 App 只是起点，如何将 AI 快速原型纳入测试、安全、运维的完整工程体系，从 Demo 到 Production 的完整路径。'
+title = 'Stanford CS146S Deep Dive (5): From Prototype to Production — The Full AI App Lifecycle'
+description = 'A deep analysis of Stanford CS146S Weeks 8-9: building an app with one prompt is just the beginning. Learn the complete path from demo to production, covering testing, security, observability, and AI-powered operations.'
 toc = true
-tags = ['AI 应用开发', 'DevOps', 'Stanford CS146S', 'Vibe Coding', '部署运维']
-categories = ['AI实战']
-keywords = ['AI 应用生命周期', 'Vibe Coding 生产环境', 'AI 运维', 'AI 应用部署', '从原型到生产']
+tags = ['AI App Development', 'DevOps', 'Stanford CS146S', 'Vibe Coding', 'Deployment']
+categories = ['AI Guides']
+keywords = ['AI app lifecycle', 'vibe coding production', 'AI operations', 'AI app deployment', 'prototype to production']
 +++
 
-> 本文是「斯坦福 Vibe Coding 课程精读」系列第 5 篇（完结篇）。系列导航见文末。
+> This is Part 5 (the finale) of the "Stanford Vibe Coding Course Deep Dive" series. See the series navigation at the bottom.
 
-"一句话做一个 App"——这可能是 Vibe Coding 最吸引眼球的卖点。
+"Build an app with one prompt" — that's probably the most eye-catching selling point of Vibe Coding.
 
-Week 8 的嘉宾是 Vercel AI 研究负责人 Gaspar Garcia，他现场演示了如何用 AI 从一个 prompt 生成一个完整的 Web 应用。前端、后端、数据库、部署——一气呵成。
+The Week 8 guest was Gaspar Garcia, Head of AI Research at Vercel. He demonstrated live how AI can generate a complete web application from a single prompt — frontend, backend, database, deployment — all in one shot.
 
-看起来很酷。但然后呢？
+Looks cool. But then what?
 
-CS146S 的态度很明确：**快速原型只是起点。** Week 8 教你怎么快速造出来，Week 9 教你怎么让它在生产环境中活下去。这两周合在一起，讲的是 AI 应用从 demo 到 production 的完整路径。
+CS146S is crystal clear: **rapid prototyping is just the starting point.** Week 8 teaches you how to build fast; Week 9 teaches you how to keep it alive in production. Together, these two weeks cover the complete path from demo to production for AI applications.
 
-而"从 demo 到 production"之间的那道鸿沟，恰恰是大多数 [Vibe Coder](/posts/ai/2026-02-22-vibe-coding-guide/) 倒下的地方。
+And that chasm between "demo" and "production" is exactly where most [Vibe Coders](/posts/ai/2026-02-22-vibe-coding-guide/) fall.
 
-## 一句话做 App：能力与边界
+## One-Prompt Apps: Capabilities and Boundaries
 
-### v0 的启示
+### Lessons from v0
 
-Vercel 的 v0 是当前最强的 AI UI 生成工具之一。它能根据自然语言描述生成完整的前端组件和页面，包括样式、交互、响应式布局。
+Vercel's v0 is one of the most powerful AI UI generation tools available today. It can generate complete frontend components and pages from natural language descriptions, including styling, interactions, and responsive layouts.
 
-但 Gaspar Garcia 在演讲中坦率地指出了 AI 自动化应用构建的边界：
+But Gaspar Garcia candidly pointed out the boundaries of AI-automated app building:
 
-**能做的**：
-- 快速生成 UI 原型（分钟级）
-- 基础的 CRUD 功能
-- 标准的页面布局和导航
-- 常见的前端交互模式
+**What it can do well**:
+- Generate UI prototypes rapidly (in minutes)
+- Basic CRUD functionality
+- Standard page layouts and navigation
+- Common frontend interaction patterns
 
-**做不好的**：
-- 复杂的业务逻辑（多步表单、条件流程）
-- 性能优化（懒加载、缓存策略、Bundle 分析）
-- 可访问性（Accessibility / a11y）
-- 品牌定制（超出基础组件库的视觉设计）
-- 与现有系统的集成（认证、第三方 API、遗留系统）
+**What it struggles with**:
+- Complex business logic (multi-step forms, conditional flows)
+- Performance optimization (lazy loading, caching strategies, bundle analysis)
+- Accessibility (a11y)
+- Brand customization (visual design beyond basic component libraries)
+- Integration with existing systems (authentication, third-party APIs, legacy systems)
 
-### 原型的价值不在于原型本身
+### The Value of a Prototype Isn't the Prototype Itself
 
-这里有一个常见的认知误区：很多人觉得"AI 帮我做了一个能跑的 demo，大部分工作就完成了"。
+There's a common misconception: many people think "AI built me a working demo, so most of the work is done."
 
-实际上，从一个 demo 到生产级应用，工作量的分布大约是这样的：
+In reality, the effort distribution from demo to production-grade application looks roughly like this:
 
-| 阶段 | 工作占比 | AI 可替代率 |
-|------|---------|-----------|
-| 原型/Demo | 10% | 80%+ |
-| 功能完善 | 25% | 50-70% |
-| 测试覆盖 | 15% | 40-60% |
-| 安全加固 | 10% | 20-30% |
-| 性能优化 | 10% | 20-40% |
-| 部署配置 | 10% | 30-50% |
-| 运维监控 | 20% | 30-50% |
+| Phase | % of Total Work | AI Replacement Rate |
+|-------|----------------|-------------------|
+| Prototype/Demo | 10% | 80%+ |
+| Feature Completion | 25% | 50-70% |
+| Test Coverage | 15% | 40-60% |
+| Security Hardening | 10% | 20-30% |
+| Performance Optimization | 10% | 20-40% |
+| Deployment Configuration | 10% | 30-50% |
+| Operations & Monitoring | 20% | 30-50% |
 
-AI 在原型阶段的替代率最高，但原型只占总工作量的 10%。后续的 90% 才是真正的工程工作，而 AI 在这些环节的替代率逐步降低。
+AI's replacement rate is highest at the prototype stage, but prototyping is only 10% of total effort. The remaining 90% is real engineering work, where AI's replacement rate progressively declines.
 
-这就是为什么 CS146S 在 Week 8 讲完"一句话做 App"之后，紧跟 Week 9 讲运维——**课程设计者清楚地知道，造只是开始，养才是常态**。
+This is exactly why CS146S follows up the "one-prompt app" lesson in Week 8 with operations in Week 9 — **the course designers know that building is just the beginning; maintaining is the norm**.
 
-## 原型到生产的六道关卡
+## Six Checkpoints from Prototype to Production
 
-基于 CS146S Week 8-9 的内容和课程材料，我梳理了从原型到生产的六道关卡。每一道都是 Vibe Coder 必须跨越的。
+Based on CS146S Weeks 8-9 content and course materials, here are six checkpoints on the path from prototype to production. Every Vibe Coder must clear each one.
 
-### 关卡一：从"能跑"到"可测"
+### Checkpoint 1: From "It Runs" to "It's Testable"
 
-AI 生成的原型代码通常没有测试，或者只有一些"看起来像测试但实际不测任何东西"的占位代码。
+AI-generated prototype code typically has no tests, or only placeholder code that "looks like tests but doesn't actually verify anything."
 
-**需要做的**：
+**What you need to do**:
 
-1. **补充单元测试**：覆盖核心业务逻辑的所有分支。AI 可以帮你写测试，但你需要检查测试是否真的在验证正确的行为。
+1. **Add unit tests**: Cover all branches of core business logic. AI can help write tests, but you need to verify that the tests actually validate correct behavior.
 
-2. **添加集成测试**：确保各模块之间的交互正确。这是 AI 经常忽略的——它能写好单个函数，但函数之间的配合可能有问题。
+2. **Add integration tests**: Ensure interactions between modules work correctly. This is something AI often misses — it can write a good individual function, but the interplay between functions may be broken.
 
-3. **端到端测试**：模拟真实用户操作流程。工具如 Playwright、Cypress 可以自动化这一步。
+3. **End-to-end tests**: Simulate real user workflows. Tools like Playwright and Cypress can automate this step.
 
-4. **建立测试 CI**：每次 push 自动运行所有测试。这是基本的质量门禁。
+4. **Set up test CI**: Run all tests automatically on every push. This is the basic quality gate.
 
-**AI 能帮什么**：AI 擅长根据现有代码生成测试用例的骨架。但测试的**意图**——测什么、为什么测、边界在哪里——需要人来定义。
+**How AI can help**: AI excels at generating test case scaffolding from existing code. But the **intent** of testing — what to test, why, and where the boundaries are — needs to be defined by humans.
 
-### 关卡二：从"能跑"到"安全"
+### Checkpoint 2: From "It Runs" to "It's Secure"
 
-这在系列第 4 篇中已经深入讨论过。简要回顾关键动作：
+This was covered in depth in Part 4 of this series. A quick recap of the key actions:
 
-- 输入验证和转义
-- 认证/授权完整性
-- 敏感数据加密
-- 依赖安全扫描
-- OWASP Top 10 检查清单
+- Input validation and sanitization
+- Authentication/authorization completeness
+- Sensitive data encryption
+- Dependency security scanning
+- OWASP Top 10 checklist
 
-### 关卡三：从"能跑"到"可扩展"
+### Checkpoint 3: From "It Runs" to "It Scales"
 
-原型级的代码通常只能承受个位数的并发用户。生产环境可能面临成百上千的并发。
+Prototype-level code can typically handle only single-digit concurrent users. Production environments may face hundreds or thousands of concurrent connections.
 
-**关键检查点**：
+**Key checkpoints**:
 
-- **数据库查询优化**：AI 生成的代码经常有 N+1 查询问题。使用 ORM 的 eager loading 或查询优化器来解决。
-- **缓存策略**：识别热点数据，加入缓存层（Redis、CDN）。
-- **异步处理**：把耗时操作（邮件发送、文件处理、第三方 API 调用）从同步请求中移出，用消息队列异步处理。
-- **资源限制**：API 限流、请求大小限制、超时设置。
-- **水平扩展能力**：应用是否可以多实例部署？是否有本地状态需要处理？
+- **Database query optimization**: AI-generated code often has N+1 query problems. Use ORM eager loading or query optimizers to fix this.
+- **Caching strategy**: Identify hot data and add a caching layer (Redis, CDN).
+- **Async processing**: Move time-consuming operations (email sending, file processing, third-party API calls) out of synchronous requests into message queues.
+- **Resource limits**: API rate limiting, request size limits, timeout settings.
+- **Horizontal scalability**: Can the app be deployed as multiple instances? Is there local state that needs to be addressed?
 
-### 关卡四：从"能跑"到"可观测"
+### Checkpoint 4: From "It Runs" to "It's Observable"
 
-一旦应用上线，你需要知道它在干什么。这就是可观测性（Observability）——CS146S Week 9 的核心主题。
+Once your app is live, you need to know what it's doing. That's observability — the core topic of CS146S Week 9.
 
-可观测性有三大支柱：
+Observability has three pillars:
 
-#### 日志（Logs）
+#### Logs
 
-记录系统发生了什么。
+Recording what happened in the system.
 
-- **结构化日志**：使用 JSON 格式而非纯文本，便于搜索和分析
-- **日志级别**：区分 DEBUG、INFO、WARN、ERROR
-- **关键事件日志**：用户登录、支付操作、权限变更等
-- **日志聚合**：使用 ELK Stack、Loki 等工具集中管理
+- **Structured logging**: Use JSON format instead of plain text for easier searching and analysis
+- **Log levels**: Distinguish between DEBUG, INFO, WARN, ERROR
+- **Critical event logging**: User logins, payment operations, permission changes, etc.
+- **Log aggregation**: Use tools like ELK Stack or Loki for centralized management
 
-#### 指标（Metrics）
+#### Metrics
 
-量化系统的运行状态。
+Quantifying the system's operational state.
 
-核心指标：
-- **延迟**（Latency）：请求响应时间的 P50、P95、P99
-- **流量**（Traffic）：每秒请求数
-- **错误率**（Errors）：5xx 错误占比
-- **饱和度**（Saturation）：CPU、内存、磁盘使用率
+Core metrics:
+- **Latency**: Request response time at P50, P95, P99
+- **Traffic**: Requests per second
+- **Errors**: 5xx error rate
+- **Saturation**: CPU, memory, disk utilization
 
-这就是 Google SRE 经典的 [四大黄金信号](https://sre.google/sre-book/introduction/)。任何一个指标异常，都是系统需要关注的信号。
+These are Google SRE's classic [Four Golden Signals](https://sre.google/sre-book/introduction/). Any anomaly in these metrics is a signal that the system needs attention.
 
-#### 追踪（Traces）
+#### Traces
 
-一个请求在系统中的完整路径。
+The complete path of a request through the system.
 
-当你的应用有多个服务时（前端 → API → 数据库 → 缓存 → 第三方服务），追踪能告诉你一个慢请求到底卡在哪里。工具如 Jaeger、Zipkin、OpenTelemetry 提供了标准化的追踪方案。
+When your app has multiple services (frontend -> API -> database -> cache -> third-party services), tracing tells you exactly where a slow request is getting stuck. Tools like Jaeger, Zipkin, and OpenTelemetry provide standardized tracing solutions.
 
-### 关卡五：从"能跑"到"自动化运维"
+### Checkpoint 5: From "It Runs" to "Automated Operations"
 
-Week 9 的嘉宾来自 [Resolve AI](https://resolve.ai/)——一个用多 Agent 系统自动化 DevOps 运维的公司。他们带来了 AI 运维的最前沿实践。
+The Week 9 guest came from [Resolve AI](https://resolve.ai/) — a company that uses multi-agent systems to automate DevOps operations. They shared cutting-edge practices in AI-powered operations.
 
-#### 自动化事件响应
+#### Automated Incident Response
 
-传统的事件响应流程：
-
-```
-告警触发 → 值班工程师收到通知 → 人工排查 → 定位根因 → 手动修复 → 编写事后报告
-```
-
-AI 增强的事件响应流程：
+Traditional incident response flow:
 
 ```
-告警触发 → AI Agent 自动收集上下文
-         → AI 初步分析可能的根因
-         → AI 推荐修复方案
-         → 人工确认并执行（或 AI 自动执行低风险操作）
-         → AI 自动生成事后报告
+Alert fires → On-call engineer notified → Manual investigation → Root cause identified → Manual fix → Post-mortem written
 ```
 
-Resolve AI 的实践表明，AI 在以下运维场景中特别有效：
-
-| 场景 | AI 能做什么 |
-|------|-----------|
-| Kubernetes Pod 频繁重启 | 自动检查日志、资源配额、镜像状态 |
-| 数据库连接池耗尽 | 分析连接来源、识别泄漏模式 |
-| API 延迟突增 | 关联部署记录、流量模式、依赖服务状态 |
-| 磁盘空间不足 | 识别大文件、建议清理策略 |
-| 证书即将过期 | 提前告警、自动续期 |
-
-#### 从 SRE 到 AI-SRE
-
-Google 的 SRE（Site Reliability Engineering）理念已经是运维的标准范式。CS146S Week 9 探讨的是下一步：当 AI Agent 可以承担 SRE 的部分职责时，运维工程师的角色如何演变。
-
-核心变化：
-
-- **从手动排查到指导 AI 排查**：你告诉 AI Agent 排查方向，它去收集数据和分析
-- **从编写 Runbook 到训练 AI Agent**：把运维知识编码到 Agent 的上下文中
-- **从被动响应到主动预防**：AI 可以持续分析系统指标，在问题发生前预警
-
-### 关卡六：从"能跑"到"持续进化"
-
-生产系统不是一劳永逸的。它需要持续迭代——新功能、bug 修复、性能优化、安全补丁。
-
-这就把我们带回了系列前几篇的主题：
-
-- **上下文工程**（系列第 2 篇）：确保文档和上下文随着代码的演进保持更新
-- **Agent Manager**（系列第 3 篇）：用分而治之的策略管理持续的开发任务
-- **安全实践**（系列第 4 篇）：每次变更都经过安全检查
-
-持续进化的关键是**建立流程和自动化**，而不是依赖个人的记忆和纪律。
-
-## 多技术栈的实战作业
-
-Week 8 的作业 [Multi-stack Web App Builds](https://github.com/mihail911/modern-software-dev-assignments/tree/master/week8) 要求学生用 AI 生成不同技术栈的应用并对比。
-
-这个作业的设计很精妙——它不是让你用 AI 做一个完美的应用，而是让你体验 AI 在不同技术栈中的**表现差异**：
-
-- AI 在 React + Next.js 中可能表现很好（训练数据丰富）
-- 但在 Svelte、Solid 或小众框架中可能明显退化
-- 后端的 Python/FastAPI 可能比 Rust/Actix 生成质量更高
-- 数据库相关代码的质量取决于 ORM vs 原生 SQL 的选择
-
-通过多栈对比，你能建立一个关于"AI 在哪些技术选择上更可靠"的直觉——这个直觉在做技术决策时非常有价值。
-
-## 完整的 AI 应用开发流程
-
-综合 CS146S 整个课程的内容，一个成熟的 AI 应用开发流程应该是这样的：
+AI-enhanced incident response flow:
 
 ```
-1. 需求分析
-   ├── 撰写清晰的 Spec/PRD（Week 3: Spec 是新的源代码）
-   ├── 定义验收标准
-   └── 识别安全和性能要求
+Alert fires → AI Agent automatically gathers context
+            → AI performs initial root cause analysis
+            → AI recommends remediation
+            → Human confirms and executes (or AI auto-executes low-risk actions)
+            → AI automatically generates post-mortem
+```
 
-2. 架构设计
-   ├── 选择技术栈（考虑 AI 工具的支持度）
-   ├── 设计系统架构
-   ├── 建立项目上下文（CLAUDE.md、Design Doc）
-   └── 配置 MCP Server 和工具链
+Resolve AI's practice shows AI is particularly effective in these operational scenarios:
 
-3. 快速原型（Week 8）
-   ├── 使用 AI 生成原型
-   ├── 快速验证核心功能
-   └── 收集反馈，完善 Spec
+| Scenario | What AI Can Do |
+|----------|---------------|
+| Kubernetes Pod crash loops | Auto-check logs, resource quotas, image status |
+| Database connection pool exhaustion | Analyze connection sources, identify leak patterns |
+| API latency spikes | Correlate deployment records, traffic patterns, dependency status |
+| Disk space running low | Identify large files, suggest cleanup strategies |
+| Certificate expiration | Early alerts, automated renewal |
 
-4. 功能开发（Week 4: Agent Manager 模式）
-   ├── 将需求拆解为子任务
-   ├── 分配给 AI Agent 执行
-   ├── 中间检查 + 人工打磨
-   └── 代码审查（Week 7）
+#### From SRE to AI-SRE
 
-5. 质量保障
-   ├── 测试覆盖（单元 + 集成 + E2E）
-   ├── 安全扫描（Week 6: SAST + DAST）
-   ├── 性能基准测试
+Google's SRE (Site Reliability Engineering) philosophy is already the standard paradigm for operations. CS146S Week 9 explores the next step: how the ops engineer's role evolves when AI Agents can take on some SRE responsibilities.
+
+Core shifts:
+
+- **From manual investigation to guiding AI investigation**: You tell the AI Agent where to look; it collects data and analyzes
+- **From writing runbooks to training AI Agents**: Encode operational knowledge into the Agent's context
+- **From reactive response to proactive prevention**: AI can continuously analyze system metrics and alert before problems occur
+
+### Checkpoint 6: From "It Runs" to "It Evolves"
+
+Production systems are never "set and forget." They need continuous iteration — new features, bug fixes, performance tuning, security patches.
+
+This brings us back to the themes from earlier in this series:
+
+- **Context engineering** (Part 2): Keep documentation and context updated as code evolves
+- **Agent Manager** (Part 3): Use divide-and-conquer strategies to manage ongoing development tasks
+- **Security practices** (Part 4): Every change goes through security review
+
+The key to continuous evolution is **establishing processes and automation**, not relying on individual memory and discipline.
+
+## Multi-Stack Hands-On Assignment
+
+The Week 8 assignment [Multi-stack Web App Builds](https://github.com/mihail911/modern-software-dev-assignments/tree/master/week8) asks students to use AI to generate apps in different tech stacks and compare results.
+
+The assignment design is brilliant — it's not about using AI to build a perfect app. It's about experiencing AI's **performance differences** across tech stacks:
+
+- AI may perform very well with React + Next.js (abundant training data)
+- But may noticeably degrade with Svelte, Solid, or niche frameworks
+- Backend Python/FastAPI may generate higher quality code than Rust/Actix
+- Database-related code quality depends on the choice of ORM vs. raw SQL
+
+Through multi-stack comparison, you build an intuition for "which technology choices AI is more reliable with" — an intuition that's extremely valuable when making technical decisions.
+
+## The Complete AI App Development Workflow
+
+Synthesizing the entire CS146S curriculum, a mature AI application development workflow looks like this:
+
+```
+1. Requirements Analysis
+   ├── Write a clear Spec/PRD (Week 3: Spec is the new source code)
+   ├── Define acceptance criteria
+   └── Identify security and performance requirements
+
+2. Architecture Design
+   ├── Choose tech stack (consider AI tool support)
+   ├── Design system architecture
+   ├── Set up project context (CLAUDE.md, Design Doc)
+   └── Configure MCP Servers and toolchain
+
+3. Rapid Prototyping (Week 8)
+   ├── Use AI to generate prototype
+   ├── Quickly validate core features
+   └── Collect feedback, refine Spec
+
+4. Feature Development (Week 4: Agent Manager pattern)
+   ├── Break requirements into subtasks
+   ├── Assign to AI Agents for execution
+   ├── Checkpoint reviews + human polish
+   └── Code review (Week 7)
+
+5. Quality Assurance
+   ├── Test coverage (unit + integration + E2E)
+   ├── Security scanning (Week 6: SAST + DAST)
+   ├── Performance benchmarking
    └── Code Review
 
-6. 部署上线
-   ├── CI/CD 流水线
-   ├── 灰度发布
-   ├── 监控告警配置
-   └── Rollback 计划
+6. Deployment
+   ├── CI/CD pipeline
+   ├── Canary/gradual rollout
+   ├── Monitoring and alerting configuration
+   └── Rollback plan
 
-7. 持续运维（Week 9）
-   ├── 监控可观测性（日志 + 指标 + 追踪）
-   ├── 自动化事件响应
-   ├── 定期安全审计
-   └── 持续优化
+7. Ongoing Operations (Week 9)
+   ├── Observability (logs + metrics + traces)
+   ├── Automated incident response
+   ├── Regular security audits
+   └── Continuous optimization
 
-8. 迭代进化
-   ├── 回到步骤 1，新的需求
-   └── 更新上下文和文档
+8. Iterative Evolution
+   ├── Return to step 1 with new requirements
+   └── Update context and documentation
 ```
 
-这个流程中，AI 在每一步都有参与，但参与的方式不同：
+AI participates in every step of this workflow, but in different ways:
 
-- 步骤 1-2：AI 辅助分析和设计
-- 步骤 3：AI 主导生成
-- 步骤 4：AI 执行 + 人类管理
-- 步骤 5：AI 辅助 + 自动化工具
-- 步骤 6：主要依赖工具链自动化
-- 步骤 7：AI Agent 承担部分运维
-- 步骤 8：循环
+- Steps 1-2: AI assists with analysis and design
+- Step 3: AI takes the lead on generation
+- Step 4: AI executes + humans manage
+- Step 5: AI assists + automated tooling
+- Step 6: Primarily toolchain automation
+- Step 7: AI Agents handle some operations
+- Step 8: The cycle continues
 
-## CS146S 的终极启示
+## The Ultimate Takeaway from CS146S
 
-从 Week 1 的 Prompt Engineering 到 Week 10 的未来展望，CS146S 讲述的其实是同一个故事：**AI 正在重构整个软件开发生命周期，而人类开发者的角色正在从执行者转变为指挥者。**
+From Week 1's Prompt Engineering to Week 10's future outlook, CS146S tells the same story throughout: **AI is restructuring the entire software development lifecycle, and the human developer's role is shifting from executor to conductor.**
 
-但"指挥者"不是"甩手掌柜"。一个好的指挥者需要：
+But "conductor" doesn't mean "hands-off manager." A good conductor needs to:
 
-- 理解乐团中每件乐器的能力和局限（理解 AI 工具）
-- 有明确的音乐愿景（产品需求和架构设计）
-- 能把乐谱翻译成每个乐手能理解的指令（上下文工程）
-- 在排练中敏锐地发现走调（Code Review 和安全审查）
-- 确保演出当天一切顺利（部署和运维）
+- Understand the capabilities and limitations of every instrument in the orchestra (understand AI tools)
+- Have a clear musical vision (product requirements and architecture design)
+- Translate the score into instructions each musician can understand (context engineering)
+- Catch off-key notes during rehearsal (code review and security audits)
+- Ensure everything runs smoothly on performance night (deployment and operations)
 
-这就是 **The Modern Software Developer** —— 现代软件开发者。
+This is **The Modern Software Developer**.
 
-不是不写代码了，而是站在更高的位置，指挥 AI 完成更大的作品。
+Not someone who stopped writing code, but someone who stands at a higher vantage point, conducting AI to create larger works.
 
-## 系列总结
+## Series Recap
 
-感谢你读完「斯坦福 Vibe Coding 课程精读」的全部 5 篇文章。
+Thank you for reading all 5 articles in the "Stanford Vibe Coding Course Deep Dive" series.
 
-这个系列覆盖了 CS146S 课程的核心内容：
+This series covers the core content of CS146S:
 
-1. [精读（一）：课程全解读](/posts/ai/2026-02-24-stanford-cs146s-overview/) — 全局认知
-2. [精读（二）：上下文工程](/posts/ai/2026-02-24-context-engineering-deep-dive/) — AI 编程的核心能力
-3. [精读（三）：Agent Manager](/posts/ai/2026-02-24-agent-manager-patterns/) — 人机协作的最佳实践
-4. [精读（四）：Secure Vibe Coding](/posts/ai/2026-02-24-secure-vibe-coding/) — 安全攻防底线
-5. **本文**：从原型到生产 — 完整生命周期
+1. [Deep Dive (1): Course Overview](/posts/ai/2026-02-24-stanford-cs146s-overview/) — The big picture
+2. [Deep Dive (2): Context Engineering](/posts/ai/2026-02-24-context-engineering-deep-dive/) — The core skill of AI programming
+3. [Deep Dive (3): Agent Manager](/posts/ai/2026-02-24-agent-manager-patterns/) — Best practices for human-AI collaboration
+4. [Deep Dive (4): Secure Vibe Coding](/posts/ai/2026-02-24-secure-vibe-coding/) — Security fundamentals
+5. **This article**: From Prototype to Production — The full lifecycle
 
-如果你只有时间读一篇，读第 1 篇获得全局认知。如果有时间读两篇，加上第 2 篇理解上下文工程。如果五篇都读了——恭喜你，你已经具备了一个"斯坦福水平"的 Vibe Coding 知识框架。
+If you only have time for one article, read Part 1 for the big picture. If you can read two, add Part 2 on context engineering. If you've read all five — congratulations, you now have a "Stanford-level" Vibe Coding knowledge framework.
 
-剩下的，就是实践了。
+The rest is practice.
 
-课程官网：[themodernsoftware.dev](https://themodernsoftware.dev)
-作业代码：[GitHub](https://github.com/mihail911/modern-software-dev-assignments)
+Course website: [themodernsoftware.dev](https://themodernsoftware.dev)
+Assignment code: [GitHub](https://github.com/mihail911/modern-software-dev-assignments)
 
-## 相关阅读
+## Related Reading
 
-- [Vibe Coding 完全指南](/posts/ai/2026-02-22-vibe-coding-guide/) — 从原型到生产，Vibe Coding 的完整方法论
-- [Claude Code vs Cursor vs Windsurf 实测对比](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/) — 不同 AI 编程工具在生产场景中的表现
-- [MCP 协议全面解析](/posts/ai/2026-02-20-mcp-protocol-guide/) — 通过 MCP 扩展 AI 的运维能力
-- [Claude Code Hooks 实战指南](/posts/ai/2026-02-18-claude-code-hooks-guide/) — CI/CD 自动化的实用配置
-- [从零手搓一个 Claude Code](/posts/ai/2026-02-24-build-magic-code/) — 理解 AI 编程工具的底层原理
+- [The Complete Vibe Coding Guide](/posts/ai/2026-02-22-vibe-coding-guide/) — From prototype to production, the full Vibe Coding methodology
+- [Claude Code vs Cursor vs Windsurf: 2026 Comparison](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/) — How different AI coding tools perform in production scenarios
+- [MCP Protocol Complete Guide](/posts/ai/2026-02-20-mcp-protocol-guide/) — Extending AI's operational capabilities through MCP
+- [Claude Code Hooks Practical Guide](/posts/ai/2026-02-18-claude-code-hooks-guide/) — Useful CI/CD automation configurations
+- [Build Your Own Claude Code from Scratch](/posts/ai/2026-02-24-build-magic-code/) — Understanding the internals of AI coding tools
 
-## 系列文章导航
+## Series Navigation
 
-本文是「斯坦福 Vibe Coding 课程精读」系列第 5 篇（完结）：
+This is Part 5 (finale) of the "Stanford Vibe Coding Course Deep Dive" series:
 
-1. [斯坦福 CS146S 精读（一）：Vibe Coding 如何成为正式学科](/posts/ai/2026-02-24-stanford-cs146s-overview/)
-2. [斯坦福 CS146S 精读（二）：上下文工程](/posts/ai/2026-02-24-context-engineering-deep-dive/)（Week 3）
-3. [斯坦福 CS146S 精读（三）：Agent Manager](/posts/ai/2026-02-24-agent-manager-patterns/)（Week 4）
-4. [斯坦福 CS146S 精读（四）：Secure Vibe Coding](/posts/ai/2026-02-24-secure-vibe-coding/)（Week 6-7）
-5. **本文**：斯坦福 CS146S 精读（五）：从原型到生产（Week 8-9）
+1. [Stanford CS146S Deep Dive (1): How Vibe Coding Became a University Course](/posts/ai/2026-02-24-stanford-cs146s-overview/)
+2. [Stanford CS146S Deep Dive (2): Context Engineering](/posts/ai/2026-02-24-context-engineering-deep-dive/) (Week 3)
+3. [Stanford CS146S Deep Dive (3): Agent Manager](/posts/ai/2026-02-24-agent-manager-patterns/) (Week 4)
+4. [Stanford CS146S Deep Dive (4): Secure Vibe Coding](/posts/ai/2026-02-24-secure-vibe-coding/) (Week 6-7)
+5. **This article**: Stanford CS146S Deep Dive (5): From Prototype to Production (Week 8-9)

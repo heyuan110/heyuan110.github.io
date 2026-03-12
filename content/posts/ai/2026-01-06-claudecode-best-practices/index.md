@@ -1,173 +1,165 @@
 +++
 date = '2026-01-06T18:00:00+08:00'
-title = 'Claude Code创始人的几个最佳实践'
-description = 'Claude Code 创始人在 X 上分享的几条使用心得，关于并行工作、模型选择、CLAUDE.md 维护和验证循环'
+title = 'Claude Code Best Practices: 5 Tips from the Founder'
+description = 'Practical Claude Code tips shared by its founder — parallel agents, model selection, CLAUDE.md maintenance, slash commands, and verification loops.'
 toc = true
-tags = ['AI', 'Claude Code', '最佳实践', 'Anthropic']
-categories = ['AI实战']
-keywords = ['Claude Code 最佳实践', 'Claude Code 并行工作', 'CLAUDE.md 维护', 'Claude Code 使用技巧', 'AI 编程效率']
+tags = ['AI', 'Claude Code', 'Best Practices', 'Anthropic']
+categories = ['AI Guides']
+keywords = ['Claude Code best practices', 'Claude Code parallel agents', 'CLAUDE.md tips', 'Claude Code workflow', 'AI coding productivity']
 +++
 ![Claude Code Best Practices](claude-code-best-practices.webp)
 
-Claude Code 的创始人最近在 X 上分享了几条使用心得，看完之后深有同感。不是那种官方文档式的教程，而是实际用下来的体会。
+The founder of Claude Code recently shared a handful of practical tips on X. These aren't polished documentation — they're hard-won lessons from daily use. Every one of them resonated with my own experience, so let me break them down.
 
-这里展开聊聊。
+## 1. Run Multiple Agents in Parallel
 
-## 1. 并行跑多个 Agent，学会当指挥官
+The idea: open multiple terminals, each running its own Claude Code instance, working on different tasks simultaneously.
 
-这条说的是：开多个终端，同时跑多个 Claude Code 实例。
+It sounds obvious, but it requires a genuine shift in how you think about development. Most of us are trained to work sequentially — solve one problem, then move to the next. With AI agents, you can run several tasks at once:
 
-听起来简单，但背后是思维方式的转变。
+- One terminal refactors a module
+- Another writes tests
+- A third researches documentation or generates boilerplate
 
-以前写代码，习惯是单线程的——想一个问题，解决一个问题，再想下一个。现在有了 AI 帮手，你其实可以同时推进好几件事：
+You don't need to watch each window line by line. Assign the tasks, let them run, and check in at key decision points. Think of yourself as a **commander**, not a soldier — you're coordinating multiple units, not doing the typing yourself.
 
-- 一个窗口让 Claude 重构某个模块
-- 另一个窗口让它写测试
-- 第三个窗口让它查文档、整理资料
+It takes some getting used to. The urge to babysit one agent before starting another is real. But once you adapt, the throughput gain is obvious.
 
-你不需要盯着每一个窗口看它敲代码。布置完任务，让它们各自跑，你只需要在关键节点检查一下、给点反馈。
-
-这就是"指挥官"的角色——你不是亲自上阵干活的士兵，而是在指挥多个单位协同作战。
-
-当然，这需要一点适应。刚开始会觉得分心、不踏实，总想盯着一个看完再开下一个。但一旦习惯了，效率提升是显而易见的。
-
-实操上，可以用 Git Worktree 让每个 Claude 在独立的工作目录：
+In practice, use **Git Worktree** to give each Claude instance its own working directory:
 
 ```bash
 git worktree add ../feature-a feature-a
 git worktree add ../feature-b feature-b
 ```
 
-这样各个实例互不干扰，也不会出现文件冲突。
+This prevents file conflicts between instances entirely.
 
-## 2. 用最智能的模型，别心疼 token
+## 2. Use the Smartest Model Available
 
-这条的原话是：AI Coding 的瓶颈不再是 token 生成速度（计算税），而是人类纠正错误花费的时间（纠正税）。
+The founder put it this way: the bottleneck in AI coding is no longer the **compute tax** (token generation speed) — it's the **correction tax** (the time you spend fixing the model's mistakes).
 
-说得太对了。
+This is spot on.
 
-很多人用 AI 写代码会本能地想省钱——用便宜的模型、用快的模型。但实际算下来，这笔账可能是亏的。
+Many developers instinctively try to save money by using cheaper or faster models. But when you do the math, it often costs more in the long run. A budget model produces code that needs more review, more debugging, and more back-and-forth. You save a few cents on tokens but burn an hour of your time.
 
-便宜模型写出来的代码，你要花时间 review、改 bug、来回调试。一个小时下来，省了几毛钱的 token 费，但浪费了大把时间。
+A smarter model like Opus may cost more per token and respond more slowly, but it gets things right on the first try far more often. One review pass and you're done.
 
-而用最聪明的模型（比如 Opus），虽然贵一点、慢一点，但它一次写对的概率更高。你检查一遍就能过，省下来的是你的时间。
+The concept is simple: **when the model makes mistakes, you pay the price. The weaker the model, the higher your tax.**
 
-这就是"纠正税"的概念：**模型犯错，你来买单。模型越笨，你交的税越多。**
+My approach:
 
-我自己的做法是：
+- Coding, refactoring, and reasoning-heavy tasks → Sonnet at minimum, Opus for complex work
+- Simple agentic tasks and batch processing → lighter models are fine
 
-- 写代码、改代码、做需要推理的任务 → 至少用 Sonnet，复杂任务上 Opus
-- 做简单的智能体任务、批量处理 → 可以用 GLM、Minimax 这些国产模型
+The key is matching the model to the task. Code quality directly affects long-term maintenance costs — this is not the place to cut corners.
 
-关键是分清场景。代码质量直接影响后续维护成本，这个地方不值得省。
+## 3. Log Mistakes in CLAUDE.md
 
-## 3. 把 Claude 犯过的错写进 CLAUDE.md
+CLAUDE.md is Claude Code's "memory file." Place it in your project root, and Claude reads it every time it starts.
 
-CLAUDE.md 是 Claude Code 的"记忆文件"，放在项目根目录，它每次启动都会读。
+Many people know about this feature but use it wrong — either leaving it empty or filling it with auto-generated content.
 
-很多人知道这个功能，但用法不对——要么不写，要么写一大堆自动生成的内容。
+The founder's advice: **curate it manually, keep it small, and focus on recording past mistakes.**
 
-创始人的建议是：**人工更新，保持小体积，重点记录模型犯过的错。**
+When Claude makes a project-specific error, write it down. Next time, it won't repeat it.
 
-什么意思？就是当 Claude 在你的项目里踩了一个坑，你手动把这个坑记下来。下次它就不会再犯。
-
-比如：
+For example:
 
 ```markdown
-## 注意事项
+## Project Notes
 
-- 这个项目用的是 ESM 模块，不要用 require()
-- 测试文件不要放在 src 目录下，放 tests/
-- 调用 payment API 之前必须先检查用户状态，不然会 500
+- This project uses ESM modules — never use require()
+- Test files go in tests/, not src/
+- Always check user status before calling the payment API (otherwise 500)
 ```
 
-这些都是具体的、项目特有的问题。不是什么通用的代码规范，而是"我们这个项目的坑"。
+These are concrete, project-specific pitfalls — not generic coding standards, but "the traps in *this* codebase."
 
-关键是**人工维护**。不要让 AI 自己总结、自己生成，那样会越写越长、越写越虚。你亲自写几条，精准有效。
+The critical point is **manual curation**. Don't let AI summarize or generate this file — it will grow bloated and vague over time. Write a few precise entries yourself.
 
-体积小还有另一个好处：不占上下文。CLAUDE.md 太长的话，每次启动都要吃掉一大块 token，得不偿失。
+Keeping it small has another benefit: it doesn't eat your context window. A bloated CLAUDE.md consumes a large chunk of tokens on every startup, which defeats the purpose.
 
-## 4. 用 Slash 命令和 SubAgent 自动化重复工作
+## 4. Automate Repetitive Work with Slash Commands and SubAgents
 
-Claude Code 支持自定义 slash 命令，可以把常用的工作流封装起来。
+Claude Code supports custom slash commands that let you package common workflows into a single trigger.
 
-比如每次提交代码都要：
+For example, every code submission might require:
 
-1. 跑一遍 lint
-2. 跑测试
-3. 生成 commit message
-4. 创建 PR
+1. Running lint
+2. Running tests
+3. Generating a commit message
+4. Creating a PR
 
-手动一步步来很烦。但你可以写一个 `/push-pr` 命令，一键搞定。
+Doing this manually every time is tedious. Instead, create a `/push-pr` command to handle it all at once.
 
-命令文件放在 `.claude/commands/` 目录下，格式很简单：
+Place command files in the `.claude/commands/` directory. The format is simple:
 
 ```markdown
 # push-pr.md
 
-请执行以下步骤：
-1. 运行 npm run lint，如果有错误先修复
-2. 运行 npm run test，确保测试通过
-3. 基于改动生成 commit message 并提交
-4. 创建 Pull Request，标题和描述要清晰
+Execute the following steps:
+1. Run npm run lint — fix any errors first
+2. Run npm run test — ensure all tests pass
+3. Generate a commit message based on changes and commit
+4. Create a Pull Request with a clear title and description
 ```
 
-以后只要输入 `/push-pr`，Claude 就会按这个流程走。
+Now just type `/push-pr` and Claude follows the entire workflow.
 
-SubAgent 是更高级的玩法。你可以让主 Agent 派一个"小弟"去干某件事，干完把结果汇报回来。适合那些需要独立上下文的子任务，比如专门跑测试的 Agent、专门做代码审查的 Agent。
+**SubAgents** take this further. You can have the main agent spawn a "worker" to handle a subtask independently, then report back with the results. This is ideal for tasks that need their own context — a dedicated testing agent, a code review agent, and so on.
 
-核心思想是：**把重复的、有固定流程的事情自动化掉，你只关注需要判断的部分。**
+The core principle: **automate anything repetitive and procedural so you only focus on decisions that require judgment.**
 
-## 5. 开启验证循环，让 Claude 自己检查
+## 5. Enable Verification Loops
 
-这条可能是最有价值的一条。
+This might be the most impactful tip of all.
 
-所谓"验证循环"，就是让 Claude 写完代码后，能够自己验证对不对。
+A "verification loop" means Claude checks its own work after writing code, rather than just handing it off to you.
 
-怎么验证？
+How does it verify?
 
-- **跑测试**：写完代码，立刻运行测试，看有没有挂
-- **浏览器检查**：改完前端代码，打开浏览器看效果
-- **类型检查**：跑一遍 TypeScript 编译，看有没有类型错误
-- **Lint 检查**：跑 eslint、prettier，看有没有格式问题
+- **Run tests**: Execute the test suite immediately after making changes
+- **Browser check**: Open the browser to inspect frontend changes visually
+- **Type check**: Run the TypeScript compiler to catch type errors
+- **Lint check**: Run eslint or prettier to catch formatting issues
 
-如果没有验证循环，Claude 写完代码就算完了。你要自己去跑测试、自己去看效果、自己发现问题再反馈给它。
+Without verification loops, Claude writes code and considers the job done. You then have to run tests yourself, check the UI, find the bugs, and feed them back.
 
-有了验证循环，它写完会自己检查一遍。发现测试挂了，它会尝试修复；发现浏览器报错，它会去排查。
+With verification loops, Claude checks its own output first. If tests fail, it tries to fix them. If the browser throws errors, it investigates.
 
-这个改变带来的质量提升，创始人说是 **2-3 倍**。我自己体感也差不多。
+The founder estimates this produces a **2-3x quality improvement**. My experience aligns with that.
 
-具体怎么开启？可以在 CLAUDE.md 里写明：
+To enable this, specify verification steps in your CLAUDE.md:
 
 ```markdown
-## 工作流程
+## Workflow
 
-- 每次修改代码后，运行 npm run test 确认测试通过
-- 前端改动需要在浏览器中验证效果
-- 提交前运行 npm run lint 确保代码规范
+- After every code change, run npm run test to confirm tests pass
+- Frontend changes must be verified in the browser
+- Run npm run lint before committing to ensure code standards
 ```
 
-或者配置 MCP 服务器，让 Claude 能操作浏览器（Playwright MCP）、能读取测试结果。
+You can also configure MCP servers to give Claude browser access (via Playwright MCP) and direct test result visibility.
 
 ---
 
-## 最后
+## Key Takeaways
 
-这几条实践，核心就两个字：**效率**。
+All five practices boil down to one theme: **efficiency**.
 
-- 并行工作，榨干等待时间
-- 用好模型，减少返工
-- 记录错误，避免重蹈覆辙
-- 自动化流程，省掉重复劳动
-- 验证循环，一次做对
+- Run agents in parallel to eliminate idle time
+- Use the best model to reduce rework
+- Log mistakes to prevent repeating them
+- Automate workflows to cut repetitive labor
+- Enable verification loops to get it right the first time
 
-Claude Code 的潜力比很多人想象的大。但它毕竟只是工具，用好用坏取决于你怎么驾驭。
+Claude Code is more capable than most people realize. But it's still a tool — how well it works depends entirely on how you wield it.
 
-与其抱怨 AI 不够聪明，不如想想自己的使用方式有没有优化空间。
+Instead of complaining that AI isn't smart enough, consider whether your workflow has room for improvement.
 
-## 相关阅读
+## Further Reading
 
-- [Claude Code 浏览器自动化方案对比：Agent Browser、Playwright、DevTools](/posts/ai/2026-01-28-claude-code-browser-automation/)
-- [Anthropic 发布 Claude Cowork：让 AI 直接操作你的电脑文件](/posts/ai/2026-01-13-claude-cowork/)
-- [Claude Code Skills 完全指南](/posts/ai/2026-01-08-claudecode-skill-guide/)
-- [Agent Skills：AI 编程的新范式](/posts/ai/2026-01-19-agent-skills-new-programming/)
+- [Claude Code Browser Automation: 5 Approaches Compared](/posts/ai/2026-01-28-claude-code-browser-automation/)
+- [Anthropic Launches Claude Cowork: AI That Operates Your Desktop Files](/posts/ai/2026-01-13-claude-cowork/)
+- [Claude Code Skills: The Complete Guide](/posts/ai/2026-01-08-claudecode-skill-guide/)
+- [Agent Skills: A New Programming Paradigm](/posts/ai/2026-01-19-agent-skills-new-programming/)

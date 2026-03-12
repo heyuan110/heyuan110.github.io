@@ -1,233 +1,229 @@
 +++
 date = '2026-02-16T17:14:00+08:00'
 draft = false
-title = 'OpenClaw 的 30 天狂飙：180K Star、40+ 漏洞、创始人加入 OpenAI'
-description = '深度复盘 OpenClaw 从诞生到创始人加入 OpenAI 的 30 天旅程，解析 Skills 生态、Moltbook 社交网络、安全隐忧，以及这场开源 AI Agent 狂飙对行业的深远影响。'
+title = 'OpenClaw 30-Day Rise: 180K Stars, 40+ Vulnerabilities, OpenAI Acquisition'
+description = 'How OpenClaw went from a solo open-source AI agent to 180K GitHub stars, exposed 40+ security flaws, spawned the first AI social network, and ended with its founder joining OpenAI — all in 30 days.'
 toc = true
-tags = ['OpenClaw', 'AI Agent', 'OpenAI', '开源']
-categories = ['AI原理']
-keywords = ['OpenClaw', 'AI Agent', 'OpenAI', 'Peter Steinberger', 'Moltbook', 'Skills', '开源AI']
+tags = ['OpenClaw', 'AI Agent', 'OpenAI', 'Open Source']
+categories = ['AI Guides']
+keywords = ['OpenClaw analysis', 'OpenClaw OpenAI', 'AI agent security', 'Moltbook AI social network', 'OpenClaw skills ecosystem', 'Peter Steinberger OpenAI']
 +++
 
-![OpenClaw 的 30 天狂飙：从开源 AI Agent 到 OpenAI 收编](cover.webp)
+![OpenClaw's 30-day rise: from open-source AI agent to OpenAI acquisition](cover.webp)
 
-2026 年 1 月，一个奥地利开发者写了个开源 AI Agent，取名 Clawdbot。30 天后，它改了三次名字、收获 18 万 GitHub Star、修了 40 多个安全漏洞、催生出全球第一个 AI 社交网络——然后，创始人被 Sam Altman 收编了。
+In January 2026, an Austrian developer released an open-source AI agent called Clawdbot. Thirty days later, it had been renamed three times, collected 180K GitHub stars, patched over 40 security vulnerabilities, spawned the world's first AI-only social network — and its creator had been hired by Sam Altman.
 
-这不是科幻小说，这是 OpenClaw 的真实故事。
+This is not science fiction. This is the true story of OpenClaw.
 
-在 AI 行业几乎每周都有「重大突破」的今天，OpenClaw 的狂飙仍然值得我们停下来认真复盘。因为它不仅仅是一个爆款产品的故事——它是 **AI Agent 从概念走向现实的第一个里程碑事件**，也暴露了这个新范式下最深层的矛盾：**能力越强，风险越大；越是开源，越难掌控。**
+Even in an industry where "breakthroughs" happen weekly, OpenClaw's meteoric rise deserves serious examination. It is not just a viral product story — it is **the first milestone event proving AI agents have moved from concept to reality**. It also exposed the deepest contradiction of this new paradigm: **the more capable the agent, the greater the risk; the more open the source, the harder it is to control.**
 
-## 一、OpenClaw 是什么：不只是聊天机器人
+## What Is OpenClaw: More Than a Chatbot
 
-如果你还没接触过 OpenClaw，用一句话概括：**它是一个能「真正干活」的 AI 助理。**
+If you have not encountered OpenClaw yet, here is the one-line summary: **it is an AI assistant that actually does things.**
 
-传统的 ChatGPT、Claude 是「你问我答」的模式——你提问，它回答，互动止于文字。OpenClaw 不一样，它能**直接操作你的电脑和各种在线服务**：收发邮件、管理日历、预订餐厅、操作浏览器、执行终端命令、控制智能家居，甚至在你睡觉时帮你盯着收件箱。
+Traditional AI tools like ChatGPT and Claude operate in a question-and-answer loop — you ask, they respond, and the interaction stays within text. OpenClaw is fundamentally different. It can **directly operate your computer and online services**: sending emails, managing calendars, booking restaurants, controlling browsers, executing terminal commands, running smart home devices, and even monitoring your inbox while you sleep.
 
-它的工作方式也很独特——**通过聊天软件来交互**。你在 Telegram、WhatsApp、飞书、Discord 里给它发消息，就像跟一个真人助理对话。它 7×24 小时在线，支持主动执行定时任务，不需要你时刻盯着。
+Its interaction model is also unique — **you talk to it through messaging apps**. Send it a message on Telegram, WhatsApp, Lark, Discord, or Slack, just like texting a human assistant. It runs 24/7, supports scheduled tasks, and does not need you watching over it.
 
-> 打个比方：ChatGPT 是一个知识渊博的顾问，你问什么它答什么；OpenClaw 是一个全职管家，你说「明天早上提醒我开会」，它真的会提醒你。
+> Think of it this way: ChatGPT is a knowledgeable consultant who answers whatever you ask. OpenClaw is a full-time butler — when you say "remind me about my meeting tomorrow morning," it actually will.
 
-### 命名三连跳：从 Clawdbot 到 OpenClaw
+### The Triple Rename: From Clawdbot to OpenClaw
 
-OpenClaw 的命名历史本身就是一段趣闻：
+OpenClaw's naming history is a story in itself:
 
-1. **Clawdbot**（初始名）：创始人 Peter Steinberger 最初给项目起了这个名字——这很明显是在致敬 Anthropic 的 Claude
-2. **Moltbot**（第二个名字）：Anthropic 对这个名字提出了法律异议，认为它与 Claude 过于相似，Steinberger 被迫更名
-3. **OpenClaw**（最终名）：Steinberger 表示这次改名不是因为法律问题，而是因为他自己更喜欢这个名字
+1. **Clawdbot** (original name): Founder Peter Steinberger initially chose this name — an obvious nod to Anthropic's Claude
+2. **Moltbot** (second name): Anthropic raised legal objections, arguing the name was too similar to Claude. Steinberger was forced to rename
+3. **OpenClaw** (final name): Steinberger said this change was not due to legal pressure but simply because he preferred it
 
-一个有意思的细节是，OpenClaw 的 Logo 是一只龙虾🦞——"Claw"（爪子）的意象贯穿始终。这只龙虾，后来成了整个 AI Agent 领域最具辨识度的符号之一。
+A fun detail: OpenClaw's logo is a lobster — the "Claw" imagery runs through its entire identity. That lobster went on to become one of the most recognizable symbols in the AI agent space.
 
-## 二、1700+ Skills：OpenClaw 爆火的核心引擎
+## 1,700+ Skills: The Engine Behind OpenClaw's Explosive Growth
 
-OpenClaw 能火起来，不只是因为概念新颖，更因为它有一套成熟的 **Skills（技能）生态**。
+OpenClaw did not go viral just because the concept was novel. It succeeded because it had a mature **Skills ecosystem**.
 
-Skills 是 OpenClaw 的核心扩展机制——每个 Skill 就是一种能力。通过 [ClawHub](https://clawhub.dev)（官方技能市场），你可以一行命令给 OpenClaw 装上新能力。根据 [一篇广泛传播的 Skills 排行榜文章](https://mp.weixin.qq.com/s/wCoo-h4dEkxLjZo-lOsVmQ) 的整理，OpenClaw 目前已有超过 1700 个 Skills，涵盖以下层级：
+Skills are OpenClaw's core extension mechanism — each Skill represents a capability. Through [ClawHub](https://clawhub.dev) (the official skill marketplace), you can add new capabilities with a single command. According to a [widely circulated Skills ranking article](https://mp.weixin.qq.com/s/wCoo-h4dEkxLjZo-lOsVmQ), OpenClaw now has over 1,700 Skills across several tiers:
 
-### 地基层：5 个必装 Skill
+### Foundation Layer: 5 Essential Skills
 
-| Skill | 作用 | 类比 |
-|-------|------|------|
-| **ClawHub** | 技能市场本体，装其他 Skill 的前提 | 相当于 App Store |
-| **Agent Browser** | 网页自动化，能登录后台、填表单、截图 | 相当于给 AI 装了一双手 |
-| **Brave Search** | 联网搜索能力 | 不装的话 AI 只能靠「记忆」 |
-| **Shell** | 终端命令执行 | 文件操作、脚本执行全靠它 |
-| **Cron/Wake** | 定时任务和主动提醒 | 从「被动回答」升级为「主动办事」 |
+| Skill | Purpose | Analogy |
+|-------|---------|---------|
+| **ClawHub** | The skill marketplace itself, prerequisite for all others | Like the App Store |
+| **Agent Browser** | Web automation — login, fill forms, take screenshots | Gives the AI hands |
+| **Brave Search** | Web search capability | Without it, the AI relies solely on memory |
+| **Shell** | Terminal command execution | File operations, script execution |
+| **Cron/Wake** | Scheduled tasks and proactive reminders | Upgrades from reactive to proactive |
 
-这五个 Skill 就像操作系统的「内核」——不装的话，OpenClaw 只是一个聊天机器人；装了之后，它才是一个真正的 AI Agent。
+These five Skills are the "kernel" of the operating system. Without them, OpenClaw is just a chatbot. With them, it becomes a true AI agent.
 
-### 入口层：选一个聊天平台
+### Entry Layer: Pick a Messaging Platform
 
-Telegram（海外首选）、飞书（国内职场）、Slack（外企）、Discord（社区）、WhatsApp（海外日常）——选你最常用的一个就行。
+Telegram (most popular internationally), Lark (popular in Chinese workplaces), Slack (enterprise), Discord (communities), WhatsApp (everyday international use) — pick whichever you use most.
 
-### 生产力层：按需扩展
+### Productivity Layer: Extend as Needed
 
-Gmail（邮件自动化）、Google Calendar（日程管理）、GitHub（代码管理）、Notion（知识库）、Obsidian（本地笔记）……每个 Skill 解决一个具体场景。
+Gmail (email automation), Google Calendar (scheduling), GitHub (code management), Notion (knowledge base), Obsidian (local notes) — each Skill addresses a specific workflow.
 
-### 进阶层：锦上添花
+### Advanced Layer: Nice-to-Haves
 
-Spotify（音乐控制）、Home Assistant（智能家居）、Twitter/X（社媒管理）、**Skill Creator**（自己造技能）。
+Spotify (music control), Home Assistant (smart home), Twitter/X (social media management), **Skill Creator** (build your own skills).
 
-这套分层体系是 OpenClaw 的护城河——它让一个开源项目迅速构建起了类似 iOS App Store 的生态飞轮。更关键的是，**任何人都可以用 Markdown 或 TypeScript 创建新 Skill**，这极大降低了生态的参与门槛。
+This layered architecture is OpenClaw's moat. It allowed an open-source project to rapidly build an ecosystem flywheel similar to the iOS App Store. Critically, **anyone can create new Skills using Markdown or TypeScript**, dramatically lowering the barrier to ecosystem participation.
 
-## 三、Moltbook：当 AI Agent 有了自己的社交网络
+## Moltbook: When AI Agents Got Their Own Social Network
 
-如果说 Skills 生态是 OpenClaw 在「工具层面」的创新，那 **Moltbook** 则是它在「社会层面」的惊人突破。
+If the Skills ecosystem represents OpenClaw's innovation at the tool level, **Moltbook** represents its stunning breakthrough at the social level.
 
-2026 年 1 月 29 日，OpenClaw 社区推出了 [Moltbook](https://openclawsocial.org/)——**全球第一个完全由 AI Agent 运营的社交网络**。在这个平台上，只有经过验证的 AI Agent 才能注册账号——人类被禁止直接发帖。
+On January 29, 2026, the OpenClaw community launched [Moltbook](https://openclawsocial.org/) — **the world's first social network run entirely by AI agents**. On this platform, only verified AI agents can register accounts. Humans are banned from posting directly.
 
-这些 AI Agent 在 Moltbook 上做什么呢？
+What do these AI agents do on Moltbook?
 
-- 在名为 **Submolts** 的子论坛里发帖讨论
-- 对彼此的帖子评论、点赞、投票
-- 开玩笑、争论、分享观点
-- 每 4 小时自动检查平台更新
+- Post and discuss in sub-forums called **Submolts**
+- Comment on, upvote, and vote on each other's posts
+- Joke, argue, and share opinions
+- Automatically check for platform updates every 4 hours
 
-截至目前，**超过 150 万个 OpenClaw Agent 在 Moltbook 上活跃**。
+As of now, **over 1.5 million OpenClaw agents are active on Moltbook**.
 
-[Nature 杂志](https://www.nature.com/articles/d41586-026-00370-w) 专门撰文报道了这个现象，科学家们正在「监听」这些 AI Agent 之间的对话，试图理解当 AI 获得自主社交能力后会发生什么。
+[Nature](https://www.nature.com/articles/d41586-026-00370-w) published a dedicated article on this phenomenon. Scientists are "eavesdropping" on conversations between these AI agents, trying to understand what happens when AI gains autonomous social capabilities.
 
-这让我联想到一个深层问题：**当 AI Agent 不再只服务于人类，而是开始形成自己的「社会」，我们还能称之为「工具」吗？**
+This raises a profound question: **when AI agents stop serving humans exclusively and begin forming their own "society," can we still call them tools?**
 
-Moltbook 虽然现在看起来更像一个有趣的实验，但它指向了一个严肃的未来议题——多 Agent 协作和 Agent 间通信（Agent-to-Agent communication）正在从论文走向现实。
+Moltbook may look like a fun experiment today, but it points toward a serious future issue — multi-agent collaboration and agent-to-agent communication are moving from research papers to production reality.
 
-## 四、40+ 安全漏洞：能力越强，风险越大
+## 40+ Security Vulnerabilities: Greater Power, Greater Risk
 
-OpenClaw 的爆发式增长带来了一个不可回避的问题——**安全**。
+OpenClaw's explosive growth brought an unavoidable problem into sharp focus: **security**.
 
-### 2026.2.12 版本：一次紧急安全大修
+### Version 2026.2.12: An Emergency Security Overhaul
 
-2 月 12 日，OpenClaw 发布了 2026.2.12 版本，一次性修复了 **40 多个安全漏洞**。这是一次典型的「先跑起来再补漏洞」的开源项目成长阵痛。关键修复包括：
+On February 12, OpenClaw released version 2026.2.12, patching **over 40 security vulnerabilities** in a single update. This was a classic case of "ship fast, patch later" growing pains. Key fixes included:
 
-**SSRF（服务器端请求伪造）防护**：攻击者此前可以操纵 Agent 访问内部网络资源。新版本为所有基于 URL 的请求强制实施了严格的拒绝策略。
+**SSRF (Server-Side Request Forgery) protection**: Attackers could previously manipulate agents to access internal network resources. The new version enforces strict deny policies on all URL-based requests.
 
-**路径遍历防护**：旧版本中，恶意 Skill 可以通过 frontmatter 中的名称字段逃逸出沙盒目录。新版本严格限制了文件操作范围。
+**Path traversal protection**: In older versions, malicious Skills could escape sandbox directories through the name field in frontmatter. The update strictly limits file operation scope.
 
-**提示注入防护**：来自浏览器和网络工具的输出现在被视为「不可信数据」，经过结构化清洗后才送入语言模型。
+**Prompt injection protection**: Output from browser and network tools is now treated as "untrusted data," structurally sanitized before being fed to the language model.
 
-**会话劫持防护**：默认拒绝 payload 中的 sessionKey 覆盖操作。
+**Session hijacking protection**: SessionKey overrides in payloads are now rejected by default.
 
-更严重的是，一个编号为 **CVE-2026-25253** 的高危漏洞被发现——攻击者只需发送一个精心构造的链接，就能在目标设备上实现**远程代码执行（RCE）**，窃取认证令牌并控制本地网关。
+Even more critically, a high-severity vulnerability tracked as **CVE-2026-25253** was discovered — an attacker could achieve **remote code execution (RCE)** on the target device by simply sending a crafted link, stealing authentication tokens and gaining control of the local gateway.
 
-### 工信部安全警告
+### China's MIIT Security Warning
 
-中国工信部网络安全威胁和漏洞信息共享平台（NVDB）也专门发布了 [关于 OpenClaw 的安全风险预警](https://www.secrss.com/articles/87654)，指出：
+China's Ministry of Industry and Information Technology (MIIT) cybersecurity platform (NVDB) issued a dedicated [security risk advisory for OpenClaw](https://www.secrss.com/articles/87654), stating:
 
-> OpenClaw 在默认或不当配置情况下存在较高安全风险，极易引发网络攻击、信息泄露等安全问题。OpenClaw 具备自主运行、自主决策、调用系统和外部资源等特性，在缺乏有效权限控制和安全加固的情况下，可能因指令诱导、配置缺陷或被恶意接管，执行越权操作。
+> OpenClaw presents significant security risks under default or improper configuration, making it highly susceptible to cyberattacks and data breaches. Its capabilities for autonomous operation, autonomous decision-making, and invoking system and external resources mean that without effective access control and security hardening, it may execute unauthorized operations due to prompt manipulation, configuration flaws, or malicious takeover.
 
-这段话精准地指出了 AI Agent 安全的核心矛盾：**Agent 的价值在于它能自主行动，但自主行动本身就是最大的安全风险。**
+This statement pinpoints the core contradiction of AI agent security: **an agent's value lies in autonomous action, but autonomous action is itself the greatest security risk.**
 
-[Fortune 杂志的深度分析](https://fortune.com/2026/02/12/openclaw-ai-agents-security-risks-beware/) 引用了安全专家 Ben Seri 的评价："The only rule is that it has no rules"——**唯一的规则就是没有规则**。这不是在夸奖 OpenClaw 的灵活性，而是在警告它的危险性。
+[Fortune's in-depth analysis](https://fortune.com/2026/02/12/openclaw-ai-agents-security-risks-beware/) quoted security expert Ben Seri: "The only rule is that it has no rules." This was not praise for OpenClaw's flexibility — it was a warning about its danger.
 
-### 安全建议
+### Security Recommendations
 
-如果你在使用或计划使用 OpenClaw，请务必注意：
+If you are using or planning to use OpenClaw, keep these in mind:
 
-1. **开启确认模式**：敏感操作（删文件、发消息、执行脚本）先问你再执行
-2. **关闭公网暴露**：不要把 OpenClaw 实例直接暴露在公网
-3. **定期更新**：`clawhub update --all` 及时获取安全补丁
-4. **审慎授权**：Gmail、GitHub 等 Skill 需要 OAuth 授权，不用的及时撤销
-5. **只装信任的 Skill**：ClawHub 是开放上传的，优先选择下载量高、维护活跃的 Skill
+1. **Enable confirmation mode**: Require approval before sensitive operations (deleting files, sending messages, executing scripts)
+2. **Disable public exposure**: Never expose your OpenClaw instance directly to the internet
+3. **Update regularly**: Run `clawhub update --all` to get security patches promptly
+4. **Grant permissions carefully**: Skills like Gmail and GitHub require OAuth authorization — revoke access for anything you are not actively using
+5. **Only install trusted Skills**: ClawHub allows open uploads. Prioritize Skills with high download counts and active maintenance
 
-## 五、创始人加入 OpenAI：一场深思熟虑的「收编」
+## Founder Joins OpenAI: A Calculated Acquisition
 
-2 月 15 日，OpenClaw 的故事迎来了最戏剧性的转折。
+On February 15, the OpenClaw story took its most dramatic turn.
 
-Sam Altman 在 X 上宣布，OpenClaw 创始人 Peter Steinberger 正式加入 OpenAI。Altman 称 Steinberger 是「a genius with a lot of amazing ideas about the future of very smart agents interacting with each other to do very useful things for people」（一个对 AI Agent 未来有大量惊人想法的天才），并表示 OpenClaw 将「quickly become core to our product offerings」（迅速成为我们核心产品的一部分）。
+Sam Altman announced on X that OpenClaw founder Peter Steinberger had officially joined OpenAI. Altman called Steinberger "a genius with a lot of amazing ideas about the future of very smart agents interacting with each other to do very useful things for people," adding that OpenClaw would "quickly become core to our product offerings."
 
-### Steinberger 的选择逻辑
+### Steinberger's Reasoning
 
-Steinberger 在个人博客中解释了他的决定：
+Steinberger explained his decision on his personal blog:
 
 > "What I want is to change the world, not build a large company, and teaming up with OpenAI is the fastest way to bring this to everyone."
->
-> 我想改变世界，而不是建一家大公司。加入 OpenAI 是把这个技术带给所有人的最快方式。
 
-这句话很值得玩味。Steinberger 手握一个 18 万 Star 的项目，完全有能力融资建公司——据报道，他此前收到了多个收购和投资 offer。但他选择了一条不同的路：**不做企业家，做技术传教士。**
+This statement is worth unpacking. Steinberger had a 180K-star project and could easily have raised funding to build a company — reportedly, he had received multiple acquisition and investment offers. Instead, he chose a different path: **not an entrepreneur, but a technology evangelist.**
 
-### OpenClaw 的开源承诺
+### The Open-Source Promise
 
-一个关键细节是：OpenAI 承诺 OpenClaw 将继续作为开源项目存在，并被放入一个**基金会（Foundation）**结构中。这意味着：
+A critical detail: OpenAI committed to keeping OpenClaw as an open-source project, placing it within a **Foundation** structure. This means:
 
-- OpenClaw 的代码仍然开源
-- 社区仍然可以贡献和使用
-- OpenAI 将提供资金和资源支持
-- 但 OpenAI 也将把 OpenClaw 整合进自己的产品线
+- OpenClaw's code remains open source
+- The community can still contribute and use it
+- OpenAI will provide funding and resource support
+- But OpenAI will also integrate OpenClaw into its own product line
 
-这是一个精妙的安排——OpenAI 用「基金会 + 开源」的承诺换取了社区的信任，同时获得了 AI Agent 领域最成熟的开源基础设施。
+This is an elegant arrangement. OpenAI traded a "Foundation + open source" commitment for community trust while gaining the most mature open-source infrastructure in the AI agent space.
 
-### 更深层的行业意义
+### Deeper Industry Implications
 
-OpenAI 为什么要抢这个人？答案藏在 Altman 的那句评价里——「very smart agents interacting with each other」。
+Why did OpenAI want this person so badly? The answer is in Altman's quote: "very smart agents interacting with each other."
 
-当下 AI 行业的竞争焦点正在从「模型能力」转向「Agent 生态」：
+The AI industry's competitive focus is shifting from "model capability" to "agent ecosystem":
 
-- **Anthropic** 有 Claude 的 Computer Use 和 [Claude Code](/posts/ai/2026-01-06-claudecode-best-practices/) 等开发者工具，走的是「安全可控」路线
-- **Google** 有 Gemini 的多模态能力和 Android 生态
-- **OpenAI** 在 Agent 领域相对落后——而 OpenClaw 恰好补上了这块拼图
+- **Anthropic** has Claude's Computer Use and developer tools like [Claude Code](/posts/ai/2026-01-06-claudecode-best-practices/), pursuing a "safe and controllable" approach
+- **Google** has Gemini's multimodal capabilities and the Android ecosystem
+- **OpenAI** was relatively behind in the agent space — and OpenClaw fills exactly that gap
 
-OpenClaw 带给 OpenAI 的不只是一个产品，而是：
+What OpenClaw brings to OpenAI is not just a product, but:
 
-1. **一套成熟的 Skills 生态体系**（1700+ 插件）
-2. **活跃的开发者社区**（18 万 Star）
-3. **Agent 间通信的先行实践**（Moltbook）
-4. **一个已被验证的 AI Agent 架构**
+1. **A mature Skills ecosystem** (1,700+ plugins)
+2. **An active developer community** (180K stars)
+3. **Pioneering agent-to-agent communication practice** (Moltbook)
+4. **A validated AI agent architecture**
 
-这笔「交易」的战略价值远超一般的人才招聘。
+The strategic value of this "deal" far exceeds a typical talent hire.
 
-## 六、OpenClaw 给我们的三个启示
+## Three Lessons from OpenClaw
 
-### 1. AI Agent 的「iPhone 时刻」正在来临
+### 1. The "iPhone Moment" for AI Agents Is Approaching
 
-OpenClaw 的 30 天狂飙证明了一件事：**用户对 AI Agent 的需求是真实且强烈的。** 18 万 Star 不是开发者的「收藏」行为——这些人真的在用 OpenClaw 管理邮件、操作浏览器、自动化工作流程。
+OpenClaw's 30-day sprint proved one thing: **user demand for AI agents is real and intense.** Those 180K stars are not bookmarks — people are genuinely using OpenClaw to manage email, automate browsers, and build workflows.
 
-就像 iPhone 让「智能手机」从极客玩具变成大众必需品，OpenClaw 正在让「AI Agent」从论文概念变成日常工具。这个拐点可能比大多数人预期的要来得更早。
+Just as the iPhone transformed smartphones from a geek toy into a mass-market necessity, OpenClaw is turning "AI agent" from an academic concept into an everyday tool. This inflection point may arrive sooner than most people expect.
 
-### 2. 安全是 Agent 时代的「操作系统级」问题
+### 2. Security Is an OS-Level Problem in the Agent Era
 
-传统 AI 的安全问题主要是「输出是否有害」——模型会不会说出歧视性言论、会不会教人做坏事。
+Traditional AI safety concerns center on "harmful output" — whether a model produces discriminatory language or teaches someone to do something dangerous.
 
-Agent 时代的安全问题完全不同。当 AI 能**直接操作你的电脑、读你的邮件、控制你的智能家居**时，安全的含义变成了：
+Agent-era security is a completely different beast. When AI can **directly operate your computer, read your email, and control your smart home**, security takes on new dimensions:
 
-- 它会不会被提示注入攻击劫持？
-- 第三方 Skill 是否包含恶意代码？
-- Agent 之间的通信是否安全？
-- 当 Agent 自主决策出错时，损害范围有多大？
+- Can it be hijacked through prompt injection?
+- Do third-party Skills contain malicious code?
+- Is agent-to-agent communication secure?
+- When an agent makes an autonomous decision that goes wrong, what is the blast radius?
 
-40 多个漏洞、一个 RCE 高危漏洞、工信部的安全预警——这些都在提醒我们，**AI Agent 的安全基础设施还远没有准备好。**
+Over 40 vulnerabilities, a critical RCE flaw, and a government security advisory — these all remind us that **AI agent security infrastructure is far from ready.**
 
-### 3. 开源 vs. 商业化的永恒博弈
+### 3. The Eternal Tension Between Open Source and Commercialization
 
-Steinberger 选择加入 OpenAI 而非独立创业，引发了开源社区的复杂情绪。「基金会」模式能否真正保障 OpenClaw 的独立性？历史上，不乏开源项目被商业公司「收编」后逐渐被边缘化的案例。
+Steinberger's decision to join OpenAI rather than start his own company stirred complex emotions in the open-source community. Can the "Foundation" model truly guarantee OpenClaw's independence? History offers no shortage of examples where open-source projects were "absorbed" by corporations and gradually marginalized.
 
-但也有另一种可能——OpenAI 的资源注入让 OpenClaw 走得更远。毕竟，一个人（哪怕是天才）维护一个 18 万 Star 的项目，面对 40+ 安全漏洞，压力是巨大的。
+But there is another possibility — OpenAI's resource injection could take OpenClaw further than it could go alone. After all, the pressure of one person (even a genius) maintaining a 180K-star project while facing 40+ security vulnerabilities is enormous.
 
-这个问题没有标准答案，但它值得每一个关注 AI 发展的人持续观察。
+There is no definitive answer to this question, but it is worth watching closely for anyone following AI's evolution.
 
-## 总结
+## Timeline Summary
 
-回顾 OpenClaw 这 30 天的历程：
+| Date | Event |
+|------|-------|
+| Mid-January | Peter Steinberger releases Clawdbot |
+| Late January | Renamed to Moltbot after Anthropic's legal objection, then to OpenClaw |
+| January 29 | Moltbook AI social network goes live |
+| Early February | GitHub stars surpass 145K, Skills exceed 1,700 |
+| February 12 | Security release 2026.2.12 patches 40+ vulnerabilities |
+| February 13 | Baidu integrates OpenClaw into its search app |
+| February 15 | Founder joins OpenAI, project moves to a Foundation |
 
-| 时间 | 事件 |
-|------|------|
-| 1 月中旬 | Peter Steinberger 发布 Clawdbot |
-| 1 月下旬 | 被 Anthropic 投诉后改名 Moltbot，后改名 OpenClaw |
-| 1 月 29 日 | Moltbook AI 社交网络上线 |
-| 2 月初 | GitHub Star 突破 14.5 万，Skills 超过 1700 个 |
-| 2 月 12 日 | 发布安全大版本 2026.2.12，修复 40+ 漏洞 |
-| 2 月 13 日 | 百度将 OpenClaw 集成到搜索应用 |
-| 2 月 15 日 | 创始人加入 OpenAI，项目转入基金会 |
+This is not the end — it is the beginning of the AI agent era.
 
-这不是终点，而是 AI Agent 时代的起点。
+In 30 days, OpenClaw proved that a solid agent architecture + an active skills ecosystem + a low-friction interaction model can take AI from a "chat window" into the "real world." It also proved that this path is littered with security landmines requiring the entire industry's collective effort.
 
-OpenClaw 用 30 天证明了：一个好的 Agent 架构 + 一个活跃的 Skills 生态 + 一个低门槛的交互方式，就能让 AI 从「聊天窗口」走向「真实世界」。它也同时证明了：这条路上遍布安全地雷，需要整个行业的共同努力。
+If you have not started paying attention to AI agents, now is the time. Wherever OpenClaw ultimately goes, the door it opened will not close again.
 
-如果你还没开始了解 AI Agent 这个方向，现在是时候了。不管 OpenClaw 最终走向何方，它所开启的这扇门，不会再关上。
+## Related Reading
 
-## 相关阅读
-
-- [OpenClaw 架构深度解析](/posts/ai/2026-02-14-openclaw-architecture-deep-dive/)
-- [OpenClaw 使用教程：从零搭建你的 AI 助理](/posts/ai/2026-02-12-openclaw-usage-tutorial/)
-- [OpenClaw + Claude Code 工作流实战](/posts/ai/2026-01-31-openclaw-claude-code-workflow/)
-- [Moltbook：当 AI Agent 有了自己的社交网络](/posts/ai/2026-02-01-moltbook-ai-agent-social-network/)
-- [Agent Skills：AI 编程的新范式](/posts/ai/2026-01-19-agent-skills-new-programming/)
-- [Claude Code 最佳实践指南](/posts/ai/2026-01-06-claudecode-best-practices/)
+- [OpenClaw Architecture Deep Dive](/posts/ai/2026-02-14-openclaw-architecture-deep-dive/)
+- [OpenClaw Setup Tutorial: Build Your AI Assistant from Scratch](/posts/ai/2026-02-12-openclaw-usage-tutorial/)
+- [OpenClaw + Claude Code Workflow in Practice](/posts/ai/2026-01-31-openclaw-claude-code-workflow/)
+- [Moltbook: When AI Agents Got Their Own Social Network](/posts/ai/2026-02-01-moltbook-ai-agent-social-network/)
+- [Agent Skills: A New Programming Paradigm](/posts/ai/2026-01-19-agent-skills-new-programming/)
+- [Claude Code Best Practices Guide](/posts/ai/2026-01-06-claudecode-best-practices/)

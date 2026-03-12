@@ -1,249 +1,247 @@
 +++
 date = '2026-02-12T07:36:00+08:00'
 draft = false
-title = 'OpenClaw 超详细上手教程：小白友好 + 老鸟技巧'
-description = 'OpenClaw 从零到精通的完整教程，涵盖安装、Gateway 启动、TUI 终端、多智能体配置、安全隔离、排障清单等实战内容，适合新手入门和老鸟进阶。'
+title = 'OpenClaw Tutorial: Complete Setup Guide for Beginners and Power Users'
+description = 'Step-by-step OpenClaw tutorial covering installation, Gateway setup, TUI terminal, multi-agent configuration, session isolation, and troubleshooting for your personal AI assistant.'
 toc = true
-tags = ['OpenClaw', 'AI Agent', 'Telegram', '个人助手', '开源']
-categories = ['AI实战']
-keywords = ['OpenClaw 教程', 'OpenClaw 安装', 'AI Agent 网关', 'Telegram 机器人', 'OpenClaw TUI', 'Moltbot 教程', 'Clawdbot 教程', 'OpenClaw Moltbot']
+tags = ['OpenClaw', 'AI Agent', 'Telegram', 'Personal Assistant', 'Open Source']
+categories = ['AI Guides']
+keywords = ['OpenClaw tutorial', 'OpenClaw setup guide', 'AI agent gateway', 'Telegram AI bot', 'OpenClaw TUI', 'Moltbot tutorial', 'Clawdbot tutorial', 'OpenClaw multi-agent']
 +++
 
-![OpenClaw 超详细上手教程封面](cover.webp)
+![OpenClaw complete tutorial cover](cover.webp)
 
-想拥有一个 7×24 小时在线的私人 AI 助手，能在 Telegram、WhatsApp、Discord 等平台随时响应你的消息？[OpenClaw](https://github.com/openclaw/openclaw) 就是为此而生的开源 AI Agent 网关。本文是一份**从 0 到精通**的完整教程，无论你是刚入门的小白还是想深度玩转多智能体的老鸟，都能找到适合自己的内容。
+Want a personal AI assistant that runs 24/7 and responds instantly on Telegram, WhatsApp, or Discord? [OpenClaw](https://github.com/openclaw/openclaw) is an open-source AI Agent gateway built exactly for this. This guide takes you from zero to proficient — whether you are a complete beginner or a power user looking to unlock multi-agent workflows.
 
-## OpenClaw / Moltbot / Clawdbot 名称关系（30 秒看懂）
+## OpenClaw / Moltbot / Clawdbot — Same Project, Different Names
 
-如果你在搜索时看到三个名字，不用慌：它们本质上是同一条项目演进线。
+If you have seen three different names floating around, here is the short version: they are all the same project at different stages.
 
-- **Clawdbot**：最早期名称（社区爆红阶段）
-- **Moltbot**：过渡期名称（改名后短期沿用）
-- **OpenClaw**：当前主名称（官方仓库与生态统一）
+- **Clawdbot**: the original name (early viral phase)
+- **Moltbot**: transitional name (used briefly after the rename)
+- **OpenClaw**: current official name (unified repo and ecosystem)
 
-一句话记忆：**现在看教程和文档，优先认 `OpenClaw`；查历史资料时会频繁遇到 `Moltbot/Clawdbot`。**
+**Rule of thumb**: use `OpenClaw` for current docs; expect `Moltbot` or `Clawdbot` in older resources.
 
-> 适用：macOS/Linux/WSL2。本文默认你在一台"跑 Gateway 的主机"上操作（比如你的 Mac mini）。
+> This guide targets macOS, Linux, and WSL2. Commands assume you are on the machine that will run the Gateway (e.g., a Mac mini or a VPS).
 >
-> 目标：从 0 到能用（网页聊天 / Telegram/WhatsApp 等）、能进 TUI、能排障、能玩转多智能体/多配置/安全隔离。
+> Goal: go from zero to a working setup (web chat, Telegram, WhatsApp), learn the TUI, troubleshoot common issues, and explore multi-agent and security isolation.
 
 ---
 
-## 0. 你需要先记住的三个概念（非常重要）
+## 0. Three Core Concepts You Need First
 
-OpenClaw 的心智模型可以用一句话概括：
+OpenClaw's mental model fits in one sentence:
 
-- **Gateway（网关）**：常驻后台的"中枢进程"，负责接入 Telegram/WhatsApp/网页 UI、维护会话、路由到智能体。
-- **Agent（智能体）**：执行对话与工具调用的"角色实例"（`main`、`work`、`research`…），每个 agent 可以有自己的 workspace、模型、工具权限。
-- **Session（会话）**：某个 agent 下的一段对话历史（例如 `main`、`global`、或者按渠道分的 session key）。
+- **Gateway**: a long-running background process that connects to Telegram, WhatsApp, web UI, manages sessions, and routes messages to agents.
+- **Agent**: a conversational "persona" that handles dialogue and tool calls (`main`, `work`, `research`...). Each agent can have its own workspace, model, and tool permissions.
+- **Session**: a conversation thread under a specific agent (e.g., `main`, `global`, or a channel-specific session key).
 
-你所有操作基本都围绕：**启动 Gateway → 选 agent/session → 在某个渠道里发消息**。
+Everything you do revolves around: **start the Gateway, pick an agent/session, send messages through a channel**.
 
-如果你之前了解过 OpenClaw 的前身（[ClawdBot](/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/) → [Moltbot](/posts/ai/2026-01-29-moltbot-deep-dive/) → OpenClaw），这三个概念应该不陌生。
+If you have followed the evolution from [ClawdBot](/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/) to [Moltbot](/posts/ai/2026-01-29-moltbot-deep-dive/) to OpenClaw, these concepts should be familiar.
 
 ---
 
-## 1. 目录与文件：OpenClaw 把东西放哪？
+## 1. Directory Layout: Where OpenClaw Stores Everything
 
-### 1.1 工作区（workspace）
+### 1.1 Workspace
 
-默认工作区：
+Default workspace path:
 
 - `~/.openclaw/workspace`
 
-你现在这台机器上：
+This directory typically contains:
 
-- `/Users/bruce.he/.openclaw/workspace`
+- `SOUL.md / USER.md / MEMORY.md`: your preferences, conventions, and long-term memory
+- `memory/YYYY-MM-DD.md`: daily logs
+- `skills/`: custom skills (e.g., a blog-writer skill)
+- `tmp/`: temporary files
 
-这个目录一般放：
+> The workspace serves a dual purpose: it is where OpenClaw reads your preferences **and** where it writes outputs like drafts, scripts, and documents.
 
-- `SOUL.md / USER.md / MEMORY.md`：你的"使用约定/偏好/长期记忆"
-- `memory/YYYY-MM-DD.md`：每日流水记录
-- `skills/`：自定义技能（例如 blog-writer）
-- `tmp/`：临时文件
+For a deeper dive into how OpenClaw handles memory, see [OpenClaw Memory Implementation Strategy](/posts/ai/2026-01-31-openclaw-memory-strategy/).
 
-> 经验：**workspace 既是"我读你偏好"的地方，也是我写产物（文档、脚本、草稿）的地方**。
+### 1.2 Configuration File (openclaw.json)
 
-关于 OpenClaw 的记忆机制细节，可以参考 [OpenClaw 记忆实施策略解析](/posts/ai/2026-01-31-openclaw-memory-strategy/)。
-
-### 1.2 配置文件（openclaw.json）
-
-默认位置：
+Default location:
 
 - `~/.openclaw/openclaw.json`
 
-它是 **JSON5**（支持注释、尾逗号），并且 **严格 schema 校验**：拼错字段会导致 Gateway 拒绝启动。
+The file uses **JSON5** (comments and trailing commas allowed), with **strict schema validation** — a single typo in a field name will prevent the Gateway from starting.
 
-### 1.3 状态目录（state dir）
+### 1.3 State Directory
 
-默认位置：
+Default location:
 
 - `~/.openclaw/`
 
-里面会有 agents 的认证与运行状态（例如 `~/.openclaw/agents/main/...`）。
+This holds agent authentication and runtime state (e.g., `~/.openclaw/agents/main/...`).
 
 ---
 
-## 2. 安装与初始化（最快路径）
+## 2. Installation and Setup (Fastest Path)
 
-> 如果你已经装好了，可以直接跳到第 3 节。
+> Already installed? Skip to Section 3.
 
-### 2.1 安装 CLI
+### 2.1 Install the CLI
 
 ```bash
 npm install -g openclaw@latest
-# 或
+# or
 pnpm add -g openclaw@latest
 ```
 
-验证：
+Verify:
 
 ```bash
 openclaw --version
 openclaw help
 ```
 
-更多安装细节可参考 [OpenClaw 官方文档](https://docs.openclaw.ai/)。
+For more installation details, see the [OpenClaw official documentation](https://docs.openclaw.ai/).
 
-### 2.2 跑向导（强烈推荐给小白）
+### 2.2 Run the Onboarding Wizard (Highly Recommended for Beginners)
 
 ```bash
 openclaw onboard --install-daemon
 ```
 
-它会帮你配置：
+The wizard walks you through:
 
-- 模型认证（OAuth / API key）
-- Gateway 基本配置
-- 渠道（Telegram/WhatsApp/Discord…）
-- 配对/白名单（安全默认）
-- 可选：安装后台服务（macOS 用 launchd）
+- Model authentication (OAuth or API key)
+- Basic Gateway configuration
+- Channel setup (Telegram, WhatsApp, Discord...)
+- Pairing and allowlist (secure defaults)
+- Optional: install a background service (launchd on macOS)
 
-如果你之前用过 Moltbot Wizard，这个向导体验类似但更完善，详见 [Moltbot Wizard 完全指南](/posts/ai/2026-01-28-moltbot-wizard-guide/)。
+If you have used the Moltbot Wizard before, this experience is similar but more polished. See [Moltbot Wizard Complete Guide](/posts/ai/2026-01-28-moltbot-wizard-guide/) for reference.
 
 ---
 
-## 3. Gateway：启动、检查、日志、常用命令
+## 3. Gateway: Start, Monitor, and Manage
 
-### 3.1 启动 Gateway（前台方式）
+### 3.1 Start the Gateway (Foreground)
 
 ```bash
 openclaw gateway --port 18789
 ```
 
-默认控制台 UI：
+Default console UI:
 
 - http://127.0.0.1:18789/
 
-> 老鸟提醒：如果你使用 Telegram/WhatsApp，**尽量用 Node 跑**，不要用 Bun（有已知兼容性坑）。
+> Power user note: if you are using Telegram or WhatsApp, **run with Node, not Bun** — there are known compatibility issues with Bun.
 
-### 3.2 查看 Gateway 是否在跑（后台服务方式）
+### 3.2 Check Gateway Status (Background Service)
 
 ```bash
 openclaw gateway status
 ```
 
-### 3.3 一条命令看整体健康
+### 3.3 Quick Health Check
 
 ```bash
 openclaw status
 openclaw health
 ```
 
-排障常用：
+For deeper diagnostics:
 
 ```bash
 openclaw status --all
 openclaw status --deep
 ```
 
-### 3.4 跟日志（出问题第一时间看）
+### 3.4 Follow Logs (First Thing to Check When Something Breaks)
 
 ```bash
 openclaw logs --follow
 ```
 
-### 3.5 Doctor：自动诊断/迁移/修复
+### 3.5 Doctor: Auto-diagnose, Migrate, and Repair
 
 ```bash
 openclaw doctor
-# 需要自动修复时再用（会改动配置/状态）
+# Use --fix only when auto-repair is needed (modifies config/state)
 openclaw doctor --fix
 ```
 
 ---
 
-## 4. 三种"跟 OpenClaw 交互"的方式（新手最容易搞混）
+## 4. Three Ways to Interact with OpenClaw
 
-### 4.1 Web 控制台（Dashboard / Control UI）
+This is where beginners often get confused. There are three distinct interfaces.
 
-最快开聊：
+### 4.1 Web Console (Dashboard)
+
+The fastest way to start chatting:
 
 ```bash
 openclaw dashboard
 ```
 
-或者直接打开：
+Or open directly:
 
 - http://127.0.0.1:18789/
 
-适合：
+Best for:
 
-- 第一次验证是否能跑
-- 不想配渠道也能先用
-- 需要图形化配置/查看会话
+- First-time verification that everything works
+- Quick conversations without configuring any channel
+- Visual configuration and session inspection
 
-### 4.2 终端 UI：TUI（你问的"终端模式"）
+### 4.2 Terminal UI (TUI)
 
-只要 Gateway 在跑，执行：
+As long as the Gateway is running:
 
 ```bash
 openclaw tui
 ```
 
-远程连别的机器的 Gateway：
+Connect to a remote Gateway:
 
 ```bash
 openclaw tui --url ws://<host>:<port> --token <gateway-token>
 ```
 
-#### 4.2.1 TUI 里最关键的两个点：session 与 deliver
+#### 4.2.1 Key TUI Concept: Session and Delivery
 
-- 默认情况下，TUI 只是把消息发给 Gateway **但不投递到聊天平台**。
-- 想让回复真的发回 Telegram/WhatsApp：
-  - 在 TUI 输入：`/deliver on`
-  - 或启动时：`openclaw tui --deliver`
+- By default, TUI sends messages to the Gateway **but does not deliver them to chat platforms**.
+- To have replies actually sent back to Telegram or WhatsApp:
+  - In the TUI: `/deliver on`
+  - Or at startup: `openclaw tui --deliver`
 
-这点是"防误发"的设计：**不小心把测试消息发到群里是新手常见事故**。
+This is a deliberate safety feature — **accidentally sending test messages to a group chat is a common beginner mistake**.
 
-#### 4.2.2 TUI 快捷键（建议背下来）
+#### 4.2.2 TUI Keyboard Shortcuts (Worth Memorizing)
 
-- `Enter`：发送
-- `Esc`：中止当前运行
-- `Ctrl+C`：清空输入（按两次退出）
-- `Ctrl+D`：退出
-- `Ctrl+L`：模型选择器
-- `Ctrl+G`：智能体选择器
-- `Ctrl+P`：会话选择器
-- `Ctrl+O`：工具输出折叠/展开
-- `Ctrl+T`：切换思考可见性（会重新加载历史）
+- `Enter`: send message
+- `Esc`: abort current run
+- `Ctrl+C`: clear input (press twice to exit)
+- `Ctrl+D`: exit
+- `Ctrl+L`: model selector
+- `Ctrl+G`: agent selector
+- `Ctrl+P`: session selector
+- `Ctrl+O`: toggle tool output collapse
+- `Ctrl+T`: toggle thinking visibility (reloads history)
 
-#### 4.2.3 TUI 斜杠命令（常用）
+#### 4.2.3 TUI Slash Commands (Most Used)
 
-- `/help`：帮助
-- `/status`：当前连接/会话/模型状态
-- `/agent <id>`、`/agents`
-- `/session <key>`、`/sessions`
-- `/model <provider/model>`、`/models`
+- `/help`: help
+- `/status`: current connection, session, and model info
+- `/agent <id>`, `/agents`
+- `/session <key>`, `/sessions`
+- `/model <provider/model>`, `/models`
 - `/think off|minimal|low|medium|high`
 - `/verbose on|full|off`
 - `/reasoning on|off|stream`
 - `/deliver on|off`
-- `/new` 或 `/reset`
+- `/new` or `/reset`
 
-#### 4.2.4 老鸟惊叹技巧：TUI 里直接跑本地 shell（`!`）
+#### 4.2.4 Power User Trick: Run Local Shell Commands from TUI
 
-在 TUI 输入：
+Inside the TUI, prefix any command with `!`:
 
 ```text
 ! pwd
@@ -251,57 +249,57 @@ openclaw tui --url ws://<host>:<port> --token <gateway-token>
 ! openclaw status
 ```
 
-注意：
+Notes:
 
-- 第一次会提示授权（每个会话一次）
-- 每条 `!` 都是**独立的非交互 shell**（不会记住上一次 `cd`）
+- First use prompts for authorization (once per session)
+- Each `!` command runs in an **independent non-interactive shell** (no state carried between commands)
 
-这在排障和自动化时非常爽：你可以在一个界面里"边聊边执行命令"。
+This is incredibly useful for troubleshooting — you can chat with the AI and run diagnostics in the same interface.
 
-### 4.3 直接用 CLI 发消息（脚本友好）
+### 4.3 CLI Message Sending (Script-Friendly)
 
 ```bash
 openclaw message send --channel telegram --target @your_chat --message "hello"
 ```
 
-适合：
+Best for:
 
-- 自动化
-- 写脚本/CI
-- 验证某个渠道出站是否正常
+- Automation and scripting
+- CI/CD pipelines
+- Verifying outbound channel connectivity
 
 ---
 
-## 5. 配置：小白改哪里、老鸟怎么玩
+## 5. Configuration: What Beginners Should Change and Power User Tricks
 
-### 5.1 小白最常改的 3 件事
+### 5.1 Three Things Beginners Should Configure First
 
-1) **限制谁能私信触发机器人**（allowFrom / pairing）
-2) **群里是否需要 @ 提及才回复**（requireMention）
-3) **工作区路径**（workspace）
+1. **Who can trigger the bot via DM** (`allowFrom` / `pairing`)
+2. **Whether group messages require an @mention** (`requireMention`)
+3. **Workspace path** (`workspace`)
 
-### 5.2 老鸟技巧 1：用 `--profile` 开多套隔离环境
+### 5.2 Power User Trick 1: Isolated Environments with `--profile`
 
-OpenClaw 支持 profile，把 state/config 隔离到：
+OpenClaw supports profiles that isolate state and config into:
 
 - `~/.openclaw-<name>`
 
-例如你要一个"实验环境"不影响正式：
+For example, create a lab environment that does not affect production:
 
 ```bash
 openclaw --profile lab gateway --port 19001
 openclaw --profile lab tui --url ws://127.0.0.1:19001
 ```
 
-再配合：
+You can also use:
 
-- `--dev`：开发隔离模式（端口也会偏移）
+- `--dev`: development isolation mode (port offsets automatically)
 
-### 5.3 老鸟技巧 2：配置拆分（`$include`）
+### 5.3 Power User Trick 2: Configuration Splitting with `$include`
 
-当你的配置越来越大（多个 agent、多渠道、多白名单），别把所有东西塞一个文件。
+When your config grows large (multiple agents, channels, allowlists), split it up.
 
-`~/.openclaw/openclaw.json`：
+`~/.openclaw/openclaw.json`:
 
 ```json5
 {
@@ -311,139 +309,137 @@ openclaw --profile lab tui --url ws://127.0.0.1:19001
 }
 ```
 
-优点：
+Benefits:
 
-- 结构清晰
-- 好审计
-- 适合 git 管理
+- Cleaner structure
+- Easier auditing
+- Git-friendly
 
-### 5.4 老鸟技巧 3：多智能体路由（同一个 Gateway 跑多个"人格/工作区"）
+### 5.4 Power User Trick 3: Multi-Agent Routing
 
-典型玩法：
+Run multiple "personas" under a single Gateway:
 
-- `work`：只允许工作群触发，工具权限更严格
-- `personal`：私聊全权限
-- `research`：专门做检索/汇总
+- `work`: only triggered from work groups, stricter tool permissions
+- `personal`: full permissions for private chats
+- `research`: dedicated to search and summarization
 
-核心就是：
+The key config sections:
 
-- `agents.list[]` 定义多个 agent
-- `bindings[]` 把某个渠道/账号/群/私聊 路由到不同 agent
+- `agents.list[]`: define multiple agents
+- `bindings[]`: route specific channels, accounts, groups, or DMs to different agents
 
-> 这块建议你确定"你想怎么分工"，再按你的真实渠道（Telegram 群/私聊）写一份可用的配置骨架。
+> Decide on your division of labor first, then build the routing config around your actual channels (Telegram groups, DMs, etc.).
 
-关于 OpenClaw 作者自己的开发方法论和工作流思路，推荐阅读 [OpenClaw 作者的 Claude Code 开发方法论](/posts/ai/2026-01-31-openclaw-claude-code-workflow/)。
+For more on the author's own development philosophy and workflow, see [OpenClaw Author's Claude Code Development Methodology](/posts/ai/2026-01-31-openclaw-claude-code-workflow/).
 
-### 5.5 老鸟技巧 4：避免"私信串台"——DM 会话隔离
+### 5.5 Power User Trick 4: DM Session Isolation (Prevent Context Leakage)
 
-`openclaw status` 的安全提示里有一条常见告警：
+A common security warning from `openclaw status`:
 
-- "多个 Telegram 私信可能共享 main session，可能泄露上下文"
+- "Multiple Telegram DMs may share the main session, potentially leaking context"
 
-解决思路：把 DM scope 改成按用户隔离（具体字段因版本而异，一般在 `session` / `messages` / `channels` 附近）。
-
-如果你把你当前 `~/.openclaw/openclaw.json` 里 session 段贴出来（打码 token），就可以对照调整成最安全的写法。
+Solution: set DM scope to per-user isolation (typically in the `session` / `messages` / `channels` section — exact field names vary by version).
 
 ---
 
-## 6. 日常使用套路：从"能用"到"好用"
+## 6. Daily Usage Patterns: From "Working" to "Working Well"
 
-### 6.1 推荐的小白工作流
+### 6.1 Recommended Beginner Workflow
 
-1) 先用 Dashboard 验证（最快）：
+1. Start with the Dashboard (fastest verification):
    - `openclaw dashboard`
-2) 再用 TUI 形成"命令行肌肉记忆"：
+2. Move to TUI to build command-line muscle memory:
    - `openclaw tui`
-3) 最后再接入 Telegram/WhatsApp，避免一开始就踩权限/配对坑。
+3. Then connect Telegram or WhatsApp — avoid permission and pairing issues on day one.
 
-这个循序渐进的思路也适用于其他 AI 工具的上手过程，关于 AI 工作流的更多建议可参考 [AI 工作流实战手册](/posts/ai/2026-01-30-ai-workflow-real-guide/)。
+This progressive approach also applies to other AI tools. For more workflow tips, see [AI Workflow Practical Guide](/posts/ai/2026-01-30-ai-workflow-real-guide/).
 
-### 6.2 让机器人"别太吵"的 3 个开关
+### 6.2 Three Settings to Reduce Noise
 
-- 群聊：`requireMention: true`
-- 只对特定关键词触发：配置 `mentionPatterns`
-- 入站防抖：把连续多条消息合并（`messages.inbound.debounceMs`）
+- Group chats: `requireMention: true`
+- Keyword-only triggers: configure `mentionPatterns`
+- Inbound debounce: merge rapid consecutive messages (`messages.inbound.debounceMs`)
 
-### 6.3 让机器人"更像搭档"的 3 个开关
+### 6.3 Three Settings to Make the Bot Feel Like a Teammate
 
-- `messages.ackReaction`：收到消息先用表情确认
-- `messages.responsePrefix`：自动加前缀（比如显示模型/think level）
-- 多 agent：一个负责写作，一个负责检索，一个负责运维
-
----
-
-## 7. 自动化与提醒（进阶但很实用）
-
-你可以用 OpenClaw 的 cron 做"准点提醒/定时任务"。
-
-- 一次性：比如 20 分钟后提醒
-- 周期性：比如每天早上 9 点
-
-在聊天里可以直接让 AI 帮你配（需要告诉它：时间、内容、发到哪个渠道/对象）。
+- `messages.ackReaction`: acknowledge receipt with an emoji reaction
+- `messages.responsePrefix`: auto-prepend context (e.g., model name or thinking level)
+- Multi-agent setup: one agent for writing, one for research, one for ops
 
 ---
 
-## 8. 排障清单（90% 的问题都在这里）
+## 7. Automation and Reminders (Advanced but Practical)
 
-### 8.1 机器人不回消息
+OpenClaw supports cron-based scheduling for reminders and recurring tasks:
 
-1) 先看 Gateway 是否运行：
+- One-time: e.g., remind me in 20 minutes
+- Recurring: e.g., every day at 9 AM
+
+You can set these up conversationally — just tell the AI the time, content, and destination channel.
+
+---
+
+## 8. Troubleshooting Checklist (Covers 90% of Issues)
+
+### 8.1 Bot Is Not Responding
+
+1. Check if the Gateway is running:
 
 ```bash
 openclaw gateway status
 openclaw status
 ```
 
-2) 看日志：
+2. Check the logs:
 
 ```bash
 openclaw logs --follow
 ```
 
-3) 检查渠道状态：
+3. Check channel status:
 
 ```bash
 openclaw status --deep
 ```
 
-4) 如果你在用 TUI：确认有没有开投递
+4. If you are using the TUI, make sure delivery is enabled:
 
-- 在 TUI：`/deliver on`
+- In TUI: `/deliver on`
 
-### 8.2 配置改坏了，Gateway 起不来
+### 8.2 Bad Config Prevents Gateway from Starting
 
-- `openclaw doctor` 看 schema 错误
-- 回滚 `~/.openclaw/openclaw.json`
-- 修改后再 `openclaw gateway restart`
+- Run `openclaw doctor` to identify schema errors
+- Restore from backup: `~/.openclaw/openclaw.json`
+- After fixing: `openclaw gateway restart`
 
-### 8.3 我在工具里 exec 被 SIGKILL
+### 8.3 Tool Process Killed by SIGKILL
 
-这通常不是"OpenClaw 坏了"，而是：
+This usually is not an OpenClaw bug. Common causes:
 
-- 命令跑太久被外部杀
-- 你手动关了终端/会话
-- 工具进程被系统回收
+- Command ran too long and was killed externally
+- You closed the terminal or session
+- The OS reclaimed the process
 
-应对：
+What to do:
 
-- 用 `openclaw logs --follow` 看真实原因
-- 把长任务放到后台（或拆分）
+- Check `openclaw logs --follow` for the real reason
+- Run long tasks in the background or break them into smaller steps
 
-### 8.4 FAQ：搜 Moltbot 找到 OpenClaw，是同一个项目吗？
+### 8.4 FAQ: Are Moltbot and OpenClaw the Same Project?
 
-是同一个项目的不同阶段命名。你可以把它理解为同一套代码与生态在不同时间点的名称演进：
+Yes. They represent different naming stages of the same codebase and ecosystem:
 
-- 早期资料常写 **Clawdbot**
-- 中间过渡会看到 **Moltbot**
-- 现在统一使用 **OpenClaw**
+- Early resources use **Clawdbot**
+- Transitional period uses **Moltbot**
+- Current official name is **OpenClaw**
 
-所以你在搜索结果里看到这三个词混用是正常的，优先以 OpenClaw 官方仓库与文档为准。
+Seeing all three names in search results is normal. Always defer to the official OpenClaw repository and docs.
 
 ---
 
-## 9. 一页速查（建议收藏）
+## 9. Quick Reference Card (Bookmark This)
 
-### 9.1 日常必备
+### 9.1 Daily Essentials
 
 ```bash
 openclaw status
@@ -453,7 +449,7 @@ openclaw tui
 openclaw dashboard
 ```
 
-### 9.2 出问题必备
+### 9.2 Troubleshooting Essentials
 
 ```bash
 openclaw status --all
@@ -463,7 +459,7 @@ openclaw health
 openclaw security audit --deep
 ```
 
-### 9.3 多环境/实验必备
+### 9.3 Multi-Environment Commands
 
 ```bash
 openclaw --profile lab status
@@ -473,25 +469,25 @@ openclaw --profile lab tui --url ws://127.0.0.1:19001
 
 ---
 
-## 10. 一份可直接复制粘贴的 `openclaw.json` 模板（按 TG 私聊专用场景）
+## 10. Ready-to-Use openclaw.json Template (Telegram DM Only)
 
-> 选择：**Telegram 私聊用**、暂时不用群、先不拆多 agent。
+> Scenario: **Telegram private chats only**, no groups, single `main` agent.
 >
-> 目标：
-> - **私聊按用户隔离会话**（避免"不同私信共享上下文/串台"）
-> - **禁用群聊**（最省心）
-> - 保持单一 `main` agent（简单）
+> Goals:
+> - **Per-user DM session isolation** (prevent context leakage between different conversations)
+> - **Groups disabled** (simplest setup)
+> - **Single `main` agent** (keep it simple)
 
-把下面保存到：`~/.openclaw/openclaw.json`（JSON5，支持注释/尾逗号）。
+Save the following to `~/.openclaw/openclaw.json` (JSON5 format — comments and trailing commas are valid):
 
 ```json5
 {
   gateway: {
     port: 18789,
-    // auth: { token: "可选：如果你需要控制台/远程连接鉴权再填" },
+    // auth: { token: "Optional: add if you need console/remote auth" },
   },
 
-  // 关键：DM 会话隔离（每个 channel + 每个对端用户）
+  // Key: DM session isolation (per channel + per peer user)
   session: {
     dmScope: "per-channel-peer",
   },
@@ -507,62 +503,62 @@ openclaw --profile lab tui --url ws://127.0.0.1:19001
   channels: {
     telegram: {
       enabled: true,
-      // botToken: "你应该已通过向导/环境变量配置好；需要手动写也可以写在这里",
+      // botToken: "Should already be set via wizard or env var; can also be placed here",
 
-      // 最安全：陌生人先配对，批准后才处理消息
+      // Safest: strangers must pair first before messages are processed
       dmPolicy: "pairing",
 
-      // 你暂时不用群：直接禁用群消息
+      // Groups disabled for now
       groupPolicy: "disabled",
 
-      // 可选：不想显示链接预览就关
+      // Optional: disable link previews if preferred
       linkPreview: true,
     },
   },
 
   messages: {
     responsePrefix: "[openclaw]",
-    // 可选：收到消息先 reaction 确认（TG 支持）
+    // Optional: react on message receipt (Telegram supports this)
     // ackReaction: "👀",
   },
 }
 ```
 
-### 让配置生效
+### Apply the Configuration
 
-改完配置后重启 Gateway：
+Restart the Gateway after making changes:
 
 ```bash
 openclaw gateway restart
 ```
 
-如果你想验证"隔离是否生效"：用两个不同 TG 账号分别私聊机器人，问它"我是谁/我们刚聊了什么"，它不应该互相串上下文。
+To verify session isolation works: use two different Telegram accounts to DM the bot, then ask each one "Who am I?" or "What did we just talk about?" — they should not share context.
 
-> 如果你后面要启用群、或者要拆 `work` agent：确定你的目标后，再补 `groups` 和 `bindings[]` 的最佳实践版本。
+> When you are ready to enable groups or split into a `work` agent, define your goals first, then add `groups` and `bindings[]` sections.
 
 ---
 
-## 11. 配置的查看 / 验证 / 回滚（强烈建议加上这套"安全绳"）
+## 11. Configuration Verification and Rollback (Your Safety Net)
 
-这一节解决三个最常见的新手问题：
+This section answers three common beginner questions:
 
-1) **我现在到底用的是哪份配置？**
-2) **我改了配置，怎么确认生效？**
-3) **我把配置改坏了，怎么快速回滚？**
+1. **Which config file is actually in use?**
+2. **How do I confirm my changes took effect?**
+3. **How do I roll back a broken config?**
 
-### 11.1 配置文件在哪里？
+### 11.1 Where Is the Config File?
 
-默认配置文件路径：
+Default path:
 
 - `~/.openclaw/openclaw.json`
 
-（macOS 上展开后一般是：`/Users/<你用户名>/.openclaw/openclaw.json`）
+(On macOS, this expands to `/Users/<your-username>/.openclaw/openclaw.json`)
 
-> 小技巧：如果你是多 profile（`--profile lab`），配置/状态目录会变成 `~/.openclaw-lab/`，不要改错地方。
+> Tip: if you use `--profile lab`, the config directory becomes `~/.openclaw-lab/` — do not edit the wrong one.
 
-### 11.2 怎么确认当前 Gateway 在跑、以及它读的是不是刚改的？
+### 11.2 Confirm the Gateway Is Running with Your Latest Config
 
-最常用的三条：
+Three essential commands:
 
 ```bash
 openclaw gateway status
@@ -570,115 +566,115 @@ openclaw status
 openclaw logs --follow
 ```
 
-- `openclaw gateway status`：确认服务在不在
-- `openclaw status`：看整体健康、渠道、更新提示
-- `openclaw logs --follow`：你重启后这里会直接告诉你**配置校验有没有报错**
+- `openclaw gateway status`: confirms the service is alive
+- `openclaw status`: overall health, channels, update notices
+- `openclaw logs --follow`: shows **config validation errors** immediately after restart
 
-### 11.3 改配置后如何让它生效？
+### 11.3 How to Apply Config Changes
 
-配置是启动时加载的，所以你改完后需要重启 Gateway：
+Config is loaded at startup, so you must restart:
 
 ```bash
 openclaw gateway restart
 ```
 
-如果你是前台手动跑的（不是 daemon/launchd）：
+If you are running in the foreground (not as a daemon):
 
-- `Ctrl+C` 停掉
-- 再 `openclaw gateway --port 18789` 启动
+- `Ctrl+C` to stop
+- `openclaw gateway --port 18789` to start again
 
-### 11.4 用 `openclaw config get/set/unset` 做"安全的小改动"（不手改文件）
+### 11.4 Use `openclaw config get/set/unset` for Safe Incremental Changes
 
-OpenClaw 提供了配置助手命令，适合小幅调整：
+OpenClaw provides config helper commands for small adjustments without editing the file directly:
 
-- 读取：
+Read values:
 
 ```bash
 openclaw config get session.dmScope
 openclaw config get channels.telegram.groupPolicy
 ```
 
-- 设置（注意：如果值不是纯字符串，通常要加 `--json`，按 JSON5 解析）：
+Set values (use `--json` for non-string values):
 
 ```bash
-# 把 TG 群禁用（你当前就是这个策略）
+# Disable Telegram groups
 openclaw config set channels.telegram.groupPolicy disabled
 
-# 设置 dmScope（字符串值）
+# Set DM scope
 openclaw config set session.dmScope per-channel-peer
 ```
 
-- 删除：
+Delete values:
 
 ```bash
 openclaw config unset messages.responsePrefix
 ```
 
-> 注意：改完同样需要 `openclaw gateway restart` 才会生效。
+> Remember: changes still require `openclaw gateway restart` to take effect.
 
-### 11.5 如何备份 + 一键回滚（建议你立刻做）
+### 11.5 Backup and One-Command Rollback (Do This Now)
 
-第一次能正常跑起来后，建议你先备份一份"可用配置"：
+After your first successful run, back up the working config:
 
 ```bash
 cp ~/.openclaw/openclaw.json ~/.openclaw/openclaw.json.bak
 ```
 
-如果你改崩了（Gateway 起不来/一直报 schema 错）：
+If you break the config (Gateway will not start, schema errors everywhere):
 
 ```bash
 cp ~/.openclaw/openclaw.json.bak ~/.openclaw/openclaw.json
 openclaw gateway restart
 ```
 
-### 11.6 配置改坏了，怎么定位错误？
+### 11.6 How to Diagnose Config Errors
 
-OpenClaw 的配置是 **严格 schema**，字段错一个字母都不行。
+OpenClaw uses **strict schema validation** — a single misspelled field will be rejected.
 
-排查顺序：
+Debugging sequence:
 
-1) 先跑 doctor 看诊断：
+1. Run the doctor:
 
 ```bash
 openclaw doctor
 ```
 
-2) 再跟日志看具体哪个字段不对：
+2. Follow the logs to see exactly which field is wrong:
 
 ```bash
 openclaw logs --follow
 ```
 
-3) 必要时用 `status --all` 把信息一次性收集齐：
+3. Collect full diagnostics if needed:
 
 ```bash
 openclaw status --all
 ```
 
-### 11.7 常见"新手改配置踩坑"
+### 11.7 Common Beginner Config Mistakes
 
-- **把 JSON 当 JSON5**：JSON5 允许注释/尾逗号；但如果你在某些编辑器里自动格式化成严格 JSON，可能会把你注释删掉或改乱结构。
-- **profile 搞混**：`openclaw --profile lab ...` 用的是 `~/.openclaw-lab/`，你改 `~/.openclaw/` 不会生效。
-- **忘了重启**：改文件后不重启，等于没改。
-- **以为 TUI 默认会"发回 Telegram"**：TUI 默认不投递，记得 `/deliver on`（或者启动时 `--deliver`）。
+- **Treating JSON as JSON5**: JSON5 allows comments and trailing commas, but some editors auto-format to strict JSON, stripping comments and potentially breaking the structure.
+- **Profile confusion**: `openclaw --profile lab ...` uses `~/.openclaw-lab/` — edits to `~/.openclaw/` will have no effect.
+- **Forgetting to restart**: changes to the file do not take effect until you restart the Gateway.
+- **Assuming TUI delivers to Telegram by default**: TUI does not deliver unless you explicitly run `/deliver on` or start with `--deliver`.
 
 ---
 
-## 总结
+## Conclusion
 
-OpenClaw 的核心价值在于：**一个本地网关，连接所有聊天平台和 AI 模型**。掌握了 Gateway + Agent + Session 这三个概念，再配合 TUI 和 Dashboard，你就能把它玩出花来。
+OpenClaw's core value proposition is simple: **one local gateway connecting all your chat platforms to AI models**. Once you understand Gateway, Agent, and Session, combined with the TUI and Dashboard, you have everything you need.
 
-对于新手，建议按照 **Dashboard → TUI → Telegram** 的顺序渐进上手；对于老鸟，`--profile` 隔离环境、`$include` 配置拆分、多智能体路由是最值得探索的三个方向。
+For beginners, follow the **Dashboard, then TUI, then Telegram** progression. For power users, explore `--profile` isolation, `$include` config splitting, and multi-agent routing.
 
-最后，记住排障三板斧：`openclaw status`、`openclaw logs --follow`、`openclaw doctor`。90% 的问题都能靠这三条命令定位。
+And remember the troubleshooting trifecta: `openclaw status`, `openclaw logs --follow`, and `openclaw doctor`. These three commands solve 90% of issues.
 
-## 相关阅读
+## Related Reading
 
-- [ClawdBot：海外爆火的个人 AI 管家，30 分钟搭建指南](/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/)
-- [Moltbot 深度解析：从爆火到改名，个人 AI Agent 的机遇与暗礁](/posts/ai/2026-01-29-moltbot-deep-dive/)
-- [Moltbot 是什么？3 分钟看懂定位、能力与风险](/posts/ai/2026-02-18-what-is-moltbot/)
-- [Moltbot Wizard 完全指南：打造你的私人 AI 助手](/posts/ai/2026-01-28-moltbot-wizard-guide/)
-- [OpenClaw 作者的 Claude Code 开发方法论](/posts/ai/2026-01-31-openclaw-claude-code-workflow/)
-- [OpenClaw 记忆实施策略解析：工具驱动的 RAG 与"按需回忆"](/posts/ai/2026-01-31-openclaw-memory-strategy/)
-- [Moltbook 深度解析：AI Agent 专属社交网络的疯狂实验](/posts/ai/2026-02-01-moltbook-ai-agent-social-network/)
-- [AI 工作流实战手册：从提示词到编程，真正把 AI 用起来](/posts/ai/2026-01-30-ai-workflow-real-guide/)
+- [ClawdBot: Build Your Personal AI Assistant in 30 Minutes](/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/)
+- [Moltbot Deep Dive: From Viral Hit to Rebrand — Opportunities and Pitfalls](/posts/ai/2026-01-29-moltbot-deep-dive/)
+- [What Is Moltbot? Understand Its Purpose, Capabilities, and Risks in 3 Minutes](/posts/ai/2026-02-18-what-is-moltbot/)
+- [Moltbot Wizard Complete Guide: Build Your Personal AI Assistant](/posts/ai/2026-01-28-moltbot-wizard-guide/)
+- [OpenClaw Author's Claude Code Development Methodology](/posts/ai/2026-01-31-openclaw-claude-code-workflow/)
+- [OpenClaw Memory Implementation Strategy: Tool-Driven RAG and On-Demand Recall](/posts/ai/2026-01-31-openclaw-memory-strategy/)
+- [Moltbook Deep Dive: The Bold Experiment of an AI Agent Social Network](/posts/ai/2026-02-01-moltbook-ai-agent-social-network/)
+- [AI Workflow Practical Guide: From Prompts to Programming](/posts/ai/2026-01-30-ai-workflow-real-guide/)

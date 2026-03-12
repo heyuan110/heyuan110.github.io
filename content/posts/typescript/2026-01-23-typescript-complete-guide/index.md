@@ -1,80 +1,80 @@
 +++
 date = '2026-01-23T20:07:08+08:00'
 draft = false
-title = 'TypeScript 完全指南：从入门到精通的进阶手册'
-description = 'TypeScript 全面教程，涵盖基础语法、高级类型、泛型、类型体操、工具类型、最佳实践。适合新手入门和面试复习，附带大量实战代码示例。2025年最新版本。'
+title = 'TypeScript Complete Guide: From Basics to Advanced Type System Mastery'
+description = 'A comprehensive TypeScript tutorial covering basic syntax, advanced types, generics, type gymnastics, utility types, and best practices with real-world code examples.'
 toc = true
 images = ['cover.webp']
-tags = ['TypeScript', 'JavaScript', '前端开发', '类型系统', '面试']
-categories = ['前端']
-keywords = ['TypeScript', 'TypeScript教程', 'TypeScript面试题', 'TypeScript高级类型', '类型体操', '泛型']
+tags = ['TypeScript', 'JavaScript', 'Frontend', 'Type System']
+categories = ['AI Guides']
+keywords = ['TypeScript', 'TypeScript tutorial', 'TypeScript advanced types', 'TypeScript generics', 'type gymnastics', 'utility types']
 +++
 
-![TypeScript 完全指南：从基础到高级类型系统的全面解析](cover.webp)
+![TypeScript Complete Guide: From Basics to Advanced Type System Mastery](cover.webp)
 
-**TypeScript** 是 JavaScript 的超集，为 JavaScript 添加了静态类型系统。它能在编译时发现错误、提供更好的 IDE 支持、使代码更易维护。本文将系统性地介绍 TypeScript 的所有核心概念，从基础语法到高级类型体操，帮助你从新手快速进阶为高手。
+**TypeScript** is a typed superset of JavaScript that adds a static type system to the language. It catches errors at compile time, provides superior IDE support, and makes code significantly easier to maintain. This guide walks through every core concept in TypeScript — from fundamental syntax to advanced type-level programming — so you can go from beginner to expert.
 
-> 2025 年，微软宣布用 Go 重写 TypeScript 编译器，编译速度提升 10 倍，内存占用减少 50%。TypeScript 正在蚕食 JavaScript 的市场份额，已成为前端开发的必备技能。
+> In 2025, Microsoft announced a rewrite of the TypeScript compiler in Go, delivering a 10x speedup and 50% memory reduction. TypeScript continues to gain ground over plain JavaScript and has become an essential skill for modern frontend development.
 
 ---
 
-## 一、TypeScript 基础
+## 1. TypeScript Fundamentals
 
-### 1. 为什么选择 TypeScript
+### Why TypeScript?
 
-| 特性 | JavaScript | TypeScript |
-|------|------------|------------|
-| 类型检查 | 运行时 | 编译时 |
-| IDE 支持 | 一般 | 优秀（智能提示、重构） |
-| 代码可维护性 | 较低 | 高 |
-| 学习曲线 | 低 | 中等 |
-| 大型项目适用性 | 一般 | 非常适合 |
+| Feature | JavaScript | TypeScript |
+|---------|------------|------------|
+| Type checking | Runtime | Compile time |
+| IDE support | Basic | Excellent (IntelliSense, refactoring) |
+| Maintainability | Lower | High |
+| Learning curve | Low | Moderate |
+| Large project suitability | Fair | Excellent |
 
-### 2. 安装与配置
+### Installation and Setup
 
 ```bash
-# 全局安装
+# Global install
 npm install -g typescript
 
-# 项目安装
+# Project install
 npm install typescript --save-dev
 
-# 初始化配置文件
+# Initialize config file
 npx tsc --init
 
-# 编译单个文件
+# Compile a single file
 tsc hello.ts
 
-# 监听模式
+# Watch mode
 tsc --watch
 ```
 
-### 3. tsconfig.json 常用配置
+### tsconfig.json Essentials
 
 ```json
 {
   "compilerOptions": {
-    // 目标 ECMAScript 版本
+    // Target ECMAScript version
     "target": "ES2020",
-    // 模块系统
+    // Module system
     "module": "ESNext",
-    // 严格模式（强烈建议开启）
+    // Strict mode (strongly recommended)
     "strict": true,
-    // 输出目录
+    // Output directory
     "outDir": "./dist",
-    // 源码目录
+    // Source directory
     "rootDir": "./src",
-    // 生成声明文件
+    // Generate declaration files
     "declaration": true,
-    // 允许导入 JSON
+    // Allow importing JSON
     "resolveJsonModule": true,
-    // ES 模块互操作
+    // ES module interop
     "esModuleInterop": true,
-    // 跳过库类型检查（加速编译）
+    // Skip library type checks (faster compilation)
     "skipLibCheck": true,
-    // 严格的空值检查
+    // Strict null checks
     "strictNullChecks": true,
-    // 不允许隐式 any
+    // Disallow implicit any
     "noImplicitAny": true
   },
   "include": ["src/**/*"],
@@ -84,73 +84,73 @@ tsc --watch
 
 ---
 
-## 二、基础类型
+## 2. Primitive and Basic Types
 
-### 1. 原始类型
+### Primitive Types
 
 ```typescript
-// 字符串
+// String
 let name: string = "TypeScript";
 
-// 数字（整数和浮点数统一为 number）
+// Number (integers and floats are both number)
 let age: number = 25;
 let price: number = 99.99;
 
-// 布尔值
+// Boolean
 let isDone: boolean = false;
 
-// null 和 undefined
+// null and undefined
 let n: null = null;
 let u: undefined = undefined;
 
 // Symbol
 let sym: symbol = Symbol("key");
 
-// BigInt（ES2020）
+// BigInt (ES2020)
 let big: bigint = 100n;
 ```
 
-### 2. 数组类型
+### Array Types
 
 ```typescript
-// 方式一：类型[]
+// Syntax 1: type[]
 let numbers: number[] = [1, 2, 3];
 let strings: string[] = ["a", "b", "c"];
 
-// 方式二：Array<类型>（泛型写法）
+// Syntax 2: Array<type> (generic form)
 let nums: Array<number> = [1, 2, 3];
 
-// 只读数组
+// Readonly array
 let readonlyArr: readonly number[] = [1, 2, 3];
-// readonlyArr.push(4); // 错误：只读数组不能修改
+// readonlyArr.push(4); // Error: cannot modify a readonly array
 ```
 
-### 3. 元组（Tuple）
+### Tuples
 
-元组是固定长度和类型的数组：
+Tuples are arrays with a fixed length and specific types at each position:
 
 ```typescript
-// 基本元组
+// Basic tuple
 let tuple: [string, number] = ["hello", 42];
 
-// 可选元素
+// Optional elements
 let optionalTuple: [string, number?] = ["hello"];
 
-// 剩余元素
+// Rest elements
 let restTuple: [string, ...number[]] = ["hello", 1, 2, 3];
 
-// 只读元组
+// Readonly tuple
 let readonlyTuple: readonly [string, number] = ["hello", 42];
 
-// 命名元组（TypeScript 4.0+）
+// Named tuples (TypeScript 4.0+)
 type NamedTuple = [name: string, age: number];
 let person: NamedTuple = ["Alice", 30];
 ```
 
-### 4. 枚举（Enum）
+### Enums
 
 ```typescript
-// 数字枚举（默认从 0 开始）
+// Numeric enum (defaults start from 0)
 enum Direction {
   Up,      // 0
   Down,    // 1
@@ -158,53 +158,53 @@ enum Direction {
   Right    // 3
 }
 
-// 指定起始值
+// Custom starting value
 enum Status {
   Pending = 1,
   Active,     // 2
   Inactive    // 3
 }
 
-// 字符串枚举
+// String enum
 enum Color {
   Red = "RED",
   Green = "GREEN",
   Blue = "BLUE"
 }
 
-// const 枚举（编译时内联，性能更好）
+// const enum (inlined at compile time for better performance)
 const enum HttpStatus {
   OK = 200,
   NotFound = 404,
   ServerError = 500
 }
 
-// 使用
+// Usage
 let dir: Direction = Direction.Up;
-let status: HttpStatus = HttpStatus.OK; // 编译后直接变成 200
+let status: HttpStatus = HttpStatus.OK; // compiles directly to 200
 ```
 
-### 5. any、unknown、never、void
+### any, unknown, never, and void
 
 ```typescript
-// any：任意类型，跳过类型检查（尽量避免使用）
+// any: disables type checking (avoid when possible)
 let anything: any = "hello";
 anything = 42;
-anything.foo(); // 不报错，但运行时可能出错
+anything.foo(); // no error, but may crash at runtime
 
-// unknown：未知类型，比 any 更安全
+// unknown: safer alternative to any
 let unknown1: unknown = "hello";
-// unknown1.foo(); // 错误：需要先检查类型
+// unknown1.foo(); // Error: must check the type first
 if (typeof unknown1 === "string") {
   console.log(unknown1.toUpperCase()); // OK
 }
 
-// void：无返回值
+// void: no return value
 function log(msg: string): void {
   console.log(msg);
 }
 
-// never：永远不会返回（抛异常或无限循环）
+// never: function never returns (throws or infinite loop)
 function throwError(msg: string): never {
   throw new Error(msg);
 }
@@ -214,53 +214,53 @@ function infiniteLoop(): never {
 }
 ```
 
-**面试重点：any vs unknown**
+**Key comparison: any vs unknown**
 
-| 特性 | any | unknown |
-|------|-----|---------|
-| 类型安全 | 不安全 | 安全 |
-| 赋值给其他类型 | 可以 | 需要类型断言或类型守卫 |
-| 调用方法/属性 | 可以（不报错） | 需要先缩小类型 |
-| 使用场景 | 快速迁移、第三方库 | 接收不确定类型的值 |
+| Property | any | unknown |
+|----------|-----|---------|
+| Type safety | Unsafe | Safe |
+| Assignable to other types | Yes | Requires assertion or type guard |
+| Call methods/properties | Yes (no errors) | Must narrow the type first |
+| Use case | Quick migration, third-party libs | Accepting values of uncertain type |
 
 ---
 
-## 三、函数类型
+## 3. Function Types
 
-### 1. 函数声明
+### Function Declarations
 
 ```typescript
-// 函数声明
+// Function declaration
 function add(a: number, b: number): number {
   return a + b;
 }
 
-// 函数表达式
+// Function expression
 const multiply = function(a: number, b: number): number {
   return a * b;
 };
 
-// 箭头函数
+// Arrow function
 const divide = (a: number, b: number): number => a / b;
 
-// 完整的函数类型
+// Full function type annotation
 const subtract: (a: number, b: number) => number = (a, b) => a - b;
 ```
 
-### 2. 可选参数与默认参数
+### Optional and Default Parameters
 
 ```typescript
-// 可选参数（必须放在必选参数后面）
+// Optional parameter (must come after required ones)
 function greet(name: string, greeting?: string): string {
   return `${greeting || "Hello"}, ${name}!`;
 }
 
-// 默认参数
+// Default parameter
 function greetWithDefault(name: string, greeting: string = "Hello"): string {
   return `${greeting}, ${name}!`;
 }
 
-// 剩余参数
+// Rest parameters
 function sum(...numbers: number[]): number {
   return numbers.reduce((a, b) => a + b, 0);
 }
@@ -268,17 +268,17 @@ function sum(...numbers: number[]): number {
 sum(1, 2, 3, 4, 5); // 15
 ```
 
-### 3. 函数重载
+### Function Overloads
 
-当函数根据不同参数返回不同类型时，使用重载：
+When a function returns different types based on its arguments, use overloads:
 
 ```typescript
-// 重载签名
+// Overload signatures
 function format(value: string): string;
 function format(value: number): string;
 function format(value: Date): string;
 
-// 实现签名
+// Implementation signature
 function format(value: string | number | Date): string {
   if (typeof value === "string") {
     return value.trim();
@@ -294,7 +294,7 @@ format(3.14159);     // "3.14"
 format(new Date());  // "2025-01-23T..."
 ```
 
-### 4. this 类型
+### The this Parameter
 
 ```typescript
 interface User {
@@ -311,35 +311,35 @@ const user: User = {
 
 user.greet(); // OK
 // const greet = user.greet;
-// greet(); // 错误：this 上下文不正确
+// greet(); // Error: incorrect this context
 ```
 
 ---
 
-## 四、接口与类型别名
+## 4. Interfaces and Type Aliases
 
-### 1. 接口（Interface）
+### Interfaces
 
 ```typescript
-// 基本接口
+// Basic interface
 interface Person {
   name: string;
   age: number;
 }
 
-// 可选属性
+// Optional properties
 interface Config {
   host: string;
-  port?: number;  // 可选
+  port?: number;
 }
 
-// 只读属性
+// Readonly properties
 interface Point {
   readonly x: number;
   readonly y: number;
 }
 
-// 索引签名
+// Index signatures
 interface StringArray {
   [index: number]: string;
 }
@@ -348,7 +348,7 @@ interface Dictionary {
   [key: string]: any;
 }
 
-// 函数接口
+// Callable interface
 interface SearchFunc {
   (source: string, keyword: string): boolean;
 }
@@ -358,7 +358,7 @@ const search: SearchFunc = (source, keyword) => {
 };
 ```
 
-### 2. 接口继承
+### Interface Inheritance
 
 ```typescript
 interface Animal {
@@ -369,7 +369,7 @@ interface Dog extends Animal {
   breed: string;
 }
 
-// 多重继承
+// Multiple inheritance
 interface Bird extends Animal {
   fly(): void;
 }
@@ -379,93 +379,93 @@ interface Parrot extends Animal, Bird {
 }
 ```
 
-### 3. 类型别名（Type Alias）
+### Type Aliases
 
 ```typescript
-// 基本类型别名
+// Basic type alias
 type ID = string | number;
 type Name = string;
 
-// 对象类型
+// Object type
 type User = {
   id: ID;
   name: Name;
   email: string;
 };
 
-// 联合类型
+// Union type
 type Status = "pending" | "active" | "inactive";
 
-// 交叉类型
+// Intersection type
 type Admin = User & {
   role: "admin";
   permissions: string[];
 };
 
-// 函数类型
+// Function type
 type Callback = (data: string) => void;
 
-// 泛型类型别名
+// Generic type alias
 type Container<T> = {
   value: T;
 };
 ```
 
-### 4. Interface vs Type
+### Interface vs Type: When to Use Which
 
-**面试高频题：什么时候用 interface，什么时候用 type？**
+This is one of the most common questions in TypeScript interviews.
 
-| 特性 | interface | type |
-|------|-----------|------|
-| 扩展方式 | extends | & (交叉类型) |
-| 声明合并 | 支持 | 不支持 |
-| 计算属性 | 不支持 | 支持 |
-| 联合类型 | 不支持 | 支持 |
-| 映射类型 | 不支持 | 支持 |
+| Feature | interface | type |
+|---------|-----------|------|
+| Extension | extends | & (intersection) |
+| Declaration merging | Supported | Not supported |
+| Computed properties | Not supported | Supported |
+| Union types | Not supported | Supported |
+| Mapped types | Not supported | Supported |
 
 ```typescript
-// interface 声明合并
+// Interface declaration merging
 interface User {
   name: string;
 }
 interface User {
   age: number;
 }
-// 合并后：{ name: string; age: number }
+// Merged result: { name: string; age: number }
 
-// type 不能声明合并
+// Type cannot be merged
 type Person = { name: string };
-// type Person = { age: number }; // 错误：重复定义
+// type Person = { age: number }; // Error: duplicate identifier
 
-// type 支持联合类型
+// Type supports union types
 type StringOrNumber = string | number;
-// interface 不能直接定义联合类型
+// Interface cannot directly define union types
 ```
 
-**最佳实践**：
-- 定义对象结构、类的契约 → 用 `interface`
-- 定义联合类型、元组、映射类型 → 用 `type`
-- 需要声明合并（如扩展第三方库类型） → 用 `interface`
+**Best practices:**
+- Defining object shapes or class contracts: use `interface`
+- Defining unions, tuples, or mapped types: use `type`
+- Need declaration merging (e.g., extending third-party library types): use `interface`
 
 ---
 
-## 五、类（Class）
+## 5. Classes
 
-### 1. 基本类定义
+### Basic Class Definition
 
 ```typescript
 class Person {
-  // 属性声明
+  // Property declarations
   name: string;
   age: number;
 
-  // 构造函数
+  // Constructor
   constructor(name: string, age: number) {
     this.name = name;
     this.age = age;
   }
 
-  // 方法
+  // Method
   greet(): string {
     return `Hello, I'm ${this.name}`;
   }
@@ -474,14 +474,14 @@ class Person {
 const person = new Person("Alice", 30);
 ```
 
-### 2. 访问修饰符
+### Access Modifiers
 
 ```typescript
 class Employee {
-  public name: string;        // 公开（默认）
-  protected department: string; // 受保护（子类可访问）
-  private salary: number;     // 私有（仅类内部可访问）
-  readonly id: number;        // 只读
+  public name: string;         // Public (default)
+  protected department: string; // Protected (accessible in subclasses)
+  private salary: number;      // Private (class-internal only)
+  readonly id: number;         // Readonly
 
   constructor(name: string, department: string, salary: number, id: number) {
     this.name = name;
@@ -491,7 +491,7 @@ class Employee {
   }
 }
 
-// 简写形式（参数属性）
+// Shorthand with parameter properties
 class Employee2 {
   constructor(
     public name: string,
@@ -502,7 +502,7 @@ class Employee2 {
 }
 ```
 
-### 3. 存取器（Getter/Setter）
+### Getters and Setters
 
 ```typescript
 class Circle {
@@ -529,7 +529,7 @@ circle.radius = 5;
 console.log(circle.area); // 78.54...
 ```
 
-### 4. 静态成员
+### Static Members
 
 ```typescript
 class MathUtils {
@@ -544,18 +544,18 @@ class MathUtils {
   }
 }
 
-console.log(MathUtils.PI);       // 3.14159
+console.log(MathUtils.PI);        // 3.14159
 console.log(MathUtils.square(4)); // 16
 ```
 
-### 5. 抽象类
+### Abstract Classes
 
 ```typescript
 abstract class Shape {
-  abstract area(): number;      // 抽象方法（子类必须实现）
+  abstract area(): number;       // Subclasses must implement
   abstract perimeter(): number;
 
-  // 普通方法（子类可继承）
+  // Concrete method (inherited by subclasses)
   describe(): string {
     return `Area: ${this.area()}, Perimeter: ${this.perimeter()}`;
   }
@@ -575,12 +575,12 @@ class Rectangle extends Shape {
   }
 }
 
-// const shape = new Shape(); // 错误：不能实例化抽象类
+// const shape = new Shape(); // Error: cannot instantiate an abstract class
 const rect = new Rectangle(10, 5);
 console.log(rect.describe()); // "Area: 50, Perimeter: 30"
 ```
 
-### 6. 类实现接口
+### Implementing Interfaces
 
 ```typescript
 interface Printable {
@@ -604,23 +604,23 @@ class Document implements Printable, Loggable {
 
 ---
 
-## 六、泛型（Generics）
+## 6. Generics
 
-泛型是 TypeScript 最强大的特性之一，允许创建可重用的组件。
+Generics are one of TypeScript's most powerful features, enabling you to write reusable, type-safe components.
 
-### 1. 泛型函数
+### Generic Functions
 
 ```typescript
-// 基本泛型函数
+// Basic generic function
 function identity<T>(arg: T): T {
   return arg;
 }
 
-// 使用
-identity<string>("hello"); // 显式指定类型
-identity(42);              // 类型推断为 number
+// Usage
+identity<string>("hello"); // Explicit type argument
+identity(42);              // Inferred as number
 
-// 多个类型参数
+// Multiple type parameters
 function pair<T, U>(first: T, second: U): [T, U] {
   return [first, second];
 }
@@ -628,10 +628,10 @@ function pair<T, U>(first: T, second: U): [T, U] {
 pair("hello", 42); // [string, number]
 ```
 
-### 2. 泛型约束
+### Generic Constraints
 
 ```typescript
-// 约束：T 必须有 length 属性
+// Constraint: T must have a length property
 interface Lengthwise {
   length: number;
 }
@@ -641,35 +641,35 @@ function logLength<T extends Lengthwise>(arg: T): T {
   return arg;
 }
 
-logLength("hello");     // OK，字符串有 length
-logLength([1, 2, 3]);   // OK，数组有 length
-// logLength(123);      // 错误：number 没有 length
+logLength("hello");     // OK, strings have length
+logLength([1, 2, 3]);   // OK, arrays have length
+// logLength(123);      // Error: number has no length
 
-// keyof 约束
+// keyof constraint
 function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
   return obj[key];
 }
 
 const person = { name: "Alice", age: 30 };
 getProperty(person, "name"); // "Alice"
-// getProperty(person, "email"); // 错误："email" 不是 person 的键
+// getProperty(person, "email"); // Error: "email" is not a key of person
 ```
 
-### 3. 泛型接口
+### Generic Interfaces
 
 ```typescript
-// 泛型接口
+// Generic interface
 interface Container<T> {
   value: T;
   getValue(): T;
 }
 
-// 泛型函数接口
+// Generic callable interface
 interface GenericFunc<T> {
   (arg: T): T;
 }
 
-// 使用
+// Usage
 const stringContainer: Container<string> = {
   value: "hello",
   getValue() {
@@ -678,7 +678,7 @@ const stringContainer: Container<string> = {
 };
 ```
 
-### 4. 泛型类
+### Generic Classes
 
 ```typescript
 class Stack<T> {
@@ -707,20 +707,20 @@ numberStack.push(2);
 numberStack.pop(); // 2
 ```
 
-### 5. 泛型默认值
+### Default Type Parameters
 
 ```typescript
-// 默认类型参数
+// Default type argument
 interface ApiResponse<T = any> {
   data: T;
   status: number;
   message: string;
 }
 
-// 使用默认类型
+// Using the default
 const response1: ApiResponse = { data: "anything", status: 200, message: "OK" };
 
-// 指定类型
+// Specifying a type
 const response2: ApiResponse<User[]> = {
   data: [{ id: 1, name: "Alice" }],
   status: 200,
@@ -730,12 +730,12 @@ const response2: ApiResponse<User[]> = {
 
 ---
 
-## 七、高级类型
+## 7. Advanced Types
 
-### 1. 联合类型（Union Types）
+### Union Types
 
 ```typescript
-// 基本联合类型
+// Basic union type
 type ID = string | number;
 
 function printId(id: ID): void {
@@ -746,12 +746,12 @@ function printId(id: ID): void {
   }
 }
 
-// 字面量联合类型
+// Literal union types
 type Status = "pending" | "success" | "error";
 type HttpMethod = "GET" | "POST" | "PUT" | "DELETE";
 ```
 
-### 2. 交叉类型（Intersection Types）
+### Intersection Types
 
 ```typescript
 interface Name {
@@ -764,7 +764,7 @@ interface Contact {
   phone: string;
 }
 
-// 交叉类型：合并多个类型
+// Intersection type: combines multiple types
 type Person = Name & Contact;
 
 const person: Person = {
@@ -775,10 +775,10 @@ const person: Person = {
 };
 ```
 
-### 3. 类型守卫（Type Guards）
+### Type Guards
 
 ```typescript
-// typeof 类型守卫
+// typeof type guard
 function padLeft(value: string, padding: string | number): string {
   if (typeof padding === "number") {
     return " ".repeat(padding) + value;
@@ -786,7 +786,7 @@ function padLeft(value: string, padding: string | number): string {
   return padding + value;
 }
 
-// instanceof 类型守卫
+// instanceof type guard
 class Cat {
   meow() { console.log("Meow!"); }
 }
@@ -803,7 +803,7 @@ function makeSound(animal: Cat | Dog): void {
   }
 }
 
-// in 类型守卫
+// in type guard
 interface Fish {
   swim(): void;
 }
@@ -820,28 +820,28 @@ function move(animal: Fish | Bird): void {
   }
 }
 
-// 自定义类型守卫（类型谓词）
+// Custom type guard (type predicate)
 function isFish(pet: Fish | Bird): pet is Fish {
   return (pet as Fish).swim !== undefined;
 }
 
 function doSomething(pet: Fish | Bird): void {
   if (isFish(pet)) {
-    pet.swim(); // TypeScript 知道这里是 Fish
+    pet.swim(); // TypeScript knows this is Fish
   } else {
-    pet.fly();  // TypeScript 知道这里是 Bird
+    pet.fly();  // TypeScript knows this is Bird
   }
 }
 ```
 
-### 4. 可辨识联合（Discriminated Unions）
+### Discriminated Unions
 
-这是 TypeScript 中非常实用的模式：
+This is one of the most practical patterns in TypeScript:
 
 ```typescript
-// 定义可辨识联合
+// Define discriminated union
 interface Circle {
-  kind: "circle";  // 判别属性
+  kind: "circle";  // Discriminant property
   radius: number;
 }
 
@@ -859,7 +859,7 @@ interface Triangle {
 
 type Shape = Circle | Rectangle | Triangle;
 
-// 根据 kind 属性自动缩小类型
+// TypeScript narrows the type based on the kind property
 function getArea(shape: Shape): number {
   switch (shape.kind) {
     case "circle":
@@ -869,17 +869,17 @@ function getArea(shape: Shape): number {
     case "triangle":
       return (shape.base * shape.height) / 2;
     default:
-      // 穷尽性检查
+      // Exhaustiveness check
       const _exhaustiveCheck: never = shape;
       return _exhaustiveCheck;
   }
 }
 ```
 
-### 5. keyof 和 typeof
+### keyof and typeof
 
 ```typescript
-// keyof：获取类型的所有键
+// keyof: gets all keys of a type
 interface Person {
   name: string;
   age: number;
@@ -888,7 +888,7 @@ interface Person {
 
 type PersonKeys = keyof Person; // "name" | "age" | "email"
 
-// typeof：获取值的类型
+// typeof: gets the type of a value
 const config = {
   host: "localhost",
   port: 3000,
@@ -898,11 +898,11 @@ const config = {
 type Config = typeof config;
 // { host: string; port: number; debug: boolean }
 
-// 结合使用
+// Combining both
 type ConfigKeys = keyof typeof config; // "host" | "port" | "debug"
 ```
 
-### 6. 索引访问类型
+### Indexed Access Types
 
 ```typescript
 interface Person {
@@ -914,35 +914,35 @@ interface Person {
   };
 }
 
-// 获取属性类型
-type NameType = Person["name"];     // string
-type AgeType = Person["age"];       // number
+// Access property types
+type NameType = Person["name"];      // string
+type AgeType = Person["age"];        // number
 type AddressType = Person["address"]; // { city: string; country: string }
 
-// 获取嵌套属性类型
+// Access nested property types
 type CityType = Person["address"]["city"]; // string
 
-// 结合 keyof
+// Combined with keyof
 type PersonValues = Person[keyof Person];
 // string | number | { city: string; country: string }
 ```
 
 ---
 
-## 八、条件类型
+## 8. Conditional Types
 
-条件类型是 TypeScript 类型系统中最强大的特性之一。
+Conditional types are among the most powerful features of TypeScript's type system.
 
-### 1. 基本条件类型
+### Basic Conditional Types
 
 ```typescript
-// 语法：T extends U ? X : Y
+// Syntax: T extends U ? X : Y
 type IsString<T> = T extends string ? true : false;
 
 type A = IsString<string>;  // true
 type B = IsString<number>;  // false
 
-// 实际应用
+// Practical example
 type TypeName<T> =
   T extends string ? "string" :
   T extends number ? "number" :
@@ -951,51 +951,51 @@ type TypeName<T> =
   T extends Function ? "function" :
   "object";
 
-type T1 = TypeName<string>;    // "string"
+type T1 = TypeName<string>;     // "string"
 type T2 = TypeName<() => void>; // "function"
 ```
 
-### 2. infer 关键字
+### The infer Keyword
 
-`infer` 用于在条件类型中提取类型：
+`infer` lets you extract types within conditional type expressions:
 
 ```typescript
-// 提取函数返回类型
+// Extract function return type
 type MyReturnType<T> = T extends (...args: any[]) => infer R ? R : never;
 
 type Func = () => string;
 type R1 = MyReturnType<Func>; // string
 
-// 提取函数参数类型
+// Extract function parameter types
 type MyParameters<T> = T extends (...args: infer P) => any ? P : never;
 
 type Func2 = (a: string, b: number) => void;
 type P1 = MyParameters<Func2>; // [string, number]
 
-// 提取数组元素类型
+// Extract array element type
 type ElementType<T> = T extends (infer E)[] ? E : never;
 
 type E1 = ElementType<string[]>;  // string
 type E2 = ElementType<number[]>;  // number
 
-// 提取 Promise 的值类型
+// Unwrap Promise
 type UnwrapPromise<T> = T extends Promise<infer U> ? U : T;
 
 type P2 = UnwrapPromise<Promise<string>>; // string
 type P3 = UnwrapPromise<number>;          // number
 ```
 
-### 3. 分布式条件类型
+### Distributive Conditional Types
 
-当条件类型作用于联合类型时，会自动分布：
+When a conditional type acts on a union type, it distributes automatically:
 
 ```typescript
 type ToArray<T> = T extends any ? T[] : never;
 
-type StrArr = ToArray<string>;          // string[]
+type StrArr = ToArray<string>;               // string[]
 type NumOrStrArr = ToArray<string | number>; // string[] | number[]
 
-// 如果不想分布，用 [T] 包裹
+// To prevent distribution, wrap T in a tuple
 type ToArrayNonDist<T> = [T] extends [any] ? T[] : never;
 
 type Result = ToArrayNonDist<string | number>; // (string | number)[]
@@ -1003,40 +1003,40 @@ type Result = ToArrayNonDist<string | number>; // (string | number)[]
 
 ---
 
-## 九、映射类型
+## 9. Mapped Types
 
-映射类型允许基于旧类型创建新类型。
+Mapped types let you create new types by transforming the properties of existing ones.
 
-### 1. 基本映射类型
+### Basic Mapped Types
 
 ```typescript
-// 将所有属性变为可选
+// Make all properties optional
 type MyPartial<T> = {
   [K in keyof T]?: T[K];
 };
 
-// 将所有属性变为只读
+// Make all properties readonly
 type MyReadonly<T> = {
   readonly [K in keyof T]: T[K];
 };
 
-// 将所有属性变为必选
+// Make all properties required
 type MyRequired<T> = {
   [K in keyof T]-?: T[K];
 };
 
-// 移除只读
+// Remove readonly
 type Mutable<T> = {
   -readonly [K in keyof T]: T[K];
 };
 ```
 
-### 2. 键重映射（as 子句）
+### Key Remapping with as
 
-TypeScript 4.1+ 支持使用 `as` 子句重映射键：
+TypeScript 4.1+ supports remapping keys with the `as` clause:
 
 ```typescript
-// 将所有键转换为 getter
+// Convert all keys to getters
 type Getters<T> = {
   [K in keyof T as `get${Capitalize<string & K>}`]: () => T[K];
 };
@@ -1049,7 +1049,7 @@ interface Person {
 type PersonGetters = Getters<Person>;
 // { getName: () => string; getAge: () => number }
 
-// 过滤掉某些键
+// Filter out specific keys
 type RemoveKind<T> = {
   [K in keyof T as K extends "kind" ? never : K]: T[K];
 };
@@ -1065,11 +1065,11 @@ type ShapeWithoutKind = RemoveKind<Shape>;
 
 ---
 
-## 十、内置工具类型
+## 10. Built-in Utility Types
 
-TypeScript 提供了许多内置工具类型，务必熟练掌握。
+TypeScript ships with many utility types that you should know well.
 
-### 1. 属性修饰类型
+### Property Modifier Types
 
 ```typescript
 interface User {
@@ -1079,20 +1079,20 @@ interface User {
   age?: number;
 }
 
-// Partial<T>：所有属性变可选
+// Partial<T>: all properties become optional
 type PartialUser = Partial<User>;
 // { id?: number; name?: string; email?: string; age?: number }
 
-// Required<T>：所有属性变必选
+// Required<T>: all properties become required
 type RequiredUser = Required<User>;
 // { id: number; name: string; email: string; age: number }
 
-// Readonly<T>：所有属性变只读
+// Readonly<T>: all properties become readonly
 type ReadonlyUser = Readonly<User>;
 // { readonly id: number; readonly name: string; ... }
 ```
 
-### 2. 属性选择类型
+### Property Selection Types
 
 ```typescript
 interface User {
@@ -1102,81 +1102,81 @@ interface User {
   password: string;
 }
 
-// Pick<T, K>：选择指定属性
+// Pick<T, K>: select specific properties
 type UserPreview = Pick<User, "id" | "name">;
 // { id: number; name: string }
 
-// Omit<T, K>：排除指定属性
+// Omit<T, K>: exclude specific properties
 type PublicUser = Omit<User, "password">;
 // { id: number; name: string; email: string }
 ```
 
-### 3. 联合类型操作
+### Union Type Operations
 
 ```typescript
 type Status = "pending" | "active" | "inactive" | "deleted";
 
-// Exclude<T, U>：从 T 中排除可以赋值给 U 的类型
+// Exclude<T, U>: remove types from T that are assignable to U
 type ActiveStatus = Exclude<Status, "deleted">;
 // "pending" | "active" | "inactive"
 
-// Extract<T, U>：从 T 中提取可以赋值给 U 的类型
+// Extract<T, U>: keep only types from T that are assignable to U
 type LifeStatus = Extract<Status, "active" | "inactive">;
 // "active" | "inactive"
 
-// NonNullable<T>：排除 null 和 undefined
+// NonNullable<T>: remove null and undefined
 type MaybeString = string | null | undefined;
 type DefiniteString = NonNullable<MaybeString>;
 // string
 ```
 
-### 4. 函数相关类型
+### Function-Related Types
 
 ```typescript
 function createUser(name: string, age: number): User {
   return { id: 1, name, age, email: "" };
 }
 
-// ReturnType<T>：获取函数返回类型
+// ReturnType<T>: extract function return type
 type CreateUserReturn = ReturnType<typeof createUser>;
 // User
 
-// Parameters<T>：获取函数参数类型（元组）
+// Parameters<T>: extract function parameter types as a tuple
 type CreateUserParams = Parameters<typeof createUser>;
 // [string, number]
 
-// ConstructorParameters<T>：获取构造函数参数类型
+// ConstructorParameters<T>: extract constructor parameter types
 class MyClass {
   constructor(public name: string, public age: number) {}
 }
 type MyClassParams = ConstructorParameters<typeof MyClass>;
 // [string, number]
 
-// InstanceType<T>：获取构造函数实例类型
+// InstanceType<T>: extract the instance type of a constructor
 type MyClassInstance = InstanceType<typeof MyClass>;
 // MyClass
 ```
 
-### 5. 字符串操作类型
+### String Manipulation Types
 
 ```typescript
-// Uppercase<S>：转大写
+// Uppercase<S>
 type Upper = Uppercase<"hello">; // "HELLO"
 
-// Lowercase<S>：转小写
+// Lowercase<S>
 type Lower = Lowercase<"HELLO">; // "hello"
 
-// Capitalize<S>：首字母大写
+// Capitalize<S>
 type Cap = Capitalize<"hello">; // "Hello"
 
-// Uncapitalize<S>：首字母小写
+// Uncapitalize<S>
 type Uncap = Uncapitalize<"Hello">; // "hello"
 ```
 
-### 6. Record 类型
+### The Record Type
 
 ```typescript
-// Record<K, V>：创建键为 K，值为 V 的对象类型
+// Record<K, V>: create an object type with keys K and values V
 type PageInfo = {
   title: string;
   url: string;
@@ -1189,25 +1189,25 @@ type Pages = Record<"home" | "about" | "contact", PageInfo>;
 //   contact: PageInfo;
 // }
 
-// 常用于创建字典类型
+// Commonly used for dictionary types
 type StringMap = Record<string, string>;
 type NumberMap = Record<string, number>;
 ```
 
 ---
 
-## 十一、模板字面量类型
+## 11. Template Literal Types
 
-### 1. 基本用法
+### Basic Usage
 
 ```typescript
-// 基本模板字面量
+// Basic template literal
 type Greeting = `Hello, ${string}`;
 
 const g1: Greeting = "Hello, World"; // OK
-// const g2: Greeting = "Hi, World"; // 错误
+// const g2: Greeting = "Hi, World"; // Error
 
-// 联合类型组合
+// Combining union types
 type Vertical = "top" | "bottom";
 type Horizontal = "left" | "right";
 
@@ -1215,33 +1215,33 @@ type Position = `${Vertical}-${Horizontal}`;
 // "top-left" | "top-right" | "bottom-left" | "bottom-right"
 ```
 
-### 2. 实际应用
+### Practical Applications
 
 ```typescript
-// 事件处理器类型
+// Event handler types
 type EventName = "click" | "focus" | "blur";
 type EventHandler = `on${Capitalize<EventName>}`;
 // "onClick" | "onFocus" | "onBlur"
 
-// CSS 属性
+// CSS values
 type CSSUnit = "px" | "em" | "rem" | "%";
 type CSSValue = `${number}${CSSUnit}`;
 
 const width: CSSValue = "100px"; // OK
 const height: CSSValue = "50%";  // OK
-// const bad: CSSValue = "100"; // 错误
+// const bad: CSSValue = "100"; // Error
 
-// API 路径
+// API paths
 type ApiVersion = "v1" | "v2";
 type Resource = "users" | "posts" | "comments";
 type ApiPath = `/api/${ApiVersion}/${Resource}`;
 // "/api/v1/users" | "/api/v1/posts" | ...
 ```
 
-### 3. 类型推断与模板字面量
+### Type Inference with Template Literals
 
 ```typescript
-// 提取模板字面量中的类型
+// Extract types from template literal patterns
 type ExtractRouteParams<T extends string> =
   T extends `${infer _Start}:${infer Param}/${infer Rest}`
     ? { [K in Param | keyof ExtractRouteParams<Rest>]: string }
@@ -1255,14 +1255,14 @@ type Params = ExtractRouteParams<"/users/:userId/posts/:postId">;
 
 ---
 
-## 十二、类型体操实战
+## 12. Type Gymnastics in Practice
 
-类型体操是指使用 TypeScript 类型系统进行复杂的类型运算。以下是一些常见的类型体操练习。
+Type gymnastics refers to performing complex type-level computations with TypeScript's type system. Here are some common challenges.
 
-### 1. 实现 DeepReadonly
+### DeepReadonly
 
 ```typescript
-// 深度只读
+// Recursively make all properties readonly
 type DeepReadonly<T> = T extends object
   ? { readonly [K in keyof T]: DeepReadonly<T[K]> }
   : T;
@@ -1285,7 +1285,7 @@ type ReadonlyUser = DeepReadonly<User>;
 // }
 ```
 
-### 2. 实现 DeepPartial
+### DeepPartial
 
 ```typescript
 type DeepPartial<T> = T extends object
@@ -1293,10 +1293,10 @@ type DeepPartial<T> = T extends object
   : T;
 ```
 
-### 3. 实现 Flatten
+### Flatten
 
 ```typescript
-// 扁平化数组类型
+// Flatten nested array types
 type Flatten<T extends any[]> = T extends [infer First, ...infer Rest]
   ? First extends any[]
     ? [...Flatten<First>, ...Flatten<Rest>]
@@ -1307,7 +1307,7 @@ type Nested = [1, [2, [3, 4]], 5];
 type Flat = Flatten<Nested>; // [1, 2, 3, 4, 5]
 ```
 
-### 4. 实现 TupleToUnion
+### TupleToUnion
 
 ```typescript
 type TupleToUnion<T extends any[]> = T[number];
@@ -1316,7 +1316,7 @@ type Tuple = ["a", "b", "c"];
 type Union = TupleToUnion<Tuple>; // "a" | "b" | "c"
 ```
 
-### 5. 实现 UnionToIntersection
+### UnionToIntersection
 
 ```typescript
 type UnionToIntersection<U> =
@@ -1328,10 +1328,10 @@ type Intersection = UnionToIntersection<Union>;
 // { a: string } & { b: number }
 ```
 
-### 6. 实现 PickByType
+### PickByType
 
 ```typescript
-// 根据值类型选择属性
+// Select properties by value type
 type PickByType<T, U> = {
   [K in keyof T as T[K] extends U ? K : never]: T[K];
 };
@@ -1352,11 +1352,11 @@ type FunctionProps = PickByType<Model, Function>;
 
 ---
 
-## 十三、声明文件
+## 13. Declaration Files
 
-### 1. 声明文件基础
+### Declaration File Basics
 
-声明文件（`.d.ts`）用于为 JavaScript 库提供类型定义。
+Declaration files (`.d.ts`) provide type definitions for JavaScript libraries.
 
 ```typescript
 // types/lodash.d.ts
@@ -1367,7 +1367,7 @@ declare module "lodash" {
 }
 ```
 
-### 2. 全局声明
+### Global Declarations
 
 ```typescript
 // global.d.ts
@@ -1377,42 +1377,42 @@ declare global {
     myGlobalFunc: (arg: string) => void;
   }
 
-  // 全局变量
+  // Global variable
   var DEBUG: boolean;
 
-  // 全局函数
+  // Global function
   function myGlobalFunction(): void;
 }
 
-export {}; // 确保这是一个模块
+export {}; // Ensure this is treated as a module
 ```
 
-### 3. 模块声明
+### Module Declarations
 
 ```typescript
-// 为 .css 文件添加类型
+// Add types for .css files
 declare module "*.css" {
   const content: { [className: string]: string };
   export default content;
 }
 
-// 为 .png 文件添加类型
+// Add types for .png files
 declare module "*.png" {
   const value: string;
   export default value;
 }
 
-// 为 .json 文件添加类型
+// Add types for .json files
 declare module "*.json" {
   const value: any;
   export default value;
 }
 ```
 
-### 4. 使用 @types
+### Using @types Packages
 
 ```bash
-# 安装类型声明包
+# Install type declaration packages
 npm install --save-dev @types/node
 npm install --save-dev @types/react
 npm install --save-dev @types/lodash
@@ -1420,12 +1420,12 @@ npm install --save-dev @types/lodash
 
 ---
 
-## 十四、模块系统
+## 14. Module System
 
-### 1. ES 模块
+### ES Modules
 
 ```typescript
-// math.ts - 导出
+// math.ts - Exports
 export const PI = 3.14159;
 
 export function add(a: number, b: number): number {
@@ -1436,12 +1436,12 @@ export default class Calculator {
   // ...
 }
 
-// main.ts - 导入
+// main.ts - Imports
 import Calculator, { PI, add } from "./math";
 import * as math from "./math";
 ```
 
-### 2. 类型导入/导出
+### Type-Only Imports and Exports
 
 ```typescript
 // types.ts
@@ -1452,17 +1452,17 @@ export interface User {
 
 export type ID = string | number;
 
-// main.ts - 类型导入（推荐）
+// main.ts - Type-only import (recommended)
 import type { User, ID } from "./types";
 
-// 或者混合导入
+// Mixed import
 import { type User, someFunction } from "./module";
 ```
 
-### 3. 命名空间
+### Namespaces
 
 ```typescript
-// 命名空间（不推荐在新项目中使用）
+// Namespaces (not recommended for new projects)
 namespace Validation {
   export interface StringValidator {
     isValid(s: string): boolean;
@@ -1475,53 +1475,53 @@ namespace Validation {
   }
 }
 
-// 使用
+// Usage
 const validator = new Validation.EmailValidator();
 ```
 
 ---
 
-## 十五、最佳实践
+## 15. Best Practices
 
-### 1. 类型推断
+### Leverage Type Inference
 
 ```typescript
-// 让 TypeScript 自动推断
-const name = "Alice";        // 推断为 string
-const numbers = [1, 2, 3];   // 推断为 number[]
-const user = { name: "Bob" }; // 推断为 { name: string }
+// Let TypeScript infer types when it can
+const name = "Alice";        // Inferred as string
+const numbers = [1, 2, 3];   // Inferred as number[]
+const user = { name: "Bob" }; // Inferred as { name: string }
 
-// 使用 as const 获得更精确的类型
-const status = "active" as const;     // 推断为 "active"
-const tuple = [1, "hello"] as const;  // 推断为 readonly [1, "hello"]
+// Use as const for more precise types
+const status = "active" as const;     // Inferred as "active"
+const tuple = [1, "hello"] as const;  // Inferred as readonly [1, "hello"]
 
 const config = {
   host: "localhost",
   port: 3000
 } as const;
-// 推断为 { readonly host: "localhost"; readonly port: 3000 }
+// Inferred as { readonly host: "localhost"; readonly port: 3000 }
 ```
 
-### 2. 类型断言
+### Type Assertions
 
 ```typescript
-// 基本断言
+// Basic assertion
 const input = document.getElementById("input") as HTMLInputElement;
 
-// 非空断言
+// Non-null assertion
 function getValue(map: Map<string, string>, key: string): string {
-  return map.get(key)!; // 告诉 TypeScript 这里一定有值
+  return map.get(key)!; // Tell TypeScript this value definitely exists
 }
 
-// 双重断言（谨慎使用）
+// Double assertion (use sparingly)
 const value = (expr as unknown) as SomeType;
 ```
 
-### 3. 类型收窄
+### Type Narrowing
 
 ```typescript
 function process(value: string | number | null): string {
-  // 使用类型守卫收窄类型
+  // Use type guards to narrow the type
   if (value === null) {
     return "null";
   }
@@ -1530,25 +1530,25 @@ function process(value: string | number | null): string {
     return value.toUpperCase();
   }
 
-  // 此时 TypeScript 知道 value 是 number
+  // TypeScript now knows value is number
   return value.toFixed(2);
 }
 ```
 
-### 4. 避免 any
+### Avoiding any
 
 ```typescript
-// 不好
+// Bad
 function parse(json: string): any {
   return JSON.parse(json);
 }
 
-// 好 - 使用泛型
+// Better - use generics
 function parse<T>(json: string): T {
   return JSON.parse(json);
 }
 
-// 更好 - 添加运行时验证
+// Best - add runtime validation
 function parseUser(json: string): User {
   const data = JSON.parse(json);
   if (!isUser(data)) {
@@ -1567,9 +1567,9 @@ function isUser(data: unknown): data is User {
 }
 ```
 
-### 5. 严格模式
+### Always Enable Strict Mode
 
-始终在 `tsconfig.json` 中启用严格模式：
+Always enable strict mode in your `tsconfig.json`:
 
 ```json
 {
@@ -1579,7 +1579,7 @@ function isUser(data: unknown): data is User {
 }
 ```
 
-这相当于启用了：
+This is equivalent to enabling all of:
 - `strictNullChecks`
 - `strictFunctionTypes`
 - `strictBindCallApply`
@@ -1590,53 +1590,47 @@ function isUser(data: unknown): data is User {
 
 ---
 
-## 十六、常见面试题
+## 16. Common Interview Questions
 
-### 1. type 和 interface 的区别？
+### What is the difference between type and interface?
 
-**答案**：
-- `interface` 支持声明合并，`type` 不支持
-- `type` 可以定义联合类型、元组、原始类型别名
-- `interface` 只能定义对象类型
-- 扩展方式不同：`interface` 用 `extends`，`type` 用 `&`
+- `interface` supports declaration merging; `type` does not
+- `type` can define unions, tuples, and primitive aliases
+- `interface` can only define object types
+- They extend differently: `interface` uses `extends`, `type` uses `&`
 
-### 2. any 和 unknown 的区别？
+### What is the difference between any and unknown?
 
-**答案**：
-- `any` 跳过类型检查，可以调用任意方法
-- `unknown` 必须先进行类型检查才能使用
-- `unknown` 是类型安全的 `any`
+- `any` bypasses type checking entirely and lets you call any method
+- `unknown` requires a type check before you can use the value
+- `unknown` is the type-safe counterpart of `any`
 
-### 3. never 和 void 的区别？
+### What is the difference between never and void?
 
-**答案**：
-- `void` 表示没有返回值（函数正常结束）
-- `never` 表示永远不会返回（抛异常或无限循环）
-- `void` 可以被赋值为 `undefined`，`never` 不能被赋值任何值
+- `void` means a function returns nothing (completes normally)
+- `never` means a function never returns (throws or loops forever)
+- `void` can be assigned `undefined`; `never` cannot be assigned any value
 
-### 4. 什么是类型守卫？
+### What are type guards?
 
-**答案**：
-类型守卫是运行时检查，用于缩小类型范围：
-- `typeof`：检查原始类型
-- `instanceof`：检查类实例
-- `in`：检查对象属性
-- 自定义类型谓词：`function isFish(pet): pet is Fish`
+Type guards are runtime checks that narrow a type within a conditional branch:
+- `typeof`: checks primitive types
+- `instanceof`: checks class instances
+- `in`: checks for object properties
+- Custom type predicates: `function isFish(pet): pet is Fish`
 
-### 5. 什么是条件类型？
+### What are conditional types?
 
-**答案**：
-条件类型根据条件选择类型：`T extends U ? X : Y`
+Conditional types choose a type based on a condition: `T extends U ? X : Y`
 
-常用于：
-- 提取类型（`infer`）
-- 过滤类型
-- 创建工具类型
+Common uses:
+- Extracting types with `infer`
+- Filtering types
+- Building utility types
 
-### 6. 什么是映射类型？
+### What are mapped types?
 
-**答案**：
-映射类型遍历已有类型的属性，生成新类型：
+Mapped types iterate over the properties of an existing type to produce a new one:
 
 ```typescript
 type Readonly<T> = {
@@ -1644,19 +1638,17 @@ type Readonly<T> = {
 };
 ```
 
-### 7. 如何实现一个 DeepReadonly？
+### How do you implement DeepReadonly?
 
-**答案**：
 ```typescript
 type DeepReadonly<T> = T extends object
   ? { readonly [K in keyof T]: DeepReadonly<T[K]> }
   : T;
 ```
 
-### 8. 解释 infer 关键字的作用
+### What does the infer keyword do?
 
-**答案**：
-`infer` 在条件类型中声明待推断的类型变量，用于提取复杂类型中的某部分：
+`infer` declares a type variable to be inferred within a conditional type, letting you extract part of a complex type:
 
 ```typescript
 type ReturnType<T> = T extends (...args: any[]) => infer R ? R : never;
@@ -1664,11 +1656,11 @@ type ReturnType<T> = T extends (...args: any[]) => infer R ? R : never;
 
 ---
 
-## 十七、TypeScript 5.x 新特性
+## 17. TypeScript 5.x Features
 
-### 1. 装饰器（Decorators）
+### Decorators
 
-TypeScript 5.0 正式支持 ECMAScript 装饰器：
+TypeScript 5.0 ships with native ECMAScript decorator support:
 
 ```typescript
 function logged(value: any, context: ClassMethodDecoratorContext) {
@@ -1692,7 +1684,7 @@ class Calculator {
 }
 ```
 
-### 2. const 类型参数
+### const Type Parameters
 
 ```typescript
 function createTuple<const T extends readonly unknown[]>(...args: T): T {
@@ -1700,10 +1692,10 @@ function createTuple<const T extends readonly unknown[]>(...args: T): T {
 }
 
 const tuple = createTuple(1, 2, 3);
-// 类型为 readonly [1, 2, 3]，而不是 number[]
+// Type is readonly [1, 2, 3], not number[]
 ```
 
-### 3. satisfies 运算符
+### The satisfies Operator
 
 ```typescript
 type Colors = "red" | "green" | "blue";
@@ -1715,35 +1707,35 @@ const palette = {
   blue: [0, 0, 255]
 } satisfies Record<Colors, string | RGB>;
 
-// palette.red 的类型是 [number, number, number]，而不是 string | RGB
+// palette.red is typed as [number, number, number], not string | RGB
 const redChannel = palette.red[0]; // OK
 ```
 
 ---
 
-## 总结
+## Wrapping Up
 
-本文涵盖了 TypeScript 的核心知识点：
+This guide covered the core topics in TypeScript:
 
-1. **基础类型**：原始类型、数组、元组、枚举、any/unknown/never/void
-2. **函数**：类型声明、可选参数、默认参数、重载
-3. **接口与类型别名**：定义、继承、区别
-4. **类**：访问修饰符、抽象类、实现接口
-5. **泛型**：函数、接口、类、约束
-6. **高级类型**：联合类型、交叉类型、类型守卫、可辨识联合
-7. **条件类型**：基本语法、infer、分布式条件类型
-8. **映射类型**：属性映射、键重映射
-9. **工具类型**：Partial、Required、Pick、Omit、Record 等
-10. **模板字面量类型**：字符串类型操作
-11. **类型体操**：实战练习
-12. **声明文件**：类型定义、模块声明
-13. **最佳实践**：类型推断、断言、收窄
+1. **Primitive types** -- string, number, boolean, arrays, tuples, enums, any/unknown/never/void
+2. **Functions** -- declarations, optional/default/rest parameters, overloads
+3. **Interfaces and type aliases** -- definitions, inheritance, and when to use each
+4. **Classes** -- access modifiers, abstract classes, interface implementation
+5. **Generics** -- functions, interfaces, classes, constraints, defaults
+6. **Advanced types** -- unions, intersections, type guards, discriminated unions
+7. **Conditional types** -- syntax, infer, distributive behavior
+8. **Mapped types** -- property mapping, key remapping
+9. **Utility types** -- Partial, Required, Pick, Omit, Record, and more
+10. **Template literal types** -- string-level type manipulation
+11. **Type gymnastics** -- real-world type-level challenges
+12. **Declaration files** -- typing JavaScript libraries, global and module declarations
+13. **Best practices** -- inference, assertions, narrowing, strict mode
 
-掌握这些知识，你就能在 TypeScript 开发中游刃有余，也能从容应对各种面试问题。
+With these concepts under your belt, you will be well equipped for both day-to-day TypeScript development and technical interviews.
 
-**参考资料**：
+**References:**
 
-- [TypeScript 官方文档](https://www.typescriptlang.org/docs/)
+- [TypeScript Official Documentation](https://www.typescriptlang.org/docs/)
 - [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
 - [TypeScript GitHub](https://github.com/microsoft/TypeScript)
 - [TypeScript Deep Dive](https://basarat.gitbook.io/typescript/)

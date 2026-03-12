@@ -1,193 +1,193 @@
 +++
 date = '2026-01-30T10:30:00+08:00'
 draft = false
-title = '产品思维三板斧：删除优先、质疑一切、亲赴火线'
-description = '从删除优先于优化、质疑惯性思维、亲临用户现场三个维度，拆解一套适合独立开发者和超级个体的产品方法论，附真实踩坑案例。'
+title = 'Delete Before You Optimize: 3 Product Thinking Rules for Solo Developers'
+description = 'A practical product methodology for indie hackers and solopreneurs: delete before optimizing, question every assumption, and observe real users. With real-world examples and a reusable decision framework.'
 toc = true
-tags = ['产品思维', '独立开发', '超级个体', '产品方法论']
-categories = ['AI原理']
-keywords = ['产品思维', '删除优先于优化', '独立开发者方法论', '超级个体']
+tags = ['Product Thinking', 'Indie Development', 'Solopreneur', 'Product Strategy']
+categories = ['AI Guides']
+keywords = ['product thinking for developers', 'delete before optimize', 'indie developer methodology', 'solopreneur product strategy', 'product decision framework']
 +++
 
-做产品最容易犯的一个错误是什么？
+What is the most common mistake people make when building products?
 
-不是做得太少，而是**做得太多**。
+It is not building too little. It is **building too much**.
 
-我做了好几年产品，踩过的最大的坑不是功能做烂了，而是花了大量时间去优化一个根本不该存在的功能。这种"勤奋的浪费"在独立开发者和超级个体身上尤其致命——因为我们没有大厂的资源去试错，每一天都是真金白银。
+After years of building products, the biggest trap I fell into was not shipping bad features — it was spending weeks polishing a feature that should never have existed. This kind of "productive waste" is especially deadly for solo developers and solopreneurs. We do not have a big company's resources to absorb mistakes. Every day spent on the wrong thing is a day we cannot get back.
 
-今天聊三条我自己内化并反复验证的产品方法论，它们看起来简单，但真正做到的人不多。
+Here are three product thinking rules I have internalized and battle-tested. They sound simple, but very few people actually follow them.
 
-## 一、删除优先于优化：先问"该不该存在"
+## 1. Delete Before You Optimize: Ask "Should This Exist?"
 
-大部分产品经理（包括过去的我）看到一个功能不好用，第一反应是"我要优化它"。
+When most product managers (including my past self) see a feature that is not working well, the instinct is to optimize it — better UI, smoother flow, faster performance.
 
-**这个反应是错的。**
+**That instinct is wrong.**
 
-正确的思考顺序应该是：
-
-```
-这个功能存在的必要性是什么？ → 能不能直接砍掉？ → 砍不掉再想怎么优化
-```
-
-这不是偷懒，而是对**沉没成本零容忍**。
-
-### 一个真实的踩坑案例
-
-我之前做一个工具产品，花了整整两周优化一个"高级筛选"功能——调交互、改 UI、加缓存、写文档。上线后一看数据，使用率几乎为零。
-
-为什么？因为用户要的根本不是自己手动筛选，他们想要的是**一键推荐**。
-
-如果当时先看数据、先问"这功能该不该存在"，这两周能省下来做真正有价值的事。
-
-### 怎么判断该删还是该优
-
-问自己三个问题：
-
-| 问题 | 如果回答"否" |
-|------|-------------|
-| 过去 30 天有多少用户用过这个功能？ | 使用率 < 5%，考虑删除 |
-| 如果明天砍掉，会有用户投诉吗？ | 没人投诉 = 没人在乎 |
-| 这个功能是否在核心价值链上？ | 不在 = 可以砍 |
-
-**对超级个体尤其重要**：我们的时间就是最贵的资源。每多维护一个功能，就少了一分精力去做真正重要的事。删得越狠，活得越久。
-
-### 从特斯拉产线学到的
-
-在特斯拉早期的生产线上，有一批自动化机器人严重拖慢了整条产线的节奏。解决方案不是优化机器人程序，而是直接把机器人从产线上锯下来——搬出去的时候还得在墙上开个洞。
-
-听着暴力，但逻辑清晰：**如果一个东西的存在本身就是问题，那优化它没有意义，删除它才是解法。**
-
-这个思维方式可以延伸到很多场景：
-
-- **代码层面**：与其优化一段难维护的代码，不如问"这段逻辑还需要吗"
-- **产品层面**：与其优化一个低频功能，不如问"用户真的需要吗"
-- **个人层面**：与其优化一个低效习惯，不如问"这件事还该做吗"
-
-关于 AI 时代如何做减法、如何找到真正值得做的事，可以看 [AI 时代，一个人的 Taste 比以往任何时候都重要](/posts/ai/2026-01-23-taste-matters-in-ai-era/)，里面聊了"品味"为什么是最稀缺的能力。
-
-## 二、质疑一切"理所当然"，直到找到那个具体的人
-
-产品开发中有大量"行业惯例"和"最佳实践"，比如：
-
-- "做 SaaS 一定要有多租户架构"
-- "落地页一定要有演示视频"
-- "公众号一定要日更"
-- "MVP 一定要有用户系统"
-
-这些都是谁告诉你的？**真的是物理定律吗？**
-
-大多数时候，这些"必须"只是**惯性思维**——你从某篇文章、某次分享、某个同行那里听来的，然后不加思考地当成了真理。
-
-### 追溯到具体的人
-
-一个很好的思维习惯是：**对每一条"要求"，都追问到底是谁提出来的**。
-
-- 如果是用户提的 → 看数据验证
-- 如果是老板提的 → 了解背后的真实诉求
-- 如果是"大家都这么做" → 大概率是可以质疑的
-
-不能接受"法务部说的""行业惯例""一直都是这样"这种模糊来源。每一条要求都要有名有姓、有数据支撑。
-
-### 一个经典的成本案例
-
-某大型制造企业，供应商对一个零件报价 12 万美元，理由是"行业标准价格"。有人觉得不对劲，逼着工程师团队自己研究，最终用 5000 块钱就造出来了。
-
-差了 24 倍。而之前没人质疑，只因为"供应商报的价"。
-
-### 对独立开发者的启示
-
-我们要质疑的不是别人，而是**自己脑子里那些"理所当然"**：
+The correct thinking sequence is:
 
 ```
-"理所当然" → 质疑 → 验证 → 保留或砍掉
-
-"做产品一定要写 PRD" → 真的吗？一个人做的话，画个草图够不够？
-"上线前一定要测试完善" → 真的吗？能不能先发 50% 功能，看有没有人用？
-"竞品有的功能我也要有" → 真的吗？用户选你是因为那个功能吗？
+Does this feature need to exist? → Can we just remove it? → Only optimize if removal is not an option
 ```
 
-砍掉这些隐形的枷锁，你会发现 MVP 能做得更轻、更快。对于如何用 AI 高效做 MVP，可以参考 [我的 AI 开发工作流：从需求到上线](/posts/ai/2026-01-19-ai-dev-workflow/)。
+This is not laziness. It is **zero tolerance for sunk costs**.
 
-## 三、亲赴火线：数据不会告诉你真相的全部
+### A Real-World Lesson
 
-很多产品人习惯"看数据做决策"——DAU 多少、留存多少、漏斗转化率多少。这没错，但远远不够。
+I once spent two full weeks optimizing an "advanced filter" feature for a tool product — redesigning the interaction, tweaking the UI, adding caching, writing documentation. After launch, I checked the data: usage was nearly zero.
 
-**数据能告诉你"发生了什么"，但不能告诉你"为什么发生"。**
+Why? Because users did not want to manually filter anything. What they actually wanted was **one-click recommendations**.
 
-### 后台数据骗了我
+If I had checked the data first and asked "should this feature exist?", those two weeks could have gone toward something that actually mattered.
 
-我之前做过一个微信小工具，后台显示"平均使用时长 5 分钟"。看起来挺好对不对？用户深度使用 5 分钟，说明产品有价值。
+### How to Decide: Delete or Optimize?
 
-后来我找了几个用户做远程观察，盯着他们操作了 15 分钟。
+Ask yourself three questions:
 
-真相让我冷汗直冒：那 5 分钟不是"深度使用"，而是**用户卡在某个步骤上反复试错**。他们不是在用产品，是在跟产品较劲。
+| Question | If the answer is "No" |
+|----------|----------------------|
+| How many users used this feature in the last 30 days? | Usage < 5% → consider deleting |
+| If we removed it tomorrow, would anyone complain? | No complaints = nobody cares |
+| Is this feature on the core value chain? | Not on it = safe to cut |
 
-如果只看数据，我永远发现不了这个问题。
+**Especially important for solopreneurs**: Your time is your most expensive resource. Every feature you maintain is energy stolen from what truly matters. The more ruthlessly you cut, the longer you survive.
 
-### 我的"火线观察"方法
+### What Tesla's Production Line Teaches Us
 
-不需要像某些偏执狂那样睡在工厂里，但你得有一套**定期观察真实用户**的方法：
+In Tesla's early production lines, a set of automation robots was severely slowing down the entire assembly process. The solution was not to optimize the robot software — it was to physically cut the robots off the line. They had to saw a hole in the wall just to get them out.
 
-**每月至少一次用户观察**：
+It sounds extreme, but the logic is clear: **If something's existence is the problem, optimizing it is pointless. Removing it is the solution.**
 
-1. 找一个真实用户（付费用户优先）
-2. 远程共享屏幕，或者录屏
-3. 看他使用你产品的完整过程（至少 15 分钟）
-4. **不要指导、不要解释**——就静静地看
-5. 记录他卡住的每一个地方
+This thinking applies across many domains:
 
-这就是腾讯著名的 **10/100/1000 法则**的精髓：
+- **Code**: Instead of optimizing hard-to-maintain code, ask "do we still need this logic?"
+- **Product**: Instead of optimizing a low-usage feature, ask "do users actually need this?"
+- **Personal**: Instead of optimizing an inefficient habit, ask "should I be doing this at all?"
 
-| 层级 | 做法 | 频率 |
-|------|------|------|
-| 10 | 每月跟 10 个用户深聊 | 月 |
-| 100 | 每周看 100 条用户反馈 | 周 |
-| 1000 | 每天关注 1000 条用户行为数据 | 日 |
+For more on subtraction thinking in the AI era, see [Why Personal Taste Matters More Than Ever in the AI Age](/posts/ai/2026-01-23-taste-matters-in-ai-era/).
 
-### 远程观察的几个技巧
+## 2. Question Every Assumption Until You Find the Source
 
-- **别问"你觉得怎么样"**——用户会客气地说"挺好的"。要看他实际怎么操作
-- **关注"犹豫"**——用户鼠标停下来的地方，就是他困惑的地方
-- **录屏比问卷有用 100 倍**——一段 5 分钟的录屏，抵得上 50 份问卷
+Product development is full of "industry best practices" and unquestioned conventions:
 
-## 四、把三板斧串起来：一个完整的决策框架
+- "Every SaaS needs multi-tenant architecture"
+- "Landing pages must have a demo video"
+- "You need to post content daily"
+- "An MVP must include a user authentication system"
 
-这三条方法论不是孤立的，它们构成了一个完整的产品决策链：
+Who told you these things? **Are they laws of physics?**
+
+Most of the time, these "must-haves" are just **inertia** — something you picked up from a blog post, a conference talk, or a peer, and then accepted as truth without verification.
+
+### Trace Every Requirement to a Specific Person
+
+A powerful thinking habit: **For every requirement, ask who specifically requested it.**
+
+- If a user requested it → validate with data
+- If your boss requested it → understand the real need behind it
+- If "everyone does it" → it is almost certainly worth questioning
+
+Never accept vague sources like "legal said so", "industry standard", or "we have always done it this way." Every requirement should have a name attached and data to back it up.
+
+### A Classic Cost Example
+
+A large manufacturing company received a supplier quote of $120,000 for a single component. The justification? "Industry standard pricing." Someone felt the number was off and pushed the engineering team to investigate. They ended up building it themselves for about $5,000.
+
+A 24x difference. No one had questioned it before because it came from "the supplier's quote."
+
+### What This Means for Indie Developers
+
+The assumptions we need to challenge are not other people's — they are **the ones inside our own heads**:
 
 ```
-第一步：删除
-  → 这个功能/需求/流程，有存在的必要吗？
-  → 数据怎么说？砍掉会有人投诉吗？
-  → 能删就删，不纠结
+"Obviously true" → Question → Validate → Keep or cut
 
-第二步：质疑
-  → 留下来的需求，每一条的依据是什么？
-  → 是谁提的？有数据支撑吗？
-  → 还是"行业惯例""大家都这么做"？
-
-第三步：验证
-  → 做出来之后，去看真实用户怎么用
-  → 不要只看数据，要看人
-  → 发现问题，回到第一步
+"I need a PRD before building" → Really? If you are solo, is a rough sketch enough?
+"I must test everything before launch" → Really? Can you ship 50% and see if anyone uses it?
+"Competitors have feature X, so I need it too" → Really? Is that why users choose you?
 ```
 
-这是一个循环，不是一次性的。每个版本迭代都应该走一遍这个链路。
+Strip away these invisible chains and your MVP becomes lighter and faster. For how to build MVPs efficiently with AI, see [My AI Development Workflow: From Requirements to Launch](/posts/ai/2026-01-19-ai-dev-workflow/).
 
-## 总结
+## 3. Go to the Front Lines: Data Does Not Tell the Whole Story
 
-三条方法论，说到底就是三句话：
+Many product people make decisions purely by data — DAU, retention, funnel conversion rates. That is not wrong, but it is far from enough.
 
-1. **先删后优**：不该存在的东西，优化得再好也是浪费
-2. **追根溯源**：每条要求都要有名有姓，拒绝模糊的"行业惯例"
-3. **眼见为实**：数据是地图，但你得亲自走到现场才知道路况
+**Data tells you what happened. It cannot tell you why.**
 
-这三条对大厂 PM 有用，但对**独立开发者和超级个体**更致命——因为我们的每一分钟、每一行代码都是自己的。用错方向的努力，不叫勤奋，叫内耗。
+### When Metrics Lied to Me
 
-在 AI 时代，这套思维方式尤其重要。当 AI 能帮你高速产出的时候，"做什么"比"怎么做"重要了一百倍。关于这个话题，推荐读 [2026 年 AGI 已经来了：从功能定义到 31 分钟猎头实战](/posts/ai/2026-01-26-agi-is-here/)。
+I built a small WeChat tool once. The dashboard showed "average session duration: 5 minutes." That sounds great, right? Users spending 5 minutes means deep engagement.
 
-### 相关阅读
+Then I did remote observation sessions with a few real users, watching them use the product for 15 minutes.
 
-- [AI 时代，一个人的 Taste 比以往任何时候都重要](/posts/ai/2026-01-23-taste-matters-in-ai-era/)
-- [我的 AI 开发工作流：从需求到上线](/posts/ai/2026-01-19-ai-dev-workflow/)
-- [2026 年 AGI 已经来了：从功能定义到 31 分钟猎头实战](/posts/ai/2026-01-26-agi-is-here/)
-- [AI 工作流实战手册：从提示词到编程，真正把 AI 用起来](/posts/ai/2026-01-30-ai-workflow-real-guide/)
+The truth hit hard: those 5 minutes were not "deep engagement." Users were **stuck on a step, trying and failing repeatedly**. They were not using the product — they were fighting it.
+
+If I had only looked at the data, I would never have discovered this.
+
+### My Front-Line Observation Method
+
+You do not need to sleep on the factory floor, but you do need a system for **regularly observing real users**:
+
+**At least one user observation per month**:
+
+1. Find a real user (paying customers first)
+2. Remote screen share or screen recording
+3. Watch them use your product end-to-end (at least 15 minutes)
+4. **Do not guide. Do not explain.** Just watch silently.
+5. Note every point where they get stuck
+
+This is the essence of Tencent's famous **10/100/1000 rule**:
+
+| Level | Action | Frequency |
+|-------|--------|-----------|
+| 10 | Deep conversations with 10 users | Monthly |
+| 100 | Read 100 pieces of user feedback | Weekly |
+| 1000 | Monitor 1000 user behavior data points | Daily |
+
+### Remote Observation Tips
+
+- **Never ask "what do you think?"** — users will politely say "it is fine." Watch what they actually do.
+- **Watch for hesitation** — where the cursor stops is where confusion lives.
+- **Screen recordings are 100x more valuable than surveys** — 5 minutes of video beats 50 questionnaire responses.
+
+## 4. The Complete Decision Framework: Putting It All Together
+
+These three rules are not isolated principles. They form a complete product decision chain:
+
+```
+Step 1: Delete
+  → Does this feature/requirement/process need to exist?
+  → What does the data say? Would anyone complain if we removed it?
+  → If you can delete it, delete it. Do not hesitate.
+
+Step 2: Question
+  → For everything that remains, what is the evidence?
+  → Who requested it? Is there data to support it?
+  → Or is it just "industry standard" / "everyone does it"?
+
+Step 3: Validate
+  → After building, observe how real users interact with it
+  → Do not just look at data — watch people
+  → If you find problems, go back to Step 1
+```
+
+This is a loop, not a one-time exercise. Every iteration should run through this chain.
+
+## Key Takeaways
+
+Three rules, distilled to three sentences:
+
+1. **Delete before optimize**: If something should not exist, no amount of polish will make it worthwhile.
+2. **Trace to the source**: Every requirement needs a name and data behind it. Reject vague "best practices."
+3. **See it yourself**: Data is the map, but you have to walk the ground to know the real terrain.
+
+These rules are useful for PMs at large companies, but they are **critical for indie developers and solopreneurs** — because every minute and every line of code is yours alone. Effort in the wrong direction is not hard work; it is self-sabotage.
+
+In the AI era, this mindset matters more than ever. When AI can produce at high speed for you, "what to build" becomes a hundred times more important than "how to build it." For more on this topic, see [AGI Is Already Here in 2026: From Feature Definition to a 31-Minute Recruiting Sprint](/posts/ai/2026-01-26-agi-is-here/).
+
+### Related Reading
+
+- [Why Personal Taste Matters More Than Ever in the AI Age](/posts/ai/2026-01-23-taste-matters-in-ai-era/)
+- [My AI Development Workflow: From Requirements to Launch](/posts/ai/2026-01-19-ai-dev-workflow/)
+- [AGI Is Already Here in 2026: From Feature Definition to a 31-Minute Recruiting Sprint](/posts/ai/2026-01-26-agi-is-here/)
+- [AI Workflow Playbook: From Prompts to Programming](/posts/ai/2026-01-30-ai-workflow-real-guide/)

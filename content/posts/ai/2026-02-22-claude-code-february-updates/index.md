@@ -1,61 +1,61 @@
 +++
 date = '2026-02-22T10:00:00+08:00'
 draft = false
-title = 'Claude Code 2026年2月更新：Worktree 并行开发、后台任务、Simple Mode 全解析'
-description = 'Claude Code 2月迎来重磅更新：Git Worktree 隔离开发、后台 Agent 管理、Simple Mode 文件编辑等新功能。本文逐个解析用法和实战场景，附命令速查。'
+title = 'Claude Code February 2026 Updates: Worktree, Background Agents, Simple Mode'
+description = 'Claude Code shipped major features in February 2026 including Git Worktree parallel development, background agent tasks, and a leaner Simple Mode. Full breakdown with commands and use cases.'
 toc = true
-tags = ['Claude Code', 'Git Worktree', 'AI 编程', '版本更新', 'Anthropic']
-categories = ['AI实战']
-keywords = ['Claude Code 更新', 'Claude Code 新功能 2026', 'Claude Code worktree', 'Claude Code 后台任务', 'Claude Code simple mode', 'Claude Code 2月更新']
+tags = ['Claude Code', 'Git Worktree', 'AI Coding', 'Release Notes', 'Anthropic']
+categories = ['AI Guides']
+keywords = ['Claude Code update', 'Claude Code new features 2026', 'Claude Code worktree', 'Claude Code background tasks', 'Claude Code simple mode', 'Claude Code February update']
 +++
 
-Claude Code 在 2026 年 2 月密集发布了 v2.1.39 到 v2.1.50 共十余个版本，带来了几个改变日常工作流的重要功能。本文汇总 2 月最值得关注的更新，逐个解析用法和实战场景，帮你快速上手。
+Claude Code released over a dozen versions in February 2026 (v2.1.39 through v2.1.50), introducing several features that fundamentally change how you work. This article covers the most important updates, explains how to use each one, and highlights the practical scenarios where they shine.
 
-## Git Worktree 支持：最大的工作流升级
+## Git Worktree Support: The Biggest Workflow Upgrade
 
-这是 2 月份最重磅的功能，在 v2.1.49 中正式发布。它将 Git 的 Worktree 能力直接集成到了 Claude Code 中，让并行开发变得前所未有的简单。
+This is the headline feature of February, shipped in v2.1.49. It brings Git's worktree capability directly into Claude Code, making parallel development remarkably simple.
 
-### 什么是 Git Worktree
+### What Is Git Worktree?
 
-简单来说，Git Worktree 允许你在同一个仓库下同时检出多个工作目录，每个目录对应不同的分支。和 `git stash` 或克隆多份仓库相比，Worktree 共享同一个 `.git` 数据库，不额外占用磁盘空间，切换成本极低。
+Git Worktree lets you check out multiple working directories from the same repository, each tied to a different branch. Unlike `git stash` or cloning the repo multiple times, worktrees share the same `.git` database — no extra disk space, no overhead when switching contexts.
 
-### 基本用法
+### Basic Usage
 
-一条命令即可在隔离的 Worktree 中启动 Claude：
+A single command spins up Claude in an isolated worktree:
 
 ```bash
-# 启动一个新的 worktree 会话
+# Start a new worktree session
 claude --worktree
 
-# 简写
+# Short form
 claude -w
 
-# 命名 worktree（方便管理）
+# Name the worktree for easy identification
 claude -w --name fix-login-bug
 ```
 
-启动后，Claude Code 会自动在 `.claude/worktrees/` 目录下创建一个独立的工作目录，基于当前 HEAD 创建新分支，所有文件操作都在这个隔离环境中进行。
+When you run this, Claude Code creates an independent working directory under `.claude/worktrees/`, branches off from your current HEAD, and does all file operations inside that isolated environment.
 
-### 配合 Tmux 实现真正的并行
+### True Parallelism with Tmux
 
-Worktree 最强大的场景是配合 `--tmux` 在后台独立运行：
+The real power shows up when you combine worktrees with `--tmux` to run multiple sessions in the background:
 
 ```bash
-# 在独立 tmux 会话中运行 worktree
-claude -w --tmux --name feature-auth "实现用户认证模块"
+# Run a worktree task in its own tmux session
+claude -w --tmux --name feature-auth "Implement the user authentication module"
 
-# 同时开另一个任务
-claude -w --tmux --name fix-bug-123 "修复 issue #123 的登录错误"
+# Kick off a second task at the same time
+claude -w --tmux --name fix-bug-123 "Fix the login error from issue #123"
 
-# 查看正在运行的 tmux 会话
+# Check running tmux sessions
 tmux ls
 ```
 
-这样两个 Claude 会话各自在独立的文件系统中工作，互不干扰。
+Each Claude session operates in its own file system — no conflicts, no interference.
 
-### Agent 定义中声明 Worktree 隔离
+### Declaring Worktree Isolation in Agent Definitions
 
-除了命令行参数，v2.1.49 还支持在 Agent 定义中声明式地使用 Worktree：
+Beyond CLI flags, v2.1.49 also supports declaring worktree isolation directly in agent definition files:
 
 ```yaml
 # .claude/agents/refactor.md
@@ -63,39 +63,39 @@ tmux ls
 name: refactor-agent
 isolation: worktree
 ---
-你是一个重构专家，负责代码重构任务。
+You are a refactoring specialist responsible for code restructuring tasks.
 ```
 
-Subagent 也支持 `isolation: "worktree"`，让多 Agent 协作时每个 Agent 都在自己的隔离环境中工作。
+Subagents support `isolation: "worktree"` too, so each agent in a multi-agent setup works in its own sandbox.
 
-### Hook 事件
+### Hook Events
 
-v2.1.50 新增了 `WorktreeCreate` 和 `WorktreeRemove` 两个 Hook 事件，可以在 Worktree 创建和移除时自动执行自定义操作（比如安装依赖、设置环境变量）：
+v2.1.50 added `WorktreeCreate` and `WorktreeRemove` hook events. These let you run custom actions automatically when a worktree is created or removed — installing dependencies, setting environment variables, whatever you need:
 
 ```json
 {
   "hooks": {
     "WorktreeCreate": [{
       "command": "npm install",
-      "description": "自动安装依赖"
+      "description": "Auto-install dependencies"
     }],
     "WorktreeRemove": [{
       "command": "echo 'Worktree cleaned up'",
-      "description": "清理通知"
+      "description": "Cleanup notification"
     }]
   }
 }
 ```
 
-Worktree 功能的内容很丰富，这里只做概述。更详细的使用教程、最佳实践和常见问题，请参考 [Claude Code Worktree 实战指南](/posts/ai/2026-02-20-claude-code-worktree/)。
+There's a lot more to worktrees than what's covered here. For the full tutorial, best practices, and troubleshooting, see the [Claude Code Worktree Practical Guide](/posts/ai/2026-02-20-claude-code-worktree/).
 
-## 后台任务管理
+## Background Task Management
 
-v2.1.49 引入了后台 Agent 机制，让你可以把耗时任务放到后台运行，同时继续在主线程中和 Claude 交互。
+v2.1.49 introduced background agents, letting you offload long-running tasks while continuing to work in your main session.
 
-### Agent 定义中启用后台模式
+### Enabling Background Mode in Agent Definitions
 
-在 Agent 定义文件中设置 `background: true`：
+Set `background: true` in your agent definition file:
 
 ```yaml
 # .claude/agents/test-runner.md
@@ -103,153 +103,153 @@ v2.1.49 引入了后台 Agent 机制，让你可以把耗时任务放到后台�
 name: test-runner
 background: true
 ---
-你负责运行项目的完整测试套件并报告结果。
+You are responsible for running the full test suite and reporting results.
 ```
 
-这样启动该 Agent 后，它会在后台持续运行，不阻塞主会话。
+Once launched, this agent runs in the background without blocking your main session.
 
-### 终止后台 Agent
+### Stopping Background Agents
 
-使用 `Ctrl+F` 可以终止后台 Agent。为防止误操作，需要在 3 秒内按两次确认：
+Press `Ctrl+F` to terminate background agents. To prevent accidental kills, you need to press it twice within 3 seconds:
 
 ```
-第一次 Ctrl+F → 提示确认
-第二次 Ctrl+F → 终止所有后台 Agent
+First Ctrl+F  → Confirmation prompt
+Second Ctrl+F → Terminates all background agents
 ```
 
-v2.1.47 对这个机制做了调整：`ESC` 键现在只取消主线程操作，不再影响后台 Agent。这意味着你可以随时中断当前对话而不会误杀后台任务。
+A related change in v2.1.47: the `ESC` key now only cancels main-thread operations and no longer affects background agents. You can freely interrupt your current conversation without accidentally killing background tasks.
 
-### 查看后台任务
+### Viewing Background Task Results
 
-v2.1.47 还改进了后台任务的结果展示，Agent 完成后会直接内联显示最终回复，不用再去翻 transcript 文件。如果多个后台任务同时完成，通知会折叠显示，最多展示 3 行加一个溢出摘要。
+v2.1.47 improved how background task results are displayed. When an agent finishes, its final response appears inline in your main session — no need to dig through transcript files. If multiple tasks complete at the same time, notifications are collapsed with up to 3 lines shown plus an overflow summary.
 
-## Simple Mode 增强
+## Simple Mode Enhancements
 
-Claude Code 的 Simple Mode（通过 `CLAUDE_CODE_SIMPLE=true` 环境变量启用）是一个精简模式，适合非开发者或快速临时使用。
+Claude Code's Simple Mode (enabled with the `CLAUDE_CODE_SIMPLE=true` environment variable) is a stripped-down mode designed for non-developers or quick one-off tasks.
 
-### 文件编辑能力
+### File Editing Capability
 
-v2.1.49 之前，Simple Mode 只有 Bash 工具可用。现在它加入了**文件编辑工具**，可以直接读取和修改文件，大幅提升了实用性：
+Before v2.1.49, Simple Mode only had access to the Bash tool. Now it includes **file editing tools**, allowing you to read and modify files directly — a significant usability improvement:
 
 ```bash
-# 启动 Simple Mode
+# Launch Simple Mode
 CLAUDE_CODE_SIMPLE=true claude
 ```
 
-### 更彻底的精简
+### A Truly Minimal Experience
 
-v2.1.50 进一步精简了 Simple Mode，禁用了以下组件：
+v2.1.50 went further by disabling several components in Simple Mode:
 
-- MCP 工具
-- 附件
+- MCP tools
+- Attachments
 - Hooks
-- CLAUDE.md 文件加载
-- Skills 和 Session Memory
-- 自定义 Agent
-- Token 计数
+- CLAUDE.md file loading
+- Skills and Session Memory
+- Custom Agents
+- Token counting
 
-这让 Simple Mode 成为一个真正轻量的终端 AI 助手，启动更快，资源占用更少。
+This makes Simple Mode a genuinely lightweight terminal AI assistant — faster startup, lower resource usage.
 
-## 性能优化
+## Performance Improvements
 
-2 月多个版本在性能方面做了大量工作，体感最明显的几项：
+Multiple February releases included substantial performance work. Here are the changes you'll actually feel:
 
-### @ 文件提及更快
+### Faster @ File Mentions
 
-v2.1.47 对 `@` 文件提及做了专门优化：
+v2.1.47 specifically optimized the `@` file mention experience:
 
-- **启动时预热索引**：不再等到第一次输入 `@` 才开始建索引
-- **会话级缓存 + 后台刷新**：文件建议列表在会话期间复用缓存，文件变化时在后台静默更新
+- **Index pre-warming at startup**: The file index now builds when Claude starts, not when you first type `@`
+- **Session-level caching with background refresh**: File suggestion lists are cached for the duration of your session and silently updated in the background when files change
 
-### 内存泄漏大修
+### Major Memory Leak Fixes
 
-这是 2 月更新的一条暗线。v2.1.47 到 v2.1.50 连续修复了多个内存泄漏问题：
+This was a quiet but significant theme across February. From v2.1.47 to v2.1.50, multiple memory leaks were identified and fixed:
 
-| 问题 | 版本 |
-|------|------|
-| 完成的任务状态对象未释放 | v2.1.50 |
-| LSP 诊断数据未清理 | v2.1.50 |
-| Tree-sitter WASM 内存无限增长 | v2.1.49 |
-| Yoga WASM 线性内存不回收 | v2.1.49 |
-| Shell 命令大输出导致 RSS 无限增长 | v2.1.45 |
-| Agent 任务消息 O(n^2) 累积 | v2.1.47 |
+| Issue | Version |
+|-------|---------|
+| Completed task state objects not released | v2.1.50 |
+| LSP diagnostic data not cleaned up | v2.1.50 |
+| Tree-sitter WASM memory growing unbounded | v2.1.49 |
+| Yoga WASM linear memory never reclaimed | v2.1.49 |
+| Large shell command output causing RSS to grow indefinitely | v2.1.45 |
+| Agent task messages accumulating at O(n^2) | v2.1.47 |
 
-长时间运行的会话现在明显更稳定了。
+Long-running sessions are noticeably more stable now.
 
-### 启动性能提升
+### Startup Performance Gains
 
-- Headless 模式（`-p` 参数）延迟加载 Yoga WASM 和 UI 组件
-- MCP 认证失败缓存，避免重复连接
-- MCP 工具 Token 计数批量合并为单次 API 调用
-- SessionStart Hook 延迟执行，减少约 500ms 的启动等待
+- Headless mode (`-p` flag) now lazy-loads Yoga WASM and UI components
+- MCP authentication failures are cached to prevent repeated connection attempts
+- MCP tool token counting is batched into a single API call
+- SessionStart hook execution is deferred, saving roughly 500ms on startup
 
-## 模型更新
+## Model Updates
 
-### Sonnet 4.6 替代 Sonnet 4.5
+### Sonnet 4.6 Replaces Sonnet 4.5
 
-v2.1.45 引入了 Claude Sonnet 4.6 支持。随后 v2.1.49 中，Max plan 的 Sonnet 4.5（1M 上下文）被 Sonnet 4.6 替代，后者同样支持 1M 上下文窗口。
+v2.1.45 introduced support for Claude Sonnet 4.6. Then in v2.1.49, Sonnet 4.5 (with 1M context) on the Max plan was replaced by Sonnet 4.6, which also supports the full 1M context window.
 
-v2.1.50 中，Opus 4.6 的 Fast Mode 也获得了完整的 1M 上下文支持。如果你还在用旧模型，可以通过 `/model` 切换。
+In v2.1.50, Opus 4.6's Fast Mode gained full 1M context support as well. If you're still on an older model, switch via the `/model` command.
 
-### 禁用 1M 上下文
+### Disabling 1M Context
 
-如果你不需要 1M 上下文（比如为了节省 Token 成本），v2.1.50 新增了环境变量：
+If you don't need the 1M context window (for example, to reduce token costs), v2.1.50 added an environment variable for that:
 
 ```bash
 export CLAUDE_CODE_DISABLE_1M_CONTEXT=1
 ```
 
-## 其他值得关注的更新
+## Other Notable Updates
 
-- **claude.ai MCP 连接器**（v2.1.46）：支持在 Claude Code 中使用 claude.ai 上配置的 MCP 连接器
-- **Agent 列表命令**（v2.1.50）：`claude agents` 可以列出所有已配置的 Agent
-- **会话恢复修复**（v2.1.47/v2.1.50）：修复了多个导致会话恢复失败或数据丢失的问题
-- **ConfigChange Hook**（v2.1.49）：配置文件变更时触发 Hook，支持企业安全审计
-- **Windows ARM64 支持**（v2.1.41）：新增原生 ARM64 二进制支持
-- **CLI 认证命令**（v2.1.41）：新增 `claude auth login`、`claude auth status`、`claude auth logout`
+- **claude.ai MCP Connectors** (v2.1.46): Use MCP connectors configured on claude.ai directly from Claude Code
+- **Agent List Command** (v2.1.50): `claude agents` lists all configured agents
+- **Session Resume Fixes** (v2.1.47/v2.1.50): Multiple fixes for session resume failures and data loss
+- **ConfigChange Hook** (v2.1.49): Triggers when config files change, useful for enterprise security auditing
+- **Windows ARM64 Support** (v2.1.41): Native ARM64 binary support
+- **CLI Auth Commands** (v2.1.41): New `claude auth login`, `claude auth status`, and `claude auth logout` commands
 
-## 命令速查表
+## Quick Reference
 
-| 功能 | 命令 / 配置 |
-|------|-------------|
-| Worktree 启动 | `claude --worktree` 或 `claude -w` |
-| 命名 Worktree | `claude -w --name my-feature` |
-| Worktree + Tmux | `claude -w --tmux --name my-feature "任务描述"` |
-| Agent Worktree 隔离 | Agent 文件中设 `isolation: worktree` |
-| 后台 Agent | Agent 文件中设 `background: true` |
-| 终止后台 Agent | `Ctrl+F`（3 秒内按两次确认） |
+| Feature | Command / Config |
+|---------|------------------|
+| Start worktree | `claude --worktree` or `claude -w` |
+| Named worktree | `claude -w --name my-feature` |
+| Worktree + Tmux | `claude -w --tmux --name my-feature "task description"` |
+| Agent worktree isolation | Set `isolation: worktree` in agent file |
+| Background agent | Set `background: true` in agent file |
+| Kill background agents | `Ctrl+F` (press twice within 3 seconds) |
 | Simple Mode | `CLAUDE_CODE_SIMPLE=true claude` |
-| 切换模型 | `/model` |
-| 禁用 1M 上下文 | `CLAUDE_CODE_DISABLE_1M_CONTEXT=1` |
-| 列出所有 Agent | `claude agents` |
+| Switch model | `/model` |
+| Disable 1M context | `CLAUDE_CODE_DISABLE_1M_CONTEXT=1` |
+| List all agents | `claude agents` |
 
-## 哪些值得你立刻试
+## What to Try First
 
-如果你只有时间尝试一两个新功能，推荐优先级：
+If you only have time for one or two new features, here's the priority order:
 
-1. **Worktree 并行开发**（`claude -w`）：如果你经常需要同时处理多个任务，这个功能会立刻改变你的工作方式。一条命令就能开一个隔离环境，不用再 stash、不用再切分支。
+1. **Worktree parallel development** (`claude -w`): If you regularly juggle multiple tasks, this will immediately change how you work. One command gives you an isolated environment — no more stashing, no more branch-switching headaches.
 
-2. **后台 Agent**：把跑测试、构建部署这类耗时操作扔到后台，主线程继续写代码。
+2. **Background agents**: Send test runs, builds, and deployments to the background while you keep coding in your main session.
 
-3. **升级到 Sonnet 4.6**：如果还在用 Sonnet 4.5，建议切换。同样支持 1M 上下文，性能更好。
+3. **Upgrade to Sonnet 4.6**: If you're still on Sonnet 4.5, make the switch. Same 1M context window, better performance.
 
-## 常见问题
+## FAQ
 
-### Worktree 和普通分支有什么区别？
+### How is a worktree different from a regular branch?
 
-普通分支只隔离 Git 历史记录，文件系统仍然共享同一个工作目录。Worktree 会创建完全独立的工作目录，每个目录对应一个分支。所以两个 Claude 会话可以同时在不同 Worktree 中修改文件，互不干扰。详见 [Worktree 完全指南](/posts/ai/2026-02-20-claude-code-worktree/)。
+A regular branch only isolates Git history — the file system still shares the same working directory. A worktree creates a completely independent working directory tied to its own branch. This means two Claude sessions can modify files in different worktrees simultaneously without any conflicts. See the [Worktree Practical Guide](/posts/ai/2026-02-20-claude-code-worktree/) for a deep dive.
 
-### 后台任务怎么查看输出？
+### How do I see background task output?
 
-后台 Agent 完成后会在主会话中弹出通知，直接内联显示最终回复。你也可以用 `/tasks` 命令查看所有后台任务的状态和详情。
+When a background agent finishes, a notification pops up in your main session with the final response displayed inline. You can also use the `/tasks` command to check the status and details of all background tasks.
 
-### Simple Mode 适合什么场景？
+### When should I use Simple Mode?
 
-Simple Mode 适合两类人：一是非开发者，只需要 Claude 帮忙处理文件和执行命令；二是开发者在轻量场景下使用，比如快速查个问题、改个配置文件，不需要加载整套 MCP 工具和 Skills。它启动更快，Token 消耗更少。
+Simple Mode serves two audiences: non-developers who just need Claude to handle files and run commands, and developers in lightweight scenarios — quickly looking something up, editing a config file, or running a one-off task without loading the full MCP toolkit and Skills. It starts faster and uses fewer tokens.
 
-## 相关阅读
+## Further Reading
 
-- [Claude Code Worktree 实战指南](/posts/ai/2026-02-20-claude-code-worktree/) - Worktree 的完整教程和最佳实践
-- [Claude Code 浏览器自动化方案对比](/posts/ai/2026-01-28-claude-code-browser-automation/) - 测试和调试方案选择
-- [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/) - 从入门到进阶的全面指南
-- [Claude Code Skills Top20](/posts/ai/2026-01-20-claude-code-skills-top20/) - 最实用的 Skills 排行
+- [Claude Code Worktree Practical Guide](/posts/ai/2026-02-20-claude-code-worktree/) — Full tutorial and best practices for worktrees
+- [Claude Code Browser Automation Compared](/posts/ai/2026-01-28-claude-code-browser-automation/) — Choosing the right testing and debugging approach
+- [The Complete Claude Code Guide](/posts/ai/2026-01-14-claude-code-guide/) — From beginner to advanced
+- [Claude Code Skills Top 20](/posts/ai/2026-01-20-claude-code-skills-top20/) — The most useful skills ranked

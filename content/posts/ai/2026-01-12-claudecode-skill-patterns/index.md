@@ -1,275 +1,275 @@
 +++
 date = '2026-01-12T10:00:00+08:00'
-title = '小白也能解锁 Claude Code 的秘密武器：Skills'
-description = '该如何让 AI 学习到我的能力呢？Skills 彻底改变了我对 AI 协作的看法'
+draft = false
+title = 'Claude Code Skills: Create Custom AI Abilities in 30 Seconds'
+description = 'Learn how to build Claude Code Skills that turn your expertise into reusable AI modules. Step-by-step guide with practical SKILL.md examples for developers and teams.'
 toc = true
-tags = ['AI', 'Claude Code', 'Skills', '效率工具']
-categories = ['AI实战']
-keywords = ['Claude Code Skills 入门', 'Skills 创建教程', 'AI 协作技巧', 'Claude Code 能力扩展', 'SKILL.md 编写']
+tags = ['Claude Code', 'AI Agent', 'Skills', 'Productivity']
+categories = ['AI Guides']
+keywords = ['Claude Code Skills', 'SKILL.md tutorial', 'Claude Code custom skills', 'AI workflow automation', 'Claude Code tips']
 +++
+
 ![Skills Secret](skills-secret-compressed.webp)
 
-## 引言
+## Introduction
 
-两个月以来，我一直在思考一个问题：**该如何提升 AI 的能力呢？**
+For months, one question kept nagging me: **How do you teach an AI your personal expertise?**
 
-哪怕有了 CLAUDE.md，可以让他记住了我是谁，我喜欢什么；但我该如何让他学习到我的"能力"呢？
+CLAUDE.md lets Claude Code remember your preferences and project context. But how do you encode your actual *capabilities* -- your workflows, your domain knowledge, your hard-won best practices -- into something the AI can use?
 
-这就是我今天要说的主角 -- **Skills 功能**
+The answer is **Skills**.
 
-这东西彻底改变了我对 AI 协作的看法。它不再是简单的"你问我答"，而是让 AI 主动学习、来配合你的能力和偏好。这感觉就像，你不是在跟一个什么都懂的实习生说话，而是在跟一个资深团队成员协作。
+Skills fundamentally changed how I collaborate with AI. Instead of a generic assistant that answers questions, Claude Code becomes a team member that proactively applies specialized knowledge at exactly the right moment. It is the difference between working with an intern who needs constant direction and collaborating with a senior colleague who just *gets it*.
 
-Claude Code 虽然名字里带个 Code，但它绝不仅仅是写代码的工具。它是一个真正的通用 Agent，能帮你处理电脑上各种繁琐的工作。而 Skill，就是它能力无限扩展的"插件包"。
+Despite the name, Claude Code is not just a coding tool. It is a general-purpose agent that can handle all kinds of work on your machine. Skills are the plugin system that makes its capabilities infinitely extensible.
 
-也就是说，他理论上可以很大程度的把我们每个人的能力"抽象"出来，形成一种可移植的"模块"。不论你是做市场的，还是做产品的，又或是做运营的，它都能帮到你。
+The real breakthrough: Skills let you *abstract* anyone's expertise into portable, reusable modules. Whether you work in marketing, product management, operations, or engineering, you can package what you know and share it with your team.
 
-## 一、Skill 到底是什么？
+## What Exactly Is a Skill?
 
-> 简单来说，Skill 是一个"能力单元"，它把专业知识、工作流程和最佳实践打包起来，让 Claude Code 能够自动调用。
+> A Skill is a self-contained capability unit that bundles domain knowledge, workflows, and best practices into something Claude Code can automatically invoke.
 
-最关键的区别在于：你不需要像用斜杠命令（/command）那样手动触发它。CC 会根据对话上下文，自己判断什么时候该用哪个 Skill。它就像一个有经验的同事，看到你在处理某个特定任务，会主动过来说："这个我熟，我来帮你。"
+The key difference from slash commands (`/command`): you never trigger a Skill manually. Claude Code reads the conversation context and decides when to activate the right Skill on its own. Think of it as a seasoned colleague who notices you are working on a specific task and steps in: "I know how to handle this. Let me help."
 
-Skills 可以根据你的需要，存储在不同位置，作用范围也不同：
+Skills can be stored at different levels, each with a different scope:
 
-![Skills 存储位置](skills-storage-compressed.webp)
+![Skills storage locations](skills-storage-compressed.webp)
 
-想象一下：
+Consider the possibilities:
 
-- **对于个人**：你可以把你最常用的代码片段、写作风格、数据分析流程，封装成个人 Skill。从此，Claude Code 就是最懂你的那个助手。
+- **For individuals**: Package your go-to code snippets, writing style, or data analysis workflows into personal Skills. Claude Code becomes the assistant that truly understands how *you* work.
 
-- **对于团队**：团队的设计规范、API 使用指南、项目提交流程……这些都可以做成项目 Skill，放在代码仓库里共享。新成员加入，CC 自动就能带他上路，再也不需要一遍遍地人肉培训。
+- **For teams**: Design standards, API guidelines, deployment procedures -- turn them all into project Skills committed to your repo. When a new team member joins, Claude Code automatically onboards them. No more repetitive training sessions.
 
-## 二、如何"教会"你的 AI？-- 30秒上手 Skill 创建
+## How to Create a Skill in 30 Seconds
 
-听起来很复杂？恰恰相反。创建一个 Skill 非常简单，你只需要一个文件夹和一个 SKILL.md 文件。我这里带大家一步步拆解。
+It sounds complicated, but it is surprisingly simple. You need one folder and one file. Here is the step-by-step breakdown.
 
-### 第一步：创建你的 Skill 目录
+### Step 1: Create Your Skill Directory
 
-> 💡 团队协作首选项目 Skills，因为它们可以被检入 git，团队成员拉下代码就能自动获得新能力。
+> Team collaboration works best with project Skills because they can be committed to git. Every team member who pulls the repo automatically gains the new capability.
 
 ```bash
-# 创建个人 Skill，只有你能用
+# Create a personal Skill (only you can use it)
 mkdir -p ~/.claude/skills/demo-skill
 
-# 或者，创建项目 Skill，团队可以共享
+# Or create a project Skill (shared with your team)
 mkdir -p .claude/skills/demo-company-skill
 ```
 
-### 第二步：编写灵魂文件 SKILL.md
+### Step 2: Write the SKILL.md File
 
-> 🫡 完整的skills示例我将放到文章最后，想先有个框架思路的可以划到最后看一眼先。
+> A complete Skill example is included at the end of this article. If you want to see the full picture first, scroll down to the appendix.
 
-这是 Skill 的核心，它由两部分组成：YAML frontmatter（元数据）和 Markdown（指令）。不用怕这些概念，他们很简单。
+This is the heart of every Skill. It has two parts: YAML frontmatter (metadata) and Markdown (instructions). Both are straightforward.
 
 ```markdown
 ---
 name: your-skill-name
-description: 简要描述这个 Skill 做什么以及何时使用它
+description: Brief description of what this Skill does and when to use it
 ---
 
-# 你的 Skill 名称
+# Your Skill Name
 
-## 指令
-为 Claude 提供清晰的分步指导。
+## Instructions
+Provide clear, step-by-step guidance for Claude.
 
-## 示例
-展示使用这个 Skill 的具体示例。
+## Examples
+Show concrete examples of how to use this Skill.
 ```
 
-#### 1️⃣ 命名的艺术
+#### Naming Conventions
 
-name 字段推荐使用英文，且动名词形式（动词 + -ing），让能力一目了然。
+Use English gerund form (verb + -ing) for the `name` field so the capability is immediately clear.
 
-✅ 推荐: processing-pdfs, analyzing-spreadsheets, writing-documentation
-❌ 避免：helper, utils, documents (过于模糊)
+Good: `processing-pdfs`, `analyzing-spreadsheets`, `writing-documentation`
+Bad: `helper`, `utils`, `documents` (too vague)
 
-#### 2️⃣ 真正的魔法：description
+#### The Magic of `description`
 
-> description 字段是 Claude Code 能否"智能"激活你的 Skill 的关键。它必须用第三人称清晰地描述"它能做什么"以及"什么时候用它"。
+> The `description` field determines whether Claude Code can intelligently activate your Skill. It must clearly state what the Skill does and when to use it, written in the third person.
 
-好的例子：
+Good example:
 
 ```yaml
 ---
 name: Feynman-Simplifier-Skill
-description: 将任何复杂的科学、技术或哲学概念，转化为 5 岁孩童都能听懂的类比，并精准定位用户的知识盲区。
+description: Transforms any complex scientific, technical, or philosophical concept into analogies a 5-year-old can understand, and pinpoints the user's knowledge gaps.
 ---
 ```
 
-糟糕的例子：
+Bad example:
 
 ```yaml
 ---
-name: 解释器1
-description: 这是一个用来解释东西的工具，可以把难懂的变简单。
+name: explainer1
+description: A tool that explains things and makes hard stuff simple.
 ---
 ```
 
-描述越精确，包含的触发关键词越多（如 git diff, commit message），Claude Code 就越"懂你"。
+The more precise your description and the more trigger keywords it contains (like `git diff`, `commit message`), the better Claude Code understands when to activate it.
 
-#### 3️⃣ 你甚至可以让 Claude Code 自己给你写一个 skill
+#### Let Claude Code Write the Skill for You
 
-可以参考下列模板进行写作：
+You can even ask Claude Code to generate Skills. Try this prompt template:
 
 ```
-请给我生成一个优秀且完整的SKILL.md，功能是：
-- 【描述你要的功能】
+Generate a complete SKILL.md with these requirements:
+- [Describe the capability you want]
 
-要求：
-1. 需要含有规范的 YAML frontmatter
-2. name 使用动名词形式
-3. description 使用第三人称，包含触发术语
-4. 添加 Instructions 和 Examples 章节
+Requirements:
+1. Include proper YAML frontmatter
+2. Use gerund form for the name
+3. Write description in third person with trigger terms
+4. Add Instructions and Examples sections
 ```
 
-### 第三步：目录架构（⚠️ 大多数人倒在这里）
+### Step 3: Directory Structure (Where Most People Go Wrong)
 
-![目录结构](directory-structure-compressed.webp)
+![Directory structure](directory-structure-compressed.webp)
 
-这张图目前大家只需要关注三个部分：
+Focus on three key elements in this diagram:
 
-1. 🗃️ **Skills**：这个是在Claude目录中的skills文件夹
+1. **skills/**: The skills folder inside the `.claude` directory.
 
-2. 🗃️ **my-skill**：这是最多人容易出错的地方，所有SKILL.md文件，都需要放置在文件夹当中，否则Claude code识别不出来。
+2. **my-skill/**: This is where most people make mistakes. Every SKILL.md file *must* live inside its own subfolder. Claude Code will not recognize a SKILL.md placed directly in the `skills/` directory.
 
-3. 📜 **SKILL.md**: 这就是详细的skill文档，也就是我们上面在讲解的。
+3. **SKILL.md**: The actual skill document we have been discussing above.
 
-其余的文件这篇文章就先不讲述了，留在工作流篇章进行讲解，以保证文章的易读性。
+After setting this up, type `/skills` in Claude Code to see all available Skills in your directory. That is all there is to it.
 
-这时候，当你再去Claude code里面输入 `/skills` 指令，就能够清晰的看到你的目录中有哪些skill是存在的。对，就这么简单！
+## Real-World Example: 1,000 User Complaints to Product Insights in 40 Seconds
 
-## 三、一个真实的用法：40秒，把 1000 条用户吐槽变成产品洞察
+The first three days after a product release are brutal. App Store reviews, support tickets, and community complaints flood in simultaneously. The traditional approach -- assigning two interns to copy feedback into spreadsheets, tag each entry manually, and compile a summary -- takes an entire day and still misses critical issues.
 
-做产品的最怕版本发布后的前三天。App Store 评论、客服后台的工单、社群里的吐槽像雪片一样飞来。以前我们得安排两个实习生，花一整天把这些反馈复制到 Excel 里，一条条打标签，最后统计出"这周大家到底在骂什么"，效率低且容易漏掉关键问题。
+We solved this by creating a project Skill called `feedback-analyst`.
 
-于是，我们创建了一个叫 feedback-analyst 的项目 Skill。
+The SKILL.md description was specific and deliberate:
 
-SKILL.md 的 description 写得非常清楚：
+> description: Reads user feedback or review lists, performs sentiment analysis, automatically categorizes entries as "bug", "UX improvement", or "feature request", and extracts the top 5 most frequent pain points. Activated when the user provides raw feedback data and requests analysis.
 
-> description: 读取用户反馈或评论列表，进行情感分析，自动将其归类为"功能缺陷"、"体验优化"或"新需求"，并提取出现频率最高的 Top 5 痛点。当用户提供原始反馈数据并请求分析时使用。
+Now, whenever the operations team exports a messy CSV of user reviews, they simply tell Claude Code: "Analyze this week's negative reviews and find the main patterns." Claude Code automatically activates the Skill, processes thousands of entries, filters out pure venting, and delivers actionable insights: "60% of negative reviews cite unreadable text in the new dark mode. Recommend prioritizing this fix."
 
-现在，每当运营导出一份乱七八糟的反馈 CSV 文件，只需要对 Claude Code 说一句："帮我看看这周用户的差评主要集中在哪"，CC 就会自动激活这个 Skill，瞬间读完几千字的内容，忽略掉无意义的情绪宣泄，直接告诉你："60% 的差评是因为新上线的'深色模式'导致文字看不清，建议优先修复。"
+The entire process takes seconds instead of a full day. And this is just the beginning -- you can use similar Skills to analyze competitor App Store reviews for market opportunities, distill user interview transcripts, or extract key trends from industry reports.
 
-整个过程立竿见影，从前需要人肉分类一整天的工作，现在喝口水的时间就有了结论，决策有了真实的数据支撑。这只是冰山一角，你可以用它来分析竞品在 App Store 的差评（寻找机会点）、整理原本枯燥的用户访谈逐字稿、甚至从几十页的行业报告中提炼出关键趋势。
+The most important implication: Skills turn individual expertise into modular, shareable components. These modules can circulate within your team or even externally -- which is also why some people raise concerns about AI platforms extracting specialized professional knowledge.
 
-最重要的是，Skill 能把每个人的能力给抽象化成为一种模块组件；让这个组件可以在团队内部，甚至于外部进行流通。🤔 这也是为什么有人会质疑Claude借此来骗取专业人士的知识。
+## Practical Skill Templates You Will Want to Copy
 
-## 四、实用 Skills 分享（保证你会偷偷复制）
+### Smart Git Commit Assistant
 
-### 4.1 智能 Git 提交助手
-
-再也不用想 commit message 了！
+Never struggle with commit messages again:
 
 `````markdown
 ---
 name: auto-git-commit
-description: 根据 git diff 自动生成符合规范的提交信息，支持 conventional commits 格式
+description: Analyzes git diff output and generates conventional commit messages following standard format
 ---
 
-# 智能 Git 提交
+# Smart Git Commit
 
-## 执行步骤
-1. 运行 git diff --staged 查看改动
-2. 分析改动类型：
-   - 新文件 → feat
-   - 修 bug → fix
-   - 改文档 → docs
-   - 重构 → refactor
-3. 提取关键改动
-4. 生成提交信息
+## Steps
+1. Run git diff --staged to review changes
+2. Classify the change type:
+   - New file -> feat
+   - Bug fix -> fix
+   - Documentation -> docs
+   - Refactoring -> refactor
+3. Extract key changes
+4. Generate commit message
 
-## 提交格式
-类型(范围): 简短描述
+## Commit Format
+type(scope): short description
 
-- feat: 新功能
-- fix: 修复
-- docs: 文档
-- style: 格式
-- refactor: 重构
-- test: 测试
-- chore: 构建
+- feat: New feature
+- fix: Bug fix
+- docs: Documentation
+- style: Formatting
+- refactor: Code restructuring
+- test: Tests
+- chore: Build/tooling
 
-## 示例
-输入：修改了登录逻辑，修复了密码验证问题
-输出：fix(auth): 修复登录密码验证逻辑
+## Example
+Input: Modified login logic, fixed password validation issue
+Output: fix(auth): resolve password validation in login flow
 `````
 
-### 4.2 会议纪要转任务清单
+### Meeting Notes to Action Items
 
-把冗长的会议记录秒变可执行的任务：
+Turn lengthy meeting recordings into executable task lists:
 
 `````markdown
 ---
 name: meeting-to-action
-description: 把冗长的会议记录转换成可执行的任务清单，自动识别负责人和截止日期
+description: Converts meeting notes into actionable task lists with owners and deadlines
 ---
 
-# 会议纪要转行动项
+# Meeting Notes to Action Items
 
-## 识别规则
-关键词触发：
-- "需要..." → 任务
-- "负责..." → 责任人
-- "下周/明天/月底前..." → 截止时间
-- "确认/跟进/完成..." → 动作
+## Detection Rules
+Trigger keywords:
+- "needs to..." / "should..." -> Task
+- "responsible for..." / "owned by..." -> Owner
+- "by next week / tomorrow / end of month..." -> Deadline
+- "confirm / follow up / complete..." -> Action
 
-## 输出格式
-### 行动项清单
-- [ ] 【张三】完成产品原型设计（截止：1月15日）
-- [ ] 【李四】联系供应商确认价格（截止：本周五）
-- [ ] 【团队】下周二前提交测试报告
+## Output Format
+### Action Items
+- [ ] [Alice] Complete product prototype (due: Jan 15)
+- [ ] [Bob] Contact supplier for pricing (due: this Friday)
+- [ ] [Team] Submit test report by next Tuesday
 
-### 待确认事项
-- 预算是否包含推广费用？（财务部确认）
+### Items Needing Clarification
+- Does the budget include marketing spend? (Finance to confirm)
 `````
 
-### 4.3 老板视角周报生成器
+### Executive-Ready Weekly Report Generator
 
-这个 Skill 绝了！老板最爱看的格式：
+The format leadership actually wants to read:
 
 `````markdown
 ---
 name: boss-report
-description: 生成管理层爱看的周报，突出价值和成果，而不是流水账
+description: Generates executive-style weekly reports that emphasize business value and outcomes over activity logs
 ---
 
-# 高管视角周报
+# Executive Weekly Report
 
-## 核心原则
-老板关心的不是你做了什么，而是：
-1. 为公司创造了什么价值
-2. 解决了什么问题
-3. 有什么风险需要关注
+## Core Principles
+Leadership does not care what you did. They care about:
+1. What value you created for the company
+2. What problems you solved
+3. What risks need attention
 
-## 结构模板
+## Structure Template
 
-### 本周关键成果（3条以内）
-- 用数据说话：提升了XX%，节省了XX元
-- 不要写"完成了XX任务"
-- 要写"通过XX，达成了XX效果"
+### Key Outcomes This Week (3 max)
+- Lead with data: increased by XX%, saved $XX
+- Don't write "completed XX task"
+- Write "achieved XX outcome through XX approach"
 
-### 下周重点（不超过3项）
-- 只写影响大的
-- 标注需要的支持
+### Next Week Focus (3 max)
+- Only include high-impact items
+- Flag any support needed
 
-### 风险提醒（如有）
-- 简明扼要
-- 附带建议方案
+### Risk Alerts (if any)
+- Keep it brief
+- Include recommended mitigation
 
-## 错误示范 vs 正确示范
-❌ 本周完成了用户系统的开发
-✅ 新用户系统上线，注册转化率提升 23%，预计月增收 10 万
+## Bad vs Good Examples
+Bad: Completed the user system development
+Good: New user system launched, registration conversion up 23%, projected $15K monthly revenue increase
 
-❌ 参加了 5 个会议
-✅ 推动跨部门协作，解决了困扰 2 个月的供应链问题
+Bad: Attended 5 meetings
+Good: Drove cross-team alignment, resolved a 2-month supply chain bottleneck
 `````
 
-## 五、附录：一个完整的 Skill 示例
+## Appendix: A Complete Skill Example
 
 `````markdown
 ---
 name: convert-to-word
-description: 把PDF转换成为Word
+description: Converts PDF documents to editable Word (.docx) format preserving layout and formatting
 ---
 
 # Convert PDF to Word
@@ -294,24 +294,24 @@ from pathlib import Path
 def convert_pdf_to_word(pdf_path, output_path=None):
     """Convert a PDF file to Word (.docx) format."""
     pdf_file = Path(pdf_path)
-    
+
     if not pdf_file.exists():
         raise FileNotFoundError(f"PDF file not found: {pdf_path}")
-    
+
     if output_path is None:
         output_path = pdf_file.with_suffix('.docx')
     else:
         output_path = Path(output_path)
-    
+
     print(f"Converting {pdf_file.name}...")
-    
+
     converter = Converter(str(pdf_file))
     converter.convert(str(output_path))
     converter.close()
-    
+
     if output_path.exists():
         file_size = output_path.stat().st_size / 1024
-        print(f"✓ Conversion successful!")
+        print(f"Conversion successful!")
         print(f"  Output: {output_path}")
         print(f"  Size: {file_size:.2f} KB")
         return str(output_path)
@@ -338,102 +338,100 @@ def convert_pdf_to_word(pdf_path, output_path=None):
 - Password-protected PDFs need to be unlocked first
 `````
 
-## 六、让 Skills 更强大的独家技巧
+## Advanced Tips to Supercharge Your Skills
 
-### 技巧 1：触发词矩阵
+### Tip 1: Trigger Word Matrix
 
-不要只依赖一个 description，用触发词矩阵提高命中率：
+Don't rely on a single description. Use a trigger word matrix to improve activation rates:
 
 ```markdown
 ---
-description: 分析用户反馈、客户评价、差评、投诉、建议、吐槽等内容，提取关键问题和改进方向
+description: Analyzes user feedback, customer reviews, negative ratings, complaints, suggestions, and grievances to extract key issues and improvement areas
 ---
 
-## 触发关键词
-- 用户反馈、客户反馈、反馈分析
-- 差评、差评分析、负面评价
-- 投诉处理、客诉分析
-- 产品建议、改进建议、优化建议
-- 用户吐槽、用户抱怨
+## Trigger Keywords
+- user feedback, customer feedback, feedback analysis
+- negative reviews, review analysis, bad ratings
+- complaint handling, complaint analysis
+- product suggestions, improvement ideas, optimization proposals
+- user frustrations, customer pain points
 ```
 
-### 技巧 2：渐进式输出
+### Tip 2: Progressive Output
 
-避免信息过载，分层展示：
+Avoid information overload with layered responses:
 
 ```markdown
-## 输出策略
+## Output Strategy
 
-### 首次输出：一句话总结
-只给核心结论，不超过 50 字
+### First response: One-sentence summary
+Core conclusion only, under 50 words
 
-### 如果用户说"详细"
-展开为 3 个要点
+### If the user says "details"
+Expand to 3 key points
 
-### 如果用户说"更详细"  
-完整分析报告
+### If the user says "more details"
+Full analysis report
 
-### 如果用户问"为什么"
-解释推理过程
+### If the user asks "why"
+Explain the reasoning process
 ```
 
-### 技巧 3：错误自愈
+### Tip 3: Graceful Degradation
 
-内置错误处理，优雅降级：
+Build in error handling so the Skill never fails silently:
 
 ```markdown
-## 容错机制
+## Fallback Mechanism
 
-尝试顺序：
-1. 最优方案：调用 API 获取实时数据
-2. 如果失败：使用缓存数据
-3. 还失败：使用通用模板
-4. 都不行：请求用户提供
+Try in order:
+1. Best case: Call API for real-time data
+2. If that fails: Use cached data
+3. Still failing: Use generic template
+4. All else fails: Ask the user to provide input
 
-绝不能显示错误信息，要优雅降级
+Never show raw error messages. Degrade gracefully.
 ```
 
-## 七、常见踩坑实录
+## Common Pitfalls and How to Avoid Them
 
-### 坑 1：文件夹结构错了，Skill 直接失效
+### Pitfall 1: Wrong Directory Structure Kills Your Skill
 
-**错误**：
+**Wrong**:
 ```
-.claude/skills/my-skill.md  ❌
-```
-
-**正确**：
-```
-.claude/skills/my-skill/SKILL.md  ✅
+.claude/skills/my-skill.md
 ```
 
-必须是文件夹！必须叫 SKILL.md！大小写敏感！
+**Correct**:
+```
+.claude/skills/my-skill/SKILL.md
+```
 
-### 坑 2：description 写太长
+It must be inside a folder. It must be named `SKILL.md`. It is case-sensitive.
 
-保持在 20 字以内，效果最好。太长反而降低触发率。
+### Pitfall 2: Description Too Long
 
-### 坑 3：过度依赖 Skills
+Keep descriptions under 20 words for best results. Longer descriptions actually reduce activation rates.
 
-不是所有事都需要 Skill。简单的任务直接问就行，别过度工程化。
+### Pitfall 3: Over-Engineering with Skills
 
-## 八、结语：巨鲸潜行，万物生长
+Not everything needs a Skill. For simple one-off tasks, just ask Claude directly. Avoid unnecessary complexity.
 
-如果说之前的 AI 是一个无所不知的"巨鲸"，那 Skill 机制则让整个生态"万物生长"。
+## Conclusion
 
-它把定义"能力"的权力，从 AI 公司交还给了每一位用户、每一个团队。我们不再只是被动的使用者，而是主动的"训练师"和"赋能者"。我们正在见证一个新时代的开启：AI 将不再是一个个孤立的"大脑"，而是能够深度融入我们工作流、理解我们独特上下文的"超级伙伴"。
+If AI was previously a powerful but generic brain, the Skills system transforms it into something far more personal. It shifts the power to define capabilities from AI companies back to individual users and teams.
 
-如果你也想体验电脑上最智能的 AI，感受这种"人机合一"的默契，一定要试试 Claude Code 和它的 Skill 功能。
+We are no longer passive consumers of AI. We are active trainers and enablers. Skills let AI deeply integrate into your specific workflows, understand your unique context, and become a true partner rather than a generic tool.
 
-万事开头难，但这篇文章已经为你铺平了最开始的道路。当你遇到任何重复性的、繁琐的工作时，不妨打开 Claude code，跟它聊聊，或者干脆为它创建一个 Skill。
+If you want to experience this level of human-AI collaboration, start by creating one simple Skill for a task you do repeatedly. Open Claude Code, describe what you need, or just create a `SKILL.md` yourself.
 
-相信我，你很快会找到属于自己的"Aha Moment"！
+The hardest part is getting started -- and this article has already cleared that path for you.
 
 ---
 
-## 相关阅读
+## Related Reading
 
-- [Claude Code Skills 完全指南](/posts/ai/2026-01-08-claudecode-skill-guide/)
-- [Claude Code 浏览器自动化方案对比：Agent Browser、Playwright、DevTools](/posts/ai/2026-01-28-claude-code-browser-automation/)
-- [Claude Code 最佳实践指南](/posts/ai/2026-01-06-claudecode-best-practices/)
-- [Agent Skills：AI 编程的新范式](/posts/ai/2026-01-19-agent-skills-new-programming/)
+- [Claude Code Skills Complete Guide](/posts/ai/2026-01-08-claudecode-skill-guide/)
+- [Claude Code Browser Automation: Comparing Agent Browser, Playwright, and DevTools](/posts/ai/2026-01-28-claude-code-browser-automation/)
+- [Claude Code Best Practices Guide](/posts/ai/2026-01-06-claudecode-best-practices/)
+- [Agent Skills: A New Paradigm for AI Programming](/posts/ai/2026-01-19-agent-skills-new-programming/)

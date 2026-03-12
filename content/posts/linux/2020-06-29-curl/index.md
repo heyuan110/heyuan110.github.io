@@ -1,413 +1,413 @@
 +++
-title = 'curl 命令详解（2026）：GET/POST 请求、文件传输与 API 调试实战'
+title = 'curl Command Guide (2026): HTTP Requests, File Transfers, and API Debugging'
 date = '2020-06-29'
 draft = false
 toc = true
-description = 'curl 命令完整教程：GET/POST/PUT/DELETE 请求、JSON 数据发送、文件上传下载、鉴权认证、代理配置与耗时分析，一文速查全部用法。'
-tags = ['curl', 'Linux', 'HTTP', 'API', '运维', '命令行']
+description = 'Complete curl tutorial covering GET/POST/PUT/DELETE requests, JSON payloads, file uploads and downloads, authentication, proxy setup, and performance timing.'
+tags = ['curl', 'Linux', 'HTTP', 'API', 'CLI']
 categories = ['Linux']
-keywords = ['curl 命令详解', 'curl 用法大全', 'curl 常用参数', 'curl post 请求', 'curl get 请求', 'curl 下载文件', 'curl json', 'curl 代理', 'curl 证书', 'curl linux', 'curl 教程', 'curl 命令 2026']
+keywords = ['curl command guide', 'curl tutorial', 'curl examples', 'curl post request', 'curl get request', 'curl download file', 'curl json', 'curl proxy', 'curl certificate', 'curl linux', 'curl cheat sheet', 'curl command 2026']
 +++
 
-在日常开发和运维中，**curl 命令**几乎是使用频率最高的[命令行](/posts/linux/2020-03-19-linux-mac-commands/)工具之一。它支持 HTTP、HTTPS、FTP 等 20+ 种协议，无论是调试 REST API、发送 POST 请求、下载文件还是测试网络连通性，一条 curl 命令就能搞定。
+If there is one [command-line](/posts/linux/2020-03-19-linux-mac-commands/) tool every developer should master, it is **curl**. Supporting HTTP, HTTPS, FTP, and 20+ other protocols, curl handles everything from quick API tests and POST requests to large file downloads and network diagnostics — all from a single command.
 
-本文是一份系统的 curl 命令详解教程，涵盖 GET/POST/PUT/DELETE 等 HTTP 请求方法、JSON 数据发送、文件上传下载、Bearer Token 认证、代理配置、耗时分析等全部核心用法。如果你还需要排查网络链路问题，可以配合 [traceroute 命令详解](/posts/linux/2020-06-28-traceroute/) 一起使用。
+This guide walks through every major curl feature: HTTP methods (GET, POST, PUT, DELETE, PATCH), JSON payloads, file uploads and downloads, Bearer Token authentication, proxy configuration, and request timing. If you also need to trace network paths, pair it with [traceroute](/posts/linux/2020-06-28-traceroute/).
 
 <!--more-->
 
-## 为什么要学 curl？
+## Why Learn curl?
 
-| 场景 | curl 的优势 |
-|------|-------------|
-| API 调试 | 快速发送各种 HTTP 请求，无需安装额外工具 |
-| 自动化脚本 | 轻松集成到 Shell 脚本中 |
-| 网络诊断 | 查看详细的请求/响应信息 |
-| 文件传输 | 支持断点续传、限速下载 |
-| 跨平台 | Linux、macOS、Windows 通用 |
+| Use Case | Why curl Excels |
+|----------|-----------------|
+| API debugging | Fire off any HTTP request instantly, no extra tools needed |
+| Automation | Drops right into shell scripts and CI/CD pipelines |
+| Network diagnostics | Inspect full request/response details with `-v` |
+| File transfers | Resume interrupted downloads, throttle bandwidth |
+| Cross-platform | Works on Linux, macOS, and Windows out of the box |
 
-> 掌握 curl，你就掌握了一个万能的网络瑞士军刀。
+> Master curl and you have a Swiss Army knife for anything that speaks HTTP.
 
-## 一、基础用法
+## Basic Usage
 
-### 1. 发送 GET 请求
+### Sending a GET Request
 
-最简单的用法，直接跟 URL：
+The simplest form — just pass a URL:
 
 ```bash
-# 获取网页内容
+# Fetch a web page
 curl https://httpbin.org/get
 
-# 将响应保存到文件
+# Save the response to a file
 curl -o response.json https://httpbin.org/get
 
-# 使用远程文件名保存
+# Save using the remote filename
 curl -O https://example.com/file.zip
 ```
 
-### 2. 显示详细信息
+### Viewing Detailed Output
 
-调试时最有用的选项：
+The most useful flags for debugging:
 
 ```bash
-# -v 显示详细的请求/响应过程
+# -v shows the full request/response exchange
 curl -v https://httpbin.org/get
 
-# -i 显示响应头
+# -i includes response headers in the output
 curl -i https://httpbin.org/get
 
-# -I 只获取响应头（HEAD 请求）
+# -I fetches headers only (HEAD request)
 curl -I https://httpbin.org/get
 
-# 静默模式，只显示结果
+# -s enables silent mode (no progress bar)
 curl -s https://httpbin.org/get
 ```
 
-**-v 输出解读**：
-- `>` 开头：发送的请求
-- `<` 开头：收到的响应
-- `*` 开头：curl 的处理信息
+**Reading `-v` output**:
+- Lines starting with `>` — what curl sent
+- Lines starting with `<` — what the server returned
+- Lines starting with `*` — curl's own status messages
 
-### 3. 跟随重定向
+### Following Redirects
 
-很多 URL 会返回 301/302 重定向，使用 `-L` 自动跟随：
+Many URLs return 301/302 redirects. Use `-L` to follow them automatically:
 
 ```bash
-# 自动跟随重定向
+# Follow redirects
 curl -L https://github.com
 
-# 限制最大重定向次数
+# Limit the maximum number of redirects
 curl -L --max-redirs 5 https://example.com
 ```
 
-## 二、HTTP 请求方法
+## HTTP Request Methods
 
-### 1. POST 请求
+### POST Requests
 
 ```bash
-# 发送表单数据（application/x-www-form-urlencoded）
+# Send form data (application/x-www-form-urlencoded)
 curl -X POST -d "name=john&email=john@example.com" https://httpbin.org/post
 
-# 发送 JSON 数据
+# Send a JSON payload
 curl -X POST \
   -H "Content-Type: application/json" \
   -d '{"name":"john","email":"john@example.com"}' \
   https://httpbin.org/post
 
-# 从文件读取 JSON 数据
+# Read JSON from a file
 curl -X POST \
   -H "Content-Type: application/json" \
   -d @data.json \
   https://httpbin.org/post
 ```
 
-### 2. PUT 请求
+### PUT Requests
 
 ```bash
-# 更新资源
+# Replace a resource
 curl -X PUT \
   -H "Content-Type: application/json" \
   -d '{"id":1,"name":"john","status":"active"}' \
   https://httpbin.org/put
 ```
 
-### 3. DELETE 请求
+### DELETE Requests
 
 ```bash
-# 删除资源
+# Delete a resource
 curl -X DELETE https://httpbin.org/delete
 
-# 带认证的删除
+# Delete with authentication
 curl -X DELETE \
   -H "Authorization: Bearer your_token" \
   https://api.example.com/users/123
 ```
 
-### 4. PATCH 请求
+### PATCH Requests
 
 ```bash
-# 部分更新
+# Partial update
 curl -X PATCH \
   -H "Content-Type: application/json" \
   -d '{"status":"inactive"}' \
   https://httpbin.org/patch
 ```
 
-## 三、请求头与认证
+## Headers and Authentication
 
-### 1. 自定义请求头
+### Custom Headers
 
 ```bash
-# 添加单个请求头
+# Add a single header
 curl -H "Authorization: Bearer token123" https://api.example.com
 
-# 添加多个请求头
+# Add multiple headers
 curl -H "Content-Type: application/json" \
      -H "Accept: application/json" \
      -H "X-Custom-Header: value" \
      https://api.example.com
 
-# 设置 User-Agent
+# Set the User-Agent string
 curl -A "Mozilla/5.0 (Macintosh)" https://example.com
 
-# 设置 Referer
+# Set the Referer header
 curl -e "https://google.com" https://example.com
 ```
 
-### 2. 基本认证
+### Basic Authentication
 
 ```bash
-# 用户名密码认证
+# Supply username and password inline
 curl -u username:password https://api.example.com
 
-# 交互式输入密码（更安全）
+# Prompt for the password interactively (more secure)
 curl -u username https://api.example.com
 ```
 
-### 3. Bearer Token 认证
+### Bearer Token Authentication
 
 ```bash
 curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." \
   https://api.example.com/users
 ```
 
-### 4. Cookie 处理
+### Cookie Handling
 
 ```bash
-# 发送 Cookie
+# Send a cookie
 curl -b "session_id=abc123" https://example.com
 
-# 从文件读取 Cookie
+# Load cookies from a file
 curl -b cookies.txt https://example.com
 
-# 保存响应的 Cookie
+# Save cookies from the response
 curl -c cookies.txt https://example.com
 
-# 读取并保存 Cookie（模拟浏览器会话）
+# Load and save cookies (simulate a browser session)
 curl -b cookies.txt -c cookies.txt https://example.com
 ```
 
-## 四、文件上传与下载
+## File Uploads and Downloads
 
-### 1. 文件下载
+### Downloading Files
 
 ```bash
-# 下载文件并重命名
+# Download and rename
 curl -o myfile.zip https://example.com/file.zip
 
-# 使用远程文件名
+# Keep the remote filename
 curl -O https://example.com/file.zip
 
-# 断点续传
+# Resume a partial download
 curl -C - -O https://example.com/largefile.zip
 
-# 限速下载（100KB/s）
+# Limit download speed to 100 KB/s
 curl --limit-rate 100k -O https://example.com/file.zip
 
-# 显示下载进度条
+# Show a progress bar instead of the default meter
 curl -# -O https://example.com/file.zip
 ```
 
-### 2. 文件上传
+### Uploading Files
 
 ```bash
-# 上传单个文件（multipart/form-data）
+# Upload a single file (multipart/form-data)
 curl -F "file=@/path/to/file.jpg" https://httpbin.org/post
 
-# 上传多个文件
+# Upload multiple files
 curl -F "file1=@file1.jpg" -F "file2=@file2.jpg" https://httpbin.org/post
 
-# 上传文件并指定 MIME 类型
+# Specify the MIME type explicitly
 curl -F "file=@photo.jpg;type=image/jpeg" https://httpbin.org/post
 
-# 上传文件同时带其他表单字段
+# Upload a file alongside other form fields
 curl -F "file=@document.pdf" -F "description=My Document" https://httpbin.org/post
 ```
 
-## 五、HTTPS 与证书
+## HTTPS and Certificates
 
-### 1. 忽略证书验证
+### Skipping Certificate Verification
 
 ```bash
-# 跳过 SSL 证书验证（测试环境使用）
+# Ignore SSL certificate errors (testing only!)
 curl -k https://self-signed.example.com
 
-# 等同于
+# Long form
 curl --insecure https://self-signed.example.com
 ```
 
-### 2. 指定证书
+### Specifying Certificates
 
 ```bash
-# 指定 CA 证书
+# Use a custom CA certificate
 curl --cacert /path/to/ca.crt https://example.com
 
-# 使用客户端证书
+# Authenticate with a client certificate
 curl --cert /path/to/client.crt --key /path/to/client.key https://example.com
 ```
 
-### 3. 指定 TLS 版本
+### Forcing a TLS Version
 
 ```bash
-# 强制使用 TLS 1.2
+# Require TLS 1.2
 curl --tlsv1.2 https://example.com
 
-# 强制使用 TLS 1.3
+# Require TLS 1.3
 curl --tlsv1.3 https://example.com
 ```
 
-## 六、代理设置
+## Proxy Configuration
 
-### 1. HTTP 代理
+### HTTP Proxies
 
 ```bash
-# 使用 HTTP 代理
+# Route through an HTTP proxy
 curl -x http://proxy.example.com:8080 https://target.com
 
-# 带认证的代理
+# Proxy with authentication
 curl -x http://user:pass@proxy.example.com:8080 https://target.com
 
-# 通过环境变量设置（永久生效）
+# Set via environment variables (persistent)
 export http_proxy=http://proxy.example.com:8080
 export https_proxy=http://proxy.example.com:8080
 curl https://target.com
 ```
 
-### 2. SOCKS 代理
+### SOCKS Proxies
 
 ```bash
-# SOCKS5 代理
+# SOCKS5 proxy
 curl --socks5 127.0.0.1:1080 https://example.com
 
-# SOCKS5 代理（DNS 也通过代理解析）
+# SOCKS5 with remote DNS resolution
 curl --socks5-hostname 127.0.0.1:1080 https://example.com
 ```
 
-## 七、超时与重试
+## Timeouts and Retries
 
 ```bash
-# 连接超时（秒）
+# Connection timeout in seconds
 curl --connect-timeout 10 https://example.com
 
-# 总超时时间（秒）
+# Total request timeout in seconds
 curl -m 30 https://example.com
 curl --max-time 30 https://example.com
 
-# 自动重试
+# Retry up to 3 times on transient failures
 curl --retry 3 https://example.com
 
-# 重试间隔
+# Wait 5 seconds between retries
 curl --retry 3 --retry-delay 5 https://example.com
 ```
 
-## 八、指定 IP 访问
+## Targeting a Specific IP
 
-调试 CDN 或负载均衡时非常有用：
+Invaluable when debugging CDN or load-balancer behavior:
 
 ```bash
-# HTTP：通过代理方式指定 IP
+# HTTP: route via a specific IP using proxy syntax
 curl -x 192.168.1.100:80 "http://example.com/api"
 
-# HTTPS：通过 Host 头指定域名
+# HTTPS: set the Host header manually
 curl -H "Host: example.com" "https://192.168.1.100/api" -k
 
-# 使用 --resolve 解析域名到指定 IP（推荐）
+# Best approach: resolve the domain to a chosen IP
 curl --resolve example.com:443:192.168.1.100 https://example.com/api
 
-# 将输出丢弃，只看请求过程
+# Discard the body, just watch the handshake
 curl -vo /dev/null --resolve example.com:443:192.168.1.100 https://example.com
 ```
 
-## 九、实用技巧
+## Practical Tips
 
-### 1. 格式化 JSON 输出
+### Pretty-Print JSON Output
 
 ```bash
-# 配合 jq 格式化
+# Pipe through jq for formatted JSON
 curl -s https://httpbin.org/get | jq .
 
-# 只提取特定字段
+# Extract a specific field
 curl -s https://httpbin.org/get | jq '.headers'
 ```
 
-### 2. 测量请求时间
+### Measure Request Timing
 
 ```bash
-# 显示各阶段耗时
-curl -w "\n--- 耗时统计 ---\n\
-DNS解析: %{time_namelookup}s\n\
-TCP连接: %{time_connect}s\n\
-SSL握手: %{time_appconnect}s\n\
-首字节: %{time_starttransfer}s\n\
-总耗时: %{time_total}s\n" \
+# Print timing breakdown for each phase
+curl -w "\n--- Timing ---\n\
+DNS Lookup:    %{time_namelookup}s\n\
+TCP Connect:   %{time_connect}s\n\
+TLS Handshake: %{time_appconnect}s\n\
+First Byte:    %{time_starttransfer}s\n\
+Total:         %{time_total}s\n" \
   -o /dev/null -s https://example.com
 ```
 
-### 3. 模拟浏览器请求
+### Mimic a Browser Request
 
 ```bash
 curl -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36" \
      -H "Accept: text/html,application/xhtml+xml" \
-     -H "Accept-Language: zh-CN,zh;q=0.9,en;q=0.8" \
+     -H "Accept-Language: en-US,en;q=0.9" \
      -e "https://google.com" \
      https://example.com
 ```
 
-### 4. 发送压缩请求
+### Request Compressed Responses
 
 ```bash
-# 请求压缩响应
+# Automatically decompress gzip/br responses
 curl --compressed https://example.com
 ```
 
-## 十、常用选项速查表
+## Quick Reference Table
 
-| 选项 | 说明 | 示例 |
-|------|------|------|
-| `-X` | 指定请求方法 | `-X POST` |
-| `-d` | 发送 POST 数据 | `-d '{"key":"value"}'` |
-| `-H` | 添加请求头 | `-H "Content-Type: application/json"` |
-| `-o` | 输出到文件 | `-o file.txt` |
-| `-O` | 使用远程文件名保存 | `-O` |
-| `-L` | 跟随重定向 | `-L` |
-| `-v` | 显示详细信息 | `-v` |
-| `-s` | 静默模式 | `-s` |
-| `-i` | 显示响应头 | `-i` |
-| `-I` | 只获取响应头 | `-I` |
-| `-k` | 忽略 SSL 证书 | `-k` |
-| `-u` | 基本认证 | `-u user:pass` |
-| `-b` | 发送 Cookie | `-b "name=value"` |
-| `-c` | 保存 Cookie | `-c cookies.txt` |
-| `-F` | 上传文件 | `-F "file=@path"` |
-| `-x` | 使用代理 | `-x proxy:port` |
-| `-m` | 超时时间 | `-m 30` |
-| `-A` | User-Agent | `-A "Mozilla/5.0"` |
-| `-e` | Referer | `-e "https://ref.com"` |
+| Flag | Purpose | Example |
+|------|---------|---------|
+| `-X` | Set HTTP method | `-X POST` |
+| `-d` | Send request body | `-d '{"key":"value"}'` |
+| `-H` | Add a header | `-H "Content-Type: application/json"` |
+| `-o` | Write output to file | `-o file.txt` |
+| `-O` | Save with remote filename | `-O` |
+| `-L` | Follow redirects | `-L` |
+| `-v` | Verbose output | `-v` |
+| `-s` | Silent mode | `-s` |
+| `-i` | Include response headers | `-i` |
+| `-I` | Headers only (HEAD) | `-I` |
+| `-k` | Skip SSL verification | `-k` |
+| `-u` | Basic auth credentials | `-u user:pass` |
+| `-b` | Send cookies | `-b "name=value"` |
+| `-c` | Save cookies to file | `-c cookies.txt` |
+| `-F` | Upload file (multipart) | `-F "file=@path"` |
+| `-x` | Use a proxy | `-x proxy:port` |
+| `-m` | Max request time | `-m 30` |
+| `-A` | Set User-Agent | `-A "Mozilla/5.0"` |
+| `-e` | Set Referer | `-e "https://ref.com"` |
 
-## 十一、curl 与 wget 对比
+## curl vs. wget
 
-| 对比项 | curl | wget |
-|--------|------|------|
-| 协议支持 | 20+ 种（HTTP、FTP、SMTP 等） | HTTP、HTTPS、FTP |
-| 输出方式 | 默认输出到 stdout | 默认保存到文件 |
-| 递归下载 | 不支持 | 支持（`-r`） |
-| HTTP 方法 | 全部支持（GET/POST/PUT/DELETE 等） | 仅 GET/POST |
-| 上传功能 | 支持 | 不支持 |
-| 管道处理 | 非常方便（配合 jq 等） | 不便 |
-| 适用场景 | API 调试、脚本集成、数据传输 | 批量下载、网站镜像 |
+| Feature | curl | wget |
+|---------|------|------|
+| Protocol support | 20+ (HTTP, FTP, SMTP, etc.) | HTTP, HTTPS, FTP |
+| Default output | stdout | File on disk |
+| Recursive download | No | Yes (`-r`) |
+| HTTP methods | All (GET/POST/PUT/DELETE/PATCH) | GET and POST only |
+| Upload support | Yes | No |
+| Pipe-friendly | Excellent (pairs well with jq) | Limited |
+| Best for | API testing, scripting, data transfer | Bulk downloads, site mirroring |
 
-简单来说：**调试 API 用 curl，批量下载用 wget**。
+**Rule of thumb: use curl to talk to APIs, use wget to mirror websites.**
 
-## 十二、常见问题
+## Frequently Asked Questions
 
-### Q1：curl 返回乱码怎么办？
+### Q1: curl returns garbled output. How do I fix it?
 
-可能是服务端返回了压缩数据，使用 `--compressed` 参数自动解压：
+The server is probably returning compressed data. Add `--compressed` so curl decompresses it automatically:
 
 ```bash
 curl --compressed https://example.com
 ```
 
-### Q2：如何用 curl 发送 JSON 请求？
+### Q2: How do I send a JSON request with curl?
 
 ```bash
 curl -X POST \
@@ -416,70 +416,70 @@ curl -X POST \
   https://httpbin.org/post
 ```
 
-关键是添加 `Content-Type: application/json` 请求头，并用 `-d` 传递 JSON 字符串。
+The key is the `Content-Type: application/json` header combined with `-d` for the JSON body.
 
-### Q3：curl 如何忽略 SSL 证书错误？
+### Q3: How do I ignore SSL certificate errors?
 
-使用 `-k` 或 `--insecure` 参数（仅限测试环境）：
+Use `-k` or `--insecure` — but only in non-production environments:
 
 ```bash
 curl -k https://self-signed.example.com
 ```
 
-### Q4：如何查看 curl 请求的完整过程？
+### Q4: How do I see the full request and response?
 
-使用 `-v`（verbose）参数查看详细的请求和响应信息：
+Pass `-v` (verbose) to see everything curl sends and receives:
 
 ```bash
 curl -v https://example.com
 ```
 
-### Q5：curl 如何设置超时时间？
+### Q5: How do I set a timeout?
 
-使用 `--connect-timeout` 设置连接超时，`-m`（或 `--max-time`）设置总超时：
+Use `--connect-timeout` for the TCP connection phase and `-m` (or `--max-time`) for the entire operation:
 
 ```bash
-# 连接超时 5 秒，总超时 30 秒
+# 5-second connection timeout, 30-second total timeout
 curl --connect-timeout 5 -m 30 https://example.com
 ```
 
-### Q6：curl 和 Postman 有什么区别？
+### Q6: curl vs. Postman — when should I use which?
 
-curl 是命令行工具，轻量、可脚本化、适合自动化和 CI/CD 流水线；Postman 是 GUI 工具，可视化操作更友好，适合团队协作和复杂的 API 测试集合管理。两者可互补，Postman 还支持将请求导出为 curl 命令。
+curl is a lightweight CLI tool that fits naturally into scripts and CI/CD pipelines. Postman is a GUI application with a richer visual interface, team collaboration features, and test collection management. They complement each other well — Postman can even export requests as curl commands.
 
-### Q7：如何用 curl 测量网站响应速度？
+### Q7: How do I measure a website's response time?
 
-使用 `-w` 参数输出各阶段耗时：
+Use the `-w` flag to print timing data for each phase of the request:
 
 ```bash
-curl -w "DNS: %{time_namelookup}s\nTCP: %{time_connect}s\n首字节: %{time_starttransfer}s\n总耗时: %{time_total}s\n" -o /dev/null -s https://example.com
+curl -w "DNS: %{time_namelookup}s\nTCP: %{time_connect}s\nFirst Byte: %{time_starttransfer}s\nTotal: %{time_total}s\n" -o /dev/null -s https://example.com
 ```
 
 ---
 
-## 总结
+## Summary
 
-curl 是一个功能强大的命令行工具，掌握它能大幅提升你的工作效率。本文介绍了最常用的场景：
+curl is one of the most versatile tools in any developer's toolkit. This guide covered the essentials:
 
-1. **基础请求**：GET/POST/PUT/DELETE
-2. **认证方式**：Basic、Bearer Token、Cookie
-3. **文件传输**：上传、下载、断点续传
-4. **HTTPS 处理**：证书验证、TLS 版本
-5. **调试技巧**：指定 IP、测量耗时、格式化输出
+1. **HTTP methods** — GET, POST, PUT, DELETE, PATCH
+2. **Authentication** — Basic Auth, Bearer Tokens, cookies
+3. **File transfers** — uploads, downloads, resume support
+4. **HTTPS** — certificate handling, TLS version control
+5. **Debugging** — target specific IPs, measure timing, format output
 
-建议把常用命令保存为 Shell 函数或别名，更多 curl 高级用法可参考[官方文档](https://curl.se/docs/)。
+Consider saving your most-used commands as shell aliases or functions. For advanced features, check the [official documentation](https://curl.se/docs/).
 
-## 相关阅读
+## Further Reading
 
-- [traceroute 命令详解：路由追踪与网络故障排查](/posts/linux/2020-06-28-traceroute/) - 定位网络延迟瓶颈，与 curl 配合排查问题
-- [Linux/macOS 常用命令速查手册](/posts/linux/2020-03-19-linux-mac-commands/) - 运维开发常用命令参考
-- [Linux 运维基础 Hub](/posts/linux/linux-ops-basics-hub/) - 系统运维知识汇总
-- [AWS CLI 完全指南](/posts/linux/2020-07-04-aws-cli/) - 云服务命令行管理
-- [Oh My Zsh 安装配置指南](/posts/linux/2015-06-17-shell-zsh/) - 打造高效终端环境
+- [Traceroute Explained: Route Tracing and Network Troubleshooting](/posts/linux/2020-06-28-traceroute/) - Locate network latency bottlenecks alongside curl
+- [Linux/macOS Command Cheat Sheet](/posts/linux/2020-03-19-linux-mac-commands/) - Essential command reference for developers
+- [Linux Ops Basics Hub](/posts/linux/linux-ops-basics-hub/) - System administration knowledge base
+- [AWS CLI Complete Guide](/posts/linux/2020-07-04-aws-cli/) - Cloud service management from the terminal
+- [Oh My Zsh Setup Guide](/posts/linux/2015-06-17-shell-zsh/) - Build a productive shell environment
 
-## 参考资源
+## References
 
-- [curl 官方文档](https://curl.se/docs/)
+- [curl Official Documentation](https://curl.se/docs/)
 - [curl Man Page](https://curl.se/docs/manpage.html)
 - [Test a REST API with curl - Baeldung](https://www.baeldung.com/curl-rest)
-- [httpbin.org](https://httpbin.org/) - HTTP 请求测试服务
+- [httpbin.org](https://httpbin.org/) - HTTP request testing service

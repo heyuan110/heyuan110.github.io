@@ -1,224 +1,224 @@
 +++
 date = '2026-02-24T07:00:00+08:00'
 draft = false
-title = '斯坦福 CS146S 精读（一）：Vibe Coding 如何成为正式学科'
-description = '深度拆解斯坦福大学 CS146S The Modern Software Developer 课程，10 周课程大纲、豪华嘉宾阵容、免费学习资源全收录，看全球顶级高校如何系统教授 Vibe Coding。'
+title = 'Stanford CS146S Deep Dive (Part 1): How Vibe Coding Became a Real Academic Discipline'
+description = 'A complete breakdown of Stanford CS146S The Modern Software Developer — 10-week syllabus, all-star guest speakers, free learning resources, and how a top university is teaching Vibe Coding systematically.'
 toc = true
-tags = ['Vibe Coding', 'Stanford CS146S', 'AI 编程', '课程解读', 'Agentic Engineering']
-categories = ['AI原理']
-keywords = ['Stanford CS146S', '斯坦福 Vibe Coding 课程', 'The Modern Software Developer', 'AI 编程课程', 'Vibe Coding 学什么']
+tags = ['Vibe Coding', 'Stanford CS146S', 'AI Coding', 'Course Review', 'Agentic Engineering']
+categories = ['AI Guides']
+keywords = ['Stanford CS146S', 'Stanford Vibe Coding course', 'The Modern Software Developer', 'AI coding course', 'Vibe Coding curriculum']
 +++
 
-从 Andrej Karpathy 在 2025 年 2 月发推提出 [Vibe Coding](/posts/ai/2026-02-22-vibe-coding-guide/)，到斯坦福大学在同年秋季正式开设 CS146S 课程，前后不到 8 个月。一个社交媒体上的热词，以这样的速度进入全球顶级高校的课程体系，在计算机科学的历史上极为罕见。
+From Andrej Karpathy coining [Vibe Coding](/posts/ai/2026-02-22-vibe-coding-guide/) in a February 2025 tweet to Stanford officially launching CS146S that same fall — less than 8 months. A social media buzzword entering a top university's curriculum this fast is almost unprecedented in the history of computer science.
 
-这不是一门"教你用 ChatGPT 写代码"的水课。CS146S 覆盖了从 LLM 原理到 Agent 架构、从上下文工程到安全攻防、从自动化构建到生产运维的完整软件工程生命周期。它的嘉宾名单读起来像一份 AI 编程领域的"名人堂"——Claude Code 创始人、Vercel AI 研究负责人、Semgrep CEO、a16z 合伙人……
+This is not some "learn to code with ChatGPT" fluff course. CS146S covers the full software engineering lifecycle — from LLM fundamentals to Agent architectures, from context engineering to security, from automated builds to production operations. Its guest speaker list reads like an AI coding hall of fame: the creator of Claude Code, Vercel's Head of AI Research, Semgrep's CEO, an a16z general partner...
 
-**最关键的是，所有课程资源——PPT、阅读材料、作业代码——全部免费公开。**
+**Most importantly, all course materials — slides, readings, assignment code — are completely free and open.**
 
-这篇文章将完整拆解这门课程的每一个模块，帮你建立系统认知。后续系列文章将对其中最有价值的几个主题做深度精读。
+This article breaks down every module of the course to give you a systematic overview. Subsequent articles in this series will deep-dive into the most valuable topics.
 
-## 课程基本信息
+## Course Overview
 
-| 项目 | 详情 |
-|------|------|
-| **课程编号** | CS146S |
-| **课程名称** | The Modern Software Developer |
-| **开课学校** | Stanford University |
-| **学期** | Fall 2025（首次开课） |
-| **讲师** | Mihail Eric |
-| **助教** | Febie Lin, Brent Ju |
-| **学分** | 3 units |
-| **前置要求** | CS111 等效编程经验，推荐 CS221/229 |
-| **课程官网** | [themodernsoftware.dev](https://themodernsoftware.dev) |
-| **作业代码** | [GitHub 仓库](https://github.com/mihail911/modern-software-dev-assignments) |
+| Item | Details |
+|------|---------|
+| **Course Number** | CS146S |
+| **Course Name** | The Modern Software Developer |
+| **University** | Stanford University |
+| **Term** | Fall 2025 (inaugural offering) |
+| **Instructor** | Mihail Eric |
+| **TAs** | Febie Lin, Brent Ju |
+| **Credits** | 3 units |
+| **Prerequisites** | CS111-equivalent programming experience; CS221/229 recommended |
+| **Course Website** | [themodernsoftware.dev](https://themodernsoftware.dev) |
+| **Assignment Code** | [GitHub Repository](https://github.com/mihail911/modern-software-dev-assignments) |
 
-课程的核心论题写在简介第一段：
+The course's central thesis appears in the very first paragraph of its description:
 
 > In the last few years, large language models have introduced a revolutionary new paradigm in software development. The traditional software development lifecycle is being transformed by AI automation at every stage, raising the question: **how should the next generation of software engineers leverage these advances to 10x their productivity and prepare for their careers?**
 
-注意关键词："every stage"和"10x"。这门课不是教你用某个工具，而是教你如何**用 AI 重构整个软件开发生命周期**。
+Note the key phrases: "every stage" and "10x." This course doesn't teach you how to use a single tool — it teaches you how to **reimagine the entire software development lifecycle with AI**.
 
-## 为什么这门课的出现是个拐点
+## Why This Course Is a Turning Point
 
-在 CS146S 之前，Vibe Coding 的学习路径基本靠自学——看博客、刷推特、试工具。各路大神各有各的最佳实践，但缺乏**系统性的知识框架**。
+Before CS146S, learning Vibe Coding was essentially self-directed — reading blog posts, scrolling Twitter, experimenting with tools. Various experts had their own best practices, but there was no **systematic knowledge framework**.
 
-斯坦福这门课改变了什么？
+What did Stanford change?
 
-**第一，它定义了"现代软件开发者"的知识版图。** 10 周的课程大纲，实际上是对"AI 时代的软件工程到底包含哪些维度"的一次完整回答。从 Prompt Engineering 到 Agent 架构、从 Context Engineering 到 Secure Coding、从 Code Review 到 Post-Deployment——这是一个闭环。
+**First, it defined the knowledge map for "the modern software developer."** The 10-week syllabus is effectively a comprehensive answer to "what dimensions does software engineering in the AI era actually encompass?" From Prompt Engineering to Agent architectures, from Context Engineering to Secure Coding, from Code Review to Post-Deployment — it's a closed loop.
 
-**第二，它拉高了 Vibe Coding 的门槛。** 很多人以为 Vibe Coding 就是"跟 AI 聊天写代码"，但 CS146S 的课程结构清楚地表明：Vibe Coding 远不止于此。你需要理解 LLM 的工作原理、Agent 的架构设计、上下文的管理策略、安全的攻防边界、代码的质量保障、系统的运维监控。这些构成了一个完整的**工程学科**。
+**Second, it raised the bar for Vibe Coding.** Many people think Vibe Coding is just "chatting with AI to write code," but CS146S's structure makes clear: Vibe Coding is far more than that. You need to understand how LLMs work, how Agents are architected, how context is managed, where security boundaries lie, how code quality is ensured, and how systems are monitored. Together, these form a complete **engineering discipline**.
 
-**第三，它预判了行业的演进方向。** 就在课程开设的同时，Karpathy 提出了 Agentic Engineering 的概念——从 Vibe Coding 进化到指挥一群 AI Agent 完成整个工程流程。CS146S 的后半段（Agent 模式、安全、运维）恰好在教这件事。
+**Third, it anticipated the industry's trajectory.** Right as the course launched, Karpathy introduced the concept of Agentic Engineering — evolving from Vibe Coding to orchestrating a fleet of AI Agents across the entire engineering workflow. The second half of CS146S (Agent patterns, security, operations) is teaching exactly this.
 
-## 10 周课程全拆解
+## The Full 10-Week Breakdown
 
-### Week 1：LLM 与 AI 编程入门
+### Week 1: LLMs and AI Coding Foundations
 
-**主题**：Course logistics / What is an LLM actually / How to prompt effectively
+**Topics**: Course logistics / What is an LLM actually / How to prompt effectively
 
-第一周从根基讲起：LLM 到底是什么？它为什么会犯错？怎么引导它稳定输出？
+Week 1 starts from the fundamentals: What is an LLM really? Why does it make mistakes? How do you guide it toward consistent output?
 
-这不是随便聊聊"写个好 prompt"的泛泛之谈。课程的阅读材料包括 Andrej Karpathy 长达数小时的 [Deep Dive into LLMs](https://www.youtube.com/watch?v=7xTGNNLPyMI)，Google 的 [Prompt Engineering Overview](https://cloud.google.com/discover/what-is-prompt-engineering)，以及 OpenAI 关于 [如何内部使用 Codex](https://cdn.openai.com/pdf/6a2631dc-783e-479b-b1a4-af0cfbd38630/how-openai-uses-codex.pdf) 的论文。
+This isn't a hand-wavy "write a good prompt" overview. The readings include Andrej Karpathy's hours-long [Deep Dive into LLMs](https://www.youtube.com/watch?v=7xTGNNLPyMI), Google's [Prompt Engineering Overview](https://cloud.google.com/discover/what-is-prompt-engineering), and OpenAI's paper on [how they use Codex internally](https://cdn.openai.com/pdf/6a2631dc-783e-479b-b1a4-af0cfbd38630/how-openai-uses-codex.pdf).
 
-**作业**：搭建一个 [LLM Prompting Playground](https://github.com/mihail911/modern-software-dev-assignments/tree/master/week1)——把 Prompt Engineering 从"感觉对了就行"变成可量化、可复现的实验。
+**Assignment**: Build an [LLM Prompting Playground](https://github.com/mihail911/modern-software-dev-assignments/tree/master/week1) — turning Prompt Engineering from "it feels right" into something quantifiable and reproducible.
 
-**核心认知**：大多数人只把 Prompt Engineering 当"技巧"，但 CS146S 把它当"科学方法论"来教。你需要有实验思维——提出假设、设计 prompt、观察结果、迭代优化。
+**Key Insight**: Most people treat Prompt Engineering as a "trick," but CS146S teaches it as a scientific methodology. You need an experimental mindset — form hypotheses, design prompts, observe results, iterate.
 
-### Week 2：Coding Agent 解剖学
+### Week 2: Anatomy of a Coding Agent
 
-**主题**：Agent architecture and components / Tool use and function calling / [MCP (Model Context Protocol)](/posts/ai/2026-02-20-mcp-protocol-guide/)
+**Topics**: Agent architecture and components / Tool use and function calling / [MCP (Model Context Protocol)](/posts/ai/2026-02-20-mcp-protocol-guide/)
 
-如果说第一周教你"怎么跟 LLM 对话"，第二周教你"怎么给 LLM 装上手脚"。
+If Week 1 teaches you "how to talk to an LLM," Week 2 teaches you "how to give an LLM hands and feet."
 
-Agent 不是一个聪明的聊天机器人，而是一个**带工具的自主系统**。这周深入讲解 Agent 的核心组件：感知（理解任务）、规划（分解步骤）、执行（调用工具）、反馈（评估结果）。
+An Agent isn't a clever chatbot — it's an **autonomous system with tools**. This week dives deep into Agent core components: perception (understanding the task), planning (breaking down steps), execution (calling tools), and feedback (evaluating results).
 
-重点是 MCP（Model Context Protocol）。阅读材料覆盖了 MCP 的方方面面：
+The focus is on MCP (Model Context Protocol). Readings cover MCP comprehensively:
 
-- [MCP 入门介绍](https://stytch.com/blog/model-context-protocol-introduction/)
-- [MCP Server 实现示例](https://github.com/modelcontextprotocol/servers)
-- [MCP Server 认证](https://developers.cloudflare.com/agents/guides/remote-mcp-server/#add-authentication)
+- [MCP Introduction](https://stytch.com/blog/model-context-protocol-introduction/)
+- [MCP Server Examples](https://github.com/modelcontextprotocol/servers)
+- [MCP Server Authentication](https://developers.cloudflare.com/agents/guides/remote-mcp-server/#add-authentication)
 - [MCP Server SDK](https://github.com/modelcontextprotocol/typescript-sdk/tree/main)
-- 以及一篇令人深思的 [MCP 反思文章](https://www.reillywood.com/blog/apis-dont-make-good-mcp-tools/)："API 不一定能直接变成好的 MCP 工具"
+- A thought-provoking [MCP reflection piece](https://www.reillywood.com/blog/apis-dont-make-good-mcp-tools/): "APIs don't necessarily make good MCP tools"
 
-**作业**：[动手搭建一个 MCP Server](https://github.com/mihail911/modern-software-dev-assignments/tree/master/week2)。不是看教程，是自己从零写一个。
+**Assignment**: [Build an MCP Server from scratch](https://github.com/mihail911/modern-software-dev-assignments/tree/master/week2). Not watching a tutorial — actually writing one yourself.
 
-**核心认知**：MCP 正在成为 AI 编程的"USB 接口"——标准化的工具连接协议。理解 MCP 不是可选项，而是必修项。
+**Key Insight**: MCP is becoming the "USB port" of AI coding — a standardized protocol for connecting tools. Understanding MCP is not optional; it's required.
 
-### Week 3：AI IDE 与上下文工程
+### Week 3: AI IDEs and Context Engineering
 
-**主题**：Context management and code understanding / PRDs for agents / IDE integrations and extensions
+**Topics**: Context management and code understanding / PRDs for agents / IDE integrations and extensions
 
-**这是我认为整门课最重要的一周。**
+**This is what I consider the most important week of the entire course.**
 
-上下文工程（Context Engineering）正在取代 Prompt Engineering 成为新的核心能力。原因很简单：单条 Prompt 的优化已经触顶，真正决定 AI 代码质量的是你**给它提供什么上下文**。
+Context Engineering is replacing Prompt Engineering as the core competency. The reason is simple: optimizing individual prompts has hit a ceiling. What truly determines AI code quality is the **context you provide**.
 
-阅读材料堪称豪华：
+The readings are outstanding:
 
-- **[Specs Are the New Source Code](https://blog.ravi-mehta.com/p/specs-are-the-new-source-code)**——这篇文章提出一个颠覆性观点：在 AI 编程时代，代码只是规格说明的"有损投影"，真正的源代码是你的 Spec/PRD。Andrew Ng 甚至说现在组织需要的 PM 数量是工程师的两倍。
-- **[How Long Contexts Fail](https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html)**——揭示了四种上下文失败模式：上下文中毒（错误信息被反复引用）、上下文分心（超过 100K token 后模型倾向于重复历史行为）、上下文混淆（过多工具定义导致性能下降）、上下文冲突（矛盾信息导致性能暴跌 39%）。
-- **[Getting AI to Work In Complex Codebases](https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md)**——实战指南，教你如何在复杂代码库中做上下文管理。
-- Anthropic 的 **[Writing Effective Tools for Agents](https://www.anthropic.com/engineering/writing-tools-for-agents)**——五条工具设计原则：精选而非全包、命名空间分组、返回语义化数据、token 效率优先、工具描述即性能杠杆。
+- **[Specs Are the New Source Code](https://blog.ravi-mehta.com/p/specs-are-the-new-source-code)** — A paradigm-shifting argument: in the AI coding era, code is merely a "lossy projection" of specifications. The real source code is your Spec/PRD. Andrew Ng even suggests organizations now need twice as many PMs as engineers.
+- **[How Long Contexts Fail](https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html)** — Reveals four context failure modes: context poisoning (incorrect information repeatedly referenced), context distraction (models tend to repeat past behavior beyond 100K tokens), context confusion (too many tool definitions degrade performance), and context conflict (contradictory information causes a 39% performance drop).
+- **[Getting AI to Work In Complex Codebases](https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md)** — A practical guide to context management in complex codebases.
+- Anthropic's **[Writing Effective Tools for Agents](https://www.anthropic.com/engineering/writing-tools-for-agents)** — Five tool design principles: curate don't dump, namespace grouping, return semantic data, optimize for token efficiency, and treat tool descriptions as performance levers.
 
-**嘉宾**：[Silas Alberti](https://www.linkedin.com/in/silasalberti/)，Cognition（Devin）Head of Research。
+**Guest Speaker**: [Silas Alberti](https://www.linkedin.com/in/silasalberti/), Head of Research at Cognition (Devin).
 
-**作业**：[搭建自定义 MCP Server](https://github.com/mihail911/modern-software-dev-assignments/blob/master/week3/assignment.md)，并配合 Design Doc 模板进行上下文驱动的开发。
+**Assignment**: [Build a custom MCP Server](https://github.com/mihail911/modern-software-dev-assignments/blob/master/week3/assignment.md) combined with a Design Doc template for context-driven development.
 
-**核心认知**：从 Prompt Engineering 到 Context Engineering，这是 AI 编程范式的第二次跃迁。好代码是好上下文的副产品。
+**Key Insight**: From Prompt Engineering to Context Engineering — this is the second paradigm shift in AI coding. Good code is a byproduct of good context.
 
-> 关于上下文工程的深度解读，请看系列第 2 篇：[斯坦福 CS146S 精读（二）：上下文工程](/posts/ai/2026-02-24-context-engineering-deep-dive/)
+> For a deeper look at Context Engineering, see Part 2: [Stanford CS146S Deep Dive (Part 2): Context Engineering](/posts/ai/2026-02-24-context-engineering-deep-dive/)
 
-### Week 4：Coding Agent 模式
+### Week 4: Coding Agent Patterns
 
-**主题**：Managing agent autonomy levels / Human-agent collaboration patterns
+**Topics**: Managing agent autonomy levels / Human-agent collaboration patterns
 
-这周的核心问题是：**Agent 的自治度应该设到多高？人类应该在什么节点介入？**
+This week's core question: **How much autonomy should an Agent have? At what points should humans intervene?**
 
-阅读材料几乎是 [Claude Code](/posts/ai/2026-01-14-claude-code-guide/) 生态的全景：
+The readings are essentially a panoramic view of the [Claude Code](/posts/ai/2026-01-14-claude-code-guide/) ecosystem:
 
-- **[How Anthropic Uses Claude Code](https://www-cdn.anthropic.com/58284b19e702b49db9302d5b6f135ad8871e7658.pdf)**——Anthropic 内部如何使用自家工具的第一手材料
-- **[Claude Code Best Practices](https://www.anthropic.com/engineering/claude-code-best-practices)**——官方最佳实践
-- **[Peeking Under the Hood of Claude Code](https://medium.com/@outsightai/peeking-under-the-hood-of-claude-code-70f5a94a9a62)**——深入 Claude Code 的内部机制
-- **[Good Context Good Code](https://blog.stockapp.com/good-context-good-code/)**——StockApp 团队实现 2.5 倍生产力提升的上下文管理实践
+- **[How Anthropic Uses Claude Code](https://www-cdn.anthropic.com/58284b19e702b49db9302d5b6f135ad8871e7658.pdf)** — First-hand material on how Anthropic uses its own tool internally
+- **[Claude Code Best Practices](https://www.anthropic.com/engineering/claude-code-best-practices)** — Official best practices
+- **[Peeking Under the Hood of Claude Code](https://medium.com/@outsightai/peeking-under-the-hood-of-claude-code-70f5a94a9a62)** — A deep look into Claude Code's internals
+- **[Good Context Good Code](https://blog.stockapp.com/good-context-good-code/)** — How the StockApp team achieved a 2.5x productivity boost through context management
 
-**嘉宾**：**Boris Cherney**，Claude Code 创始人。这是整门课最重磅的嘉宾之一——直接从工具的创造者口中了解设计哲学。
+**Guest Speaker**: **Boris Cherney**, creator of Claude Code. One of the most high-profile guests of the entire course — learning design philosophy directly from the tool's creator.
 
-**作业**：[使用 Claude Code 完成一个完整项目](https://github.com/mihail911/modern-software-dev-assignments/blob/master/week4/assignment.md)。目标是训练你成为一个 Agent Manager——不是写代码的人，而是指挥 Agent 写代码的人。
+**Assignment**: [Complete a full project using Claude Code](https://github.com/mihail911/modern-software-dev-assignments/blob/master/week4/assignment.md). The goal is to train you as an Agent Manager — not someone who writes code, but someone who directs Agents to write code.
 
-**核心认知**：Devin 的 Agents 101 文档总结得很好：Agent 的自治度从简单任务（直接描述即可）到中等任务（预期节省 80% 时间但需要人类打磨）到复杂任务（需要多个检查点审查）。关键不在于 Agent 多强，而在于**你多会管理它**。
+**Key Insight**: Devin's Agents 101 documentation summarizes it well: Agent autonomy scales from simple tasks (just describe and go) to medium tasks (expect 80% time savings but with human polish) to complex tasks (requiring multiple checkpoint reviews). The key isn't how powerful the Agent is — it's **how well you manage it**.
 
-> 关于 Agent Manager 模式的深度解读，请看系列第 3 篇：[斯坦福 CS146S 精读（三）：Agent Manager](/posts/ai/2026-02-24-agent-manager-patterns/)
+> For a deeper look at Agent Manager patterns, see Part 3: [Stanford CS146S Deep Dive (Part 3): Agent Manager](/posts/ai/2026-02-24-agent-manager-patterns/)
 
-### Week 5：现代终端
+### Week 5: The Modern Terminal
 
-**主题**：AI-enhanced command line interfaces / Terminal automation and scripting
+**Topics**: AI-enhanced command line interfaces / Terminal automation and scripting
 
-AI IDE 解决的是"写代码"的问题，AI 终端解决的是"跑代码、管系统"的问题。
+AI IDEs solve the "writing code" problem; AI terminals solve the "running code and managing systems" problem.
 
-这周介绍 [Warp](https://www.warp.dev/) 这类 AI 终端如何把命令行操作产品化。阅读材料包括 [Warp University](https://www.warp.dev/university)（系统学习资源）、[Warp vs Claude Code](https://www.warp.dev/university/getting-started/warp-vs-claude-code) 的定位对比，以及 [Warp 如何用 Warp 开发 Warp](https://notion.warp.dev/How-Warp-uses-Warp-to-build-Warp-21643263616d81a6b9e3e63fd8a7380c) 的 dogfooding 实践。
+This week introduces how AI terminals like [Warp](https://www.warp.dev/) productize command-line operations. Readings include [Warp University](https://www.warp.dev/university) (systematic learning resources), a [Warp vs Claude Code](https://www.warp.dev/university/getting-started/warp-vs-claude-code) positioning comparison, and [how Warp uses Warp to build Warp](https://notion.warp.dev/How-Warp-uses-Warp-to-build-Warp-21643263616d81a6b9e3e63fd8a7380c) — a dogfooding case study.
 
-**嘉宾**：[Zach Lloyd](https://www.linkedin.com/in/zachlloyd/)，Warp CEO。
+**Guest Speaker**: [Zach Lloyd](https://www.linkedin.com/in/zachlloyd/), CEO of Warp.
 
-**作业**：[使用 Warp 完成 Agentic 开发任务](https://github.com/mihail911/modern-software-dev-assignments/tree/master/week5)。
+**Assignment**: [Complete an agentic development task using Warp](https://github.com/mihail911/modern-software-dev-assignments/tree/master/week5).
 
-**核心认知**：终端不是"高级用户的玩具"，而是 AI 开发工作流的关键一环。Claude Code 本身就运行在终端中。
+**Key Insight**: The terminal isn't a "power user's toy" — it's a critical piece of the AI development workflow. Claude Code itself runs in the terminal.
 
-### Week 6：AI 测试与安全
+### Week 6: AI Testing and Security
 
-**主题**：Secure vibe coding / History of vulnerability detection / AI-generated test suites
+**Topics**: Secure vibe coding / History of vulnerability detection / AI-generated test suites
 
-**这是整门课最硬核的一周。**
+**This is the most hardcore week of the entire course.**
 
-当 AI 帮你写代码时，谁来保证代码的安全性？这周直接上真实案例：
+When AI writes your code, who ensures its security? This week dives into real-world cases:
 
-- **[GitHub Copilot 通过 Prompt Injection 实现远程代码执行](https://embracethered.com/blog/posts/2025/github-copilot-remote-code-execution-via-prompt-injection/)**——攻击者在源代码中植入恶意指令，操控 Copilot 修改 VS Code 配置文件，启用"YOLO 模式"（自动批准所有操作），然后执行任意终端命令。这不是理论推演，是真实的 CVE 漏洞。
-- **[使用 Claude Code 和 Codex 发现 Web 应用漏洞](https://semgrep.dev/blog/2025/finding-vulnerabilities-in-modern-web-apps-using-claude-code-and-openai-codex/)**——Semgrep 团队在 11 个大型开源项目（800+ 万行代码）上测试，Claude Code 发现 46 个真实漏洞（14% 真正例率），但误报率高达 86%。更可怕的是"同一代码、同一 AI、不同结果"的非确定性问题。
-- **[OWASP Top Ten](https://owasp.org/www-project-top-ten/)**——Web 应用安全的基础框架
-- **[Context Rot 研究](https://research.trychroma.com/context-rot)**——随着输入长度增加，模型性能显著下降，即使是简单任务
+- **[GitHub Copilot Remote Code Execution via Prompt Injection](https://embracethered.com/blog/posts/2025/github-copilot-remote-code-execution-via-prompt-injection/)** — Attackers planted malicious instructions in source code to manipulate Copilot into modifying VS Code config files, enabling "YOLO mode" (auto-approve all operations), then executing arbitrary terminal commands. This isn't theoretical — it's a real CVE vulnerability.
+- **[Finding Web App Vulnerabilities Using Claude Code and Codex](https://semgrep.dev/blog/2025/finding-vulnerabilities-in-modern-web-apps-using-claude-code-and-openai-codex/)** — Semgrep's team tested on 11 large open-source projects (8M+ lines of code). Claude Code found 46 real vulnerabilities (14% true positive rate), but the false positive rate was 86%. Even scarier: the "same code, same AI, different results" non-determinism problem.
+- **[OWASP Top Ten](https://owasp.org/www-project-top-ten/)** — The foundational framework for web application security
+- **[Context Rot Research](https://research.trychroma.com/context-rot)** — Model performance degrades significantly as input length increases, even for simple tasks
 
-**嘉宾**：[Isaac Evans](https://www.linkedin.com/in/isaacevans/)，Semgrep CEO。Semgrep 是全球最流行的静态分析安全工具之一。
+**Guest Speaker**: [Isaac Evans](https://www.linkedin.com/in/isaacevans/), CEO of Semgrep. Semgrep is one of the world's most popular static analysis security tools.
 
-**作业**：[编写安全的 AI 代码](https://github.com/mihail911/modern-software-dev-assignments/blob/master/week6/assignment.md)。
+**Assignment**: [Write secure AI code](https://github.com/mihail911/modern-software-dev-assignments/blob/master/week6/assignment.md).
 
-**核心认知**：很多 AI 编程课只教你怎么写得快，这门课把**交付的底线**拉出来了：可测、可审、可防。
+**Key Insight**: Many AI coding courses only teach you how to write fast. This course draws **the baseline for shipping**: testable, auditable, defensible.
 
-> 关于安全主题的深度解读，请看系列第 4 篇：[斯坦福 CS146S 精读（四）：Secure Vibe Coding](/posts/ai/2026-02-24-secure-vibe-coding/)
+> For a deeper look at the security topic, see Part 4: [Stanford CS146S Deep Dive (Part 4): Secure Vibe Coding](/posts/ai/2026-02-24-secure-vibe-coding/)
 
-### Week 7：代码审查与软件支持
+### Week 7: Code Review and Software Support
 
-**主题**：What AI code systems can we trust / Debugging and diagnostics / Intelligent documentation generation
+**Topics**: What AI code systems can we trust / Debugging and diagnostics / Intelligent documentation generation
 
-第 7 周延续安全主题，聚焦一个核心问题：**AI 产出的代码，我们能信任到什么程度？**
+Week 7 continues the security theme, focusing on a core question: **To what extent can we trust AI-generated code?**
 
-阅读材料从经典的 [Code Reviews: Just Do It](https://blog.codinghorror.com/code-reviews-just-do-it/) 到 GitHub 工程师的 [How to Review Code Effectively](https://github.blog/developer-skills/github/how-to-review-code-effectively-a-github-staff-engineers-philosophy/)，再到学术论文 [AI-Assisted Assessment of Coding Practices in Modern Code Review](https://arxiv.org/pdf/2405.13565)。
+Readings span from the classic [Code Reviews: Just Do It](https://blog.codinghorror.com/code-reviews-just-do-it/) to a GitHub staff engineer's [How to Review Code Effectively](https://github.blog/developer-skills/github/how-to-review-code-effectively-a-github-staff-engineers-philosophy/), to the academic paper [AI-Assisted Assessment of Coding Practices in Modern Code Review](https://arxiv.org/pdf/2405.13565).
 
-**嘉宾**：[Tomas Reimers](https://www.linkedin.com/in/tomasreimers/)，Graphite CPO。Graphite 是一个专注于代码审查和 PR 管理的开发者工具。他带来了 [百万次 AI Code Review 的经验教训](https://www.youtube.com/watch?v=TswQeKftnaw)。
+**Guest Speaker**: [Tomas Reimers](https://www.linkedin.com/in/tomasreimers/), CPO at Graphite. Graphite is a developer tool focused on code review and PR management. He shared [lessons from a million AI code reviews](https://www.youtube.com/watch?v=TswQeKftnaw).
 
-**作业**：[Code Review 练习](https://github.com/mihail911/modern-software-dev-assignments/tree/master/week7)——审查 AI 生成的代码，找出问题。
+**Assignment**: [Code Review exercises](https://github.com/mihail911/modern-software-dev-assignments/tree/master/week7) — review AI-generated code and identify issues.
 
-**核心认知**：AI 代码的审查不能照搬人类代码的审查方法。AI 生成的代码有独特的"味道"——表面看起来正确，但可能在边界条件、安全处理、性能优化上存在系统性盲区。
+**Key Insight**: Reviewing AI code can't simply copy methods for reviewing human code. AI-generated code has a distinct "smell" — it looks correct on the surface but may have systematic blind spots around edge cases, security handling, and performance optimization.
 
-### Week 8：自动化应用构建
+### Week 8: Automated App Building
 
-**主题**：Design and frontend for everyone / Rapid UI/UX prototyping and iteration
+**Topics**: Design and frontend for everyone / Rapid UI/UX prototyping and iteration
 
-一句 Prompt 搞出一个端到端的完整应用——这是最"Vibe"的一周。
+Generate a complete end-to-end application from a single prompt — this is the most "Vibe" week.
 
-课上演示了如何用 AI 工具快速生成完整的 Web 应用，从设计到前端到后端一气呵成。
+The class demonstrated how to use AI tools to rapidly generate complete web applications — from design to frontend to backend in one flow.
 
-**嘉宾**：[Gaspar Garcia](https://www.linkedin.com/in/gaspargarcia/)，Vercel AI 研究负责人。Vercel 的 v0 是目前最强的 AI UI 生成工具之一。
+**Guest Speaker**: [Gaspar Garcia](https://www.linkedin.com/in/gaspargarcia/), Head of AI Research at Vercel. Vercel's v0 is one of the most powerful AI UI generation tools available.
 
-**作业**：[多技术栈 Web 应用构建](https://github.com/mihail911/modern-software-dev-assignments/tree/master/week8)——用 AI 生成不同技术栈的应用并对比。
+**Assignment**: [Multi-stack web application building](https://github.com/mihail911/modern-software-dev-assignments/tree/master/week8) — use AI to generate apps across different tech stacks and compare them.
 
-**核心认知**：快速原型只是起点。课程真正想传达的是：你得能把这个原型**纳入测试、安全、Code Review 这些工程规范中**。很多人用 AI 做了 demo 就觉得大功告成，但从 demo 到 production 之间还有一道鸿沟。
+**Key Insight**: Rapid prototyping is just the starting point. What the course really conveys is: you need to bring that prototype **into the engineering standards of testing, security, and code review**. Many people build an AI demo and think they're done, but between demo and production lies a chasm.
 
-> 关于从原型到生产的深度解读，请看系列第 5 篇：[斯坦福 CS146S 精读（五）：从原型到生产](/posts/ai/2026-02-24-prototype-to-production/)
+> For a deeper look at going from prototype to production, see Part 5: [Stanford CS146S Deep Dive (Part 5): From Prototype to Production](/posts/ai/2026-02-24-prototype-to-production/)
 
-### Week 9：部署后运维
+### Week 9: Post-Deployment Operations
 
-**主题**：Monitoring and observability for AI systems / Automated incident response / Triaging and debugging
+**Topics**: Monitoring and observability for AI systems / Automated incident response / Triaging and debugging
 
-很多人学 AI 编程只学"造"，不学"养"。这周把"养系统"补上了。
+Many people learn AI coding but only learn to "build," not to "maintain." This week fills in the maintenance gap.
 
-阅读材料从 Google 经典的 [SRE 入门](https://sre.google/sre-book/introduction/) 到 [可观测性基础](https://last9.io/blog/traces-spans-observability-basics/)，再到 Resolve AI 的系列文章——如何用 AI Agent 自动化 Kubernetes 故障排查、事件响应、值班工程。
+Readings range from Google's classic [SRE Introduction](https://sre.google/sre-book/introduction/) to [Observability Basics](https://last9.io/blog/traces-spans-observability-basics/) to Resolve AI's article series — how to use AI Agents to automate Kubernetes troubleshooting, incident response, and on-call engineering.
 
-**嘉宾**：[Mayank Agarwal](https://www.linkedin.com/in/mayank-ag/)（CTO）和 [Milind Ganjoo](https://www.linkedin.com/in/mganjoo/)（技术骨干），来自 [Resolve AI](https://resolve.ai/)——一个用多 Agent 系统自动化 DevOps 运维的公司。
+**Guest Speakers**: [Mayank Agarwal](https://www.linkedin.com/in/mayank-ag/) (CTO) and [Milind Ganjoo](https://www.linkedin.com/in/mganjoo/) (Technical Staff) from [Resolve AI](https://resolve.ai/) — a company automating DevOps operations with multi-agent systems.
 
-**核心认知**：系统不是部署完就结束了。监控、告警、事件响应、自动化排查——这些在 AI 时代同样被 AI 重塑。你不仅用 AI 写代码，还要用 AI 守护代码。
+**Key Insight**: A system isn't done once it's deployed. Monitoring, alerting, incident response, automated troubleshooting — all of these are being reshaped by AI in the AI era. You don't just use AI to write code; you also use AI to guard it.
 
-### Week 10：AI 软件工程的未来
+### Week 10: The Future of AI Software Engineering
 
-**主题**：Future of software development roles / Emerging AI coding paradigms / Industry trends and predictions
+**Topics**: Future of software development roles / Emerging AI coding paradigms / Industry trends and predictions
 
-最后一周把前 9 周串起来，让你知道自己学的不是一堆零散技能，而是**一种新的工程范式**。
+The final week ties the previous 9 weeks together, showing you that what you learned isn't a collection of scattered skills but **a new engineering paradigm**.
 
-**嘉宾**：**[Martin Casado](https://a16z.com/author/martin-casado/)**，a16z（Andreessen Horowitz）合伙人。a16z 是全球最顶级的科技风投之一，投资了 GitHub、Databricks 等一系列开发者工具公司。Martin Casado 本人也是 VMware 联合创始人，对技术趋势有着深刻的洞察。
+**Guest Speaker**: **[Martin Casado](https://a16z.com/author/martin-casado/)**, General Partner at a16z (Andreessen Horowitz). a16z is one of the world's top tech venture capital firms, having invested in GitHub, Databricks, and a range of developer tool companies. Martin Casado is also co-founder of VMware and has deep insight into technology trends.
 
-**核心认知**：软件开发在未来 10 年会变成什么样？当 AI 能做越来越多的实现工作时，人类开发者的核心价值在哪里？这周的讨论帮你建立长期的职业视角。
+**Key Insight**: What will software development look like in the next 10 years? When AI can handle more and more of the implementation work, where does the core value of human developers lie? This week's discussion helps you build a long-term career perspective.
 
-## 嘉宾阵容一览
+## Guest Speaker Lineup
 
-| 周 | 嘉宾 | 身份 | 公司 |
-|----|------|------|------|
+| Week | Guest | Role | Company |
+|------|-------|------|---------|
 | 3 | Silas Alberti | Head of Research | Cognition (Devin) |
 | 4 | **Boris Cherney** | Creator of Claude Code | Anthropic |
 | 5 | Zach Lloyd | CEO | Warp |
@@ -228,75 +228,75 @@ AI IDE 解决的是"写代码"的问题，AI 终端解决的是"跑代码、管�
 | 9 | Mayank Agarwal & Milind Ganjoo | CTO & Technical Staff | Resolve AI |
 | 10 | **Martin Casado** | General Partner | a16z |
 
-这份名单覆盖了 AI 编程生态的各个关键层：代码生成（Anthropic）、自主开发（Cognition）、终端交互（Warp）、安全扫描（Semgrep）、代码审查（Graphite）、应用部署（Vercel）、系统运维（Resolve）、投资趋势（a16z）。
+This lineup covers every key layer of the AI coding ecosystem: code generation (Anthropic), autonomous development (Cognition), terminal interaction (Warp), security scanning (Semgrep), code review (Graphite), application deployment (Vercel), system operations (Resolve), and investment trends (a16z).
 
-## 评分与作业体系
+## Grading and Assignments
 
-| 组成部分 | 占比 |
-|----------|------|
+| Component | Weight |
+|-----------|--------|
 | Final Project | 80% |
 | Weekly Assignments | 15% |
 | Class Participation | 5% |
 
-Final Project 占 80%——这说明课程极度重视**实际动手能力**。不是考你记住了多少概念，而是你能不能真正用 AI 工具做出一个完整的项目。
+The Final Project accounts for 80% — this shows the course places extreme emphasis on **hands-on ability**. It's not about how many concepts you memorized, but whether you can actually build a complete project with AI tools.
 
-## 如何免费学习这门课
+## How to Take This Course for Free
 
-虽然你不是斯坦福的学生，但这门课的几乎所有资源都是公开的：
+You may not be a Stanford student, but nearly all of this course's resources are publicly available:
 
-1. **课程官网**：[themodernsoftware.dev](https://themodernsoftware.dev) — 完整大纲、每周主题和阅读材料
-2. **PPT 幻灯片**：每节课都有 Google Slides 链接，可直接在线查看
-3. **阅读材料**：所有推荐阅读都是公开链接，包括论文、博客、视频
-4. **作业代码**：[GitHub 仓库](https://github.com/mihail911/modern-software-dev-assignments)（2.1K Stars），Python 为主，配有完整的环境搭建指南
-5. **嘉宾演讲 Slides**：部分嘉宾的 PPT 也已公开
+1. **Course Website**: [themodernsoftware.dev](https://themodernsoftware.dev) — complete syllabus, weekly topics, and readings
+2. **Slide Decks**: Every lecture has a Google Slides link, viewable online
+3. **Readings**: All recommended readings are publicly accessible links — papers, blog posts, videos
+4. **Assignment Code**: [GitHub Repository](https://github.com/mihail911/modern-software-dev-assignments) (2.1K Stars), primarily Python, with complete environment setup guides
+5. **Guest Speaker Slides**: Some guest presentations are also publicly available
 
-**建议学习路径**：
+**Recommended Learning Path**:
 
-1. 先通读一遍课程大纲，建立全局认知
-2. 按周顺序学习，每周先看 PPT，再读 Reading，最后做 Assignment
-3. 重点攻克 Week 3（上下文工程）和 Week 6（安全）——这两周的信息密度最高
-4. 最后尝试做一个完整的 Final Project，综合运用所学
+1. Read through the full syllabus first to build a big-picture understanding
+2. Study week by week — start with slides, then readings, then assignments
+3. Focus especially on Week 3 (Context Engineering) and Week 6 (Security) — these two weeks have the highest information density
+4. Finally, attempt a full Final Project that synthesizes everything you've learned
 
-## 全球高校跟进情况
+## Global University Adoption
 
-CS146S 不是孤例。Vibe Coding 正在全球高校遍地开花：
+CS146S isn't an isolated case. Vibe Coding is sprouting up at universities worldwide:
 
-- **Stanford Continuing Studies** 另外开设了面向非 CS 专业的 [Vibe Coding: Building Software in Conversation with AI](https://continuingstudies.stanford.edu/courses/detail/20253_TECH-36) 课程
-- **Stanford IT 部门** 为内部员工开设了 [Vibe Coding for Developers: Building with Agents in Cursor](https://uit.stanford.edu/service/techtraining/class/vibe-coding-developers-building-agents-cursor) 培训
-- **复旦大学** 2026 年春季开设《生成式软件开发》，面向非计算机专业学生
-- **中山大学** 冬令营引入《Vibe Coding 编程入门》，教高中生用 AI 编程
-- **Codecademy** 推出了 [Intro to Vibe Coding](https://www.codecademy.com/learn/intro-to-vibe-coding) 在线课程
-- **Coursera** 上线了 [Vibe Coding for Beginners](https://www.coursera.org/learn/vibe-coding-for-beginners-from-zero-to-app)
+- **Stanford Continuing Studies** offers a separate [Vibe Coding: Building Software in Conversation with AI](https://continuingstudies.stanford.edu/courses/detail/20253_TECH-36) course for non-CS majors
+- **Stanford IT** created a [Vibe Coding for Developers: Building with Agents in Cursor](https://uit.stanford.edu/service/techtraining/class/vibe-coding-developers-building-agents-cursor) training for internal staff
+- **Fudan University** launched a "Generative Software Development" course in Spring 2026 for non-CS students
+- **Sun Yat-sen University** introduced a "Vibe Coding Programming Basics" winter camp for high school students
+- **Codecademy** released an [Intro to Vibe Coding](https://www.codecademy.com/learn/intro-to-vibe-coding) online course
+- **Coursera** launched [Vibe Coding for Beginners](https://www.coursera.org/learn/vibe-coding-for-beginners-from-zero-to-app)
 
-## 从 Vibe Coding 到 Agentic Engineering
+## From Vibe Coding to Agentic Engineering
 
-CS146S 的课程结构暗合了一个更大的叙事：Vibe Coding 只是起点，终点是 **[Agentic Engineering](/posts/ai/2026-02-23-agentic-coding-trends-2026/)**。
+CS146S's structure maps onto a larger narrative: Vibe Coding is just the starting point; the destination is **[Agentic Engineering](/posts/ai/2026-02-23-agentic-coding-trends-2026/)**.
 
-课程的前半段（Week 1-5）教你如何作为个体用 AI 编程工具提效——这是 Vibe Coding 的基本形态。后半段（Week 6-10）转向工程体系：安全、审查、构建、运维、趋势——这是从个人生产力到组织级工程范式的跃迁。
+The first half of the course (Weeks 1-5) teaches you how to boost individual productivity with AI coding tools — the basic form of Vibe Coding. The second half (Weeks 6-10) shifts to engineering systems: security, review, building, operations, and trends — the leap from individual productivity to organization-level engineering paradigms.
 
-正如 Karpathy 在 2026 年 2 月的新推文中所说：Agentic Engineering 是 Vibe Coding 的进化形态。以前是让 AI 帮你写代码，以后是你指挥一群 AI Agent 完成整个软件工程的全流程。
+As Karpathy noted in his February 2026 tweet: Agentic Engineering is the evolved form of Vibe Coding. Before, you had AI help you write code; going forward, you'll orchestrate a fleet of AI Agents to complete the entire software engineering workflow.
 
-而 CS146S 恰好就是在系统性地教这件事。
+And CS146S is systematically teaching exactly that.
 
-## 相关阅读
+## Related Reading
 
-如果你对 Vibe Coding 和 AI 编程工具的实战感兴趣，推荐这些文章：
+If you're interested in Vibe Coding and hands-on AI coding tools, check out these articles:
 
-- [Claude Code 从入门到精通完全指南](/posts/ai/2026-01-14-claude-code-guide/) — 课程中高频提及的核心工具
-- [Vibe Coding 完全指南](/posts/ai/2026-02-22-vibe-coding-guide/) — Vibe Coding 的理念、工具与实战
-- [MCP 协议全面解析](/posts/ai/2026-02-20-mcp-protocol-guide/) — Week 2-3 核心主题的深入解读
-- [CLAUDE.md 记忆术](/posts/ai/2026-01-12-claudemd-memory-guide/) — 理解 AI 编程助手的项目感知机制
-- [2026 Agentic Coding 趋势报告](/posts/ai/2026-02-23-agentic-coding-trends-2026/) — 从 Vibe Coding 到 Agentic Engineering 的演进
-- [Claude Code Hooks 实战指南](/posts/ai/2026-02-18-claude-code-hooks-guide/) — Claude Code 的自动化扩展能力
+- [The Complete Guide to Claude Code](/posts/ai/2026-01-14-claude-code-guide/) — The core tool frequently referenced throughout the course
+- [The Complete Guide to Vibe Coding](/posts/ai/2026-02-22-vibe-coding-guide/) — The philosophy, tools, and practice of Vibe Coding
+- [MCP Protocol Comprehensive Guide](/posts/ai/2026-02-20-mcp-protocol-guide/) — A deep dive into the core topic of Weeks 2-3
+- [CLAUDE.md Memory Techniques](/posts/ai/2026-01-12-claudemd-memory-guide/) — Understanding AI coding assistants' project awareness
+- [2026 Agentic Coding Trends Report](/posts/ai/2026-02-23-agentic-coding-trends-2026/) — The evolution from Vibe Coding to Agentic Engineering
+- [Claude Code Hooks Practical Guide](/posts/ai/2026-02-18-claude-code-hooks-guide/) — Claude Code's automation extension capabilities
 
-## 系列文章导航
+## Series Navigation
 
-这是「斯坦福 Vibe Coding 课程精读」系列的第 1 篇。后续文章将对课程中最有价值的主题做深度解读：
+This is Part 1 of the "Stanford Vibe Coding Course Deep Dive" series. Subsequent articles will deep-dive into the most valuable topics:
 
-1. **本文**：斯坦福 CS146S 精读（一）：Vibe Coding 如何成为正式学科
-2. [斯坦福 CS146S 精读（二）：上下文工程](/posts/ai/2026-02-24-context-engineering-deep-dive/)（Week 3）
-3. [斯坦福 CS146S 精读（三）：Agent Manager](/posts/ai/2026-02-24-agent-manager-patterns/)（Week 4）
-4. [斯坦福 CS146S 精读（四）：Secure Vibe Coding](/posts/ai/2026-02-24-secure-vibe-coding/)（Week 6-7）
-5. [斯坦福 CS146S 精读（五）：从原型到生产](/posts/ai/2026-02-24-prototype-to-production/)（Week 8-9）
+1. **This article**: Stanford CS146S Deep Dive (Part 1): How Vibe Coding Became a Real Academic Discipline
+2. [Stanford CS146S Deep Dive (Part 2): Context Engineering](/posts/ai/2026-02-24-context-engineering-deep-dive/) (Week 3)
+3. [Stanford CS146S Deep Dive (Part 3): Agent Manager](/posts/ai/2026-02-24-agent-manager-patterns/) (Week 4)
+4. [Stanford CS146S Deep Dive (Part 4): Secure Vibe Coding](/posts/ai/2026-02-24-secure-vibe-coding/) (Week 6-7)
+5. [Stanford CS146S Deep Dive (Part 5): From Prototype to Production](/posts/ai/2026-02-24-prototype-to-production/) (Week 8-9)
 
-课程资源全部免费公开，你需要的只是行动力。
+All course resources are completely free — all you need is the initiative to start.

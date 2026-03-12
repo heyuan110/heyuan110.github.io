@@ -1,260 +1,254 @@
 +++
 date = '2026-01-19T16:45:00+08:00'
-title = 'Agent Skills：用大白话写程序的时代来了'
-description = '当 Markdown 文件变成可执行的程序，当人人都能用母语编写软件，Agent Skills 正在重新定义什么是编程。这不是简单的提示词，而是新一代的程序。'
+title = 'Agent Skills: Why Markdown Files Are the New Programs'
+description = 'Agent Skills turn plain Markdown into executable programs that anyone can write, modify, and share. Discover how natural language programming is reshaping software development.'
 toc = true
-tags = ['Agent', 'Skills', 'AI 编程', '自然语言编程']
-categories = ['AI原理']
-keywords = ['Agent Skills 编程', '自然语言编程', 'AI 编程范式', 'Markdown 编程', 'Skills 新编程']
+tags = ['Agent', 'Skills', 'AI Coding', 'Natural Language Programming']
+categories = ['AI Guides']
+keywords = ['agent skills programming', 'natural language programming', 'AI programming paradigm', 'markdown programming', 'skills-based development']
 +++
-![Agent Skills 新编程范式](cover.webp)
+![Agent Skills: The New Programming Paradigm](cover.webp)
 
-最近，推特上关于 Agent Skills 的讨论越来越火。起初我和很多程序员一样，觉得 Skills 不过就是 Workflow Prompt——有用，但没什么大不了的。
+The AI developer community on X has been buzzing about Agent Skills lately. Like many programmers, my first reaction was dismissive — Skills seemed like glorified workflow prompts. Useful, sure, but nothing groundbreaking.
 
-直到我看到 X上的一条帖子，才突然意识到：**这东西不是简单的文字，这是新一代的程序，而且还能自我迭代。**
+Then I came across a post that reframed everything: **Skills aren't just text. They're a new generation of programs — and they can evolve themselves.**
 
-这个认知转变，值得每个开发者认真思考。
+That shift in perspective is worth every developer's attention.
 
-## 一、传统编程 vs Skills 编程
+## Traditional Programming vs. Skills Programming
 
-让我们先对比一下两种编程方式的差异。
-
-### 1. 传统程序员怎么做功能？
+### How Traditional Developers Build Features
 
 ```
-需求分析 → 设计架构 → 编写代码 → 编译打包 → 测试调试 → 部署上线
+Requirements → Architecture → Code → Build → Test → Deploy
 ```
 
-用代码编排流程：输入什么、处理什么、输出什么，一行行写死。每一步都需要专业知识，每一个环节都可能出错。
+Every step demands specialized knowledge. Every link in the chain is a potential failure point. Want to change something? Run through the entire pipeline again. Found a bug? File a ticket and wait.
 
-想改个功能？重新走一遍流程。有个 bug？提工单排队等修复。
-
-### 2. Skills 怎么做功能？
+### How Skills Build Features
 
 ```markdown
-# 我的自动化任务
+# Meeting Notes Organizer
 
-## 触发条件
-当用户说"帮我整理会议纪要"时触发
+## Trigger
+When the user says "organize my meeting notes"
 
-## 执行步骤
-1. 读取用户提供的会议记录
-2. 提取关键议题和决策
-3. 按标准模板格式化输出
+## Steps
+1. Read the meeting transcript provided by the user
+2. Extract key topics and decisions
+3. Format output using the standard template
 
-## 输出格式
-Markdown 文档，包含：议题、讨论要点、决策、待办事项
+## Output
+Markdown document with: topics, discussion points, decisions, action items
 ```
 
-没看错，**这就是一个完整的"程序"**。
+That's it. **That's a complete program.**
 
-用 Markdown 写流程说明，告诉 Agent 什么场景触发、调用什么工具、输出什么格式。这简直是大白话编程，用任何自然语言都能写的编程。
+You write a Markdown file that tells the Agent when to trigger, what tools to call, and what format to output. This is programming in plain language — any natural language.
 
-## 二、Skills 的革命性在哪里？
+## What Makes Skills Revolutionary
 
-### 1. 活的、可进化的程序
+### 1. Living, Evolvable Programs
 
-传统软件交付后就"死"了——用户拿到只能用，不能改。
+Traditional software is frozen after delivery. Users can run it, but they can't change it.
 
-Skills 不一样：
+Skills are fundamentally different:
 
-| 传统软件 | Agent Skills |
-|---------|-------------|
-| 想加功能？等下版本 | 打开 .md 文件改几句就生效 |
-| 有 bug？提工单排队 | 直接修改或让 AI 帮你迭代 |
-| 需要专业开发人员 | 任何人都能修改 |
-| 改完要重新部署 | 改完立即生效 |
+| Traditional Software | Agent Skills |
+|---------------------|-------------|
+| Want a new feature? Wait for the next release | Open the `.md` file and edit a few lines |
+| Found a bug? File a ticket | Fix it directly or ask AI to iterate |
+| Requires professional developers | Anyone can modify |
+| Changes need redeployment | Changes take effect immediately |
 
-觉得哪里不顺手，直接打开那个 `.md` 文件，用人话改几句就生效，甚至能让 AI 帮你迭代升级。
+If something doesn't feel right, you open the `.md` file, tweak a few sentences, and it works. You can even ask the AI to improve it for you.
 
-### 2. 真正的"一次编写，到处使用"
+### 2. True "Write Once, Run Anywhere"
 
-这句话在软件行业喊了几十年，但从来没有真正实现过。Java 说跨平台，你得装 JVM；Web 应用说跨端，你得有浏览器和网络。
+The software industry has promised this for decades without delivering. Java claimed cross-platform — but you need a JVM. Web apps claimed cross-device — but you need a browser and internet connection.
 
-Skills 呢？
+Skills actually deliver on this promise:
 
-- **没有环境配置**
-- **没有编译过程**
-- **没有部署流程**
+- **No environment configuration**
+- **No compilation step**
+- **No deployment pipeline**
 
-一个 `.md` 文件，任何支持 Agent 的工具都能直接运行。拷贝、改造、升级、再分享，整个链条无比顺滑。
+A single `.md` file runs on any Agent-compatible tool. Copy, modify, upgrade, share — the entire workflow is frictionless.
 
-### 3. 人人都是开发者
+### 3. Everyone Becomes a Developer
 
-这是最颠覆性的一点。
+This is the most disruptive aspect.
 
-传统编程有门槛：你得学编程语言、理解算法、掌握框架、配置环境……光是入门就劝退了 99% 的人。
+Traditional programming has a steep barrier to entry: programming languages, algorithms, frameworks, environment setup... The onboarding process alone filters out 99% of people.
 
-Skills 的门槛是什么？**会说话就行。**
+The barrier for Skills? **You just need to be able to express your ideas.**
 
 ```
-每个人只要用从小学会的语言就能开发，
-甚至不需要打字，语音下达指令就行。
+Anyone can develop using the language they've spoken since childhood.
+You don't even need to type — voice commands work too.
 ```
 
-你用中文写，它就用中文理解执行。你用英文写，它就用英文。语言不再是障碍，逻辑表达才是核心。
+Write in English, it understands English. Write in Chinese, it understands Chinese. Language is no longer the barrier — logical thinking is what matters.
 
-## 三、Skills 的实际应用场景
+## Practical Use Cases
 
-### 1. 个人效率工具定制
+### 1. Personal Productivity Automation
 
 ```markdown
-# 日报生成器
+# Daily Report Generator
 
-## 触发
-每天下午 5:30 自动运行
+## Trigger
+Run automatically at 5:30 PM every day
 
-## 步骤
-1. 读取今天的 Git 提交记录
-2. 读取今天的日历会议
-3. 读取 Todo 应用中完成的任务
-4. 整合成日报格式
+## Steps
+1. Read today's Git commit history
+2. Read today's calendar meetings
+3. Read completed tasks from the Todo app
+4. Compile everything into report format
 
-## 输出
-发送到企业微信/Slack/邮件
+## Output
+Send to Slack/email/Teams
 ```
 
-这就是一个完整的日报自动化工具。传统方式你可能需要：学 Python、调 API、处理认证、部署定时任务……现在，改改这个 Markdown 就行了。
+This is a complete daily report automation tool. The traditional approach would require learning Python, calling APIs, handling authentication, setting up cron jobs... Now you just edit a Markdown file.
 
-### 2. 团队协作流程
+### 2. Team Workflow Automation
 
 ```markdown
-# Code Review 助手
+# Code Review Assistant
 
-## 触发条件
-当有新的 PR 提交时
+## Trigger
+When a new PR is submitted
 
-## 执行流程
-1. 分析代码变更
-2. 检查是否符合团队规范
-3. 识别潜在的安全问题
-4. 生成 Review 建议
+## Steps
+1. Analyze code changes
+2. Check compliance with team coding standards
+3. Identify potential security issues
+4. Generate review suggestions
 
-## 输出
-在 PR 评论区发布 Review 结果
+## Output
+Post review results as PR comments
 ```
 
-### 3. 学习与知识管理
+### 3. Learning and Knowledge Management
 
 ```markdown
-# 文章精读助手
+# Article Analysis Assistant
 
-## 输入
-用户提供的文章链接或内容
+## Input
+Article link or content provided by user
 
-## 处理
-1. 提取核心论点
-2. 识别关键概念并解释
-3. 找出逻辑链条
-4. 关联已有知识库内容
+## Processing
+1. Extract core arguments
+2. Identify and explain key concepts
+3. Map logical chains
+4. Cross-reference with existing knowledge base
 
-## 输出
-结构化的读书笔记，带知识图谱链接
+## Output
+Structured reading notes with knowledge graph links
 ```
 
-## 四、Skills 生态正在爆发
+## The Skills Ecosystem Is Exploding
 
-如果你关注推特上的 AI 开发者社区，会发现一个现象：**大家都在疯狂分享自己的 Skills。**
+If you follow AI developer communities on X, you've noticed a trend: **everyone is sharing their Skills.**
 
-这形成了一个良性循环：
+This creates a virtuous cycle:
 
 ```
-有人创建 Skill → 分享出来 → 其他人复制改造 → 产生新版本 → 继续分享
+Someone creates a Skill → Shares it → Others copy and adapt → New versions emerge → More sharing
 ```
 
-这和开源软件的模式很像，但门槛低了几个数量级：
+It mirrors the open-source model, but with dramatically lower barriers:
 
-- 开源软件：需要会编程才能贡献
-- Skills 生态：会说话就能参与
+- **Open source software**: You need to code to contribute
+- **Skills ecosystem**: You just need to express ideas
 
-**每一个用户都是潜在的开发者，每一次使用都可能产生新的创造。**
+**Every user is a potential developer. Every use case can spark new creation.**
 
-## 五、对程序员意味着什么？
+## What This Means for Programmers
 
-作为程序员，看到这个趋势，第一反应可能是焦虑：这是不是要取代我们？
+As a programmer, your first reaction might be anxiety: will Skills replace us?
 
-我的理解是：**不是取代，是进化。**
+My take: **Skills don't replace programmers — they elevate us.**
 
-### 1. 低级重复工作会被替代
+### 1. Repetitive Work Gets Automated
 
-那些"照着文档配置环境"、"写 CRUD 接口"、"复制粘贴样板代码"的工作，确实会越来越少。
+Tasks like configuring environments from documentation, writing CRUD endpoints, and copying boilerplate code will steadily decrease.
 
-### 2. 高级抽象能力更值钱
+### 2. Higher-Level Thinking Becomes More Valuable
 
-但是，谁来设计 Skills 的架构？谁来优化 Agent 的执行效率？谁来解决 Skills 处理不了的复杂问题？
+Who designs the architecture of complex Skills? Who optimizes Agent execution performance? Who solves problems that Skills can't handle alone?
 
-**程序员的价值不在于写代码，而在于解决问题。** 代码只是解决问题的工具之一，Skills 是另一个工具。
+**A programmer's value isn't in writing code — it's in solving problems.** Code is one tool for solving problems. Skills are another.
 
-### 3. 新的技能栈正在形成
+### 3. A New Skill Stack Is Emerging
 
-- 如何设计高效的 Skills？
-- 如何让多个 Skills 协同工作？
-- 如何调试和优化 Agent 行为？
-- 如何保证 Skills 的安全性和可靠性？
+- How do you design effective Skills?
+- How do you orchestrate multiple Skills together?
+- How do you debug and optimize Agent behavior?
+- How do you ensure Skills are secure and reliable?
 
-这些都是新的技术领域，需要深耕。
+These are entirely new technical domains that demand deep expertise.
 
-## 六、如何开始？
+## How to Get Started
 
-如果你想体验 Skills 编程，现在就可以开始：
+### 1. Choose an Agent Tool That Supports Skills
 
-### 1. 选择支持 Skills 的工具
+- **Claude Code**: Supports project-level Skills and CLAUDE.md rules
+- **Cursor**: Supports Rules and custom Skills
+- **Other Agent IDEs**: Most support similar capabilities
 
-- **Claude Code**：支持 `.cursor/rules/` 和 Skills
-- **Cursor**：支持 Rules 和自定义 Skills
-- **其他 Agent IDE**：大多支持类似功能
+### 2. Start With Simple Scenarios
 
-### 2. 从简单场景开始
-
-不要一上来就想做复杂系统。先从一个小需求开始：
+Don't try to build a complex system on day one. Start with a small need:
 
 ```markdown
-# 快速翻译
+# Quick Translator
 
-## 触发
-当用户输入英文内容时
+## Trigger
+When the user provides text in a foreign language
 
-## 处理
-翻译成中文，保持技术术语准确
+## Processing
+Translate while preserving technical terminology accuracy
 
-## 输出
-中英对照格式
+## Output
+Side-by-side bilingual format
 ```
 
-### 3. 迭代优化
+### 3. Iterate and Improve
 
-用起来之后，你会发现很多想改进的地方。改几句，测试，再改，再测试。这个过程本身就是"编程"。
+Once you start using Skills, you'll immediately find areas for improvement. Edit a few lines, test, refine, test again. This iterative process **is** programming.
 
-### 4. 分享和学习
+### 4. Share and Learn
 
-把你的 Skills 分享出来，也学习别人的 Skills。社区的力量会加速你的成长。
+Share your Skills with the community and study what others have built. Community knowledge accelerates everyone's growth.
 
-## 七、总结
+## Key Takeaways
 
-回到最初的那个认知转变：
+Coming back to that pivotal insight:
 
-> Skills 不是简单的文字，是新一代的程序，而且还能自我迭代。
+> Skills aren't just text. They're a new generation of programs — and they can evolve themselves.
 
-这句话的含义是：
+Here's what that really means:
 
-1. **编程的门槛正在消失**：自然语言成为新的编程语言
-2. **软件的边界正在模糊**：每个人都能定制自己的工具
-3. **开发的方式正在改变**：从"写代码"到"表达意图"
+1. **The barrier to programming is disappearing**: Natural language is becoming a programming language
+2. **The boundaries of software are blurring**: Everyone can build custom tools
+3. **The nature of development is changing**: From "writing code" to "expressing intent"
 
-**Agent 时代，人人都是开发者。**
+**In the Agent era, everyone is a developer.**
 
-这不是口号，是正在发生的现实。
+This isn't a slogan — it's happening right now.
 
 ---
 
-**相关链接**：
-- [原帖：@_kaichen 关于 Agent Skills 的思考](https://x.com/_kaichen/status/2012542549777592769)
-- [Cursor Agent 编码最佳实践](/posts/ai/2026-01-19-cursor-agent-best-practices/)
+**References**:
+- [Original post: @_kaichen on Agent Skills](https://x.com/_kaichen/status/2012542549777592769)
+- [Cursor Agent Coding Best Practices](/posts/ai/2026-01-19-cursor-agent-best-practices/)
 
-## 相关阅读
+## Further Reading
 
-- [Claude Code 浏览器自动化方案对比：Agent Browser、Playwright、DevTools](/posts/ai/2026-01-28-claude-code-browser-automation/)
-- [Claude Code Skills 完全指南](/posts/ai/2026-01-08-claudecode-skill-guide/)
-- [Claude Code Skill 高级模式详解](/posts/ai/2026-01-12-claudecode-skill-patterns/)
-- [Moltbot 深度解析：从爆火到改名，个人 AI Agent 的机遇与暗礁](/posts/ai/2026-01-29-moltbot-deep-dive/)
-- [Claude Code 官方文档](https://docs.anthropic.com/claude/docs/claude-code)
+- [Claude Code Browser Automation: Comparing 5 Approaches](/posts/ai/2026-01-28-claude-code-browser-automation/)
+- [Claude Code Skills Complete Guide](/posts/ai/2026-01-08-claudecode-skill-guide/)
+- [Claude Code Skill Advanced Patterns](/posts/ai/2026-01-12-claudecode-skill-patterns/)
+- [Moltbot Deep Dive: Personal AI Agent Opportunities and Pitfalls](/posts/ai/2026-01-29-moltbot-deep-dive/)
+- [Claude Code Official Documentation](https://docs.anthropic.com/claude/docs/claude-code)

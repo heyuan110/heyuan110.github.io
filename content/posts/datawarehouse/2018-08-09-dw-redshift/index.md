@@ -1,88 +1,88 @@
 +++
-title = 'Amazon Redshift 性能优化指南：VACUUM、ANALYZE 与运维最佳实践'
+title = 'Amazon Redshift Performance Tuning: VACUUM, ANALYZE, and Operations Best Practices'
 date = '2018-08-09T16:03:05+08:00'
-description = 'Amazon Redshift 数据仓库性能优化完全指南，详解 VACUUM 六种类型（FULL、DELETE ONLY、SORT ONLY、REINDEX、RECLUSTER、BOOST）、ANALYZE 统计更新、表设计最佳实践和常用运维命令。'
+description = 'A complete guide to Amazon Redshift performance optimization covering all 6 VACUUM types (FULL, DELETE ONLY, SORT ONLY, REINDEX, RECLUSTER, BOOST), ANALYZE statistics, table design best practices, and essential operations commands.'
 toc = true
-tags = ['Redshift', 'AWS', '数据仓库', '性能优化', 'VACUUM']
-categories = ['数据仓库']
-keywords = ['Amazon Redshift', 'Redshift VACUUM', 'Redshift 优化', '数据仓库运维', 'AWS 数据仓库']
+tags = ['Redshift', 'AWS', 'Data Warehouse', 'Performance Tuning', 'VACUUM']
+categories = ['Data Warehouse']
+keywords = ['Amazon Redshift', 'Redshift VACUUM', 'Redshift performance tuning', 'data warehouse maintenance', 'AWS data warehouse']
 +++
-![Amazon Redshift 数据仓库性能优化指南](cover.webp)
+![Amazon Redshift performance tuning guide](cover.webp)
 
-**Amazon Redshift** 是 AWS 推出的云端数据仓库服务，采用列式存储和大规模并行处理（MPP）架构，能够在 PB 级数据上实现亚秒级查询响应。但随着数据不断写入和删除，表的性能会逐渐下降——这时就需要 VACUUM 和 ANALYZE 来维护。
+**Amazon Redshift** is AWS's fully managed cloud data warehouse built on columnar storage and massively parallel processing (MPP) architecture. It can deliver sub-second query performance on petabyte-scale datasets. However, as data is continuously inserted and deleted, table performance gradually degrades -- and that's where VACUUM and ANALYZE come in.
 
-本文将系统讲解 Redshift 的性能优化策略，包括 VACUUM 的六种类型、ANALYZE 统计更新，以及日常运维中的实用命令。
+This article covers Redshift's performance optimization strategies in depth, including all six VACUUM types, ANALYZE statistics updates, and practical commands for day-to-day operations.
 
 <!--more-->
 
-## 一、为什么需要 VACUUM？
+## Why VACUUM Matters
 
-Redshift 的存储机制有两个特点会导致性能下降：
+Two characteristics of Redshift's storage engine cause performance to degrade over time:
 
-### 1. 删除不会立即释放空间
+### Deletes Don't Free Space Immediately
 
-当你执行 `DELETE` 或 `UPDATE` 时，Redshift **不会物理删除数据**，只是将这些行标记为"已删除"。这些"幽灵行"仍然占用磁盘空间，查询时也可能被扫描到。
+When you run `DELETE` or `UPDATE`, Redshift **does not physically remove the data**. Instead, it marks those rows as "deleted." These ghost rows still consume disk space and may be scanned during queries.
 
-### 2. 新数据存储在未排序区域
+### New Data Lands in an Unsorted Region
 
-使用 `COPY`、`INSERT` 或 `UPDATE` 插入的新行，会存储在表末尾的**未排序区域**。如果表定义了排序键（Sort Key），但大量数据未排序，范围扫描和合并连接的效率会大打折扣。
+Rows inserted via `COPY`, `INSERT`, or `UPDATE` are appended to the **unsorted region** at the end of the table. If the table has a sort key defined but a large portion of data remains unsorted, range-restricted scans and merge joins become significantly less efficient.
 
-> **类比理解**：就像一本字典，如果新词都堆在最后几页而不按字母排序，查词效率自然会下降。
+> **Analogy**: Think of a dictionary where new words are dumped at the back without alphabetical ordering. Looking anything up becomes painfully slow.
 
 ---
 
-## 二、VACUUM 命令详解
+## VACUUM Command Reference
 
-VACUUM 命令用于回收空间和重新排序数据。Redshift 提供了 **6 种 VACUUM 类型**，适用于不同场景。
+VACUUM reclaims space and re-sorts data. Redshift offers **6 VACUUM types**, each designed for different scenarios.
 
-![数据中心服务器架构](architecture.webp)
+![Data center server architecture](architecture.webp)
 
-### VACUUM 类型对比表
+### VACUUM Type Comparison
 
-| 类型 | 功能 | 适用场景 | 耗时 |
-|------|------|----------|------|
-| `FULL` | 排序 + 回收空间 | 通用维护（默认） | 中等 |
-| `DELETE ONLY` | 仅回收空间 | 大量删除后 | 快 |
-| `SORT ONLY` | 仅排序 | 大量插入后 | 中等 |
-| `REINDEX` | 重建交错排序索引 | 交错排序键表 | 最慢 |
-| `RECLUSTER` | 仅排序未排序部分 | 大表增量维护 | 快 |
-| `BOOST` | 使用额外资源加速 | 维护窗口期 | 快（占资源） |
+| Type | What It Does | When to Use | Duration |
+|------|-------------|-------------|----------|
+| `FULL` | Sort + reclaim space | General maintenance (default) | Medium |
+| `DELETE ONLY` | Reclaim space only | After heavy deletes | Fast |
+| `SORT ONLY` | Sort only | After heavy inserts | Medium |
+| `REINDEX` | Rebuild interleaved sort index | Interleaved sort key tables | Slowest |
+| `RECLUSTER` | Sort unsorted region only | Incremental maintenance on large tables | Fast |
+| `BOOST` | Use extra resources to speed up | Maintenance windows | Fast (resource-heavy) |
 
-### 1. VACUUM FULL（默认）
+### 1. VACUUM FULL (Default)
 
-排序数据并回收已删除行的空间，是最常用的维护命令。
+Sorts data and reclaims space from deleted rows. This is the most commonly used maintenance command.
 
 ```sql
--- 对单表执行完整 VACUUM
+-- VACUUM a single table
 VACUUM sales;
 
--- 对整个数据库执行（谨慎使用）
+-- VACUUM the entire database (use with caution)
 VACUUM;
 ```
 
-**执行条件**：默认情况下，当已排序行超过 95% 时会跳过排序阶段。可通过 `TO threshold PERCENT` 参数调整：
+**Threshold behavior**: By default, Redshift skips the sort phase when more than 95% of rows are already sorted. You can adjust this with the `TO threshold PERCENT` parameter:
 
 ```sql
--- 强制完全排序（不跳过）
+-- Force a complete sort (never skip)
 VACUUM sales TO 100 PERCENT;
 
--- 当 75% 以上已排序时跳过
+-- Skip sorting if 75%+ is already sorted
 VACUUM sales TO 75 PERCENT;
 ```
 
 ### 2. VACUUM DELETE ONLY
 
-仅回收被标记删除的行所占空间，**不进行排序**。适合大量删除数据后快速释放空间。
+Reclaims space occupied by rows marked for deletion **without re-sorting**. Ideal for quickly freeing disk after bulk deletes.
 
 ```sql
 VACUUM DELETE ONLY sales;
 ```
 
-> **提示**：Redshift 会在后台自动执行 DELETE ONLY 操作，但手动执行可以更快释放空间。
+> **Note**: Redshift runs automatic DELETE ONLY operations in the background, but running it manually gives you faster space reclamation.
 
 ### 3. VACUUM SORT ONLY
 
-仅对未排序区域进行排序，**不回收空间**。适合大量插入后提升查询性能。
+Sorts unsorted rows **without reclaiming space**. Useful after bulk inserts to restore query performance.
 
 ```sql
 VACUUM SORT ONLY sales;
@@ -90,73 +90,74 @@ VACUUM SORT ONLY sales;
 
 ### 4. VACUUM REINDEX
 
-针对使用**交错排序键（Interleaved Sort Key）**的表。它会重新分析排序键列的值分布，然后执行完整 VACUUM。
+Designed for tables with **interleaved sort keys**. It re-analyzes the distribution of values in sort key columns, then performs a full VACUUM.
 
 ```sql
 VACUUM REINDEX listing;
 ```
 
-**注意事项**：
-- 执行时间比 VACUUM FULL 长很多
-- 仅对交错排序键表有意义
-- 如果初始加载使用 `INSERT` 而非 `COPY`，需要运行此命令初始化索引
+**Key considerations**:
+- Takes significantly longer than VACUUM FULL
+- Only meaningful for interleaved sort key tables
+- Required after initial loads done with `INSERT` instead of `COPY` to properly initialize the index
 
 ### 5. VACUUM RECLUSTER
 
-只对表的**未排序区域**进行排序，保持已排序部分不变。适合大表的增量维护。
+Sorts only the table's **unsorted region**, leaving the already-sorted portion untouched. Best for incremental maintenance on large tables.
 
 ```sql
 VACUUM RECLUSTER listing;
 ```
 
-**优势**：
-- 比 FULL 更快
-- 对大表更友好
-- AWS 推荐用于频繁写入、只查询最新数据的场景
+**Advantages**:
+- Much faster than FULL
+- Scales well for large tables
+- AWS recommends this for write-heavy workloads that primarily query recent data
 
 ### 6. VACUUM BOOST
 
-使用额外系统资源加速 VACUUM 操作，但会**阻止并发的 DELETE 和 UPDATE**。
+Allocates extra system resources to speed up the VACUUM operation, but **blocks concurrent DELETE and UPDATE** statements.
 
 ```sql
--- 加速 RECLUSTER
+-- Boost a RECLUSTER operation
 VACUUM RECLUSTER listing BOOST;
 
--- 加速 FULL
+-- Boost a FULL VACUUM
 VACUUM FULL sales BOOST;
 ```
 
-**最佳实践**：仅在维护窗口或低峰期使用 BOOST。
+**Best practice**: Only use BOOST during maintenance windows or off-peak hours.
 
 ---
 
-## 三、VACUUM 执行策略
+## VACUUM Execution Strategy
 
-### 1. 选择合适的 VACUUM 类型
+### 1. Choosing the Right VACUUM Type
 
 ```
                ┌─────────────────────────────────────┐
-               │         需要维护的表                │
+               │       Table needs maintenance        │
                └──────────────┬──────────────────────┘
                               │
               ┌───────────────┼───────────────┐
               ▼               ▼               ▼
-        大量删除后       大量插入后      交错排序键表
+        After heavy      After heavy    Interleaved
+         deletes          inserts       sort key table
               │               │               │
               ▼               ▼               ▼
         DELETE ONLY      SORT ONLY        REINDEX
               │               │               │
               └───────┬───────┘               │
                       ▼                       │
-              两者都需要？                    │
+              Need both?                      │
                       │                       │
                       ▼                       │
                     FULL ◄────────────────────┘
 ```
 
-### 2. 判断是否需要 VACUUM
+### 2. Determining Whether VACUUM Is Needed
 
-查询 `SVV_TABLE_INFO` 视图获取表的排序和空间使用状态：
+Query the `SVV_TABLE_INFO` view to check sort and space usage status:
 
 ```sql
 SELECT
@@ -167,24 +168,24 @@ SELECT
     unsorted,
     vacuum_sort_benefit
 FROM SVV_TABLE_INFO
-WHERE unsorted > 5  -- 未排序比例超过 5%
+WHERE unsorted > 5  -- More than 5% unsorted
 ORDER BY size_mb DESC;
 ```
 
-**关键指标**：
-- `unsorted`：未排序行的百分比
-- `vacuum_sort_benefit`：预估 VACUUM 后的性能提升
-- `pct_used`：磁盘使用率
+**Key metrics to watch**:
+- `unsorted`: Percentage of unsorted rows
+- `vacuum_sort_benefit`: Estimated performance gain from running VACUUM
+- `pct_used`: Disk utilization
 
-### 3. 监控 VACUUM 进度
+### 3. Monitoring VACUUM Progress
 
-VACUUM 执行期间，查看预估剩余时间：
+While VACUUM is running, check the estimated time remaining:
 
 ```sql
 SELECT * FROM SVV_VACUUM_PROGRESS;
 ```
 
-VACUUM 完成后，查看执行效果：
+After VACUUM completes, review the results:
 
 ```sql
 SELECT
@@ -198,7 +199,7 @@ ORDER BY xid DESC
 LIMIT 10;
 ```
 
-查看空间回收率：
+Check the space reclamation ratio:
 
 ```sql
 SELECT * FROM SVL_VACUUM_PERCENTAGE ORDER BY xid DESC;
@@ -206,28 +207,28 @@ SELECT * FROM SVL_VACUUM_PERCENTAGE ORDER BY xid DESC;
 
 ---
 
-## 四、ANALYZE 统计更新
+## ANALYZE: Keeping Statistics Up to Date
 
-ANALYZE 命令更新表的统计元数据，帮助查询优化器生成更准确的执行计划。
+The ANALYZE command updates table statistics metadata so the query optimizer can generate more accurate execution plans.
 
-### 1. 何时运行 ANALYZE
+### When to Run ANALYZE
 
-- 大量 INSERT、UPDATE、DELETE 后
-- VACUUM 操作完成后
-- `stats_off` 指标超过 10% 时
+- After heavy INSERT, UPDATE, or DELETE operations
+- After completing a VACUUM
+- When the `stats_off` metric exceeds 10%
 
 ```sql
--- 分析单表
+-- Analyze a single table
 ANALYZE sales;
 
--- 分析整个数据库
+-- Analyze the entire database
 ANALYZE;
 
--- 仅更新谓词列的统计信息
+-- Only update statistics for predicate columns
 ANALYZE PREDICATE COLUMNS sales;
 ```
 
-### 2. 检查统计是否过时
+### Checking for Stale Statistics
 
 ```sql
 SELECT
@@ -238,76 +239,76 @@ WHERE stats_off > 10
 ORDER BY stats_off DESC;
 ```
 
-> **注意**：`COPY` 命令加载空表后会自动运行 ANALYZE，无需手动执行。
+> **Note**: The `COPY` command automatically runs ANALYZE after loading into an empty table, so no manual action is needed in that case.
 
 ---
 
-## 五、表设计最佳实践
+## Table Design Best Practices
 
-良好的表设计可以大幅减少 VACUUM 的频率和耗时。
+Good table design dramatically reduces both the frequency and duration of VACUUM operations.
 
-### 1. 选择合适的排序键
+### 1. Choosing the Right Sort Key
 
-| 排序键类型 | 适用场景 | VACUUM 策略 |
-|-----------|----------|-------------|
-| 复合排序键 | 范围查询、时间序列 | VACUUM FULL |
-| 交错排序键 | 多列等值过滤 | VACUUM REINDEX |
-| 无排序键 | 全表扫描为主 | VACUUM DELETE ONLY |
+| Sort Key Type | Best For | VACUUM Strategy |
+|--------------|----------|-----------------|
+| Compound sort key | Range queries, time series | VACUUM FULL |
+| Interleaved sort key | Multi-column equality filters | VACUUM REINDEX |
+| No sort key | Full table scans | VACUUM DELETE ONLY |
 
-**推荐**：日期/时间列作为第一排序键，配合按时间顺序加载数据，可以最小化排序需求。
+**Recommendation**: Use a date/timestamp column as the leading sort key and load data in chronological order. This minimizes the need for re-sorting.
 
-### 2. 按排序键顺序加载数据
+### 2. Loading Data in Sort Key Order
 
-如果使用 `COPY` 并满足以下条件，Redshift 会自动将新数据放入已排序区域：
+Redshift automatically places new data into the sorted region when using `COPY`, provided all of these conditions are met:
 
-- 使用**复合排序键**且只有一列
-- 排序列为 `NOT NULL`
-- 表 100% 已排序或为空
-- 新数据的排序值都大于现有数据
+- The table uses a **compound sort key** with a single column
+- The sort column is defined as `NOT NULL`
+- The table is either empty or 100% sorted
+- All new sort key values are greater than the existing maximum
 
-### 3. 大表拆分为时间序列表
+### 3. Splitting Large Tables into Time-Series Tables
 
-对于超大表，按时间拆分可以：
-- 减少单表 VACUUM 耗时
-- 方便删除历史数据（直接 DROP 分区表）
-- 提升查询裁剪效率
+For very large tables, partitioning by time offers several benefits:
+- Reduces per-table VACUUM duration
+- Makes it easy to drop historical data (just `DROP TABLE` the old partition)
+- Improves query pruning efficiency
 
 ```sql
--- 按月分表示例
+-- Monthly partitioning example
 CREATE TABLE sales_2024_01 (LIKE sales);
 CREATE TABLE sales_2024_02 (LIKE sales);
 -- ...
 ```
 
-### 4. Deep Copy 替代 VACUUM
+### 4. Deep Copy as a VACUUM Alternative
 
-对于大表，**深拷贝**可能比 VACUUM 更快：
+For large tables, a **deep copy** can be faster than VACUUM:
 
 ```sql
--- 1. 创建新表
+-- 1. Create a new empty table with the same structure
 CREATE TABLE sales_new (LIKE sales);
 
--- 2. 批量插入（自动排序）
+-- 2. Insert all data (automatically sorted on load)
 INSERT INTO sales_new SELECT * FROM sales;
 
--- 3. 重命名替换
+-- 3. Swap the tables
 ALTER TABLE sales RENAME TO sales_old;
 ALTER TABLE sales_new RENAME TO sales;
 
--- 4. 删除旧表
+-- 4. Drop the old table
 DROP TABLE sales_old;
 ```
 
-**注意**：Deep Copy 期间不能有并发写入。
+**Caveat**: No concurrent writes are allowed during a deep copy.
 
 ---
 
-## 六、常用运维命令速查
+## Essential Operations Commands
 
-### 表信息查询
+### Table Information
 
 ```sql
--- 查看所有表的详细信息
+-- View detailed info for all tables
 SELECT
     "table",
     size AS size_mb,
@@ -323,51 +324,51 @@ FROM SVV_TABLE_INFO
 ORDER BY size_mb DESC;
 ```
 
-### 压缩编码分析
+### Compression Analysis
 
 ```sql
--- 分析表的最佳压缩编码
+-- Analyze optimal compression encoding for a table
 ANALYZE COMPRESSION sales;
 ```
 
-### 错误排查
+### Error Troubleshooting
 
 ```sql
--- 查看 COPY 加载错误
+-- View COPY load errors
 SELECT * FROM STL_LOAD_ERRORS ORDER BY starttime DESC LIMIT 20;
 
--- 查看查询执行错误
+-- View query execution errors
 SELECT * FROM STL_ERROR ORDER BY recordtime DESC LIMIT 20;
 ```
 
-### 查询性能分析
+### Query Performance Analysis
 
 ```sql
--- 查看最近的慢查询
+-- Find recent slow queries
 SELECT
     query,
     substring(querytxt, 1, 100) AS query_text,
     elapsed/1000000 AS elapsed_seconds,
     queue_time/1000000 AS queue_seconds
 FROM STL_QUERY
-WHERE elapsed > 60000000  -- 超过 60 秒
+WHERE elapsed > 60000000  -- Over 60 seconds
 ORDER BY endtime DESC
 LIMIT 20;
 ```
 
 ---
 
-## 七、自动化维护工具
+## Automated Maintenance with Analyze Vacuum Utility
 
-AWS 提供了开源的 [Analyze Vacuum Utility](https://github.com/awslabs/amazon-redshift-utils/tree/master/src/AnalyzeVacuumUtility)，可以自动识别需要维护的表并执行 VACUUM 和 ANALYZE。
+AWS provides an open-source [Analyze Vacuum Utility](https://github.com/awslabs/amazon-redshift-utils/tree/master/src/AnalyzeVacuumUtility) that automatically identifies tables needing maintenance and runs VACUUM and ANALYZE accordingly.
 
-### 主要功能
+### Key Features
 
-- 基于 `unsorted`、`stats_off` 和表大小自动判断
-- 支持按 Schema 或单表执行
-- 提供详细的执行日志
+- Automatically decides based on `unsorted`, `stats_off`, and table size
+- Supports per-schema or per-table execution
+- Produces detailed execution logs
 
-### 基本用法
+### Basic Usage
 
 ```bash
 python analyze-vacuum-schema.py \
@@ -381,27 +382,27 @@ python analyze-vacuum-schema.py \
 
 ---
 
-## 总结
+## Summary
 
-Amazon Redshift 性能优化的核心是理解数据存储机制，并制定合理的维护策略：
+Effective Redshift performance tuning boils down to understanding how data is stored and establishing a sensible maintenance routine:
 
-1. **定期 VACUUM**：回收空间、保持排序，选择合适的 VACUUM 类型
-2. **及时 ANALYZE**：更新统计信息，帮助优化器生成最佳执行计划
-3. **合理设计表**：选择正确的排序键和分布键，按排序顺序加载数据
-4. **监控关键指标**：关注 `unsorted`、`stats_off`、`vacuum_sort_benefit`
-5. **善用工具**：利用 Analyze Vacuum Utility 实现自动化维护
+1. **Run VACUUM regularly** -- reclaim space, maintain sort order, and pick the right VACUUM type for each situation
+2. **Run ANALYZE promptly** -- keep statistics fresh so the optimizer can build efficient execution plans
+3. **Design tables thoughtfully** -- choose appropriate sort keys and distribution keys, and load data in sort order
+4. **Monitor key metrics** -- track `unsorted`, `stats_off`, and `vacuum_sort_benefit`
+5. **Automate with tooling** -- use the Analyze Vacuum Utility to take the manual work out of maintenance
 
-掌握这些技巧，你的 Redshift 集群将持续保持高性能状态。
+With these practices in place, your Redshift cluster will consistently deliver the performance you expect.
 
 ---
 
-## 相关阅读
+## Related Reading
 
-- [AWS CLI 完全指南：安装配置与常用命令速查](/posts/linux/2020-07-04-aws-cli/) - AWS 命令行工具使用教程
+- [AWS CLI Complete Guide: Installation, Configuration, and Command Reference](/posts/linux/2020-07-04-aws-cli/) - AWS command-line tool tutorial
 
-## 参考资料
+## References
 
-- [Amazon Redshift VACUUM 命令官方文档](https://docs.aws.amazon.com/redshift/latest/dg/r_VACUUM_command.html)
-- [Redshift 数据仓库架构详解](https://docs.aws.amazon.com/redshift/latest/dg/c_high_level_system_architecture.html)
-- [SVV_TABLE_INFO 系统视图](https://docs.aws.amazon.com/zh_cn/redshift/latest/dg/r_SVV_TABLE_INFO.html)
+- [Amazon Redshift VACUUM Command Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_VACUUM_command.html)
+- [Redshift Data Warehouse Architecture](https://docs.aws.amazon.com/redshift/latest/dg/c_high_level_system_architecture.html)
+- [SVV_TABLE_INFO System View](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_TABLE_INFO.html)
 - [Redshift Analyze Vacuum Utility - GitHub](https://github.com/awslabs/amazon-redshift-utils/tree/master/src/AnalyzeVacuumUtility)

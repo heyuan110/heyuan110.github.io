@@ -1,311 +1,301 @@
 +++
 date = '2026-01-26T11:00:00+08:00'
 draft = false
-title = '2026 年 AGI 已经来了：从功能定义到 31 分钟猎头实战'
-description = '顶级风投宣称 AGI 已经到来。从功能定义到实战案例，深度解读 AI Agent 如何在 31 分钟内完成猎头工作，以及每 7 个月翻倍的能力增长曲线意味着什么。'
+title = 'AGI Is Here in 2026: Sequoia Capital Case Study and What It Means'
+description = 'Sequoia Capital declares AGI has arrived. See how an AI agent completed a full recruiting job in 31 minutes, why agent capabilities double every 7 months, and what this exponential growth means for your career.'
 toc = true
-tags = ['AGI', 'AI Agent', 'AI 趋势', '智能体', '长周期Agent']
-categories = ['AI原理']
-keywords = ['AGI', 'AI Agent', '2026 AI 趋势', '智能体', '长周期Agent', 'AI能力增长']
+tags = ['AGI', 'AI Agent', 'AI Trends', 'Long-horizon Agent', 'Sequoia Capital']
+categories = ['AI Guides']
+keywords = ['AGI 2026', 'AI agent capabilities', 'Sequoia Capital AGI', 'long-horizon agents', 'AI recruiting agent', 'AI capability growth', 'functional AGI definition']
 +++
 
-![AGI 时代来临](cover.webp)
+![The AGI era has arrived](cover.webp)
 
-2026 年 1 月 14 日，红杉资本发布了一篇重磅博客——**《2026: This is AGI》**。
+On January 14, 2026, Sequoia Capital published a landmark blog post: **"2026: This is AGI."**
 
-两位作者 Pat Grady（红杉联席掌门人，19 年投资老兵）和 Sonya Huang（红杉合伙人，从 2022 年就押中 AI 大趋势）开门见山：
+The authors — Pat Grady (Sequoia's co-managing partner with 19 years of investment experience) and Sonya Huang (Sequoia partner who spotted the AI megatrend back in 2022) — got straight to the point:
 
 > **Long-horizon agents are functionally AGI, and 2026 will be their year.**
->
-> 长周期智能体就是功能性的 AGI，2026 年将是它们的年份。
 
-这不是某个技术极客的狂想，而是全球顶级风投机构的正式判断。他们的结论很简单：**别等了，AGI 已经到来。**
+This isn't a random prediction from a tech blogger. It's a formal assessment from one of the world's most influential venture capital firms. Their conclusion is simple: **Stop waiting. AGI is already here.**
 
-## 一、AGI 的定义：能把事情搞清楚
+## Defining AGI: The Ability to Figure Things Out
 
-几年前，红杉的合伙人去请教顶尖 AI 研究者，问他们怎么定义 AGI。
+Years ago, Sequoia partners asked top AI researchers how they would define AGI.
 
-研究者们互相看了看，给出了一个意味深长的答案：
+The researchers looked at each other and gave a telling answer:
 
-> "我们每个人都有自己的定义，但看到它的时候就会知道。"
+> "Each of us has our own definition, but we'll know it when we see it."
 
-当时这个回答让人摸不着头脑，但现在红杉给出了自己的答案。
+At the time, this felt vague and unhelpful. But now Sequoia has offered their own answer.
 
-Pat 和 Sonya 说得很坦诚：
+Pat and Sonya were refreshingly honest:
 
-> "我们是投资人不是技术专家，没资格给 AGI 下技术定义。但从功能角度看，**AGI 就是能把事情搞清楚的能力**。就这么简单。"
+> "We're investors, not researchers. We don't have the credentials to offer a technical definition. But from a functional standpoint, **AGI is the ability to figure things out**. It's that simple."
 
-这个定义初看简单，但仔细想想很有道理。你需要一个 AI 帮你做事的时候，你在乎的是什么？不就是它能不能把事搞清楚吗。至于它用的什么算法、调了多少参数，这些技术细节远不如"确实把事办成了"重要。
+This definition might sound too simple at first glance. But think about it — when you need an AI to help you with something, what do you actually care about? Whether it can get the job done. You don't care what algorithm it uses or how many parameters it has. You care about results.
 
-### 能把事搞清楚需要什么？
+### What Does "Figuring Things Out" Require?
 
-他们把这个逻辑拆解得很清楚：
+They broke the logic down clearly:
 
-**一个能把事情搞清楚的人**，需要三样东西：
-1. **基础知识**：知道相关的信息和概念
-2. **推理能力**：能够分析、判断、做出决策
-3. **迭代能力**：遇到问题能调整方向，不断尝试直到找到答案
+**A person who can figure things out** needs three capabilities:
+1. **Knowledge** — Understanding relevant information and concepts
+2. **Reasoning** — The ability to analyze, judge, and make decisions
+3. **Iteration** — The ability to adjust course, keep trying, and find answers when stuck
 
-**一个能把事情搞清楚的 AI**，同样需要三样东西：
-1. **预训练知识**：2022 年 ChatGPT 带来的海量知识储备
-2. **推理能力**：2024 年底 OpenAI o1 系列带来的深度思考能力
-3. **迭代能力**：2026 年 Claude Code 这样的编程智能体带来的自主探索能力
+**An AI that can figure things out** needs the same three capabilities:
+1. **Pre-trained knowledge** — The massive knowledge base that came with ChatGPT in 2022
+2. **Reasoning ability** — The deep thinking capability introduced by OpenAI's o1 series in late 2024
+3. **Iterative capability** — The autonomous exploration ability brought by coding agents like Claude Code in 2026
 
-**三块拼图都齐了。**
+**All three puzzle pieces are now in place.**
 
-这就像一个刚毕业的大学生：有知识储备（读了四年书）、有思考能力（能分析问题）、还能边做边学（实践中成长）。现在的 AI Agent，就是这样一个"刚毕业但潜力无限"的新人。
+Think of it like a fresh college graduate: they have knowledge (four years of education), critical thinking skills (they can analyze problems), and the ability to learn on the job (they grow through practice). Today's AI agents are like brilliant new hires with unlimited potential.
 
-## 二、31 分钟的猎头工作：没人教它该怎么做
+## The 31-Minute Recruiting Job: Nobody Told It What to Do
 
-光说概念太抽象，红杉在博客里给出了一个让人拍案叫绝的真实案例。
+Abstract concepts only go so far. Sequoia backed up their argument with a real-world example that speaks volumes.
 
-### 场景
+### The Setup
 
-一个创业公司创始人给 AI Agent 发了一条消息：
+A startup founder sent an AI agent a single message:
 
-> "我需要找个开发者关系负责人（DevRel）。技术要够硬能镇住资深工程师，但又得喜欢玩 Twitter。我们的客户是平台团队。你去办吧。"
+> "I need a Head of DevRel. Someone technical enough to earn respect from senior engineers, but who also loves Twitter. Our customers are platform teams. Go."
 
-就这么几句话，没有详细的岗位描述，没有搜索策略，没有候选人名单。
+That's it. No detailed job description. No search strategy. No candidate list.
 
-### Agent 的执行过程
+### How the Agent Executed
 
-Agent 接到任务就开始干活了：
+The agent got to work immediately:
 
-**第一步：LinkedIn 搜索**
+**Step 1: LinkedIn Search**
 
-去 LinkedIn 搜索那些知名公司的 DevRel 职位，找到了几百份简历。
+It searched LinkedIn for DevRel roles at well-known companies and found hundreds of profiles.
 
-但它很快发现问题：**职位头衔说明不了问题**。简历上看不出谁干得好、谁干得糊弄。
+But it quickly spotted the problem: **job titles don't tell you much**. Resumes can't distinguish between people who excel and people who coast.
 
-**第二步：换个思路——YouTube**
+**Step 2: Pivot to YouTube**
 
-于是它换了个思路，去 YouTube 找技术大会演讲。
+So it changed tactics and searched YouTube for tech conference talks.
 
-找到 50 多个演讲者之后，开始筛选那些**互动数据好**的——点赞多、评论活跃的视频，说明演讲者有真本事。
+After finding 50+ speakers, it filtered for those with **strong engagement metrics** — videos with lots of likes and active comment sections, indicating the speaker genuinely connects with technical audiences.
 
-**第三步：Twitter 交叉验证**
+**Step 3: Twitter Cross-Reference**
 
-接着把这些人拿到 Twitter 上交叉比对。
+Next, it cross-referenced these people on Twitter.
 
-结果发现：一半人账号不活跃，要么就是只转发公司博客的官方账号。
+The result: half had inactive accounts or only retweeted corporate blog posts.
 
-但确实找到了十几个**有真实粉丝**的人——他们发真实观点，和开发者互动，内容还挺有品味。
+But it did find about a dozen people with **authentic followings** — people who shared genuine opinions, engaged with developers, and posted with real taste.
 
-**第四步：识别时机信号**
+**Step 4: Timing Signals**
 
-Agent 继续往下挖，它注意到一个细节：**有三个人最近三个月发帖频率明显下降**。
+The agent kept digging and noticed something subtle: **three people had significantly reduced their posting frequency over the past three months.**
 
-这可能意味着什么？对现在工作的倦怠期。这是一个微妙但重要的信号。
+What could this mean? Burnout or disengagement with their current role. A subtle but important signal.
 
-**第五步：深入调研**
+**Step 5: Deep Research**
 
-然后它开始深入调研这三个人：
+Then it researched these three candidates in depth:
 
-- **第一个**：刚宣布了新职位。晚了。
-- **第二个**：是创业公司创始人，刚融完资。肯定不会跳槽。
-- **第三个**：就很有意思了……
+- **Candidate 1**: Just announced a new position. Too late.
+- **Candidate 2**: A startup founder who just closed a funding round. Definitely not looking to switch.
+- **Candidate 3**: Now this one was interesting...
 
-**第六步：锁定目标**
+**Step 6: Target Locked**
 
-第三个候选人的情况：
+The third candidate's profile:
 
-- 在一家 D 轮公司做 DevRel
-- 这家公司**刚在市场部门裁了人**（不稳定信号）
-- 她最近演讲主题正好是**平台工程**，和创业公司方向完全吻合
-- Twitter 有 1.4 万粉丝，发的梗图能让真正的工程师互动
-- LinkedIn **两个月没更新了**（可能在观望新机会）
+- Working in DevRel at a Series D company
+- That company had **recently laid off people in the marketing department** (instability signal)
+- Her recent talk topics focused on **platform engineering** — a perfect match with the startup's direction
+- 14,000 Twitter followers, posting memes that actually resonated with real engineers
+- **No LinkedIn updates in two months** (possibly exploring new opportunities)
 
-**最后：起草邮件**
+**Final Step: Drafting the Outreach**
 
-Agent 起草了一封联系邮件，提到了她最近的演讲，提到了和公司客户画像的重合，还说了说小团队能提供的创作自由。
+The agent drafted a personalized outreach email referencing her recent talk, highlighting the overlap with the company's target customer profile, and mentioning the creative freedom that comes with a small team.
 
-**总耗时：31 分钟。**
+**Total time: 31 minutes.**
 
-### 这个案例说明了什么？
+### What This Example Really Shows
 
-创始人拿到的不是一份岗位描述，也不是一份长长的候选人名单，而是**一份只有一个人的精准名单**。
+The founder didn't receive a job description or a long list of candidates. They got **a single, precisely targeted recommendation**.
 
-关键是：**没人告诉 Agent 该怎么做每一步**。
+The critical point: **nobody told the agent how to execute any of these steps.**
 
-- 没人说要去 YouTube 找演讲
-- 没人说要用发帖频率判断跳槽意愿
-- 没人说要关注公司裁员动态
+- Nobody said to search YouTube for conference talks
+- Nobody said to use posting frequency as a proxy for job dissatisfaction
+- Nobody said to monitor company layoff activity
 
-它自己推理出来的：形成假设、验证假设、走进死胡同、然后转向，直到找到答案。
+The agent reasoned its way through: forming hypotheses, testing them, hitting dead ends, pivoting, and persisting until it found the answer.
 
-**这就是红杉说的"把事情搞清楚"。**
+**This is exactly what Sequoia means by "figuring things out."**
 
-## 三、每 7 个月翻一番的指数曲线
+## The Exponential Curve: Capabilities Double Every 7 Months
 
-红杉在博客里给出了一个让人不敢信的预测：
+Sequoia made a bold prediction in the blog post:
 
-> **长周期智能体的能力大约每 7 个月翻一番。**
+> **Long-horizon agent capabilities are roughly doubling every 7 months.**
 
-这个数据来自 [METR](https://metr.org/)（一个追踪 AI 能力的研究机构）的实际测量，不是拍脑袋想出来的。
+This data comes from [METR](https://metr.org/) (an organization that tracks AI capabilities through empirical measurement), not speculation.
 
-### 如果这条曲线继续
+### What Happens If This Curve Continues?
 
-沿着这条指数曲线往下推会发生什么？
+Extrapolating along this exponential curve:
 
-| 年份 | Agent 能可靠完成的任务规模 |
-|------|--------------------------|
-| 2026 年 | 约 30 分钟的专家级工作 |
-| 2028 年 | **一整天**的专家级工作 |
-| 2034 年 | **一整年**的工作 |
-| 2037 年 | **一整个世纪**的工作 |
+| Year | Task Duration Agents Can Reliably Handle |
+|------|------------------------------------------|
+| 2026 | ~30 minutes of expert-level work |
+| 2028 | **A full day** of expert-level work |
+| 2034 | **An entire year** of work |
+| 2037 | **A full century** of work |
 
-换句话说：**你原本打算 2030 年实现的目标，2026 年就能干成了。**
+In other words: **goals you planned to achieve by 2030 could be accomplished in 2026.**
 
-### 争议与现实
+### The Debate
 
-这个预测引发了不小的争议。
+This prediction sparked significant debate.
 
-**支持者**：OpenAI 的 Greg Brockman 转发了这篇博客，表示认同。
+**Supporters**: OpenAI's Greg Brockman shared the blog post with endorsement.
 
-**质疑者**：觉得太乐观了，忽略了很多现实问题：
-- Agent 现在还是会犯错
-- 会产生幻觉（一本正经胡说八道）
-- 会丢失上下文
-- 有时候会信心满满地往完全错误的方向跑
+**Skeptics** felt it was overly optimistic, ignoring real-world problems:
+- Agents still make mistakes
+- They hallucinate (confidently stating incorrect information)
+- They lose context
+- They sometimes charge confidently in completely wrong directions
 
-红杉也承认这些问题，他们说：
+Sequoia acknowledged these issues directly:
 
 > "To be clear: agents still fail. They hallucinate, lose context, and sometimes charge confidently down exactly the wrong path. But the trajectory is unmistakable, and the failures are increasingly fixable."
->
-> 智能体确实还会失败。但趋势是明确的，而且这些失败越来越可以被修复。
 
-**判断的关键不在某个时间点的能力水平，而在能力提升的速度。**
+**The key insight isn't the capability level at any single point in time — it's the rate of improvement.**
 
-就像智能手机刚出来的时候，体验也很糟糕——电池不够用、App 少得可怜、经常死机。但它的进化速度摆在那里，所以方向是确定的。
+It's similar to when smartphones first launched. The experience was terrible — short battery life, barely any apps, constant crashes. But the pace of evolution was undeniable, so the direction was clear.
 
-## 四、从"会说话"到"会做事"：商业模式要重写
+## From Talkers to Doers: Business Models Must Be Rewritten
 
-这是红杉文章中我认为最有洞见的部分。
+This is what I consider the most insightful section of Sequoia's article.
 
-### 2023-2024：AI 是"说话者"（Talker）
+### 2023-2024: AI as "Talkers"
 
-过去两年的 AI 应用，本质上都是**对话能力**的延伸：
+The AI applications of the past two years were fundamentally extensions of **conversational ability**:
 
-- ChatGPT：和你聊天
-- AI 写作助手：帮你写文章
-- AI 编程助手：帮你写代码片段
+- ChatGPT: Chatting with you
+- AI writing assistants: Helping you draft articles
+- AI coding assistants: Helping you write code snippets
 
-它们确实很强，但影响力有限。为什么？因为**说完之后，活还是你自己干**。
+These were impressive, but their impact was limited. Why? Because **after the conversation, you still had to do the actual work yourself.**
 
-### 2026-2027：AI 是"行动者"（Doer）
+### 2026-2027: AI as "Doers"
 
-红杉预测，新一代的 AI 应用会是**行动者**：
+Sequoia predicts the next generation of AI applications will be **doers**:
 
 > "They will feel like colleagues."
->
-> 它们给人的感觉会像同事。
 
-这意味着几个根本性的变化：
+This implies several fundamental shifts:
 
-| 维度 | 说话者时代 | 行动者时代 |
-|------|-----------|-----------|
-| 使用频率 | 每天几次 | **全天候运行** |
-| 实例数量 | 一个聊天窗口 | **多个实例同时开工** |
-| 用户角色 | 个人贡献者 | **管理一个 Agent 团队** |
-| 交互方式 | 聊天对话 | **任务委派** |
+| Dimension | Talker Era | Doer Era |
+|-----------|-----------|----------|
+| Usage frequency | A few times daily | **Running 24/7** |
+| Instances | One chat window | **Multiple instances working simultaneously** |
+| User role | Individual contributor | **Managing a team of agents** |
+| Interaction model | Chat conversation | **Task delegation** |
 
-### 这对创业者意味着什么？
+### What This Means for Entrepreneurs
 
-红杉给出了四个关键问题：
+Sequoia posed four key questions:
 
-1. **你能完成什么工作？** 找出那些需要持续注意力的任务
-2. **如何产品化？** UI 从聊天机器人演进到任务委派
-3. **能否可靠执行？** 改进反馈循环，让 Agent 能自我纠错
-4. **如何定价？** 按价值和成果收费，而不是按调用次数
+1. **What work can you complete?** Identify tasks requiring sustained attention
+2. **How do you productize it?** Evolve UIs from chatbots to task delegation interfaces
+3. **Can it execute reliably?** Improve feedback loops so agents can self-correct
+4. **How do you price it?** Charge based on value and outcomes, not API calls
 
-这不是简单的"加个 AI 功能"，而是**整个商业模式的重构**。
+This isn't about adding an AI feature to your product. It's about **rethinking the entire business model**.
 
-## 五、Agent 正在进入的领域
+## Industries Where Agents Are Already Operating
 
-红杉在文章中列举了多个正在被 Agent 渗透的垂直领域：
+Sequoia highlighted multiple verticals where agents are gaining traction:
 
-| 领域 | 代表公司 | Agent 扮演的角色 |
-|------|---------|-----------------|
-| 医疗 | OpenEvidence | 专科医生 |
-| 法律 | Harvey | 律师助理 |
-| 网络安全 | XBOW | 渗透测试专家 |
-| DevOps | Traversal | 网站可靠性工程师 |
-| 销售 | Day AI | 销售代表 |
-| 招聘 | Juicebox | 猎头 |
-| 数学 | Harmonic | 数学研究员 |
-| 芯片设计 | Ricursive | 芯片工程师 |
-| AI 研究 | GPT-5.2/Claude | AI 研究员 |
+| Industry | Representative Company | Agent's Role |
+|----------|----------------------|--------------|
+| Healthcare | OpenEvidence | Specialist physician |
+| Legal | Harvey | Legal associate |
+| Cybersecurity | XBOW | Penetration testing expert |
+| DevOps | Traversal | Site reliability engineer |
+| Sales | Day AI | Sales representative |
+| Recruiting | Juicebox | Executive recruiter |
+| Mathematics | Harmonic | Research mathematician |
+| Chip design | Ricursive | Chip engineer |
+| AI research | GPT-5.2/Claude | AI researcher |
 
-最后一条最有意思：**AI 在帮助研究更强的 AI**。这是一个自我加速的飞轮。
+That last entry is the most significant: **AI is helping build better AI.** This is a self-accelerating flywheel.
 
-## 六、我们该怎么办？
+## What Should We Do About It?
 
-读完红杉的文章，一个问题自然浮现：**如果 AI 什么都能干，我还能干点什么？**
+After reading Sequoia's article, one question naturally arises: **If AI can do everything, what's left for us?**
 
-### 恐惧是正常的
+### Fear Is Natural
 
-2025 年的新闻已经让人有些不安：
-- 医学诊断比赛，AI 赢了
-- 编程大赛，AI 赢了
-- 奥林匹克数学竞赛，AI 赢了
-- 股票交易大赛，AI 赢了
+The headlines from 2025 have been unsettling:
+- Medical diagnosis competition — AI won
+- Programming competition — AI won
+- Mathematical Olympiad — AI won
+- Stock trading competition — AI won
 
-这种压迫感是真实的。但恐惧不会帮我们解决问题。
+This pressure is real. But fear won't solve anything.
 
-### 回到那个定义
+### Back to That Definition
 
-记得红杉的定义吗？
+Remember Sequoia's framework?
 
-> "一个能把事情搞清楚的人，需要三样东西：基础知识、推理能力、迭代找答案的能力。"
+> "A person who can figure things out needs three things: knowledge, reasoning, and the ability to iterate toward answers."
 
-这个定义其实也适用于我们。AI 在进化，我们也需要随着时代迭代。
+This definition applies to us too. AI is evolving — and so must we.
 
-### 关键词：指令
+### The Key Word: Direction
 
-有人说得好：
+The crucial skill isn't execution anymore. It's **instruction**:
 
-> "AI 是个趋势的时候，恐惧它的到来是没有丝毫用处的。有人已经让 AI 成为他的助手连滚带爬，而他自己则游刃有余。"
+- The more rigorous your thinking, the clearer your instructions
+- The clearer your instructions, the more precise the results
 
-既然人创造了 AI，当然是为人类服务。我们的关键在于**指令**：
+This isn't a crisis. It's a shift where **the ability to direct** becomes more valuable than the ability to execute.
 
-- 你的思考有多严谨，指令就有多明确
-- 指令有多明确，结果就有多精准
+### From Individual Contributor to Team Manager
 
-这不是危机，而是**指挥能力**变得更重要了。
+Sequoia made this clear: the user's role shifts from "individual contributor" to "managing a team of agents."
 
-### 从"个人贡献者"到"团队管理者"
+This means:
 
-红杉说得很清楚：用户角色会从"个人贡献者"变成"管理一个 Agent 团队"。
+- The competition isn't about who writes code fastest — it's about who **decomposes problems** best
+- It's not about who memorizes the most knowledge — it's about who **knows the right questions to ask**
+- It's not about execution speed — it's about **directional judgment**
 
-这意味着：
+## Key Takeaways
 
-- 不再比拼谁代码写得快，而是比拼谁**问题拆解**得好
-- 不再比拼谁知识记得多，而是比拼谁**知道该问什么**
-- 不再比拼执行速度，而是比拼**方向判断**
+Sequoia's article distills down to three core points:
 
-## 总结
+1. **A functional definition of AGI**: The ability to figure things out
+2. **All three puzzle pieces are in place**: Knowledge + Reasoning + Iteration
+3. **2026 is the Year of the Doer**: From talkers to doers, business models get rewritten
 
-红杉的这篇文章，核心观点可以浓缩为三句话：
+Whether or not you agree that "AGI has arrived," one thing is certain:
 
-1. **AGI 的功能定义**：能把事情搞清楚
-2. **三块拼图已齐全**：知识 + 推理 + 迭代
-3. **2026 是行动者元年**：从说话者到行动者，商业模式重构
+**The boundary of AI capability is expanding exponentially, and the rate of expansion itself is accelerating.**
 
-不管你是否同意"AGI 已经到来"这个判断，有一点是确定的：
+When the speed of improvement is itself accelerating, our predictions about the future tend to be far too conservative.
 
-**AI 的能力边界正在以指数速度扩张，而且速度本身还在加快。**
+As Sequoia concluded:
 
-当能力提升的速度本身在加速的时候，我们对未来的预估往往会过于保守。
-
-就像红杉文章结尾说的：
-
-> **"Saddle Up!"**（上马吧！）
+> **"Saddle Up!"**
 
 ---
 
-**参考链接**：
+**References**:
 
-- [2026: This is AGI - Sequoia Capital 原文](https://sequoiacap.com/article/2026-this-is-agi/)
-- [METR - AI 能力追踪机构](https://metr.org/)
-- [Agent Skills：用大白话写程序的时代来了](/posts/ai/2026-01-19-agent-skills-new-programming/)
-- [Claude Code 入门指南](/posts/ai/2026-01-14-claude-code-guide/)
+- [2026: This is AGI - Sequoia Capital](https://sequoiacap.com/article/2026-this-is-agi/)
+- [METR - AI Capability Tracking Organization](https://metr.org/)
+- [Agent Skills: The Era of Programming in Plain Language](/posts/ai/2026-01-19-agent-skills-new-programming/)
+- [Claude Code Setup Guide](/posts/ai/2026-01-14-claude-code-guide/)

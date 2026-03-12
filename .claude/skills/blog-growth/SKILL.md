@@ -193,8 +193,9 @@ Agent 3: 老文章 SEO 优化（批量处理 2-3 篇）
 - 目标关键词和搜索数据
 - 博客 Front Matter 格式（TOML `+++`）
 - 文章目录路径 `content/posts/ai/YYYY-MM-DD-slug/index.md`
-- 分类规则（AI实战 or AI原理）
-- 中文写作要求
+- 分类规则（`AI Guides` 或 `Comparisons`）
+- **默认只写英文版**（`index.md`），除非用户明确要求多语言
+- 如需中文版，同时创建 `index.zh.md`，必须是高质量原创级中文写作
 - blog-writer skill 中的写作规范和 SEO 规范
 
 ### 5.3 老文章优化 Agent 指令要点

@@ -1,215 +1,215 @@
 +++
 date = '2026-02-19T11:00:00+08:00'
 draft = false
-title = 'Figma Code to Canvas：Anthropic 联手打造代码转设计新范式'
-description = 'Figma 与 Anthropic 合作推出 Code to Canvas 功能，将 Claude Code 生成的代码直接转化为可编辑的 Figma 设计稿。本文深度解析工作原理、使用方法与行业影响。'
+title = 'Figma Code to Canvas: Turn AI-Generated Code into Editable Designs'
+description = 'Figma and Anthropic launch Code to Canvas, converting Claude Code UI output into editable Figma frames via MCP. Complete setup guide, use cases, and comparison with v0, Bolt, and Lovable.'
 toc = true
-tags = ['Figma', 'Claude Code', 'Anthropic', 'AI 设计', 'MCP']
-categories = ['AI实战']
-keywords = ['Figma Code to Canvas', 'Figma AI', 'Figma Anthropic', '代码转设计', 'Claude Code Figma', 'MCP Server', 'AI 设计工具']
+tags = ['Figma', 'Claude Code', 'Anthropic', 'AI Design', 'MCP']
+categories = ['AI Guides']
+keywords = ['Figma Code to Canvas', 'Figma MCP server', 'Claude Code Figma integration', 'code to design tool', 'AI design workflow', 'Figma Anthropic']
 +++
 
-2026 年 2 月 17 日，Figma 与 Anthropic 联合发布了一项名为 **Code to Canvas** 的新功能。这不是又一个"AI 生成设计稿"的噱头，而是一次对设计与开发协作方式的根本性重构——它允许用户在 Claude Code 中构建的 UI 界面，直接以**可编辑的设计图层**形式传输到 Figma 画布上。
+On February 17, 2026, Figma and Anthropic jointly announced **Code to Canvas** — a feature that converts UI built with Claude Code into fully editable Figma frames. Not screenshots. Not flat images. Real, manipulable vector layers with preserved text, spacing, and color properties.
 
-这意味着什么？以前，AI 帮你写好了前端代码，设计师想要在 Figma 中调整，要么截图重画，要么在代码里艰难修改。现在，一句 "Send this to Figma"，代码就变成了设计师熟悉的 Figma Frame——不是截图，不是位图，而是真正可以拖拽、编辑、标注的矢量图层。
+The significance is hard to overstate. Before this, when AI generated a polished front-end interface, designers who wanted to iterate on it in Figma had two options: screenshot and manually rebuild, or wrestle with the code directly. Now, a single command — "Send this to Figma" — transforms running code into something designers can drag, rearrange, annotate, and refine using the tools they already know.
 
-Figma CEO Dylan Field 对此的判断很直接：**"当 AI 能帮你构建任何你能描述的可能性时，你的核心工作就是找到最优解。"** 而找最优解的最佳场所，不是 IDE 的终端窗口，而是设计画布。
+As Figma CEO Dylan Field put it: **"When AI can build anything you can describe, your real job becomes finding the best solution."** And the best place to evaluate solutions is not a terminal window — it is a design canvas.
 
-## Code to Canvas 到底是什么
+## What Is Code to Canvas
 
-Code to Canvas 是 Figma 与 Anthropic 深度合作推出的集成功能，核心能力可以用一句话概括：**将浏览器中渲染的 UI 界面，转化为 Figma 画布上可编辑的设计元素**。
+Code to Canvas is a deep integration between Figma and Anthropic that does one thing exceptionally well: **it captures the rendered state of a browser-based UI and converts it into editable design elements on the Figma canvas**.
 
-从技术角度来看，它并不是简单的"截图导入"。传统的截图只是一张位图，无法编辑其中的文字、布局或颜色。Code to Canvas 的不同之处在于，它捕获的是浏览器的**渲染状态**（rendered state），然后将其语义化地解析为 Figma 的 Frame 结构，包括图层、文本、间距、颜色等属性都被保留下来。
+This is fundamentally different from a screenshot import. A screenshot is a flat bitmap — you cannot edit the text, adjust the layout, or change colors within it. Code to Canvas captures the browser's **rendered state** and semantically parses it into Figma's Frame structure, preserving layers, text nodes, spacing, and color values.
 
-打个比方：如果说截图是给房子拍了张照片，那 Code to Canvas 就是把这栋房子的 CAD 图纸导入了建筑设计软件——你可以移动墙壁、调整窗户、重新规划房间布局。
+Think of it this way: if a screenshot is a photograph of a house, Code to Canvas gives you the full CAD blueprint imported into architectural software — where you can move walls, resize windows, and redesign the floor plan.
 
-### 核心定位
+### Core Positioning
 
-| 维度 | 说明 |
-|------|------|
-| **方向** | 代码 --> 设计（Code to Design） |
-| **输入** | Claude Code 在浏览器中渲染的 UI 界面 |
-| **输出** | Figma 画布上可编辑的 Frame（矢量图层） |
-| **目标用户** | 开发者、设计师、产品经理 |
-| **技术基础** | Figma MCP Server + Model Context Protocol |
+| Dimension | Details |
+|-----------|---------|
+| **Direction** | Code --> Design |
+| **Input** | UI rendered in a browser via Claude Code |
+| **Output** | Editable Figma Frame (vector layers) |
+| **Target users** | Developers, designers, product managers |
+| **Technical foundation** | Figma MCP Server + Model Context Protocol |
 
-## 工作原理与技术架构
+## How It Works: Technical Architecture
 
-Code to Canvas 的技术实现依赖于一个关键协议：**MCP（Model Context Protocol）**。如果你关注过 [Claude Code 的生态发展](/posts/ai/2026-01-28-claude-code-browser-automation/)，对 MCP 应该不会陌生——它是一个开放标准，允许 AI 工具与外部数据源和应用程序进行连接，本质上是 AI Agent 与外部世界的"通用适配器"。
+The technical backbone of Code to Canvas is **MCP (Model Context Protocol)**. If you have been following the [Claude Code ecosystem](/posts/ai/2026-01-28-claude-code-browser-automation/), MCP should be familiar — it is an open standard that lets AI tools connect to external data sources and applications, essentially serving as a universal adapter between AI agents and the outside world.
 
-在 Code to Canvas 的场景中，Figma 提供了一个本地运行的 **Dev Mode MCP Server**。这个 Server 不仅仅是一个传输通道，它能语义化地读取 Figma 中的组件库、设计变量、样式系统和布局结构。当 Claude Code 通过 MCP 与 Figma 连接时，双方建立的是一个**结构化的双向通信**，而不是简单的数据搬运。
+For Code to Canvas, Figma provides a locally running **Dev Mode MCP Server**. This server does more than shuttle data — it semantically reads your Figma component libraries, design variables, style systems, and layout structures. When Claude Code connects via MCP, the two establish a **structured, bidirectional communication channel**, not a simple data pipeline.
 
-### 工作流程
+### Step-by-Step Workflow
 
-整个流程分为四个步骤：
+The entire process has four steps:
 
-**第一步：在 Claude Code 中构建 UI**
+**Step 1: Build UI with Claude Code**
 
-使用 Claude Code 通过对话式交互构建前端界面。这可以是一个全新的项目，也可以是对现有代码的迭代修改。构建完成后，UI 会在本地开发服务器、staging 环境或任何浏览器中运行。
+Use Claude Code's conversational interface to build a front-end UI. This can be a brand-new project or an iteration on existing code. Once built, the UI runs in a local dev server, staging environment, or any browser.
 
-**第二步：启用 Figma MCP Server**
+**Step 2: Enable Figma MCP Server**
 
-打开 Figma 桌面端应用（注意：必须是桌面端，浏览器版不支持），进入偏好设置，开启 "Dev Mode MCP Server"。启用后，它会在本地地址 `http://127.0.0.1:3845/sse` 上运行一个服务。
+Open the Figma desktop app (note: the desktop app is required — the browser version does not support this), go to Preferences, and enable "Dev Mode MCP Server." Once active, it runs a service at `http://127.0.0.1:3845/sse`.
 
-**第三步：连接 Claude Code 与 Figma**
+**Step 3: Connect Claude Code to Figma**
 
-在终端中运行一条命令，将 Figma MCP Server 注册到 Claude Code 中：
+Run a single command in your terminal to register the Figma MCP Server with Claude Code:
 
 ```bash
 claude mcp add --transport sse figma-dev-mode-mcp-server http://127.0.0.1:3845/sse
 ```
 
-这条命令告诉 Claude Code："嘿，Figma 在这个地址等着你，你们可以开始通信了。"
+This tells Claude Code: "Figma is listening at this address — you two can start talking."
 
-**第四步：发送到 Figma**
+**Step 4: Send to Figma**
 
-在 Claude Code 中输入 "Send this to Figma"，系统会自动抓取当前浏览器中渲染的 UI 状态，将其转化为 Figma 兼容的 Frame，直接出现在你的 Figma 画布上。
+Type "Send this to Figma" in Claude Code. The system captures the current browser-rendered UI state, converts it into a Figma-compatible Frame, and places it directly on your Figma canvas.
 
-### 架构示意
+### Architecture Overview
 
 ```
-Claude Code (终端)
+Claude Code (Terminal)
     |
-    | 构建 UI，渲染到浏览器
+    | Build UI, render in browser
     v
-浏览器（本地 dev server）
+Browser (local dev server)
     |
-    | 捕获渲染状态
+    | Capture rendered state
     v
-MCP Protocol（通信层）
+MCP Protocol (communication layer)
     |
-    | 语义化转换
+    | Semantic conversion
     v
-Figma Dev Mode MCP Server（本地 127.0.0.1:3845）
+Figma Dev Mode MCP Server (local 127.0.0.1:3845)
     |
-    | 生成可编辑 Frame
+    | Generate editable Frame
     v
-Figma 画布（可编辑设计稿）
+Figma Canvas (editable design)
 ```
 
-值得注意的是，这个流程也支持**反向操作**：你可以在 Figma 中选中一个 Frame，将其链接发送给 Claude Code，Claude 会根据设计稿生成符合你设计系统（组件、Token、Tailwind 变量等）的生产级代码。这就形成了一个**设计与开发之间的闭环**。
+Notably, this workflow also supports the **reverse direction**: select a Frame in Figma, send its link to Claude Code, and Claude generates production-ready code that respects your design system (components, tokens, Tailwind variables, etc.). This creates a **closed loop between design and development**.
 
-## 核心功能详解
+## Key Features
 
-### 1. 多方案并排对比
+### 1. Side-by-Side Design Comparison
 
-这是 Code to Canvas 最实用的能力之一。在传统工作流中，如果想对比三个不同的 UI 方案，你需要分别构建、截图、粘贴，再逐一标注差异。现在，你可以让 Claude Code 快速生成多个变体，全部发送到 Figma 画布上，像在白板上摆卡片一样并排比较。
+This is one of Code to Canvas's most practical capabilities. In a traditional workflow, comparing three different UI approaches means building each one separately, taking screenshots, pasting them side by side, and manually annotating differences. Now you can have Claude Code generate multiple variants and send them all to the Figma canvas, laying them out like cards on a whiteboard.
 
-设计师可以一眼看到不同方案的模式差异、信息层级变化和视觉一致性问题，而不需要在多个浏览器标签页之间来回切换。
+Designers can immediately spot pattern differences, information hierarchy changes, and visual consistency issues without switching between browser tabs.
 
-### 2. 无代码结构探索
+### 2. No-Code Structure Exploration
 
-设计稿到了 Figma 画布上，设计师可以直接用熟悉的操作来探索和调整：
+Once a design lands on the Figma canvas, designers can explore and iterate using familiar tools:
 
-- 复制 Frame，重新排列步骤顺序，测试不同的信息架构
-- 调整布局间距，观察不同排版方案的效果
-- 修改文字内容，检验文案与设计的匹配度
+- Duplicate Frames, rearrange step sequences, test different information architectures
+- Adjust layout spacing and evaluate different typography approaches
+- Modify text content to check copy-design alignment
 
-整个过程不需要触碰一行代码。这对于不熟悉终端操作的设计师来说，大大降低了参与 AI 辅助设计流程的门槛。
+The entire process requires zero code. For designers unfamiliar with terminal workflows, this dramatically lowers the barrier to participating in AI-assisted design.
 
-### 3. 团队协作标注
+### 3. Team Annotation and Collaboration
 
-PM、设计师和工程师可以在同一个 Figma Frame 上进行标注和评论。区别在于，他们评论的对象不再是一张静态原型图，而是**实际构建出来的、真实保真度的界面**。这消除了"原型图和实际效果不一样"这一经典协作痛点。
+PMs, designers, and engineers can annotate and comment on the same Figma Frame. The difference is that they are commenting on **an actually built, full-fidelity interface** rather than a static mockup. This eliminates the classic collaboration pain point of "the mockup looks different from the real thing."
 
-### 4. 设计系统对齐检查
+### 4. Design System Alignment Checks
 
-如果你的 Figma 项目中已经定义了设计系统（组件库、颜色变量、排版规范），MCP Server 会将这些信息传递给 Claude Code。这意味着 AI 生成的代码会尽量遵循你已有的设计系统，而不是用通用的 UI 框架从头构建。当生成的界面传回 Figma 时，设计师可以快速检查它与现有设计系统的一致性。
+If your Figma project has a defined design system (component library, color variables, typography rules), the MCP Server passes this information to Claude Code. This means AI-generated code will attempt to follow your existing design system rather than building from generic UI frameworks. When the generated interface transfers back to Figma, designers can quickly verify consistency with the established system.
 
-## 使用场景与工作流
+## Use Cases and Workflows
 
-### 场景一：快速原型验证
+### Rapid Prototyping
 
-产品经理有一个新功能的想法，传统流程是：写 PRD --> 设计师出原型 --> 开发实现 --> 评审反馈。使用 Code to Canvas，流程可以压缩为：
+A product manager has an idea for a new feature. The traditional flow: write a PRD, designer creates mockups, developers build it, team reviews. With Code to Canvas, this compresses to:
 
-1. 在 Claude Code 中用自然语言描述功能需求
-2. Claude 生成可运行的 UI 原型
-3. "Send this to Figma" 传到画布上
-4. 团队在 Figma 中直接讨论和迭代
+1. Describe the feature requirements in natural language within Claude Code
+2. Claude generates a working UI prototype
+3. "Send this to Figma" pushes it to the canvas
+4. The team discusses and iterates directly in Figma
 
-从想法到可讨论的高保真原型，可能只需要几分钟。
+From idea to a discussable high-fidelity prototype in minutes, not days.
 
-### 场景二：设计方案发散
+### Design Exploration
 
-设计师在概念探索阶段需要快速发散多个方向。可以让 Claude Code 根据不同的设计理念生成 5-6 个界面变体，全部传到 Figma 画布上。设计师从"逐个创建方案"变成了"从多个方案中筛选和精炼"——角色从创作者转变为策展人。
+During concept exploration, designers need to diverge across multiple directions quickly. Have Claude Code generate 5-6 interface variants based on different design philosophies and send them all to the Figma canvas. The designer's role shifts from "creating each option one by one" to "curating and refining from multiple options" — moving from creator to curator.
 
-### 场景三：设计还原度审查
+### Design Fidelity Review
 
-开发完成后，将实际运行的界面通过 Code to Canvas 传到 Figma，与原始设计稿并排放置。PM 和设计师可以逐像素比对，标注出所有需要调整的差异点。这比传统的"打开浏览器看看效果"要高效得多。
+After development is complete, send the actual running interface to Figma via Code to Canvas and place it alongside the original design comp. PMs and designers can compare pixel by pixel and annotate every discrepancy that needs adjustment. This is far more efficient than the traditional "open a browser and eyeball it" approach.
 
-### 场景四：AI 生成代码的设计审查
+### Design Review for AI-Generated Code
 
-在 [AI 辅助编程越来越普及](/posts/ai/2026-01-13-claude-cowork/)的今天，很多代码是由 AI 生成的。但 AI 生成的 UI 代码，视觉效果往往不够精致。通过 Code to Canvas，设计师可以把 AI 生成的界面拉到 Figma 中，用专业的设计眼光进行审查和优化，然后再把调整后的设计稿反馈给开发。
+With [AI-assisted coding becoming mainstream](/posts/ai/2026-01-13-claude-cowork/), much of today's UI code is AI-generated. But AI-generated interfaces often lack visual polish. Through Code to Canvas, designers can pull AI-generated UIs into Figma, apply their professional design judgment, refine the visuals, and feed the updated designs back to development.
 
-## 与其他 AI 设计方案的对比
+## Comparison with Other AI Design Tools
 
-当前市场上有多种 AI 辅助设计和开发的工具，它们的定位和能力各有不同。
+The current landscape includes several AI-powered design and development tools, each with different positioning and capabilities.
 
-| 对比维度 | Code to Canvas | v0 (Vercel) | Bolt | Lovable | Figma Make |
-|----------|---------------|-------------|------|---------|------------|
-| **方向** | 代码 --> 设计 | 文本 --> 代码 | 文本 --> 完整应用 | 文本 --> 完整应用 | 文本/设计 --> 代码 |
-| **输出物** | 可编辑 Figma Frame | React/前端代码 | 可部署的应用 | 可部署的应用 | 前端代码 |
-| **设计可编辑性** | 完全可编辑 | 需截图重建 | 需截图重建 | 需截图重建 | 反向生成 |
-| **设计系统支持** | 读取 Figma 组件库 | 有限 | 有限 | 有限 | 原生支持 |
-| **协作能力** | Figma 原生协作 | 代码级协作 | 有限 | 有限 | Figma 原生协作 |
-| **适用角色** | 设计师 + 开发者 | 开发者为主 | 全栈开发者 | 非技术用户 | 设计师为主 |
+| Dimension | Code to Canvas | v0 (Vercel) | Bolt | Lovable | Figma Make |
+|-----------|---------------|-------------|------|---------|------------|
+| **Direction** | Code --> Design | Text --> Code | Text --> Full app | Text --> Full app | Text/Design --> Code |
+| **Output** | Editable Figma Frame | React/frontend code | Deployable app | Deployable app | Frontend code |
+| **Design editability** | Fully editable | Requires screenshot rebuild | Requires screenshot rebuild | Requires screenshot rebuild | Reverse generation |
+| **Design system support** | Reads Figma component library | Limited | Limited | Limited | Native support |
+| **Collaboration** | Native Figma collaboration | Code-level collaboration | Limited | Limited | Native Figma collaboration |
+| **Best for** | Designers + Developers | Developers | Full-stack developers | Non-technical users | Designers |
 
-核心区别在于**方向性**。v0、Bolt、Lovable 都是从文本/需求出发，直接生成可运行的代码或应用——它们解决的是"从 0 到 1 构建"的问题。而 Code to Canvas 解决的是**代码生成之后**的问题：怎么让设计师参与进来，怎么让团队在视觉层面进行协作和决策。
+The core difference is **directionality**. v0, Bolt, and Lovable all start from text or requirements and generate runnable code or applications — they solve the "build from zero" problem. Code to Canvas solves what happens **after code generation**: how to bring designers into the loop and enable visual-level team collaboration and decision-making.
 
-换句话说，Code to Canvas 不是这些工具的竞争对手，而是它们的**下游补充**。你可以用 v0 生成代码，再用 Code to Canvas 把结果传到 Figma 中进行设计审查。
+In other words, Code to Canvas is not a competitor to these tools — it is a **downstream complement**. You can use v0 to generate code, then use Code to Canvas to send the result to Figma for design review.
 
-同时，Figma 自家的 **Figma Make**（原 Figma AI）走的是另一个方向——从文本或设计出发生成代码。Code to Canvas 与 Figma Make 形成了互补：一个从代码到设计，一个从设计到代码，共同构成了 Figma 生态中的**双向闭环**。
+Meanwhile, Figma's own **Figma Make** (formerly Figma AI) moves in the opposite direction — generating code from text or designs. Code to Canvas and Figma Make are complementary: one goes from code to design, the other from design to code, forming a **bidirectional loop** within the Figma ecosystem.
 
-## 当前的局限性
+## Current Limitations
 
-尽管 Code to Canvas 的理念令人兴奋，但当前版本仍存在一些明显的局限：
+Despite its compelling vision, Code to Canvas has notable constraints in its current release:
 
-| 局限 | 说明 |
-|------|------|
-| **终端门槛** | Claude Code 是命令行工具，对不熟悉终端的设计师来说需要学习成本 |
-| **桌面端限制** | MCP Server 仅支持 Figma 桌面应用，浏览器版 Figma 不可用 |
-| **单帧捕获** | 每个页面需要单独捕获，多页面流程需要逐一操作 |
-| **无视觉微调回路** | 传到 Figma 后的修改无法自动同步回代码 |
-| **Token 消耗** | 较大的文件会消耗更多的 AI Token |
-| **Seat 要求** | 需要 Figma Dev 或 Full Seat 权限 |
+| Limitation | Details |
+|------------|---------|
+| **Terminal barrier** | Claude Code is a CLI tool — designers unfamiliar with terminals face a learning curve |
+| **Desktop-only** | MCP Server requires the Figma desktop app; the browser version is not supported |
+| **Single-frame capture** | Each page must be captured individually; multi-page flows require sequential operations |
+| **No visual tweak sync** | Modifications made in Figma do not automatically propagate back to code |
+| **Token consumption** | Larger files consume more AI tokens |
+| **Seat requirements** | Requires a Figma Dev or Full Seat license |
 
-其中最关键的限制是**缺少视觉微调的自动回路**。目前，设计师在 Figma 中调整了间距或颜色后，这些修改不会自动反映到代码中，还需要手动在代码层面进行同步。未来如果能实现"Figma 中改了设计，代码自动更新"，那才是真正的闭环。
+The most significant limitation is the **lack of automatic visual sync**. Currently, when a designer adjusts spacing or colors in Figma, those changes do not reflect back in the codebase — manual synchronization is still required. True closed-loop integration would mean "edit in Figma, code updates automatically." That is not here yet.
 
-## 对设计师和开发者的影响
+## Impact on Designers and Developers
 
-### 对设计师
+### For Designers
 
-Code to Canvas 不会取代设计师，反而会**强化设计师的角色**。当 AI 可以在几秒钟内生成多个 UI 方案时，"创建设计稿"这件事的稀缺性下降了，但**判断哪个方案更好**的能力变得更加重要。设计师的角色从"生产者"向"策展人"转变——你不再需要花大量时间亲手画每个方案，而是从 AI 生成的多个选项中挑选、组合、精炼出最优解。
+Code to Canvas does not replace designers — it **amplifies their role**. When AI can generate multiple UI options in seconds, the scarcity of "creating a design" decreases, but the ability to **judge which design is best** becomes more valuable. The designer's role shifts from producer to curator — instead of spending hours crafting each option by hand, you select, combine, and refine from AI-generated alternatives.
 
-这与 [AI 辅助创作领域的一个共同趋势](/posts/ai/2026-02-15-mac-mini-local-image-generation/)高度一致：AI 降低了创作的执行成本，但提高了对审美判断力和设计决策力的要求。
+This aligns with a broader trend in [AI-assisted creative work](/posts/ai/2026-02-15-mac-mini-local-image-generation/): AI reduces the execution cost of creation but raises the bar for aesthetic judgment and design decision-making.
 
-### 对开发者
+### For Developers
 
-开发者终于有了一个让设计师"看到自己工作成果"的便捷方式。以前，开发者完成前端实现后，设计师的反馈往往是"这里间距不对""那个颜色偏了"，双方需要在代码和设计稿之间来回跳转。现在，开发者可以直接把实现效果传到 Figma，设计师在自己熟悉的工具中标注反馈，沟通效率大幅提升。
+Developers finally have a frictionless way to show designers their work. Previously, after completing a front-end implementation, designer feedback typically meant "the spacing is off here" or "that color is wrong," requiring constant context-switching between code and design files. Now, developers can send their implementation directly to Figma, where designers annotate feedback in their native tool. Communication efficiency improves dramatically.
 
-### 对产品团队
+### For Product Teams
 
-产品团队获得了一个更快速的决策工具。以前从"想法"到"可视化的讨论素材"可能需要几天甚至几周，现在可以压缩到几个小时。产品经理可以在周会之前，让 AI 生成几个方案草图，传到 Figma 上供团队讨论——**决策的速度和质量都在提升**。
+Product teams gain a faster decision-making tool. Getting from "idea" to "visual discussion material" used to take days or weeks — now it can happen in hours. A PM can have AI generate several design concepts before a weekly meeting, send them to Figma for team discussion, and **accelerate both the speed and quality of decisions**.
 
-## 更大的图景：设计工具与编程工具的融合
+## The Bigger Picture: Design and Dev Tools Are Converging
 
-Code to Canvas 的发布，反映的是一个更深层的行业趋势：**设计工具和编程工具正在融合，不是作为竞争对手，而是作为同一个系统的两个部分**。
+Code to Canvas reflects a deeper industry trend: **design tools and development tools are converging — not as competitors, but as two halves of the same system**.
 
-过去十年，设计和开发是两条平行线——设计师在 Figma/Sketch 中工作，开发者在 VS Code/终端中工作，两者通过"设计交付"这个节点进行衔接。交付过程中的信息损失和沟通成本，是无数团队的痛点。
+For the past decade, design and development ran on parallel tracks. Designers worked in Figma and Sketch; developers worked in VS Code and terminals. The two intersected at a single handoff point called "design delivery." The information loss and communication overhead at that handoff has been a persistent pain point for countless teams.
 
-AI 正在重新定义这条分界线。当 Claude Code 能够生成高质量的 UI 代码，而 Code to Canvas 又能把这些代码变成可编辑的设计稿时，**"设计"和"开发"不再是两个串行的阶段，而是可以并行、交叉、循环迭代的过程**。
+AI is redrawing that boundary. When Claude Code can generate high-quality UI code and Code to Canvas can convert that code into editable designs, **"design" and "development" are no longer sequential phases but parallel, interleaving, iterative processes**.
 
-Figma 的战略意图也很清晰：在 AI 编程工具崛起的时代，设计画布不仅没有被淘汰，反而变得更加重要。因为当 AI 能快速生成大量方案时，你更需要一个视觉化的空间来**比较、筛选和决策**——而这正是 Figma 画布的核心价值。
+Figma's strategic intent is clear: in the age of AI coding tools, the design canvas has not become obsolete — it has become more important. When AI can rapidly generate countless options, you need a visual workspace to **compare, filter, and decide** — and that is precisely what the Figma canvas delivers.
 
-## 总结
+## Conclusion
 
-Code to Canvas 是 Figma 和 Anthropic 对"AI 时代设计与开发如何协作"这个问题给出的一个务实答案。它没有试图用 AI 取代设计师或开发者，而是在两者之间搭建了一座桥梁。
+Code to Canvas is Figma and Anthropic's pragmatic answer to the question of how design and development should collaborate in the AI era. It does not try to replace designers or developers with AI — instead, it builds a bridge between them.
 
-核心价值可以概括为三点：
+The core value comes down to three points:
 
-1. **降低协作摩擦**：代码到设计的转换不再需要手动重建，一句话完成传输
-2. **加速决策循环**：AI 生成多个方案，团队在画布上快速比较和选择
-3. **保留专业价值**：设计师的审美判断和开发者的工程能力，都在各自擅长的工具中发挥作用
+1. **Reduced collaboration friction**: Code-to-design conversion no longer requires manual rebuilding — a single command handles the transfer
+2. **Faster decision cycles**: AI generates multiple options, teams compare and choose on the canvas
+3. **Preserved professional value**: Designers' aesthetic judgment and developers' engineering skills each operate in their strongest environments
 
-对于已经在使用 Claude Code 的开发者来说，Code to Canvas 是一个值得尝试的工作流升级。对于设计师来说，这是一个了解 AI 辅助设计趋势、主动拥抱变化的好机会。
+For developers already using Claude Code, Code to Canvas is a workflow upgrade worth trying. For designers, it is an opportunity to engage with the AI-assisted design trend and stay ahead of the curve.
 
-而对于整个行业来说，Code to Canvas 或许预示着一个更大的变革：**未来的产品创造过程，将不再有严格的"设计阶段"和"开发阶段"之分，取而代之的是设计与代码在同一个工作流中的自由流动。**
+And for the industry at large, Code to Canvas may signal something bigger: **the future of product creation will not have rigid "design phases" and "development phases" — instead, design and code will flow freely within a single, unified workflow.**

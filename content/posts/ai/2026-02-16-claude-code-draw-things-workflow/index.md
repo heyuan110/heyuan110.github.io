@@ -1,87 +1,87 @@
 +++
 date = '2026-02-16T18:00:00+08:00'
 draft = false
-title = 'Claude Code + Draw Things：Mac 本地 AI 自动配图完全指南（2026）'
-description = '深度教程：用 Claude Code 通过 MCP 协议调用 Draw Things 实现本地 AI 自动配图。涵盖配置、4 大工具详解、自动化工作流实战，告别云端付费，Mac 一台搞定。'
+title = 'Claude Code + Draw Things: Local AI Image Generation on Mac (2026 Guide)'
+description = 'Set up Claude Code with Draw Things via MCP for fully local, free AI image generation on Mac. Covers configuration, 4 core tools, prompt engineering, and automated blog illustration workflows.'
 toc = true
-tags = ['Claude Code', 'Draw Things', 'MCP', 'AI 自动化', 'Mac']
-categories = ['AI实战']
-keywords = ['Claude Code Draw Things', 'MCP 自动配图', 'Mac AI 生图自动化', 'Draw Things MCP Server', 'Claude Code 自动生成图片', 'AI 博客配图']
+tags = ['Claude Code', 'Draw Things', 'MCP', 'AI Automation', 'Mac']
+categories = ['AI Guides']
+keywords = ['Claude Code Draw Things', 'MCP image generation', 'Mac local AI image generation', 'Draw Things MCP Server', 'Claude Code auto generate images', 'AI blog illustrations free']
 +++
 
-![Claude Code + Draw Things：Mac 本地 AI 自动配图完全指南](cover.webp)
+![Claude Code + Draw Things: Local AI Image Generation on Mac](cover.webp)
 
-写技术博客最痛苦的事是什么？不是写代码示例，不是理清技术逻辑——而是**配图**。
+What is the most tedious part of writing a technical blog? It is not the code samples or the logic — it is **finding and creating images**.
 
-每写一篇文章，你可能要花 30 分钟到 1 小时去找图、做图、调整尺寸。用 Midjourney？每月 $10 起步，还要在 Discord 里来回切换。用 DALL-E？每张图消耗 API 额度。用免费素材？千篇一律，毫无个性。
+Every article might cost you 30 minutes to an hour hunting for stock photos, generating images, and resizing them. Midjourney starts at $10/month and requires juggling Discord. DALL-E burns through API credits. Free stock images are generic and forgettable.
 
-但如果我告诉你，**Claude Code 可以在写文章的同时，自动调用你 Mac 上的 Draw Things 生成配图**——一条命令，文章和配图同时产出，而且**完全免费、完全本地、无需联网**——你会不会觉得这像在开玩笑？
+But what if **Claude Code could automatically generate images using Draw Things on your Mac while writing your article** — one command, both content and illustrations produced together, **completely free, completely local, no internet required**?
 
-这不是玩笑。这是 **MCP（Model Context Protocol）** 带来的真实能力。这篇文章将手把手教你搭建这套工作流。
+This is not a gimmick. This is real capability enabled by **MCP (Model Context Protocol)**. This guide walks you through setting up the entire workflow.
 
-## 一、这套方案的核心架构
+## The Architecture Behind This Setup
 
-先看全局。整套系统由三层组成：
+Here is the big picture. The system has three layers:
 
 ```
-┌─────────────┐     MCP 协议      ┌──────────────────┐     HTTP API      ┌──────────────┐
-│ Claude Code  │ ◄──────────────► │ mcp-drawthings   │ ◄──────────────► │ Draw Things  │
-│ (AI 大脑)    │    stdio 通信      │ (Node.js 桥接层)  │    localhost:7860  │ (本地生图引擎) │
-└─────────────┘                   └──────────────────┘                   └──────────────┘
+┌─────────────┐     MCP Protocol     ┌──────────────────┐     HTTP API       ┌──────────────┐
+│ Claude Code  │ ◄──────────────►    │ mcp-drawthings   │ ◄──────────────►  │ Draw Things  │
+│ (AI Brain)   │    stdio comm        │ (Node.js Bridge) │    localhost:7860  │ (Local Engine)│
+└─────────────┘                      └──────────────────┘                    └──────────────┘
 ```
 
-- **Claude Code**：你的 AI 编程助手，负责理解需求、规划任务、调用工具
-- **mcp-drawthings**：开源 MCP Server，负责把 Claude Code 的指令翻译成 Draw Things 能懂的 HTTP 请求
-- **Draw Things**：macOS 原生 AI 生图引擎，利用 Apple Silicon 的 Metal FlashAttention 加速，本地完成所有计算
+- **Claude Code**: Your AI coding assistant — understands requests, plans tasks, calls tools
+- **mcp-drawthings**: An open-source MCP Server that translates Claude Code instructions into HTTP requests Draw Things understands
+- **Draw Things**: A native macOS AI image generation engine that leverages Apple Silicon's Metal FlashAttention for fast, fully local computation
 
-三者通过标准协议串联，Claude Code 不需要知道 Draw Things 的具体 API 细节，只要说"帮我生成一张图"，MCP Server 会把剩下的事处理好。
+These three components are connected through standard protocols. Claude Code does not need to know Draw Things' API specifics — it simply says "generate an image" and the MCP Server handles the rest.
 
-这就像你告诉助理"帮我订个餐厅"——你不需要知道助理是打电话还是用 App 订的，你只关心结果。
+Think of it like telling an assistant "book me a restaurant." You do not care whether they called or used an app — you only care about the result.
 
-## 二、环境准备：3 步完成配置
+## Setup: 3 Steps to Get Running
 
-### 2.1 前置条件
+### Prerequisites
 
-| 条件 | 说明 |
-|------|------|
-| **macOS** | Apple Silicon (M1/M2/M3/M4) 或 Intel Mac |
-| **Draw Things** | 从 App Store 免费安装 |
-| **Claude Code** | 已安装 CLI（`npm install -g @anthropic-ai/claude-code`） |
-| **Node.js** | v18+（MCP Server 需要） |
+| Requirement | Details |
+|-------------|---------|
+| **macOS** | Apple Silicon (M1/M2/M3/M4) or Intel Mac |
+| **Draw Things** | Free from the App Store |
+| **Claude Code** | CLI installed (`npm install -g @anthropic-ai/claude-code`) |
+| **Node.js** | v18+ (required by MCP Server) |
 
-### 2.2 第一步：启用 Draw Things API Server
+### Step 1: Enable the Draw Things API Server
 
-Draw Things 内置了一个 HTTP API Server，但默认是关闭的。你需要手动打开它：
+Draw Things has a built-in HTTP API Server, but it is disabled by default:
 
-1. 打开 Draw Things App
-2. 点击菜单栏 **Draw Things → Settings**（或按 `⌘ + ,`）
-3. 找到 **"API Server"** 或 **"HTTP API"** 选项
-4. 勾选 **"Enable API Server"**
-5. 端口保持默认 **7860**
+1. Open Draw Things
+2. Go to **Draw Things → Settings** (or press `⌘ + ,`)
+3. Find the **"API Server"** or **"HTTP API"** option
+4. Check **"Enable API Server"**
+5. Keep the default port **7860**
 
-启用后，你可以用 curl 验证：
+Verify it is working:
 
 ```bash
-# 验证 API 是否正常
+# Verify the API is responding
 curl http://127.0.0.1:7860/sdapi/v1/options
 ```
 
-如果返回 JSON 配置信息，说明 API 已就绪。
+If you get a JSON response with configuration data, the API is ready.
 
-### 2.3 第二步：配置 MCP Server
+### Step 2: Register the MCP Server
 
-在 Claude Code 中注册 Draw Things MCP Server。运行以下命令：
+Register the Draw Things MCP Server in Claude Code with a single command:
 
 ```bash
 claude mcp add drawthings -- npx -y mcp-drawthings
 ```
 
-这一行做了三件事：
-1. 在 Claude Code 配置中注册名为 `drawthings` 的 MCP Server
-2. 指定启动命令为 `npx -y mcp-drawthings`（自动下载并运行）
-3. 使用 stdio 通信方式连接
+This does three things:
+1. Registers an MCP Server named `drawthings` in Claude Code's config
+2. Sets the startup command to `npx -y mcp-drawthings` (auto-downloads and runs)
+3. Uses stdio for communication
 
-执行后，`~/.claude.json` 中会出现类似这样的配置：
+After running this, `~/.claude.json` will contain:
 
 ```json
 {
@@ -95,85 +95,85 @@ claude mcp add drawthings -- npx -y mcp-drawthings
 }
 ```
 
-### 2.4 第三步：验证连接
+### Step 3: Verify the Connection
 
-重启 Claude Code，输入 `/mcp` 查看 MCP Server 状态。你应该看到 `drawthings` 显示为已连接状态，并列出 4 个可用工具。
+Restart Claude Code and type `/mcp` to check the MCP Server status. You should see `drawthings` listed as connected with 4 available tools.
 
-或者直接让 Claude Code 测试：
-
-```
-帮我检查 Draw Things 是否正常运行
-```
-
-Claude Code 会调用 `check_status` 工具，返回 Draw Things 的运行状态。
-
-## 三、4 大核心工具详解
-
-配置完成后，Claude Code 获得了 4 个 Draw Things 工具。每个工具的用途不同，搞清楚它们的区别，才能让自动化工作流跑起来。
-
-### 3.1 check_status —— 状态检查
-
-**作用**：检查 Draw Things API Server 是否在运行。
-
-**使用场景**：在生图前先确认服务可用，避免白跑一趟。
+Alternatively, test it directly:
 
 ```
-对话示例：
-用户：帮我生成一张封面图
-Claude Code：（先调用 check_status 确认 Draw Things 在线，再调用 generate_image 生图）
+Check if Draw Things is running properly
 ```
 
-这个工具没有参数，调用后返回 Draw Things 的连接状态。简单但重要——自动化流程的第一步永远是**检查环境**。
+Claude Code will call the `check_status` tool and return Draw Things' status.
 
-### 3.2 get_config —— 获取当前配置
+## The 4 Core Tools Explained
 
-**作用**：获取 Draw Things 当前加载的模型、分辨率、采样器等配置信息。
+Once configured, Claude Code has access to 4 Draw Things tools. Understanding what each does is essential for building effective workflows.
 
-**使用场景**：在生图前了解当前用的是什么模型，判断是否需要切换。
+### check_status — Health Check
 
-返回信息包括：
-- 当前加载的模型名称
-- 默认分辨率
-- 采样器类型
-- CFG Scale 等参数
+**Purpose**: Verify that the Draw Things API Server is running.
 
-**实际用途**：比如你想生成写实风格的图，但当前加载的是动漫模型，Claude Code 可以根据 `get_config` 的返回结果，在 `generate_image` 时指定正确的模型。
-
-### 3.3 generate_image —— 文生图（核心工具）
-
-**作用**：根据文本提示词生成图像，并保存到本地磁盘。
-
-这是最常用的工具，参数如下：
-
-| 参数 | 类型 | 必填 | 说明 |
-|------|------|------|------|
-| `prompt` | string | ✅ | 图像描述文本 |
-| `negative_prompt` | string | ❌ | 不希望出现的元素 |
-| `width` | int | ❌ | 图像宽度（64-2048，默认 512） |
-| `height` | int | ❌ | 图像高度（64-2048，默认 512） |
-| `steps` | int | ❌ | 推理步数（1-150，默认 20） |
-| `cfg_scale` | float | ❌ | 提示词引导强度（1-30，默认 7.5） |
-| `seed` | int | ❌ | 随机种子（-1 = 随机） |
-| `model` | string | ❌ | 指定模型文件名 |
-| `output_path` | string | ❌ | 自定义保存路径 |
-
-**关键参数解释**：
-
-- **steps（步数）**：步数越多，细节越丰富，但速度越慢。Flux.1 Schnell 只需 4 步，SD 1.5 通常需要 20-30 步
-- **cfg_scale（引导强度）**：值越高，图像越"听话"，但可能过度饱和。推荐 5-10 之间
-- **output_path**：可以直接指定保存到文章目录，例如 `content/posts/ai/xxx/cover.webp`
-
-**实际调用示例**：
+**When to use**: Always check before generating images to avoid failed requests.
 
 ```
-帮我生成一张技术博客封面图：
-- 主题：AI 编程自动化
-- 风格：科技感、深色背景、蓝紫色调
-- 尺寸：1200x630
-- 保存到 content/posts/ai/2026-02-16-example/cover.png
+Example conversation:
+User: Generate a cover image for my article
+Claude Code: (calls check_status first, confirms Draw Things is online, then calls generate_image)
 ```
 
-Claude Code 会将此请求转换为 `generate_image` 调用：
+This tool takes no parameters and returns the connection status. Simple but critical — the first step in any automation pipeline is **checking the environment**.
+
+### get_config — Read Current Settings
+
+**Purpose**: Retrieve the currently loaded model, resolution, sampler, and other configuration from Draw Things.
+
+**When to use**: Before generating images, check which model is loaded and whether you need to switch.
+
+Returns information including:
+- Currently loaded model name
+- Default resolution
+- Sampler type
+- CFG Scale and other parameters
+
+**Practical use**: If you want photorealistic output but an anime model is loaded, Claude Code can use `get_config` results to specify the correct model when calling `generate_image`.
+
+### generate_image — Text-to-Image (Core Tool)
+
+**Purpose**: Generate an image from a text prompt and save it to disk.
+
+This is the most frequently used tool. Parameters:
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `prompt` | string | Yes | Image description text |
+| `negative_prompt` | string | No | Elements to exclude |
+| `width` | int | No | Image width (64-2048, default 512) |
+| `height` | int | No | Image height (64-2048, default 512) |
+| `steps` | int | No | Inference steps (1-150, default 20) |
+| `cfg_scale` | float | No | Prompt guidance strength (1-30, default 7.5) |
+| `seed` | int | No | Random seed (-1 = random) |
+| `model` | string | No | Model filename |
+| `output_path` | string | No | Custom save path |
+
+**Key parameters explained**:
+
+- **steps**: More steps = more detail but slower. Flux.1 Schnell needs only 4 steps; SD 1.5 typically needs 20-30
+- **cfg_scale**: Higher values make the image follow the prompt more closely but may over-saturate. Recommended range: 5-10
+- **output_path**: Save directly to your article directory, e.g., `content/posts/ai/xxx/cover.webp`
+
+**Example request**:
+
+```
+Generate a tech blog cover image:
+- Theme: AI programming automation
+- Style: techy, dark background, blue-purple tones
+- Size: 1200x630
+- Save to content/posts/ai/2026-02-16-example/cover.png
+```
+
+Claude Code converts this into a `generate_image` call:
 
 ```json
 {
@@ -187,219 +187,219 @@ Claude Code 会将此请求转换为 `generate_image` 调用：
 }
 ```
 
-### 3.4 transform_image —— 图生图
+### transform_image — Image-to-Image
 
-**作用**：以现有图像为基础，根据提示词进行风格转换或修改。
+**Purpose**: Transform an existing image based on a text prompt — style transfer, modifications, enhancements.
 
-| 参数 | 类型 | 必填 | 说明 |
-|------|------|------|------|
-| `prompt` | string | ✅ | 变换描述 |
-| `image_path` | string | ❌* | 源图像文件路径 |
-| `image_base64` | string | ❌* | 源图像 Base64 编码 |
-| `denoising_strength` | float | ❌ | 变换强度（0-1，默认 0.75） |
-| `negative_prompt` | string | ❌ | 不希望出现的元素 |
-| `output_path` | string | ❌ | 保存路径 |
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `prompt` | string | Yes | Transformation description |
+| `image_path` | string | No* | Source image file path |
+| `image_base64` | string | No* | Source image as Base64 |
+| `denoising_strength` | float | No | Transformation intensity (0-1, default 0.75) |
+| `negative_prompt` | string | No | Elements to exclude |
+| `output_path` | string | No | Save path |
 
-> `image_path` 和 `image_base64` 至少提供一个。
+> *At least one of `image_path` or `image_base64` is required.*
 
-**denoising_strength 理解指南**：
+**Understanding denoising_strength**:
 
-- **0.1-0.3**：轻微调整，保留原图 90%+ 的内容，适合微调色调、风格
-- **0.4-0.6**：中等变换，保留构图但改变细节，适合风格迁移
-- **0.7-1.0**：大幅重绘，只保留大致轮廓，接近全新生成
+- **0.1-0.3**: Subtle adjustments, retains 90%+ of the original — good for color/style tweaks
+- **0.4-0.6**: Moderate transformation, keeps composition but changes details — good for style transfer
+- **0.7-1.0**: Heavy rework, only keeps rough outlines — close to generating from scratch
 
-**典型用途**：
-
-```
-把这张截图转换成手绘风格的插图：
-- 源图：content/posts/ai/screenshot.png
-- 风格：hand-drawn illustration, sketch style
-- 变换强度：0.6
-```
-
-## 四、实战：自动化博客配图工作流
-
-理论讲完，来看最让人兴奋的部分——**把这套工具串成自动化工作流**。
-
-### 4.1 场景：一条命令，文章 + 配图同时产出
-
-假设你要写一篇关于 "MCP 协议" 的技术博客。传统流程是：
+**Typical use case**:
 
 ```
-写文章（30min）→ 找配图（20min）→ 调整尺寸（10min）→ 检查格式（5min）
+Convert this screenshot to a hand-drawn illustration:
+- Source: content/posts/ai/screenshot.png
+- Style: hand-drawn illustration, sketch style
+- Strength: 0.6
 ```
 
-有了 Claude Code + Draw Things，流程变成：
+## Practical Workflow: Automated Blog Illustrations
+
+Now for the exciting part — **chaining these tools into an automated workflow**.
+
+### The Scenario: One Command, Article + Images Together
+
+Traditional workflow for writing a blog post about "MCP Protocol":
 
 ```
-一条指令（1min）→ Claude Code 自动完成全部（5-10min）
+Write article (30min) → Find images (20min) → Resize (10min) → Check formatting (5min)
 ```
 
-### 4.2 完整工作流演示
-
-在 Claude Code 中输入：
+With Claude Code + Draw Things:
 
 ```
-写一篇关于 MCP 协议的技术博客，包括：
-1. 文章内容
-2. 封面图（1200x630，科技风格）
-3. 2-3 张正文配图
-全部保存到 content/posts/ai/ 目录
+One instruction (1min) → Claude Code handles everything (5-10min)
 ```
 
-Claude Code 的执行过程：
+### Full Workflow Demo
+
+Enter this in Claude Code:
+
+```
+Write a technical blog post about MCP Protocol, including:
+1. Article content
+2. Cover image (1200x630, tech style)
+3. 2-3 inline images
+Save everything to the content/posts/ai/ directory
+```
+
+Claude Code's execution process:
 
 ```
 Step 1: check_status
-  → 确认 Draw Things 在线 ✓
+  → Confirm Draw Things is online ✓
 
 Step 2: get_config
-  → 获取当前模型信息（Flux.1 Schnell）
+  → Get current model info (Flux.1 Schnell)
 
-Step 3: 撰写文章
-  → 生成 index.md，包含 Front Matter、正文、内链
+Step 3: Write the article
+  → Generate index.md with front matter, body, internal links
 
-Step 4: generate_image × 3（并行）
-  → 封面图：1200×630 科技风格
-  → 配图1：架构图风格
-  → 配图2：流程图风格
+Step 4: generate_image × 3 (sequential)
+  → Cover: 1200×630 tech style
+  → Figure 1: architecture diagram style
+  → Figure 2: flowchart style
 
-Step 5: 保存所有文件到文章目录
+Step 5: Save all files to article directory
   → index.md + cover.webp + fig1.webp + fig2.webp
 
-Step 6: 构建验证
-  → hugo --minify 确认无报错
+Step 6: Build verification
+  → hugo --minify to confirm no errors
 ```
 
-**全程无需切换应用**——不用打开浏览器找图，不用打开 Photoshop 调尺寸，不用手动上传到 CMS。
+**No app switching required** — no browser for stock photos, no Photoshop for resizing, no manual CMS uploads.
 
-### 4.3 提示词工程：让 AI 生出好图的秘诀
+### Prompt Engineering: Getting Great Images from AI
 
-Claude Code 调用 Draw Things 时，提示词质量决定了图像质量。以下是博客配图场景的提示词公式：
+When Claude Code calls Draw Things, prompt quality determines image quality. Here is the formula for blog illustrations:
 
-**封面图公式**：
+**Cover image formula**:
 
 ```
-[主题描述], [风格], [色调], [构图], [技术关键词]
+[subject description], [style], [color palette], [composition], [technical keywords]
 negative: text, watermark, blurry, low quality, deformed
 ```
 
-**实际示例**：
+**Real-world examples**:
 
 ```
-# 技术教程封面
+# Technical tutorial cover
 "A clean modern illustration of AI workflow automation,
  interconnected nodes and data flows,
  dark blue gradient background,
  minimalist tech style,
  cinematic lighting, professional"
 
-# 工具对比文章封面
+# Tool comparison article cover
 "Split screen comparison of different AI tools,
  left side showing cloud services,
  right side showing local computing on Mac,
  tech aesthetic, blue and purple tones,
  isometric perspective"
 
-# 概念解析封面
+# Concept explainer cover
 "Abstract visualization of Model Context Protocol,
  glowing connection lines between AI and tools,
  futuristic digital landscape,
  dark theme with neon accents"
 ```
 
-**模型选择建议**：
+**Model recommendations**:
 
-| 图像类型 | 推荐模型 | 步数 | CFG |
-|---------|---------|------|-----|
-| 科技风格封面 | Flux.1 Schnell | 4 | 3.5 |
-| 写实风格配图 | Juggernaut XL | 25 | 7.0 |
-| 插画风格 | DreamShaper XL | 25 | 7.5 |
-| 快速草图 | SD 1.5 | 15 | 7.0 |
+| Image Type | Recommended Model | Steps | CFG |
+|-----------|-------------------|-------|-----|
+| Tech-style covers | Flux.1 Schnell | 4 | 3.5 |
+| Photorealistic | Juggernaut XL | 25 | 7.0 |
+| Illustrations | DreamShaper XL | 25 | 7.5 |
+| Quick drafts | SD 1.5 | 15 | 7.0 |
 
-### 4.4 进阶：用 transform_image 统一文章视觉风格
+### Advanced: Unifying Visual Style with transform_image
 
-有时候文章需要多张配图，但 AI 每次生成的图风格可能不一致。这时可以用 `transform_image` 来统一风格：
+When an article needs multiple images, AI-generated results may look inconsistent. Use `transform_image` to unify the style:
 
 ```
-1. 先生成一张满意的"基调图"
-2. 用 transform_image 以这张图为基础，逐张调整其他配图
-3. 设置 denoising_strength = 0.3-0.5，保留各图的主要内容但统一色调和风格
+1. Generate one "reference image" you are happy with
+2. Use transform_image on each additional image, using the reference as a base
+3. Set denoising_strength = 0.3-0.5 to preserve content while unifying color and style
 ```
 
-这就像给一组照片统一套滤镜——每张照片内容不同，但视觉风格一致。
+This is like applying the same filter to a set of photos — different content, consistent visual identity.
 
-## 五、对比：为什么选本地方案？
+## Comparison: Why Go Local?
 
-你可能会问：Midjourney、DALL-E 3 这些云端服务不是更方便吗？来看看对比：
+You might wonder: aren't cloud services like Midjourney and DALL-E 3 more convenient? Here is how they compare:
 
-| 维度 | Claude Code + Draw Things | Midjourney | DALL-E 3 API |
-|------|---------------------------|------------|-------------|
-| **费用** | 完全免费 | $10-60/月 | $0.04-0.12/张 |
-| **隐私** | 本地处理，不上传 | 图片上传到云端 | 图片上传到 OpenAI |
-| **速度** | M1 Pro: 5-15 秒/张 | 30-60 秒/张 | 10-20 秒/张 |
-| **离线使用** | 支持 | 不支持 | 不支持 |
-| **自定义模型** | 支持 LoRA/自训练 | 不支持 | 不支持 |
-| **批量生成** | 无限制 | 有配额限制 | 按张计费 |
-| **工作流集成** | MCP 原生集成 | 需要 API 封装 | 需要 API 封装 |
-| **分辨率控制** | 完全自定义（64-2048） | 固定选项 | 固定选项 |
+| Dimension | Claude Code + Draw Things | Midjourney | DALL-E 3 API |
+|-----------|---------------------------|------------|-------------|
+| **Cost** | Completely free | $10-60/month | $0.04-0.12/image |
+| **Privacy** | Local processing, nothing uploaded | Images uploaded to cloud | Images sent to OpenAI |
+| **Speed** | M1 Pro: 5-15 sec/image | 30-60 sec/image | 10-20 sec/image |
+| **Offline** | Yes | No | No |
+| **Custom models** | LoRA/fine-tuned supported | No | No |
+| **Batch generation** | Unlimited | Quota limited | Pay per image |
+| **Workflow integration** | Native MCP integration | Requires API wrapper | Requires API wrapper |
+| **Resolution control** | Fully custom (64-2048) | Fixed options | Fixed options |
 
-**核心优势总结**：
+**Key advantages summarized**:
 
-1. **零成本**：Draw Things 免费 + Apple Silicon 算力免费
-2. **零延迟**：不用等网络传输，本地 GPU 直接计算
-3. **零泄露**：所有数据不出你的电脑
-4. **零限制**：没有配额、没有审核、没有封号风险
+1. **Zero cost**: Draw Things is free + Apple Silicon compute is free
+2. **Zero latency**: No network transfer — local GPU computes directly
+3. **Zero data leakage**: Nothing leaves your machine
+4. **Zero restrictions**: No quotas, no content review, no account bans
 
-对于技术博客作者来说，一年下来光配图就能省 **$120-720**（按 Midjourney 标准版 $10/月计算）。
+For technical bloggers, this saves **$120-720 per year** on image generation alone (based on Midjourney's $10/month standard plan).
 
-## 六、完整自动化流水线：从热点发现到文章发布
+## End-to-End Pipeline: From Trend Discovery to Publishing
 
-把 Claude Code + Draw Things 嵌入完整的内容生产流水线，你可以实现"一个人运营一个技术媒体"的效率。
+Embed Claude Code + Draw Things into a complete content production pipeline and you can achieve "one-person tech publication" efficiency.
 
-### 6.1 流水线架构
+### Pipeline Architecture
 
 ```
 ┌─────────────┐    ┌──────────────┐    ┌────────────────┐    ┌─────────┐    ┌──────────┐
-│  发现热点    │ →  │  深度调研     │ →  │  撰写 + 自动配图 │ →  │  质检    │ →  │  发布    │
-│  WebSearch   │    │  WebFetch    │    │  Write + Draw   │    │  Hugo   │    │  Git     │
-│  热搜/趋势    │    │  阅读素材    │    │  Things MCP     │    │  构建    │    │  Push    │
+│  Discover    │ →  │  Research    │ →  │  Write + Auto   │ →  │  QA     │ →  │  Publish │
+│  Trends      │    │  Deep Dive   │    │  Illustration   │    │  Hugo   │    │  Git     │
+│  WebSearch   │    │  WebFetch    │    │  Write + Draw   │    │  Build  │    │  Push    │
 └─────────────┘    └──────────────┘    └────────────────┘    └─────────┘    └──────────┘
 ```
 
-### 6.2 实战指令模板
+### Ready-to-Use Command Template
 
-下面是一条"端到端"指令，你可以直接在 Claude Code 中使用：
+Here is an end-to-end instruction you can paste directly into Claude Code:
 
 ```markdown
-请帮我完成以下自动化博客发布流程：
+Complete the following automated blog publishing workflow:
 
-1. **热点调研**：搜索 "XXX 技术" 的最新动态，找到 3-5 个有价值的信息源
-2. **撰写文章**：
-   - 分类：AI实战
-   - 风格：深度技术教程，通俗易懂
-   - 要求：3000-5000 字，含代码示例
-3. **自动配图**：
-   - 封面图：1200×630，科技风格，深色背景
-   - 正文配图：根据文章内容自动生成 2-3 张
-   - 所有图片保存为 .webp 格式
-4. **质量检查**：
-   - Front Matter 完整性
-   - 内链 ≥ 3 个
-   - Hugo 构建无报错
-5. **保存到**：content/posts/ai/ 目录
+1. **Research**: Search for the latest developments on "XXX technology", find 3-5 valuable sources
+2. **Write article**:
+   - Category: AI Guides
+   - Style: In-depth technical tutorial, accessible language
+   - Requirements: 3000-5000 words with code examples
+3. **Auto-generate images**:
+   - Cover: 1200×630, tech style, dark background
+   - Inline images: 2-3 based on article content
+   - All images saved as .webp
+4. **Quality check**:
+   - Front matter completeness
+   - At least 3 internal links
+   - Hugo build with no errors
+5. **Save to**: content/posts/ai/ directory
 ```
 
-### 6.3 关键细节：图片格式转换
+### Image Format Conversion
 
-Draw Things 默认输出 PNG 格式，但博客需要 WebP 格式（体积更小）。Claude Code 会自动处理转换：
+Draw Things defaults to PNG output, but blogs benefit from WebP (smaller file size). Claude Code handles the conversion automatically:
 
 ```bash
-# Claude Code 生成图片后，自动转换为 WebP
+# Convert PNG to WebP after generation
 cwebp -q 85 -resize 1200 630 cover.png -o cover.webp
 ```
 
-如果系统没有 `cwebp`，也可以用 Python：
+If `cwebp` is not installed, Python works too:
 
 ```python
 from PIL import Image
@@ -407,44 +407,44 @@ img = Image.open("cover.png").resize((1200, 630), Image.LANCZOS)
 img.save("cover.webp", "WEBP", quality=85)
 ```
 
-## 七、常见问题与排错
+## Troubleshooting
 
-### Q1: Draw Things API 连不上？
+### Q1: Cannot connect to the Draw Things API?
 
-**症状**：`check_status` 返回连接失败。
+**Symptom**: `check_status` returns a connection failure.
 
-**排查步骤**：
-1. 确认 Draw Things App 已打开
-2. 确认 API Server 已启用（Settings → API Server）
-3. 确认端口是 7860：`curl http://127.0.0.1:7860/sdapi/v1/options`
-4. 如果端口被占用，在 Draw Things 设置中改端口，同时更新 MCP Server 的环境变量
+**Steps to fix**:
+1. Confirm the Draw Things app is open
+2. Confirm the API Server is enabled (Settings → API Server)
+3. Verify port 7860: `curl http://127.0.0.1:7860/sdapi/v1/options`
+4. If the port is in use, change it in Draw Things settings and update the MCP Server environment variable accordingly
 
-### Q2: 生成的图片质量不好？
+### Q2: Generated images look bad?
 
-**可能原因**：
-- **提示词太简单**：至少包含主题 + 风格 + 色调 + 质量关键词
-- **步数太少**：SD 1.5/SDXL 至少 20 步，只有 Flux.1 Schnell 可以 4 步出好图
-- **模型不匹配**：写实需求别用动漫模型
-- **分辨率不合理**：SD 1.5 最佳 512×512，SDXL 最佳 1024×1024
+**Possible causes**:
+- **Prompt too simple**: Include at minimum subject + style + color palette + quality keywords
+- **Too few steps**: SD 1.5/SDXL needs at least 20 steps; only Flux.1 Schnell can produce good results in 4 steps
+- **Wrong model**: Do not use an anime model for photorealistic needs
+- **Unreasonable resolution**: SD 1.5 works best at 512×512, SDXL at 1024×1024
 
-### Q3: MCP Server 报错 "command not found"？
+### Q3: MCP Server throws "command not found"?
 
-确保 Node.js 已安装且版本 ≥ 18：
+Make sure Node.js is installed and is version 18 or higher:
 
 ```bash
-node --version  # 应该显示 v18.x 或更高
-npx -y mcp-drawthings --help  # 手动测试 MCP Server
+node --version  # Should show v18.x or higher
+npx -y mcp-drawthings --help  # Manually test the MCP Server
 ```
 
-如果 npx 找不到，尝试用完整路径：
+If npx cannot be found, try the full path:
 
 ```bash
 claude mcp add drawthings -- /usr/local/bin/npx -y mcp-drawthings
 ```
 
-### Q4: 生图速度慢？
+### Q4: Image generation is slow?
 
-| 芯片 | 512×512 | 1024×1024 | 1200×630 |
+| Chip | 512×512 | 1024×1024 | 1200×630 |
 |------|---------|-----------|----------|
 | M1 | ~8s | ~25s | ~15s |
 | M1 Pro/Max | ~5s | ~15s | ~10s |
@@ -452,93 +452,93 @@ claude mcp add drawthings -- /usr/local/bin/npx -y mcp-drawthings
 | M3 Pro/Max | ~3s | ~9s | ~6s |
 | M4 Pro/Max | ~2s | ~7s | ~5s |
 
-> 以上为 Flux.1 Schnell 4 步推理的近似耗时。实际速度取决于模型、步数和系统负载。
+> These are approximate times for Flux.1 Schnell at 4 inference steps. Actual speed depends on model, steps, and system load.
 
-如果太慢，可以：
-- 使用 Flux.1 Schnell（只需 4 步）
-- 降低分辨率，后期再用 `transform_image` 放大
-- 关闭其他占用 GPU 的应用
+If too slow:
+- Use Flux.1 Schnell (only 4 steps needed)
+- Generate at lower resolution, then upscale with `transform_image`
+- Close other GPU-intensive applications
 
-### Q5: 能同时生成多张图吗？
+### Q5: Can it generate multiple images simultaneously?
 
-Draw Things 的 API 是同步的——一次只能处理一个请求。但 Claude Code 会**自动串行排队**，你只需要在指令中说明需要几张图，Claude Code 会依次生成。
+The Draw Things API is synchronous — it processes one request at a time. However, Claude Code **automatically queues requests sequentially**. Just specify how many images you need, and Claude Code generates them one after another.
 
-如果你需要更高的并行度，可以考虑运行多个 Draw Things 实例（不同端口），配置多个 MCP Server。
+For higher parallelism, consider running multiple Draw Things instances on different ports with separate MCP Server configurations.
 
-## 八、进阶玩法
+## Advanced Techniques
 
-### 8.1 自定义 LoRA 模型生成品牌风格图
+### Custom LoRA Models for Brand Consistency
 
-如果你想让博客配图有统一的品牌风格，可以训练自己的 LoRA 模型：
+If you want a unified brand style across blog illustrations, train your own LoRA model:
 
-1. 用 Draw Things 内置的 [LoRA 训练功能](https://www.heyuan110.com/posts/ai/2026-02-15-draw-things-ultimate-guide/) 训练品牌风格
-2. 在 `generate_image` 调用时指定 LoRA 模型
-3. 所有文章的配图就有了统一的视觉 DNA
+1. Use Draw Things' built-in [LoRA training feature](https://www.heyuan110.com/posts/ai/2026-02-15-draw-things-ultimate-guide/) to train your brand style
+2. Specify the LoRA model in `generate_image` calls
+3. All article images will share a consistent visual DNA
 
-### 8.2 截图美化流水线
+### Screenshot Enhancement Pipeline
 
-技术文章经常需要放截图，但原始截图通常不够美观。用 `transform_image` 可以自动美化：
+Technical articles often include screenshots that look rough in their raw form. Use `transform_image` to polish them:
 
 ```
-1. 截取原始截图 → screenshot.png
-2. transform_image：添加圆角、阴影、渐变背景
-3. 输出美化后的图片 → screenshot_styled.webp
+1. Capture raw screenshot → screenshot.png
+2. transform_image: add rounded corners, drop shadow, gradient background
+3. Output polished image → screenshot_styled.webp
 ```
 
-### 8.3 系列文章视觉一致性
+### Visual Consistency Across Article Series
 
-写系列文章时，可以制定一套"视觉规范"给 Claude Code：
+When writing a series, define a "visual spec" for Claude Code:
 
 ```markdown
-# 系列文章配图规范
+# Series Article Image Spec
 
-## 封面图
-- 尺寸：1200×630
-- 色调：深蓝渐变（#0f172a → #1e3a5f）
-- 风格：minimalist tech illustration
-- 必须包含：主题相关的抽象图形
+## Cover Images
+- Size: 1200×630
+- Colors: Dark blue gradient (#0f172a → #1e3a5f)
+- Style: Minimalist tech illustration
+- Must include: Abstract graphics related to the topic
 
-## 正文配图
-- 尺寸：800×450
-- 风格：与封面图一致
-- 用途：架构图、流程图、对比图
+## Inline Images
+- Size: 800×450
+- Style: Match cover image
+- Use for: Architecture diagrams, flowcharts, comparisons
 ```
 
-把这段规范放到 CLAUDE.md 或 Skills 文件中，Claude Code 每次生图都会自动遵循。
+Add this spec to your CLAUDE.md or Skills file, and Claude Code will follow it automatically every time it generates images.
 
-## 九、总结
+## Conclusion
 
-Claude Code + Draw Things 的组合，本质上是让 AI 编程助手获得了"视觉创作"能力。通过 MCP 协议的桥接：
+The Claude Code + Draw Things combination gives your AI coding assistant **visual creation capabilities**. Through MCP protocol bridging:
 
-- **写文章时可以同步生成配图**——不再需要中断写作去找图
-- **完全本地运行**——零成本、零隐私风险
-- **高度可定制**——模型、风格、尺寸全部可控
-- **可纳入自动化流水线**——从热点发现到文章发布一气呵成
+- **Generate illustrations while writing** — no more interrupting your flow to find images
+- **Fully local execution** — zero cost, zero privacy risk
+- **Highly customizable** — model, style, and dimensions are all configurable
+- **Pipeline-ready** — from trend discovery to article publishing in one seamless flow
 
-如果你是 Mac 用户、技术博客作者、或者任何需要频繁配图的内容创作者，这套方案值得你花 10 分钟配置起来。一旦跑通，你会发现**写作体验质的飞跃**——因为你再也不用为配图分心了。
+If you are a Mac user, a technical blogger, or anyone who regularly needs illustrations, this setup is worth 10 minutes of your time. Once running, you will experience a **fundamental shift in your writing workflow** — because you never have to worry about images again.
 
 ---
 
-**附：快速启动清单**
+**Quick Start Checklist**
 
 ```bash
-# 1. 安装 Draw Things（App Store 免费）
-# 2. 启用 API Server（Settings → API Server → Enable）
-# 3. 配置 MCP Server
+# 1. Install Draw Things (free from the App Store)
+# 2. Enable API Server (Settings → API Server → Enable)
+# 3. Configure MCP Server
 claude mcp add drawthings -- npx -y mcp-drawthings
 
-# 4. 验证（重启 Claude Code 后）
-# 输入：帮我检查 Draw Things 是否正常运行
+# 4. Verify (after restarting Claude Code)
+# Type: Check if Draw Things is running properly
 
-# 5. 开始使用
-# 输入：帮我生成一张 1200x630 的科技风格博客封面图
+# 5. Start using it
+# Type: Generate a 1200x630 tech-style blog cover image
 ```
 
-## 相关阅读
+## Related Reading
 
-- [Draw Things 完全指南：Mac 本地 AI 生图从入门到精通](/posts/ai/2026-02-15-draw-things-ultimate-guide/)
-- [Mac Mini 本地 AI 生图性价比方案](/posts/ai/2026-02-15-mac-mini-local-image-generation/)
-- [Claude Code 浏览器自动化方案对比（2026 最新）](/posts/ai/2026-01-28-claude-code-browser-automation/)
-- [我的 AI 开发工作流：从需求到上线](/posts/ai/2026-01-19-ai-dev-workflow/)
-- [Claude Code 最佳实践指南](/posts/ai/2026-01-06-claudecode-best-practices/)
-- [Claude Code Skills 完全指南](/posts/ai/2026-01-08-claudecode-skill-guide/)
+- [Draw Things Complete Guide: Local AI Image Generation on Mac](/posts/ai/2026-02-15-draw-things-ultimate-guide/)
+- [Mac Mini Local AI Image Generation: Best Value Setup](/posts/ai/2026-02-15-mac-mini-local-image-generation/)
+- [Claude Code Browser Automation: 5 Methods Compared (2026)](/posts/ai/2026-01-28-claude-code-browser-automation/)
+- [My AI Development Workflow: From Requirements to Deployment](/posts/ai/2026-01-19-ai-dev-workflow/)
+- [Claude Code Best Practices Guide](/posts/ai/2026-01-06-claudecode-best-practices/)
+- [Claude Code Skills Complete Guide](/posts/ai/2026-01-08-claudecode-skill-guide/)

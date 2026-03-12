@@ -1,75 +1,67 @@
 +++
 date = '2026-01-19T10:00:00+08:00'
-title = 'Docker Compose 完全指南（2026）：安装、docker-compose.yml、实战部署一篇搞定'
-description = '从 Docker 基础到 Docker Compose 实战：安装配置、compose.yml 核心字段、WordPress/Node+MySQL 案例与生产环境最佳实践。'
+title = 'Docker Compose Complete Guide (2026): Install, Configure, and Deploy Multi-Container Apps'
+description = 'Master Docker and Docker Compose from scratch: installation, core concepts, docker-compose.yml deep dive, WordPress and Node.js deployment examples, plus production best practices.'
 toc = true
-tags = ['docker', 'docker-compose', '容器化', 'DevOps']
+tags = ['Docker', 'Docker Compose', 'Containers', 'DevOps']
 categories = ['Docker']
+keywords = ['Docker Compose tutorial', 'docker-compose.yml guide', 'Docker for beginners', 'multi-container deployment', 'Docker best practices']
 +++
 ![Docker Complete Guide](docker-cover.webp)
 
-如果你是一名开发者，一定听过这句话："在我电脑上明明能跑啊！" 这个困扰了无数程序员的问题，Docker 给出了优雅的解决方案。本文将用最通俗的语言，带你从零开始掌握 Docker 和 Docker Compose。
+Every developer has heard (or said) this at least once: "But it works on my machine!" Docker was built to eliminate that problem for good. This guide takes you from zero to proficient with Docker and Docker Compose, covering everything you need to deploy real-world multi-container applications.
 
 ---
 
-## 第一部分：Docker 的前世今生
+## Part 1: Why Docker Exists
 
-### 1. 软件部署的痛点
+### 1. The Pain Points of Software Deployment
 
-想象一下你要搬家，把所有家具搬到新房子。传统的方式是：
+Think of moving to a new apartment. The traditional approach is to disassemble all your furniture, haul it over, reassemble everything, and then discover you're missing a few screws.
 
-1. 把家具一件件拆开
-2. 搬到新家
-3. 重新组装
-4. 发现少了几颗螺丝，柜子装不上了...
+Software deployment has the same kinds of headaches:
 
-软件部署也是类似的痛苦：
+**Problem 1: Environment Inconsistency**
+- Dev machine: Windows + Python 3.8 + MySQL 5.7
+- Staging server: Ubuntu + Python 3.9 + MySQL 8.0
+- Production: CentOS + Python 3.7 + MySQL 5.6
 
-**问题一：环境不一致**
-- 开发环境：Windows + Python 3.8 + MySQL 5.7
-- 测试环境：Ubuntu + Python 3.9 + MySQL 8.0
-- 生产环境：CentOS + Python 3.7 + MySQL 5.6
+The developer says "it works," ops says "it's broken in production."
 
-结果就是：开发说"我这能跑"，运维说"上线就挂"。
+**Problem 2: Dependency Hell**
+- Project A requires Node.js 14
+- Project B requires Node.js 18
+- Project C requires Node.js 16
 
-**问题二：依赖地狱**
-- 项目 A 需要 Node.js 14
-- 项目 B 需要 Node.js 18
-- 项目 C 需要 Node.js 16
+How do you run all three on the same machine?
 
-同一台机器上，这三个项目怎么共存？
+**Problem 3: Resource Waste**
+- Traditional approach: one VM per application
+- Each VM consumes at least 1-2 GB of RAM
+- 10 apps = 10 VMs = 10-20 GB just for operating systems
 
-**问题三：资源浪费**
-- 传统方式：每个应用一台虚拟机
-- 一台虚拟机至少占用 1-2GB 内存
-- 10 个应用 = 10 台虚拟机 = 10-20GB 内存
+### 2. The Evolution of Virtualization
 
-### 2. 虚拟化技术的演进
+**Bare Metal Era**
+- One server, one application
+- Extremely low resource utilization
+- Difficult to scale
 
-为了解决这些问题，技术不断进化：
+**Virtual Machine Era (VMware, VirtualBox)**
+- Multiple VMs on a single physical host
+- Each VM includes a full guest operating system
+- Heavy resource usage, slow boot times (minutes)
 
-**物理机时代（远古）**
-- 一台服务器跑一个应用
-- 资源利用率极低
-- 扩展困难
+**Container Era (Docker)**
+- Containers share the host kernel
+- Lightweight, fast startup (seconds)
+- Minimal resource overhead
 
-**虚拟机时代（VMware、VirtualBox）**
-- 一台物理机上运行多个虚拟机
-- 每个虚拟机都有完整的操作系统
-- 资源占用大，启动慢（分钟级）
-
-**容器时代（Docker）**
-- 共享宿主机内核
-- 轻量级，启动快（秒级）
-- 资源占用小
-
-来看一个直观的对比：
+Here's a side-by-side comparison:
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                     虚拟机 vs 容器 对比图                         │
-├─────────────────────────────────┬───────────────────────────────┤
-│         虚拟机架构               │          容器架构              │
+┌─────────────────────────────────┬───────────────────────────────┐
+│       Virtual Machines          │          Containers           │
 ├─────────────────────────────────┼───────────────────────────────┤
 │  ┌─────┐ ┌─────┐ ┌─────┐       │  ┌─────┐ ┌─────┐ ┌─────┐     │
 │  │App A│ │App B│ │App C│       │  │App A│ │App B│ │App C│     │
@@ -91,90 +83,71 @@ categories = ['Docker']
 │      │  Hardware   │           │      └─────────────┘          │
 │      └─────────────┘           │                                │
 ├─────────────────────────────────┼───────────────────────────────┤
-│  特点：                         │  特点：                        │
-│  • 每个 VM 有完整 OS            │  • 共享宿主机内核               │
-│  • 启动时间：分钟级             │  • 启动时间：秒级               │
-│  • 内存占用：GB 级              │  • 内存占用：MB 级              │
-│  • 隔离性：强                   │  • 隔离性：较强                 │
+│  Traits:                        │  Traits:                       │
+│  • Full OS per VM               │  • Shared host kernel          │
+│  • Boot time: minutes           │  • Boot time: seconds          │
+│  • Memory: GB-scale             │  • Memory: MB-scale            │
+│  • Isolation: strong            │  • Isolation: good             │
 └─────────────────────────────────┴───────────────────────────────┘
 ```
 
-### 3. Docker 的诞生
+### 3. The Birth of Docker
 
-**2013 年**，一家名叫 dotCloud 的 PaaS 公司（后改名为 Docker Inc.）开源了他们的内部项目 Docker，从此改变了软件部署的世界。
+In **2013**, a PaaS company called dotCloud (later renamed Docker Inc.) open-sourced their internal containerization project. It changed software deployment forever.
 
-**为什么 Docker 能成功？**
+**Why Docker took off:**
 
-1. **标准化打包**：就像国际海运的集装箱，不管里面装什么货物，外面都是标准尺寸
-2. **轻量级**：共享内核，秒级启动
-3. **可移植性**："Build once, run anywhere"
-4. **版本控制**：镜像可以像代码一样版本化管理
-5. **生态丰富**：Docker Hub 上有海量现成的镜像
+1. **Standardized packaging** — like shipping containers: no matter what's inside, the outside is a standard size
+2. **Lightweight** — shares the host kernel, boots in seconds
+3. **Portable** — "Build once, run anywhere"
+4. **Version-controlled** — images can be tagged and managed just like code
+5. **Rich ecosystem** — Docker Hub hosts millions of ready-to-use images
 
-**Docker 的核心优势**
+**Docker at a Glance**
 
-| 特性 | 传统部署 | Docker 部署 |
-|------|---------|------------|
-| 环境一致性 | 手动配置，容易出错 | 镜像保证完全一致 |
-| 启动速度 | 分钟级 | 秒级 |
-| 资源占用 | GB 级 | MB 级 |
-| 隔离性 | 需要虚拟机 | 容器原生支持 |
-| 扩展能力 | 复杂 | 简单，一行命令 |
+| Feature | Traditional Deployment | Docker Deployment |
+|---------|----------------------|-------------------|
+| Environment consistency | Manual config, error-prone | Image guarantees identical env |
+| Startup speed | Minutes | Seconds |
+| Resource usage | GB-scale | MB-scale |
+| Isolation | Requires full VM | Native container isolation |
+| Scaling | Complex | Simple, one command |
 
 ---
 
-## 第二部分：Docker 核心概念
+## Part 2: Docker Core Concepts
 
-### 4. 三大核心概念
+### 4. The Three Pillars
 
-用快递物流来类比，Docker 的三大核心概念就很好理解了：
+Think of Docker in terms of a shipping analogy:
 
-```
-┌──────────────────────────────────────────────────────────────┐
-│                   Docker 三大核心概念                         │
-├──────────────────────────────────────────────────────────────┤
-│                                                              │
-│   镜像 (Image)          容器 (Container)        仓库 (Registry)│
-│   ┌─────────┐           ┌─────────┐            ┌─────────┐  │
-│   │ 📦      │           │ 🚚      │            │ 🏭      │  │
-│   │ 货物的   │  ──────>  │ 运输中的 │  <──────   │ 物流    │  │
-│   │ 标准包装 │  实例化    │ 集装箱   │   存储     │ 仓库    │  │
-│   └─────────┘           └─────────┘            └─────────┘  │
-│                                                              │
-│   • 只读模板             • 镜像的运行实例        • 存储和分发镜像│
-│   • 包含运行环境          • 可以启动/停止        • 公有/私有    │
-│   • 分层存储             • 有自己的文件系统       • Docker Hub  │
-│                                                              │
-└──────────────────────────────────────────────────────────────┘
-```
+**Image — The Blueprint**
 
-**镜像（Image）—— 货物的标准包装**
+- A read-only template containing everything an app needs: code, runtime, libraries, environment variables, config files
+- A snapshot of a complete environment at a specific point in time
+- You can create multiple containers from a single image
 
-- 镜像是一个只读模板，包含了运行应用所需的一切：代码、运行时、库、环境变量、配置文件
-- 就像一个"快照"，记录了某个时刻的完整环境
-- 可以基于一个镜像创建多个容器
+**Container — The Running Instance**
 
-**容器（Container）—— 运输中的集装箱**
+- A container is a running instance of an image
+- Each container is isolated with its own filesystem, network, and process space
+- Containers can be created, started, stopped, and deleted
+- Data inside a container is ephemeral by default (unless you use volumes)
 
-- 容器是镜像的运行实例
-- 每个容器都是相互隔离的，有自己的文件系统、网络、进程空间
-- 容器可以被创建、启动、停止、删除
-- 容器中的数据默认不会持久化（除非使用数据卷）
+**Registry — The Warehouse**
 
-**仓库（Registry）—— 物流仓库**
+- Stores and distributes images
+- Docker Hub is the largest public registry (similar to GitHub for code)
+- Organizations can run private registries
 
-- 用来存储和分发镜像
-- Docker Hub 是最大的公共仓库，类似 GitHub
-- 企业可以搭建私有仓库
-
-### 5. Docker 架构
+### 5. Docker Architecture
 
 ```
 ┌───────────────────────────────────────────────────────────────────┐
-│                        Docker 架构图                               │
+│                        Docker Architecture                        │
 ├───────────────────────────────────────────────────────────────────┤
 │                                                                   │
-│  Client (客户端)                      Docker Host (Docker 主机)    │
+│  Client                                Docker Host                │
 │  ┌─────────────────┐                 ┌───────────────────────────┐│
 │  │ docker build    │                 │     Docker Daemon         ││
 │  │ docker pull     │  ──REST API──>  │     (dockerd)             ││
@@ -207,293 +180,294 @@ categories = ['Docker']
 └───────────────────────────────────────────────────────────────────┘
 ```
 
-**组件说明：**
+**Components:**
 
-- **Docker Client**：命令行工具，用户通过它与 Docker Daemon 交互
-- **Docker Daemon (dockerd)**：后台服务，负责管理镜像、容器、网络、存储
-- **Docker Registry**：镜像仓库，存储和分发镜像
+- **Docker Client** — the CLI tool you use to interact with the Docker Daemon
+- **Docker Daemon (dockerd)** — the background service that manages images, containers, networks, and storage
+- **Docker Registry** — image repository for storing and distributing images
 
 ---
 
-## 第三部分：Docker 实战入门
+## Part 3: Getting Started with Docker
 
-### 6. 安装 Docker
+### 6. Installing Docker
 
-#### macOS 安装
+#### macOS
 
-推荐使用 Docker Desktop：
+The recommended approach is Docker Desktop:
 
-1. 访问 [Docker 官网](https://www.docker.com/products/docker-desktop/)
-2. 下载 Docker Desktop for Mac
-3. 拖拽安装
-4. 启动 Docker Desktop
+1. Visit the [Docker website](https://www.docker.com/products/docker-desktop/)
+2. Download Docker Desktop for Mac
+3. Drag to install
+4. Launch Docker Desktop
 
-或使用 Homebrew：
+Or use Homebrew:
 
 ```bash
 brew install --cask docker
 ```
 
-#### Linux 安装（Ubuntu/Debian）
+#### Linux (Ubuntu/Debian)
 
 ```bash
-# 更新包索引
+# Update package index
 sudo apt-get update
 
-# 安装依赖
+# Install prerequisites
 sudo apt-get install ca-certificates curl gnupg
 
-# 添加 Docker 官方 GPG 密钥
+# Add Docker's official GPG key
 sudo install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 sudo chmod a+r /etc/apt/keyrings/docker.gpg
 
-# 添加仓库
+# Add the repository
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
   $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-# 安装 Docker Engine
+# Install Docker Engine
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-# 将当前用户加入 docker 组（避免每次 sudo）
+# Add your user to the docker group (avoids needing sudo)
 sudo usermod -aG docker $USER
 ```
 
-#### Linux 安装（CentOS/RHEL）
+#### Linux (CentOS/RHEL)
 
 ```bash
-# 安装依赖
+# Install prerequisites
 sudo yum install -y yum-utils
 
-# 添加仓库
+# Add the repository
 sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 
-# 安装 Docker Engine
+# Install Docker Engine
 sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-# 启动 Docker
+# Start and enable Docker
 sudo systemctl start docker
 sudo systemctl enable docker
 
-# 将当前用户加入 docker 组
+# Add your user to the docker group
 sudo usermod -aG docker $USER
 ```
 
-#### Windows 安装
+#### Windows
 
-1. 确保已启用 WSL 2
-2. 下载并安装 Docker Desktop for Windows
-3. 在设置中启用 WSL 2 集成
+1. Make sure WSL 2 is enabled
+2. Download and install Docker Desktop for Windows
+3. Enable WSL 2 integration in settings
 
-#### 验证安装
+#### Verify the Installation
 
 ```bash
-# 查看版本
+# Check version
 docker --version
 # Docker version 24.0.7, build afdd53b
 
-# 查看详细信息
+# View detailed info
 docker info
 
-# 运行测试容器
+# Run the test container
 docker run hello-world
 ```
 
-### 7. 第一个容器
+### 7. Your First Container
 
-让我们运行第一个容器：
+Let's run the classic hello-world:
 
 ```bash
 docker run hello-world
 ```
 
-**发生了什么？**
+**What happens behind the scenes?**
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                docker run hello-world 执行流程               │
+│            docker run hello-world — step by step            │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
-│  1. Docker 客户端发送命令给 Docker Daemon                    │
+│  1. The Docker client sends the command to the Daemon       │
 │                    │                                        │
 │                    ▼                                        │
-│  2. Docker Daemon 检查本地是否有 hello-world 镜像            │
+│  2. The Daemon checks for a local hello-world image         │
 │                    │                                        │
 │           ┌───────┴───────┐                                 │
-│           │  本地有镜像？  │                                 │
+│           │  Image found  │                                 │
+│           │   locally?    │                                 │
 │           └───────┬───────┘                                 │
 │           No      │       Yes                               │
 │           │       └────────────────┐                        │
 │           ▼                        │                        │
-│  3. 从 Docker Hub 拉取镜像          │                        │
+│  3. Pulls the image from Docker Hub│                        │
 │           │                        │                        │
 │           └────────────────────────┤                        │
 │                                    ▼                        │
-│  4. 基于镜像创建容器                                         │
+│  4. Creates a container from the image                      │
 │                    │                                        │
 │                    ▼                                        │
-│  5. 运行容器，输出 Hello from Docker!                        │
+│  5. Runs the container, prints "Hello from Docker!"         │
 │                    │                                        │
 │                    ▼                                        │
-│  6. 容器执行完毕，自动停止                                   │
+│  6. Container finishes and stops automatically              │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### 8. 镜像操作
+### 8. Working with Images
 
-#### 常用命令速查表
+#### Quick Reference
 
-| 命令 | 说明 | 示例 |
-|------|------|------|
-| `docker images` | 列出本地镜像 | `docker images` |
-| `docker pull` | 拉取镜像 | `docker pull nginx:latest` |
-| `docker search` | 搜索镜像 | `docker search mysql` |
-| `docker rmi` | 删除镜像 | `docker rmi nginx:latest` |
-| `docker tag` | 给镜像打标签 | `docker tag nginx:latest myrepo/nginx:v1` |
-| `docker build` | 构建镜像 | `docker build -t myapp:v1 .` |
-| `docker push` | 推送镜像 | `docker push myrepo/myapp:v1` |
+| Command | Description | Example |
+|---------|-------------|---------|
+| `docker images` | List local images | `docker images` |
+| `docker pull` | Pull an image | `docker pull nginx:latest` |
+| `docker search` | Search for images | `docker search mysql` |
+| `docker rmi` | Remove an image | `docker rmi nginx:latest` |
+| `docker tag` | Tag an image | `docker tag nginx:latest myrepo/nginx:v1` |
+| `docker build` | Build an image | `docker build -t myapp:v1 .` |
+| `docker push` | Push an image | `docker push myrepo/myapp:v1` |
 
-#### 实战示例
+#### Hands-On Examples
 
 ```bash
-# 搜索 nginx 镜像
+# Search for nginx images
 docker search nginx
 
-# 拉取官方 nginx 镜像
+# Pull the official nginx image
 docker pull nginx:latest
 
-# 查看本地镜像
+# List local images
 docker images
 
-# 查看镜像详情
+# Inspect image details
 docker inspect nginx:latest
 
-# 查看镜像历史（各层信息）
+# View image layer history
 docker history nginx:latest
 
-# 删除镜像
+# Remove an image
 docker rmi nginx:latest
 ```
 
-### 9. 容器操作
+### 9. Working with Containers
 
-#### 常用命令速查表
+#### Quick Reference
 
-| 命令 | 说明 | 示例 |
-|------|------|------|
-| `docker run` | 创建并启动容器 | `docker run -d nginx` |
-| `docker ps` | 列出运行中的容器 | `docker ps` |
-| `docker ps -a` | 列出所有容器 | `docker ps -a` |
-| `docker start` | 启动已停止的容器 | `docker start container_id` |
-| `docker stop` | 停止容器 | `docker stop container_id` |
-| `docker restart` | 重启容器 | `docker restart container_id` |
-| `docker rm` | 删除容器 | `docker rm container_id` |
-| `docker exec` | 在容器中执行命令 | `docker exec -it container_id bash` |
-| `docker logs` | 查看容器日志 | `docker logs -f container_id` |
+| Command | Description | Example |
+|---------|-------------|---------|
+| `docker run` | Create and start a container | `docker run -d nginx` |
+| `docker ps` | List running containers | `docker ps` |
+| `docker ps -a` | List all containers | `docker ps -a` |
+| `docker start` | Start a stopped container | `docker start container_id` |
+| `docker stop` | Stop a container | `docker stop container_id` |
+| `docker restart` | Restart a container | `docker restart container_id` |
+| `docker rm` | Remove a container | `docker rm container_id` |
+| `docker exec` | Run a command in a container | `docker exec -it container_id bash` |
+| `docker logs` | View container logs | `docker logs -f container_id` |
 
-#### 实战示例
+#### Hands-On Examples
 
 ```bash
-# 运行一个 nginx 容器
-# -d: 后台运行
-# -p: 端口映射 (宿主机端口:容器端口)
-# --name: 容器名称
+# Run an nginx container
+# -d: detached (background)
+# -p: port mapping (host:container)
+# --name: container name
 docker run -d -p 8080:80 --name my-nginx nginx
 
-# 查看运行中的容器
+# List running containers
 docker ps
 
-# 查看容器日志
+# View logs
 docker logs my-nginx
 
-# 实时查看日志
+# Follow logs in real time
 docker logs -f my-nginx
 
-# 进入容器内部
+# Open a shell inside the container
 docker exec -it my-nginx bash
 
-# 在容器中执行命令
+# Run a single command inside the container
 docker exec my-nginx cat /etc/nginx/nginx.conf
 
-# 停止容器
+# Stop the container
 docker stop my-nginx
 
-# 启动容器
+# Start it again
 docker start my-nginx
 
-# 删除容器（需要先停止）
+# Stop and remove
 docker stop my-nginx && docker rm my-nginx
 
-# 强制删除运行中的容器
+# Force-remove a running container
 docker rm -f my-nginx
 ```
 
-#### docker run 常用参数
+#### Common `docker run` Flags
 
 ```bash
 docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 
-# 常用 OPTIONS
--d, --detach          # 后台运行
--p, --publish         # 端口映射，格式：宿主机端口:容器端口
--v, --volume          # 挂载数据卷，格式：宿主机路径:容器路径
--e, --env             # 设置环境变量
---name                # 容器名称
---restart             # 重启策略：no, on-failure, always, unless-stopped
---network             # 指定网络
--it                   # 交互式终端（-i 保持 STDIN 打开，-t 分配伪终端）
---rm                  # 容器停止后自动删除
+# Frequently used OPTIONS
+-d, --detach          # Run in background
+-p, --publish         # Port mapping (host_port:container_port)
+-v, --volume          # Mount a volume (host_path:container_path)
+-e, --env             # Set environment variable
+--name                # Assign a container name
+--restart             # Restart policy: no, on-failure, always, unless-stopped
+--network             # Specify a network
+-it                   # Interactive terminal (-i keeps STDIN open, -t allocates a pseudo-TTY)
+--rm                  # Automatically remove the container when it stops
 ```
 
-### 10. 数据持久化
+### 10. Data Persistence
 
-容器默认是无状态的，容器删除后数据就丢失了。Docker 提供两种数据持久化方式：
+Containers are stateless by default — delete the container, lose the data. Docker offers two persistence mechanisms:
 
-#### 数据卷（Volume）
+#### Volumes
 
-由 Docker 管理的持久化存储，推荐使用。
+Managed by Docker. This is the recommended approach.
 
 ```bash
-# 创建数据卷
+# Create a volume
 docker volume create my-data
 
-# 查看数据卷
+# List volumes
 docker volume ls
 
-# 使用数据卷
+# Use a volume
 docker run -d \
   --name mysql-db \
   -v my-data:/var/lib/mysql \
   -e MYSQL_ROOT_PASSWORD=123456 \
   mysql:8.0
 
-# 查看数据卷详情
+# Inspect a volume
 docker volume inspect my-data
 
-# 删除数据卷
+# Remove a volume
 docker volume rm my-data
 
-# 删除未使用的数据卷
+# Remove all unused volumes
 docker volume prune
 ```
 
-#### 挂载目录（Bind Mount）
+#### Bind Mounts
 
-将宿主机目录挂载到容器中。
+Mount a host directory directly into the container.
 
 ```bash
-# 挂载当前目录到容器
+# Mount the current directory
 docker run -d \
   --name nginx-web \
   -p 8080:80 \
   -v $(pwd)/html:/usr/share/nginx/html \
   nginx
 
-# 只读挂载（容器无法修改）
+# Read-only mount (container cannot write)
 docker run -d \
   --name nginx-web \
   -p 8080:80 \
@@ -501,66 +475,66 @@ docker run -d \
   nginx
 ```
 
-#### 数据卷 vs 挂载目录
+#### Volumes vs Bind Mounts
 
-| 特性 | 数据卷 (Volume) | 挂载目录 (Bind Mount) |
-|------|----------------|---------------------|
-| 管理方式 | Docker 管理 | 用户管理 |
-| 存储位置 | Docker 目录下 | 任意宿主机目录 |
-| 可移植性 | 高 | 依赖宿主机路径 |
-| 适用场景 | 数据持久化 | 配置文件、代码共享 |
+| Feature | Volumes | Bind Mounts |
+|---------|---------|-------------|
+| Managed by | Docker | You |
+| Storage location | Docker's internal directory | Any host path |
+| Portability | High | Depends on host paths |
+| Best for | Persistent data (databases) | Config files, source code sharing |
 
-### 11. 网络配置
+### 11. Networking
 
-Docker 提供多种网络模式：
+Docker provides several network modes:
 
-#### 网络模式
+#### Network Modes
 
-| 模式 | 说明 |
-|------|------|
-| bridge | 默认模式，容器通过虚拟网桥连接 |
-| host | 容器直接使用宿主机网络 |
-| none | 禁用网络 |
-| container | 与其他容器共享网络 |
+| Mode | Description |
+|------|-------------|
+| bridge | Default. Containers connect through a virtual bridge |
+| host | Container shares the host's network stack directly |
+| none | Networking disabled |
+| container | Share another container's network namespace |
 
-#### 常用命令
+#### Common Commands
 
 ```bash
-# 查看网络列表
+# List networks
 docker network ls
 
-# 创建自定义网络
+# Create a custom network
 docker network create my-network
 
-# 运行容器时指定网络
+# Run a container on a specific network
 docker run -d --name app --network my-network nginx
 
-# 将容器连接到网络
+# Connect an existing container to a network
 docker network connect my-network container_name
 
-# 查看网络详情
+# Inspect a network
 docker network inspect my-network
 
-# 删除网络
+# Remove a network
 docker network rm my-network
 ```
 
-#### 容器间通信
+#### Container-to-Container Communication
 
-在同一网络中的容器可以通过容器名互相访问：
+Containers on the same network can reach each other by name:
 
 ```bash
-# 创建网络
+# Create a network
 docker network create app-network
 
-# 启动 MySQL
+# Start MySQL
 docker run -d \
   --name mysql \
   --network app-network \
   -e MYSQL_ROOT_PASSWORD=123456 \
   mysql:8.0
 
-# 启动应用，可以通过 "mysql" 这个名字访问数据库
+# Start the app — it can reach the database using the hostname "mysql"
 docker run -d \
   --name app \
   --network app-network \
@@ -570,14 +544,14 @@ docker run -d \
 
 ---
 
-## 第四部分：Dockerfile 精讲
+## Part 4: Dockerfile Deep Dive
 
-### 12. 什么是 Dockerfile
+### 12. What Is a Dockerfile?
 
-Dockerfile 是一个文本文件，包含了构建 Docker 镜像的所有指令。就像是镜像的"菜谱"，告诉 Docker 如何一步步构建出你需要的镜像。
+A Dockerfile is a text file containing step-by-step instructions for building a Docker image. Think of it as a recipe that tells Docker exactly how to assemble the environment your app needs.
 
 ```dockerfile
-# 这是一个简单的 Dockerfile 示例
+# A simple Dockerfile example
 FROM node:18-alpine
 WORKDIR /app
 COPY package*.json ./
@@ -587,38 +561,38 @@ EXPOSE 3000
 CMD ["node", "app.js"]
 ```
 
-### 13. 常用指令详解
+### 13. Key Instructions Explained
 
-#### FROM - 基础镜像
+#### FROM — Base Image
 
-每个 Dockerfile 必须以 FROM 开始，指定基础镜像：
+Every Dockerfile starts with `FROM`, which specifies the base image:
 
 ```dockerfile
-# 使用官方 Node.js 镜像
+# Official Node.js image
 FROM node:18-alpine
 
-# 使用官方 Python 镜像
+# Official Python image
 FROM python:3.11-slim
 
-# 使用最小化镜像
+# Minimal Alpine image
 FROM alpine:3.18
 
-# 从零开始构建
+# Build from scratch (empty base)
 FROM scratch
 ```
 
-#### RUN - 执行命令
+#### RUN — Execute Commands
 
-在镜像构建过程中执行命令：
+Run commands during the image build process:
 
 ```dockerfile
-# Shell 格式
+# Shell form
 RUN apt-get update && apt-get install -y curl
 
-# Exec 格式
+# Exec form
 RUN ["apt-get", "install", "-y", "curl"]
 
-# 多行命令（推荐，减少层数）
+# Multi-line (recommended — fewer layers)
 RUN apt-get update && \
     apt-get install -y \
     curl \
@@ -630,66 +604,66 @@ RUN apt-get update && \
 #### COPY vs ADD
 
 ```dockerfile
-# COPY - 简单复制文件
+# COPY — straightforward file copy
 COPY package.json /app/
 COPY . /app/
 
-# ADD - 额外支持解压和远程 URL（不推荐，建议用 COPY）
+# ADD — also supports auto-extraction and remote URLs (not recommended; prefer COPY)
 ADD archive.tar.gz /app/
 ADD https://example.com/file.txt /app/
 ```
 
-**建议：** 优先使用 COPY，更明确、更可预测。
+**Recommendation:** Prefer `COPY`. It's explicit and predictable.
 
-#### WORKDIR - 工作目录
+#### WORKDIR — Working Directory
 
 ```dockerfile
 WORKDIR /app
-# 后续命令都在 /app 目录下执行
+# All subsequent commands run inside /app
 ```
 
-#### ENV - 环境变量
+#### ENV — Environment Variables
 
 ```dockerfile
 ENV NODE_ENV=production
 ENV APP_PORT=3000
 
-# 多个环境变量
+# Multiple variables
 ENV NODE_ENV=production \
     APP_PORT=3000
 ```
 
-#### EXPOSE - 声明端口
+#### EXPOSE — Declare Ports
 
 ```dockerfile
-# 声明容器监听的端口（仅作文档用途）
+# Document which ports the container listens on
 EXPOSE 3000
 EXPOSE 80 443
 ```
 
-注意：EXPOSE 不会自动发布端口，运行时仍需 `-p` 参数。
+Note: `EXPOSE` is purely documentation. You still need `-p` at runtime to publish ports.
 
 #### CMD vs ENTRYPOINT
 
-这是最容易混淆的两个指令：
+This is the most commonly confused pair:
 
 ```dockerfile
-# CMD - 容器启动时执行的默认命令（可被覆盖）
+# CMD — default command (easily overridden by docker run arguments)
 CMD ["node", "app.js"]
 CMD ["npm", "start"]
 
-# ENTRYPOINT - 容器启动时执行的固定命令（不易被覆盖）
+# ENTRYPOINT — fixed command (arguments are appended, not replaced)
 ENTRYPOINT ["python", "app.py"]
 ```
 
-**区别对比：**
+**Comparison:**
 
-| 场景 | CMD | ENTRYPOINT |
-|------|-----|------------|
-| 被 docker run 参数覆盖 | 完全覆盖 | 参数追加 |
-| 适用场景 | 默认命令，可灵活覆盖 | 固定入口，参数化执行 |
+| Scenario | CMD | ENTRYPOINT |
+|----------|-----|------------|
+| Overridden by `docker run` args | Completely replaced | Args appended |
+| Best for | Default commands with flexibility | Fixed entry point with parameterization |
 
-**最佳实践 - 组合使用：**
+**Best practice — combine them:**
 
 ```dockerfile
 ENTRYPOINT ["python", "app.py"]
@@ -699,12 +673,12 @@ CMD ["--port", "8080"]
 # docker run myapp --port 3000      -> python app.py --port 3000
 ```
 
-#### 多阶段构建
+#### Multi-Stage Builds
 
-减小最终镜像体积的利器：
+The key technique for keeping final images small:
 
 ```dockerfile
-# 第一阶段：构建
+# Stage 1: Build
 FROM node:18 AS builder
 WORKDIR /app
 COPY package*.json ./
@@ -712,10 +686,10 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-# 第二阶段：运行
+# Stage 2: Production
 FROM node:18-alpine
 WORKDIR /app
-# 只复制构建产物
+# Copy only the build output
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package*.json ./
 RUN npm install --production
@@ -723,25 +697,25 @@ EXPOSE 3000
 CMD ["node", "dist/index.js"]
 ```
 
-### 14. Dockerfile 最佳实践
+### 14. Dockerfile Best Practices
 
-#### 减小镜像体积
+#### Minimize Image Size
 
 ```dockerfile
-# 1. 使用 alpine 基础镜像
-FROM node:18-alpine  # 而不是 node:18
+# 1. Use alpine base images
+FROM node:18-alpine  # instead of node:18
 
-# 2. 多阶段构建（见上文）
+# 2. Use multi-stage builds (see above)
 
-# 3. 合并 RUN 命令，清理缓存
+# 3. Combine RUN commands and clean up caches
 RUN apt-get update && \
     apt-get install -y curl && \
     rm -rf /var/lib/apt/lists/*
 
-# 4. 使用 .dockerignore 排除不需要的文件
+# 4. Use .dockerignore to exclude unnecessary files
 ```
 
-**.dockerignore 示例：**
+**.dockerignore example:**
 
 ```
 node_modules
@@ -753,76 +727,76 @@ README.md
 *.md
 ```
 
-#### 利用构建缓存
+#### Leverage the Build Cache
 
-把不常变化的指令放前面：
+Place instructions that change less frequently earlier in the Dockerfile:
 
 ```dockerfile
 FROM node:18-alpine
 WORKDIR /app
 
-# 先复制 package.json（不常变化）
+# Copy package.json first (rarely changes)
 COPY package*.json ./
 RUN npm install
 
-# 再复制源代码（经常变化）
+# Then copy source code (changes often)
 COPY . .
 
 RUN npm run build
 ```
 
-#### 安全性考虑
+#### Security Considerations
 
 ```dockerfile
-# 1. 不使用 root 用户运行
+# 1. Don't run as root
 FROM node:18-alpine
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 USER appuser
 
-# 2. 不在镜像中存储敏感信息
-# 使用环境变量或密钥管理工具
+# 2. Never store secrets in the image
+# Use environment variables or a secrets manager instead
 
-# 3. 使用特定版本标签，而不是 latest
-FROM node:18.19.0-alpine  # 而不是 node:latest
+# 3. Pin specific version tags, not "latest"
+FROM node:18.19.0-alpine  # instead of node:latest
 ```
 
 ---
 
-## 第五部分：Docker Compose 完全指南
+## Part 5: Docker Compose In-Depth
 
-### 15. 为什么需要 Docker Compose
+### 15. Why Docker Compose?
 
-当你的应用需要多个容器协同工作时（比如 Web 应用 + 数据库 + 缓存），手动管理变得很痛苦：
+When your application involves multiple containers working together (e.g., a web app + database + cache), managing them manually becomes painful:
 
 ```bash
-# 手动管理多个容器的噩梦
+# The nightmare of managing multiple containers by hand
 docker network create myapp
 docker run -d --name mysql --network myapp -e MYSQL_ROOT_PASSWORD=123456 mysql:8.0
 docker run -d --name redis --network myapp redis:alpine
 docker run -d --name app --network myapp -p 3000:3000 -e DB_HOST=mysql -e REDIS_HOST=redis myapp
 ```
 
-Docker Compose 让你用一个 YAML 文件定义和运行多容器应用，一条命令搞定一切。
+Docker Compose lets you define and run multi-container applications with a single YAML file and a single command.
 
-### 16. Docker Compose 基础
+### 16. Docker Compose Basics
 
-#### 安装
+#### Installation
 
-Docker Desktop 已内置 Docker Compose。Linux 用户如果单独安装 Docker Engine，Compose 插件已包含在内。
+Docker Desktop includes Docker Compose out of the box. If you installed Docker Engine on Linux separately, the Compose plugin is included.
 
-验证安装：
+Verify:
 
 ```bash
 docker compose version
 ```
 
-#### docker-compose.yml 基本结构
+#### Basic docker-compose.yml Structure
 
 ```yaml
-# 版本声明（可选，新版本可省略）
+# Version declaration (optional in modern Docker Compose)
 version: "3.8"
 
-# 服务定义
+# Service definitions
 services:
   web:
     image: nginx:alpine
@@ -834,66 +808,66 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 123456
 
-# 网络定义（可选）
+# Network definitions (optional)
 networks:
   default:
     driver: bridge
 
-# 数据卷定义（可选）
+# Volume definitions (optional)
 volumes:
   db-data:
 ```
 
-### 17. 核心配置项详解
+### 17. Configuration Reference
 
-#### services - 服务定义
+#### services — Defining Services
 
 ```yaml
 services:
-  # 服务名称
+  # Service name
   app:
-    # 使用镜像
+    # Use a pre-built image
     image: node:18-alpine
 
-    # 或者构建
+    # Or build from a Dockerfile
     build:
       context: .
       dockerfile: Dockerfile
 
-    # 容器名称
+    # Container name
     container_name: my-app
 
-    # 端口映射
+    # Port mappings
     ports:
-      - "3000:3000"      # 宿主机端口:容器端口
+      - "3000:3000"      # host_port:container_port
       - "3001:3001"
 
-    # 环境变量
+    # Environment variables
     environment:
       - NODE_ENV=production
       - DB_HOST=mysql
-    # 或从文件加载
+    # Or load from a file
     env_file:
       - .env
 
-    # 数据卷挂载
+    # Volume mounts
     volumes:
-      - ./src:/app/src        # 挂载目录
-      - node_modules:/app/node_modules  # 命名卷
+      - ./src:/app/src        # bind mount
+      - node_modules:/app/node_modules  # named volume
 
-    # 依赖关系
+    # Service dependencies
     depends_on:
       - mysql
       - redis
 
-    # 重启策略
+    # Restart policy
     restart: unless-stopped
 
-    # 网络
+    # Network
     networks:
       - app-network
 
-    # 资源限制
+    # Resource limits
     deploy:
       resources:
         limits:
@@ -901,7 +875,7 @@ services:
           memory: 512M
 ```
 
-#### networks - 网络配置
+#### networks — Network Configuration
 
 ```yaml
 services:
@@ -915,10 +889,10 @@ networks:
     driver: bridge
   backend:
     driver: bridge
-    internal: true  # 内部网络，无法访问外部
+    internal: true  # internal only, no external access
 ```
 
-#### volumes - 数据卷
+#### volumes — Data Volumes
 
 ```yaml
 services:
@@ -931,7 +905,7 @@ volumes:
     driver: local
 ```
 
-#### 完整配置示例
+#### Full Configuration Example
 
 ```yaml
 version: "3.8"
@@ -995,34 +969,34 @@ volumes:
   redis-data:
 ```
 
-### 18. 常用命令
+### 18. Essential Commands
 
-| 命令 | 说明 |
-|------|------|
-| `docker compose up` | 创建并启动所有服务 |
-| `docker compose up -d` | 后台运行 |
-| `docker compose down` | 停止并删除所有容器 |
-| `docker compose down -v` | 同时删除数据卷 |
-| `docker compose ps` | 查看服务状态 |
-| `docker compose logs` | 查看日志 |
-| `docker compose logs -f app` | 实时查看指定服务日志 |
-| `docker compose exec app bash` | 进入容器 |
-| `docker compose build` | 构建镜像 |
-| `docker compose build --no-cache` | 不使用缓存构建 |
-| `docker compose restart` | 重启所有服务 |
-| `docker compose stop` | 停止服务（不删除） |
-| `docker compose start` | 启动已停止的服务 |
-| `docker compose pull` | 拉取最新镜像 |
+| Command | Description |
+|---------|-------------|
+| `docker compose up` | Create and start all services |
+| `docker compose up -d` | Run in detached mode |
+| `docker compose down` | Stop and remove all containers |
+| `docker compose down -v` | Also remove volumes |
+| `docker compose ps` | List service status |
+| `docker compose logs` | View logs |
+| `docker compose logs -f app` | Follow logs for a specific service |
+| `docker compose exec app bash` | Open a shell in a running service |
+| `docker compose build` | Build images |
+| `docker compose build --no-cache` | Build without cache |
+| `docker compose restart` | Restart all services |
+| `docker compose stop` | Stop services (without removing) |
+| `docker compose start` | Start previously stopped services |
+| `docker compose pull` | Pull the latest images |
 
 ---
 
-## 第六部分：实战案例
+## Part 6: Real-World Examples
 
-### 19. 案例一：搭建 Nginx 静态网站
+### 19. Example 1: Nginx Static Website
 
-最简单的入门案例：
+The simplest starting point:
 
-**目录结构：**
+**Directory structure:**
 
 ```
 project/
@@ -1031,7 +1005,7 @@ project/
     └── index.html
 ```
 
-**docker-compose.yml：**
+**docker-compose.yml:**
 
 ```yaml
 version: "3.8"
@@ -1047,7 +1021,7 @@ services:
     restart: unless-stopped
 ```
 
-**html/index.html：**
+**html/index.html:**
 
 ```html
 <!DOCTYPE html>
@@ -1061,16 +1035,16 @@ services:
 </html>
 ```
 
-**运行：**
+**Run it:**
 
 ```bash
 docker compose up -d
-# 访问 http://localhost
+# Visit http://localhost
 ```
 
-### 20. 案例二：部署 WordPress 博客
+### 20. Example 2: WordPress Blog
 
-**docker-compose.yml：**
+**docker-compose.yml:**
 
 ```yaml
 version: "3.8"
@@ -1123,16 +1097,16 @@ volumes:
   mysql-data:
 ```
 
-**运行：**
+**Run it:**
 
 ```bash
 docker compose up -d
-# 访问 http://localhost:8080 完成 WordPress 安装
+# Visit http://localhost:8080 to complete the WordPress setup wizard
 ```
 
-### 21. 案例三：Node.js + MySQL + Redis 开发环境
+### 21. Example 3: Node.js + MySQL + Redis Dev Environment
 
-**目录结构：**
+**Directory structure:**
 
 ```
 project/
@@ -1144,7 +1118,7 @@ project/
     └── index.js
 ```
 
-**docker-compose.yml：**
+**docker-compose.yml:**
 
 ```yaml
 version: "3.8"
@@ -1165,8 +1139,8 @@ services:
       REDIS_HOST: redis
       REDIS_PORT: 6379
     volumes:
-      - ./src:/app/src          # 热重载：源码挂载
-      - /app/node_modules       # 保护 node_modules
+      - ./src:/app/src          # hot reload: mount source code
+      - /app/node_modules       # protect node_modules
     depends_on:
       mysql:
         condition: service_healthy
@@ -1180,7 +1154,7 @@ services:
     image: mysql:8.0
     container_name: mysql-db
     ports:
-      - "3306:3306"  # 开发时方便本地连接
+      - "3306:3306"  # expose for local dev tools
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-123456}
       MYSQL_DATABASE: ${DB_NAME:-myapp}
@@ -1199,7 +1173,7 @@ services:
     image: redis:7-alpine
     container_name: redis-cache
     ports:
-      - "6379:6379"  # 开发时方便本地连接
+      - "6379:6379"  # expose for local dev tools
     volumes:
       - redis-data:/data
     networks:
@@ -1215,27 +1189,27 @@ volumes:
   redis-data:
 ```
 
-**Dockerfile：**
+**Dockerfile:**
 
 ```dockerfile
 FROM node:18-alpine
 
 WORKDIR /app
 
-# 安装依赖
+# Install dependencies
 COPY package*.json ./
 RUN npm install
 
-# 复制源码
+# Copy source code
 COPY . .
 
 EXPOSE 3000
 
-# 开发模式使用 nodemon 热重载
+# Use nodemon for hot reload in development
 CMD ["npm", "run", "dev"]
 ```
 
-**.env：**
+**.env:**
 
 ```
 DB_NAME=myapp
@@ -1243,17 +1217,17 @@ DB_USER=root
 DB_PASSWORD=123456
 ```
 
-### 22. 案例四：企业级日志收集系统（Loki + Grafana）
+### 22. Example 4: Lightweight Log Collection (Loki + Grafana)
 
-相比 ELK，Loki + Grafana 更轻量，适合中小规模项目。
+Compared to the ELK stack, Loki + Grafana is much lighter and works well for small-to-medium projects.
 
-**docker-compose.yml：**
+**docker-compose.yml:**
 
 ```yaml
 version: "3.8"
 
 services:
-  # 日志聚合
+  # Log aggregation
   loki:
     image: grafana/loki:2.9.0
     container_name: loki
@@ -1267,7 +1241,7 @@ services:
       - monitoring
     restart: unless-stopped
 
-  # 日志收集代理
+  # Log collection agent
   promtail:
     image: grafana/promtail:2.9.0
     container_name: promtail
@@ -1280,7 +1254,7 @@ services:
       - monitoring
     restart: unless-stopped
 
-  # 可视化面板
+  # Visualization dashboard
   grafana:
     image: grafana/grafana:10.0.0
     container_name: grafana
@@ -1297,7 +1271,7 @@ services:
       - monitoring
     restart: unless-stopped
 
-  # 示例应用（产生日志）
+  # Demo app (generates logs)
   app:
     image: nginx:alpine
     container_name: demo-app
@@ -1321,7 +1295,7 @@ volumes:
   grafana-data:
 ```
 
-**loki-config.yml：**
+**loki-config.yml:**
 
 ```yaml
 auth_enabled: false
@@ -1369,7 +1343,7 @@ table_manager:
   retention_period: 0s
 ```
 
-**promtail-config.yml：**
+**promtail-config.yml:**
 
 ```yaml
 server:
@@ -1402,11 +1376,11 @@ scrape_configs:
 
 ---
 
-## 第七部分：进阶与最佳实践
+## Part 7: Advanced Topics and Best Practices
 
-### 23. 生产环境注意事项
+### 23. Production Considerations
 
-#### 资源限制
+#### Resource Limits
 
 ```yaml
 services:
@@ -1421,7 +1395,7 @@ services:
           memory: 512M
 ```
 
-#### 日志管理
+#### Log Management
 
 ```yaml
 services:
@@ -1429,140 +1403,140 @@ services:
     logging:
       driver: json-file
       options:
-        max-size: "100m"   # 单个日志文件最大
-        max-file: "5"      # 保留文件数量
+        max-size: "100m"   # max size per log file
+        max-file: "5"      # number of files to retain
 ```
 
-#### 安全加固
+#### Security Hardening
 
 ```yaml
 services:
   app:
-    # 以非 root 用户运行
+    # Run as non-root user
     user: "1000:1000"
 
-    # 只读文件系统
+    # Read-only filesystem
     read_only: true
 
-    # 临时文件目录
+    # Writable temp directory
     tmpfs:
       - /tmp
 
-    # 安全选项
+    # Security options
     security_opt:
       - no-new-privileges:true
 ```
 
-### 24. 常见问题排查
+### 24. Troubleshooting Common Issues
 
-#### 容器无法启动
+#### Container Won't Start
 
 ```bash
-# 查看容器日志
+# Check container logs
 docker logs container_name
 
-# 查看详细信息
+# Inspect container details
 docker inspect container_name
 
-# 常见原因：
-# 1. 端口冲突
-# 2. 数据卷权限问题
-# 3. 依赖服务未就绪
+# Common causes:
+# 1. Port conflict
+# 2. Volume permission issues
+# 3. Dependency services not ready
 ```
 
-#### 网络不通
+#### Network Connectivity Problems
 
 ```bash
-# 检查网络
+# Check networks
 docker network ls
 docker network inspect network_name
 
-# 测试容器间连通性
+# Test connectivity between containers
 docker exec container1 ping container2
 
-# 常见原因：
-# 1. 容器不在同一网络
-# 2. 服务名拼写错误
-# 3. 端口未暴露
+# Common causes:
+# 1. Containers not on the same network
+# 2. Typo in service name
+# 3. Port not exposed
 ```
 
-#### 磁盘空间不足
+#### Running Out of Disk Space
 
 ```bash
-# 查看磁盘使用
+# Check disk usage
 docker system df
 
-# 清理未使用资源
+# Clean up unused resources
 docker system prune
 
-# 清理所有（包括未使用的镜像）
+# Clean everything (including unused images)
 docker system prune -a
 
-# 清理数据卷
+# Clean up volumes
 docker volume prune
 ```
 
-### 25. Docker 生态与未来
+### 25. The Docker Ecosystem and Beyond
 
-#### Kubernetes 简介
+#### Kubernetes at a Glance
 
-当容器数量达到一定规模（几十到上百），Docker Compose 就不够用了。Kubernetes（K8s）是容器编排的事实标准：
+When you're running dozens or hundreds of containers, Docker Compose is no longer enough. Kubernetes (K8s) is the industry standard for container orchestration:
 
-- 自动扩缩容
-- 服务发现与负载均衡
-- 滚动更新与回滚
-- 自我修复
+- Auto-scaling
+- Service discovery and load balancing
+- Rolling updates and rollbacks
+- Self-healing
 
 #### Docker Swarm
 
-Docker 原生的编排工具，比 K8s 简单：
+Docker's built-in orchestration tool, simpler than Kubernetes:
 
 ```bash
-# 初始化 Swarm
+# Initialize Swarm
 docker swarm init
 
-# 部署服务
+# Deploy a stack
 docker stack deploy -c docker-compose.yml myapp
 ```
 
-#### 云原生趋势
+#### Cloud-Native Trends
 
-- **容器运行时**：containerd、CRI-O 等逐渐替代 Docker Engine
-- **无服务器容器**：AWS Fargate、Google Cloud Run
-- **服务网格**：Istio、Linkerd
+- **Container runtimes**: containerd and CRI-O are gradually replacing Docker Engine as the underlying runtime
+- **Serverless containers**: AWS Fargate, Google Cloud Run
+- **Service mesh**: Istio, Linkerd
 
 ---
 
-## 总结
+## Summary
 
-恭喜你完成了 Docker 和 Docker Compose 的学习之旅！让我们回顾一下核心要点：
+Here's a quick recap of the key takeaways:
 
-**Docker 核心概念：**
-- **镜像**：应用的标准打包方式
-- **容器**：镜像的运行实例
-- **仓库**：镜像的存储和分发中心
+**Docker Core Concepts:**
+- **Images** — standardized, portable application packages
+- **Containers** — running instances of images
+- **Registries** — centralized storage and distribution for images
 
-**Docker Compose 价值：**
-- 用 YAML 文件定义多容器应用
-- 一条命令启动整个应用栈
-- 简化开发、测试、部署流程
+**Docker Compose Value Proposition:**
+- Define multi-container applications in a single YAML file
+- Spin up entire application stacks with one command
+- Streamline development, testing, and deployment workflows
 
-**最佳实践：**
-- 使用多阶段构建减小镜像体积
-- 使用 .dockerignore 排除不需要的文件
-- 合理利用构建缓存
-- 生产环境设置资源限制和日志策略
+**Best Practices:**
+- Use multi-stage builds to minimize image size
+- Use `.dockerignore` to exclude unnecessary files
+- Leverage the build cache by ordering instructions wisely
+- Set resource limits and log rotation policies in production
 
-**学习资源：**
-- [Docker 官方文档](https://docs.docker.com/)
+**Further Reading:**
+- [Docker Official Documentation](https://docs.docker.com/)
 - [Docker Hub](https://hub.docker.com/)
-- [Compose 文件参考](https://docs.docker.com/compose/compose-file/)
+- [Compose File Reference](https://docs.docker.com/compose/compose-file/)
 
-容器技术已经成为现代软件开发的标配。掌握 Docker，你就掌握了通往云原生世界的钥匙。
+Container technology is now a fundamental part of modern software development. Mastering Docker and Docker Compose is your gateway to the cloud-native world.
 
 ---
 
-## 相关文章
+## Related Articles
 
 - [Docker 入门指南：核心概念、安装配置与容器化实践](/posts/docker/2019-05-13-learn-docker/) - Docker 基础概念与入门教程
 - [Docker 常用命令速查手册](/posts/docker/2019-11-14-docker-commands/) - 日常开发必备命令参考
@@ -1570,8 +1544,7 @@ docker stack deploy -c docker-compose.yml myapp
 
 ---
 
-*如果这篇文章对你有帮助，欢迎分享给更多的朋友！*
-## 相关阅读 / Related
+## Related Reading
 
 - [Linux 运维基础 Hub](/posts/linux/linux-ops-basics-hub/)
 - [docker-compose.yml 详解](/posts/docker/2026-01-24-docker-compose-yml-explained/)

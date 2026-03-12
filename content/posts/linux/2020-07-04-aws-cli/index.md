@@ -1,74 +1,74 @@
 +++
-title = 'AWS CLI 完全指南：安装配置、S3/EC2 常用命令与权限排错'
+title = 'AWS CLI Complete Guide: Installation, Configuration, S3/EC2 Commands & Troubleshooting'
 date = 2020-07-04T00:16:54+08:00
-description = 'AWS CLI 从零上手：安装、aws configure、S3/EC2/IAM 高频命令、常见报错与权限问题排查，适合运维与开发日常使用。'
+description = 'Master AWS CLI from scratch: install v2, configure profiles, manage S3 buckets and EC2 instances, and troubleshoot common permission errors.'
 toc = true
-tags = ["AWS", "AWS CLI", "S3", "EC2", "云计算", "运维", "命令行"]
+tags = ["AWS", "AWS CLI", "S3", "EC2", "Cloud Computing", "DevOps", "CLI"]
 categories = ["Linux"]
-keywords = ["AWS CLI", "AWS 命令行", "S3 命令", "EC2 命令", "aws configure"]
+keywords = ["AWS CLI", "AWS command line", "S3 commands", "EC2 commands", "aws configure"]
 +++
-![AWS CLI 命令行工具完全指南](cover.webp)
+![AWS CLI complete guide](cover.webp)
 
-**AWS CLI**（Amazon Web Services Command Line Interface）是 AWS 官方提供的统一命令行工具，让你能够通过终端直接管理所有 AWS 服务。本文将详细介绍 AWS CLI 的安装配置方法和常用命令，帮助你快速上手云资源管理。
+The **AWS CLI** (Amazon Web Services Command Line Interface) is Amazon's official unified tool for managing all AWS services from the terminal. Whether you are spinning up EC2 instances, syncing files to S3, or automating deployments, the CLI is often the fastest path. This guide walks through installation, configuration, everyday commands for the most popular services, and solutions to the errors you will inevitably hit.
 
-## 一、安装 AWS CLI
+## Installing AWS CLI
 
-AWS CLI 目前推荐使用 **v2 版本**，它更快、更安全，且支持所有最新特性。
+AWS now recommends **v2** for all new installations. It ships with a built-in installer, runs faster than v1, and supports every current service API.
 
-### 1. macOS 安装
+### macOS
 
-**方式一：使用 Homebrew（推荐）**
+**Option 1 -- Homebrew (recommended)**
 
 ```bash
 brew install awscli
 ```
 
-**方式二：使用官方安装包**
+**Option 2 -- Official installer**
 
 ```bash
-# 下载安装包
+# Download the package
 curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
 
-# 安装
+# Install
 sudo installer -pkg AWSCLIV2.pkg -target /
 ```
 
-### 2. Linux 安装
+### Linux
 
 ```bash
-# x86_64 架构
+# x86_64
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
 sudo ./aws/install
 
-# ARM64 架构
+# ARM64
 curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
 sudo ./aws/install
 ```
 
-### 3. Windows 安装
+### Windows
 
-下载并运行 MSI 安装程序：
+Download and run the MSI installer:
 
 ```
 https://awscli.amazonaws.com/AWSCLIV2.msi
 ```
 
-### 4. 验证安装
+### Verify the installation
 
 ```bash
 aws --version
-# 输出示例: aws-cli/2.27.41 Python/3.11.6 Darwin/24.0.0
+# Example output: aws-cli/2.27.41 Python/3.11.6 Darwin/24.0.0
 ```
 
-![验证 AWS CLI 安装版本](aws-version.webp)
+![Verifying AWS CLI version](aws-version.webp)
 
-## 二、配置 AWS CLI
+## Configuring AWS CLI
 
-### 1. 快速配置
+### Quick setup
 
-使用 `aws configure` 命令进行交互式配置：
+Run `aws configure` for an interactive walkthrough:
 
 ```bash
 $ aws configure
@@ -78,42 +78,42 @@ Default region name [None]: us-west-2
 Default output format [None]: json
 ```
 
-配置完成后会在 `~/.aws/` 目录下生成两个文件：
+This creates two files under `~/.aws/`:
 
-| 文件 | 内容 |
-|------|------|
-| `~/.aws/credentials` | 存储访问密钥 |
-| `~/.aws/config` | 存储区域和输出格式 |
+| File | Purpose |
+|------|---------|
+| `~/.aws/credentials` | Stores access keys |
+| `~/.aws/config` | Stores region and output format |
 
-### 2. 多配置文件管理
+### Named profiles for multiple environments
 
-为不同环境创建独立配置：
+Create a separate profile for each AWS account or environment:
 
 ```bash
-# 配置生产环境
+# Production account
 aws configure --profile prod
 
-# 配置测试环境
+# Development account
 aws configure --profile dev
 ```
 
-使用指定配置：
+Switch between profiles:
 
 ```bash
-# 方式一：命令行参数
+# Per-command flag
 aws s3 ls --profile prod
 
-# 方式二：环境变量
+# Or export once per session
 export AWS_PROFILE=prod
 aws s3 ls
 ```
 
-### 3. 环境变量配置
+### Environment variables
 
-通过环境变量覆盖配置文件（优先级更高）：
+Environment variables override the config file, which is handy for CI/CD pipelines and containers:
 
 ```bash
-# Linux/macOS
+# Linux / macOS
 export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
 export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 export AWS_DEFAULT_REGION=us-west-2
@@ -124,13 +124,12 @@ $Env:AWS_SECRET_ACCESS_KEY="wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
 $Env:AWS_DEFAULT_REGION="us-west-2"
 ```
 
-### 4. 验证配置
+### Verify your identity
 
 ```bash
-# 检查当前身份
 aws sts get-caller-identity
 
-# 输出示例
+# Example output
 {
     "UserId": "AIDAEXAMPLEUSERID",
     "Account": "123456789012",
@@ -138,162 +137,162 @@ aws sts get-caller-identity
 }
 ```
 
-## 三、S3 存储操作
+## S3 Storage Operations
 
-S3 是 AWS 最常用的对象存储服务，CLI 提供了丰富的操作命令。
+S3 is the backbone of AWS storage. The CLI covers every operation you need for day-to-day object management.
 
-### 1. 存储桶管理
+### Bucket management
 
 ```bash
-# 列出所有存储桶
+# List all buckets
 aws s3 ls
 
-# 创建存储桶
+# Create a bucket
 aws s3 mb s3://my-bucket-name
 
-# 创建指定区域的存储桶
+# Create a bucket in a specific region
 aws s3 mb s3://my-bucket-name --region ap-northeast-1
 
-# 删除空存储桶
+# Remove an empty bucket
 aws s3 rb s3://my-bucket-name
 
-# 强制删除非空存储桶（包含所有对象）
+# Force-remove a non-empty bucket (deletes all objects)
 aws s3 rb s3://my-bucket-name --force
 ```
 
-### 2. 对象操作
+### Listing objects
 
 ```bash
-# 列出存储桶内容
+# List bucket contents
 aws s3 ls s3://my-bucket
 
-# 列出带前缀的对象
+# List objects under a prefix
 aws s3 ls s3://my-bucket/folder/
 
-# 查看目录大小（递归统计）
+# Summarize total size (recursive)
 aws s3 ls --summarize --human-readable --recursive s3://my-bucket
 ```
 
-### 3. 上传与下载
+### Uploading and downloading
 
 ```bash
-# 上传单个文件
+# Upload a single file
 aws s3 cp local-file.txt s3://my-bucket/
 
-# 下载单个文件
+# Download a single file
 aws s3 cp s3://my-bucket/remote-file.txt ./
 
-# 递归上传整个目录
+# Upload a directory recursively
 aws s3 cp ./local-folder s3://my-bucket/folder/ --recursive
 
-# 递归下载整个目录
+# Download a directory recursively
 aws s3 cp s3://my-bucket/folder/ ./local-folder --recursive
 
-# 排除特定文件
+# Exclude certain files
 aws s3 cp ./local-folder s3://my-bucket/ --recursive --exclude "*.log"
 
-# 仅包含特定文件
+# Include only certain files
 aws s3 cp ./local-folder s3://my-bucket/ --recursive --include "*.jpg" --exclude "*"
 ```
 
-### 4. 同步目录
+### Syncing directories
 
-`sync` 命令只传输变化的文件，适合增量备份：
+`sync` only transfers changed files, making it ideal for incremental backups:
 
 ```bash
-# 本地同步到 S3
+# Local to S3
 aws s3 sync ./local-folder s3://my-bucket/folder/
 
-# S3 同步到本地
+# S3 to local
 aws s3 sync s3://my-bucket/folder/ ./local-folder
 
-# 同步并删除目标中多余的文件
+# Delete files in the destination that don't exist in the source
 aws s3 sync ./local-folder s3://my-bucket/folder/ --delete
 
-# 指定存储类别
+# Use a cheaper storage class
 aws s3 sync ./local-folder s3://my-bucket/ --storage-class STANDARD_IA
 ```
 
-### 5. 移动与删除
+### Moving and deleting
 
 ```bash
-# 移动/重命名对象
+# Move / rename an object
 aws s3 mv s3://my-bucket/old-name.txt s3://my-bucket/new-name.txt
 
-# 移动整个目录
+# Move an entire directory
 aws s3 mv s3://source-bucket/ s3://dest-bucket/ --recursive
 
-# 删除单个对象
+# Delete a single object
 aws s3 rm s3://my-bucket/file.txt
 
-# 递归删除目录
+# Delete a directory recursively
 aws s3 rm s3://my-bucket/folder/ --recursive
 ```
 
-### 6. 访问控制
+### Access control
 
 ```bash
-# 上传并设置公开读取权限
+# Upload with public-read ACL
 aws s3 cp file.txt s3://my-bucket/ --acl public-read
 
-# 授予特定用户权限
+# Grant read access to all users
 aws s3 cp file.txt s3://my-bucket/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
 ```
 
-### 7. 流式传输
+### Streaming
 
 ```bash
-# 从标准输入上传
+# Pipe from stdin
 echo "Hello World" | aws s3 cp - s3://my-bucket/hello.txt
 
-# 输出到标准输出
+# Pipe to stdout
 aws s3 cp s3://my-bucket/hello.txt -
 
-# 管道处理（压缩后上传）
+# Compress on the fly
 aws s3 cp s3://my-bucket/large-file - | gzip | aws s3 cp - s3://my-bucket/large-file.gz
 ```
 
-## 四、EC2 实例管理
+## EC2 Instance Management
 
-### 1. 实例查询
+### Querying instances
 
 ```bash
-# 列出所有实例
+# List all instances
 aws ec2 describe-instances
 
-# 查看指定实例
+# Describe a specific instance
 aws ec2 describe-instances --instance-ids i-1234567890abcdef0
 
-# 按状态筛选（运行中）
+# Filter by state (running only)
 aws ec2 describe-instances --filters "Name=instance-state-name,Values=running"
 
-# 按标签筛选
+# Filter by tag
 aws ec2 describe-instances --filters "Name=tag:Name,Values=my-server"
 
-# 按实例类型筛选
+# Filter by instance type
 aws ec2 describe-instances --filters "Name=instance-type,Values=t2.micro"
 
-# 使用 JMESPath 提取特定字段
+# Extract specific fields with JMESPath
 aws ec2 describe-instances --query "Reservations[].Instances[].InstanceId"
 ```
 
-### 2. 实例控制
+### Starting, stopping, and terminating
 
 ```bash
-# 启动实例
+# Start
 aws ec2 start-instances --instance-ids i-1234567890abcdef0
 
-# 停止实例
+# Stop
 aws ec2 stop-instances --instance-ids i-1234567890abcdef0
 
-# 重启实例
+# Reboot
 aws ec2 reboot-instances --instance-ids i-1234567890abcdef0
 
-# 终止实例（删除）
+# Terminate (permanent)
 aws ec2 terminate-instances --instance-ids i-1234567890abcdef0
 ```
 
-### 3. 创建实例
+### Launching a new instance
 
 ```bash
 aws ec2 run-instances \
@@ -305,30 +304,30 @@ aws ec2 run-instances \
     --subnet-id subnet-6e7f829e
 ```
 
-### 4. 标签管理
+### Tagging resources
 
 ```bash
-# 添加标签
+# Add a single tag
 aws ec2 create-tags --resources i-1234567890abcdef0 --tags Key=Name,Value=MyInstance
 
-# 添加多个标签
+# Add multiple tags at once
 aws ec2 create-tags --resources i-1234567890abcdef0 \
     --tags Key=Name,Value=MyInstance Key=Environment,Value=Production
 ```
 
-### 5. 安全组管理
+### Security groups
 
 ```bash
-# 列出安全组
+# List security groups
 aws ec2 describe-security-groups
 
-# 创建安全组
+# Create a security group
 aws ec2 create-security-group \
     --group-name my-sg \
     --description "My security group" \
     --vpc-id vpc-1234567890abcdef0
 
-# 添加入站规则（允许 SSH）
+# Allow inbound SSH
 aws ec2 authorize-security-group-ingress \
     --group-id sg-903004f8 \
     --protocol tcp \
@@ -336,181 +335,184 @@ aws ec2 authorize-security-group-ingress \
     --cidr 0.0.0.0/0
 ```
 
-## 五、Kinesis 数据流
+## Kinesis Data Streams
 
 ```bash
-# 列出所有数据流
+# List all streams
 aws kinesis list-streams
 
-# 写入数据
+# Put a record
 aws kinesis put-record \
     --stream-name my-stream \
     --partition-key 123 \
     --data "Hello Kinesis"
 
-# 获取分片迭代器
+# Get a shard iterator
 aws kinesis get-shard-iterator \
     --stream-name my-stream \
     --shard-id shardId-000000000000 \
     --shard-iterator-type TRIM_HORIZON
 
-# 读取数据
+# Read records
 aws kinesis get-records --shard-iterator <iterator>
 ```
 
-## 六、SQS 消息队列
+## SQS Message Queues
 
 ```bash
-# 列出队列
+# List queues
 aws sqs list-queues
 
-# 发送消息
+# Send a message
 aws sqs send-message \
     --queue-url https://sqs.us-east-1.amazonaws.com/123456789012/my-queue \
     --message-body "Hello SQS"
 
-# 接收消息
+# Receive messages
 aws sqs receive-message \
     --queue-url https://sqs.us-east-1.amazonaws.com/123456789012/my-queue \
     --attribute-names All \
     --max-number-of-messages 10
 
-# 删除消息
+# Delete a message
 aws sqs delete-message \
     --queue-url https://sqs.us-east-1.amazonaws.com/123456789012/my-queue \
     --receipt-handle <handle>
 ```
 
-## 七、SNS 推送服务
+## SNS Notifications
 
 ```bash
-# 列出主题
+# List topics
 aws sns list-topics
 
-# 列出平台应用
+# List platform applications
 aws sns list-platform-applications
 
-# 发布消息
+# Publish a message
 aws sns publish \
     --topic-arn arn:aws:sns:us-east-1:123456789012:my-topic \
     --message "Hello SNS"
 
-# 订阅主题
+# Subscribe to a topic
 aws sns subscribe \
     --topic-arn arn:aws:sns:us-east-1:123456789012:my-topic \
     --protocol email \
     --notification-endpoint user@example.com
 ```
 
-## 八、实用技巧
+## Tips and Tricks
 
-### 1. 输出格式
+### Output formats
 
 ```bash
-# JSON（默认）
+# JSON (default)
 aws s3 ls --output json
 
-# 表格格式（易读）
+# Table (human-readable)
 aws ec2 describe-instances --output table
 
-# 纯文本（便于脚本处理）
+# Plain text (easy to parse in scripts)
 aws ec2 describe-instances --output text
 
-# YAML 格式
+# YAML
 aws ec2 describe-instances --output yaml
 ```
 
-### 2. JMESPath 查询
+### Filtering with JMESPath
+
+JMESPath lets you extract exactly the data you need without piping through `jq`:
 
 ```bash
-# 提取实例 ID
+# Get all instance IDs
 aws ec2 describe-instances --query "Reservations[].Instances[].InstanceId"
 
-# 提取指定字段
+# Build a custom table
 aws ec2 describe-instances \
     --query "Reservations[].Instances[].[InstanceId,InstanceType,State.Name]" \
     --output table
 
-# 条件筛选
+# Filter within the query
 aws ec2 describe-instances \
     --query "Reservations[].Instances[?State.Name=='running'].InstanceId"
 ```
 
-### 3. 分页处理
+### Pagination
 
 ```bash
-# 限制返回数量
+# Limit the number of items returned
 aws s3api list-objects-v2 --bucket my-bucket --max-items 100
 
-# 使用分页令牌
+# Continue from a pagination token
 aws s3api list-objects-v2 --bucket my-bucket --starting-token <token>
 ```
 
-### 4. 获取帮助
+### Built-in help
 
 ```bash
-# 查看服务列表
+# List all services
 aws help
 
-# 查看特定服务命令
+# Help for a specific service
 aws s3 help
 
-# 查看子命令帮助
+# Help for a subcommand
 aws s3 cp help
 ```
 
-### 5. 预演模式
+### Dry-run mode
+
+Test whether you have the right permissions before actually making changes:
 
 ```bash
-# 检查权限但不执行
 aws ec2 run-instances --dry-run --image-id ami-123456
 ```
 
-## 九、常见问题
+## Troubleshooting Common Errors
 
-### 1. 凭证错误
+### Invalid credentials
 
 ```
 An error occurred (InvalidAccessKeyId): The AWS Access Key Id you provided does not exist
 ```
 
-**解决方法**：检查 Access Key ID 是否正确，确认 IAM 用户状态正常。
+**Fix:** Double-check the Access Key ID. Make sure the IAM user is active and the key has not been rotated or deleted.
 
-### 2. 权限不足
+### Access denied
 
 ```
 An error occurred (AccessDenied): Access Denied
 ```
 
-**解决方法**：确认 IAM 用户或角色拥有所需的权限策略。
+**Fix:** Verify that the IAM user or role has the required policy attached. Use `aws sts get-caller-identity` to confirm which identity the CLI is using.
 
-### 3. 区域配置错误
+### Cannot connect to endpoint
 
 ```
 Could not connect to the endpoint URL
 ```
 
-**解决方法**：检查区域配置是否正确，某些服务仅在特定区域可用。
+**Fix:** Check your region setting. Some services are not available in every region, and a wrong region will produce this error.
 
-## 总结
+## Wrapping Up
 
-AWS CLI 是管理云资源的强大工具，掌握常用命令可以大幅提升运维效率。核心要点：
+The AWS CLI turns cloud management into a scriptable, repeatable workflow. Here are the key takeaways:
 
-1. **安装推荐 v2 版本**，支持所有最新特性
-2. **多配置文件管理**不同环境的凭证
-3. **S3 命令**：`cp`/`sync`/`mv`/`rm` 覆盖日常操作
-4. **EC2 命令**：配合 `--query` 和 `--filters` 精准定位资源
-5. **善用帮助命令**：`aws <service> help` 查看详细用法
+1. **Install v2** for the latest features and performance improvements.
+2. **Use named profiles** to safely manage credentials for multiple accounts.
+3. **S3 essentials:** `cp`, `sync`, `mv`, and `rm` cover almost every file operation.
+4. **EC2 essentials:** combine `--query` and `--filters` to pinpoint exactly the resources you need.
+5. **When in doubt:** `aws <service> help` is always one command away.
 
-## 参考资料
+## References
 
-- [AWS CLI 官方文档](https://docs.aws.amazon.com/cli/latest/userguide/)
-- [AWS CLI S3 命令参考](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html)
-- [AWS CLI EC2 命令参考](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-ec2.html)
-- [AWS 架构图标](https://aws.amazon.com/architecture/icons/)
+- [AWS CLI User Guide](https://docs.aws.amazon.com/cli/latest/userguide/)
+- [AWS CLI S3 Command Reference](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html)
+- [AWS CLI EC2 Command Reference](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-ec2.html)
+- [AWS Architecture Icons](https://aws.amazon.com/architecture/icons/)
 
-## 相关阅读
+## Related Posts
 
-- [curl 命令完全指南](/posts/linux/2020-06-29-curl/)
-- [Oh My Zsh 配置指南](/posts/linux/2015-06-17-shell-zsh/)
-- [Docker 常用命令速查](/posts/docker/2019-11-14-docker-commands/)
+- [curl Command Complete Guide](/posts/linux/2020-06-29-curl/)
+- [Oh My Zsh Configuration Guide](/posts/linux/2015-06-17-shell-zsh/)
+- [Docker Commands Cheat Sheet](/posts/docker/2019-11-14-docker-commands/)

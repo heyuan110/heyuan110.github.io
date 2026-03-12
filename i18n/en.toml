@@ -1,0 +1,35 @@
+[tableOfContents]
+other = "Table of Contents"
+
+[newer]
+other = "Newer"
+
+[older]
+other = "Older"
+
+[notFound]
+other = "Oops, page not found…"
+
+[home]
+other = "Home"
+
+[archives]
+other = "Archives"
+
+[seeAlso]
+other = "See Also"
+
+[wordCount]
+other = "Words"
+
+[humanMade]
+other = "I don't hate AIs; but I love humans!"
+
+[featuredImage]
+other = "Featured Image"
+
+[menu]
+other = "Menu"
+
+[share]
+other = "Share"

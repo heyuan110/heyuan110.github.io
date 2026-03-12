@@ -1,3 +1,8 @@
+// 防止移动端横向溢出
+html, body {
+  overflow-x: hidden;
+}
+
 // 评论区样式
 #comments {
   margin-top: 2rem;
@@ -21,6 +26,114 @@
   font-size: 0.85rem;
   color: $css-grey;
   margin-bottom: 1.5rem;
+}
+
+// 语言切换下拉
+.lang-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+
+  .lang-dropdown-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font-size: 0.85rem;
+    padding: 4px 6px;
+    border-radius: 4px;
+    transition: background 0.2s;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    svg {
+      transition: transform 0.2s;
+    }
+  }
+
+  .lang-dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: 100%;
+    margin-bottom: 6px;
+    background: #2a2d35;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    min-width: 120px;
+    z-index: 100;
+    overflow: hidden;
+
+    a {
+      display: block;
+      padding: 8px 14px;
+      font-size: 0.85rem;
+      color: inherit;
+      white-space: nowrap;
+      transition: background 0.15s;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.08);
+      }
+    }
+  }
+
+  &:hover,
+  &.open {
+    .lang-dropdown-menu {
+      display: block;
+    }
+
+    .lang-dropdown-btn svg {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+// 右上角固定语言切换
+.lang-dropdown-fixed {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 999;
+
+  .lang-dropdown-btn {
+    background: rgba(42, 45, 53, 0.9);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 6px 12px;
+    border-radius: 6px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.8rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .lang-dropdown-menu {
+    top: 100%;
+    bottom: auto;
+    margin-top: 4px;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    position: fixed;
+    top: 8px;
+    right: 8px;
+    left: auto;
+    max-width: calc(100vw - 16px);
+
+    .lang-dropdown-btn {
+      padding: 5px 10px;
+      font-size: 0.75rem;
+    }
+  }
 }
 
 .giscus-wrapper {

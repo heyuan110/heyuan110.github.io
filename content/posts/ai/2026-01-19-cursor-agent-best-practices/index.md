@@ -1,46 +1,46 @@
 +++
 date = '2026-01-19T16:33:00+08:00'
-title = 'Cursor Agent 编码最佳实践：官方指南完整解读'
-description = 'Cursor 官方发布的 Agent 编码最佳实践指南，涵盖计划模式、上下文管理、Rules 与 Skills 配置、测试驱动开发、并行执行等核心技巧，帮助你充分发挥 AI 编程助手的潜力。'
+title = 'Cursor Agent Best Practices: The Complete Guide to AI Coding'
+description = 'Master Cursor Agent with official best practices covering Plan Mode, context management, Rules and Skills configuration, test-driven development, and parallel execution to maximize your AI coding productivity.'
 toc = true
-tags = ['Cursor', 'AI 编程', 'Agent', '最佳实践']
-categories = ['AI实战']
-keywords = ['Cursor Agent 最佳实践', 'Cursor 使用技巧', 'AI 编程助手', 'Cursor Rules 配置', 'Cursor 计划模式']
+tags = ['Cursor', 'AI Coding', 'Agent', 'Best Practices']
+categories = ['AI Guides']
+keywords = ['Cursor Agent best practices', 'Cursor tips and tricks', 'AI coding assistant', 'Cursor Rules configuration', 'Cursor Plan Mode', 'AI pair programming']
 +++
-![Cursor Agent 编码最佳实践](cover.webp)
+![Cursor Agent Best Practices](cover.webp)
 
-随着 AI 编程助手的快速发展，如何高效地与 AI Agent 协作编码成为每个开发者需要掌握的技能。Cursor 作为目前最受欢迎的 AI 编程工具之一，官方近期发布了一份详细的 Agent 编码最佳实践指南。本文将深入解读这份指南的核心内容，帮助你更好地利用 Cursor Agent 提升开发效率。
+As AI coding assistants evolve rapidly, knowing how to collaborate effectively with an AI Agent has become an essential developer skill. Cursor recently published an official best practices guide for Agent-based coding, and this article breaks down every key insight so you can get the most out of your AI pair programmer.
 
-## 一、理解 Agent 的工作原理
+## How the Cursor Agent Works
 
-在开始使用技巧之前，先了解 Cursor Agent 的核心架构。Agent 系统由三个关键组件构成：
+Before diving into techniques, it helps to understand the Agent's core architecture. The system consists of three components:
 
-| 组件 | 说明 |
-|------|------|
-| **系统指令** | 引导 Agent 行为的提示词 |
-| **工具集** | 文件编辑、代码搜索、终端执行等能力 |
-| **用户消息** | 你发出的指令和需求描述 |
+| Component | Purpose |
+|-----------|---------|
+| **System Prompt** | Instructions that guide Agent behavior |
+| **Tool Set** | File editing, code search, terminal execution, and more |
+| **User Messages** | Your instructions and requirements |
 
-Cursor 团队针对每个前沿模型进行了专门调优，确保这三个组件能够协同工作，产出最佳结果。
+Cursor's team fine-tunes these components for each frontier model, ensuring they work together to produce the best possible output.
 
-## 二、先计划，后编码
+## Plan Before You Code
 
-> "你能做的最大贡献，就是在写代码之前先做好计划。"
+> "The single highest-leverage thing you can do is plan before coding."
 
-这是整篇指南中最重要的观点之一。经验丰富的开发者在让 Agent 生成代码之前，会先进行充分的规划。
+This is arguably the most important takeaway from the entire guide. Experienced developers invest time in planning before letting the Agent generate a single line of code.
 
-### 1. 使用计划模式（Plan Mode）
+### Activate Plan Mode
 
-通过 `Shift + Tab` 激活计划模式，Agent 会：
+Press `Shift + Tab` to enter Plan Mode. The Agent will:
 
-- **研究代码库**：自动分析项目结构和现有代码
-- **提出澄清问题**：确保理解你的真实需求
-- **制定详细计划**：创建可执行的实施方案
-- **等待确认**：在你批准后才开始编码
+- **Research the codebase** — automatically analyze project structure and existing code
+- **Ask clarifying questions** — make sure it understands your real intent
+- **Draft a detailed plan** — create an actionable implementation roadmap
+- **Wait for approval** — only start coding after you confirm
 
-### 2. 计划文件的价值
+### Plan Files Are Valuable Artifacts
 
-计划会保存为 Markdown 文件，存放在 `.cursor/plans/` 目录下：
+Plans are saved as Markdown files in `.cursor/plans/`:
 
 ```
 .cursor/
@@ -50,107 +50,107 @@ Cursor 团队针对每个前沿模型进行了专门调优，确保这三个组�
     └── api-redesign.md
 ```
 
-这些计划文件有多重价值：
+These files serve multiple purposes:
 
-- **团队文档**：成为项目决策的记录
-- **断点续传**：中断的工作可以随时恢复
-- **可编辑**：你可以手动修改计划内容
+- **Team documentation** — a record of architectural decisions
+- **Resumable work** — pick up interrupted tasks right where you left off
+- **Editable** — manually adjust the plan at any time
 
-### 3. 何时重新规划
+### When to Re-plan
 
-当 Agent 的输出与你的预期不符时，**回退并优化计划**比反复迭代修改更高效。记住：好的计划是成功的一半。
+If the Agent's output drifts from your expectations, **step back and refine the plan** rather than iterating on broken code. A good plan is half the battle.
 
-## 三、上下文管理策略
+## Context Management Strategies
 
-上下文管理是影响 Agent 效果的关键因素。
+Context management is the single biggest factor affecting Agent quality.
 
-### 1. 让 Agent 自己找上下文
+### Let the Agent Find Its Own Context
 
-不要手动标记大量文件。Agent 具备强大的自主搜索能力：
+Resist the urge to tag dozens of files. The Agent has powerful autonomous search capabilities:
 
-- **语义搜索**：理解代码含义
-- **Grep 搜索**：精确匹配关键词
-- **文件遍历**：探索项目结构
+- **Semantic search** — understands code meaning
+- **Grep search** — exact keyword matching
+- **File traversal** — explores project structure
 
-**最佳做法**：
+**Best practice:**
 
 ```
-❌ 不推荐：@file1.ts @file2.ts @file3.ts @file4.ts 帮我修改认证逻辑
+Bad:  @file1.ts @file2.ts @file3.ts @file4.ts fix the auth logic
 
-✅ 推荐：帮我修改用户认证逻辑，需要支持 OAuth 登录
+Good: Fix the user authentication logic to support OAuth login
 ```
 
-只有当你明确知道涉及哪些特定文件时，才需要手动指定。
+Only manually tag files when you know exactly which specific files are involved.
 
-### 2. 对话管理策略
+### Conversation Management
 
-**何时开启新对话**：
+**Start a new conversation when:**
 
-- 切换到不同的任务
-- Agent 表现出困惑或混乱
-- 完成一个逻辑单元的工作
+- Switching to a different task
+- The Agent seems confused or stuck
+- You have completed a logical unit of work
 
-**何时继续当前对话**：
+**Continue the current conversation when:**
 
-- 在同一功能上迭代
-- 调试刚刚编写的代码
-- 需要之前的上下文信息
+- Iterating on the same feature
+- Debugging code the Agent just wrote
+- You need prior context
 
-**核心原则**：长对话会积累"上下文噪音"，降低 Agent 的有效性。
+**Key principle:** Long conversations accumulate "context noise" that degrades Agent effectiveness.
 
-### 3. 引用历史对话
+### Reference Past Chats
 
-使用 `@Past Chats` 可以选择性地导入之前的对话内容，而不是在新对话中重复描述整个需求。这样既保留了有价值的上下文，又避免了噪音累积。
+Use `@Past Chats` to selectively import context from previous conversations instead of re-describing everything from scratch. This preserves valuable context without the noise buildup.
 
-## 四、定制化配置：Rules 与 Skills
+## Customization: Rules and Skills
 
-Cursor 提供了两种定制 Agent 行为的机制：Rules（规则）和 Skills（技能）。
+Cursor provides two mechanisms for tailoring Agent behavior: **Rules** (static context) and **Skills** (dynamic capabilities).
 
-### 1. Rules：静态上下文
+### Rules: Persistent Project Guidance
 
-在 `.cursor/rules/` 目录下创建 Markdown 文件，为 Agent 提供持久化的项目指导：
+Create Markdown files in `.cursor/rules/` to give the Agent lasting project knowledge:
 
 ```markdown
 <!-- .cursor/rules/project-conventions.md -->
 
-# 项目约定
+# Project Conventions
 
-## 构建和测试
-- 构建命令：`npm run build`
-- 测试命令：`npm run test`
-- 类型检查：`npm run typecheck`
+## Build & Test
+- Build: `npm run build`
+- Test: `npm run test`
+- Type check: `npm run typecheck`
 
-## 代码风格
-- 使用 ES Modules
-- 优先使用解构赋值
-- 异步操作使用 async/await
+## Code Style
+- Use ES Modules
+- Prefer destructuring
+- Use async/await for asynchronous operations
 
-## 工作流程
-- 每次修改后必须运行类型检查
-- 提交前确保所有测试通过
+## Workflow
+- Run type checking after every change
+- Ensure all tests pass before committing
 ```
 
-**Rules 的最佳实践**：
+**What to include vs. what to skip:**
 
-| 应该包含 | 不应该包含 |
-|----------|------------|
-| 常用命令 | 完整的样式指南 |
-| 关键模式 | 所有命令的文档 |
-| 文件引用 | 通用的编程知识 |
+| Include | Skip |
+|---------|------|
+| Common commands | Full style guides |
+| Key patterns | Documentation for every command |
+| File references | General programming knowledge |
 
-**重要原则**：响应式添加规则——只有当你发现 Agent 反复犯同样的错误时，才添加对应的规则。
+**Important principle:** Add rules reactively — only when you notice the Agent making the same mistake repeatedly.
 
-### 2. Skills：动态能力
+### Skills: Dynamic Capabilities
 
-Skills 定义在 `SKILL.md` 文件中，提供动态加载的能力：
+Skills are defined in `SKILL.md` files and provide on-demand functionality:
 
-- **自定义命令**：通过 `/` 触发
-- **钩子函数**：在 Agent 动作前后执行
-- **领域知识**：在相关时自动加载
+- **Custom commands** — triggered via `/`
+- **Hooks** — execute before or after Agent actions
+- **Domain knowledge** — loaded automatically when relevant
 
-### 3. 长时间运行循环示例
+### Long-Running Loop Example
 
-一个实用的场景是"持续迭代直到测试通过"。配置 `.cursor/hooks.json`：
+A practical use case is "keep iterating until all tests pass." Configure `.cursor/hooks.json`:
 
 ```json
 {
@@ -163,217 +163,217 @@ Skills 定义在 `SKILL.md` 文件中，提供动态加载的能力：
 }
 ```
 
-钩子脚本接收 JSON 输入，返回 `followup_message` 来继续迭代循环。这对于自动化的"修复 → 测试 → 再修复"工作流非常有用。
+The hook script receives JSON input and returns a `followup_message` to continue the iteration loop. This is invaluable for automated "fix, test, fix again" workflows.
 
-## 五、测试驱动开发（TDD）
+## Test-Driven Development with Agents
 
-测试驱动开发与 Agent 编码是天作之合。测试提供了明确的、可验证的目标，Agent 可以据此自我改进。
+TDD and Agent coding are a perfect match. Tests provide clear, verifiable goals that the Agent can use to self-correct.
 
-### 1. TDD 工作流
+### The TDD Workflow
 
 ```
-1. 请求 Agent 根据输入/输出对编写测试（明确表达 TDD 意图）
+1. Ask the Agent to write tests based on input/output pairs
    ↓
-2. 确认测试在没有实现时会失败
+2. Confirm the tests fail without an implementation
    ↓
-3. 提交通过的测试
+3. Commit the passing tests
    ↓
-4. 让 Agent 编写代码使测试通过（禁止修改测试）
+4. Let the Agent write code to make tests pass (no modifying tests)
    ↓
-5. 迭代直到所有测试通过
+5. Iterate until all tests are green
 ```
 
-### 2. 为什么 TDD 适合 Agent
+### Why TDD Works Well with Agents
 
-- **明确的成功标准**：测试通过 = 任务完成
-- **自动验证**：Agent 可以自己运行测试
-- **防止过度工程**：只需满足测试要求
-- **快速反馈**：立即知道代码是否正确
+- **Clear success criteria** — tests pass = task complete
+- **Automated verification** — the Agent can run tests itself
+- **Prevents over-engineering** — only needs to satisfy test requirements
+- **Fast feedback** — instant confirmation of correctness
 
-### 3. 实践建议
-
-```
-✅ 推荐的提示词：
-
-"为用户登录功能编写单元测试，覆盖以下场景：
-1. 正确的用户名密码应该返回 token
-2. 错误的密码应该返回 401 错误
-3. 不存在的用户应该返回 404 错误
-
-使用项目现有的测试模式，参考 __tests__/auth.test.ts"
-```
-
-## 六、代码审查
-
-AI 生成的代码可能看起来很专业，但仍然需要仔细审查。
-
-### 1. 生成过程中审查
-
-- **实时观察 diff**：关注每一行变化
-- **及时中断**：发现方向偏离时按 `Escape` 停止
-
-### 2. 生成完成后审查
-
-- **Find Issues**：点击 Review → Find Issues，获取专门的代码分析
-- **请求解释**：让 Agent 解释关键决策
-
-### 3. Pull Request 审查
-
-- **Bugbot**：自动分析 PR，提前发现问题
-- **架构图**：对于重大变更，请求生成 Mermaid 图表
+### Practical Example
 
 ```
-"为这次的认证系统重构生成一个 Mermaid 架构图，
-展示各模块之间的调用关系"
+Good prompt:
+
+"Write unit tests for the user login function covering these scenarios:
+1. Correct username and password should return a token
+2. Wrong password should return a 401 error
+3. Non-existent user should return a 404 error
+
+Follow the existing test patterns in __tests__/auth.test.ts"
 ```
 
-架构图能快速暴露结构性问题，比逐行审查更高效。
+## Code Review
 
-## 七、并行执行
+AI-generated code can look polished and professional, but it still requires careful review.
 
-Cursor 支持多个 Agent 同时工作，互不干扰。
+### Review During Generation
 
-### 1. 工作原理
+- **Watch the diff in real time** — pay attention to every change
+- **Interrupt early** — press `Escape` if the direction looks wrong
 
-Cursor 自动使用 Git Worktrees 管理并行 Agent：
+### Review After Generation
+
+- **Find Issues** — click Review then Find Issues for dedicated code analysis
+- **Request explanations** — ask the Agent to explain key decisions
+
+### Pull Request Reviews
+
+- **Bugbot** — automatically analyzes PRs to catch issues early
+- **Architecture diagrams** — for major changes, request Mermaid diagrams
 
 ```
-项目目录/
+"Generate a Mermaid architecture diagram for this auth system refactor,
+showing the call relationships between modules"
+```
+
+Architecture diagrams expose structural problems faster than line-by-line review.
+
+## Parallel Execution
+
+Cursor supports multiple Agents working simultaneously without interference.
+
+### How It Works
+
+Cursor automatically uses Git Worktrees to manage parallel Agents:
+
+```
+project/
 ├── .git/
-├── main-workspace/     ← Agent 1 工作区
+├── main-workspace/     ← Agent 1 workspace
 ├── .worktrees/
-│   ├── agent-2/        ← Agent 2 工作区
-│   └── agent-3/        ← Agent 3 工作区
+│   ├── agent-2/        ← Agent 2 workspace
+│   └── agent-3/        ← Agent 3 workspace
 ```
 
-每个 Agent 在独立的工作区操作，文件修改互相隔离。
+Each Agent operates in its own isolated workspace with no file conflicts.
 
-### 2. 使用场景
+### Use Cases
 
-- **同一任务，不同模型**：比较 GPT-4 和 Claude 的输出
-- **同一任务，不同方案**：探索多种实现路径
-- **复杂问题分解**：并行处理独立的子任务
+- **Same task, different models** — compare GPT-4 and Claude output
+- **Same task, different approaches** — explore multiple implementation paths
+- **Complex decomposition** — process independent subtasks in parallel
 
-### 3. 最佳实践
-
-```
-1. 用相同的 prompt 启动多个 Agent
-2. 让它们独立完成任务
-3. 并排比较结果
-4. 选择最优方案合并
-```
-
-## 八、编写有效的提示词
-
-提示词的质量直接决定 Agent 的输出质量。
-
-### 1. 具体胜过泛泛
+### Best Practices
 
 ```
-❌ 泛泛的请求：
-"给 auth.ts 添加测试"
-
-✅ 具体的请求：
-"为 auth.ts 中的 logout 函数编写边界情况测试，
-使用 __tests__/ 目录下的现有模式，
-避免使用 mock，测试真实的 session 清理逻辑"
+1. Launch multiple Agents with the same prompt
+2. Let them work independently
+3. Compare results side by side
+4. Merge the best solution
 ```
 
-具体的描述能显著提高成功率。
+## Writing Effective Prompts
 
-### 2. 从简单开始
+Prompt quality directly determines output quality.
 
-不要一开始就建立复杂的规则体系：
+### Be Specific, Not Vague
 
 ```
-第一周：使用默认配置
+Bad:
+"Add tests for auth.ts"
+
+Good:
+"Write edge case tests for the logout function in auth.ts,
+follow the existing patterns in __tests__/,
+avoid mocks, test real session cleanup logic"
+```
+
+Specific descriptions dramatically improve success rates.
+
+### Start Simple
+
+Do not build an elaborate rules system from day one:
+
+```
+Week 1: Use default configuration
    ↓
-观察 Agent 的行为模式
+Observe Agent behavior patterns
    ↓
-发现重复问题
+Identify recurring issues
    ↓
-添加针对性规则
+Add targeted rules
    ↓
-继续观察和迭代
+Continue observing and iterating
 ```
 
-### 3. 提供可验证的目标
+### Provide Verifiable Goals
 
-- **使用强类型语言**：TypeScript 优于 JavaScript
-- **配置 Linter**：ESLint、Prettier 等
-- **编写测试**：单元测试、集成测试
+- **Use strongly typed languages** — TypeScript over JavaScript
+- **Configure linters** — ESLint, Prettier, etc.
+- **Write tests** — unit tests, integration tests
 
-这些工具为 Agent 提供了客观的验证标准。
+These tools give the Agent objective validation criteria.
 
-### 4. 将 Agent 视为协作者
+### Treat the Agent as a Collaborator
 
-不要只是发号施令，而是进行真正的协作：
+Do not just give orders. Engage in genuine collaboration:
 
 ```
-✅ 协作式沟通：
+Good collaborative prompt:
 
-"我想重构认证模块，目标是支持多种登录方式。
-你能先分析一下现有代码结构，然后提出几种可能的方案吗？
-每种方案请说明优缺点。"
+"I want to refactor the authentication module to support multiple login methods.
+Can you first analyze the existing code structure, then propose a few possible
+approaches? Please explain the pros and cons of each option."
 ```
 
-## 九、常用工作流示例
+## Common Workflow Examples
 
-### 1. Git 命令自动化
+### Git Command Automation
 
-在 `.cursor/commands/` 目录下创建可复用的工作流：
+Create reusable workflows in `.cursor/commands/`:
 
 ```markdown
 <!-- .cursor/commands/pr.md -->
-# /pr - 创建 Pull Request
+# /pr - Create a Pull Request
 
-1. 提交当前更改
-2. 推送到远程
-3. 创建 PR 并生成描述
+1. Commit current changes
+2. Push to remote
+3. Create PR with auto-generated description
 ```
 
-其他常用命令：
-- `/fix-issue [number]`：修复指定 Issue
-- `/review`：审查当前变更
-- `/update-deps`：更新依赖
+Other useful commands:
+- `/fix-issue [number]` — fix a specific issue
+- `/review` — review current changes
+- `/update-deps` — update dependencies
 
-### 2. 代码库探索
+### Codebase Exploration
 
-用 Agent 快速了解陌生代码：
+Use the Agent to quickly understand unfamiliar code:
 
 ```
-"这个项目的日志系统是怎么工作的？
-帮我梳理一下日志从产生到存储的完整流程。"
+"How does the logging system work in this project?
+Walk me through the complete flow from log creation to storage."
 ```
 
-Agent 会搜索相关代码、阅读历史提交、总结出清晰的答案。
+The Agent will search relevant code, read commit history, and produce a clear summary.
 
-### 3. 后台任务（Cloud Agents）
+### Background Tasks (Cloud Agents)
 
-对于不紧急的任务，可以通过 Web 或移动端创建后台 Agent：
+For non-urgent work, create background Agents via the web or mobile interface:
 
-- Bug 修复
-- 代码重构
-- 测试生成
-- 文档编写
+- Bug fixes
+- Code refactoring
+- Test generation
+- Documentation writing
 
-即使你离线，Agent 也会持续工作。
+The Agent keeps working even when you are offline.
 
-## 十、总结
+## Key Takeaways
 
-Cursor Agent 编码的核心原则可以归纳为：
+The core principles of effective Cursor Agent coding:
 
-1. **计划先行**：使用 Plan Mode，先想清楚再动手
-2. **智能上下文**：让 Agent 自己搜索，避免噪音累积
-3. **渐进定制**：从简单开始，响应式添加规则
-4. **测试驱动**：用测试提供明确的验证标准
-5. **仔细审查**：AI 代码仍需人工把关
-6. **并行探索**：多个 Agent 同时工作，取最优解
-7. **协作心态**：把 Agent 当作有能力的同事
+1. **Plan first** — use Plan Mode to think before you build
+2. **Smart context** — let the Agent search on its own, avoid noise buildup
+3. **Incremental customization** — start simple, add rules reactively
+4. **Test-driven** — use tests as clear verification criteria
+5. **Review carefully** — AI code still needs human oversight
+6. **Explore in parallel** — run multiple Agents, pick the best result
+7. **Collaborate** — treat the Agent as a capable teammate, not a code generator
 
-记住，AI Agent 是你的协作伙伴，不是简单的代码生成器。投入时间学习如何与它有效沟通，回报将是巨大的。
+Investing time in learning how to communicate effectively with your AI Agent pays enormous dividends. The Agent is your collaborator, not just a code completion engine.
 
-**相关链接**：
-- [Cursor 官方文档](https://cursor.com/docs)
-- [原文：Best Practices for Agent Coding](https://cursor.com/blog/agent-best-practices)
-- [Cursor Rules 配置指南](https://cursor.com/docs/rules)
+**Resources:**
+- [Cursor Official Docs](https://cursor.com/docs)
+- [Original: Best Practices for Agent Coding](https://cursor.com/blog/agent-best-practices)
+- [Cursor Rules Configuration Guide](https://cursor.com/docs/rules)

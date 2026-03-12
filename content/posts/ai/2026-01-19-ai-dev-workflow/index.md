@@ -1,239 +1,253 @@
 +++
 date = '2026-01-19T17:00:00+08:00'
-title = '我的AI开发工作流：从需求到上线'
-description = '分享我在软件开发全流程中使用AI工具的实战经验，涵盖需求分析、架构设计、编码实现、测试部署等环节，帮助开发者构建高效的AI辅助开发工作流。'
+title = 'AI Development Workflow: From Requirements to Production'
+description = 'A practical guide to integrating AI tools like Claude Code and Cursor into every stage of software development — from requirements analysis and architecture design to coding, testing, and deployment.'
 toc = true
-tags = ['AI', 'Claude Code', 'Cursor', '开发效率', '工作流']
-categories = ['AI实战']
-keywords = ['AI 开发工作流', 'Claude Code 开发流程', 'AI 辅助编程', 'Cursor 开发效率', 'AI 结对编程']
+tags = ['AI', 'Claude Code', 'Cursor', 'Developer Productivity', 'Workflow']
+categories = ['AI Guides']
+keywords = ['AI development workflow', 'Claude Code workflow', 'AI pair programming', 'Cursor AI coding', 'AI assisted development', 'AI coding tools workflow']
 +++
-![AI开发工作流](cover.webp)
+![AI Development Workflow](cover.webp)
 
-2026年，AI编程工具已经从"尝鲜玩具"变成了开发者的"标配装备"。据统计，约85%的开发者已经在日常工作中使用AI工具。
+In 2026, AI coding tools have graduated from novelty toys to standard-issue developer gear. Roughly 85% of developers now use AI tools in their daily work.
 
-但很多人的用法还停留在"问问ChatGPT怎么写这段代码"的阶段。今天我想分享一套完整的AI开发工作流，让AI真正成为你的"结对编程搭档"，贯穿从需求到上线的全过程。
+Yet most people still use them the same way — asking ChatGPT how to write a snippet and pasting the result. That barely scratches the surface. This guide walks through a complete AI-powered development workflow that turns AI into a genuine pair programming partner across every phase, from gathering requirements to shipping production code.
 
-## 一、工具选择：不是非此即彼
+## Choosing the Right Tools (Use More Than One)
 
-在开始之前，先聊聊工具选择。目前主流的AI编程工具有：
+Before diving in, let's map the landscape of mainstream AI coding tools:
 
-| 工具 | 特点 | 适用场景 |
-|------|------|----------|
-| **Claude Code** | 深度推理、大上下文、CLI优先 | 架构设计、复杂重构、跨文件理解 |
-| **Cursor** | IDE集成、实时补全、流畅体验 | 日常编码、快速迭代 |
-| **ChatGPT** | 通用能力强、响应快 | 快速问答、代码片段 |
-| **GitHub Copilot** | 深度IDE集成、补全准确 | 行内补全、常规编码 |
+| Tool | Strengths | Best For |
+|------|-----------|----------|
+| **Claude Code** | Deep reasoning, large context window, CLI-first | Architecture design, complex refactoring, cross-file analysis |
+| **Cursor** | IDE integration, real-time completions, fluid UX | Daily coding, rapid iteration |
+| **ChatGPT** | Strong general-purpose ability, fast responses | Quick Q&A, code snippets |
+| **GitHub Copilot** | Deep IDE integration, accurate completions | Inline completions, routine coding |
 
-**我的建议**：不要只用一个工具。
+**My recommendation**: don't pick just one.
 
-我的组合是：**Claude Code（规划） + Cursor（实现）**。用Claude Code做架构设计和复杂问题分析，用Cursor进行日常编码。两者可以完美配合——在Cursor的终端里直接调用Claude Code CLI。
+My daily combo is **Claude Code for planning + Cursor for implementation**. Claude Code handles architecture decisions and complex analysis; Cursor handles the actual coding. They pair beautifully — you can invoke the Claude Code CLI directly from Cursor's integrated terminal.
 
-## 二、需求分析阶段：让AI帮你理清思路
+## Phase 1: Requirements Analysis — Let AI Sharpen Your Thinking
 
-拿到需求后，不要急着写代码。先用AI帮你做需求分析。
+When you receive a new requirement, resist the urge to start coding immediately. Use AI to break the problem down first.
 
-### 1. 需求拆解
+### Breaking Down Requirements
 
-把产品需求丢给Claude，让它帮你拆解：
-
-```
-我收到一个需求：实现用户积分系统，支持积分获取、消费、查询、排行榜功能。
-
-请帮我：
-1. 拆解核心功能模块
-2. 识别潜在的技术难点
-3. 列出需要确认的产品问题
-```
-
-AI会帮你系统性地梳理，往往能发现你没想到的边界情况。
-
-### 2. 技术方案评估
-
-对于复杂需求，让AI给出多种技术方案对比：
+Hand the product requirement to Claude and ask it to decompose it:
 
 ```
-积分排行榜需要支持实时更新，预计用户量100万。
-请对比以下方案的优缺点：
-1. MySQL + 定时任务
+I received a requirement: build a user points system supporting
+earning, spending, querying, and leaderboard features.
+
+Please help me:
+1. Break this into core functional modules
+2. Identify potential technical challenges
+3. List open product questions I should clarify
+```
+
+AI will systematically surface edge cases you might have missed — things like concurrent point deductions, idempotency, or leaderboard refresh latency.
+
+### Evaluating Technical Approaches
+
+For complex features, ask AI to compare multiple solutions:
+
+```
+The points leaderboard must support real-time updates with an
+expected user base of 1 million.
+
+Compare the pros and cons of:
+1. MySQL + scheduled jobs
 2. Redis Sorted Set
-3. 专用排行榜服务
+3. A dedicated leaderboard microservice
 ```
 
-## 三、架构设计阶段：AI当你的技术顾问
+Getting structured trade-off analysis in minutes beats hours of solo research.
 
-这是Claude Code的强项——它的大上下文能力可以理解整个项目结构。
+## Phase 2: Architecture Design — AI as Your Technical Advisor
 
-### 1. 让AI理解现有架构
+This is where Claude Code truly shines. Its large context window lets it understand an entire project's structure at once.
+
+### Understanding the Existing Architecture
 
 ```bash
-# 在项目根目录运行Claude Code
+# Run Claude Code from the project root
 claude
 
-# 然后输入
-请分析当前项目的架构设计，包括：
-1. 目录结构和模块划分
-2. 核心数据流
-3. 依赖关系
+# Then ask:
+Analyze the current project architecture, including:
+1. Directory structure and module layout
+2. Core data flows
+3. Dependency relationships
 ```
 
-### 2. 设计新功能架构
+### Designing New Features
 
-基于对现有代码的理解，让AI设计新功能：
-
-```
-基于现有架构，设计积分系统的实现方案：
-1. 需要新增哪些模块
-2. 与现有模块如何交互
-3. 数据库表设计
-4. API接口设计
-```
-
-**关键技巧**：给AI足够的上下文。把相关的代码文件、数据库结构、API文档都提供给它。
-
-## 四、编码实现阶段：AI是你的结对搭档
-
-这是最日常的场景，但也最容易用错。
-
-### 1. 正确的提问方式
-
-**错误示范**：
-```
-帮我写一个用户服务
-```
-
-**正确示范**：
-```
-请实现UserService类，要求：
-1. 使用Spring Boot框架
-2. 包含CRUD操作
-3. 集成现有的BaseService基类
-4. 使用MyBatis-Plus作为ORM
-5. 参考现有的OrderService实现风格
-```
-
-**核心原则**：上下文越充分，结果越准确。
-
-### 2. 增量式开发
-
-不要让AI一次性生成大量代码。采用增量方式：
-
-1. 先让AI生成核心骨架
-2. 逐个方法细化实现
-3. 每完成一部分就运行测试
-4. 发现问题及时修正
-
-### 3. 代码审查
-
-写完代码让AI帮你Review：
+With full context of the existing codebase, ask AI to design the new feature:
 
 ```
-请Review这段代码，关注：
-1. 潜在的Bug
-2. 性能问题
-3. 安全漏洞
-4. 代码规范
+Based on the current architecture, design an implementation plan
+for the points system:
+1. What new modules are needed
+2. How they interact with existing modules
+3. Database schema design
+4. API endpoint design
 ```
 
-## 五、测试阶段：AI生成测试用例
+**Key tip**: provide as much context as possible. Feed AI the relevant source files, database schemas, and API docs. The richer the context, the more accurate the output.
 
-测试用例生成是AI的高价值应用场景之一。
+## Phase 3: Coding — AI as Your Pair Partner
 
-### 1. 单元测试生成
+This is the most common use case, and also the easiest to get wrong.
 
+### Writing Effective Prompts
+
+**Bad prompt**:
 ```
-为以下方法生成单元测试：
-- 覆盖正常流程
-- 覆盖边界条件
-- 覆盖异常情况
-使用JUnit 5 + Mockito
-```
-
-### 2. 测试数据生成
-
-```
-生成积分系统的测试数据：
-- 10个正常用户
-- 包含各种积分等级
-- 包含边界值情况
-输出为SQL INSERT语句
+Write a user service for me
 ```
 
-## 六、部署上线阶段：AI辅助运维
-
-### 1. 配置文件生成
-
+**Good prompt**:
 ```
-生成Kubernetes部署配置：
-- 服务名：point-service
-- 副本数：3
-- 资源限制：CPU 500m, 内存 512Mi
-- 健康检查配置
-- 环境变量从ConfigMap读取
+Implement a UserService class with these requirements:
+1. Spring Boot framework
+2. Full CRUD operations
+3. Extends the existing BaseService class
+4. Uses MyBatis-Plus as the ORM
+5. Follow the same coding style as the existing OrderService
 ```
 
-### 2. 问题排查
+**Core principle**: the more context you provide, the better the result.
 
-线上出问题时，把日志丢给AI分析：
+### Incremental Development
+
+Don't ask AI to generate a massive block of code all at once. Work incrementally:
+
+1. Have AI generate the core skeleton first
+2. Flesh out individual methods one by one
+3. Run tests after each addition
+4. Fix issues as they arise
+
+This keeps you in control and catches problems early.
+
+### AI-Assisted Code Review
+
+After writing code, let AI review it:
 
 ```
-以下是服务报错日志，请分析：
-1. 根本原因
-2. 影响范围
-3. 修复建议
-
-[粘贴日志]
+Review this code, focusing on:
+1. Potential bugs
+2. Performance issues
+3. Security vulnerabilities
+4. Coding standards compliance
 ```
 
-## 七、效率提升数据
+AI catches things human reviewers often miss — unused variables, missing null checks, SQL injection risks, and more.
 
-使用AI工作流后，我的开发效率变化：
+## Phase 4: Testing — AI-Generated Test Cases
 
-| 环节 | 提升幅度 | 主要收益 |
-|------|----------|----------|
-| 需求分析 | 40% | 更全面的边界情况考虑 |
-| 架构设计 | 30% | 快速获得多种方案对比 |
-| 编码实现 | 50% | 减少重复劳动 |
-| 测试编写 | 60% | 自动生成测试用例 |
-| 问题排查 | 45% | 快速定位根因 |
+Test case generation is one of AI's highest-value applications in development.
 
-## 八、避坑指南
+### Unit Test Generation
 
-### 1. 不要盲目信任
+```
+Generate unit tests for the following methods:
+- Cover the happy path
+- Cover boundary conditions
+- Cover error/exception cases
+Use JUnit 5 + Mockito
+```
 
-AI会产生"幻觉"，生成看起来正确但实际有问题的代码。**永远要验证**。
+### Test Data Generation
 
-### 2. 保持代码Owner意识
+```
+Generate test data for the points system:
+- 10 normal users
+- Various point tiers represented
+- Include boundary value cases
+Output as SQL INSERT statements
+```
 
-AI生成的代码，你要完全理解才能提交。不理解的代码=技术债务。
+AI can produce comprehensive test data in seconds that would take you 30 minutes to write by hand.
 
-### 3. 敏感信息脱敏
+## Phase 5: Deployment — AI-Assisted Operations
 
-不要把真实的密钥、密码、用户数据发给AI。
+### Configuration Generation
 
-### 4. 版本控制
+```
+Generate a Kubernetes deployment config:
+- Service name: point-service
+- Replicas: 3
+- Resource limits: CPU 500m, memory 512Mi
+- Health check endpoints configured
+- Environment variables loaded from ConfigMap
+```
 
-AI生成的代码改动要及时commit，便于追踪和回滚。
+### Incident Troubleshooting
 
-## 九、总结
+When production issues hit, feed the logs to AI:
 
-AI开发工作流的核心理念：
+```
+Analyze the following error logs:
+1. Root cause
+2. Blast radius
+3. Recommended fix
 
-1. **工具组合**：Claude Code规划 + Cursor实现，发挥各自优势
-2. **充分上下文**：给AI足够的背景信息，结果才准确
-3. **增量迭代**：小步快跑，及时验证
-4. **人机协作**：AI是助手，不是替代品
+[paste logs here]
+```
 
-AI不会取代程序员，但会用AI的程序员会取代不会用的。
+AI excels at pattern-matching across stack traces and correlating error messages — often pinpointing root causes faster than manual investigation.
+
+## Measured Productivity Gains
+
+After adopting this AI workflow, here's how my productivity changed across phases:
+
+| Phase | Improvement | Primary Benefit |
+|-------|------------|-----------------|
+| Requirements analysis | 40% | More thorough edge case coverage |
+| Architecture design | 30% | Rapid multi-option comparison |
+| Coding | 50% | Less repetitive boilerplate |
+| Test writing | 60% | Auto-generated test cases |
+| Troubleshooting | 45% | Faster root cause identification |
+
+## Pitfalls to Avoid
+
+### 1. Don't Trust Blindly
+
+AI hallucinates. It generates code that looks correct but contains subtle bugs. **Always verify.** Run the tests. Read the diff. Understand what changed.
+
+### 2. Maintain Code Ownership
+
+If you commit code you don't understand, you're accumulating tech debt. AI-generated code is your responsibility — treat it the same as code from any other contributor.
+
+### 3. Sanitize Sensitive Data
+
+Never send real API keys, passwords, or user data to AI tools. Use placeholders or anonymized data.
+
+### 4. Commit Frequently
+
+Commit AI-generated changes promptly. Small, well-described commits make it easy to track what AI produced and roll back if needed.
+
+## Key Takeaways
+
+The core principles of an effective AI development workflow:
+
+1. **Tool combination** — Claude Code for planning, Cursor for implementation. Leverage each tool's strengths.
+2. **Rich context** — The more background you provide, the better AI performs.
+3. **Incremental iteration** — Small steps, frequent validation. Don't let AI run ahead unchecked.
+4. **Human-AI collaboration** — AI is your assistant, not your replacement. You remain the decision-maker.
+
+AI won't replace developers. But developers who use AI effectively will outperform those who don't.
 
 ---
 
-**相关链接**：
-- [Claude Code官方文档](https://docs.anthropic.com/en/docs/claude-code)
-- [Cursor官网](https://cursor.sh/)
+**Useful links**:
+- [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code)
+- [Cursor Website](https://cursor.sh/)
 
-## 相关阅读
+## Further Reading
 
-- [Claude Code 浏览器自动化方案对比：Agent Browser、Playwright、DevTools](/posts/ai/2026-01-28-claude-code-browser-automation/)
-- [Claude Code 最佳实践指南](/posts/ai/2026-01-06-claudecode-best-practices/)
-- [Anthropic 发布 Claude Cowork：让 AI 直接操作你的电脑文件](/posts/ai/2026-01-13-claude-cowork/)
-- [2025 DORA AI开发报告](https://dora.dev/research/2025/dora-report/)
+- [Claude Code Browser Automation: Comparing 5 Approaches](/posts/ai/2026-01-28-claude-code-browser-automation/)
+- [Claude Code Best Practices Guide](/posts/ai/2026-01-06-claudecode-best-practices/)
+- [Anthropic Launches Claude Cowork: AI That Operates Your Files Directly](/posts/ai/2026-01-13-claude-cowork/)
+- [2025 DORA AI Development Report](https://dora.dev/research/2025/dora-report/)

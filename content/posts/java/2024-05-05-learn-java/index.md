@@ -1,76 +1,72 @@
 +++
 date = '2024-05-04T21:00:00+08:00'
-title = 'Java 入门教程（一）：JDK/JRE/JVM 概念解析与 IDEA 开发环境配置'
-description = 'Java 零基础入门教程第一篇，涵盖 Java 发展历史、SE/EE/ME 技术体系，详解 JDK、JRE、JVM 概念区别，IDEA 开发环境配置和常用快捷键'
+title = 'Java Beginner Tutorial Part 1: JDK, JRE, JVM Explained and IntelliJ IDEA Setup'
+description = 'A comprehensive Java beginner guide covering the Java ecosystem (SE/EE/ME), the differences between JDK, JRE, and JVM, IntelliJ IDEA setup, core syntax, OOP fundamentals, and essential APIs.'
 toc = true
-tags = ['Java', 'JDK', 'JVM', 'IDEA', '入门教程']
+tags = ['Java', 'JDK', 'JVM', 'IDEA']
 categories = ['Java']
+keywords = ['Java beginner tutorial', 'JDK vs JRE vs JVM', 'IntelliJ IDEA setup', 'Java basic syntax', 'Java OOP']
 +++
 ![image](java-logo.webp)
 
-## 一、背景
+## 1. A Brief History of Java
 
-1995年SUN 公司推出，最早叫 Oak(橡树)，后改名叫 Java，Java之父詹姆斯（James），SUN 在2009年被 ORACLE收购。
+Java was introduced by Sun Microsystems in 1995. Originally named Oak (after an oak tree outside creator James Gosling's office), it was later renamed Java. Sun Microsystems was acquired by Oracle in 2009, and Oracle has maintained the language ever since.
 
-## 二、整体学习路线
+## 2. The Java Learning Roadmap
 
-![Java 整体学习路线](java-roadmap-overview.webp)
-![Java 学习路线详细图](java-roadmap-detail.webp)
+![Java learning roadmap overview](java-roadmap-overview.webp)
+![Java learning roadmap in detail](java-roadmap-detail.webp)
 
-Java 技术体系（JAVA SE、JAVA EE、JAVA ME）。
-Java基本啥都能干，但主要做互联网系统的开发.
+The Java technology ecosystem is divided into three editions: **Java SE** (Standard Edition), **Java EE** (Enterprise Edition), and **Java ME** (Micro Edition). While Java can handle almost anything, its primary strength lies in building large-scale internet systems and enterprise applications.
 
-## 三、JDK 
+## 3. Understanding JDK, JRE, and JVM
 
-![Java 技术体系](java-tech-stack.webp)
-![Java SE/EE/ME 版本区别](java-editions.webp)
+![Java technology stack](java-tech-stack.webp)
+![Java SE, EE, and ME editions](java-editions.webp)
 
-javac：编译工具
+These three acronyms confuse many beginners, but the relationship is actually straightforward:
 
-java ：执行工具
+- **JVM (Java Virtual Machine)** — The runtime engine that actually executes Java programs. It interprets compiled bytecode and runs it on your operating system.
+- **JRE (Java Runtime Environment)** — Includes the JVM plus the core class libraries that Java programs need at runtime.
+- **JDK (Java Development Kit)** — The full development toolkit. It contains the JRE, plus development tools like `javac` (the compiler) and `java` (the launcher).
 
-JVM(Java Virtual Machine)：Java 虚拟机，真正运行 Java程序的地方
-核心类库：Java 自己写好的程序
+In short: **JDK = JRE + development tools**, and **JRE = JVM + core libraries**.
 
-JRE（Java Runtime Environment）:Java的运行环境
+## 4. Setting Up IntelliJ IDEA
 
-JDK(Java Development Kit): Java开发工具包(包含上面所有)
+![IntelliJ IDEA development environment](java-platform.webp)
 
-## 四、IDE IDEA
+IntelliJ IDEA is the most popular Java IDE. Here are some essential keyboard shortcuts to boost your productivity:
 
-![IDEA 开发环境](java-platform.webp)
+| Shortcut | Action |
+| --- | --- |
+| `main`/`psvm`, `sout`, ... | Live templates for common code snippets |
+| Ctrl + D | Duplicate the current line |
+| Ctrl + Y | Delete the current line (Ctrl + X also works) |
+| Ctrl + Alt + L | Reformat code |
+| Alt + Shift + Up/Down | Move the current line up or down |
+| Ctrl + / , Ctrl + Shift + / | Toggle line/block comments |
 
-IDEA几种常见的快捷键，以及他们的作用
+## 5. Core Syntax
 
-| **快捷键**                        | **功能效果**                     |
-| --------------------------------- | -------------------------------- |
-| main/psvm、sout、…                | 快速键入相关代码                 |
-| Ctrl + D                          | 复制当前行数据到下一行           |
-| Ctrl + Y                          | 删除所在行，建议用Ctrl + X       |
-| Ctrl + ALT + L                    | 格式化代码                       |
-| ALT + SHIFT + ↑ , ALT + SHIFT + ↓ | 上下移动当前代码                 |
-| Ctrl + / , Ctrl + Shift + /       | 对代码进行注释(讲注释的时候再说) |
+### 5.1 Literals
 
+Literals are fixed values written directly in your code. They tell the compiler exactly what data you intend to use.
 
-## 五、基础语法
+![Literal types in Java](1660150925625.webp)
 
-### 1 字面量
+### 5.2 Variables
 
-字面量其实就是告诉程序员数据在程序中的书写格式
+**Definition:** A variable is a named storage location in memory. Think of it as a labeled box that holds a piece of data.
 
-![](1660150925625.webp)
+**Syntax:** `dataType variableName = initialValue;`
 
-### 2 变量
+**Purpose:** Variables make data management flexible — you can read, update, and pass data around your program easily.
 
-**定义：** 变量是用来记录程序中的数据的。其本质上是内存中的一块区域，你可以把这块区域理解成一个小盒子，盒子里放的东西就是变量记录的数据。
+### 5.3 Reserved Keywords
 
-**格式：** `数据类型 变量名 = 初始值;`
-
-**作用：** 使用变量来记录数据，对于数据的管理更为灵活。
-
-### 3 关键字
-
-关键字是java语言中有特殊含义的单词
+Keywords are words that Java reserves for its own use. You cannot use them as variable names, class names, or method names.
 
 | **abstract**   | **assert**       | **boolean**   | **break**      | **byte**   |
 | -------------- | ---------------- | ------------- | -------------- | ---------- |
@@ -84,544 +80,486 @@ IDEA几种常见的快捷键，以及他们的作用
 | **switch**     | **synchronized** | **this**      | **throw**      | **throws** |
 | **transient**  | **try**          | **void**      | **volatile**   | **while**  |
 
-### 4 标识符
+### 5.4 Identifiers
 
-标志符其实就是我们自己取的名字。像前面我们取的类名，变量名其实都是标志符。
+Identifiers are names you choose for your classes, variables, methods, and other elements. They must follow these rules: start with a letter, underscore, or dollar sign; they are case-sensitive; and they cannot be a reserved keyword.
 
-### 5 二进制
+### 5.5 Binary Representation
 
-**变量里的数据在计算机中的存储原理**：任何数据在计算机中都是以**二进制**表示。整数先转成二进制再存储
+**How data is stored in a computer:** All data is ultimately represented in **binary** (base-2). Integers are converted to binary before being stored in memory.
 
-字符怎么存储的呢？只需要将字符映射到整数，就可以用二进制表示了，所以需要一个字符数字映射表（字符<----->数字），就是大家经常听到的美国ASCII编码，中文GBK编码等
+**Characters:** Each character is mapped to an integer through an encoding table (e.g., ASCII for English, GBK for Chinese, or Unicode/UTF-8 for universal support), and that integer is stored in binary.
 
-图片怎么存储呢？图片无限放大后可以看到像素点，每一个像素点就是一种颜色，任何一种颜色用三原色RGB表示(R红色，G绿色，B蓝色)，R、G、B种每一种颜色用一个字节的整数表示，取值范围[0,255]，转成整数后再转成二进制存储。、
+**Images:** When you zoom into any image, you see individual pixels. Each pixel is a color, and any color can be described using three values — Red, Green, and Blue (RGB). Each channel uses one byte (values 0-255), which is then stored in binary.
 
-声音怎么存储呢？声音以波的形式传播，把声波在表示在一个坐标系上，然后在坐标系上取一些点，把这些点的坐标值以二进制的形式存储到计算机中，这就是声音的存储原理
+**Audio:** Sound travels as a wave. By sampling the wave at regular intervals and recording the amplitude values, we convert the waveform into a series of numbers that can be stored in binary.
 
-![image-20240505163630547](image-20240505163630547.webp)
+![Binary representation of data](image-20240505163630547.webp)
 
-视频怎么存储呢？视频是图片和声音组成，按上面讲的图片和声音存储原理理解。
+**Video:** A video is simply a sequence of images (frames) combined with an audio track, stored using the same principles.
 
-**十进制转二进制 、二进制转十进制**，有一种计算方式8421码，请注意。
+**Decimal-to-binary conversion** can be done easily using the **8421 method** (BCD coding):
 
-![image-20240505164329830](image-20240505164329830.webp)
+![8421 BCD conversion](image-20240505164329830.webp)
 
-**八进制、十六进制**
+**Octal and hexadecimal** are compact ways to represent binary numbers:
 
-![image-20240505165805742](image-20240505165805742.webp)
+![Octal and hexadecimal](image-20240505165805742.webp)
 
-计算机的数据单位最小组成单元：字节，1B = 8b，1个字节等于8位
+The smallest unit of data in a computer is the **bit** (b). Eight bits make one **byte** (B): 1B = 8b. Larger units build on bytes: KB, MB, GB, TB.
 
-在B基础上发展出来KB、MB、GB、TB单位
+![Data units](image-20240505170246173.webp)
 
-![image-20240505170246173](image-20240505170246173.webp)
+### 5.6 Data Types
 
-### 6 数据类型
+Java data types fall into two broad categories: **primitive types** and **reference types**.
 
-Java的数据类型整体上来说分为两大类： **基本数据类型**、**引用数据类型**
+![Java data types](image-20240505170506109.webp)
 
-![image-20240505170506109](image-20240505170506109.webp)
+**Automatic type promotion** (widening conversion): A variable with a smaller data range can be directly assigned to a variable with a larger range.
 
-自动类型转换指的是，数据范围小的变量可以直接赋值给数据范围大的变量
+![Automatic type conversion](image-20240505171902906.webp)
 
-![image-20240505171902906](image-20240505171902906.webp)
+### 5.7 Operators
 
-### 7 运算符
+Java provides several categories of operators:
 
-Java提供的运算符有很多种，主要有下面几种：
+- **Arithmetic operators**
 
-- 基本算术运算符
+  ![Arithmetic operators](image-20240505172859556.webp)
 
-  ![image-20240505172859556](image-20240505172859556.webp)
+  The `+` operator doubles as a string concatenation operator when one operand is a String.
 
-  `+`符号除了用于加法运算，还可以作为连接符
+- **Increment and decrement operators**
 
-- 自增自减运算符
+  `++` increments by 1; `--` decrements by 1.
 
-  `++`读作自增，`--`读作自减； 运算规则如下
-
-  ![image-20240505172940033](image-20240505172940033.webp)
+  ![Increment and decrement](image-20240505172940033.webp)
 
 ```
-1.单独使用：++或者--放在变量前面没有区别
-	   int a =10; 
-	    a++;  //11
-		--a;  //10
-		System.out.println(a); //10
+1. Standalone usage: No difference whether ++ or -- is placed before or after the variable.
+       int a = 10;
+       a++;  // a is now 11
+       --a;  // a is now 10
+       System.out.println(a); // 10
 
-2.混合使用：++或者--放在变量或者前面运算规则稍有不通过
-	//++在后：先做其他事情，再做自增和自减
-	int a = 10;
-	int b = a++; //等价于 int b = a; a++; 
+2. Mixed usage: Position matters when combined with other expressions.
+       // Postfix: use current value first, then increment
+       int a = 10;
+       int b = a++; // b = 10, then a becomes 11
 
-	//++在前：先自增或者自减，再做其他运输
-	int x = 10;
-	int y = --x; //等价于x--; int y = x;  
+       // Prefix: increment first, then use new value
+       int x = 10;
+       int y = --x; // x becomes 9, then y = 9
 ```
 
-- 赋值运算符
+- **Assignment operators**
 
-![image-20240505173409193](image-20240505173409193.webp)
+![Assignment operators](image-20240505173409193.webp)
 
-- 关系运算符
+- **Relational (comparison) operators**
 
-![image-20240505173436225](image-20240505173436225.webp)
+![Relational operators](image-20240505173436225.webp)
 
-- 逻辑运算符
+- **Logical operators**
 
-![image-20240505173508752](image-20240505173508752.webp)
+![Logical operators](image-20240505173508752.webp)
 
-- 三元运算符
+- **Ternary operator**
 
-三元运算符的格式：`关系表达式? 值1 : 值2;`
+  Format: `condition ? valueIfTrue : valueIfFalse;`
 
-### 8 程序流程控制
+### 5.8 Control Flow
 
-程序的流程控制一般分为3种：**顺序结构、分支结构、循环结构**
+Program flow generally falls into three categories: **sequential**, **branching**, and **looping**.
 
-- 顺序结构：就是不加任何控制，代码从main方法开始自上而下执行
-- 分支结构：就是根据条件判断是true还是false，有选择性的执行哪些代码。在Java语言中提供了两个格式if 、 switch
+- **Sequential:** Code runs top-to-bottom from the `main` method with no branching or repetition.
+- **Branching:** Code selectively executes based on a condition (`true` or `false`). Java offers two branching constructs: `if` and `switch`.
 
-如果单从功能上来讲，if 分支 的功能是更加强大的，switch分支能做的事情if 分支都能做。但是具体用哪一种分支形式，也是有一些使用原则的.
-
+A rule of thumb for choosing between them:
 ```
-- 如果是对一个范围进行判断，建议使用if分支结构
-- 如果是与一个一个的值比较的时候，建议使用switch分支结构
+- Use if when checking ranges or complex conditions.
+- Use switch when comparing against discrete, fixed values.
 ```
 
-- 循环结构：就是控制某一段代码重复执行。在Java语言中提供了三种格式，for、while、do-while
+- **Looping:** Code repeats a block until a condition is met. Java provides three loop constructs: `for`, `while`, and `do-while`.
 
-### 9 数组
+### 5.9 Arrays
 
-数组就是一个容器，用来存一批同种类型的数据的。数组有两种初始化的方式，一种是静态初始化、一种是动态初始化
+An array is a fixed-size container that holds multiple values of the same type. Java supports two initialization styles:
 
-**静态初始化**标准格式： `数据类型[] 变量名 = new 数据类型[]{元素1,元素2,元素3};`
+**Static initialization** (standard form): `dataType[] name = new dataType[]{element1, element2, element3};`
 
-```
-//定义数组，用来存储多个年龄
-int[] ages = new int[]{12, 24, 36}
-//定义数组，用来存储多个成绩
+```java
+int[] ages = new int[]{12, 24, 36};
 double[] scores = new double[]{89.9, 99.5, 59.5, 88.0};
 ```
 
-静态初始化简化格式: `数据类型[] 变量名 = {元素1,元素2,元素3};`
+**Static initialization** (shorthand): `dataType[] name = {element1, element2, element3};`
 
-```
-//定义数组，用来存储多个年龄
-int[] ages = {12, 24, 36}
-//定义数组，用来存储多个成绩
+```java
+int[] ages = {12, 24, 36};
 double[] scores = {89.9, 99.5, 59.5, 88.0};
 ```
 
-**注意**定义数组时， `数据类型[] 数组名` 也可写成 `数据类型 数组名[]` 
+**Note:** Both `int[] ages` and `int ages[]` are valid, but the first form is preferred by convention.
 
+```java
+int[] ages = {12, 24, 36};  // preferred
+int ages[] = {12, 24, 36};  // also valid
 ```
-//以下两种写法是等价的。但是建议大家用第一种，因为这种写法更加普遍
-int[] ages = {12, 24, 36};
-int ages[] = {12, 24, 36}
-```
 
-**动态初始化**格式:`//数据类型[]  数组名 = new 数据类型[长度];`,例如`int[] arr = new int[3];`
+**Dynamic initialization**: `dataType[] name = new dataType[length];`, e.g., `int[] arr = new int[3];`
 
-使用动态初始化定义数组时，根据元素类型不同，默认值也有所不同。
+When using dynamic initialization, elements receive default values based on their type:
 
-![image-20240505180102841](image-20240505180102841.webp)
+![Default values by type](image-20240505180102841.webp)
 
-**数组在计算机中的执行原理**
+**How arrays work in memory**
 
-程序在内存中执行,Java程序是把编译后的字节码加载到Java虚拟机中执行.
+Java programs run inside the JVM, which loads compiled bytecode into memory.
 
-![image-20240505180222119](image-20240505180222119.webp)
+![JVM memory model](image-20240505180222119.webp)
 
-```
+```java
 public class ArrayDemo1 {
     public static void main(String[] args) {
         int a = 10;
         System.out.println(a);
 
         int[] arr = new int[]{11, 22, 33};
-        System.out.println(arr);
+        System.out.println(arr);       // prints the memory address
 
-        System.out.println(arr[1]);
+        System.out.println(arr[1]);    // 22
 
         arr[0] = 44;
         arr[1] = 55;
         arr[2] = 66;
 
-        System.out.println(arr[0]);
-        System.out.println(arr[1]);
-        System.out.println(arr[2]);
+        System.out.println(arr[0]);    // 44
+        System.out.println(arr[1]);    // 55
+        System.out.println(arr[2]);    // 66
     }
 }
 ```
 
-Java为了便于虚拟机执行Java程序，将虚拟机的内存划分为 **方法区、栈、堆**、本地方法栈、寄存器 这5块区域,每部分存储内容如下：
+The JVM divides memory into five regions: **Method Area**, **Stack**, **Heap**, Native Method Stack, and Registers. The three most important are:
 
-- **方法区**：字节码文件先加载到这里
-- **栈**：方法运行时所进入的内存区域，由于变量在方法中，所以变量也在这一块区域中
-- **堆**：存储new出来的东西，并分配地址。由于数组是new 出来的，所以数组也在这块区域。
+- **Method Area** — Where bytecode is loaded.
+- **Stack** — Where methods execute and local variables live.
+- **Heap** — Where objects created with `new` are stored and assigned addresses. Arrays live here.
 
-上面案例执行的内存原理如下图所示，按照① ② ③ ④ ⑤ ⑥ 的标记的顺序来看
+![Array memory diagram](image-20240505180635088.webp)
 
-![image-20240505180635088](image-20240505180635088.webp)
+**Key difference between `int a = 10` and `int[] arr = new int[]{11,22,33}`:**
 
-**总结一下`int a = 10`与 `int[] arr = new int[]{11,22,33}的区别`**
+- `a` is a primitive variable on the stack; it directly holds the value `10`.
+- `arr` is a reference variable on the stack; it holds the **memory address** of the array object on the heap.
 
-- **a**是一个变量，在栈内存中，**a**变量中存储的数据就是**10**这个值。
-- **arr**也是一个变量，在栈中，存储的是数组对象在堆内存中的地址值
-
-```
-// 这里的int a是一个基本类型变量，存储的是一个数值
-int a = 10 ; 
-//这里的int[] arr是一个引用类型的变量，存储的是一个地址值
-int[] arr = new int[]{44,55,66};
+```java
+// Primitive variable: stores a value directly
+int a = 10;
+// Reference variable: stores an address pointing to the heap
+int[] arr = new int[]{44, 55, 66};
 ```
 
-### 10 方法
+### 5.10 Methods
 
-方法是一种语法结构，它可以把一段代码封装成一个功能，以便重复调用。格式:
+A method is a reusable block of code that performs a specific task.
 
-![image-20240505182105273](image-20240505182105273.webp)
+![Method syntax](image-20240505182105273.webp)
 
-例如:
+Example:
 
-```
-//目标：掌握定义方法的完整格式，搞清楚使用方法的好处。
+```java
 public class MethodDemo1 {
     public static void main(String[] args) {
-        // 需求：假如现在很多程序员都要进行2个整数求和的操作。
-        // 1、李工。
         int rs = sum(10, 20);
-        System.out.println("和是：" + rs);
+        System.out.println("Sum: " + rs);
 
-        // 2、张工。
         int rs2 = sum(30, 20);
-        System.out.println("和是：" + rs2);
+        System.out.println("Sum: " + rs2);
     }
 
-    public static int sum(int a,int b) {
+    public static int sum(int a, int b) {
         int c = a + b;
         return c;
     }
 }
 ```
 
-方法的好处，可以归纳为2点：
+Benefits of methods:
 
-- 提高了代码的复用性，提高了开发效率。
-- 让程序的逻辑更清晰。
+- **Code reuse** — Write once, call many times.
+- **Clarity** — Break complex logic into understandable pieces.
 
-**方法在计算机中的执行原理**
+**How methods execute in memory**
 
-Java的方法是在栈内存区域中执行，**每次调用方法，方法都会进栈执行；执行完后，又会弹栈出去。**先进后出
+Methods run on the stack. Each method call creates a new **stack frame**; when the method returns, the frame is popped off. This is a **Last In, First Out (LIFO)** process.
 
-假设在main方法中依次调用A方法、B方法、C方法，在内存中的执行流程如下：
+![Method stack execution](image-20240505200300178.webp)
 
-![image-20240505200300178](image-20240505200300178.webp)
+**Java always uses pass-by-value.** What gets passed is a copy of the value stored in the argument variable.
 
-**Java的参数传递机制都是：值传递，传递的是实参存储的值的副本。**
+- For **primitive types**, the actual value is copied.
+- For **reference types** (String, arrays, objects), the memory address is copied — so both the caller and the method point to the same object.
 
-基本类型和引用类型的参数在传递的时候有什么不同？
+**Method Overloading**
 
-- 都是值传递
-- 基本类型的参数传递存储的数据值。
-- 引用类型的参数传递存储的地址值。（String,Array都是引用类型）
+Overloading means defining multiple methods in the same class with the same name but different parameter lists.
 
-**方法重载**
-
-定义：一个类中，多个方法的名称相同，但它们形参列表不同。
-
-```
+```java
 public class MethodOverLoadDemo1 {
     public static void main(String[] args) {
-        // 目标：认识方法重载，并掌握其应用场景。
         test();
         test(100);
     }
 
-    public static void test(){
+    public static void test() {
         System.out.println("===test1===");
     }
 
-    public static void test(int a){
+    public static void test(int a) {
         System.out.println("===test2===" + a);
     }
 
-    void test(double a){
+    void test(double a) { }
 
-    }
+    void test(double a, int b) { }
 
-    void test(double a, int b){
-    }
+    void test(int b, double a) { }
 
-    void test(int b, double a){
-    }
-
-    int test(int a, int b){
+    int test(int a, int b) {
         return a + b;
     }
 }
 ```
 
-**方法重载需要注意什么？**
+Overloading rules:
 
-- 一个类中，只要一些方法的名称相同、形参列表不同，那么它们就是方法重载了，
-  	  其它的都不管（如：修饰符，返回值类型是否一样都无所谓）。
+- Methods must share the same name but differ in their parameter lists (number, type, or order of parameters).
+- Return type and access modifiers do not matter for overloading.
+- Parameter names alone do not count as a difference.
 
-- 形参列表不同指的是：形参的个数、类型、顺序不同，不关心形参的名称。
+## 6. Object-Oriented Programming
 
-## 六、 面向对象
+Object-Oriented Programming (OOP) means organizing your code around **objects** — bundles of data and the methods that operate on that data.
 
-所谓编写对象编程，就是把要处理的数据交给对象，让对象来处理。
+James Gosling, Java's creator, held the philosophy that **everything is an object**. Each object encapsulates its own data and is responsible for processing it. You can think of an object as a data record, and the **class** as the blueprint that defines what data it can hold.
 
-Java之父詹姆斯高斯林认为**万物皆对象！**任何一个对象都可以包含一些数据，数据属于哪个对象，就由哪个对象来处理。对象可以理解成一张数据表，而数据表中可以有哪些数据，是有类来设计的。
+OOP aligns with how humans naturally think about the world, making programs more intuitive and easier to maintain.
 
-面向对象编程优点：面向对象的开发更符合人类的思维习惯，让编程变得更加简单、更加直观。
+### 6.1 How Objects Work in Memory
 
-### 1 对象在计算机中的执行原理
+![Object memory diagram](image-20240506104721819.webp)
 
-![image-20240506104721819](image-20240506104721819.webp)
+Objects follow the same memory model as arrays:
 
-与前面学习的数组变量记录的其实数数组在堆内存中的地址类似，对象可以按统一思路理解：
+- `Student s1` declares a reference variable on the **stack**.
+- `new Student()` allocates an object on the **heap**, containing the student's fields with default values. The system assigns this object a memory address (e.g., `0x4f3f5b24`).
+- The address is stored in `s1`, so you can reach the object through `s1`.
+- When you write `s1.name = "Alice"`, the JVM follows the address in `s1` to find the object, locates its `name` field, and updates the value.
 
-- `Student s1`表示的是在栈内存中，创建了一个Student类型的变量，变量名为s1
+### 6.2 Classes and Objects — Key Points
 
-- 而`new Student()`会在堆内存中创建一个对象，而对象中包含学生的属性名和属性值
+![Class and object notes](image-20240506105055502.webp)
 
-  同时系统会为这个Student对象分配一个地址值0x4f3f5b24
+A single `.java` file can contain multiple classes, but only one can be `public`, and its name must match the filename:
 
-- 接着把对象的地址赋值给栈内存中的变量s1，通过s1记录的地址就可以找到这个对象
+```java
+// The public class Demo1 matches the filename Demo1.java
+public class Demo1 {
 
-- 当执行`s1.name=“播妞”`时，其实就是通过s1找到对象的地址，再通过对象找到对象的name属性，再给对象的name属性赋值为`播妞`;  
-
-### 2 类和对象注意点
-
-![image-20240506105055502](image-20240506105055502.webp)
-
-关于一个代码文件中可以有多个类这一条，举例：
-
-```
-//public修饰的类Demo1，和文件名Demo1相同
-public class Demo1{
-    
 }
 
-class Student{
-    
+class Student {
+
 }
 ```
 
-### 3 this关键字
+### 6.3 The `this` Keyword
 
-**this是什么？** this就是一个变量，用在方法中，可以拿到当前类的对象。
+**What is `this`?** It is a reference variable available inside any instance method that points to the **current object** — the one on which the method was called.
 
-![image-20240506105552235](image-20240506105552235.webp)
+![this keyword](image-20240506105552235.webp)
 
-**this有什么用？** 通过this在方法中可以访问本类对象的成员变量，哪一个对象调用方法方法中的this就是哪一个对象
+**Why use it?** `this` lets you access the current object's fields, especially when a parameter name shadows a field name.
 
-### 4 构造器
+### 6.4 Constructors
 
-**什么是构造器？**
+**What is a constructor?** A constructor is a special method with no return type whose name matches the class name. It is called automatically when you create an object with `new`.
 
-构造器其实是一种特殊的方法，但是这个方法没有返回值类型，方法名必须和类名相同
+![Constructor syntax](image-20240506105926248.webp)
 
-![image-20240506105926248](image-20240506105926248.webp)
+**Key behavior:**
 
-**构造器特点？**
+Creating an object with `new` is the same as invoking a constructor.
 
-在创建对象时，会调用构造器。**new 对象就是在执行构造方法**
+![Constructor example 1](image-20240506110057497.webp)
 
-![image-20240506110057497](image-20240506110057497.webp)
+![Constructor example 2](image-20240506110105660.webp)
 
-![image-20240506110105660](image-20240506110105660.webp)
+Constructors are used to create objects and optionally initialize their fields.
 
-
-
-构造器就是用来创建对象的。可以在创建对象时给对象的属性做一些初始化操作.
-
-构造器注意事项:
+Important notes:
 
 ```
-1.在设计一个类时，如果不写构造器，Java会自动生成一个无参数构造器。
-2.一定定义了有参数构造器，Java就不再提供空参数构造器，此时建议自己加一个无参数构造器。
+1. If you don't write any constructor, Java provides a default no-arg constructor.
+2. Once you define a parameterized constructor, the default no-arg constructor is no longer
+   provided. It's good practice to explicitly add one yourself.
 ```
 
-### 5 封装性
+### 6.5 Encapsulation
 
-**什么是封装？** 
+**What is encapsulation?** It means bundling the data (fields) and the methods that operate on that data into a single class, while controlling access to the internals.
 
-封装就是用类设计对象处理某一个事物的数据时，应该把要处理的数据，以及处理数据的方法，都设计到一个对象中去。
+For example, a `Student` class might encapsulate `name`, `chineseScore`, and `mathScore` as fields, along with methods like `getTotalScore()` and `getAverageScore()`.
 
-比如：在设计学生类时，把学生对象的姓名、语文成绩、数学成绩三个属性，以及求学生总分、平均分的方法，都封装到学生对象中来。
+The design principle can be summarized as: **hide what should be hidden, expose what should be exposed**. Think of a car: the engine and transmission are hidden; the start button and brake pedal are exposed.
 
-封装的设计规范用8个字总结：**合理隐藏、合理暴露** 。举例设计一辆汽车时发动机、变松箱需要隐藏，启动按钮、刹车需要暴露出来
+**How is encapsulation achieved in code?**
 
-**封装在代码中如何体现？**
+Fields are typically declared `private` (accessible only within the class), and public getter/setter methods are provided for controlled external access.
 
-一般在设计一个类时，会将成员变量隐藏，然后把操作成员变量的方法对外暴露。需要用到**修饰符** 。前面看到的`public`就是修饰符，与之对应的有一个`private` 修饰符，被private修饰后，只能在本类中访问。如果要对外访问可以加个对外报暴漏的方法，在方法里返回变量。
+![Encapsulation example](image-20240506113425295.webp)
 
-![image-20240506113425295](image-20240506113425295.webp)
+### 6.6 JavaBeans (Entity Classes)
 
-### 6 实体JavaBean
+A JavaBean (entity class) is a class that follows specific conventions:
 
-面向对象编程中，经常写的一种类——叫实体JavaBean类，那什么是实体类？
+- All fields are `private`, with public `getXxx()` and `setXxx()` methods for each.
+- It must have a public no-arg constructor.
 
-实体类就是一种特殊的类，它需要满足下面的要求：
+![JavaBean example](image-20240506113753917.webp)
 
-- 类中的成员变量都要私有，并且要对外提供相应的`getXxx`,`setXxx`方法
+JavaBeans serve purely as data containers. In real applications, data processing logic is handled by separate classes, achieving a clean separation between data and business logic.
 
-- 类中必须要有一个公共的无参构造器
+### 6.7 Instance Variables vs. Local Variables
 
-例如写一个Student类
+![Instance vs local variables](image-20240506143612915.webp)
 
-![image-20240506113753917](image-20240506113753917.webp)
+![Comparison table](image-20240506143658134.webp)
 
-实体类中除了有给对象存、取值的方法就没有提供其他方法，所以实体类仅仅只是用来封装数据用的。
+### 6.8 Common Java APIs
 
-实际开发中，实体类仅仅只用来封装数据，而对数据的处理交给其他类来完成，以实现数据和数据业务处理相分离。
+#### Packages
 
-### 7 成员变量和局部变量
+Before diving into APIs, you need to understand **packages**. Java organizes its classes into packages — similar to folders on a file system.
 
-![image-20240506143612915](image-20240506143612915.webp)
+![Package structure](image-20240506144925767.webp)
 
-![image-20240506143658134](image-20240506143658134.webp)
+Package declaration syntax:
 
+```java
+// First line of the file
+package com.example.model;
 
+public class ClassName {
 
-### 8 常用Java Api
-
-#### **包**
-
-学习API类之前，要了解包，Java官方提供了很多类，为了对这些类进行分门别类的管理，将写好的类都是放在不同的包里。
-
-包类似于文件夹，一个包能放多个类文件。
-
-![image-20240506144925767](image-20240506144925767.webp)
-
-建包的语法格式：
-
-```
-//类文件的第一行定义包
-package com.itheima.javabean;
-
-public class 类名{
-    
 }
 ```
 
-在自己的程序中调用其他包中的程序，注意：
+Rules for importing classes:
 
-- 如果当前程序中，要调用自己所在包下的其他程序，可以直接调用。（同一个包下的类，互相可以直接调用）
+- Classes in the **same package** can reference each other directly.
+- Classes in **different packages** require an `import` statement: `import packageName.ClassName;`
+- Classes in `java.lang` (like `String`, `Math`, `System`) are auto-imported.
+- If two classes in different packages share the same name, you can import one and must use the fully qualified name for the other.
 
-- 如果当前程序中，要调用其他包下的程序，则必须在当前程序中导包, 才可以访问！
+#### String
 
-  导包格式：` import 包名.类名`
+The `String` class represents an immutable sequence of characters. You can create strings in two ways:
 
-- 如果当前程序中，要调用Java.lang包下的程序，不需要我们导包的，可以直接使用。
+1. **String literal:** `"Hello"`
+2. **Constructor:** `new String("Hello")`
 
-- 如果当前程序中，要调用多个不同包下的程序，而这些程序名正好一样，此时默认只能导入一个程序，另一个程序必须带包名访问。
+![String constructors](image-20240506145701393.webp)
 
- #### **String**
-
-String代表字符串对象，可以用来封装字符串数据，并提供了很多操作字符串的方法。创建字符串的方式：
-
-	方式一： 直接使用双引号“...” 。
-	方式二：new String类，调用构造器初始化字符串对象。
-
-![image-20240506145701393](image-20240506145701393.webp)
-
-```
-// 1、直接双引号得到字符串对象，封装字符串数据
-String name = "黑马666";
+```java
+// Method 1: String literal
+String name = "Hello World";
 System.out.println(name);
 
-// 2、new String创建字符串对象，并调用构造器初始化字符串
+// Method 2: Using constructors
 String rs1 = new String();
 System.out.println(rs1); // ""
 
 String rs2 = new String("itheima");
 System.out.println(rs2);
 
-char[] chars = {'a', '黑', '马'};
+char[] chars = {'a', 'b', 'c'};
 String rs3 = new String(chars);
 System.out.println(rs3);
 
 byte[] bytes = {97, 98, 99};
 String rs4 = new String(bytes);
-System.out.println(rs4);
+System.out.println(rs4); // "abc"
 ```
 
-String类常用方法
+Common String methods:
 
-![image-20240506145806557](image-20240506145806557.webp)
+![String methods](image-20240506145806557.webp)
 
 ```java
 public class StringDemo2 {
     public static void main(String[] args) {
-        //目标：快速熟悉String提供的处理字符串的常用方法。
-        String s = "黑马Java";
-        // 1、获取字符串的长度
+        String s = "Hello Java";
+        // 1. Get string length
         System.out.println(s.length());
 
-        // 2、提取字符串中某个索引位置处的字符
+        // 2. Get character at a specific index
         char c = s.charAt(1);
         System.out.println(c);
 
-        // 字符串的遍历
+        // 3. Iterate over characters
         for (int i = 0; i < s.length(); i++) {
-            // i = 0 1 2 3 4 5
             char ch = s.charAt(i);
             System.out.println(ch);
         }
 
-        System.out.println("-------------------");
-
-        // 3、把字符串转换成字符数组，再进行遍历
+        // 4. Convert to char array
         char[] chars = s.toCharArray();
         for (int i = 0; i < chars.length; i++) {
             System.out.println(chars[i]);
         }
 
-        // 4、判断字符串内容，内容一样就返回true
-        String s1 = new String("黑马");
-        String s2 = new String("黑马");
-        System.out.println(s1 == s2); // false
-        System.out.println(s1.equals(s2)); // true
+        // 5. Compare string content (not reference)
+        String s1 = new String("Hello");
+        String s2 = new String("Hello");
+        System.out.println(s1 == s2);       // false (different objects)
+        System.out.println(s1.equals(s2));   // true  (same content)
 
-        // 5、忽略大小写比较字符串内容
+        // 6. Case-insensitive comparison
         String c1 = "34AeFG";
         String c2 = "34aEfg";
-        System.out.println(c1.equals(c2)); // false
-        System.out.println(c1.equalsIgnoreCase(c2)); // true
+        System.out.println(c1.equals(c2));            // false
+        System.out.println(c1.equalsIgnoreCase(c2));   // true
 
-        // 6、截取字符串内容 (包前不包后的)
-        String s3 = "Java是最好的编程语言之一";
-        String rs = s3.substring(0, 8);
-        System.out.println(rs);
+        // 7. Substring (start inclusive, end exclusive)
+        String s3 = "Java is one of the best languages";
+        String rs = s3.substring(0, 4);
+        System.out.println(rs);  // "Java"
 
-        // 7、从当前索引位置一直截取到字符串的末尾
+        // 8. Substring from index to end
         String rs2 = s3.substring(5);
         System.out.println(rs2);
 
-        // 8、把字符串中的某个内容替换成新内容，并返回新的字符串对象给我们
-        String info = "这个电影简直是个垃圾，垃圾电影！！";
-        String rs3 = info.replace("垃圾", "**");
+        // 9. Replace content
+        String info = "This movie is terrible, terrible movie!!";
+        String rs3 = info.replace("terrible", "**");
         System.out.println(rs3);
 
-        // 9、判断字符串中是否包含某个关键字
-        String info2 = "Java是最好的编程语言之一，我爱Java,Java不爱我！";
-        System.out.println(info2.contains("Java"));
-        System.out.println(info2.contains("java"));
-        System.out.println(info2.contains("Java2"));
+        // 10. Check if string contains a substring
+        String info2 = "Java is great, I love Java!";
+        System.out.println(info2.contains("Java"));   // true
+        System.out.println(info2.contains("java"));   // false
 
-        // 10、判断字符串是否以某个字符串开头。
-        String rs4 = "张三丰";
-        System.out.println(rs4.startsWith("张"));
-        System.out.println(rs4.startsWith("张三"));
-        System.out.println(rs4.startsWith("张三2"));
+        // 11. Check prefix
+        String rs4 = "JavaScript";
+        System.out.println(rs4.startsWith("Java"));   // true
 
-        // 11、把字符串按照某个指定内容分割成多个字符串，放到一个字符串数组中返回给我们
-        String rs5 = "张无忌,周芷若,殷素素,赵敏";
+        // 12. Split string
+        String rs5 = "Alice,Bob,Charlie,Dave";
         String[] names = rs5.split(",");
         for (int i = 0; i < names.length; i++) {
             System.out.println(names[i]);
@@ -630,404 +568,372 @@ public class StringDemo2 {
 }
 ```
 
-字符串原理理解注意下面两点：
+Two important things to understand about String internals:
 
-- String是不可变字符串对象。
+- **Strings are immutable.** Once a String object is created, its content cannot be changed.
 
-![image-20240506150738527](image-20240506150738527.webp)
+![String immutability](image-20240506150738527.webp)
 
-看起来例子里的name值变了呀，为什么说字符串不可变呢？
+This might seem contradictory when you reassign a variable, but what actually happens is that a new String object is created — the variable simply points to the new object.
 
-这需要从字符串在内存中存储原理来解释，以`”“`形式创建的字符串对象，会在堆内存中的 **字符串常量池** 中存储。
+String literals created with `"..."` are stored in the **String Constant Pool** within the heap.
 
-![image-20240506151040074](image-20240506151040074.webp)
+![String constant pool](image-20240506151040074.webp)
 
-- 只要是以“...”方式写出的字符串对象，会存储到字符串常量池，且相同内容的字符串只存储一份；但通过new方式创建字符串对象，每new一次都会产生一个新的对象放在堆内存中。
+- String literals with the same content share a single object in the pool. However, each `new String(...)` call creates a separate object on the heap.
 
-![image-20240506151836976](image-20240506151836976.webp)
+![String pool vs new](image-20240506151836976.webp)
 
- #### **ArrayList**
+#### ArrayList
 
-ArrayList是集合中最常用的一种，集合类似于数组，也是容器，用来装数据的，但集合的大小可变
+`ArrayList` is the most commonly used collection class. Unlike arrays, an ArrayList can grow and shrink dynamically.
 
-有数组为什么还要有集合？因为在java中数组长度是固定的，一旦创建不可改变，集合则可以根据需要想存几个就存几个，长度可变。
+**Why use ArrayList instead of arrays?** Arrays have a fixed length set at creation time. ArrayList adjusts its size automatically as you add or remove elements.
 
-创建ArrayList容器对象一般使用空参数构造方法：
+![ArrayList constructor](image-20240506161915929.webp)
 
-![image-20240506161915929](image-20240506161915929.webp)
+Common ArrayList methods:
 
-调用ArrayList类的常用方法对容器中的数据进行操作
-
-![image-20240506161933504](image-20240506161933504.webp)
+![ArrayList methods](image-20240506161933504.webp)
 
 ```java
 public class ArrayListDemo1 {
     public static void main(String[] args) {
-        // 1、创建一个ArrayList的集合对象
-        // ArrayList<String> list = new ArrayList<String>();
-        // 从jdk 1.7开始才支持的
+        // Create an ArrayList (diamond syntax, JDK 7+)
         ArrayList<String> list = new ArrayList<>();
 
-        list.add("黑马");
-        list.add("黑马");
+        list.add("Apple");
+        list.add("Apple");
         list.add("Java");
         System.out.println(list);
 
-        // 2、往集合中的某个索引位置处添加一个数据
+        // Insert at index
         list.add(1, "MySQL");
         System.out.println(list);
 
-        // 3、根据索引获取集合中某个索引位置处的值
+        // Get by index
         String rs = list.get(1);
         System.out.println(rs);
 
-        // 4、获取集合的大小（返回集合中存储的元素个数）
+        // Size
         System.out.println(list.size());
 
-        // 5、根据索引删除集合中的某个元素值，会返回被删除的元素值给我们
+        // Remove by index (returns removed element)
         System.out.println(list.remove(1));
         System.out.println(list);
 
-        // 6、直接删除某个元素值，删除成功会返回true，反之
+        // Remove by value (returns true/false)
         System.out.println(list.remove("Java"));
         System.out.println(list);
 
         list.add(1, "html");
         System.out.println(list);
 
-        // 默认删除的是第一次出现的这个黑马的数据的
-        System.out.println(list.remove("黑马"));
+        // Removes first occurrence
+        System.out.println(list.remove("Apple"));
         System.out.println(list);
 
-        // 7、修改某个索引位置处的数据，修改后会返回原来的值给我们
-        System.out.println(list.set(1, "黑马程序员"));
+        // Set (replace) at index, returns old value
+        System.out.println(list.set(1, "Spring"));
         System.out.println(list);
     }
 }
 ```
 
-### 9 static修饰符
+### 6.9 The `static` Modifier
 
-static读作静态，可以用来修饰成员变量，也能修饰成员方法。
+The `static` keyword can modify both fields and methods.
 
-#### **修饰成员变量**
+#### Static Fields (Class Variables)
 
-Java中的成员变量按照有无static修饰分为两种：**类变量、实例变量**
+Java fields fall into two categories based on whether they have `static`:
 
-![image-20240506162549143](image-20240506162549143.webp)
+- **Class variables** (static) — Belong to the class; only one copy exists in memory. Access via `ClassName.variable`.
+- **Instance variables** (non-static) — Belong to each object; every object gets its own copy. Access via `objectName.variable`.
 
-静态变量是属于类的，只需要通过类名就可以调用：**`类名.静态变量`**
+![Static vs instance variables](image-20240506162549143.webp)
 
-实例变量是属于对象的，需要通过对象才能调用：**`对象.实例变量`**
+![Static variable memory model](image-20240506162800881.webp)
 
-![image-20240506162800881](image-20240506162800881.webp)
+#### Static Methods (Class Methods)
 
+- **Class methods** (`static`) — Loaded with the class, callable via `ClassName.method()`.
+- **Instance methods** (non-static) — Require an object to call, because they may access instance variables.
 
+![Static vs instance methods](image-20240506163026791.webp)
 
-- 1.类变量：属于类，在内存中只有一份，用类名调用
-- 2.实例变量：属于对象，每一个对象都有一份，用对象调用
+![Method access rules](image-20240506163328827.webp)
 
-#### **修饰成员方法**
+#### Utility Classes
 
-成员方法根据有无static也分为两类：**类方法、实例方法**
+A class where **all methods are static** is called a utility class. Since every method can be called directly via the class name, it acts like a toolkit.
 
-![image-20240506163026791](image-20240506163026791.webp)
+![Utility class example](image-20240506163454647.webp)
 
-> 有static修饰的方法，是属于类的，称为**类方法**；调用时直接用类名调用即可。
+#### Static Blocks
 
-> 无static修饰的方法，是属于对象的，称为实例方法；调用时，需要使用对象调用。
+Code blocks are categorized by `static`:
 
-- 类方法：static修饰的方法，可以被类名调用，是因为它是随着类的加载而加载的；所以类名直接就可以找到static修饰的方法
-- 实例方法：非static修饰的方法，需要创建对象后才能调用，是因为实例方法中可能会访问实例变量，而实例变量需要创建对象后才存在。所以实例方法，必须创建对象后才能调用。
+> **Static initializer blocks** run once when the class is first loaded.
 
-![image-20240506163328827](image-20240506163328827.webp)
+![Static block syntax](image-20240506163728436.webp)
 
-#### **工具类**
-如果一个类中的方法全都是静态的，那么这个类中的方法就全都可以被类名直接调用，由于调用起来非常方便，就像一个工具一下，所以把这样的类就叫做工具类。
+![Static block example](image-20240506163800678.webp)
 
-![image-20240506163454647](image-20240506163454647.webp)
+> **Instance initializer blocks** run every time a new object is created, before the constructor body.
 
-#### **static应用-代码块**
+![Instance block syntax](image-20240506163848096.webp)
 
-代码块根据有无static修饰分为两种：静态代码块、实例代码块。
+![Instance block example](image-20240506164050846.webp)
 
-> 静态代码块，随着类的加载而执行，而且只执行一次。
+#### Singleton Design Pattern
 
-![image-20240506163728436](image-20240506163728436.webp)
+The Singleton pattern ensures a class has only one instance throughout the application.
 
-![image-20240506163800678](image-20240506163800678.webp)
+![Singleton intro](image-20240506164625598.webp)
 
-> 实例代码块每次创建对象之前都会执行一次
+**Eager initialization (thread-safe):**
 
-![image-20240506163848096](image-20240506163848096.webp)
+![Eager singleton](image-20240506164801355.webp)
 
-![image-20240506164050846](image-20240506164050846.webp)
+![Eager singleton code](image-20240506165039015.webp)
 
-#### **static应用-单例设计模式**
+**Lazy initialization:**
 
-![image-20240506164625598](image-20240506164625598.webp)
+![Lazy singleton](image-20240506165339824.webp)
 
-![image-20240506164801355](image-20240506164801355.webp)
+![Lazy singleton code](image-20240506165422771.webp)
 
-![image-20240506165039015](image-20240506165039015.webp)
+### 6.10 Inheritance
 
-> 懒汉式单例
+Inheritance is one of the three pillars of OOP (along with encapsulation and polymorphism).
 
-![image-20240506165339824](image-20240506165339824.webp)
+![Inheritance diagram](image-20240506173728804.webp)
 
-![image-20240506165422771](image-20240506165422771.webp)
+A child-class object is constructed using blueprints from both the parent and the child class.
 
-### 10 继承
+![Parent-child construction](image-20240506173944381.webp)
 
-面向对象编程三大特征：继承、封装和多态。
+**Inheritance promotes code reuse.**
 
-![image-20240506173728804](image-20240506173728804.webp)
+#### Access Modifiers
 
-子类对象实际上是由子、父类两张设计图共同创建出来的
+Access modifiers control the visibility of class members (fields, methods, constructors).
 
-![image-20240506173944381](image-20240506173944381.webp)
+Java has four levels: `public`, `protected`, default (no modifier), and `private`.
 
-**继承可以提高代码的复用性**。
-
-#### 权限修饰符
-
-权限修饰符是用来限制类的成员（成员变量、成员方法、构造器...）能够被访问的范围。
-
-四个权限修饰符：public（公有的）、private（私有的），protected（受保护的）、缺省的（不写任何修饰符）
-
-![image-20240506174422400](image-20240506174422400.webp)
+![Access modifier table](image-20240506174422400.webp)
 
 ```java
 public class Fu {
-    // 1、私有:只能在本类中访问
-    private void privateMethod(){
+    // 1. private: accessible only within this class
+    private void privateMethod() {
         System.out.println("==private==");
     }
 
-    // 2、缺省：本类，同一个包下的类
-    void method(){
-        System.out.println("==缺省==");
+    // 2. default: this class + same package
+    void method() {
+        System.out.println("==default==");
     }
 
-    // 3、protected: 本类，同一个包下的类，任意包下的子类
-    protected void protectedMethod(){
+    // 3. protected: this class + same package + subclasses in any package
+    protected void protectedMethod() {
         System.out.println("==protected==");
     }
 
-    // 4、public： 本类，同一个包下的类，任意包下的子类，任意包下的任意类
-    public void publicMethod(){
+    // 4. public: accessible everywhere
+    public void publicMethod() {
         System.out.println("==public==");
     }
 
-    public void test(){
-        //在本类中，所有权限都可以被访问到
-        privateMethod(); //正确
-        method(); //正确
-        protectedMethod(); //正确
-        publicMethod(); //正确
+    public void test() {
+        // Within the same class, all access levels work
+        privateMethod();
+        method();
+        protectedMethod();
+        publicMethod();
     }
 }
 ```
 
-接下来，在和Fu类同一个包下，创建一个测试类Demo，演示同一个包下可以访问到哪些权限修饰的方法。
+From a class in the **same package**:
 
 ```java
 public class Demo {
     public static void main(String[] args) {
         Fu f = new Fu();
-        // f.privateMethod();	//私有方法无法使用
-        f.method();
-        f.protectedMethod();
-        f.publicMethod();
+        // f.privateMethod();   // compile error
+        f.method();             // OK
+        f.protectedMethod();    // OK
+        f.publicMethod();       // OK
     }
 }
 ```
 
-接下来，在另一个包下创建一个Fu类的子类，演示不同包下的子类中可以访问哪些权限修饰的方法。
+From a **subclass in a different package**:
 
 ```java
 public class Zi extends Fu {
-    //在不同包下的子类中，只能访问到public、protected修饰的方法
-    public void test(){
-        // privateMethod(); // 报错
-        // method(); // 报错
-        protectedMethod();	//正确
-        publicMethod();	//正确
+    public void test() {
+        // privateMethod();  // compile error
+        // method();         // compile error
+        protectedMethod();   // OK
+        publicMethod();      // OK
     }
 }
 ```
 
-接下来，在和Fu类不同的包下，创建一个测试类Demo2，演示一下不同包的无关类，能访问到哪些权限修饰的方法；
+From an **unrelated class in a different package**:
 
 ```java
 public class Demo2 {
     public static void main(String[] args) {
         Fu f = new Fu();
-        // f.privateMethod(); // 报错
-        // f.method();		  //报错
-        // f.protecedMethod();//报错
-        f.publicMethod();	//正确
-
-        Zi zi = new Zi();
-        // zi.protectedMethod();
+        // f.privateMethod();    // compile error
+        // f.method();           // compile error
+        // f.protectedMethod();  // compile error
+        f.publicMethod();        // OK
     }
 }
 ```
 
-#### 单继承、Object
+#### Single Inheritance and Object
 
-Java语言只支持单继承，不支持多继承，但是可以多层继承
+Java supports **single inheritance** only — a class can extend at most one parent class. However, inheritance can be **multi-level** (A extends B extends C). All classes ultimately inherit from `Object`.
 
-#### 方法重写
+#### Method Overriding
 
-当子类觉得父类方法不好用，或者无法满足父类需求时，子类可以重写一个方法名称、参数列表一样的方法，去覆盖父类的这个方法，这就是方法重写。
+When a subclass needs different behavior from an inherited method, it can **override** that method by defining a new implementation with the same signature.
 
-**注意**：重写后，方法的访问遵循就近原则
-
-写一个A类作为父类，定义两个方法print1和print2
+**Note:** After overriding, method calls follow the nearest-match principle.
 
 ```java
 public class A {
-    public void print1(){
+    public void print1() {
         System.out.println("111");
     }
 
-    public void print2(int a, int b){
+    public void print2(int a, int b) {
         System.out.println("111111");
     }
 }
 ```
 
-再写一个B类作为A类的子类，重写print1和print2方法。
-
 ```java
-public class B extends A{
-    // 方法重写
-    @Override // 安全，可读性好
-    public void print1(){
+public class B extends A {
+    @Override
+    public void print1() {
         System.out.println("666");
     }
 
-
-    // 方法重写
     @Override
-    public void print2(int a, int b){
+    public void print2(int a, int b) {
         System.out.println("666666");
     }
 }
 ```
 
-重写注意点：
+Override rules:
 
-- 1.重写的方法上面，可以加一个注解@Override,用于标注这个方法是复写的父类方法
-- 2.子类复写父类方法时，访问权限必须大于或者等于父类方法的权限
-	public > protected > 缺省
-- 3. 重写的方法返回值类型，必须与被重写的方法返回值类型一样，或者范围更小
-- 4. 私有方法、静态方法不能被重写，如果重写会报错。
+1. Use the `@Override` annotation for safety and readability.
+2. The child method's access level must be **equal to or broader** than the parent's (`public > protected > default`).
+3. The return type must be the same or a more specific subtype.
+4. `private` and `static` methods cannot be overridden.
 
-#### 子类中访问成员特点
+#### Member Access in Subclasses
 
-子类中访问其他成员（成员变量、成员方法），依据就近原则。
+When accessing fields or methods from a subclass, Java follows the **nearest-match (proximity) principle**: it checks the subclass first, then walks up the hierarchy.
 
-#### 子类中访问构造器的特点
+#### Constructor Chaining
 
-- 子类全部构造器，都会先调用父类构造器，再执行自己
+- Every subclass constructor **implicitly calls the parent's no-arg constructor** (`super()`) as its first statement.
+- You can explicitly call a parent constructor with `super(args)`.
 
-- 如果不想使用默认的`super()`方式调用父类构造器，还可以手动使用`super(参数)`调用父类有参数构造器。
-
-  ![image-20240506201217549](image-20240506201217549.webp)
+  ![Constructor chaining](image-20240506201217549.webp)
 
 ```
-访问本类成员：
-	this.成员变量	//访问本类成员变量
-	this.成员方法	//调用本类成员方法
-	this()		   //调用本类空参数构造器
-    this(参数)	  //调用本类有参数构造器
-	
-访问父类成员：
-	super.成员变量	//访问父类成员变量
-	super.成员方法	//调用父类成员方法
-	super()		   //调用父类空参数构造器
-    super(参数)	  //调用父类有参数构造器
-    
-注意：this和super访问构造方法，只能用到构造方法的第一句，否则会报错。
+Accessing members of the current class:
+    this.field         // access this class's field
+    this.method()      // call this class's method
+    this()             // call this class's no-arg constructor
+    this(args)         // call this class's parameterized constructor
+
+Accessing members of the parent class:
+    super.field        // access parent's field
+    super.method()     // call parent's method
+    super()            // call parent's no-arg constructor
+    super(args)        // call parent's parameterized constructor
+
+Note: this() and super() must be the first statement in a constructor.
 ```
 
-### 11 多态
+### 6.11 Polymorphism
 
-多态是在继承、实现情况下的一种现象，表现为：对象多态、行为多态。
+Polymorphism means that a single variable can refer to objects of different types at runtime. It manifests as **object polymorphism** and **behavior polymorphism**.
 
-比如：Teacher和Student都是People的子类，代码可以写成下面的样子
+For example, if `Teacher` and `Student` both extend `People`:
 
-![image-20240507102216180](image-20240507102216180.webp)
+![Polymorphism example](image-20240507102216180.webp)
 
-在多态形式下，右边的代码是解耦合的，便于扩展和维护。
-
-定义方法时，使用父类类型作为形参，可以接收一切子类对象，扩展行更强，更便利。
+Polymorphism makes code **loosely coupled** and easy to extend.
 
 ```java
 public class Test2 {
     public static void main(String[] args) {
-        // 目标：掌握使用多态的好处
-		Teacher t = new Teacher();
-		go(t);
+        Teacher t = new Teacher();
+        go(t);
 
         Student s = new Student();
         go(s);
     }
 
-    //参数People p既可以接收Student对象，也能接收Teacher对象。
-    public static void go(People p){
-        System.out.println("开始------------------------");
+    // Accepts any People subclass
+    public static void go(People p) {
+        System.out.println("Start ------------------------");
         p.run();
-        System.out.println("结束------------------------");
+        System.out.println("End   ------------------------");
     }
 }
 ```
 
-多态形式下不能直接调用子类特有方法，但是转型后是可以调用。父类变量转换为子类类型。格式如下：
+You cannot call child-specific methods through a parent-type reference. To do so, you need to **downcast**:
 
 ```java
-//如果p接收的是子类对象
-if(父类变量 instance 子类){
-    //则可以将p转换为子类类型
-    子类 变量名 = (子类)父类变量;
+if (p instanceof Student) {
+    Student student = (Student) p;
+    // Now you can call Student-specific methods
 }
 ```
 
-![image-20240507102955810](image-20240507102955810.webp)
+![Type casting](image-20240507102955810.webp)
 
-如果类型转换错了，就会出现类型转换异常ClassCastException。
+If you cast to the wrong type, Java throws a `ClassCastException`.
 
-### 12 final关键字
+### 6.12 The `final` Keyword
 
-final关键字是最终的意思，可以修饰类、修饰方法、修饰变量
+`final` means "unchangeable." It can modify classes, methods, and variables:
 
-- final修饰类：该类称为最终类，特点是不能被继承
+- **final class:** Cannot be extended (subclassed).
 
-![image-20240507103455642](image-20240507103455642.webp)
+![final class](image-20240507103455642.webp)
 
-- final修饰方法：该方法称之为最终方法，特点是不能被重写。
+- **final method:** Cannot be overridden.
 
-![image-20240507103643803](image-20240507103643803.webp)
+![final method](image-20240507103643803.webp)
 
-- final修饰变量：该变量只能被赋值一次。
+- **final variable:** Can only be assigned once.
 
-![image-20240507103754028](image-20240507103754028.webp)
+![final variable](image-20240507103754028.webp)
 
-![image-20240507103805016](image-20240507103805016.webp)
+![final variable example](image-20240507103805016.webp)
 
-#### 常量
+#### Constants
 
-被 static final 修饰的成员变量，称之为常量，通常用于记录系统的配置信息。
-
-代码来演示一下：
+A field declared `static final` is a **constant** — typically used for configuration values.
 
 ```java
 public class Constant {
-    //常量: 定义一个常量表示学校名称
-    //为了方便在其他类中被访问所以一般还会加上public修饰符
-    //常量命名规范：建议都采用大写字母命名，多个单词之前有_隔开
+    // Convention: UPPER_SNAKE_CASE
     public static final String SCHOOL_NAME = "test";
 }
 ```
@@ -1035,424 +941,331 @@ public class Constant {
 ```java
 public class FinalDemo2 {
     public static void main(String[] args) {
-        //由于常量是static的所以，在使用时直接用类名就可以调用
-        System.out.println(Constant.SCHOOL_NAME);
-        System.out.println(Constant.SCHOOL_NAME);
-        System.out.println(Constant.SCHOOL_NAME);
-        System.out.println(Constant.SCHOOL_NAME);
-        System.out.println(Constant.SCHOOL_NAME);
-        System.out.println(Constant.SCHOOL_NAME);
         System.out.println(Constant.SCHOOL_NAME);
     }
 }
 ```
 
-程序编译后，常量会“宏替换”，出现常量的地方，全都会被替换为其记住的字面量。把代码反编译后，其实代码是下面的样子:
+At compile time, constants are **inlined** (macro-replaced). The compiled bytecode replaces every reference to the constant with its literal value.
+
+### 6.13 Abstract Classes and Methods
+
+The `abstract` keyword marks a class or method as incomplete:
 
 ```java
-public class FinalDemo2 {
-    public static void main(String[] args) {
-        System.out.println("test");
-        System.out.println("test"E);
-        System.out.println("test");
-        System.out.println("test");
-        System.out.println("test");
-        System.out.println("test");
-        System.out.println("test");
-    }
-}
-```
-
-### 13 抽象
-
-关键字abstract（抽象），它可以修饰类（叫抽象类）也可以修饰方法（叫抽象方法，不允许有方法体）
-
-```java
-//abstract修饰类，这个类就是抽象类
-public abstract class A{
-    //abstract修饰方法，这个方法就是抽象方法
+// Abstract class
+public abstract class A {
+    // Abstract method (no body)
     public abstract void test();
 }
 ```
 
-- 抽象类是不能创建对象的，如果抽象类的对象就会报错。
-
-- 抽象类虽然不能创建对象，但是它可以作为父类让子类继承,且子类继承父类必须重写父类的所有抽象方法。
-
-  ```java
-  //B类继承A类，必须复写test方法
-  public class B extends A {
-      @Override
-      public void test() {
-  
-      }
-  }
-  ```
-
-- 子类继承父类如果不复写父类的抽象方法，要想不出错，这个子类也必须是抽象类
+- You **cannot instantiate** an abstract class.
+- A subclass **must override all abstract methods** — unless it is also declared abstract.
 
 ```java
-//B类基础A类，此时B类也是抽象类，这个时候就可以不重写A类的抽象方法
+public class B extends A {
+    @Override
+    public void test() {
+        // implementation
+    }
+}
+```
+
+```java
+// If B doesn't implement test(), B must also be abstract
 public abstract class B extends A {
 
 }
 ```
 
-抽象类的使用场景和好处
+Abstract classes are useful for:
 
-```
-1.用抽象类可以把父类中相同的代码，包括方法声明都抽取到父类，这样能更好的支持多态，一提高代码的灵活性。
+1. **Extracting common code** into a parent class while still supporting polymorphism.
+2. **Defining a contract** when you don't yet know the specific implementation — subclasses will fill in the details later.
 
-2.反过来用，我们不知道系统未来具体的业务实现时，我们可以先定义抽象类，将来让子类去实现，以方便系统的扩展。
-```
+### 6.14 Template Method Pattern
 
-### 14 模版方法模式
+The Template Method pattern solves the problem of **duplicate code across subclasses**.
 
-设计模式是解决某一类问题的最优方案。**模板方法模式主要解决方法中存在重复代码的问题**
+If classes A and B both have a `sing()` method where the beginning and end are identical but the middle differs, you can extract the common parts into an abstract parent class:
 
-比如A类和B类都有sing()方法，sing()方法的开头和结尾都是一样的，只是中间一段内容不一样。此时A类和B类的sing()方法中就存在一些相同的代码。
+![Template method problem](image-20240509170815163.webp)
 
-![image-20240509170815163](image-20240509170815163.webp)
+![Template method solution](image-20240509170840515.webp)
 
-怎么解决上面的重复代码问题呢？ 我们可以写一个抽象类C类，在C类中写一个doSing()的抽象方法。再写一个sing()方法，代码如下：
-
-![image-20240509170840515](image-20240509170840515.webp)
-
-最后，再写一个测试类Test
-
-```
+```java
 public class Test {
     public static void main(String[] args) {
-        // 目标：搞清楚模板方法设计模式能解决什么问题，以及怎么写。
         B b = new B();
         b.sing();
     }
 }
 ```
 
-模板方法模式解决了多个子类中有相同代码的问题。具体实现步骤如下:
+Implementation steps:
 
-- 第1步：定义一个抽象类，把子类中相同的代码写成一个模板方法。
-- 第2步：把模板方法中不能确定的代码写成抽象方法，并在模板方法中调用。
-- 第3步：子类继承抽象类，只需要父类抽象方法就可以了。
+1. Define an abstract class with a **template method** containing the shared code.
+2. Define abstract methods for the parts that vary, and call them from the template method.
+3. Subclasses extend the abstract class and implement only the abstract methods.
 
-### 15 接口interface
+### 6.15 Interfaces
 
-java提供了一个关键字interface，用它来定义接口这种特殊结构，格式如下：
-
-```
-public interface 接口名{
-    //成员变量（常量）
-    //成员方法（抽象方法）
-}
-```
-
-![image-20240509171311349](image-20240509171311349.webp)
-
-接口要注意下面两点：
-
-- 接口是用来被类实现（implements）的，我们称之为实现类。
-- 一个类是可以实现多个接口的（接口可以理解成干爹），类实现接口必须重写所有接口的全部抽象方法，否则这个类也必须是抽象类
-
-接口的好处：
-
-- 弥补了类单继承的不足，一个类同时可以实现多个接口。
-- 让程序可以面向接口编程，这样程序员可以灵活方便的切换各种业务实现。
-
-案例演示，假设有一个Studnet学生类，还有一个Driver司机的接口，还有一个Singer歌手的接口。现在要写一个A类，想让他既是学生，偶然也是司机能够开车，偶尔也是歌手能够唱歌。那我们代码就可以这样设计，如下：
-
-![image-20240509172146952](image-20240509172146952.webp)
-
-一个接口可以继承多个接口，接口同时也可以被类实现。
-
-### 16 内部类
-
- 内部类是类中的五大成分之一（成员变量、方法、构造器、内部类、代码块），如果一个类定义在另一个类的内部，这个类就是内部类。
-
-当一个类的内部，包含一个完整的事物，且这个事物没有必要单独设计时，就可以把这个事物设计成内部类。
-
-内部类有四种形式，分别是成员内部类、静态内部类、局部内部类、匿名内部类。
-
-匿名内部类使用相对较多一点，匿名内部类是一种特殊的局部内部类；所谓匿名，指的是程序员不需要为这个类声明名字。
-
-匿名内部类的格式：
-
-```
-new 父类/接口(参数值){
-    @Override
-    重写父类/接口的方法;
-}
-```
-
-匿名内部类本质上是一个没有名字的子类对象、或者接口的实现类对象。
-
-![image-20240509173407482](image-20240509173407482.webp)
-
-匿名内部类的作用：简化了创建子类对象、实现类对象的书写格式。
-
-**只有在调用方法时，当方法的形参是一个接口或者抽象类，为了简化代码书写，而直接传递匿名内部类对象给方法。**这样就可以少写一个类。比如，看下面代码：
-
-![image-20240509173532567](image-20240509173532567.webp)
-
-### 17 枚举
-
-枚举是一种特殊的类，它的格式是：
-
-```
-public enum 枚举类名{
-    枚举项1,枚举项2,枚举项3;
-}
-```
-
-其实枚举项就表示枚举类的对象，只是这些对象在定义枚举类时就预先写好了，以后就只能用这几个固定的对象。
-
-![image-20240509173839500](image-20240509173839500.webp)
-
-枚举一般表示几个固定的值，然后作为参数进行传输
-
-### 18 泛型
-
-泛型指的是，在定义类、接口、方法时，同时声明了一个或者多个类型变量（如：<E>），称为泛型类、泛型接口、泛型方法、它们统称为泛型。
-
-前面学过的ArrayList类就是一个泛型类，打开API文档查看
-
-![image-20240509174121417](image-20240509174121417.webp)
-
-- 泛型的好处：在编译阶段可以避免出现一些非法的数据。
-- 泛型的本质：把具体的数据类型传递给类型变量
-
-#### 自定义泛型类
-
-实际工作中一般都是源代码中写好，我们直接用的，就是ArrayList<E>这样的，自己定义泛型类是非常少的，自定义泛型类的格式如下：
-
-```
-//这里的<T,W>其实指的就是类型变量，可以是一个，也可以是多个。
-public class 类名<T,W>{
-    
-}
-```
-
-![image-20240509174419959](image-20240509174419959.webp)
-
-![image-20240509174430125](image-20240509174430125.webp)
-
-#### 自定义泛型接口
-
-泛型接口其实指的是在接口中把不确定的数据类型用`<类型变量>`表示。定义格式如下：
-
-```
-//这里的类型变量，一般是一个字母，比如<E>
-public interface 接口名<类型变量>{
-    
-}
-```
-
-#### 泛型方法
-
-格式：
-
-```
-public <泛型变量,泛型变量> 返回值类型 方法名(形参列表){
-    
-}
-```
-
-![image-20240509174828524](image-20240509174828524.webp)
-
-![image-20240509194737575](image-20240509194737575.webp)
-
-#### 泛型限定
-
-泛型限定的意思是对泛型的数据类型进行范围的限制。有如下的三种格式：
-
-- <?> 表示任意类型
-- <? extends 数据类型> 表示指定类型或者指定类型的子类
-- <? super 数据类型> 表示指定类型或者指定类型的父类
-
-演示一下，假设有Car作为父类，BENZ，BWM两个类作为Car的子类，代码如下：
-
-![image-20240509195036598](image-20240509195036598.webp)
-
-#### 泛型擦除
-
-泛型只能编译阶段有效，一旦编译成字节码，字节码中是不包含泛型的
-
-泛型只支持引用数据类型，不支持基本数据类型
-
-把下面的代码的字节码进行反编译
-
-![image-20240509195159818](image-20240509195159818.webp)
-
-下面是反编译之后的代码，我们发现ArrayList后面没有泛型
-
-![image-20240509195222000](image-20240509195222000.webp)
-
-### 19 包装类
-
-Java中有一句很经典的话，万物皆对象。Java中的8种基本数据类型还不是对象，所以要把它们变成对象，变成对象之后，可以提供一些方法对数据进行操作。
-
-8种基本数据类型都用一个包装类与之对一个，如下图所示
-
-![image-20240510144338285](image-20240510144338285.webp)
-
-#### 创建包装类的对象方式、自动装箱和拆箱的特性；以Integer为例：
+Java provides the `interface` keyword for defining a contract:
 
 ```java
-//1.创建Integer对象，封装基本类型数据10
+public interface InterfaceName {
+    // Constants (implicitly public static final)
+    // Abstract methods (implicitly public abstract)
+}
+```
+
+![Interface example](image-20240509171311349.webp)
+
+Key points:
+
+- A class **implements** an interface. One class can implement **multiple interfaces** (compensating for Java's single-inheritance limitation).
+- The implementing class must override all abstract methods, or it must be declared abstract.
+
+Benefits:
+
+- **Multiple inheritance of behavior** — A class can implement many interfaces.
+- **Programming to an interface** — Enables flexible swapping of implementations.
+
+![Interface implementation](image-20240509172146952.webp)
+
+Interfaces can also extend other interfaces, and a single interface can extend multiple interfaces.
+
+### 6.16 Inner Classes
+
+An inner class is a class defined inside another class. Java supports four kinds: member inner class, static inner class, local inner class, and **anonymous inner class**.
+
+Anonymous inner classes are the most commonly used. They create a nameless subclass or interface implementation on the fly:
+
+```java
+new ParentClassOrInterface(args) {
+    @Override
+    // override methods
+};
+```
+
+![Anonymous inner class](image-20240509173407482.webp)
+
+Anonymous inner classes shine when a method parameter expects an interface or abstract class — you can pass the implementation inline without creating a separate class file:
+
+![Anonymous inner class usage](image-20240509173532567.webp)
+
+### 6.17 Enums
+
+An enum is a special class that represents a fixed set of constants:
+
+```java
+public enum Season {
+    SPRING, SUMMER, AUTUMN, WINTER;
+}
+```
+
+Each enum constant is an instance of the enum class, pre-defined at compile time.
+
+![Enum example](image-20240509173839500.webp)
+
+Enums are ideal for representing a closed set of values and passing them as type-safe parameters.
+
+### 6.18 Generics
+
+Generics let you parameterize types — declare one or more type variables (like `<E>`) when defining a class, interface, or method.
+
+`ArrayList` is a generic class:
+
+![ArrayList generic](image-20240509174121417.webp)
+
+- **Benefit:** Catches type errors at compile time rather than runtime.
+- **Essence:** Passes a concrete data type to a type variable.
+
+#### Custom Generic Classes
+
+```java
+// T and W are type parameters
+public class ClassName<T, W> {
+
+}
+```
+
+![Generic class example 1](image-20240509174419959.webp)
+
+![Generic class example 2](image-20240509174430125.webp)
+
+#### Custom Generic Interfaces
+
+```java
+public interface InterfaceName<E> {
+
+}
+```
+
+#### Generic Methods
+
+```java
+public <T, W> ReturnType methodName(parameters) {
+
+}
+```
+
+![Generic method example 1](image-20240509174828524.webp)
+
+![Generic method example 2](image-20240509194737575.webp)
+
+#### Bounded Type Parameters (Wildcards)
+
+You can restrict which types a generic accepts:
+
+- `<?>` — Any type (unbounded wildcard)
+- `<? extends Type>` — Type or any of its subclasses (upper bound)
+- `<? super Type>` — Type or any of its superclasses (lower bound)
+
+![Wildcard example](image-20240509195036598.webp)
+
+#### Type Erasure
+
+Generics exist only at **compile time**. After compilation, the bytecode contains no generic type information — this is called **type erasure**.
+
+Generics only support **reference types**, not primitives (use wrapper classes like `Integer` instead of `int`).
+
+![Before erasure](image-20240509195159818.webp)
+
+![After erasure](image-20240509195222000.webp)
+
+### 6.19 Wrapper Classes
+
+Java's philosophy is "everything is an object," but the 8 primitive types are not objects. **Wrapper classes** bridge this gap by wrapping primitives in objects, enabling them to be used with collections and APIs that require objects.
+
+![Wrapper class mapping](image-20240510144338285.webp)
+
+#### Autoboxing and Unboxing (using Integer as an example)
+
+```java
+// 1. Constructor (deprecated in newer JDK versions)
 Integer a = new Integer(10);
 
-//2.使用Integer类的静态方法valueOf(数据)
+// 2. Static factory method
 Integer b = Integer.valueOf(10);
 
-//3.还有一种自动装箱的写法（意思就是自动将基本类型转换为引用类型）
+// 3. Autoboxing: primitive -> wrapper automatically
 Integer c = 10;
 
-//4.有装箱肯定还有拆箱（意思就是自动将引用类型转换为基本类型）
+// 4. Unboxing: wrapper -> primitive automatically
 int d = c;
 
-//5.装箱和拆箱在使用集合时就有体现
+// 5. Autoboxing/unboxing with collections
 ArrayList<Integer> list = new ArrayList<>();
-//添加的元素是基本类型，实际上会自动装箱为Integer类型
-list.add(100);
-//获取元素时，会将Integer类型自动拆箱为int类型
-int e = list.get(0);
+list.add(100);         // autoboxing: int -> Integer
+int e = list.get(0);   // unboxing: Integer -> int
 ```
 
-#### 包装类数据类型转换
+#### Type Conversion with Wrapper Classes
 
-- 把字符串转换为数值型数据：包装类.parseXxx(字符串)
+- **String to number:** `Integer.parseInt("123")`, `Double.parseDouble("3.14")`
+- **Number to String:** `String.valueOf(123)`
 
-```
-public static int parseInt(String s)
-    把字符串转换为基本数据类型
-```
+![Conversion methods](image-20240510144917163.webp)
 
-- 将数值型数据转换为字符串：包装类.valueOf(数据);
+### 6.20 Common API Classes
 
-```
-public static String valueOf(int a)
-    把基本类型数据转换为
-```
+#### 1. Object
 
-![image-20240510144917163](image-20240510144917163.webp)
+`Object` is the root of all Java classes. Every class inherits its methods:
 
-### 20 常用API
+- `clone()` — Creates a copy of the object.
+- `equals(Object obj)` — Checks equality (by default, checks reference equality).
+- `toString()` — Returns a string representation.
 
-#### 1. Object类
+#### 2. Objects (Utility Class)
 
-Object类是Java中所有类的祖宗类，因此，Java中所有类的对象都可以直接使用Object类中提供的一些方法。
+`Objects` is a utility class with null-safe methods:
 
-- clone()
-- equals(Object obj)
-- toString()
+![Objects methods](image-20240510145748115.webp)
 
-#### 2. Objects类
+The key difference: `Object.equals()` throws a `NullPointerException` if the caller is null, while `Objects.equals()` handles null safely.
 
-Objects是一个工具类，提供了一些方法可以对任意对象进行操作。主要方法如下
+![Objects.equals vs Object.equals](image-20240510145915640.webp)
 
-![image-20240510145748115](image-20240510145748115.webp)
+#### 3. StringBuilder
 
-Object也有equals，Objects有equals，那两者有什么区别呢？
+`StringBuilder` represents a **mutable** character sequence — ideal for building strings through repeated modification.
 
-![image-20240510145915640](image-20240510145915640.webp)
+![StringBuilder methods](image-20240510150136587.webp)
 
-Object的equals方法前提是对象不能为null，Objects则可以，使用更安全。
+**Why is StringBuilder faster than String for concatenation?**
 
-#### 3. StringBuilder类
+![StringBuilder vs String performance](image-20240510150212090.webp)
 
-- StringBuilder代表可变字符串对象，相当于是一个容器，它里面的字符串是可以改变的，就是用来操作字符串的。
+Concatenating a million strings with `+` can take over a minute, while `StringBuilder` finishes in under a second.
 
-- 好处：StringBuilder比String更合适做字符串的修改操作，效率更高，代码也更加简洁。
+The reason: `String` is immutable, so each `+` creates a new object. Even with JDK optimizations, a new `StringBuilder` is created per loop iteration. Using a single `StringBuilder` from the start avoids this overhead.
 
-  ![image-20240510150136587](image-20240510150136587.webp)
+![String concatenation internals](image-20240510152257362.webp)
 
-为什么说StringBuilder对字符串进行操作比String效率高？
+Internally, `StringBuilder` maintains a `char[]` (or `byte[]` in newer JDK versions). `append()` copies characters into this array, expanding it as needed.
 
-![image-20240510150212090](image-20240510150212090.webp)
-
-直接使用Stirng拼接100万次，等了1分钟，还没结束，但是使用StringBuilder做拼接，不到1秒钟出结果了，why？
-
-简单说：String是不可变对象，而StringBuilder在拼接时只是把字符串转为char拷贝到char[]
-
-String对象不可变，则每次拼接都会创建新的String对象。即使在新的jdk有对`String+`的优化，仍然是效率不够高，比如每次循环拼接时都会被自动创建一个StringBuider对象来append，最后还会将该对象调用toString()方法。
-
-![image-20240510152257362](image-20240510152257362.webp)
-
-StringBuilder其实就是个char[]，append时，是将String对象转为char后放入StringBuilder的char[]内。当长度不够放时，对该char[]扩容即可。
-
-![image-20240510152318548](image-20240510152318548.webp)
+![StringBuilder internals](image-20240510152318548.webp)
 
 #### 4. StringJoiner
 
-StringJoiner号称是拼接神器，不仅效率高，而且代码简洁
+`StringJoiner` (Java 8+) is purpose-built for joining strings with delimiters, prefixes, and suffixes — combining efficiency with clean code.
 
-![image-20240510152549736](image-20240510152549736.webp)
+![StringJoiner example](image-20240510152549736.webp)
 
-#### 5. Math类
+#### 5. Math
 
-Math是数学的意思，该类提供了很多个进行数学运算的方法，如求绝对值，求最大值，四舍五入等。
+The `Math` class provides static methods for common mathematical operations:
 
 ```java
 public class MathTest {
     public static void main(String[] args) {
-        // 目标：了解下Math类提供的常见方法。
-        // 1、public static int abs(int a)：取绝对值（拿到的结果一定是正数）
-        //    public static double abs(double a)
-        System.out.println(Math.abs(-12)); // 12
-        System.out.println(Math.abs(123)); // 123
-        System.out.println(Math.abs(-3.14)); // 3.14
+        // Absolute value
+        System.out.println(Math.abs(-12));    // 12
+        System.out.println(Math.abs(-3.14));  // 3.14
 
-        // 2、public static double ceil(double a): 向上取整
+        // Ceiling (round up)
         System.out.println(Math.ceil(4.0000001)); // 5.0
-        System.out.println(Math.ceil(4.0)); // 4.0
+        System.out.println(Math.ceil(4.0));        // 4.0
 
-        // 3、public static double floor(double a): 向下取整
-        System.out.println(Math.floor(4.999999)); // 4.0
-        System.out.println(Math.floor(4.0)); // 4.0
+        // Floor (round down)
+        System.out.println(Math.floor(4.999999));  // 4.0
 
-        // 4、public static long round(double a)：四舍五入
-        System.out.println(Math.round(3.4999)); // 3
-        System.out.println(Math.round(3.50001)); // 4
+        // Round (half-up)
+        System.out.println(Math.round(3.4999));    // 3
+        System.out.println(Math.round(3.50001));   // 4
 
-        // 5、public static int max(int a, int b)：取较大值
-        //   public static int min(int a, int b)：取较小值
+        // Max and min
         System.out.println(Math.max(10, 20)); // 20
         System.out.println(Math.min(10, 20)); // 10
 
-        // 6、 public static double pow(double a, double b)：取次方
-        System.out.println(Math.pow(2, 3)); // 2的3次方   8.0
-        System.out.println(Math.pow(3, 2)); // 3的2次方   9.0
+        // Power
+        System.out.println(Math.pow(2, 3));   // 8.0
 
-        // 7、public static double random()： 取随机数 [0.0 , 1.0) (包前不包后)
+        // Random number in [0.0, 1.0)
         System.out.println(Math.random());
     }
 }
 ```
 
-#### 6. System类
+#### 6. System
 
-System类，提供了一些获取获取系统数据的方法。比如获取系统时间
+The `System` class provides access to system-level resources:
 
 ```java
-/**
- * 目标：了解下System类的常见方法。
- */
 public class SystemTest {
     public static void main(String[] args) {
+        // 1. Exit the JVM (don't use in production)
+        // System.exit(0);
 
-        // 1、public static void exit(int status):
-        //   终止当前运行的Java虚拟机。
-        //   该参数用作状态代码; 按照惯例，非零状态代码表示异常终止。
-        System.exit(0); // 人为的终止虚拟机。(不要使用)
-
-        // 2、public static long currentTimeMillis():
-        //    获取当前系统的时间
-        //    返回的是long类型的时间毫秒值：指的是从1970-1-1 0:0:0开始走到此刻的总的毫秒值，1s = 1000ms
+        // 2. Current time in milliseconds since Unix epoch (1970-01-01 00:00:00 UTC)
         long time = System.currentTimeMillis();
         System.out.println(time);
 
         for (int i = 0; i < 1000000; i++) {
-            System.out.println("输出了：" + i);
+            System.out.println("Output: " + i);
         }
 
         long time2 = System.currentTimeMillis();
@@ -1461,232 +1274,190 @@ public class SystemTest {
 }
 ```
 
-#### 7. Runtime类
+#### 7. Runtime
 
-运行时类叫Runtime类，这个类可以用来获取JVM的一些信息，也可以用这个类去执行其他的程序
+The `Runtime` class provides information about the JVM environment and can execute external programs.
 
-![image-20240510160528198](image-20240510160528198.webp)
+![Runtime methods](image-20240510160528198.webp)
 
-#### 8. BigDecimal类
+#### 8. BigDecimal
 
-![image-20240510160659140](image-20240510160659140.webp)
+![BigDecimal intro](image-20240510160659140.webp)
 
-BigDecimal的出现是为了解决计算精度损失的问题。它提供了一些方法可以对数据进行四则运算，而且不丢失精度，同时还可以保留指定的小数位。
+`BigDecimal` solves **floating-point precision loss**. It supports the four arithmetic operations without losing precision and allows you to specify decimal places and rounding modes.
 
 ```java
 public class Test2 {
     public static void main(String[] args) {
-        // 目标：掌握BigDecimal进行精确运算的方案。
         double a = 0.1;
         double b = 0.2;
 
-        // 1、把浮点型数据封装成BigDecimal对象，再来参与运算。
-        // a、public BigDecimal(double val) 得到的BigDecimal对象是无法精确计算浮点型数据的。 注意：不推荐使用这个，
-        // b、public BigDecimal(String val)  得到的BigDecimal对象是可以精确计算浮点型数据的。 可以使用。
-        // c、public static BigDecimal valueOf(double val): 通过这个静态方法得到的BigDecimal对象是可以精确运算的。是最好的方案。
+        // Best practice: use BigDecimal.valueOf()
         BigDecimal a1 = BigDecimal.valueOf(a);
         BigDecimal b1 = BigDecimal.valueOf(b);
 
-        // 2、public BigDecimal add(BigDecimal augend): 加法
+        // Addition
         BigDecimal c1 = a1.add(b1);
-        System.out.println(c1);
+        System.out.println(c1); // 0.3
 
-        // 3、public BigDecimal subtract(BigDecimal augend): 减法
+        // Subtraction
         BigDecimal c2 = a1.subtract(b1);
-        System.out.println(c2);
+        System.out.println(c2); // -0.1
 
-        // 4、public BigDecimal multiply(BigDecimal augend): 乘法
+        // Multiplication
         BigDecimal c3 = a1.multiply(b1);
-        System.out.println(c3);
+        System.out.println(c3); // 0.02
 
-        // 5、public BigDecimal divide(BigDecimal b): 除法
+        // Division
         BigDecimal c4 = a1.divide(b1);
-        System.out.println(c4);
+        System.out.println(c4); // 0.5
 
-//        BigDecimal d1 = BigDecimal.valueOf(0.1);
-//        BigDecimal d2 = BigDecimal.valueOf(0.3);
-//        BigDecimal d3 = d1.divide(d2);
-//        System.out.println(d3);
-
-        // 6、public BigDecimal divide(另一个BigDecimal对象，精确几位，舍入模式) : 除法，可以设置精确几位。
+        // Division with scale and rounding
         BigDecimal d1 = BigDecimal.valueOf(0.1);
         BigDecimal d2 = BigDecimal.valueOf(0.3);
-        BigDecimal d3 = d1.divide(d2,  2, RoundingMode.HALF_UP); // 0.33
+        BigDecimal d3 = d1.divide(d2, 2, RoundingMode.HALF_UP); // 0.33
         System.out.println(d3);
 
-        // 7、public double doubleValue() : 把BigDecimal对象又转换成double类型的数据。
-        //print(d3);
-        //print(c1);
+        // Convert back to double
         double db1 = d3.doubleValue();
-        double db2 = c1.doubleValue();
-        print(db1);
-        print(db2);
-    }
-
-    public static void print(double a){
-        System.out.println(a);
+        System.out.println(db1);
     }
 }
 ```
 
-### 21 日期类
+### 6.21 Date and Time
 
-#### 1. Date类
+#### 1. Date (Legacy)
 
-Java中是由Date类的对象表示日期或者时间。Date对象记录的时间是用毫秒值来表示的。
+The `Date` class represents a point in time, stored internally as milliseconds since the **Unix epoch** (January 1, 1970, 00:00:00 UTC).
 
-Java语言规定，1970年1月1日0时0分0秒认为是时间的起点，此时记作0，那么1000（1秒=1000毫秒）就表示1970年1月1日0时0分1秒，依次类推。
+![Date class](image-20240510161315322.webp)
 
-![image-20240510161315322](image-20240510161315322.webp)
+![Date constructors](image-20240510161655966.webp)
 
-Date类的构造方法，和常见的成员方法
+![Date methods](image-20240510161727189.webp)
 
-![image-20240510161655966](image-20240510161655966.webp)
+#### 2. SimpleDateFormat (Legacy)
 
-![image-20240510161727189](image-20240510161727189.webp)
+- **Formatting:** Converting a `Date` object to a formatted string.
+- **Parsing:** Converting a formatted string back to a `Date` object.
 
-#### 2. SimpleDateFormat
+![SimpleDateFormat](image-20240510161847571.webp)
 
-- 把Date对象转换为指定格式的日期字符串这个操作，叫做**日期格式化**
-- 反过来把指定格式的日期符串转换为Date对象的操作，叫做**日期解析
-
-![image-20240510161847571](image-20240510161847571.webp)
-
-注意：创建SimpleDateFormat对象时，在构造方法的参数位置传递日期格式，而日期格式是由一些特定的字母拼接而来的。我们需要记住常用的几种日期/时间格式
+Common date/time pattern letters:
 
 ```
-字母	   表示含义
-yyyy	年
-MM		月
-dd		日
-HH		时
-mm		分
-ss		秒
-SSS		毫秒
+Letter  Meaning
+yyyy    Year
+MM      Month
+dd      Day
+HH      Hour (24-hour)
+mm      Minute
+ss      Second
+SSS     Millisecond
 
-"2022年12月12日" 的格式是 "yyyy年MM月dd日"
-"2022-12-12 12:12:12" 的格式是 "yyyy-MM-dd HH:mm:ss"
-按照上面的格式可以任意拼接，但是字母不能写错
+Examples:
+"2022-12-12 12:12:12" -> "yyyy-MM-dd HH:mm:ss"
 ```
 
-上代码演示一下
+![SimpleDateFormat example](image-20240510161942363.webp)
 
-![image-20240510161942363](image-20240510161942363.webp)
+#### 3. Calendar (Legacy)
 
-#### 3. Calendar类
+`Calendar` offers richer date manipulation than `Date`, such as adding days, extracting individual fields, etc.
 
-Calendar类表示日历，它提供了一些比Date类更好用的方法。
+![Calendar intro](image-20240510162355817.webp)
 
-![image-20240510162355817](image-20240510162355817.webp)
+![Calendar methods](image-20240510162422251.webp)
 
-用Date类就不太好做，而用Calendar就特别方便。因为Calendar类提供了方法可以直接对日历中的年、月、日、时、分、秒等进行运算。
+#### 4. JDK 8+ Date/Time API
 
-![image-20240510162422251](image-20240510162422251.webp)
+Why introduce new date classes when `Date` already existed?
 
-#### 4. JDK8日期、时间、日期时间
+![Why new date API](image-20240510162617601.webp)
 
-为什么以前的Date类就可以表示日期，为什么要有新增的日期类呢？
+The JDK 8 date/time API provides much finer-grained classes: `LocalDate` (date only), `LocalTime` (time only), `LocalDateTime` (both), plus classes for time zones, durations, and more. All are **immutable** and **thread-safe**.
 
-![image-20240510162617601](image-20240510162617601.webp)
+![JDK 8 date classes overview](image-20240510162700984.webp)
 
-JDK8新增的日期类分得更细致一些，比如表示年月日用LocalDate类、表示时间秒用LocalTime类、而表示年月日时分秒用LocalDateTime类等；除了这些类还提供了对时区、时间间隔进行操作的类等。它们几乎把对日期/时间的所有操作都通过了API方法，用起来特别方便。
+- **LocalDate**
 
-![image-20240510162700984](image-20240510162700984.webp)
+  ![LocalDate usage](image-20240510163143116.webp)
 
-- LocalDate类的基本使用
+- **LocalTime**
 
-  ![image-20240510163143116](image-20240510163143116.webp)
+- **LocalDateTime**
 
-- LocalTime类的基本使用
+  ![LocalDateTime usage](image-20240510163231996.webp)
 
-- LocalDateTime类的基本使用
+#### 5. Time Zones (ZonedDateTime)
 
-  ![image-20240510163231996](image-20240510163231996.webp)
+Different regions use different time zones based on their longitude.
 
-#### 5. JDK8日期（时区）
+![Time zones intro](image-20240510163335612.webp)
 
-由于世界各个国家与地区的经度不同，各地区的时间也有所不同，因此会划分为不同的时区。每一个时区的时间也不太一样。
+![ZonedDateTime example](image-20240510163445694.webp)
 
-![image-20240510163335612](image-20240510163335612.webp)
+#### 6. Instant
 
-![image-20240510163445694](image-20240510163445694.webp)
+`Instant` represents a precise moment on the timeline, composed of seconds since epoch plus nanoseconds.
 
-#### 6. JDK8日期（Instant类）
+![Instant methods](image-20240510163610933.webp)
 
-通过获取Instant的对象可以拿到此刻的时间，该时间由两部分组成：从1970-01-01 00:00:00 开始走到此刻的总秒数+不够1秒的纳秒数。
+Use cases: measuring code execution time, recording timestamps for user actions.
 
-该类提供的方法如下图所示，可以用来获取当前时间，也可以对时间进行加、减、获取等操作。
+![Instant example](image-20240510163651157.webp)
 
-![image-20240510163610933](image-20240510163610933.webp)
+#### 7. DateTimeFormatter
 
-作用：可以用来记录代码的执行时间，或用于记录用户操作某个事件的时间点。
+![DateTimeFormatter intro](image-20240513144441716.webp)
 
-![image-20240510163651157](image-20240510163651157.webp)
-
-#### 7. JDK8日期（格式化器）
-
-![image-20240513144441716](image-20240513144441716.webp)
-
-![image-20240513144513507](image-20240513144513507.webp)
-
-演示一下
+![DateTimeFormatter methods](image-20240513144513507.webp)
 
 ```java
-/**
- *  目标：掌握JDK 8新增的DateTimeFormatter格式化器的用法。
- */
 public class Test6_DateTimeFormatter {
     public static void main(String[] args) {
-        // 1、创建一个日期时间格式化器对象出来。
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy年MM月dd日 HH:mm:ss");
+        // Create a formatter
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-        // 2、对时间进行格式化
+        // Format current time
         LocalDateTime now = LocalDateTime.now();
-        System.out.println(now);
-
-        String rs = formatter.format(now); // 正向格式化
+        String rs = formatter.format(now);
         System.out.println(rs);
 
-        // 3、格式化时间，其实还有一种方案。
-        String rs2 = now.format(formatter); // 反向格式化
+        // Alternative: call format on the datetime object
+        String rs2 = now.format(formatter);
         System.out.println(rs2);
 
-        // 4、解析时间：解析时间一般使用LocalDateTime提供的解析方法来解析。
-        String dateStr = "2029年12月12日 12:12:11";
+        // Parse a date string
+        String dateStr = "2029-12-12 12:12:11";
         LocalDateTime ldt = LocalDateTime.parse(dateStr, formatter);
         System.out.println(ldt);
     }
 }
 ```
 
-#### 8. JDK8日期（Period类）
+#### 8. Period
 
-![image-20240513144701091](image-20240513144701091.webp)
+![Period intro](image-20240513144701091.webp)
 
-先来演示Period类的用法，它的方法如下图所示。可以用来计算两个日期之间相隔的年、相隔的月、相隔的日。**只能两个计算LocalDate对象之间的间隔**
+`Period` calculates the difference between two `LocalDate` objects in years, months, and days.
 
-![image-20240513144742162](image-20240513144742162.webp)
+![Period methods](image-20240513144742162.webp)
 
-#### 9. JDK8日期（Duration类）
+#### 9. Duration
 
-**可以用于计算两个时间对象相差的天数、小时数、分数、秒数、纳秒数；支持LocalTime、LocalDateTime、Instant等时间**
+`Duration` calculates the difference between two time objects in days, hours, minutes, seconds, and nanoseconds. It works with `LocalTime`, `LocalDateTime`, and `Instant`.
 
-![image-20240513144902194](image-20240513144902194.webp)
+![Duration methods](image-20240513144902194.webp)
 
 ---
 
+[Next: Java Learning Notes Part 2](../2024-05-13-learn-java2)
 
+## References
 
-[下一篇《Java学习笔记（二）》](../2024-05-13-learn-java2)
-
-
-
-## *参考*
-
-[Java程序员学习路线图](https://yun.itheima.com/subject/javamap/index.html)
-
-[Java入门基础视频教程(B站)](https://www.bilibili.com/video/BV1Cv411372m/?spm_id_from=333.999.0.0) 
-
-[Java基础教程(YouTube)](https://www.youtube.com/watch?v=VqfGCmjQt10)
-
-[JavaWeb开发教程(B站)](https://www.bilibili.com/video/BV1m84y1w7Tb/?vd_source=4d819443886ce5506c7c6b65b4a7ad93)
+- [Java Developer Learning Roadmap](https://yun.itheima.com/subject/javamap/index.html)
+- [Java Basics Video Tutorial (Bilibili)](https://www.bilibili.com/video/BV1Cv411372m/?spm_id_from=333.999.0.0)
+- [Java Basics Tutorial (YouTube)](https://www.youtube.com/watch?v=VqfGCmjQt10)
+- [JavaWeb Development Tutorial (Bilibili)](https://www.bilibili.com/video/BV1m84y1w7Tb/?vd_source=4d819443886ce5506c7c6b65b4a7ad93)

@@ -2,81 +2,81 @@
 date = '2026-01-24'
 lastmod = '2026-02-23T10:00:00+08:00'
 draft = false
-title = 'Docker Compose 教程：docker-compose.yml 配置详解与实战案例（2026）'
-description = '最全 Docker Compose 教程：逐字段讲透 docker-compose.yml 的 services、volumes、networks、healthcheck 配置，附 WordPress+MySQL 实战案例和生产级模板。'
+title = 'Docker Compose Tutorial: docker-compose.yml Explained with Real Examples (2026)'
+description = 'Complete Docker Compose tutorial covering every docker-compose.yml field — services, volumes, networks, healthcheck, ports — with a WordPress + MySQL hands-on example and production-ready templates.'
 toc = true
-tags = ['Docker', 'Docker Compose', '容器化', '入门教程', 'YAML']
-categories = ['AI实战']
-keywords = ['docker compose 教程', 'docker-compose.yml 详解', 'docker compose 配置', 'compose.yaml', 'docker compose yml', 'docker compose 入门', 'docker compose volumes', 'docker compose networks', 'docker compose ports', '容器编排', 'docker compose 2026', 'docker compose yaml 教程', 'docker-compose.yml 怎么写', 'docker compose services', 'docker compose healthcheck']
+tags = ['Docker', 'Docker Compose', 'Containerization', 'Tutorial', 'YAML']
+categories = ['AI Guides']
+keywords = ['docker compose tutorial', 'docker-compose.yml explained', 'docker compose configuration', 'compose.yaml', 'docker compose yml', 'docker compose getting started', 'docker compose volumes', 'docker compose networks', 'docker compose ports', 'container orchestration', 'docker compose 2026', 'docker compose yaml tutorial', 'how to write docker-compose.yml', 'docker compose services', 'docker compose healthcheck']
 +++
 
-Docker Compose 是目前最流行的多容器编排工具，而 **docker-compose.yml**（新版推荐命名为 `compose.yaml`）就是它的核心配置文件。无论你是刚接触容器化的新手，还是想系统梳理配置细节的老手，这篇 Docker Compose 教程都适合你。
+Docker Compose is the go-to tool for running multi-container applications, and **docker-compose.yml** (now officially `compose.yaml`) is its configuration file. Whether you are picking up containers for the first time or brushing up on the finer details, this tutorial walks you through every field you will actually use.
 
-本文将逐字段讲解 compose.yaml 中 services、volumes、networks、ports、environment、healthcheck 等所有配置项的含义和用法，并通过 WordPress + MySQL 等实战案例帮你快速上手。配合 [Docker 常用命令速查](/posts/docker/2019-11-14-docker-commands/) 一起使用效果更佳。
+We will cover every key directive in compose.yaml — services, volumes, networks, ports, environment, healthcheck — and put them into practice with a WordPress + MySQL stack you can spin up in seconds. Pair this guide with the [Docker Command Cheat Sheet](/posts/docker/2019-11-14-docker-commands/) for an even smoother workflow.
 
-很多人一看到 `compose.yaml` 就头大，一堆冒号、缩进，不知道从何下手。其实它没那么复杂，下面我用最通俗的方式，带你彻底搞懂这个文件。
+A compose file can look intimidating at first glance — colons, indentation, nested keys everywhere. It is actually straightforward once you see the pattern. Let's break it down piece by piece.
 
-> **重要提示**：旧版 `docker-compose`（带连字符）是用 Python 写的独立工具，**已于 2023 年 7 月停止维护**。现在应该使用 `docker compose`（空格分隔），它是 Docker CLI 的内置插件，用 Go 重写，性能更好，功能更全。本文所有命令均使用新版语法。
+> **Heads up:** The old `docker-compose` binary (hyphenated) was a standalone Python tool that **reached end-of-life in July 2023**. The replacement is `docker compose` (space-separated), a Go-based plugin built into the Docker CLI. It is faster, better maintained, and the only version covered here.
 
 ---
 
-## 一、compose.yaml 是什么？
+## What Is compose.yaml?
 
-### 用盖房子来理解
+### A Building Analogy
 
-想象你要盖一栋房子：
+Think of it like constructing a building:
 
-- **Docker 镜像** = 建材（砖头、水泥、钢筋）
-- **Docker 容器** = 盖好的房间
-- **compose.yaml** = **设计图纸**
+- **Docker images** = building materials (bricks, cement, steel)
+- **Docker containers** = finished rooms
+- **compose.yaml** = the **blueprint**
 
-设计图纸上写着：
-- 要盖几个房间
-- 每个房间多大
-- 房间之间怎么连通
-- 水电怎么接
+The blueprint specifies:
+- How many rooms to build
+- The size of each room
+- How rooms connect to each other
+- Where the plumbing and wiring go
 
-compose.yaml 就是告诉 Docker：
-- 要启动几个容器
-- 每个容器用什么镜像
-- 容器之间怎么通信
-- 端口和数据怎么映射
+compose.yaml tells Docker:
+- Which containers to start
+- What image each container uses
+- How containers communicate
+- How ports and data are mapped
 
-### 没有它会怎样？
+### Life Without It
 
-没有 compose.yaml，你要一个个手动启动容器：
+Without a compose file, you launch each container manually:
 
 ```bash
-# 先启动数据库
+# Start the database
 docker run -d --name mysql -e MYSQL_ROOT_PASSWORD=123456 -v mysql_data:/var/lib/mysql mysql:8.0
 
-# 再启动 Redis
+# Start Redis
 docker run -d --name redis redis:7
 
-# 最后启动应用，还要连接上面两个
+# Start the app and link it to both
 docker run -d --name app --link mysql --link redis -p 8080:8080 my-app
 ```
 
-三个容器就要敲三行命令，参数一堆。有了 compose.yaml，一个命令搞定：
+Three containers, three commands, a wall of flags. With compose.yaml, one command does it all:
 
 ```bash
 docker compose up -d
 ```
 
-### 文件名的变化
+### File Naming History
 
-| 时代 | 文件名 | 说明 |
-|------|--------|------|
-| 旧版 (V1) | `docker-compose.yml` | 已弃用 |
-| 新版 (V2) | `compose.yaml`（推荐）| 也兼容 `compose.yml`、`docker-compose.yml`、`docker-compose.yaml` |
+| Era | Filename | Status |
+|-----|----------|--------|
+| Legacy (V1) | `docker-compose.yml` | Deprecated |
+| Current (V2) | `compose.yaml` (preferred) | Also accepts `compose.yml`, `docker-compose.yml`, `docker-compose.yaml` |
 
-新项目建议直接用 `compose.yaml`。
+For new projects, stick with `compose.yaml`.
 
 ---
 
-## 二、文件长什么样？
+## What Does the File Look Like?
 
-先看一个最简单的例子：
+Here is the simplest possible example:
 
 ```yaml
 services:
@@ -86,9 +86,9 @@ services:
       - "80:80"
 ```
 
-就这么几行，就能启动一个 Nginx 服务器。注意：**不需要写 `version` 了**，Compose V2 已经废弃了 `version` 字段。
+Four lines and you have a running Nginx server. Notice there is **no `version` field** — Compose V2 dropped it entirely.
 
-再看一个稍微复杂点的：
+A slightly more realistic file:
 
 ```yaml
 services:
@@ -121,39 +121,39 @@ volumes:
   db_data:
 ```
 
-别被吓到，我们一块块拆解。
+Let's pull it apart section by section.
 
 ---
 
-## 三、YAML 嵌套规范
+## YAML Nesting Rules
 
-在讲具体配置之前，先搞懂 YAML 的嵌套规则，否则写配置时会一头雾水。
+Before diving into specific directives, it helps to understand the indentation rules that YAML enforces — otherwise you will spend most of your time chasing whitespace errors.
 
-### 核心规则
+### Core Rules
 
-1. **用空格缩进，禁止用 Tab** — 建议统一用 2 个空格
-2. **同级元素缩进相同** — 同一层级的 key 必须对齐
-3. **子级比父级多缩进 2 个空格** — 表示从属关系
-4. **冒号后面要有空格** — `key: value`，不是 `key:value`
-5. **列表项用 `- ` 开头** — 短横线后面要有空格
+1. **Indent with spaces, never tabs** — use 2 spaces consistently
+2. **Siblings share the same indentation level** — all keys at the same depth must line up
+3. **Children are indented 2 more spaces than their parent** — this is how YAML represents hierarchy
+4. **A space is required after every colon** — `key: value`, not `key:value`
+5. **List items start with `- `** — a dash followed by a space
 
-### 嵌套层级图解
+### Layer-by-Layer Breakdown
 
-以你给的实际配置为例，逐层拆解：
+Here is a real-world config with each layer annotated:
 
 ```yaml
-# 第 0 层（顶层）：services 是根 key
+# Layer 0 (root): the top-level key
 services:
-  # 第 1 层：服务名（backend、frontend）
+  # Layer 1: service names (backend, frontend)
   backend:
-    # 第 2 层：服务的配置项
+    # Layer 2: service-level directives
     build:
-      # 第 3 层：build 的子配置
+      # Layer 3: sub-directives of build
       context: ./backend
       dockerfile: Dockerfile.dev
     container_name: octomira-backend
     ports:
-      # 第 2 层的列表项
+      # Layer 2 list items
       - "8000:8000"
     volumes:
       - ./backend:/app
@@ -179,63 +179,63 @@ services:
       - backend
 ```
 
-### YAML 的三种数据类型
+### Three YAML Data Types
 
 ```yaml
-# 1. 键值对（映射 / Map）
+# 1. Key-value pair (mapping)
 container_name: octomira-backend
 # key: value
 
-# 2. 列表（序列 / Sequence）
+# 2. List (sequence)
 ports:
   - "8000:8000"
   - "8001:8001"
-# 短横线 + 空格 表示列表的每一项
+# dash + space marks each item
 
-# 3. 嵌套映射（映射套映射）
+# 3. Nested mapping (mapping inside a mapping)
 build:
   context: ./backend
   dockerfile: Dockerfile.dev
-# build 下面的 context 和 dockerfile 是 build 的子属性
+# context and dockerfile are children of build
 ```
 
-### 两种列表写法
+### Two Ways to Write Lists
 
 ```yaml
-# 写法一：短横线格式（常用）
+# Style 1: dash format (most common)
 environment:
   - DEBUG=True
   - DB_HOST=localhost
 
-# 写法二：键值对格式（也可以）
+# Style 2: mapping format (also valid)
 environment:
   DEBUG: "True"
   DB_HOST: localhost
 ```
 
-两种等价，但同一个文件里建议统一风格。
+Both are equivalent. Pick one style and stay consistent within a file.
 
-### 常见缩进错误
+### Common Indentation Mistakes
 
 ```yaml
-# ❌ 错误：缩进不一致
+# Wrong: inconsistent indentation
 services:
   web:
     image: nginx
-     ports:        # 多了一个空格，会报错
+     ports:        # one extra space — parser error
       - "80:80"
 
-# ❌ 错误：用了 Tab
+# Wrong: tab character
 services:
-	web:             # Tab 缩进，YAML 不允许
+	web:             # tab indentation — YAML forbids this
     image: nginx
 
-# ❌ 错误：冒号后缺空格
+# Wrong: missing space after colon
 services:
   web:
-    image:nginx     # 冒号后没空格
+    image:nginx     # no space after colon
 
-# ✅ 正确
+# Correct
 services:
   web:
     image: nginx
@@ -243,82 +243,82 @@ services:
       - "80:80"
 ```
 
-**建议**：用 VS Code 装 [YAML 插件](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)，实时检查格式错误。
+**Tip:** Install the [YAML extension](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) in VS Code for real-time validation.
 
 ---
 
-## 四、配置字段全览：哪些必选，哪些可选
+## Field Reference: Required vs Optional
 
-### 顶层结构
+### Top-Level Keys
 
-compose.yaml 有这些**顶层 key**：
+A compose.yaml file recognizes these **top-level keys**:
 
-| 顶层 key | 必选 | 说明 |
-|----------|------|------|
-| `services` | ✅ | 定义要运行的容器，**唯一必填项** |
-| `volumes` | ❌ | 声明命名卷（用了命名卷才需要） |
-| `networks` | ❌ | 声明自定义网络（不声明则所有服务共享默认网络） |
-| `configs` | ❌ | 声明配置文件（Swarm 模式用得多） |
-| `secrets` | ❌ | 声明敏感数据（如密码、证书） |
+| Key | Required | Purpose |
+|-----|----------|---------|
+| `services` | Yes | Defines which containers to run — **the only mandatory key** |
+| `volumes` | No | Declares named volumes (only needed when you use them) |
+| `networks` | No | Declares custom networks (without this, all services share a default network) |
+| `configs` | No | Declares config objects (mainly used in Swarm mode) |
+| `secrets` | No | Declares sensitive data like passwords and certificates |
 
-### 服务配置字段
+### Service-Level Fields
 
-每个服务（`services` 下的子项）可以使用以下字段：
+Each entry under `services` accepts these directives:
 
-| 字段 | 必选 | 类型 | 说明 |
-|------|------|------|------|
-| `image` | ⚠️ 二选一 | 字符串 | 使用现成镜像 |
-| `build` | ⚠️ 二选一 | 字符串或映射 | 从 Dockerfile 构建镜像 |
-| `ports` | ❌ | 列表 | 端口映射 |
-| `volumes` | ❌ | 列表 | 数据卷/目录挂载 |
-| `environment` | ❌ | 列表或映射 | 环境变量 |
-| `env_file` | ❌ | 字符串或列表 | 从文件读取环境变量 |
-| `depends_on` | ❌ | 列表或映射 | 启动依赖顺序 |
-| `networks` | ❌ | 列表 | 加入的网络 |
-| `restart` | ❌ | 字符串 | 重启策略 |
-| `command` | ❌ | 字符串或列表 | 覆盖默认启动命令 |
-| `entrypoint` | ❌ | 字符串或列表 | 覆盖入口点 |
-| `container_name` | ❌ | 字符串 | 指定容器名称 |
-| `healthcheck` | ❌ | 映射 | 健康检查配置 |
-| `extra_hosts` | ❌ | 列表 | 添加额外的 hosts 映射 |
-| `working_dir` | ❌ | 字符串 | 容器内工作目录 |
-| `user` | ❌ | 字符串 | 容器内运行的用户 |
-| `stdin_open` | ❌ | 布尔值 | 保持 stdin 打开（等价于 `docker run -i`） |
-| `tty` | ❌ | 布尔值 | 分配伪终端（等价于 `docker run -t`） |
-| `logging` | ❌ | 映射 | 日志驱动配置 |
-| `deploy` | ❌ | 映射 | 部署相关配置（资源限制等） |
-| `profiles` | ❌ | 列表 | 配置文件分组（按需启动） |
-| `platform` | ❌ | 字符串 | 指定平台（如 `linux/amd64`） |
+| Field | Required | Type | Purpose |
+|-------|----------|------|---------|
+| `image` | One of two | String | Pull a pre-built image |
+| `build` | One of two | String or mapping | Build from a Dockerfile |
+| `ports` | No | List | Port mapping |
+| `volumes` | No | List | Volume / bind mounts |
+| `environment` | No | List or mapping | Environment variables |
+| `env_file` | No | String or list | Load env vars from a file |
+| `depends_on` | No | List or mapping | Startup ordering |
+| `networks` | No | List | Networks to join |
+| `restart` | No | String | Restart policy |
+| `command` | No | String or list | Override the default startup command |
+| `entrypoint` | No | String or list | Override the entrypoint |
+| `container_name` | No | String | Set a fixed container name |
+| `healthcheck` | No | Mapping | Health check configuration |
+| `extra_hosts` | No | List | Extra entries for `/etc/hosts` |
+| `working_dir` | No | String | Working directory inside the container |
+| `user` | No | String | User to run as inside the container |
+| `stdin_open` | No | Boolean | Keep stdin open (equivalent to `docker run -i`) |
+| `tty` | No | Boolean | Allocate a pseudo-TTY (equivalent to `docker run -t`) |
+| `logging` | No | Mapping | Logging driver configuration |
+| `deploy` | No | Mapping | Deployment settings (resource limits, etc.) |
+| `profiles` | No | List | Profile grouping (start on demand) |
+| `platform` | No | String | Target platform (e.g., `linux/amd64`) |
 
-> **⚠️ `image` 和 `build` 二选一**：每个服务必须指定 `image`（用现成镜像）或 `build`（自己构建），两者也可以同时写（构建后打上 image 指定的标签）。
+> **Note:** Every service must specify either `image` or `build` (or both — when both are present, the built image is tagged with the name given in `image`).
 
 ---
 
-## 五、逐个讲解核心配置
+## Core Directives Explained
 
-### 1. services（服务列表）— 必选
+### 1. services — Required
 
 ```yaml
 services:
   web:
-    # web 服务的配置
+    # web service config
   api:
-    # api 服务的配置
+    # api service config
   db:
-    # 数据库服务的配置
+    # database service config
 ```
 
-**是什么**：你要运行的所有容器，每个服务就是一个容器。
+**What it does:** Lists every container your application needs. Each service maps to exactly one container at runtime.
 
-**命名规则**：
-- 用小写字母
-- 可以用下划线或短横线
-- 取个有意义的名字（`backend`、`frontend`、`db`）
-- 服务名同时也是容器间互访的主机名
+**Naming conventions:**
+- Use lowercase letters
+- Underscores and hyphens are fine
+- Choose meaningful names (`backend`, `frontend`, `db`)
+- The service name doubles as the DNS hostname for inter-container communication
 
 ---
 
-### 2. image（使用的镜像）
+### 2. image
 
 ```yaml
 services:
@@ -326,18 +326,18 @@ services:
     image: nginx:1.25
 ```
 
-**格式**：`镜像名:标签`
-- `nginx` → 默认用 latest 标签（不推荐生产环境用 latest）
-- `nginx:1.25` → 指定版本，可复现
-- `mysql:8.0` → MySQL 8.0
+**Format:** `name:tag`
+- `nginx` — defaults to `latest` (avoid in production)
+- `nginx:1.25` — pinned version, reproducible
+- `mysql:8.0` — MySQL 8.0
 
-**去哪找镜像**：[Docker Hub](https://hub.docker.com/) 上搜索。
+**Where to find images:** Search [Docker Hub](https://hub.docker.com/).
 
 ---
 
-### 3. build（自己构建镜像）
+### 3. build
 
-简单写法：
+Short form:
 
 ```yaml
 services:
@@ -345,26 +345,26 @@ services:
     build: ./api
 ```
 
-完整写法：
+Full form:
 
 ```yaml
 services:
   api:
     build:
-      context: ./api           # 构建上下文目录
-      dockerfile: Dockerfile.dev  # 指定 Dockerfile 文件名
-      args:                    # 构建参数
+      context: ./api           # Build context directory
+      dockerfile: Dockerfile.dev  # Dockerfile filename
+      args:                    # Build-time arguments
         - NODE_ENV=development
-      target: dev              # 多阶段构建的目标阶段
+      target: dev              # Multi-stage build target
 ```
 
-**`image` vs `build`**：
-- `image`：用别人做好的镜像（nginx、mysql、redis）
-- `build`：用自己写的代码 + Dockerfile 构建镜像
+**`image` vs `build`:**
+- `image` — use someone else's pre-built image (nginx, mysql, redis)
+- `build` — build your own image from source code and a Dockerfile
 
 ---
 
-### 4. ports（端口映射）
+### 4. ports
 
 ```yaml
 services:
@@ -373,81 +373,81 @@ services:
       - "8080:80"
 ```
 
-**格式**：`"宿主机端口:容器端口"`
+**Format:** `"host_port:container_port"`
 
 ```yaml
 ports:
-  - "80:80"                    # 外部 80 → 容器 80
-  - "8080:80"                  # 外部 8080 → 容器 80
-  - "127.0.0.1:3306:3306"     # 仅本机可访问
-  - "8000-8010:8000-8010"     # 端口范围映射
+  - "80:80"                    # Host 80 → Container 80
+  - "8080:80"                  # Host 8080 → Container 80
+  - "127.0.0.1:3306:3306"     # Localhost only
+  - "8000-8010:8000-8010"     # Port range
 ```
 
-**注意**：端口号建议加引号，因为 YAML 中 `xx:yy` 可能被解析为六十进制数值。
+**Tip:** Always quote port mappings. YAML can misinterpret `xx:yy` as a base-60 number.
 
 ---
 
-### 5. volumes（数据卷/目录挂载）
+### 5. volumes
 
 ```yaml
 services:
   db:
     volumes:
-      - db_data:/var/lib/mysql       # 命名卷
-      - ./config:/etc/mysql/conf.d   # 绑定挂载
-      - /app/node_modules            # 匿名卷
+      - db_data:/var/lib/mysql       # Named volume
+      - ./config:/etc/mysql/conf.d   # Bind mount
+      - /app/node_modules            # Anonymous volume
 
 volumes:
-  db_data:     # 顶层声明命名卷
+  db_data:     # Declare the named volume at the top level
 ```
 
-**三种类型**：
+**Three types:**
 
-| 类型 | 写法 | 用途 |
-|------|------|------|
-| 命名卷 | `name:/container/path` | 持久化数据，Docker 管理存储位置 |
-| 绑定挂载 | `./host/path:/container/path` | 开发时同步代码，修改实时生效 |
-| 匿名卷 | `/container/path` | 排除某个目录不被绑定挂载覆盖 |
+| Type | Syntax | Use case |
+|------|--------|----------|
+| Named volume | `name:/container/path` | Persistent data, managed by Docker |
+| Bind mount | `./host/path:/container/path` | Live code syncing during development |
+| Anonymous volume | `/container/path` | Prevent a bind mount from overwriting a specific directory |
 
-**重要**：用了命名卷，必须在顶层 `volumes` 里声明。
+**Important:** Named volumes must be declared in the top-level `volumes` block.
 
 ---
 
-### 6. environment（环境变量）
+### 6. environment
 
-两种等价写法：
+Two equivalent styles:
 
 ```yaml
-# 列表格式
+# List format
 environment:
   - MYSQL_ROOT_PASSWORD=123456
   - MYSQL_DATABASE=myapp
 
-# 映射格式
+# Mapping format
 environment:
   MYSQL_ROOT_PASSWORD: 123456
   MYSQL_DATABASE: myapp
 ```
 
-**更安全的做法**：用 `env_file` 或 `.env` 文件
+**Better practice:** Use `env_file` or a `.env` file to keep secrets out of version control:
 
 ```yaml
 services:
   db:
     env_file:
-      - ./db.env    # 从文件读取环境变量
+      - ./db.env    # Load variables from file
 ```
 
 ```bash
-# db.env（不要提交到 Git！加入 .gitignore）
+# db.env (add to .gitignore!)
 MYSQL_ROOT_PASSWORD=super_secret_password
 ```
 
 ---
 
-### 7. depends_on（启动顺序）
+### 7. depends_on
 
-简单写法：
+Simple form:
 
 ```yaml
 services:
@@ -457,15 +457,15 @@ services:
       - db
 ```
 
-带健康检查的写法（推荐）：
+With health checks (recommended):
 
 ```yaml
 services:
   api:
     depends_on:
       db:
-        condition: service_healthy    # 等 db 健康检查通过才启动
-        restart: true                 # db 重启时 api 也跟着重启
+        condition: service_healthy    # Wait until db passes its health check
+        restart: true                 # Restart api if db restarts
 
   db:
     image: mysql:8.0
@@ -476,11 +476,11 @@ services:
       retries: 10
 ```
 
-**注意**：简单的 `depends_on` 只保证启动顺序，不保证服务"准备好了"。要等服务真正可用，用 `condition: service_healthy`。
+**Key distinction:** The simple form only controls startup **order** — it does not wait for a service to be ready. Use `condition: service_healthy` when you need to wait for actual readiness.
 
 ---
 
-### 8. networks（网络）
+### 8. networks
 
 ```yaml
 services:
@@ -502,11 +502,11 @@ networks:
   backend:
 ```
 
-**默认情况**：不写 networks，所有服务自动在同一个网络，可以互相访问。只有需要网络隔离时才需要自定义。
+**Default behavior:** Without explicit networks, all services land on the same default network and can reach each other. Custom networks are only needed when you want isolation (e.g., the web tier should not talk directly to the database).
 
 ---
 
-### 9. restart（重启策略）
+### 9. restart
 
 ```yaml
 services:
@@ -514,18 +514,18 @@ services:
     restart: unless-stopped
 ```
 
-| 值 | 说明 |
-|------|------|
-| `no` | 不自动重启（默认） |
-| `always` | 总是重启，包括 Docker 启动时 |
-| `on-failure` | 只有非正常退出才重启 |
-| `unless-stopped` | 除非手动 `docker compose stop`，否则一直重启 |
+| Value | Behavior |
+|-------|----------|
+| `no` | Never restart (default) |
+| `always` | Always restart, including on Docker daemon startup |
+| `on-failure` | Restart only on non-zero exit codes |
+| `unless-stopped` | Restart unless explicitly stopped with `docker compose stop` |
 
-生产环境推荐 `unless-stopped` 或 `always`。
+For production, use `unless-stopped` or `always`.
 
 ---
 
-### 10. extra_hosts（额外 hosts 映射）
+### 10. extra_hosts
 
 ```yaml
 services:
@@ -534,32 +534,32 @@ services:
       - "host.docker.internal:host-gateway"
 ```
 
-**是什么**：往容器的 `/etc/hosts` 文件里添加记录。
+**What it does:** Adds entries to the container's `/etc/hosts` file.
 
-**典型场景**：容器要连接宿主机上的服务（如本地 MySQL），用 `host.docker.internal` 指向宿主机。
+**Typical use case:** A container needs to reach a service running on the host machine (e.g., a local MySQL instance). `host.docker.internal` resolves to the host IP.
 
-> 注：Docker Desktop（macOS/Windows）自带 `host.docker.internal`，Linux 上需要手动加 `host-gateway`。
+> Docker Desktop on macOS and Windows provides `host.docker.internal` automatically. On Linux, you need the `host-gateway` mapping shown above.
 
 ---
 
-### 11. command 和 entrypoint
+### 11. command and entrypoint
 
 ```yaml
 services:
   api:
     image: node:18
-    command: npm run dev          # 覆盖 CMD
-    # 或
-    entrypoint: ["node", "app.js"]  # 覆盖 ENTRYPOINT
+    command: npm run dev          # Overrides CMD
+    # or
+    entrypoint: ["node", "app.js"]  # Overrides ENTRYPOINT
 ```
 
-**区别**：
-- `command`：覆盖 Dockerfile 中的 `CMD`，常用于切换启动方式
-- `entrypoint`：覆盖 Dockerfile 中的 `ENTRYPOINT`，改变程序入口
+**Difference:**
+- `command` overrides the Dockerfile `CMD` — commonly used to switch between dev and production startup scripts
+- `entrypoint` overrides the Dockerfile `ENTRYPOINT` — changes the fundamental executable
 
 ---
 
-### 12. container_name（指定容器名）
+### 12. container_name
 
 ```yaml
 services:
@@ -567,13 +567,13 @@ services:
     container_name: my_mysql
 ```
 
-**不指定会怎样**：Docker Compose 会自动生成，格式为 `项目名-服务名-序号`（如 `myproject-db-1`）。
+**Without it:** Docker Compose generates a name in the format `projectname-servicename-1` (e.g., `myproject-db-1`).
 
-**注意**：指定了 container_name 就不能做服务扩缩容（`docker compose up --scale db=3` 会冲突）。
+**Caveat:** A fixed container name prevents scaling (`docker compose up --scale db=3` will fail because the name collides).
 
 ---
 
-### 13. deploy（资源限制）
+### 13. deploy (Resource Limits)
 
 ```yaml
 services:
@@ -581,16 +581,16 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'         # 最多用 0.5 个 CPU
-          memory: 512M        # 最多用 512MB 内存
+          cpus: '0.5'         # Max 0.5 CPU cores
+          memory: 512M        # Max 512 MB RAM
         reservations:
-          cpus: '0.25'        # 预留 0.25 个 CPU
-          memory: 256M        # 预留 256MB 内存
+          cpus: '0.25'        # Reserve 0.25 CPU cores
+          memory: 256M        # Reserve 256 MB RAM
 ```
 
 ---
 
-### 14. profiles（按需启动）
+### 14. profiles (On-Demand Services)
 
 ```yaml
 services:
@@ -600,47 +600,47 @@ services:
   debug-tools:
     image: busybox
     profiles:
-      - debug      # 只在 debug profile 下启动
+      - debug      # Only starts under the debug profile
 ```
 
 ```bash
-# 正常启动，debug-tools 不会启动
+# Normal startup — debug-tools stays off
 docker compose up -d
 
-# 启动包含 debug profile 的服务
+# Start services that belong to the debug profile
 docker compose --profile debug up -d
 ```
 
 ---
 
-## 六、理解你给的实战配置
+## Real-World Walkthrough
 
-回到你提供的例子，逐字段注释：
+Let's annotate a full frontend + backend configuration line by line:
 
 ```yaml
-# 顶层 key：services（必选）
+# Top-level key: services (required)
 services:
 
-  # 第一个服务：backend
+  # Service 1: backend
   backend:
-    build:                          # 自己构建镜像（不用 image 拉现成的）
-      context: ./backend            #   构建上下文 = ./backend 目录
-      dockerfile: Dockerfile.dev    #   使用的 Dockerfile 文件名
-    container_name: octomira-backend  # 固定容器名
+    build:                          # Build from source (no pre-built image)
+      context: ./backend            #   Build context = ./backend directory
+      dockerfile: Dockerfile.dev    #   Dockerfile to use
+    container_name: octomira-backend  # Fixed container name
     ports:
-      - "8000:8000"                 # 宿主机 8000 → 容器 8000
+      - "8000:8000"                 # Host 8000 → Container 8000
     volumes:
-      - ./backend:/app              # 绑定挂载，代码修改实时同步到容器
-    environment:                    # 环境变量
+      - ./backend:/app              # Bind mount — code changes sync instantly
+    environment:                    # Environment variables
       - DEBUG=True
-      - DB_HOST=host.docker.internal  # 连接宿主机上的 MySQL
+      - DB_HOST=host.docker.internal  # Connect to MySQL on the host
       - DB_NAME=octomira
       - DB_USER=octomira
       - DB_PASSWORD=octomira00##
     extra_hosts:
-      - "host.docker.internal:host-gateway"  # Linux 下让容器能找到宿主机
+      - "host.docker.internal:host-gateway"  # Resolve host IP on Linux
 
-  # 第二个服务：frontend
+  # Service 2: frontend
   frontend:
     build:
       context: ./frontend
@@ -649,29 +649,27 @@ services:
     ports:
       - "8087:8087"
     volumes:
-      - ./frontend:/app             # 同步前端代码
-      - /app/node_modules           # 匿名卷：排除 node_modules，不被上一行覆盖
+      - ./frontend:/app             # Sync frontend source
+      - /app/node_modules           # Anonymous volume — prevents the bind mount from overwriting installed packages
     environment:
-      - VITE_API_PROXY_TARGET=http://backend:8000  # 用服务名 backend 作为主机名
+      - VITE_API_PROXY_TARGET=http://backend:8000  # Uses the service name as a hostname
     depends_on:
-      - backend                     # frontend 等 backend 启动后再启动
+      - backend                     # Start after backend is up
 ```
 
-**关键点**：
-- `- /app/node_modules` 是匿名卷，作用是防止宿主机的绑定挂载覆盖容器里安装好的 node_modules
-- `http://backend:8000` 中的 `backend` 是服务名，Compose 自动解析为该容器的 IP
+**Key takeaways:**
+- `- /app/node_modules` is an anonymous volume that shields the container's installed `node_modules` from being overwritten by the host bind mount
+- `http://backend:8000` — `backend` is the service name, and Compose resolves it to the container's IP automatically
 
 ---
 
-## 七、完整实战案例
+## Hands-On Example: WordPress Blog Stack
 
-### 案例：搭建一个博客系统
-
-需求：WordPress + MySQL + phpMyAdmin（数据库管理工具）
+Requirements: WordPress + MySQL + phpMyAdmin (database admin UI)
 
 ```yaml
 services:
-  # WordPress 主程序
+  # WordPress application
   wordpress:
     image: wordpress:latest
     ports:
@@ -688,7 +686,7 @@ services:
         condition: service_healthy
     restart: unless-stopped
 
-  # MySQL 数据库
+  # MySQL database
   db:
     image: mysql:8.0
     environment:
@@ -705,7 +703,7 @@ services:
       timeout: 5s
       retries: 5
 
-  # phpMyAdmin 数据库管理
+  # phpMyAdmin for database management
   phpmyadmin:
     image: phpmyadmin:latest
     ports:
@@ -717,217 +715,215 @@ services:
     depends_on:
       - db
 
-# 声明命名卷
+# Declare named volumes
 volumes:
   wordpress_data:
   db_data:
 ```
 
-**使用方法**：
+**How to use it:**
 
 ```bash
-# 启动所有服务
+# Start everything
 docker compose up -d
 
-# 访问
+# Access points
 # WordPress: http://localhost:8080
 # phpMyAdmin: http://localhost:8081
 
-# 查看运行状态
+# Check status
 docker compose ps
 
-# 查看日志
+# Follow logs
 docker compose logs -f
 
-# 停止所有服务
+# Shut down
 docker compose down
 
-# 停止并删除数据
+# Shut down and delete all data
 docker compose down -v
 ```
 
 ---
 
-## 八、常见问题
+## Troubleshooting
 
-### Q1：缩进出错怎么排查？
+### How do I debug indentation errors?
 
-YAML 对缩进敏感，必须用空格，不能用 Tab。
+YAML is whitespace-sensitive and forbids tabs. When something looks right but fails:
 
 ```bash
-# 用 docker compose config 验证配置是否正确
+# Validate your config — errors include line numbers
 docker compose config
-
-# 如果有语法错误，会直接报错并指出行号
 ```
 
-### Q2：容器之间怎么互相访问？
+### How do containers talk to each other?
 
-直接用服务名作为主机名：
+Use the service name as the hostname:
 
 ```yaml
 services:
   api:
     environment:
-      - DB_HOST=db    # 直接用服务名 "db"
+      - DB_HOST=db    # "db" resolves to the db container's IP
 
   db:
     image: mysql:8.0
 ```
 
-在 api 容器里，`ping db` 就能通。
+Inside the `api` container, `ping db` works out of the box.
 
-### Q3：`docker-compose` 还能用吗？
+### Is the old `docker-compose` command still supported?
 
-如果你的系统还装着旧版，暂时能用，但建议尽快切换：
+If the legacy binary is installed, it still runs — but it is no longer maintained. Switch as soon as you can:
 
 ```bash
-# 检查是否有新版
+# Check for the new plugin
 docker compose version
 
-# 旧版（别再用了）
+# Legacy binary (do not use for new work)
 docker-compose --version
 ```
 
-所有旧命令都有对应的新命令，只需把 `docker-compose` 换成 `docker compose`：
+Every old command has a direct equivalent — just replace the hyphen with a space:
 
-| 旧命令 | 新命令 |
-|--------|--------|
+| Legacy | Current |
+|--------|---------|
 | `docker-compose up` | `docker compose up` |
 | `docker-compose down` | `docker compose down` |
 | `docker-compose ps` | `docker compose ps` |
 | `docker-compose logs` | `docker compose logs` |
 
-### Q4：文件名必须是 compose.yaml 吗？
+### Does the file have to be named compose.yaml?
 
-Docker Compose V2 按以下优先级查找文件：
+Docker Compose V2 searches for files in this order:
 
 1. `compose.yaml`
 2. `compose.yml`
 3. `docker-compose.yaml`
 4. `docker-compose.yml`
 
-用其他名字要指定：
+To use a custom name:
 
 ```bash
 docker compose -f my-config.yaml up -d
 ```
 
-### Q5：怎么查看最终生效的配置？
+### How do I see the final merged configuration?
 
 ```bash
-# 合并所有配置文件和环境变量，输出最终结果
+# Merges all compose files and env vars, then prints the result
 docker compose config
 ```
 
-非常适合排查"为什么配置没生效"的问题。
+This is invaluable when a setting seems to have no effect.
 
 ---
 
-## 九、常用命令速查表
+## Command Cheat Sheet
 
-| 命令 | 作用 |
-|------|------|
-| `docker compose up -d` | 后台启动所有服务 |
-| `docker compose down` | 停止并删除容器 |
-| `docker compose down -v` | 停止并删除容器和数据卷 |
-| `docker compose ps` | 查看运行状态 |
-| `docker compose logs -f` | 实时查看日志 |
-| `docker compose logs -f web` | 只看某个服务的日志 |
-| `docker compose restart` | 重启所有服务 |
-| `docker compose exec web bash` | 进入 web 容器 |
-| `docker compose pull` | 拉取最新镜像 |
-| `docker compose build` | 重新构建镜像 |
-| `docker compose config` | 验证并输出最终配置 |
-| `docker compose up -d --build api` | 重建某个服务并启动 |
-
----
-
-## 十、官方参考
-
-想查某个字段的完整用法？这些是权威来源：
-
-- **Compose 文件规范（最全最权威）**：[https://docs.docker.com/reference/compose-file/](https://docs.docker.com/reference/compose-file/)
-- **Compose 快速入门**：[https://docs.docker.com/compose/gettingstarted/](https://docs.docker.com/compose/gettingstarted/)
-- **从 V1 迁移到 V2**：[https://docs.docker.com/compose/releases/migrate/](https://docs.docker.com/compose/releases/migrate/)
-- **YAML 语法速查**：[https://yaml.org/spec/1.2.2/](https://yaml.org/spec/1.2.2/)
+| Command | What it does |
+|---------|-------------|
+| `docker compose up -d` | Start all services in the background |
+| `docker compose down` | Stop and remove containers |
+| `docker compose down -v` | Stop and remove containers **and** volumes |
+| `docker compose ps` | Show running services |
+| `docker compose logs -f` | Stream logs from all services |
+| `docker compose logs -f web` | Stream logs from a single service |
+| `docker compose restart` | Restart all services |
+| `docker compose exec web bash` | Open a shell inside the web container |
+| `docker compose pull` | Pull the latest images |
+| `docker compose build` | Rebuild images |
+| `docker compose config` | Validate and print the effective config |
+| `docker compose up -d --build api` | Rebuild and restart a single service |
 
 ---
 
-## 十一、总结
+## Official References
 
-compose.yaml 的核心就这几个：
+For the full specification of any field:
 
-1. **services**（必选） — 定义要跑哪些容器
-2. **image/build**（二选一） — 用现成镜像还是自己构建
-3. **ports** — 端口映射，让外部能访问
-4. **volumes** — 数据持久化 + 开发时代码同步
-5. **environment** — 传配置参数
-6. **depends_on** — 控制启动顺序和依赖
+- **Compose file reference (authoritative):** [https://docs.docker.com/reference/compose-file/](https://docs.docker.com/reference/compose-file/)
+- **Compose quickstart:** [https://docs.docker.com/compose/gettingstarted/](https://docs.docker.com/compose/gettingstarted/)
+- **Migrating from V1 to V2:** [https://docs.docker.com/compose/releases/migrate/](https://docs.docker.com/compose/releases/migrate/)
+- **YAML specification:** [https://yaml.org/spec/1.2.2/](https://yaml.org/spec/1.2.2/)
 
-记住这个公式：
+---
+
+## Summary
+
+The compose.yaml file boils down to a handful of concepts:
+
+1. **services** (required) — which containers to run
+2. **image / build** (pick one) — pre-built image or build from source
+3. **ports** — expose containers to the outside world
+4. **volumes** — persist data and sync code during development
+5. **environment** — pass configuration values
+6. **depends_on** — control startup order and dependencies
+
+The mental model:
 
 ```
-compose.yaml = services（必选）+ 每个服务的配置（image/build 必选，其余按需）
+compose.yaml = services (required) + per-service config (image/build required, everything else optional)
 ```
 
-嵌套规则只有一条：**每深一层，多缩进 2 个空格**。搞不清楚就跑 `docker compose config` 验证。
+The only nesting rule that matters: **each child level adds 2 more spaces of indentation**. When in doubt, run `docker compose config` to validate.
 
 ---
 
-## 十二、docker-compose.yml 最佳实践
+## docker-compose.yml Best Practices
 
-在实际项目中，以下几点经验可以帮你避免常见的坑：
+These habits will save you from the most common production headaches:
 
-1. **镜像版本锁定** -- 生产环境永远不要用 `latest` 标签，指定明确的版本号（如 `nginx:1.25`、`mysql:8.0`），确保环境可复现
-2. **敏感信息外置** -- 密码、密钥等不要直接写在 compose.yaml 中，使用 `env_file` 或 Docker Secrets，并把 `.env` 文件加入 `.gitignore`
-3. **健康检查必加** -- 对数据库等基础服务配置 `healthcheck`，配合 `depends_on` 的 `condition: service_healthy`，确保服务真正就绪后再启动依赖服务
-4. **数据持久化** -- 重要数据（数据库、上传文件等）必须使用命名卷或绑定挂载，否则容器删除后数据会丢失
-5. **资源限制** -- 通过 `deploy.resources` 限制 CPU 和内存使用，防止单个容器耗尽宿主机资源
-6. **日志管理** -- 配置 `logging` 驱动限制日志文件大小，避免磁盘被日志撑满
+1. **Pin image versions** — Never use `latest` in production. Specify exact tags (`nginx:1.25`, `mysql:8.0`) so builds are reproducible.
+2. **Externalize secrets** — Keep passwords and API keys out of compose.yaml. Use `env_file` or Docker Secrets, and add `.env` to `.gitignore`.
+3. **Always add health checks** — Configure `healthcheck` on infrastructure services (databases, caches) and pair them with `depends_on: condition: service_healthy` so dependent services wait for true readiness.
+4. **Persist important data** — Databases, uploads, and anything you cannot regenerate must use named volumes or bind mounts. Without them, data vanishes when the container is removed.
+5. **Set resource limits** — Use `deploy.resources` to cap CPU and memory, preventing a single runaway container from starving the host.
+6. **Manage log size** — Configure the `logging` driver to rotate logs and cap file sizes. Unmanaged logs can fill a disk surprisingly fast.
 
 ```yaml
-# 日志管理示例
+# Log rotation example
 services:
   web:
     image: nginx:1.25
     logging:
       driver: json-file
       options:
-        max-size: "10m"    # 单个日志文件最大 10MB
-        max-file: "3"      # 最多保留 3 个日志文件
+        max-size: "10m"    # Max 10 MB per log file
+        max-file: "3"      # Keep at most 3 rotated files
 ```
 
 ---
 
-## 十三、Docker Compose 常见问题 FAQ
+## Docker Compose FAQ
 
-### Docker Compose 和 Docker Swarm 有什么区别？
+### What is the difference between Docker Compose and Docker Swarm?
 
-Docker Compose 用于**单机多容器编排**，适合开发环境和小规模生产部署；Docker Swarm 是 Docker 原生的**集群编排**方案，用于跨多台主机部署容器。如果你的应用只在一台服务器上运行，用 Docker Compose 就够了。
+Docker Compose handles **single-host, multi-container orchestration** — perfect for development and small-scale production. Docker Swarm is Docker's native **cluster orchestration** tool for deploying across multiple hosts. If your app runs on a single server, Compose is all you need.
 
-### docker compose up 和 docker compose run 有什么区别？
+### What is the difference between `docker compose up` and `docker compose run`?
 
-`docker compose up` 启动 compose.yaml 中定义的所有服务（或指定服务及其依赖），是最常用的启动命令。`docker compose run` 则是针对某个服务运行一次性命令，比如 `docker compose run api npm test`，执行完就退出，适合跑测试或数据库迁移。
+`docker compose up` starts all services defined in the compose file (or a specified subset plus their dependencies). It is the standard way to bring your stack online. `docker compose run` executes a one-off command against a single service — for example, `docker compose run api npm test` — then exits. Use it for tests, migrations, or ad-hoc tasks.
 
-### 如何在 Docker Compose 中使用 .env 文件？
+### How do I use a .env file with Docker Compose?
 
-在 compose.yaml 同级目录下创建 `.env` 文件，Docker Compose 会自动加载其中的变量。你可以在 compose.yaml 中通过 `${变量名}` 引用这些变量。务必将 `.env` 加入 `.gitignore` 以避免泄露敏感信息。
+Place a `.env` file in the same directory as your compose.yaml. Compose loads it automatically, and you can reference its variables with `${VARIABLE_NAME}` in your compose file. Always add `.env` to `.gitignore` to avoid leaking credentials.
 
-### Docker Compose 如何实现零停机更新？
+### How do I achieve zero-downtime updates with Docker Compose?
 
-可以使用 `docker compose up -d --no-deps --build <服务名>` 单独重建和重启某个服务，其他服务不受影响。对于更严格的零停机需求，建议结合反向代理（如 Nginx 或 Traefik）实现蓝绿部署或滚动更新。
+Run `docker compose up -d --no-deps --build <service>` to rebuild and restart a single service without touching the others. For stricter zero-downtime requirements, combine Compose with a reverse proxy (Nginx or Traefik) and implement blue-green or rolling deployments.
 
-### compose.yaml 中的 volumes 数据在 docker compose down 后还在吗？
+### Does volume data survive `docker compose down`?
 
-如果使用 `docker compose down`，命名卷（named volumes）中的数据**会保留**。只有加了 `-v` 参数（`docker compose down -v`）才会删除命名卷。绑定挂载（bind mounts）的数据始终在宿主机上，不受影响。
+Named volumes are **preserved** after `docker compose down`. Only the `-v` flag (`docker compose down -v`) deletes them. Bind-mount data lives on the host filesystem and is never affected by `down`.
 
 ---
 
-## 相关阅读
+## Further Reading
 
-- [Docker 入门教程](/posts/docker/2019-05-13-learn-docker/) - Docker 基础概念和安装配置
-- [Docker 常用命令速查](/posts/docker/2019-11-14-docker-commands/) - 容器、镜像、网络等管理命令
-- [Docker Compose 完全指南](/posts/docker/2026-01-19-docker-compose-complete-guide/) - 从安装到部署的全流程指南
-- [Linux/macOS 常用命令速查手册](/posts/linux/2020-03-19-linux-mac-commands/) - 运维开发常用命令参考
-- [Linux 运维基础 Hub](/posts/linux/linux-ops-basics-hub/)
+- [Getting Started with Docker](/posts/docker/2019-05-13-learn-docker/) — Docker fundamentals, installation, and basic concepts
+- [Docker Command Cheat Sheet](/posts/docker/2019-11-14-docker-commands/) — Container, image, and network management commands
+- [Docker Compose Complete Guide](/posts/docker/2026-01-19-docker-compose-complete-guide/) — End-to-end guide from installation to deployment
+- [Linux/macOS Command Cheat Sheet](/posts/linux/2020-03-19-linux-mac-commands/) — Essential commands for DevOps and development
+- [Linux Ops Basics Hub](/posts/linux/linux-ops-basics-hub/)

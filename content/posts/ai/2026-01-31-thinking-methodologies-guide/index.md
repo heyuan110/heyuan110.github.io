@@ -1,573 +1,574 @@
 +++
 date = '2026-01-31T22:00:00+08:00'
 draft = false
-title = '别再跟 AI 说「帮我做个 XX」：22 个方法论让需求从模糊变清晰'
-description = '系统梳理 SMART、OKR、MECE、JTBD、RICE、PDCA 等 22 个经典产品方法论与思维模型，覆盖目标定义、问题拆解、需求描述、优先级排序、持续改进五大阶段，每个方法论配真实案例和 AI 协作场景。'
+title = '22 Thinking Frameworks That Turn Vague Ideas Into Clear Requirements'
+description = 'A practical guide to SMART, OKR, MECE, JTBD, RICE, PDCA, and 16 more proven methodologies for defining goals, breaking down problems, writing requirements, prioritizing work, and improving continuously.'
 toc = true
-tags = ['产品方法论', '思维模型', 'AI 协作', '需求分析', '项目管理']
-categories = ['AI原理']
-keywords = ['产品方法论', 'SMART 目标', 'MECE 原则', 'JTBD 用户需求', 'RICE 优先级', 'OKR 目标管理', '需求分析方法论', 'AI 需求沟通']
+tags = ['Product Thinking', 'Mental Models', 'AI Collaboration', 'Requirements Analysis', 'Project Management']
+categories = ['AI Guides']
+keywords = ['product methodology', 'SMART goals', 'MECE principle', 'JTBD framework', 'RICE prioritization', 'OKR goal setting', 'requirements analysis', 'thinking frameworks for developers']
 +++
 
-"帮我做一个用户管理系统。"
+"Build me a user management system."
 
-你把这句话丢给 AI，它给你吐了一堆代码。打开一看——跟你想要的完全不是一回事。或者跟同事讨论需求，讲了半小时，发现大家理解的根本不是同一个东西。
+You hand that sentence to an AI, and it spits out a pile of code. You open it up and it is nothing like what you had in mind. Or you spend thirty minutes explaining requirements to a colleague, only to discover you were talking about completely different things.
 
-**问题不在 AI 不够聪明，也不在同事不配合，而是需求描述太模糊了。**
+**The problem is not that the AI is not smart enough, or that your colleague is not cooperating. The problem is that the requirement was too vague.**
 
-我最近在研究怎么更高效地和 AI 讨论产品需求时，系统整理了 22 个经典方法论。这些方法论有些来自麦肯锡，有些来自丰田，有些来自哈佛商学院——但它们解决的核心问题一直没变：**怎么把脑子里模糊的想法，变成别人（包括 AI）能准确理解和执行的方案。**
+While researching how to communicate product requirements more effectively with AI, I compiled 22 classic methodologies. Some come from McKinsey, some from Toyota, some from Harvard Business School, but they all solve the same fundamental problem: **how to turn the fuzzy idea in your head into something others (including AI) can accurately understand and execute.**
 
-这篇文章按五个阶段来组织：**定义目标 → 拆解问题 → 描述需求 → 排优先级 → 持续改进**。每个方法论都配了真实案例和"怎么跟 AI 用"的场景，拿来就能用。
+This article is organized into five phases: **Define Goals, Break Down Problems, Describe Requirements, Prioritize, and Continuously Improve.** Each methodology includes real-world examples and practical tips for using it with AI.
 
-## 一、定义目标：先想清楚你要去哪
+## Phase 1: Define Goals — Know Where You Are Going
 
-### 1. SMART：把目标写得不像许愿
+### 1. SMART: Write Goals That Are Not Wishes
 
-[SMART](https://en.wikipedia.org/wiki/SMART_criteria) 是最经典的目标管理框架，由管理学家 George T. Doran 在 1981 年的论文 *"There's a S.M.A.R.T. Way to Write Management's Goals and Objectives"* 中首次提出。它要求目标满足五个条件：
+[SMART](https://en.wikipedia.org/wiki/SMART_criteria) is the most widely used goal-setting framework, first introduced by management consultant George T. Doran in his 1981 paper *"There's a S.M.A.R.T. Way to Write Management's Goals and Objectives."* It requires goals to meet five criteria:
 
-| 字母 | 含义 | 反面教材 | 正确示范 |
-|------|------|---------|---------|
-| **S**pecific（具体） | 明确要做什么 | "提升用户体验" | "把首页加载时间降到 2 秒以内" |
-| **M**easurable（可衡量） | 有明确的数字指标 | "增加用户量" | "月活跃用户从 1 万增长到 3 万" |
-| **A**chievable（可达成） | 以现有资源能做到 | "三天内做出一个微信" | "两周内完成登录注册模块" |
-| **R**elevant（相关） | 跟核心目标有关系 | "加个暗黑模式"（用户没要求） | "优化支付流程（转化率低的核心环节）" |
-| **T**ime-bound（有截止时间） | 有明确的 deadline | "以后再说" | "2 月 15 日前上线" |
+| Letter | Meaning | Bad Example | Good Example |
+|--------|---------|-------------|--------------|
+| **S**pecific | Clearly state what you will do | "Improve user experience" | "Reduce homepage load time to under 2 seconds" |
+| **M**easurable | Include concrete metrics | "Get more users" | "Grow MAU from 10K to 30K" |
+| **A**chievable | Realistic given your resources | "Build WeChat in three days" | "Complete login/signup module in two weeks" |
+| **R**elevant | Connected to core objectives | "Add dark mode" (nobody asked) | "Optimize checkout flow (key conversion bottleneck)" |
+| **T**ime-bound | Has a clear deadline | "Someday" | "Ship by February 15" |
 
-**一个真实的踩坑案例：**
+**A real-world example:**
 
-"我要做一个博客系统"——这不是目标，这是许愿。用 SMART 改写：
+"I want to build a blog system" is not a goal. It is a wish. Rewritten with SMART:
 
-> "在 2 月 28 日前，搭建一个基于 Hugo 的个人博客，支持 Markdown 写作和自动部署到 GitHub Pages，首页加载时间 < 3 秒。"
+> "By February 28, build a Hugo-based personal blog with Markdown support and automated deployment to GitHub Pages, with homepage load time under 3 seconds."
 
-**跟 AI 怎么用：** 在给 AI 提需求之前，先用 SMART 过一遍。与其说"帮我写个爬虫"，不如说"帮我写一个 Python 爬虫，每天定时抓取 Hacker News 前 30 条热帖的标题和链接，保存为 JSON 文件，运行时间控制在 10 秒以内"。关于怎么把需求精准地传达给 AI 工具，可以参考 [AI 工作流实战手册](/posts/ai/2026-01-30-ai-workflow-real-guide/)。
+**Using it with AI:** Before sending a request to AI, run it through SMART. Instead of "write me a scraper," say "write a Python scraper that fetches the top 30 Hacker News stories (title and URL) daily, saves them as JSON, and runs in under 10 seconds." For more on communicating precise requirements to AI tools, see [AI Workflow Practical Guide](/posts/ai/2026-01-30-ai-workflow-real-guide/).
 
-### 2. OKR：目标对齐的利器
+### 2. OKR: Aligning Goals Across Teams
 
-OKR（Objectives and Key Results）由 Intel 的 Andy Grove 发明，后经 John Doerr 引入 Google 并大规模推广。它和 SMART 的区别在于：**SMART 管单个目标的质量，OKR 管一组目标的对齐。**
+OKR (Objectives and Key Results) was invented by Intel's Andy Grove and later brought to Google by John Doerr, where it scaled across the entire organization. The difference between SMART and OKR: **SMART governs the quality of a single goal; OKR governs the alignment of multiple goals.**
 
-OKR 的结构很简单：
-
-```
-Objective（目标）：我想达成什么？— 定性的、鼓舞人心的方向
-Key Result（关键结果）：怎么知道达成了？— 定量的、可衡量的指标
-```
-
-**实际例子：**
+The structure is simple:
 
 ```
-O：让新用户注册流程丝滑到无感
-  KR1：注册转化率从 40% 提升到 70%
-  KR2：平均注册耗时从 3 分钟降到 45 秒
-  KR3：注册后 7 日留存率从 20% 提升到 40%
+Objective: What do I want to achieve? — Qualitative, inspirational direction
+Key Result: How will I know I achieved it? — Quantitative, measurable metrics
 ```
 
-注意：OKR 的关键结果不是任务清单（"上线 Google 登录""重做注册页面"），而是你期望看到的结果变化。怎么做是团队自己决定的。
-
-**跟 AI 怎么用：** 在规划产品方向时，先让 AI 帮你用 OKR 格式梳理目标。给它业务背景，让它建议 3-5 个 KR。AI 擅长从宏观目标拆出可衡量的指标，能帮你补上没想到的维度。
-
-### 3. 第一性原理：从最底层重新想
-
-第一性原理这个概念来自亚里士多德，但真正让它火起来的是 Elon Musk。
-
-核心思路很简单：**别管"别人怎么做的"和"一直以来怎么做的"，把问题拆到最底层的物理事实和基本规律，然后从零开始搭方案。**
-
-就像盖房子，第一性原理不是去参考别人家的装修风格，而是回到"砖头多少钱、水泥多少钱、人工多少钱"这个层面去思考。
-
-**经典案例：SpaceX 的火箭降本**
-
-当年 Musk 想造火箭，供应商报价一枚要 6500 万美元。传统做法是找更便宜的供应商，或者砍配置。[Musk 用第一性原理思考](https://jamesclear.com/first-principles)：
+**Real example:**
 
 ```
-火箭的原材料是什么？→ 铝合金、钛、铜、碳纤维
-这些材料在市场上值多少钱？→ 大约只占火箭价格的 2%
-为什么差这么多？→ 中间环节、传统工艺、供应链溢价
-能不能自己造？→ 能。
+O: Make new user registration feel effortless
+  KR1: Increase registration conversion from 40% to 70%
+  KR2: Reduce average registration time from 3 minutes to 45 seconds
+  KR3: Improve 7-day retention after registration from 20% to 40%
 ```
 
-结果 SpaceX 把发射成本降到了 NASA 的十分之一。
+Note: Key Results are not task lists ("launch Google login," "redesign registration page"). They describe the outcome changes you expect. How to get there is up to the team.
 
-**跟 AI 怎么用：** 当你让 AI 帮你解决问题时，先问自己："我是不是被旧做法绑住了？" 比如不要说"帮我优化这个 SQL 查询"，先想"这个数据真的需要实时查询吗？是不是预计算一下就行了？" 关于质疑惯性思维这件事，在 [产品思维三板斧](/posts/ai/2026-01-30-product-thinking-delete-first/) 这篇里有更深入的讨论。
+**Using it with AI:** When planning product direction, have AI help you structure goals in OKR format. Provide business context and ask it to suggest 3-5 Key Results. AI excels at breaking macro goals into measurable indicators and can surface dimensions you may have missed.
 
-### 4. 5W2H：把信息问全
+### 3. First Principles Thinking: Reason From the Ground Up
 
-5W2H 是一个帮你"问全"信息的检查清单。很多项目出问题，不是技术不行，而是一开始就没把事情搞清楚。
+First principles thinking originates from Aristotle but was popularized by Elon Musk.
 
-| 维度 | 问什么 | 示例 |
-|------|--------|------|
-| **What** | 要做什么？ | 做一个用户反馈收集系统 |
-| **Why** | 为什么要做？ | 当前靠邮件收集，效率低、易遗漏 |
-| **Who** | 谁来做？谁来用？ | 开发：2 人；用户：所有付费客户 |
-| **When** | 什么时候做？ | Q1 完成 MVP，Q2 迭代 |
-| **Where** | 在哪里用？ | 产品内嵌入 + 独立网页版 |
-| **How** | 怎么做？ | 前端用 React，后端用 Go，数据存 PostgreSQL |
-| **How much** | 花多少？ | 预算 5 万，需要 2 个月开发时间 |
+The core idea is straightforward: **ignore "how others do it" and "how it has always been done." Break the problem down to its most fundamental truths, then build your solution from scratch.**
 
-**跟 AI 怎么用：** 在跟 AI 讨论需求之前，先用 5W2H 列一遍。你会发现，很多"我以为我想清楚了"的事情，其实根本没想清楚。把这些信息一次性给 AI，比来回追问高效十倍。
+Think of it like building a house. First principles thinking does not mean copying someone else's interior design. It means going back to "how much do bricks cost, how much does cement cost, how much does labor cost."
 
-### 5. 奥卡姆剃刀：能简单就别复杂
+**Classic case: SpaceX rocket cost reduction**
 
-奥卡姆剃刀由 14 世纪哲学家奥卡姆的威廉提出，原话是"如无必要，勿增实体"。翻译成大白话就是：**多个方案都能解决问题时，选最简单的那个。**
-
-这不是偷懒，而是对复杂度的敬畏。每多一层抽象、多一个依赖、多一个配置项，就多一个出 bug 的可能。
-
-**举个例子：**
-
-需求是"用户登录后记住状态"。
-
-| 方案 | 复杂度 | 维护成本 |
-|------|--------|---------|
-| JWT + Redis + Token 刷新 + 黑名单机制 | 高 | 高 |
-| Session + Cookie（框架自带） | 低 | 低 |
-| 浏览器 localStorage + 简单 Token | 中 | 中 |
-
-如果你的产品只有几千用户、没有多端登录需求，用框架自带的 Session 就够了。非要上 JWT + Redis 全家桶，就是过度设计。
-
-**跟 AI 怎么用：** 当 AI 给你一个很复杂的方案时，追问一句："有没有更简单的方式实现同样的效果？" 你会发现，很多时候真的有。关于"做减法"的思维方式，推荐看 [AI 时代，一个人的 Taste 比以往任何时候都重要](/posts/ai/2026-01-23-taste-matters-in-ai-era/)，里面聊了为什么"品味"是最稀缺的能力。
-
-## 二、拆解问题：把大象装进冰箱
-
-### 6. MECE：不重不漏地拆分
-
-MECE（Mutually Exclusive, Collectively Exhaustive）由麦肯锡的 [Barbara Minto 在 1960 年代发明](https://www.mckinsey.com/alumni/news-and-events/global-news/alumni-news/barbara-minto-mece-i-invented-it-so-i-get-to-say-how-to-pronounce-it)，是她著名的"金字塔原理"的核心组成部分。Minto 是哈佛商学院 1963 届毕业生（600 人中仅 8 名女性之一），也是麦肯锡聘用的第一位女性 MBA。
-
-**两个核心要求：**
-- **互斥（ME）**：每个子项之间不重叠
-- **穷尽（CE）**：所有子项加起来覆盖全部情况
-
-听着像废话，但实际操作中特别容易犯错。
-
-**反面教材：**
-
-把"用户类型"分成"免费用户、VIP 用户、活跃用户"——这就不是 MECE 的，因为一个 VIP 用户也可以是活跃用户（有重叠），而且"沉默的付费用户"没被覆盖到（不穷尽）。
-
-**正确拆法：**
+When Musk wanted to build rockets, suppliers quoted $65 million per launch. The conventional approach would be to find cheaper suppliers or cut features. [Musk applied first principles](https://jamesclear.com/first-principles):
 
 ```
-按付费状态分：免费用户 / 付费用户          ← MECE ✓
-按活跃度分：  活跃用户 / 不活跃用户        ← MECE ✓
-交叉得到四种：免费活跃 / 免费沉默 / 付费活跃 / 付费沉默
+What raw materials make up a rocket? → Aluminum alloys, titanium, copper, carbon fiber
+What do those materials cost on the open market? → About 2% of the rocket's price
+Why the huge gap? → Middlemen, legacy processes, supply chain markups
+Can we build it ourselves? → Yes.
 ```
 
-**跟 AI 怎么用：** 在拆解需求时，让 AI 帮你检查是否 MECE。比如"帮我检查这个分类是否有重叠或遗漏"。AI 在逻辑检查方面很强，善用这个能力。
+SpaceX ended up reducing launch costs to one-tenth of NASA's.
 
-### 7. 二八法则：先抓最关键的 20%
+**Using it with AI:** Before asking AI to solve a problem, ask yourself: "Am I stuck in the old way of doing things?" Instead of "optimize this SQL query," first consider: "Does this data really need real-time querying? Would pre-computation work?" For more on challenging habitual thinking, see [Product Thinking Playbook](/posts/ai/2026-01-30-product-thinking-delete-first/).
 
-二八法则（帕累托法则）说的是：**80% 的结果，往往来自 20% 的原因。**
+### 4. 5W2H: Ask All the Right Questions
 
-这个规律最早由意大利经济学家 Vilfredo Pareto 在 1906 年发现——他观察到意大利 80% 的土地归 20% 的人口所有。后来人们发现这个比例在各种场景下都成立：
+5W2H is a checklist that helps you gather complete information upfront. Many projects fail not because of technical limitations, but because nobody clarified the basics from the start.
 
-- 80% 的 bug 来自 20% 的代码模块
-- 80% 的用户投诉集中在 20% 的功能上
-- 80% 的收入来自 20% 的客户
+| Dimension | Question | Example |
+|-----------|----------|---------|
+| **What** | What are we building? | A user feedback collection system |
+| **Why** | Why are we building it? | Current email-based collection is slow and loses feedback |
+| **Who** | Who builds it? Who uses it? | Dev team: 2 engineers; Users: all paying customers |
+| **When** | When is it needed? | MVP by Q1, iterate in Q2 |
+| **Where** | Where will it be used? | Embedded in-product + standalone web page |
+| **How** | How will it be built? | React frontend, Go backend, PostgreSQL database |
+| **How much** | What are the costs? | $8K budget, 2 months development time |
 
-**实际应用：**
+**Using it with AI:** Before discussing requirements with AI, run through 5W2H first. You will find that many things you thought you had figured out are actually still unclear. Giving AI all this information upfront is ten times more efficient than going back and forth.
 
-假设你在优化一个 App 的性能，与其全面优化所有接口，不如先看监控数据，找出响应最慢的那 20% 接口。大概率优化完这 20%，用户体感就好了 80%。
+### 5. Occam's Razor: Keep It Simple
 
-**跟 AI 怎么用：** 在让 AI 帮你做优化之前，先识别关键的 20%。不要说"帮我优化整个项目的性能"，而是说"这三个接口占了 80% 的响应时间，帮我优化它们"。
+Occam's Razor, proposed by 14th-century philosopher William of Ockham, states: "Entities should not be multiplied beyond necessity." In plain language: **when multiple solutions can solve the problem, choose the simplest one.**
 
-### 8. 5 Whys：连问五个"为什么"
+This is not laziness. It is respect for complexity. Every additional abstraction layer, dependency, or configuration option is another potential source of bugs.
 
-5 Whys（五个为什么）是丰田生产方式的核心工具，由丰田创始人丰田佐吉发明。方法极其简单：**对一个问题连续追问"为什么"，通常问到第五次就能找到根本原因。**
+**Example:**
 
-**举个例子：**
+The requirement is "remember user login state."
 
-```
-问题：用户注册转化率突然下降了 30%
+| Solution | Complexity | Maintenance Cost |
+|----------|-----------|-----------------|
+| JWT + Redis + token refresh + blacklist mechanism | High | High |
+| Session + Cookie (framework built-in) | Low | Low |
+| Browser localStorage + simple token | Medium | Medium |
 
-为什么下降了？    → 因为很多用户在验证码环节流失了
-为什么在验证码流失？→ 因为验证码短信经常收不到
-为什么收不到？    → 因为短信供应商在高峰期限流了
-为什么会限流？    → 因为我们用的是最低档套餐，有并发限制
-为什么用最低档？  → 因为当时用户量小，选了最便宜的，之后没人review过
-```
+If your product has only a few thousand users and no multi-device login requirement, the framework's built-in Session handling is sufficient. Insisting on the full JWT + Redis stack is over-engineering.
 
-看到了吗？表面问题是"转化率下降"，根因是"供应商套餐选型过时，且缺少定期review机制"。如果只看表面，你可能会去优化注册页面的 UI——完全跑偏。
+**Using it with AI:** When AI gives you a complex solution, follow up with: "Is there a simpler way to achieve the same result?" You will find that very often, there is. For more on the "subtract first" mindset, see [Why Taste Matters More Than Ever in the AI Era](/posts/ai/2026-01-23-taste-matters-in-ai-era/).
 
-**跟 AI 怎么用：** 把问题描述给 AI，让它连续追问"为什么"。AI 不会碍于面子停下来，它会很诚实地一路追到根因。
+## Phase 2: Break Down Problems — Divide and Conquer
 
-### 9. SWOT：四个象限看清局势
+### 6. MECE: No Overlaps, No Gaps
 
-SWOT 分析几乎是所有商学院的必修内容，从 **S**trengths（优势）、**W**eaknesses（劣势）、**O**pportunities（机会）、**T**hreats（威胁）四个维度评估一个项目或产品的战略态势。
+MECE (Mutually Exclusive, Collectively Exhaustive) was [invented by Barbara Minto at McKinsey in the 1960s](https://www.mckinsey.com/alumni/news-and-events/global-news/alumni-news/barbara-minto-mece-i-invented-it-so-i-get-to-say-how-to-pronounce-it) as a core component of her famous Pyramid Principle. Minto was a 1963 Harvard Business School graduate (one of only 8 women among 600 students) and the first female MBA hired by McKinsey.
 
-**实际例子：评估要不要做一个 AI 写作助手**
+**Two core requirements:**
+- **Mutually Exclusive (ME):** Categories do not overlap
+- **Collectively Exhaustive (CE):** Categories cover all possibilities
 
-| | 有利 | 不利 |
-|------|------|------|
-| **内部** | **S 优势**：团队有 NLP 经验、已有用户基础 | **W 劣势**：资金有限、缺乏 B 端销售经验 |
-| **外部** | **O 机会**：AI 写作需求爆发、企业降本意愿强 | **T 威胁**：大厂免费产品碾压、用户对 AI 内容信任度低 |
+Sounds obvious, but it is surprisingly easy to get wrong.
 
-SWOT 的价值不在于填表本身，而在于填完之后的**策略推导**：
+**Bad example:**
 
-- **SO 策略**（用优势抓机会）：用 NLP 经验做企业定制化写作产品
-- **WT 策略**（避劣势防威胁）：不做通用写作工具，避开大厂战场
+Classifying "user types" as "free users, VIP users, active users" is not MECE because a VIP user can also be an active user (overlap), and "silent paying users" are not covered (not exhaustive).
 
-**跟 AI 怎么用：** 在做产品决策前，让 AI 帮你做 SWOT 分析。把你的产品背景、市场信息给它，让它从四个维度列出分析。AI 能帮你想到你可能忽略的威胁和机会。
-
-## 三、描述需求：让别人（和 AI）准确理解你要什么
-
-### 10. JTBD：关注用户要完成的任务
-
-JTBD（Jobs To Be Done）由哈佛商学院教授 Clayton Christensen 提出，核心理念是：**用户不是在"购买产品"，而是在"雇佣产品来完成某个任务"。** Christensen 指出，[75%-85% 的新产品在市场上失败](https://www.christenseninstitute.org/theory/jobs-to-be-done/)，原因正是它们没有瞄准用户真正想要完成的"工作"。
-
-**最经典的案例——麦当劳奶昔：**
-
-麦当劳想提升奶昔销量，传统做法是做用户调研——问"你想要什么口味的奶昔"，然后按反馈改配方。结果销量纹丝不动。
-
-后来 Christensen 的研究团队换了个思路：不问用户想要什么，而是去观察用户什么时间买奶昔、买完在哪里喝。
-
-结果发现：**40% 的奶昔在早上 8:30 前卖出，买的人都是开车通勤的上班族。**
-
-他们"雇佣"奶昔的"任务"是什么？——**在无聊的通勤路上，单手就能吃、能管饱到中午、比面包有意思的东西。**
-
-奶昔的竞争对手不是隔壁店的奶昔，而是香蕉、能量棒、百吉饼。
-
-理解了这个"任务"之后，麦当劳把早上的奶昔做得更稠（喝得更久）、加了水果颗粒（更有嚼劲），销量翻了 7 倍。
-
-**跟 AI 怎么用：** 描述需求时，不要只说"我要一个 XX 功能"，而是说"我的用户在 XX 场景下需要完成 XX 任务，目前的痛点是 XX"。这样 AI 才能理解需求背后的"为什么"，给出更贴合的方案。
-
-### 11. 用户故事：用三段式描述需求
-
-用户故事的标准格式：
+**Correct breakdown:**
 
 ```
-作为 [某类用户]，
-我想要 [某个功能/行为]，
-从而 [达到某个目的/获得某个价值]。
+By payment status: Free users / Paid users          ← MECE ✓
+By activity level:  Active users / Inactive users    ← MECE ✓
+Cross-reference:    Free+Active / Free+Inactive / Paid+Active / Paid+Inactive
 ```
 
-这个格式强迫你回答三个问题：**谁要用？要干嘛？为什么？**
+**Using it with AI:** When breaking down requirements, ask AI to check whether your categories are MECE. For example, "Check if this classification has any overlaps or gaps." AI is excellent at logical validation — leverage this capability.
 
-**举个例子：**
+### 7. Pareto Principle: Focus on the Critical 20%
+
+The Pareto Principle (80/20 Rule) states: **80% of results come from 20% of causes.**
+
+This pattern was first observed by Italian economist Vilfredo Pareto in 1906 when he noticed that 80% of Italy's land was owned by 20% of the population. The ratio has since been validated across countless domains:
+
+- 80% of bugs come from 20% of code modules
+- 80% of user complaints concentrate on 20% of features
+- 80% of revenue comes from 20% of customers
+
+**Practical application:**
+
+If you are optimizing an app's performance, instead of optimizing every endpoint, check your monitoring data and identify the slowest 20% of endpoints. Fixing those will likely improve 80% of the perceived user experience.
+
+**Using it with AI:** Before asking AI to optimize, identify the critical 20% first. Instead of "optimize my entire project's performance," say "these three endpoints account for 80% of response time — help me optimize them."
+
+### 8. 5 Whys: Keep Asking Until You Find the Root Cause
+
+5 Whys is a core tool from the Toyota Production System, invented by Toyota founder Sakichi Toyoda. The method is extremely simple: **keep asking "why" about a problem, and by the fifth answer, you usually reach the root cause.**
+
+**Example:**
 
 ```
-❌ "做一个导出功能"
+Problem: User registration conversion rate dropped 30%
 
-✅ "作为运营人员，
-    我想要将上周的用户行为数据导出为 Excel，
-    从而能在周一的例会上做数据汇报。"
+Why did it drop?           → Many users abandoned at the verification step
+Why did they abandon?      → SMS verification codes often were not delivered
+Why were they not delivered?→ The SMS provider throttles during peak hours
+Why does it throttle?      → We are on the cheapest tier with concurrency limits
+Why the cheapest tier?     → User volume was small when we set it up, and nobody reviewed it since
 ```
 
-第二种写法多了什么？**上下文**。你知道了是谁在用（运营人员）、用在什么场景（周一例会）、需要什么格式（Excel）。这些信息直接影响技术方案——比如数据量大不大、需不需要异步导出、格式要不要支持自定义。
+The surface problem is "conversion dropped." The root cause is "SMS provider tier selection is outdated, and there is no periodic review process." If you only looked at the surface, you might have redesigned the registration page UI — completely missing the point.
 
-**跟 AI 怎么用：** 直接用用户故事格式给 AI 提需求。AI 特别擅长从结构化输入中提取关键信息。试试看，效果比一句话需求好太多。现在很多 AI 编程工具也支持用 [Skill 或自定义指令](/posts/ai/2026-01-19-agent-skills-new-programming/) 来预设需求模板，让这个流程更顺滑。
+**Using it with AI:** Describe the problem to AI and ask it to keep asking "why." AI will not stop out of politeness — it will honestly drill all the way down to the root cause.
 
-### 12. 验收标准 GWT：把"做完了"定义清楚
+### 9. SWOT: Four Quadrants for Strategic Clarity
 
-GWT（Given/When/Then）是行为驱动开发（BDD）中常用的验收标准格式：
+SWOT analysis is a staple of business school curricula. It evaluates a project or product across four dimensions: **S**trengths, **W**eaknesses, **O**pportunities, and **T**hreats.
+
+**Real example: Should we build an AI writing assistant?**
+
+| | Favorable | Unfavorable |
+|------|-----------|-------------|
+| **Internal** | **S:** Team has NLP expertise, existing user base | **W:** Limited funding, no B2B sales experience |
+| **External** | **O:** Exploding demand for AI writing, companies want to cut costs | **T:** Big tech offers free products, low user trust in AI content |
+
+The value of SWOT is not in filling out the table but in the **strategic implications** that follow:
+
+- **SO Strategy** (leverage strengths to seize opportunities): Use NLP expertise to build customized enterprise writing tools
+- **WT Strategy** (avoid weaknesses and threats): Do not build a general-purpose writing tool, avoid competing with big tech
+
+**Using it with AI:** Before making product decisions, ask AI to run a SWOT analysis. Provide your product context and market information, and have it analyze from all four dimensions. AI can help you spot threats and opportunities you might have overlooked.
+
+## Phase 3: Describe Requirements — Make Others (and AI) Understand Exactly What You Want
+
+### 10. JTBD: Focus on the Job the User Needs Done
+
+JTBD (Jobs To Be Done) was proposed by Harvard Business School professor Clayton Christensen. The core insight: **users do not "buy products" — they "hire products to get a job done."** Christensen pointed out that [75-85% of new products fail in the market](https://www.christenseninstitute.org/theory/jobs-to-be-done/) precisely because they miss the "job" users actually need done.
+
+**The classic example — McDonald's milkshakes:**
+
+McDonald's wanted to boost milkshake sales. The traditional approach was surveys asking "what flavor milkshake do you want?" They changed the recipe based on feedback. Sales did not budge.
+
+Then Christensen's research team took a different approach: instead of asking what customers wanted, they observed when people bought milkshakes and where they drank them.
+
+They discovered: **40% of milkshakes were sold before 8:30 AM, bought by commuters driving to work.**
+
+The "job" they were "hiring" the milkshake for: **something you can eat one-handed during a boring commute, that keeps you full until lunch, and is more interesting than bread.**
+
+The milkshake's competitors were not other milkshakes — they were bananas, energy bars, and bagels.
+
+Understanding this "job," McDonald's made morning milkshakes thicker (takes longer to drink) and added fruit chunks (more texture). Sales increased 7x.
+
+**Using it with AI:** When describing requirements, do not just say "I want feature X." Say "my users need to accomplish task X in scenario Y, and their current pain point is Z." This gives AI the context behind the "why" and produces far more relevant solutions.
+
+### 11. User Stories: Three-Part Requirement Descriptions
+
+The standard user story format:
 
 ```
-给定（Given）：某个前置条件
-当（When）：用户执行某个操作
-则（Then）：系统应该产生某个结果
+As a [type of user],
+I want [some action or feature],
+So that [I achieve some value or outcome].
 ```
 
-**为什么需要它？**
+This format forces you to answer three questions: **Who needs it? What do they need? Why do they need it?**
 
-因为"做完了"这三个字，不同人的理解完全不同。产品经理觉得"能用就行"，测试觉得"边界情况都得覆盖"，老板觉得"界面还得好看"。GWT 把验收标准写死，避免扯皮。
+**Example:**
 
-**实际例子：**
+```
+Bad:  "Build an export feature"
+
+Good: "As an operations manager,
+       I want to export last week's user behavior data as Excel,
+       So that I can present it at Monday's team meeting."
+```
+
+What does the second version add? **Context.** You now know who uses it (operations manager), what scenario (Monday meeting), and what format (Excel). These details directly affect technical decisions — data volume, async export needs, format customization requirements.
+
+**Using it with AI:** Give AI requirements in user story format. AI excels at extracting key information from structured input. Try it — the results are dramatically better than one-liner requests. Many AI coding tools also support [Skills or custom instructions](/posts/ai/2026-01-19-agent-skills-new-programming/) to preset requirement templates, making this workflow even smoother.
+
+### 12. GWT Acceptance Criteria: Define What "Done" Actually Means
+
+GWT (Given/When/Then) is a standard acceptance criteria format from Behavior-Driven Development (BDD):
+
+```
+Given: Some precondition
+When:  The user performs some action
+Then:  The system should produce some result
+```
+
+**Why do you need it?**
+
+Because "done" means completely different things to different people. The product manager thinks "it works." QA thinks "all edge cases are covered." The CEO thinks "it also needs to look good." GWT nails down acceptance criteria explicitly, eliminating ambiguity.
+
+**Real example:**
 
 ```gherkin
-功能：用户登录
+Feature: User Login
 
-场景：正常登录
-  给定 用户已注册且账号状态正常
-  当 用户输入正确的邮箱和密码，点击登录
-  则 跳转到首页，显示用户昵称
+Scenario: Successful login
+  Given the user is registered and account is active
+  When  the user enters correct email and password, then clicks login
+  Then  redirect to homepage showing user's display name
 
-场景：密码错误
-  给定 用户已注册
-  当 用户输入正确的邮箱但密码错误
-  则 提示"邮箱或密码错误"，不透露具体是哪个错
+Scenario: Wrong password
+  Given the user is registered
+  When  the user enters correct email but wrong password
+  Then  show "Incorrect email or password" without revealing which one is wrong
 
-场景：账号被锁定
-  给定 用户连续输错密码 5 次
-  当 用户第 6 次尝试登录
-  则 提示"账号已锁定，请 30 分钟后重试"
+Scenario: Account locked
+  Given the user has entered wrong password 5 times
+  When  the user attempts a 6th login
+  Then  show "Account locked. Please try again in 30 minutes"
 ```
 
-**跟 AI 怎么用：** 这是跟 AI 协作时的大杀器。你把 GWT 格式的验收标准给 AI，它写出来的代码会精准得多。而且你可以直接让 AI 根据 GWT 生成测试用例——一个方法论同时解决了需求描述和测试覆盖两个问题。
+**Using it with AI:** This is a game-changer for AI collaboration. Give AI GWT-format acceptance criteria and the resulting code will be significantly more accurate. You can also have AI generate test cases directly from GWT — one methodology solving both requirement specification and test coverage.
 
-### 13. Kano 模型：需求也分三六九等
+### 13. Kano Model: Not All Requirements Are Equal
 
-[Kano 模型](https://en.wikipedia.org/wiki/Kano_model)由东京理科大学教授狩野纪昭（Noriaki Kano）在 1984 年提出。当时业界普遍认为"处理投诉 + 增强热门功能"就能提升满意度，Kano 用 900 名参与者的研究证明，客户满意度远比这复杂。他把需求分成几种类型：
+The [Kano Model](https://en.wikipedia.org/wiki/Kano_model) was proposed by Tokyo University of Science professor Noriaki Kano in 1984. At the time, conventional wisdom held that "handling complaints + enhancing popular features" was sufficient to improve satisfaction. Kano's research with 900 participants proved customer satisfaction is far more nuanced. He classified requirements into several types:
 
-| 类型 | 特点 | 举例（以外卖 App 为例） |
-|------|------|----------------------|
-| **必备型（Must-be）** | 做了用户觉得理所当然，没做用户直接骂 | 能下单、能支付、能看到配送状态 |
-| **期望型（One-dimensional）** | 做得越好用户越满意，做得差用户越不满 | 配送速度、餐品温度、客服响应时间 |
-| **惊喜型（Attractive）** | 有了用户超惊喜，没有也不会不满 | 下雨天自动发优惠券、骑手实时位置动画 |
-| **无差别型（Indifferent）** | 做不做用户都无所谓 | 换个 App 图标颜色 |
-| **反向型（Reverse）** | 做了反而让用户不满 | 强制分享才能领优惠 |
+| Type | Characteristic | Example (food delivery app) |
+|------|---------------|---------------------------|
+| **Must-be** | Expected by default; absence causes anger | Can place orders, pay, track delivery |
+| **One-dimensional** | More is better; less is worse | Delivery speed, food temperature, support response time |
+| **Attractive** | Delights when present; not missed when absent | Auto-sends coupons on rainy days, live rider animation |
+| **Indifferent** | Users do not care either way | Changing the app icon color |
+| **Reverse** | Actually annoys users when present | Forced social sharing to unlock coupons |
 
-**关键洞察：** 先把必备型做到位，再投入期望型提升体验，最后用惊喜型做差异化。很多团队犯的错误是必备型还没做好就去搞惊喜型——支付经常失败，但花了一个月做了个花哨的开屏动画。
+**Key insight:** Get Must-be requirements rock-solid first, then invest in One-dimensional improvements, and finally differentiate with Attractive features. A common mistake is chasing Attractive features while Must-be requirements are broken — payments fail regularly, but the team spent a month building a flashy splash screen animation.
 
-**跟 AI 怎么用：** 在跟 AI 讨论功能列表时，先用 Kano 模型分类，告诉 AI "这个是 Must-have，必须稳定可靠；那个是 Nice-to-have，可以简单实现"。这样 AI 会合理分配方案的复杂度。
+**Using it with AI:** When discussing feature lists with AI, classify them using the Kano Model first. Tell AI "this is Must-have — it needs to be stable and reliable; that is Nice-to-have — a simple implementation is fine." This helps AI allocate solution complexity appropriately.
 
-### 14. SCQA：结构化表达你的想法
+### 14. SCQA: Structure Your Communication
 
-SCQA 由 Barbara Minto（没错，又是她）在金字塔原理中推荐的叙事框架，用四步把复杂信息讲清楚：
+SCQA is a narrative framework recommended by Barbara Minto (yes, her again) in the Pyramid Principle, using four steps to communicate complex information clearly:
 
-| 步骤 | 含义 | 示例 |
-|------|------|------|
-| **S**ituation（情境） | 大家都知道的背景 | "我们的 App 月活已经达到 10 万" |
-| **C**omplication（冲突） | 出了什么问题 | "但新用户 7 日留存率只有 15%，远低于行业均值 30%" |
-| **Q**uestion（问题） | 核心要回答的问题 | "如何将 7 日留存率提升到 25% 以上？" |
-| **A**nswer（答案） | 你的解决方案 | "优化新手引导流程 + 增加次日推送触达" |
+| Step | Meaning | Example |
+|------|---------|---------|
+| **S**ituation | Shared context everyone knows | "Our app has reached 100K MAU" |
+| **C**omplication | What went wrong | "But 7-day retention for new users is only 15%, far below the 30% industry average" |
+| **Q**uestion | The core question to answer | "How do we raise 7-day retention above 25%?" |
+| **A**nswer | Your proposed solution | "Optimize onboarding flow + add next-day push notification touchpoints" |
 
-**为什么 SCQA 有用？**
+**Why does SCQA work?**
 
-因为大多数人讲事情是"从头讲到尾"——背景说半天，听的人还不知道你到底要说什么。SCQA 强迫你**先制造冲突再给答案**，让听的人（或读你需求文档的 AI）一下就抓住重点。
+Because most people communicate by narrating from beginning to end — spending forever on background while the listener still has no idea what the point is. SCQA forces you to **create tension before offering an answer**, helping the listener (or the AI reading your requirement doc) immediately grasp the key issue.
 
-**跟 AI 怎么用：** 当你要跟 AI 讨论一个复杂需求时，用 SCQA 格式开头。比如：
+**Using it with AI:** When discussing a complex requirement with AI, lead with SCQA format. For example:
 
-> "我们的博客系统目前用 Hugo 构建，每篇文章要手动创建目录和写 Front Matter（S）。随着文章数量增多，这个流程越来越慢且容易出错（C）。有没有办法自动化这个流程（Q）？我希望通过一个脚本或工具，输入标题就能自动创建完整的文章骨架（A）。"
+> "Our blog system is built on Hugo, and each article requires manually creating directories and writing front matter (S). As article count grows, this process is increasingly slow and error-prone (C). Is there a way to automate this workflow (Q)? I want a script or tool where I input a title and it generates the complete article scaffold (A)."
 
-这样 AI 立刻就知道你的背景、痛点和期望，给出的方案会精准得多。
+This gives AI immediate clarity on your context, pain point, and expectation, resulting in far more precise solutions.
 
-## 四、排优先级：决定先做什么
+## Phase 4: Prioritize — Decide What to Do First
 
-### 15. Eisenhower 矩阵：紧急的不一定重要
+### 15. Eisenhower Matrix: Urgent Does Not Mean Important
 
-这个矩阵据传来自美国总统艾森豪威尔的一句话："重要的事很少紧急，紧急的事很少重要。" 它按**紧急**和**重要**两个维度把任务分成四个象限：
+This matrix is attributed to President Eisenhower's quote: "What is important is seldom urgent and what is urgent is seldom important." It sorts tasks into four quadrants based on **urgency** and **importance**:
 
-| | 紧急 | 不紧急 |
-|------|------|--------|
-| **重要** | **第一象限：立即做** 服务器宕机、线上 P0 bug | **第二象限：计划做** 架构优化、技术债偿还、团队培训 |
-| **不重要** | **第三象限：委派** 常规会议、非关键邮件回复 | **第四象限：丢掉** 无意义的群消息、过度美化内部文档 |
+| | Urgent | Not Urgent |
+|------|--------|------------|
+| **Important** | **Q1: Do immediately** Server down, P0 production bug | **Q2: Schedule it** Architecture improvements, tech debt, team training |
+| **Not Important** | **Q3: Delegate** Routine meetings, non-critical emails | **Q4: Eliminate** Meaningless group chats, over-polishing internal docs |
 
-**核心洞察：** 大多数人把时间花在第一象限（救火）和第三象限（杂事），而真正决定长期成败的是**第二象限**——那些重要但不紧急的事。
+**Key insight:** Most people spend their time in Q1 (firefighting) and Q3 (busywork), but long-term success is determined by **Q2** — important things that are not urgent.
 
-**跟 AI 怎么用：** 把你的待办列表给 AI，让它帮你按 Eisenhower 矩阵分类。AI 不会被"紧急"的情绪裹挟，能更客观地区分什么是真的重要。
+**Using it with AI:** Give AI your to-do list and ask it to classify items using the Eisenhower Matrix. AI will not be swayed by the emotional urgency of the moment and can more objectively distinguish what is truly important.
 
-### 16. MoSCoW：四刀切出优先级
+### 16. MoSCoW: Four-Tier Priority Classification
 
-[MoSCoW](https://en.wikipedia.org/wiki/MoSCoW_method) 由 Dai Clegg 在 1994 年于 Oracle UK Consulting 工作期间创建，后被纳入 DSDM 敏捷框架广泛使用。它把所有需求分成四档：
+[MoSCoW](https://en.wikipedia.org/wiki/MoSCoW_method) was created by Dai Clegg in 1994 at Oracle UK Consulting and later widely adopted through the DSDM agile framework. It divides all requirements into four tiers:
 
-| 级别 | 含义 | 占比建议 |
-|------|------|---------|
-| **Must have** | 这次必须做，不做就不能上线 | 约 60% |
-| **Should have** | 应该做，但没做也不会阻塞上线 | 约 20% |
-| **Could have** | 可以做，锦上添花 | 约 20% |
-| **Won't have** | 这次明确不做 | — |
+| Tier | Meaning | Suggested Proportion |
+|------|---------|---------------------|
+| **Must have** | Non-negotiable for this release | ~60% |
+| **Should have** | Important but will not block the release | ~20% |
+| **Could have** | Nice to have if time permits | ~20% |
+| **Won't have** | Explicitly out of scope for this release | — |
 
-**"Won't have" 是最重要的一档。** 很多项目失败不是因为做少了，而是因为什么都想做。把"不做"的事情写下来，比"要做"的事情更重要——它划定了边界。
+**"Won't have" is the most important tier.** Many projects fail not because they did too little, but because they tried to do everything. Writing down what you will *not* do matters more than listing what you will — it sets boundaries.
 
-**实际操作：**
-
-```
-项目：公司内部知识库系统 v1
-
-Must have：
-  - 文档的创建、编辑、删除
-  - 全文搜索
-  - 基于角色的权限控制
-
-Should have：
-  - Markdown 编辑器（先用纯文本也行）
-  - 文档版本历史
-
-Could have：
-  - AI 智能搜索
-  - 文档模板
-
-Won't have（这次明确不做）：
-  - 多语言支持
-  - 移动端 App
-  - 第三方集成（Slack、飞书）
-```
-
-**跟 AI 怎么用：** 在给 AI 分配任务时，明确告诉它 MoSCoW 分级。比如"先完成 Must have 的三个功能，Should have 的两个如果时间允许再加，Could have 的先不考虑"。
-
-### 17. RICE：给优先级打个分
-
-RICE 评分框架由 [Intercom 产品团队的 Sean McBride 开发](https://www.intercom.com/blog/rice-simple-prioritization-for-product-managers/)，用四个维度给每个需求打分，让优先级排序更客观。创建背景是 Intercom 发现之前的排序方式偏向"个人偏好项目"，而非真正影响最多客户的想法。
-
-| 维度 | 含义 | 评分方式 |
-|------|------|---------|
-| **R**each（触达） | 影响多少用户？ | 具体数字（如 5000 人/月） |
-| **I**mpact（影响） | 对每个用户的影响多大？ | 3=巨大 / 2=高 / 1=中 / 0.5=低 / 0.25=极低 |
-| **C**onfidence（信心） | 你对以上估计有多大把握？ | 100%=有数据支撑 / 80%=有经验判断 / 50%=直觉 |
-| **E**ffort（工作量） | 需要多少人月？ | 人月数（如 2 人月） |
-
-**计算公式：**
+**Practical example:**
 
 ```
-RICE 分数 = (Reach × Impact × Confidence) / Effort
+Project: Internal Knowledge Base System v1
+
+Must have:
+  - Document create, edit, delete
+  - Full-text search
+  - Role-based access control
+
+Should have:
+  - Markdown editor (plain text is fine for now)
+  - Document version history
+
+Could have:
+  - AI-powered smart search
+  - Document templates
+
+Won't have (explicitly out of scope):
+  - Multi-language support
+  - Mobile app
+  - Third-party integrations (Slack, Teams)
 ```
 
-**实际打分示例：**
+**Using it with AI:** When assigning tasks to AI, explicitly communicate MoSCoW tiers. For example, "Complete the three Must-have features first. Add the two Should-haves if time permits. Ignore Could-haves for now."
 
-| 需求 | Reach | Impact | Confidence | Effort | RICE 分数 |
-|------|-------|--------|------------|--------|----------|
-| 优化搜索结果 | 5000 | 2 | 80% | 2 | 4000 |
-| 新增暗黑模式 | 2000 | 1 | 80% | 3 | 533 |
-| 重构支付模块 | 5000 | 3 | 50% | 5 | 1500 |
+### 17. RICE: Score Your Priorities Objectively
 
-结论很清晰：**先优化搜索结果**。
+The RICE scoring framework was [developed by Sean McBride on Intercom's product team](https://www.intercom.com/blog/rice-simple-prioritization-for-product-managers/), using four dimensions to score each requirement for more objective prioritization. Intercom created it after realizing their previous approach biased toward "pet projects" rather than ideas that truly impacted the most customers.
 
-**注意：** RICE 不是法律，是参考。有些低分需求可能是高分需求的前置依赖，有些是"桌面赌注"（不做就没法卖），需要结合实际判断。
+| Dimension | Meaning | How to Score |
+|-----------|---------|-------------|
+| **R**each | How many users will this affect? | Concrete number (e.g., 5,000/month) |
+| **I**mpact | How much will each user be affected? | 3=massive / 2=high / 1=medium / 0.5=low / 0.25=minimal |
+| **C**onfidence | How confident are you in these estimates? | 100%=data-backed / 80%=experience-based / 50%=gut feeling |
+| **E**ffort | How many person-months of work? | Person-months (e.g., 2) |
 
-### 18. MVP：先做最小闭环
-
-MVP（Minimum Viable Product，最小可用产品）核心思想是：**用最少的功能完成一个完整的使用闭环，快速上线验证价值。**
-
-关键词是"闭环"——不是做一半丢在那里，而是用户能完整走通整个流程，只是每一步都是最简版本。
-
-**经典案例：Dropbox**
-
-Dropbox 的 MVP 不是一个简陋版的云盘，而是一个 3 分钟的演示视频。创始人 Drew Houston 在视频里演示了文件同步的概念，发布到 Hacker News。一夜之间，等待列表从 5000 人涨到 75000 人。
-
-### 19. MLP：在"能用"的基础上让人"想用"
-
-MLP（Minimum Lovable Product，最小可爱产品）由 Aha! 公司 CEO [Brian de Haaff 在 2013 年提出](https://www.aha.io/roadmapping/guide/plans/what-is-a-minimum-lovable-product)。它是对 MVP 的升级——不仅要"能用"，还要有让用户"想用下去"的关键体验点。
-
-**怎么选：**
-
-| 场景 | 选择 | 原因 |
-|------|------|------|
-| 全新市场，不确定有没有需求 | MVP | 先验证再投入 |
-| 市场已验证，竞品很多 | MLP | 没有差异化体验就没人用 |
-| 资源极其有限 | MVP | 活下来最重要 |
-| 有一定资源，目标是留存 | MLP | 体验决定留存 |
-
-**跟 AI 怎么用：** 让 AI 帮你梳理"哪些功能构成 MVP 闭环，哪些是 MLP 的体验加分项"。给出明确边界，AI 写代码时就不会过度设计，也不会遗漏关键流程。
-
-### 20. Pre-mortem：假设已经失败了，倒推原因
-
-Pre-mortem（事前验尸）是心理学家 [Gary Klein 在 Harvard Business Review 上提出的方法](https://hbr.org/2007/09/performing-a-project-premortem)，获得了诺贝尔经济学奖得主 Daniel Kahneman 的推荐。1989 年的研究表明，这种"前瞻性后见之明"能将准确预测风险的能力**提高 30%**。
-
-做法很反直觉：**项目还没开始，就假设它已经失败了，然后让团队倒推"可能是因为什么失败的"。**
-
-为什么这比"风险评估"管用？因为当你说"大家想想有什么风险"时，没人愿意当乌鸦嘴。但当你说"项目已经失败了，你觉得是因为什么"——心理负担一下就没了，大家反而会畅所欲言。
-
-**怎么做：**
+**Formula:**
 
 ```
-步骤 1：宣布"假设我们的项目在 3 个月后彻底失败了"
-步骤 2：每个人独立写下"可能的失败原因"
-步骤 3：汇总、分类、识别高频原因
-步骤 4：针对高频原因制定预防措施
+RICE Score = (Reach × Impact × Confidence) / Effort
 ```
 
-**常见的失败原因模板：**
+**Scoring example:**
 
-| 类别 | 典型原因 |
-|------|---------|
-| **技术** | 性能扛不住、第三方 API 不稳定、数据迁移出错 |
-| **流程** | 没有回滚方案、测试覆盖不够、上线流程混乱 |
-| **人员** | 核心开发中途离职、跨团队协作卡壳 |
-| **需求** | 需求中途大改、边界情况没想到 |
-| **外部** | 政策变化、竞品抢先发布 |
+| Requirement | Reach | Impact | Confidence | Effort | RICE Score |
+|-------------|-------|--------|------------|--------|-----------|
+| Optimize search results | 5,000 | 2 | 80% | 2 | 4,000 |
+| Add dark mode | 2,000 | 1 | 80% | 3 | 533 |
+| Refactor payment module | 5,000 | 3 | 50% | 5 | 1,500 |
 
-**跟 AI 怎么用：** 这是 AI 特别擅长的场景。把你的项目计划给 AI，让它"假设这个项目失败了，列出 10 个最可能的原因"。AI 没有人际关系的顾虑，会非常直接地指出你没想到的风险点。
+The conclusion is clear: **optimize search results first.**
 
-## 五、持续改进：做完之后怎么办
+**Note:** RICE is a reference, not law. Some low-scoring items may be prerequisites for high-scoring ones, and some are "table stakes" (must-have to even compete). Always combine with practical judgment.
 
-### 21. PDCA：转起来的改进飞轮
+### 18. MVP: Build the Smallest Complete Loop
 
-PDCA 循环（也叫戴明环）由质量管理大师 W. Edwards Deming 推广，是精益生产和六西格玛的基石。它的四个步骤形成一个不断转动的飞轮：
+MVP (Minimum Viable Product) core principle: **build the fewest features needed to complete a full usage loop, ship fast, and validate value.**
 
-```
-Plan（计划）→ Do（执行）→ Check（检查）→ Act（改进）→ 再 Plan...
-```
+The keyword is "loop" — not building half a product and abandoning it, but letting users walk through the entire flow, with each step in its simplest possible form.
 
-看着像废话？关键在**Check 和 Act 这两步大多数人会跳过**。
+**Classic case: Dropbox**
 
-**实际例子：**
+Dropbox's MVP was not a bare-bones cloud drive. It was a 3-minute demo video. Founder Drew Houston demonstrated the file sync concept and posted it to Hacker News. Overnight, the waitlist grew from 5,000 to 75,000 people.
 
-```
-Plan：本周优化搜索功能，目标是搜索响应时间从 2 秒降到 500 毫秒
-Do：  加了 Elasticsearch 索引，重写了查询逻辑
-Check：上线后实测 800 毫秒，没达标；发现是分词策略导致索引过大
-Act：  调整分词策略，优化索引结构 → 进入下一轮 PDCA
-```
+### 19. MLP: Make Users Want to Come Back
 
-每转一圈，系统就好一点。看起来慢，但复利效应惊人。
+MLP (Minimum Lovable Product) was [proposed by Aha! CEO Brian de Haaff in 2013](https://www.aha.io/roadmapping/guide/plans/what-is-a-minimum-lovable-product). It is an evolution of MVP — not just "usable" but including key experience elements that make users *want* to keep using it.
 
-**跟 AI 怎么用：** 每次让 AI 帮你做完一件事，不要止步于"能跑了"。追加一轮 Check——"帮我 review 这段代码有没有性能问题或安全隐患"，然后根据反馈再 Act。这就是 PDCA 在 AI 协作中的应用。关于怎么在 AI 开发中建立这样的反馈循环，可以看 [我的 AI 开发工作流：从需求到上线](/posts/ai/2026-01-19-ai-dev-workflow/)。
+**How to choose:**
 
-### 22. Design Thinking：以用户为中心的创新流程
+| Scenario | Choice | Reason |
+|----------|--------|--------|
+| New market, demand unvalidated | MVP | Validate before investing |
+| Market validated, many competitors | MLP | No differentiated experience = no users |
+| Extremely limited resources | MVP | Survival comes first |
+| Some resources, targeting retention | MLP | Experience drives retention |
 
-[Design Thinking](https://designthinking.ideo.com/) 由 IDEO 公司推广，被 Uber、Airbnb、IBM 等公司广泛采用。它是一个**以用户为中心的创新流程**，包含五个阶段：
+**Using it with AI:** Have AI help you identify "which features form the MVP loop and which are MLP experience boosters." With clear boundaries, AI will not over-engineer or miss critical flows.
 
-```
-共情（Empathize）→ 定义（Define）→ 构思（Ideate）→ 原型（Prototype）→ 测试（Test）
-```
+### 20. Pre-mortem: Assume Failure and Work Backwards
 
-| 阶段 | 做什么 | 核心问题 |
-|------|--------|---------|
-| **共情** | 观察和访谈用户 | 用户的真实痛点是什么？ |
-| **定义** | 提炼出核心问题 | 我们到底要解决什么问题？ |
-| **构思** | 发散思维，不评判 | 有哪些可能的解决方案？ |
-| **原型** | 快速做出低成本原型 | 能不能让用户先摸到？ |
-| **测试** | 拿给用户试，收集反馈 | 方案真的解决了问题吗？ |
+Pre-mortem is a technique [proposed by psychologist Gary Klein in the Harvard Business Review](https://hbr.org/2007/09/performing-a-project-premortem), endorsed by Nobel laureate Daniel Kahneman. A 1989 study showed that this "prospective hindsight" approach can **increase the ability to accurately predict risks by 30%.**
 
-Design Thinking 的价值在于：它是前面所有方法论的"操作系统"。共情阶段用 JTBD，定义阶段用 MECE 和 5 Whys，构思阶段用 SCQA 表达方案，原型阶段用 MVP 控制范围，测试阶段用 GWT 做验收。
+The approach is counterintuitive: **before the project starts, assume it has already failed, then have the team work backwards to identify why it might have failed.**
 
-**跟 AI 怎么用：** AI 在 Design Thinking 的每个阶段都能帮上忙——共情阶段让它分析用户反馈数据，定义阶段让它帮你做 MECE 拆解，构思阶段让它头脑风暴方案，原型阶段让它快速生成代码。把 Design Thinking 当做你和 AI 协作的主流程框架，效率会高很多。关于如何在实际开发中应用这套流程，推荐参考 [Claude Code 最佳实践](/posts/ai/2026-01-06-claudecode-best-practices/)。
+Why is this more effective than traditional "risk assessment"? When you say "let's think about risks," nobody wants to be the pessimist. But when you say "the project has failed — why do you think it happened?" — the psychological barrier disappears, and people speak freely.
 
-## 六、串起来用：一个完整的需求分析流程
-
-这 22 个方法论不是互相独立的，它们可以串成一个完整的工作流：
+**How to do it:**
 
 ```
-1. 定义目标
-   SMART → 把单个目标写清楚
-   OKR → 确保目标之间对齐
-   第一性原理 → 确认目标本身是对的
-   5W2H → 把相关信息补全
-   奥卡姆剃刀 → 确认没有过度设计
-
-2. 拆解问题
-   MECE → 不重不漏地拆分
-   二八法则 → 找到最关键的 20%
-   5 Whys → 追到根本原因
-   SWOT → 看清内外部态势
-
-3. 描述需求
-   JTBD → 明确用户要完成的任务
-   用户故事 → 用标准格式描述
-   GWT → 写清验收标准
-   Kano 模型 → 区分需求类型
-   SCQA → 结构化表达方案
-
-4. 排优先级
-   Eisenhower → 区分紧急和重要
-   MoSCoW → 四档分类
-   RICE → 量化打分
-   MVP/MLP → 确定第一版的范围
-   Pre-mortem → 提前识别风险
-
-5. 持续改进
-   PDCA → 每轮迭代都有检查和改进
-   Design Thinking → 以用户为中心持续创新
+Step 1: Announce "Assume our project has completely failed 3 months from now"
+Step 2: Everyone independently writes down "possible reasons for failure"
+Step 3: Collect, categorize, identify frequently mentioned causes
+Step 4: Create prevention measures for high-frequency causes
 ```
 
-**在跟 AI 讨论产品需求时，这个流程特别有用。** 你不需要每次都用全部 22 个，但至少过一遍相关的几个，你会发现 AI 的输出质量会显著提升——因为你给的输入质量先提升了。
+**Common failure cause template:**
 
-## 总结
+| Category | Typical Causes |
+|----------|---------------|
+| **Technical** | Cannot handle load, unstable third-party APIs, data migration errors |
+| **Process** | No rollback plan, insufficient test coverage, chaotic deployment |
+| **People** | Key developer quits mid-project, cross-team collaboration stalls |
+| **Requirements** | Major scope changes mid-project, edge cases not considered |
+| **External** | Regulatory changes, competitor launches first |
 
-方法论不是教条，是工具。就像你不会每次拧螺丝都用扳手（有时候手拧就行），你也不需要每次写需求都把 22 个方法论过一遍。
+**Using it with AI:** This is where AI truly shines. Give AI your project plan and ask it to "assume this project failed — list 10 most likely reasons." AI has no interpersonal concerns and will very directly point out risks you have not considered.
 
-但当你发现——
+## Phase 5: Continuously Improve — What Happens After Launch
 
-- 目标说不清楚 → 试试 SMART + OKR
-- 需求描述模糊 → 试试用户故事 + GWT + SCQA
-- 不知道先做什么 → 试试 RICE + MoSCoW + Eisenhower
-- 方案太复杂 → 试试奥卡姆剃刀 + 二八法则
-- 项目总出意外 → 试试 Pre-mortem + SWOT
-- 功能做了没人用 → 试试 JTBD + Kano + 5 Whys
-- 做完了不知道下一步 → 试试 PDCA + Design Thinking
+### 21. PDCA: The Continuous Improvement Flywheel
 
-——的时候，回来翻翻这篇文章，挑一两个方法论用起来。不用全记住，用的时候查就行。
+The PDCA cycle (also called the Deming Cycle) was popularized by quality management pioneer W. Edwards Deming and is a cornerstone of lean manufacturing and Six Sigma. Its four steps form a continuously spinning flywheel:
 
-**最后说一句：这些方法论最大的价值，不是让你"显得专业"，而是帮你把脑子里模糊的东西变成清晰的、别人能理解的、可以执行的东西。** 不管你是跟人沟通还是跟 AI 协作，这都是最核心的能力。
+```
+Plan → Do → Check → Act → Plan again...
+```
 
-### 相关阅读
+Sounds obvious? The key insight is that **most people skip the Check and Act steps.**
 
-- [产品思维三板斧：删除优先、质疑一切、亲赴火线](/posts/ai/2026-01-30-product-thinking-delete-first/) — 用删除思维做产品决策
-- [AI 时代，一个人的 Taste 比以往任何时候都重要](/posts/ai/2026-01-23-taste-matters-in-ai-era/) — 当 AI 什么都能做，什么值得做是核心问题
-- [AI 工作流实战手册：从提示词到编程](/posts/ai/2026-01-30-ai-workflow-real-guide/) — 把 AI 从聊天玩具变成生产力工具
-- [我的 AI 开发工作流：从需求到上线](/posts/ai/2026-01-19-ai-dev-workflow/) — 软件开发全流程中的 AI 实战经验
+**Real example:**
+
+```
+Plan:  This week, optimize search. Target: reduce response time from 2s to 500ms
+Do:    Added Elasticsearch index, rewrote query logic
+Check: Post-launch measurement shows 800ms — did not hit target;
+       discovered tokenization strategy caused oversized index
+Act:   Adjust tokenization strategy, optimize index structure → enter next PDCA cycle
+```
+
+Each cycle makes the system slightly better. It looks slow, but the compounding effect is remarkable.
+
+**Using it with AI:** Every time AI helps you build something, do not stop at "it runs." Add a Check round: "Review this code for performance issues or security vulnerabilities," then Act based on the feedback. This is PDCA applied to AI collaboration. For more on building feedback loops in AI development, see [My AI Development Workflow: From Requirements to Production](/posts/ai/2026-01-19-ai-dev-workflow/).
+
+### 22. Design Thinking: User-Centered Innovation Process
+
+[Design Thinking](https://designthinking.ideo.com/) was popularized by IDEO and has been widely adopted by Uber, Airbnb, IBM, and others. It is a **user-centered innovation process** with five stages:
+
+```
+Empathize → Define → Ideate → Prototype → Test
+```
+
+| Stage | What to Do | Core Question |
+|-------|-----------|---------------|
+| **Empathize** | Observe and interview users | What are users' real pain points? |
+| **Define** | Distill the core problem | What problem are we actually solving? |
+| **Ideate** | Divergent thinking, no judgment | What are the possible solutions? |
+| **Prototype** | Build low-cost prototypes quickly | Can we get something tangible in front of users? |
+| **Test** | Put it in users' hands, gather feedback | Does the solution actually solve the problem? |
+
+Design Thinking's power lies in being the "operating system" for all the other methodologies. Use JTBD during Empathize, MECE and 5 Whys during Define, SCQA during Ideate, MVP during Prototype, and GWT during Test.
+
+**Using it with AI:** AI can contribute at every Design Thinking stage — analyzing user feedback data during Empathize, helping with MECE breakdowns during Define, brainstorming solutions during Ideate, rapidly generating code during Prototype. Use Design Thinking as your overarching framework for AI collaboration and productivity will increase significantly. For practical implementation guidance, see [Claude Code Best Practices](/posts/ai/2026-01-06-claudecode-best-practices/).
+
+## Putting It All Together: A Complete Requirements Analysis Workflow
+
+These 22 methodologies are not independent — they chain into a complete workflow:
+
+```
+1. Define Goals
+   SMART        → Write each goal with precision
+   OKR          → Ensure goals align with each other
+   First Principles → Verify the goal itself is correct
+   5W2H         → Fill in all relevant information
+   Occam's Razor → Confirm you are not over-engineering
+
+2. Break Down Problems
+   MECE         → No overlaps, no gaps
+   Pareto       → Find the critical 20%
+   5 Whys       → Drill to the root cause
+   SWOT         → Map internal and external landscape
+
+3. Describe Requirements
+   JTBD         → Identify the job users need done
+   User Stories  → Use the standard three-part format
+   GWT          → Write explicit acceptance criteria
+   Kano Model   → Classify requirement types
+   SCQA         → Structure your communication
+
+4. Prioritize
+   Eisenhower   → Separate urgent from important
+   MoSCoW       → Four-tier classification
+   RICE         → Quantitative scoring
+   MVP/MLP      → Define the scope of v1
+   Pre-mortem   → Identify risks upfront
+
+5. Continuously Improve
+   PDCA         → Check and improve every iteration
+   Design Thinking → Keep innovating with users at the center
+```
+
+**This workflow is especially powerful when discussing product requirements with AI.** You do not need to use all 22 every time, but running through the relevant ones will noticeably improve AI output quality — because you improved the input quality first.
+
+## Conclusion
+
+Methodologies are tools, not dogma. Just as you would not use a wrench every time you tighten a screw (sometimes your fingers are fine), you do not need to run through all 22 methodologies every time you write a requirement.
+
+But when you find that:
+
+- Goals are unclear → Try SMART + OKR
+- Requirements are vague → Try User Stories + GWT + SCQA
+- You do not know what to do first → Try RICE + MoSCoW + Eisenhower
+- Solutions are too complex → Try Occam's Razor + Pareto Principle
+- Projects keep hitting surprises → Try Pre-mortem + SWOT
+- Features are built but unused → Try JTBD + Kano + 5 Whys
+- You do not know what comes next → Try PDCA + Design Thinking
+
+Come back to this article, pick one or two methodologies, and apply them. You do not need to memorize them all — just reference them when needed.
+
+**The real value of these methodologies is not making you look professional. It is helping you transform the fuzzy ideas in your head into something clear, understandable, and actionable.** Whether you are communicating with people or collaborating with AI, this is the most essential skill.
+
+### Further Reading
+
+- [Product Thinking Playbook: Delete First, Question Everything](/posts/ai/2026-01-30-product-thinking-delete-first/) — Making product decisions through subtraction
+- [Why Taste Matters More Than Ever in the AI Era](/posts/ai/2026-01-23-taste-matters-in-ai-era/) — When AI can do everything, deciding what is worth doing becomes the key question
+- [AI Workflow Practical Guide: From Prompts to Production](/posts/ai/2026-01-30-ai-workflow-real-guide/) — Turning AI from a chat toy into a productivity tool
+- [My AI Development Workflow: From Requirements to Production](/posts/ai/2026-01-19-ai-dev-workflow/) — Real-world AI integration across the full software development lifecycle

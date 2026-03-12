@@ -2,369 +2,369 @@
 date = '2026-02-18T10:00:00+08:00'
 lastmod = '2026-02-23T10:00:00+08:00'
 draft = false
-title = 'MoltBot 是什么？改名 OpenClaw 全解析：原理、功能与上手教程'
-description = 'MoltBot 是什么？为什么改名 OpenClaw？本文详解 MoltBot 原理、核心功能、三次改名历史、与 Claude Code 等 AI Agent 对比，附快速上手教程。'
+title = 'MoltBot Explained: What It Is, How It Works, and Why It Renamed to OpenClaw'
+description = 'MoltBot (now OpenClaw) is an open-source personal AI agent that runs locally and executes real tasks via Telegram and WhatsApp. Learn its architecture, features, renaming history, and setup guide.'
 toc = true
-tags = ['MoltBot', 'AI Agent', 'OpenClaw', 'Clawdbot', '个人AI助手']
-categories = ['AI原理']
-keywords = ['moltbot 是什么', 'moltbot ai agent', 'moltbot 改名', 'moltbot 原理', 'moltbot 介绍', 'moltbot 能做什么', 'openclaw', 'clawdbot', 'moltbot 个人资料和背景', 'moltbot openclaw 区别', 'moltbot是什么']
+tags = ['MoltBot', 'AI Agent', 'OpenClaw', 'Clawdbot', 'Personal AI Assistant']
+categories = ['AI Guides']
+keywords = ['what is moltbot', 'moltbot ai agent', 'moltbot renamed openclaw', 'moltbot tutorial', 'moltbot vs claude code', 'openclaw setup guide', 'personal ai agent', 'moltbot architecture', 'moltbot security', 'openclaw features']
 +++
 
-如果你最近在技术社区看到 "MoltBot" 这个词却一头雾水，这篇文章就是为你写的。
+If you have been seeing "MoltBot" pop up across tech communities and wondering what all the fuss is about, this article is for you.
 
-**一句话定义：MoltBot（现已改名 OpenClaw）是一个开源的个人 AI Agent，运行在你自己的电脑上，通过 Telegram、WhatsApp 等聊天工具接收指令，能真正替你操作电脑、执行任务。**
+**In one sentence: MoltBot (now renamed OpenClaw) is an open-source personal AI agent that runs on your own machine, takes commands through Telegram, WhatsApp, and other chat platforms, and actually executes tasks on your computer.**
 
-它不是又一个聊天机器人，而是一个能"动手干活"的 AI 助手。下面我们从零开始，彻底搞清楚 MoltBot 是什么、怎么工作、以及你该不该用它。
-
----
-
-## 一、MoltBot 是什么
-
-### 1.1 基本定义
-
-MoltBot 是由奥地利开发者 **Peter Steinberger** 创建的开源个人 AI 助手项目。它的核心理念可以用一句话概括：
-
-> **让 AI 从"只会说"变成"能动手"。**
-
-传统的 AI 工具（ChatGPT、Claude 网页版等）只能给你文字建议。你问它"帮我订明天上午的机票"，它只能回复一段操作指引。而 MoltBot 不同——它能直接打开浏览器、登录你的账号、完成预订、把确认信息发回给你。
-
-用更技术的语言说：MoltBot 是一个 **自主式 AI Agent（Autonomous AI Agent）**，具备以下核心特征：
-
-- **本地运行**：部署在你自己的电脑或服务器上，数据不离开你的设备
-- **消息驱动**：通过 Telegram、WhatsApp、Discord、iMessage 等聊天平台交互
-- **自主执行**：能运行 Shell 命令、操作浏览器、读写文件、调用 API
-- **持久记忆**：记住你的偏好、习惯和历史对话，越用越懂你
-- **技能可扩展**：支持 5700+ 社区技能插件，能力无限延伸
-
-### 1.2 MoltBot 能做什么
-
-具体来说，MoltBot 可以帮你完成这些真实任务：
-
-| 场景 | 具体操作 |
-|------|---------|
-| **邮件管理** | 自动分类邮件、撰写回复、转发重要邮件摘要给你 |
-| **日程安排** | 读取日历、创建会议、发送会议邀请 |
-| **信息检索** | 浏览网页、阅读 PDF、汇总研究报告 |
-| **文件操作** | 整理文件夹、批量重命名、数据格式转换 |
-| **代码辅助** | 执行脚本、部署项目、监控服务器状态 |
-| **生活助手** | 比价购物、航班值机、追踪快递 |
-| **定时任务** | 每天早上推送新闻摘要、定期备份数据 |
-| **社交媒体** | 发布内容、监控提及、整理评论 |
-
-一个被广泛引用的真实案例：有用户声称"躺在沙发上看 Netflix 的时候，通过 Telegram 让 MoltBot 重建了整个网站"。
-
-### 1.3 它和 ChatGPT / Claude 有什么区别
-
-这是很多人最困惑的问题。简单对比：
-
-| 特性 | ChatGPT / Claude 网页版 | MoltBot |
-|------|----------------------|---------|
-| **运行位置** | 云端（OpenAI / Anthropic 服务器） | 你自己的电脑 |
-| **交互方式** | 浏览器网页 | Telegram / WhatsApp 等 |
-| **能力边界** | 只能生成文字 | 能操作电脑、执行任务 |
-| **数据隐私** | 数据上传到云端 | 数据留在本地 |
-| **持久记忆** | 有限（对话窗口级别） | 持久（跨天、跨周记忆） |
-| **7x24 在线** | 需要你主动打开 | 后台持续运行 |
-| **费用** | 订阅制（$20/月起） | 开源免费 + API 调用费 |
-
-核心区别在于：**ChatGPT 是一个对话工具，MoltBot 是一个执行引擎。**
+It is not just another chatbot. It is an AI assistant that can take action. Below, we will break down exactly what MoltBot is, how it works, and whether you should use it.
 
 ---
 
-## 二、MoltBot 的核心功能
+## What Is MoltBot
 
-### 2.1 多平台消息接入
+### Basic Definition
 
-MoltBot 支持 12+ 聊天平台同时接入：
+MoltBot is an open-source personal AI assistant created by Austrian developer **Peter Steinberger**. Its core philosophy can be summed up in one line:
 
-- Telegram（最常用，配置最简单）
+> **Turn AI from something that only talks into something that actually does things.**
+
+Traditional AI tools like ChatGPT or Claude's web interface can only give you text-based suggestions. Ask them to "book a flight for tomorrow morning" and you get step-by-step instructions. MoltBot is different -- it can open a browser, log into your account, complete the booking, and send the confirmation back to you.
+
+In more technical terms, MoltBot is an **Autonomous AI Agent** with these core characteristics:
+
+- **Runs locally**: Deployed on your own computer or server, your data never leaves your device
+- **Message-driven**: Interacts through Telegram, WhatsApp, Discord, iMessage, and other chat platforms
+- **Autonomous execution**: Can run shell commands, control browsers, read/write files, and call APIs
+- **Persistent memory**: Remembers your preferences, habits, and conversation history across sessions
+- **Extensible skills**: Supports 5,700+ community skill plugins for virtually unlimited capabilities
+
+### What Can MoltBot Actually Do
+
+Here are concrete tasks MoltBot can handle:
+
+| Use Case | What It Does |
+|----------|-------------|
+| **Email management** | Auto-classify emails, draft replies, forward important summaries |
+| **Calendar** | Read your calendar, create meetings, send invitations |
+| **Research** | Browse the web, read PDFs, compile research summaries |
+| **File operations** | Organize folders, batch rename files, convert data formats |
+| **Code assistance** | Execute scripts, deploy projects, monitor server status |
+| **Daily life** | Compare prices, check in for flights, track deliveries |
+| **Scheduled tasks** | Push morning news digests, run periodic backups |
+| **Social media** | Post content, monitor mentions, organize comments |
+
+One widely cited real-world example: a user claimed they "rebuilt their entire website via Telegram while watching Netflix on the couch."
+
+### How Is It Different from ChatGPT or Claude
+
+This is the most common source of confusion. Here is a quick comparison:
+
+| Feature | ChatGPT / Claude Web | MoltBot |
+|---------|---------------------|---------|
+| **Where it runs** | Cloud (OpenAI / Anthropic servers) | Your own computer |
+| **How you interact** | Browser web UI | Telegram / WhatsApp / etc. |
+| **Capability boundary** | Text generation only | Can operate your computer and execute tasks |
+| **Data privacy** | Data uploaded to cloud | Data stays local |
+| **Persistent memory** | Limited (session-level) | Persistent (across days and weeks) |
+| **Always on** | Requires you to open it | Runs in background 24/7 |
+| **Cost** | Subscription ($20+/month) | Open source + API usage fees |
+
+The core difference: **ChatGPT is a conversation tool. MoltBot is an execution engine.**
+
+---
+
+## Core Features
+
+### Multi-Platform Messaging
+
+MoltBot supports 12+ chat platforms simultaneously:
+
+- Telegram (most popular, easiest to configure)
 - WhatsApp
 - Discord
-- iMessage（需要 macOS）
+- iMessage (requires macOS)
 - Slack
 - Signal
 - Microsoft Teams
 - Google Chat
-- WebChat（内置网页界面）
+- WebChat (built-in web interface)
 
-你可以在任何一个平台向 MoltBot 发消息，它都能收到并执行。这意味着你不需要坐在电脑前，**随时随地都能指挥你的 AI 助手**。
+You can send a message from any of these platforms and MoltBot will receive and act on it. This means you do not need to be sitting at your computer -- **you can command your AI assistant from anywhere**.
 
-### 2.2 浏览器自动化
+### Browser Automation
 
-MoltBot 通过 Chrome DevTools Protocol（CDP）控制浏览器，能完成几乎所有你在浏览器中手动操作的事情：
+MoltBot controls browsers through the Chrome DevTools Protocol (CDP), handling virtually anything you would do manually:
 
-- 打开网页、填写表单、点击按钮
-- 登录网站（使用你预存的凭证）
-- 截图并发回给你
-- 提取网页数据
+- Open web pages, fill forms, click buttons
+- Log into websites (using your stored credentials)
+- Take screenshots and send them back to you
+- Extract data from web pages
 
-### 2.3 持久化记忆系统
+### Persistent Memory System
 
-这是 MoltBot 最有价值的功能之一。它的记忆以 Markdown 文件形式存储在本地（`~/.clawdbot/` 目录下），包括：
+This is one of MoltBot's most valuable features. Its memory is stored as Markdown files on your local machine (`~/.clawdbot/` directory), including:
 
-- **对话历史**：记住你上周、上个月说过的话
-- **用户偏好**：知道你喜欢什么风格的邮件回复、常用的工作流程
-- **项目上下文**：了解你正在进行的项目的背景信息
-- **学习成果**：从错误中学习，下次做得更好
+- **Conversation history**: Remembers what you said last week or last month
+- **User preferences**: Knows your preferred email reply style and common workflows
+- **Project context**: Understands background information about your ongoing projects
+- **Learned behaviors**: Learns from mistakes and improves over time
 
-与 ChatGPT 的短期记忆不同，MoltBot 的记忆是**跨会话、跨天数持久化的**。它不会因为你关闭聊天窗口就忘记一切。
+Unlike ChatGPT's short-term memory, MoltBot's memory **persists across sessions, across days, and across weeks**. It does not forget everything when you close the chat window.
 
-想深入了解记忆系统的设计，可以参考 [OpenClaw 记忆系统策略解析](/posts/ai/2026-01-31-openclaw-memory-strategy/)。
+For a deeper look at the memory architecture, see [OpenClaw Memory Strategy Analysis](/posts/ai/2026-01-31-openclaw-memory-strategy/).
 
-### 2.4 技能系统（Skills）
+### Skill System
 
-MoltBot 的技能系统是它可扩展性的基础。截至 2026 年 2 月，**ClawHub 技能市场已有 5700+ 社区贡献的技能**，覆盖：
+The skill system is the foundation of MoltBot's extensibility. As of February 2026, **the ClawHub marketplace has 5,700+ community-contributed skills** covering:
 
-- 音乐控制（Spotify 集成）
-- 笔记管理（Obsidian 集成）
-- 邮件处理（Gmail 集成）
-- 代码托管（GitHub 集成）
-- 智能家居控制
-- 金融交易与 DeFi 协议集成
-- 预测市场接入
+- Music control (Spotify integration)
+- Note management (Obsidian integration)
+- Email handling (Gmail integration)
+- Code hosting (GitHub integration)
+- Smart home control
+- Financial trading and DeFi protocol integration
+- Prediction market access
 
-技能的本质是 **Markdown 文件 + 可执行脚本** 的组合。Markdown 文件用自然语言描述技能的用途和使用时机，可执行脚本（Python、Bash 等）实现具体功能。AI 根据 Markdown 描述判断何时调用哪个技能。
+Each skill is essentially a **Markdown file + executable script** combination. The Markdown file describes the skill's purpose in natural language, while the script (Python, Bash, etc.) implements the actual functionality. The AI reads the Markdown description to decide when to invoke each skill.
 
-更值得关注的是，MoltBot 能**自己编写新技能来扩展自身能力**——这是真正的 Agent 自我进化。
+Even more notably, MoltBot can **write new skills to extend its own capabilities** -- true agent self-evolution.
 
-### 2.5 定时任务与主动监控
+### Scheduled Tasks and Proactive Monitoring
 
-通过 cron 集成和心跳机制，MoltBot 不需要你主动发指令，就能：
+Through cron integration and heartbeat mechanisms, MoltBot can act without waiting for your commands:
 
-- 每天早上推送新闻摘要
-- 监控服务器状态，异常时自动告警
-- 追踪股票价格，到达阈值时通知你
-- 定期备份指定文件夹
-- 检查 API 健康状态
+- Push morning news digests daily
+- Monitor server status and alert you on anomalies
+- Track stock prices and notify you at thresholds
+- Periodically back up designated folders
+- Check API health status
 
-这让 MoltBot 从一个"被动应答者"变成了"主动执行者"。
+This transforms MoltBot from a passive responder into a **proactive executor**.
 
-### 2.6 语音交互
+### Voice Interaction
 
-MoltBot 集成了 ElevenLabs 语音服务，支持：
+MoltBot integrates with ElevenLabs voice services, supporting:
 
-- 语音唤醒（Voice Wake）
-- 语音对话模式（Talk Mode）
-- 在 macOS / iOS / Android 上实现 "always-on speech"
+- Voice Wake
+- Talk Mode (voice conversation)
+- Always-on speech on macOS / iOS / Android
 
-你可以像对 Siri 或 Alexa 说话一样，对 MoltBot 下达语音指令。
+You can give MoltBot voice commands just like you would with Siri or Alexa.
 
 ---
 
-## 三、MoltBot 的工作原理
+## How MoltBot Works Under the Hood
 
-### 3.1 整体架构
+### Architecture Overview
 
-MoltBot 的架构分为四层，每一层都有明确的职责：
+MoltBot's architecture has four distinct layers, each with a clear responsibility:
 
 ```
 +--------------------------------------------------+
-|                  你的设备（本地）                    |
-|                                                    |
-|  +------------+    WebSocket     +--------------+  |
-|  |  消息渠道   |<--------------->|   Gateway    |  |
-|  |  Telegram   |   ws://127.0.0.1|   网关服务    |  |
-|  |  WhatsApp   |      :18789     |   :18789     |  |
-|  |  Discord    |                 +------+-------+  |
-|  |  iMessage   |                        |          |
-|  |  ...        |                        v          |
-|  +------------+                 +--------------+   |
-|                                 |   AI 推理层   |   |
-|                                 |  Claude / GPT |   |
-|                                 |  / 本地模型    |   |
-|                                 +------+-------+   |
-|                                        |           |
-|                                        v           |
-|                                 +--------------+   |
-|                                 |   工具执行层   |   |
-|                                 |  浏览器控制    |   |
-|                                 |  文件读写      |   |
-|                                 |  Shell 执行    |   |
-|                                 |  定时任务      |   |
-|                                 |  5700+ 技能   |   |
-|                                 +--------------+   |
+|              Your Device (Local)                  |
+|                                                   |
+|  +------------+    WebSocket     +--------------+ |
+|  | Messaging  |<--------------->|   Gateway    | |
+|  | Channels   |   ws://127.0.0.1|   Service    | |
+|  | Telegram   |      :18789     |   :18789     | |
+|  | WhatsApp   |                 +------+-------+ |
+|  | Discord    |                        |         |
+|  | iMessage   |                        v         |
+|  | ...        |                 +--------------+  |
+|  +------------+                 | AI Reasoning |  |
+|                                 | Claude / GPT |  |
+|                                 | / Local LLM  |  |
+|                                 +------+-------+  |
+|                                        |          |
+|                                        v          |
+|                                 +--------------+  |
+|                                 | Tool Layer   |  |
+|                                 | Browser Ctrl |  |
+|                                 | File I/O     |  |
+|                                 | Shell Exec   |  |
+|                                 | Cron Jobs    |  |
+|                                 | 5700+ Skills |  |
+|                                 +--------------+  |
 +--------------------------------------------------+
 ```
 
-**第一层：消息渠道层**
-负责接收你从各个聊天平台发来的消息，并将其标准化为统一格式。不管你从 Telegram 还是 WhatsApp 发消息，到达 Gateway 时格式是一样的。
+**Layer 1: Messaging Channels**
+Receives messages from your various chat platforms and normalizes them into a unified format. Whether you send a message from Telegram or WhatsApp, it arrives at the Gateway in the same format.
 
-**第二层：Gateway 网关层**
-运行在 `ws://127.0.0.1:18789`，是整个系统的"中枢神经"。它管理所有客户端连接、认证会话、工具编排，是 MoltBot 从"聊天机器人"升级为"Agent 平台"的关键。
+**Layer 2: Gateway**
+Runs at `ws://127.0.0.1:18789` and serves as the system's central nervous system. It manages all client connections, session authentication, and tool orchestration. This is what elevates MoltBot from a chatbot to an agent platform.
 
-**第三层：AI 推理层**
-这是 MoltBot 的"大脑"。它接收标准化消息后，结合上下文（记忆、可用技能、系统状态），通过大语言模型（LLM）决定下一步该做什么。MoltBot 采用了一种叫做 **Mega Prompt** 的技术，将你的指令、可用数据和系统状态动态融合，让 AI 做出最优判断。
+**Layer 3: AI Reasoning**
+This is MoltBot's brain. After receiving a standardized message, it combines context (memory, available skills, system state) and uses a large language model (LLM) to decide what to do next. MoltBot uses a technique called **Mega Prompt** that dynamically fuses your instructions, available data, and system state to help the AI make optimal decisions.
 
-MoltBot 是模型无关的（model-agnostic），支持：
-- **云端模型**：Anthropic Claude（推荐）、OpenAI GPT 系列、DeepSeek
-- **本地模型**：通过 Ollama 运行 Llama 等开源模型（免费但能力较弱）
+MoltBot is model-agnostic and supports:
+- **Cloud models**: Anthropic Claude (recommended), OpenAI GPT series, DeepSeek
+- **Local models**: Open-source models like Llama via Ollama (free but less capable)
 
-**第四层：工具执行层**
-AI 做出决策后，由工具层负责实际执行。包括浏览器控制（CDP 协议）、文件操作、Shell 命令、HTTP 请求、定时任务等。
+**Layer 4: Tool Execution**
+Once the AI makes a decision, the tool layer handles actual execution -- browser control (CDP protocol), file operations, shell commands, HTTP requests, scheduled tasks, and more.
 
-### 3.2 一次请求的完整流程
+### Complete Request Flow
 
-以"帮我查看今天的邮件并摘要"为例：
+Here is what happens when you say "Check my emails today and summarize them":
 
 ```
-1. 你在 Telegram 发送消息："帮我看看今天有什么重要邮件"
+1. You send a message on Telegram: "What important emails do I have today?"
 
-2. Telegram Bot API 将消息推送到本地 Gateway
+2. Telegram Bot API pushes the message to your local Gateway
 
-3. Gateway 将消息标准化，传递给 AI 推理层
+3. Gateway normalizes the message and passes it to the AI reasoning layer
 
-4. AI 推理层查阅记忆（你用的是 Gmail）和可用技能，
-   决定调用 "Gmail 邮件读取" 技能
+4. AI reasoning layer checks memory (you use Gmail) and available skills,
+   decides to invoke the "Gmail Read" skill
 
-5. 工具层执行 Gmail API 调用，获取今日邮件列表
+5. Tool layer calls the Gmail API to fetch today's emails
 
-6. AI 推理层对邮件内容进行分析和摘要
+6. AI reasoning layer analyzes and summarizes the email content
 
-7. 摘要结果通过 Gateway 返回到 Telegram
+7. Summary is returned through the Gateway to Telegram
 
-8. 你在手机上看到摘要消息
+8. You see the summary on your phone
 ```
 
-整个过程耗时通常在 10-30 秒，取决于邮件数量和 API 响应速度。
+The entire process typically takes 10-30 seconds, depending on email volume and API response times.
 
-### 3.3 技术栈
+### Tech Stack
 
-| 组件 | 技术选型 |
-|------|---------|
-| 编程语言 | TypeScript |
-| 包管理器 | pnpm |
-| 运行时 | Node.js >= 22 |
-| 浏览器控制 | Chrome DevTools Protocol (CDP) |
-| 通信协议 | WebSocket |
-| 记忆存储 | 本地 Markdown 文件 |
-| 发布渠道 | stable / beta / dev 三轨制 |
+| Component | Technology |
+|-----------|-----------|
+| Language | TypeScript |
+| Package Manager | pnpm |
+| Runtime | Node.js >= 22 |
+| Browser Control | Chrome DevTools Protocol (CDP) |
+| Communication | WebSocket |
+| Memory Storage | Local Markdown files |
+| Release Channels | stable / beta / dev (three-track) |
 
-想了解更详细的架构剖析，推荐阅读 [OpenClaw 架构深度解析](/posts/ai/2026-02-14-openclaw-architecture-deep-dive/)。
-
----
-
-## 四、改名历史：从 Clawdbot 到 MoltBot 到 OpenClaw
-
-MoltBot 的改名故事本身就是一个值得记录的开源社区事件，**它在不到一周内完成了三次更名，堪称开源史上最快的品牌重塑**。
-
-### 4.1 第一阶段：Clawdbot（2025年11月 - 2026年1月27日）
-
-项目最初叫 **Clawdbot**，由 Peter Steinberger 于 2025 年 11 月发布。"Clawd" 是 "Claude" 的谐音变体（龙虾的爪子 = Claw），因为项目最初主要基于 Anthropic 的 Claude 模型。
-
-项目在 2026 年 1 月中旬开始病毒式传播，**不到一周就拿下 8 万+ GitHub Star**，成为当时增长最快的开源项目之一。
-
-### 4.2 第二阶段：MoltBot（2026年1月27日 - 1月29日）
-
-2026 年 1 月 27 日，Anthropic 以商标相似为由，要求项目更名。"Clawd" 和 "Claude" 在视觉和发音上太过接近，容易让人误以为是 Anthropic 官方产品。
-
-Steinberger 将项目改名为 **MoltBot**。"Molt" 在英文中是"蜕壳"的意思——龙虾要长大，必须脱掉旧壳。这个名字既保留了龙虾吉祥物的精神，又暗喻项目的"蜕变升级"。
-
-然而改名过程中发生了严重的安全事件。Steinberger 在重命名 GitHub 组织和 X（Twitter）账号时，**释放旧账号和注册新账号之间出现了约 10 秒的时间窗口**。职业"账号狙击手"（handle snipers）立刻抢注了被释放的账号，加密货币骗子随即利用劫持的"官方"账号推广一个名叫 $CLAWD 的假代币。该代币市值在数小时内被炒到 1600 万美元，随后暴跌 90%。
-
-### 4.3 第三阶段：OpenClaw（2026年1月29日至今）
-
-仅两天后的 1 月 29 日，项目再次更名为 **OpenClaw**。新名字强调了两层含义：
-
-- **Open**：开源精神
-- **Claw**：龙虾的传承
-
-这次更名也是为了与改名风波中的安全事件做一次彻底的切割。
-
-### 4.4 最新动态：创始人加入 OpenAI
-
-2026 年 2 月 15 日，Sam Altman 宣布 Peter Steinberger 加入 OpenAI，负责"下一代个人 Agent"的开发。Steinberger 表示："我想改变世界，而不是建一个更大的公司。与 OpenAI 合作是把这个愿景带给每个人的最快方式。"
-
-OpenClaw 项目将移交给一个独立的开源基金会，由 OpenAI 提供支持，继续保持开源。
-
-更多关于这个事件的分析，可以阅读 [OpenClaw 创始人加入 OpenAI 意味着什么](/posts/ai/2026-02-16-openclaw-openai-analysis/)。
-
-> **总结改名时间线**：Clawdbot（2025.11）-> MoltBot（2026.1.27）-> OpenClaw（2026.1.29）。不管用哪个名字搜索，说的都是同一个项目。
+For a more detailed architecture breakdown, see [OpenClaw Architecture Deep Dive](/posts/ai/2026-02-14-openclaw-architecture-deep-dive/).
 
 ---
 
-## 五、MoltBot 与其他 AI Agent 的对比
+## Renaming History: From Clawdbot to MoltBot to OpenClaw
 
-2026 年是 AI Agent 元年，市面上涌现了大量类似产品。MoltBot（OpenClaw）在其中处于什么位置？
+The renaming story is itself a remarkable open-source community event -- **the project completed three name changes in under a week, arguably the fastest rebrand in open-source history**.
 
-### 5.1 主要竞品对比
+### Phase 1: Clawdbot (November 2025 - January 27, 2026)
 
-| 特性 | MoltBot/OpenClaw | Claude Code | Manus | HyperWrite |
-|------|-----------------|-------------|-------|------------|
-| **定位** | 个人全能助手 | 开发者编程助手 | 通用 AI Agent | 浏览器自动化 |
-| **开源** | 是 | 否 | 否 | 否 |
-| **运行位置** | 本地自托管 | 本地终端 | 云端 | 浏览器扩展 |
-| **交互方式** | 聊天平台 | 命令行 | 网页界面 | 浏览器 |
-| **数据隐私** | 数据不离开本地 | 代码不离开本地 | 数据在云端 | 数据在云端 |
-| **上手难度** | 中等（需部署） | 低（直接安装） | 低（网页访问） | 低（安装扩展） |
-| **适用人群** | 技术爱好者 | 开发者 | 所有人 | 所有人 |
-| **持久记忆** | 有（本地文件） | 有（CLAUDE.md） | 有限 | 无 |
-| **自主执行** | 强（24/7 后台） | 中（需要终端） | 强 | 中 |
+The project originally launched as **Clawdbot**, created by Peter Steinberger in November 2025. "Clawd" is a phonetic play on "Claude" (lobster claw = Claw), since the project initially relied on Anthropic's Claude model.
 
-### 5.2 什么时候该选 MoltBot
+The project went viral in mid-January 2026, **reaching 80,000+ GitHub stars in under a week**, making it one of the fastest-growing open-source projects at the time.
 
-**适合你的场景**：
+### Phase 2: MoltBot (January 27 - January 29, 2026)
 
-- 你重视数据隐私，不想把个人数据上传到云端
-- 你有一台可以 24 小时运行的设备（Mac Mini、VPS 等）
-- 你需要一个能跨平台（邮件、日历、浏览器、文件系统）统一操作的助手
-- 你享受折腾和定制的乐趣
-- 你希望 AI 助手能记住你的长期偏好
+On January 27, 2026, Anthropic requested a name change due to trademark similarity. "Clawd" and "Claude" were too visually and phonetically close, potentially causing confusion with official Anthropic products.
 
-**不适合你的场景**：
+Steinberger renamed the project to **MoltBot**. "Molt" means shedding a shell -- a lobster must molt to grow. The name preserved the lobster mascot's spirit while symbolizing the project's transformation.
 
-- 你没有技术背景，不想折腾部署
-- 你只需要一个编程助手（用 [Claude Code](/posts/ai/2026-01-14-claude-code-guide/) 更合适）
-- 你对安全风险零容忍（MoltBot 的安全机制仍在完善中）
-- 你只是偶尔需要 AI 帮忙（直接用 ChatGPT/Claude 网页版就够了）
+However, the renaming process triggered a serious security incident. When Steinberger renamed the GitHub organization and X (Twitter) handles, **a roughly 10-second window appeared between releasing the old handle and registering the new one**. Professional handle snipers immediately seized the released accounts, and cryptocurrency scammers used the hijacked "official" accounts to promote a fake token called $CLAWD. The token's market cap was pumped to $16 million within hours before crashing 90%.
 
-### 5.3 MoltBot 生态圈
+### Phase 3: OpenClaw (January 29, 2026 - Present)
 
-MoltBot 不只是一个工具，它已经形成了一个小生态：
+Just two days later on January 29, the project was renamed again to **OpenClaw**. The new name emphasizes two things:
 
-- **OpenClaw**：核心 Agent 项目
-- **MoltBook**：AI Agent 社交网络，超过 160 万 AI Agent 注册，被称为"Agent 互联网的首页"
-- **MoltWorker**：Cloudflare 推出的云端版本，不需要本地硬件
-- **ClawHub**：技能市场，5700+ 社区贡献的技能插件
+- **Open**: The open-source spirit
+- **Claw**: The lobster legacy
 
-想了解 MoltBook 的故事，可以阅读 [MoltBook：当 AI Agent 有了自己的社交网络](/posts/ai/2026-02-01-moltbook-ai-agent-social-network/)。
+This rename also served as a clean break from the security incident during the previous transition.
+
+### Latest Development: Founder Joins OpenAI
+
+On February 15, 2026, Sam Altman announced that Peter Steinberger had joined OpenAI to lead development of "next-generation personal agents." Steinberger stated: "I want to change the world, not build a bigger company. Partnering with OpenAI is the fastest way to bring this vision to everyone."
+
+The OpenClaw project will be transferred to an independent open-source foundation, supported by OpenAI, and remain open source.
+
+For more analysis on this development, see [What OpenClaw's Founder Joining OpenAI Means](/posts/ai/2026-02-16-openclaw-openai-analysis/).
+
+> **Renaming timeline**: Clawdbot (Nov 2025) -> MoltBot (Jan 27, 2026) -> OpenClaw (Jan 29, 2026). No matter which name you search for, they all refer to the same project.
 
 ---
 
-## 六、上手指南：快速部署 MoltBot
+## MoltBot vs Other AI Agents
 
-### 6.1 硬件需求
+2026 is the year of the AI agent, with numerous similar products flooding the market. Where does MoltBot (OpenClaw) fit in?
 
-MoltBot 需要一台 24 小时运行的设备。推荐方案：
+### Competitor Comparison
 
-| 方案 | 成本 | 优势 | 劣势 |
-|------|------|------|------|
-| **Mac Mini M4** | 约 4000 元 | 低功耗（6-8W）、支持 iMessage | 初始投入高 |
-| **云服务器 VPS** | 约 50-100 元/月 | 无需本地硬件 | 不支持 iMessage |
-| **旧笔记本/台式机** | 0 元（已有） | 零成本 | 功耗高、噪音大 |
-| **树莓派 5** | 约 500 元 | 超低功耗、体积小 | 性能有限 |
+| Feature | MoltBot/OpenClaw | Claude Code | Manus | HyperWrite |
+|---------|-----------------|-------------|-------|------------|
+| **Positioning** | Personal all-in-one assistant | Developer coding assistant | General AI agent | Browser automation |
+| **Open source** | Yes | No | No | No |
+| **Runs where** | Self-hosted locally | Local terminal | Cloud | Browser extension |
+| **Interface** | Chat platforms | Command line | Web UI | Browser |
+| **Data privacy** | Data stays local | Code stays local | Data in cloud | Data in cloud |
+| **Setup difficulty** | Medium (requires deployment) | Low (direct install) | Low (web access) | Low (install extension) |
+| **Target audience** | Tech enthusiasts | Developers | Everyone | Everyone |
+| **Persistent memory** | Yes (local files) | Yes (CLAUDE.md) | Limited | No |
+| **Autonomous execution** | Strong (24/7 background) | Medium (requires terminal) | Strong | Medium |
 
-### 6.2 安装步骤
+### When Should You Choose MoltBot
 
-**前提条件**：
+**Good fit if you:**
+
+- Value data privacy and do not want personal data uploaded to the cloud
+- Have a device that can run 24/7 (Mac Mini, VPS, etc.)
+- Need a unified assistant that works across email, calendar, browser, and file system
+- Enjoy tinkering and customization
+- Want an AI assistant that remembers your long-term preferences
+
+**Not a good fit if you:**
+
+- Have no technical background and do not want deployment hassles
+- Only need a coding assistant ([Claude Code](/posts/ai/2026-01-14-claude-code-guide/) is a better choice)
+- Have zero tolerance for security risks (MoltBot's security mechanisms are still maturing)
+- Only occasionally need AI help (ChatGPT/Claude web interface is sufficient)
+
+### The MoltBot Ecosystem
+
+MoltBot is not just a single tool -- it has grown into an ecosystem:
+
+- **OpenClaw**: The core agent project
+- **MoltBook**: An AI agent social network with over 1.6 million registered AI agents, dubbed "the homepage of the agent internet"
+- **MoltWorker**: Cloudflare's cloud-hosted version that eliminates the need for local hardware
+- **ClawHub**: The skill marketplace with 5,700+ community-contributed plugins
+
+To learn more about MoltBook, see [MoltBook: When AI Agents Get Their Own Social Network](/posts/ai/2026-02-01-moltbook-ai-agent-social-network/).
+
+---
+
+## Getting Started: Quick Setup Guide
+
+### Hardware Requirements
+
+MoltBot needs a device that runs 24/7. Recommended options:
+
+| Option | Cost | Pros | Cons |
+|--------|------|------|------|
+| **Mac Mini M4** | ~$550 | Low power (6-8W), iMessage support | Higher upfront cost |
+| **Cloud VPS** | ~$7-15/month | No local hardware needed | No iMessage support |
+| **Old laptop/desktop** | $0 (already owned) | Zero cost | High power usage, noisy |
+| **Raspberry Pi 5** | ~$70 | Ultra-low power, compact | Limited performance |
+
+### Installation Steps
+
+**Prerequisites**:
 - Node.js >= 22
-- pnpm（包管理器）
-- 一个 LLM 的 API Key（推荐 Anthropic Claude）
+- pnpm (package manager)
+- An LLM API key (Anthropic Claude recommended)
 
-**一键安装**：
+**One-line install**:
 
 ```bash
 curl -sSL https://get.moltbot.org/install.sh | bash
 ```
 
-安装程序会自动检测你的操作系统并完成配置。安装完成后，MoltBot 会启动一个交互式终端界面（TUI），引导你完成初始设置。
+The installer automatically detects your OS and handles configuration. After installation, MoltBot launches an interactive TUI (Terminal User Interface) that guides you through initial setup.
 
-**Docker 安装**（推荐，更安全）：
+**Docker install** (recommended, more secure):
 
 ```bash
-# 拉取镜像
+# Pull the image
 docker pull openclaw/openclaw:latest
 
-# 运行容器
+# Run the container
 docker run -d \
   --name openclaw \
   -p 18789:18789 \
@@ -373,168 +373,140 @@ docker run -d \
   openclaw/openclaw:latest
 ```
 
-### 6.3 配置 Telegram 接入
+### Configuring Telegram
 
-以最常用的 Telegram 为例：
-
-```
-步骤 1：在 Telegram 中搜索 @BotFather，发送 /newbot 创建机器人
-步骤 2：获取 Bot Token
-步骤 3：在 MoltBot 配置中填入 Token
-步骤 4：向你的 Bot 发送第一条消息
-```
-
-在 MoltBot 的 TUI 界面中选择 "Messaging" -> "Telegram"，粘贴你的 Bot Token 即可。
-
-### 6.4 第一次对话
-
-配置完成后，尝试在 Telegram 中发送：
+Using the most popular platform, Telegram, as an example:
 
 ```
-帮我检查一下当前系统的磁盘使用情况
+Step 1: Search for @BotFather in Telegram, send /newbot to create a bot
+Step 2: Obtain your Bot Token
+Step 3: Enter the token in MoltBot's configuration
+Step 4: Send your first message to your bot
 ```
 
-MoltBot 会执行 `df -h` 命令，并将结果以易读的格式回复给你。
+In MoltBot's TUI, select "Messaging" -> "Telegram" and paste your Bot Token.
 
-再试试更复杂的任务：
+### Your First Conversation
+
+Once configured, try sending this in Telegram:
 
 ```
-帮我写一个 Python 脚本，每小时检查一次 example.com 是否正常响应，
-如果不正常就通过 Telegram 通知我
+Check my current disk usage
 ```
 
-MoltBot 会编写脚本、设置 cron 定时任务，并配置通知——全部自动完成。
+MoltBot will execute `df -h` and reply with the results in a readable format.
 
-### 6.5 安全配置（必做）
+Try something more complex:
 
-在开始使用之前，请**务必**完成以下安全配置：
+```
+Write a Python script that checks if example.com is responding every hour,
+and notify me via Telegram if it goes down
+```
+
+MoltBot will write the script, set up a cron job, and configure notifications -- all automatically.
+
+### Security Configuration (Essential)
+
+Before you start using MoltBot, **make sure** to complete these security steps:
 
 ```bash
-# 1. 创建专用低权限用户
+# 1. Create a dedicated low-privilege user
 sudo useradd -m -s /bin/bash openclaw-user
 sudo su - openclaw-user
 
-# 2. 限制文件访问范围
+# 2. Restrict file access
 chmod 700 ~/.openclaw
 
-# 3. 配置防火墙（如果在 VPS 上）
-# 只允许本地访问 Gateway 端口
+# 3. Configure firewall (if on a VPS)
+# Only allow local access to the Gateway port
 sudo ufw deny 18789
 sudo ufw allow from 127.0.0.1 to any port 18789
 ```
 
-更详细的安全部署指南，请参考 [Moltbot 深度解析中的安全章节](/posts/ai/2026-01-29-moltbot-deep-dive/)。
+For a detailed security deployment guide, see the security section in [MoltBot Deep Dive](/posts/ai/2026-01-29-moltbot-deep-dive/).
 
 ---
 
-## 七、安全风险与注意事项
+## Security Risks and Considerations
 
-MoltBot 虽然强大，但"能操作你电脑的 AI"本身就是一把双刃剑。在使用前，你必须了解以下风险：
+MoltBot is powerful, but "an AI that can operate your computer" is inherently a double-edged sword. You must understand these risks before using it:
 
-### 7.1 已知安全隐患
+### Known Security Concerns
 
-1. **明文存储凭证**：API Key、OAuth 令牌以明文存储在本地文件中
-2. **提示注入攻击**：恶意邮件可能诱导 MoltBot 执行非预期操作
-3. **反向代理认证绕过**：在 Nginx 后运行时，认证可能失效
-4. **信息窃取恶意软件**：已有恶意软件专门针对 MoltBot 的本地存储
+1. **Plaintext credential storage**: API keys and OAuth tokens are stored as plaintext in local files
+2. **Prompt injection attacks**: Malicious emails could trick MoltBot into executing unintended operations
+3. **Reverse proxy authentication bypass**: Authentication may fail when running behind Nginx
+4. **Info-stealer malware**: Malware specifically targeting MoltBot's local storage has been identified
 
-Palo Alto Networks 将 MoltBot 称为安全"致命三合一"：拥有私人数据访问权、暴露于不可信内容、且能执行外部通信并保留记忆。
+Palo Alto Networks called MoltBot a security "deadly trifecta": it has access to private data, is exposed to untrusted content, and can perform external communications while retaining memory.
 
-### 7.2 安全使用原则
+### Security Best Practices
 
-| 原则 | 具体做法 |
-|------|---------|
-| **最小权限** | 不要以 root 运行，创建专用低权限用户 |
-| **渐进授权** | 从只读权限开始，确认安全后再逐步开放 |
-| **网络隔离** | 不要裸露端口到公网，使用防火墙 |
-| **容器化** | 优先使用 Docker 运行，限制访问范围 |
-| **定期审查** | 定期检查 `~/.openclaw/` 目录下的凭证文件 |
-| **选好模型** | Claude Opus 4.5 的提示注入防护相对更强 |
+| Principle | Implementation |
+|-----------|---------------|
+| **Least privilege** | Never run as root; create a dedicated low-privilege user |
+| **Progressive authorization** | Start with read-only permissions; expand gradually after confirming safety |
+| **Network isolation** | Never expose ports to the public internet; use firewalls |
+| **Containerization** | Prefer running in Docker to limit access scope |
+| **Regular audits** | Periodically review credential files in `~/.openclaw/` |
+| **Model selection** | Claude Opus 4.5 has relatively stronger prompt injection defenses |
 
-想了解更多自动化中的安全陷阱，推荐阅读 [OpenClaw 自动化的那些坑](/posts/ai/2026-02-14-openclaw-automation-pitfalls/)。
-
----
-
-## 八、常见问题
-
-### MoltBot 和 OpenClaw 是同一个东西吗？
-
-是的。项目经历了三次改名：Clawdbot -> MoltBot -> OpenClaw。目前官方名称是 OpenClaw，但很多人仍然习惯叫它 MoltBot。所有三个名字指的都是同一个项目。
-
-### MoltBot 是免费的吗？
-
-MoltBot（OpenClaw）本身是开源免费的。但你需要为 AI 模型的 API 调用付费（如 Anthropic Claude API）。如果使用本地模型（通过 Ollama），则完全免费，但智能程度会有所下降。
-
-### MoltBot 需要什么配置的电脑？
-
-对硬件要求不高。Mac Mini M4 是社区最推荐的方案（低功耗 + macOS 生态）。VPS（2核4G 以上）也完全可以。MoltBot 本身不做 AI 推理，AI 运算在云端完成。
-
-### MoltBot 安全吗？
-
-有风险。它能操作你的电脑，一旦被利用就等同于电脑被入侵。建议在 Docker 容器中运行、使用低权限用户、不要暴露端口。对安全零容忍的用户建议先观望。
-
-### MoltBot 和 MoltBook 是什么关系？
-
-MoltBot（OpenClaw）是个人 AI Agent 项目。MoltBook 是一个 AI Agent 社交网络平台（由 Matt Schlicht 创建），两者是独立项目，但 MoltBook 最初是为 MoltBot Agent 设计的社交空间。
-
-### 现在还值得入坑 MoltBot 吗？
-
-如果你是技术爱好者，想体验"个人 AI Agent"的未来形态，值得一试。但要做好安全防护，并对不稳定性有心理准备。如果只是好奇，读完这篇文章了解一下就够了。
+For more on automation security pitfalls, see [OpenClaw Automation Pitfalls](/posts/ai/2026-02-14-openclaw-automation-pitfalls/).
 
 ---
 
-## 总结
+## Conclusion
 
-MoltBot（现 OpenClaw）代表了 AI 发展的一个重要方向：**从对话式 AI 到行动式 AI 的跨越**。它让 AI 不再只是回答问题的工具，而是能真正替你执行任务的数字助手。
+MoltBot (now OpenClaw) represents a significant direction in AI development: **the leap from conversational AI to action-oriented AI**. It transforms AI from a tool that merely answers questions into a digital assistant that genuinely executes tasks on your behalf.
 
-从 2025 年 11 月创建到 2026 年 2 月创始人加入 OpenAI，这个项目在短短几个月内经历了爆发式增长、三次改名、加密骗局、安全争议和商业化转型。它的故事本身就是 AI Agent 时代的一个缩影。
+From its creation in November 2025 to its founder joining OpenAI in February 2026, this project experienced explosive growth, three name changes, a crypto scam, security controversies, and a commercial transition -- all within a few months. Its story is a microcosm of the AI agent era.
 
-对于大多数人来说，**MoltBot 的意义不在于你是否需要立刻使用它，而在于它展示了一种全新的人机交互范式**——AI 在后台持续运行，记住你的一切偏好，随时准备为你工作。这个方向，大概率会成为未来几年 AI 产品的主流形态。
-
----
-
-## 常见问题 FAQ
-
-### MoltBot 和 OpenClaw 是同一个东西吗？
-
-是的。MoltBot 经历了三次改名：Clawdbot → MoltBot → OpenClaw。目前官方名称是 OpenClaw，但很多人仍然习惯叫它 MoltBot。项目代码和功能完全一致，只是品牌名变了。
-
-### MoltBot 是免费的吗？
-
-OpenClaw（MoltBot）本身是开源免费的，你可以在自己的电脑上免费运行。但它需要调用大语言模型 API（如 Claude、GPT 等），这部分会产生费用。社区版完全免费，Pro 版提供额外的云端功能和技术支持。
-
-### MoltBot 安全吗？会不会泄露我的数据？
-
-MoltBot 运行在你自己的电脑上，数据默认不上传到任何第三方服务器。但由于它能执行 Shell 命令和操作浏览器，使用不当存在安全风险。建议在沙箱环境中运行，并仔细审查第三方技能插件。详细安全分析见 [OpenClaw 自动化的那些坑](/posts/ai/2026-02-14-openclaw-automation-pitfalls/)。
-
-### MoltBot 和 Claude Code 有什么区别？
-
-MoltBot（OpenClaw）是通用个人 AI 助手，通过聊天工具操控电脑执行日常任务；Claude Code 是专业的 AI 编程工具，专注于代码开发。两者定位不同：MoltBot 面向所有用户的生活和工作任务，Claude Code 面向开发者的编程场景。详细对比见 [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/)。
+For most people, **MoltBot's significance lies not in whether you need to use it immediately, but in the new human-computer interaction paradigm it demonstrates** -- AI running continuously in the background, remembering all your preferences, always ready to work for you. This direction will very likely become the mainstream form of AI products in the coming years.
 
 ---
 
-## 相关阅读
+## Frequently Asked Questions
 
-- [Moltbot 深度解析：从爆火到改名，个人 AI Agent 的机遇与暗礁](/posts/ai/2026-01-29-moltbot-deep-dive/) - 深度分析文章
-- [OpenClaw 架构深度解析](/posts/ai/2026-02-14-openclaw-architecture-deep-dive/) - 技术架构详解
-- [OpenClaw 实用教程](/posts/ai/2026-02-12-openclaw-usage-tutorial/) - 实操教程
-- [OpenClaw 记忆系统策略解析](/posts/ai/2026-01-31-openclaw-memory-strategy/) - 记忆系统设计
-- [OpenClaw 自动化的那些坑](/posts/ai/2026-02-14-openclaw-automation-pitfalls/) - 避坑指南
-- [OpenClaw 创始人加入 OpenAI 意味着什么](/posts/ai/2026-02-16-openclaw-openai-analysis/) - 最新动态分析
-- [MoltBook：当 AI Agent 有了自己的社交网络](/posts/ai/2026-02-01-moltbook-ai-agent-social-network/) - 生态延伸
-- [ClawdBot 搭建指南](/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/) - 新手安装教程
-- [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/) - 另一种 AI Agent 体验
+### Are MoltBot and OpenClaw the same thing?
+
+Yes. MoltBot went through three name changes: Clawdbot -> MoltBot -> OpenClaw. The current official name is OpenClaw, but many people still refer to it as MoltBot. The codebase and functionality are identical -- only the brand name changed.
+
+### Is MoltBot free?
+
+OpenClaw (MoltBot) itself is open source and free to run on your own computer. However, it requires LLM API calls (such as Claude or GPT), which incur costs. The community edition is completely free, while the Pro edition offers additional cloud features and technical support.
+
+### Is MoltBot safe? Will it leak my data?
+
+MoltBot runs on your own computer, and data is not uploaded to any third-party servers by default. However, since it can execute shell commands and control browsers, improper use carries security risks. It is recommended to run it in a sandboxed environment and carefully review third-party skill plugins. For detailed security analysis, see [OpenClaw Automation Pitfalls](/posts/ai/2026-02-14-openclaw-automation-pitfalls/).
+
+### What is the difference between MoltBot and Claude Code?
+
+MoltBot (OpenClaw) is a general-purpose personal AI assistant that controls your computer through chat tools for everyday tasks. Claude Code is a professional AI coding tool focused on software development. They have different target audiences: MoltBot serves all users for life and work tasks, while Claude Code serves developers for coding scenarios. For a detailed comparison, see [Claude Code Complete Guide](/posts/ai/2026-01-14-claude-code-guide/).
 
 ---
 
-## 参考资源
+## Related Reading
 
-- [OpenClaw 官网](https://molt.bot)
-- [OpenClaw GitHub](https://github.com/moltbot/moltbot)（145,000+ Star）
-- [OpenClaw 官方文档](https://docs.openclaw.ai/start/getting-started)
-- [ClawHub 技能市场](https://clawdhub.com)
-- [TechCrunch: 关于 Clawdbot (MoltBot) 你需要知道的一切](https://techcrunch.com/2026/01/27/everything-you-need-to-know-about-viral-personal-ai-assistant-clawdbot-now-moltbot/)
-- [TechCrunch: OpenClaw 创始人加入 OpenAI](https://techcrunch.com/2026/02/15/openclaw-creator-peter-steinberger-joins-openai/)
-- [CNBC: 从 Clawdbot 到 MoltBot 到 OpenClaw](https://www.cnbc.com/2026/02/02/openclaw-open-source-ai-agent-rise-controversy-clawdbot-moltbot-moltbook.html)
-- [Palo Alto Networks: MoltBot 安全风险分析](https://www.paloaltonetworks.com/blog/network-security/why-moltbot-may-signal-ai-crisis/)
-- [Cloudflare: MoltWorker 云端方案](https://blog.cloudflare.com/moltworker-self-hosted-ai-agent/)
+- [MoltBot Deep Dive: From Viral Hit to Renaming -- Opportunities and Risks of Personal AI Agents](/posts/ai/2026-01-29-moltbot-deep-dive/) - In-depth analysis
+- [OpenClaw Architecture Deep Dive](/posts/ai/2026-02-14-openclaw-architecture-deep-dive/) - Technical architecture breakdown
+- [OpenClaw Usage Tutorial](/posts/ai/2026-02-12-openclaw-usage-tutorial/) - Hands-on tutorial
+- [OpenClaw Memory Strategy Analysis](/posts/ai/2026-01-31-openclaw-memory-strategy/) - Memory system design
+- [OpenClaw Automation Pitfalls](/posts/ai/2026-02-14-openclaw-automation-pitfalls/) - Common pitfalls guide
+- [What OpenClaw's Founder Joining OpenAI Means](/posts/ai/2026-02-16-openclaw-openai-analysis/) - Latest developments
+- [MoltBook: When AI Agents Get Their Own Social Network](/posts/ai/2026-02-01-moltbook-ai-agent-social-network/) - Ecosystem expansion
+- [ClawdBot Setup Guide](/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/) - Beginner installation tutorial
+- [Claude Code Complete Guide](/posts/ai/2026-01-14-claude-code-guide/) - Another AI agent experience
+
+---
+
+## References
+
+- [OpenClaw Official Site](https://molt.bot)
+- [OpenClaw GitHub](https://github.com/moltbot/moltbot) (145,000+ Stars)
+- [OpenClaw Documentation](https://docs.openclaw.ai/start/getting-started)
+- [ClawHub Skill Marketplace](https://clawdhub.com)
+- [TechCrunch: Everything You Need to Know About Clawdbot (MoltBot)](https://techcrunch.com/2026/01/27/everything-you-need-to-know-about-viral-personal-ai-assistant-clawdbot-now-moltbot/)
+- [TechCrunch: OpenClaw Creator Joins OpenAI](https://techcrunch.com/2026/02/15/openclaw-creator-peter-steinberger-joins-openai/)
+- [CNBC: From Clawdbot to MoltBot to OpenClaw](https://www.cnbc.com/2026/02/02/openclaw-open-source-ai-agent-rise-controversy-clawdbot-moltbot-moltbook.html)
+- [Palo Alto Networks: MoltBot Security Risk Analysis](https://www.paloaltonetworks.com/blog/network-security/why-moltbot-may-signal-ai-crisis/)
+- [Cloudflare: MoltWorker Cloud Solution](https://blog.cloudflare.com/moltworker-self-hosted-ai-agent/)
