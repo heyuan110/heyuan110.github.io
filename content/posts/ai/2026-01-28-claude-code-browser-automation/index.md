@@ -1,21 +1,23 @@
 +++
 date = '2026-01-28T23:55:00+08:00'
-lastmod = '2026-02-16T18:00:00+08:00'
+lastmod = '2026-03-12T18:00:00+08:00'
 draft = false
-title = 'Claude Code 浏览器自动化怎么选？4 套方案实测对比（2026）'
-description = 'Agent Browser vs Playwright CLI vs Playwright MCP vs DevTools MCP，实测 Token 消耗差 10 倍+。本文对比速度、成本、稳定性，附安装命令和选型结论，帮你选对方案。'
+title = 'Claude Code 浏览器自动化怎么选？5 套方案实测对比（2026）'
+description = 'Browser-use vs Agent Browser vs Playwright CLI vs Playwright MCP vs DevTools MCP，实测 Token 消耗差 10 倍+。本文对比速度、成本、稳定性，附安装命令和选型结论，帮你选对方案。'
 toc = true
-tags = ['Claude Code', '浏览器自动化', 'MCP', 'Playwright CLI', 'Playwright MCP', 'Agent Browser']
+tags = ['Claude Code', '浏览器自动化', 'MCP', 'Playwright CLI', 'Playwright MCP', 'Agent Browser', 'Browser-use']
 categories = ['AI实战']
-keywords = ['Claude Code 浏览器自动化', 'Claude Code 操作浏览器', 'Playwright CLI', 'Playwright MCP', 'Agent Browser', 'DevTools MCP', 'agent browser vs playwright', 'claude code 浏览器', 'AI 浏览器自动化 2026']
+keywords = ['Claude Code 浏览器自动化', 'Claude Code 操作浏览器', 'Playwright CLI', 'Playwright MCP', 'Agent Browser', 'DevTools MCP', 'browser-use', 'agent browser vs playwright', 'claude code 浏览器', 'AI 浏览器自动化 2026']
 +++
 
 用 AI 写代码已经不稀奇了，但让 AI **操控浏览器**——打开网页、点击按钮、填写表单、抓取数据——这才是真正的"解放双手"。
 
-在 Claude Code 生态中，目前有四个主流的浏览器自动化方案：**Vercel 的 Agent Browser**、**Microsoft 的 Playwright CLI**（2026 新方案）、**Microsoft 的 Playwright MCP**、**Google 的 DevTools MCP**。它们各有所长，选错了可能事倍功半。
+在 Claude Code 生态中，目前有五个主流的浏览器自动化方案：**Browser-use**（AI Agent 专用自动化框架）、**Vercel 的 Agent Browser**、**Microsoft 的 Playwright CLI**（2026 新方案）、**Microsoft 的 Playwright MCP**、**Google 的 DevTools MCP**。它们各有所长，选错了可能事倍功半。
 
-本文将深入对比这四个方案，帮你在不同场景下做出最佳选择。
+本文将深入对比这五个方案，帮你在不同场景下做出最佳选择。
 
+> **2026-03 更新**：新增 Browser-use 方案——专为 AI Agent 打造的浏览器自动化框架，支持本地/云端/真实浏览器三种模式，会话持久化 + 云端并行能力拉满。
+>
 > **2026-02 更新**：新增 Playwright CLI 方案——微软官方推荐的新一代 Token 高效方案，实测 Token 消耗比 MCP 降低 4-100 倍。
 
 ## 一、为什么需要浏览器自动化？
@@ -54,26 +56,150 @@ AI 做：
 
 整个过程你只需要一句话，AI 全程自动完成。
 
-## 二、四大方案速览
+## 二、五大方案速览
 
 在深入对比之前，先看一张总览表：
 
-| 维度 | Agent Browser | Playwright CLI | Playwright MCP | DevTools MCP |
-|------|---------------|----------------|----------------|--------------|
-| **开发者** | Vercel Labs | Microsoft | Microsoft | Google |
-| **定位** | AI Agent 专用轻量工具 | 编程 Agent 高效自动化 | 通用浏览器自动化 | Chrome 调试协议封装 |
-| **接入方式** | Bash CLI / Skill | Shell 命令 / Skill | MCP Server | MCP Server + 扩展 |
-| **Token 消耗** | 极低（减少 93%） | **极低（减少 75-99%）** | 较高 | 中等 |
-| **浏览器支持** | Chromium | Chrome/Firefox/WebKit | Chrome/Firefox/WebKit | 仅 Chrome |
-| **核心优势** | 快、省 Token | 省 Token + 跨浏览器 | 稳定、功能全 | 调试能力强 |
+| 维度 | Browser-use | Agent Browser | Playwright CLI | Playwright MCP | DevTools MCP |
+|------|-------------|---------------|----------------|----------------|--------------|
+| **开发者** | Browser-use 团队 | Vercel Labs | Microsoft | Microsoft | Google |
+| **定位** | AI Agent 专用自动化框架 | AI Agent 专用轻量工具 | 编程 Agent 高效自动化 | 通用浏览器自动化 | Chrome 调试协议封装 |
+| **接入方式** | Bash CLI / Skill | Bash CLI / Skill | Shell 命令 / Skill | MCP Server | MCP Server + 扩展 |
+| **Token 消耗** | 极低 | 极低（减少 93%） | **极低（减少 75-99%）** | 较高 | 中等 |
+| **浏览器支持** | Chromium / 真实 Chrome / 云端 | Chromium | Chrome/Firefox/WebKit | Chrome/Firefox/WebKit | 仅 Chrome |
+| **核心优势** | 多模式 + 会话持久 + 云端并行 | 快、省 Token | 省 Token + 跨浏览器 | 稳定、功能全 | 调试能力强 |
 
 **一句话总结**：
+- **Browser-use**：**AI Agent 浏览器自动化的"全能王"**，本地/云端/真实浏览器三种模式随意切换
 - **Agent Browser**：轻量快速，日常浏览首选
 - **Playwright CLI**：Token 高效 + 专业能力，**编程 Agent 新首选**
 - **Playwright MCP**：功能最全，非 CLI 环境的稳定选择
 - **DevTools MCP**：调试利器，开发排错首选
 
 ## 三、深入对比：各有什么绝活？
+
+### Browser-use：AI Agent 的"全能王"
+
+[Browser-use](https://github.com/browser-use/browser-use) 是专门为 AI Agent 打造的浏览器自动化框架。它的核心理念是：**让 AI Agent 像人一样操作浏览器，但效率高 100 倍**。
+
+和其他方案最大的不同在于——Browser-use 不只是一个工具，它是一个**完整的 AI Agent 浏览器自动化平台**，支持本地隔离浏览器、真实 Chrome Profile、云端远程浏览器三种模式。
+
+#### 核心机制：State + Index
+
+Browser-use 的交互模式也走"精简路线"。通过 `state` 命令获取页面可交互元素列表，每个元素分配一个数字索引（index），操作时只需引用索引号：
+
+```bash
+# 获取页面状态
+browser-use state
+
+# 输出示例：
+# [0] link "首页"
+# [1] link "产品"
+# [2] input "搜索..."
+# [3] button "登录"
+
+# 用索引操作
+browser-use click 3          # 点击"登录"
+browser-use input 2 "iPhone"  # 在搜索框输入
+```
+
+和 Agent Browser 的 ref 机制类似，但 Browser-use 更进一步——**会话在命令之间持久化**，你不需要每次都重新打开浏览器。
+
+#### 三种浏览器模式
+
+这是 Browser-use 最独特的地方：
+
+| 模式 | 命令参数 | 特点 | 适用场景 |
+|------|---------|------|---------|
+| **chromium** | `-b chromium` | 快速、隔离、默认无头 | 自动化测试、数据采集 |
+| **real** | `-b real` | 使用真实 Chrome，可加载 Profile | 需要登录态、插件、Cookie 的场景 |
+| **remote** | `-b remote` | 云端托管浏览器，自带代理 | 反爬绕过、并行任务、无本地依赖 |
+
+```bash
+# 隔离模式：快速、干净
+browser-use -b chromium open https://example.com
+
+# 真实浏览器：带着你的 Chrome Profile 一起用
+browser-use -b real --profile "Default" open https://example.com
+
+# 云端浏览器：不占本地资源，自带代理
+browser-use -b remote open https://example.com
+```
+
+**真实浏览器模式**意味着你已登录的网站、安装的扩展、保存的密码，AI 都可以直接使用——无需额外配置登录态。
+
+#### 云端并行：Sub-Agent 能力
+
+Browser-use 的云端模式支持**异步任务和并行 Agent**，这是其他方案完全不具备的能力：
+
+```bash
+# 启动一个云端任务（异步执行）
+browser-use -b remote run "打开 example.com，提取所有产品价格"
+
+# 同时启动多个任务
+browser-use -b remote run "检查竞品 A 的定价" --session task-a
+browser-use -b remote run "检查竞品 B 的定价" --session task-b
+browser-use -b remote run "检查竞品 C 的定价" --session task-c
+
+# 查看所有任务状态
+browser-use task list
+
+# 获取单个任务结果
+browser-use task status --id <task-id>
+```
+
+想象一下：你让 AI 同时打开 10 个竞品网站，并行采集价格数据，几秒钟内全部完成。这是串行方案做不到的。
+
+#### 高级功能
+
+除了基本的浏览器操作，Browser-use 还有一些"杀手级"特性：
+
+| 功能 | 说明 |
+|------|------|
+| **Python 执行** | 内置 Python 会话，跨命令保持状态，可直接操作 `browser` 对象 |
+| **Profile 同步** | 在本地和云端之间同步 Cookie/Profile |
+| **Tunnel** | 把本地 `localhost:3000` 暴露给云端浏览器（`browser-use tunnel 3000`） |
+| **数据提取** | `get text` / `get html` / `eval` 直接获取页面数据 |
+| **智能等待** | `wait selector` / `wait text` 等待特定元素或文本出现 |
+| **会话管理** | 命名 Session，多浏览器实例并行操作 |
+
+#### 诊断工具
+
+安装后不确定配置对不对？Browser-use 提供了专属诊断命令：
+
+```bash
+browser-use doctor
+# 自动检查：浏览器安装、依赖版本、网络连通性、云端 API 可用性
+```
+
+#### 适用场景
+
+| 场景 | 示例指令 |
+|------|---------|
+| 需要登录态的自动化 | "用我的 Chrome Profile 打开内部系统" |
+| 批量并行数据采集 | "同时爬取 10 个竞品的定价页面" |
+| 反爬场景 | "用云端浏览器+代理打开这个网站" |
+| 本地开发联调 | "把 localhost:3000 隧道到云端浏览器测试" |
+| 复杂 Python 脚本 | "用 Python 批量处理页面数据" |
+
+#### 安装和使用
+
+```bash
+# 安装（需要 Python 环境）
+pip install browser-use
+
+# 诊断环境
+browser-use doctor
+
+# 开始使用
+browser-use open https://example.com --headed
+```
+
+在 Claude Code 中，Browser-use 以 **Skill** 的方式接入，支持自然语言指挥：
+
+```
+"用 browser-use 打开 example.com，获取页面状态，点击登录按钮"
+```
 
 ### Agent Browser：快如闪电的"轻骑兵"
 
@@ -405,7 +531,19 @@ chrome.exe --remote-debugging-port=9222
 "这个表单能不能正常显示"
 ```
 
-### 场景二：我需要测试复杂的用户流程
+### 场景二：我需要带登录态的自动化、或者并行采集数据
+
+**推荐：Browser-use**
+
+需要用真实 Chrome Profile（已登录的账号、已安装的扩展），或者要同时对多个网站执行任务？Browser-use 是唯一支持三种浏览器模式 + 云端并行的方案。
+
+```
+"用我的 Chrome Profile 打开公司内部系统，导出月度报表"
+"同时打开 10 个竞品网站，采集他们的定价信息"
+"用云端浏览器+代理打开这个被封的网站"
+```
+
+### 场景三：我需要测试复杂的用户流程
 
 **推荐：Playwright CLI**（如果你在用 Claude Code）/ **Playwright MCP**（如果在沙盒环境）
 
@@ -418,7 +556,7 @@ chrome.exe --remote-debugging-port=9222
 
 如果你的 Agent 没有 Shell 权限（如浏览器内的 AI 助手），那仍然选 Playwright MCP。
 
-### 场景三：我的页面有 Bug，需要排查
+### 场景四：我的页面有 Bug，需要排查
 
 **推荐：DevTools MCP**
 
@@ -429,7 +567,7 @@ chrome.exe --remote-debugging-port=9222
 "这个按钮点击后没反应，帮我查查有没有 JS 报错"
 ```
 
-### 场景四：我的项目需要长时间、大量浏览器操作
+### 场景五：我的项目需要长时间、大量浏览器操作
 
 **推荐：Playwright CLI**
 
@@ -439,7 +577,7 @@ chrome.exe --remote-debugging-port=9222
 "依次打开这 100 个 URL，对每个页面执行快照→检查元素→截图，结果存到 results 目录"
 ```
 
-### 场景五：我需要同时具备多种能力
+### 场景六：我需要同时具备多种能力
 
 **可以组合使用！**
 
@@ -460,7 +598,7 @@ chrome.exe --remote-debugging-port=9222
 }
 ```
 
-再加上 Agent Browser 和 Playwright CLI 的 Skill，你就拥有了完整的浏览器自动化能力矩阵。**推荐组合**：日常用 Agent Browser，测试用 Playwright CLI，调试用 DevTools MCP。
+再加上 Agent Browser、Playwright CLI 和 Browser-use 的 Skill，你就拥有了完整的浏览器自动化能力矩阵。**推荐组合**：日常浏览用 Agent Browser，需要登录态/并行用 Browser-use，测试用 Playwright CLI，调试用 DevTools MCP。
 
 ## 五、进阶技巧
 
@@ -546,18 +684,20 @@ chrome.exe --remote-debugging-port=9222
 | 如果你需要... | 选择 |
 |--------------|------|
 | 快速浏览、截图、简单操作 | Agent Browser |
+| 带登录态/并行采集/反爬绕过 | **Browser-use** |
 | 用 Claude Code 跑测试和自动化 | **Playwright CLI**（2026 首选） |
 | 在沙盒环境中做浏览器自动化 | Playwright MCP |
 | 调试排错、性能分析、查看网络请求 | DevTools MCP |
-| 全都要 | 四个一起配置，AI 会自动选择 |
+| 全都要 | 五个一起配置，AI 会自动选择 |
 
 记住这个口诀：
 - **看看、填表** → Agent Browser
+- **登录态、并行、反爬** → **Browser-use**
 - **测试、跑流程**（有 Shell 权限）→ **Playwright CLI**
 - **测试、跑流程**（沙盒环境）→ Playwright MCP
 - **调试、抓请求** → DevTools MCP
 
-**2026 年的建议**：如果你只装一个，装 **Playwright CLI**——它兼顾了 Token 效率和专业能力，是编程 Agent 的最佳默认选择。如果你想要最省 Token 的日常浏览体验，再加一个 Agent Browser。
+**2026 年的建议**：如果你只装一个，装 **Browser-use**——它兼顾了三种浏览器模式、会话持久化和云端并行能力，是 AI Agent 浏览器自动化的最全面选择。如果你更侧重编程测试场景，选 **Playwright CLI**。如果你想要最省 Token 的日常浏览体验，再加一个 Agent Browser。
 
 现在，去让你的 AI 助手真正"动起来"吧！
 
@@ -572,6 +712,7 @@ chrome.exe --remote-debugging-port=9222
 ---
 
 **参考资料**：
+- [Browser-use GitHub](https://github.com/browser-use/browser-use)
 - [Vercel Agent Browser GitHub](https://github.com/vercel-labs/agent-browser)
 - [Playwright MCP 官方仓库](https://github.com/microsoft/playwright-mcp)
 - [Playwright CLI 深度评测 - TestCollab](https://testcollab.com/blog/playwright-cli)
