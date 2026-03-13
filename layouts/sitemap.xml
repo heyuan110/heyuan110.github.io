@@ -18,6 +18,33 @@
     {{- end }}
     <changefreq>{{ if $isPost }}monthly{{ else }}weekly{{ end }}</changefreq>
     <priority>{{ if $isHome }}1.0{{ else if $isPost }}0.8{{ else }}0.6{{ end }}</priority>
+
+    {{- /* Add xhtml:link for multilingual */ -}}
+    {{- if eq .Kind "home" }}
+    {{- if eq site.Language.Lang "en" }}
+    <xhtml:link rel="alternate" hreflang="en" href="{{ .Permalink }}" />
+    <xhtml:link rel="alternate" hreflang="zh" href="{{ .Site.BaseURL }}zh/" />
+    {{- else }}
+    <xhtml:link rel="alternate" hreflang="zh" href="{{ .Permalink }}" />
+    <xhtml:link rel="alternate" hreflang="en" href="{{ .Site.BaseURL }}" />
+    {{- end }}
+    {{- else if eq .Kind "section" }}
+    {{- if eq site.Language.Lang "en" }}
+    <xhtml:link rel="alternate" hreflang="en" href="{{ .Permalink }}" />
+    <xhtml:link rel="alternate" hreflang="zh" href="{{ replaceRE "^/" "/zh/" .Permalink }}" />
+    {{- else }}
+    <xhtml:link rel="alternate" hreflang="zh" href="{{ .Permalink }}" />
+    <xhtml:link rel="alternate" hreflang="en" href="{{ replaceRE "^/zh/" "/" .Permalink }}" />
+    {{- end }}
+    {{- else if eq .Kind "page" }}
+    {{- if eq site.Language.Lang "en" }}
+    <xhtml:link rel="alternate" hreflang="en" href="{{ .Permalink }}" />
+    <xhtml:link rel="alternate" hreflang="zh" href="{{ replaceRE "^/" "/zh/" .Permalink }}" />
+    {{- else }}
+    <xhtml:link rel="alternate" hreflang="zh" href="{{ .Permalink }}" />
+    <xhtml:link rel="alternate" hreflang="en" href="{{ replaceRE "^/zh/" "/" .Permalink }}" />
+    {{- end }}
+    {{- end }}
   </url>
     {{- end }}
   {{- end }}

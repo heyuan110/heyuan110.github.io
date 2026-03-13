@@ -33,22 +33,13 @@ description: "技术博客写作专家，专注于 AI、编程、运维等技术
 
 ---
 
-### Step 1: 确定分类和目录
+### Step 1: 确定目录和 Front Matter 结构
 
-#### 分类规范
+#### Front Matter 规则
 
-根据文章内容选择分类，**只能使用以下预设值，禁止自创分类**：
-
-| 分类 | 适用内容 |
-|------|----------|
-| **AI Guides** | 教程、指南、安装配置、工具使用、最佳实践、产品评测、工作流 |
-| **Comparisons** | 工具对比、定价对比、基准测试 |
-
-> ⚠️ 以下为归档的旧中文分类，**仅用于已有旧文章**，新文章禁止使用：
-> AI原理、AI实战、Go、Java、Python、Docker、Linux、MySQL、macOS
-
-❌ 错误示例：`AI实战`、`Go实战`、`Docker教程`（这些都是无效分类）
-✅ 正确示例：写 AI 工具教程用 `categories = ['AI Guides']`，写工具对比用 `categories = ['Comparisons']`
+- 新文章默认**不添加** `categories`
+- 如果是在维护旧文章，且原文件已经有 `categories`，不要仅因为新规范去改动历史内容
+- 如果用户明确要求添加 `categories`，再按用户要求处理；否则不要主动新增
 
 #### 目录命名
 
@@ -311,7 +302,6 @@ title = 'Article Title (50-60 chars, primary keyword first)'
 description = 'SEO description for search results and social sharing (120-160 chars)'
 toc = true
 tags = ['Claude Code', 'AI Agent', 'specific-tag']
-categories = ['AI Guides']
 keywords = ['search keyword 1', 'search keyword 2']
 +++
 
@@ -328,7 +318,6 @@ title = '中文标题（自然表达，非逐字翻译，含核心关键词）'
 description = '中文 SEO 描述，面向中文搜索用户（120-160 字符）'
 toc = true
 tags = ['Claude Code', 'AI Agent', 'specific-tag']
-categories = ['AI Guides']
 keywords = ['中文搜索关键词1', '中文搜索关键词2']
 +++
 
@@ -339,7 +328,7 @@ keywords = ['中文搜索关键词1', '中文搜索关键词2']
 
 ⚠️ **中文版写作要求**（仅当需要创建时）：
 - `title`、`description`、`keywords` 必须用中文，且是**自然的中文表达**，不是英文逐字翻译
-- `tags` 和 `categories` 保持英文（与英文版一致，确保分类体系统一）
+- `tags` 保持英文（与英文版一致）
 - 正文必须是**地道的中文**，像母语者写的一样自然流畅
 - 不要出现翻译腔（如"在这篇文章中"、"让我们来看看"等生硬表达）
 - 可以根据中文读者习惯调整段落结构和举例，不必与英文版完全对应
@@ -350,8 +339,8 @@ keywords = ['中文搜索关键词1', '中文搜索关键词2']
 | `date` | ✓ | ISO 8601 格式，含时区 `+08:00` |
 | `title` | ✓ | 50-60 字符，关键词前置 |
 | `description` | ✓ | 120-160 字符，包含核心关键词 |
-| `categories` | ✓ | 只能使用 Step 1 中的预设值 |
 | `tags` | ✓ | 3-5 个标签（英文） |
+| `categories` | 可选 | 新文章默认不使用；仅在维护旧文章或用户明确要求时保留/添加 |
 | `toc` | 推荐 | 长文设为 `true` |
 | `keywords` | 推荐 | SEO 补充关键词（英文） |
 | `draft` | 可选 | 默认 `false` |
@@ -450,10 +439,10 @@ print("Hello World")
 - [ ] 标题 ≤ 60 字符，关键词前置
 - [ ] Description 120-160 字符，包含核心关键词
 - [ ] Front Matter 使用 TOML 格式（`+++`）
-- [ ] `categories` 使用预设值，未自创分类
 - [ ] 目录名使用英文命名
 - [ ] 日期使用 `date` 命令获取的真实日期
 - [ ] 封面图为 `cover.webp`，尺寸 1200×630，大小 ≤ 200KB
+- [ ] 新文章未主动添加 `categories`（除非用户明确要求）
 
 #### 内容质量检查
 
@@ -505,11 +494,9 @@ hugo --minify
 
 ### 迁移规则
 
-- **禁止**批量翻译旧中文文章
-- **禁止**修改已有的中文文章
-- **禁止**更改已被索引的中文 URL
+- **禁止**更改已被索引的 URL
 - **禁止**在同一页面混合中英文
-- 旧中文内容作为归档遗留保留
+- 不要把“补齐存量文章双语版本”当成当前写作任务的默认步骤
 
 ---
 
@@ -520,7 +507,7 @@ hugo --minify
 3. **Front Matter 用 TOML**：使用 `+++` 而非 `---`
 4. **图片必须 webp**：封面图命名为 `cover.webp`
 5. **素材必须实际阅读**：不可仅凭链接标题猜测内容
-6. **分类只能用预设值**：`AI Guides` 或 `Comparisons`，禁止使用旧中文分类
+6. **新文章默认不写 `categories`**：仅在维护旧文章或用户明确要求时保留/添加
 7. **默认只写英文**：除非用户明确要求中文版，否则只创建 `index.md`（英文）
-8. **中文版要求**：当用户要求时创建 `index.zh.md`，必须是地道的中文原创级写作，禁止翻译腔。`tags` 和 `categories` 保持英文
+8. **中文版要求**：当用户要求时创建 `index.zh.md`，必须是地道的中文原创级写作，禁止翻译腔。`tags` 保持英文
 9. **禁止低质量翻译**：Google 会识别并降权机器翻译内容。中文版的标题、描述、正文必须自然流畅，像中文母语者写的

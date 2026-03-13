@@ -24,7 +24,7 @@
 {{ end }}
 
 <meta property="og:site_name" content="{{ .Site.Title }}" />
-<meta property="og:locale" content="en_US" />
+<meta property="og:locale" content="{{ if eq site.Language.Lang "zh" }}zh_CN{{ else }}en_US{{ end }}" />
 {{ if .IsPage }}<meta property="og:type" content="article" />{{ else }}<meta property="og:type" content="website" />{{ end }}
 <meta name="twitter:card" content="summary_large_image" />
 
@@ -33,6 +33,34 @@
 {{ with .Lastmod }}<meta property="article:modified_time" content="{{ .Format "2006-01-02T15:04:05Z07:00" }}" />{{ end }}
 {{ with .Site.Params.author.name }}<meta property="article:author" content="{{ . }}" />{{ end }}
 {{ range .Params.tags }}<meta property="article:tag" content="{{ . }}" />{{ end }}
+{{ end }}
+
+<!-- Multilingual SEO: hreflang tags -->
+{{ if .IsHome }}
+<link rel="alternate" hreflang="en" href="{{ .Site.BaseURL }}" />
+<link rel="alternate" hreflang="zh" href="{{ .Site.BaseURL }}zh/" />
+<link rel="alternate" hreflang="x-default" href="{{ .Site.BaseURL }}" />
+{{ else if .IsPage }}
+{{ if eq site.Language.Lang "en" }}
+<link rel="alternate" hreflang="en" href="{{ $canonicalURL }}" />
+{{- $zhPath := replaceRE "^/" "/zh/" $canonicalURL -}}
+<link rel="alternate" hreflang="zh" href="{{ $zhPath }}" />
+{{ else }}
+<link rel="alternate" hreflang="zh" href="{{ $canonicalURL }}" />
+{{- $enPath := replaceRE "^/zh/" "/" $canonicalURL -}}
+<link rel="alternate" hreflang="en" href="{{ $enPath }}" />
+{{ end }}
+<link rel="alternate" hreflang="x-default" href="{{ if eq site.Language.Lang "en" }}{{ $canonicalURL }}{{ else }}{{ replaceRE "^/zh/" "/" $canonicalURL }}{{ end }}" />
+{{ else if .IsSection }}
+{{ if eq site.Language.Lang "en" }}
+<link rel="alternate" hreflang="en" href="{{ $canonicalURL }}" />
+{{- $zhPath := replaceRE "^/" "/zh/" $canonicalURL -}}
+<link rel="alternate" hreflang="zh" href="{{ $zhPath }}" />
+{{ else }}
+<link rel="alternate" hreflang="zh" href="{{ $canonicalURL }}" />
+{{- $enPath := replaceRE "^/zh/" "/" $canonicalURL -}}
+<link rel="alternate" hreflang="en" href="{{ $enPath }}" />
+{{ end }}
 {{ end }}
 
 {{ if .IsHome }}
@@ -46,6 +74,7 @@
 <script type="application/ld+json">{{ $homeSchema | jsonify | safeJS }}</script>
 {{ else if .IsPage }}
 {{- $desc := or .Description (.Summary | plainify | truncate 160) -}}
+{{- $inLanguage := cond (eq site.Language.Lang "zh") "zh-CN" "en-US" -}}
 {{- $postSchema := dict
   "@context" "https://schema.org"
   "@type" "BlogPosting"
@@ -56,7 +85,7 @@
   "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
   "author" (dict "@type" "Person" "name" (.Site.Params.author.name | default "Bruce"))
   "mainEntityOfPage" (dict "@type" "WebPage" "@id" $canonicalURL)
-  "inLanguage" "en"
+  "inLanguage" $inLanguage
   "wordCount" .WordCount
   "articleSection" (.Section | title)
 -}}
