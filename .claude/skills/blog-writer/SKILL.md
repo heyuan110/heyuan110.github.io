@@ -467,47 +467,8 @@ hugo --minify
 
 ---
 
-## 内容策略（与 AGENTS.md 对齐）
+## 内容策略与规则
 
-### 文章类型（按优先级）
+内容策略（文章类型、主题集群、禁止内容）、多语言规则、迁移规则等，统一遵循 `AGENTS.md`，此处不再重复。
 
-1. **Guide** — "How to set up X", "Complete guide to Y"
-2. **Setup** — Step-by-step installation and configuration
-3. **Comparison** — "X vs Y: Which is better for Z?"
-4. **Best Tools** — "Top 10 tools for X in 2026"
-5. **Workflow** — "My AI development workflow"
-6. **Review** — In-depth tool/framework evaluation
-
-### 禁止内容类型
-
-- 个人日记
-- 没有搜索意图的日志式帖子
-- 没有商业或信息价值的内容
-
-### 主题集群（每个需 10+ 篇文章）
-
-- Claude Code
-- AI Agent Frameworks
-- AI Coding Tools
-- AI Engineering Workflows
-- Tool Comparisons
-
-### 迁移规则
-
-- **禁止**更改已被索引的 URL
-- **禁止**在同一页面混合中英文
-- 不要把“补齐存量文章双语版本”当成当前写作任务的默认步骤
-
----
-
-## 注意事项
-
-1. **日期必须真实**：使用 `date` 命令获取当前日期
-2. **URL 必须英文**：目录名使用英文
-3. **Front Matter 用 TOML**：使用 `+++` 而非 `---`
-4. **图片必须 webp**：封面图命名为 `cover.webp`
-5. **素材必须实际阅读**：不可仅凭链接标题猜测内容
-6. **新文章默认不写 `categories`**：仅在维护旧文章或用户明确要求时保留/添加
-7. **默认只写英文**：除非用户明确要求中文版，否则只创建 `index.md`（英文）
-8. **中文版要求**：当用户要求时创建 `index.zh.md`，必须是地道的中文原创级写作，禁止翻译腔。`tags` 保持英文
-9. **禁止低质量翻译**：Google 会识别并降权机器翻译内容。中文版的标题、描述、正文必须自然流畅，像中文母语者写的
+写作时请先读取 `AGENTS.md` 获取最新规则。

@@ -1,167 +1,20 @@
 # Robots.txt for www.heyuan110.com
-# Optimized for search engines and AI crawlers (GEO - Generative Engine Optimization)
-# Updated: 2026-02
+# Updated: 2026-03
 
-# ============================================
-# Default rule - allow all crawlers
-# ============================================
+# Allow all crawlers (search engines + AI)
 User-agent: *
 Allow: /
-Crawl-delay: 1
 
-# ============================================
-# Major search engines
-# ============================================
-User-agent: Googlebot
-Allow: /
-
-User-agent: Googlebot-Image
-Allow: /
-
-User-agent: Googlebot-News
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Slurp
-Allow: /
-
-User-agent: Baiduspider
-Allow: /
-
-User-agent: Sogou
-Allow: /
-
-User-agent: 360Spider
-Allow: /
-
-User-agent: Bytespider
-Allow: /
-
-User-agent: YandexBot
-Allow: /
-
-User-agent: DuckDuckBot
-Allow: /
-
-User-agent: Applebot
-Allow: /
-
-# ============================================
-# AI crawlers - OpenAI / ChatGPT
-# ============================================
-User-agent: GPTBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: OAI-SearchBot
-Allow: /
-
-# ============================================
-# AI crawlers - Google AI
-# ============================================
-User-agent: Google-Extended
-Allow: /
-
-User-agent: GoogleOther
-Allow: /
-
-# ============================================
-# AI crawlers - Anthropic / Claude
-# ============================================
-User-agent: anthropic-ai
-Allow: /
-
-User-agent: Claude-Web
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-# ============================================
-# AI crawlers - Other AI services
-# ============================================
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Cohere-ai
-Allow: /
-
-User-agent: cohere-ai
-Allow: /
-
-User-agent: CCBot
-Allow: /
-
-User-agent: Meta-ExternalAgent
-Allow: /
-
-User-agent: Meta-ExternalFetcher
-Allow: /
-
-User-agent: FacebookBot
-Allow: /
-
-User-agent: Amazonbot
-Allow: /
-
-User-agent: YouBot
-Allow: /
-
-User-agent: Diffbot
-Allow: /
-
-User-agent: ImagesiftBot
-Allow: /
-
-User-agent: Omgilibot
-Allow: /
-
-User-agent: Timpibot
-Allow: /
-
-User-agent: VelenPublicWebCrawler
-Allow: /
-
-User-agent: Webzio-Extended
-Allow: /
-
-User-agent: AI2Bot
-Allow: /
-
-User-agent: Ai2Bot-Dolma
-Allow: /
-
-User-agent: iaskspider
-Allow: /
-
-User-agent: Kangaroo Bot
-Allow: /
-
-User-agent: PetalBot
-Allow: /
-
-# ============================================
-# Disallowed paths (low-value pages)
-# ============================================
-User-agent: *
+# Low-value pages — no need to index
 Disallow: /404.html
-Disallow: /*.json$
 Disallow: /page/
 Disallow: /tags/page/
 Disallow: /categories/page/
+Disallow: /zh/page/
+Disallow: /zh/tags/page/
+Disallow: /zh/categories/page/
 
-# ============================================
-# Sitemaps
-# ============================================
+# Sitemaps (index + per-language)
 Sitemap: https://www.heyuan110.com/sitemap.xml
-
-
-# ============================================
-# LLMs.txt - AI crawler metadata
-# Spec: https://llmstxt.org/
-# ============================================
-LLMs: https://www.heyuan110.com/llms.txt
+Sitemap: https://www.heyuan110.com/en/sitemap.xml
+Sitemap: https://www.heyuan110.com/zh/sitemap.xml

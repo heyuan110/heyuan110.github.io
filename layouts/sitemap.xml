@@ -1,8 +1,7 @@
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  {{- range .Site.AllPages }}
-    {{- $p := .Permalink -}}
+  {{- range where .Site.Pages "Kind" "in" (slice "home" "page" "section") }}
     {{- $isPost := and (eq .Kind "page") (eq .Section "posts") -}}
     {{- $isHome := eq .Kind "home" -}}
     {{- $isPostsSection := and (eq .Kind "section") (eq .Section "posts") -}}
@@ -18,32 +17,11 @@
     {{- end }}
     <changefreq>{{ if $isPost }}monthly{{ else }}weekly{{ end }}</changefreq>
     <priority>{{ if $isHome }}1.0{{ else if $isPost }}0.8{{ else }}0.6{{ end }}</priority>
-
-    {{- /* Add xhtml:link for multilingual */ -}}
-    {{- if eq .Kind "home" }}
-    {{- if eq site.Language.Lang "en" }}
-    <xhtml:link rel="alternate" hreflang="en" href="{{ .Permalink }}" />
-    <xhtml:link rel="alternate" hreflang="zh" href="{{ .Site.BaseURL }}zh/" />
-    {{- else }}
-    <xhtml:link rel="alternate" hreflang="zh" href="{{ .Permalink }}" />
-    <xhtml:link rel="alternate" hreflang="en" href="{{ .Site.BaseURL }}" />
-    {{- end }}
-    {{- else if eq .Kind "section" }}
-    {{- if eq site.Language.Lang "en" }}
-    <xhtml:link rel="alternate" hreflang="en" href="{{ .Permalink }}" />
-    <xhtml:link rel="alternate" hreflang="zh" href="{{ replaceRE "^/" "/zh/" .Permalink }}" />
-    {{- else }}
-    <xhtml:link rel="alternate" hreflang="zh" href="{{ .Permalink }}" />
-    <xhtml:link rel="alternate" hreflang="en" href="{{ replaceRE "^/zh/" "/" .Permalink }}" />
-    {{- end }}
-    {{- else if eq .Kind "page" }}
-    {{- if eq site.Language.Lang "en" }}
-    <xhtml:link rel="alternate" hreflang="en" href="{{ .Permalink }}" />
-    <xhtml:link rel="alternate" hreflang="zh" href="{{ replaceRE "^/" "/zh/" .Permalink }}" />
-    {{- else }}
-    <xhtml:link rel="alternate" hreflang="zh" href="{{ .Permalink }}" />
-    <xhtml:link rel="alternate" hreflang="en" href="{{ replaceRE "^/zh/" "/" .Permalink }}" />
-    {{- end }}
+    {{- /* hreflang: current page */ -}}
+    <xhtml:link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}" />
+    {{- /* hreflang: translations */ -}}
+    {{- range .Translations }}
+    <xhtml:link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}" />
     {{- end }}
   </url>
     {{- end }}
