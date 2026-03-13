@@ -114,7 +114,6 @@ We may update this privacy policy from time to time. Updated policies will be po
 If you have questions about this privacy policy, contact us:
 
 - Email: heyuan110@gmail.com
-- GitHub: [heyuan110](https://github.com/heyuan110)
 
 ---
 

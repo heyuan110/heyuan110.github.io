@@ -33,3 +33,6 @@ other = "Menu"
 
 [share]
 other = "Share"
+
+[privacyPolicy]
+other = "Privacy Policy"

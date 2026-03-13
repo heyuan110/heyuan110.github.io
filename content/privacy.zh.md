@@ -114,7 +114,6 @@ toc = false
 如果您对本隐私政策有任何疑问，请通过以下方式联系我们：
 
 - 邮箱：heyuan110@gmail.com
-- GitHub：[heyuan110](https://github.com/heyuan110)
 
 ---
 
