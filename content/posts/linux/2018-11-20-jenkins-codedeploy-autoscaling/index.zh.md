@@ -124,7 +124,7 @@ if [ -n  $isExistApp ]; then
 
     #restart server
 
-    /usr/local/bin/supervisorctl reload 
+    /usr/local/bin/supervisorctl reload
 
 else
 
@@ -132,7 +132,7 @@ else
 
     #start server
 
-   /usr/local/bin/supervisord -c /usr/local/programs/supervisor/supervisord.conf     
+   /usr/local/bin/supervisord -c /usr/local/programs/supervisor/supervisord.conf
 
 fi
 
@@ -260,7 +260,7 @@ wiki：https://docs.aws.amazon.com/zh_cn/codedeploy/latest/userguide/welcome.htm
 ### 6、AppSpec 文件
 
 appspec.yml是YAML格式、用于定于CodeDeploy服务在整个阶段所做的操作和文件拷贝路径和权限等。这个文档名称必须是appspec.yml,而且文档中的空格个数也有严格的要求,[参考详细解析
-](https://blog.csdn.net/fedora18/article/details/44237647). 
+](https://blog.csdn.net/fedora18/article/details/44237647).
 
 如果没有AppSpec file，AWS CodeDeploy无法将应用程序修订中的源文件映射到其目标，也无法为您向EC2/本地计算平台中进行的部署运行脚本
 
@@ -506,7 +506,7 @@ project-configure/
 
 │   │   │           └── conf.d
 
-│   │   │               └── xxxx-alpha-website_api.conf            
+│   │   │               └── xxxx-alpha-website_api.conf
 
 │   ├── production                                                                # 线上生产环境
 
@@ -585,7 +585,3 @@ AWS codedeploy采取蓝绿部署，无状态部署，所以每次修改配置后
 ### 发布流程
 
 Jenkins主要实现将构建好的部署包上传至s3存储桶，事先在EC2实例上的CodeDeploy-Agent在轮询过程中发现s3存储桶上有新的修订版(jenkins部署上传到S3的压缩包)时，获取存储桶的新的修订版并解压，CodeDeploy根据新的修订版里的appspec.yml对EC2实例进行自动部署，这样保证每次在同一个CodeDeploy组内的实例获取的都是最新的部署包.
-
-
-
-

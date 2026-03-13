@@ -35,7 +35,7 @@ Supervisor (http://supervisord.org) 是一个用 Python 写的进程管理工具
 - wget wget https://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg  --no-check-certificate
 
 - wget https://pypi.python.org/packages/80/37/964c0d53cbd328796b1aeb7abea4c0f7b0e8c7197ea9b0b9967b7d004def/supervisor-3.3.1.tar.gz
-    
+
 按下面步骤执行:
 
 ```
@@ -48,7 +48,7 @@ Supervisor (http://supervisord.org) 是一个用 Python 写的进程管理工具
     7. supervisorctl
     8. done
 ```
- 
+
 配置文件supervisord.conf：
 
 ```
@@ -331,5 +331,3 @@ sudo systemctl status supervisord
 - [traceroute 命令详解](/posts/linux/2020-06-28-traceroute/)
 - [Docker Compose 完全指南（2026）](/posts/docker/2026-01-19-docker-compose-complete-guide/)
 - [docker-compose.yml 详解](/posts/docker/2026-01-24-docker-compose-yml-explained/)
-
-

@@ -5,6 +5,7 @@ description = 'Linux 和 macOS 常用命令速查手册，涵盖文件操作、�
 toc = true
 tags = ['Linux', 'macOS', 'Shell', '命令行', '运维']
 categories = ['Linux']
+keywords = ['Linux 常用命令', 'macOS 终端命令', 'Shell 命令速查', '运维命令手册']
 +++
 Linux/macOS 命令行是开发者必备技能。本文整理了日常工作中高频使用的命令，按功能分类便于查找，持续更新中。
 

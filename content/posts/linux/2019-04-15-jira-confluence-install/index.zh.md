@@ -304,7 +304,7 @@ FLUSH PRIVILEGES;
 
 >sudo /etc/init.d/confluence start
 
-回到输入key的界面，输入上面记录的key，点击下一步 
+回到输入key的界面，输入上面记录的key，点击下一步
 
 ![](https://raw.githubusercontent.com/heyuan110/static-source/master/media/15553944919153/15555689505079.jpg)
 
@@ -439,7 +439,7 @@ confluence内部用户：创建、更新都只对confluence生效，目录属于
    - 选择类型（jira）
    - 填应用名称，填服务器的URL（Jira服务器地址，如果和confluence在同一台服务器，建议填内网），第1步中设置的应用程序名称，密码
    - 其他项看情况自己选择，点测试设置，通过后保存
- 
+
 *参考:*
 *1.https://confluence.atlassian.com/doc/connecting-to-crowd-or-jira-for-user-management-229838465.html#ConnectingtoCrowdorJIRAforUserManagement-ConnectingConfluencetoJIRAforUserManagement*
 *2.https://www.cnblogs.com/kevingrace/p/5569932.html*
@@ -492,5 +492,3 @@ select id, directory_name, active from cwd_directory where id = 98306;
 
 1. [Jira/Confluence的备份、恢复和迁移](https://www.cnblogs.com/kevingrace/p/8862531.html)
 2. [linux安装破解Confluence-6.8.5](https://blog.51cto.com/moerjinrong/2149177?utm_source=oschina-app)
-
-
