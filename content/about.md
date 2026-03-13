@@ -1,33 +1,40 @@
 +++
 title = 'About'
-description = 'Bruce — AI engineer and technical writer focused on Claude Code, AI Agents, LLM workflows, and production-grade AI engineering.'
+description = 'Bruce — AI engineer writing practical guides on Claude Code, AI agents, and developer tooling. 150+ articles, 10+ years in backend systems.'
 date = '2010-03-15'
 comments = true
 +++
 
-Hi, I'm Bruce — an engineer with 10+ years in backend systems, now fully focused on AI engineering.
+## The Short Version
 
-I've built and scaled backend infrastructure at multiple tech companies, working across Java, Go, and cloud-native stacks. Since 2024, I've gone all-in on AI — from LLM application development to AI Agent architecture, accumulating hands-on production experience.
+I'm Bruce. I write about AI engineering — the kind of stuff you actually need when building with LLMs, not the hype.
 
-## What This Site Covers
+10+ years building backend systems (Java, Go, cloud-native). Since 2024, fully focused on AI: coding agents, multi-agent architecture, and making AI tools work in real projects.
 
-This site publishes practical, in-depth guides on AI engineering topics:
+This blog has **150+ articles**. Most of them are the guides I wished existed when I was figuring things out myself.
 
-- **AI Coding Tools** — Claude Code, Cursor, Codex CLI: setup guides, best practices, and real-world workflows
-- **AI Agent Engineering** — Agent architecture, multi-agent orchestration, automation workflows
-- **LLM Application Development** — RAG systems, vector databases, prompt optimization
-- **Tool Comparisons** — Head-to-head evaluations to help you pick the right tool
+## What You'll Find Here
 
-The site also retains earlier technical notes on Java, Go, Docker, and Linux (written in Chinese) as archived content.
+**Honest tool reviews** — I've tested Claude Code, Cursor, Codex CLI, Kiro, Google Antigravity, and more. Not "Top 10 Amazing Tools" listicles. Real benchmarks, real trade-offs, real recommendations.
 
-## Why This Site
+**Step-by-step guides** — From setting up your first AI agent to deploying multi-agent systems. Complete code, tested workflows, copy-paste configs.
 
-AI moves fast. Writing forces clarity. Every article is based on real usage, tested workflows, and verified results — not speculation.
+**Comparisons that save you time** — Claude Code vs Copilot. TypeScript vs Python for AI. OpenClaw vs CrewAI vs AutoGPT. I do the research so you don't have to.
 
-If you find the content useful, share it with someone who'd benefit.
+**Hard-won lessons** — 15 OpenClaw automation mistakes I made. MCP security vulnerabilities nobody talks about. Context engineering pitfalls that waste your tokens.
 
-## Contact
+## How I Write
+
+Every article follows the same rule: **I use it before I write about it.**
+
+No press releases rewritten as blog posts. No "I asked ChatGPT to explain X." If there's a setup guide, I ran every command. If there's a comparison, I tested every tool. If there's a benchmark, I ran it on my own machine.
+
+I also don't bury the answer. If you're here for a specific solution, you'll find it fast.
+
+## Connect
 
 - GitHub: [heyuan110](https://github.com/heyuan110)
 - X/Twitter: [@heyuan110](https://x.com/heyuan110)
 - Email: heyuan110@gmail.com
+
+Found something useful? Share it with a friend. Found something wrong? [Open an issue](https://github.com/heyuan110/heyuan110.github.io/issues).
