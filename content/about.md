@@ -25,9 +25,9 @@ This blog has **150+ articles**. Most of them are the guides I wished existed wh
 
 ## How I Write
 
-Every article follows the same rule: **I use it before I write about it.**
+One rule: **every article starts from real usage, not speculation.**
 
-No press releases rewritten as blog posts. No "I asked ChatGPT to explain X." If there's a setup guide, I ran every command. If there's a comparison, I tested every tool. If there's a benchmark, I ran it on my own machine.
+I use the tools, run into the problems, figure out the solutions — then write it up. AI helps me write faster and more clearly, but the experience and judgment behind each article are mine.
 
 I also don't bury the answer. If you're here for a specific solution, you'll find it fast.
 
