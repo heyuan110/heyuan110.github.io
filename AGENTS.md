@@ -1,216 +1,187 @@
 # AGENTS.md
 
-This file provides project context and collaboration guidelines for all AI agents (Claude Code, Cursor, Windsurf, Copilot, Cline, etc.).
+本文档为所有 AI 代理（Claude Code、Cursor、Windsurf、Copilot、Cline 等）提供项目上下文和协作指南。
 
-## Interaction Guidelines
+## 交互指南
 
-- **Language**: Default to Chinese for agent-user interaction; ALL new content must be written in English
-- **Git branch**: Working branch is `code`. Pushing to `code` triggers automatic deployment
-- **Commit messages**: Use Chinese for commit messages
+- **语言**：代理用户交互默认使用中文；所有**新增内容**必须使用英文撰写
+- **Git 分支**：工作分支为 `code`。推送到 `code` 会触发自动部署
+- **提交信息**：使用中文提交信息
 
-## Project Overview
+## 项目概述
 
-A Hugo-based AI engineering blog on GitHub Pages, currently transitioning from Chinese to English.
+一个基于 Hugo 的 AI 工程博客，托管在 GitHub Pages 上，目前正在从中文向英文过渡。
 
-- **URL**: https://www.heyuan110.com/
-- **Hugo version**: v0.153.2+ (Extended required)
-- **Theme**: hermit-V2
+- **网址**：https://www.heyuan110.com/
+- **Hugo 版本**：v0.153.2+（需要 Extended 版本）
+- **主题**：hermit-V2
 
-## Multilingual Setup
+## 多语言设置
 
-The blog supports **English (default)** and **Chinese** via Hugo's built-in i18n system.
+博客通过 Hugo 的内置 i18n 系统支持**英文（默认）**和**中文**。
 
-### URL Structure
+### URL 结构
 
-| Language | URL Pattern | Example |
-|----------|-------------|---------|
-| English (default) | `/posts/ai/slug/` | `/posts/ai/2026-03-11-ai-development-methodologies-compared/` |
-| Chinese | `/zh/posts/ai/slug/` | `/zh/posts/ai/2026-03-11-ai-development-methodologies-compared/` |
+| 语言 | URL 模式 | 示例 |
+|------|----------|------|
+| 英文（默认） | `/posts/ai/slug/` | `/posts/ai/2026-03-11-ai-development-methodologies-compared/` |
+| 中文 | `/zh/posts/ai/slug/` | `/zh/posts/ai/2026-03-11-ai-development-methodologies-compared/` |
 
-### File Naming
+### 文件命名
 
 ```
 content/posts/ai/2026-03-11-article-slug/
-├── index.md       # English article (default, always required)
-├── index.zh.md    # Chinese article (optional, only when requested)
-└── cover.webp     # Shared cover image
+├── index.md       # 英文文章（默认，必须）
+├── index.zh.md    # 中文文章（可选，仅在要求时添加）
+└── cover.webp     # 共享封面图片
 ```
 
-### Key Config Files
+### 关键配置文件
 
-| File | Purpose |
-|------|---------|
-| `hugo.toml` | Language definitions (`[languages.en]`, `[languages.zh]`), per-language menus |
-| `i18n/en.toml` | English UI translations (TOC, Newer, Older, etc.) |
-| `i18n/zh.toml` | Chinese UI translations |
-| `layouts/_partials/lang-switcher.html` | Language switch dropdown (fixed top-right) |
-| `content/about.zh.md` | Chinese About page |
-| `content/posts/_index.zh.md` | Chinese posts section index |
+| 文件 | 用途 |
+|------|------|
+| `hugo.toml` | 语言定义（`[languages.en]`、`[languages.zh]`）、语言特定菜单 |
+| `i18n/en.toml` | 英文 UI 翻译（TOC、Newer、Older 等） |
+| `i18n/zh.toml` | 中文 UI 翻译 |
+| `layouts/_partials/lang-switcher.html` | 语言切换下拉菜单（固定右上角） |
+| `content/about.zh.md` | 中文 About 页面 |
+| `content/posts/_index.zh.md` | 中文文章列表页面 |
 
-### Writing Rules
+### 写作规则
 
-- **Default**: All new articles are written in **English only** (`index.md`)
-- **Chinese version**: Only created when user explicitly requests it (says "中文版", "多语言", "同时输出中文")
-- **Chinese version is NOT a machine translation**: It must be a natural, high-quality rewrite that reads natively in Chinese. Google penalizes low-quality translations
-- **SEO priority is English**: The English version is the canonical content. Chinese is supplementary
+- **默认**：所有新增文章仅使用**英文**（`index.md`）
+- **中文版本**：仅在用户明确要求时添加（如“中文版”、“多语言”、“同时输出中文”）
+- **中文版本不是机器翻译**：必须是自然、高质量的重写，符合中文阅读习惯。Google 会惩罚低质量翻译
+- **SEO 优先级为英文**：英文版本是规范内容，中文是补充
 
-### When Creating Chinese Versions (`index.zh.md`)
+### 添加中文版本时（`index.zh.md`）
 
-1. Front matter `title` and `description` must be in Chinese, naturally written (not translated word-by-word)
-2. Front matter `tags` and `categories` stay in English (same as English version) for taxonomy consistency
-3. Front matter `keywords` should be Chinese search terms
-4. Content must read naturally in Chinese — use native expressions, not translationese
-5. Cover image is shared (same `cover.webp`), reference it the same way
-6. Internal links point to the same paths (Hugo resolves language automatically)
+1. 前置元数据的 `title` 和 `description` 必须是中文，自然表达（非逐字翻译）
+2. 前置元数据的 `tags` 保持英文（与英文版本相同）
+3. 前置元数据的 `keywords` 应使用中文搜索词
+4. 内容必须符合中文阅读习惯——使用本土表达方式，避免翻译腔
+5. 封面图片共享（相同的 `cover.webp`），引用方式相同
+6. 内部链接使用相同路径（Hugo 会自动解析语言）
 
-### Language Switcher Behavior
+### 语言切换器行为
 
-- **Homepage**: Always shows language switch button (top-right dropdown)
-- **Article with translation**: Shows language switch → links to translated version
-- **Article without translation**: No language switch button (avoids redirecting to homepage)
+- **首页**：始终显示语言切换按钮（右上角下拉菜单）
+- **有翻译的文章**：显示语言切换 → 链接到翻译版本
+- **无翻译的文章**：不显示语言切换按钮（避免重定向到首页）
 
-### SEO for Multilingual
+### 多语言 SEO
 
-Hugo automatically generates:
-- `<link rel="alternate" hreflang="en">` and `<link rel="alternate" hreflang="zh">` tags
-- Separate sitemaps per language
-- Proper `lang` attribute on `<html>` tag
+Hugo 会自动生成：
+- `<link rel="alternate" hreflang="en">` 和 `<link rel="alternate" hreflang="zh">` 标签
+- 按语言分隔的网站地图
+- `<html>` 标签上的正确 `lang` 属性
 
-This tells Google the two versions are related, not duplicate content.
+这告诉 Google 两个版本是相关的，不是重复内容。
 
-## Bilingual Content Rules (MUST follow)
+## 双语内容规则（必须遵守）
 
-### Goal: All articles should have both English and Chinese versions
+### 目标：所有文章都应该有英文和中文两个版本
 
-### DO NOT:
-- Change already-indexed URLs (Chinese or English)
-- Create low-quality machine translations — both languages must read naturally
-- Overwrite existing content when adding the other language version
+### 禁止：
+- 更改已索引的 URL（中文或英文）
+- 创建低质量机器翻译——两种语言都必须自然
+- 添加另一种语言版本时覆盖现有内容
 
-### MUST DO:
-- **New articles**: Write English (`index.md`) first, then add Chinese (`index.zh.md`)
-- **Old Chinese-only articles**: Keep original Chinese, add English version (`index.md`)
-- **Old English-only articles**: Keep original English, add Chinese version (`index.zh.md`)
-- Both versions must be **high-quality native writing**, not word-for-word translations
-- All site-level text is in English (menu, footer, about, meta); Chinese UI via i18n files
-- `tags` and `categories` stay in English across both versions for taxonomy consistency
+### 必须做：
+- **新文章**：先写英文（`index.md`），然后添加中文（`index.zh.md`）
+- 两个版本都必须是**高质量的本土写作**，不是逐字翻译
+- 所有站点级文本使用英文（菜单、页脚、关于、元数据）；中文 UI 通过 i18n 文件实现
+- `tags` 在两个语言版本中保持英文
+- 新文章默认不添加 `categories`
+- 旧文章如果已经有 `categories`，不为此单独修改 URL 或历史内容
 
-## Common Commands
+## 常用命令
 
 ```bash
-# Local preview (with drafts)
+# 本地预览（含草稿）
 hugo server -D
 
-# Local preview (without drafts)
+# 本地预览（不含草稿）
 hugo server
 
-# Create new article
+# 创建新文章
 hugo new posts/ai/2026-02-25-article-slug/index.md
 
-# Production build
+# 生产构建
 hugo --minify
 
-# Update theme submodule
+# 更新主题子模块
 git submodule update --remote
 ```
 
-## Content Categories
+## 内容策略
 
-### New English Categories (active)
+### 文章类型（优先级）
+1. **指南** — "How to set up X"、"Complete guide to Y"（设置指南、教程、最佳实践）
+2. **安装说明** — 分步安装和配置
+3. **对比** — "X vs Y: Which is better for Z?"（工具对比、价格、基准测试）
+4. **最佳工具** — "Top 10 tools for X in 2026"（2026 年 X 领域的顶级工具）
+5. **工作流程** — "My AI development workflow"（AI 开发工作流程）
+6. **评测** — 深度工具/框架评测
 
-| Category | URL | Use for |
-|----------|-----|---------|
-| **AI Guides** | `categories/ai-guides/` | Setup guides, tutorials, best practices, workflows |
-| **Comparisons** | `categories/comparisons/` | Tool comparisons, pricing, benchmarks |
+### 禁止的内容类型
+- 个人日志条目
+- 无搜索意图的日志式帖子
+- 无商业或信息价值的内容
 
-### Legacy Chinese Categories (archived, do not modify)
-
-| Category | URL |
-|----------|-----|
-| AI原理 | `categories/ai原理/` |
-| AI实战 | `categories/ai实战/` |
-| Linux | `categories/linux/` |
-| Docker | `categories/docker/` |
-
-### Category Assignment for New Articles
-
-```toml
-# Guides, tutorials, how-tos, reviews
-categories = ['AI Guides']
-
-# Tool comparisons, pricing, benchmarks
-categories = ['Comparisons']
-```
-
-## Content Strategy
-
-### Article Types (priority order)
-1. **Guide** — "How to set up X", "Complete guide to Y"
-2. **Setup** — Step-by-step installation and configuration
-3. **Comparison** — "X vs Y: Which is better for Z?"
-4. **Best Tools** — "Top 10 tools for X in 2026"
-5. **Workflow** — "My AI development workflow"
-6. **Review** — In-depth tool/framework evaluation
-
-### Prohibited Content Types
-- Personal journal entries
-- Log-style posts with no search intent
-- Content without commercial or informational value
-
-### Topic Clusters (each needs 10+ articles)
+### 主题集群（每个需要 10+ 篇文章）
 - Claude Code
 - AI Agent Frameworks
 - AI Coding Tools
 - AI Engineering Workflows
 - Tool Comparisons
 
-## Directory Structure
+## 目录结构
 
 ```
 content/
 ├── posts/
-│   ├── _index.zh.md # Chinese posts section index
-│   ├── ai/          # AI articles (new: English, legacy: Chinese)
+│   ├── _index.zh.md # 中文文章列表页面
+│   ├── ai/          # AI 文章（新：英文，旧：中文）
 │   │   └── 2026-xx-xx-slug/
-│   │       ├── index.md      # English (always required)
-│   │       ├── index.zh.md   # Chinese (optional)
-│   │       └── cover.webp    # Shared cover image
-│   ├── java/        # Java (archived, Chinese)
-│   ├── go/          # Go (archived, Chinese)
-│   ├── docker/      # Docker (archived, Chinese)
-│   ├── linux/       # Linux (archived, Chinese)
-│   └── macos/       # macOS (archived, Chinese)
-├── about.md         # About page (English)
-├── about.zh.md      # About page (Chinese)
-└── privacy.md       # Privacy policy (English)
+│   │       ├── index.md      # 英文（必须）
+│   │       ├── index.zh.md   # 中文（可选）
+│   │       └── cover.webp    # 共享封面图片
+│   ├── java/        # Java（归档，中文）
+│   ├── go/          # Go（归档，中文）
+│   ├── docker/      # Docker（归档，中文）
+│   ├── linux/       # Linux（归档，中文）
+│   └── macos/       # macOS（归档，中文）
+├── about.md         # About 页面（英文）
+├── about.zh.md      # About 页面（中文）
+└── privacy.md       # 隐私政策（英文）
 i18n/
-├── en.toml          # English UI strings
-└── zh.toml          # Chinese UI strings
-static/              # Static assets (images, favicon, etc.)
-themes/hermit-V2/    # Theme (git submodule)
-hugo.toml            # Hugo config (multilingual)
+├── en.toml          # 英文 UI 字符串
+└── zh.toml          # 中文 UI 字符串
+static/              # 静态资源（图片、favicon 等）
+themes/hermit-V2/    # 主题（git 子模块）
+hugo.toml            # Hugo 配置（多语言）
 ```
 
-## Article Format
+## 文章格式
 
-### Front Matter Template (English articles — `index.md`)
+### 前置元数据模板（英文文章 — `index.md`）
 
-All articles use Markdown with TOML front matter (`+++`):
+所有文章使用 Markdown 格式，TOML 前置元数据（`+++`）：
 
 ```toml
 +++
 date = '2026-02-25T10:00:00+08:00'
 draft = false
-title = 'Article Title (50-60 chars, primary keyword first)'
-description = 'SEO description for search results and social sharing (120-160 chars)'
+title = 'Article Title (50-60 字符，主要关键词优先)'
+description = 'SEO 描述，用于搜索结果和社交分享（120-160 字符）'
 toc = true
 tags = ['Claude Code', 'AI Agent', 'specific-tag']
-categories = ['AI Guides']
 keywords = ['search keyword 1', 'search keyword 2']
 +++
 ```
 
-### Front Matter Template (Chinese articles — `index.zh.md`, only when requested)
+### 前置元数据模板（中文文章 — `index.zh.md`，仅在要求时添加）
 
 ```toml
 +++
@@ -220,67 +191,66 @@ title = '中文标题（自然表达，非逐字翻译）'
 description = '中文 SEO 描述，面向中文搜索用户（120-160 字符）'
 toc = true
 tags = ['Claude Code', 'AI Agent', 'specific-tag']
-categories = ['AI Guides']
 keywords = ['中文搜索关键词1', '中文搜索关键词2']
 +++
 ```
 
-**Key differences**: `title`, `description`, `keywords` in Chinese; `tags` and `categories` stay English.
+**关键差异**：`title`、`description`、`keywords` 为中文；`tags` 保持英文。
 
-| Field | Required | Notes |
-|-------|----------|-------|
-| `date` | Yes | ISO 8601 with timezone |
-| `title` | Yes | 50-60 chars, keyword-first |
-| `description` | Yes | 120-160 chars, include primary keyword |
-| `categories` | Yes | `AI Guides` or `Comparisons` |
-| `tags` | Yes | 3-5 tags |
-| `toc` | Recommended | Set `true` for long articles |
-| `keywords` | Recommended | SEO supplementary keywords |
-| `draft` | Optional | Default `false` |
+| 字段 | 必需 | 说明 |
+|------|------|------|
+| `date` | 是 | ISO 8601 格式，带时区 |
+| `title` | 是 | 50-60 字符，关键词优先 |
+| `description` | 是 | 120-160 字符，包含主要关键词 |
+| `tags` | 是 | 3-5 个标签 |
+| `categories` | 否 | 新文章默认不使用；仅在维护旧文章或用户明确要求时保留/添加 |
+| `toc` | 推荐 | 长文章设置为 `true` |
+| `keywords` | 推荐 | SEO 补充关键词 |
+| `draft` | 可选 | 默认 `false` |
 
-### Page Bundle Structure
+### 页面包结构
 
-Articles with images use Page Bundle:
+包含图片的文章使用页面包：
 
 ```
 content/posts/ai/2026-02-25-article-slug/
-├── index.md      # Article content
-├── cover.webp    # Cover image (must be named cover.webp)
-└── other.webp    # Additional images
+├── index.md      # 文章内容
+├── cover.webp    # 封面图片（必须命名为 cover.webp）
+└── other.webp    # 其他图片
 ```
 
-**Naming**: `<date>-<english-slug>/`, e.g. `2026-02-25-claude-code-mcp-guide/`
+**命名**：`<date>-<english-slug>/`，例如 `2026-02-25-claude-code-mcp-guide/`
 
-### Image Guidelines
+### 图片指南
 
-| Item | Standard |
-|------|----------|
-| **Format** | WebP only (smaller size, good quality) |
-| **Cover image** | Must be named `cover.webp` |
-| **Dimensions** | Cover: 1200×630px (optimal for social sharing) |
-| **Reference** | `![alt text](cover.webp)` or `![alt text](filename.webp)` |
-| **ALT text** | Required, describe image content in English |
+| 项目 | 标准 |
+|------|------|
+| **格式** | 仅 WebP（尺寸小，质量好） |
+| **封面图片** | 必须命名为 `cover.webp` |
+| **尺寸** | 封面：1200×630px（社交媒体分享最佳尺寸） |
+| **引用** | `![alt text](cover.webp)` 或 `![alt text](filename.webp)` |
+| **ALT 文本** | 必需，用英文描述图片内容 |
 
-### Nested Code Blocks
+### 嵌套代码块
 
-When showing code blocks inside Markdown code blocks, use different backtick counts:
+当在 Markdown 代码块中显示代码块时，使用不同的反引号数量：
 
 `````markdown
-# Outer block uses 4+ backticks
+# 外层块使用 4+ 个反引号
 ```python
-# Inner block uses 3 backticks
+# 内层块使用 3 个反引号
 print("Hello World")
 ```
 `````
 
-## Deployment
+## 部署
 
-- Push to `code` branch triggers GitHub Actions
-- Auto-builds and deploys to GitHub Pages
-- Config: `.github/workflows/hugo.yml`
+- 推送到 `code` 分支会触发 GitHub Actions
+- 自动构建并部署到 GitHub Pages
+- 配置：`.github/workflows/hugo.yml`
 
-## Theme Customization
+## 主题定制
 
-- Main config: `hugo.toml`
-- Custom styles: `assets/scss/` (override theme styles)
-- Custom layouts: `layouts/` (override theme templates)
+- 主要配置：`hugo.toml`
+- 自定义样式：`assets/scss/`（覆盖主题样式）
+- 自定义布局：`layouts/`（覆盖主题模板）
