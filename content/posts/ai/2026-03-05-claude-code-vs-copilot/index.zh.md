@@ -1,8 +1,8 @@
 +++
 date = '2026-03-04T14:00:00+08:00'
 draft = false
-title = 'Claude Code vs GitHub Copilot：2026年最佳AI编程工具对比'
-description = '深度对比 Claude Code 和 GitHub Copilot 的 Agent 能力、定价、代码质量和 IDE 支持，帮你找到最适合的 AI 编程工具。'
+title = 'Claude Code vs Copilot：两个都用了3个月，告诉你各自什么场景更强'
+description = '同时使用 Claude Code 和 GitHub Copilot 三个月的真实感受：Copilot 自动补全更强，Claude Code 多文件重构碾压。附详细对比和真实使用案例。'
 toc = true
 tags = ['Claude Code', 'GitHub Copilot', 'Comparison', 'AI Coding Tools']
 categories = ['Comparisons']

@@ -1,8 +1,8 @@
 +++
 date = '2026-03-03T10:00:00+08:00'
 draft = false
-title = 'Claude Code Pricing 2026: Complete Cost Comparison, Free Tiers & Plan Guide'
-description = 'Updated 2026 Claude Code pricing guide: Compare all plans from $0 to $200/month, see exact rate limits, API costs, and how it stacks up against Cursor, GitHub Copilot, and Codex CLI.'
+title = 'Claude Code Pricing: What I Actually Pay After 3 Months ($20 vs $100 vs $200)'
+description = 'Real cost breakdown after 3 months of Claude Code: Pro $20 runs out in 2 hours, Max 5x lasts a full day. Exact rate limits, API vs subscription math, and when to upgrade.'
 toc = true
 tags = ['Claude Code', 'Pricing', 'AI Coding Tools', 'Comparison']
 categories = ['AI Guides']

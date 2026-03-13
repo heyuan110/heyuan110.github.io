@@ -1,8 +1,8 @@
 +++
 date = '2026-02-28T10:00:00+08:00'
 draft = false
-title = 'Claude Code Agent Teams: How to Run Multiple AI Agents in Parallel'
-description = 'Use Claude Code Agent Teams to run multiple AI agents simultaneously. Setup guide, collaboration patterns, shared task lists, worktree isolation, and cost tips.'
+title = 'Claude Code --teammate-mode Explained: Run Multiple Agents That Actually Collaborate'
+description = 'How to use Claude Code teammate-mode (tmux + in-process) for multi-agent coding. Real collaboration patterns, worktree isolation, shared tasks, and cost control tips.'
 toc = true
 tags = ['Claude Code', 'Agent Teams', 'Multi-Agent', 'Collaboration']
 categories = ['AI Guides']

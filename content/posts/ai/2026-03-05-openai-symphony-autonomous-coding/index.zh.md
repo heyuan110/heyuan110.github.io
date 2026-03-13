@@ -1,8 +1,8 @@
 +++
 date = '2026-03-06T22:00:00+08:00'
 draft = false
-title = 'OpenAI Symphony 深度解析：自主编码的编排框架'
-description = 'OpenAI Symphony 如何将工单自动转化为经过验证的 Pull Request。架构解析、状态机、WORKFLOW.md 配置与搭建指南。'
+title = 'OpenAI Symphony：从 Issue 到 PR 全自动，开发者不用动手'
+description = 'OpenAI Symphony 监控你的工单系统，自动派 Codex Agent 写代码、跑测试、提 PR。架构拆解、WORKFLOW.md 配置、真实局限性分析。'
 toc = true
 tags = ['OpenAI', 'Symphony', 'AI Agents', 'Autonomous Coding', 'Codex']
 categories = ['AI Guides']

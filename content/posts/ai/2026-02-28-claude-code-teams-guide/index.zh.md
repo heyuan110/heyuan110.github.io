@@ -1,8 +1,8 @@
 +++
 date = '2026-02-28T10:00:00+08:00'
 draft = false
-title = 'Claude Code Agent Teams 完全指南：多智能体并行协作实战'
-description = '深入讲解 Claude Code Agent Teams 多智能体协作功能：架构原理、启用配置、协作模式、调试技巧与成本优化，助你用多个 AI Agent 并行开发提效。'
+title = 'Claude Code --teammate-mode 详解：让多个 Agent 真正协作起来'
+description = 'Claude Code teammate-mode（tmux + in-process）多 Agent 协作实战：配置方法、worktree 隔离、共享任务、成本控制，附真实协作案例。'
 toc = true
 tags = ['Claude Code', 'Agent Teams', 'Multi-Agent', 'Collaboration']
 categories = ['AI Guides']

@@ -1,8 +1,8 @@
 +++
 date = '2026-03-03T10:00:00+08:00'
 draft = false
-title = 'Claude Code 定价全解析：从免费到 $200/月，哪个方案最划算？'
-description = 'Claude Code 各套餐价格对比：Pro $20、Max 5x $100、Max 20x $200，含速率限制、API Token 成本及与 Cursor、Copilot 的横向对比，助你选出最适合的方案。'
+title = 'Claude Code 真实花费：用了3个月，$20/$100/$200套餐实际体验'
+description = '用了3个月 Claude Code 的真实账单：Pro $20两小时就用完，Max 5x能撑一整天。详细速率限制、API vs 订阅费用对比、升级时机建议。'
 toc = true
 tags = ['Claude Code', 'Pricing', 'AI Coding Tools', 'Comparison']
 categories = ['AI Guides']

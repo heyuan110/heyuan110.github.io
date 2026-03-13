@@ -1,8 +1,8 @@
 +++
 date = '2026-02-25T12:00:00+08:00'
 draft = false
-title = 'Claude Code 安装配置全攻略：从零到上手只需5分钟（2026）'
-description = 'Claude Code 最新安装教程，涵盖原生安装器、API 密钥配置、VS Code 集成、模型选择及第一个 AI 编程实战，手把手带你快速上手。'
+title = '10分钟安装 Claude Code：终端 + VS Code 配置指南（2026）'
+description = 'Claude Code 安装全流程：npm 安装、API Key 配置、VS Code 集成、权限设置，包含大多数教程不会提到的常见报错解决方案。'
 toc = true
 tags = ['Claude Code', 'Setup', 'Tutorial', 'Getting Started']
 categories = ['AI Guides']
