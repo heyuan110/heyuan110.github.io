@@ -33,8 +33,7 @@ I also don't bury the answer. If you're here for a specific solution, you'll fin
 
 ## Connect
 
-- GitHub: [heyuan110](https://github.com/heyuan110)
 - X/Twitter: [@heyuan110](https://x.com/heyuan110)
 - Email: heyuan110@gmail.com
 
-Found something useful? Share it with a friend. Found something wrong? [Open an issue](https://github.com/heyuan110/heyuan110.github.io/issues).
+Found something useful? Share it with a friend. Found something wrong? Leave a comment.

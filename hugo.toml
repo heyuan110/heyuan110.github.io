@@ -159,16 +159,12 @@ summaryLength = 150
     LongDate = "Jan 2, 2006"
     ShortDate = "Jan 2"
     NumDateShort = "2006-01-02"
-    NumDateLong = "2006-01-02 15:04 -0700"
+    NumDateLong = "2006-01-02"
 
   # Social links
   [[params.socialLinks]]
     name = "x"
     url = "https://x.com/heyuan110"
-
-  [[params.socialLinks]]
-    name = "github"
-    url = "https://github.com/heyuan110"
 
   [[params.socialLinks]]
     name = "rss"

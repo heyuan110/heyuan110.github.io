@@ -37,8 +37,7 @@ comments = true
 
 ## 联系方式
 
-- GitHub: [heyuan110](https://github.com/heyuan110)
 - X/Twitter: [@heyuan110](https://x.com/heyuan110)
 - 邮箱: heyuan110@gmail.com
 
-觉得有用？转给需要的朋友。发现有错？[提个 issue](https://github.com/heyuan110/heyuan110.github.io/issues)。
+觉得有用？转给需要的朋友。发现有错？欢迎留言。
