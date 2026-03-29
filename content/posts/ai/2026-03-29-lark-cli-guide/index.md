@@ -69,7 +69,19 @@ macOS users without Node.js: `brew install node`
 
 ---
 
-## Installation — Just 4 Commands
+## Installation
+
+### The AI-Native Way: Let AI Install It For You
+
+If you're already using Claude Code or Codex, the simplest approach is to paste the README link directly:
+
+```
+Install everything from: https://github.com/larksuite/cli/blob/main/README.zh.md
+```
+
+The AI reads the docs, runs the install commands, and follows the prompts automatically. You just click "Authorize" when the browser pops up. **You don't even need to read the install guide — the AI reads it and does it for you.**
+
+### Manual Way: Just 4 Commands
 
 The entire setup takes 4 commands. `config init` automatically guides you through creating a Feishu app and configuring credentials — no need to manually visit the developer console.
 
