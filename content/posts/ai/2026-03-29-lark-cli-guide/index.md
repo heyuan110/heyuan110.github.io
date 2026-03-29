@@ -58,76 +58,38 @@ In plain terms: it's a remote control for Feishu — manage calendars, messages,
 
 ## Prerequisites
 
-| Dependency | Version | Notes |
-|-----------|---------|-------|
-| Node.js | v18+ recommended | Includes npm and npx |
-| Go | v1.23+ (optional) | Only for building from source |
-| Python 3 | Latest (optional) | Only for building from source |
+Make sure you have Node.js (v18+ recommended, includes npm and npx):
 
 ```bash
 node -v   # Should output v18.x.x or higher
 npm -v    # Should output 9.x.x or higher
 ```
 
-macOS users without Node.js:
-
-```bash
-brew install node
-```
+macOS users without Node.js: `brew install node`
 
 ---
 
-## Step-by-Step Installation
+## Installation — Just 4 Commands
 
-### Install Lark CLI
+The entire setup takes 4 commands. `config init` automatically guides you through creating a Feishu app and configuring credentials — no need to manually visit the developer console.
 
 ```bash
-# Global install
+# 1. Install Lark CLI
 sudo npm install -g @larksuite/cli
 
-# Verify
-lark-cli --version
-# Output: lark-cli version 1.0.0
-```
-
-### Install AI Agent Skills
-
-```bash
-# Install all 19 Skills
+# 2. Install AI Agent Skills (19 skills for Claude Code, Cursor, etc.)
 npx skills add larksuite/cli -y -g
 
-# Verify
-npx skills list
-```
-
-Or install specific domains:
-
-```bash
-npx skills add larksuite/cli -s lark-calendar -y
-npx skills add larksuite/cli -s lark-im -y
-```
-
-### Create a Feishu App
-
-1. Visit [Feishu Developer Console](https://open.feishu.cn/app) and log in
-2. Click "Create Enterprise Custom App"
-3. Note the **App ID** and **App Secret** from "Credentials & Basic Info"
-
-### Configure and Authenticate
-
-```bash
-# Initialize with your App ID and App Secret
+# 3. Initialize config (follow the prompts — auto-creates Feishu app)
 lark-cli config init
 
-# Authorize (auto-selects common permission scopes)
+# 4. Authorize (auto-selects common permission scopes)
 lark-cli auth login --recommend
-
-# Verify login
-lark-cli auth status
-
-# Health check
-lark-cli doctor
 ```
+
+That's it. Verify with `lark-cli auth status` and `lark-cli doctor`.
+
+> On macOS/Linux, `sudo` is needed for global npm install. Windows users can omit it. You can also install specific Skills only: `npx skills add larksuite/cli -s lark-calendar -y`
 
 ---
 
@@ -178,7 +140,13 @@ Claude Code: (runs lark-cli calendar +agenda for tomorrow)
 
 You: Send a reminder to the dev chat about the 3pm meeting
 Claude Code: (runs lark-cli im +messages-send)
+
+You: Summarize who I chatted with last week
+Claude Code: (runs lark-cli im +chat-messages-list across chats,
+              then analyzes contacts and conversation summaries)
 ```
+
+The real value: **you don't need to remember any commands — the AI picks the right combination for you**.
 
 ### Output Format Control
 
@@ -257,6 +225,10 @@ Use `--no-wait` and copy the URL manually:
 ```bash
 lark-cli auth login --recommend --no-wait
 ```
+
+### What Does `config init` Need?
+
+Just follow the terminal prompts. It automatically guides you through creating a Feishu app and configuring credentials — no preparation needed.
 
 ### Scope/Permission Errors?
 

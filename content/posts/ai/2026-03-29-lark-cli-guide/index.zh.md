@@ -144,98 +144,46 @@ Lark CLI 设计了一个三层架构，由浅到深，覆盖不同需求：
 
 ## 五、准备工作
 
-### 5.1 环境要求
+你只需要确保机器上有 Node.js（建议 v18+，包含 npm 和 npx）。
 
-| 依赖 | 版本要求 | 说明 |
-|------|---------|------|
-| Node.js | 建议 v18+ | 包含 npm 和 npx |
-| Go | v1.23+（可选） | 仅源码编译时需要 |
-| Python 3 | 最新版（可选） | 仅源码编译时需要 |
-
-检查你的 Node.js 环境：
+检查一下：
 
 ```bash
 node -v   # 应输出 v18.x.x 或更高
 npm -v    # 应输出 9.x.x 或更高
 ```
 
-如果没有安装 Node.js，macOS 用户推荐用 Homebrew：
+没有的话，macOS 用户用 Homebrew 一行搞定：
 
 ```bash
 brew install node
 ```
 
-### 5.2 你需要一个飞书应用
-
-Lark CLI 通过飞书开放平台的应用来获取权限。你需要在飞书开发者后台创建一个应用，获取 App ID 和 App Secret。
-
-别担心，下一章会一步步带你操作。
-
 ---
 
-## 六、手把手安装教程
+## 六、手把手安装教程——只需 4 条命令
+
+整个安装过程只需要 4 条命令，跟着终端提示操作即可。`config init` 会自动引导你完成飞书应用的创建和配置，不需要自己去开发者后台手动操作。
 
 ### 6.1 安装 Lark CLI
 
-**macOS / Linux：**
-
 ```bash
-# 全局安装 lark-cli
 sudo npm install -g @larksuite/cli
-
-# 验证安装
-lark-cli --version
-# 输出：lark-cli version 1.0.0
 ```
 
-> 如果遇到权限问题（EACCES 错误），需要加 `sudo`。或者你可以配置 npm 全局目录到用户目录下，避免每次都要 sudo。
+> macOS/Linux 下全局安装需要 `sudo`。Windows 用户直接 `npm install -g @larksuite/cli` 即可。
 
-**Windows：**
-
-```powershell
-npm install -g @larksuite/cli
-lark-cli --version
-```
-
-**源码安装（适合想参与开发的用户）：**
-
-```bash
-git clone https://github.com/larksuite/cli.git
-cd cli
-make install
-```
+验证：`lark-cli --version` 应输出 `lark-cli version 1.0.0`。
 
 ### 6.2 安装 AI Agent Skills
 
 这一步是 Lark CLI 的精华——安装 19 个 AI Agent Skills，让 Claude Code 等 AI 工具能够理解和操作飞书。
 
 ```bash
-# 一键安装全部 Skills
 npx skills add larksuite/cli -y -g
 ```
 
-安装完成后可以验证：
-
-```bash
-npx skills list
-```
-
-你会看到类似这样的输出：
-
-```
-lark-shared        ~/.agents/skills/lark-shared
-lark-calendar      ~/.agents/skills/lark-calendar
-lark-im            ~/.agents/skills/lark-im
-lark-doc           ~/.agents/skills/lark-doc
-lark-drive         ~/.agents/skills/lark-drive
-lark-sheets        ~/.agents/skills/lark-sheets
-lark-base          ~/.agents/skills/lark-base
-lark-task          ~/.agents/skills/lark-task
-lark-mail          ~/.agents/skills/lark-mail
-lark-contact       ~/.agents/skills/lark-contact
-lark-wiki          ~/.agents/skills/lark-wiki
-...共 19 个
-```
+安装完成后可以用 `npx skills list` 验证，你会看到 `lark-calendar`、`lark-im`、`lark-doc` 等 19 个 Skill。
 
 如果你只需要特定域的能力，也可以按需安装：
 
@@ -247,35 +195,13 @@ npx skills add larksuite/cli -s lark-calendar -y
 npx skills add larksuite/cli -s lark-im -y
 ```
 
-### 6.3 创建飞书应用并获取凭证
-
-这是最关键的一步。Lark CLI 需要一个飞书应用的身份才能调用 API。
-
-**第一步：打开飞书开发者后台**
-
-访问 [https://open.feishu.cn/app](https://open.feishu.cn/app)，用你的飞书账号登录。
-
-**第二步：创建应用**
-
-1. 点击"创建企业自建应用"
-2. 填写应用名称（比如"我的 CLI 工具"）和描述
-3. 点击"确定"创建
-
-**第三步：获取凭证**
-
-在应用详情页的"凭证与基础信息"中，找到：
-- **App ID**（类似 `cli_a5xxxxx`）
-- **App Secret**（一长串密钥）
-
-把这两个值记下来，下一步要用。
-
-**第四步：配置 CLI**
+### 6.3 初始化配置
 
 ```bash
 lark-cli config init
 ```
 
-按提示输入 App ID 和 App Secret。CLI 会将凭证加密存储在系统钥匙串中（macOS 用 Keychain，Linux 用 Secret Service），不是明文保存。
+这条命令会**自动引导你完成飞书应用的创建和配置**——包括创建应用、获取凭证、配置权限，全程跟着终端提示点就行，不需要自己去开发者后台手动操作。凭证会加密存储在系统钥匙串中（macOS 用 Keychain，Linux 用 Secret Service），不是明文保存。
 
 ### 6.4 授权登录
 
@@ -293,15 +219,23 @@ lark-cli auth status
 
 看到类似 `Logged in as xxx` 就说明成功了。
 
-### 6.5 健康检查
-
-Lark CLI 提供了一个诊断命令，一次性检查配置、认证和网络连通性：
+### 完整流程汇总
 
 ```bash
-lark-cli doctor
+# 1. 安装 CLI
+sudo npm install -g @larksuite/cli
+
+# 2. 安装 AI Skills
+npx skills add larksuite/cli -y -g
+
+# 3. 初始化配置（跟着提示走，自动创建飞书应用）
+lark-cli config init
+
+# 4. 授权登录
+lark-cli auth login --recommend
 ```
 
-如果有问题，它会明确告诉你哪里出了问题以及如何修复。
+4 条命令，5 分钟搞定。之后可以用 `lark-cli doctor` 做一次健康检查，确认配置、认证和网络都没问题。
 
 ---
 
@@ -372,9 +306,15 @@ Claude Code：（调用 lark-cli calendar +agenda 查询明天日程）
 你：给研发群发一条消息，提醒大家下午 3 点开会
 Claude Code：（调用 lark-cli im +messages-send 发送消息）
 
+你：帮我看看上周和哪些人聊天过，总结一下
+Claude Code：（调用 lark-cli im +chat-messages-list 拉取各群聊消息，
+              再汇总分析聊天对象和内容摘要）
+
 你：帮我把这周的会议纪要整理成文档
 Claude Code：（调用 lark-cli minutes + lark-cli docs 联合操作）
 ```
+
+这才是 Lark CLI 最大的价值：**你不需要记任何命令，AI 会自己选择合适的命令组合来完成你的需求**。
 
 19 个 Skills 的完整列表：
 
@@ -490,9 +430,7 @@ npm config set prefix '~/.npm-global'
 
 ### 9.2 `lark-cli config init` 需要什么信息？
 
-**简短答案**：飞书应用的 App ID 和 App Secret。
-
-在 [飞书开发者后台](https://open.feishu.cn/app) 创建应用后，在"凭证与基础信息"页面获取。
+**简短答案**：跟��终端提示走就行，它会自动引导你完成飞书应用的创建和凭证配置，不需要提前准备任何东西。
 
 ### 9.3 auth login 弹出的浏览器页面打不开？
 
