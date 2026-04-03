@@ -1,12 +1,12 @@
 +++
 date = '2026-02-25T12:00:00+08:00'
 draft = false
-title = 'Install Claude Code in 10 Minutes: Terminal + VS Code Setup (2026)'
-description = 'Step-by-step Claude Code installation: npm install, API key config, VS Code integration, and permission settings. Covers the common errors most guides skip.'
+title = 'How to Install Claude Code 2026: Terminal + VS Code Setup in 10 Minutes'
+description = 'Step-by-step Claude Code installation guide for 2026: npm install, API key or Pro subscription setup, VS Code integration, permission config, and fixes for common errors.'
 toc = true
 tags = ['Claude Code', 'Setup', 'Tutorial', 'Getting Started']
 categories = ['AI Guides']
-keywords = ['Claude Code install', 'Claude Code setup', 'Claude Code tutorial', 'how to install Claude Code', 'Claude Code getting started', 'Claude Code 2026', 'Claude Code VS Code']
+keywords = ['Claude Code install', 'Claude Code setup', 'Claude Code setup 2026', 'Claude Code tutorial', 'how to install Claude Code', 'Claude Code getting started', 'Claude Code 2026', 'Claude Code VS Code', 'claude code installation guide', 'claude code npm install']
 +++
 
 ![Claude Code setup guide showing terminal installation and IDE integration](cover.webp)

@@ -1,12 +1,12 @@
 +++
 date = '2026-02-28T10:00:00+08:00'
 draft = false
-title = 'Claude Code Hooks 完全指南：12 个自动化配置实例（2026）'
-description = '12 个开箱即用的 Claude Code Hook 配置：自动格式化、文件保护、危险命令拦截。涵盖全部生命周期事件的详细指南。'
+title = 'Claude Code Hooks 2026：全部事件列表 + 12个即用配置'
+description = 'Claude Code 所有 Hook 事件详解：PreToolUse、PostToolUse、PreCompact 等。附 12 个可直接复制的自动化配置，覆盖格式化、文件保护、命令拦截。'
 toc = true
 tags = ['Claude Code', 'Hooks', 'Automation', 'Configuration']
 categories = ['AI Guides']
-keywords = ['Claude Code Hooks', 'Claude Code 自动化', 'Claude Code 配置', 'PreToolUse', 'PostToolUse', 'Claude Code hooks 指南', 'Claude Code 自动格式化']
+keywords = ['Claude Code Hooks', 'Claude Code 自动化', 'Claude Code 配置', 'PreToolUse', 'PostToolUse', 'Claude Code hooks 指南', 'Claude Code 自动格式化', 'Claude Code 钩子', 'Claude Code 生命周期事件']
 +++
 
 ![Claude Code Hooks 自动化工作流，包含 12 个即用配置](cover.webp)

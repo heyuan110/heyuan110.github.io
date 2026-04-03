@@ -1,12 +1,12 @@
 +++
 date = '2026-03-03T10:00:00+08:00'
 draft = false
-title = 'Claude Code 真实花费：用了3个月，$20/$100/$200套餐实际体验'
-description = '用了3个月 Claude Code 的真实账单：Pro $20两小时就用完，Max 5x能撑一整天。详细速率限制、API vs 订阅费用对比、升级时机建议。'
+title = 'Claude Code 价格 2026：免费/Pro $20/Max $200 真实花费对比'
+description = '2026年 Claude Code 各套餐实际花费：免费版体验有限，Pro $20 两小时用完，Max 5x $100 能撑一天。含 API 用量计算和升级建议。'
 toc = true
 tags = ['Claude Code', 'Pricing', 'AI Coding Tools', 'Comparison']
 categories = ['AI Guides']
-keywords = ['claude code 价格', 'claude code 定价', 'claude pro 多少钱', 'claude max 套餐', 'claude 订阅方案', 'claude code 免费', 'claude pro 和 max 区别', 'claude 速率限制', 'anthropic 价格', 'claude code 值不值']
+keywords = ['claude code 价格', 'claude code 定价', 'claude code 多少钱', 'claude pro 多少钱', 'claude max 套餐', 'claude 订阅方案', 'claude code 免费', 'claude pro 和 max 区别', 'claude 速率限制', 'anthropic 价格', 'claude code 值不值', 'claude 2026 价格']
 
 [[params.faqItems]]
 question = "Claude AI 可以免费使用吗？"

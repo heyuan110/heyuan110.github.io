@@ -1,12 +1,12 @@
 +++
 date = '2026-02-15T00:30:00+08:00'
 draft = false
-title = 'Mac Mini M4 Local AI Image Generation: ComfyUI vs Draw Things Benchmarked'
-description = 'Real-world benchmarks of ComfyUI, DiffusionBee, and Draw Things on Mac Mini M4 Pro 24GB. Flux generates in 50 seconds with GGUF quantization. Full setup guide included.'
+title = 'Mac Mini M4 AI Image Generation: ComfyUI vs Draw Things (50s Flux Benchmark)'
+description = 'Benchmarked ComfyUI, Draw Things, and DiffusionBee on Mac Mini M4 Pro 24GB. Draw Things beats ComfyUI by 20% on Apple Silicon. Flux 1024×1024 in 50 seconds. Full setup guide.'
 toc = true
 tags = ['Mac Mini', 'AI Image Generation', 'ComfyUI', 'Draw Things', 'Stable Diffusion', 'Flux']
 categories = ['AI Guides']
-keywords = ['Mac Mini local image generation', 'ComfyUI Mac setup', 'Draw Things review', 'Apple Silicon AI image generation', 'Flux Mac Mini M4', 'local AI image generator 2026', 'ComfyUI vs Draw Things', 'best Mac AI art tool', 'GGUF quantization Flux', 'Mac Mini M4 Stable Diffusion']
+keywords = ['Mac Mini local image generation', 'ComfyUI Mac setup', 'Draw Things review', 'Draw Things vs ComfyUI', 'Apple Silicon AI image generation', 'Flux Mac Mini M4', 'local AI image generator 2026', 'ComfyUI vs Draw Things', 'best Mac AI art tool', 'GGUF quantization Flux', 'Mac Mini M4 Stable Diffusion', 'mac mini m4 ai image generation', 'local ai image generation mac']
 +++
 
 ![Mac Mini M4 local AI image generation tool comparison: ComfyUI, DiffusionBee, Draw Things](cover.webp)

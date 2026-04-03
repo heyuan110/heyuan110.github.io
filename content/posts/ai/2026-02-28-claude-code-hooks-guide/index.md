@@ -1,12 +1,12 @@
 +++
 date = '2026-02-28T10:00:00+08:00'
 draft = false
-title = 'Claude Code Hooks Guide: 12 Automation Configs (2026)'
-description = '12 ready-to-use Claude Code Hook configs for auto-formatting, file protection, and command blocking. Complete guide to all lifecycle events.'
+title = 'Claude Code Hooks 2026: Complete Event List + 12 Ready-to-Use Configs'
+description = 'All Claude Code hook events explained: PreToolUse, PostToolUse, PreCompact, and more. 12 copy-paste configs for auto-formatting, file protection, and command blocking.'
 toc = true
 tags = ['Claude Code', 'Hooks', 'Automation', 'Configuration']
 categories = ['AI Guides']
-keywords = ['Claude Code Hooks', 'Claude Code automation', 'Claude Code configuration', 'PreToolUse', 'PostToolUse', 'Claude Code hooks guide', 'Claude Code auto format']
+keywords = ['Claude Code Hooks', 'Claude Code automation', 'Claude Code configuration', 'PreToolUse', 'PostToolUse', 'Claude Code hooks guide', 'Claude Code auto format', 'claude code hooks events list 2026', 'claude code hooks events', 'claude code lifecycle hooks']
 +++
 
 ![Claude Code Hooks automation workflow with 12 ready-to-use configs](cover.webp)

@@ -1,12 +1,12 @@
 +++
 date = '2026-02-28T10:00:00+08:00'
 draft = false
-title = 'Claude 速率限制 2026：各套餐消息额度完全解析'
-description = '2026年Claude速率限制完全指南。Pro、Max 5x、Max 20x 每5小时消息上限、每周限额、API层级限制，以及避免触发限制的实用策略。'
+title = 'Claude 速率限制 2026：免费版/Pro/Max 每5小时消息上限详解'
+description = '2026年 Claude 各套餐具体限额：免费版约15条、Pro约45条、Max 5x约225条（每5小时）。含每周限额、API 限制、触发限速后的应对策略。'
 toc = true
 tags = ['Claude Code', 'Rate Limits', 'Pricing', 'AI Coding Tools']
 categories = ['AI Guides']
-keywords = ['Claude 速率限制', 'Claude Pro 限制', 'Claude 每5小时消息数', 'Claude Max 速率限制', 'Claude Pro 使用限制', 'Claude 每周限额', 'Claude API 速率限制', 'Claude Code 限制']
+keywords = ['Claude 速率限制', 'Claude Pro 限制', 'Claude 每5小时消息数', 'Claude Max 速率限制', 'Claude Pro 使用限制', 'Claude 每周限额', 'Claude API 速率限制', 'Claude Code 限制', 'Claude 免费版限制', 'Claude 消息上限']
 
 [[params.faqItems]]
 question = "Claude Pro 有多少条消息可用？"
