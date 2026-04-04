@@ -4,14 +4,14 @@
   // ==========================================
   // 阅读进度条
   // ==========================================
-  const bar = document.createElement('div');
+  var bar = document.createElement('div');
   bar.className = 'reading-progress';
   bar.style.width = '0%';
   document.body.appendChild(bar);
 
   function updateProgress() {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var scrollTop = window.scrollY;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
     if (docHeight > 0) {
       bar.style.width = Math.min((scrollTop / docHeight) * 100, 100) + '%';
     }
@@ -20,15 +20,39 @@
   updateProgress();
 
   // ==========================================
+  // 代码块语言标签
+  // ==========================================
+  document.querySelectorAll('.highlight').forEach(function(block) {
+    var code = block.querySelector('code[data-lang]');
+    if (!code) return;
+    var lang = code.getAttribute('data-lang');
+    if (!lang || lang === 'fallback' || lang === 'text') return;
+
+    // 友好名称映射
+    var names = {
+      bash: 'Bash', json: 'JSON', json5: 'JSON5', yaml: 'YAML',
+      python: 'Python', javascript: 'JS', typescript: 'TS',
+      go: 'Go', markdown: 'Markdown', toml: 'TOML', css: 'CSS',
+      html: 'HTML', sql: 'SQL', java: 'Java', docker: 'Docker',
+      shell: 'Shell', gdscript3: 'GDScript'
+    };
+
+    var label = document.createElement('span');
+    label.className = 'code-lang-label';
+    label.textContent = names[lang] || lang.toUpperCase();
+    block.appendChild(label);
+  });
+
+  // ==========================================
   // 图片点击放大（灯箱）
   // ==========================================
-  const contentEl = document.querySelector('.content');
+  var contentEl = document.querySelector('.content');
   if (contentEl) {
     contentEl.querySelectorAll('img').forEach(function(img) {
       img.addEventListener('click', function() {
-        const overlay = document.createElement('div');
+        var overlay = document.createElement('div');
         overlay.className = 'img-lightbox';
-        const clone = document.createElement('img');
+        var clone = document.createElement('img');
         clone.src = img.src;
         clone.alt = img.alt;
         overlay.appendChild(clone);
@@ -59,20 +83,29 @@
   }
 
   // ==========================================
-  // TOC 滚动高亮
+  // TOC 默认展开 + 滚动高亮
   // ==========================================
-  const tocLinks = document.querySelectorAll('#TableOfContents a');
+  var toc = document.getElementById('toc');
+  if (toc) {
+    // 桌面端默认展开 TOC
+    if (window.innerWidth > 1280) {
+      toc.style.display = 'block';
+      toc.classList.add('show-toc');
+    }
+  }
+
+  var tocLinks = document.querySelectorAll('#TableOfContents a');
   if (tocLinks.length > 0) {
-    const headings = [];
+    var headings = [];
     tocLinks.forEach(function(link) {
-      const id = decodeURIComponent(link.getAttribute('href').replace('#', ''));
-      const heading = document.getElementById(id);
+      var id = decodeURIComponent(link.getAttribute('href').replace('#', ''));
+      var heading = document.getElementById(id);
       if (heading) headings.push({ el: heading, link: link });
     });
 
     function highlightToc() {
-      const scrollPos = window.scrollY + 100;
-      let current = null;
+      var scrollPos = window.scrollY + 100;
+      var current = null;
 
       for (var i = 0; i < headings.length; i++) {
         if (headings[i].el.offsetTop <= scrollPos) {
