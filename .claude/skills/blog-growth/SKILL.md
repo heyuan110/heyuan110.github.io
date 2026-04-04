@@ -1,11 +1,11 @@
 ---
 name: blog-growth
-description: Use when user says "今天写什么", "博客诊断", "blog growth", "运营博客", or any daily blog operations request. Triggers data-driven content creation workflow combining Search Console + Google Analytics analysis, trending topic research, and parallel article production.
+description: "博客增长引擎。用户说「今天写什么」「博客诊断」「运营博客」「blog growth」时触发。通过 GSC + GA 双数据源诊断、中英文差异化选题、热搜追踪、并行产出和分发外链，形成完整的数据驱动增长闭环。"
 ---
 
-# Daily Blog Growth Engine
+# 博客增长引擎
 
-## Overview
+## 概述
 
 数据驱动的博客增长工作流。通过 GSC + GA 双数据源诊断 → 中英文差异化选题 → 并行产出 → 分发外链，形成完整的增长闭环。
 
@@ -15,16 +15,16 @@ description: Use when user says "今天写什么", "博客诊断", "blog growth"
 3. CTR 修复优先于写新文章——优化老文章的 ROI 通常更高
 4. 每篇文章都写中英文——但角度可以不同
 
-## When to Use
+## 使用场景
 
 - 用户说"今天写什么文章"、"博客诊断"、"运营博客"、"blog growth"
 - 每日/每周定期博客运营
 - 需要数据驱动的选题建议
 - 需要流量诊断和优化建议
 
-**When NOT to use**: 用户已有明确选题只需写作时，用 `blog-writer` skill。
+**不适用场景**：用户已有明确选题只需写作时，用 `blog-writer` skill。
 
-## Workflow
+## 工作流
 
 ```
 诊断(GSC+GA) → 对比(环比) → 差异化选题(中/英) → 优化决策 → 并行生产 → 发布 → 分发
@@ -32,7 +32,7 @@ description: Use when user says "今天写什么", "博客诊断", "blog growth"
 
 ---
 
-## Phase 1: 双数据源诊断 (GSC + GA)
+## 第一步：双数据源诊断（GSC + GA）
 
 ### 1.1 GSC 数据（搜索表现）
 
@@ -40,7 +40,8 @@ description: Use when user says "今天写什么", "博客诊断", "blog growth"
 
 **连接配置**：
 ```
-site_url: "sc-domain:heyuan110.com"
+# site_url 不要写死，运行时通过 GOOGLE_SEARCH_CONSOLE_LIST_SITES 动态获取
+# 从返回的 siteEntry 中选择 sc-domain 类型的站点
 data_state: "final"
 ```
 
@@ -57,7 +58,10 @@ data_state: "final"
 
 **连接配置**：
 ```
-property: "properties/519433466"
+# property ID 不要写死在 skill 里，运行时通过 API 动态获取：
+# 1. 调用 GOOGLE_ANALYTICS_LIST_ACCOUNTS_V1_BETA 获取账号
+# 2. 调用 GOOGLE_ANALYTICS_LIST_PROPERTIES 获取该账号下的 property
+# 3. 用返回的 properties[].name 作为 property 参数
 ```
 
 | 报告 | 维度 | 指标 | 用途 |
@@ -99,7 +103,7 @@ ls plans/reports/ 2>/dev/null
 
 ---
 
-## Phase 2: 中英文差异化选题
+## 第二步：中英文差异化选题
 
 ### 2.1 分离中英文搜索需求
 
@@ -178,7 +182,7 @@ def extract_clusters(queries, top_n=8):
 
 ---
 
-## Phase 3: 热搜追踪
+## 第三步：热搜追踪
 
 ### 3.1 热点发现渠道（中英文分别追踪）
 
@@ -232,7 +236,7 @@ def extract_clusters(queries, top_n=8):
 
 ---
 
-## Phase 4: 优化执行（不写新文章的高 ROI 动作）
+## 第四步：优化执行（不写新文章的高回报动作）
 
 在写新文章之前，先检查是否有更高 ROI 的优化动作：
 
@@ -273,7 +277,7 @@ ls content/posts/ai/ | sed 's/^[0-9-]*//' | tr '-' '\n' | sort | uniq -c | sort 
 
 ---
 
-## Phase 5: 并行生产
+## 第五步：并行生产
 
 ### 5.1 写作规则
 
@@ -307,7 +311,7 @@ Agent 3: 老文章批量优化（FAQ + 内链 + SEO）
 
 ---
 
-## Phase 6: 发布 + 分发
+## 第六步：发布 + 分发
 
 ### 6.1 发布流程
 
@@ -338,7 +342,7 @@ git push origin code
 
 ---
 
-## Quick Reference
+## 速查表
 
 ### Search Console 关键阈值
 
@@ -387,7 +391,7 @@ done
 
 ---
 
-## Common Mistakes
+## 常见错误
 
 | 错误 | 正确做法 |
 |------|---------|
