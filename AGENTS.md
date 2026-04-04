@@ -31,9 +31,9 @@
 
 ```
 content/posts/ai/2026-03-11-article-slug/
-├── index.md       # 英文文章（默认，必须）
-├── index.zh.md    # 中文文章（可选，仅在要求时添加）
-└── cover.webp     # 共享封面图片
+├── index.md       # 英文文章（必须）
+├── index.zh.md    # 中文文章（默认创建）
+└── cover.webp     # 共享封面图片（英文生成，中英文共用）
 ```
 
 ### 关键配置文件
@@ -49,10 +49,11 @@ content/posts/ai/2026-03-11-article-slug/
 
 ### 写作规则
 
-- **默认**：所有新增文章仅使用**英文**（`index.md`）
-- **中文版本**：仅在用户明确要求时添加（如“中文版”、“多语言”、“同时输出中文”）
+- **默认中英文都写**：每篇新文章必须同时创建 `index.md`（英文）和 `index.zh.md`（中文）
+- **中英文角度可以不同**：中文偏实操/国内生态，英文偏原理/国际视角
 - **中文版本不是机器翻译**：必须是自然、高质量的重写，符合中文阅读习惯。Google 会惩罚低质量翻译
-- **SEO 优先级为英文**：英文版本是规范内容，中文是补充
+- **关键词策略独立**：中文 `keywords` 用中文搜索词，英文用英文搜索词
+- **写文章必须用 `/blog-writer` skill**
 
 ### 添加中文版本时（`index.zh.md`）
 
@@ -129,12 +130,24 @@ git submodule update --remote
 - 无搜索意图的日志式帖子
 - 无商业或信息价值的内容
 
-### 主题集群（每个需要 10+ 篇文章）
-- Claude Code
-- AI Agent Frameworks
-- AI Coding Tools
-- AI Engineering Workflows
-- Tool Comparisons
+### 主题集群
+
+围绕高流量主题持续产出，形成搜索权威（每个集群 10+ 篇）。不预设固定集群——从 GSC 数据中动态发现当前的头部主题。
+
+## Skill 生态
+
+博客运营通过以下 skill 形成完整闭环：
+
+| Skill | 用途 | 触发方式 |
+|-------|------|---------|
+| `blog-growth` | 诊断 + 选题 + 决策 | `/blog-growth` 或 "运营博客" |
+| `blog-writer` | 研究 + 写作 + 检查 | `/blog-writer` |
+| `blog-cover-image` | 封面图生成 | `/blog-cover-image` |
+| `blog-illustrator` | 文章配图 | `/blog-illustrator` |
+| `blog-diagram` | 架构图/信息图 | `/blog-diagram` |
+| `blog-distributor` | 分发到 dev.to/掘金/HN | `/distribute` |
+
+**Skill 编写规则**：纯中文撰写，代码放 references/ 目录，不在 SKILL.md 中写大段代码。
 
 ## 目录结构
 
@@ -181,7 +194,7 @@ keywords = ['search keyword 1', 'search keyword 2']
 +++
 ```
 
-### 前置元数据模板（中文文章 — `index.zh.md`，仅在要求时添加）
+### 前置元数据模板（中文文章 — `index.zh.md`，默认创建）
 
 ```toml
 +++
@@ -208,6 +221,16 @@ keywords = ['中文搜索关键词1', '中文搜索关键词2']
 | `keywords` | 推荐 | SEO 补充关键词 |
 | `draft` | 可选 | 默认 `false` |
 
+### FAQ 结构化数据（必须）
+
+每篇文章必须在 front matter 中添加 3-5 个 FAQ，提升搜索结果 CTR：
+
+```toml
+[[params.faqItems]]
+question = "用户常搜的问题？"
+answer = "简洁直接的回答，1-3 句话。"
+```
+
 ### 页面包结构
 
 包含图片的文章使用页面包：
@@ -230,6 +253,8 @@ content/posts/ai/2026-02-25-article-slug/
 | **尺寸** | 封面：1200×630px（社交媒体分享最佳尺寸） |
 | **引用** | `![alt text](cover.webp)` 或 `![alt text](filename.webp)` |
 | **ALT 文本** | 必需，用英文描述图片内容 |
+| **生成方式** | 统一用英文提示词生成（AI 中文文字容易乱码） |
+| **中英文共用** | 同一张图片，index.md 和 index.zh.md 共享引用 |
 
 ### 嵌套代码块
 

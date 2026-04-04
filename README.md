@@ -10,17 +10,21 @@ Bruce 的个人技术博客，使用 [Hugo](https://gohugo.io/) 构建，部署�
 - **主题**: [hermit-V2](https://github.com/1bl4z3r/hermit-V2)
 - **部署**: GitHub Pages + GitHub Actions
 
+## 多语言
+
+博客支持**英文（默认）**和**中文**，每篇文章默认中英文双版本：
+
+| 语言 | URL | 文件 |
+|------|-----|------|
+| English | `/posts/ai/slug/` | `index.md` |
+| 中文 | `/zh/posts/ai/slug/` | `index.zh.md` |
+
 ## 内容分类
 
 | 分类 | 说明 |
 |------|------|
-| **AI实战** | 教程、指南、工具使用、最佳实践、产品评测 |
-| **AI原理** | 概念、理论、访谈、思考、趋势分析 |
-| Java | 归档 |
-| Go | 归档 |
-| Docker | 归档 |
-| Linux | 归档 |
-| macOS | 归档 |
+| **AI** | 工具评测、教程指南、架构设计、趋势分析、工具对比 |
+| Java / Go / Docker / Linux / macOS | 归档 |
 
 ## 本地开发
 
@@ -81,6 +85,19 @@ git submodule update --remote
 ├── hugo.toml            # Hugo 主配置
 └── .github/             # GitHub Actions 配置
 ```
+
+## AI 辅助运营
+
+博客通过 Claude Code Skill 体系实现 AI 辅助运营：
+
+| Skill | 功能 |
+|-------|------|
+| `blog-growth` | GSC + GA 数据诊断、中英文差异化选题、热搜追踪 |
+| `blog-writer` | 深度文章写作（自动素材收集、SEO 优化、FAQ 生成） |
+| `blog-cover-image` | AI 封面图生成（五维度风格系统） |
+| `blog-illustrator` | 文章配图（自动识别需要配图的位置） |
+| `blog-diagram` | 架构图/信息图（12 种布局 × 8 种风格） |
+| `blog-distributor` | 自动分发到 dev.to、掘金、HN |
 
 ## 联系方式
 
