@@ -1,0 +1,97 @@
+{{ if .IsPage }}
+<script>
+(function() {
+  // ==========================================
+  // 阅读进度条
+  // ==========================================
+  const bar = document.createElement('div');
+  bar.className = 'reading-progress';
+  bar.style.width = '0%';
+  document.body.appendChild(bar);
+
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (docHeight > 0) {
+      bar.style.width = Math.min((scrollTop / docHeight) * 100, 100) + '%';
+    }
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
+  // ==========================================
+  // 图片点击放大（灯箱）
+  // ==========================================
+  const contentEl = document.querySelector('.content');
+  if (contentEl) {
+    contentEl.querySelectorAll('img').forEach(function(img) {
+      img.addEventListener('click', function() {
+        const overlay = document.createElement('div');
+        overlay.className = 'img-lightbox';
+        const clone = document.createElement('img');
+        clone.src = img.src;
+        clone.alt = img.alt;
+        overlay.appendChild(clone);
+        document.body.appendChild(overlay);
+        document.body.style.overflow = 'hidden';
+
+        requestAnimationFrame(function() {
+          overlay.classList.add('active');
+        });
+
+        function close() {
+          overlay.classList.remove('active');
+          setTimeout(function() {
+            overlay.remove();
+            document.body.style.overflow = '';
+          }, 300);
+        }
+
+        overlay.addEventListener('click', close);
+        document.addEventListener('keydown', function handler(e) {
+          if (e.key === 'Escape') {
+            close();
+            document.removeEventListener('keydown', handler);
+          }
+        });
+      });
+    });
+  }
+
+  // ==========================================
+  // TOC 滚动高亮
+  // ==========================================
+  const tocLinks = document.querySelectorAll('#TableOfContents a');
+  if (tocLinks.length > 0) {
+    const headings = [];
+    tocLinks.forEach(function(link) {
+      const id = decodeURIComponent(link.getAttribute('href').replace('#', ''));
+      const heading = document.getElementById(id);
+      if (heading) headings.push({ el: heading, link: link });
+    });
+
+    function highlightToc() {
+      const scrollPos = window.scrollY + 100;
+      let current = null;
+
+      for (var i = 0; i < headings.length; i++) {
+        if (headings[i].el.offsetTop <= scrollPos) {
+          current = headings[i];
+        }
+      }
+
+      tocLinks.forEach(function(link) {
+        link.parentElement.classList.remove('active');
+      });
+
+      if (current) {
+        current.link.parentElement.classList.add('active');
+      }
+    }
+
+    window.addEventListener('scroll', highlightToc, { passive: true });
+    highlightToc();
+  }
+})();
+</script>
+{{ end }}
