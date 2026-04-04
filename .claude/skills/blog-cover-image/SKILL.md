@@ -39,27 +39,36 @@ description: "博客封面图生成器。根据文章内容自动生成 1200×63
 
 ## 风格维度
 
-### 三个可选维度
+参考 [base-prompt.md](references/base-prompt.md) 获取完整的生图系统指令。
+
+### 五个维度
 
 | 维度 | 可选值 | 默认 |
 |------|--------|------|
-| **风格** | tech（科技感）、minimal（极简）、conceptual（概念图）、diagram（架构图风）、cinematic（电影感） | 自动推断 |
-| **色调** | dark（深色科技）、warm（暖色）、cool（冷色）、mono（黑白）、vibrant（鲜艳） | dark |
-| **元素** | abstract（抽象图形）、icon（图标组合）、scene（场景）、code（代码元素）、network（网络/节点） | 自动推断 |
+| **类型** | hero、conceptual、typography、metaphor、scene、minimal | 自动推断 |
+| **色板** | warm、cool、dark、vivid、mono、retro | 自动推断 |
+| **渲染** | flat-vector、hand-drawn、painterly、digital、pixel、chalk | 自动推断 |
+| **文字** | none、title-only | none（AI 生图文字不准确） |
+| **情绪** | subtle、balanced、bold | balanced |
 
-### 自动推断规则
+### 自动推断
 
-根据文章标题和标签自动选择最佳风格：
+参考 [auto-selection.md](references/auto-selection.md) 获取完整的信号→维度映射表和兼容性矩阵。
 
-| 文章类型 | 推荐风格 | 推荐色调 | 推荐元素 |
-|---------|---------|---------|---------|
-| 工具评测/对比 | tech | dark | icon |
-| 教程/指南 | minimal | cool | code |
-| 架构/原理 | conceptual | dark | network |
-| 趋势/观点 | cinematic | warm | scene |
-| 新闻/热点 | tech | vibrant | abstract |
+每次生成时，先读取文章的 title、tags、description，根据内容信号动态选择最佳维度组合。信号表只是参考，不要机械套用。
 
-**不要写死映射规则**——以上只是参考。每次生成时，先读取文章的 title、tags、description，根据实际内容动态判断最适合的风格组合。
+### 快捷风格预设
+
+常用的维度组合可以用 `--style` 一键指定：
+
+| 预设 | 色板 | 渲染 | 适用场景 |
+|------|------|------|---------|
+| `blueprint` | cool | digital | 架构、技术设计 |
+| `minimal` | mono | flat-vector | 极简、核心概念 |
+| `dark-tech` | dark | digital | AI 工具、开发工具 |
+| `warm-sketch` | warm | hand-drawn | 个人经验、社区 |
+| `retro` | retro | digital | 复古、经典话题 |
+| `poster` | vivid | flat-vector | 产品发布、公告 |
 
 ## 工作流
 
