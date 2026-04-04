@@ -57,17 +57,18 @@ html, body {
 }
 
 // --- 分隔线美化 ---
-hr {
+// 文章内的 hr（章节分隔）直接隐藏——H2 已有底部分隔线，不需要双线
+.content hr {
   border: none !important;
-  height: 1px !important;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(255, 255, 255, 0.15),
-    transparent
-  ) !important;
-  width: 80% !important;
-  margin: 2.5em auto !important;
+  height: 0 !important;
+  background: none !important;
+  margin: 1em 0 !important;
+  opacity: 0 !important;
+}
+
+// 文末分隔线保留
+hr:not(.post-end) {
+  border-width: 0 !important;
 }
 
 // --- 代码块美化 ---
@@ -127,10 +128,10 @@ hr {
 
   // --- 标题层级感 ---
   h2 {
-    margin-top: 2.5em;
+    margin-top: 2em;
     margin-bottom: 0.8em;
-    padding-bottom: 0.3em;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 0.35em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   }
 
   h3 {
@@ -224,9 +225,9 @@ hr {
 
 // 文章描述和标签区域
 .post-description {
-  margin-bottom: 2em;
-  padding-bottom: 1.5em;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 1em;
+  padding-bottom: 0;
+  border-bottom: none;
 
   p:first-child {
     font-size: 1.05em;
@@ -268,6 +269,26 @@ hr {
 }
 
 #TableOfContents {
+  // 滚动条美化
+  &>ul {
+    &::-webkit-scrollbar {
+      width: 3px !important;
+    }
+    &::-webkit-scrollbar-track {
+      background: transparent !important;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1) !important;
+      border-radius: 3px;
+      &:hover {
+        background: rgba(255, 255, 255, 0.2) !important;
+      }
+    }
+    // Firefox
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+  }
+
   a {
     display: block;
     padding: 0.25em 0.5em;
