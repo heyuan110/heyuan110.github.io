@@ -1,12 +1,12 @@
 +++
 date = '2026-02-22T08:00:00+08:00'
 draft = false
-title = 'Claude Code Agent Teams: Multi-Agent Collaboration Guide (2026)'
-description = 'Master Claude Code Agent Teams for parallel multi-agent development. Covers architecture, setup, real-world use cases, best practices, and cost optimization with a complete command reference.'
+title = 'Claude Code Agent Teams 2026: Parallel Multi-Agent Development (With Cost Optimization)'
+description = 'Complete guide to Claude Code Agent Teams: run multiple Claude instances in parallel, Opus+Sonnet mixed orchestration for cost savings, real-world workflows, and command reference. Compress hours of serial work into minutes.'
 toc = true
 tags = ['Claude Code', 'Agent Teams', 'AI Coding', 'Multi-Agent', 'Anthropic']
 categories = ['AI Guides']
-keywords = ['Claude Code Agent Teams', 'multi-agent AI coding', 'Claude Code parallel development', 'Agent Teams tutorial', 'Claude Code collaboration']
+keywords = ['Claude Code Agent Teams', 'multi-agent AI coding', 'Claude Code parallel development', 'Agent Teams tutorial', 'Claude Code collaboration', 'Claude Code agent teams 2026', 'multi-agent coding 2026']
 +++
 
 On February 5, Anthropic shipped **Claude Code Agent Teams** alongside Claude Opus 4.6 — an experimental feature that lets multiple Claude Code instances form a team and work in parallel. If Subagents are errand runners you send out on focused tasks, Agent Teams are an engineering squad whose members can discuss, coordinate, and challenge each other in real time. For complex scenarios involving cross-module development, multi-perspective code review, or parallel debugging, Agent Teams can compress hours of serial work into minutes.

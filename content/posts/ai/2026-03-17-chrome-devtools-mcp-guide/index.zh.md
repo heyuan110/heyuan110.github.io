@@ -1,11 +1,11 @@
 +++
 date = '2026-03-17T10:00:00+08:00'
 draft = false
-title = 'Chrome DevTools MCP 完全指南：让 AI 连上你正在用的浏览器'
-description = '深度解析 Chrome DevTools MCP 的三种连接方式，彻底解决「AI 总是打开新窗口」的痛点，附带 autoConnect 配置和 --user-data-dir 踩坑经验。'
+title = 'Chrome DevTools MCP 配置指南 2026：AI 直连浏览器调试（三种方式详解）'
+description = '手把手配置 Chrome DevTools MCP：解决 AI 打开新窗口的痛点、9222 远程调试端口设置、autoConnect 自动连接、user-data-dir 踩坑经验。适用于 Claude Code 和 Cursor。'
 toc = true
 tags = ['Chrome DevTools', 'MCP', 'AI Coding Tools', 'Claude Code']
-keywords = ['Chrome DevTools MCP 配置', 'Chrome 远程调试端口 9222', 'autoConnect 自动连接', 'AI 浏览器调试', 'MCP 服务器设置']
+keywords = ['Chrome DevTools MCP 配置', 'Chrome DevTools MCP 教程', 'Chrome 远程调试端口 9222', 'autoConnect 自动连接', 'AI 浏览器调试', 'MCP 服务器设置', 'Claude Code 浏览器调试', 'Chrome MCP 设置 2026']
 +++
 
 ![Chrome DevTools MCP 连接 AI 助手与浏览器调试工具](cover.webp)

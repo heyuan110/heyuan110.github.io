@@ -1,11 +1,11 @@
 +++
 date = '2026-03-17T10:00:00+08:00'
 draft = false
-title = 'Chrome DevTools MCP: Connect AI to Your Browser (Not a New Window)'
-description = 'Complete guide to Chrome DevTools MCP setup, solving the common new-window problem, and using autoConnect to debug your existing browser session with AI agents.'
+title = 'Chrome DevTools MCP Setup 2026: Connect AI to Your Existing Browser Session'
+description = 'Step-by-step Chrome DevTools MCP setup guide. Fix the new-window problem, configure port 9222 remote debugging, enable autoConnect, and avoid the user-data-dir pitfall. Works with Claude Code and Cursor.'
 toc = true
 tags = ['Chrome DevTools', 'MCP', 'AI Coding Tools', 'Claude Code']
-keywords = ['Chrome DevTools MCP', 'chrome devtools mcp setup', 'chrome remote debugging port 9222', 'autoConnect chrome mcp', 'AI browser debugging']
+keywords = ['Chrome DevTools MCP', 'chrome devtools mcp setup', 'chrome devtools mcp setup 2026', 'chrome remote debugging port 9222', 'autoConnect chrome mcp', 'AI browser debugging', 'chrome devtools mcp claude code', 'mcp server chrome setup']
 +++
 
 ![Chrome DevTools MCP connecting AI agent to browser for debugging](cover.webp)

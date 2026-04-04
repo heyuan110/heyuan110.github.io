@@ -1,12 +1,12 @@
 +++
 date = '2026-02-22T08:00:00+08:00'
 draft = false
-title = 'Claude Code Agent Teams 完全指南：多 Agent 协作开发实战（2026）'
-description = '深入讲解 Claude Code Agent Teams 多智能体协作功能：架构原理、配置方法、实战案例、最佳实践与成本优化，附完整命令速查表。'
+title = 'Claude Code Agent Teams 2026：多 Agent 并行协作完全指南（含成本优化）'
+description = '实战讲解 Claude Code Agent Teams：多个 Claude 实例组队并行开发、架构原理、配置方法、Opus+Sonnet 混合编排省钱策略、命令速查表。串行小时级工作压缩到分钟级。'
 toc = true
-tags = ['Claude Code', 'Agent Teams', 'AI 编程', '多智能体', 'Anthropic']
+tags = ['Claude Code', 'Agent Teams', 'AI Coding', 'Multi-Agent', 'Anthropic']
 categories = ['AI实战']
-keywords = ['Claude Code Agent Teams', 'Claude Code 多Agent协作', 'AI 多智能体编程', 'Agent Teams 教程', 'Claude Code 团队协作']
+keywords = ['Claude Code Agent Teams', 'Claude Code 多Agent协作', 'AI 多智能体编程', 'Agent Teams 教程', 'Claude Code 团队协作', 'Claude Code 并行开发', '多Agent编程 2026']
 +++
 
 2 月 5 日，Anthropic 随 Claude Opus 4.6 一同发布了 **Claude Code Agent Teams** —— 一项让多个 Claude Code 实例组成团队、并行协作的实验性功能。如果说之前的 Subagent 是"你派出去跑腿的助手"，那 Agent Teams 就是"一支能互相讨论、自主协调的工程小队"。对于需要跨模块开发、多视角审查、并行调试的复杂场景，Agent Teams 可以将小时级的串行工作压缩到分钟级完成。
