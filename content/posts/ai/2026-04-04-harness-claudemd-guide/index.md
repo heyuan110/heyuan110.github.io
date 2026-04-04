@@ -1,5 +1,5 @@
 +++
-date = '2026-04-04T15:00:00+08:00'
+date = '2026-04-04T09:00:00+08:00'
 draft = false
 title = 'Harness Engineering #2: How to Write CLAUDE.md Files That Actually Work'
 description = 'Research-backed guide to writing effective CLAUDE.md files. The ETH Zurich study found human-written files under 60 lines beat LLM-generated verbose ones. Learn the principles, anti-patterns, templates, and measurement strategies.'
@@ -272,7 +272,7 @@ See @AGENTS.md for shared project conventions.
 - `pnpm lint` — lint check
 ```
 
-This blog itself uses this pattern — [our AGENTS.md](https://github.com/heyuan110/heyuan110.github.io/blob/code/AGENTS.md) contains shared conventions for all AI tools, while CLAUDE.md simply points to it with Claude-specific additions.
+Many mature open-source projects already use this pattern — shared conventions go in AGENTS.md, Claude-specific configuration stays in CLAUDE.md.
 
 For a deeper comparison of these files, see [CLAUDE.md vs README.md](/posts/ai/2026-01-31-claudemd-vs-readme/).
 
@@ -432,27 +432,27 @@ Repeated correction detected
 
 This is the [Guide + Sensor pattern](/posts/ai/2026-04-04-harness-engineering-guide/) in action: your observations (sensor) improve your CLAUDE.md (guide), which reduces future errors, which changes what you observe.
 
-## Real Example: This Blog's Configuration
+## Real Example: A Hugo Multilingual Blog
 
-This blog uses the hierarchical pattern in production. Here is the actual structure:
+Here is how the hierarchical pattern looks for a typical Hugo multilingual tech blog:
 
-**`CLAUDE.md`** (2 lines):
+**`CLAUDE.md`** (minimal pointer):
 ```markdown
 see @AGENTS.md
 ```
 
-**`AGENTS.md`** (79 lines of active rules):
-- Interaction language (Chinese for conversation, English for content)
-- Git branch conventions (`code` branch, auto-deploy)
-- Hugo build commands
-- Multilingual setup (English default, Chinese optional)
+**`AGENTS.md`** (~80 lines of active rules):
+- Interaction language conventions (conversation vs content language)
+- Git branch and deployment workflow
+- Build commands (`hugo server -D` / `hugo --minify`)
+- Multilingual rules (default language, optional translations)
 - Front matter template with required fields
 - Image format rules (WebP only, 1200x630 covers)
-- Content strategy constraints (no personal journal entries)
+- Content strategy constraints (no low-search-intent journal posts)
 
-The AGENTS.md is at the upper limit of what research recommends. But it works because every line prevents a specific mistake — wrong branch, wrong language, missing front matter field, incorrect image format.
+~80 lines is at the upper limit of what research recommends. But it works because every line prevents a specific mistake — wrong branch, wrong language, missing front matter field, incorrect image format.
 
-Domain-specific knowledge (like deployment procedures or theme customization rules) lives in separate documentation files that Claude reads on demand, not in the always-loaded configuration.
+Domain-specific knowledge (deployment procedures, theme customization rules) lives in separate documentation files that Claude reads on demand, not in the always-loaded configuration.
 
 ## The Checklist
 

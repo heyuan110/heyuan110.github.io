@@ -1,11 +1,11 @@
 +++
-date = '2026-04-04T15:00:00+08:00'
+date = '2026-04-04T09:00:00+08:00'
 draft = false
-title = '驾驭工程 #2：写出真正有效的 CLAUDE.md 文件'
-description = '基于 ETH Zurich 研究的 CLAUDE.md 实战指南。人工编写的 60 行以内文件胜过 AI 生成的长文件。从原则、反模式、模板到效果度量，手把手教你写好 CLAUDE.md。'
+title = 'CLAUDE.md 怎么写才有效？Harness Engineering 实战篇（附模板）'
+description = '基于 ETH Zurich 研究的 CLAUDE.md 写法指南：60 行以内效果最好，AI 生成的冗长版本反而降低 20%。含原则、反模式、三种项目模板和效果度量方法。'
 toc = true
 tags = ['Harness Engineering', 'Claude Code', 'CLAUDE.md', 'AI Agents', 'AI Engineering']
-keywords = ['CLAUDE.md 最佳实践', 'CLAUDE.md 怎么写', 'CLAUDE.md 教程 2026', '驾驭工程 CLAUDE.md', 'CLAUDE.md 和 AGENTS.md 区别', 'CLAUDE.md 反模式', 'CLAUDE.md 模板', 'ETH Zurich CLAUDE.md 研究']
+keywords = ['CLAUDE.md 最佳实践', 'CLAUDE.md 怎么写', 'CLAUDE.md 教程 2026', 'Harness Engineering CLAUDE.md', 'CLAUDE.md 反模式', 'CLAUDE.md 模板', 'ETH Zurich CLAUDE.md 研究', 'Claude Code 配置文件']
 
 [[params.faqItems]]
 question = "CLAUDE.md 应该写多长？"
@@ -256,7 +256,7 @@ See @AGENTS.md for shared project conventions.
 - Run typecheck hook after every file edit
 ```
 
-这个博客本身就用这个模式——[我们的 AGENTS.md](https://github.com/heyuan110/heyuan110.github.io/blob/code/AGENTS.md) 放了所有 AI 工具共享的惯例，CLAUDE.md 只是指向它并添加 Claude 专属配置。
+很多成熟的开源项目已经在用这种模式——共享规则放 AGENTS.md，Claude 专属配置放 CLAUDE.md，各取所需。
 
 更深入的对比参考 [CLAUDE.md vs README.md](/posts/ai/2026-01-31-claudemd-vs-readme/)。
 
@@ -416,25 +416,25 @@ CLAUDE.md 是驾驭系统的组件。和任何工程产物一样，它应该被�
 
 这就是[Guide + Sensor 模式](/posts/ai/2026-04-04-harness-engineering-guide/)的实战应用：你的观察（Sensor）改进你的 CLAUDE.md（Guide），Guide 减少未来的错误，错误的减少又改变你的观察。
 
-## 实战案例：这个博客的配置
+## 实战案例：一个 Hugo 技术博客的配置
 
-这个博客在生产中使用层级模式。实际结构如下：
+以一个典型的 Hugo 多语言技术博客为例，展示层级模式的实际运用：
 
-**`CLAUDE.md`**（2 行）：
+**`CLAUDE.md`**（极简指向）：
 ```markdown
 see @AGENTS.md
 ```
 
-**`AGENTS.md`**（79 行有效规则）：
-- 交互语言（对话用中文，内容用英文）
-- Git 分支惯例（`code` 分支，自动部署）
-- Hugo 构建命令
-- 多语言设置（英文为默认，中文可选）
-- Front matter 模板及必填字段
-- 图片格式规则（仅 WebP，1200x630 封面）
-- 内容策略约束（禁止个人日记类内容）
+**`AGENTS.md`**（~80 行有效规则）：
+- 交互语言约定（对话用中文，内容用英文）
+- Git 分支和部署流程
+- 构建命令（`hugo server -D` / `hugo --minify`）
+- 多语言规则（英文默认，中文可选）
+- Front matter 模板和必填字段
+- 图片格式规则（仅 WebP，封面 1200x630）
+- 内容策略红线（禁止无搜索意图的日志类帖子）
 
-AGENTS.md 已经在研究推荐的上限附近了。但它有效，因为每一行都在防止一个具体错误——用错分支、用错语言、漏了 front matter 字段、图片格式不对。
+~80 行已经在研究推荐的上限附近了。但它有效，因为每一行都在防止一个具体错误——用错分支、用错语言、漏了 front matter 字段、图片格式不对。
 
 领域特定知识（部署流程、主题自定义规则）放在独立的文档文件里，Claude 需要时按需读取，不放在始终加载的配置中。
 
