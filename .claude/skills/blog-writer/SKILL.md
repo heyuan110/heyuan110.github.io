@@ -91,7 +91,7 @@ ls content/posts/ai/
 
 ### 步骤 3：生成封面图
 
-⚠️ **必须**为每篇文章生成封面图。按以下优先级尝试：
+⚠️ **必须**为每篇文章生成封面图。调用 `blog-cover-image` skill 或按以下优先级尝试：
 
 #### 方案 A（首选）：Rube MCP + Gemini AI 生图
 
