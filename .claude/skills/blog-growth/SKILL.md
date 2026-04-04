@@ -103,21 +103,40 @@ ls plans/reports/ 2>/dev/null
 
 ### 2.1 分离中英文搜索需求
 
-将 GSC 关键词按语言分类（中文含汉字，其余为英文），分别聚类分析：
+将 GSC 关键词按语言分类（中文含汉字，其余为英文），然后**动态聚类**：
 
-**中文热搜集群**（按展示量排序）：
-- OpenClaw 相关
-- Claude Code 相关
-- 定价/限制 相关
-- MCP/Skill 相关
-- AI 工具对比
+**聚类方法**（在 RUBE_REMOTE_BASH_TOOL 中执行）：
+```python
+# 1. 按语言分类
+zh_queries = [q for q in queries if any(ord(c) > 0x4e00 for c in q['keys'][0])]
+en_queries = [q for q in queries if not any(ord(c) > 0x4e00 for c in q['keys'][0])]
 
-**英文热搜集群**（按展示量排序）：
-- Claude pricing/limits
-- Harness engineering
-- AI tool comparisons
-- Framework reviews
-- Setup guides
+# 2. 提取高频词根做动态聚类（不预设固定集群）
+from collections import Counter
+def extract_clusters(queries, top_n=8):
+    """从关键词中提取高频主题词，动态生成集群"""
+    words = []
+    for q in queries:
+        kw = q['keys'][0].lower()
+        # 提取2-gram和关键实体
+        tokens = kw.split()
+        words.extend([' '.join(tokens[i:i+2]) for i in range(len(tokens)-1)])
+    freq = Counter(words).most_common(top_n)
+    return freq  # 返回最高频的主题词作为集群名
+```
+
+**不要预设固定集群**。热点会变——上个月的头部关键词下个月可能消失。每次运行都从数据中动态发现当前的热点集群。
+
+输出格式：
+```
+中文搜索 Top 5 集群（按展示量）：
+1. [集群名] — XX 个关键词，总展示 XX
+2. ...
+
+英文搜索 Top 5 集群（按展示量）：
+1. [集群名] — XX 个关键词，总展示 XX
+2. ...
+```
 
 ### 2.2 选题决策矩阵
 
@@ -137,9 +156,9 @@ ls plans/reports/ 2>/dev/null
 | 维度 | 中文版 | 英文版 |
 |------|--------|--------|
 | 风格 | 实操教程、手把手、接地气 | 原理分析、架构设计、国际视角 |
-| 关键词 | 中文搜索词 | 英文搜索词（完全独立） |
-| 举例 | 飞书、国产工具、国内生态 | GitHub, global tools, international context |
-| 类比 | 中文读者熟悉的比喻 | 英文读者熟悉的比喻 |
+| 关键词 | 中文搜索词（从 GSC 中文聚类提取） | 英文搜索词（从 GSC 英文聚类提取） |
+| 举例 | 国内读者熟悉的产品和场景 | 国际读者熟悉的产品和场景 |
+| 类比 | 中文语境下自然的比喻 | 英文语境下自然的比喻 |
 
 ### 2.4 选题输出格式
 
@@ -161,27 +180,54 @@ ls plans/reports/ 2>/dev/null
 
 ## Phase 3: 热搜追踪
 
-### 3.1 分别追踪中英文热点
+### 3.1 热点发现渠道（中英文分别追踪）
 
-**英文热搜**（WebSearch）：
-- `"Claude Code" OR "AI coding agent" 2026 trending`
-- `"harness engineering" OR "AI agent framework" 2026`
-- `site:news.ycombinator.com AI coding 2026`
+热点不会自己来找你，需要**主动去特定渠道发现**。中英文的热点渠道完全不同：
 
-**中文热搜**（WebSearch）：
-- `"AI 编程" OR "Claude Code" 最新 2026`
-- `"OpenClaw" OR "小龙虾" 新功能 2026`
-- `AI 编程工具 国内 2026`
+**英文热点渠道**（用 WebSearch 搜索）：
 
-### 3.2 热搜评估
+| 渠道 | 搜索方式 | 发现什么 |
+|------|---------|---------|
+| Hacker News | `site:news.ycombinator.com AI coding {current_year}` | 技术社区最关心的话题 |
+| Reddit | `site:reddit.com "AI coding" OR "Claude Code" {current_year}` | 开发者讨论热点 |
+| TechCrunch/TheVerge | `site:techcrunch.com AI developer tools {current_year}` | 产品发布和融资新闻 |
+| GitHub Trending | WebSearch `github trending AI agent {current_month}` | 新开源项目 |
+| Product Hunt | WebSearch `producthunt.com AI coding agent` | 新产品发布 |
+| Martin Fowler/ThoughtWorks | `site:martinfowler.com` 最新文章 | 工程方法论趋势 |
+
+**中文热点渠道**（用 WebSearch 搜索）：
+
+| 渠道 | 搜索方式 | 发现什么 |
+|------|---------|---------|
+| 知乎热榜 | `site:zhihu.com AI 编程 {current_month}` | 国内开发者关注的话题 |
+| 掘金/InfoQ | `site:juejin.cn AI 编程工具 {current_year}` | 国内技术社区热点 |
+| 36氪/量子位 | `site:36kr.com AI 编程 {current_year}` | 国内 AI 产品新闻 |
+| V2EX | `site:v2ex.com AI 编程 Claude` | 极客社区讨论 |
+| 微信公众号 | WebSearch `微信公众号 AI 编程 最新` | 国内深度文章 |
+| GitHub 中文社区 | WebSearch `github 中文 AI agent 新项目 {current_month}` | 国内开源动态 |
+
+**关键：不要预设搜什么关键词**。每次运行时，先从 GSC 数据中发现当前的高频主题词，然后用这些词去上面的渠道搜索最新动态。
+
+### 3.2 判断真热点 vs 伪热点
+
+| 信号 | 真热点 | 伪热点 |
+|------|--------|--------|
+| 多个渠道同时出现 | ✅ HN + Reddit + TechCrunch 都在讨论 | ❌ 只在一个小博客看到 |
+| GSC 已有展示 | ✅ 搜索词展示量在上升 | ❌ 搜索量为零 |
+| 有时效性触发器 | ✅ 新版本发布、融资、开源、争议事件 | ❌ 概念讨论，无具体事件 |
+| 与博客定位匹配 | ✅ AI/编程/工具/工程方法论 | ❌ 纯商业新闻/八卦 |
+| 搜索结果竞争度 | ✅ 第一页还没有深度文章 | ❌ 大站已经覆盖得很好 |
+| 中英文热度对比 | 判断是单侧热还是双侧热 | — |
+
+### 3.3 热搜评估优先级
 
 | 标准 | 权重 | 说明 |
 |------|------|------|
 | 与博客定位匹配度 | 高 | 必须是 AI/编程/工具相关 |
-| 搜索量潜力 | 高 | 有明确搜索需求 |
+| 搜索量潜力 | 高 | GSC 已有展示，或多渠道讨论 |
 | **中英文热度差** | 高 | 优先选两边都火的，或单侧热度极大的 |
-| 竞争程度 | 中 | 避开大站已占据的词 |
-| 时效性 | 中 | 新工具/新版本抢先发 |
+| 竞争程度 | 中 | Google 第一页是否已有深度文章 |
+| 时效性 | 中 | 事件发生 1-3 天内发布效果最好 |
 | 与现有内容关联度 | 中 | 能形成内链、扩充主题集群更好 |
 
 ---
@@ -209,11 +255,12 @@ done
 grep -rL "Related Reading" content/posts/ai/*/index.md | wc -l
 ```
 
-缺少内链的文章补 4-6 个相关链接。按集群组织：
-- Claude Code 集群互链
-- OpenClaw 集群互链
-- AI 工具对比集群互链
-- 跨集群桥接链接
+缺少内链的文章补 4-6 个相关链接。**动态发现集群**：
+```bash
+# 从目录名提取主题词，自动聚类
+ls content/posts/ai/ | sed 's/^[0-9-]*//' | tr '-' '\n' | sort | uniq -c | sort -rn | head -20
+```
+按发现的集群组织内链（不预设固定集群名）。同集群文章互链，跨集群做桥接链接。
 
 ### 4.3 老文章 SEO 优化
 
@@ -313,21 +360,30 @@ git push origin code
 
 ### 内容矩阵策略
 
-围绕高流量主题持续产出，形成搜索权威（每个集群 10+ 篇）：
-- **Claude Code 集群**：指南 → 定价 → Hooks → Worktree → Teams → 安全 → 对比
-- **OpenClaw 集群**：入门 → 多Agent → 自动化 → 记忆 → Tavily → 架构
-- **Harness Engineering 系列**：总览 → CLAUDE.md → Sub-Agent → 架构约束
-- **AI 工具对比**：vs Copilot → vs Codex → vs Cursor → 三方对比 → 年度横评
+围绕高流量主题持续产出，形成搜索权威（每个集群 10+ 篇）。
+
+**不要预设固定集群**。每次运行时从 GSC 数据中动态识别当前的头部主题集群，然后检查每个集群有多少篇文章、缺什么角度的内容：
+
+```bash
+# 动态发现集群及文章数量
+for topic in $(ls content/posts/ai/ | sed 's/^[0-9-]*//' | cut -d'-' -f1-3 | sort | uniq -c | sort -rn | head -10 | awk '{print $2}'); do
+  count=$(ls -d content/posts/ai/*${topic}* 2>/dev/null | wc -l)
+  echo "${topic}: ${count} 篇"
+done
+```
+
+每个集群应覆盖的内容类型（按需补缺）：
+- 入门指南 → 进阶教程 → 实战案例 → 对比评测 → 最佳实践
 
 ### 中英文差异化速查
 
-| 中文热点（国内关注） | 英文热点（国际关注） |
-|-------------------|-------------------|
-| OpenClaw 多Agent 配置 | Claude pricing/limits |
-| MCP vs Skill 区别 | Harness engineering |
-| 国产 AI 工具评测 | Claw Code / open source |
-| Claude Code 入门教程 | AI tool comparisons |
-| 飞书/企微集成 | MCP server development |
+**不要预设固定的热点列表**。每次运行时从 GSC 数据的中英文聚类结果中动态生成。
+
+中英文差异的判断方法：
+- 同一个话题，比较中文展示量 vs 英文展示量
+- 如果中文展示 >> 英文：中文市场需求更大，中文版要重点打磨
+- 如果英文展示 >> 中文：英文市场需求更大，英文版要重点打磨
+- 如果两边都大：双重机会，两个版本都要做好
 
 ---
 
