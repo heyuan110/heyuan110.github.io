@@ -71,26 +71,58 @@ hr {
 }
 
 // --- 代码块美化 ---
-.content {
-  // 代码块外框
-  .highlight {
-    border-radius: 8px;
-    margin: 1.5em 0;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+.highlight {
+  border-radius: 10px !important;
+  margin: 1.5em 0;
+  overflow: hidden;
+  background: #1a1d23 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
 
-    pre {
-      border-radius: 8px;
-      padding: 1.2em 1.4em;
-    }
+  // 内层 chroma div
+  div.chroma {
+    background: #1a1d23 !important;
+    border-radius: 0 !important;
   }
 
+  // pre 块
+  pre {
+    background: transparent !important;
+    border-radius: 0 !important;
+    padding: 1.2em 1.4em !important;
+    margin: 0;
+    font-size: 0.88em;
+    line-height: 1.65;
+  }
+
+  // copy 按钮美化
+  .highlight-copy-btn {
+    bottom: 10px;
+    right: 10px;
+    border-radius: 6px;
+    padding: 3px 10px;
+    font-size: 0.7em;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  &:hover .highlight-copy-btn {
+    opacity: 1;
+  }
+}
+
+.content {
   // 行内代码
   :not(pre) > code {
     background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 4px;
     padding: 0.15em 0.45em;
     font-size: 0.88em;
+    color: #e8b87a;
   }
 
   // --- 标题层级感 ---
