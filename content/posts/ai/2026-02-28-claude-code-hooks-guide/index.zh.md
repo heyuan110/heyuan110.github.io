@@ -1,5 +1,5 @@
 +++
-date = '2026-02-28T10:00:00+08:00'
+date = '2026-02-26T10:00:00+08:00'
 draft = false
 title = 'Claude Code Hooks 2026：全部事件列表 + 12个即用配置'
 description = 'Claude Code 所有 Hook 事件详解：PreToolUse、PostToolUse、PreCompact 等。附 12 个可直接复制的自动化配置，覆盖格式化、文件保护、命令拦截。'

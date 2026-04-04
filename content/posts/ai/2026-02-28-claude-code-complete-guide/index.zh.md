@@ -1,5 +1,5 @@
 +++
-date = '2026-02-28T10:00:00+08:00'
+date = '2026-03-01T10:00:00+08:00'
 draft = false
 title = 'Claude Code 完全指南 2026：从入门到精通'
 description = 'Claude Code 2026 年最全指南。涵盖安装配置、CLAUDE.md、MCP 服务器、Hooks 钩子、Skills 技能、Worktree 并行开发、团队协作、定价方案和高级工作流。'

@@ -1,5 +1,5 @@
 +++
-date = '2026-02-28T10:00:00+08:00'
+date = '2026-02-26T10:00:00+08:00'
 draft = false
 title = 'Claude Code Hooks 2026: All 9 Events + 12 Copy-Paste Examples'
 description = 'Complete Claude Code hooks guide: all 9 events (PreToolUse, PostToolUse, Stop, etc.) with 12 ready-to-use configs for auto-formatting, file protection, and command blocking.'

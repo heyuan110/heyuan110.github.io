@@ -1,5 +1,5 @@
 +++
-date = '2026-02-28T10:00:00+08:00'
+date = '2026-03-02T14:00:00+08:00'
 draft = false
 title = 'MCP Protocol Explained: The Universal Standard for AI Tools'
 description = 'What is Model Context Protocol (MCP) and why it matters in 2026. Architecture, tools vs resources vs prompts, building servers, and MCP vs function calling.'

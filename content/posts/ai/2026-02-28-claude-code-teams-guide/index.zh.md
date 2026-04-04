@@ -1,5 +1,5 @@
 +++
-date = '2026-02-28T10:00:00+08:00'
+date = '2026-02-27T10:00:00+08:00'
 draft = false
 title = 'Claude Code --teammate-mode 详解：让多个 Agent 真正协作起来'
 description = 'Claude Code teammate-mode（tmux + in-process）多 Agent 协作实战：配置方法、worktree 隔离、共享任务、成本控制，附真实协作案例。'

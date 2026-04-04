@@ -1,5 +1,5 @@
 +++
-date = '2026-02-28T10:00:00+08:00'
+date = '2026-02-26T14:00:00+08:00'
 draft = false
 title = 'Claude Code Skills 2026: Create Custom SKILL.md (5 Examples)'
 description = 'Build Claude Code custom Skills with SKILL.md files. 5 ready-to-use templates, top community Skills, and how Skills compare to CLAUDE.md, Hooks, and slash commands.'

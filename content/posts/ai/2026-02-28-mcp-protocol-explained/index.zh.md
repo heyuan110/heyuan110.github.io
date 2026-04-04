@@ -1,5 +1,5 @@
 +++
-date = '2026-02-28T10:00:00+08:00'
+date = '2026-03-02T14:00:00+08:00'
 draft = false
 title = 'MCP 协议详解：AI 工具的通用连接标准'
 description = '深入解析 Model Context Protocol (MCP) 的架构、核心概念、生态系统，以及 MCP 与 Function Calling 的区别。2026 年 AI 开发必备知识。'

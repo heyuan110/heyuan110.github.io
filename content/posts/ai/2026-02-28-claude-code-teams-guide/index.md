@@ -1,5 +1,5 @@
 +++
-date = '2026-02-28T10:00:00+08:00'
+date = '2026-02-27T10:00:00+08:00'
 draft = false
 title = 'Claude Code Teams Guide 2026: Multi-Agent Setup & Collaboration'
 description = 'How to use Claude Code Agent Teams (teammate-mode) for multi-agent coding. Setup, tmux split-pane, collaboration patterns, worktree isolation, and cost control tips.'

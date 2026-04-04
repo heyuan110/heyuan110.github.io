@@ -1,5 +1,5 @@
 +++
-date = '2026-02-28T10:00:00+08:00'
+date = '2026-03-03T10:00:00+08:00'
 draft = false
 title = 'Vibe Coding Explained: What It Is and How to Do It Right'
 description = 'What is vibe coding? The AI development approach coined by Andrej Karpathy. Learn the workflow, best tools, security risks, and best practices for 2026.'

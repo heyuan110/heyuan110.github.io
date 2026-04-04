@@ -1,5 +1,5 @@
 +++
-date = '2026-02-28T10:00:00+08:00'
+date = '2026-02-26T14:00:00+08:00'
 draft = false
 title = 'Claude Code Skills 完全指南：用 SKILL.md 打造自定义工作流（附实战模板）'
 description = '手把手教你创建 Claude Code Skills，包含 SKILL.md 编写方法、3 个即用模板、社区热门 Skills 推荐，以及 Skills 与 CLAUDE.md、Hooks 的协同使用技巧。'
