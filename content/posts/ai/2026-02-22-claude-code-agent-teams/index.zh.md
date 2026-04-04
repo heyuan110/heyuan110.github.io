@@ -1,12 +1,28 @@
 +++
 date = '2026-02-22T08:00:00+08:00'
 draft = false
-title = 'Claude Code Agent Teams 2026：多 Agent 并行协作完全指南（含成本优化）'
-description = '实战讲解 Claude Code Agent Teams：多个 Claude 实例组队并行开发、架构原理、配置方法、Opus+Sonnet 混合编排省钱策略、命令速查表。串行小时级工作压缩到分钟级。'
+title = 'Claude Code 多 Agent 协作教程 2026：Agent Teams 配置与实战'
+description = '手把手配置 Claude Code Agent Teams：多 Agent 并行开发原理、Team Lead + Teammate 架构、Opus+Sonnet 混合编排省钱、命令速查表，将小时级工作压缩到分钟级。'
 toc = true
 tags = ['Claude Code', 'Agent Teams', 'AI Coding', 'Multi-Agent', 'Anthropic']
 categories = ['AI实战']
-keywords = ['Claude Code Agent Teams', 'Claude Code 多Agent协作', 'AI 多智能体编程', 'Agent Teams 教程', 'Claude Code 团队协作', 'Claude Code 并行开发', '多Agent编程 2026']
+keywords = ['Claude Code 多 Agent 协作', 'Claude Code Agent Teams 教程', 'AI 多智能体编程 2026', 'Claude Code 并行开发', 'Agent Teams 配置方法', 'Claude Code 团队协作', 'Opus Sonnet 混合编排', '多 Agent 编程实战']
+
+[[params.faqItems]]
+question = "Claude Code Agent Teams 是什么？"
+answer = "Agent Teams 是 Anthropic 发布的实验性功能，让多个 Claude Code 实例组成团队并行协作。一个 Team Lead 负责分配任务，多个 Teammate 独立执行并互相通信，将小时级的串行工作压缩到分钟级。"
+
+[[params.faqItems]]
+question = "Agent Teams 和 Subagent 有什么区别？"
+answer = "Subagent 只能向主 Agent 单向报告结果；Agent Teams 的 Teammate 之间可以直接互发消息、共享任务列表、自主协调。适合需要多人讨论和跨模块协作的复杂开发场景。"
+
+[[params.faqItems]]
+question = "Agent Teams 怎么省钱？"
+answer = "使用 Opus+Sonnet 混合编排策略：Team Lead 用 Opus 做任务拆分和综合决策，Teammate 用 Sonnet 做具体执行。Sonnet token 成本约为 Opus 的 1/5，整体成本可降低 60% 以上。"
+
+[[params.faqItems]]
+question = "Agent Teams 需要什么订阅计划？"
+answer = "Agent Teams 需要 Claude Max 订阅（$100/月或 $200/月），因为每个 Teammate 都是独立的 Claude Code 实例，会消耗额外的 token 额度。Pro 计划的额度通常不够用。"
 +++
 
 2 月 5 日，Anthropic 随 Claude Opus 4.6 一同发布了 **Claude Code Agent Teams** —— 一项让多个 Claude Code 实例组成团队、并行协作的实验性功能。如果说之前的 Subagent 是"你派出去跑腿的助手"，那 Agent Teams 就是"一支能互相讨论、自主协调的工程小队"。对于需要跨模块开发、多视角审查、并行调试的复杂场景，Agent Teams 可以将小时级的串行工作压缩到分钟级完成。

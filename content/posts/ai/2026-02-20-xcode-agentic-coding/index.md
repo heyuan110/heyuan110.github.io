@@ -7,6 +7,26 @@ toc = true
 tags = ['Xcode', 'AI Coding', 'Apple', 'Claude Code', 'Codex']
 categories = ['AI Guides']
 keywords = ['Xcode 26.3 agentic coding', 'Xcode AI agent', 'Xcode Claude Agent', 'Xcode Codex', 'Apple AI coding', 'Xcode MCP', 'Claude Agent SDK Xcode']
+
+[[params.faqItems]]
+question = "What is Xcode 26.3 Agentic Coding?"
+answer = "Agentic Coding is a new capability in Xcode 26.3 that integrates Anthropic Claude Agent and OpenAI Codex directly into Apple's IDE. Unlike basic code completion, these AI agents can autonomously plan tasks, modify multiple files, trigger builds, run tests, and visually verify UI through Xcode Previews screenshots."
+
+[[params.faqItems]]
+question = "How do I enable Claude Agent in Xcode 26.3?"
+answer = "Go to Xcode Settings, find the AI Agents section, and enable Claude Agent with one click. You need to sign in with your Anthropic account or enter an API key. Usage is billed through Anthropic's API pricing. Codex can be enabled the same way with an OpenAI account."
+
+[[params.faqItems]]
+question = "Can Xcode AI agents search Apple documentation?"
+answer = "Yes. The integrated AI agents can directly search Apple Developer Documentation for the latest API usage, code samples, and framework guides. This is especially useful for SwiftUI development where APIs change frequently across OS versions."
+
+[[params.faqItems]]
+question = "How does Xcode Agentic Coding compare to Cursor and GitHub Copilot?"
+answer = "Xcode Agentic Coding offers deep Apple ecosystem integration that Cursor and Copilot cannot match — native Xcode Previews visual verification, direct Apple documentation search, and project settings management. However, Cursor and Copilot support more languages and have larger plugin ecosystems."
+
+[[params.faqItems]]
+question = "Does Xcode 26.3 support MCP (Model Context Protocol)?"
+answer = "Yes. Xcode 26.3 supports MCP, allowing AI agents to connect to external tools and data sources. This means the agent can access databases, APIs, and other development tools directly from within Xcode, extending its capabilities beyond the IDE."
 +++
 
 On February 3, 2026, Apple released Xcode 26.3 Release Candidate, officially introducing **Agentic Coding** to its flagship IDE. This is a landmark moment for Apple's developer tools — developers can now use Anthropic's Claude Agent and OpenAI's Codex directly inside Xcode, letting AI agents autonomously plan, code, build, and test entire features.

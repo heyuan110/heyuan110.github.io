@@ -1,12 +1,28 @@
 +++
 date = '2026-02-23T17:00:00+08:00'
 draft = false
-title = 'OpenClaw 多 Agent 协作深度指南：架构设计、实操配置与进阶模式'
-description = '深入拆解 OpenClaw 多 Agent 架构的设计理念与实操配置。从单 Agent 的瓶颈到多 Agent 团队的搭建，涵盖路由绑定、Agent 间通信、四大协作模式及生产环境最佳实践。'
+title = 'OpenClaw 多 Agent 配置教程 2026：从单 Agent 到团队协作实战'
+description = '手把手搭建 OpenClaw 多 Agent 系统：路由绑定、Agent 间通信、四大协作模式（管道/广播/投票/分层）详解，含生产环境最佳实践和踩坑经验。'
 toc = true
 tags = ['OpenClaw', 'Multi-Agent', 'AI 协作', 'AI 架构']
 categories = ['AI实战']
-keywords = ['OpenClaw 多 Agent', '多 Agent 架构', 'AI Agent 协作', 'Agent 编排', 'sessions_send']
+keywords = ['OpenClaw 多 Agent 教程', 'OpenClaw 多智能体配置', '多 Agent 架构设计 2026', 'OpenClaw Agent 协作', 'AI 多 Agent 编排', 'sessions_send 通信', 'OpenClaw 入门教程', '多智能体系统搭建']
+
+[[params.faqItems]]
+question = "OpenClaw 是什么？"
+answer = "OpenClaw 是一个开源的 AI Agent 管理框架，让你为不同任务创建专职 Agent（写作、编码、调研等），每个 Agent 有独立记忆和工具配置，通过路由规则自动分发用户请求。"
+
+[[params.faqItems]]
+question = "为什么需要多 Agent 而不是一个 Agent？"
+answer = "单 Agent 随着使用会出现记忆膨胀（响应变慢）、上下文污染（回答串味）和成本失控（token 暴涨）三大问题。多 Agent 让每个 Agent 专注单一领域，互不干扰，效果更好成本更低。"
+
+[[params.faqItems]]
+question = "OpenClaw 多 Agent 有哪些协作模式？"
+answer = "主要有四种：管道模式（任务按顺序传递）、广播模式（同时发给多个 Agent）、投票模式（多个 Agent 给出方案投票选最优）、分层模式（一个 Lead Agent 统一调度）。"
+
+[[params.faqItems]]
+question = "OpenClaw 和 Claude Code Agent Teams 有什么区别？"
+answer = "Claude Code Agent Teams 是 Anthropic 官方功能，专注代码开发场景，只能用 Claude 模型。OpenClaw 是通用的开源框架，支持多种模型和多种任务类型（写作、调研、编码等），灵活性更高。"
 +++
 
 ![OpenClaw 多 Agent 协作架构指南封面](cover.webp)

@@ -1,12 +1,12 @@
 +++
 date = '2026-03-05T19:00:00+08:00'
 draft = false
-title = 'Claude Code Slash Commands, Shortcuts & CLI Reference'
-description = 'Complete reference for every Claude Code slash command, keyboard shortcut, CLI flag, and environment variable. Plus custom commands with Skills.'
+title = 'Claude Code Slash Commands 2026: Complete List + Custom Commands'
+description = 'Every Claude Code slash command, keyboard shortcut, and CLI flag in one reference. 40+ built-in commands, custom Skills commands, and environment variables explained.'
 toc = true
 tags = ['Claude Code', 'Commands', 'CLI Reference', 'Productivity']
 categories = ['AI Guides']
-keywords = ['claude code slash commands', 'claude code commands', 'claude code custom commands', 'claude code keyboard shortcuts', 'claude code CLI flags', 'claude code environment variables', 'claude code reference']
+keywords = ['claude code slash commands', 'claude code commands list 2026', 'claude code commands', 'claude code keyboard shortcuts', 'claude code CLI flags', 'claude code custom commands', 'claude code environment variables', 'claude code reference 2026']
 
 [[params.faqItems]]
 question = "What are Claude Code slash commands?"

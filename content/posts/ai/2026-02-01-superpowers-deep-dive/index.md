@@ -7,6 +7,26 @@ toc = true
 tags = ['Claude Code', 'Superpowers', 'TDD', 'Agent Skills', 'AI Coding']
 categories = ['AI Guides']
 keywords = ['Superpowers Claude Code', 'agentic skills framework', 'Claude Code plugin', 'test driven development AI', 'subagent driven development', 'obra superpowers']
+
+[[params.faqItems]]
+question = "What is Superpowers for Claude Code?"
+answer = "Superpowers is an open-source agentic skills framework (40K+ GitHub stars) created by Jesse Vincent that enforces structured software development processes in Claude Code. It uses composable SKILL.md files to make Claude automatically follow TDD, systematic debugging, structured planning, and code review workflows."
+
+[[params.faqItems]]
+question = "How does Superpowers enforce test-driven development?"
+answer = "When the TDD skill is active, if Claude tries to write implementation code without tests first, Superpowers forces it to delete the code and start over with tests. This is enforcement, not suggestion — the skill literally blocks non-TDD workflows."
+
+[[params.faqItems]]
+question = "How do I install Superpowers in Claude Code?"
+answer = "Clone the Superpowers repository and copy the skills folder into your project's .claude/skills/ directory. The core bootstrap loads in under 2,000 tokens, with individual skills loaded on demand as Claude detects the need for them."
+
+[[params.faqItems]]
+question = "What is subagent-driven development in Superpowers?"
+answer = "Subagent-driven development is a Superpowers workflow where Claude spawns independent sub-agents for parallel tasks. Each sub-agent works in isolation on a specific piece of the implementation plan, and results are merged back — similar to how a tech lead delegates tasks to team members."
+
+[[params.faqItems]]
+question = "Can Superpowers work with other AI coding tools besides Claude Code?"
+answer = "Superpowers is designed specifically for Claude Code's Skills system. However, its methodology (TDD enforcement, structured planning, systematic debugging) can inspire similar workflows in other tools like Cursor or Copilot through their respective configuration systems."
 +++
 
 ![Superpowers Deep Dive](cover.webp)

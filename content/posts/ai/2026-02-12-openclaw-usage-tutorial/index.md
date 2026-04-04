@@ -7,6 +7,26 @@ toc = true
 tags = ['OpenClaw', 'AI Agent', 'Telegram', 'Personal Assistant', 'Open Source']
 categories = ['AI Guides']
 keywords = ['OpenClaw tutorial', 'OpenClaw setup guide', 'AI agent gateway', 'Telegram AI bot', 'OpenClaw TUI', 'Moltbot tutorial', 'Clawdbot tutorial', 'OpenClaw multi-agent']
+
+[[params.faqItems]]
+question = "What is OpenClaw and what can it do?"
+answer = "OpenClaw is an open-source AI Agent gateway that runs 24/7 and connects to messaging platforms like Telegram, WhatsApp, and Discord. It manages multiple AI agents, each with their own workspace, model, and tool permissions, enabling personal AI assistant workflows."
+
+[[params.faqItems]]
+question = "Is OpenClaw the same as Moltbot and Clawdbot?"
+answer = "Yes, they are the same project at different stages. Clawdbot was the original name, Moltbot was a brief transitional name, and OpenClaw is the current official name with a unified repository and ecosystem."
+
+[[params.faqItems]]
+question = "How do I install OpenClaw on Mac?"
+answer = "Install OpenClaw via npm with 'npm install -g openclaw', then run 'openclaw init' to create the configuration. You need Node.js 18+, an API key for your preferred AI model (Claude, GPT-4, etc.), and optionally a Telegram bot token for messaging integration."
+
+[[params.faqItems]]
+question = "Can OpenClaw use different AI models for different tasks?"
+answer = "Yes. Each OpenClaw agent can be configured with a different AI model. For example, you can use Claude for coding tasks, GPT-4o for web research, and DeepSeek for writing — all managed through separate agent configurations in openclaw.json."
+
+[[params.faqItems]]
+question = "What is the OpenClaw TUI terminal?"
+answer = "The TUI (Terminal User Interface) is OpenClaw's built-in interactive terminal that lets you chat with agents, switch between sessions, manage configurations, and monitor agent activity — all from a single terminal window without needing Telegram or other messaging apps."
 +++
 
 ![OpenClaw complete tutorial cover](cover.webp)

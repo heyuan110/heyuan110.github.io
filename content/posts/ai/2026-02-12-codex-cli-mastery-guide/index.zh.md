@@ -7,6 +7,26 @@ toc = true
 tags = ['Codex CLI', 'AI 编程', 'OpenAI', '终端工具', 'AI Agent']
 categories = ['AI实战']
 keywords = ['Codex CLI 教程', 'Codex CLI 技巧', 'OpenAI Codex', 'AI 编程工具', 'Codex CLI vs Claude Code']
+
+[[params.faqItems]]
+question = "Codex CLI 是什么？和 ChatGPT 有什么不同？"
+answer = "Codex CLI 是 OpenAI 推出的终端 AI 编码工具，能直接在终端中编辑文件、运行命令、管理项目。和 ChatGPT 不同，Codex CLI 可以直接操作你的本地文件系统，具备 Agent 能力，不只是聊天问答。"
+
+[[params.faqItems]]
+question = "Codex CLI 怎么安装？"
+answer = "通过 npm 安装：'npm install -g @openai/codex'，然后设置 OPENAI_API_KEY 环境变量。需要 Node.js 18+ 和 OpenAI API Key。安装后在任意项目目录运行 'codex' 即可启动。"
+
+[[params.faqItems]]
+question = "Codex CLI 和 Claude Code 哪个更好？"
+answer = "各有所长。Claude Code 在代码理解和多文件重构上更强，支持 Skills 和 MCP 生态；Codex CLI 在代码生成速度和推理能力上有优势，安全模型设计更精细。建议根据具体需求选择，或两者并用。"
+
+[[params.faqItems]]
+question = "Codex CLI 的安全模式有几种？"
+answer = "三种模式：Suggest（只建议不执行）、Auto-edit（自动编辑文件但不运行命令）、Full-auto（完全自主执行）。生产环境建议用 Suggest 或 Auto-edit，个人项目可用 Full-auto 提高效率。"
+
+[[params.faqItems]]
+question = "Codex CLI 支持哪些 AI 模型？"
+answer = "默认使用 OpenAI 的模型（GPT-4o、o1 等），同时支持通过配置切换到其他兼容 OpenAI API 的模型。可以在配置文件中设置不同任务使用不同模型，比如简单任务用便宜模型、复杂任务用强力模型。"
 +++
 
 ![Codex CLI 深度指南：20+ 实战技巧封面图](cover.webp)

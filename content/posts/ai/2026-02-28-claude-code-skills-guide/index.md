@@ -1,12 +1,12 @@
 +++
 date = '2026-02-28T10:00:00+08:00'
 draft = false
-title = 'Claude Code Skills Guide: Create Custom SKILL.md Workflows (With Examples)'
-description = 'Learn to build Claude Code Skills with SKILL.md files. 3 ready-to-use templates, top community Skills, and how Skills compare to CLAUDE.md and Hooks.'
+title = 'Claude Code Skills 2026: Create Custom SKILL.md (5 Examples)'
+description = 'Build Claude Code custom Skills with SKILL.md files. 5 ready-to-use templates, top community Skills, and how Skills compare to CLAUDE.md, Hooks, and slash commands.'
 toc = true
 tags = ['Claude Code', 'Skills', 'Automation', 'Workflow']
 categories = ['AI Guides']
-keywords = ['Claude Code Skills', 'SKILL.md guide', 'Claude Code skill tutorial', 'custom Claude Code skills', 'Claude Code automation', 'Claude Code plugins', 'agent skills']
+keywords = ['claude code skills', 'claude code custom skills 2026', 'SKILL.md guide', 'claude code skill tutorial', 'claude code automation', 'claude code plugins', 'agent skills', 'claude code slash commands skills']
 
 [[params.faqItems]]
 question = "What is a Claude Code Skill and how do I create one?"

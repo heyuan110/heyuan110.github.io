@@ -1,12 +1,12 @@
 +++
 date = '2026-02-22T09:00:00+08:00'
 draft = false
-title = 'Vibe Coding: The Complete Guide (2026) — Write Code with Natural Language'
-description = 'What is Vibe Coding? From Karpathy coining the term to Collins Dictionary shortlist. 5 top tools compared (Claude Code, Cursor, Trae), with hands-on examples and practical tips.'
+title = 'Vibe Coding Guide 2026: What It Is, Best Tools, and How to Start'
+description = 'Learn vibe coding from basics to advanced. Compare top tools (Claude Code, Cursor, Trae), see real workflow examples, and discover why 91% of engineering teams now use AI coding tools.'
 toc = true
 tags = ['Vibe Coding', 'AI Coding', 'Claude Code', 'Cursor', 'AI Tools']
 categories = ['AI Guides']
-keywords = ['Vibe Coding', 'what is Vibe Coding', 'AI coding tools comparison 2026', 'Vibe Coding tutorial', 'Vibe Coding guide']
+keywords = ['vibe coding', 'vibe coding guide 2026', 'what is vibe coding', 'vibe coding tutorial', 'ai vibe coding tools', 'vibe coding vs traditional coding', 'best vibe coding tools', 'vibe coding examples']
 
 [[params.faqItems]]
 question = "What is Vibe Coding?"

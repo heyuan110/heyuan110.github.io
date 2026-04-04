@@ -1,12 +1,32 @@
 +++
 date = '2026-02-22T09:00:00+08:00'
 draft = false
-title = 'Vibe Coding 完全指南（2026）：用自然语言写代码的正确姿势'
-description = 'Vibe Coding（氛围编程）到底怎么玩？从 Karpathy 提出到 Collins 词典候选词，5 款主流工具实测对比（Claude Code/Cursor/Trae），附实战案例和避坑指南。'
+title = 'Vibe Coding 是什么？氛围编程入门教程与工具对比（2026）'
+description = '一文搞懂 Vibe Coding（氛围编程）：从 Karpathy 提出概念到 2026 年主流工具实测对比（Claude Code/Cursor/Trae），含完整实战流程和新手避坑指南。'
 toc = true
 tags = ['Vibe Coding', 'AI Coding', 'Claude Code', 'Cursor', 'AI Tools']
 categories = ['AI Guides']
-keywords = ['Vibe Coding', '氛围编程', 'Vibe Coding 是什么', 'AI编程工具对比 2026', 'Vibe Coding 教程', '氛围编程指南']
+keywords = ['Vibe Coding 是什么', '氛围编程教程 2026', 'Vibe Coding 教程', 'AI 编程工具对比', '氛围编程入门', 'Vibe Coding 工具推荐', 'Claude Code Vibe Coding', '自然语言写代码']
+
+[[params.faqItems]]
+question = "Vibe Coding 是什么意思？"
+answer = "Vibe Coding（氛围编程）是 Andrej Karpathy 在 2025 年提出的编程范式：开发者用自然语言描述需求，AI 生成完整代码。人类做方向把控，AI 做具体实现，角色彻底反转。"
+
+[[params.faqItems]]
+question = "Vibe Coding 用什么工具最好？"
+answer = "2026 年主流工具包括 Claude Code（适合专业开发者和大型项目）、Cursor（IDE 体验最好）、Trae（免费且支持中文）。非技术人员可以用 v0.dev 或 bolt.new 在浏览器里快速原型开发。"
+
+[[params.faqItems]]
+question = "不会编程可以用 Vibe Coding 吗？"
+answer = "可以入门，但有限制。v0.dev、bolt.new 等工具让零基础用户也能搭建功能原型，但遇到复杂 bug、性能优化和安全问题仍需要基础编程知识。"
+
+[[params.faqItems]]
+question = "Vibe Coding 和 AI 辅助编程有什么区别？"
+answer = "AI 辅助编程中人类写代码、AI 补全建议；Vibe Coding 中人类描述需求、AI 生成整个模块。前者是 AI 当副驾驶，后者是人类当导演、AI 当编剧。"
+
+[[params.faqItems]]
+question = "Vibe Coding 会取代程序员吗？"
+answer = "短期不会。Vibe Coding 改变了编程方式，但需求分析、架构设计、系统集成和复杂调试仍然需要人类判断力。善用 AI 的程序员会更有竞争力。"
 +++
 
 2026 年，如果你关注 AI 编程领域，一定绕不开一个词：**Vibe Coding**（氛围编程）。从一条推文到 Collins 词典年度词汇候选、MIT Technology Review 十大突破技术，Vibe Coding 已经从极客圈的新鲜概念演变为开发者的实际工作方式。据统计，91% 的工程组织已采用至少一个 AI 编程工具，而 Vibe Coding 正是这场变革中最具代表性的理念。

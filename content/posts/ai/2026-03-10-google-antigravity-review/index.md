@@ -1,12 +1,12 @@
 +++
 date = '2026-03-07T10:00:00+08:00'
 draft = false
-title = 'Google Antigravity Review 2026: Free AI IDE Setup, Features & Honest Verdict'
-description = 'Hands-on Google Antigravity review after 2 weeks: free Gemini 3-powered IDE with Manager View, multi-agent coding, and MCP support. How it compares to Cursor and Claude Code.'
+title = 'Google Antigravity Review 2026: Free AI IDE Features & Setup'
+description = 'Google Antigravity hands-on review: free Gemini 3-powered AI IDE with Manager View, multi-agent coding, and autonomous workflows. Compared with Cursor and Claude Code.'
 toc = true
 tags = ['Google Antigravity', 'AI Coding Tools', 'AI IDE', 'Gemini']
 categories = ['AI Guides']
-keywords = ['google antigravity', 'google antigravity review', 'google antigravity ide', 'antigravity vs cursor', 'antigravity vs claude code', 'free ai ide 2026', 'google antigravity setup', 'gemini 3 coding', 'agent first ide', 'antigravity google download', 'antigravity ai tool 2026', 'google antigravity ai coding tool 2026']
+keywords = ['antigravity ai tool 2026', 'google antigravity ai coding tool 2026', 'google antigravity ai ide features 2026', 'google antigravity review', 'google antigravity setup', 'free ai ide 2026', 'antigravity vs cursor', 'antigravity vs claude code']
 
 [[params.faqItems]]
 question = "Is Google Antigravity free?"

@@ -6,6 +6,26 @@ toc = true
 tags = ['Claude Code', 'AI Tools', 'Anthropic', 'CLI Tools', 'Productivity', 'Automation']
 categories = ['AI Guides']
 keywords = ['Claude Code guide', 'Claude Code tutorial', 'Anthropic CLI tool', 'AI coding assistant', 'Claude Code setup', 'Claude Code tips', 'Claude Code CLAUDE.md', 'Claude Code MCP']
+
+[[params.faqItems]]
+question = "What is Claude Code and how is it different from ChatGPT?"
+answer = "Claude Code is Anthropic's official command-line tool that runs directly in your terminal as an agentic AI assistant. Unlike ChatGPT which only provides text responses, Claude Code can directly edit files, run commands, manage git operations, and automate repetitive tasks on your local machine."
+
+[[params.faqItems]]
+question = "Do I need to be a programmer to use Claude Code?"
+answer = "No. While Claude Code excels at coding tasks, it is useful for anyone who works with files and data. Product managers can organize documentation, ops engineers can analyze logs, and admin staff can process data reports — all through natural language instructions."
+
+[[params.faqItems]]
+question = "What is CLAUDE.md and why does it matter?"
+answer = "CLAUDE.md is a configuration file that gives Claude Code persistent context about your project — coding standards, preferred tools, directory structure, and workflow rules. It acts as a 'briefing document' so Claude understands your project without you repeating instructions every session."
+
+[[params.faqItems]]
+question = "How do I install Claude Code?"
+answer = "Install Claude Code globally via npm with 'npm install -g @anthropic-ai/claude-code', then run 'claude' in any project directory. You need Node.js 18+ and an Anthropic account (Pro subscription at $20/month or an API key)."
+
+[[params.faqItems]]
+question = "What are Claude Code Skills and MCP integrations?"
+answer = "Skills are reusable instruction sets (SKILL.md files) that teach Claude domain-specific workflows like code review or commit formatting. MCP (Model Context Protocol) integrations connect Claude to external tools like databases, browsers, and APIs, extending its capabilities beyond the terminal."
 +++
 
 ![Claude Code terminal AI assistant](cover.webp)

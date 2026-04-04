@@ -7,6 +7,26 @@ toc = true
 tags = ['OpenClaw', 'AI Agent', 'Architecture', 'Automation', 'Skills']
 categories = ['AI Guides']
 keywords = ['OpenClaw architecture', 'OpenClaw Gateway', 'OpenClaw Heartbeat', 'OpenClaw Cron', 'AI agent automation', 'OpenClaw internals', 'AI assistant platform']
+
+[[params.faqItems]]
+question = "How does OpenClaw Gateway route messages to agents?"
+answer = "The Gateway acts as a central dispatch center that receives messages from all connected channels (Telegram, WhatsApp, web), authenticates users, manages sessions, and routes each message to the appropriate agent based on binding rules configured in openclaw.json."
+
+[[params.faqItems]]
+question = "What are OpenClaw Nodes and how do they enable cross-device execution?"
+answer = "Nodes are remote execution endpoints — your other computers, phones, or tablets registered with OpenClaw. An agent can instruct a Node to run commands, take photos, capture screenshots, or render content on a different device, enabling truly cross-device AI automation."
+
+[[params.faqItems]]
+question = "How does OpenClaw Heartbeat work?"
+answer = "Heartbeat is a periodic check-in system where the agent 'looks up' at configurable intervals to see if anything needs attention. It follows a 'don't disturb if nothing's happening' protocol — the agent only sends a message when it detects something worth reporting."
+
+[[params.faqItems]]
+question = "What is the difference between OpenClaw Heartbeat and Cron?"
+answer = "Heartbeat is a lightweight periodic awareness check (agent decides whether to act), while Cron is a durable scheduled job system (specific tasks run at specific times). Heartbeat is for reactive monitoring; Cron is for proactive scheduled automation like daily reports or weekly summaries."
+
+[[params.faqItems]]
+question = "How do OpenClaw Skills orchestrate tool usage?"
+answer = "Skills are Standard Operating Procedures (SOPs) that tell agents how to handle specific task types and which tools to use. When an agent receives a task, it matches it against installed Skills, which provide step-by-step instructions, constraints, and tool-calling patterns for that task category."
 +++
 
 ![OpenClaw architecture deep dive cover: how automation actually happens](cover.webp)

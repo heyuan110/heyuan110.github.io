@@ -7,6 +7,26 @@ toc = true
 tags = ['Claude Code', 'Superpowers', 'TDD', 'Agent Skills', 'AI 编程']
 categories = ['AI实战']
 keywords = ['Superpowers', 'Claude Code 插件', 'Agent Skills', '测试驱动开发', '子代理开发', 'obra superpowers']
+
+[[params.faqItems]]
+question = "Superpowers 是什么？和普通的 Prompt 模板有什么区别？"
+answer = "Superpowers 是一个 GitHub 上 4 万星的 Claude Code 代理技能框架，通过 SKILL.md 文件让 AI 自动遵循结构化的开发流程。它不是 Prompt 模板——它能强制执行 TDD、系统化调试、结构化规划等工程方法论，如果 Claude 不遵守，会被强制重来。"
+
+[[params.faqItems]]
+question = "Superpowers 怎么安装？"
+answer = "克隆 Superpowers 仓库，将 skills 文件夹复制到项目的 .claude/skills/ 目录下即可。核心引导只占不到 2,000 Token，各技能按需加载。安装后 Claude 会自动检测并在合适的场景触发对应技能。"
+
+[[params.faqItems]]
+question = "Superpowers 的七阶段工作流是什么？"
+answer = "从需求到交付的完整流程：头脑风暴（澄清问题）→ 计划制定（写实施方案）→ 测试驱动开发（先写测试再写代码）→ 子代理并行开发 → 代码审查 → 系统化调试 → 验证完成。每个阶段都有对应的 Skill 来规范 Claude 的行为。"
+
+[[params.faqItems]]
+question = "什么是子代理驱动开发？"
+answer = "子代理驱动开发是 Superpowers 的核心工作流之一。Claude 会将实施计划拆分成独立任务，为每个任务生成一个子代理并行执行，最后合并结果。类似于技术负责人把任务分配给团队成员各自完成。"
+
+[[params.faqItems]]
+question = "Superpowers 适合什么样的项目？"
+answer = "特别适合中大型项目和团队协作场景。如果你经常遇到 Claude 不写测试就开始编码、跳过规划直接实现、或者调试时乱试一气的问题，Superpowers 能有效解决。对于小脚本或一次性任务，可能流程过重。"
 +++
 
 ![Superpowers 深度解析](cover.webp)

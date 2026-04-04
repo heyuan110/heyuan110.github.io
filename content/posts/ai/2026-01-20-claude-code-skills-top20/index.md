@@ -6,6 +6,22 @@ toc = true
 tags = ['Claude Code', 'AI Coding', 'Skills', 'Agent', 'Developer Tools']
 categories = ['AI Guides']
 keywords = ['Claude Code Skills ranking', 'best Claude Code Skills', 'Claude Code plugins', 'Agent Skills ecosystem', 'how to install Claude Code Skills']
+
+[[params.faqItems]]
+question = "What are Claude Code Skills and how do they work?"
+answer = "Skills are SKILL.md files containing domain-specific knowledge and workflows. Once installed in your project's .claude/skills/ directory, Claude automatically detects and triggers the right Skill based on conversation context — no manual commands needed."
+
+[[params.faqItems]]
+question = "What are the most popular Claude Code Skills in 2026?"
+answer = "The top Skills include Superpowers (agentic development framework with 40K+ stars), official document processing Skills (docx, pdf, pptx, xlsx), code review and commit automation Skills, and specialized tools for frontend design and browser automation."
+
+[[params.faqItems]]
+question = "How do I install a Claude Code Skill?"
+answer = "Copy the Skill folder (containing SKILL.md) into your project's .claude/skills/ directory, or into ~/.claude/skills/ for global availability. Claude will automatically detect and use it. For community Skills, clone the repository and copy the relevant skill folder."
+
+[[params.faqItems]]
+question = "What is the difference between Skills and Slash Commands in Claude Code?"
+answer = "Slash Commands (like /commit) require you to manually type the command to trigger them. Skills are activated autonomously by Claude based on conversation context — if you say 'review this code' and have a code-review Skill installed, Claude will automatically follow that Skill's checklist."
 +++
 ![Claude Code Skills ecosystem](cover.webp)
 

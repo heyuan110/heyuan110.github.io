@@ -1,12 +1,12 @@
 +++
 date = '2026-02-28T10:00:00+08:00'
 draft = false
-title = 'Claude Code --teammate-mode Explained: Run Multiple Agents That Actually Collaborate'
-description = 'How to use Claude Code teammate-mode (tmux + in-process) for multi-agent coding. Real collaboration patterns, worktree isolation, shared tasks, and cost control tips.'
+title = 'Claude Code Teams Guide 2026: Multi-Agent Setup & Collaboration'
+description = 'How to use Claude Code Agent Teams (teammate-mode) for multi-agent coding. Setup, tmux split-pane, collaboration patterns, worktree isolation, and cost control tips.'
 toc = true
 tags = ['Claude Code', 'Agent Teams', 'Multi-Agent', 'Collaboration']
 categories = ['AI Guides']
-keywords = ['Claude Code Agent Teams', 'multi-agent collaboration', 'Claude Code teams', 'AI team collaboration', 'Claude Code multi-agent', 'agent teams tutorial']
+keywords = ['claude code teams', 'claude code team plan 2026', 'claude code agent teams', 'claude code multi-agent', 'claude code teammate mode', 'multi-agent collaboration', 'claude code teams guide 2026', 'ai team collaboration']
 
 [[params.faqItems]]
 question = "How do I enable Claude Code Agent Teams?"

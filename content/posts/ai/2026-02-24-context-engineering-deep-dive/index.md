@@ -7,6 +7,22 @@ toc = true
 tags = ['Context Engineering', 'AI Coding', 'Stanford CS146S', 'Vibe Coding', 'Prompt Engineering']
 categories = ['AI Guides']
 keywords = ['Context Engineering', 'Specs Are the New Source Code', 'long context failure modes', 'AI coding context management', 'Stanford CS146S Week 3']
+
+[[params.faqItems]]
+question = "What is Context Engineering and how is it different from Prompt Engineering?"
+answer = "Prompt Engineering focuses on crafting a single good question. Context Engineering focuses on designing the entire information environment presented to the AI — what to show, how to organize it, when to provide it, and what tools to connect. Prompt Engineering is addition; Context Engineering is multiplication."
+
+[[params.faqItems]]
+question = "What does 'Specs Are the New Source Code' mean?"
+answer = "It means that in AI-assisted development, well-written specification documents become more valuable than the code itself. When AI generates code from specs, the specs become the authoritative source of truth — like source code that compiles into implementation through AI rather than a compiler."
+
+[[params.faqItems]]
+question = "What are the four failure modes of long contexts in AI?"
+answer = "The four failure modes are: lost-in-the-middle (AI ignores information in the middle of long contexts), contradictory context (conflicting instructions confuse the AI), stale context (outdated information leads to wrong decisions), and context overflow (exceeding the model's effective window degrades all output quality)."
+
+[[params.faqItems]]
+question = "How do I apply Context Engineering in practice?"
+answer = "Build a layered documentation structure: design docs for goals, implementation plans for details, API guides for specifics, and CLAUDE.md for AI-specific guidance. Load only relevant files (not the entire codebase), keep documentation current, and connect external tools via MCP to extend the AI's perception."
 +++
 
 > This is Part 2 of the "Stanford Vibe Coding Course Deep Dive" series. See the series navigation at the end of this article.

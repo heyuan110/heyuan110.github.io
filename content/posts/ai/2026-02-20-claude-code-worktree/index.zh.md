@@ -7,6 +7,26 @@ toc = true
 tags = ['Claude Code', 'Git Worktree', 'AI 编程', '开发效率']
 categories = ['AI实战']
 keywords = ['Claude Code worktree', 'Claude Code 并行开发', 'git worktree', 'AI 编程工作流', 'Claude Code -w']
+
+[[params.faqItems]]
+question = "Claude Code 的 --worktree (-w) 模式是什么？"
+answer = "它用一条命令（claude -w <名称>）创建一个隔离的 Git Worktree 目录，并在其中启动新的 Claude Code 会话。让你在同一个仓库里并行跑多个 AI 编码任务，互不干扰。"
+
+[[params.faqItems]]
+question = "Claude Code 的 Worktree 存在哪里？"
+answer = "所有通过 claude -w 创建的 Worktree 都存储在 <仓库根目录>/.claude/worktrees/<名称>/ 下。建议在 .gitignore 中添加 .claude/worktrees/ 以避免提交到版本控制。"
+
+[[params.faqItems]]
+question = "Worktree 用完会自动清理吗？"
+answer = "会。如果会话期间没有任何修改，退出时 Worktree 和对应分支会自动删除。如果有未提交的修改或新的提交，Claude 会询问你是保留还是删除。"
+
+[[params.faqItems]]
+question = "Git Worktree 和 git clone 有什么区别？"
+answer = "Worktree 共享同一个 .git 仓库，创建速度快且不需要重新下载代码。Clone 创建完全独立的仓库副本，适合需要完全隔离（如不同的远程配置）的场景。"
+
+[[params.faqItems]]
+question = "什么场景下应该用 Claude Code Worktree？"
+answer = "三种典型场景：1) 开发新功能时突然要修线上 bug，用 Worktree 隔离互不影响；2) 想让两个 Claude 会话并行工作（一个写功能，一个补测试）；3) 尝试大胆的实验性重构，失败了直接删掉 Worktree 即可。"
 +++
 
 你有没有遇到过这种情况：

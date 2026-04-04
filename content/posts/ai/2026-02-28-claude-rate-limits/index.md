@@ -1,12 +1,12 @@
 +++
 date = '2026-02-28T10:00:00+08:00'
 draft = false
-title = 'Claude Rate Limits 2026: Free, Pro & Max Message Caps Per 5 Hours'
-description = 'Exact Claude rate limits for 2026: Free gets ~15 messages, Pro ~45, Max 5x ~225 per 5-hour window. See per-plan caps, weekly limits, API tiers, and what happens when you hit the limit.'
+title = 'Claude Pro Rate Limits 2026: Free vs Pro vs Max Message Caps'
+description = 'Every Claude rate limit for 2026: Free ~5 msgs, Pro ~45, Max 5x ~225 per 5 hours. Per-plan caps, weekly limits, API tiers, and how to avoid hitting the limit.'
 toc = true
 tags = ['Claude Code', 'Rate Limits', 'Pricing', 'AI Coding Tools']
 categories = ['AI Guides']
-keywords = ['Claude rate limits', 'Claude Pro rate limits', 'Claude Pro rate limits 2026', 'Claude messages per 5 hours', 'Claude Max rate limits', 'Claude Pro usage limits', 'Claude Pro usage limits 2026', 'Claude weekly limits', 'Claude API rate limits', 'Claude Code limits', 'Claude pro message limits 2026', 'Claude ai free tier limits 2026', 'Claude free tier message limits 2026', 'Claude pro subscription price 2026']
+keywords = ['claude pro rate limits 2026', 'claude ai free tier limits 2026', 'claude pro message limits 2026', 'claude pro usage limits 2026', 'claude ai free tier message limits 2026', 'claude rate limits', 'claude messages per 5 hours', 'claude max rate limits']
 
 [[params.faqItems]]
 question = "How many messages do I get with Claude Pro?"

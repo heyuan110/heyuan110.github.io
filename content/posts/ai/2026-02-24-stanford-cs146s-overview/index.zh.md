@@ -7,6 +7,26 @@ toc = true
 tags = ['Vibe Coding', 'Stanford CS146S', 'AI 编程', '课程解读', 'Agentic Engineering']
 categories = ['AI原理']
 keywords = ['Stanford CS146S', '斯坦福 Vibe Coding 课程', 'The Modern Software Developer', 'AI 编程课程', 'Vibe Coding 学什么']
+
+[[params.faqItems]]
+question = "斯坦福 CS146S 是什么课程？"
+answer = "CS146S（The Modern Software Developer）是斯坦福大学 2025 年秋季首次开设的 3 学分课程，系统教授 AI 驱动的软件开发。覆盖从 LLM 原理、Agent 架构到安全攻防、代码审查和生产运维的完整软件工程生命周期。"
+
+[[params.faqItems]]
+question = "CS146S 的课程资料可以免费获取吗？"
+answer = "可以。几乎所有课程资料都公开免费，包括完整教学大纲（themodernsoftware.dev）、课件 PPT、阅读材料和 GitHub 上的作业代码。你可以按照 10 周课程安排自学。"
+
+[[params.faqItems]]
+question = "CS146S 有哪些重量级嘉宾？"
+answer = "嘉宾阵容包括 Boris Cherney（Anthropic Claude Code 创始人）、Zach Lloyd（Warp CEO）、Isaac Evans（Semgrep CEO）、Gaspar Garcia（Vercel AI 研究负责人）和 Martin Casado（a16z 合伙人）等。"
+
+[[params.faqItems]]
+question = "学 CS146S 需要什么基础？"
+answer = "需要 CS111 级别的编程基础，推荐有 CS221 或 CS229（机器学习）背景。这不是编程入门课，而是教有经验的开发者如何在整个软件开发生命周期中利用 AI。"
+
+[[params.faqItems]]
+question = "Vibe Coding 和 Agentic Engineering 有什么区别？"
+answer = "Vibe Coding 侧重个人生产力——向 AI 描述需求，接受生成的代码。Agentic Engineering 是 Karpathy 2026 年提出的进化概念，强调编排多个 AI Agent 覆盖整个工程流程，配合更多的监督和审查机制。"
 +++
 
 从 Andrej Karpathy 在 2025 年 2 月发推提出 [Vibe Coding](/posts/ai/2026-02-22-vibe-coding-guide/)，到斯坦福大学在同年秋季正式开设 CS146S 课程，前后不到 8 个月。一个社交媒体上的热词，以这样的速度进入全球顶级高校的课程体系，在计算机科学的历史上极为罕见。

@@ -7,6 +7,26 @@ toc = true
 tags = ['Claude Code', 'Skills', 'Automation', 'Workflow']
 categories = ['AI Guides']
 keywords = ['Claude Code Skills', 'SKILL.md 教程', 'Claude Code 自定义技能', 'Claude Code 自动化', 'Claude Code 插件', 'AI 编程工作流', 'Claude Code 工作流']
+
+[[params.faqItems]]
+question = "Claude Code Skills 是什么？"
+answer = "Skills 是以 SKILL.md 文件封装的可复用指令集，教会 Claude 按照你的方式执行特定任务。包含 YAML 前置数据（定义触发条件）和 Markdown 内容（具体执行指令）。创建后 Claude 会自动检测何时需要使用，无需手动触发。"
+
+[[params.faqItems]]
+question = "SKILL.md 文件怎么写？"
+answer = "SKILL.md 由两部分组成：YAML 前置数据（在 --- 标记之间，定义 name、trigger 等元信息）和 Markdown 正文（Claude 执行时遵循的具体指令）。放到项目的 .claude/skills/ 目录下即可生效。"
+
+[[params.faqItems]]
+question = "Skills 和 CLAUDE.md 有什么区别？"
+answer = "CLAUDE.md 提供全局项目上下文（编码规范、目录结构、工作流规则），每次会话都会加载。Skills 是按需触发的专项技能，只在特定场景下激活。两者互补——CLAUDE.md 定义'是什么'，Skills 定义'怎么做'。"
+
+[[params.faqItems]]
+question = "Skills 和 Hooks 怎么配合使用？"
+answer = "Skills 处理 Claude 会话中的智能决策（如代码审查清单、写作规范），Hooks 处理会话外的自动化触发（如提交前检查、保存后格式化）。Skills 靠 AI 理解触发，Hooks 靠事件匹配触发，组合使用覆盖完整工作流。"
+
+[[params.faqItems]]
+question = "有哪些值得安装的社区 Skills？"
+answer = "热门社区 Skills 包括：Superpowers（4 万星的工程方法论框架）、官方文档处理技能（docx/pdf/pptx/xlsx）、代码审查和提交自动化技能、前端设计和浏览器自动化技能。在 GitHub 搜索 'claude code skills' 可以发现更多。"
 +++
 
 ![Claude Code Skills 指南：教 AI 掌握自定义工作流](cover.webp)

@@ -8,6 +8,22 @@ toc = true
 tags = ['Claude Code', '浏览器自动化', 'MCP', 'Playwright CLI', 'Playwright MCP', 'Agent Browser', 'Browser-use']
 categories = ['AI实战']
 keywords = ['Claude Code 浏览器自动化', 'Claude Code 操作浏览器', 'Playwright CLI', 'Playwright MCP', 'Agent Browser', 'DevTools MCP', 'browser-use', 'agent browser vs playwright', 'claude code 浏览器', 'AI 浏览器自动化 2026']
+
+[[params.faqItems]]
+question = "Claude Code 浏览器自动化哪个方案最好？"
+answer = "取决于使用场景。Browser-use 功能最全面，支持本地/云端/真实浏览器三种模式；Playwright CLI 最省 Token（比 MCP 方案低 4-100 倍）；Agent Browser 日常轻量浏览最方便。建议多个方案并行安装，让 AI 自动选择。"
+
+[[params.faqItems]]
+question = "Playwright CLI 和 Playwright MCP 有什么区别？"
+answer = "Playwright CLI 将数据（快照、截图、日志）存储到磁盘文件，只返回文件路径；MCP 则把完整的无障碍树和控制台日志塞进 AI 上下文。CLI 的 Token 消耗比 MCP 低 75-99%，长会话不会溢出上下文。微软官方推荐有 Shell 访问权限的 AI 代理使用 CLI。"
+
+[[params.faqItems]]
+question = "五种浏览器自动化方案的 Token 消耗差多少？"
+answer = "同样执行 10 步操作：Playwright MCP 约 114,000 Token，DevTools MCP 约 50,000，Playwright CLI 约 27,000，Agent Browser 约 7,000。最贵和最便宜的方案之间相差超过 10 倍，长时间运行时这个差距会显著影响成本。"
+
+[[params.faqItems]]
+question = "Browser-use 是什么？和其他方案有什么不同？"
+answer = "Browser-use 是专为 AI Agent 设计的浏览器自动化框架，支持本地浏览器、真实 Chrome 配置文件和云端浏览器三种模式，还具备会话持久化和云端并行能力。它是唯一支持使用你的真实浏览器登录状态的方案。"
 +++
 
 用 AI 写代码已经不稀奇了，但让 AI **操控浏览器**——打开网页、点击按钮、填写表单、抓取数据——这才是真正的"解放双手"。

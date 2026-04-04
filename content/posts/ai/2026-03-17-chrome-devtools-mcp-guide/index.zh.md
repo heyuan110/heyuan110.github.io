@@ -1,11 +1,27 @@
 +++
 date = '2026-03-17T10:00:00+08:00'
 draft = false
-title = 'Chrome DevTools MCP 配置指南 2026：AI 直连浏览器调试（三种方式详解）'
-description = '手把手配置 Chrome DevTools MCP：解决 AI 打开新窗口的痛点、9222 远程调试端口设置、autoConnect 自动连接、user-data-dir 踩坑经验。适用于 Claude Code 和 Cursor。'
+title = 'Chrome DevTools MCP 配置教程 2026：Claude Code 浏览器调试实战'
+description = '详解 Chrome DevTools MCP 三种连接方式：9222 远程调试端口、autoConnect、user-data-dir 避坑。让 Claude Code 和 Cursor 直接读取浏览器控制台、网络请求和性能数据。'
 toc = true
 tags = ['Chrome DevTools', 'MCP', 'AI Coding Tools', 'Claude Code']
-keywords = ['Chrome DevTools MCP 配置', 'Chrome DevTools MCP 教程', 'Chrome 远程调试端口 9222', 'autoConnect 自动连接', 'AI 浏览器调试', 'MCP 服务器设置', 'Claude Code 浏览器调试', 'Chrome MCP 设置 2026']
+keywords = ['Chrome DevTools MCP 配置', 'Chrome DevTools MCP 教程', 'Claude Code 浏览器调试', 'MCP 浏览器自动化 2026', 'Chrome 远程调试端口 9222', 'Chrome MCP 连接方式', 'AI 浏览器调试工具', 'Cursor MCP 配置']
+
+[[params.faqItems]]
+question = "Chrome DevTools MCP 是什么？"
+answer = "Chrome DevTools MCP 是 Google Chrome 团队开发的 MCP 服务器，让 Claude Code、Cursor 等 AI 编程工具直接连接 Chrome 浏览器，读取控制台日志、网络请求、执行 JavaScript 和录制性能 trace，无需手动复制粘贴。"
+
+[[params.faqItems]]
+question = "Chrome DevTools MCP 为什么总是打开新窗口？"
+answer = "默认配置下 MCP 会启动独立的 Chrome 实例，没有你的登录态和 Cookie。解决方法是用 --remote-debugging-port=9222 启动你自己的 Chrome，然后让 MCP 通过 autoConnect 或指定端口连接已有浏览器。"
+
+[[params.faqItems]]
+question = "Chrome DevTools MCP 支持哪些 AI 编程工具？"
+answer = "支持所有兼容 MCP 协议的工具，包括 Claude Code、Cursor、Windsurf、Cline 等。只需在对应工具的 MCP 配置中添加 chrome-devtools 服务器即可。"
+
+[[params.faqItems]]
+question = "user-data-dir 报错怎么解决？"
+answer = "如果 Chrome 启动时报 user-data-dir 冲突，需要先关闭所有 Chrome 窗口再用 --remote-debugging-port 启动，或者指定一个不同的 --user-data-dir 路径来避免与已有 Chrome 实例冲突。"
 +++
 
 ![Chrome DevTools MCP 连接 AI 助手与浏览器调试工具](cover.webp)
