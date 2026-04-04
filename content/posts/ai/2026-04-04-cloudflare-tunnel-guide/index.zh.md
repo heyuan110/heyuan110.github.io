@@ -24,6 +24,8 @@ keywords = ['内网穿透', 'Cloudflare Tunnel 教程', 'SSH 反向隧道', 'frp
 
 聪明的做法是**反向隧道** —— 不等外部来连你（NAT 会拦截），而是你主动向外连接到一个中继节点，中继节点再把流量通过这条已建立的连接回传给你。本文的三种方案都基于这个原理，但实现方式截然不同。
 
+![NAT 防火墙阻断入站流量 —— 反向隧道解决的核心问题](01-framework-nat-problem.webp)
+
 ## 三种方案速览
 
 开始之前，先看全局：
@@ -152,6 +154,8 @@ autossh -M 20000 -R 8080:127.0.0.1:8080 \
 SSH 隧道是把通用工具拿来客串，[frp](https://github.com/fatedier/frp) 是专门为内网穿透而生的。它支持 HTTP、HTTPS、TCP、UDP，甚至点对点连接。2017 年开源至今，GitHub 90k+ star，被大量 DevOps 团队用在生产环境。
 
 ### 架构
+
+![frp 架构 —— frpc 客户端将多种本地服务穿过 NAT 隧道到 frps 服务端](02-framework-frp-architecture.webp)
 
 frp 是经典的客户端-服务端模型：
 
@@ -285,6 +289,8 @@ remotePort = 27015
 [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/) 的思路是：用 Cloudflare 全球 300 多个数据中心组成的网络来充当中继。你在本地跑一个叫 `cloudflared` 的轻量守护进程，它主动连接到 Cloudflare，Cloudflare 处理剩下的一切 —— DNS、TLS、路由、高可用。
 
 结果：**零基础设施，免费。**
+
+![Cloudflare Tunnel 架构 —— cloudflared 出站连接到 Cloudflare CDN，无需公网服务器](03-framework-cloudflare-tunnel.webp)
 
 ### 深入底层
 
@@ -509,6 +515,8 @@ ERR Failed to fetch features error="lookup cfd-features.argotunnel.com: i/o time
 - 对于静态资源，Cloudflare 的缓存反而可能比直连更快
 
 ## 怎么选：横向对比与决策框架
+
+![SSH 隧道 vs frp vs Cloudflare Tunnel —— 成本、复杂度、安全性和适用场景对比](04-comparison-three-tunnels.webp)
 
 三种方案都实际用下来之后，我的选择逻辑是这样的：
 

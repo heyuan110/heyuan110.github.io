@@ -24,6 +24,8 @@ Port forwarding technically works, but it has serious practical issues: you need
 
 The elegant solution to this problem is **reverse tunneling** — instead of waiting for inbound connections (which NAT blocks), your machine initiates an outbound connection to a relay, and the relay forwards traffic back through that established connection. All three approaches in this article use this principle, but they implement it very differently.
 
+![NAT firewall blocking inbound traffic — the core problem reverse tunneling solves](01-framework-nat-problem.webp)
+
 ## Three Approaches at a Glance
 
 Before diving into the details, here's the landscape:
@@ -155,6 +157,8 @@ Where SSH tunnels are a repurposed tool, [frp](https://github.com/fatedier/frp) 
 
 frp uses a client-server model:
 
+![frp architecture — frpc client tunnels multiple services through NAT to frps server on a public VPS](02-framework-frp-architecture.webp)
+
 - **frps** (server): Runs on your public VPS, accepts client connections, listens for incoming traffic
 - **frpc** (client): Runs on your local machine, connects out to frps, registers which local services to expose
 
@@ -285,6 +289,8 @@ What if you didn't need a server at all?
 [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/) takes the reverse tunnel concept and replaces the "public server" with Cloudflare's global network of 300+ data centers. You run a lightweight daemon called `cloudflared` on your machine, it connects outward to Cloudflare, and Cloudflare handles everything else — DNS, TLS, routing, high availability.
 
 The result: **zero infrastructure to manage, and it's free.**
+
+![Cloudflare Tunnel architecture — cloudflared connects outbound to Cloudflare CDN, no public server needed](03-framework-cloudflare-tunnel.webp)
 
 ### How It Works Under the Hood
 
@@ -509,6 +515,8 @@ Practical tips for better performance:
 - For static assets, Cloudflare's caching can actually make things faster than a direct connection
 
 ## Choosing the Right Tool
+
+![SSH Tunnel vs frp vs Cloudflare Tunnel — side-by-side comparison of cost, complexity, security, and best use cases](04-comparison-three-tunnels.webp)
 
 After using all three approaches in real projects, here's how I think about the decision:
 
