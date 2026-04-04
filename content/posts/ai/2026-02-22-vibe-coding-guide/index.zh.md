@@ -4,8 +4,8 @@ draft = false
 title = 'Vibe Coding 完全指南（2026）：用自然语言写代码的正确姿势'
 description = 'Vibe Coding（氛围编程）到底怎么玩？从 Karpathy 提出到 Collins 词典候选词，5 款主流工具实测对比（Claude Code/Cursor/Trae），附实战案例和避坑指南。'
 toc = true
-tags = ['Vibe Coding', 'AI 编程', '氛围编程', 'Claude Code', 'Cursor']
-categories = ['AI实战']
+tags = ['Vibe Coding', 'AI Coding', 'Claude Code', 'Cursor', 'AI Tools']
+categories = ['AI Guides']
 keywords = ['Vibe Coding', '氛围编程', 'Vibe Coding 是什么', 'AI编程工具对比 2026', 'Vibe Coding 教程', '氛围编程指南']
 +++
 
