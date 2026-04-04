@@ -232,3 +232,11 @@ For Apple, this partnership with Anthropic and OpenAI sends a clear signal: in t
 - [InfoQ: Xcode 26.3 Brings Integrated Agentic Coding](https://www.infoq.com/news/2026/02/xcode-26-3-agentic-coding/)
 - [Swift with Majid: Agentic coding in Xcode](https://swiftwithmajid.com/2026/02/10/agentic-coding-in-xcode/)
 - [Swiftjective-C: Agentic Coding in Xcode 26.3](https://swiftjectivec.com/Agentic-Coding-Codex-Claude-Code-in-Xcode/)
+
+## Related Reading
+
+- [Claude Code Complete Guide: From Beginner to Power User](/posts/ai/2026-01-14-claude-code-guide/) — The comprehensive reference for Claude Code
+- [Claude Code vs Codex CLI (2026): 8-Dimension Head-to-Head Comparison](/posts/ai/2026-02-19-claude-code-vs-codex/) — How the two agents in Xcode compare
+- [AI Coding Agents 2026: The Complete Comparison](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — Broader comparison including all major AI coding tools
+- [Codex CLI Deep Dive: Setup, Config, and 20+ Power User Tips](/posts/ai/2026-03-10-codex-cli-deep-dive/) — Master the Codex CLI that powers Xcode integration
+- [2026 Agentic Coding Trends: 8 Key Insights](/posts/ai/2026-02-23-agentic-coding-trends-2026/) — Where agentic coding is headed

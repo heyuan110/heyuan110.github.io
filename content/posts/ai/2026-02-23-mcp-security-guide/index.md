@@ -274,3 +274,11 @@ MCP security is not a problem you can defer to "someday." From WhatsApp chat his
 Traditional security thinking needs an upgrade. In the MCP era, the attack surface is no longer limited to code and networks — **natural language itself is an attack vector**. Tool Poisoning proves that a seemingly harmless tool description can hijack an entire agent's behavior. Prompt Injection proves that a passage of text in an Issue comment can expose private code to the world.
 
 The good news is that defenses are not complicated. Run `mcp-scan` on your MCP configuration today, audit your credential storage, and implement the principle of least privilege. Security is not a destination but a continuous journey. In 2026, as AI agents grow explosively, taking security seriously matters more than moving fast.
+
+## Related Reading
+
+- [MCP Security 2026: 30 CVEs in 60 Days — What Went Wrong](/posts/ai/2026-03-10-mcp-security-2026/) — Updated security landscape and new vulnerabilities
+- [MCP Protocol Explained: The Universal Standard for AI Integration](/posts/ai/2026-02-20-mcp-protocol-guide/) — Understand the protocol these attacks target
+- [AI Agent Security: Protecting Automated Workflows in 2026](/posts/ai/2026-02-27-ai-agent-security/) — Broader agent security beyond MCP
+- [Claude Code Security: How AI-Powered Code Scanning Changes Everything](/posts/ai/2026-02-22-claude-code-security/) — Security features built into Claude Code
+- [AI Code Security Tools Compared: Codex Security vs Claude Code Security vs Snyk](/posts/ai/2026-03-13-ai-code-security-tools-compared/) — Choosing the right security tooling

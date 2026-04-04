@@ -150,3 +150,11 @@ Claude Code Security runs as a built-in feature of Claude Code, and code is proc
 ### How is this different from GitHub's security scanning?
 
 GitHub's security features (Dependabot, CodeQL) are primarily based on known vulnerability databases and predefined query rules. They excel at finding **known vulnerabilities with CVE identifiers** and dependency security issues. Claude Code Security uses AI-based semantic understanding to discover **unknown, zero-day vulnerabilities**, especially business logic flaws. The two approaches are complementary, not competing — the best practice is to use both, covering known threats and unknown risks alike.
+
+## Related Reading
+
+- [Claude Code Complete Guide: From Beginner to Power User](/posts/ai/2026-01-14-claude-code-guide/) — Comprehensive guide covering all Claude Code features
+- [Claude Code Hooks Guide: 12 Ready-to-Use Configs for Automation](/posts/ai/2026-02-18-claude-code-hooks-guide/) — Use hooks to enforce security checks before every commit
+- [CLAUDE.md Guide: Give Claude Code Persistent Memory](/posts/ai/2026-01-12-claudemd-memory-guide/) — Configure project-level security rules in CLAUDE.md
+- [Claude Code MCP Setup: Connect AI to Any External Service](/posts/ai/2026-02-28-claude-code-mcp-setup/) — Understand MCP security implications when connecting external tools
+- [10 Claude Code Mistakes Beginners Make](/posts/ai/2026-02-25-claude-code-mistakes/) — Common security-related pitfalls and how to avoid them

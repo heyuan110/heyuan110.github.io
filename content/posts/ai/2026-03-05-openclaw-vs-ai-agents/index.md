@@ -414,3 +414,11 @@ If you decide to go with OpenClaw, here are the guides to get you started:
 - [OpenClaw Tavily Integration: Add Web Search to Your AI Agent](/posts/ai/2026-03-05-openclaw-tavily-integration/) — Give your agent web search capabilities
 - [OpenClaw Pitfalls: 15 Automation Mistakes and Fixes](/posts/ai/2026-03-05-openclaw-automation-pitfalls/) — Avoid the most common setup and operation mistakes
 - [OpenClaw Architecture Deep Dive](/posts/ai/2026-02-14-openclaw-architecture-deep-dive/) — Understand how the system works under the hood
+
+## Related Reading
+
+- [AI Coding Agents 2026: The Complete Comparison (7 Tools Tested)](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — Broader comparison of AI coding agents
+- [OpenClaw Multi-Agent Guide: Architecture, Configuration, and Collaboration Patterns](/posts/ai/2026-02-23-openclaw-multi-agent-guide/) — Deep dive into OpenClaw's multi-agent capabilities
+- [Build an AI Coding Agent from Scratch in Python](/posts/ai/2026-03-07-build-ai-agent-python/) — Understand agent internals by building one yourself
+- [Multi-Agent Orchestration: 4 Patterns That Actually Work](/posts/ai/2026-02-26-multi-agent-orchestration/) — Design patterns for multi-agent systems
+- [OpenClaw Claude Code Workflow: How One Dev Built a 100K-Star Project](/posts/ai/2026-01-31-openclaw-claude-code-workflow/) — Real-world workflow combining OpenClaw and Claude Code

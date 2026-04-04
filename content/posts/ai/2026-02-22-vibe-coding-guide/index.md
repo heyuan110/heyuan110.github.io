@@ -325,3 +325,12 @@ The key difference is **who's in control**. In traditional AI-assisted coding (l
 Vibe Coding is redefining how software is built. It's neither a silver bullet nor a toy — it's a powerful new paradigm. In 2026, the smartest move isn't debating whether "AI can write good code," but learning how to **collaborate efficiently with AI** and amplify your creativity and judgment 10x through it.
 
 Pick a tool and start your first Vibe Coding session now.
+
+## Related Reading
+
+- [Vibe Coding Explained: What It Is and How to Do It Right](/posts/ai/2026-02-28-vibe-coding-explained/) — Concise introduction to the Vibe Coding concept
+- [AI Development Methodologies Compared: From Vibe Coding to SDD](/posts/ai/2026-03-11-ai-development-methodologies-compared/) — Where Vibe Coding fits among other AI development approaches
+- [Claude Code Complete Guide: From Beginner to Power User](/posts/ai/2026-01-14-claude-code-guide/) — Master the most popular Vibe Coding tool
+- [Cursor Agent Best Practices: The Complete Guide to AI Coding](/posts/ai/2026-01-19-cursor-agent-best-practices/) — Vibe Coding techniques specific to Cursor
+- [Harness Engineering: Why the System Around Your AI Agent Matters More Than the Model](/posts/ai/2026-04-04-harness-engineering-guide/) — Building reliable infrastructure for AI-assisted coding
+- [AI Workflow Playbook: From Prompts to Production Code](/posts/ai/2026-01-30-ai-workflow-real-guide/) — Turn Vibe Coding output into production-ready systems

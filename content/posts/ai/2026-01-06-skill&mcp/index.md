@@ -140,3 +140,11 @@ MCP and Skills operate at different layers of abstraction:
 Understanding this distinction helps you extend AI capabilities more effectively: when you need to connect a new tool, look for or build an MCP server; when you need the AI to master a new "craft," create a Skill.
 
 It mirrors the layered design pattern in software engineering — low-level libraries provide foundational capabilities, higher-level frameworks encode best practices. Each layer has its role, and the real power comes from using them together.
+
+## Related Reading
+
+- [Claude Code Skills vs SubAgents: Context Management Guide](/posts/ai/2025-12-26-claudecode-skill-subagent/) — Deep dive into when to use Skills vs SubAgents
+- [Claude Code Skills Guide: Teach AI Your Exact Workflow](/posts/ai/2026-01-08-claudecode-skill-guide/) — Step-by-step guide to creating your first Skill
+- [MCP Protocol Explained: The Universal Standard for AI Integration](/posts/ai/2026-02-20-mcp-protocol-guide/) — Complete technical breakdown of the MCP protocol
+- [Best MCP Servers for Claude Code: 18 Tools You Need in 2026](/posts/ai/2026-03-05-best-mcp-servers-claude-code/) — Curated list of the best community MCP servers
+- [Claude Code Complete Guide: From Beginner to Power User](/posts/ai/2026-01-14-claude-code-guide/) — The comprehensive Claude Code reference

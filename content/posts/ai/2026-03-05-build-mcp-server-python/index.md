@@ -1000,3 +1000,10 @@ The MCP ecosystem is growing fast — the Python SDK alone is downloaded million
 - [Building MCP Servers with TypeScript: Zero to Deploy Tutorial](/posts/ai/2026-03-02-building-mcp-servers-typescript/) — The TypeScript version of this tutorial
 - [Claude Code MCP Setup: Connect AI to Any External Service](/posts/ai/2026-02-28-claude-code-mcp-setup/) — Complete guide to MCP configuration in Claude Code
 - [Best MCP Servers for Claude Code: 18 Tools You Need in 2026](/posts/ai/2026-03-05-best-mcp-servers-claude-code/) — Curated list of the best community MCP servers
+
+## Related Reading
+
+- [MCP Protocol Explained: The Universal Standard for AI Integration](/posts/ai/2026-02-20-mcp-protocol-guide/) — Deep dive into MCP protocol architecture and design
+- [MCP Security Guide: Attack Patterns, Real CVEs, and Defense Strategies](/posts/ai/2026-02-23-mcp-security-guide/) — Security considerations for your MCP servers
+- [Build an MCP Server with Claude Code: TypeScript Tutorial](/posts/ai/2026-02-22-claude-code-mcp-server-tutorial/) — Alternative approach using Claude Code as the development tool
+- [Chrome DevTools MCP Setup 2026](/posts/ai/2026-03-17-chrome-devtools-mcp-guide/) — Real-world MCP server connecting to browser DevTools

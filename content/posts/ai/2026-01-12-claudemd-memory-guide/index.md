@@ -500,3 +500,12 @@ A well-written CLAUDE.md is like an onboarding handbook. Claude follows it. New 
 **AI has no memory, but you can give it one.**
 
 CLAUDE.md is that memory.
+
+## Related Reading
+
+- [Claude Code Complete Guide: From Beginner to Power User](/posts/ai/2026-01-14-claude-code-guide/) — The comprehensive starting point for all Claude Code features
+- [CLAUDE.md Guide: Give AI Perfect Project Context Every Time](/posts/ai/2026-02-28-claude-code-claudemd-guide/) — Updated guide with latest CLAUDE.md patterns
+- [CLAUDE.md Best Practices: Write Files That Actually Work](/posts/ai/2026-03-05-claude-code-claudemd-best-practices/) — Practical tips for writing effective CLAUDE.md files
+- [CLAUDE.md vs README.md: Why Your AI Agent Needs Its Own Instruction File](/posts/ai/2026-01-31-claudemd-vs-readme/) — Understanding the difference between human and AI documentation
+- [Claude Code Skills Guide: Teach AI Your Exact Workflow](/posts/ai/2026-01-08-claudecode-skill-guide/) — Extend Claude Code capabilities with custom Skills
+- [Claude Code Hooks Guide: 12 Ready-to-Use Configs for Automation](/posts/ai/2026-02-18-claude-code-hooks-guide/) — Automate workflows alongside your CLAUDE.md configuration

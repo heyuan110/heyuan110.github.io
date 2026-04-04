@@ -251,3 +251,11 @@ AI won't replace developers. But developers who use AI effectively will outperfo
 - [Claude Code Best Practices Guide](/posts/ai/2026-01-06-claudecode-best-practices/)
 - [Anthropic Launches Claude Cowork: AI That Operates Your Files Directly](/posts/ai/2026-01-13-claude-cowork/)
 - [2025 DORA AI Development Report](https://dora.dev/research/2025/dora-report/)
+
+## Related Reading
+
+- [AI Workflow Playbook: From Prompts to Production Code](/posts/ai/2026-01-30-ai-workflow-real-guide/) — Practical patterns for AI-assisted development
+- [Harness Engineering: Why the System Around Your AI Agent Matters More Than the Model](/posts/ai/2026-04-04-harness-engineering-guide/) — Building robust infrastructure for AI workflows
+- [Vibe Coding: The Complete Guide (2026)](/posts/ai/2026-02-22-vibe-coding-guide/) — Natural language coding methodology
+- [High-Frequency Commits: Engineering Practices for 100+ Commits per Day](/posts/ai/2026-01-31-high-frequency-commits-strategy/) — Commit strategies for AI-powered development
+- [Claude Code Complete Guide: From Beginner to Power User](/posts/ai/2026-01-14-claude-code-guide/) — The comprehensive Claude Code reference

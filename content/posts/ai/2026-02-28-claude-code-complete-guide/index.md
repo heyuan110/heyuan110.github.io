@@ -265,3 +265,11 @@ Stay updated by checking [Anthropic's changelog](https://docs.anthropic.com/en/d
 | [Pricing 2026](/posts/ai/2026-02-25-claude-code-pricing/) | Pricing | Plans and cost analysis |
 | [Rate Limits](/posts/ai/2026-02-28-claude-rate-limits/) | Guide | Usage limits explained |
 | [10 Mistakes](/posts/ai/2026-02-25-claude-code-mistakes/) | Tips | Common pitfalls |
+
+## Related Reading
+
+- [Claude Code Complete Guide: From Beginner to Power User](/posts/ai/2026-01-14-claude-code-guide/) — The original comprehensive guide with detailed walkthroughs
+- [How to Install Claude Code 2026: Terminal + VS Code Setup in 10 Minutes](/posts/ai/2026-02-25-claude-code-setup-guide/) — Step-by-step installation guide
+- [Claude Code vs Cursor vs Windsurf 2026: Speed, Cost & Control](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/) — Compare Claude Code against other AI coding tools
+- [Claude Code Slash Commands, Shortcuts & CLI Reference](/posts/ai/2026-03-05-claude-code-slash-commands/) — Quick reference for all commands and shortcuts
+- [Claude Code February 2026 Updates](/posts/ai/2026-02-22-claude-code-february-updates/) — Latest feature additions including Worktree and Background Agents

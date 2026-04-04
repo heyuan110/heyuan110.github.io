@@ -665,3 +665,11 @@ The MCP ecosystem is growing fast. Every MCP server you build becomes instantly 
 - [Claude Code MCP Setup: Connect AI to Any External Service](/posts/ai/2026-02-28-claude-code-mcp-setup/)
 - [Claude Code Complete Guide 2026](/posts/ai/2026-02-28-claude-code-complete-guide/)
 - [Claude Code Hooks: Automation Configs](/posts/ai/2026-02-28-claude-code-hooks-guide/)
+
+## Related Reading
+
+- [Build MCP Servers in Python: Complete Step-by-Step Tutorial](/posts/ai/2026-03-05-build-mcp-server-python/) — The Python alternative to this tutorial
+- [MCP Protocol Explained: The Universal Standard for AI Integration](/posts/ai/2026-02-20-mcp-protocol-guide/) — Deep dive into MCP protocol architecture
+- [Build an MCP Server with Claude Code: TypeScript Tutorial](/posts/ai/2026-02-22-claude-code-mcp-server-tutorial/) — Build MCP servers using Claude Code as your development tool
+- [MCP Security Guide: Attack Patterns, Real CVEs, and Defense Strategies](/posts/ai/2026-02-23-mcp-security-guide/) — Secure your MCP servers before deploying
+- [Best MCP Servers for Claude Code: 18 Tools You Need in 2026](/posts/ai/2026-03-05-best-mcp-servers-claude-code/) — Discover what others have built with MCP

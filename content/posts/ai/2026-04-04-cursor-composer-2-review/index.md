@@ -153,3 +153,11 @@ If you want the best AI coding experience in 2026, the answer is not picking one
 ---
 
 *For a deeper look at AI coding tools and workflows, see my [complete Claude Code guide](/posts/ai/2026-01-14-claude-code-guide/) and [AI coding agents comparison](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/).*
+
+## Related Reading
+
+- [Cursor Agent Best Practices: The Complete Guide to AI Coding](/posts/ai/2026-01-19-cursor-agent-best-practices/) — Get the most out of Cursor's agent capabilities
+- [Cursor Setup Guide 2026: From Install to Advanced Agent Mode](/posts/ai/2026-03-08-cursor-setup-guide/) — Complete Cursor installation and configuration
+- [Claude Code vs Cursor vs Windsurf 2026: Speed, Cost & Control](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/) — Side-by-side comparison of the top three tools
+- [Claw Code: The Open-Source Claude Code Rewrite That Hit 100K Stars in Hours](/posts/ai/2026-04-04-claw-code-open-source-agent/) — Open-source alternative gaining traction
+- [GPT-5.4 vs Claude Opus 4.6: Complete Comparison for Developers](/posts/ai/2026-03-13-gpt-5-4-vs-claude-opus-comparison/) — The models powering these AI coding tools

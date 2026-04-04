@@ -530,3 +530,10 @@ You now own a truly private AI assistant — one that knows you, remembers you, 
 - [Moltbot Wizard Configuration Page](https://docs.molt.bot/start/wizard)
 - [Moltbot GitHub Repository](https://github.com/moltbot/moltbot)
 - [TechCrunch: Everything you need to know about Moltbot](https://techcrunch.com/2026/01/27/everything-you-need-to-know-about-viral-personal-ai-assistant-clawdbot-now-moltbot/)
+
+## Related Reading
+
+- [Moltbot Explained: 80K Stars, Renaming Drama & Security Guide](/posts/ai/2026-01-29-moltbot-deep-dive/) — Deep dive into Moltbot's architecture and security
+- [MoltBot Explained: What It Is, How It Works, and Why It Renamed to OpenClaw](/posts/ai/2026-02-18-what-is-moltbot/) — The full story of the Moltbot-to-OpenClaw transition
+- [OpenClaw Setup Guide: Install and Configure Your AI Agent](/posts/ai/2026-03-05-openclaw-setup-guide/) — Getting started with OpenClaw (the successor to Moltbot)
+- [OpenClaw vs CrewAI vs AutoGPT 2026: 6 AI Agent Frameworks Compared](/posts/ai/2026-03-05-openclaw-vs-ai-agents/) — How OpenClaw compares to other agent frameworks

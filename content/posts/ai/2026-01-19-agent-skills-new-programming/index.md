@@ -252,3 +252,10 @@ This isn't a slogan — it's happening right now.
 - [Claude Code Skill Advanced Patterns](/posts/ai/2026-01-12-claudecode-skill-patterns/)
 - [Moltbot Deep Dive: Personal AI Agent Opportunities and Pitfalls](/posts/ai/2026-01-29-moltbot-deep-dive/)
 - [Claude Code Official Documentation](https://docs.anthropic.com/claude/docs/claude-code)
+
+## Related Reading
+
+- [Skills vs MCP in Claude Code: Two Ways to Extend AI Capabilities](/posts/ai/2026-01-06-skill-mcp/) — Understanding the layered architecture of AI extensions
+- [Claude Code Skills vs SubAgents: Context Management Guide](/posts/ai/2025-12-26-claudecode-skill-subagent/) — When to use Skills versus SubAgents
+- [Superpowers Deep Dive: The Skills Framework That Makes Claude Code a Senior Engineer](/posts/ai/2026-02-01-superpowers-deep-dive/) — How the Superpowers framework leverages Skills
+- [AI Development Workflow: From Requirements to Production](/posts/ai/2026-01-19-ai-dev-workflow/) — Complete workflow integrating Skills into real development

@@ -185,3 +185,11 @@ The question is no longer whether agent harnesses should be open. It is how fast
 - [Claude Code Complete Guide](/posts/ai/2026-01-14-claude-code-guide/)
 - [AI Coding Agents Comparison 2026](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)
 - [MCP Security in 2026](/posts/ai/2026-03-10-mcp-security-2026/)
+
+## Related Reading
+
+- [OpenClaw vs CrewAI vs AutoGPT 2026: 6 AI Agent Frameworks Compared](/posts/ai/2026-03-05-openclaw-vs-ai-agents/) — How Claw Code fits in the broader agent framework landscape
+- [Cursor Composer 2 Review: The Kimi K2.5 Controversy](/posts/ai/2026-04-04-cursor-composer-2-review/) — Another AI coding tool making waves the same week
+- [Seedance 2.0 Deep Dive: ByteDance AI Video Model](/posts/ai/2026-04-04-seedance-2-bytedance-ai-video/) — Another open-source AI release from the same period
+- [OpenCode Review: Can This Open Source AI Coding Agent Replace Claude Code?](/posts/ai/2026-03-13-opencode-ai-coding-agent-review/) — Earlier open-source Claude Code alternative
+- [Claude Code vs Cursor vs Windsurf 2026: Speed, Cost & Control](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/) — The proprietary tools that Claw Code aims to replace

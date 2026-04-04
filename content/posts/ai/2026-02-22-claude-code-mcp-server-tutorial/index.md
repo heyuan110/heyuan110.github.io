@@ -481,3 +481,11 @@ Absolutely. Any client that supports the MCP protocol can use your server, inclu
 - [Claude Code Browser Automation in Practice](/posts/ai/2026-01-28-claude-code-browser-automation/)
 - [The Complete Guide to Claude Code](/posts/ai/2026-01-14-claude-code-guide/)
 - [OpenClaw Skills Top 20 Ranking](/posts/ai/2026-01-20-claude-code-skills-top20/)
+
+## Related Reading
+
+- [MCP Protocol Explained: The Universal Standard for AI Integration](/posts/ai/2026-02-20-mcp-protocol-guide/) — Deep dive into MCP architecture and design
+- [Building MCP Servers with TypeScript: Zero to Deploy Tutorial](/posts/ai/2026-03-02-building-mcp-servers-typescript/) — More advanced TypeScript MCP patterns
+- [Build MCP Servers in Python: Complete Step-by-Step Tutorial](/posts/ai/2026-03-05-build-mcp-server-python/) — Python alternative for MCP server development
+- [Best MCP Servers for Claude Code: 18 Tools You Need in 2026](/posts/ai/2026-03-05-best-mcp-servers-claude-code/) — Discover ready-made MCP servers
+- [MCP Security Guide: Attack Patterns, Real CVEs, and Defense Strategies](/posts/ai/2026-02-23-mcp-security-guide/) — Secure your MCP servers before deploying

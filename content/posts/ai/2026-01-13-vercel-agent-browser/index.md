@@ -236,3 +236,11 @@ If you are building AI agents that need web interaction capabilities, Agent Brow
 **Repository**: [https://github.com/vercel-labs/agent-browser](https://github.com/vercel-labs/agent-browser)
 
 **License**: Apache 2.0
+
+## Related Reading
+
+- [Browser Automation in Claude Code: 5 Tools Compared (2026)](/posts/ai/2026-01-28-claude-code-browser-automation/) — Side-by-side comparison of browser automation approaches
+- [Claude Code Complete Guide: From Beginner to Power User](/posts/ai/2026-01-14-claude-code-guide/) — The comprehensive reference for Claude Code
+- [Claude Code Skills Guide: Teach AI Your Exact Workflow](/posts/ai/2026-01-08-claudecode-skill-guide/) — How to create and install Skills like Agent Browser
+- [MCP Protocol Explained: The Universal Standard for AI Integration](/posts/ai/2026-02-20-mcp-protocol-guide/) — The protocol layer that powers AI tool integrations
+- [AI Coding Agents 2026: The Complete Comparison](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — How different AI coding tools stack up

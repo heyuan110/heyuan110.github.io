@@ -241,3 +241,12 @@ Data source: SkillsMP trends, third week of January 2026
 ---
 
 *Data as of January 19, 2026. Star counts change continuously — refer to GitHub for real-time numbers.*
+
+## Related Reading
+
+- [Claude Code Complete Guide: From Beginner to Power User](/posts/ai/2026-01-14-claude-code-guide/) — The comprehensive starting point for all Claude Code features
+- [Claude Code Skills Guide: Teach AI Your Exact Workflow](/posts/ai/2026-01-08-claudecode-skill-guide/) — Learn how to create your own Skills from scratch
+- [Claude Code Skills: Create Custom AI Abilities in 30 Seconds](/posts/ai/2026-01-12-claudecode-skill-patterns/) — Quick patterns for building effective SKILL.md files
+- [Claude Code Skills Guide: Create Custom SKILL.md Workflows](/posts/ai/2026-02-28-claude-code-skills-guide/) — Updated guide with advanced workflow examples
+- [Claude Code Skills vs SubAgents: Context Management Guide](/posts/ai/2025-12-26-claudecode-skill&subagent/) — When to use Skills vs SubAgents for complex tasks
+- [Best MCP Servers for Claude Code: 18 Tools You Need in 2026](/posts/ai/2026-03-05-best-mcp-servers-claude-code/) — Extend Claude Code with MCP server integrations
