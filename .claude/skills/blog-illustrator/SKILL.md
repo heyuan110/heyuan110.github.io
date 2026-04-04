@@ -54,6 +54,8 @@ description: "文章配图生成器。分析文章结构，识别需要配图的
 
 ### 兼容性矩阵
 
+> 图例：✓✓ = 强烈推荐 | ✓ = 兼容 | ✗ = 不推荐
+
 | | flat-vector | blueprint | minimal | warm | editorial | digital |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|
 | infographic | ✓✓ | ✓✓ | ✓✓ | ✓ | ✓✓ | ✓✓ |
@@ -156,3 +158,4 @@ description: "文章配图生成器。分析文章结构，识别需要配图的
 ## 参考文件
 
 - [references/prompt-templates.md](references/prompt-templates.md) — 各类型的提示词模板
+- [references/generation-methods.md](references/generation-methods.md) — Rube MCP + Gemini 生图调用方法

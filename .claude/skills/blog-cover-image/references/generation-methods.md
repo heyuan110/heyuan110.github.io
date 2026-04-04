@@ -75,6 +75,10 @@ for x in range(WIDTH):
     draw.line([(x, 0), (x, 3)], fill=(100, 149, 237, alpha))
 
 # 加载字体
+# 注意：以下路径为 macOS 特有，其他平台需要调整：
+# - Linux: '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf' 等
+# - Windows: 'C:/Windows/Fonts/msyh.ttc' 等
+# 如果所有路径都失败，会自动回退到 Pillow 默认字体
 FONT_PATHS = [
     '/System/Library/Fonts/STHeiti Medium.ttc',
     '/System/Library/Fonts/STHeiti Light.ttc',

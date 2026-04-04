@@ -95,10 +95,7 @@ data_state: "final"
 
 ### 1.4 历史对比
 
-检查是否存在历史报告：
-```bash
-ls plans/reports/ 2>/dev/null
-```
+检查是否存在历史诊断报告（保存在项目本地的诊断报告目录中）。
 如果有上期报告，对比核心指标变化趋势，评估上次优化的效果。
 
 ---
@@ -107,29 +104,9 @@ ls plans/reports/ 2>/dev/null
 
 ### 2.1 分离中英文搜索需求
 
-将 GSC 关键词按语言分类（中文含汉字，其余为英文），然后**动态聚类**：
+将 GSC 关键词按语言分类（中文含汉字，其余为英文），然后**动态聚类**。
 
-**聚类方法**（在 RUBE_REMOTE_BASH_TOOL 中执行）：
-```python
-# 1. 按语言分类
-zh_queries = [q for q in queries if any(ord(c) > 0x4e00 for c in q['keys'][0])]
-en_queries = [q for q in queries if not any(ord(c) > 0x4e00 for c in q['keys'][0])]
-
-# 2. 提取高频词根做动态聚类（不预设固定集群）
-from collections import Counter
-def extract_clusters(queries, top_n=8):
-    """从关键词中提取高频主题词，动态生成集群"""
-    words = []
-    for q in queries:
-        kw = q['keys'][0].lower()
-        # 提取2-gram和关键实体
-        tokens = kw.split()
-        words.extend([' '.join(tokens[i:i+2]) for i in range(len(tokens)-1)])
-    freq = Counter(words).most_common(top_n)
-    return freq  # 返回最高频的主题词作为集群名
-```
-
-**不要预设固定集群**。热点会变——上个月的头部关键词下个月可能消失。每次运行都从数据中动态发现当前的热点集群。
+聚类算法详见 [references/clustering-algorithm.md](references/clustering-algorithm.md)。核心原则：**不要预设固定集群**，每次运行都从数据中动态发现当前的热点集群。
 
 输出格式：
 ```
@@ -303,7 +280,7 @@ Agent 3: 老文章批量优化（FAQ + 内链 + SEO）
 
 - 目标关键词和搜索数据（来自 Phase 1-3）
 - 中文角度 vs 英文角度（来自 Phase 2.3）
-- 必须遵循 AGENTS.md 中的所有规则
+- 必须遵循项目配置文件中的所有写作规则
 - 文章目录路径 `content/posts/ai/YYYY-MM-DD-slug/`
 - 新文章默认不添加 categories
 - 4+ 内链到已有相关文章
@@ -338,7 +315,7 @@ git push origin code
 
 ### 6.3 保存报告
 
-将本次诊断数据保存到 `plans/reports/YYYY-MM-DD-report.md`（私有仓库 blog-ops），便于下次对比。
+将本次诊断数据保存到诊断报告目录（如 `plans/reports/YYYY-MM-DD-report.md`），便于下次对比。
 
 ---
 
@@ -400,7 +377,7 @@ done
 | 只写新文章不优化老文章 | 优化老文章（FAQ + 内链 + SEO）ROI 通常更高 |
 | 追热点但不匹配博客定位 | 热点必须与 AI/编程/工具相关 |
 | 写完不分发 | 发布后用 `/distribute` 同步到 dev.to + 掘金 |
-| 不保存诊断报告 | 每次诊断保存到 plans/reports/，下次对比趋势 |
+| 不保存诊断报告 | 每次诊断保存到诊断报告目录，下次对比趋势 |
 | 新文章不做内链 | 每篇新文章至少 4-6 个内链 |
 | 不用 blog-writer skill | 写文章必须用 `/blog-writer`，确保格式和质量一致 |
 | 忽略 FAQ 结构化数据 | 每篇文章都应有 3-5 个 `[[params.faqItems]]` |

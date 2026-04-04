@@ -112,6 +112,8 @@ No watermarks, no logos.
 
 ### 步骤 4：生成图片
 
+详细的 API 调用代码见 [references/generation-methods.md](references/generation-methods.md)。
+
 1. 调用 Rube MCP + Gemini 生成
 2. 下载并转换为 WebP（质量 85）
 3. 验证生成结果

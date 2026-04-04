@@ -131,53 +131,15 @@ ls content/posts/ai/
 
 #### 4.1 Front Matter + 封面图引用（TOML 格式）
 
-**英文版（`index.md`，必须创建）：**
+完整的 Front Matter 模板（英文版、中文版、FAQ 结构化数据）详见 [references/frontmatter-template.md](references/frontmatter-template.md)。
 
-```toml
-+++
-date = '2026-01-26T10:00:00+08:00'
-draft = false
-title = 'Article Title (50-60 chars, primary keyword first)'
-description = 'SEO description for search results and social sharing (120-160 chars)'
-toc = true
-tags = ['Claude Code', 'AI Agent', 'specific-tag']
-keywords = ['search keyword 1', 'search keyword 2']
-+++
+**关键规则**：
+- 英文版（`index.md`）和中文版（`index.zh.md`）默认都必须创建
+- 每篇文章必须在 front matter 中添加 3-5 个 FAQ（`[[params.faqItems]]`）
+- 封面图必须在正文第一行引用：`![ALT](cover.webp)`
 
-![Descriptive ALT text with primary keyword](cover.webp)
-```
+#### FAQ 写作要求
 
-**中文版（`index.zh.md`，默认必须创建）：**
-
-```toml
-+++
-date = '2026-01-26T10:00:00+08:00'
-draft = false
-title = '中文标题（自然表达，非逐字翻译，含核心关键词）'
-description = '中文 SEO 描述，面向中文搜索用户（120-160 字符）'
-toc = true
-tags = ['Claude Code', 'AI Agent', 'specific-tag']
-keywords = ['中文搜索关键词1', '中文搜索关键词2']
-+++
-
-![中文 ALT 描述，含核心关键词](cover.webp)
-```
-
-#### FAQ 结构化数据（必须）
-
-⚠️ **每篇文章必须在 front matter 中添加 3-5 个 FAQ**，这是提升搜索 CTR 最有效的手段：
-
-```toml
-[[params.faqItems]]
-question = "用户最常搜索的问题？"
-answer = "直接回答，1-3 句话，包含核心关键词。"
-
-[[params.faqItems]]
-question = "另一个常见问题？"
-answer = "简洁准确的回答。"
-```
-
-FAQ 写作要求：
 - 问题用用户实际搜索的方式提问（如 "How do I..."、"What is..."、"...多少钱"）
 - 答案直接回答问题，不废话
 - 如果有 GSC 数据，从零点击高展示的搜索词中提取 FAQ 问题

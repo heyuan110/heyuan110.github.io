@@ -41,7 +41,7 @@ git log --diff-filter=A --name-only -1 --pretty=format: -- 'content/posts/ai/*/i
 - description
 - tags
 - 正文前 500 字（摘要用）
-- 文章 URL（基于目录名推算：`https://www.heyuan110.com/posts/ai/<slug>/`）
+- 文章 URL（基于目录名推算，域名从 `hugo.toml` 的 `baseURL` 动态获取）
 
 ### Step 2: 生成分发内容
 
@@ -67,7 +67,7 @@ arguments:
 
 **摘要模板**：
 ```markdown
-*Originally published at [heyuan110.com](<原文URL>)*
+*Originally published at [my blog](<原文URL>)*
 
 <文章前500字>
 
@@ -80,7 +80,7 @@ This article covers:
 - <要点2>  
 - <要点3>
 
-If you found this useful, check out [my blog](https://www.heyuan110.com/) for more AI engineering guides.
+If you found this useful, check out [my blog](<博客首页URL>) for more AI engineering guides.
 ```
 
 **发布后**：告诉用户 dev.to 草稿链接，用户确认后可改为 `published: true`。
@@ -93,7 +93,7 @@ If you found this useful, check out [my blog](https://www.heyuan110.com/) for mo
 ```markdown
 # <中文标题>
 
-> 本文首发于 [heyuan110.com](<原文URL>)，转载请注明出处。
+> 本文首发于 [我的博客](<原文URL>)，转载请注明出处。
 
 <中文文章前500字>
 
@@ -106,7 +106,7 @@ If you found this useful, check out [my blog](https://www.heyuan110.com/) for mo
 - <要点2>
 - <要点3>
 
-更多 AI 工程实战文章，欢迎访问 [我的博客](https://www.heyuan110.com/)。
+更多 AI 工程实战文章，欢迎访问 [我的博客](<博客首页URL>)。
 ```
 
 **V2EX 格式**：
