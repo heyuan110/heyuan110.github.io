@@ -7,6 +7,26 @@ toc = true
 tags = ['Codex CLI', 'AI Coding', 'OpenAI', 'Terminal Tools', 'AI Agent']
 categories = ['AI Guides']
 keywords = ['Codex CLI guide', 'Codex CLI tips', 'OpenAI Codex', 'AI coding tools', 'Codex CLI vs Claude Code']
+
+[[params.faqItems]]
+question = "How do I install Codex CLI?"
+answer = "Install via npm with 'npm install -g @openai/codex' or via Homebrew on macOS with 'brew install openai-codex'. Authenticate using either your ChatGPT subscription (codex login) or an API key configured in ~/.codex/config.toml."
+
+[[params.faqItems]]
+question = "What is the difference between Codex CLI --full-auto and --yolo mode?"
+answer = "The --full-auto flag keeps the OS-level sandbox active but reduces approval prompts for daily development. The --yolo flag (--dangerously-bypass-approvals-and-sandbox) completely disables both the sandbox and approvals, and should only be used in isolated CI/CD environments, never on your personal machine."
+
+[[params.faqItems]]
+question = "Can I resume a previous Codex CLI session?"
+answer = "Yes, Codex CLI supports full session recovery. Use 'codex resume' for an interactive selector, 'codex resume --last' for the most recent session, or 'codex resume --all' to see sessions from all directories. Conversation history, plans, and file context are fully restored."
+
+[[params.faqItems]]
+question = "What model does Codex CLI use by default?"
+answer = "Codex CLI defaults to gpt-5.3-codex, OpenAI's latest model optimized specifically for coding tasks. You can switch models at launch with 'codex -m model-name' or mid-session using the /model slash command."
+
+[[params.faqItems]]
+question = "How does Codex CLI compare to Claude Code?"
+answer = "Codex CLI offers lower API costs, multi-form-factor flexibility (CLI + Desktop App + VS Code), and built-in async task automation. Claude Code provides deeper code comprehension with its million-token context window, higher first-pass code quality, and a pure terminal-native experience preferred by power users."
 +++
 
 ![Codex CLI mastery guide: 20+ power tips cover image](cover.webp)

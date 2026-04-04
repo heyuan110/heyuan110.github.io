@@ -7,6 +7,26 @@ toc = true
 tags = ['Claude Code', 'Skills', 'Automation', 'Workflow']
 categories = ['AI Guides']
 keywords = ['Claude Code Skills', 'SKILL.md guide', 'Claude Code skill tutorial', 'custom Claude Code skills', 'Claude Code automation', 'Claude Code plugins', 'agent skills']
+
+[[params.faqItems]]
+question = "What is a Claude Code Skill and how do I create one?"
+answer = "A Skill is a reusable set of instructions packaged as a SKILL.md file with YAML frontmatter and Markdown content. Create a directory at ~/.claude/skills/your-skill-name/ (personal) or .claude/skills/your-skill-name/ (project), then write a SKILL.md file with a name, description, and step-by-step instructions."
+
+[[params.faqItems]]
+question = "What is the difference between Claude Code Skills and slash commands?"
+answer = "Slash commands (in .claude/commands/) require manual invocation every time. Skills (in .claude/skills/) can be triggered automatically when Claude detects a relevant conversation context, and also support manual invocation. Skills additionally support frontmatter for invocation control, supporting files, and model overrides."
+
+[[params.faqItems]]
+question = "How do Claude Code Skills compare to CLAUDE.md and Hooks?"
+answer = "CLAUDE.md provides static project context like tech stack and conventions. Skills define reusable workflows that Claude decides when to apply. Hooks guarantee execution of specific actions (like linting after file edits). Use CLAUDE.md for context, Skills for repeatable workflows, and Hooks for mandatory steps."
+
+[[params.faqItems]]
+question = "Do Claude Code Skills increase token usage?"
+answer = "No, Skills use a progressive disclosure pattern. At startup, only the frontmatter (about 100 tokens per Skill) loads into context. The full Skill content only loads when Claude determines it is relevant, so you can have dozens of Skills installed without bloating your context window."
+
+[[params.faqItems]]
+question = "Can Claude Code Skills run shell commands automatically?"
+answer = "Yes, Skills support dynamic context injection using the !`command` syntax. Shell commands inside this syntax execute immediately when the Skill activates, and their output replaces the placeholder before Claude sees the content. This is useful for injecting live data like PR diffs or git logs."
 +++
 
 ![Claude Code Skills guide for teaching AI custom workflows](cover.webp)

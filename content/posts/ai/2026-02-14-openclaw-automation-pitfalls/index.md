@@ -7,6 +7,22 @@ toc = true
 tags = ['OpenClaw', 'Agent', 'Automation', 'Skills', 'Best Practices']
 categories = ['AI Guides']
 keywords = ['OpenClaw configuration', 'session isolation', 'task isolation', 'agent scheduling', 'AI agent team collaboration', 'dmScope', 'clawdhub', 'proactive-agent', 'OpenClaw pitfalls', 'OpenClaw best practices']
+
+[[params.faqItems]]
+question = "Why does my OpenClaw agent fabricate search results?"
+answer = "When tavily-search fails silently (expired API key, exhausted quota, or network issues), the agent falls back to generating answers from training data without telling you. Add a hard rule to the system prompt requiring the agent to explicitly report search failures instead of substituting training data."
+
+[[params.faqItems]]
+question = "How do I prevent data leaks between users in OpenClaw?"
+answer = "Set dmScope to 'per-channel-peer' in openclaw.json. The default 'main' scope shares all DMs in a single session, meaning one user's data can appear in another's chat. For multi-user deployments, session isolation is the highest-priority configuration."
+
+[[params.faqItems]]
+question = "What are the 4 essential system configurations after installing OpenClaw Skills?"
+answer = "In priority order: (1) Session isolation to prevent cross-user data leaks, (2) Task isolation to prevent context pollution between tasks, (3) Concurrency control to prevent API quota exhaustion and cost blowouts, and (4) Progress reporting to prevent silent task failures."
+
+[[params.faqItems]]
+question = "How do I install Skills with the ClawdHub CLI?"
+answer = "Install the CLI globally with 'npm i -g clawdhub', then use 'clawdhub install <skill-name>' to add Skills. Note: the correct CLI name is 'clawdhub' (with a 'd'), not 'clawhub'. The old skill name 'proactive-agent-1-2-4' has been renamed to 'proactive-agent'."
 +++
 
 ![OpenClaw automation configuration and team collaboration best practices](cover.webp)

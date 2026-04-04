@@ -7,6 +7,26 @@ toc = true
 tags = ['Claude Code', 'Hooks', 'Automation', 'Configuration']
 categories = ['AI Guides']
 keywords = ['Claude Code Hooks', 'Claude Code automation', 'Claude Code configuration', 'PreToolUse', 'PostToolUse', 'Claude Code hooks guide', 'Claude Code auto format', 'claude code hooks events list 2026', 'claude code hooks events', 'claude code lifecycle hooks']
+
+[[params.faqItems]]
+question = "What are Claude Code Hooks?"
+answer = "Hooks are shell commands or scripts that Claude Code executes automatically at specific lifecycle events — before a tool runs, after a file is edited, when a session starts or ends. They provide deterministic, programmatic control over your AI coding workflow without relying on prompting."
+
+[[params.faqItems]]
+question = "What hook events does Claude Code support?"
+answer = "Claude Code supports 9 lifecycle events: PreToolUse, PostToolUse, Notification, Stop, SubagentStop, PreCompact, PostCompact, SessionStart, and SessionEnd. The most commonly used are PreToolUse (to block dangerous operations) and PostToolUse (to auto-format code)."
+
+[[params.faqItems]]
+question = "How do I block dangerous commands with Claude Code Hooks?"
+answer = "Use a PreToolUse hook with a matcher for the Bash tool. The hook script checks the command via stdin JSON, and if it matches a dangerous pattern (like rm -rf /), it prints an error to stderr and exits with code 2 to block execution."
+
+[[params.faqItems]]
+question = "Where do I configure Claude Code Hooks?"
+answer = "Hooks are defined in Claude Code settings files at three scopes: project-level in .claude/settings.json (recommended, commit to Git for team sharing), user-level in ~/.claude/settings.json (applies to all projects), or enterprise-level managed by your organization."
+
+[[params.faqItems]]
+question = "What is the difference between Claude Code Hooks, Skills, and MCP?"
+answer = "Hooks run automatically at lifecycle events for enforcement and automation (like auto-formatting). Skills are reusable prompts triggered manually by the user via slash commands. MCP servers connect Claude to external services and APIs. Use Hooks when something must happen reliably every time."
 +++
 
 ![Claude Code Hooks automation workflow with 12 ready-to-use configs](cover.webp)

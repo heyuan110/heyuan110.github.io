@@ -7,6 +7,26 @@ toc = true
 tags = ['Claude Code', 'Setup', 'Tutorial', 'Getting Started']
 categories = ['AI Guides']
 keywords = ['Claude Code install', 'Claude Code setup', 'Claude Code setup 2026', 'Claude Code tutorial', 'how to install Claude Code', 'Claude Code getting started', 'Claude Code 2026', 'Claude Code VS Code', 'claude code installation guide', 'claude code npm install']
+
+[[params.faqItems]]
+question = "How do I install Claude Code in 2026?"
+answer = "Run 'curl -fsSL https://claude.ai/install.sh | bash' on macOS or Linux. On Windows, use 'irm https://claude.ai/install.ps1 | iex' in PowerShell. Node.js is no longer required — the native installer handles everything and auto-updates."
+
+[[params.faqItems]]
+question = "Does Claude Code require a paid subscription?"
+answer = "Yes. Claude Code requires either a Pro ($20/month) or Max ($100-200/month) subscription with OAuth login, or an Anthropic API key with credits for pay-per-token billing. Enterprise users can also connect through AWS Bedrock or Google Vertex AI."
+
+[[params.faqItems]]
+question = "How do I set up Claude Code in VS Code?"
+answer = "Open VS Code, go to Extensions (Cmd+Shift+X), search for 'Claude Code', and install the official Anthropic extension. This adds inline editing, diff previews, checkpoint management, and multi-session support directly in your editor."
+
+[[params.faqItems]]
+question = "What is CLAUDE.md and why do I need it?"
+answer = "CLAUDE.md is a Markdown file in your project root that tells Claude Code about your project's tech stack, code conventions, common commands, and architecture. Claude Code reads it at the start of every session, eliminating the need to re-explain your project each time and significantly improving response quality."
+
+[[params.faqItems]]
+question = "Which Claude model should I use in Claude Code?"
+answer = "Use Sonnet 4.6 (the default) for 80% of daily coding work — it offers the best balance of speed and capability. Switch to Opus 4.6 for complex multi-file refactors and deep reasoning. Use Haiku 4.5 for quick questions and simple tasks to save costs."
 +++
 
 ![Claude Code setup guide showing terminal installation and IDE integration](cover.webp)

@@ -7,6 +7,26 @@ toc = true
 tags = ['Claude Code', 'Agent Teams', 'Multi-Agent', 'Collaboration']
 categories = ['AI Guides']
 keywords = ['Claude Code Agent Teams', 'multi-agent collaboration', 'Claude Code teams', 'AI team collaboration', 'Claude Code multi-agent', 'agent teams tutorial']
+
+[[params.faqItems]]
+question = "How do I enable Claude Code Agent Teams?"
+answer = "Set the environment variable CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1 before launching Claude Code, or add it to your ~/.claude/settings.json under the env key. Agent Teams is still an experimental feature as of February 2026."
+
+[[params.faqItems]]
+question = "What is the difference between Agent Teams and Subagents in Claude Code?"
+answer = "Subagents use one-way hierarchical communication where a parent delegates isolated tasks. Agent Teams support multi-directional messaging between a Team Lead and Teammates, enabling lateral coordination. Use Subagents for cleanly decomposable tasks and Agent Teams for complex tasks with interdependencies."
+
+[[params.faqItems]]
+question = "What display modes does Claude Code Agent Teams support?"
+answer = "Agent Teams supports two display modes: in-process mode (default, works in any terminal) where agents share one window, and split-pane mode (requires tmux or iTerm2) where each Teammate gets its own pane for simultaneous viewing."
+
+[[params.faqItems]]
+question = "How much does Claude Code Agent Teams cost?"
+answer = "Agent Teams runs multiple Claude agents simultaneously, each consuming tokens independently. Costs are higher than single-agent usage since multiple Opus or Sonnet instances run in parallel. The exact cost depends on the number of teammates and task complexity."
+
+[[params.faqItems]]
+question = "Can Claude Code teammates communicate with each other?"
+answer = "Yes, teammates use a mailbox messaging system for lateral communication. When one agent modifies an API interface, it can notify another agent building a frontend that consumes it, enabling real-time coordination instead of discovering conflicts after both agents finish."
 +++
 
 ![Claude Code Agent Teams multi-agent collaboration patterns](cover.webp)

@@ -7,6 +7,26 @@ toc = true
 tags = ['OpenAI', 'Symphony', 'AI Agents', 'Autonomous Coding', 'Codex']
 categories = ['AI Guides']
 keywords = ['OpenAI Symphony', 'Symphony AI coding', 'autonomous coding agent', 'Symphony framework', 'harness engineering', 'Codex orchestration']
+
+[[params.faqItems]]
+question = "What is OpenAI Symphony and how does it work?"
+answer = "OpenAI Symphony is an open-source automation service that monitors your issue tracker (like Linear), spawns autonomous Codex coding agents for each task, and delivers verified pull requests with passing CI checks. It operates through a WORKFLOW.md configuration file that lives in your repository."
+
+[[params.faqItems]]
+question = "Does Symphony replace developers?"
+answer = "No. Symphony automates the implementation step but still requires human review before merging pull requests. It handles routine coding tasks so developers can focus on architecture, design decisions, and complex problems that require human judgment."
+
+[[params.faqItems]]
+question = "What issue trackers does Symphony support?"
+answer = "Symphony currently ships with a Linear integration using GraphQL. The architecture is pluggable, and the community is working on a GitHub Issues adapter. Adding support for Jira or other trackers requires implementing a standard interface."
+
+[[params.faqItems]]
+question = "What is harness engineering in the context of Symphony?"
+answer = "Harness engineering is OpenAI's term for designing infrastructure, constraints, and feedback loops that make AI agents reliably productive. It encompasses context engineering, architectural constraints like sandboxed execution, and entropy management through retry queues and proof-of-work verification."
+
+[[params.faqItems]]
+question = "How does Symphony handle agent failures?"
+answer = "Symphony uses exponential backoff retry logic starting at 10 seconds and capping at 5 minutes. After exhausting all retries (default 3 attempts), the issue is released back to the tracker for human attention. It also supports state reconciliation if issues change in the tracker."
 +++
 
 ![OpenAI Symphony — autonomous coding agent orchestration framework](cover.webp)

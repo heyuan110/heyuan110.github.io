@@ -7,6 +7,26 @@ toc = true
 tags = ['OpenClaw', 'Multi-Agent', 'AI Collaboration', 'AI Architecture']
 categories = ['AI Guides']
 keywords = ['OpenClaw multi-agent', 'multi-agent architecture', 'AI agent collaboration', 'agent orchestration', 'sessions_send']
+
+[[params.faqItems]]
+question = "What is OpenClaw multi-agent architecture?"
+answer = "OpenClaw multi-agent architecture lets you create multiple specialized AI agents — each with its own memory, workspace, and model — that collaborate through routing bindings and inter-agent communication via sessions_send. Instead of one overloaded agent, you build a team of specialists (writer, coder, researcher) coordinated by a supervisor agent."
+
+[[params.faqItems]]
+question = "How many agents should I create in OpenClaw?"
+answer = "For personal use, 3-5 agents are sufficient: one supervisor plus 2-4 specialists. For team use, divide by business line with 2-3 agents per line. If two agents handle 80%+ the same task type, consider merging them — more agents means more communication overhead."
+
+[[params.faqItems]]
+question = "Does inter-agent communication in OpenClaw consume extra tokens?"
+answer = "Yes. Every sessions_send call is an API call that consumes tokens. To reduce costs, have the supervisor agent handle simple tasks directly, use token optimization strategies for context length, and assign lighter-weight models to sub-agents."
+
+[[params.faqItems]]
+question = "What are the main multi-agent collaboration patterns in OpenClaw?"
+answer = "OpenClaw supports four patterns: Supervisor (central coordinator delegates to specialists sequentially), Router (parallel dispatch based on message source), Pipeline (assembly-line processing where each agent's output feeds the next), and Parallel (splitting one task across multiple agents simultaneously). Start with Supervisor and upgrade as needed."
+
+[[params.faqItems]]
+question = "Can OpenClaw agents use different AI models?"
+answer = "Yes. Each agent can be configured with a different model. For example, you might use GLM-4.7 for brainstorming, DeepSeek for writing, Claude Sonnet for coding, and GPT-4o for research — choosing the best model for each agent's specialty."
 +++
 
 ![OpenClaw Multi-Agent Collaboration Architecture Guide Cover](cover.webp)

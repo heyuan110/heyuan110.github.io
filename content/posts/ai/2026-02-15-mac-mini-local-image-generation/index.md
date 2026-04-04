@@ -7,6 +7,26 @@ toc = true
 tags = ['Mac Mini', 'AI Image Generation', 'ComfyUI', 'Draw Things', 'Stable Diffusion', 'Flux']
 categories = ['AI Guides']
 keywords = ['Mac Mini local image generation', 'ComfyUI Mac setup', 'Draw Things review', 'Draw Things vs ComfyUI', 'Apple Silicon AI image generation', 'Flux Mac Mini M4', 'local AI image generator 2026', 'ComfyUI vs Draw Things', 'best Mac AI art tool', 'GGUF quantization Flux', 'Mac Mini M4 Stable Diffusion', 'mac mini m4 ai image generation', 'local ai image generation mac']
+
+[[params.faqItems]]
+question = "Can a Mac Mini M4 run local AI image generation?"
+answer = "Yes. The Mac Mini M4's Apple Silicon uses unified memory where CPU and GPU share the same pool. The 16GB model runs SD 1.5 and SDXL smoothly, while the 24GB model handles Flux via GGUF quantization. Draw Things and ComfyUI are the recommended tools."
+
+[[params.faqItems]]
+question = "What is the best free AI image generation tool for Mac in 2026?"
+answer = "Draw Things is the top recommendation. It is an Apple-native app (SwiftUI + Metal FlashAttention) that runs roughly 20% faster than ComfyUI on Apple Silicon, supports Flux, SDXL, and other mainstream models, and is free on the App Store. ComfyUI is better for advanced users needing complex workflows."
+
+[[params.faqItems]]
+question = "Is 16GB RAM enough for AI image generation on Mac?"
+answer = "16GB handles SD 1.5 and SDXL smoothly but only runs Flux at Q4 quantization with noticeable quality loss and slower speeds. If you plan to regularly generate high-quality images with Flux, 24GB is the comfortable starting point."
+
+[[params.faqItems]]
+question = "How does Mac AI image generation speed compare to NVIDIA GPUs?"
+answer = "Apple Silicon is roughly 3-5x slower than RTX 4090 and 2-3x slower than RTX 4070, but 10-50x faster than CPU-only rendering. The Mac advantage is unified memory that can run models exceeding traditional VRAM limits, plus far smaller size, lower power consumption, and less noise."
+
+[[params.faqItems]]
+question = "Draw Things vs ComfyUI: which should I choose on Mac?"
+answer = "Choose Draw Things for ease of use, Apple-native optimization, and faster performance on Apple Silicon. Choose ComfyUI if you need complex node-based workflows, the broadest model support, or API-driven automation. Both can be installed simultaneously."
 +++
 
 ![Mac Mini M4 local AI image generation tool comparison: ComfyUI, DiffusionBee, Draw Things](cover.webp)

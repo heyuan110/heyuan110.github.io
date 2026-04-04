@@ -8,6 +8,22 @@ toc = true
 tags = ['Claude Code', 'Browser Automation', 'MCP', 'Playwright CLI', 'Playwright MCP', 'Agent Browser', 'Browser-use']
 categories = ['AI Guides']
 keywords = ['claude code browser automation', 'playwright mcp vs cli', 'agent browser vs playwright', 'browser-use ai agent', 'ai browser automation 2026', 'claude code browser control', 'devtools mcp setup', 'playwright cli token usage']
+
+[[params.faqItems]]
+question = "What is the best browser automation tool for Claude Code in 2026?"
+answer = "Browser-use is the most versatile option with three browser modes (local, real Chrome profile, cloud), persistent sessions, and parallel task support. For testing workflows, Playwright CLI is the top pick. For everyday lightweight browsing, Agent Browser uses the fewest tokens."
+
+[[params.faqItems]]
+question = "How much do browser automation tools differ in token usage?"
+answer = "Dramatically. Running the same 10-step operation: Playwright MCP uses ~114,000 tokens, DevTools MCP ~50,000, Playwright CLI ~27,000, and Agent Browser ~7,000. Playwright CLI uses roughly 4x fewer tokens than its MCP counterpart, which matters significantly in long-running tasks."
+
+[[params.faqItems]]
+question = "What is the difference between Playwright CLI and Playwright MCP?"
+answer = "Playwright CLI saves data (snapshots, screenshots, logs) to disk files and returns only file paths, while MCP stuffs the full accessibility tree and console messages into the AI's context at every step. CLI uses 75-99% fewer tokens and avoids context overflow in long sessions. Microsoft recommends CLI for coding agents with shell access."
+
+[[params.faqItems]]
+question = "Can I use multiple browser automation tools together in Claude Code?"
+answer = "Yes. These tools are not mutually exclusive. You can configure Agent Browser for everyday browsing, Browser-use for authenticated or parallel tasks, Playwright CLI for testing, and DevTools MCP for debugging — and let the AI pick the right tool for each task."
 +++
 
 Writing code with AI is old news. The real game-changer is having AI **control a browser** — opening pages, clicking buttons, filling forms, and scraping data — all from a single natural-language prompt.

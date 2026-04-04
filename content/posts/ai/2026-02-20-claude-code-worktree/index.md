@@ -7,6 +7,26 @@ toc = true
 tags = ['Claude Code', 'Git Worktree', 'AI Coding', 'Developer Productivity']
 categories = ['AI Guides']
 keywords = ['Claude Code worktree', 'Claude Code parallel development', 'git worktree AI coding', 'claude code -w flag', 'parallel AI coding sessions']
+
+[[params.faqItems]]
+question = "What does Claude Code --worktree (-w) mode do?"
+answer = "It creates an isolated Git worktree directory and launches a new Claude Code session inside it with a single command (claude -w <name>). This lets you run multiple AI coding tasks in parallel within the same repository without file conflicts."
+
+[[params.faqItems]]
+question = "Where are Claude Code worktrees stored?"
+answer = "All worktrees created via claude -w are stored under <repo-root>/.claude/worktrees/<name>/. You should add .claude/worktrees/ to your .gitignore to keep them out of version control."
+
+[[params.faqItems]]
+question = "Does Claude Code automatically clean up worktrees?"
+answer = "Yes. If no changes were made during the session, the worktree and its branch are automatically deleted on exit. If uncommitted changes or new commits exist, Claude prompts you to keep or delete the worktree."
+
+[[params.faqItems]]
+question = "Can two Git worktrees use the same branch?"
+answer = "No. Git does not allow two worktrees to check out the same branch simultaneously. That is why claude -w <name> automatically creates a new branch named worktree-<name>."
+
+[[params.faqItems]]
+question = "What is the difference between Git worktree and git clone?"
+answer = "Worktrees share the same .git repository, so creation is faster and there is no re-downloading of code. A clone creates a fully independent repository copy, which is better when you need complete isolation such as different remote configurations."
 +++
 
 Have you ever run into these situations?

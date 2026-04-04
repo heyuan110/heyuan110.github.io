@@ -7,6 +7,26 @@ toc = true
 tags = ['Vibe Coding', 'Stanford CS146S', 'AI Coding', 'Course Review', 'Agentic Engineering']
 categories = ['AI Guides']
 keywords = ['Stanford CS146S', 'Stanford Vibe Coding course', 'The Modern Software Developer', 'AI coding course', 'Vibe Coding curriculum']
+
+[[params.faqItems]]
+question = "What is Stanford CS146S?"
+answer = "CS146S (The Modern Software Developer) is a 3-credit Stanford course launched in Fall 2025 that teaches AI-driven software development systematically. It covers the full lifecycle from LLM fundamentals and Agent architectures to security, code review, and post-deployment operations."
+
+[[params.faqItems]]
+question = "Can I take Stanford CS146S for free?"
+answer = "Yes. Nearly all course materials are publicly available including the full syllabus at themodernsoftware.dev, lecture slides, readings, and assignment code on GitHub. You can follow the 10-week curriculum at your own pace."
+
+[[params.faqItems]]
+question = "Who are the guest speakers in CS146S?"
+answer = "The lineup includes Boris Cherney (creator of Claude Code at Anthropic), Zach Lloyd (CEO of Warp), Isaac Evans (CEO of Semgrep), Gaspar Garcia (Head of AI Research at Vercel), and Martin Casado (General Partner at a16z), among others."
+
+[[params.faqItems]]
+question = "What are the prerequisites for Stanford CS146S?"
+answer = "The course requires CS111-equivalent programming experience, with CS221 or CS229 (machine learning courses) recommended. It is not a beginner programming course but rather teaches experienced developers how to leverage AI across the entire software development lifecycle."
+
+[[params.faqItems]]
+question = "What is the difference between Vibe Coding and Agentic Engineering?"
+answer = "Vibe Coding focuses on individual productivity by describing requirements to AI and accepting generated code. Agentic Engineering, a term introduced by Karpathy in 2026, evolves this into orchestrating multiple AI Agents across the entire engineering workflow with more supervision and review mechanisms."
 +++
 
 From Andrej Karpathy coining [Vibe Coding](/posts/ai/2026-02-22-vibe-coding-guide/) in a February 2025 tweet to Stanford officially launching CS146S that same fall — less than 8 months. A social media buzzword entering a top university's curriculum this fast is almost unprecedented in the history of computer science.
