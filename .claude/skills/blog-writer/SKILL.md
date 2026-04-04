@@ -91,200 +91,39 @@ ls content/posts/ai/
 
 ### 步骤 3：生成封面图
 
-⚠️ **必须**为每篇文章生成封面图。调用 `blog-cover-image` skill 或按以下优先级尝试：
+⚠️ **必须**为每篇文章生成封面图。调用 `blog-cover-image` skill：
 
-#### 方案 A（首选）：Rube MCP + Gemini AI 生图
-
-通过 Rube MCP 调用 `GEMINI_GENERATE_IMAGE` 生成封面图：
-
-**第一步：搜索工具并获取 session_id**
-
-调用 `RUBE_SEARCH_TOOLS` 搜索图像生成工具：
 ```
-queries: [{use_case: "generate an AI image from a text prompt for a blog cover"}]
-session: {generate_id: true}
+/blog-cover-image <文章目录> --quick
 ```
 
-**第二步：生成图片**
+`blog-cover-image` skill 负责完整的生图流程（AI 生图 + 兜底方案 + 验证），这里不重复。
 
-调用 `RUBE_MULTI_EXECUTE_TOOL` 执行生图：
+封面图规范：
+- 文件名：`cover.webp`（固定）
+- 尺寸：1200×630px
+- 格式：WebP，质量 85
+- 大小：< 200KB
+- 统一用英文提示词生成，中英文版共用同一张图
+
+### 步骤 3.5：文章配图（可选）
+
+如果文章内容较长或有复杂概念需要可视化，可以调用 `blog-illustrator` 或 `blog-diagram` 生成配图：
+
 ```
-tools: [{
-  tool_slug: "GEMINI_GENERATE_IMAGE",
-  arguments: {
-    prompt: "基于文章主题的详细英文描述，描述画面内容、风格、色调",
-    model: "gemini-2.5-flash-image",
-    aspect_ratio: "16:9"
-  }
-}]
-session_id: "上一步返回的 session_id"
-sync_response_to_workbench: false
-memory: {}
-```
+# 自动分析文章并在需要的位置生成插图
+/blog-illustrator <文章目录> --quick
 
-**提示词要求**：
-- 用**英文**撰写提示词（Gemini 对英文效果更好）
-- 描述具体的画面内容、风格、色调
-- 风格要求：科技感、简洁、专业，适合技术博客封面
-- 避免包含文字（AI 生成的文字通常不准确）
-
-**第三步：下载并转换**
-
-图片 URL 在返回结果的 `data.image.s3url` 中（URL 有时效，需尽快下载）：
-
-```bash
-# 下载 AI 生成的图片
-curl -L -o cover_raw.png "<s3url>"
-
-# 转换为 webp 并调整尺寸
-cwebp -q 85 -resize 1200 630 cover_raw.png -o cover.webp
-
-# 清理临时文件
-rm cover_raw.png
+# 生成特定的架构图/流程图/对比表
+/blog-diagram <文章目录> --layout hub-spoke --style blueprint
 ```
 
-如果 `cwebp` 不可用，使用 Python 转换：
-```python
-python3 -c "
-from PIL import Image
-img = Image.open('cover_raw.png').resize((1200, 630), Image.LANCZOS)
-img.save('cover.webp', 'WEBP', quality=85)
-import os; os.remove('cover_raw.png')
-"
-```
-
-如果 AI 生图失败（连接不可用、安全过滤拦截等），使用方案 B。
-
-#### 方案 B（兜底）：Python/Pillow 程序化生成
-
-当 AI 生图不可用时，执行以下 Python 脚本生成封面图（根据文章主题调整标题和关键词）：
-
-```python
-python3 -c "
-from PIL import Image, ImageDraw, ImageFont
-import subprocess
-
-# === Config: modify per article ===
-TITLE = 'Article Title Here'           # Cover title (English)
-SUBTITLE = 'Brief description'         # Subtitle (English)
-TAGS = ['Tag1', 'Tag2', 'Tag3']        # Keyword tags (English)
-OUTPUT_DIR = 'content/posts/ai/directory-name'  # Article directory path
-# === End config ===
-
-WIDTH, HEIGHT = 1200, 630
-img = Image.new('RGB', (WIDTH, HEIGHT))
-draw = ImageDraw.Draw(img)
-
-# 深色渐变背景
-for y in range(HEIGHT):
-    r = int(15 + (25 - 15) * y / HEIGHT)
-    g = int(23 + (35 - 23) * y / HEIGHT)
-    b = int(42 + (60 - 42) * y / HEIGHT)
-    draw.line([(0, y), (WIDTH, y)], fill=(r, g, b))
-
-# 装饰元素：顶部渐变线条
-for x in range(WIDTH):
-    alpha = int(255 * (1 - abs(x - WIDTH/2) / (WIDTH/2)))
-    draw.line([(x, 0), (x, 3)], fill=(100, 149, 237, alpha))
-
-# 加载字体（macOS 系统字体，按优先级尝试多个）
-# 新文章为英文，以下字体均支持英文显示
-FONT_PATHS = [
-    '/System/Library/Fonts/STHeiti Medium.ttc',
-    '/System/Library/Fonts/STHeiti Light.ttc',
-    '/Library/Fonts/Arial Unicode.ttf',
-    '/System/Library/Fonts/PingFang.ttc',
-    '/System/Library/Fonts/Hiragino Sans GB.ttc',
-    '/System/Library/Fonts/Supplemental/Songti.ttc',
-]
-
-def load_font(size):
-    for path in FONT_PATHS:
-        try:
-            return ImageFont.truetype(path, size)
-        except (IOError, OSError):
-            continue
-    raise RuntimeError('No suitable font found. Please check font paths.')
-
-font_title = load_font(52)
-font_subtitle = load_font(28)
-font_tag = load_font(20)
-
-# 绘制标题（自动换行）
-max_width = WIDTH - 120
-words = TITLE
-lines = []
-current_line = ''
-for char in words:
-    test_line = current_line + char
-    bbox = draw.textbbox((0, 0), test_line, font=font_title)
-    if bbox[2] - bbox[0] > max_width:
-        lines.append(current_line)
-        current_line = char
-    else:
-        current_line = test_line
-if current_line:
-    lines.append(current_line)
-
-y_offset = 180 if len(lines) <= 2 else 140
-for line in lines:
-    bbox = draw.textbbox((0, 0), line, font=font_title)
-    x = (WIDTH - (bbox[2] - bbox[0])) // 2
-    draw.text((x, y_offset), line, fill='white', font=font_title)
-    y_offset += 70
-
-# 绘制副标题
-if SUBTITLE:
-    bbox = draw.textbbox((0, 0), SUBTITLE, font=font_subtitle)
-    x = (WIDTH - (bbox[2] - bbox[0])) // 2
-    draw.text((x, y_offset + 20), SUBTITLE, fill=(180, 180, 200), font=font_subtitle)
-
-# 绘制标签
-tag_y = HEIGHT - 80
-total_width = sum(draw.textbbox((0, 0), f' {t} ', font=font_tag)[2] - draw.textbbox((0, 0), f' {t} ', font=font_tag)[0] + 24 for t in TAGS) + 12 * (len(TAGS) - 1)
-tag_x = (WIDTH - total_width) // 2
-for tag in TAGS:
-    text = f' {tag} '
-    bbox = draw.textbbox((0, 0), text, font=font_tag)
-    tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
-    # 标签背景
-    draw.rounded_rectangle(
-        [(tag_x, tag_y), (tag_x + tw + 20, tag_y + th + 14)],
-        radius=6, fill=(40, 60, 100), outline=(80, 120, 180)
-    )
-    draw.text((tag_x + 10, tag_y + 7), text, fill=(160, 200, 255), font=font_tag)
-    tag_x += tw + 32
-
-# 保存为 webp
-png_path = f'{OUTPUT_DIR}/cover.png'
-webp_path = f'{OUTPUT_DIR}/cover.webp'
-img.save(png_path)
-subprocess.run(['cwebp', '-q', '85', png_path, '-o', webp_path], check=True)
-import os
-os.remove(png_path)
-
-# 验证文件大小
-size_kb = os.path.getsize(webp_path) / 1024
-print(f'封面图已生成: {webp_path} ({size_kb:.1f} KB)')
-if size_kb > 200:
-    print('⚠️ 警告：文件超过 200KB，请降低质量参数重新生成')
-"
-```
-
-如果 `cwebp` 不可用，使用 Pillow 直接保存 webp：
-```python
-img.save(f'{OUTPUT_DIR}/cover.webp', 'WEBP', quality=85)
-```
-
-⚠️ **方案 B 生成后必须验证**：用 Read 工具查看生成的封面图，确认英文标题、副标题、标签均正常显示，**不存在任何方框、问号、乱码字符**。如果出现异常，必须排查字体路径后重新生成。
-
-#### 封面图检查清单（无论哪种方案都必须满足）
-
-- [ ] 文件名为 `cover.webp`
-- [ ] 尺寸 1200×630px
-- [ ] 大小 < 200KB
-- [ ] 内容与文章主题相关
-- [ ] **无乱码**：必须用 Read 工具查看生成的封面图，确认图片中不存在任何乱码、乱字符或不可读文字。如有乱码必须重新生成
+配图规范：
+- 格式：WebP，质量 85
+- 最大宽度：1200px
+- 统一用英文生成，中英文版共用
+- 命名：`NN-{type}-{slug}.webp`
+- 位置：文章目录下
 
 ---
 
