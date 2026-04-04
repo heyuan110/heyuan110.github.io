@@ -3,6 +3,152 @@ html, body {
   overflow-x: hidden;
 }
 
+// ==========================================
+// 文章内容美化
+// ==========================================
+
+// --- 表格美化 ---
+.content table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1.5em 0;
+  font-size: 0.9em;
+
+  th,
+  td {
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 0.75em 1em;
+    text-align: left;
+  }
+
+  th {
+    background: rgba(255, 255, 255, 0.08);
+    color: $bright-grey;
+    font-weight: 600;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  td {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  tr:hover td {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  // 最后一行不要底边框
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  // 行内代码在表格中的样式
+  code {
+    font-size: 0.85em;
+    padding: 0.15em 0.4em;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 3px;
+  }
+}
+
+// --- 分隔线美化 ---
+hr {
+  border: none !important;
+  height: 1px !important;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  ) !important;
+  width: 80% !important;
+  margin: 2.5em auto !important;
+}
+
+// --- 代码块美化 ---
+.content {
+  // 代码块外框
+  .highlight {
+    border-radius: 8px;
+    margin: 1.5em 0;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    pre {
+      border-radius: 8px;
+      padding: 1.2em 1.4em;
+    }
+  }
+
+  // 行内代码
+  :not(pre) > code {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 4px;
+    padding: 0.15em 0.45em;
+    font-size: 0.88em;
+  }
+
+  // --- 标题层级感 ---
+  h2 {
+    margin-top: 2.5em;
+    margin-bottom: 0.8em;
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  h3 {
+    margin-top: 2em;
+    margin-bottom: 0.6em;
+  }
+
+  h4 {
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    color: rgba($bright-grey, 0.85);
+  }
+
+  // --- 段落和列表间距 ---
+  p {
+    margin-bottom: 1.2em;
+    line-height: 1.8;
+  }
+
+  li {
+    margin-bottom: 0.3em;
+    line-height: 1.7;
+  }
+
+  // --- 引用块美化 ---
+  blockquote {
+    border-left: 3px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.03);
+    padding: 0.8em 1.2em;
+    border-radius: 0 6px 6px 0;
+    margin: 1.5em 0;
+
+    p {
+      margin-bottom: 0.5em;
+    }
+  }
+
+  // --- 图片美化 ---
+  img {
+    border-radius: 8px;
+    margin: 1.5em auto;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  // --- 加粗文字微调 ---
+  strong {
+    color: $white;
+  }
+}
+
 // 评论区样式
 #comments {
   margin-top: 2rem;
