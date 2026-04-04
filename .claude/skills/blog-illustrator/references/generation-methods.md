@@ -26,25 +26,15 @@
 
 ### 第三步：下载并转换
 
-图片 URL 在返回结果的 `data.image.s3url` 中（URL 有时效，需尽快下载）：
+图片 URL 在返回结果的 `data.image.s3url` 中（URL 有时效，需尽快下载）。
+
+使用 [convert-to-webp.py](convert-to-webp.py) 下载并转换：
 
 ```bash
-curl -sL -o illustration_raw.png "<s3url>"
-
-python3 -c "
-from PIL import Image
-import os
-
-img = Image.open('illustration_raw.png')
-# 限制最大宽度 1200px，高度按比例缩放
-if img.width > 1200:
-    ratio = 1200 / img.width
-    img = img.resize((1200, int(img.height * ratio)), Image.LANCZOS)
-img.save('<输出文件名>.webp', 'WEBP', quality=85)
-os.remove('illustration_raw.png')
-size_kb = os.path.getsize('<输出文件名>.webp') / 1024
-print(f'配图已生成: <输出文件名>.webp ({size_kb:.1f} KB)')
-"
+python3 .claude/skills/blog-illustrator/references/convert-to-webp.py \
+  --url "<s3url>" \
+  --output "content/posts/ai/2026-xx-xx-slug/01-type-slug.webp" \
+  --max-width 1200
 ```
 
 ## 重要说明
