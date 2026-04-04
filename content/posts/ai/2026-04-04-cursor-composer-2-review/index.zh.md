@@ -1,5 +1,5 @@
 +++
-date = '2026-04-04T10:00:00+08:00'
+date = '2026-04-01T14:00:00+08:00'
 draft = false
 title = 'Cursor Composer 2 深度评测：Kimi K2.5 风波背后的真相与启示'
 description = '深入剖析 Cursor Composer 2 的技术架构、基于月之暗面 Kimi K2.5 的底座争议、与 Claude Code 的实战对比，以及对 AI 编程工具生态的深远影响。'

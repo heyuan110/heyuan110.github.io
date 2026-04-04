@@ -1,5 +1,5 @@
 +++
-date = '2026-04-04T00:30:00+08:00'
+date = '2026-03-28T10:00:00+08:00'
 draft = false
 title = 'Expose Localhost to the Internet: SSH Tunnels, frp, and Cloudflare Tunnel'
 description = 'Three battle-tested ways to expose local dev services to the internet without a public IP — SSH reverse tunnels, frp, and Cloudflare Tunnel. Full setup guides, architecture deep dives, and a practical comparison.'

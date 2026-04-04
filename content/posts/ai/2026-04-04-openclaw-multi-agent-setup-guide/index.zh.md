@@ -1,5 +1,5 @@
 +++
-date = '2026-04-04T10:00:00+08:00'
+date = '2026-04-02T14:00:00+08:00'
 draft = false
 title = 'OpenClaw 多 Agent 配置完全指南：从单兵到团队协作的实操教程'
 description = '手把手教你配置 OpenClaw 多 Agent 系统。涵盖 Agent 创建、工作区隔离、绑定路由、sessions_send 通信、飞书集成，以及四种生产级协作模式的完整配置示例。'

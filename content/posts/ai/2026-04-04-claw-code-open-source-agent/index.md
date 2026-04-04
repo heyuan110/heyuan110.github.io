@@ -1,5 +1,5 @@
 +++
-date = '2026-04-04T10:00:00+08:00'
+date = '2026-04-01T10:00:00+08:00'
 draft = false
 title = 'Claw Code: The Open-Source Claude Code Rewrite That Hit 100K Stars in Hours'
 description = 'Deep technical analysis of Claw Code — the clean-room Python and Rust rewrite of Claude Code agent harness architecture, born from the March 2026 source code leak. Architecture comparison, legal implications, and honest assessment.'

@@ -1,5 +1,5 @@
 +++
-date = '2026-04-04T10:00:00+08:00'
+date = '2026-04-02T14:00:00+08:00'
 draft = false
 title = 'OpenClaw Multi-Agent Configuration: Architecture, Routing, and Production Patterns'
 description = 'Complete guide to OpenClaw multi-agent configuration. Covers agent creation, workspace isolation, binding-based routing, sessions_send communication, Feishu/Lark integration, and four production-ready collaboration patterns.'

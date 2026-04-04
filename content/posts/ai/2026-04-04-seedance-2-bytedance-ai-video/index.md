@@ -1,5 +1,5 @@
 +++
-date = '2026-04-04T10:00:00+08:00'
+date = '2026-03-29T10:00:00+08:00'
 draft = false
 title = 'Seedance 2.0 Deep Dive: ByteDance AI Video Model That Tops Sora and Veo'
 description = 'Complete guide to ByteDance Seedance 2.0: the #1 ranked AI video model beating Sora 2 and Veo 3. Architecture deep dive, honest quality assessment, step-by-step access guide for international users, and the IP controversy explained.'

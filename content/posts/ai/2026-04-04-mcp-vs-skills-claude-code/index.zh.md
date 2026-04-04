@@ -1,5 +1,5 @@
 +++
-date = '2026-04-04T09:00:00+08:00'
+date = '2026-04-02T10:00:00+08:00'
 draft = false
 title = 'MCP、Skills、Hooks 到底有什么区别？Claude Code 三大扩展机制深度对比'
 description = '一文讲透 Claude Code 的 MCP、Skills 和 Hooks 三种扩展方式——它们各自解决什么问题、怎么选、怎么配合使用，附带实操示例和决策流程图。'

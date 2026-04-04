@@ -1,5 +1,5 @@
 +++
-date = '2026-04-04T09:00:00+08:00'
+date = '2026-04-02T10:00:00+08:00'
 draft = false
 title = 'MCP vs Skills vs Hooks in Claude Code: Which Extension Do You Need?'
 description = 'Deep technical comparison of Claude Code MCP, Skills, and Hooks — protocol design, context costs, trigger mechanisms, and a decision framework for choosing the right extension.'

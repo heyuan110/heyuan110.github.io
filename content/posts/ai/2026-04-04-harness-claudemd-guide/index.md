@@ -1,5 +1,5 @@
 +++
-date = '2026-04-04T09:00:00+08:00'
+date = '2026-03-31T10:00:00+08:00'
 draft = false
 title = 'Harness Engineering #2: How to Write CLAUDE.md Files That Actually Work'
 description = 'Research-backed guide to writing effective CLAUDE.md files. The ETH Zurich study found human-written files under 60 lines beat LLM-generated verbose ones. Learn the principles, anti-patterns, templates, and measurement strategies.'

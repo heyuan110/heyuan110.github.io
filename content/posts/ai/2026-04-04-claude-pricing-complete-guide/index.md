@@ -1,5 +1,5 @@
 +++
-date = '2026-04-04T10:00:00+08:00'
+date = '2026-04-03T14:00:00+08:00'
 draft = false
 title = 'Claude Pricing 2026: Complete Guide to Free, Pro, Max & Team Plans'
 description = 'Compare every Claude AI plan in 2026: Free tier limits, Pro $20/mo, Max $100-$200/mo, Team $25/seat, and API token costs. Find your best plan.'

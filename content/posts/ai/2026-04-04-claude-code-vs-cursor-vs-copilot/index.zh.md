@@ -1,5 +1,5 @@
 +++
-date = '2026-04-04T12:00:00+08:00'
+date = '2026-04-03T10:00:00+08:00'
 draft = false
 title = 'Claude Code、Cursor、Copilot 三强争霸：2026 年该怎么选？'
 description = '从国内开发者视角深度对比 Claude Code、Cursor 和 GitHub Copilot。定价分析、基准测试、Kimi K2.5 争议真相，以及不同场景下的工具组合建议。'

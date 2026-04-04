@@ -1,5 +1,5 @@
 +++
-date = '2026-04-04T09:00:00+08:00'
+date = '2026-03-31T10:00:00+08:00'
 draft = false
 title = 'CLAUDE.md 怎么写才有效？Harness Engineering 实战篇（附模板）'
 description = '基于 ETH Zurich 研究的 CLAUDE.md 写法指南：60 行以内效果最好，AI 生成的冗长版本反而降低 20%。含原则、反模式、三种项目模板和效果度量方法。'

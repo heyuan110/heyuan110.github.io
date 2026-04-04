@@ -1,5 +1,5 @@
 +++
-date = '2026-04-04T10:00:00+08:00'
+date = '2026-04-01T14:00:00+08:00'
 draft = false
 title = 'Cursor Composer 2 Review: The Kimi K2.5 Controversy and What It Means for AI Coding'
 description = 'Deep technical analysis of Cursor Composer 2, built on Moonshot AI Kimi K2.5. Benchmarks, pricing, the attribution scandal, and honest comparison with Claude Code.'

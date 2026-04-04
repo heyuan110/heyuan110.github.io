@@ -1,5 +1,5 @@
 +++
-date = '2026-04-04T10:00:00+08:00'
+date = '2026-04-03T14:00:00+08:00'
 draft = false
 title = 'Claude 2026 最新定价全解析：免费版/Pro/Max/Team 怎么选'
 description = '详解 Claude 2026 年各套餐价格和限制：免费版能用多少、Pro 值不值 20 美元、Max 100/200 美元该选哪个、Team 团队版怎么算，附 API 调用成本和省钱技巧。'

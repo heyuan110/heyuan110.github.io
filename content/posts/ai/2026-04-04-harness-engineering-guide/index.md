@@ -1,5 +1,5 @@
 +++
-date = '2026-04-04T14:00:00+08:00'
+date = '2026-03-30T10:00:00+08:00'
 draft = false
 title = 'Harness Engineering: Why the System Around Your AI Agent Matters More Than the Model'
 description = 'Complete guide to harness engineering in 2026. Learn why Agent = Model + Harness, the evolution from prompt to context to harness engineering, core components (guides + sensors), and practical implementation with Claude Code, Codex, and real examples.'

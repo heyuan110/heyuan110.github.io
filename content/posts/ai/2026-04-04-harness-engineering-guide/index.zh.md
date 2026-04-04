@@ -1,5 +1,5 @@
 +++
-date = '2026-04-04T14:00:00+08:00'
+date = '2026-03-30T10:00:00+08:00'
 draft = false
 title = 'Harness Engineering 完全指南：为什么 AI Agent 的「外围系统」比模型本身更重要'
 description = '深入浅出讲透 Harness Engineering：从提示词工程到上下文工程再到线束工程的三次进化，核心公式 Agent = Model + Harness，实操组件拆解（引导器+传感器），以及 Claude Code、Codex 等工具的落地案例。'
