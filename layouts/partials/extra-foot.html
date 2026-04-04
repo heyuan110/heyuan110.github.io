@@ -87,8 +87,8 @@
   // ==========================================
   var toc = document.getElementById('toc');
   if (toc) {
-    // 桌面端默认展开 TOC
-    if (window.innerWidth > 1280) {
+    // 只在宽屏（>=1300px，与主题断点一致）默认展开 TOC
+    if (window.innerWidth >= 1300) {
       toc.style.display = 'block';
       toc.classList.add('show-toc');
     }

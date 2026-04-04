@@ -258,7 +258,20 @@ hr:not(.post-end) {
 // ==========================================
 #toc {
   border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
-  padding-left: 0.5em;
+  padding-left: 0.8em;
+}
+
+// 拉开 TOC 与内容区的距离
+@media (min-width: 1300px) {
+  #toc {
+    margin-left: 420px !important;
+  }
+}
+
+@media (min-width: 1800px) {
+  #toc {
+    margin-left: 540px !important;
+  }
 }
 
 .toc-title {
