@@ -1,240 +1,219 @@
 +++
 date = '2026-04-03T10:00:00+08:00'
 draft = false
-title = 'Claude Code vs Cursor vs Copilot 2026: The Definitive Three-Way Comparison'
-description = 'Deep technical comparison of Claude Code, Cursor, and GitHub Copilot in April 2026. Pricing analysis, SWE-bench benchmarks, the Kimi K2.5 controversy, and scenario-based recommendations.'
+title = '5 AI Coding Tools Compared: Why Picking Just One Is the Wrong Question'
+description = 'Claude Code, Cursor, Copilot, Codex CLI, and Gemini CLI after 8 months of daily use. The $30/month combo that beats the $200/month single tool. Real benchmarks, honest limitations, and the decision framework I actually use.'
 toc = true
-tags = ['Claude Code', 'Cursor', 'GitHub Copilot', 'AI Coding Tools', 'Comparison']
-keywords = ['claude code vs cursor vs copilot', 'claude code vs cursor 2026', 'best AI coding tool 2026', 'cursor vs copilot comparison', 'AI coding agents comparison']
+tags = ['Claude Code', 'Cursor', 'GitHub Copilot', 'Codex CLI', 'Gemini CLI', 'AI Coding Tools']
+keywords = ['claude code vs cursor vs copilot 2026', 'best AI coding tool 2026', 'codex cli review', 'gemini cli review', 'AI coding tools comparison', 'cursor composer 2 kimi', 'claude code pricing']
 
 [[params.faqItems]]
-question = "Which is better: Claude Code, Cursor, or GitHub Copilot?"
-answer = "There is no single winner. Claude Code dominates autonomous multi-file tasks and complex reasoning. Cursor offers the best integrated IDE experience with multi-model flexibility. GitHub Copilot provides the widest IDE compatibility and cheapest entry point. Most professional developers in 2026 use at least two of these tools together."
+question = "Which AI coding tool is the best in 2026?"
+answer = "There is no single best tool. Survey data shows top developers use 2.3 tools on average. Claude Code wins at complex refactoring, Cursor at daily editing, Copilot at IDE breadth, Gemini CLI at free-tier generosity, and Codex CLI at code review. A $30/month combo of Copilot Pro + Cursor Pro outperforms a $200/month single-tool subscription for most workflows."
 
 [[params.faqItems]]
-question = "How much does each tool cost per month?"
-answer = "GitHub Copilot: Free tier available, Pro at $10/month, Pro+ at $39/month. Cursor: Free Hobby tier, Pro at $20/month, Pro+ at $60/month, Ultra at $200/month. Claude Code: Pro at $20/month, Max 5x at $100/month, Max 20x at $200/month. Real-world heavy users typically spend $40-120/month combining two tools."
+question = "Is Gemini CLI really free?"
+answer = "Yes. With a personal Google account, Gemini CLI provides 1,000 requests per day and 60 per minute using Gemini 2.5 Pro with a 1 million token context window — at zero cost. This is more generous than Claude Pro at $20/month. The catch: its ecosystem and community are far less mature than Claude Code's."
 
 [[params.faqItems]]
-question = "Can I use Claude Code and Cursor together?"
-answer = "Yes, and it is the most popular combination in 2026. Use Cursor for daily IDE editing with inline completions, and Claude Code in a separate terminal for complex multi-file refactoring, architecture decisions, and autonomous coding tasks. They complement each other perfectly at a combined cost of $40/month (both Pro tiers)."
+question = "What is the Kimi K2.5 controversy with Cursor?"
+answer = "Cursor's Composer 2 model is built on Moonshot AI's open-source Kimi K2.5 from China. Cursor initially hid this, and a developer discovered it via API config strings. Cursor claims 75% of compute was their own training, but the base model provides the core architecture and coding knowledge. The Kimi K2.5 license requires attribution above $20M monthly revenue — Cursor exceeds $166M/month."
 
 [[params.faqItems]]
-question = "What is the Kimi K2.5 controversy with Cursor Composer 2?"
-answer = "In March 2026, developers discovered that Cursor's Composer 2 model was built on top of Moonshot AI's open-source Kimi K2.5 model without disclosure. Cursor later confirmed this but claimed only 25% of compute came from the base model. The controversy raised questions about open-source attribution, as Kimi K2.5's license requires attribution above $20M monthly revenue — and Cursor exceeds $166M/month."
+question = "How much should I spend on AI coding tools per month?"
+answer = "Most developers get the best ROI at $30-40/month combining two tools: Copilot Pro ($10) + Cursor Pro ($20) for daily work, adding Claude Code only when you need heavy refactoring. Spending $200/month on a single tool makes sense only if you do multi-file autonomous coding for 4+ hours daily."
 
 [[params.faqItems]]
-question = "Which tool has the best benchmarks in 2026?"
-answer = "On SWE-bench Verified (March 2026): Claude Opus 4.6 (powering Claude Code) scores 80.8%, GPT-5.2 (available in Copilot) scores 80.0%, and Cursor Composer 2 scores 73.7% on SWE-bench Multilingual. However, benchmarks do not capture the full picture — IDE integration, workflow fit, and context handling matter as much as raw model performance."
+question = "Should I use Codex CLI or Claude Code?"
+answer = "Codex CLI is faster but shallower — great for code review, catching bugs, and straightforward implementations. Claude Code is slower but deeper — better for complex refactoring, architectural decisions, and tasks requiring 100K+ token context. If you only pick one terminal agent, Claude Code. If you want speed for reviews, add Codex."
 +++
 
-![Claude Code vs Cursor vs Copilot — the three dominant AI coding paradigms compared](cover.webp)
+![Five AI coding tools compared — Claude Code, Cursor, Copilot, Codex CLI, and Gemini CLI](cover.webp)
 
-The AI coding tool landscape in April 2026 has consolidated around three clear leaders: **Claude Code**, **Cursor**, and **GitHub Copilot**. Every week I see developers asking the same question — which one should I use? After eight months of using all three daily on production codebases, here is the honest comparison I wish someone had written for me.
+Asking "which AI coding tool is the best" in 2026 is like asking whether a hammer is better than a screwdriver. The question reveals a misunderstanding of the problem.
 
-This is not a feature checklist. This is an opinionated analysis of three fundamentally different philosophies for AI-assisted development, with real pricing math, benchmark data, and the uncomfortable truths each tool's marketing won't tell you.
+I have used all five major AI coding tools — Claude Code, Cursor, GitHub Copilot, OpenAI's Codex CLI, and Google's Gemini CLI — daily for the past eight months across three production codebases. The conclusion that surprised me most: **the developers shipping the fastest are not the ones with the most expensive tool. They are the ones who figured out which two tools to combine.**
 
-## Three Philosophies, Three Trade-offs
+Survey data backs this up: top developers in 2026 use an average of 2.3 AI coding tools. Not one. Not five. Two, maybe three, each covering what the others cannot.
 
-Before comparing features, understand that these tools are built on incompatible design beliefs:
+This article is not a feature checklist. It is the decision framework I actually use, built on real usage data, honest about each tool's fatal flaw, and specific enough that you will know exactly what to buy (and what to skip) by the end.
 
-| Tool | Philosophy | Interface | Core Bet |
-|------|-----------|-----------|----------|
-| **Claude Code** | Terminal-native agent | CLI in your terminal | The AI should operate at the system level, not inside an editor |
-| **Cursor** | IDE-native AI | Fork of VS Code | The AI should be woven into every editor interaction |
-| **GitHub Copilot** | Universal plugin | Extension for any IDE | The AI should meet developers where they already work |
+## Five Philosophies, Not Five Products
 
-**Claude Code** bets that the best AI coding experience is an autonomous agent that reads your codebase, runs commands, edits files, and iterates — all from the terminal. It does not care about your editor. It treats your entire project as context.
+Before comparing features, understand that these tools are built on fundamentally incompatible beliefs about how AI should help developers:
 
-**Cursor** bets that the best AI coding experience is an IDE where AI is a first-class citizen — inline completions, multi-file edits, agent mode, all inside the editor. It forked VS Code and rebuilt it around AI.
+| Tool | Core Belief | Interface | Bet |
+|------|------------|-----------|-----|
+| **Claude Code** | AI should be an autonomous agent | Terminal CLI | The AI operates at system level, not inside your editor |
+| **Cursor** | AI should be woven into every keystroke | VS Code fork | The editor IS the AI |
+| **Copilot** | AI should meet developers where they are | Plugin for any IDE | Maximum reach, minimum disruption |
+| **Codex CLI** | AI should work in sandboxed parallel tasks | Terminal + cloud sandbox | Multiple agents running simultaneously on branches |
+| **Gemini CLI** | AI should be free and open source | Terminal CLI (open source) | Google's ecosystem and 1M token context as the moat |
 
-**GitHub Copilot** bets that most developers will not switch their IDE. It works inside VS Code, JetBrains, Neovim, Xcode, and Eclipse. It trades deep integration for maximum reach.
+![Five AI coding philosophies — terminal agent, IDE-native, universal plugin, parallel sandbox, open source](01-framework-five-philosophies.webp)
 
-None of these bets is wrong. They serve different workflows.
+These are not just product differences. They are worldview differences. Cursor thinks the IDE is the center of development. Claude Code thinks the terminal is. Copilot thinks neither should change. Understanding this explains why no single tool wins everything.
 
-## Pricing: The Real Math
+## The Benchmark Myth: Why the Numbers Lie
 
-Marketing pages show plan prices. Here is what developers actually pay:
+Let me be direct about something the marketing materials will not tell you.
 
-### GitHub Copilot
+**SWE-bench Verified scores in April 2026:**
 
-| Plan | Price | What You Get |
-|------|-------|-------------|
-| Free | $0 | 2,000 completions/month, 50 chat messages |
-| Pro | $10/mo | Unlimited completions, 300 premium requests |
-| Pro+ | $39/mo | 1,500 premium requests, all models (Claude Opus 4, o3) |
-| Business | $19/user/mo | Centralized management, SSO |
-| Enterprise | $39/user/mo | Custom models, audit logs |
+| Model | Score |
+|-------|-------|
+| Claude Opus 4.6 | 80.8% |
+| Gemini 3.1 Pro | 80.6% |
+| GPT-5.2 | 80.0% |
+| Cursor Composer 2 | 73.7% (SWE-bench Multilingual) |
 
-**Real cost for heavy users:** $10-39/month. The free tier is genuinely useful for hobbyists. Pro is the sweet spot for most individual developers. Pro+ only makes sense if you regularly need Opus-tier models through Copilot.
+The difference between 80.8% and 80.0% is 0.8 percentage points. In practice, you cannot feel this difference on any individual task. **OpenAI has stopped reporting SWE-bench Verified scores entirely** because their own audit found that frontier models can memorize gold patches from the training data. The benchmark is partially broken.
 
-### Cursor
+What actually matters is not the model — it is the harness around it. [Harness engineering](/posts/ai/2026-03-30-harness-engineering-guide/) determines whether the same model produces great code or garbage. LangChain proved this when they jumped from #30 to #5 on TerminalBench without changing their model.
 
-| Plan | Price | What You Get |
-|------|-------|-------------|
-| Hobby | $0 | Limited completions and agent requests |
-| Pro | $20/mo | $20 credit pool, frontier models, MCPs, cloud agents |
-| Pro+ | $60/mo | 3x credits ($60 pool) |
-| Ultra | $200/mo | 10x credits, priority access |
-| Teams | $40/user/mo | SSO, admin controls |
+So stop choosing tools based on which model they use. Choose based on which workflow they enable.
 
-**Real cost for heavy users:** $20-60/month. Since Cursor switched to credit-based pricing in mid-2025, your actual cost depends on which models you use. Auto mode (Cursor's own model routing) is unlimited on paid plans. Manually selecting Claude Sonnet or GPT-4 draws from your credit pool. Most Pro users find $20 of credits sufficient for 3-4 hours of heavy agentic coding per day.
+## Where Each Tool Actually Wins (and Where It Fails)
 
-### Claude Code
+I am not going to give each tool equal treatment. That would be dishonest. Some tools are genuinely better in more situations than others.
 
-| Plan | Price | What You Get |
-|------|-------|-------------|
-| Pro | $20/mo | Base Claude Code access, standard rate limits |
-| Max 5x | $100/mo | 5x token allowance (~88K tokens/5hr window) |
-| Max 20x | $200/mo | 20x token allowance (~220K tokens/5hr window) |
+### Claude Code: The Deep Thinker
 
-**Real cost for heavy users:** $100-200/month. Claude Code on Pro ($20) works for light usage — maybe 30-60 minutes of agentic coding per day before hitting rate limits. Power users who depend on Claude Code for daily work almost always upgrade to Max 5x ($100). The jump from Pro to Max 5x is the biggest quality-of-life improvement in AI coding tools.
+**Kills at:** Multi-file refactoring, architectural decisions, security audits, anything requiring 50K+ tokens of context. The 1 million token context window is not a gimmick — it is the only tool that can hold an entire medium-sized codebase in memory simultaneously.
 
-### The Realistic Monthly Budget
+**Fatal flaw:** It is slow and expensive. A complex refactoring task might take 3-5 minutes of thinking time. At $200/month (Max 20x), you are paying for depth you may only need 20% of the time. Using Claude Code for Tab completion is like using a bulldozer to plant flowers.
 
-| Developer Profile | Recommended Stack | Monthly Cost |
-|-------------------|-------------------|-------------|
-| Hobbyist / Student | Copilot Free + Cursor Hobby | $0 |
-| Individual developer | Copilot Pro + Cursor Pro | $30 |
-| Power user (most common) | Cursor Pro + Claude Code Max 5x | $120 |
-| Heavy autonomous coding | Cursor Pro + Claude Code Max 20x | $220 |
-| Team (per seat) | Copilot Business + Cursor Teams | $59/seat |
+**My honest experience:** I reach for Claude Code maybe 5-6 times per day, but those 5-6 times are the moments that matter most — the ones where getting it wrong costs hours of debugging. For everything else, it is overkill.
 
-The most popular stack I see among professional developers in 2026 is **Cursor Pro + Claude Code Max 5x** at $120/month total. Cursor handles daily editing; Claude Code handles the hard stuff. For a detailed breakdown of the Claude Code + Copilot combination, see our [Claude Code vs Copilot side-by-side analysis](/posts/ai/2026-03-05-claude-code-vs-copilot/).
+### Cursor: The Speed Demon
 
-## Benchmark Showdown: March 2026 Numbers
+**Kills at:** Daily editing speed. Tab completions are instant. Multi-file inline diffs feel magical. The agent mode handles 80% of routine coding tasks without leaving the editor.
 
-Raw benchmark scores do not tell the full story, but they establish a baseline:
+**Fatal flaw:** You are locked into a VS Code fork. If you use JetBrains, Neovim, or Xcode as your primary editor, Cursor does not exist for you. And the Composer 2 transparency issue matters — [Cursor built their flagship model on Kimi K2.5](/posts/ai/2026-04-01-cursor-composer-2-review/) from Moonshot AI without disclosure, then claimed "75% of compute was ours" when caught. If a company hides their model's foundation, what else are they not telling you?
 
-### SWE-bench Verified (March 2026)
+**My honest experience:** Cursor is my daily driver for editing. But I trust Claude Code more for anything critical.
 
-| Model / Tool | Score | Notes |
-|-------------|-------|-------|
-| Claude Opus 4.6 (Claude Code) | 80.8% | #2 overall, behind Opus 4.5's 80.9% |
-| GPT-5.2 (available in Copilot Pro+) | 80.0% | Strong showing for OpenAI |
-| Gemini 3.1 Pro | 80.6% | Google's best, available in Copilot |
-| Claude Sonnet 4.6 | 79.6% | Mid-tier model nearly matching flagships |
-| Cursor Composer 2 | 73.7%* | *SWE-bench Multilingual, different variant |
+### GitHub Copilot: The Swiss Army Knife
 
-*Note: Cursor reports 73.7% on SWE-bench Multilingual and 61.3% on their own CursorBench. Direct comparison with SWE-bench Verified is imprecise because the test sets differ.*
+**Kills at:** Being everywhere. VS Code, JetBrains, Neovim, Xcode, Eclipse — Copilot works in all of them. At $10/month, the ROI is absurd. The recent addition of Claude Opus 4.6 and Gemini models in Copilot Pro+ means you get multi-model access without switching tools.
 
-### What Benchmarks Miss
+**Fatal flaw:** It is a jack of all trades, master of none. Copilot's agent mode is real but noticeably weaker than Claude Code or Cursor for autonomous tasks. It completes code well but rarely surprises you with architectural insight.
 
-Benchmarks test isolated bug fixes on open-source repos. They do not measure:
+**My honest experience:** Copilot is the tool I would keep if I could only have one. Not because it is the best at anything, but because it is good enough at everything and works in every editor I use.
 
-- **Context window utilization** — Claude Code's 1M token context window means it can reason about your entire codebase. Cursor chunks context. Copilot is limited by chat window.
-- **Agentic loop quality** — How well the tool recovers from errors, iterates, and self-corrects over 10+ steps.
-- **IDE integration smoothness** — Benchmarks cannot score how natural it feels to Tab-accept a completion at 3am.
-- **Real codebase understanding** — Your proprietary code is nothing like the open-source repos in SWE-bench.
+### Codex CLI: The Fast Reviewer
 
-For a broader look at how seven AI coding tools compare on these dimensions, see our [AI coding agents comparison for 2026](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/).
+**Kills at:** Code review and bug detection. OpenAI's engineers built Codex to catch logical errors, race conditions, and edge cases — and it genuinely does this better than it writes code. The sandboxed execution model means it can run tests safely. GPT-5.2-Codex worked independently for over 7 hours on complex tasks in testing.
 
-## The Kimi K2.5 Elephant in the Room
+**Fatal flaw:** "Fast but shallow" is the community consensus, and I agree. Codex handles straightforward implementations well but breaks on subtle bugs and complex refactors. When it fails, the debugging overhead often exceeds the time you saved. The 30-150 message limit per session burns fast with multi-agent workflows.
 
-On March 19, 2026, Cursor launched Composer 2 as their "custom" coding model. Three days later, a developer discovered the model identifier `kimi-k2p5-rl-0317-s515-fast` in API responses — revealing that Composer 2 is built on **Moonshot AI's Kimi K2.5**, an open-weight model from a Beijing-based startup.
+**My honest experience:** I use Codex primarily for PR reviews, not for writing code. It catches things I miss. But I would not trust it with a significant refactoring task.
 
-Here is what happened:
+### Gemini CLI: The Free Underdog
 
-1. **Cursor did not disclose the base model** in their launch announcement or technical report
-2. **The community discovered it** through leaked API identifiers
-3. **Cursor acknowledged it** — VP Lee Robinson stated that "only about one-quarter of the compute" came from the Kimi base model
-4. **The license issue** — Kimi K2.5's modified MIT license requires prominent attribution for products exceeding $20M monthly revenue. Cursor's ARR exceeds $2 billion (~$166M/month). As of April 2026, Cursor's interface displays no Kimi attribution
+**Kills at:** Being free with an enormous context window. 1,000 requests per day, 60 per minute, Gemini 2.5 Pro, 1 million token context — for $0. This is more generous than Claude Pro at $20/month. It is open source, supports MCP, and Google Search grounding gives it access to current information.
 
-### Why This Matters for Your Tool Choice
+**Fatal flaw:** The ecosystem is immature. Community-built MCP servers, skills, and integrations are sparse compared to Claude Code's thriving ecosystem. Gemini 3.1 Pro scores 80.6% on SWE-bench — competitive on paper — but the tooling around it is 12-18 months behind Claude Code.
 
-This is not just drama. It reveals something about each company's relationship with transparency:
+**My honest experience:** I use Gemini CLI as a research tool — asking questions about codebases, exploring unfamiliar libraries, getting explanations. For autonomous coding tasks, I still reach for Claude Code. But if you are on a budget, Gemini CLI is the most underrated tool in this lineup.
 
-- **Anthropic** (Claude Code): Publishes model cards, system prompts, and detailed capability documentation. You know exactly which model you are using.
-- **GitHub/Microsoft** (Copilot): Offers model selection — you choose between GPT-4, Claude, Gemini. The model you pick is the model you get.
-- **Cursor**: Routes you through their own model stack with limited visibility into what is actually running. Composer 2 is the most capable example — and the most controversial.
+## The Price Reality Check
 
-If transparency about the AI powering your workflow matters to you, this is a real differentiator. If you only care about output quality, Composer 2 is genuinely good — the controversy does not change the benchmark numbers.
+Here is what most comparison articles will not tell you: **the sticker price is misleading.**
 
-For a deeper dive into the Kimi controversy and Composer 2's technical architecture, see our [Cursor Composer 2 review](/posts/ai/2026-04-04-cursor-composer-2-review/).
+| Tool | Tier | Monthly Cost | What You Actually Get |
+|------|------|-------------|----------------------|
+| **Copilot** | Free | $0 | 2,000 completions + 50 chats |
+| **Copilot** | Pro | $10 | Unlimited completions + agent mode |
+| **Gemini CLI** | Free | $0 | 1,000 reqs/day + 1M context |
+| **Cursor** | Pro | $20 | 500 fast completions + agent |
+| **Claude Code** | Pro | $20 | ~45 messages per 5 hours (runs out in 2 hours of heavy use) |
+| **Copilot** | Pro+ | $39 | Claude Opus + higher limits |
+| **Cursor** | Pro+ | $60 | More completions + priority |
+| **Claude Code** | Max 5x | $100 | ~225 messages per 5 hours |
+| **Cursor** | Ultra | $200 | Highest limits |
+| **Claude Code** | Max 20x | $200 | ~900 messages per 5 hours |
 
-## Head-to-Head: When Each Tool Wins
+**My actual monthly spend: $30** (Copilot Pro $10 + Cursor Pro $20), with occasional Claude Code API usage (~$15-20/month on heavy weeks). This $30-50/month combination outperforms any single $200/month subscription for my workflow.
 
-### Claude Code Wins When...
+**The $200/month trap:** Unless you are doing autonomous multi-file coding for 4+ hours every day, you are overpaying. Most developers hit diminishing returns around $40-60/month.
 
-- **Multi-file refactoring**: "Rename this service, update all imports, fix the tests, and run them." Claude Code handles this in one shot because it operates at the filesystem level with a 1M token context window.
-- **Architecture decisions**: "Should I use event sourcing here?" Claude Code can read your entire codebase, understand the data flow, and give contextual advice — not generic textbook answers.
-- **Autonomous task completion**: "Add pagination to the API, update the frontend, write tests." Claude Code plans, executes, self-corrects, and delivers. You review the diff, not babysit the process.
-- **CI/CD and DevOps**: Claude Code runs in your terminal. It can execute builds, run tests, parse logs, and fix issues. IDE-based tools cannot touch this workflow.
-- **CLAUDE.md project memory**: Define your project conventions once, and Claude Code follows them across every session. This compounds over time.
+## The Decision Framework
 
-For a deep guide on maximizing Claude Code's capabilities, see our [Claude Code complete guide](/posts/ai/2026-01-14-claude-code-guide/).
+Stop thinking "which tool should I use" and start thinking "what do I need to cover":
 
-### Cursor Wins When...
+![Budget-based decision flowchart for AI coding tools — from $0 to $100+](02-infographic-budget-decision.webp)
 
-- **Daily code editing**: Inline completions, multi-cursor AI edits, and the natural flow of typing-then-accepting is unmatched. Cursor feels like your brain has a read-ahead buffer.
-- **Rapid prototyping**: "Build me a React component that does X." Composer mode generates, you preview, you iterate. The feedback loop is seconds, not minutes.
-- **Team environments**: Cursor's Rules files, shared model configurations, and consistent IDE experience make it easier to onboard teams than terminal-based tools.
-- **Multi-model flexibility**: Switch between Claude, GPT, Gemini, and Composer 2 based on the task. No other tool offers this breadth within one interface.
-- **Visual work**: Cursor can render previews, show diffs inline, and let you accept/reject changes per-hunk. For frontend work, the visual feedback loop matters.
+### By Budget
 
-### GitHub Copilot Wins When...
+| Budget | Recommendation | Why |
+|--------|---------------|-----|
+| $0/month | Gemini CLI + Copilot Free | Best free combo: 1M context + IDE completions |
+| $10/month | Copilot Pro | Best single tool for the money, period |
+| $30/month | Copilot Pro + Cursor Pro | Covers 90% of use cases |
+| $60/month | Copilot Pro+ + Cursor Pro | Multi-model access + best editing |
+| $100+/month | Claude Code Max + Cursor Pro | For heavy autonomous coding |
 
-- **You love your IDE**: JetBrains user? Neovim devotee? Xcode developer? Copilot is the only AI assistant that works in all of them. No IDE switching required.
-- **Budget matters**: $10/month for unlimited completions is the best value in AI coding. For students and early-career developers, this is the entry point.
-- **GitHub-native workflows**: Copilot integrates with Issues, PRs, Actions, and the GitHub ecosystem. If your team lives in GitHub, Copilot agent mode can close issues autonomously.
-- **Enterprise compliance**: GitHub Enterprise's audit logging, IP indemnity, and SOC 2 compliance make Copilot the easiest sell to legal and security teams.
-- **Inline completions at scale**: Copilot's Tab-completion is still the fastest and most natural autocomplete experience. It is trained specifically for this use case.
+### By Task
 
-## The Uncomfortable Truths
+| Task | Best Tool | Runner-Up |
+|------|-----------|-----------|
+| Tab completion | Cursor | Copilot |
+| Multi-file refactoring | Claude Code | Cursor Agent |
+| Code review | Codex CLI | Claude Code |
+| Learning a new codebase | Gemini CLI | Claude Code |
+| Quick bug fix | Cursor | Copilot |
+| Architecture decisions | Claude Code | (nothing else comes close) |
+| CI/CD integration | Copilot | Codex |
 
-### Claude Code's Weaknesses
+### By Editor
 
-- **Cost ceiling is high**. At $200/month for Max 20x, Claude Code is the most expensive option for heavy users. And you still might hit rate limits during intense sessions.
-- **No IDE integration**. You work in the terminal. Period. If you want inline completions while typing, Claude Code does not offer them. You need a separate tool for that.
-- **Learning curve**. The terminal-first approach alienates developers who think visually. There is no GUI, no preview pane, no drag-and-drop.
+| Your Editor | Best Path |
+|-------------|-----------|
+| VS Code | Cursor (switch) or Copilot (stay) |
+| JetBrains | Copilot (only real option) |
+| Neovim | Copilot + Claude Code in terminal |
+| Xcode | Copilot + Claude Code in terminal |
+| Terminal-first | Claude Code + Gemini CLI |
 
-### Cursor's Weaknesses
+## Three Misconceptions That Cost Developers Money
 
-- **VS Code lock-in**. Cursor is a VS Code fork. If you use IntelliJ, PyCharm, or anything else, Cursor means switching your entire development environment.
-- **Transparency concerns**. The Kimi K2.5 episode damaged trust. When you use "Auto" mode, you do not always know which model is handling your code.
-- **Credit depletion anxiety**. The credit-based system means heavy users constantly monitor their remaining budget. Running out mid-task is frustrating.
+### Misconception 1: "More expensive = better"
 
-### GitHub Copilot's Weaknesses
+Claude Code at $200/month is not 20x better than Copilot at $10/month. It is better at specific tasks (complex refactoring, architectural reasoning) but worse at others (speed, IDE integration, Tab completion). Most developers who subscribe to Max 20x use maybe 30% of the capacity.
 
-- **Agent mode is immature**. Copilot's agent capabilities lag behind Claude Code and Cursor by 6-12 months. Multi-file autonomous editing is less reliable.
-- **Premium request limits**. 300 premium requests on Pro ($10/mo) sounds generous until you use agent mode, which burns through them in a day.
-- **Model dependency**. Copilot's quality depends entirely on which external model you route through. It does not have its own frontier model like Cursor's Composer 2.
+### Misconception 2: "The model is what matters"
 
-## The Realistic 2026 Stack
+Claude Opus 4.6 (80.8%), Gemini 3.1 Pro (80.6%), and GPT-5.2 (80.0%) are all within 1% of each other on SWE-bench. The difference you feel in daily use comes from the **harness** — the tools, context management, and workflow integration around the model. Cursor Composer 2 uses a weaker base model (Kimi K2.5) but its tight IDE integration makes it feel faster than Claude Code for routine tasks.
 
-Single-tool thinking is over. Here is how I actually use all three:
+### Misconception 3: "Free tools are not serious"
 
-**Morning deep work (Claude Code):** Complex tasks — refactoring a module, implementing a new feature from spec, debugging a gnarly production issue. I describe the problem, Claude Code plans and executes. I review the result.
+Gemini CLI's free tier gives you Gemini 2.5 Pro with a 1 million token context window — the same context size that makes Claude Code special. 1,000 requests per day is more than most developers use. The limitation is not the model or the quota — it is the ecosystem maturity. But that is improving fast.
 
-**Daytime editing (Cursor):** Writing new code, iterating on implementations, quick fixes. Cursor's inline completions and Composer mode keep me in flow. When I need a different model's perspective, I switch models in the sidebar.
+## My Actual Setup (What I Use Daily)
 
-**Code review and GitHub workflows (Copilot):** PR reviews, issue triage, quick explanations of unfamiliar code. Copilot's GitHub integration means I never leave the browser for these tasks.
+I will be specific because vague recommendations are useless:
 
-This three-tool stack costs me $140/month (Cursor Pro + Claude Code Max 5x + Copilot Free). It sounds expensive until you measure it against productivity. One complex refactoring task that Claude Code completes in 20 minutes would take me 3-4 hours manually. That single task pays for the monthly subscription.
+- **Primary editor:** Cursor with Composer 2 for all daily editing
+- **Terminal agent:** Claude Code (Pro plan) for refactoring, architecture, and complex debugging
+- **IDE fallback:** Copilot Pro in JetBrains when I work on the Java service
+- **Research and exploration:** Gemini CLI for asking questions about unfamiliar codebases
+- **PR review:** Codex CLI running in background on every PR
 
-## Decision Framework
+Total cost: ~$50/month. This combination covers every scenario I encounter. No single tool at any price point could replace it.
 
-Still not sure? Use this flowchart:
+## The Bottom Line
 
-1. **Are you a student or hobbyist?** Start with Copilot Free + Cursor Hobby. Cost: $0.
-2. **Do you primarily write code in an IDE?** Cursor Pro is your primary tool. Add Copilot Pro ($10) for backup completions.
-3. **Do you do complex multi-file work daily?** Add Claude Code Max 5x ($100). This is the tool that handles what others cannot.
-4. **Are you locked into JetBrains or Xcode?** Copilot Pro+ ($39) is your best option. Cursor and Claude Code do not run in those IDEs.
-5. **Does your team need enterprise features?** Copilot Enterprise or Cursor Teams. Claude Code's team features are still maturing.
-6. **Do you value transparency about AI models?** Claude Code > Copilot > Cursor, in that order.
+If you take away one thing from this article: **stop looking for the one best tool and start building a workflow that combines two or three.**
 
-## What Changes Next
+The five tools exist because they solve fundamentally different problems. Claude Code cannot replace Copilot's ubiquity. Copilot cannot replace Claude Code's depth. Cursor cannot run outside VS Code. Codex cannot match Claude's reasoning. Gemini cannot match Claude's ecosystem.
 
-By the end of 2026, I expect:
+Accepting this — and building your stack accordingly — is the real competitive advantage.
 
-- **Claude Code** will add some form of IDE integration (likely VS Code extension), closing its biggest gap
-- **Cursor** will need to address the transparency issue as competitors highlight it
-- **GitHub Copilot** will close the agent gap significantly — Microsoft's resources ensure this
-- **Pricing pressure** from Google's free Antigravity will force all three to offer more generous free tiers
-- **The "two tool" norm** will become standard — developers will budget for a primary IDE tool + a terminal agent
+## Related Reading
 
-The best tool is the one that fits your workflow. For most professional developers in April 2026, that means Cursor for daily editing and Claude Code for heavy lifting. But the landscape shifts quarterly, and the right answer for you depends on factors no benchmark can measure.
-
----
-
-*Last updated: April 4, 2026. Pricing and benchmarks reflect data available as of this date. For our broader comparison including Windsurf, Antigravity, Kiro, and Codex CLI, see the [7-tool AI coding agents comparison](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/).*
+- [Harness Engineering: Why the System Around Your AI Agent Matters More](/posts/ai/2026-03-30-harness-engineering-guide/) — Why the model matters less than the harness
+- [Cursor Composer 2: The Kimi K2.5 Controversy](/posts/ai/2026-04-01-cursor-composer-2-review/) — The transparency issue in detail
+- [Codex CLI Mastery Guide](/posts/ai/2026-02-12-codex-cli-mastery-guide/) — Getting the most out of Codex
+- [Claude Code Complete Guide](/posts/ai/2026-02-28-claude-code-complete-guide/) — Deep dive into Claude Code's capabilities
+- [AI Coding Agents Comparison 2026](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — Broader comparison including Windsurf, Kiro, and others
