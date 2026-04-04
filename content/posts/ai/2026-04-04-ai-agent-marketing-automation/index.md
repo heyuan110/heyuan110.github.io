@@ -58,9 +58,11 @@ This pipeline best demonstrates agent orchestration power. He created a CMO Agen
 
 > Check latest fitness TikTok trends → generate videos with agent-media or slides with Larry → schedule to TikTok via Postiz → create an issue for every video.
 
-The last part — "create an issue for every video" — is not arbitrary. This instruction ensures every piece of content has a tracking record. The entire feedback loop depends on this issue system. No records means no learning. No learning means no improvement.
+The last part — "create an issue for every video" — is not arbitrary.
 
-He then created a Routine (scheduled task): daily automated checks on which videos have high views and which flopped. His DevRel adds comments on the issues — "the opening isn't engaging enough," "wrong BGM choice." The AI incorporates this feedback, and the next batch improves measurably.
+Here, "issue" means GitHub Issues — think of it as a ticket system. The concrete flow works like this: every time the AI generates a video, it automatically opens an issue (essentially a ticket) titled something like "Fitness Video #37 - HIIT Beginner." Then Paperclip's scheduled routine runs daily, posting each video's performance data (view count, completion rate, etc.) as comments on the corresponding issue. Nevo or his DevRel reviews the data and adds annotations — "opening is too slow," "wrong BGM," "adjust the vertical framing." The next time the AI generates videos, it reads the historical comments from these issues, learns what worked and what failed, and the next batch improves.
+
+A simple analogy: the AI is an intern, and issues are its work journal. After each task, it logs an entry; the boss reads it and leaves notes. Before the next assignment, the intern reviews past notes and avoids repeating mistakes. Without this system? The AI produces 100 videos but has no idea which ones worked — because it has no memory. It starts from scratch every time, permanently stuck at "day-one intern" quality.
 
 The smartest design here is the **human-AI flywheel**: AI generates → data feedback → human review → AI learns → next round improves. The first batch may be rough, but by the tenth batch, quality has compounded significantly. This mirrors my own approach with [blog writing automation](/posts/ai/2026-01-08-claudecode-skill-guide/) — I built a "paragraph-by-paragraph polishing" mechanism where the AI self-evaluates each section against depth criteria before moving on, rather than generating an entire article in one pass.
 
