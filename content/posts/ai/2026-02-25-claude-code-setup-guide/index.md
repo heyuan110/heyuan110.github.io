@@ -1,12 +1,12 @@
 +++
 date = '2026-02-25T12:00:00+08:00'
 draft = false
-title = 'Claude Code Setup Guide 2026: Install + VS Code in 10 Minutes'
-description = 'Install Claude Code in 2026: step-by-step terminal setup, VS Code integration, API key or Pro subscription config, CLAUDE.md setup, and fixes for common errors.'
+title = 'How to Install Claude Code 2026: Complete Setup Guide in 10 Minutes'
+description = 'Install Claude Code in 10 minutes: exact terminal commands, VS Code extension setup, API key or Pro plan config, CLAUDE.md tips, and fixes for the 5 most common errors.'
 toc = true
 tags = ['Claude Code', 'Setup', 'Tutorial', 'Getting Started']
 categories = ['AI Guides']
-keywords = ['claude code setup', 'claude code install', 'claude code getting started 2026', 'how to install claude code', 'claude code setup 2026', 'claude code vs code', 'claude code installation guide', 'claude code tutorial 2026']
+keywords = ['how to install claude code', 'claude code setup 2026', 'claude code install', 'claude code tutorial 2026', 'claude code getting started 2026', 'claude code vs code', 'claude code installation guide', 'claude code setup']
 
 [[params.faqItems]]
 question = "How do I install Claude Code in 2026?"

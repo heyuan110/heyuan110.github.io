@@ -2,11 +2,11 @@
 date = '2026-02-26T10:00:00+08:00'
 draft = false
 title = 'Claude Code Hooks 2026: All 9 Events + 12 Copy-Paste Examples'
-description = 'Complete Claude Code hooks guide: all 9 events (PreToolUse, PostToolUse, Stop, etc.) with 12 ready-to-use configs for auto-formatting, file protection, and command blocking.'
+description = 'Every Claude Code hook event in 2026: all 9 events (PreToolUse, PostToolUse, Stop…) + 12 ready configs. Block dangerous commands, auto-format code, protect files — copy and paste.'
 toc = true
 tags = ['Claude Code', 'Hooks', 'Automation', 'Configuration']
 categories = ['AI Guides']
-keywords = ['claude code hooks events list 2026', 'anthropic pretooluse posttooluse stop hook example', 'claude code hooks guide', 'claude code hooks', 'claude code automation', 'PreToolUse PostToolUse', 'claude code lifecycle hooks', 'claude code hook configuration']
+keywords = ['claude code hooks events list 2026', 'claude code hooks 2026', 'anthropic pretooluse posttooluse stop hook example', 'claude code hooks guide', 'claude code hooks', 'claude code automation', 'PreToolUse PostToolUse', 'claude code lifecycle hooks', 'claude code hook configuration']
 
 [[params.faqItems]]
 question = "What are Claude Code Hooks?"

@@ -1,12 +1,12 @@
 +++
 date = '2026-02-22T09:00:00+08:00'
 draft = false
-title = 'Vibe Coding 是什么？氛围编程入门教程与工具对比（2026）'
-description = '一文搞懂 Vibe Coding（氛围编程）：从 Karpathy 提出概念到 2026 年主流工具实测对比（Claude Code/Cursor/Trae），含完整实战流程和新手避坑指南。'
+title = 'Vibe Coding 是什么？氛围编程完全指南：工具对比 + 实战教程（2026）'
+description = '91% 的工程团队已在用 Vibe Coding，你还没入门？一文讲透氛围编程核心理念、Claude Code/Cursor/Trae 工具横评，附完整实战流程，零基础也能 10 分钟跑起来第一个 AI 项目。'
 toc = true
 tags = ['Vibe Coding', 'AI Coding', 'Claude Code', 'Cursor', 'AI Tools']
 categories = ['AI Guides']
-keywords = ['Vibe Coding 是什么', '氛围编程教程 2026', 'Vibe Coding 教程', 'AI 编程工具对比', '氛围编程入门', 'Vibe Coding 工具推荐', 'Claude Code Vibe Coding', '自然语言写代码']
+keywords = ['Vibe Coding 是什么意思', '氛围编程怎么入门', 'Vibe Coding 工具推荐 2026', 'Vibe Coding 教程中文', 'Claude Code 氛围编程', 'Cursor Vibe Coding 怎么用', 'AI 写代码不会编程可以用吗', '自然语言编程工具 2026', 'Vibe Coding 和传统编程区别', '氛围编程 工具对比']
 
 [[params.faqItems]]
 question = "Vibe Coding 是什么意思？"
