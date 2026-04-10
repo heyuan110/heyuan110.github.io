@@ -71,17 +71,19 @@ OpenSpec 不绑定任何 AI 工具，支持 20+ 个编程助手。但和 Claude 
 
 [Superpowers](https://github.com/obra/superpowers) 是 Jesse Vincent 和 Prime Radiant 团队开发的开源技能框架（GitHub 14 万+ 星），专门解决**场景二**的问题。它不是独立工具，而是一组安装到 Claude Code 里的"技能"，让 Claude Code 自动遵循专业软件工程实践。
 
-装上 Superpowers 后，Claude Code 会"变了个人"——不再收到需求就直接写代码。它有一组核心技能，大多数情况下**自动触发**，你不需要手动调用：
+装上 Superpowers 后，Claude Code 会"变了个人"——不再收到需求就直接写代码。它有一组核心技能，**单独使用 Superpowers 时**大多数情况下会自动触发：
 
-| 技能 | 什么时候用 | 怎么触发 |
+| 技能 | 什么时候用 | 触发方式 |
 |------|-----------|---------|
-| brainstorming | 创建新功能、构建组件前，先探索需求和设计 | 自动（创建任何东西之前） |
-| writing-plans | 有明确需求，需要拆解多步实施计划 | 有 spec 或需求要拆步骤时 |
-| test-driven-development | 实现功能或修 bug 前，先写测试 | 写代码之前自动触发 |
-| systematic-debugging | 遇到 bug、测试失败、异常行为 | 出问题时自动触发 |
-| code-reviewer | 完成一个主要步骤后做代码审查 | 功能完成后自动触发 |
+| brainstorming | 创建新功能、构建组件前，先探索需求和设计 | 单独使用时自动触发 |
+| writing-plans | 有明确需求，需要拆解多步实施计划 | 单独使用时自动触发 |
+| test-driven-development | 实现功能或修 bug 前，先写测试 | 需在 CLAUDE.md 中明确要求 |
+| systematic-debugging | 遇到 bug、测试失败、异常行为 | 需在 CLAUDE.md 中明确要求 |
+| code-reviewer | 完成一个主要步骤后做代码审查 | 需在 CLAUDE.md 中明确要求 |
 | dispatching-parallel-agents | 有多个独立任务可以并行处理 | 2+ 个无依赖任务时 |
-| verification-before-completion | 准备说"搞定了"之前，先跑验证 | 提交/合并之前自动触发 |
+| verification-before-completion | 准备说"搞定了"之前，先跑验证 | 需在 CLAUDE.md 中明确要求 |
+
+> **重要纠正**：OpenSpec 和 Superpowers 是两套独立系统，**不会自动串联**。使用 `/opsx:apply` 实施任务时，Superpowers 的 TDD、code-review 等技能**不会自动介入**。如果你希望在 apply 过程中执行 TDD 等工程纪律，需要在项目的 CLAUDE.md 中明确写入规则，例如：`使用 /opsx:apply 实施任务时，必须采用 TDD 方式：先写失败测试，再写实现代码`。
 
 两者结合使用时，**规划阶段由 OpenSpec 主导，编码阶段由 Superpowers 主导**，各管各的阶段：
 
@@ -91,14 +93,14 @@ OpenSpec 负责：              Superpowers 负责：
 ┌──────────┐               ┌──────────────┐
 │ explore  │               │ brainstorming │ ← 被 propose 替代
 │ propose  │               │ writing-plans │ ← 被 tasks.md 替代
-│ apply ───┼─────────────→ │ TDD          │ ← 写代码时生效
-│          │               │ debugging    │ ← 遇到 bug 时生效
-│          │               │ verification │ ← 完成前生效
-│ archive  │               │ code-review  │ ← 提交前生效
+│ apply ───┼─────────────→ │ TDD          │ ← 需在 CLAUDE.md 中要求
+│          │               │ debugging    │ ← 需在 CLAUDE.md 中要求
+│          │               │ verification │ ← 需在 CLAUDE.md 中要求
+│ archive  │               │ code-review  │ ← 需在 CLAUDE.md 中要求
 └──────────┘               └──────────────┘
 ```
 
-你不需要手动编排谁先谁后——**该谁出场谁就自动出场**。OpenSpec 的 propose 已经把需求探索和设计决策做完了（proposal.md + design.md + specs + tasks.md），所以 Superpowers 的 brainstorming 和 writing-plans 自然被替代；进入 apply 编码阶段后，Superpowers 的 TDD、debugging、verification、code-review 自动介入，保障代码质量。
+OpenSpec 的 propose 已经把需求探索和设计决策做完了（proposal.md + design.md + specs + tasks.md），所以 Superpowers 的 brainstorming 和 writing-plans 自然被替代。但进入 apply 编码阶段后，Superpowers 的 TDD、debugging、verification、code-review **不会自动介入**——你需要在项目的 CLAUDE.md 中明确写入这些要求，Claude Code 才会在 apply 过程中遵循这些工程纪律。
 
 如果你没有用 OpenSpec，直接跟 Claude Code 说"帮我加个用户登录功能"，那 Superpowers 就全程主导——brainstorming 先问清楚需求，writing-plans 拆解任务，然后 TDD 先写测试再写代码。
 
@@ -223,7 +225,7 @@ OpenSpec 会在 `openspec/changes/user-auth/` 下生成四份文档。**你要�
 
 上一步的 `/opsx:propose` 已经把需求探索和设计决策都做完了——密码用什么算法、JWT 过期时间、数据库 ORM 选择等等，都记录在了 `design.md` 里。这相当于 Superpowers 的 brainstorming 和 writing-plans 已经被 OpenSpec 覆盖了。
 
-所以接下来进入 `/opsx:apply` 时，Superpowers 从编码纪律开始接管：TDD（先写测试再写代码）、debugging（遇到问题系统化排查）、verification（完成前自动验证）、code-review（提交前审查代码质量）。
+所以接下来进入 `/opsx:apply` 时，如果你在 CLAUDE.md 中配置了 TDD 等要求，Superpowers 的工程纪律就会在编码过程中生效：TDD（先写测试再写代码）、debugging（遇到问题系统化排查）、verification（完成前验证）、code-review（提交前审查代码质量）。**注意：这些不是自动触发的，需要你在 CLAUDE.md 中明确要求。**
 
 **这一步你获得了什么**：所有设计决策都记录在 `design.md` 中。三个月后回来，你能清楚看到当初为什么选了 bcrypt 而不是 argon2——**场景三的问题就这么解决了**。
 
@@ -259,7 +261,7 @@ Brainstorming 完成后，Superpowers 自动生成任务计划（`tasks.md`）�
 > Plan 确认，开始执行
 ```
 
-接下来 Superpowers 进入 subagent-driven-development 模式——为每个任务启动子代理，每个子代理都**强制走 TDD 流程**（先写测试，测试失败，再写实现，测试通过，做 Code Review）。你可以看到实时进度：
+如果你在 CLAUDE.md 中要求了 TDD，Superpowers 会进入 subagent-driven-development 模式——为每个任务启动子代理，每个子代理都**走 TDD 流程**（先写测试，测试失败，再写实现，测试通过，做 Code Review）。你可以看到实时进度：
 
 ```
 [Task 1/6] 项目初始化 ✓
@@ -271,7 +273,7 @@ Brainstorming 完成后，Superpowers 自动生成任务计划（`tasks.md`）�
 [Task 3/6] 用户模型 ...
 ```
 
-**这一步你获得了什么**：AI 在隔离的 Git 分支上、按照规范、走着 TDD 流程在干活。搞砸了可以直接丢弃分支，不会影响你的主代码。**场景二的问题也解决了**。
+**这一步你获得了什么**：AI 在隔离的 Git 分支上、按照你在 CLAUDE.md 中定义的规范、走着 TDD 流程在干活。搞砸了可以直接丢弃分支，不会影响你的主代码。**场景二的问题也解决了**。
 
 ![TDD cycle enforced by Superpowers: RED (write failing test) → GREEN (write implementation) → REFACTOR](06-flowchart-tdd-cycle.webp)
 
@@ -336,7 +338,7 @@ curl -X POST http://localhost:5000/api/register \
 
 ### OpenSpec + Claude Code（缺 Superpowers）：有蓝图但没工头
 
-你的规范写得再好，Claude Code 在执行过程中可能"自由发挥"偏离规范。没有 TDD 强制、没有自动 Code Review、没有 Worktree 隔离——规范和实现之间缺少一个"执法者"。相当于画了完美的建筑图纸，但施工队不按图施工，你又没有监理。
+你的规范写得再好，Claude Code 在执行过程中可能"自由发挥"偏离规范。没有在 CLAUDE.md 中要求 TDD、没有要求 Code Review、没有 Worktree 隔离——规范和实现之间缺少一个"执法者"。相当于画了完美的建筑图纸，但施工队不按图施工，你又没有监理。
 
 ### Superpowers + Claude Code（缺 OpenSpec）：有纪律但没方向
 
@@ -443,17 +445,18 @@ Spec 管的是"要什么结果"，不管"怎么写代码"。后者是 Superpower
 
 ### 命令速查表
 
+**Core Profile（默认）**：
+
 | 阶段 | 命令 | 作用 |
 |------|------|------|
+| 探索 | `/opsx:explore` | 进入探索模式，和 AI 一起思考和调研问题 |
 | 需求 | `/opsx:propose <功能描述>` | 生成 proposal + spec + design + tasks |
-| 快速需求 | `/opsx:ff <功能描述>` | 跳过逐步确认，一次性生成 |
-| 优化规范 | `/opsx:refine` | 补充/修改规范细节 |
-| 校验规范 | `/opsx:validate` | 检查规范完整性和合规性 |
-| 执行实现 | `/opsx:apply` | 根据规范生成代码 |
-| 验证实现 | `/opsx:verify` | 校验代码与 Spec 一致性 |
+| 执行实现 | `/opsx:apply` | 根据规范逐任务实施代码 |
 | 归档 | `/opsx:archive` | 合并 Delta Spec，归档变更 |
-| 继续工作 | `/opsx:continue` | 继续上次未完成的工作流 |
-| 同步 Spec | `/opsx:sync` | 手动同步 Spec 到会话上下文 |
+
+最简流程：**propose → apply → archive**。explore 按需使用。
+
+> **注意**：网上一些文章提到的 `/opsx:refine`、`/opsx:validate`、`/opsx:ff` 等命令**不在默认的 core profile 中**。如需使用 verify、sync、continue 等扩展命令，需要通过 `openspec config profile` 切换到 expanded profile，再运行 `openspec update` 安装额外的 skill 文件。对大多数场景，core 的四个命令就够了。如果想修改已生成的 proposal.md、design.md、tasks.md，直接编辑文件即可，不需要专门的 refine 命令。
 
 ### 新手上手路线图
 

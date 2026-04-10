@@ -13,7 +13,7 @@ answer = "OpenSpec manages 'what to build' — it converts requirements into tra
 
 [[params.faqItems]]
 question = "Is using all three tools together overkill?"
-answer = "For tasks under 4 hours, yes. OpenSpec's propose→refine→validate cycle alone takes 30-60 minutes. For quick prototypes, use Claude Code alone. For medium tasks, add Superpowers. Reserve the full stack for team projects or production code that needs decision traceability."
+answer = "For tasks under 4 hours, yes. OpenSpec's propose→apply→archive cycle alone takes 30-60 minutes. For quick prototypes, use Claude Code alone. For medium tasks, add Superpowers. Reserve the full stack for team projects or production code that needs decision traceability."
 
 [[params.faqItems]]
 question = "How do I install OpenSpec?"
@@ -69,17 +69,19 @@ OpenSpec supports 20+ AI coding assistants, but works best with Claude Code than
 
 [Superpowers](https://github.com/obra/superpowers) is an open-source skills framework by Jesse Vincent and Prime Radiant (140K+ GitHub stars), solving **Wall 2**. It's not a standalone tool — it's skills installed into Claude Code that enforce professional engineering practices.
 
-With Superpowers installed, Claude Code stops jumping straight to coding. It has a set of core skills that **trigger automatically** — you rarely need to invoke them manually:
+With Superpowers installed, Claude Code stops jumping straight to coding. It has a set of core skills. **When using Superpowers alone** (without OpenSpec), brainstorming and writing-plans trigger automatically. However, TDD, code-review and other coding disciplines **require explicit configuration in CLAUDE.md** to take effect:
 
 | Skill | When It Activates | Trigger |
 |-------|------------------|---------|
-| brainstorming | Before creating features or components | Automatic (before building anything) |
-| writing-plans | When requirements need multi-step decomposition | When specs or requirements need breakdown |
-| test-driven-development | Before implementing features or fixing bugs | Automatic before writing code |
-| systematic-debugging | When encountering bugs, test failures, unexpected behavior | Automatic on errors |
-| code-reviewer | After completing a major implementation step | Automatic after feature completion |
+| brainstorming | Before creating features or components | Automatic when used alone |
+| writing-plans | When requirements need multi-step decomposition | Automatic when used alone |
+| test-driven-development | Before implementing features or fixing bugs | Requires explicit rule in CLAUDE.md |
+| systematic-debugging | When encountering bugs, test failures, unexpected behavior | Requires explicit rule in CLAUDE.md |
+| code-reviewer | After completing a major implementation step | Requires explicit rule in CLAUDE.md |
 | dispatching-parallel-agents | When multiple independent tasks can run concurrently | When 2+ tasks have no dependencies |
-| verification-before-completion | Before claiming work is done | Automatic before commit/merge |
+| verification-before-completion | Before claiming work is done | Requires explicit rule in CLAUDE.md |
+
+> **Important correction**: OpenSpec and Superpowers are two independent systems — they **do not automatically chain together**. When using `/opsx:apply`, Superpowers' TDD, code-review, etc. will **not automatically kick in**. To enforce engineering disciplines during apply, you must explicitly add rules to your project's CLAUDE.md, e.g.: `When using /opsx:apply, always follow TDD: write failing tests first, then implement code.`
 
 When combined, **OpenSpec leads the planning phase, Superpowers leads the coding phase** — each owns its stage:
 
@@ -89,14 +91,14 @@ OpenSpec handles:            Superpowers handles:
 ┌──────────┐               ┌──────────────┐
 │ explore  │               │ brainstorming │ ← replaced by propose
 │ propose  │               │ writing-plans │ ← replaced by tasks.md
-│ apply ───┼─────────────→ │ TDD          │ ← active during coding
-│          │               │ debugging    │ ← active on errors
-│          │               │ verification │ ← active before completion
-│ archive  │               │ code-review  │ ← active before commit
+│ apply ───┼─────────────→ │ TDD          │ ← requires CLAUDE.md config
+│          │               │ debugging    │ ← requires CLAUDE.md config
+│          │               │ verification │ ← requires CLAUDE.md config
+│ archive  │               │ code-review  │ ← requires CLAUDE.md config
 └──────────┘               └──────────────┘
 ```
 
-You don't need to manually orchestrate who goes first — **each tool activates when its stage arrives.** OpenSpec's propose covers requirements exploration and design decisions (proposal.md + design.md + specs + tasks.md), naturally replacing Superpowers' brainstorming and writing-plans. When apply enters the coding phase, Superpowers' TDD, debugging, verification, and code-review automatically kick in to ensure code quality.
+OpenSpec's propose covers requirements exploration and design decisions (proposal.md + design.md + specs + tasks.md), naturally replacing Superpowers' brainstorming and writing-plans. However, when apply enters the coding phase, Superpowers' TDD, debugging, verification, and code-review **do not automatically kick in** — you need to configure these requirements in your project's CLAUDE.md for them to take effect during the apply phase.
 
 Without OpenSpec, Superpowers handles everything — brainstorming first explores requirements, writing-plans breaks down tasks, then TDD enforces test-first coding.
 
@@ -171,7 +173,7 @@ claude
 
 OpenSpec generates four documents. **Your action**: open `proposal.md`, check the Out of Scope section — confirm the AI didn't add OAuth or password reset on its own.
 
-Refine if needed, then validate: `/opsx:validate`
+Refine if needed by editing the files directly — there's no separate refine command in the core profile.
 
 **What you gained**: A structured blueprint. All subsequent AI work is based on this document, not your one-sentence description.
 
@@ -183,7 +185,7 @@ Remember the division of labor? **OpenSpec leads planning, Superpowers leads cod
 
 The previous `/opsx:propose` step already completed requirements exploration and design decisions — password algorithm, JWT expiration, ORM choice — all recorded in `design.md`. OpenSpec's propose has covered what Superpowers' brainstorming and writing-plans would normally do.
 
-So when `/opsx:apply` begins, Superpowers takes over with coding discipline: TDD (tests before code), debugging (systematic troubleshooting), verification (pre-completion checks), and code-review (quality gate before commit).
+So when `/opsx:apply` begins, if you've configured TDD and other requirements in CLAUDE.md, Superpowers' coding disciplines take effect: TDD (tests before code), debugging (systematic troubleshooting), verification (pre-completion checks), and code-review (quality gate before commit). **Note: these do not activate automatically — they require explicit configuration in CLAUDE.md.**
 
 **What you gained**: All design decisions are recorded in `design.md`. Three months later, you can see exactly why you chose bcrypt over argon2 — **Wall 3 solved.**
 
@@ -195,7 +197,7 @@ Superpowers generates `tasks.md` with 6 tasks. Spend 5 minutes reviewing task or
 > Plan confirmed, start execution
 ```
 
-Subagent mode activates — parallel execution with mandatory TDD:
+With TDD configured in CLAUDE.md, subagent mode activates — parallel execution with TDD:
 
 ```
 [Task 1/6] Project Init ✓
@@ -207,15 +209,14 @@ Subagent mode activates — parallel execution with mandatory TDD:
 ...
 ```
 
-**What you gained**: AI working on an isolated Git branch, following specs, with TDD enforcement. If it goes wrong, discard the branch — your main code is untouched. **Wall 2 solved.**
+**What you gained**: AI working on an isolated Git branch, following specs, with TDD enforcement (when configured in CLAUDE.md). If it goes wrong, discard the branch — your main code is untouched. **Wall 2 solved.**
 
 ![TDD cycle enforced by Superpowers: RED (write failing test) → GREEN (write implementation) → REFACTOR](06-flowchart-tdd-cycle.webp)
 
 ### 3.4 Verify + Archive
 
 ```bash
-> /opsx:verify    # Check implementation matches spec
-> /opsx:archive   # Don't skip this!
+> /opsx:archive   # Don't skip this! Syncs delta specs and archives the change
 ```
 
 ### 3.5 Run and Test
@@ -260,7 +261,7 @@ No specification constraints. Different developers get different code styles, in
 
 ### OpenSpec + Claude Code (No Superpowers): Blueprint Without a Foreman
 
-Great specs, but no enforcement during execution. Claude may "freestyle" away from the spec. No TDD, no automatic code review, no branch isolation. Like having perfect architectural drawings but no construction supervisor.
+Great specs, but no enforcement during execution. Claude may "freestyle" away from the spec. Without TDD and code review rules in CLAUDE.md, there's no branch isolation — like having perfect architectural drawings but no construction supervisor.
 
 ### Superpowers + Claude Code (No OpenSpec): Discipline Without Direction
 
@@ -334,17 +335,18 @@ Catching these before coding reduced fix costs by an estimated 5-10x. Tasks expa
 
 ### Command Cheat Sheet
 
+**Core Profile (default)**:
+
 | Stage | Command | Purpose |
 |-------|---------|---------|
+| Explore | `/opsx:explore` | Enter explore mode — think through ideas with AI |
 | Requirements | `/opsx:propose <feature>` | Generate proposal + spec + design + tasks |
-| Quick Requirements | `/opsx:ff <feature>` | Skip step-by-step confirmation |
-| Refine Spec | `/opsx:refine` | Add/modify spec details |
-| Validate | `/opsx:validate` | Check spec completeness |
-| Implement | `/opsx:apply` | Generate code from spec |
-| Verify | `/opsx:verify` | Check code-spec consistency |
+| Implement | `/opsx:apply` | Implement code task-by-task from spec |
 | Archive | `/opsx:archive` | Merge Delta Spec, archive change |
-| Continue | `/opsx:continue` | Resume unfinished workflow |
-| Sync | `/opsx:sync` | Sync spec to session context |
+
+Simplest flow: **propose → apply → archive**. Use explore as needed.
+
+> **Note**: Commands like `/opsx:ff`, `/opsx:refine`, `/opsx:validate`, `/opsx:verify`, `/opsx:continue`, `/opsx:sync` are **not in the default core profile**. To enable them, run `openspec config profile` to switch to the expanded profile, then `openspec update` to install the additional skill files. For most workflows, the four core commands are sufficient. To modify generated artifacts (proposal.md, design.md, tasks.md), simply edit the files directly.
 
 ### Beginner Roadmap
 
