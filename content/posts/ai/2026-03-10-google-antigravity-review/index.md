@@ -1,8 +1,8 @@
 +++
 date = '2026-03-07T10:00:00+08:00'
 draft = false
-title = 'Google Antigravity Review 2026: Free AI IDE Features & Setup'
-description = 'Google Antigravity hands-on review: free Gemini 3-powered AI IDE with Manager View, multi-agent coding, and autonomous workflows. Compared with Cursor and Claude Code.'
+title = 'Google Antigravity After 30 Days: 3 Killer Features, 5 Reasons I Switched Back'
+description = 'I used Google Antigravity as my daily driver for 30 days against Cursor and Claude Code. Here are the 3 features that genuinely surprised me — and the 5 blockers that sent me back to my old stack.'
 toc = true
 tags = ['Google Antigravity', 'AI Coding Tools', 'AI IDE', 'Gemini']
 categories = ['AI Guides']

@@ -1,8 +1,8 @@
 +++
 date = '2026-02-28T10:00:00+08:00'
 draft = false
-title = 'Claude AI Rate Limits 2026: Free, Pro & Max — Exact Message Caps'
-description = 'Exact Claude rate limits 2026: Free ~5 msgs, Pro ~45, Max 5x ~225 per 5-hour window. Every plan compared — plus API tiers, weekly caps, and how to avoid hitting the limit.'
+title = 'Claude Rate Limits 2026: I Burned Through Pro & Max in One Week — Real Caps'
+description = 'After hitting Claude rate limits on Pro, Max 5x, and Max 20x in a single week, here are the real message caps, what actually happens at the wall, and the 3 workarounds that saved my billing.'
 toc = true
 tags = ['Claude Code', 'Rate Limits', 'Pricing', 'AI Coding Tools']
 categories = ['AI Guides']
