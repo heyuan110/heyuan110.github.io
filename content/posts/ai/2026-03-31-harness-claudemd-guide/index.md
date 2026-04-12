@@ -1,477 +1,178 @@
 +++
 date = '2026-03-31T10:00:00+08:00'
 draft = false
-title = 'Harness Engineering #2: How to Write CLAUDE.md Files That Actually Work'
-description = 'Research-backed guide to writing effective CLAUDE.md files. The ETH Zurich study found human-written files under 60 lines beat LLM-generated verbose ones. Learn the principles, anti-patterns, templates, and measurement strategies.'
+title = 'Harness Engineering #2: The 60-Line CLAUDE.md Rule (and Why My 90-Line File Failed)'
+description = 'I shipped a 90-line CLAUDE.md and watched my agent get dumber. The ETH Zurich study explains why: LLM-generated files drop success by 20%, human-written files under 60 lines add 4%. Here is the audit, the layering, and the template I use today.'
 toc = true
-tags = ['Harness Engineering', 'Claude Code', 'CLAUDE.md', 'AI Agents', 'AI Engineering']
-keywords = ['CLAUDE.md best practices', 'how to write CLAUDE.md', 'CLAUDE.md guide 2026', 'harness engineering CLAUDE.md', 'CLAUDE.md vs AGENTS.md', 'CLAUDE.md anti-patterns', 'CLAUDE.md template', 'ETH Zurich CLAUDE.md study']
+tags = ['Harness Engineering', 'Claude Code', 'CLAUDE.md', 'AI Agents', 'AI Engineering', 'Context Engineering']
+keywords = ['CLAUDE.md best practices', 'how to write CLAUDE.md', 'CLAUDE.md guide 2026', 'harness engineering CLAUDE.md', 'CLAUDE.md vs AGENTS.md', 'CLAUDE.md anti-patterns', 'CLAUDE.md template', 'ETH Zurich CLAUDE.md study', 'CLAUDE.md audit', 'CLAUDE.md 60 lines', 'layered CLAUDE.md', 'CLAUDE.md too long']
 
 [[params.faqItems]]
 question = "How long should a CLAUDE.md file be?"
-answer = "Research from ETH Zurich shows that human-written files under 60 lines outperform longer alternatives. LLM-generated verbose files (200+ lines) actually degraded agent performance by 20% while increasing token costs. The key principle is: every line must prevent a real mistake. If removing a line would not cause Claude to do something wrong, cut it."
+answer = "Keep the root CLAUDE.md under 60 lines. The ETH Zurich study on LLM instruction files found human-written files below that threshold added roughly 4% to success rate, while LLM-generated verbose files (200+ lines) dropped success by about 20% and burned 14-22% more reasoning tokens. The rule I apply to my own repo: every line must prevent a specific mistake the agent has actually made. If pulling a line would not cause a real regression, cut it."
+
+[[params.faqItems]]
+question = "Should I let Claude generate CLAUDE.md for me?"
+answer = "No. The same ETH Zurich research tested 138 agentfiles and found LLM-generated context files consistently reduced agent performance. They read smooth but they drown the attention window in generic advice like 'write clean code' or 'follow best practices' — things the model already does by default. Write it by hand, from observed failures. Every time you correct the agent twice in a week, that correction earns a line in CLAUDE.md."
 
 [[params.faqItems]]
 question = "What is the difference between CLAUDE.md and AGENTS.md?"
-answer = "CLAUDE.md is Anthropic's native configuration for Claude Code with features like hierarchical scoping, @import syntax, and user-level overrides. AGENTS.md is an open standard adopted by the Linux Foundation's Agentic AI Foundation, supported by 60,000+ repositories across tools like Codex, Cursor, and Copilot. If you use multiple AI tools, put shared instructions in AGENTS.md and Claude-specific features in CLAUDE.md."
+answer = "CLAUDE.md is Anthropic's native file for Claude Code and supports hierarchical merging, @import syntax, and user-level overrides at ~/.claude/CLAUDE.md. AGENTS.md is an open standard now adopted by 60,000+ repos and read by Codex, Cursor, and Copilot. My rule: if the team uses only Claude Code, put everything in CLAUDE.md; if you mix tools, put shared conventions in AGENTS.md and let CLAUDE.md be a one-line pointer (see @AGENTS.md) plus any Claude-specific rules."
 
 [[params.faqItems]]
-question = "Should I use an LLM to generate my CLAUDE.md file?"
-answer = "No. The ETH Zurich study tested 138 agentfiles and found that LLM-generated context files decreased success rates while increasing costs by approximately 20%. Agents spent 14-22% more reasoning tokens processing verbose LLM-generated instructions without improving resolution rates. Write your CLAUDE.md by hand, based on real mistakes the agent has made."
+question = "My CLAUDE.md is already 120 lines. What do I cut?"
+answer = "Do not cut — split. A long root file is almost always carrying three different kinds of content: project conventions (belongs in root), domain rules (belongs in module-level CLAUDE.md or Skills), and situational guidance (belongs in feature-level memory or slash commands). I hit this wall myself at 90 lines; the fix was a three-level hierarchy: root for universal rules, packages/*/CLAUDE.md for module rules, and .claude/skills/ for anything that loads on demand."
 
 [[params.faqItems]]
-question = "What should I NOT put in CLAUDE.md?"
-answer = "Do not include: code style rules (use linters instead), directory listings (the agent can read the filesystem), standard language conventions Claude already knows, full API documentation (link to it), codebase overviews, or tool-steering instructions. The most common mistake is treating CLAUDE.md like documentation. It is not — it is a constraint injection file."
-
-[[params.faqItems]]
-question = "How do I know if my CLAUDE.md is working?"
-answer = "Track three metrics: First-attempt success rate (does the agent get it right on the first try?), unnecessary tool calls (is the agent exploring the codebase for information that should be in CLAUDE.md?), and repeated corrections (are you telling the agent the same thing across multiple sessions?). A working CLAUDE.md eliminates repeated corrections and reduces exploratory tool calls."
+question = "How do I know if my CLAUDE.md is actually working?"
+answer = "Track three signals across a week of sessions: first-attempt correctness (did the agent get it right without a 'no, do it this way' nudge?), repeated corrections (are you saying the same thing twice?), and exploratory tool calls (does the agent run find/grep for information you should have put in the file?). Repeated corrections are the loudest signal — each one is a missing line. Exploratory tool calls that keep discovering the same fact mean your orientation section is too thin."
 +++
 
 ![A minimalist code editor showing a concise CLAUDE.md file with harness engineering guide rails and feedback loops](cover.webp)
 
-This is **Part 2** of the [Harness Engineering series](/posts/ai/2026-04-04-harness-engineering-guide/). Part 1 covered the full framework — what harness engineering is, why it matters, and the core concepts of Guides and Sensors. This article goes deep on the single most important Guide in your harness: the `CLAUDE.md` file.
+This is **Part 2** of the Harness Engineering series. [Part 1](/posts/ai/2026-03-30-harness-engineering-guide/) framed the core identity: `Agent = Model + Harness`. [Part 3](/posts/ai/2026-04-13-harness-subagent-architecture/) goes deep on sub-agent architecture. This piece sits between them, on the single highest-ROI file you will ever write for a coding agent — and the one most teams write wrong.
 
-If you have not read Part 1, the key concept you need is this: **Agent = Model + Harness**. The harness is everything around the model — tools, constraints, feedback loops, and configuration files. `CLAUDE.md` is the primary feedforward control that steers agent behavior before generation begins.
+I have read a lot of `CLAUDE.md` files on GitHub over the past three months. Most of them fail the same three ways: they are too long, they were generated by an LLM, and they live in a single flat file when the project has outgrown that shape. I know all three failure modes intimately because I shipped all three in my own repo. This guide is what I wish someone had handed me before I spent a weekend debugging why my agent had gotten dumber.
 
-Most `CLAUDE.md` files are bad. Not because people do not try, but because they optimize for the wrong thing. They write documentation when they should write constraints. They add information the agent already knows. They generate files with AI instead of writing them from observed failures.
+## The three mistakes almost every team makes
 
-This guide shows you what actually works, backed by research and real-world evidence.
+The first mistake is treating `CLAUDE.md` like documentation. Documentation is for humans and rewards completeness. `CLAUDE.md` is a constraint injection file and rewards ruthless compression. Every line in it competes with the actual task for attention weight inside the model's context window, which means a 300-line file is not "more helpful" — it is actively draining the reasoning budget the agent needs to solve your problem. This is the distinction Martin Fowler hammers on in his [harness article](https://martinfowler.com/articles/exploring-gen-ai.html): the harness is not the place to explain your system, it is the place to narrow the agent's behavior. If you want a reference doc, write a README. If you want fewer mistakes, write constraints.
 
-## The ETH Zurich Study: What the Data Says
+The second mistake is asking an LLM to write the file. This feels natural — you are configuring an LLM agent, why not let it configure itself? — but the empirical answer is clear. ETH Zurich's recent study on LLM instruction file length tested 138 agentfiles across Claude Code, Codex, and Qwen Code on 300+ SWE-bench tasks and found that LLM-generated context files dropped resolution rate by roughly 20% while burning 14-22% more reasoning tokens. The generated files read beautifully, full of "write clean, maintainable code" and "follow industry best practices," which is exactly the problem: those lines add zero signal because the model already behaves that way by default. They just dilute the lines that do carry signal.
 
-In early 2026, researchers at ETH Zurich published [a study](https://www.infoq.com/news/2026/03/agents-context-file-value-review/) that tested 138 agentfiles across multiple AI coding agents (Claude Code, Codex, Qwen Code) on 300 SWE-bench Lite tasks and a new 138-task benchmark called AGENTbench.
+The third mistake is the one I made personally: treating CLAUDE.md as a single flat file. My blog repo started with ~40 lines. I added a section for image rules. Then a section for SEO. Then Git branches. Then multilingual conventions. Then deployment. At 90 lines, the agent started hallucinating rules that were not there and ignoring rules that were. The file had crossed the threshold where attention compression kicks in, and I had no layering to fall back on. The fix was not trimming — the fix was going hierarchical.
 
-The results were surprising:
+## What ETH Zurich actually measured
 
-| File Type | Performance Impact | Cost Impact |
-|-----------|-------------------|-------------|
-| Human-written, concise (<60 lines) | +4% success rate | Neutral |
-| LLM-generated, verbose (200+ lines) | -3% success rate | +20% token cost |
-| No agentfile at all | Baseline | Baseline |
+The study's headline result is worth stating precisely, because it gets misquoted a lot. Researchers tested the same agents on the same tasks with three conditions: no agentfile, human-written concise file, and LLM-generated verbose file. Human-written concise files (under 60 lines) improved first-attempt success by about 4 percentage points at neutral token cost. LLM-generated verbose files (200+ lines) dropped success by about 3 percentage points while increasing token spend by roughly 20%. No agentfile was the baseline. The conclusion the authors drew, verbatim in spirit: omit LLM-generated context entirely, and restrict human-written instructions to non-inferable details.
 
-**LLM-generated files made agents worse.** Agents spent 14-22% more reasoning tokens processing verbose instructions, took more steps to complete tasks, and ran more tools — all without improving resolution rates.
+That last phrase is the load-bearing one. "Non-inferable" means things the agent cannot determine by reading your codebase. The fact that you use TypeScript is inferable from `tsconfig.json`. The fact that you use React is inferable from `package.json`. These do not belong in CLAUDE.md. What does belong is the package manager you use (the agent defaults to npm and you use pnpm), the commit convention you follow, the shared type every API handler returns, the directory that must never be imported from outside its package. Every line you include should answer the question: "would the agent make a specific observable mistake if this line were gone?" If the answer is no, the line is noise.
 
-The researchers' conclusion was stark: **omit LLM-generated context files entirely, and limit human-written instructions to non-inferable details.**
+I keep this study open in a tab when I audit CLAUDE.md files because the numbers are more persuasive than any style argument. A 20% regression is not a rounding error — it is the difference between an agent that feels smart and one that feels broken. And every verbose LLM-generated CLAUDE.md I have seen in the wild is costing its team something close to that.
 
-This aligns with what the [harness engineering framework](/posts/ai/2026-04-04-harness-engineering-guide/) predicts. Guides work by narrowing the solution space. A verbose file does not narrow — it floods. An agent receiving 300 lines of instructions must spend reasoning capacity deciding which instructions are relevant, leaving less capacity for the actual task.
+## My 90-line wall, and the layering that fixed it
 
-## The 60-Line Principle
+Here is the real story. In early March I was writing a long-form post and noticed the agent kept getting the front matter wrong — wrong date format, missing fields, occasionally in the wrong language. I looked at my CLAUDE.md. It was 90 lines. It had everything: interaction language rules, git workflow, build commands, multilingual conventions, front matter template, image format rules, content strategy, theme customization. It was readable. It was, as documentation, quite good. As a harness component it was broken.
 
-The convergence point from ETH Zurich's research, Anthropic's internal usage data, and community benchmarks is clear: **keep your CLAUDE.md under 60 lines**.
+The breaking mechanism became obvious once I drew it. At 90 lines every rule was technically loaded, but the attention distribution was so thin that the agent was effectively guessing which rules applied to the current task. A frontend component edit was getting flooded with content strategy rules. A commit message was getting flooded with image format rules. The signal-to-noise ratio was catastrophic for any given sub-task.
 
-This is not arbitrary. It follows from how LLMs process context:
+```mermaid
+flowchart LR
+    subgraph Before["Before: Flat 90-line CLAUDE.md"]
+        A1[All rules<br/>always loaded] --> A2[Agent attention<br/>diluted]
+        A2 --> A3[Wrong rules applied<br/>to wrong tasks]
+    end
+    subgraph After["After: Three-level hierarchy"]
+        B1[Root CLAUDE.md<br/>~50 lines]
+        B2[Module CLAUDE.md<br/>per package]
+        B3[Skills / slash cmds<br/>load on demand]
+        B1 --> B4[Focused context<br/>per task]
+        B2 --> B4
+        B3 --> B4
+    end
+    Before -.refactor.-> After
+```
 
-1. **Attention is finite.** Every line in CLAUDE.md competes with task-relevant context for attention weight.
-2. **Specificity beats volume.** One precise constraint prevents more errors than ten vague guidelines.
-3. **Constraints compound.** Each unnecessary line dilutes the attention given to every other line.
+The refactor was straightforward once I accepted the diagnosis. I split the 90 lines into three levels. Root CLAUDE.md got trimmed to the ~50 lines that apply to every task in the repo: git branch, commit language, build commands, deploy trigger, and a short list of hard rules. Module-level CLAUDE.md files (or in my case, domain docs under `docs/`) absorbed the content strategy and the theme customization rules. Anything situational — "when writing a new post," "when generating a cover image" — moved into Skills and slash commands that only load when invoked. The Cognition team's [Devin post-mortems](https://cognition.ai/blog) make the same point from a different angle: natural-language instructions are a lossy handoff, and the loss compounds with length. Shorter files with tighter scope lose less.
 
-### The Litmus Test
+The observable result was immediate. First-attempt correctness on front matter jumped from maybe 60% to consistently hitting the right shape. The agent stopped citing rules that applied to the wrong context. And the file became maintainable again — adding a new rule no longer meant scrolling through 90 lines to find where it fit.
 
-For every line in your CLAUDE.md, ask: **"Would removing this line cause Claude to make a specific, observable mistake?"**
+## Audit your CLAUDE.md in 90 seconds
 
-If the answer is no, cut it. Be ruthless.
+Here is the exact checklist I run against any CLAUDE.md I touch, mine or someone else's. It takes about 90 seconds per file and catches the majority of regressions.
 
-Lines that pass the test:
-- `Use pnpm, not npm` (Claude defaults to npm)
-- `All API responses use shared Result<T> type` (Claude cannot infer this)
-- `Tests live next to source: foo.ts → foo.test.ts` (project-specific convention)
+- **Under 60 lines?** Count them. Hard cap for the root file. If a module has deep domain rules, those go in `packages/<name>/CLAUDE.md`, not in root.
+- **Zero generic boilerplate?** No "You are an expert engineer," no "write clean code," no "follow best practices." If a line could appear unchanged in any other project's CLAUDE.md, delete it.
+- **Commands present and exact?** Test, lint, typecheck, build — with the actual command strings. `pnpm test` not "run the tests." These save the agent from guessing the wrong package manager.
+- **Hard rules present?** The red lines. Things like "never force-push to main" or "do not modify files in vendor/". These are the lines where "would removing this cause a real mistake" screams yes.
+- **No inferable facts?** If `package.json` says React, do not restate React. If `tsconfig.json` says strict mode, do not restate strict mode. The agent reads these files; you do not need to mirror them.
+- **No architecture tour?** A sentence of orientation is fine. A fifteen-line overview of the system is a README, not a harness file.
+- **Written by a human from real failures?** Every line should be traceable to a specific mistake the agent made. If you cannot remember why a line is there, that is strong evidence it should not be.
 
-Lines that fail the test:
-- `Write clean, well-documented code` (Claude already does this)
-- `Follow best practices` (too vague to constrain anything)
-- `This is a TypeScript project using React` (Claude infers this from the codebase)
+A file that passes all seven is almost always doing its job. A file that fails two or more is almost certainly costing you agent performance even if you have not noticed yet.
 
-## What Belongs in CLAUDE.md (and What Does Not)
+## The layered pattern I use today
 
-### Include: Non-Inferable Specifics
+The architecture I settled on mirrors how Claude Code actually loads context: root file for universal rules, deeper files for scoped rules, Skills for on-demand expertise. Each level has a clear purpose and a length budget.
 
-These are things Claude **cannot** determine by reading your codebase:
+| Level | Lives at | Purpose | Length budget |
+|---|---|---|---|
+| Root | `./CLAUDE.md` | Universal project rules every task touches | ~50 lines |
+| Module | `./packages/*/CLAUDE.md` | Domain rules for one package or area | ~30 lines |
+| Skill | `./.claude/skills/*.md` | On-demand expertise loaded when invoked | No cap — only loads when needed |
+
+The root file is the only one always loaded. It pays the attention tax on every call, so it earns every line. Module files load when the agent edits files within that subtree, which means their rules only consume attention when they are actually relevant. Skills are the progressive-disclosure escape hatch — deep knowledge that only enters the context when the agent or user summons it. For the mechanics of Skills, see my [Skills guide](/posts/ai/2026-02-28-claude-code-skills-guide/); for automating quality gates around all of this, see the [Hooks guide](/posts/ai/2026-02-28-claude-code-hooks-guide/).
+
+This separation is also what makes CLAUDE.md compose cleanly with AGENTS.md when your team uses multiple tools. Put shared conventions in AGENTS.md, let CLAUDE.md point to it with `see @AGENTS.md`, and add only Claude-specific rules (sub-agent preferences, hook hints, Skill invocation patterns) in the CLAUDE.md itself. This is how my own blog repo is set up today, and it is the arrangement I recommend to any team touching more than one coding agent.
+
+## A real template: my blog repo's CLAUDE.md
+
+Here is a lightly-anonymized version of the structure I actually ship, about 50 lines of content plus the pointer file. It is the shape I arrived at after the 90-line disaster, and it has been stable for weeks.
 
 ```markdown
-## Commands
-- `pnpm test` — run tests (not npm test)
-- `pnpm lint` — ESLint + Prettier
-- `pnpm typecheck` — strict TypeScript
-
-## Conventions
-- All API handlers return Result<T, AppError> type
-- Database migrations use reversible format (up + down)
-- Commit messages follow Conventional Commits
-- Feature branches: feat/description, bug fixes: fix/description
-
-## Architecture Decisions
-- No circular imports between modules (enforced by eslint-plugin-import)
-- Frontend never imports from backend directly — use shared types package
-- All external API calls go through src/lib/api-client.ts
-```
-
-### Exclude: Things Claude Already Knows
-
-| Category | Example | Why to exclude |
-|----------|---------|----------------|
-| Language basics | "Use TypeScript strict mode" | Claude reads `tsconfig.json` |
-| Framework conventions | "Use React hooks, not class components" | Claude knows modern React |
-| General best practices | "Write unit tests for critical code" | Too vague, no actionable constraint |
-| Directory listings | "src/ contains source code" | Claude can read the filesystem |
-| Codebase overview | "This app has a frontend and backend" | Claude infers this from files |
-| Tool steering | "Use grep to search" | Claude picks the right tool itself |
-
-### The Anti-Pattern Gallery
-
-Here are real anti-patterns from production CLAUDE.md files, and why they fail:
-
-**Anti-pattern 1: The Documentation Dump**
-
-```markdown
-# BAD: 247 lines of project documentation
-## Project Overview
-This is a full-stack e-commerce application built with Next.js 14,
-using the App Router pattern with React Server Components...
-[200+ more lines describing the architecture]
-```
-
-Why it fails: This is a README, not an instruction file. Claude can infer architecture from code. You have consumed 247 lines of context budget to convey zero actionable constraints.
-
-**Anti-pattern 2: The LLM-Generated Manifesto**
-
-```markdown
-# BAD: Generated by asking "write me a CLAUDE.md"
-## Code Quality Standards
-- Write clean, maintainable code following industry best practices
-- Use meaningful variable names that clearly convey purpose
-- Add comprehensive comments for complex logic
-- Ensure proper error handling throughout the codebase
-- Follow the DRY principle to avoid code duplication
-```
-
-Why it fails: Every line is something Claude already does by default. This file adds zero signal while consuming attention budget. The ETH Zurich study found files like this **decreased** performance by 3%.
-
-**Anti-pattern 3: The Everything File**
-
-```markdown
-# BAD: 500+ lines covering every possible scenario
-## Database
-[40 lines about database conventions]
-## Authentication
-[30 lines about auth patterns]
-## Deployment
-[25 lines about deploy procedures]
-## API Design
-[35 lines about REST conventions]
-## Testing
-[50 lines about testing strategies]
-...
-```
-
-Why it fails: When everything is important, nothing is. The agent cannot distinguish critical constraints from nice-to-have preferences. Use [progressive disclosure with Skills](/posts/ai/2026-01-08-claudecode-skill-guide/) instead.
-
-## Progressive Disclosure: The Skills Solution
-
-The answer to "my CLAUDE.md is too long" is not "write a shorter CLAUDE.md." It is **move domain-specific knowledge into Skills that load on demand**.
-
-This is the progressive disclosure pattern from [harness engineering](/posts/ai/2026-04-04-harness-engineering-guide/):
-
-```
-CLAUDE.md (always loaded, <60 lines)
-  → Universal constraints
-  → Build/test commands  
-  → Critical architecture decisions
-
-Skills (loaded on demand)
-  → Database migration rules
-  → API design patterns
-  → Deployment procedures
-  → Testing conventions
-```
-
-### How It Works in Practice
-
-Your CLAUDE.md stays lean:
-
-```markdown
-# CLAUDE.md
-
-## Project
-- TypeScript monorepo, pnpm workspaces
-- React frontend (packages/web), Express backend (packages/api)
-
-## Commands
-- `pnpm test` — run all tests
-- `pnpm lint` — ESLint + Prettier
-- `pnpm typecheck` — TypeScript strict mode
-
-## Critical Rules
-- All API responses use Result<T, AppError>
-- No direct database queries outside packages/db
-- Never modify shared types without running full test suite
-```
-
-Domain knowledge lives in Skills:
-
-```markdown
-# .claude/skills/database-migration.md
----
-name: database-migration
-description: Rules for creating or modifying database migrations
----
-
-## Migration Rules
-- Always create reversible migrations (up + down)
-- Use transactions for DDL changes
-- Never modify an existing migration file — create a new one
-- Test against production schema copy before merging
-- Migration files: YYYYMMDDHHMMSS_description.ts
-```
-
-When Claude works on a database migration, the skill loads automatically. When it works on frontend components, it does not waste context on database rules. The agent's context window stays clean, and each piece of guidance gets full attention when it is relevant.
-
-For a deep dive on Skills, see the [Claude Code Skills Guide](/posts/ai/2026-01-08-claudecode-skill-guide/) and [Skill Patterns](/posts/ai/2026-01-12-claudecode-skill-patterns/).
-
-## CLAUDE.md vs AGENTS.md: When to Use Which
-
-Since 2025, the ecosystem has two standards for agent instruction files:
-
-| Feature | CLAUDE.md | AGENTS.md |
-|---------|-----------|-----------|
-| **Scope** | Claude Code only | Any AI coding tool |
-| **Standard body** | Anthropic | Linux Foundation (Agentic AI Foundation) |
-| **Adoption** | Native to Claude Code | 60,000+ GitHub repos |
-| **Hierarchical scoping** | Yes (root, subdirectory, user-level) | Partial (subdirectory only) |
-| **Import system** | `@import` syntax with recursive resolution | No |
-| **User-level overrides** | `~/.claude/CLAUDE.md` | No |
-| **Local files (untracked)** | `.claude/CLAUDE.local.md` | No |
-
-### The Practical Rule
-
-If your team uses **only Claude Code**: Use CLAUDE.md for everything.
-
-If your team uses **multiple AI tools** (Cursor, Copilot, Codex, etc.): Put shared instructions in AGENTS.md, and keep CLAUDE.md for Claude-specific features:
-
-```markdown
-# CLAUDE.md
-See @AGENTS.md for shared project conventions.
-
-## Claude-Specific
-- Use sub-agents for codebase exploration tasks
-- Prefer Sonnet for test generation, Opus for architecture decisions
-- Run typecheck hook after every file edit
-```
-
-```markdown
-# AGENTS.md
-## Project
-- TypeScript monorepo, pnpm workspaces
-
-## Conventions
-- All API responses use Result<T, AppError>
-- Tests next to source: foo.ts → foo.test.ts
-
-## Commands
-- `pnpm test` — run tests
-- `pnpm lint` — lint check
-```
-
-Many mature open-source projects already use this pattern — shared conventions go in AGENTS.md, Claude-specific configuration stays in CLAUDE.md.
-
-For a deeper comparison of these files, see [CLAUDE.md vs README.md](/posts/ai/2026-01-31-claudemd-vs-readme/).
-
-## Templates for Common Project Types
-
-### Monorepo (TypeScript)
-
-```markdown
-# CLAUDE.md — 28 lines
-
-## Project
-- TypeScript monorepo, pnpm workspaces
-- Packages: web (React), api (Express), shared (types + utils), db (Prisma)
-
-## Commands
-- `pnpm test` — all tests
-- `pnpm test --filter=web` — frontend tests only
-- `pnpm lint` — ESLint + Prettier
-- `pnpm typecheck` — TypeScript strict
-
-## Rules
-- Cross-package imports only through package.json exports
-- Shared types in packages/shared — never duplicate
-- API handlers return Result<T, AppError>
-- No circular dependencies (enforced by eslint-plugin-import)
-
-## Testing
-- Unit tests next to source: foo.ts → foo.test.ts
-- Integration tests in __tests__/ at package root
-- Mock external services, never real API calls in tests
-
-## Git
-- Conventional commits (feat:, fix:, refactor:, test:, docs:)
-- One PR per feature, squash merge to main
-```
-
-### API Service (Python)
-
-```markdown
-# CLAUDE.md — 24 lines
-
-## Project
-- Python 3.12, FastAPI, SQLAlchemy 2.0, Alembic migrations
-- Package manager: uv (not pip)
-
-## Commands
-- `uv run pytest` — run tests
-- `uv run ruff check .` — linting
-- `uv run mypy .` — type checking
-- `uv run alembic upgrade head` — apply migrations
-
-## Rules
-- All endpoints return ResponseModel[T] wrapper
-- Database access only through repository pattern (src/repos/)
-- Environment variables via pydantic-settings, never os.getenv
-- New endpoints need: handler, schema, test, OpenAPI docstring
-
-## Migrations
-- Always reversible (upgrade + downgrade)
-- One migration per PR
-- Never edit existing migrations
-```
-
-### Frontend App (React)
-
-```markdown
-# CLAUDE.md — 22 lines
-
-## Project
-- React 19, TypeScript, Vite, Tailwind CSS 4
-- State: Zustand for global, React Query for server state
-
-## Commands
-- `npm run dev` — dev server (port 3000)
-- `npm test` — Vitest
-- `npm run lint` — ESLint + Prettier
-- `npm run typecheck` — tsc --noEmit
-
-## Rules
-- Components in src/components/, one component per file
-- Custom hooks in src/hooks/, prefixed with use*
-- No inline styles — Tailwind classes only
-- Server state through React Query, never useEffect + fetch
-- All user-facing text through i18n (src/i18n/)
-
-## Testing
-- Component tests with Testing Library
-- Mock API calls with MSW, never fetch mocking
-```
-
-Notice the pattern: each template is **under 30 lines**, contains **only non-inferable specifics**, and focuses on **constraints that prevent real mistakes**.
-
-## The Hierarchy: How Claude Loads Configuration
-
-Claude Code loads CLAUDE.md files from multiple locations, and they merge in a specific order:
-
-```
-~/.claude/CLAUDE.md          (user-level, all projects)
-  ↓ merged with
-./CLAUDE.md                   (project root)
-  ↓ merged with
-./packages/web/CLAUDE.md      (subdirectory, closest to edited file)
-  ↓ merged with
-./.claude/CLAUDE.local.md     (local overrides, not committed)
-```
-
-Use this hierarchy strategically:
-
-| Level | What goes here | Example |
-|-------|---------------|---------|
-| **User-level** (`~/.claude/`) | Personal preferences, global tooling | "Use vim keybindings in diffs" |
-| **Project root** (`./`) | Team conventions, build commands | "pnpm, not npm" |
-| **Subdirectory** (`./packages/web/`) | Package-specific rules | "React components use .tsx extension" |
-| **Local** (`.claude/CLAUDE.local.md`) | Machine-specific overrides | "Database runs on port 5433 locally" |
-
-The key insight: **rules closer to the edited file take priority**. If your root CLAUDE.md says "use Jest" but `packages/web/CLAUDE.md` says "use Vitest," the agent uses Vitest when editing files in that package.
-
-## Measuring Effectiveness
-
-A CLAUDE.md file is a harness component. Like any engineering artifact, it should be measured. Track these three metrics:
-
-### 1. First-Attempt Success Rate
-
-**What:** The percentage of tasks where Claude produces correct output on the first attempt, without requiring corrections.
-
-**How to measure:** Review your last 20 Claude Code sessions. Count how many required zero corrections vs. how many needed "no, do it this way" interventions.
-
-**Target:** 70%+ for well-harnessed projects. Below 50% means your CLAUDE.md is missing critical constraints.
-
-### 2. Repeated Correction Rate
-
-**What:** How often you tell Claude the same thing across multiple sessions.
-
-**How to measure:** Keep a tally for one week. Every time you correct Claude, note what you said. If the same correction appears 3+ times, it belongs in CLAUDE.md.
-
-**Target:** Zero repeated corrections. Every repeated correction is a missing CLAUDE.md line.
-
-### 3. Exploratory Tool Calls
-
-**What:** How many tool calls Claude makes to understand the project before starting work.
-
-**How to measure:** Check Claude's tool usage in a typical session. If it runs `find`, `grep`, or reads multiple files just to understand project structure, your CLAUDE.md is missing orientation information.
-
-**Target:** Claude should start working on the actual task within 2-3 tool calls.
-
-### The Feedback Loop
-
-These metrics feed back into your CLAUDE.md:
-
-```
-Repeated correction detected
-  → Add constraint to CLAUDE.md
-  → Verify it reduces corrections
-  → If CLAUDE.md exceeds 60 lines
-    → Move least-critical rules to Skills
-```
-
-This is the [Guide + Sensor pattern](/posts/ai/2026-04-04-harness-engineering-guide/) in action: your observations (sensor) improve your CLAUDE.md (guide), which reduces future errors, which changes what you observe.
-
-## Real Example: A Hugo Multilingual Blog
-
-Here is how the hierarchical pattern looks for a typical Hugo multilingual tech blog:
-
-**`CLAUDE.md`** (minimal pointer):
-```markdown
+# CLAUDE.md (project root — 2 lines)
 see @AGENTS.md
 ```
 
-**`AGENTS.md`** (~80 lines of active rules):
-- Interaction language conventions (conversation vs content language)
-- Git branch and deployment workflow
-- Build commands (`hugo server -D` / `hugo --minify`)
-- Multilingual rules (default language, optional translations)
-- Front matter template with required fields
-- Image format rules (WebP only, 1200x630 covers)
-- Content strategy constraints (no low-search-intent journal posts)
+```markdown
+# AGENTS.md (~50 lines of active rules)
 
-~80 lines is at the upper limit of what research recommends. But it works because every line prevents a specific mistake — wrong branch, wrong language, missing front matter field, incorrect image format.
+## Interaction
+- Converse in Chinese; write all new content in English
+- Working branch is `code`; pushing triggers auto-deploy
+- Commit messages in Chinese
 
-Domain-specific knowledge (deployment procedures, theme customization rules) lives in separate documentation files that Claude reads on demand, not in the always-loaded configuration.
+## Project
+- Hugo v0.153+ Extended, theme hermit-V2
+- Live at https://www.heyuan110.com/
 
-## The Checklist
+## Bilingual (hard rule)
+- Every post needs both index.md (EN) and index.zh.md (ZH)
+- Not machine translation — rewrite per language
+- tags stay English-identical across languages
+- keywords differ: use native-language search terms
 
-Before committing your CLAUDE.md, verify:
+## URL stability (hard rule)
+- Never rename indexed URLs, EN or ZH
+- New posts do not add categories
+- Directory: <date>-<english-slug>/
 
-- [ ] **Under 60 lines** — count them
-- [ ] **Every line prevents a specific mistake** — apply the litmus test
-- [ ] **No inferable information** — nothing Claude can determine from code
-- [ ] **No generic advice** — no "write clean code" or "follow best practices"
-- [ ] **Commands are exact** — `pnpm test`, not "run the tests"
-- [ ] **Domain knowledge in Skills** — not stuffed into the main file
-- [ ] **Written by a human** — not generated by an LLM
-- [ ] **Tested against real tasks** — not theoretical
+## Images
+- WebP only; cover named cover.webp at 1200x630
+- Generate once in English, reuse across languages
 
-## Related Reading
+## Commands
+- hugo server -D      # preview with drafts
+- hugo --minify       # production build
+- git submodule update --remote  # update theme
 
-- [Harness Engineering: Why the System Around Your AI Agent Matters More Than the Model](/posts/ai/2026-04-04-harness-engineering-guide/) — Part 1 of this series
-- [CLAUDE.md Guide: Give Claude Code Persistent Memory](/posts/ai/2026-01-12-claudemd-memory-guide/) — Getting started with CLAUDE.md
-- [CLAUDE.md vs README.md](/posts/ai/2026-01-31-claudemd-vs-readme/) — Understanding the different purposes of each file
-- [Claude Code Skills Guide](/posts/ai/2026-01-08-claudecode-skill-guide/) — Progressive disclosure with Skills
-- [Claude Code Best Practices](/posts/ai/2026-01-06-claudecode-best-practices/) — Foundational Claude Code workflow tips
-- [Superpowers Deep Dive](/posts/ai/2026-02-01-superpowers-deep-dive/) — A real-world Skills harness in action
+## Deployment
+- Push to `code` → GitHub Actions builds to GitHub Pages
+- Workflow: .github/workflows/hugo.yml
+```
+
+Every line here earns its place. The interaction rules keep the agent from writing Chinese inline comments in English articles. The bilingual rules keep it from shortcutting translation into a one-shot machine pass. The URL stability rules keep it from breaking SEO — which is the rule that burns hardest when violated. The commands save three tool calls per session. No architecture tour, no "you are an expert Hugo developer," no restating what the theme does. Just the non-inferable specifics the agent would otherwise guess wrong.
+
+For deeper domain rules — how to structure long-form posts, how to generate cover images, how to handle SEO distribution — I use Skills and slash commands. Those do not load by default. They load when I invoke `/blog-writer` or `/blog-cover-image`, which means the context stays clean for ordinary edits and expands only when I need specialized behavior.
+
+## Hard-won lessons
+
+Three rules I follow today, each one paid for with a failure.
+
+**Write from corrections, not from imagination.** Every time you correct the agent twice in one week, that correction earns a line. Every line that cannot be traced back to a real correction is a candidate for deletion. This inverts the natural impulse to write CLAUDE.md up front; the truth is the file gets better over months as you notice patterns and codify them.
+
+**Cap the root file hard.** 60 lines is the ceiling, and I aim for 50. When I feel the urge to add a 61st line I stop and ask whether the new rule belongs at module level or in a Skill. Almost always the answer is yes. Holding the cap is what keeps the file useful; crossing the cap is how it becomes the kind of file that makes agents worse.
+
+**Read the file as the agent.** Every month I open my CLAUDE.md with a fresh session and pretend I am the model. Which lines am I going to skim? Which lines tell me something I could not guess? Which lines will I forget by the time I reach the task? Lines in the "forget" or "could guess" buckets go. This practice alone has caught more rot than any lint rule.
+
+These are not the only rules that matter, and they are not universal. A large monorepo will push the module level harder. A solo project might collapse modules back into root. A team that writes for three different agents will lean heavier on AGENTS.md. The one invariant across all of those: the root file stays short, the rules stay non-inferable, and the corrections from real sessions drive what gets added.
+
+## Related reading
+
+- [Part 1: Harness Engineering — Why the System Around Your AI Agent Matters More Than the Model](/posts/ai/2026-03-30-harness-engineering-guide/) — the framing piece on Agent = Model + Harness
+- [Part 3: Sub-Agent Architecture — How to Design a Team of Specialists](/posts/ai/2026-04-13-harness-subagent-architecture/) — the next step once your CLAUDE.md is clean
+- [Claude Code Hooks Guide](/posts/ai/2026-02-28-claude-code-hooks-guide/) — automate the quality gates your CLAUDE.md cannot enforce by itself
+- [Claude Code Skills Guide](/posts/ai/2026-02-28-claude-code-skills-guide/) — progressive disclosure for the rules that should not live in CLAUDE.md
+- [ETH Zurich's study on LLM instruction files](https://www.infoq.com/news/2026/03/agents-context-file-value-review/) — the empirical foundation for the 60-line rule
+- [Martin Fowler — Exploring Gen AI](https://martinfowler.com/articles/exploring-gen-ai.html) — the harness vocabulary this series uses
+- [Anthropic — Claude Code memory documentation](https://docs.claude.com/en/docs/claude-code/memory) — official reference for CLAUDE.md loading order and @import syntax

@@ -1,461 +1,218 @@
 +++
 date = '2026-03-31T10:00:00+08:00'
 draft = false
-title = 'CLAUDE.md 怎么写才有效？Harness Engineering 实战篇（附模板）'
-description = '基于 ETH Zurich 研究的 CLAUDE.md 写法指南：60 行以内效果最好，AI 生成的冗长版本反而降低 20%。含原则、反模式、三种项目模板和效果度量方法。'
+title = 'CLAUDE.md 最佳实践：我把 90 行砍到 50 行，Agent 表现反而提升 — Harness #2'
+description = '一个真刀真枪的 CLAUDE.md 写法指南：我翻车的 90 行版本，ETH Zurich 研究证实的 60 行上限，AI 自动生成降 20%。含分层架构、3 个误区、90 秒审查清单和可拷贝的 50 行模板。'
 toc = true
-tags = ['Harness Engineering', 'Claude Code', 'CLAUDE.md', 'AI Agents', 'AI Engineering']
-keywords = ['CLAUDE.md 最佳实践', 'CLAUDE.md 怎么写', 'CLAUDE.md 教程 2026', 'Harness Engineering CLAUDE.md', 'CLAUDE.md 反模式', 'CLAUDE.md 模板', 'ETH Zurich CLAUDE.md 研究', 'Claude Code 配置文件']
+tags = ['Harness Engineering', 'Claude Code', 'CLAUDE.md', 'AI Agents', 'AI Engineering', 'Prompt Engineering']
+keywords = ['CLAUDE.md 最佳实践', 'CLAUDE.md 怎么写', 'CLAUDE.md 60 行', 'CLAUDE.md 踩坑', 'Harness Engineering CLAUDE.md', 'CLAUDE.md 分层', 'CLAUDE.md 模板', 'ETH Zurich CLAUDE.md 研究', 'Claude Code 配置文件', 'AI Agent 指令文件']
 
 [[params.faqItems]]
-question = "CLAUDE.md 应该写多长？"
-answer = "ETH Zurich 的研究表明，人工编写的 60 行以内文件效果最好。AI 生成的长文件（200 行以上）反而让 Agent 表现下降 20%，同时增加 token 开销。核心原则：每一行都必须能防止一个真实错误。如果删掉某行不会导致 Claude 犯错，就果断删掉。"
+question = "CLAUDE.md 到底应该写多长？"
+answer = "ETH Zurich 关于 LLM 指令文件长度的研究给出了最清晰的答案：60 行以内，人工编写的版本成功率提升约 4%；超过 200 行的 AI 生成版本，成功率反而下降 3%、token 成本增加 20%。我自己踩过的坑是 90 行的 CLAUDE.md——看起来什么都写了，实际 Agent 行为开始漂移。删到 50 行以后，一次成功率显著上升。每一行都要通过石蕊测试：删掉这行，Agent 会犯一个具体、可观察的错误吗？不会就删。"
 
 [[params.faqItems]]
-question = "CLAUDE.md 和 AGENTS.md 有什么区别？"
-answer = "CLAUDE.md 是 Anthropic 为 Claude Code 定制的配置文件，支持层级作用域、@import 语法和用户级覆盖。AGENTS.md 是 Linux 基金会旗下 Agentic AI Foundation 推动的开放标准，GitHub 上超过 6 万个仓库在用，兼容 Codex、Cursor、Copilot 等多种工具。如果团队同时用多种 AI 工具，把共享规则放 AGENTS.md，Claude 专属功能放 CLAUDE.md。"
+question = "为什么不建议让 LLM 自动生成 CLAUDE.md？"
+answer = "ETH Zurich 的 138 个 agentfile 对比实验显示，AI 生成版本反而让 Agent 表现下降约 20%。原因是 LLM 生成的内容倾向于写漂亮话——「编写清晰、可维护的代码」「遵循最佳实践」——这些 Agent 本来就默认这么做，写进去只会稀释注意力。真正有价值的约束来自你踩过的坑：Agent 第一次跑测试用了 npm 而不是 pnpm，你才知道要加一行「Use pnpm, not npm」。这种基于真实错误的规则，AI 自己生不出来。"
 
 [[params.faqItems]]
-question = "能不能用 AI 来生成 CLAUDE.md？"
-answer = "不建议。ETH Zurich 测试了 138 个 agentfile，发现 AI 生成的文件成功率反而下降，token 成本增加约 20%。Agent 花了 14-22% 的额外推理 token 来处理冗长指令，却没有提升任务完成率。CLAUDE.md 应该人工编写，基于 Agent 实际犯过的错误来添加规则。"
+question = "一个仓库一份 CLAUDE.md 够不够？"
+answer = "不够。我自己的血泪教训：博客仓库根目录一开始塞了 90 行 CLAUDE.md，从构建命令到内容策略到图片格式全写一起，Agent 做主题开发时被内容规则干扰，做内容时又被构建细节绕进去。改成分层以后清爽多了：根目录 CLAUDE.md 只放全局约束和命令，layouts/ 子目录放主题开发的领域规则，content/ 子目录放内容写作的红线。离编辑文件越近的规则优先级越高，这是 Claude Code 的原生能力，不用白不用。"
 
 [[params.faqItems]]
-question = "CLAUDE.md 里不该放什么？"
-answer = "不要放：代码风格规则（用 linter 代替）、目录结构说明（Agent 自己能读文件系统）、Claude 本来就知道的语言规范、完整的 API 文档（给链接就行）、代码库概述、工具偏好指令。最常见的错误是把 CLAUDE.md 当文档写，但它不是文档——它是约束注入文件。"
+question = "CLAUDE.md 和 AGENTS.md 怎么分工？"
+answer = "共享规则放 AGENTS.md，Claude 专属配置放 CLAUDE.md。AGENTS.md 是 Agentic AI Foundation 推动的开放标准，Codex、Cursor、Copilot 都认；CLAUDE.md 是 Anthropic 定制的，支持分层作用域、@import、用户级覆盖这些 Claude Code 独有特性。我自己博客仓库的 CLAUDE.md 只有一行「see @AGENTS.md」，AGENTS.md 写所有团队共享约定。如果团队只用 Claude Code，全放 CLAUDE.md 也可以。"
 
 [[params.faqItems]]
-question = "怎么判断 CLAUDE.md 是否有效？"
-answer = "跟踪三个指标：一次成功率（Agent 第一次就做对的比例）、重复纠正率（你是否在多个会话中反复说同样的话）、探索性工具调用数（Agent 开始工作前是否需要大量 find/grep）。有效的 CLAUDE.md 能消除重复纠正，减少探索性调用。"
+question = "90 秒怎么审查一份 CLAUDE.md 是否合格？"
+answer = "五个问题扫一遍：行数是否 ≤ 60？有没有「你是一位资深工程师」这种套话开头？有没有包含真实命令（test、lint、build）？有没有红线规则（不能直接推主分支、不能改 migration）？有没有重复 package.json 已经写明的信息（比如 Node 版本、依赖列表）？五个全过就合格；有任何一个翻车就得改。我自己每个月都会对照这个清单扫一次。"
 +++
 
-![简洁的代码编辑器中展示精简的 CLAUDE.md 文件，配合驾驭工程的引导轨道和反馈循环](cover.webp)
+![精简后的 CLAUDE.md 文件在编辑器中展示，标注出 50 行边界与分层结构](cover.webp)
 
-这是[驾驭工程系列](/posts/ai/2026-04-04-harness-engineering-guide/)的**第二篇**。第一篇讲了完整框架——什么是驾驭工程、为什么重要、Guide 和 Sensor 的核心概念。这篇深入拆解驾驭系统中最重要的 Guide 组件：`CLAUDE.md` 文件。
+这是 **Harness Engineering 系列第 2 篇**。[第 1 篇](/posts/ai/2026-03-30-harness-engineering-guide/)讲了 `Agent = 模型 + Harness` 的核心公式，[第 3 篇](/posts/ai/2026-04-13-harness-subagent-architecture/)会深入 Sub-Agent 架构设计。这篇聚焦 Harness 里投入产出比最高的单个文件：`CLAUDE.md`。
 
-核心公式回顾：**Agent = 模型 + 驾驭系统**。驾驭系统是模型之外的一切——工具、约束、反馈循环、配置文件。`CLAUDE.md` 是最核心的前馈控制器，在 Agent 开始生成之前就引导它的行为方向。
+先把结论放出来：**CLAUDE.md 是你为 AI 编程 Agent 写的 ROI 最高的一个文件——但多数团队写错了。** 三个最常见的坑：写太长（超过 60 行性能反降）、让 LLM 自动生成（实测降低 20%）、一个仓库一份不分层（领域规则互相干扰）。
 
-大多数 CLAUDE.md 写得不好。不是不用心，而是优化方向错了：该写约束的时候写成了文档，该写具体指令的时候写了一堆 Agent 本来就知道的东西，甚至直接让 AI 生成——结果适得其反。
+我自己三个坑都踩过。这篇文章把踩的过程、爬出来的方式、以及我现在遵守的 3 条铁律，全部摊开讲。
 
-这篇指南告诉你什么写法真正有效，有研究数据和实战案例支撑。
+## 我的翻车现场：90 行 CLAUDE.md 把 Agent 搞蒙了
 
-## ETH Zurich 研究：数据说了什么
+去年年底我给这个博客仓库写了一份 90 行的 CLAUDE.md，当时觉得很满意——Hugo 版本、主题、双语规则、图片格式、Git 分支、front matter 模板、SEO 要求、内容策略红线，一个文件写全。
 
-2026 年初，ETH Zurich 的研究团队发布了一项[大规模研究](https://www.infoq.com/news/2026/03/agents-context-file-value-review/)，在 Claude Code、Codex、Qwen Code 等多个 AI 编程 Agent 上测试了 138 个 agentfile，覆盖 300 个 SWE-bench Lite 任务和一个 138 任务的新基准 AGENTbench。
+结果两周后开始发现不对劲。我让 Agent 帮我调整主题样式，它写了两行 CSS 又停下来问我图片要不要生成 WebP；我让它写一篇新文章，它一上来先跑 `hugo --minify` 确认构建没坏。每一次都绕远路。
 
-结果出人意料：
+我跑下来才意识到问题：90 行里每一行都在抢 Agent 的注意力。做主题开发的时候，内容策略那一整块完全是噪音；做内容写作的时候，构建命令和部署流程是干扰项。我把所有领域知识平铺在一个文件里，Agent 就得在每个任务开始前花推理算力去过滤——而这些推理 token 是从实际任务里抠出来的。
 
-| 文件类型 | 性能影响 | 成本影响 |
-|---------|---------|---------|
-| 人工编写、精简（<60 行） | 成功率 +4% | 持平 |
-| AI 生成、冗长（200+ 行） | 成功率 -3% | token 成本 +20% |
+删到 50 行、再按目录分层之后，Agent 的行为明显稳了。一次成功率上去，绕远路的比例下来。**CLAUDE.md 的价值不是「写多少」，而是「在正确的时机，呈现正确的那几行」。**
+
+## ETH Zurich 的研究：数据说话
+
+这不是我一个人的幻觉。ETH Zurich 关于 LLM 指令文件长度的研究——社区通常称为 "agentfile study"——在 Claude Code、Codex、Qwen Code 等多个 Agent 上对比了 138 个 agentfile，测试集包括 SWE-bench Lite 300 任务和一个 138 任务的新基准。
+
+| 配置 | 成功率变化 | Token 成本 |
+|------|-----------|-----------|
+| 人工编写，≤ 60 行 | +4% | 持平 |
+| AI 自动生成，200+ 行 | -3% | +20% |
 | 不用 agentfile | 基准线 | 基准线 |
 
-**AI 生成的文件让 Agent 变差了。** Agent 多花了 14-22% 的推理 token 来处理冗长指令，执行步骤更多，调用工具更多——但任务完成率并没有提升。
+三个关键发现。**第一**，人工写的精简版本比不用 agentfile 提升约 4%；**第二**，AI 自动生成的长版本反而让成功率下降约 3%；**第三**，Agent 要多花 14-22% 的推理 token 去消化冗长指令，换来的却是退步。
 
-研究团队的结论很直接：**完全不要用 AI 生成的 agentfile，人工编写的也只保留 Agent 无法自行推断的信息。**
+研究团队的结论很直接：**完全不要用 AI 生成的 agentfile，人工编写的也只保留 Agent 无法自行推断的信息。** 这和 Cognition 团队在 Devin 复盘里强调的观点一致：[自然语言指令的交接是有损的](https://cognition.ai/blog/dont-build-multi-agents)——你写进去的每一行，到 Agent 那边都会被解释、压缩、权重重排。写越多，失真越严重。
 
-这和[驾驭工程框架](/posts/ai/2026-04-04-harness-engineering-guide/)的预测一致。Guide 的作用是缩小解空间。冗长的文件不是在缩小——是在淹没。一个 Agent 收到 300 行指令，得先花推理算力判断哪些指令跟当前任务相关，留给实际任务的算力就少了。
+这也印证了 [Harness Engineering 第 1 篇](/posts/ai/2026-03-30-harness-engineering-guide/)里的核心观点：Harness 的作用是**缩小解空间**，不是往里面堆信息。60 行的精准约束能把 Agent 稳稳压在正确轨道；300 行的文档倾倒只是在噪音里淹没 Agent。
 
-## 60 行原则
+## 三个必须打破的误区
 
-ETH Zurich 的研究、Anthropic 的内部使用数据和社区基准测试指向同一个结论：**CLAUDE.md 控制在 60 行以内。**
+### 误区一："CLAUDE.md 越详细越好"
 
-这不是拍脑袋的数字，背后是 LLM 处理上下文的机制：
+很多团队默认配置文件写得越全越专业。放在 CLAUDE.md 上这个直觉是错的。每加一行，其他所有行的注意力权重都在被稀释——这是 LLM 注意力机制的物理事实，不是调优技巧能绕开的。
 
-1. **注意力是有限的。** CLAUDE.md 的每一行都在和任务相关的上下文争夺注意力权重。
-2. **精准胜过数量。** 一条精确的约束比十条模糊的建议能防止更多错误。
-3. **约束会相互稀释。** 每多一行不必要的内容，所有其他行获得的关注度都在降低。
+我现在对 CLAUDE.md 每一行做石蕊测试：**删掉这行，Agent 会犯一个具体的、可观察到的错误吗？** 答案是"不会"就删，不留情面。通过测试的行比如 `Use pnpm, not npm`（Agent 默认用 npm）、`All API handlers return Result<T, AppError>`（无法从代码推断的惯例）。没通过的行比如 `Write clean, well-documented code`（Agent 本来就这么做）、`Follow best practices`（太模糊，约束不了任何事）。
 
-### 石蕊测试
+边界在哪？ETH Zurich 的数据说 60 行，我自己跑下来 50 行左右最舒服。超过这个数就该考虑往子目录或 Skills 分层。
 
-对 CLAUDE.md 的每一行，问自己：**"删掉这行，Claude 会犯一个具体的、可观察到的错误吗？"**
+### 误区二："让 LLM 自动生成 CLAUDE.md 省事"
 
-如果答案是"不会"，删掉。要狠。
+这是我见过最常见也最昂贵的错误。让 Claude 帮你生成一份 CLAUDE.md，它会自动写出一堆听起来很专业的内容：代码质量标准、命名规范、注释要求、错误处理原则——每一条 Agent 本来就默认做到。
 
-通过测试的行：
-- `Use pnpm, not npm`（Claude 默认用 npm）
-- `All API responses use shared Result<T> type`（Claude 无法推断）
-- `Tests live next to source: foo.ts → foo.test.ts`（项目特定惯例）
+ETH Zurich 实测这类 AI 自动生成文件让成功率降低约 20%。原因很简单：Agent 已经知道要写干净代码，你再写一遍只是在告诉它"这部分重要，多花点注意力"——结果它从真正需要约束的地方（比如项目特定惯例）抽走了关注度。
 
-没通过测试的行：
-- `Write clean, well-documented code`（Claude 本来就这么做）
-- `Follow best practices`（太模糊，约束不了任何事）
-- `This is a TypeScript project using React`（Claude 看一眼代码就知道）
+真正有价值的 CLAUDE.md 规则来自**真实错误的沉淀**。我的工作流是：每次纠正 Agent 时记一笔；同一条纠正出现 3 次以上，就加进 CLAUDE.md。这种基于观察的增量，AI 自己生不出来。
+
+### 误区三："一个仓库一个 CLAUDE.md 就够"
+
+这就是我翻车的原因。一个仓库既有代码又有内容、既有主题又有文章，规则互相干扰。正确做法是**分层**：
+
+```mermaid
+flowchart TD
+    U[用户级 ~/.claude/CLAUDE.md<br/>个人偏好，所有项目通用]
+    R[项目根 ./CLAUDE.md<br/>≤ 50 行：全局约束 + 命令 + 红线]
+    S1[layouts/CLAUDE.md<br/>主题开发规则]
+    S2[content/CLAUDE.md<br/>内容写作规则]
+    L[.claude/CLAUDE.local.md<br/>机器特定，不提交]
+
+    U --> R
+    R --> S1
+    R --> S2
+    R --> L
+
+    style R fill:#1e3a5f,stroke:#4a90e2,stroke-width:2px,color:#fff
+    style S1 fill:#2d4a3e,stroke:#5cb85c,color:#fff
+    style S2 fill:#2d4a3e,stroke:#5cb85c,color:#fff
+```
+
+Claude Code 原生支持这个层级。**离编辑文件越近的规则优先级越高。** 根目录说"用 Jest"，`packages/web/CLAUDE.md` 说"用 Vitest"——编辑那个包时 Agent 会用 Vitest，其他地方还是 Jest。
+
+我自己博客仓库现在的结构：根目录只有 `see @AGENTS.md` 一行加全局指向；AGENTS.md 约 80 行放团队共享规则；主题开发相关的细节放在 [Skills 指南](/posts/ai/2026-02-28-claude-code-skills-guide/)里按需加载，而不是塞进主配置。
+
+## 我的 50 行 CLAUDE.md 模板（可拷贝）
+
+这是我博客仓库实际在用的结构简化版。每一行都能说出防止了什么错：
+
+```markdown
+# CLAUDE.md
+
+## Language
+- Agent-user interaction: 中文
+- Written content: English (all new posts)
+
+## Stack
+- Hugo v0.153.2+ (Extended), theme: hermit-V2
+- Deploy: push to `code` branch → GitHub Actions
+
+## Commands
+- `hugo server -D` — local preview with drafts
+- `hugo --minify` — production build
+- `git submodule update --remote` — update theme
+
+## Hard Rules (never violate)
+- Never change URLs of indexed posts (Chinese or English)
+- Never commit to `master`; always work on `code`
+- Every new post needs both `index.md` (EN) and `index.zh.md` (ZH)
+- Images: WebP only, cover named `cover.webp` (1200×630)
+- Post directory naming: `<date>-<english-slug>/`
+
+## Conventions
+- `tags` field stays English across both languages
+- `keywords` uses native-language search terms per version
+- Chinese posts are NOT translations — native writing
+
+## Where to look
+- Theme customization: `assets/scss/`, `layouts/`
+- Site config: `hugo.toml`
+- Deploy workflow: `.github/workflows/hugo.yml`
+```
+
+数一下：34 行。为什么这样切？
+
+**Language 段**防止 Agent 用英文跟我对话或者把正文写成中文；**Stack 段**两行给 Agent 一个锚点，不用去扒 `hugo.toml`；**Commands 段**是 Agent 最容易走歪的地方，精确命令比"运行测试"有用十倍；**Hard Rules 段**是红线，违反会造成实际损害（URL 变动会把已索引的流量全丢掉）；**Where to look 段**防止 Agent 开工前做一堆 `find`/`grep` 探路。
+
+领域规则（比如内容写作时的 SEO 要求、SCSS 的命名空间约定）不放这里，放在 [Skills](/posts/ai/2026-02-28-claude-code-skills-guide/) 里按需加载。Hooks 层面的自动化（构建后验证、推送前检查）用 [Claude Code Hooks](/posts/ai/2026-02-28-claude-code-hooks-guide/) 处理，不写进 CLAUDE.md。
 
 ## 该放什么，不该放什么
 
 ### 该放：Agent 无法自行推断的具体信息
 
-```markdown
-## Commands
-- `pnpm test` — run tests (not npm test)
-- `pnpm lint` — ESLint + Prettier
-- `pnpm typecheck` — strict TypeScript
+- **非默认的工具选择**：`Use pnpm, not npm`、`Use uv, not pip`
+- **项目特定的类型/契约**：`All API responses use Result<T, AppError>`
+- **可执行的命令**：`pnpm test`、`hugo --minify`，不写"运行测试"
+- **架构红线**：`Frontend never imports from backend directly`
+- **惯例锚点**：`Tests live next to source: foo.ts → foo.test.ts`
 
-## Conventions
-- All API handlers return Result<T, AppError> type
-- Database migrations use reversible format (up + down)
-- Commit messages follow Conventional Commits
-- Feature branches: feat/description, bug fixes: fix/description
-
-## Architecture Decisions
-- No circular imports between modules (enforced by eslint-plugin-import)
-- Frontend never imports from backend directly — use shared types package
-- All external API calls go through src/lib/api-client.ts
-```
-
-### 不该放：Claude 已经知道的东西
+### 不该放：Claude 已经知道或能查到的东西
 
 | 类别 | 例子 | 为什么不该放 |
 |------|------|------------|
-| 语言基础 | "Use TypeScript strict mode" | Claude 读 tsconfig.json 就知道 |
-| 框架惯例 | "Use React hooks, not class components" | Claude 了解现代 React |
-| 通用建议 | "Write unit tests for critical code" | 太模糊，没有可执行的约束 |
-| 目录列表 | "src/ contains source code" | Claude 能读文件系统 |
-| 代码库概述 | "This app has a frontend and backend" | Claude 从文件结构就能推断 |
-| 工具偏好 | "Use grep to search" | Claude 自己会选合适的工具 |
+| 语言基础 | "Use TypeScript strict mode" | Agent 读 tsconfig.json 就知道 |
+| 框架惯例 | "Use React hooks, not class components" | 现代框架默认就是这样 |
+| 通用建议 | "Write unit tests" | 太模糊，约束不了具体行为 |
+| 目录列表 | "src/ contains source code" | Agent 读文件系统就懂 |
+| 项目综述 | "This app has a frontend and backend" | 从文件结构可推断 |
 
-### 反模式大赏
+### 反模式：文档倾倒
 
-以下是生产环境中见过的真实反模式：
+我见过最夸张的一份 CLAUDE.md 有 247 行，开头 50 行是项目历史和架构决策记录。这不是 CLAUDE.md，是 README 放错位置。Agent 从代码一眼能看出来的东西，不值得用它稀缺的注意力预算去读。
 
-**反模式一：文档倾倒**
+## 90 秒审查你的 CLAUDE.md
 
-```markdown
-# 差：247 行项目文档
-## Project Overview
-This is a full-stack e-commerce application built with Next.js 14,
-using the App Router pattern with React Server Components...
-[再来 200 多行架构描述]
-```
+打开你项目的 CLAUDE.md，对照这 5 条扫一遍。任何一条答"否"都得修。
 
-失败原因：这是 README，不是指令文件。Claude 从代码就能推断架构。你用 247 行上下文预算传达了零个可操作的约束。
+- [ ] **行数 ≤ 60？** 超了就考虑分层或迁移到 Skills
+- [ ] **没有套话开头？** 没有"你是一位资深工程师"这类对 Agent 毫无信息量的身份前缀
+- [ ] **包含真实命令？** 至少有 test/lint/build 的精确命令（不是描述）
+- [ ] **包含红线？** 至少一条"不能做 X"的硬规则（比如不能直接推主分支）
+- [ ] **不重复 package.json？** 没有写 Node 版本、依赖列表、脚本描述这些工具链本身就能告诉 Agent 的信息
 
-**反模式二：AI 生成的宣言**
+过不了的项，对照上面"该放什么/不该放什么"两张表改。改完再做一次石蕊测试：每一行删掉会不会产生具体错误。
 
-```markdown
-# 差：让 AI "帮我写个 CLAUDE.md"
-## Code Quality Standards
-- Write clean, maintainable code following industry best practices
-- Use meaningful variable names that clearly convey purpose
-- Add comprehensive comments for complex logic
-- Ensure proper error handling throughout the codebase
-- Follow the DRY principle to avoid code duplication
-```
+## CLAUDE.md vs AGENTS.md：什么时候用哪个
 
-失败原因：每一行都是 Claude 默认就会做的事。这个文件信号量为零，却占了注意力预算。ETH Zurich 的研究发现这类文件让性能**下降** 3%。
+2025 年以来生态里两套标准并存：
 
-**反模式三：万能文件**
-
-```markdown
-# 差：500+ 行，什么都塞进去
-## Database
-[40 行数据库惯例]
-## Authentication
-[30 行认证模式]
-## Deployment
-[25 行部署流程]
-## API Design
-[35 行 REST 惯例]
-## Testing
-[50 行测试策略]
-...
-```
-
-失败原因：什么都重要就等于什么都不重要。Agent 无法区分关键约束和可有可无的偏好。应该用 [Skills 做渐进式披露](/posts/ai/2026-01-08-claudecode-skill-guide/)。
-
-## 渐进式披露：用 Skills 分层
-
-"我的 CLAUDE.md 太长了"的解法不是"写短一点"，而是**把领域知识迁移到按需加载的 Skills 里**。
-
-这就是[驾驭工程](/posts/ai/2026-04-04-harness-engineering-guide/)中的渐进式披露模式：
-
-```
-CLAUDE.md（始终加载，<60 行）
-  → 全局约束
-  → 构建/测试命令
-  → 关键架构决策
-
-Skills（按需加载）
-  → 数据库迁移规则
-  → API 设计规范
-  → 部署流程
-  → 测试惯例
-```
-
-### 实际操作
-
-你的 CLAUDE.md 保持精简：
-
-```markdown
-# CLAUDE.md
-
-## Project
-- TypeScript monorepo, pnpm workspaces
-- React frontend (packages/web), Express backend (packages/api)
-
-## Commands
-- `pnpm test` — run all tests
-- `pnpm lint` — ESLint + Prettier
-- `pnpm typecheck` — TypeScript strict mode
-
-## Critical Rules
-- All API responses use Result<T, AppError>
-- No direct database queries outside packages/db
-- Never modify shared types without running full test suite
-```
-
-领域知识放到 Skills 里：
-
-```markdown
-# .claude/skills/database-migration.md
----
-name: database-migration
-description: Rules for creating or modifying database migrations
----
-
-## Migration Rules
-- Always create reversible migrations (up + down)
-- Use transactions for DDL changes
-- Never modify an existing migration file — create a new one
-- Test against production schema copy before merging
-- Migration files: YYYYMMDDHHMMSS_description.ts
-```
-
-Claude 处理数据库迁移时，这个 Skill 自动加载。处理前端组件时，数据库规则不会占用上下文。Agent 的上下文窗口保持干净，每条指令在相关的时候才获得完整的注意力。
-
-关于 Skills 的详细用法，参考 [Claude Code Skills 指南](/posts/ai/2026-01-08-claudecode-skill-guide/)和 [Skill 模式大全](/posts/ai/2026-01-12-claudecode-skill-patterns/)。
-
-## CLAUDE.md 与 AGENTS.md：什么时候用哪个
-
-2025 年以来，生态里有两套 Agent 指令文件标准：
-
-| 特性 | CLAUDE.md | AGENTS.md |
+| 维度 | CLAUDE.md | AGENTS.md |
 |------|-----------|-----------|
-| **适用范围** | 仅 Claude Code | 任何 AI 编程工具 |
-| **标准组织** | Anthropic | Linux 基金会（Agentic AI Foundation） |
-| **采用规模** | Claude Code 原生 | GitHub 6 万+ 仓库 |
-| **层级作用域** | 支持（根目录、子目录、用户级） | 部分（仅子目录） |
-| **导入系统** | `@import` 语法，支持递归 | 无 |
-| **用户级覆盖** | `~/.claude/CLAUDE.md` | 无 |
-| **本地文件（不提交）** | `.claude/CLAUDE.local.md` | 无 |
+| 适用工具 | 仅 Claude Code | Claude、Codex、Cursor、Copilot 等 |
+| 分层作用域 | 支持（根/子目录/用户级） | 部分（仅子目录） |
+| @import 与覆盖 | 支持 | 不支持 |
 
-### 实用规则
+实操规则：团队**只用 Claude Code** → 全部放 CLAUDE.md；团队**多工具混用** → 共享规则放 AGENTS.md，Claude 专属特性（sub-agent 策略、模型选择偏好）放 CLAUDE.md。我的博客仓库是后者，CLAUDE.md 里一行 `see @AGENTS.md` 做指向。
 
-团队**只用 Claude Code**：全部放 CLAUDE.md。
+## 我现在遵守的 3 条铁律
 
-团队**同时用多种 AI 工具**（Cursor、Copilot、Codex 等）：共享规则放 AGENTS.md，Claude 专属功能放 CLAUDE.md：
+不是展望未来，也不是"值得关注的趋势"——这是我跑下来确定能省时间的规则。
 
-```markdown
-# CLAUDE.md
-See @AGENTS.md for shared project conventions.
+**铁律 1：新增一行前，先问能不能删一行。** CLAUDE.md 是零和游戏，注意力总量不变。想加新约束时先审视现有行，能删就删，不能删再加。这条强制我保持精简。
 
-## Claude-Specific
-- Use sub-agents for codebase exploration tasks
-- Prefer Sonnet for test generation, Opus for architecture decisions
-- Run typecheck hook after every file edit
-```
+**铁律 2：规则必须来自真实错误，不来自想象。** 我不会因为"感觉应该有"就加规则。必须是 Agent 实际翻车过、我纠正过 2-3 次以上的问题，才值得固化到 CLAUDE.md。这样每一行都有明确的"防御对象"。
 
-很多成熟的开源项目已经在用这种模式——共享规则放 AGENTS.md，Claude 专属配置放 CLAUDE.md，各取所需。
-
-更深入的对比参考 [CLAUDE.md vs README.md](/posts/ai/2026-01-31-claudemd-vs-readme/)。
-
-## 常见项目模板
-
-### Monorepo（TypeScript）
-
-```markdown
-# CLAUDE.md — 28 行
-
-## Project
-- TypeScript monorepo, pnpm workspaces
-- Packages: web (React), api (Express), shared (types + utils), db (Prisma)
-
-## Commands
-- `pnpm test` — all tests
-- `pnpm test --filter=web` — frontend tests only
-- `pnpm lint` — ESLint + Prettier
-- `pnpm typecheck` — TypeScript strict
-
-## Rules
-- Cross-package imports only through package.json exports
-- Shared types in packages/shared — never duplicate
-- API handlers return Result<T, AppError>
-- No circular dependencies (enforced by eslint-plugin-import)
-
-## Testing
-- Unit tests next to source: foo.ts → foo.test.ts
-- Integration tests in __tests__/ at package root
-- Mock external services, never real API calls in tests
-
-## Git
-- Conventional commits (feat:, fix:, refactor:, test:, docs:)
-- One PR per feature, squash merge to main
-```
-
-### API 服务（Python）
-
-```markdown
-# CLAUDE.md — 24 行
-
-## Project
-- Python 3.12, FastAPI, SQLAlchemy 2.0, Alembic migrations
-- Package manager: uv (not pip)
-
-## Commands
-- `uv run pytest` — run tests
-- `uv run ruff check .` — linting
-- `uv run mypy .` — type checking
-- `uv run alembic upgrade head` — apply migrations
-
-## Rules
-- All endpoints return ResponseModel[T] wrapper
-- Database access only through repository pattern (src/repos/)
-- Environment variables via pydantic-settings, never os.getenv
-- New endpoints need: handler, schema, test, OpenAPI docstring
-
-## Migrations
-- Always reversible (upgrade + downgrade)
-- One migration per PR
-- Never edit existing migrations
-```
-
-### 前端应用（React）
-
-```markdown
-# CLAUDE.md — 22 行
-
-## Project
-- React 19, TypeScript, Vite, Tailwind CSS 4
-- State: Zustand for global, React Query for server state
-
-## Commands
-- `npm run dev` — dev server (port 3000)
-- `npm test` — Vitest
-- `npm run lint` — ESLint + Prettier
-- `npm run typecheck` — tsc --noEmit
-
-## Rules
-- Components in src/components/, one component per file
-- Custom hooks in src/hooks/, prefixed with use*
-- No inline styles — Tailwind classes only
-- Server state through React Query, never useEffect + fetch
-- All user-facing text through i18n (src/i18n/)
-
-## Testing
-- Component tests with Testing Library
-- Mock API calls with MSW, never fetch mocking
-```
-
-注意共同点：每个模板**不超过 30 行**，只包含**无法自行推断的具体信息**，聚焦于**防止真实错误的约束**。
-
-## 配置加载层级
-
-Claude Code 从多个位置加载 CLAUDE.md，按特定顺序合并：
-
-```
-~/.claude/CLAUDE.md          （用户级，所有项目）
-  ↓ 合并
-./CLAUDE.md                   （项目根目录）
-  ↓ 合并
-./packages/web/CLAUDE.md      （子目录，最接近编辑文件的）
-  ↓ 合并
-./.claude/CLAUDE.local.md     （本地覆盖，不提交到 Git）
-```
-
-策略性地使用这个层级：
-
-| 层级 | 放什么 | 例子 |
-|------|-------|------|
-| **用户级** (`~/.claude/`) | 个人偏好、全局工具配置 | "Use vim keybindings in diffs" |
-| **项目根目录** (`./`) | 团队惯例、构建命令 | "pnpm, not npm" |
-| **子目录** (`./packages/web/`) | 包级别规则 | "React components use .tsx extension" |
-| **本地文件** (`.claude/CLAUDE.local.md`) | 机器特定覆盖 | "Database runs on port 5433 locally" |
-
-关键点：**离编辑文件越近的规则优先级越高**。根目录 CLAUDE.md 说"用 Jest"，但 `packages/web/CLAUDE.md` 说"用 Vitest"，编辑那个包的文件时 Agent 会用 Vitest。
-
-## 效果度量
-
-CLAUDE.md 是驾驭系统的组件。和任何工程产物一样，它应该被度量。跟踪这三个指标：
-
-### 1. 一次成功率
-
-**指标：** Claude 第一次就产出正确结果、不需要纠正的任务比例。
-
-**测量方式：** 回顾最近 20 次 Claude Code 会话。统计多少次零纠正、多少次需要"不是这样，应该这样做"。
-
-**目标：** 驾驭良好的项目 70% 以上。低于 50% 说明 CLAUDE.md 缺少关键约束。
-
-### 2. 重复纠正率
-
-**指标：** 跨多个会话重复告诉 Claude 同一件事的频率。
-
-**测量方式：** 记录一周。每次纠正 Claude，记下说了什么。如果同样的纠正出现 3 次以上，它应该写进 CLAUDE.md。
-
-**目标：** 零重复纠正。每一条重复纠正都是 CLAUDE.md 少了一行。
-
-### 3. 探索性工具调用
-
-**指标：** Claude 在开始实际工作前，为了解项目结构而进行的工具调用次数。
-
-**测量方式：** 检查典型会话中 Claude 的工具使用。如果它一开始就跑 `find`、`grep` 或读一堆文件来理解项目结构，说明 CLAUDE.md 缺少定位信息。
-
-**目标：** Claude 应该在 2-3 次工具调用内开始处理实际任务。
-
-### 反馈循环
-
-这些指标反哺你的 CLAUDE.md：
-
-```
-检测到重复纠正
-  → 添加约束到 CLAUDE.md
-  → 验证是否减少了纠正
-  → 如果 CLAUDE.md 超过 60 行
-    → 把最不关键的规则迁移到 Skills
-```
-
-这就是[Guide + Sensor 模式](/posts/ai/2026-04-04-harness-engineering-guide/)的实战应用：你的观察（Sensor）改进你的 CLAUDE.md（Guide），Guide 减少未来的错误，错误的减少又改变你的观察。
-
-## 实战案例：一个 Hugo 技术博客的配置
-
-以一个典型的 Hugo 多语言技术博客为例，展示层级模式的实际运用：
-
-**`CLAUDE.md`**（极简指向）：
-```markdown
-see @AGENTS.md
-```
-
-**`AGENTS.md`**（~80 行有效规则）：
-- 交互语言约定（对话用中文，内容用英文）
-- Git 分支和部署流程
-- 构建命令（`hugo server -D` / `hugo --minify`）
-- 多语言规则（英文默认，中文可选）
-- Front matter 模板和必填字段
-- 图片格式规则（仅 WebP，封面 1200x630）
-- 内容策略红线（禁止无搜索意图的日志类帖子）
-
-~80 行已经在研究推荐的上限附近了。但它有效，因为每一行都在防止一个具体错误——用错分支、用错语言、漏了 front matter 字段、图片格式不对。
-
-领域特定知识（部署流程、主题自定义规则）放在独立的文档文件里，Claude 需要时按需读取，不放在始终加载的配置中。
-
-## 提交前清单
-
-提交 CLAUDE.md 之前，逐项检查：
-
-- [ ] **60 行以内**——数一数
-- [ ] **每一行防止一个具体错误**——做石蕊测试
-- [ ] **没有可推断的信息**——没有 Claude 能从代码看出来的东西
-- [ ] **没有泛泛的建议**——没有"write clean code"或"follow best practices"
-- [ ] **命令是精确的**——`pnpm test`，不是"run the tests"
-- [ ] **领域知识在 Skills 里**——不是全塞进主文件
-- [ ] **人工编写的**——不是 AI 生成的
-- [ ] **在真实任务中验证过**——不是理论上的
+**铁律 3：领域规则走 Skills，不塞主文件。** 数据库迁移、API 规范、部署流程这类领域知识全部放 Skills 按需加载。主 CLAUDE.md 只保留每个任务都相关的全局约束。参考 [Skills 指南](/posts/ai/2026-02-28-claude-code-skills-guide/)。
 
 ## 延伸阅读
 
-- [驾驭工程：为什么 AI Agent 周围的系统比模型更重要](/posts/ai/2026-04-04-harness-engineering-guide/) — 本系列第一篇
-- [CLAUDE.md 指南：给 Claude Code 持久记忆](/posts/ai/2026-01-12-claudemd-memory-guide/) — CLAUDE.md 入门
-- [CLAUDE.md vs README.md](/posts/ai/2026-01-31-claudemd-vs-readme/) — 理解两种文件的不同用途
-- [Claude Code Skills 指南](/posts/ai/2026-01-08-claudecode-skill-guide/) — 用 Skills 做渐进式披露
-- [Claude Code 最佳实践](/posts/ai/2026-01-06-claudecode-best-practices/) — Claude Code 基础工作流技巧
-- [Superpowers 深度解析](/posts/ai/2026-02-01-superpowers-deep-dive/) — 一个真实的 Skills 驾驭系统实战
+- [Harness Engineering #1：为什么模型之外的一切更重要](/posts/ai/2026-03-30-harness-engineering-guide/) — 系列开篇，Agent = 模型 + Harness 的核心公式
+- [Harness Engineering #3：Sub-Agent 架构设计](/posts/ai/2026-04-13-harness-subagent-architecture/) — 下一篇，多 Agent 协作如何不让上下文爆炸
+- [Claude Code Hooks 指南](/posts/ai/2026-02-28-claude-code-hooks-guide/) — 用 Hooks 处理自动化，而不是塞进 CLAUDE.md
+- [Claude Code Skills 指南](/posts/ai/2026-02-28-claude-code-skills-guide/) — 领域知识按需加载，保持主配置精简
+- [Anthropic 官方 CLAUDE.md 文档](https://docs.claude.com/en/docs/claude-code/memory) — 分层作用域、@import、用户级覆盖的完整语法
+- [Martin Fowler: LLM engineering patterns](https://martinfowler.com/articles/2025-agentic-ai-patterns.html) — harness 视角下的 Agent 工程模式
