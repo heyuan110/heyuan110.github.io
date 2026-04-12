@@ -1,11 +1,43 @@
 {{- /*
-  Local override of theme partial: ship mermaid UMD bundle from this site
-  instead of loading mermaid.esm from jsdelivr. The CDN is unreliable from
-  mainland China, and this site targets CN readers.
+  Local override of theme partial: ship mermaid UMD bundle locally
+  (avoids unreliable jsdelivr CDN from mainland China) and theme it
+  for the blog's dark background.
 */ -}}
 {{- if .Page.Store.Get "hasMermaid" -}}
 <script src="{{ "js/mermaid.min.js" | relURL }}"></script>
 <script>
-  mermaid.initialize({ startOnLoad: true, theme: 'default', securityLevel: 'loose' });
+  mermaid.initialize({
+    startOnLoad: true,
+    securityLevel: 'loose',
+    theme: 'base',
+    themeVariables: {
+      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+      fontSize: '14px',
+      background: 'transparent',
+      primaryColor: '#1e293b',
+      primaryTextColor: '#f1f5f9',
+      primaryBorderColor: '#64748b',
+      secondaryColor: '#334155',
+      secondaryTextColor: '#f1f5f9',
+      secondaryBorderColor: '#64748b',
+      tertiaryColor: '#0f172a',
+      tertiaryTextColor: '#f1f5f9',
+      tertiaryBorderColor: '#64748b',
+      lineColor: '#94a3b8',
+      textColor: '#f1f5f9',
+      mainBkg: '#1e293b',
+      nodeBkg: '#1e293b',
+      nodeBorder: '#64748b',
+      nodeTextColor: '#f1f5f9',
+      edgeLabelBackground: '#0f172a',
+      labelBackground: '#0f172a',
+      labelTextColor: '#cbd5e1',
+      clusterBkg: '#0f172a',
+      clusterBorder: '#475569',
+      defaultLinkColor: '#94a3b8',
+      titleColor: '#f1f5f9',
+      arrowheadColor: '#94a3b8'
+    }
+  });
 </script>
 {{- end -}}
