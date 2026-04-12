@@ -285,21 +285,61 @@ ls content/posts/ai/
 
 #### 5.2 内容配图（必须，至少 2 张）
 
-调用 `blog-illustrator` 分析文章，在需要视觉辅助的位置生成插图：
-```
+**第一步：按图表类型选对应的 skill**
+
+| 图表类型 | 首选 skill | 输出形式 | 渲染方式 |
+|---------|-----------|---------|---------|
+| 流程图 / 决策树 / 时序图 / 状态机 / 思维导图 / ER 图 / 甘特图 / 类图 | `mermaid` | ` ```mermaid ` 代码块 | Hugo 主题原生渲染（本地 JS） |
+| 分层系统架构（User→App→Data→Infra）| `architecture` | 内嵌 HTML + CSS | Hugo `unsafe=true` 直接渲染 |
+| 富视觉信息卡 / Bento 概览 / 数据看板 / 对比矩阵 | `blog-diagram` | AI 生成 WebP | `![](diagram-xxx.webp)` |
+| 概念插图 / 场景化插画 | `blog-illustrator` | AI 生成 WebP | `![](illustration-xxx.webp)` |
+| 封面图 | `blog-cover-image` | AI 生成 WebP | `![](cover.webp)` |
+
+**第二步：按优先级规则决策（文本结构化 > AI 位图）**
+
+1. **能用 mermaid 表达的优先 mermaid** —— 可编辑、可搜索、中英文各自独立渲染、SEO 友好、响应式
+2. **分层架构优先 architecture** —— 响应式、Hugo 原生、无外部依赖
+3. **剩下才考虑 AI 生图** —— 富视觉信息卡走 blog-diagram，场景化插画走 blog-illustrator
+
+**第三步：调用**
+
+```bash
+# mermaid / architecture —— 让 AI 直接写代码嵌入文章 markdown
+# （不是一个独立的 CLI 命令，是写作过程中直接产出）
+
+# AI 生图 —— 独立 skill 调用
+/blog-diagram <文章目录> --layout bento-grid --style corporate
 /blog-illustrator <文章目录> --quick
 ```
 
-如果文章涉及架构、流程、对比等结构化内容，调用 `blog-diagram`：
-```
-/blog-diagram <文章目录> --layout hub-spoke --style blueprint
-```
+**专业图表**（按需启用，不在默认流程里）：
+- `graphviz` 复杂依赖 / 调用图
+- `uml` 类图 / 时序图 / 活动图 / 组件图
+- `network` 企业网络拓扑（Cisco / Citrix 图标）
+- `bpmn` 业务流程 / 集成模式
+- `cloud` AWS / Azure / GCP / 阿里云架构图（官方图标）
+- `archimate` 企业架构（TOGAF）
+- `infographic` KPI 卡片 / 时间线 / SWOT
+- `infocard` 编辑风格信息卡
+- `canvas` 自由定位思维导图 / 知识图谱
+- `vega` 数据驱动图表（柱状 / 折线 / 热力 / 散点）
 
-配图规范：
-- WebP 格式，质量 85，最大宽度 1200px
-- 英文生成，中英文版共用
-- 命名：`NN-{type}-{slug}.webp`
-- 中英文版本都需要在对应位置插入图片引用
+需要哪种按文件名查阅 `.claude/skills/<name>/SKILL.md`。
+
+**⚠️ 本项目 Hugo 集成规范**（已配置到位，直接用，不要改）：
+
+| 配置点 | 位置 | 作用 |
+|-------|-----|------|
+| mermaid JS 本地托管 | `static/js/mermaid.min.js` | 不依赖 jsdelivr CDN，国内读者加载稳定 |
+| mermaid 深色主题 | `layouts/_partials/mermaid.html` | 自定义 themeVariables 让菱形 / 连线 / 分支标签在深色背景高对比 |
+| HTML unsafe 开启 | `hugo.toml` → `markup.goldmark.renderer.unsafe = true` | architecture skill 的 HTML 可直接嵌入 |
+
+**避坑经验（2026-04 沉淀）**：不要用默认的 `cdn.jsdelivr.net` 加载 mermaid.esm，国内读者会看不到渲染结果；架构图也不要走 AI 生图，mermaid/architecture 的可编辑性和响应式远胜 WebP。
+
+**配图规范**（不变）：
+- WebP 格式（AI 生图）：质量 85，最大宽度 1200px，英文生成，中英文共用
+- 命名：`diagram-xxx.webp` / `illustration-xxx.webp` / `cover.webp`
+- 中英文版本都需要在对应位置插入引用（mermaid/architecture 代码是独立的两份，中英文可以用不同语言各写一份）
 
 **一篇文章至少要有封面图 + 2 张内容配图。** 纯文字长文没有配图会严重降低读者体验和停留时间。
 
@@ -367,8 +407,22 @@ hugo --minify
 
 ```
 blog-growth → 选题 → blog-writer（本 skill）
-                        ├── blog-cover-image（封面图）
-                        ├── blog-illustrator（配图）
-                        └── blog-diagram（架构图）
-                     → blog-distributor（分发）
+                        │
+                        ├── 封面图
+                        │   └── blog-cover-image（AI 生成 cover.webp）
+                        │
+                        ├── 文本结构化图（首选，可编辑 / 响应式 / 双语独立）
+                        │   ├── mermaid（流程图 / 决策树 / 时序图 / 状态机 / ER / 甘特 / 类图 / 思维导图）
+                        │   └── architecture（分层系统架构 HTML）
+                        │
+                        ├── AI 位图（富视觉场景）
+                        │   ├── blog-diagram（信息卡 / Bento / 对比矩阵）
+                        │   └── blog-illustrator（概念插图 / 场景插画）
+                        │
+                        └── 专业图表（按需）
+                            ├── graphviz / uml / network / bpmn / archimate
+                            └── cloud / infographic / infocard / canvas / vega
+                     →  blog-distributor（分发）
 ```
+
+**决策口诀**：能 mermaid 不 architecture，能 architecture 不 AI 生图；一定要 AI 生图时，信息卡走 blog-diagram，插画走 blog-illustrator。
