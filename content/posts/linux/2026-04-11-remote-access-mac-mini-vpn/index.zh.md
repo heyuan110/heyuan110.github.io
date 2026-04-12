@@ -334,7 +334,25 @@ frpc -c frpc.toml
 
 试完五种方案后，我总结出这个决策路径：
 
-![远程访问 Mac Mini 决策树——从硬件 VPN 到 Tailscale / WireGuard / frp / ZeroTier 的选型流程](diagram-decision-tree.webp)
+```mermaid
+flowchart TD
+    Start([你想远程访问公司 Mac Mini]) --> Q1{公司有硬件 VPN 吗？}
+    Q1 -->|有| HW[直接用，别折腾了]
+    Q1 -->|没有| Q2{你在国内吗？}
+    Q2 -->|不在| TS[用 Tailscale<br/>30 秒搞定]
+    Q2 -->|在| Q3{公司有固定公网 IP 吗？}
+    Q3 -->|有| WG[用 WireGuard<br/>最稳 · 零依赖 · 940+ Mbps]
+    Q3 -->|没有| Q4{你有 VPS 吗？}
+    Q4 -->|有| FRP[用 frp<br/>国内事实标准]
+    Q4 -->|没有| ZT[用 ZeroTier<br/>+ 自建 Moon]
+
+    classDef happy fill:#10b981,stroke:#047857,color:#fff,stroke-width:2px
+    classDef ok fill:#3b82f6,stroke:#1e40af,color:#fff,stroke-width:2px
+    classDef warn fill:#f59e0b,stroke:#b45309,color:#fff,stroke-width:2px
+    class HW,TS happy
+    class WG,FRP ok
+    class ZT warn
+```
 
 ---
 

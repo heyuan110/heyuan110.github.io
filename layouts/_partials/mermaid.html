@@ -1,0 +1,11 @@
+{{- /*
+  Local override of theme partial: ship mermaid UMD bundle from this site
+  instead of loading mermaid.esm from jsdelivr. The CDN is unreliable from
+  mainland China, and this site targets CN readers.
+*/ -}}
+{{- if .Page.Store.Get "hasMermaid" -}}
+<script src="{{ "js/mermaid.min.js" | relURL }}"></script>
+<script>
+  mermaid.initialize({ startOnLoad: true, theme: 'default', securityLevel: 'loose' });
+</script>
+{{- end -}}
