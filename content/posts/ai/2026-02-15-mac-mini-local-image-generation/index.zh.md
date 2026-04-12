@@ -7,6 +7,26 @@ toc = true
 tags = ['Mac Mini', 'AI 生图', 'ComfyUI', 'Draw Things', 'Stable Diffusion', 'Flux']
 categories = ['AI实战']
 keywords = ['Mac Mini 本地生图', 'ComfyUI Mac', 'DiffusionBee', 'Draw Things', 'Apple Silicon AI 生图', 'Flux Mac Mini', 'Mac Mini M4 AI', '本地 AI 生图 2026', 'Mac Mini AI 图像生成', 'ComfyUI 最新版本 2026']
+
+[[params.faqItems]]
+question = "Mac Mini M4 能跑本地 AI 生图吗？"
+answer = "完全可以。Mac Mini M4 的 Apple Silicon 采用统一内存架构，CPU 和 GPU 共用同一块内存池。16GB 版本可以流畅跑 SD 1.5 和 SDXL，24GB 版本通过 GGUF 量化可以跑 Flux。推荐使用 Draw Things 和 ComfyUI 两款工具。"
+
+[[params.faqItems]]
+question = "2026 年 Mac 上最好用的免费 AI 生图工具是哪个？"
+answer = "首推 Draw Things。这是一款 Apple 原生应用（SwiftUI + Metal FlashAttention），在 Apple Silicon 上比 ComfyUI 快约 20%，支持 Flux、SDXL 等主流模型，App Store 免费下载。如果需要复杂节点工作流，ComfyUI 更合适；DiffusionBee 因为 1.5 年没更新已不推荐。"
+
+[[params.faqItems]]
+question = "16GB 内存 Mac 跑 AI 生图够用吗？"
+answer = "SD 1.5 和 SDXL 流畅无压力，但 Flux 只能跑 Q4 量化，画质有明显损失而且速度较慢。如果你打算经常用 Flux 出高质量图，24GB 是更舒服的起点。16GB 建议搭配量化版 T5 文本编码器使用。"
+
+[[params.faqItems]]
+question = "Mac 和 NVIDIA 显卡生图速度差多少？"
+answer = "Apple Silicon 大约比 RTX 4090 慢 3-5 倍，比 RTX 4070 慢 2-3 倍，但比纯 CPU 渲染快 10-50 倍。Mac 的优势是统一内存可以跑超过传统 VRAM 上限的模型，而且体积、功耗、噪音都远小于独显工作站。"
+
+[[params.faqItems]]
+question = "Draw Things 和 ComfyUI 怎么选？"
+answer = "追求易用、Apple 原生优化、速度最快选 Draw Things；需要复杂节点工作流、最广模型支持或 API 自动化选 ComfyUI。两者可以同时安装互不干扰，日常快速出图用 Draw Things，需要精细控制时切到 ComfyUI。"
 +++
 
 ![Mac Mini M4 本地 AI 生图工具选型指南封面，对比 ComfyUI、DiffusionBee、Draw Things](cover.webp)

@@ -8,6 +8,26 @@ toc = true
 tags = ['Claude Code', 'ChatGPT Codex', 'AI Coding', 'Comparison']
 categories = ['AI实战']
 keywords = ['Claude Code 和 Codex 哪个好', 'Claude Code vs OpenAI Codex 对比', 'Codex CLI 怎么样', 'Claude Code 好用吗 2026', 'AI 终端编程工具哪个强', 'OpenAI Codex CLI 评测', 'Claude Code Codex 价格对比', 'AI 编程 Agent 选哪个', '最好用的 AI 编程工具 2026', 'Claude Code vs Codex 选型建议']
+
+[[params.faqItems]]
+question = "Claude Code 和 ChatGPT Codex 哪个写代码更强？"
+answer = "没有一个绝对赢家。Claude Code 在大型代码库重构、代码深度理解、首轮代码质量上更强，百万 token 上下文是关键优势。ChatGPT Codex 在快速原型、异步任务执行、API 成本上更有优势。团队里最好两个都备一个。"
+
+[[params.faqItems]]
+question = "Claude Code 和 Codex 每月多少钱？"
+answer = "两者入门价都是 $20/月。Claude Code 的 Max 套餐 $100-200/月并有周级 Opus 使用上限；Codex 捆绑在 ChatGPT 订阅里，按 API 价格算单次调用成本约为 Claude Sonnet 的 40-65%。重度用户选 Max，轻度用户选 Pro 或按量付费。"
+
+[[params.faqItems]]
+question = "Claude Code 和 Codex 可以同时用吗？"
+answer = "完全可以，很多资深开发者都是两个一起用。它们不冲突——需要深度推理的任务（如 code review、架构决策）交给 Claude Code，批量操作（如生成测试、boilerplate 代码）交给 Codex，互补使用效果最好。"
+
+[[params.faqItems]]
+question = "Opus 4.6 和 GPT-5.3-Codex 的上下文窗口分别多大？"
+answer = "Claude Code 的 Opus 4.6 提供 200K token 标准上下文（Beta 支持 1M），GPT-5.3-Codex 支持 192K token。Claude 的大上下文优势在于单次会话可以装下整个中型代码库，不用频繁切分任务。"
+
+[[params.faqItems]]
+question = "多 Agent 协作谁做得更好？"
+answer = "2026 年初两家都推出了多 agent 协作。Claude Code 用 Agent Teams，有结构化的 Lead/Teammate 角色和 mailbox 消息机制；Codex 用 Agents SDK + MCP 协议，在独立 worktree 里松耦合并行执行。前者更适合有依赖的协作流程，后者更适合高并发独立任务。"
 +++
 
 2026 年 2 月，AI 编程工具的竞争进入了白热化阶段。Anthropic 发布了 Claude Opus 4.6，带来了 Agent Teams 多智能体协作能力；OpenAI 则推出了 GPT-5.3-Codex，将 Codex 从代码生成工具升级为全栈开发 Agent。Fortune、Tom's Guide 等主流媒体纷纷将这两款工具放在一起比较，开发者社区的讨论也异常热烈。

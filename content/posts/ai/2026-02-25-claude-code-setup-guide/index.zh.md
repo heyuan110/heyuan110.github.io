@@ -7,6 +7,26 @@ toc = true
 tags = ['Claude Code', 'Setup', 'Tutorial', 'Getting Started']
 categories = ['AI Guides']
 keywords = ['Claude Code 安装', 'Claude Code 配置', 'Claude Code 教程', 'Claude Code 使用指南', 'Claude Code 入门', 'Claude Code VS Code']
+
+[[params.faqItems]]
+question = "2026 年怎么安装 Claude Code？"
+answer = "macOS 和 Linux 用 `curl -fsSL https://claude.ai/install.sh | bash`，Windows 在 PowerShell 执行 `irm https://claude.ai/install.ps1 | iex`。新版不再需要 Node.js，原生安装器会处理一切依赖并自动更新。整个过程不到 10 分钟。"
+
+[[params.faqItems]]
+question = "Claude Code 一定要付费订阅吗？"
+answer = "是的。可选方案：Pro 订阅（$20/月）或 Max 订阅（$100-200/月）用 OAuth 登录，也可以用 Anthropic API Key 按 token 付费。企业用户还可以通过 AWS Bedrock 或 Google Vertex AI 接入。免费额度不够日常使用。"
+
+[[params.faqItems]]
+question = "怎么在 VS Code 里配置 Claude Code？"
+answer = "打开 VS Code，Cmd+Shift+X 进入扩展页，搜索 'Claude Code' 安装 Anthropic 官方扩展。装好后会在编辑器内直接支持行内编辑、diff 预览、checkpoint 管理和多会话切换，比纯终端交互高效不少。"
+
+[[params.faqItems]]
+question = "CLAUDE.md 是什么？为什么必须写？"
+answer = "CLAUDE.md 是放在项目根目录的 Markdown 文件，告诉 Claude Code 项目的技术栈、代码规范、常用命令、架构约定等。每次会话开启时 Claude Code 会自动读取，省去每次重新解释项目的成本，实测能显著提升回答质量，是最便宜的性能提升手段。"
+
+[[params.faqItems]]
+question = "Claude Code 里该用哪个模型？"
+answer = "Sonnet 4.6 是默认选择，日常 80% 的编码任务都用它，速度和能力平衡最好。复杂的多文件重构、深度推理切到 Opus 4.6。简单问答、快速任务用 Haiku 4.5 省成本。`/model` 命令可以随时切换。"
 +++
 
 ![Claude Code 安装配置指南：终端安装与 IDE 集成](cover.webp)
