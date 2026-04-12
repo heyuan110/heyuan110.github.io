@@ -334,25 +334,7 @@ Now SSH from home: `ssh -p 6000 user@your-vps-ip`
 
 After trying all five approaches, here's the decision framework I landed on:
 
-```mermaid
-flowchart TD
-    Start([Need to reach your office Mac Mini]) --> Q1{Corporate hardware VPN?}
-    Q1 -->|Yes| HW[Just use it.<br/>Stop over-engineering.]
-    Q1 -->|No| Q2{In mainland China?}
-    Q2 -->|No| TS[Tailscale<br/>30-second setup]
-    Q2 -->|Yes| Q3{Office has<br/>static public IP?}
-    Q3 -->|Yes| WG[WireGuard<br/>most reliable · 940+ Mbps]
-    Q3 -->|No| Q4{Have a VPS?}
-    Q4 -->|Yes| FRP[frp<br/>battle-tested, works everywhere]
-    Q4 -->|No| ZT[ZeroTier<br/>+ self-hosted moon]
-
-    classDef happy fill:#10b981,stroke:#047857,color:#fff,stroke-width:2px
-    classDef ok fill:#3b82f6,stroke:#1e40af,color:#fff,stroke-width:2px
-    classDef warn fill:#f59e0b,stroke:#b45309,color:#fff,stroke-width:2px
-    class HW,TS happy
-    class WG,FRP ok
-    class ZT warn
-```
+![Decision tree for remote-accessing a Mac Mini — from corporate VPN to Tailscale / WireGuard / frp / ZeroTier](diagram-decision-tree.webp)
 
 ---
 
