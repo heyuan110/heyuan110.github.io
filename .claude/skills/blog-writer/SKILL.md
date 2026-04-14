@@ -355,7 +355,48 @@ hugo --minify
 
 ### 步骤 7：发布 + 分发
 
-发布后提醒调用 `/distribute`。
+#### 7.1 发布前核对
+
+- [ ] 文章目录命名：`content/posts/<category>/<YYYY-MM-DD>-<english-slug>/`
+  - 示例：`content/posts/ai/2026-04-14-claude-skills-guide/`
+  - ⛔ slug 一旦发布就不得更改（URL 稳定性是 SEO 硬规则）
+- [ ] 中英文两个文件都存在：`index.md` + `index.zh.md`
+- [ ] 封面图 `cover.webp` 和内容配图 ≥ 2 张已就位
+- [ ] 默认不添加 `categories`（违反 URL 规则会影响已索引页面）
+
+#### 7.2 本地构建验证
+
+```bash
+hugo --minify                        # 生产构建，检查报错
+hugo server -D                       # 本地预览，确认渲染正常（含封面图/配图/FAQ）
+```
+
+构建失败的常见原因和 fallback：
+- TOML 语法错误 → 检查 front matter 引号和数组格式
+- 图片引用失效 → 确认文件名大小写和 `.webp` 扩展名
+- 链接 404 → 内链路径以 `/posts/` 开头（不带 `content/`）
+
+#### 7.3 提交 + 触发部署
+
+```bash
+git add content/posts/<category>/<article-dir>/
+git commit -m "post: <中文标题或主题>"
+git push origin code                 # 推送到 code 分支自动触发 GitHub Actions 部署
+```
+
+等待 2-5 分钟后访问线上 URL 验证：
+- `https://www.heyuan110.com/posts/<category>/<slug>/`（英文）
+- `https://www.heyuan110.com/zh/posts/<category>/<slug>/`（中文）
+
+#### 7.4 分发到外部平台
+
+调用 `blog-distributor` skill 同步到 dev.to / 掘金 / V2EX / HN：
+
+```
+/blog-distributor <文章目录>
+```
+
+⚠️ 只分发已经线上可访问的文章（dev.to 需要 canonical URL 反向引用本站）。
 
 ---
 
