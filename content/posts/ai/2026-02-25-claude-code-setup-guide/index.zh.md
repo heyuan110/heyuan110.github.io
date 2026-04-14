@@ -1,12 +1,32 @@
 +++
 date = '2026-02-25T12:00:00+08:00'
 draft = false
-title = '10分钟安装 Claude Code：终端 + VS Code 配置指南（2026）'
-description = 'Claude Code 安装全流程：npm 安装、API Key 配置、VS Code 集成、权限设置，包含大多数教程不会提到的常见报错解决方案。'
+title = 'Claude Code 安装配置完全指南 2026：10 分钟从零上手'
+description = 'Claude Code 2026 最新安装教程：终端一条命令安装、API Key 与 OAuth 登录、VS Code/JetBrains 集成、CLAUDE.md 配置、权限设置，附常见报错排查，10 分钟搞定。'
 toc = true
 tags = ['Claude Code', 'Setup', 'Tutorial', 'Getting Started']
 categories = ['AI Guides']
-keywords = ['Claude Code 安装', 'Claude Code 配置', 'Claude Code 教程', 'Claude Code 使用指南', 'Claude Code 入门', 'Claude Code VS Code']
+keywords = ['Claude Code 安装', 'Claude Code 配置', 'Claude Code 教程', 'Claude Code 使用指南', 'Claude Code 入门', 'Claude Code VS Code', 'Claude Code 怎么用', 'Claude Code 安装失败']
+
+[[params.faqItems]]
+question = "Claude Code 怎么安装？需要 Node.js 吗？"
+answer = "2026 年起不再需要 Node.js。macOS/Linux 一条命令就能装好：curl -fsSL https://claude.ai/install.sh | bash。Windows 用 PowerShell 执行 irm https://claude.ai/install.ps1 | iex。原生安装器会自动下载二进制到 ~/.local/bin/claude 并配置 PATH。"
+
+[[params.faqItems]]
+question = "Claude Code 安装后提示 command not found 怎么办？"
+answer = "通常是 PATH 没配好。执行 echo 'export PATH=\"$HOME/.local/bin:$PATH\"' >> ~/.zshrc 后 source ~/.zshrc 即可（bash 用户换成 .bashrc）。也可以直接运行 claude doctor 诊断配置问题，它会提示所有缺失项。"
+
+[[params.faqItems]]
+question = "Claude Code 必须付费吗？可以用 API Key 吗？"
+answer = "必须有 Pro/Max 订阅或 API Key。两种方式都能用：Pro（20 美元/月）订阅用户首次启动 claude 会自动 OAuth 登录；API 用户在 console.anthropic.com 拿到 Key，设置 ANTHROPIC_API_KEY 环境变量即可。企业用户还可以走 AWS Bedrock 或 GCP Vertex AI。"
+
+[[params.faqItems]]
+question = "Claude Code 在 VS Code 里怎么用？"
+answer = "先在终端装好 Claude Code，然后在 VS Code 扩展面板搜索「Claude Code」安装官方扩展（Cursor/Windsurf 同样适用）。装好后支持内联编辑、Diff 预览、检查点回滚、多会话和 @filename 文件引用。JetBrains 系列（IntelliJ/PyCharm/WebStorm）也有原生插件。"
+
+[[params.faqItems]]
+question = "Claude Code 默认用什么模型？该怎么选？"
+answer = "默认是 Sonnet 4.6，日常 80% 任务都够用。用 /model opus 切到 Opus 4.6（成本 1.67x）做复杂重构和架构设计；简单提问用 /model haiku（0.33x）省钱。不建议所有任务都上 Opus——用量会被快速吃光。"
 +++
 
 ![Claude Code 安装配置指南：终端安装与 IDE 集成](cover.webp)

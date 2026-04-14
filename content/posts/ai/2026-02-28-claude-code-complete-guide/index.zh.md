@@ -1,12 +1,32 @@
 +++
 date = '2026-03-01T10:00:00+08:00'
 draft = false
-title = 'Claude Code 完全指南 2026：从入门到精通'
-description = 'Claude Code 2026 年最全指南。涵盖安装配置、CLAUDE.md、MCP 服务器、Hooks 钩子、Skills 技能、Worktree 并行开发、团队协作、定价方案和高级工作流。'
+title = 'Claude Code 完全指南 2026：终端 AI 编程从入门到精通'
+description = 'Claude Code 是 Anthropic 终端 AI 编程代理。本指南覆盖安装、CLAUDE.md、MCP、Hooks、Skills、Worktree、Agent Teams、定价方案和高级工作流，一篇读懂 2026 最火的 AI 编程工具。'
 toc = true
 tags = ['Claude Code', 'Guide', 'Tutorial', 'AI Coding Tools']
 categories = ['AI Guides']
-keywords = ['Claude Code 教程', 'Claude Code 使用指南', 'Claude Code 入门', 'Claude Code 功能介绍', 'Claude Code 2026', 'AI 编程工具', 'Claude Code 完全指南']
+keywords = ['Claude Code 教程', 'Claude Code 使用指南', 'Claude Code 入门', 'Claude Code 功能介绍', 'Claude Code 2026', 'AI 编程工具', 'Claude Code 完全指南', 'Claude Code 是什么']
+
+[[params.faqItems]]
+question = "Claude Code 是什么？和 Cursor、Copilot 有什么区别？"
+answer = "Claude Code 是 Anthropic 推出的终端 AI 编程代理。它不是代码补全工具，而是自主智能体——给它一个任务（比如「用 JWT 实现用户认证」），它会读代码、跨文件制定方案、写代码、跑测试、修 Bug，直到任务完成。Cursor/Copilot 更偏向被动补全，Claude Code 更适合做整模块重构和多步骤任务。"
+
+[[params.faqItems]]
+question = "Claude Code 怎么用？新手从哪开始？"
+answer = "第一步装好 Claude Code（curl -fsSL https://claude.ai/install.sh | bash），进入项目目录运行 claude 启动。在项目根目录创建 CLAUDE.md 写清项目上下文、技术栈和代码规范——这是提升效果最立竿见影的动作。日常通过自然语言对话给它任务，用 /model 切换模型，用 /cost 查看消耗。"
+
+[[params.faqItems]]
+question = "Claude Code 贵吗？一天用多少钱？"
+answer = "Claude Code Pro 订阅 20 美元/月（每天 45 条 Sonnet 消息），API 按量付费平均 6 美元/开发者/天，90% 的人日消费不超过 12 美元。重度用户建议 Max 5x（100 美元/月）或 Max 20x（200 美元/月），账单可预测，不用盯 token。"
+
+[[params.faqItems]]
+question = "Claude Code 的 Hooks、Skills、MCP 分别是什么？"
+answer = "三者都是扩展 Claude Code 的方式但用途不同：Hooks 是确定性自动化规则（改完代码自动跑测试、lint）；Skills 是可复用的领域知识包（例如「用 Next.js 14 App Router 的写法」）；MCP 是外部服务集成协议（连数据库、Jira、浏览器等）。简单说：Hooks 管流程、Skills 管知识、MCP 管工具。"
+
+[[params.faqItems]]
+question = "Claude Code 适合大型团队用吗？"
+answer = "适合。Team 版（年付 25 美元/人/月，最少 5 人）提供 SSO、集中账单、角色权限和共享 CLAUDE.md。配合 worktree 做分支隔离、Agent Teams 做多代理并行开发，一个团队可以同时跑多个功能而不冲突。Anthropic 自己的 Claude Code 团队就是靠这个模式每天高速迭代的。"
 +++
 
 ![Claude Code 2026 完全指南：涵盖所有功能与工作流](cover.webp)

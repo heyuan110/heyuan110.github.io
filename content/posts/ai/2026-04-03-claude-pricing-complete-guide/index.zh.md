@@ -1,8 +1,8 @@
 +++
 date = '2026-04-03T14:00:00+08:00'
 draft = false
-title = 'Claude 2026 最新定价全解析：免费版/Pro/Max/Team 怎么选'
-description = '详解 Claude 2026 年各套餐价格和限制：免费版能用多少、Pro 值不值 20 美元、Max 100/200 美元该选哪个、Team 团队版怎么算，附 API 调用成本和省钱技巧。'
+title = 'Claude 价格完全指南 2026：Pro/Max/Team 套餐对比与选型推荐'
+description = 'Claude 2026 最新价格全解析：Pro 20 美元值不值？Max 5x/20x 怎么选？Team 团队版和 API 按量付费哪个划算？一张表对比免费版到企业版所有套餐用量限制和适用场景。'
 toc = true
 tags = ['Claude', 'AI Tools', 'Pricing', 'Claude Code']
 keywords = ['claude 价格 2026', 'claude pro 价格', 'claude max 套餐', 'claude 免费版限制', 'claude code 费用', 'claude pro 限制', 'claude 订阅多少钱', 'claude team 价格']

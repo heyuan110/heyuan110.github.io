@@ -1,11 +1,31 @@
 +++
 date = '2026-03-13T15:00:00+08:00'
 draft = false
-title = 'GitHub Agent HQ 实战指南：在 VS Code 中同时驾驭三大 AI 编程助手'
-description = '手把手教你配置 GitHub Agent HQ，在 VS Code 里同时运行 Claude、Codex 和 Copilot，掌握多 Agent 协作工作流，附实际场景和工具对比。'
+title = 'GitHub Agent HQ 使用教程 2026：VS Code 同时跑 Claude/Codex/Copilot'
+description = 'GitHub Agent HQ 实战指南：VS Code 配置、三大 AI 编程助手并行工作流、Agent 对比和专家流水线。附订阅要求、和 Claude Code CLI/Cursor 的区别，看完就能上手。'
 toc = true
 tags = ['GitHub Copilot', 'AI Coding Tools', 'VS Code', 'Claude', 'Multi-Agent']
-keywords = ['GitHub Agent HQ 教程', 'VS Code 多 Agent 开发', 'Claude Codex Copilot 同时使用', 'AI 编程助手对比', 'Agent HQ 设置指南']
+keywords = ['GitHub Agent HQ 教程', 'VS Code 多 Agent 开发', 'Claude Codex Copilot 同时使用', 'AI 编程助手对比', 'Agent HQ 设置指南', 'GitHub Agent HQ 怎么用', 'Copilot 多模型']
+
+[[params.faqItems]]
+question = "GitHub Agent HQ 是什么？和普通 Copilot 有什么区别？"
+answer = "Agent HQ 是 GitHub 推出的多 AI Agent 编排平台，让你在 VS Code 里同时运行 Claude、Codex 和 Copilot。相比独立 Copilot，它支持多 Agent 对比（同任务分给 3 个模型比方案）、会话管理、本地/云端/后台三种执行模式，还有企业级权限和审计。2025 年 GitHub Universe 首发，2026 年 2 月公测。"
+
+[[params.faqItems]]
+question = "Agent HQ 怎么在 VS Code 里开通？需要什么订阅？"
+answer = "需要 VS Code v1.109+ 和 Copilot Pro+（39 美元/月）或 Copilot Enterprise 订阅——Individual 和 Business 目前还不能用 Claude/Codex。安装 GitHub Copilot 和 Copilot Chat 扩展，在设置里开启 chat.agent.enabled 和 github.copilot.chat.claudeAgent.enabled，命令面板搜 Agent Sessions 验证即可。"
+
+[[params.faqItems]]
+question = "三个 AI Agent 同时用值不值得？会不会浪费配额？"
+answer = "不是所有任务都要开三个。每个 Agent 会话消耗一次高级请求，日常小任务用单个 Agent 即可。多 Agent 对比留给真正重要的决策：架构设计、复杂重构、算法选型。实测中 Claude 擅长结构化方案、Codex 擅长简洁实现、Copilot 擅长仓库上下文，选对场景才有价值。"
+
+[[params.faqItems]]
+question = "Agent HQ 能替代 Claude Code CLI 吗？"
+answer = "替代不了。Agent HQ 在可视化多 Agent 对比和团队协作上更强；Claude Code CLI 在 Hooks 自动化、worktree、脚本化和 CI/CD 集成上更深。两者定位不同：Agent HQ 适合 VS Code 重度用户和团队工作流，Claude Code CLI 适合终端党和自动化流水线。可以同时用——互不冲突。"
+
+[[params.faqItems]]
+question = "本地 Agent、云端 Agent、后台 Agent 有什么区别？"
+answer = "三种模式各有场景：本地 Agent 在本机运行、实时交互，适合探索和调试；云端 Agent 在 GitHub 基础设施上异步运行、直接产出 PR，适合定义清楚的过夜任务和团队协作；后台 Agent 通过 Copilot CLI 的 /delegate 在 worktree 里无人值守运行，适合独立改动和批量操作。"
 +++
 
 ![GitHub Agent HQ multi-agent development dashboard showing Claude, Codex, and Copilot panels in VS Code](cover.webp)
