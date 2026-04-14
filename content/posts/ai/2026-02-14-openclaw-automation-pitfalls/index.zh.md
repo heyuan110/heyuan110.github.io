@@ -7,6 +7,22 @@ toc = true
 tags = ['OpenClaw', 'Agent', 'Automation', 'Skills', 'Best Practices']
 categories = ['AI Guides']
 keywords = ['OpenClaw 配置优化', '会话隔离', '任务隔离', 'Agent 调度', 'AI 助手团队协作', 'dmScope', 'clawdhub', 'clawhub', 'proactive-agent-1-2-4', 'proactive-agent']
+
+[[params.faqItems]]
+question = "为什么 OpenClaw agent 会凭空编造搜索结果？"
+answer = "当 tavily-search 静默失败（API key 过期、配额用完、网络异常）时，agent 会回退到用训练数据编答案但不告诉你。解决办法是在 system prompt 里加一条硬规则：搜索失败必须明确汇报，禁止用训练知识替代实时搜索结果。"
+
+[[params.faqItems]]
+question = "OpenClaw 多用户部署如何防止数据泄露？"
+answer = "在 openclaw.json 里把 dmScope 设为 'per-channel-peer'。默认的 'main' 作用域会把所有私聊共享在同一个会话里，导致 A 用户的数据可能出现在 B 的对话中。多用户场景下，会话隔离是优先级最高的配置。"
+
+[[params.faqItems]]
+question = "装完 OpenClaw Skills 之后必须做哪 4 件事？"
+answer = "按优先级：(1) 会话隔离，防止跨用户数据泄露；(2) 任务隔离，防止任务间上下文污染；(3) 并发控制，防止 API 配额耗尽和成本爆炸；(4) 进度汇报，防止任务静默失败。三个 Skill 只是装备，真正决定可用性的是这 4 项系统配置。"
+
+[[params.faqItems]]
+question = "ClawdHub CLI 怎么装 Skill？命令叫什么？"
+answer = "全局安装：`npm i -g clawdhub`，然后 `clawdhub install <skill-name>` 添加 Skill。注意：CLI 名字是 `clawdhub`（带 d），不是 `clawhub`。旧的 `proactive-agent-1-2-4` 已改名为 `proactive-agent`，直接用新名字安装即可。"
 +++
 
 ![OpenClaw 自动化配置与团队协作实践封面图](cover.webp)

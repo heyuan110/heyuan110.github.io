@@ -25,6 +25,10 @@ question = "Claude Code 在 VS Code 里怎么用？"
 answer = "先在终端装好 Claude Code，然后在 VS Code 扩展面板搜索「Claude Code」安装官方扩展（Cursor/Windsurf 同样适用）。装好后支持内联编辑、Diff 预览、检查点回滚、多会话和 @filename 文件引用。JetBrains 系列（IntelliJ/PyCharm/WebStorm）也有原生插件。"
 
 [[params.faqItems]]
+question = "CLAUDE.md 是什么？为什么必须写？"
+answer = "CLAUDE.md 是放在项目根目录的 Markdown 文件，告诉 Claude Code 项目的技术栈、代码规范、常用命令、架构约定等。每次会话开启时 Claude Code 会自动读取，省去每次重新解释项目的成本，实测能显著提升回答质量，是最便宜的性能提升手段。"
+
+[[params.faqItems]]
 question = "Claude Code 默认用什么模型？该怎么选？"
 answer = "默认是 Sonnet 4.6，日常 80% 任务都够用。用 /model opus 切到 Opus 4.6（成本 1.67x）做复杂重构和架构设计；简单提问用 /model haiku（0.33x）省钱。不建议所有任务都上 Opus——用量会被快速吃光。"
 +++

@@ -1,8 +1,8 @@
 +++
 date = '2026-02-26T10:00:00+08:00'
 draft = false
-title = 'Claude Code Hooks 2026: All 9 Events + 12 Copy-Paste Examples'
-description = 'Every Claude Code hook event in 2026: all 9 events (PreToolUse, PostToolUse, Stop…) + 12 ready configs. Block dangerous commands, auto-format code, protect files — copy and paste.'
+title = 'Claude Code Hooks: 12 Production Configs I Run Daily (with Failure Modes)'
+description = 'The 12 Claude Code hook configs running on my machine right now — PreToolUse guards, PostToolUse formatters, Stop notifiers — plus the 4 failure modes that silently broke my workflow before I caught them.'
 toc = true
 tags = ['Claude Code', 'Hooks', 'Automation', 'Configuration']
 categories = ['AI Guides']

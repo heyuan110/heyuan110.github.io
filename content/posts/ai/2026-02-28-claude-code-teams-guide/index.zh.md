@@ -7,6 +7,26 @@ toc = true
 tags = ['Claude Code', 'Agent Teams', 'Multi-Agent', 'Collaboration']
 categories = ['AI Guides']
 keywords = ['Claude Code Agent Teams', '多智能体协作', 'Claude Code 团队模式', 'AI 多 Agent 并行', 'Claude Code 多 Agent 教程', 'Agent Teams 使用指南']
+
+[[params.faqItems]]
+question = "怎么启用 Claude Code Agent Teams？"
+answer = "在启动 Claude Code 前设置环境变量 `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`，或者在 `~/.claude/settings.json` 的 `env` 字段中加入。截至 2026 年 2 月，Agent Teams 仍是实验性功能，需要显式开启。"
+
+[[params.faqItems]]
+question = "Agent Teams 和 Subagents 有什么区别？"
+answer = "Subagents 是单向的层级通信——父 agent 把独立任务委派给子 agent，彼此隔离。Agent Teams 支持 Team Lead 与 Teammate 之间的多向消息传递，可以横向协调。任务可以清晰拆分用 Subagents；任务有依赖、需要实时协调用 Agent Teams。"
+
+[[params.faqItems]]
+question = "Agent Teams 支持哪些显示模式？"
+answer = "两种：in-process 模式（默认，任何终端都能用），所有 agent 共用一个窗口；split-pane 模式（需要 tmux 或 iTerm2），每个 Teammate 独占一个面板可以同时观察。开发体验上 split-pane 更直观，但 in-process 兼容性最好。"
+
+[[params.faqItems]]
+question = "Agent Teams 用起来成本高吗？"
+answer = "比单 agent 贵。多个 Claude agent 同时运行，每个都独立消耗 token。成本和 teammate 数量、任务复杂度成正比，Opus 实例并行会特别烧钱。建议先用 Sonnet 或 Haiku 做 teammate，Opus 只做 Team Lead，并设 `max_turns` 限制防止失控。"
+
+[[params.faqItems]]
+question = "Teammate 之间可以直接通信吗？"
+answer = "可以，通过 mailbox 消息机制横向通信。例如一个 agent 修改了 API 接口，可以直接发消息给正在写前端的 agent 通知变更，而不是等两边都做完才发现冲突。这是 Agent Teams 相比 Subagents 最核心的增强。"
 +++
 
 ![Claude Code Agent Teams 多智能体协作模式](cover.webp)

@@ -7,6 +7,22 @@ toc = true
 tags = ['Claude Code', 'Agent Teams', 'AI Coding', 'Multi-Agent', 'Anthropic']
 categories = ['AI Guides']
 keywords = ['Claude Code Agent Teams', 'multi-agent AI coding', 'Claude Code parallel development', 'Agent Teams tutorial', 'Claude Code collaboration', 'Claude Code agent teams 2026', 'multi-agent coding 2026']
+
+[[params.faqItems]]
+question = "What is Claude Code Agent Teams?"
+answer = "Agent Teams is an experimental feature released by Anthropic that lets multiple Claude Code instances form a team and collaborate in parallel. A Team Lead assigns tasks while multiple Teammates execute them independently and communicate with each other, compressing hours of serial work into minutes."
+
+[[params.faqItems]]
+question = "What is the difference between Agent Teams and Subagents?"
+answer = "Subagents only report results back to the parent Agent in one direction. In Agent Teams, Teammates can send messages to each other directly, share task lists, and coordinate autonomously. It fits complex development scenarios that need multi-party discussion and cross-module collaboration."
+
+[[params.faqItems]]
+question = "How do I save money with Agent Teams?"
+answer = "Use an Opus + Sonnet mixed orchestration strategy: run the Team Lead on Opus for task decomposition and synthesis, and run Teammates on Sonnet for execution. Sonnet token cost is roughly 1/5 of Opus, so total cost can drop by 60% or more on typical workloads."
+
+[[params.faqItems]]
+question = "What subscription plan does Agent Teams require?"
+answer = "Agent Teams requires a Claude Max subscription ($100/month or $200/month). Each Teammate is an independent Claude Code instance that consumes additional token quota, and the Pro plan ($20/month) is typically not enough to sustain a team session."
 +++
 
 On February 5, Anthropic shipped **Claude Code Agent Teams** alongside Claude Opus 4.6 — an experimental feature that lets multiple Claude Code instances form a team and work in parallel. If Subagents are errand runners you send out on focused tasks, Agent Teams are an engineering squad whose members can discuss, coordinate, and challenge each other in real time. For complex scenarios involving cross-module development, multi-perspective code review, or parallel debugging, Agent Teams can compress hours of serial work into minutes.
