@@ -1,12 +1,20 @@
 +++
 date = '2026-03-06T14:00:00+08:00'
 draft = false
-title = 'OpenClaw Tavily Integration: Add Web Search to Your AI Agent'
-description = 'Step-by-step guide to integrating Tavily search into OpenClaw. Covers API setup, tavily-search vs extract vs crawl, agent-specific config, and cost management.'
+title = 'OpenClaw Tavily Search: ClawHub Skill Integration Guide (2026)'
+description = 'The clawhub tavily-search skill gives OpenClaw agents web search in minutes. Step-by-step install via clawdhub, API key setup, per-agent config, and cost control.'
 toc = true
 tags = ['OpenClaw', 'Tavily', 'AI Agents', 'Web Search', 'ClawHub']
 categories = ['AI Guides']
-keywords = ['openclaw tavily', 'openclaw tavily search', 'tavily integration openclaw', 'tavily api openclaw', 'openclaw web search', 'tavily-search skill', 'openclaw tavily setup', 'tavily-extract', 'tavily-crawl']
+keywords = ['openclaw tavily', 'openclaw clawhub skill tavily-search', 'clawhub tavily-search', 'openclaw clawhub skill', 'tavily-search skill install', 'tavily integration openclaw', 'tavily api openclaw', 'openclaw web search', 'tavily-search skill', 'openclaw tavily setup', 'openclaw ai agent framework 2026', 'tavily-extract', 'tavily-crawl']
+
+[[params.faqItems]]
+question = "What is the clawhub tavily-search skill?"
+answer = "The clawhub tavily-search skill is the official OpenClaw ClawHub package that wraps Tavily's AI-optimized Search API. It lives under clawhub/skills/tavily-search/SKILL.md, exposes parameters like query, max_results, search_depth ('basic' or 'advanced'), and include_domains, and lets any OpenClaw agent perform real-time web search without writing custom code. It is the standard web-search integration for the OpenClaw AI agent framework in 2026."
+
+[[params.faqItems]]
+question = "How do I install the tavily-search skill via clawhub?"
+answer = "Run 'clawdhub install tavily-search' (note the 'd' in clawdhub — the CLI is clawdhub but the registry is clawhub). This pulls the skill from ClawHub into ~/.openclaw/workspace/skills/tavily-search/. Then export TAVILY_API_KEY='tvly-...' in your shell profile (or add it to openclaw.json's skills.entries.tavily-search.env block), restart the gateway with 'openclaw restart', and verify with 'openclaw skills list' — the tavily-search SKILL.md path should appear in the output."
 
 [[params.faqItems]]
 question = "How do I add Tavily search to OpenClaw?"

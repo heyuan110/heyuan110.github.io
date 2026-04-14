@@ -2,7 +2,7 @@
 date = '2026-02-14T08:10:00+08:00'
 draft = false
 title = 'OpenClaw Architecture Deep Dive: How Automation Actually Works'
-description = 'A complete walkthrough of OpenClaw internals — how Gateway routes messages to Agents, how Skills orchestrate tools, how Nodes enable cross-device execution, and how Heartbeat and Cron power always-on automation.'
+description = 'A complete walkthrough of the OpenClaw AI agent framework internals (2026) — how Gateway routes messages to Agents, how Skills orchestrate tools, how Nodes enable cross-device execution, and how Heartbeat and Cron power always-on automation.'
 toc = true
 tags = ['OpenClaw', 'AI Agent', 'Architecture', 'Automation', 'Skills']
 categories = ['AI Guides']

@@ -1,11 +1,11 @@
 +++
 date = '2026-04-03T14:00:00+08:00'
 draft = false
-title = 'Claude 价格完全指南 2026：Pro/Max/Team 套餐对比与选型推荐'
-description = 'Claude 2026 最新价格全解析：Pro 20 美元值不值？Max 5x/20x 怎么选？Team 团队版和 API 按量付费哪个划算？一张表对比免费版到企业版所有套餐用量限制和适用场景。'
+title = 'Claude 订阅价格全对比 2026：Pro/Max/Team/API 哪个最划算？'
+description = 'Claude 多少钱？Pro 20 美元值不值？Max 5x 和 20x 怎么选？一文讲透 2026 年免费版、Pro、Max、Team、Enterprise 和 API 所有套餐的价格、用量上限和适用场景，附省钱建议和选型决策树。'
 toc = true
 tags = ['Claude', 'AI Tools', 'Pricing', 'Claude Code']
-keywords = ['claude 价格 2026', 'claude pro 价格', 'claude max 套餐', 'claude 免费版限制', 'claude code 费用', 'claude pro 限制', 'claude 订阅多少钱', 'claude team 价格']
+keywords = ['claude 价格 2026', 'claude pro 价格', 'claude max 套餐', 'claude 免费版限制', 'claude code 费用', 'claude pro 限制', 'claude 订阅多少钱', 'claude team 价格', 'claude 多少钱', 'claude 值不值', 'claude pro vs max', 'claude api 价格']
 
 [[params.faqItems]]
 question = "Claude Pro 一个月多少钱？值不值得订阅？"

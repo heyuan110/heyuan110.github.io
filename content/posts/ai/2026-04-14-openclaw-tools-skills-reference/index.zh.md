@@ -2,7 +2,7 @@
 date = '2026-04-14T10:00:00+08:00'
 draft = false
 title = 'OpenClaw 工具与 Skill 完全手册 2026：内置工具清单 + 自定义开发'
-description = 'OpenClaw 2026 内置工具（Read、Write、Edit、Bash、Grep、Glob、Task）完整参数速查、ClawHub skill 加载机制、SKILL.md 格式、tavily-search 配置，以及国内网络下的自定义 Skill 开发实操。'
+description = 'OpenClaw 2026 内置工具完整参数速查，含 write tool 的 path 和 content 参数详解、ClawHub skill 加载机制、SKILL.md 格式、tavily-search 配置，以及国内网络下的自定义 Skill 开发实操。'
 toc = true
 image = "cover.webp"
 tags = ['OpenClaw', 'AI Agent Framework', 'ClawHub', 'Skills', 'Developer Tools']
@@ -15,6 +15,10 @@ answer = "tavily-search 是 ClawHub 里最常用的联网搜索 skill，位置�
 [[params.faqItems]]
 question = "怎么写一个自定义的 OpenClaw Skill？"
 answer = "在 <workspace>/clawhub/skills/<skill 名字>/ 下创建 SKILL.md 即可，不需要写任何代码。SKILL.md 的 frontmatter 必须有 name 和 description 两个字段，description 决定 agent 什么时候调用这个 skill（所以要写成触发条件而不是名词标题）。skill 文件夹里可以放脚本、模板，body 里用相对路径引用。保存后执行 openclaw skills reload 即可生效。"
+
+[[params.faqItems]]
+question = "openclaw write tool 的 path 和 content 参数怎么用？"
+answer = "openclaw write tool 只接受两个参数：path 和 content，都是必填字符串。path 必须是**绝对路径**（以 / 或 Windows 盘符开头），不会展开 ~ 也不会按 cwd 解析相对路径——填错了会直接报 'parent directory not found'。content 是字面量的文件全文，原样写入，不做任何模板替换、变量插值或编码转换，永远以 UTF-8 写。Write 没有 append/mode/encoding 这类可选参数，它永远是**整体覆盖**。要追加内容就先 Read、拼接、再 Write；要写二进制就把内容 base64 编码放进 content，后面用 Bash 步骤解码。"
 
 [[params.faqItems]]
 question = "OpenClaw 的 Write 工具有哪些参数？"

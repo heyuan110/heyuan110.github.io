@@ -1,12 +1,12 @@
 +++
 date = '2026-03-11T18:00:00+08:00'
 draft = false
-title = 'AI 开发方法论对比 2026：Vibe Coding/SDD/BMAD 选哪个'
-description = '深度对比 6 种 AI 开发方法论：Vibe Coding、SDD 规范驱动、BMAD、Ralph Loop 和务实混合流。附 Martin Fowler 团队评价、真实项目数据和选型建议，帮你选对 AI 编程工作流。'
+title = 'AI 编程方法论对比 2026：Vibe Coding vs SDD vs BMAD 怎么选？'
+description = '6 大 AI 开发方法论终极对比：Vibe Coding、SDD 规范驱动、BMAD、Ralph Loop、Peter 工作流和务实混合流。附 Martin Fowler 评价、YC 25% 公司数据和具体场景选型建议，一文帮你选对 AI 编程流程。'
 toc = true
 tags = ['AI Coding', 'Spec-Driven Development', 'Vibe Coding', 'BMAD Method', 'AI Workflow']
 categories = ['AI Guides']
-keywords = ['AI 开发方法论', 'vibe coding', '规范驱动开发', 'AI 编码工作流', 'BMAD 方法', 'Ralph Wiggum Loop', '上下文驱动开发', 'SDD 是什么', 'AI 编程最佳实践']
+keywords = ['AI 开发方法论', 'vibe coding', '规范驱动开发', 'AI 编码工作流', 'BMAD 方法', 'Ralph Wiggum Loop', '上下文驱动开发', 'SDD 是什么', 'AI 编程最佳实践', 'AI 编程方法论', 'spec coding', 'vibe coding vs sdd', 'AI 编程流程']
 
 [[params.faqItems]]
 question = "Vibe Coding 和 SDD 规范驱动开发有什么区别？"

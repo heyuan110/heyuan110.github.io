@@ -81,6 +81,29 @@ This is where Hermes takes a product-level position. The harness has five compon
 
 — Adapted from "Hermes Agent: From Beginner to Mastery" handbook v260407
 
+```mermaid
+graph LR
+    subgraph Manual["Manual Harness — 6-month senior-engineer project"]
+        M1[Instructions<br/>hand-written CLAUDE.md]
+        M2[Constraints<br/>hooks + linters + CI]
+        M3[Feedback<br/>manual review / eval agents]
+        M4[Memory<br/>hand-maintained KB]
+        M5[Orchestration<br/>self-built multi-agent pipeline]
+    end
+    subgraph Hermes["Hermes built-in — install + edit one YAML"]
+        H1[Skill system<br/>auto-create + self-improve]
+        H2[Tool permissions<br/>sandbox + opt-in toolsets]
+        H3[Learning loop<br/>post-task reflection]
+        H4[Three-layer memory<br/>+ Honcho user model]
+        H5[delegate_task<br/>+ cron scheduling]
+    end
+    M1 -.->|productized| H1
+    M2 -.->|productized| H2
+    M3 -.->|productized| H3
+    M4 -.->|productized| H4
+    M5 -.->|productized| H5
+```
+
 The left column is a six-month project for a senior engineer. The right column is `curl install.sh | bash` followed by editing one YAML file. This is what "the first AI agent that ships with the harness built in" means concretely.
 
 ## Unpacking "the agent that grows with you"
@@ -98,6 +121,16 @@ Every completed task triggers a reflection cycle:
 5. **User modeling** — the optional Honcho module infers your traits from behavior patterns
 
 None of these five are individually novel. Memory systems exist. Skill files exist. Full-text search is ancient. User modeling is well-worn territory. What is novel is **wiring them into a closed loop that runs automatically**. The handbook uses a flywheel metaphor, which I think is accurate: each loop makes the next loop slightly better, and the improvements compound.
+
+```mermaid
+flowchart LR
+    A([User completes task]) --> B[1 - Curate Memory<br/>what is worth keeping?]
+    B --> C[2 - Create Skill<br/>recurring pattern?]
+    C --> D[3 - Refine Skill<br/>existing one misfired?]
+    D --> E[4 - FTS5 Recall<br/>retrieve on demand]
+    E --> F[5 - User Modeling<br/>infer traits from behavior]
+    F -->|next session<br/>compounded| A
+```
 
 The handbook gives a concrete example that I found sharp (quoting loosely from §03):
 
@@ -120,6 +153,18 @@ This is where Hermes visibly differentiates from ChatGPT's "memory" feature and 
 These correspond to the three memory types cognitive science identifies in humans (episodic, semantic, procedural). It is not a gimmick — the mapping forces different storage, retrieval, and update strategies for each type.
 
 The critical design decision is **retrieve-on-demand instead of load-everything**. When a new session starts, Hermes does not pack the last month of conversations into the context window. It runs an FTS5 search against the current topic and pulls only the relevant fragments. This is why a Hermes installation can accumulate months of conversation history without degrading response latency — something ChatGPT's memory does not solve.
+
+```mermaid
+flowchart TB
+    Q([User: deploy this project]) --> R{Query Router}
+    R -->|what happened| E[Episodic<br/>SQLite + FTS5<br/>'last deploy hit port conflict']
+    R -->|who you are| S[Semantic<br/>persistent state<br/>'uses Aliyun ECS + Nginx']
+    R -->|how to do| P[Procedural<br/>Skill markdown<br/>'deployment-checklist.md']
+    E --> M[Merge into<br/>minimal context]
+    S --> M
+    P --> M
+    M --> A([Agent acts])
+```
 
 For the comparison that matters most to AI agent developers:
 

@@ -2,7 +2,7 @@
 date = '2026-03-06T19:00:00+08:00'
 draft = false
 title = 'OpenClaw vs AutoGPT vs CrewAI：2026年最佳个人 AI Agent 全面对比'
-description = '深度对比 OpenClaw、AutoGPT、CrewAI、LangGraph、AutoGen 和 Devin 六大 AI Agent 工具，从架构、成本、多智能体支持到消息集成，帮你找到最适合的方案。'
+description = '深度对比 OpenClaw AI agent framework 与 AutoGPT、CrewAI、LangGraph、AutoGen、Devin 六大方案（2026），从架构、成本、多智能体支持到消息集成，帮你找到最适合的方案。'
 toc = true
 tags = ['OpenClaw', 'AI Agents', 'AutoGPT', 'CrewAI', 'AI Comparison']
 categories = ['Comparisons']

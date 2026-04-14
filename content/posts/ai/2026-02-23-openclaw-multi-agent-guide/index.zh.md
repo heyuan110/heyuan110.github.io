@@ -2,7 +2,7 @@
 date = '2026-02-23T17:00:00+08:00'
 draft = false
 title = 'OpenClaw 多 Agent 配置教程 2026：从单 Agent 到团队协作实战'
-description = '手把手搭建 OpenClaw 多 Agent 系统：路由绑定、Agent 间通信、四大协作模式（管道/广播/投票/分层）详解，含生产环境最佳实践和踩坑经验。'
+description = '手把手基于 OpenClaw AI agent framework（2026）搭建多 Agent 系统：路由绑定、Agent 间通信、四大协作模式（管道/广播/投票/分层）详解，含生产环境最佳实践和踩坑经验。'
 toc = true
 tags = ['OpenClaw', 'Multi-Agent', 'AI 协作', 'AI 架构']
 categories = ['AI实战']

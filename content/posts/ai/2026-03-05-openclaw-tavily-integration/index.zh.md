@@ -1,12 +1,20 @@
 +++
 date = '2026-03-06T14:00:00+08:00'
 draft = false
-title = 'OpenClaw 集成 Tavily：为你的 AI Agent 接入网络搜索能力'
-description = '手把手教你在 OpenClaw 中集成 Tavily 搜索，涵盖 API 申请、tavily-search/extract/crawl 三种工具详解、按 Agent 配置权限以及费用控制技巧。'
+title = 'OpenClaw ClawHub Tavily Search Skill 集成完整指南（2026）'
+description = '通过 ClawHub 安装 tavily-search skill，为 OpenClaw agent 接入网络搜索仅需三步。含 clawdhub install 命令、API Key 配置、按 Agent 权限控制与费用优化。'
 toc = true
 tags = ['OpenClaw', 'Tavily', 'AI Agents', 'Web Search', 'ClawHub']
 categories = ['AI Guides']
-keywords = ['openclaw tavily', 'openclaw tavily 搜索', 'tavily 集成 openclaw', 'tavily api openclaw', 'openclaw 网络搜索', 'tavily-search 技能', 'openclaw tavily 配置', 'tavily-extract', 'tavily-crawl']
+keywords = ['openclaw tavily', 'openclaw clawhub skill tavily-search', 'clawhub tavily-search', 'openclaw clawhub skill', 'tavily-search skill 安装', 'openclaw tavily 搜索', 'tavily 集成 openclaw', 'tavily api openclaw', 'openclaw 网络搜索', 'tavily-search 技能', 'openclaw tavily 配置', 'openclaw ai agent framework 2026', 'tavily-extract', 'tavily-crawl']
+
+[[params.faqItems]]
+question = "ClawHub tavily-search skill 是什么？"
+answer = "ClawHub tavily-search skill 是 OpenClaw 官方提供的联网搜索能力包，路径为 clawhub/skills/tavily-search/SKILL.md。它封装了 Tavily 专为 AI Agent 优化的搜索 API，暴露 query（必填）、max_results（默认 5）、search_depth（basic/advanced）、include_domains 等参数，让任意 OpenClaw agent 无需写代码即可获得实时网络搜索能力。这是 2026 年 OpenClaw AI agent framework 生态里最常用的搜索集成方案。"
+
+[[params.faqItems]]
+question = "如何通过 clawhub 安装 tavily-search skill？"
+answer = "执行 'clawdhub install tavily-search'（注意：CLI 叫 clawdhub 带 'd'，但仓库名是 clawhub）。命令会把 skill 拉到 ~/.openclaw/workspace/skills/tavily-search/ 目录。然后在 shell profile 里导出 TAVILY_API_KEY='tvly-...'（或写到 openclaw.json 的 skills.entries.tavily-search.env 里），执行 'openclaw restart' 重启网关，最后用 'openclaw skills list' 验证——能看到 tavily-search 的 SKILL.md 路径就说明加载成功。国内用户额外注意：需要给 api.tavily.com 配代理。"
 
 [[params.faqItems]]
 question = "如何在 OpenClaw 中添加 Tavily 搜索？"

@@ -2,7 +2,7 @@
 date = '2026-02-16T17:14:00+08:00'
 draft = false
 title = 'OpenClaw 的 30 天狂飙：180K Star、40+ 漏洞、创始人加入 OpenAI'
-description = '深度复盘 OpenClaw 从诞生到创始人加入 OpenAI 的 30 天旅程，解析 Skills 生态、Moltbook 社交网络、安全隐忧，以及这场开源 AI Agent 狂飙对行业的深远影响。'
+description = '深度复盘 OpenClaw AI agent framework 从诞生到创始人加入 OpenAI 的 30 天旅程（2026），解析 Skills 生态、Moltbook 社交网络、安全隐忧，以及这场开源 AI Agent 狂飙对行业的深远影响。'
 toc = true
 tags = ['OpenClaw', 'AI Agent', 'OpenAI', 'Open Source']
 categories = ['AI Guides']

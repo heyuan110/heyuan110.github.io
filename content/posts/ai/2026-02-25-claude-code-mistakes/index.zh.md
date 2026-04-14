@@ -1,12 +1,12 @@
 +++
 date = '2026-02-25T14:00:00+08:00'
 draft = false
-title = 'Claude Code 新手 10 大常见错误与解决方案（2026 避坑指南）'
-description = 'Claude Code 新手最容易踩的 10 个坑：没写 CLAUDE.md、滥用 Opus、忽略 Hooks、超长对话不压缩……每条附具体解决方案，帮你省 50% Token、提升 5-10 倍输出质量。'
+title = 'Claude Code 10 大常见坑 2026：新手必看的避坑指南（省 50% Token）'
+description = 'Claude Code 新手最爱踩的 10 个坑：没写 CLAUDE.md、默认用 Opus 烧钱、忽略 Hooks、权限弹窗烦人、超长对话不压缩……每条附具体解决方案，帮你省一半 Token、输出质量提升 5-10 倍。'
 toc = true
 tags = ['Claude Code', 'Tips', 'Best Practices', 'Beginner']
 categories = ['AI Guides']
-keywords = ['Claude Code 常见错误', 'Claude Code 使用技巧', 'Claude Code 最佳实践', 'Claude Code 新手指南', 'Claude Code 省钱技巧', 'Claude Code 效率提升', 'Claude Code 踩坑', 'Claude Code 怎么用才对']
+keywords = ['Claude Code 常见错误', 'Claude Code 使用技巧', 'Claude Code 最佳实践', 'Claude Code 新手指南', 'Claude Code 省钱技巧', 'Claude Code 效率提升', 'Claude Code 踩坑', 'Claude Code 怎么用才对', 'Claude Code 坑', 'Claude Code 报错', 'Claude Code 注意事项', 'Claude Code 避坑']
 
 [[params.faqItems]]
 question = "Claude Code 新手最容易踩的坑是什么？"

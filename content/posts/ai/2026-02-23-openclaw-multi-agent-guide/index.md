@@ -2,7 +2,7 @@
 date = '2026-02-23T17:00:00+08:00'
 draft = false
 title = 'OpenClaw Multi-Agent Guide: Architecture, Configuration, and Collaboration Patterns'
-description = 'A deep dive into OpenClaw multi-agent architecture design and hands-on configuration. From single-agent bottlenecks to building agent teams, covering routing bindings, inter-agent communication, four collaboration patterns, and production best practices.'
+description = 'A deep dive into multi-agent design inside the OpenClaw AI agent framework (2026). From single-agent bottlenecks to building agent teams, covering routing bindings, inter-agent communication, four collaboration patterns, and production best practices.'
 toc = true
 tags = ['OpenClaw', 'Multi-Agent', 'AI Collaboration', 'AI Architecture']
 categories = ['AI Guides']

@@ -84,6 +84,29 @@ Hermes 做的事情就一件：把 Harness 的五个组件全部内建了，而�
 
 —— 摘自《Hermes Agent 从入门到精通》教程 v260407
 
+```mermaid
+graph LR
+    subgraph Manual["手动搭建 — 资深工程师的半年工程"]
+        M1[指令层<br/>手写 CLAUDE.md]
+        M2[约束层<br/>hooks + linter + CI]
+        M3[反馈层<br/>人工审查 / 评估 Agent]
+        M4[记忆层<br/>手维护知识库]
+        M5[编排层<br/>自建多 Agent pipeline]
+    end
+    subgraph Hermes["Hermes 内建 — 装完改一份 YAML"]
+        H1[Skill 系统<br/>自动创建 + 自改进]
+        H2[工具权限<br/>沙箱 + toolset 按需启用]
+        H3[学习循环<br/>任务后自动复盘]
+        H4[三层记忆<br/>+ Honcho 用户建模]
+        H5[delegate_task<br/>+ cron 调度]
+    end
+    M1 -.->|产品化| H1
+    M2 -.->|产品化| H2
+    M3 -.->|产品化| H3
+    M4 -.->|产品化| H4
+    M5 -.->|产品化| H5
+```
+
 看左列和右列的对比。左边全是手动操作，你得是一个有经验的工程师才能搭出来。右边是开箱即用，装完就有。
 
 **这就是"出厂就带缰绳"的字面意思**：你不需要像 Mitchell 那样每次犯错加一条规则。Hermes 会自己观察、自己总结、自己写入 Skill、自己在下次调用时应用这些规则。人的参与从"持续写规则"变成"偶尔审查一下"。
@@ -93,6 +116,16 @@ Hermes 做的事情就一件：把 Harness 的五个组件全部内建了，而�
 这是 Hermes 最值得琢磨的部分。很多 Agent 都说"我有记忆"，但 Hermes 的记忆是活的，它的 Skill 也是活的。
 
 学习循环有五个环节：策划记忆 → 创建 Skill → Skill 自改进 → FTS5 召回 → 用户建模。单看每个都不新鲜，但串起来形成了一个持续改进的飞轮。
+
+```mermaid
+flowchart LR
+    A([用户完成任务]) --> B[1 - 策划记忆<br/>什么值得留下]
+    B --> C[2 - 创建 Skill<br/>是否重复模式]
+    C --> D[3 - 优化 Skill<br/>现有 Skill 失误]
+    D --> E[4 - FTS5 召回<br/>按需检索片段]
+    E --> F[5 - 用户建模<br/>从行为推断偏好]
+    F -->|下一轮<br/>越用越准| A
+```
 
 举一个 PDF 里的真实例子（摘自教程 §03）：
 

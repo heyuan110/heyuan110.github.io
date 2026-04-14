@@ -1,12 +1,12 @@
 +++
 date = '2026-02-24T07:00:00+08:00'
 draft = false
-title = '斯坦福 CS146S 精读（一）：Vibe Coding 如何成为正式学科'
-description = '深度拆解斯坦福大学 CS146S The Modern Software Developer 课程，10 周课程大纲、豪华嘉宾阵容、免费学习资源全收录，看全球顶级高校如何系统教授 Vibe Coding。'
+title = '斯坦福 CS146S 全解析 2026：AI 编程公开课中文笔记（免费自学路线）'
+description = '斯坦福顶级 AI 编程课 CS146S The Modern Software Developer 完整拆解：10 周大纲、Boris Cherney/Karpathy 级嘉宾阵容、免费 PPT 和作业代码资源全收录，一篇看懂如何系统学 Vibe Coding。'
 toc = true
 tags = ['Vibe Coding', 'Stanford CS146S', 'AI 编程', '课程解读', 'Agentic Engineering']
 categories = ['AI原理']
-keywords = ['Stanford CS146S', '斯坦福 Vibe Coding 课程', 'The Modern Software Developer', 'AI 编程课程', 'Vibe Coding 学什么']
+keywords = ['Stanford CS146S', '斯坦福 Vibe Coding 课程', 'The Modern Software Developer', 'AI 编程课程', 'Vibe Coding 学什么', '斯坦福 LLM 课程', 'LLM 系统设计', 'AI 编程公开课', 'Vibe Coding 教程', '斯坦福 AI 编程课']
 
 [[params.faqItems]]
 question = "斯坦福 CS146S 是什么课程？"

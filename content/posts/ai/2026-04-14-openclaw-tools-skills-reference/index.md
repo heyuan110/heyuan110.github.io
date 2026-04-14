@@ -2,7 +2,7 @@
 date = '2026-04-14T10:00:00+08:00'
 draft = false
 title = 'OpenClaw Tools & Skills Reference 2026: Every Built-in Tool and Skill'
-description = 'Complete OpenClaw 2026 reference for built-in tools (Read, Write, Edit, Bash, Grep, Glob, Task, TodoWrite) with exact parameters, ClawHub skill architecture, SKILL.md format, tavily-search configuration, and how to write custom skills.'
+description = 'Complete OpenClaw 2026 reference covering built-in tools (Read, Write, Edit, Bash, Grep, Glob, Task, TodoWrite) with exact write tool parameters (path, content), ClawHub skill architecture, SKILL.md format, tavily-search configuration, and custom skill authoring.'
 toc = true
 image = "cover.webp"
 tags = ['OpenClaw', 'AI Agent Framework', 'ClawHub', 'Skills', 'Developer Tools']
@@ -15,6 +15,10 @@ answer = "tavily-search is a ClawHub skill that exposes the Tavily Search API to
 [[params.faqItems]]
 question = "How do I write a custom OpenClaw skill?"
 answer = "Create a folder under clawhub/skills/<skill-name>/ containing SKILL.md. The SKILL.md needs YAML frontmatter with `name` and `description` fields — the description is how the agent decides when to trigger the skill. The body is Markdown instructions the agent reads when the skill activates. You can include supporting files (scripts, templates) in the same folder and reference them by relative path. No code registration is needed: OpenClaw scans clawhub/skills/ on startup and indexes every SKILL.md it finds."
+
+[[params.faqItems]]
+question = "What parameters does the OpenClaw write tool accept?"
+answer = "The OpenClaw write tool accepts exactly two parameters. `path` is a required string that must be an absolute filesystem path — relative paths and `~` are NOT expanded. `content` is a required string containing the full file contents; it is written verbatim with no templating, variable interpolation, or encoding conversion. There are no optional flags like `append`, `mode`, or `encoding` — Write always overwrites and always uses UTF-8. To append, Read the existing content first, concatenate in your prompt, then Write. To create binary files, base64-encode the payload inside `content` and decode with a Bash step."
 
 [[params.faqItems]]
 question = "What are the parameters of the OpenClaw Write tool?"

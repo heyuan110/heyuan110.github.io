@@ -1,12 +1,12 @@
 +++
 date = '2026-03-01T10:00:00+08:00'
 draft = false
-title = 'Claude Code 完全指南 2026：终端 AI 编程从入门到精通'
-description = 'Claude Code 是 Anthropic 终端 AI 编程代理。本指南覆盖安装、CLAUDE.md、MCP、Hooks、Skills、Worktree、Agent Teams、定价方案和高级工作流，一篇读懂 2026 最火的 AI 编程工具。'
+title = 'Claude Code 完全指南 2026：从安装到工作流一篇看懂（新手到进阶）'
+description = 'Claude Code 怎么用？新手到精通一站式教程：安装配置、CLAUDE.md、MCP、Hooks、Skills、Worktree、Agent Teams、定价选型和高级工作流全覆盖，读完直接上手 2026 最强终端 AI 编程代理。'
 toc = true
 tags = ['Claude Code', 'Guide', 'Tutorial', 'AI Coding Tools']
 categories = ['AI Guides']
-keywords = ['Claude Code 教程', 'Claude Code 使用指南', 'Claude Code 入门', 'Claude Code 功能介绍', 'Claude Code 2026', 'AI 编程工具', 'Claude Code 完全指南', 'Claude Code 是什么']
+keywords = ['Claude Code 教程', 'Claude Code 使用指南', 'Claude Code 入门', 'Claude Code 功能介绍', 'Claude Code 2026', 'AI 编程工具', 'Claude Code 完全指南', 'Claude Code 是什么', 'Claude Code 怎么用', 'Claude Code 新手', 'Claude Code 安装', 'Claude Code vs Cursor']
 
 [[params.faqItems]]
 question = "Claude Code 是什么？和 Cursor、Copilot 有什么区别？"
