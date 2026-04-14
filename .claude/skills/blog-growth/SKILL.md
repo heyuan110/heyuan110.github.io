@@ -212,57 +212,16 @@ data_state: "final"
 
 ---
 
-## 第三步：热搜追踪
+## 第三步：热搜追踪（Full 模式）
 
-### 3.1 热点发现渠道（中英文分别追踪）
+从 GSC 高频主题词出发，去外部渠道搜索最新动态，判断是真热点还是伪热点。
 
-热点不会自己来找你，需要**主动去特定渠道发现**。中英文的热点渠道完全不同：
+**渠道、真伪判断、优先级权重详见 [references/trending-sources.md](references/trending-sources.md)**。
 
-**英文热点渠道**（用 WebSearch 搜索）：
-
-| 渠道 | 搜索方式 | 发现什么 |
-|------|---------|---------|
-| Hacker News | `site:news.ycombinator.com AI coding {current_year}` | 技术社区最关心的话题 |
-| Reddit | `site:reddit.com "AI coding" OR "Claude Code" {current_year}` | 开发者讨论热点 |
-| TechCrunch/TheVerge | `site:techcrunch.com AI developer tools {current_year}` | 产品发布和融资新闻 |
-| GitHub Trending | WebSearch `github trending AI agent {current_month}` | 新开源项目 |
-| Product Hunt | WebSearch `producthunt.com AI coding agent` | 新产品发布 |
-| Martin Fowler/ThoughtWorks | `site:martinfowler.com` 最新文章 | 工程方法论趋势 |
-
-**中文热点渠道**（用 WebSearch 搜索）：
-
-| 渠道 | 搜索方式 | 发现什么 |
-|------|---------|---------|
-| 知乎热榜 | `site:zhihu.com AI 编程 {current_month}` | 国内开发者关注的话题 |
-| 掘金/InfoQ | `site:juejin.cn AI 编程工具 {current_year}` | 国内技术社区热点 |
-| 36氪/量子位 | `site:36kr.com AI 编程 {current_year}` | 国内 AI 产品新闻 |
-| V2EX | `site:v2ex.com AI 编程 Claude` | 极客社区讨论 |
-| 微信公众号 | WebSearch `微信公众号 AI 编程 最新` | 国内深度文章 |
-| GitHub 中文社区 | WebSearch `github 中文 AI agent 新项目 {current_month}` | 国内开源动态 |
-
-**关键：不要预设搜什么关键词**。每次运行时，先从 GSC 数据中发现当前的高频主题词，然后用这些词去上面的渠道搜索最新动态。
-
-### 3.2 判断真热点 vs 伪热点
-
-| 信号 | 真热点 | 伪热点 |
-|------|--------|--------|
-| 多个渠道同时出现 | ✅ HN + Reddit + TechCrunch 都在讨论 | ❌ 只在一个小博客看到 |
-| GSC 已有展示 | ✅ 搜索词展示量在上升 | ❌ 搜索量为零 |
-| 有时效性触发器 | ✅ 新版本发布、融资、开源、争议事件 | ❌ 概念讨论，无具体事件 |
-| 与博客定位匹配 | ✅ AI/编程/工具/工程方法论 | ❌ 纯商业新闻/八卦 |
-| 搜索结果竞争度 | ✅ 第一页还没有深度文章 | ❌ 大站已经覆盖得很好 |
-| 中英文热度对比 | 判断是单侧热还是双侧热 | — |
-
-### 3.3 热搜评估优先级
-
-| 标准 | 权重 | 说明 |
-|------|------|------|
-| 与博客定位匹配度 | 高 | 必须是 AI/编程/工具相关 |
-| 搜索量潜力 | 高 | GSC 已有展示，或多渠道讨论 |
-| **中英文热度差** | 高 | 优先选两边都火的，或单侧热度极大的 |
-| 竞争程度 | 中 | Google 第一页是否已有深度文章 |
-| 时效性 | 中 | 事件发生 1-3 天内发布效果最好 |
-| 与现有内容关联度 | 中 | 能形成内链、扩充主题集群更好 |
+核心原则：
+- 中英文渠道完全不同，分别搜索
+- 多渠道同时出现才是真热点
+- 热点必须与 AI / 编程 / 工具相关，否则跳过
 
 ---
 
@@ -418,65 +377,11 @@ git push origin code
 
 ---
 
-## 速查表
+## 速查与常见错误
 
-### Search Console 关键阈值
+GSC / GA 关键阈值、内容矩阵策略、中英文热度判断、常见错误清单 —— 详见 **[references/thresholds.md](references/thresholds.md)**。
 
-| 场景 | 阈值 | 动作 |
-|------|------|------|
-| 高展示低点击 | impressions > 200, CTR < 2% | 优化 title/description + 补 FAQ |
-| 零点击高展示 | clicks = 0, impressions > 100 | 写精准匹配新文章 |
-| 高展示低排名 | impressions > 200, position > 15 | 优化内容深度 + 内链 |
-| 排名上升中 | position 改善 > 3 位 | 继续深耕该主题 |
-| 新文章冷启动 | 发布 > 7 天, impressions < 10 | 检查标题/关键词 |
-
-### GA 关键阈值
-
-| 场景 | 阈值 | 动作 |
-|------|------|------|
-| 隐藏宝石 | 互动率 > 45%, GSC 点击 < 50 | SEO 优化（标题/描述/FAQ） |
-| 内容质量问题 | PV > 500, 互动率 < 25% | 改善内容匹配度 |
-| 中文版缺失 | 英文版 PV > 500, 无 index.zh.md | 补中文版 |
-
-### 内容矩阵策略
-
-围绕高流量主题持续产出，形成搜索权威（每个集群 10+ 篇）。
-
-检查每个集群有多少篇文章、缺什么角度（集群发现见 Phase 2.1）：
-
-```bash
-# 动态发现集群及文章数量
-for topic in $(ls content/posts/ai/ | sed 's/^[0-9-]*//' | cut -d'-' -f1-3 | sort | uniq -c | sort -rn | head -10 | awk '{print $2}'); do
-  count=$(ls -d content/posts/ai/*${topic}* 2>/dev/null | wc -l)
-  echo "${topic}: ${count} 篇"
-done
-```
-
-每个集群应覆盖的内容类型（按需补缺）：
-- 入门指南 → 进阶教程 → 实战案例 → 对比评测 → 最佳实践
-
-### 中英文差异化速查
-
-**不要预设固定的热点列表**。每次运行时从 GSC 数据的中英文聚类结果中动态生成。
-
-中英文差异的判断方法：
-- 同一个话题，比较中文展示量 vs 英文展示量
-- 如果中文展示 >> 英文：中文市场需求更大，中文版要重点打磨
-- 如果英文展示 >> 中文：英文市场需求更大，英文版要重点打磨
-- 如果两边都大：双重机会，两个版本都要做好
-
----
-
-## 常见错误
-
-| 错误 | 正确做法 |
-|------|---------|
-| 只看 GSC 不看 GA | GSC 看搜索机会，GA 看内容质量，必须交叉分析 |
-| 中英文写一样的内容 | 角度和关键词要差异化，中文偏实操，英文偏原理 |
-| 只写新文章不优化老文章 | 优化老文章（FAQ + 内链 + SEO）ROI 通常更高 |
-| 追热点但不匹配博客定位 | 热点必须与 AI/编程/工具相关 |
-| 写完不分发 | 发布后用 `/distribute` 同步到 dev.to + 掘金 |
-| 不保存诊断报告 | 每次诊断保存到诊断报告目录，下次对比趋势 |
-| 新文章不做内链 | 每篇新文章至少 4-6 个内链 |
-| 不用 blog-writer skill | 写文章必须用 `/blog-writer`，确保格式和质量一致 |
-| 忽略 FAQ 结构化数据 | 每篇文章都应有 3-5 个 `[[params.faqItems]]` |
+典型陷阱（记住这 3 个就够）：
+1. 只看 GSC 不看 GA → 必须交叉分析
+2. 中英文写一样的内容 → 角度必须差异化
+3. 跳过 Checkpoint 直接 spawn Agent → 会白烧 token
