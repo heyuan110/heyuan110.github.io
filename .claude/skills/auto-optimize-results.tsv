@@ -7,3 +7,7 @@ timestamp	commit	skill	old_score	new_score	status	dimension	note	eval_mode
 2026-04-14T18:10	7c9047c	blog-writer	65	69	keep	Dim2	修复步骤4/5 子编号冲突 + 流程图对齐	dry_run
 2026-04-14T18:20	5618d85	blog-writer	69	77	keep	Dim5+Dim7	扩充步骤7（目录命名+Hugo构建+部署+分发）	dry_run
 2026-04-14T18:30	5b4dc45	blog-writer	77	84	keep	Dim3+Dim8	补强「参考URL写深度文」高频场景+禁区规则	dry_run
+2026-04-14T22:00	baseline	blog-writer	-	86	baseline	-	合并远程画图能力后重新基线	dry_run
+2026-04-14T22:10	c347da0	blog-writer	86	88	keep	Dim1	description 补画图能力+触发词	dry_run
+2026-04-14T22:20	173435e	blog-writer	88	89	keep	Dim6	质量门禁补画图渲染验证	dry_run
+2026-04-14T22:30	fc24bb7	blog-writer	89	91	keep	Dim4	步骤4 加草稿审阅 checkpoint（先英文→确认→再中文）	dry_run
