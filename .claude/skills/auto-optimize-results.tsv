@@ -1,0 +1,9 @@
+timestamp	commit	skill	old_score	new_score	status	dimension	note	eval_mode
+2026-04-14T16:30	f5975b7	blog-growth	-	62	baseline	-	初始评估	dry_run
+2026-04-14T16:45	cab1664	blog-growth	62	71	keep	Dim4+Dim7	快/慢模式+checkpoint+去重	dry_run
+2026-04-14T16:55	d498849	blog-growth	71	78	keep	Dim3+Dim6	Phase0本地资源+降级+MEMORY写回	dry_run
+2026-04-14T17:10	d8c6037	blog-growth	78	82	keep	Dim7	长表下沉references/	dry_run
+2026-04-14T18:00	baseline	blog-writer	-	65	baseline	-	初始评估（步骤4/5 编号冲突+步骤7 单薄）	dry_run
+2026-04-14T18:10	7c9047c	blog-writer	65	69	keep	Dim2	修复步骤4/5 子编号冲突 + 流程图对齐	dry_run
+2026-04-14T18:20	5618d85	blog-writer	69	77	keep	Dim5+Dim7	扩充步骤7（目录命名+Hugo构建+部署+分发）	dry_run
+2026-04-14T18:30	5b4dc45	blog-writer	77	84	keep	Dim3+Dim8	补强「参考URL写深度文」高频场景+禁区规则	dry_run
