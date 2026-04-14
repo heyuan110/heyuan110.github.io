@@ -1,12 +1,32 @@
 +++
 date = '2026-01-31T22:50:00+08:00'
 draft = false
-title = 'OpenClaw 作者的 Claude Code 开发方法论：一个人如何用 AI 写出 10 万星项目'
-description = '深度拆解 OpenClaw 作者 Peter Steinberger 的 Claude Code 开发方法论，从 AGENTS.md 文档驱动、多 Agent 并行开发到 Spec 驱动构建，手把手教你用同样的方法让 Claude Code 帮你做项目。'
+title = 'OpenClaw 作者 Claude Code 工作流：一人 AI 写 10 万星项目'
+description = 'OpenClaw 作者 Peter Steinberger 的 Claude Code 开发方法论拆解：AGENTS.md 文档驱动、5-10 个 Agent 并行、Spec 驱动构建、日均 600 次 commit。一个人做出一家公司的产出。'
 toc = true
 tags = ['Claude Code', 'OpenClaw', 'AI 编程', 'Agent Engineering', 'AGENTS.md']
 categories = ['AI实战']
-keywords = ['Claude Code 开发流程', 'OpenClaw 开发方法', 'AGENTS.md', 'AI 编程实战', '多Agent并行开发']
+keywords = ['Claude Code 开发流程', 'OpenClaw 开发方法', 'AGENTS.md', 'AI 编程实战', '多Agent并行开发', 'Peter Steinberger 工作流', 'Claude Code 最佳实践']
+
+[[params.faqItems]]
+question = "Peter Steinberger 是怎么一个人做出 OpenClaw 的？"
+answer = "核心是三件事：1）AGENTS.md 把项目规范写到极致——Claude Code 每次启动都加载；2）同时开 5-10 个 Agent 并行做不同任务（worktree 隔离避免冲突）；3）Spec 驱动——人类写清需求规范，AI 负责实现。最关键的是日均 600+ commit 保持原子性，每次出错容易回滚。一个人做出看起来像整家公司的产出。"
+
+[[params.faqItems]]
+question = "AGENTS.md 和 CLAUDE.md 有什么区别？"
+answer = "两者都是给 AI 的项目上下文文档，但目标不同。CLAUDE.md 是 Anthropic 官方规范，Claude Code 会自动加载；AGENTS.md 是 Peter 推行的跨工具通用标准，被 Cursor、Windsurf、Claude Code、Codex CLI 多个 AI 工具共同支持。趋势是 AGENTS.md 成为事实标准——一份文档多个 Agent 共用。"
+
+[[params.faqItems]]
+question = "怎么让 Claude Code 同时跑多个 Agent？"
+answer = "用 git worktree 做分支隔离：git worktree add ../feature-a feature-a，在独立目录启动 claude 会话，每个 Agent 在自己的 worktree 里改不同模块。Peter 日常开 5-10 个并行。诀窍是任务拆解要清晰——每个 Agent 只负责一个明确边界的子任务，主 Agent 或人类做最终整合。"
+
+[[params.faqItems]]
+question = "Spec 驱动开发（Spec-Driven）具体怎么做？"
+answer = "六步流程：1）人类写清 spec.md（或用 Gemini 生成再审查）；2）CLAUDE.md 补充项目架构、规范、已知问题；3）让 Claude Code 执行「Build spec.md」；4）AI 自我验证（跑 lint、test、compile）；5）踩坑后让 AI 自己更新 CLAUDE.md；6）每周花 20% 时间做重构清理。核心哲学：你不用亲手写代码，但要亲手写清楚你要什么。"
+
+[[params.faqItems]]
+question = "普通开发者能复制这套方法吗？需要什么前置条件？"
+answer = "能复制但需要三个准备：1）订阅 Claude Code Max（最少 100 美元/月，否则配额不够跑多 Agent）；2）适应「写规范」而非「写代码」的思维切换——很多人不习惯把需求写这么清楚；3）接受高频原子提交和定期重构。一开始效率可能反而降低，两周后才能跟上这套节奏。个人开发者、副业项目最适合。"
 +++
 
 ![OpenClaw 的 Claude Code 开发方法论：文档驱动、多 Agent 并行开发](cover.webp)
@@ -528,8 +548,11 @@ Spec 越清晰，AI 执行越准确。文档越完善，Agent 越少犯错。这
 
 ## 相关阅读
 
-- [Claude Code 浏览器自动化方案对比：Agent Browser、Playwright、DevTools](/posts/ai/2026-01-28-claude-code-browser-automation/)
-- [Claude Code 最佳实践指南](/posts/ai/2026-01-06-claudecode-best-practices/)
-- [Claude Code Skills 完全指南](/posts/ai/2026-01-08-claudecode-skill-guide/)
-- [Moltbot 深度解析：从爆火到改名，个人 AI Agent 的机遇与暗礁](/posts/ai/2026-01-29-moltbot-deep-dive/)
+- [Claude Code 浏览器自动化方案对比：Agent Browser、Playwright、DevTools](/zh/posts/ai/2026-01-28-claude-code-browser-automation/)
+- [Claude Code 最佳实践指南](/zh/posts/ai/2026-01-06-claudecode-best-practices/)
+- [Claude Code Skills 完全指南](/zh/posts/ai/2026-01-08-claudecode-skill-guide/)
+- [Moltbot 深度解析：从爆火到改名，个人 AI Agent 的机遇与暗礁](/zh/posts/ai/2026-01-29-moltbot-deep-dive/)
+- [Claude Code Worktree：并行 AI 任务的正确打开方式](/zh/posts/ai/2026-02-20-claude-code-worktree/) — Peter 日常开 5-10 个 Agent 的基础设施
+- [AI 开发方法论对比：Vibe Coding vs SDD vs BMAD](/zh/posts/ai/2026-03-11-ai-development-methodologies-compared/) — Peter 工作流在方法论光谱中的位置
+- [CLAUDE.md vs README.md：为什么要区分两个文档](/zh/posts/ai/2026-01-31-claudemd-vs-readme/) — AGENTS.md / CLAUDE.md 的写作边界
 - [steipete/agent-scripts](https://github.com/steipete/agent-scripts)

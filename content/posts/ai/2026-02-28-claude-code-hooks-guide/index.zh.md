@@ -1,32 +1,32 @@
 +++
 date = '2026-02-26T10:00:00+08:00'
 draft = false
-title = 'Claude Code Hooks 2026：全部事件列表 + 12个即用配置'
-description = 'Claude Code 所有 Hook 事件详解：PreToolUse、PostToolUse、PreCompact 等。附 12 个可直接复制的自动化配置，覆盖格式化、文件保护、命令拦截。'
+title = 'Claude Code Hooks 完全指南 2026：12 个即用配置 + 事件详解'
+description = 'Claude Code Hooks 自动化配置指南：所有 Hook 事件（PreToolUse、PostToolUse、PreCompact）详解，12 个可直接复制的生产级配置——自动格式化、.env 保护、危险命令拦截、桌面通知。'
 toc = true
 tags = ['Claude Code', 'Hooks', 'Automation', 'Configuration']
 categories = ['AI Guides']
-keywords = ['Claude Code Hooks', 'Claude Code 自动化', 'Claude Code 配置', 'PreToolUse', 'PostToolUse', 'Claude Code hooks 指南', 'Claude Code 自动格式化', 'Claude Code 钩子', 'Claude Code 生命周期事件']
+keywords = ['Claude Code Hooks', 'Claude Code 自动化', 'Claude Code 配置', 'PreToolUse', 'PostToolUse', 'Claude Code hooks 指南', 'Claude Code 自动格式化', 'Claude Code 钩子', 'Claude Code 生命周期事件', 'Claude Code Hooks 是什么']
 
 [[params.faqItems]]
-question = "Claude Code Hooks 是什么？"
-answer = "Hooks 是 Claude Code 在特定生命周期事件触发时自动执行的 shell 命令或脚本——工具调用前、文件修改后、会话开启或结束时都可以挂钩子。它提供确定性的程序化控制，不依赖 prompt 工程，保证某些动作每次都会发生。"
+question = "Claude Code Hooks 是什么？和 Skills 有什么区别？"
+answer = "Hooks 是 Claude Code 生命周期事件的确定性脚本——在工具运行前后、会话开始、Claude 停止等节点强制执行。和 Skills 最大的区别：Hooks 能拦截操作（PreToolUse 返回 exit 2 就阻止 Claude 动手），Skills 只能建议。Hooks 管「必须发生的事」，Skills 管「可复用的提示模板」。"
 
 [[params.faqItems]]
-question = "Claude Code 支持哪些 Hook 事件？"
-answer = "Claude Code 支持 9 个生命周期事件：PreToolUse、PostToolUse、Notification、Stop、SubagentStop、PreCompact、PostCompact、SessionStart、SessionEnd。日常最常用的是 PreToolUse（拦截危险操作）和 PostToolUse（自动格式化代码）。"
+question = "Claude Code Hooks 最值得配置的三个是什么？"
+answer = "新手必配三件套：1）保护敏感文件（PreToolUse 拦截读写 .env/secrets）；2）保存时自动格式化（PostToolUse 跑 Prettier/Black/gofmt）；3）桌面通知（Stop 事件提醒任务完成）。这三个加上去效率立竿见影，日常权限弹窗和手动格式化的烦恼能消掉 80%。"
 
 [[params.faqItems]]
-question = "怎么用 Hooks 拦截危险命令（比如 rm -rf /）？"
-answer = "用 PreToolUse hook 加 Bash matcher。脚本通过 stdin 读入 JSON 命令内容，如果匹配到危险模式（如 rm -rf /），向 stderr 打印错误信息并以 exit code 2 退出即可阻止执行。这是 Claude Code 唯一能在工具执行前阻断的机制。"
+question = "Claude Code Hooks 配置在哪里？会不会太麻烦？"
+answer = "配置在项目根目录的 .claude/settings.json 里，JSON 格式。最简单的 Hook 就两行：指定事件类型和要跑的 shell 命令。不需要写代码，复制本文 12 个配置直接粘贴即可。配置提交到仓库后整个团队自动生效——这是 Hook 最大的价值，不是个人技巧而是团队标准。"
 
 [[params.faqItems]]
-question = "Hooks 配置文件放在哪里？"
-answer = "Hooks 在 Claude Code 的 settings.json 中配置，支持三级作用域：项目级 `.claude/settings.json`（推荐，提交到 Git 可团队共享）、用户级 `~/.claude/settings.json`（对所有项目生效）、企业级（由组织管理）。项目级优先级最高。"
+question = "PreToolUse 和 PostToolUse 有什么区别？"
+answer = "PreToolUse 在 Claude 调用工具之前触发，可以拦截（exit 2 阻止操作）——用来做安全守卫：拦 rm -rf、拦 .env 读写、拦危险 git 命令。PostToolUse 在工具完成之后触发，不能拦截——用来做副作用：自动格式化刚改的文件、自动跑 lint、记录变更日志。一个管「别让它做」，一个管「做完之后」。"
 
 [[params.faqItems]]
-question = "Hooks、Skills、MCP 有什么区别？"
-answer = "Hooks 在生命周期事件自动执行，用于强制约束和自动化（如每次写文件后自动格式化）；Skills 是用户通过 slash 命令手动触发的可复用 prompt；MCP 是把外部服务和 API 接入 Claude。必须每次都发生的事情用 Hooks，可选的能力扩展用 Skills 或 MCP。"
+question = "Hooks 会影响 Claude Code 性能或 Token 消耗吗？"
+answer = "影响极小。Hooks 默认是 command 类型，本地 shell 执行零 token 消耗，耗时毫秒级。只有 prompt 类型 Hook（让 Claude 自己生成响应）才会额外消耗 token，但这类用法很少见。常见的格式化、lint、通知类 Hook 完全不影响模型开销，只是占一点点磁盘 I/O。"
 +++
 
 ![Claude Code Hooks 自动化工作流，包含 12 个即用配置](cover.webp)
