@@ -52,7 +52,40 @@ description: "博客增长引擎。用户说「今天写什么」「博客诊断
 
 ---
 
-## 第一步：双数据源诊断（GSC + GA）
+## 第零步：加载本地资源（必选，Quick 和 Full 都跑）
+
+**在调用任何外部 API 之前，先把本地已知信息装进上下文**。这省时、省 token，且是 API 失败时的降级数据源。
+
+| 资源 | 路径 | 读取时机 | 用途 |
+|------|------|---------|------|
+| MEMORY | `~/.claude/projects/*/memory/MEMORY.md` | 总是（系统自动注入） | 已知 GSC 基准、重点待修文章、CTR 基准值 |
+| 选题计划 | `content-plan.md`（项目根）| 总是 | 未写文章清单（如 104 篇计划、N1-N6 优先级） |
+| 诊断报告 | `plans/reports/YYYY-MM-DD-*.md` | Full 模式 | 上期数据，用于环比 |
+| 现有文章 | `content/posts/ai/*/index.md` | 按需 | 老文章优化目标、内链候选 |
+
+**读取顺序**：MEMORY（已注入） → `Glob plans/reports/*.md` 取最近一份 → `Read content-plan.md`。
+
+### 降级路径（API 不可用时）
+
+| 问题 | 降级 |
+|------|------|
+| GSC 返回空 / 鉴权失败 | 只用 MEMORY 已知基准 + content-plan 出选题；明确标注「基于 MEMORY 快照，非实时」 |
+| GA 不可用 | 只跑 GSC 分析，互动率维度跳过；在报告中标注 |
+| 无历史报告 | 跳过环比，只做当期快照 |
+| MEMORY 数据陈旧（>14 天） | 强制调 GSC 刷新，之后把新数据写回 MEMORY |
+| 聚类后某语言关键词 < 10 个 | 不做聚类，直接列 Top 5 单词 |
+
+### 资源使用优先级（Quick 模式）
+
+Quick 模式应尽量「不调 API」：
+1. MEMORY 有该主题数据 → 直接用
+2. content-plan.md 有规划 → 按计划排期
+3. 上期报告 < 7 天 → 复用
+4. 都没有 → 才调 GSC（最小范围：Top 100 关键词即可）
+
+---
+
+## 第一步：双数据源诊断（GSC + GA，Full 模式必跑）
 
 ### 1.1 GSC 数据（搜索表现）
 
@@ -365,9 +398,23 @@ git push origin code
 - 中文文章 → 生成掘金/V2EX 格式（手动粘贴）
 - 深度文章 → HN 投稿建议
 
-### 6.3 保存报告
+### 6.3 保存报告 + 回写 MEMORY
 
-将本次诊断数据保存到诊断报告目录（如 `plans/reports/YYYY-MM-DD-report.md`），便于下次对比。
+**两处都要写，不要只写一处**：
+
+1. **完整报告** → `plans/reports/YYYY-MM-DD-report.md`（下次做环比用）
+2. **关键发现回写 MEMORY**（`~/.claude/projects/*/memory/MEMORY.md`）：
+   - 新发现的高 ROI 优化目标（高展示低 CTR）
+   - 整体流量环比（绝对数字 + 百分比）
+   - 新形成的头部主题集群及文章数
+   - **只写有「惊喜价值」的信息**——不写流水账、不写已能从代码推导的结构信息（参考 CLAUDE.md 里 "What NOT to save"）
+
+示例 MEMORY 更新片段：
+```
+- GSC ({date_range}): XX clicks, {up/down}{pct}% vs prior
+- New CTR issue: {article} ({impressions} impr, {ctr}% CTR)
+- Cluster shift: {topic_old} → {topic_new} now top
+```
 
 ---
 
