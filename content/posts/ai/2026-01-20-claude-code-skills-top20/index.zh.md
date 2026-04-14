@@ -1,11 +1,31 @@
 +++
 date = '2026-01-20T10:51:00+08:00'
-title = '2026 年 Claude Code Skills 排行榜 Top 20'
-description = 'Claude Code Skills 是 Anthropic 推出的 Agent 技能系统，让 Claude 能根据上下文自动调用专业技能。本文整理了 2026 年 1 月最热门的 20 个 Skills，涵盖开发工作流、AI/LLM 开发、专项技术等领域，帮你快速找到最值得安装的技能包。'
+title = 'Claude Code Skills Top 20 推荐 2026：最值得安装的技能包'
+description = '2026 最热门 Claude Code Skills Top 20 排行：开发工作流、AI/LLM、前端 Code Review、PR 自动化、superpowers 全覆盖。附安装建议和选型指南，帮你快速挑出真正有用的技能包。'
 toc = true
 tags = ['Claude Code', 'AI 编程', 'Skills', 'Agent', '开发工具']
 categories = ['AI实战']
-keywords = ['Claude Code Skills 排行榜', 'Claude Code 技能推荐', 'Skills 安装', 'Agent Skills 生态', 'Claude Code 插件']
+keywords = ['Claude Code Skills 排行榜', 'Claude Code 技能推荐', 'Skills 安装', 'Agent Skills 生态', 'Claude Code 插件', 'Claude Code Skills 怎么用', 'superpowers skill']
+
+[[params.faqItems]]
+question = "Claude Code Skills 是什么？和 MCP 有什么区别？"
+answer = "Skills 是 Anthropic 2025 年 10 月推出的 Agent 技能系统，让 Claude 能根据上下文自动调用预定义的领域知识包（例如「用 Next.js 14 App Router 的写法」「按前端 review 规范审查代码」）。Skills 管「知识和规范」，MCP 管「外部工具接入」（数据库、Jira、浏览器）——两者互补，不是替代关系。"
+
+[[params.faqItems]]
+question = "Claude Code Skills 怎么安装？"
+answer = "从 GitHub 克隆到 ~/.claude/skills/ 目录即可，Claude Code 启动时会自动加载。官方 Skills 在 anthropics/skills 仓库，社区精选看 awesome-claude-skills。安装后用 /skills 命令查看已装列表，Claude 会在合适的场景自动调用对应 Skill。"
+
+[[params.faqItems]]
+question = "2026 年最值得装的 Claude Code Skills 有哪些？"
+answer = "新手从官方 anthropics/skills 起步（文档处理、代码审查、测试生成）；开发者必装 obra/superpowers（登顶 GitHub Trending）让 Claude 按规范写代码；想要 PR 自动化装 create-pr；前端团队装 frontend-code-review；想自己写 Skill 装 skill-writer。不要一口气装 20 个，按实际工作流挑 3-5 个最匹配的。"
+
+[[params.faqItems]]
+question = "Skills 会让 Claude Code 变慢或消耗更多 Token 吗？"
+answer = "理论上会，但实际影响很小。Skills 采用按需加载——只有 Claude 判断当前任务匹配 Skill 描述时才会加载完整内容，平时只占用少量元数据 token。装 20 个 Skill 和装 5 个的对话成本几乎一样，前提是 Skill 的 description 写得够准确。"
+
+[[params.faqItems]]
+question = "Skills 和 CLAUDE.md 有什么区别？该怎么搭配？"
+answer = "CLAUDE.md 是「项目级持久上下文」——描述当前项目的架构、规范、命令，每次会话自动加载全部内容。Skills 是「可复用的领域知识」——跨项目通用、按需触发。搭配方式：CLAUDE.md 写项目特有的规则，Skills 承担跨项目的通用能力（如 git 工作流、单元测试模板、API 文档生成）。"
 +++
 ![Claude Code Skills 生态系统](cover.webp)
 
@@ -237,6 +257,15 @@ skillport install skill-name
 - [Skills 规范](https://github.com/anthropics/skills/tree/main/spec)
 - [视觉目录](https://awesomeclaude.ai/awesome-claude-skills)
 - [Skills 市场](https://skillsmp.com)
+
+## 延伸阅读
+
+- [Claude Code Skills 完全指南](/zh/posts/ai/2026-01-08-claudecode-skill-guide/) — 从零理解 Skills 系统和写法
+- [Claude Code Skills 模式总结](/zh/posts/ai/2026-01-12-claudecode-skill-patterns/) — 高质量 Skill 的 6 种设计模式
+- [Claude Code Skills 指南](/zh/posts/ai/2026-02-28-claude-code-skills-guide/) — 2026 年最新 Skills 使用方法
+- [Skills vs MCP：选哪个？](/zh/posts/ai/2026-04-02-mcp-vs-skills-claude-code/) — 两套扩展机制的本质区别
+- [Superpowers Skill 深度解析](/zh/posts/ai/2026-02-01-superpowers-deep-dive/) — GitHub Trending 第一名的 Skill 拆解
+- [Claude Code 完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — Claude Code 全景导航
 
 ---
 

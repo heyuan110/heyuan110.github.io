@@ -1,12 +1,32 @@
 +++
 date = '2026-03-11T18:00:00+08:00'
 draft = false
-title = 'AI 开发方法论深度对比：从 Vibe Coding 到 SDD'
-description = '深度对比 6 种 AI 开发方法论 — Vibe Coding、SDD、BMAD、Ralph Loop 和务实混合工作流。包含 Martin Fowler 团队评论与实践建议。'
+title = 'AI 开发方法论对比 2026：Vibe Coding/SDD/BMAD 选哪个'
+description = '深度对比 6 种 AI 开发方法论：Vibe Coding、SDD 规范驱动、BMAD、Ralph Loop 和务实混合流。附 Martin Fowler 团队评价、真实项目数据和选型建议，帮你选对 AI 编程工作流。'
 toc = true
 tags = ['AI Coding', 'Spec-Driven Development', 'Vibe Coding', 'BMAD Method', 'AI Workflow']
 categories = ['AI Guides']
-keywords = ['AI 开发方法论', 'vibe coding', '规范驱动开发', 'AI 编码工作流', 'BMAD 方法', 'Ralph Wiggum Loop', '上下文驱动开发']
+keywords = ['AI 开发方法论', 'vibe coding', '规范驱动开发', 'AI 编码工作流', 'BMAD 方法', 'Ralph Wiggum Loop', '上下文驱动开发', 'SDD 是什么', 'AI 编程最佳实践']
+
+[[params.faqItems]]
+question = "Vibe Coding 和 SDD 规范驱动开发有什么区别？"
+answer = "两者在频谱两端。Vibe Coding 是 Karpathy 提出的概念——对 AI 说话、让它跑、接受结果，几乎不审查代码；适合原型和副业。SDD（Spec-Driven Development）要求先写详细规范再让 AI 实现，适合生产项目和复杂系统。大多数成熟团队走混合路线：原型阶段 Vibe，进入生产前补规范。"
+
+[[params.faqItems]]
+question = "2026 年 AI 开发最靠谱的工作流是什么？"
+answer = "没有银弹，但有共识模式：Peter Steinberger 式的「3-8 个 agent 并行 + worktree 隔离 + 高频原子提交 + CLAUDE.md 持久上下文」是目前被最多资深开发者验证的组合。快速修复用 Vibe，功能开发用 Peter 工作流，架构重构用 SDD。重点不是选某一种，是根据任务复杂度切换方法。"
+
+[[params.faqItems]]
+question = "BMAD 方法和 Ralph Loop 各适合什么场景？"
+answer = "BMAD（Breakthrough Method for Agile AI-Driven Development）强调结构化 agent 角色（PM、架构师、开发、QA），适合复杂多人项目；Ralph Wiggum Loop 则是极简的「观察-反思-行动」循环，适合让单个 agent 自主完成耗时较长的任务。BMAD 是团队协作增强版，Ralph Loop 是单人长程自动化。"
+
+[[params.faqItems]]
+question = "并行跑多少个 AI agent 效率最高？"
+answer = "Peter Steinberger 的经验数据是 3-8 个 agent。低于 3 个利用不足，超过 8 个协调开销超过收益。聚焦的重构任务 4 个最理想——每个 agent 在独立 worktree 里做不同模块，主 agent 做整合。低于这个数量其实不如单 agent + 明确上下文。"
+
+[[params.faqItems]]
+question = "SDD 会取代传统编程吗？什么时候该用？"
+answer = "以目前形态不会取代。SDD 工具（Kiro、spec-kit、Tessl）在严格合规性和 AI 遵守规范方面还不够可靠。但 SDD 的核心原则——要求 AI 构建前先明确需求——会长期存在。建议：副业和原型跳过 SDD 直接 Vibe，复杂系统的关键模块（支付、认证、数据迁移）用 SDD 写清规范再让 AI 实现。"
 +++
 
 ![AI 开发方法论对比 — Vibe Coding、SDD、BMAD 与务实工作流](cover.webp)

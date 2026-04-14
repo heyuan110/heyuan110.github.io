@@ -1,12 +1,32 @@
 +++
 date = '2026-02-25T14:00:00+08:00'
 draft = false
-title = 'Claude Code 新手最容易犯的 10 个错误（附解决方案）'
-description = 'Claude Code 新手常犯的 10 个错误及修复方法：从没写 CLAUDE.md 到滥用 Opus 模型，帮你节省 Token 开支，大幅提升开发效率。'
+title = 'Claude Code 新手 10 大常见错误与解决方案（2026 避坑指南）'
+description = 'Claude Code 新手最容易踩的 10 个坑：没写 CLAUDE.md、滥用 Opus、忽略 Hooks、超长对话不压缩……每条附具体解决方案，帮你省 50% Token、提升 5-10 倍输出质量。'
 toc = true
 tags = ['Claude Code', 'Tips', 'Best Practices', 'Beginner']
 categories = ['AI Guides']
-keywords = ['Claude Code 常见错误', 'Claude Code 使用技巧', 'Claude Code 最佳实践', 'Claude Code 新手指南', 'Claude Code 省钱技巧', 'Claude Code 效率提升']
+keywords = ['Claude Code 常见错误', 'Claude Code 使用技巧', 'Claude Code 最佳实践', 'Claude Code 新手指南', 'Claude Code 省钱技巧', 'Claude Code 效率提升', 'Claude Code 踩坑', 'Claude Code 怎么用才对']
+
+[[params.faqItems]]
+question = "Claude Code 新手最容易踩的坑是什么？"
+answer = "头号坑是不写 CLAUDE.md。很多人把 Claude Code 当成普通聊天工具，每次都重新解释项目结构和规范，既浪费 token 又让输出质量打折。在项目根目录放一个 CLAUDE.md 写清技术栈、代码规范、常用命令和重要规则，每次会话自动加载，是提升效果最立竿见影的动作。"
+
+[[params.faqItems]]
+question = "Claude Code 一定要用 Opus 模型吗？"
+answer = "不要。80% 的日常任务用 Sonnet 4.6 足够，速度快、成本只有 Opus 的 60%。只在复杂多文件重构、系统架构设计、特别棘手的 Bug 调试时切到 Opus。简单提问用 Haiku 更省（Sonnet 的 1/3 成本）。默认 Opus 是新手最大的烧钱点，配额会快速耗光。"
+
+[[params.faqItems]]
+question = "Claude Code 怎么省 Token？对话要不要清空？"
+answer = "三招省 50% token：一是超长对话用 /compact 压缩历史（第 30 条消息的成本可能是第 1 条的 5-10 倍）；二是切换新话题用 /clear 重开会话而不是继续累积；三是配置 Hooks 自动化 lint/测试/格式化，避免让 Claude 反复处理这些确定性任务。"
+
+[[params.faqItems]]
+question = "为什么我的 Claude Code 每次权限弹窗都很烦？"
+answer = "因为没配置预批准命令。创建 .claude/settings.json，在 permissions.allow 里加入常用安全命令（npm test、git diff、npm run lint 等），在 deny 里拦截危险操作（rm -rf、读取 .env）。配好后权限弹窗能减少约 84%，同时保留安全边界。这是新手最忽略也最影响体验的配置。"
+
+[[params.faqItems]]
+question = "什么任务不应该交给 Claude Code？"
+answer = "简单知识性问题。Claude Code 是 Agent，每次启动都要加载项目上下文，问「Python 列表推导式语法」「CSS 怎么居中」这类问题在浪费配额。留给它能发挥 Agent 能力的任务：跨文件重构、自主调试、写测试、分析性能。不需要读代码的简单问题用文档或免费聊天工具就够了。"
 +++
 
 ![Claude Code 新手最容易犯的 10 个错误及修复方法](cover.webp)
