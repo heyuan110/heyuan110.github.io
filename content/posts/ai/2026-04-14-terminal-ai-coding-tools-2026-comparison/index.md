@@ -81,10 +81,12 @@ Claude Code's core bet is **autonomy**. Give it a complex task, and it plans ste
 | Dimension | Official | In Practice |
 |-----------|----------|-------------|
 | Context window | 200K (subscription) / 1M (API) | Pro's 200K handles 30-50K line repos; beyond that, use Max or API |
-| Models | Opus 4.6 / Sonnet 4.6 | Sonnet handles 80% of daily tasks; Opus for deep reasoning |
-| SWE-bench | 80.8% Verified | Cross-file refactoring success rate is noticeably higher than competitors |
+| Models | Opus 4.7 / Sonnet 4.6 | Opus 4.7 (released April 16, 2026) improves coding benchmarks 13% over 4.6, adds task budgets and xhigh effort level; Sonnet handles 80% of daily tasks |
+| SWE-bench | 80.8%+ (Opus 4.7 further improves) | Cross-file refactoring success rate is noticeably higher than competitors |
 | Agent Teams | Parallel sub-agents | Effective for independent subtasks; weak when tasks have dependencies |
 | MCP support | Native | 800+ community servers; strongest extensibility ecosystem |
+
+Opus 4.7 also introduces two features valuable for agentic workflows: **task budgets** (the model sees a running token countdown and prioritizes work to finish gracefully instead of being abruptly cut off) and **xhigh effort level** (a new tier between high and max for finer quality/cost control). Claude Code also gained `/ultrareview` for more thorough code reviews.
 
 **A critical error in many comparison articles**: listing Claude Code's context window as "1 million tokens." This is inaccurate. Subscription plans (Pro $20/mo, Max $100-200/mo) have a **200K token window**. The 1M window is only available via [Agent SDK](/posts/ai/2026-04-17-claude-agent-sdk-guide/) or direct API calls to Claude Opus 4.6 / Sonnet 4.6, billed per token. This distinction matters — if your repo exceeds 50K lines and you need full-codebase understanding, 200K may not suffice, and the cost model for API access is fundamentally different from a monthly subscription.
 
@@ -244,7 +246,7 @@ Honest boundary conditions:
 
 Terminal AI coding competition in 2026 is no longer "which tool is strongest" — it is **three lanes, each maturing independently**.
 
-In the subscription lane, Claude Code holds first place with 80.8% SWE-bench Verified and the strongest agent autonomy. Codex CLI holds second with Rust-native speed and sandbox safety. Both are safe long-term investments.
+In the subscription lane, Claude Code holds first place — Opus 4.7 (released April 16) pushes coding benchmarks 13% beyond 4.6, with the strongest agent autonomy in the market. Codex CLI holds second with Rust-native speed and sandbox safety. Both are safe long-term investments.
 
 In the free lane, Gemini CLI's killer combination of 1,000 free daily requests and 1M context is rapidly capturing entry-level users. Aider's model-agnostic git-first approach offers the most technical freedom.
 

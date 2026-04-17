@@ -600,7 +600,7 @@ options = ClaudeAgentOptions(
 )
 ```
 
-模型选择是最大的成本杠杆。大多数自动化任务用 Sonnet 就够了，只有需要深度推理的复杂任务才值得上 Opus。我的经验是：代码审查用 Sonnet，架构设计用 Opus。
+模型选择是最大的成本杠杆。大多数自动化任务用 Sonnet 就够了，只有需要深度推理的复杂任务才值得上 Opus。Opus 4.7（2026 年 4 月 16 日发布）比 4.6 编码能力提升 13%，还新增了 task budgets（token 预算倒计时，防止长任务被截断）和 xhigh effort level。使用 Opus 4.7 需要 Agent SDK v0.2.111+。我的经验是：代码审查用 Sonnet，架构设计用 Opus。
 
 ### 2. 错误处理
 

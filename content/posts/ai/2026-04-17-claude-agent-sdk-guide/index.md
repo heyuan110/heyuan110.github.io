@@ -561,7 +561,7 @@ options = ClaudeAgentOptions(
 )
 ```
 
-Model selection is your biggest cost lever. Most automation tasks work fine with Sonnet. Reserve Opus for tasks that require deep reasoning — architecture design, complex debugging. In my experience: code review → Sonnet, architectural refactoring → Opus.
+Model selection is your biggest cost lever. Most automation tasks work fine with Sonnet. Reserve Opus for tasks that require deep reasoning — architecture design, complex debugging. Opus 4.7 (released April 16, 2026) improves coding benchmarks 13% over 4.6 and adds task budgets (token countdown that prevents long tasks from being cut off) and the xhigh effort level. Note: Opus 4.7 requires Agent SDK v0.2.111+. In my experience: code review → Sonnet, architectural refactoring → Opus.
 
 ### Error Handling
 

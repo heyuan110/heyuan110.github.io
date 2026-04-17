@@ -83,10 +83,12 @@ Claude Code 的核心信仰是**自主性**——给它一个复杂任务，它�
 | 维度 | 官方数字 | 实际体验 |
 |------|---------|---------|
 | 上下文窗口 | 200K token（订阅）/ 1M（API） | Pro 计划的 200K 处理 3-5 万行仓库够用；超过这个规模需要 Max 或 API |
-| 模型 | Opus 4.6 / Sonnet 4.6 | Sonnet 处理 80% 日常任务，Opus 用于需要深度推理的场景 |
-| SWE-bench | 80.8% Verified | 在真实项目上，跨文件重构的成功率明显高于竞品 |
+| 模型 | Opus 4.7 / Sonnet 4.6 | Opus 4.7（2026-04-16 发布）编码能力比 4.6 提升 13%，新增 task budgets 和 xhigh effort level；Sonnet 处理 80% 日常任务 |
+| SWE-bench | 80.8%+（Opus 4.7 进一步提升） | 在真实项目上，跨文件重构的成功率明显高于竞品 |
 | Agent Teams | 支持并行子 Agent | 对独立子任务有效，有依赖的任务并行效果差 |
 | MCP 支持 | 原生支持 | 社区生态 800+ 服务器，扩展性最强 |
+
+Opus 4.7 还引入了两个对 Agent 工作流很有价值的新能力：**task budgets**（让模型看到 token 预算倒计时，在长任务中合理分配资源而不是中途截断）和 **xhigh effort level**（在 high 和 max 之间新增一档，给你更细粒度的质量/成本控制）。Claude Code 还新增了 `/ultrareview` 命令做更彻底的代码审查。
 
 **很多对比文章的一个关键错误**：把 Claude Code 的上下文窗口写成"100 万 token"。这是不准确的。订阅版（Pro $20/月、Max $100-200/月）的上下文窗口是 **200K token**。100 万 token 仅在通过 [Agent SDK](/zh/posts/ai/2026-04-17-claude-agent-sdk-guide/) 或 API 直接调用 Claude Opus 4.6 / Sonnet 4.6 模型时可用，而且需要按 token 付费。这个区别很重要——如果你的仓库超过 5 万行，200K 可能不够用，而升级到 API 调用的成本完全不同于月费订阅。
 
@@ -254,7 +256,7 @@ Gemini CLI 每天 1000 次免费请求、1M 上下文窗口、Google Search grou
 
 终端 AI 编程工具在 2026 年的竞争已经不是"哪个工具最强"——而是**三条赛道各自成熟**。
 
-订阅赛道里，Claude Code 凭借 SWE-bench 80.8% 的成绩和最强的 Agent 自主性稳居第一，Codex CLI 凭借 Rust 重写的速度优势和沙箱安全性占据第二。这两个是"你今天可以放心长期投入的选择"。
+订阅赛道里，Claude Code 凭借 Opus 4.7（4 月 16 日刚发布，编码 benchmark 比 4.6 再提升 13%）和最强的 Agent 自主性稳居第一，Codex CLI 凭借 Rust 重写的速度优势和沙箱安全性占据第二。这两个是"你今天可以放心长期投入的选择"。
 
 免费赛道里，Gemini CLI 凭借 1000 次/天免费 + 1M 上下文的杀手级组合，正在快速蚕食入门用户市场。Aider 凭借模型无关和 git-first 哲学，成为技术选型自由度最高的选择。
 
