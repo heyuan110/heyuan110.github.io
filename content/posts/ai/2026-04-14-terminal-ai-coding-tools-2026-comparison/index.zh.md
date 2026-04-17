@@ -1,222 +1,274 @@
 +++
 date = '2026-04-14T10:00:00+08:00'
 draft = false
-title = '2026 终端 AI 编程工具横评推荐：5 款主流 CLI 对比'
-description = '实测 Claude Code、Codex CLI、Cursor CLI、OpenAI Symphony、OpenClaw 五款终端 AI 编程工具。同一任务跑五遍，告诉你 2026 年该选哪个。附按使用者画像的推荐矩阵和预算建议。'
+title = '2026 终端 AI 编程工具深度横评：Claude Code、Codex CLI、Gemini CLI、Aider 怎么选'
+description = '从架构哲学到真实定价，深度拆解 2026 年 4 款主流终端 AI 编程 CLI 的能力边界。不做扁平对比，按三赛道分层给出 $0/$40/$200 三档预算的组合推荐。'
 toc = true
-tags = ['Claude Code', 'Codex CLI', 'Cursor CLI', 'OpenClaw', 'AI Coding Tools', 'Terminal']
-keywords = ['终端 AI 编程工具', 'AI 编程工具对比 2026', 'Claude Code 对比 Codex', 'AI 命令行工具推荐', 'Cursor CLI 怎么样', 'OpenClaw 值不值得', '终端编程工具哪个好', '2026 AI CLI 推荐']
+tags = ['Claude Code', 'Codex CLI', 'Gemini CLI', 'Aider', 'AI Coding Tools', 'Terminal']
+keywords = ['终端 AI 编程工具', 'AI 编程工具对比 2026', 'Claude Code 对比 Codex CLI', 'Gemini CLI 免费', 'Aider AI 编程', 'AI CLI 工具推荐', '终端编程工具哪个好', '2026 AI 编程工具横评']
 
 [[params.faqItems]]
 question = "2026 年终端 AI 编程工具哪个最好？"
-answer = "没有单一最好的。复杂重构和长上下文选 Claude Code，快速 PR 和代码审查选 Codex CLI，IDE 切换终端场景选 Cursor CLI，多 Agent 并行选 OpenClaw，企业并发任务选 OpenAI Symphony。单工具月费 100 美元以上的组合性价比不如 Claude Code + Codex CLI 的 40 美元组合。"
+answer = "取决于你的预算和场景。预算为零选 Gemini CLI（免费 1000 次/天）+ Aider（开源免费）；月预算 $40 选 Claude Code Pro + Codex CLI；需要处理大型仓库跨文件重构选 Claude Code Max。没有通吃所有场景的单一工具。"
 
 [[params.faqItems]]
-question = "Claude Code 和 Codex CLI 怎么选？"
-answer = "Claude Code 上下文 100 万 token，擅长跨文件重构和需要全局理解的任务；Codex CLI 响应快，擅长代码审查、小改动、沙箱执行。我的建议是两个都装，70% 任务用 Claude Code，30% 快任务用 Codex CLI。如果只能选一个，选 Claude Code。"
+question = "Claude Code 上下文窗口到底是 200K 还是 100 万？"
+answer = "订阅版（Pro/Max）上下文窗口是 200K token。100 万 token 仅在通过 API 调用 Claude Opus 4.6 / Sonnet 4.6 时可用。很多对比文章搞混了这两个数字。"
 
 [[params.faqItems]]
-question = "OpenClaw 适合什么人用？"
-answer = "适合熟悉 Claude Code、想玩多 Agent 并行、愿意自己写配置的开发者。不适合刚入门 AI 编程的人——它的上手曲线比 Claude Code 陡一倍，但多 Agent 编排能力是其他工具没有的。"
+question = "Gemini CLI 免费额度够日常开发用吗？"
+answer = "够轻中度使用。免费额度是每天 1000 次请求、每分钟 60 次，使用 Gemini 2.5 Pro 模型和 100 万 token 上下文窗口。对学生和副业项目完全够用，重度开发可能需要升级付费额度。"
 
 [[params.faqItems]]
-question = "学生党有免费的终端 AI 编程工具推荐吗？"
-answer = "推荐两个：Gemini CLI 有每天 1000 次免费额度，Codex CLI 有 ChatGPT Plus 20 美元/月的绑定方案。学生党优先 Gemini CLI，想要更强推理再升 Codex CLI Plus。Claude Code 虽然强但没有真正免费的方案。"
+question = "Aider 和 Claude Code 有什么区别？"
+answer = "Aider 是模型无关的开源工具，可以接 Claude、GPT、Gemini 等任何 LLM API，核心哲学是 git-first（每次 AI 编辑自动 commit）。Claude Code 绑定 Claude 模型，核心哲学是 Agent 自主性（自己规划和执行多步任务）。Aider 更灵活但自主性弱，Claude Code 更强大但锁定供应商。"
 
 [[params.faqItems]]
-question = "终端 AI 编程工具和 Cursor、Copilot 比有什么优势？"
-answer = "三个关键优势：一是可以跑长任务不怕 IDE 崩溃；二是天然支持远程开发和 SSH 环境；三是可以脚本化和 CI/CD 集成。劣势是没有内联补全和 UI 预览。建议 IDE 插件和终端 CLI 都装，不是二选一。"
+question = "终端 AI 编程工具和 Cursor、Copilot 这类 IDE 工具比有什么优势？"
+answer = "三个结构性优势：长任务可以后台跑几十分钟不怕 IDE 崩溃；原生支持 SSH 远程和 Docker 环境；可以脚本化嵌入 CI/CD 流程。劣势是没有内联补全和视觉预览。建议 IDE 工具和终端 CLI 都装，它们互补不互斥。"
 +++
 
-![2026 终端 AI 编程工具横评封面 — Claude Code、Codex CLI、Cursor CLI、OpenClaw 对比](cover.webp)
+![2026 终端 AI 编程工具横评封面 — Claude Code、Codex CLI、Gemini CLI、Aider 对比](cover.webp)
 
-2026 年的终端变成了 AI 编程的主战场。
+几乎所有"终端 AI 编程工具对比"文章都犯同一个错误：把 4-5 个工具放在一张表格里，逐行比功能，最后说"没有最好的，看你需求"。
 
-一年前还在问"AI 编程工具哪个好"的人，现在的问题已经换成了"终端 AI 编程工具哪个好"。变化发生得很快——Cursor 这种 IDE 派也做了 CLI 版，Anthropic 把 Claude Code 当成旗舰，OpenAI 把 Codex 从云端搬到本地，OpenClaw 这种开源方案聚集了一批技术极客。五个候选人站上了擂台。
+这种对比方式是误导。2026 年的终端 AI 编程工具已经**分化成了完全不同的物种**——它们的架构哲学不同、定价模型不同、目标用户不同。把 Claude Code（月费 $200 的自主 Agent）和 Gemini CLI（每天 1000 次免费）放在同一张表里比"功能数量"，就像用"座位数"来对比特斯拉 Model 3 和公交车。
 
-我过去三个月同时用了这五款工具，在三个真实项目上各跑了一百多个任务。本文是实测后的判断——不是功能罗列，是具体场景下谁赢谁输，以及**如果你今天要选一个终端 AI 编程工具，该怎么选**。
+这篇文章不做扁平对比。我会先把工具分层，解释每一层在优化什么，然后深入拆解每个工具的真实能力边界——不是官方宣传页上的数字，而是实际使用中会碰到的限制。最后按预算给出组合方案。
 
-先说结论：没有哪个工具能通吃所有场景，但 2026 年的理性组合是 Claude Code + Codex CLI，每月 40 美元左右。下面我会告诉你为什么，以及什么情况下这个组合也不是最优解。
+## 三条赛道，不是一场比赛
 
-## 为什么是终端，不是 IDE
+2026 年的终端 AI 编程工具已经分成了三条赛道，每条赛道的竞争逻辑完全不同。
 
-先解决一个前提问题：终端 AI 编程工具凭什么值得单独横评？
+```mermaid
+flowchart TB
+    subgraph S1["🔹 订阅型 CLI — 开箱即用"]
+        CC["Claude Code<br/>$20-200/月"]
+        CX["Codex CLI<br/>$20/月起"]
+    end
+    subgraph S2["🔸 免费/开源型 CLI — 灵活自主"]
+        GC["Gemini CLI<br/>免费 1000 次/天"]
+        AI["Aider<br/>开源 + BYO API"]
+    end
+    subgraph S3["🔻 编排型框架 — 团队自动化"]
+        SY["Symphony<br/>Kanban → Agent"]
+        OC["OpenClaw<br/>Sub-agent 编排"]
+    end
 
-两年前 Cursor 一度让人觉得 AI 编程的未来在 IDE 里。但 2026 年的数据给了不同答案。GitHub 公开的开发者行为调查显示，全职使用 AI 编程的开发者里，**每天使用终端 Agent 的时长从 2024 年的 12 分钟涨到了 2026 年的 2.4 小时**，是 IDE 内 AI 的 1.7 倍。
+    S1 -.->|"月费固定<br/>供应商锁定"| U1["适合：全职开发者<br/>要稳定、要深度"]
+    S2 -.->|"成本灵活<br/>需要动手"| U2["适合：学生/副业<br/>多模型切换"]
+    S3 -.->|"配置复杂<br/>回报高"| U3["适合：团队<br/>自动化流水线"]
+```
 
-这不是偶然。终端 Agent 有三个 IDE 给不了的优势：长任务可以跑一小时不被打断、可以天然跑在 SSH 远程环境上、可以被脚本化和嵌入 CI/CD。我在开发一个 Next.js 项目时，让 Claude Code 把 86 个测试文件从 Jest 迁移到 Vitest——整个任务跑了 42 分钟。这种任务你根本不想开着 Cursor 等它完成，终端 CLI 放在后台跑完全合理。
+**订阅型**（Claude Code、Codex CLI）：你付月费，它给你一个开箱即用的 Agent，内置文件操作、命令执行、代码搜索。核心卖点是"不用折腾"。代价是供应商锁定——Claude Code 只能用 Claude 模型，Codex CLI 只能用 GPT 模型。
 
-关于 IDE 和终端的哲学差异，我在 [5 款 AI 编程工具实测对比](/zh/posts/ai/2026-04-03-claude-code-vs-cursor-vs-copilot/) 里有完整分析。这篇文章的切入点不同：只看终端阵营内部的五个选手如何分高下。
+**免费/开源型**（Gemini CLI、Aider）：你不付月费（或只付 API 使用费），换来更大的灵活性。Gemini CLI 有 Google 给的免费额度，Aider 可以接任何 LLM。核心卖点是"省钱+灵活"。代价是自主 Agent 能力偏弱，很多事需要你手动引导。
 
-![2026 终端 AI 编程工具生态全景](01-ecosystem-overview.webp)
+**编排型**（Symphony、OpenClaw）：不是给人用的终端交互工具，而是让多个 Agent 自动完成任务的框架。Symphony 监控你的 Linear 看板，自动 spawn Codex Agent 写代码提 PR。OpenClaw 让你编排 sub-agent 执行复杂工作流。核心卖点是"团队级自动化"。代价是配置复杂，不适合个人日常。
 
-## 五款工具的底层哲学
+**你的第一个选型决策不是"哪个工具好"，而是"我属于哪条赛道"。**如果你是预算有限的学生，在订阅型赛道里纠结 Claude Code 和 Codex CLI 的区别是浪费时间——你应该看免费赛道。如果你是需要团队自动化的技术主管，在免费赛道里挑 Gemini CLI 还是 Aider 也没意义——你应该看编排赛道。
 
-功能对比之前，要先理解这五个工具的定位根本不同。它们不是同一个产品的五个版本，而是五种不同的设计信仰。
+下面按赛道深度拆解。
 
-| 工具 | 核心信仰 | 目标用户 | 月费 |
-|------|---------|---------|------|
-| **Claude Code** | Agent 自主性优先，上下文越大越好 | 做复杂项目的工程师 | $20-200 |
-| **Codex CLI** | 速度优先，沙箱隔离 | 追求快速反馈的个人开发者 | $20-200 |
-| **Cursor CLI** | IDE 用户想在终端里用同一个 Agent | Cursor 重度用户 | $20 |
-| **OpenAI Symphony** | 企业级并发，多任务编排 | 团队和大厂 | $60+/席位 |
-| **OpenClaw** | 开源可扩展，多 Agent 可编排 | 想深度定制的技术极客 | 免费（自费 API） |
+## 订阅型赛道：Claude Code vs Codex CLI
 
-Claude Code 相信**自主性**——一个任务扔过去，它会自己规划、执行、修正，你甚至可以睡一觉醒来看结果。Codex CLI 相信**速度**——每次交互越快越好，沙箱执行不污染你的环境。Cursor CLI 的信仰更简单：**一致性**——Cursor 用户的 IDE 体验要能无缝切到终端。OpenAI Symphony 是企业定位，赌**并发**——一个开发者同时跑 10 个任务。OpenClaw 赌**开源生态**——像当年 Linux 赢 Unix 一样靠社区吃掉闭源对手。
+这两个是 2026 年终端 AI 编程的第一梯队。它们的共同特征是：内置丰富的工具集（文件读写、命令执行、代码搜索），Agent 能自主规划和执行多步任务，用户体验打磨得最好。但设计哲学完全不同。
 
-理解这五种信仰，就能看懂为什么没有"最好的"终端 AI 编程工具。它们在优化不同的东西。
+### Claude Code：深度优先
 
-## 实测基准：同一个任务跑五遍
+Claude Code 的核心信仰是**自主性**——给它一个复杂任务，它会自己规划步骤、读取文件、分析代码、编辑修复、运行测试，你甚至可以放在后台跑 40 分钟回来看结果。
 
-空谈哲学没用。我设计了两个典型任务，用五个工具各跑一遍，记录真实数据。
+**实际能力边界**：
 
-**任务 A：为 Python 项目加单元测试**
-- 项目：一个 2800 行的 FastAPI 后端，原本测试覆盖率 12%
-- 目标：覆盖率提到 70% 以上，所有测试通过
+| 维度 | 官方数字 | 实际体验 |
+|------|---------|---------|
+| 上下文窗口 | 200K token（订阅）/ 1M（API） | Pro 计划的 200K 处理 3-5 万行仓库够用；超过这个规模需要 Max 或 API |
+| 模型 | Opus 4.6 / Sonnet 4.6 | Sonnet 处理 80% 日常任务，Opus 用于需要深度推理的场景 |
+| SWE-bench | 80.8% Verified | 在真实项目上，跨文件重构的成功率明显高于竞品 |
+| Agent Teams | 支持并行子 Agent | 对独立子任务有效，有依赖的任务并行效果差 |
+| MCP 支持 | 原生支持 | 社区生态 800+ 服务器，扩展性最强 |
 
-**任务 B：重构 React 组件**
-- 项目：一个电商页面的 Cart 组件，600 行，混用 class 和 hooks
-- 目标：全部改成 hooks，拆成 4 个子组件，样式不变
+**很多对比文章的一个关键错误**：把 Claude Code 的上下文窗口写成"100 万 token"。这是不准确的。订阅版（Pro $20/月、Max $100-200/月）的上下文窗口是 **200K token**。100 万 token 仅在通过 [Agent SDK](/zh/posts/ai/2026-04-17-claude-agent-sdk-guide/) 或 API 直接调用 Claude Opus 4.6 / Sonnet 4.6 模型时可用，而且需要按 token 付费。这个区别很重要——如果你的仓库超过 5 万行，200K 可能不够用，而升级到 API 调用的成本完全不同于月费订阅。
 
-| 工具 | 任务 A 耗时 | 任务 A 结果 | 任务 B 耗时 | 任务 B 结果 |
-|------|-----------|-----------|-----------|-----------|
-| Claude Code | 38 分钟 | 覆盖率 74%，首次通过 | 22 分钟 | 拆得干净，视觉一致 |
-| Codex CLI | 24 分钟 | 覆盖率 58%，需要一次修正 | 14 分钟 | 有 2 处样式错位 |
-| Cursor CLI | 31 分钟 | 覆盖率 66%，需要一次修正 | 19 分钟 | 视觉一致，但拆分保守 |
-| OpenAI Symphony | 18 分钟 | 覆盖率 71%，并发 4 任务 | 11 分钟 | 视觉一致，拆分中等 |
-| OpenClaw | 44 分钟 | 覆盖率 76%，零修正 | 26 分钟 | 拆得干净，但第一次跑配置花了 15 分钟 |
+**真实定价**：
 
-几个反常识发现。
+- Pro：$20/月，有使用量上限（大约每天 2-3 小时中等强度使用）
+- Max 5x：$100/月，Pro 的 5 倍额度
+- Max 20x：$200/月，Pro 的 20 倍额度，适合重度用户
 
-**第一，Codex CLI 最快但不一定最省事**。24 分钟的速度看着美，实际需要一次人工修正才跑通，加上修正时间其实和 Claude Code 差不多。Codex CLI 的典型失败模式是"看着像完成了其实没完成"——它会在覆盖率达到 58% 就宣告任务完成，你得回去看才发现没达标。
+我的经验是：**大多数独立开发者 Pro 就够了**。除非你每天写代码超过 5 小时且频繁触发限速，否则不需要升 Max。关于 Claude Code 的定价策略和用量估算，我在[定价完全指南](/zh/posts/ai/2026-04-03-claude-pricing-complete-guide/)中有详细分析。
 
-**第二，OpenAI Symphony 并发优势在小任务上最明显**。任务 A 跑 18 分钟的秘密是它把 FastAPI 的 5 个 router 拆给 5 个并发 Agent 分别写测试。但这个并发能力在任务 B 这种强依赖的重构里反而成了负担——拆出来的子组件之间需要严格协调。
+### Codex CLI：速度优先
 
-**第三，OpenClaw 第一次最慢但后续最快**。它的 15 分钟配置时间是给 Agent 写 `CLAUDE.md` 和 skill 约束，这笔投资在第二次跑同类任务时能回来——我后来又在另一个项目跑过类似任务，OpenClaw 只用了 19 分钟，因为配置已经在了。
+Codex CLI 的核心信仰是**快速反馈**——每次交互尽可能短、尽可能快，让你保持对话节奏。它用 Rust 重写了 CLI 内核，并且默认在沙箱中执行代码，不直接修改你的文件系统。
 
-## 上下文管理：2026 年真正的分水岭
+**实际能力边界**：
 
-![Claude Code vs Codex CLI 上下文窗口对比](02-context-comparison.webp)
+| 维度 | 官方数字 | 实际体验 |
+|------|---------|---------|
+| 上下文窗口 | 取决于模型 | GPT-5 系列约 200K，实际使用中偏好短上下文快迭代 |
+| 速度 | Rust 原生 | 体感上比 Claude Code 快 30-50%，尤其是首次响应 |
+| 沙箱执行 | 默认开启 | 安全但需要额外步骤确认修改，影响长任务效率 |
+| MCP 支持 | 部分支持 | 有自己的插件格式，MCP 生态弱于 Claude Code |
+| 子 Agent | 支持 | 可以拆分任务给多个 Agent 并行 |
 
-跑完实测，我越来越相信一个判断：**2026 年终端 AI 编程工具的核心差距不在模型，而在上下文管理。**
+**Codex CLI 的沙箱是双刃剑**。安全性确实好——AI 写的代码在隔离环境跑，不会直接改你的文件。但这意味着每次你想让 AI 的修改生效，都需要一个"确认应用"的步骤。对于快速 Q&A 和代码审查来说这无所谓，但对于需要 AI 连续执行 20 步的长任务来说，这个沙箱摩擦会显著拖慢速度。
 
-这不是我一个人的结论。Anthropic 发布的开发者行为报告里有一条数据：Claude Code 用户平均每个会话消耗的上下文窗口是 Cursor CLI 用户的 3.4 倍。这意味着 Claude Code 用户在让 Agent 处理**质上更难**的任务，不只是量上更多的代码。
+**真实定价**：
 
-五款工具的上下文窗口实际表现差异巨大。
+- 捆绑在 ChatGPT Plus（$20/月）中，有使用量限制
+- ChatGPT Pro（$100-200/月）给 5-20 倍额度
+- API 按 token 计费：codex-mini 输入 $1.50/M token，输出 $6/M token，缓存命中打 75% 折
 
-- **Claude Code** 100 万 token，实际可用 80 万左右。我测过塞进去整个 12 万行的前端仓库外加 40 个相关 RFC 文档，Claude Sonnet 4.5 仍然能正确引用第 1 万行的某个类。
-- **Codex CLI** 40 万 token，但压缩机制激进。超过 20 万后开始自动摘要，会丢细节。我曾经让它处理一个大 PR，结果它把我改过的某个函数摘要成"fixed bug"，后续操作就基于这个错误摘要展开。
-- **Cursor CLI** 20 万 token，够用但不够宽裕。在单文件重构里没问题，跨文件任务会频繁要求你提示"你刚才忘了 X"。
-- **OpenAI Symphony** 上下文窗口每个 Agent 独立，多 Agent 间通过消息传递共享，设计上限是每个 Agent 40 万。但多 Agent 共享上下文的传递机制经常丢失细节。
-- **OpenClaw** 靠 `CLAUDE.md` 和 skill 机制做显式上下文，上限依赖你选的模型。优势是你自己决定什么进上下文，劣势是需要手动维护。
+### Claude Code vs Codex CLI：怎么选
 
-上下文这个维度，我在 [Codex CLI 实战指南](/zh/posts/ai/2026-02-12-codex-cli-mastery-guide/) 和 [Claude Code 对比 Codex](/zh/posts/ai/2026-02-19-claude-code-vs-codex/) 两篇文章里都专门讨论过。这里补一个最关键的实操结论：**如果你的仓库超过 3 万行代码，Claude Code 以外的工具都会频繁让你"再提示一遍"**。
+不要选一个。**两个都装，互补使用**。
 
-## 费用账：单工具 vs 组合方案
+```mermaid
+flowchart TD
+    A["你要做的任务是什么？"] --> B{"跨多个文件？<br/>需要理解整体架构？"}
+    B -->|"是"| C["Claude Code<br/>深度理解 + 自主执行"]
+    B -->|"否"| D{"需要快速问答？<br/>代码审查？小修改？"}
+    D -->|"是"| E["Codex CLI<br/>快速反馈 + 沙箱安全"]
+    D -->|"否"| F{"需要特定模型？<br/>或免费额度？"}
+    F -->|"是"| G["看免费赛道"]
 
-终端 AI 编程工具的定价 2026 年变得很混乱。我把五款工具的真实年费用算了一遍（按一个中等强度使用的个人开发者算，每天 3 小时 AI 编程）：
+    style C fill:#2d5a3d,stroke:#4a9,color:#fff
+    style E fill:#2d4a5a,stroke:#49a,color:#fff
+    style G fill:#5a4a2d,stroke:#a94,color:#fff
+```
 
-- **Claude Code Max**：每月 $200，年费 $2400，上下文 100 万 token 不限次
-- **Codex CLI Plus**：每月 $20，超量按 token 计费，我实际花 $45-60/月
-- **Cursor CLI**：每月 $20，捆绑在 Cursor Pro 里
-- **OpenAI Symphony**：企业版 $60/席位/月，但真实账单因并发任务多通常在 $120-180
-- **OpenClaw**：开源免费，API 自费，我用 Anthropic API 跑平均 $80/月
+我过去三个月的使用数据：约 70% 的任务用 Claude Code（需要理解上下文的重构、bug 修复、新功能开发），30% 用 Codex CLI（快速代码审查、格式化、小 patch）。两者月费合计 $40，比单独用 Claude Code Max 省 $160。
 
-两种组合方案对比：
+## 免费/开源赛道：Gemini CLI vs Aider
 
-**方案一：单工具路线（$200/月）**
-- Claude Code Max 全包月
-- 优势：可预测，不限上下文
-- 劣势：快任务杀鸡用牛刀，成本高
+这条赛道是 2026 年最大的变量。一年前"免费 AI 编程工具"基本等于"玩具"，现在 Gemini CLI 和 Aider 的能力已经能覆盖大量真实开发场景。
 
-**方案二：组合路线（$40/月）**
-- Claude Code Pro ($20) + Codex CLI Plus ($20)
-- 优势：70% 任务用 Claude Code 的 Pro 额度，30% 快任务用 Codex CLI，互补短板
-- 劣势：需要自己判断用哪个
+### Gemini CLI：Google 的免费大招
 
-我用了三个月数据发现：**组合方案每月省 $160，但任务完成时长只多 7%**。对个人开发者，组合路线明显更值。只有每天 AI 编程超过 5 小时的重度用户，Max 的不限量才真正值回票价。
+Gemini CLI 是 Google 在 2026 年放出的重磅——开源、免费、1M 上下文、内置 Google Search grounding。它的定位很清晰：用免费额度抢 Claude Code 和 Codex CLI 的入门用户。
 
-这个判断和我在 [2026 AI 编程 Agent 终极对比](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) 里对全品类 AI 编程工具的结论一致：组合优于单打独斗。
+**实际能力边界**：
 
-## 按使用者画像推荐
+| 维度 | 数字 | 实际体验 |
+|------|------|---------|
+| 免费额度 | 1000 次/天，60 次/分钟 | 轻中度开发完全够用，重度可能午后就用完 |
+| 模型 | 免费用 Gemini 2.5 Pro（Flash） | 推理能力弱于 Claude Opus 但够用 |
+| 上下文窗口 | 1M token | 比 Claude Code 订阅版的 200K 大 5 倍，这是真正的杀手锏 |
+| Google Search | 原生 grounding | 可以实时搜索最新文档和 Stack Overflow，查 API 用法极快 |
+| MCP 支持 | 支持 | 生态在快速增长 |
+| 子 Agent | 不支持 | 单 Agent 架构，无法拆分任务 |
 
-最后给推荐矩阵。五个工具，四类使用者，直接说选哪个。
+Gemini CLI 最大的优势不是"免费"——是**1M token 上下文 + 免费**这个组合。Claude Code 要拿到 1M 上下文需要走 API（按 token 计费），而 Gemini CLI 免费给你。如果你的项目是一个中大型仓库（5-10 万行代码），需要 AI 理解全局但又不想每月花 $200，Gemini CLI 是目前唯一的选择。
 
-### 学生 / 刚入门 AI 编程
+**真实局限**：
 
-**推荐：Codex CLI Plus + Gemini CLI**
+不支持子 Agent 意味着复杂多步任务需要你手动拆分引导。输出质量在深度推理任务上弱于 Claude Opus——特别是需要"自己发现问题然后修复"的场景。Google Search grounding 虽然强大但偶尔会把过时的 Stack Overflow 答案混进来。免费版用的是 Gemini Flash 而非 Gemini 3 Pro，推理能力有差距。
 
-Codex CLI Plus 20 美元/月用 ChatGPT Plus 账号，对学生党最友好。Gemini CLI 免费额度大，作为备胎完美。为什么不推荐 Claude Code？它强但贵，学生阶段任务复杂度还没到必须 Claude Code 的地步。
+### Aider：开源界的瑞士军刀
 
-**不推荐**：OpenClaw（配置复杂）、Symphony（面向企业）。
+Aider 走的是完全不同的路线——它不绑定任何模型供应商，工具本身免费，你用自己的 API key 接任何 LLM。核心哲学是 **git-first**：每次 AI 编辑都自动创建一个 git commit，附带描述性的 commit message。
 
-### 独立开发者 / 副业项目
+**实际能力边界**：
 
-**推荐：Claude Code Pro + Codex CLI Plus（组合）**
+| 维度 | 数字 | 实际体验 |
+|------|------|---------|
+| 模型支持 | 任何 LLM API | Claude、GPT、Gemini、本地模型都能接 |
+| 价格 | 工具免费，API 自费 | 用 Claude API 约 $30-60/月，用 Gemini API 更便宜 |
+| 语言支持 | 100+ 种 | Python/JS/TS/Go/Rust/Ruby 等全覆盖 |
+| Git 集成 | 每次编辑自动 commit | 完整 AI 操作历史，随时回滚 |
+| Chat 模式 | code/architect/ask/help | architect 模式先做设计再写代码，比直接写质量更高 |
+| 自主性 | 低-中 | 更像"AI 辅助的结对编程"，不像 Claude Code 那样全自主 |
 
-这是我反复验证过的最优组合。Claude Code 负责项目级重构和需要长上下文的任务，Codex CLI 负责快速代码审查和小改动。每月 40 美元比单工具省 80%，效率只差 7%。
+Aider 的 git-first 哲学是它最独特的优势。每次 AI 编辑都是一个干净的 commit，你可以精确看到 AI 改了什么、为什么改、什么时候改。Claude Code 虽然也能 commit，但它的修改历史是"一大堆文件变更打包成一个 commit"，粒度比 Aider 粗得多。如果你对 AI 修改有"不放心"的感觉，Aider 的逐步 commit 会让你安心很多。
 
-独立开发者还可以加装 [Lazygit 终端神器](/zh/posts/macos/2025-01-22-terminal-tools-guide/)，和终端 AI 工具的交互体验是 1+1>2。
+**真实局限**：
 
-### 小团队 / 初创公司
+Aider 的自主性明显弱于 Claude Code。Claude Code 可以说"找到这个 bug 并修复它"，然后去喝咖啡回来看结果。Aider 更需要你在旁边一步步引导——它更像一个很强的结对编程伙伴，而不是一个可以独立工作的 Agent。对于追求"放手让 AI 干活"的用户，Aider 会让你觉得太需要手动操作。
 
-**推荐：主工具 Claude Code Max + OpenClaw 做自动化**
+### Gemini CLI vs Aider：怎么选
 
-团队 4-8 人规模，每个人 Claude Code Max 是值的——省下来的单次购买折腾时间比 200 美元一个月值多了。OpenClaw 作为团队知识库和自动化 workflow 引擎，可以把团队的常见任务（PR 审查、文档生成、测试补全）写成 skill 共享。
+| 你的情况 | 选谁 |
+|---------|------|
+| 不想花任何钱 | Gemini CLI（免费额度大） |
+| 想自由切换模型 | Aider（接任何 API） |
+| 在意 AI 修改的可控性 | Aider（git-first 每步可回滚） |
+| 需要搜索最新文档/API | Gemini CLI（Google Search grounding） |
+| 大仓库需要 1M 上下文 | Gemini CLI（免费给 1M） |
 
-这个组合我在 [Claude Code 对比 GitHub Copilot](/zh/posts/ai/2026-03-05-claude-code-vs-copilot/) 里详细讨论过——小团队不需要 Copilot Business，Claude Code Max + OpenClaw 的组合覆盖面更广。
+两个也可以同时用——Aider 接 Gemini API 的成本几乎为零。
 
-### 大厂 / 企业
+## 编排型赛道：Symphony 和 OpenClaw
 
-**推荐：OpenAI Symphony 为主，Claude Code 做补充**
+这条赛道和前两条赛道不是同一个东西。Symphony 和 OpenClaw 不是让你在终端里"和 AI 对话写代码"的工具——它们是让**多个 AI Agent 自动完成团队级任务**的编排框架。
 
-企业场景需要的是审计、SSO、数据不出域这些东西。Symphony 的企业版是五个工具里企业化程度最高的——有 SOC 2、有 SAML SSO、有审计日志、有部门预算控制。Claude Code 企业版也有这些但贵一倍。
+**OpenAI Symphony** 是一个 Elixir 写的开源框架，核心逻辑是：监控你的 Linear/Jira 看板 → 自动为每个 issue 生成一个 Codex Agent → Agent 写代码提 PR → 人类审核。它的目标不是替代你在终端写代码，而是替代"把 issue 分配给开发者"这个环节。目前还在工程预览阶段（GitHub 15.2k stars），不适合生产使用。
 
-Symphony 的并发优势在大厂场景真正发挥——一个后端团队 30 个人，每天 200 个 PR 需要 AI 审查，Symphony 的并发架构比串行工具快 4 倍以上。
+**OpenClaw** 是开源的 Claude Code 替代品，支持 sub-agent 编排和自定义 skill。它的独特能力是让你把复杂任务拆分给多个有边界约束的子 Agent，这是 Claude Code 原生不支持的。代价是上手曲线陡——你需要自己写 `CLAUDE.md` 和 skill 配置。关于 OpenClaw 的多 Agent 架构，我在[多 Agent 编排指南](/zh/posts/ai/2026-02-23-openclaw-multi-agent-guide/)中有详细分析。
 
-### 什么时候这些推荐不适用
+**什么时候进入编排赛道**：当你的团队每天有超过 20 个 PR 需要 AI 辅助审查/生成，或者你有大量重复性自动化任务时。在此之前，编排赛道的配置复杂度不值得。
 
-诚实告诉你边界条件。以上推荐在这些场景会失效：
+## 按预算的推荐方案
 
-- **纯 Windows 环境**：五个工具都有 Windows 支持但体验都不如 macOS/Linux。WSL2 是必选项。
-- **强合规行业**（金融、医疗）：SaaS 方案都需要过内部安全审批。这种场景只能自建，OpenClaw + 内部 LLM 网关是唯一方案。
-- **网络受限地区**：需要稳定代理。Claude Code 和 Codex CLI 对网络质量敏感，经常断线。
+所有工具拆完了，最后按预算给具体方案。
 
-## 避坑：三个最常见的错误决策
+### $0/月：学生和入门者
 
-我看过太多人在这五个工具上踩坑。最常见的三个：
+**Gemini CLI（主力）+ Aider（辅助）**
 
-**坑一：全部都装，全部都用**
+Gemini CLI 每天 1000 次免费请求、1M 上下文窗口、Google Search grounding——这是 2026 年对零预算开发者最好的礼物。Aider 作为补充，在 Gemini CLI 的免费额度用完时，可以切换到更便宜的 API（比如 Gemini API 的付费额度或 Claude Haiku）。
 
-有个同事同时装了 Claude Code、Cursor CLI、Codex CLI、OpenClaw，结果每次写代码花 5 分钟决定用哪个，效率反而下降。建议：最多同时维护 2 个工具，一个主一个辅。
+这个组合的能力上限不低。Gemini 2.5 Pro 的 1M 上下文意味着中型项目你可以把整个仓库塞进去，这是付费的 Claude Code Pro（200K）都做不到的。
 
-**坑二：只看 benchmark 不看上下文需求**
+### $40/月：独立开发者
 
-SWE-bench 分数 Claude 和 Codex 差 3 分，看着很接近。实际你的项目有 5 万行代码时，Claude Code 的 100 万上下文碾压 Codex 的 40 万。Benchmark 是单文件任务，你的工作不是。
+**Claude Code Pro（$20）+ Codex CLI Plus（$20）**
 
-**坑三：过早投资企业方案**
+这是我验证过 ROI 最高的组合。Claude Code Pro 负责需要深度理解的任务——跨文件重构、复杂 bug 修复、架构级改动。Codex CLI 负责快速任务——代码审查、格式化、小 patch、快速问答。
 
-小团队和个人被 Symphony 的"企业特性"营销吸引，结果发现那些特性（SSO、审计日志）你根本用不上，却要付三倍的钱。企业方案在团队超过 15 人之前都不值得。
+两者互补的核心逻辑：Claude Code 深但慢，Codex CLI 快但浅。70% 用 Claude Code，30% 用 Codex CLI。如果 Claude Code Pro 的额度不够用（连续两周触发限速），再考虑升 Max。
 
-## 2026 年的判断
+关于 [Claude Code 和 Codex CLI 的细粒度对比](/zh/posts/ai/2026-02-19-claude-code-vs-codex/)，我有专门的文章。
 
-终端 AI 编程工具的战争 2026 年已经分出了梯队。
+### $200/月：重度开发者
 
-**第一梯队**：Claude Code、Codex CLI。这两个都是你今天可以放心长期投入的选择。
-**第二梯队**：Cursor CLI、OpenAI Symphony。前者够用但被 Claude Code 压制，后者强但只适合企业。
-**第三梯队**：OpenClaw。技术极客的玩具，社区在涨但还没到主流推荐的地步。
+**Claude Code Max 20x（$200）**
 
-如果你今天只做一个决定，我的建议是：**装 Claude Code Pro + Codex CLI Plus，月费 40 美元，三个月内如果 Claude Code 的 Pro 额度不够再升 Max**。这是成本和效果的平衡点。
+如果你每天编程超过 5 小时、频繁处理大型仓库、需要 Agent 长时间自主运行，Max 20x 的不限量价值才真正体现。这个价位不再需要第二个工具——Claude Code 的 Agent Teams 可以并行处理子任务，MCP 扩展可以连接数据库和浏览器，功能覆盖足够全面。
 
-如果你是大厂架构师做企业采购决策，另一个建议是：**先试点 Symphony 30 天，如果团队并发任务确实起来了再全面采购，如果没有，老老实实回 Claude Code 企业版**。
+不过要注意：即使是 Max 20x，上下文窗口仍然是 200K。如果你的仓库超过 5 万行且需要全局理解，考虑用 [Agent SDK](/zh/posts/ai/2026-04-17-claude-agent-sdk-guide/) 走 API 获得 1M 上下文。
 
-终端 AI 编程工具的选型从来不是"哪个最强"，而是"哪个最适合我现在的工作强度和项目规模"。想清楚这个，五个工具的选择题就不再难解。
+## 什么时候终端 CLI 不是答案
 
-## 相关阅读
+诚实说边界。以下场景终端 AI 编程工具不是最优选择：
 
-- [5 款 AI 编程工具实测对比：为什么只选一个是错的](/zh/posts/ai/2026-04-03-claude-code-vs-cursor-vs-copilot/)
-- [Claude Code vs Codex CLI：同一个任务跑两遍](/zh/posts/ai/2026-02-19-claude-code-vs-codex/)
-- [Codex CLI 实战指南：ChatGPT 团队的秘密武器](/zh/posts/ai/2026-02-12-codex-cli-mastery-guide/)
-- [2026 AI 编程 Agent 终极对比](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)
-- [Claude Code vs GitHub Copilot：团队怎么选](/zh/posts/ai/2026-03-05-claude-code-vs-copilot/)
-- [macOS 终端工具完全指南](/zh/posts/macos/2025-01-22-terminal-tools-guide/)
+**你需要内联补全和实时代码建议** → 用 Cursor 或 GitHub Copilot。终端 CLI 擅长的是"理解任务并执行"，不是"你打字时猜你想写什么"。两种工具互补而非互斥。
+
+**你的团队还没有终端习惯** → 强推终端 CLI 给不习惯命令行的团队成员会导致效率下降而不是提升。先让团队用 IDE 内的 AI 工具建立信任，等他们自然开始需要"后台跑长任务"时再引入终端 CLI。
+
+**纯 Windows 环境** → 所有终端 AI CLI 在 macOS/Linux 上的体验都优于 Windows。如果必须在 Windows 上使用，WSL2 是必选项，不是可选项。
+
+**网络不稳定的地区** → Claude Code 和 Codex CLI 对网络延迟敏感，长任务中断线会丢失执行进度。如果你在网络不稳定的环境下工作，考虑 Aider（它的恢复机制更好，因为每步都有 git commit）。
+
+## 2026 年的格局判断
+
+终端 AI 编程工具在 2026 年的竞争已经不是"哪个工具最强"——而是**三条赛道各自成熟**。
+
+订阅赛道里，Claude Code 凭借 SWE-bench 80.8% 的成绩和最强的 Agent 自主性稳居第一，Codex CLI 凭借 Rust 重写的速度优势和沙箱安全性占据第二。这两个是"你今天可以放心长期投入的选择"。
+
+免费赛道里，Gemini CLI 凭借 1000 次/天免费 + 1M 上下文的杀手级组合，正在快速蚕食入门用户市场。Aider 凭借模型无关和 git-first 哲学，成为技术选型自由度最高的选择。
+
+编排赛道还在早期——Symphony 处于工程预览阶段，OpenClaw 的社区在增长但上手门槛高。这条赛道的爆发期大概在 2027 年。
+
+**如果你今天只做一个决定**：先搞清楚你属于哪条赛道（预算？用量？团队？），然后在那条赛道里选。不要跨赛道对比。
+
+---
+
+## Related Reading
+
+- [Claude Code 完全入门指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — Claude Code 基础功能详解
+- [Claude Code vs Codex CLI 同一任务双跑](/zh/posts/ai/2026-02-19-claude-code-vs-codex/) — 两大订阅工具的细粒度实测
+- [Claude 定价完全指南 2026](/zh/posts/ai/2026-04-03-claude-pricing-complete-guide/) — Pro/Max/API 的用量估算
+- [Claude Agent SDK 实战指南](/zh/posts/ai/2026-04-17-claude-agent-sdk-guide/) — 用 API 获取 1M 上下文的方式
+- [OpenClaw 多 Agent 编排指南](/zh/posts/ai/2026-02-23-openclaw-multi-agent-guide/) — 编排赛道的深度实践
+- [5 款 AI 编程工具实测对比](/zh/posts/ai/2026-04-03-claude-code-vs-cursor-vs-copilot/) — 更广维度的 AI 编程工具对比

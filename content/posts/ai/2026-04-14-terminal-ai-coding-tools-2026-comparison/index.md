@@ -1,224 +1,264 @@
 +++
 date = '2026-04-14T10:00:00+08:00'
 draft = false
-title = 'Terminal AI Coding CLIs 2026: Claude Code vs Codex vs Cursor vs OpenClaw'
-description = 'Engineering-grade comparison of 5 terminal AI coding CLIs in 2026: context management, streaming, MCP extensibility, agent autonomy tiers. Benchmark data, real trade-offs, no marketing fluff.'
+title = 'Terminal AI Coding Tools 2026: Three Lanes, Not One Race'
+description = 'Deep comparison of Claude Code, Codex CLI, Gemini CLI, and Aider. Instead of a flat feature table, this guide maps the 2026 terminal AI landscape into three lanes — subscription, free/open-source, and orchestration — with budget-based combo recommendations.'
 toc = true
-tags = ['Claude Code', 'Codex CLI', 'Cursor CLI', 'OpenClaw', 'AI Coding Tools', 'Terminal']
-keywords = ['terminal AI coding CLI', 'Claude Code vs Codex CLI', 'Cursor CLI review', 'OpenClaw comparison', 'AI agent autonomy tiers', 'MCP skill extensibility', 'AI coding tools 2026', 'best CLI AI coding tool']
+tags = ['Claude Code', 'Codex CLI', 'Gemini CLI', 'Aider', 'AI Coding Tools', 'Terminal']
+keywords = ['terminal AI coding tools 2026', 'Claude Code vs Codex CLI', 'Gemini CLI free tier', 'Aider AI coding', 'best AI CLI tool 2026', 'AI coding agents comparison', 'terminal coding agent guide', 'Claude Code vs Gemini CLI']
 
 [[params.faqItems]]
-question = "Which terminal AI coding CLI has the best context management in 2026?"
-answer = "Claude Code by a wide margin. Its 1M token window with disciplined prefix caching handles 120k-line codebases where Codex CLI's 400k window starts aggressive summarization at 200k. Context management, not raw model quality, is the real differentiator in 2026."
+question = "Which terminal AI coding tool is best in 2026?"
+answer = "It depends on budget and workflow. Zero budget: Gemini CLI (free 1,000 requests/day) + Aider (open source). $40/month: Claude Code Pro + Codex CLI. Heavy use: Claude Code Max $200/month. No single tool wins all scenarios."
 
 [[params.faqItems]]
-question = "What is MCP extensibility and why does it matter for a CLI tool?"
-answer = "MCP (Model Context Protocol) lets a CLI load external tools at runtime without rebuilds. Claude Code and OpenClaw support MCP natively with hundreds of community servers. Codex CLI has its own plugin format but weaker ecosystem. Cursor CLI has limited extensibility."
+question = "Is Claude Code's context window really 1 million tokens?"
+answer = "Not on subscription plans. Pro and Max plans have a 200K token context window. The 1M token window is only available via API calls to Claude Opus 4.6 / Sonnet 4.6, billed per token. Many comparison articles confuse these two numbers."
 
 [[params.faqItems]]
-question = "How do agent autonomy tiers work across these CLIs?"
-answer = "I classify them in three tiers: Tier 1 (human-in-loop, each action confirmed) - Cursor CLI default; Tier 2 (supervised multi-step, approval batching) - Claude Code, Codex CLI; Tier 3 (fully autonomous with boundaries) - OpenClaw with proper skill setup, Symphony for enterprise orchestration."
+question = "Is Gemini CLI good enough for real development work?"
+answer = "Yes, for light to moderate use. The free tier offers 1,000 requests/day with Gemini 2.5 Pro and a 1M token context window. Its Google Search grounding pulls in live documentation. The main limitation is weaker autonomous agent capability compared to Claude Code."
 
 [[params.faqItems]]
-question = "Does OpenClaw actually beat Claude Code on anything?"
-answer = "Yes, on multi-agent orchestration and deterministic long-horizon tasks. OpenClaw lets you compose sub-agents with bounded scopes via skills, which Claude Code cannot do natively. The cost: steeper learning curve and manual config. For single-agent work, Claude Code still wins."
+question = "What makes Aider different from Claude Code?"
+answer = "Aider is model-agnostic (works with Claude, GPT, Gemini, or local models) and git-first (every AI edit becomes an automatic commit). Claude Code is model-locked to Claude but offers stronger autonomous agent capability. Aider gives you flexibility and auditability; Claude Code gives you depth and autonomy."
 
 [[params.faqItems]]
-question = "Is streaming performance actually different between these tools?"
-answer = "Yes, meaningfully. Codex CLI ships tokens at ~95 tok/s median with sub-200ms first-token latency. Claude Code averages ~60 tok/s with ~400ms first-token. For conversational back-and-forth Codex feels snappier, but for long autonomous runs the difference is invisible."
+question = "Should I use a terminal AI tool or an IDE tool like Cursor?"
+answer = "Both. Terminal CLIs excel at long autonomous tasks, SSH remote environments, and CI/CD integration. IDE tools excel at inline completions and visual context. They complement each other rather than compete."
 +++
 
-![2026 terminal AI coding CLIs comparison - Claude Code vs Codex CLI vs Cursor CLI vs OpenClaw](cover.webp)
+![Terminal AI coding tools 2026 comparison — Claude Code, Codex CLI, Gemini CLI, Aider](cover.webp)
 
-The terminal became the real battleground for AI coding in 2026.
+Almost every "terminal AI coding tools comparison" makes the same structural error: put four tools in a flat table, compare features row by row, conclude "it depends on your needs." This framing is misleading.
 
-If you're still reading IDE-centric comparisons, you're reading about yesterday's war. GitHub's 2026 developer survey shows daily AI-agent usage inside the terminal overtook IDE-embedded AI by 1.7x in time spent. The reason isn't fashion - it's that serious autonomous work (hour-long refactors, CI-integrated agents, remote SSH sessions) simply doesn't fit inside a code editor.
+The 2026 terminal AI coding landscape has **diverged into distinct species**. These tools differ in architecture philosophy, pricing model, and target user. Comparing Claude Code (a $200/month autonomous agent) against Gemini CLI (free, 1,000 requests per day) on "feature count" is like comparing a Tesla Model 3 to a city bus by "number of seats."
 
-This comparison takes the engineering angle. Not feature checklists, not marketing claims. I evaluate five terminal AI coding CLIs - Claude Code, Codex CLI, Cursor CLI, OpenAI Symphony, OpenClaw - across four axes that actually determine long-run productivity: context management, streaming behavior, MCP and skill extensibility, and agent autonomy tier.
+This guide does not do flat comparisons. It maps the landscape into three lanes, explains what each lane optimizes for, then dives into each tool's real capability boundaries — not the numbers on the marketing page, but the limits you actually hit in practice. The payoff: budget-matched combo recommendations at the end.
 
-The verdict, up front: Claude Code dominates the autonomy-plus-context frontier. Codex CLI dominates streaming and interactive speed. OpenClaw offers real multi-agent composition that nothing else does. Cursor CLI is mostly a convenience shell for Cursor Pro users. Symphony is an enterprise orchestrator, not really comparable to the others.
+## Three Lanes, Not One Race
 
-## Why terminal CLIs ate the AI coding world
+The 2026 terminal AI coding tool market has stratified into three lanes with fundamentally different competitive logic.
 
-Two years ago Cursor looked like the future. IDEs felt like the natural habitat for AI. That turned out to be wrong in a specific way: **IDEs optimize for per-keystroke AI, not per-task AI.** Per-keystroke AI is autocomplete. Per-task AI is an agent. The architectures needed are different.
+```mermaid
+flowchart TB
+    subgraph S1["Subscription CLIs — Turnkey"]
+        CC["Claude Code<br/>$20-200/mo"]
+        CX["Codex CLI<br/>$20/mo+"]
+    end
+    subgraph S2["Free / Open-Source CLIs — Flexible"]
+        GC["Gemini CLI<br/>Free 1K req/day"]
+        AI["Aider<br/>Open source + BYO API"]
+    end
+    subgraph S3["Orchestration Frameworks — Team Automation"]
+        SY["Symphony<br/>Kanban → Agents"]
+        OC["OpenClaw<br/>Sub-agent composition"]
+    end
 
-Terminal CLIs have three structural advantages that IDE plugins cannot replicate. First, lifecycle independence - a terminal agent running a 45-minute migration doesn't crash when you restart the editor. Second, transport parity - SSH, tmux, and Docker are first-class, which matters the moment your code lives on a remote box. Third, composability - pipelines, file descriptors, and exit codes let AI agents participate in shell scripts and CI workflows without plugin APIs.
+    S1 -.->|"Fixed monthly cost<br/>Vendor lock-in"| U1["Best for: full-time devs<br/>wanting depth + polish"]
+    S2 -.->|"Flexible cost<br/>More manual work"| U2["Best for: students, side projects<br/>multi-model freedom"]
+    S3 -.->|"High config cost<br/>High automation ROI"| U3["Best for: teams<br/>automated pipelines"]
+```
 
-I covered the broader landscape in [AI Coding Agents: The Definitive 2026 Comparison](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/). This piece narrows the scope to terminal CLIs specifically, where the engineering trade-offs are sharp.
+**Subscription lane** (Claude Code, Codex CLI): you pay a monthly fee, you get a polished agent with built-in file operations, shell execution, and code search. The selling point is "it just works." The cost is vendor lock-in — Claude Code only uses Claude models, Codex CLI only uses GPT models.
 
-![Terminal AI coding CLI ecosystem overview 2026](01-ecosystem-overview.webp)
+**Free/open-source lane** (Gemini CLI, Aider): you pay nothing (or only API usage fees) and gain flexibility. Gemini CLI has Google's free quota; Aider connects to any LLM. The selling point is "cheap and flexible." The cost is weaker autonomous agent capability — many tasks require manual guidance.
 
-## The five contenders and their design philosophies
+**Orchestration lane** (Symphony, OpenClaw): not tools for interactive terminal coding, but frameworks for multi-agent automation. Symphony watches your Linear board, spawns Codex agents, delivers PRs. OpenClaw lets you compose sub-agents with bounded scopes. The selling point is "team-scale automation." The cost is configuration complexity.
 
-These five CLIs aren't competing on the same axis. They're optimizing for different engineering goals, which is why "which is best" is the wrong question.
+**Your first decision is not "which tool is best" but "which lane am I in."** If you are a budget-constrained student, debating Claude Code vs Codex CLI is a waste of time — look at the free lane. If you are a tech lead needing team automation, comparing Gemini CLI vs Aider misses the point — look at the orchestration lane.
 
-| Tool | Optimization target | Autonomy tier | Extensibility model |
-|------|---------------------|---------------|---------------------|
-| **Claude Code** | Long-context autonomous work | Tier 2 (supervised multi-step) | MCP + native skills |
-| **Codex CLI** | Sub-second feedback loops | Tier 2 (supervised multi-step) | Codex plugins |
-| **Cursor CLI** | Cursor IDE parity | Tier 1 (per-action confirm) | Limited, IDE-coupled |
-| **OpenAI Symphony** | Concurrent task orchestration | Tier 3 (bounded autonomous) | Proprietary workflow DSL |
-| **OpenClaw** | Open multi-agent composition | Tier 3 (bounded autonomous) | MCP + skills + sub-agents |
+## Subscription Lane: Claude Code vs Codex CLI
 
-Each philosophy implies trade-offs. Claude Code spends compute on deep understanding before acting, which makes it slower per step but higher-success per task. Codex CLI optimizes the opposite direction - emit tokens fast, let humans redirect quickly. Cursor CLI treats the terminal as a second entry point to the same Cursor engine. Symphony bets that developers want to run five agents concurrently. OpenClaw bets that power users want composable primitives instead of black-box autonomy.
+These two form the 2026 first tier. They share common traits: rich built-in tool sets, autonomous multi-step planning and execution, polished user experience. Their design philosophies diverge sharply.
 
-If you understand those five bets, you already know why no single tool wins every category.
+### Claude Code: Depth-First
 
-## Context management: the real 2026 frontier
+Claude Code's core bet is **autonomy**. Give it a complex task, and it plans steps, reads files, analyzes code, edits, runs tests — you can let it run for 40 minutes in the background and check the result later.
 
-I'll state this directly: **in 2026, context management is the single most important differentiator among terminal AI coding CLIs.** Raw model quality has converged enough that on SWE-bench the top four tools sit within 4 points. Context handling is where you actually see divergence on real codebases.
+**Real capability boundaries:**
 
-Three dimensions matter: window size, retrieval discipline, and cache behavior.
+| Dimension | Official | In Practice |
+|-----------|----------|-------------|
+| Context window | 200K (subscription) / 1M (API) | Pro's 200K handles 30-50K line repos; beyond that, use Max or API |
+| Models | Opus 4.6 / Sonnet 4.6 | Sonnet handles 80% of daily tasks; Opus for deep reasoning |
+| SWE-bench | 80.8% Verified | Cross-file refactoring success rate is noticeably higher than competitors |
+| Agent Teams | Parallel sub-agents | Effective for independent subtasks; weak when tasks have dependencies |
+| MCP support | Native | 800+ community servers; strongest extensibility ecosystem |
 
-**Window size.** Claude Code exposes 1M tokens with about 800k practically usable. Codex CLI exposes 400k nominally but starts aggressive summarization past 200k. Cursor CLI caps at 200k. Symphony allocates 400k per agent but shares across agents via message-passing, which leaks detail. OpenClaw delegates to the underlying model, typically 200k-1M depending on API provider.
+**A critical error in many comparison articles**: listing Claude Code's context window as "1 million tokens." This is inaccurate. Subscription plans (Pro $20/mo, Max $100-200/mo) have a **200K token window**. The 1M window is only available via [Agent SDK](/posts/ai/2026-04-17-claude-agent-sdk-guide/) or direct API calls to Claude Opus 4.6 / Sonnet 4.6, billed per token. This distinction matters — if your repo exceeds 50K lines and you need full-codebase understanding, 200K may not suffice, and the cost model for API access is fundamentally different from a monthly subscription.
 
-**Retrieval discipline.** This is where the tools diverge most. Claude Code uses a conservative retrieval policy - it reads whole files when relevant, preserves directory structure in context, and rarely summarizes without asking. Codex CLI aggressively compresses history to preserve the working set, which is great for speed but deadly when the model later needs a detail it threw away. I once watched Codex CLI summarize a 400-line diff I had just made into "refactored authentication," then confidently build on top of that summary with a wrong mental model.
+**Real pricing:**
 
-**Cache behavior.** Claude Code uses prefix caching well - re-runs on the same codebase hit 60-80% cache, making iteration cheap. Codex CLI's cache is shorter-lived. Symphony's multi-agent architecture defeats cache locality by design.
+- Pro: $20/mo with usage caps (roughly 2-3 hours of moderate daily use)
+- Max 5x: $100/mo, 5x Pro's quota
+- Max 20x: $200/mo, 20x Pro's quota, for heavy users
 
-If your codebase is under 30k lines, the differences don't matter much. At 50k+ lines, Claude Code is the only tool I trust for cross-file refactors without hand-holding. I elaborated on this in [Claude Code vs Codex CLI: Same Task, Two Runs](/posts/ai/2026-02-19-claude-code-vs-codex/), where the context divergence is the punch line.
+My experience: **most independent developers are fine on Pro.** Unless you hit rate limits multiple days per week, you don't need Max. For a detailed cost analysis, see my [Claude pricing guide](/posts/ai/2026-04-03-claude-pricing-complete-guide/).
 
-![Claude Code vs Codex CLI context window comparison](02-context-comparison.webp)
+### Codex CLI: Speed-First
 
-## Streaming and first-token latency
+Codex CLI's core bet is **fast feedback loops**. Every interaction should be as short and snappy as possible. It was rewritten in Rust for performance and defaults to sandboxed execution — code runs in isolation, not directly on your filesystem.
 
-Streaming is the invisible UX differentiator. Two tools can produce identical output but feel completely different based on how fast tokens arrive.
+**Real capability boundaries:**
 
-Measured numbers from my setup (US-East, stable 100Mbps, same model tier where comparable):
+| Dimension | Official | In Practice |
+|-----------|----------|-------------|
+| Context window | Model-dependent | GPT-5 series ~200K; prefers short-context fast iteration |
+| Speed | Rust-native CLI | Feels 30-50% faster than Claude Code, especially first response |
+| Sandbox | On by default | Secure but adds a confirmation step that slows long tasks |
+| MCP support | Partial | Has its own plugin format; MCP ecosystem weaker than Claude Code's |
+| Sub-agents | Supported | Can split tasks for parallel execution |
 
-- **Codex CLI**: first-token latency ~180ms, steady-state ~95 tokens/sec
-- **Claude Code**: first-token latency ~400ms, steady-state ~60 tokens/sec
-- **Cursor CLI**: first-token latency ~220ms, steady-state ~80 tokens/sec
-- **Symphony**: first-token latency ~350ms per agent, aggregate varies
-- **OpenClaw**: depends on model; Sonnet 4.5 matches Claude Code, Haiku matches Codex
+**Codex CLI's sandbox is a double-edged sword.** Security is genuinely better — AI-generated code runs in isolation, never touching your files directly. But this means every time you want to apply AI changes, you need an explicit "confirm and apply" step. For quick Q&A and code review, this friction is invisible. For 20-step autonomous tasks, it measurably slows you down.
 
-Codex CLI's speed advantage is real and it matters for conversational work - asking "why did this test fail?" and getting an answer back in 3 seconds versus 7 seconds compounds over dozens of interactions a day.
+**Real pricing:**
 
-But here's the counter-intuitive insight: **for long autonomous tasks, streaming speed is almost irrelevant.** When Claude Code spends 40 minutes on a migration, whether each token arrives 200ms earlier doesn't change anything. You're not watching. You come back later for the result.
+- Bundled with ChatGPT Plus ($20/mo), usage-capped
+- ChatGPT Pro ($100-200/mo) gives 5-20x quota
+- API: codex-mini input $1.50/M tokens, output $6/M, 75% cache discount
 
-So the streaming question reduces to workload style. If you're in constant dialogue with the agent, Codex CLI's snappiness wins. If you dispatch long autonomous jobs, you want Claude Code's depth even at slower streaming.
+### Choosing Between Them
 
-## MCP and skill extensibility: the extensibility tier
+Don't choose one. **Install both and use them for what they're best at.**
 
-MCP (Model Context Protocol) went from an Anthropic experiment in 2024 to a cross-industry standard in 2026. By now, "does your CLI support MCP" is roughly equivalent to asking "does your IDE support LSP." The answer shapes the ecosystem you can tap into.
+```mermaid
+flowchart TD
+    A["What kind of task?"] --> B{"Multi-file?<br/>Needs architectural understanding?"}
+    B -->|"Yes"| C["Claude Code<br/>Deep understanding + autonomy"]
+    B -->|"No"| D{"Quick Q&A?<br/>Code review? Small patch?"}
+    D -->|"Yes"| E["Codex CLI<br/>Fast feedback + sandbox safety"]
+    D -->|"No"| F{"Need specific model?<br/>Or free quota?"}
+    F -->|"Yes"| G["Check the free lane"]
 
-**Native MCP support:** Claude Code, OpenClaw.
-**Partial MCP support:** Codex CLI (via translation shim, limited).
-**No MCP:** Cursor CLI, Symphony (proprietary instead).
+    style C fill:#2d5a3d,stroke:#4a9,color:#fff
+    style E fill:#2d4a5a,stroke:#49a,color:#fff
+    style G fill:#5a4a2d,stroke:#a94,color:#fff
+```
 
-This matters because the MCP server ecosystem crossed 800 servers in Q1 2026 - everything from Jira to Postgres to custom internal tooling. A CLI without MCP is a CLI that can only talk to what its vendor ships.
+My usage split over three months: roughly 70% Claude Code (context-heavy refactors, complex bugs, new features), 30% Codex CLI (quick reviews, formatting, small patches). Combined cost: $40/month — $160 less than Claude Code Max alone.
 
-Skills (Anthropic's naming) are the adjacent abstraction: reusable task recipes bundled with instructions, examples, and scoped tools. Claude Code has native skills; OpenClaw supports them plus custom extensions; Codex CLI offers its own plugin format that covers roughly the same space with less ecosystem.
+## Free / Open-Source Lane: Gemini CLI vs Aider
 
-My rule of thumb: **for a CLI you'll use daily for the next two years, pick one with MCP support.** The lock-in risk of proprietary plugins is real. I covered this in [MCP vs Skills](/posts/ai/2026-04-02-mcp-vs-skills-claude-code/) - the two abstractions complement each other rather than compete.
+This lane is 2026's biggest variable. A year ago, "free AI coding tools" essentially meant "toys." Now Gemini CLI and Aider cover substantial real-world development scenarios.
 
-## Agent autonomy tiers: how to think about trust
+### Gemini CLI: Google's Free Power Play
 
-I find it useful to classify terminal AI coding CLIs into three autonomy tiers rather than one-dimensional "how agentic."
+Gemini CLI is Google's 2026 power move — open source, free, 1M context, built-in Google Search grounding. Its positioning is clear: capture entry-level users who currently pay for Claude Code or Codex CLI.
 
-**Tier 1 - Human-in-loop (per-action confirm).** Every write, every command, approved individually. Cursor CLI defaults here. Good for high-stakes codebases or when you're still building trust. Terrible for long autonomous work.
+**Real capability boundaries:**
 
-**Tier 2 - Supervised multi-step (batch approval).** Agent plans, agent executes a batch, human approves at checkpoints. Claude Code and Codex CLI default here. The productivity sweet spot for most developers.
+| Dimension | Numbers | In Practice |
+|-----------|---------|-------------|
+| Free quota | 1,000 req/day, 60/min | Sufficient for light-to-moderate dev; heavy users may exhaust it by afternoon |
+| Model | Gemini 2.5 Pro (Flash on free tier) | Reasoning weaker than Claude Opus but adequate for most tasks |
+| Context window | 1M tokens | 5x larger than Claude Code subscription's 200K — the real killer feature |
+| Google Search | Native grounding | Real-time documentation and Stack Overflow lookup; occasionally pulls outdated answers |
+| MCP | Supported | Ecosystem growing rapidly |
+| Sub-agents | Not supported | Single-agent architecture; you manage task decomposition manually |
 
-**Tier 3 - Bounded autonomous (scoped freedom).** Agent operates freely within declared boundaries: allowed file globs, disallowed commands, budget caps. OpenClaw with proper skills configuration fits here; Symphony is built for it at the enterprise orchestration layer. Highest throughput, highest risk.
+Gemini CLI's biggest advantage is not that it is free — it is that **1M tokens + free** is a combination no one else offers. Claude Code needs API billing to reach 1M tokens. Gemini CLI gives it to you for nothing. If you work on a mid-to-large codebase (50-100K lines) and need the AI to understand the full picture without paying $200/month, Gemini CLI is currently the only option.
 
-Most tools let you adjust tier per session, but defaults matter because defaults are what you use when you're tired. If you're new to autonomous agents, start at Tier 1 for two weeks, then earn your way to Tier 2 after you've seen the agent succeed and fail on your codebase. Only move to Tier 3 after you can articulate exactly what boundaries matter for your project.
+**Real limitations:** No sub-agents means complex multi-step tasks require manual decomposition. Output quality on deep reasoning tasks falls short of Claude Opus. The free tier runs Gemini Flash, not Gemini 3 Pro — the reasoning gap is real.
 
-## Benchmark: two real tasks across all five
+### Aider: The Open-Source Swiss Army Knife
 
-Enough theory. Here's what happened when I ran the same two tasks across all five tools.
+Aider takes a fundamentally different approach: model-agnostic, tool-free, git-first. The tool itself is free and open source. You bring your own API key for any LLM — Claude, GPT, Gemini, or local models. Every AI edit automatically becomes a git commit with a descriptive message.
 
-**Task A: Add unit test coverage to a 2,800-line FastAPI backend** (starting 12% coverage, target 70%+)
+**Real capability boundaries:**
 
-**Task B: Refactor a 600-line React cart component from class components to hooks, split into 4 subcomponents**
+| Dimension | Numbers | In Practice |
+|-----------|---------|-------------|
+| Model support | Any LLM API | Claude, GPT, Gemini, local models — full flexibility |
+| Cost | Tool free, API self-funded | ~$30-60/mo with Claude API; cheaper with Gemini API |
+| Language support | 100+ languages | Python, JS, TS, Go, Rust, Ruby, and dozens more |
+| Git integration | Auto-commit every edit | Complete AI operation history; instant rollback |
+| Chat modes | code/architect/ask/help | Architect mode designs before coding — higher quality |
+| Autonomy | Low to moderate | More like "AI pair programming" than fully autonomous agent |
 
-| Tool | A: Time | A: Coverage | A: Corrections | B: Time | B: Correctness |
-|------|---------|-------------|----------------|---------|----------------|
-| Claude Code | 38 min | 74% | 0 | 22 min | Clean decomposition |
-| Codex CLI | 24 min | 58% | 1 (coverage gap) | 14 min | 2 style regressions |
-| Cursor CLI | 31 min | 66% | 1 (test gaps) | 19 min | Conservative split |
-| Symphony | 18 min | 71% | 0 (4 parallel agents) | 11 min | Decent split |
-| OpenClaw | 44 min (incl 15 min config) | 76% | 0 | 26 min | Clean decomposition |
+Aider's git-first philosophy is its most distinctive asset. Every AI edit is a clean commit — you can see exactly what changed, why, and when. Claude Code can commit too, but its changes tend to be large batches of file modifications in a single commit, much coarser-grained than Aider's step-by-step history. If you feel uneasy about AI making changes you can't trace, Aider's granular commits provide a level of auditability that nothing else matches.
 
-Three observations worth noting.
+**Real limitations:** Aider's autonomy is noticeably weaker than Claude Code's. You cannot say "find and fix this bug" and walk away. Aider needs you present, guiding each step — it is more of a very capable pair programmer than an independent agent.
 
-**Codex CLI's speed advantage carries a quality tax.** Its 24-minute completion on Task A looks great until you notice it declared done at 58% coverage because its context had compressed the coverage target out of scope. The "fastest" runs often need a correction cycle that eats the speed gain.
+### Gemini CLI vs Aider
 
-**Symphony's parallelism works on independent subtasks.** Splitting FastAPI's 5 routers across 5 agents was a natural fit. But Task B's refactor has deep cross-component dependencies - parallelism there introduces coordination cost that slows things down.
+| Your Situation | Pick |
+|---------------|------|
+| Zero budget | Gemini CLI (generous free quota) |
+| Want to switch models freely | Aider (connects to any API) |
+| Want full auditability of AI changes | Aider (git-first, every step committed) |
+| Need to look up latest docs/APIs | Gemini CLI (Google Search grounding) |
+| Large repo needing 1M context | Gemini CLI (free 1M window) |
 
-**OpenClaw's startup cost amortizes.** The 15-minute first-time config time seems brutal until you realize you don't pay it twice. A month later, running a similar migration on another project, OpenClaw was the fastest because the skill scaffolding was ready.
+You can also use both — Aider with the Gemini API costs nearly nothing.
 
-## Cost structure: why combining beats maxing
+## Orchestration Lane: Symphony and OpenClaw
 
-Pricing for terminal AI coding CLIs split into two camps in 2026: flat subscription (Claude Code Max $200/mo, Symphony $60/seat) and metered (Codex CLI Plus $20/mo + usage, OpenClaw BYO API).
+This lane is a different category entirely. Symphony and OpenClaw are not tools for interactive terminal coding — they are frameworks for **multi-agent automation at team scale**.
 
-For a mid-intensity solo developer - 3 hours per day of AI coding - here's the real-world monthly bill:
+**OpenAI Symphony** is an Elixir-based open-source framework. Its core logic: monitor your Linear/Jira board → spawn a Codex agent for each issue → agent writes code and opens a PR → human reviews. It targets replacing "assign issue to developer," not replacing the developer at the terminal. Currently in engineering preview (15.2K GitHub stars), not production-ready.
 
-- Claude Code Max: $200 flat
-- Claude Code Pro + metered: ~$50-70
-- Codex CLI Plus: ~$45-60
-- Cursor CLI (inside Cursor Pro): $20
-- OpenClaw with Anthropic API: ~$80
-- Symphony enterprise: $120-180 (concurrency drives it up)
+**OpenClaw** is an open-source Claude Code alternative supporting sub-agent composition and custom skills. Its unique capability: decomposing complex tasks across multiple agents with bounded scopes — something Claude Code cannot do natively. The cost is a steep learning curve. See my [OpenClaw multi-agent guide](/posts/ai/2026-02-23-openclaw-multi-agent-guide/) for details.
 
-Combining Claude Code Pro + Codex CLI Plus averaged $40-50/month in my three-month experiment - 80% cheaper than Max, with task completion time only 7% slower. Max is worth it only if you're doing 5+ hours of daily autonomous work where the unlimited unlocks real value. I made the same argument in [5 AI Coding Tools in Action](/posts/ai/2026-04-03-claude-code-vs-cursor-vs-copilot/) covering the broader category.
+**When to enter the orchestration lane:** when your team has 20+ PRs per day needing AI-assisted review/generation, or when you have large volumes of repetitive automation tasks. Before that threshold, the configuration overhead is not justified.
 
-## Recommendations by developer profile
+## Budget-Based Recommendations
 
-### Students and newcomers
+### $0/month: Students and Newcomers
 
-Pick **Codex CLI Plus** as primary, plus **Gemini CLI** (free tier) as backup. Codex's speed and per-action confirmation tier matches a learning curve where you want to see each action. Skip Claude Code Max at this stage - you don't have tasks complex enough to justify the premium.
+**Gemini CLI (primary) + Aider (backup)**
 
-### Independent developers and indie hackers
+Gemini CLI's 1,000 free requests/day with a 1M token context window is the best gift to zero-budget developers in 2026. Aider supplements it when quotas run out, connecting to cheaper APIs like Gemini's paid tier or Claude Haiku.
 
-Pick **Claude Code Pro + Codex CLI Plus** as a combo (~$40/month). Claude Code handles the 70% of work that benefits from depth and long context; Codex CLI handles the 30% that's fast back-and-forth. Pair with a fluent terminal setup - I wrote the [terminal tools guide](/posts/macos/2025-01-22-terminal-tools-guide/) specifically for this workflow.
+This combination's ceiling is surprisingly high. Gemini 2.5 Pro's 1M context means medium projects can fit the entire repo — something even Claude Code Pro's 200K cannot do.
 
-### Small teams (4-15 engineers)
+### $40/month: Independent Developers
 
-**Claude Code Max per engineer + OpenClaw for shared automation.** Max unlocks unlimited team experimentation without per-usage stress. OpenClaw becomes the team's knowledge surface - codified skills for common PR reviews, doc generation, test scaffolding. This combination beats the enterprise-tier alternatives analyzed in [Claude Code vs Copilot for teams](/posts/ai/2026-03-05-claude-code-vs-copilot/).
+**Claude Code Pro ($20) + Codex CLI Plus ($20)**
 
-### Enterprise
+The highest-ROI combination I have validated. Claude Code handles the 70% of work benefiting from depth and long context — cross-file refactors, complex bugs, architectural changes. Codex CLI handles the 30% that is fast back-and-forth — reviews, formatting, patches.
 
-**Symphony for orchestration, Claude Code enterprise for autonomous depth.** You want Symphony's SSO, audit logging, concurrency caps, and budget controls. You want Claude Code for the work where context depth matters. Running just one of them in a large org leaves gaps.
+For a detailed comparison of these two, see [Claude Code vs Codex CLI](/posts/ai/2026-02-19-claude-code-vs-codex/).
 
-## Where these recommendations break
+### $200/month: Heavy Users
 
-Honest boundary conditions. The above doesn't apply if:
+**Claude Code Max 20x ($200)**
 
-- **Windows-first workflows**: all five tools work better on macOS or Linux. WSL2 isn't optional, it's required.
-- **Regulated industries**: SaaS-only tools can't pass typical SOC 2 / HIPAA audits without self-hosting. OpenClaw + internal LLM gateway is often the only viable path.
-- **Network-constrained environments**: Claude Code and Codex CLI are latency-sensitive. Some regions need stable proxy infrastructure just to keep sessions alive.
-- **Vim/Emacs-native workflows**: if your muscle memory lives inside Neovim, all five tools require context-switching that may cost you more than they give.
+At 5+ hours of daily coding with frequent large-repo work, Max 20x's unlimited quota pays for itself. Agent Teams handle parallel subtasks, MCP extends to databases and browsers. You no longer need a second tool.
 
-## The three mistakes to avoid
+Note: even Max 20x has a 200K context window. For repos exceeding 50K lines that need full-codebase understanding, consider the [Agent SDK](/posts/ai/2026-04-17-claude-agent-sdk-guide/) for 1M API access.
 
-I've watched developers burn weeks on bad CLI choices. The recurring mistakes:
+## When Terminal CLIs Are Not the Answer
 
-**Installing all five and using none.** Decision fatigue is real. Cap your active toolset at two - one primary, one specialist - and commit for at least a month before re-evaluating.
+Honest boundary conditions:
 
-**Reading benchmarks instead of testing your codebase.** SWE-bench puts Claude and Codex within 3 points. On a 60k-line codebase, the context-window gap produces a real-world gap closer to 15 points. Your codebase is the benchmark that matters.
+**You need inline completions and real-time suggestions.** Use Cursor or GitHub Copilot. Terminal CLIs excel at "understand a task and execute it," not "guess what you're typing." The two are complementary, not competing.
 
-**Buying enterprise tier prematurely.** Symphony's SSO and audit features are genuine, but they're irrelevant until your team exceeds 15-20 engineers. Before that, you're paying three times more for capabilities you don't exercise.
+**Your team has no terminal habit.** Forcing terminal CLIs on team members uncomfortable with the command line decreases productivity. Let the team build trust with IDE-embedded AI first; introduce terminal CLIs when they naturally need background autonomous tasks.
 
-## The 2026 verdict
+**Pure Windows environment.** Every terminal AI CLI works better on macOS/Linux. WSL2 is not optional on Windows — it is required.
 
-Terminal AI coding CLIs stratified this year into clear tiers.
+**Unstable network.** Claude Code and Codex CLI are latency-sensitive; disconnections during long tasks lose progress. In unstable network conditions, consider Aider — its git-first approach means every step is committed, making recovery straightforward.
 
-**Top tier**: Claude Code and Codex CLI. Both are safe long-term investments regardless of how the market evolves.
+## The 2026 Landscape
 
-**Middle tier**: Cursor CLI (fine if you're already on Cursor, otherwise outclassed) and Symphony (strong for enterprise, irrelevant for individuals).
+Terminal AI coding competition in 2026 is no longer "which tool is strongest" — it is **three lanes, each maturing independently**.
 
-**Power user tier**: OpenClaw. The composability is genuinely unique, but the learning curve means it's a niche choice until someone ships a smoother onboarding.
+In the subscription lane, Claude Code holds first place with 80.8% SWE-bench Verified and the strongest agent autonomy. Codex CLI holds second with Rust-native speed and sandbox safety. Both are safe long-term investments.
 
-My concrete recommendation if you're deciding today: install **Claude Code Pro and Codex CLI Plus** together, ~$40/month. Use Claude Code for anything touching more than one file or requiring context depth. Use Codex CLI for quick back-and-forth and sanity-check reviews. Revisit in three months. If Claude Code's Pro quota starts hurting, upgrade to Max. If it doesn't, you just saved $2,000 a year.
+In the free lane, Gemini CLI's killer combination of 1,000 free daily requests and 1M context is rapidly capturing entry-level users. Aider's model-agnostic git-first approach offers the most technical freedom.
 
-The terminal CLI war isn't over - OpenClaw's open model and Symphony's orchestration angle will keep pushing the incumbents. But the near-term answer is stable enough that you can commit without fear of betting on the wrong horse.
+In the orchestration lane, Symphony is still in engineering preview and OpenClaw's community is growing but the onboarding remains steep. This lane's breakout moment is likely 2027.
 
-## Related reading
+**If you make one decision today:** figure out which lane you belong to (budget? usage volume? team?), then choose within that lane. Do not compare across lanes.
 
-- [AI Coding Agents: The Definitive 2026 Comparison](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)
-- [Claude Code vs Codex CLI: Same Task, Two Runs](/posts/ai/2026-02-19-claude-code-vs-codex/)
-- [Codex CLI Mastery: Engineering Notes](/posts/ai/2026-02-12-codex-cli-mastery-guide/)
-- [Claude Code vs GitHub Copilot: Which Wins for Teams](/posts/ai/2026-03-05-claude-code-vs-copilot/)
-- [5 AI Coding Tools in Action: Why Picking One is Wrong](/posts/ai/2026-04-03-claude-code-vs-cursor-vs-copilot/)
-- [Essential macOS Terminal Tools for AI Developers](/posts/macos/2025-01-22-terminal-tools-guide/)
+---
+
+## Related Reading
+
+- [Claude Code Complete Guide](/posts/ai/2026-02-28-claude-code-complete-guide/) — Claude Code fundamentals
+- [Claude Code vs Codex CLI: Same Task, Two Runs](/posts/ai/2026-02-19-claude-code-vs-codex/) — Fine-grained subscription lane comparison
+- [Claude Pricing Guide 2026](/posts/ai/2026-04-03-claude-pricing-complete-guide/) — Pro/Max/API cost estimation
+- [Claude Agent SDK Guide](/posts/ai/2026-04-17-claude-agent-sdk-guide/) — Getting 1M context via API
+- [OpenClaw Multi-Agent Guide](/posts/ai/2026-02-23-openclaw-multi-agent-guide/) — Orchestration lane deep dive
+- [5 AI Coding Tools in Action](/posts/ai/2026-04-03-claude-code-vs-cursor-vs-copilot/) — Broader AI coding tool landscape
