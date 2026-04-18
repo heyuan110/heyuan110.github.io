@@ -1,8 +1,8 @@
 +++
 date = '2026-04-09T10:00:00+08:00'
 draft = false
-title = 'Claude Code + OpenSpec + Superpowers：AI 编程的三件套，何时该用、何时别碰'
-description = '深度拆解 Claude Code、OpenSpec、Superpowers 三者协同的真实价值与适用边界。包含决策矩阵、5 步工作流、命令速查表，帮你判断什么时候该用全套、什么时候只需部分。'
+title = 'Claude Code + OpenSpec + Superpowers：三件套到底是刚需还是过度工程？'
+description = '2026 年 Claude Code、OpenSpec、Superpowers 到底要不要一起上？实测后给出 trade-off 判断框架：三件套何时值回票价，何时只是徒增开销，以及每个工具真正独占的能力是什么。'
 toc = true
 tags = ['Claude Code', 'OpenSpec', 'Superpowers', 'AI Development', 'Spec-Driven Development']
 keywords = ['Claude Code OpenSpec Superpowers', 'OpenSpec 教程', 'Superpowers 使用指南', 'AI 编程工作流', 'spec-driven development 中文', 'Claude Code 协同开发', 'OpenSpec vs Superpowers']
@@ -13,7 +13,7 @@ answer = "OpenSpec 管'做什么'——把需求转成可追溯的规范文档�
 
 [[params.faqItems]]
 question = "三个工具一起用会不会太重？"
-answer = "如果你的任务不到 4 小时，用全套反而更慢——光 OpenSpec 的 propose→refine→validate 就要 30-60 分钟。建议：快速原型只用 Claude Code，中型任务加 Superpowers，大型/团队项目才上全套。"
+answer = "如果你的任务不到 4 小时，用全套反而更慢——光 OpenSpec 的 propose→apply→archive 走完就要 30-60 分钟。建议：快速原型只用 Claude Code，中型任务加 Superpowers，大型/团队项目才上全套。"
 
 [[params.faqItems]]
 question = "OpenSpec 怎么安装？"
@@ -21,7 +21,7 @@ answer = "npm install -g @fission-ai/openspec@latest，然后在项目目录运�
 
 [[params.faqItems]]
 question = "Superpowers 和 OpenSpec 可以分开用吗？"
-answer = "可以。单独用 Superpowers 适合不需要决策追溯的个人项目；单独用 OpenSpec 适合需要规范但不依赖 Claude Code 子代理能力的场景。但两者结合的效果远大于单独使用。"
+answer = "可以。单独用 Superpowers 完全够应付个人或一次性项目——它的 brainstorming / writing-plans 会把设计和计划落到 docs/superpowers/specs/ 和 /plans/，并不是网上说的'关掉对话就全忘'。它真正缺的是 Delta/Archive 多轮归档能力。单独用 OpenSpec 适合需要版本化 spec、但不依赖 Claude Code 子代理和 TDD 纪律的场景。两者结合的价值主要体现在'同一个功能要反复迭代'的团队项目。"
 
 [[params.faqItems]]
 question = "这套工作流适合初学者吗？"
@@ -30,17 +30,17 @@ answer = "工具能大幅降低编码门槛，但你仍需能看懂生成的代�
 
 ![Claude Code + OpenSpec + Superpowers AI 编程协同工作流](cover.webp)
 
-## 你大概率踩过这三个坑
+## Claude Code、OpenSpec、Superpowers 各自要解决的三个坑
 
-如果你用过 Claude Code 或类似的 AI 编程工具，下面三个场景一定不陌生。
+如果你用过 Claude Code 或类似的 AI 编程工具，下面三个场景一定不陌生。这篇文章的核心就是把每个坑对应到真正能解决它的那个工具——并且拆穿"一个工具搞定所有坑"的常见误区。
 
 **场景一：AI 做的不是你想要的。** 你说"加个用户登录功能"，AI 给你做了 Session 认证——但你要的是 JWT。你说"扫码支付"，AI 直接对接了真实支付 SDK——你只是想做个演示。每次返工都在烧 Token 和时间，而且你往往要到看完代码才发现方向错了。
 
 **场景二：AI 跳过测试直接写代码。** Claude Code 能力很强，但它的默认行为是"收到需求就动手"。不创建 Git 分支、不写测试、不做代码审查——能出活，但出了事你根本不知道哪里有问题。搞砸了还不好回滚，因为它直接改的是你的主分支。
 
-**场景三：做过的决策消失了。** 为什么选了 bcrypt 而不是 argon2？为什么接口前缀是 `/api` 而不是 `/v1`？上周你做的决策，关掉聊天窗口就没了。三个月后回来维护，完全想不起当初的考量。团队里新来个人，更是一脸懵。
+**场景三：多次迭代后，早期决策被盖掉。** 为什么选了 bcrypt 而不是 argon2？为什么接口前缀是 `/api` 而不是 `/v1`？只用 Claude Code 裸跑时聊天窗口一关就没了；加上 Superpowers 能把 design doc 落到磁盘上（好一点），但**下一次 brainstorming 会直接覆盖 design.md，不是版本化归档**。三轮迭代以后，最初的权衡理由已经被新的设计覆盖，谁都说不清当初为什么做了那个选择。
 
-这三个问题不是靠写更好的 prompt 能解决的——它们需要**不同层面的工具**来分别应对。这就是今天要聊的三件套：Claude Code + OpenSpec + Superpowers。
+这三个坑不是靠写更好的 prompt 能解决的——它们需要**不同层面的工具**来分别应对：裸用 Claude Code 扛不住场景一；Superpowers 把场景二闭环掉；只有 OpenSpec 的 Delta/Archive 机制能真正闭环场景三。这才是 Claude Code + OpenSpec + Superpowers 三件套组合的底层逻辑。
 
 ```mermaid
 flowchart LR
@@ -68,7 +68,7 @@ flowchart LR
 
 它很强，但也有上面说的那些问题：需求理解可能有偏差、不一定遵守工程纪律、决策不留痕。所以它需要搭档。
 
-**前提**：需要 Claude Pro（20 美元/月）、Team 或 Enterprise 订阅，免费版不支持。
+**前提**：需要 Claude 付费订阅（Pro / Max / Team / Enterprise 任一档都行）。具体价格会变，以 [anthropic.com/pricing](https://www.anthropic.com/pricing) 为准。免费版不支持。
 
 ### OpenSpec：把一句话需求变成四份标准文档
 
@@ -87,7 +87,9 @@ OpenSpec 不绑定任何 AI 工具，支持 20+ 个编程助手。但和 Claude 
 
 [Superpowers](https://github.com/obra/superpowers) 是 Jesse Vincent 和 Prime Radiant 团队开发的开源技能框架（GitHub 14 万+ 星），专门解决**场景二**的问题。它不是独立工具，而是一组安装到 Claude Code 里的"技能"，让 Claude Code 自动遵循专业软件工程实践。
 
-装上 Superpowers 后，Claude Code 会"变了个人"——不再收到需求就直接写代码。它有一组核心技能，**单独使用 Superpowers 时**大多数情况下会自动触发：
+装上 Superpowers 后，Claude Code 会"变了个人"——不再收到需求就直接写代码。它有一组核心技能，**而且关键的一点是规划类 skill 本身就会落盘持久化**：`brainstorming` 会把设计文档保存到 `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md` 并自动 commit；`writing-plans` 会把实施计划保存到 `docs/superpowers/plans/YYYY-MM-DD-<feature>.md`。所以网上常见的那句"Superpowers 关掉对话就全忘了"是错的——它真正缺的是 **Delta/Archive 多迭代归档机制**，不是"不持久化"。
+
+单独使用 Superpowers 时 brainstorming 和 writing-plans 会自动触发；TDD、code-review 等编码纪律**需要在 CLAUDE.md 里写明才会生效**：
 
 | 技能 | 什么时候用 | 触发方式 |
 |------|-----------|---------|
@@ -107,8 +109,8 @@ OpenSpec 不绑定任何 AI 工具，支持 20+ 个编程助手。但和 Claude 
 OpenSpec 负责：              Superpowers 负责：
   想清楚做什么                  写代码时怎么做好
 ┌──────────┐               ┌──────────────┐
-│ explore  │               │ brainstorming │ ← 被 propose 替代
-│ propose  │               │ writing-plans │ ← 被 tasks.md 替代
+│ explore  │               │ brainstorming │ ← 同类职能，不同产物目录
+│ propose  │               │ writing-plans │ ← 同类职能，不同产物目录
 │ apply ───┼─────────────→ │ TDD          │ ← 需在 CLAUDE.md 中要求
 │          │               │ debugging    │ ← 需在 CLAUDE.md 中要求
 │          │               │ verification │ ← 需在 CLAUDE.md 中要求
@@ -116,9 +118,11 @@ OpenSpec 负责：              Superpowers 负责：
 └──────────┘               └──────────────┘
 ```
 
-OpenSpec 的 propose 已经把需求探索和设计决策做完了（proposal.md + design.md + specs + tasks.md），所以 Superpowers 的 brainstorming 和 writing-plans 自然被替代。但进入 apply 编码阶段后，Superpowers 的 TDD、debugging、verification、code-review **不会自动介入**——你需要在项目的 CLAUDE.md 中明确写入这些要求，Claude Code 才会在 apply 过程中遵循这些工程纪律。
+这两套规划系统**职能重叠但不会自动互让**——装了两个之后，你下一次发起新功能请求时 `brainstorming` 仍然会触发，除非你在 CLAUDE.md 里明确规定"新功能一律走 /opsx:propose，跳过 brainstorming / writing-plans"。没有这行规则，你会在一小时内同时得到 `docs/superpowers/specs/` 下的一份 design doc 和 `openspec/changes/<id>/` 下的一份 proposal，两边内容还会悄悄不同步。
 
-如果你没有用 OpenSpec，直接跟 Claude Code 说"帮我加个用户登录功能"，那 Superpowers 就全程主导——brainstorming 先问清楚需求，writing-plans 拆解任务，然后 TDD 先写测试再写代码。
+把规划路由到 OpenSpec 之后，`/opsx:apply` 进入编码阶段，Superpowers 的 TDD、debugging、verification、code-review **依然不会自动介入**——必须在 CLAUDE.md 里明确写：`使用 /opsx:apply 实施任务时，必须采用 TDD：先写失败测试，再写实现`。
+
+如果你没用 OpenSpec，直接让 Claude Code 加功能，那 Superpowers 全程主导：brainstorming 先问清楚需求并落盘 design doc，writing-plans 拆任务并落盘 plan，然后 TDD 先写测试再写代码。
 
 **一句话总结**：OpenSpec 管规划，Superpowers 管编码纪律，Claude Code 负责执行。两个装在同一个项目里完全不冲突，各管各的阶段。
 
@@ -237,15 +241,7 @@ claude
 
 OpenSpec 会在 `openspec/changes/user-auth/` 下生成四份文档。**你要做的事**：打开 `proposal.md`，看看 Out of Scope 部分——确认 AI 没有自作主张加"第三方登录"、"密码找回"等你没要的功能。
 
-如果需要补充细节（比如密码长度限制）：
-
-```bash
-> /opsx:refine
-> 补充：密码长度 6-20 位，用户名长度 3-15 位，
-> 接口统一返回 {success: true/false, data/message: ...} 格式
-```
-
-校验规范无误：`/opsx:validate`
+如果需要补充细节（比如密码长度限制），**直接编辑 `proposal.md` / `specs/` / `design.md` 这几个生成出来的 markdown 文件**即可——core profile 里没有 refine/validate 这类独立命令，文件就是单一真相源，改完下次 `/opsx:apply` 会按新版本走。
 
 **这一步你获得了什么**：一份结构化的、所有人都能看懂的开发蓝图。AI 后续的所有工作都基于这份蓝图，而不是基于你的一句话描述。
 
@@ -274,7 +270,7 @@ flowchart LR
 
 所以接下来进入 `/opsx:apply` 时，如果你在 CLAUDE.md 中配置了 TDD 等要求，Superpowers 的工程纪律就会在编码过程中生效：TDD（先写测试再写代码）、debugging（遇到问题系统化排查）、verification（完成前验证）、code-review（提交前审查代码质量）。**注意：这些不是自动触发的，需要你在 CLAUDE.md 中明确要求。**
 
-**这一步你获得了什么**：所有设计决策都记录在 `design.md` 中。三个月后回来，你能清楚看到当初为什么选了 bcrypt 而不是 argon2——**场景三的问题就这么解决了**。
+**这一步你获得了什么**：所有设计决策都记录在 `design.md` 里，而且每次 change 完成后会归档到 `openspec/changes/<change-id>/archive/`。三轮迭代之后你还能看到"为什么 v1 选了 bcrypt、v2 改成了 argon2"——这是 Superpowers 单独使用做不到的（它只有最新版 design doc）。**OpenSpec 的 Delta/Archive 机制才是真正闭环场景三的那个环节。**
 
 ### 3.3 确认计划、让 AI 自动执行
 
@@ -320,7 +316,7 @@ Brainstorming 完成后，Superpowers 自动生成任务计划（`tasks.md`）�
 [Task 3/6] 用户模型 ...
 ```
 
-**这一步你获得了什么**：AI 在隔离的 Git 分支上、按照你在 CLAUDE.md 中定义的规范、走着 TDD 流程在干活。搞砸了可以直接丢弃分支，不会影响你的主代码。**场景二的问题也解决了**。
+**这一步你获得了什么**：AI 在隔离的 worktree 上（注意——worktree 来自 Superpowers 的 `using-git-worktrees` skill，不是 OpenSpec 自带；`/opsx:apply` 默认不会主动开 worktree，除非你在 CLAUDE.md 里要求）、按规范、走 TDD 在干活。搞砸了直接丢弃 worktree，主代码零污染。**场景二的问题也解决了。**
 
 ```mermaid
 stateDiagram-v2
@@ -395,7 +391,7 @@ flowchart LR
     style Archive fill:#c05621,color:#fff
 ```
 
-## 第四层：理解为什么三个缺一不可
+## 第四层：为什么 Claude Code + OpenSpec + Superpowers 互相独占，缺一个就断链
 
 跑通了一遍，你可能会想：真有必要这么麻烦吗？不能只用 Claude Code？或者只用其中两个？
 
@@ -405,15 +401,18 @@ flowchart LR
 |------|:---:|:---:|
 | 需求探索 | ✅ propose | ✅ brainstorming |
 | 任务拆解 | ✅ tasks.md | ✅ writing-plans |
-| **规范文档持久化** | ✅ specs/ + archive/ | ❌ 对话关闭就没了 |
-| **决策可追溯** | ✅ design.md 留痕 | ❌ 聊天记录里翻 |
-| **TDD 强制** | ❌ | ✅ 先写测试再写代码 |
-| **代码审查** | ❌ | ✅ 自动 code-review |
-| **Git 分支隔离** | ❌ | ✅ worktree |
+| 设计文档落盘 | ✅ `openspec/changes/<id>/design.md` | ✅ `docs/superpowers/specs/` |
+| 实施计划落盘 | ✅ `openspec/changes/<id>/tasks.md` | ✅ `docs/superpowers/plans/` |
+| **结构化四文件拆分**（proposal / spec / design / tasks） | ✅ 强约束 | ❌ 单份 design + plan |
+| **Delta + Archive 多轮归档** | ✅ 每个 change 独立目录，完成后存档 | ❌ 下一次 brainstorm 会覆盖上一次 design |
+| **新会话自动读取为 spec-of-truth** | ✅ 通过 `openspec/AGENTS.md` 自动注入 | ⚠️ 需你手动让 Claude 去读 plan 文件 |
+| **TDD 强制** | ❌ | ✅ 先写测试，否则删掉已写代码 |
+| **Code Review** | ❌ | ✅ 自动 code-review |
+| **Git 分支隔离** | ❌ | ✅ using-git-worktrees |
 | **系统化调试** | ❌ | ✅ systematic-debugging |
-| **完成前验证** | ❌ | ✅ verification |
+| **完成前验证** | ❌ | ✅ verification-before-completion |
 
-重叠的只有前两行（需求探索和任务拆解），剩下的**完全互补**。网上有人说"两个重复了，选一个就行"——说这话的人要么没用过 Superpowers 的 TDD 和 Code Review（以为它只是个 brainstorming 工具），要么没用过 OpenSpec 的 archive（以为它只是个文档生成器）。
+**网上流传的"Superpowers 不持久化"是错的** —— 两套系统都落盘。真正的差异是 OpenSpec 独占两点：一是 **Delta/Archive 多轮归档**（每次 change 都是独立版本化目录，不会被下一次覆盖），二是**自动作为 spec-of-truth 注入新会话**（新开 Claude 时会自动读 `openspec/AGENTS.md`，不用你手动指路）。Superpowers 的 design doc 是 last-write-wins，而且必须你手动让 Claude 再读一次。这两条差异对"同一个功能反复迭代 3-4 次的团队场景"非常重要，对"一次性构建"则体感很弱。
 
 理解了这张表，再看每种组合缺什么就很清楚了。
 
@@ -440,9 +439,9 @@ quadrantChart
 
 你的规范写得再好，Claude Code 在执行过程中可能"自由发挥"偏离规范。没有在 CLAUDE.md 中要求 TDD、没有要求 Code Review、没有 Worktree 隔离——规范和实现之间缺少一个"执法者"。相当于画了完美的建筑图纸，但施工队不按图施工，你又没有监理。
 
-### Superpowers + Claude Code（缺 OpenSpec）：有纪律但没方向
+### Superpowers + Claude Code（缺 OpenSpec）：有纪律但记忆短
 
-Superpowers 的 Brainstorming 会问你需求细节，TDD 会确保代码质量，但它的计划是基于当次对话的理解。对话一关，所有的需求理解和设计决策全部消失。下次迭代又要从头说明一遍需求，而且没有可复用的规范文档给团队共享。
+TDD 和 Code Review 保证质量，而且设计文档和任务计划**确实会落盘**（`docs/superpowers/specs/` 和 `docs/superpowers/plans/`）。真正缺的是 Delta/Archive 这一层——下一次 brainstorming 会直接覆盖上一次的 design doc，不是版本化归档。三轮迭代之后，你已经无法重建"最初那版设计为什么做了那个权衡"。**一次性交付的个人项目不是问题；同一个功能要迭代三四轮的团队项目就会咬人。**
 
 ### 三者组合：蓝图 + 监理 + 施工队
 
@@ -457,7 +456,7 @@ OpenSpec（需求层）→ Superpowers（纪律层）→ Claude Code（执行层
 
 OpenSpec 把需求锚定成可追溯的文档 → Superpowers 确保 AI 按文档执行且有质量保障 → Claude Code 高效落地代码。形成"规范 → 执行 → 验证 → 归档"的闭环。三个工具各管一层，任何一层缺失，这个闭环就断了。
 
-这里有个很多人忽略的关键设计：**OpenSpec 的 spec 输出只有约 250 行，而类似的 Spec Kit 工具输出约 800 行**。这不是功能缺失——是刻意控制长度。规范太长没人看，AI 也会丢失上下文。正确的 Spec 描述行为，不描述实现：
+这里有个很多人忽略的关键设计：**OpenSpec 刻意把每份 spec 文件控制在 200-300 行**（比对标工具 [Spec Kit](https://github.com/github/spec-kit) 明显更轻）。这不是功能缺失——是刻意控制长度。规范太长没人会读，AI 也会在里面丢失上下文。正确的 Spec 描述行为，不描述实现：
 
 ```markdown
 # 正确：描述行为
@@ -512,7 +511,7 @@ Spec 管的是"要什么结果"，不管"怎么写代码"。后者是 Superpower
 
 **这个案例的关键启示**：三件套的价值不仅在于"帮你写代码"，更在于"帮你在写代码之前发现你自己都没想到的问题"。这是纯用 Claude Code 做不到的——因为 Claude Code 收到需求就开始写了，它不会停下来三个视角审查你的需求是否完整。
 
-## 第六层：知道什么时候不该用
+## 第六层：什么时候不该上 Claude Code + OpenSpec + Superpowers 全套
 
 ```mermaid
 flowchart TD

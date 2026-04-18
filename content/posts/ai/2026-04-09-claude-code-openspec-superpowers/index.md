@@ -1,8 +1,8 @@
 +++
 date = '2026-04-09T10:00:00+08:00'
 draft = false
-title = 'Claude Code + OpenSpec + Superpowers: When to Use All Three (and When Not To)'
-description = 'A deep dive into combining Claude Code, OpenSpec, and Superpowers for AI-assisted development. Includes a decision matrix, hands-on walkthrough, and command cheat sheet to help you decide when the full stack is worth it.'
+title = 'Claude Code + OpenSpec + Superpowers: Triple Stack or Overkill?'
+description = 'Should you run Claude Code, OpenSpec and Superpowers together in 2026? A hands-on verdict on when the triple stack pays off, when it drags, and which tool actually owns which job.'
 toc = true
 tags = ['Claude Code', 'OpenSpec', 'Superpowers', 'AI Development', 'Spec-Driven Development']
 keywords = ['Claude Code OpenSpec Superpowers', 'OpenSpec tutorial', 'Superpowers Claude Code', 'spec-driven development', 'AI coding workflow 2026', 'OpenSpec vs Superpowers', 'AI engineering best practices']
@@ -21,7 +21,7 @@ answer = "Run npm install -g @fission-ai/openspec@latest, then openspec init in 
 
 [[params.faqItems]]
 question = "Can OpenSpec and Superpowers be used separately?"
-answer = "Yes. Superpowers alone works well for personal projects that don't need decision auditing. OpenSpec alone suits teams that need specs but aren't using Claude Code's subagent capabilities. But the combination delivers significantly more value than either tool in isolation."
+answer = "Yes. Superpowers alone works well for solo or one-shot projects — its brainstorming and writing-plans skills do persist design docs and plans to disk (docs/superpowers/specs/ and /plans/), so it is not the 'forgets everything' tool some posts claim. What it lacks is OpenSpec's Delta/Archive model for multi-iteration versioning. OpenSpec alone suits teams that need versioned specs but aren't using Claude Code's subagent + TDD stack. The combination shines specifically for team projects iterating on the same feature more than once."
 
 [[params.faqItems]]
 question = "What does Superpowers actually enforce on Claude Code?"
@@ -30,17 +30,17 @@ answer = "Superpowers enforces a 7-stage workflow: Brainstorming (Socratic quest
 
 ![Claude Code + OpenSpec + Superpowers AI development workflow](cover.webp)
 
-## You've Probably Hit These Three Walls
+## The Three Walls Claude Code, OpenSpec and Superpowers Are Built to Break
 
-If you've used Claude Code or any AI coding tool seriously, these scenarios will be familiar.
+If you've used Claude Code or any AI coding tool seriously, the three walls below will be familiar. The point of this article is to map each wall to the tool that actually knocks it down — and to flag the common mistake of thinking one tool can do all three.
 
 **Wall 1: The AI builds something different from what you wanted.** You say "add user login," it gives you session-based auth when you wanted JWT. You say "payment scanning," it integrates a real payment SDK when you just wanted a demo. You only discover the mismatch after reviewing the generated code — by then, you've already burned tokens and time.
 
 **Wall 2: The AI skips engineering discipline.** Claude Code's default behavior is "receive request, start coding." No Git branches, no tests, no code review. It ships fast, but when something breaks, you don't know where the problem is. And rolling back is painful because it modified your main branch directly.
 
-**Wall 3: Decisions disappear when you close the chat.** Why bcrypt over argon2? Why `/api` prefix instead of `/v1`? Last week's design decisions vanish with the conversation. Three months later, nobody remembers the reasoning. A new team member has zero context.
+**Wall 3: Design rationale erodes across iterations.** Why bcrypt over argon2? Why `/api` prefix instead of `/v1`? Plain Claude Code forgets everything when the chat closes. Add Superpowers and you get a single `design.md` on disk — good, but the *next* brainstorming session overwrites it. Three iterations later, the earliest tradeoffs are gone and nobody can reconstruct them.
 
-These problems can't be solved with better prompts — they require **different tools operating at different layers.** That's what this article is about: Claude Code + OpenSpec + Superpowers.
+These problems can't be solved with better prompts — they require **different tools operating at different layers.** That's what Claude Code + OpenSpec + Superpowers, together, are really for: plain Claude Code handles Wall 1 poorly, Superpowers closes Wall 2, and only OpenSpec's Delta/Archive mechanism closes Wall 3 properly.
 
 ```mermaid
 flowchart LR
@@ -68,7 +68,7 @@ flowchart LR
 
 It's powerful, but has the three problems above: potential requirement mismatches, no enforced engineering discipline, and ephemeral decisions. It needs partners.
 
-**Prerequisite**: Claude Pro ($20/month), Team, or Enterprise subscription required.
+**Prerequisite**: a paid Claude subscription (Pro / Max / Team / Enterprise). Pricing changes often — check [anthropic.com/pricing](https://www.anthropic.com/pricing) for the current tiers.
 
 ### OpenSpec: Turns One-Sentence Requirements into Four Structured Documents
 
@@ -85,7 +85,9 @@ OpenSpec supports 20+ AI coding assistants, but works best with Claude Code than
 
 [Superpowers](https://github.com/obra/superpowers) is an open-source skills framework by Jesse Vincent and Prime Radiant (140K+ GitHub stars), solving **Wall 2**. It's not a standalone tool — it's skills installed into Claude Code that enforce professional engineering practices.
 
-With Superpowers installed, Claude Code stops jumping straight to coding. It has a set of core skills. **When using Superpowers alone** (without OpenSpec), brainstorming and writing-plans trigger automatically. However, TDD, code-review and other coding disciplines **require explicit configuration in CLAUDE.md** to take effect:
+With Superpowers installed, Claude Code stops jumping straight to coding. It has a set of core skills, and — something the original docs bury — **the planning skills actually do persist to disk**: `brainstorming` saves its design doc to `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md` and commits it; `writing-plans` saves plans to `docs/superpowers/plans/YYYY-MM-DD-<feature>.md`. So "Superpowers forgets everything when the chat closes" is a myth — what it *lacks* is a Delta/Archive mechanism for multi-iteration history.
+
+When using Superpowers alone, brainstorming and writing-plans trigger automatically. TDD, code-review and the other coding disciplines **require explicit rules in CLAUDE.md** to take effect:
 
 | Skill | When It Activates | Trigger |
 |-------|------------------|---------|
@@ -105,8 +107,8 @@ When combined, **OpenSpec leads the planning phase, Superpowers leads the coding
 OpenSpec handles:            Superpowers handles:
   Thinking through WHAT        Ensuring HOW it's built well
 ┌──────────┐               ┌──────────────┐
-│ explore  │               │ brainstorming │ ← replaced by propose
-│ propose  │               │ writing-plans │ ← replaced by tasks.md
+│ explore  │               │ brainstorming │ ← same JOB, different output
+│ propose  │               │ writing-plans │ ← same JOB, different output
 │ apply ───┼─────────────→ │ TDD          │ ← requires CLAUDE.md config
 │          │               │ debugging    │ ← requires CLAUDE.md config
 │          │               │ verification │ ← requires CLAUDE.md config
@@ -114,9 +116,11 @@ OpenSpec handles:            Superpowers handles:
 └──────────┘               └──────────────┘
 ```
 
-OpenSpec's propose covers requirements exploration and design decisions (proposal.md + design.md + specs + tasks.md), naturally replacing Superpowers' brainstorming and writing-plans. However, when apply enters the coding phase, Superpowers' TDD, debugging, verification, and code-review **do not automatically kick in** — you need to configure these requirements in your project's CLAUDE.md for them to take effect during the apply phase.
+The two planning systems overlap in job-to-be-done (explore → decide → task list) but **don't automatically yield to each other**. If you install both, `brainstorming` still fires on the next feature request unless your CLAUDE.md routes planning to `/opsx:propose`. You pick one *by convention*, not by auto-detection — I add a line to CLAUDE.md that says "for any new feature, start with /opsx:propose; skip brainstorming/writing-plans." Without that line, you end up with a `docs/superpowers/specs/` design doc *and* an `openspec/changes/<id>/` proposal for the same feature, out of sync within an hour.
 
-Without OpenSpec, Superpowers handles everything — brainstorming first explores requirements, writing-plans breaks down tasks, then TDD enforces test-first coding.
+Once planning is routed through OpenSpec, `apply` enters the coding phase — and Superpowers' TDD, debugging, verification, and code-review **still won't kick in automatically**. You have to spell them out in CLAUDE.md: `When using /opsx:apply, always follow TDD — write failing tests first, then implementation.`
+
+Without OpenSpec, Superpowers handles everything — brainstorming first explores requirements (and saves the design doc), writing-plans breaks down tasks (and saves the plan), then TDD enforces test-first coding.
 
 **One-line summary**: OpenSpec handles planning, Superpowers handles coding discipline, Claude Code executes. They don't conflict — each owns its stage.
 
@@ -234,7 +238,7 @@ The previous `/opsx:propose` step already completed requirements exploration and
 
 So when `/opsx:apply` begins, if you've configured TDD and other requirements in CLAUDE.md, Superpowers' coding disciplines take effect: TDD (tests before code), debugging (systematic troubleshooting), verification (pre-completion checks), and code-review (quality gate before commit). **Note: these do not activate automatically — they require explicit configuration in CLAUDE.md.**
 
-**What you gained**: All design decisions are recorded in `design.md`. Three months later, you can see exactly why you chose bcrypt over argon2 — **Wall 3 solved.**
+**What you gained**: All design decisions are recorded in `design.md` **and** archived under `openspec/changes/<change-id>/archive/` after completion. Three iterations later, you can still see *why version 1 chose bcrypt and version 2 switched to argon2* — Superpowers alone can only show you the *latest* design doc; OpenSpec's archive gives you the full tradeoff history. **That's what finally closes Wall 3.**
 
 ### 3.3 Confirm Plan, Let AI Execute
 
@@ -256,7 +260,7 @@ With TDD configured in CLAUDE.md, subagent mode activates — parallel execution
 ...
 ```
 
-**What you gained**: AI working on an isolated Git branch, following specs, with TDD enforcement (when configured in CLAUDE.md). If it goes wrong, discard the branch — your main code is untouched. **Wall 2 solved.**
+**What you gained**: AI working on an isolated branch (via Superpowers' `using-git-worktrees` skill — note this belongs to Superpowers, not OpenSpec, so `/opsx:apply` will only open a worktree if your CLAUDE.md tells it to), following specs, with TDD enforcement. If it goes wrong, discard the worktree — your main code is untouched. **Wall 2 solved.**
 
 ```mermaid
 stateDiagram-v2
@@ -320,7 +324,7 @@ flowchart LR
     style Archive fill:#c05621,color:#fff
 ```
 
-## Layer 4: Why All Three Are Necessary
+## Layer 4: Why Claude Code + OpenSpec + Superpowers Actually Need Each Other
 
 Now that you've felt the workflow, let's understand why removing any tool creates problems. First, a table showing exactly where OpenSpec and Superpowers overlap vs complement each other:
 
@@ -328,15 +332,18 @@ Now that you've felt the workflow, let's understand why removing any tool create
 |------------|:---:|:---:|
 | Requirements exploration | ✅ propose | ✅ brainstorming |
 | Task decomposition | ✅ tasks.md | ✅ writing-plans |
-| **Spec persistence** | ✅ specs/ + archive/ | ❌ Gone when chat closes |
-| **Decision traceability** | ✅ design.md | ❌ Buried in chat history |
-| **TDD enforcement** | ❌ | ✅ Tests before code |
-| **Code review** | ❌ | ✅ Automatic code-review |
-| **Git branch isolation** | ❌ | ✅ Worktree |
+| Design doc written to disk | ✅ `openspec/changes/<id>/design.md` | ✅ `docs/superpowers/specs/` |
+| Plan written to disk | ✅ `openspec/changes/<id>/tasks.md` | ✅ `docs/superpowers/plans/` |
+| **Structured 4-file split** (proposal / spec / design / tasks) | ✅ enforced | ❌ single design doc + plan |
+| **Delta + Archive across iterations** | ✅ each change in its own folder, archived on completion | ❌ next brainstorm overwrites the previous design doc |
+| **Auto-loaded as spec-of-truth in new sessions** | ✅ via `openspec/AGENTS.md` | ⚠️ you have to manually point Claude at the plan file |
+| **TDD enforcement** | ❌ | ✅ tests-first, deletes pre-written code |
+| **Code review** | ❌ | ✅ automatic code-review |
+| **Git branch isolation** | ❌ | ✅ using-git-worktrees |
 | **Systematic debugging** | ❌ | ✅ systematic-debugging |
-| **Pre-completion verification** | ❌ | ✅ verification |
+| **Pre-completion verification** | ❌ | ✅ verification-before-completion |
 
-Only the first two rows overlap. Everything else is **purely complementary.** People who say "they're redundant, just pick one" have either never used Superpowers' TDD and Code Review (thinking it's just a brainstorming tool), or never used OpenSpec's archive (thinking it's just a doc generator).
+**The common "Superpowers has no persistence" claim is wrong** — both systems persist. The real differentiator is OpenSpec's *Delta/Archive model* (each change is a versioned folder that survives overwrites) and its *auto-ingestion* (new Claude sessions read `openspec/AGENTS.md` without you asking). Superpowers' design doc is last-write-wins, and you have to manually tell Claude to re-read it. That distinction matters more for teams iterating on the same feature three or four times than it does for a one-shot build.
 
 With this table in mind, it's clear what breaks when you remove each tool.
 
@@ -363,9 +370,9 @@ No specification constraints. Different developers get different code styles, in
 
 Great specs, but no enforcement during execution. Claude may "freestyle" away from the spec. Without TDD and code review rules in CLAUDE.md, there's no branch isolation — like having perfect architectural drawings but no construction supervisor.
 
-### Superpowers + Claude Code (No OpenSpec): Discipline Without Direction
+### Superpowers + Claude Code (No OpenSpec): Discipline with Short Memory
 
-TDD and code review ensure quality, but plans are based on the current chat's understanding. Close the conversation and all requirement context and design rationale is lost. Next iteration starts from scratch. No reusable spec documents for team sharing.
+TDD and code review ensure quality, and the design doc + plan *do* persist to disk (`docs/superpowers/specs/` and `docs/superpowers/plans/`). What's missing is the Delta/Archive layer: the next brainstorming session overwrites the previous design doc rather than versioning it. Three iterations in, you can no longer reconstruct why the *original* design chose what it chose. For solo projects shipping once, this is fine. For teams iterating on the same feature, it bites.
 
 ### All Three: Blueprint + Foreman + Construction Crew
 
@@ -378,7 +385,7 @@ OpenSpec (Requirements) → Superpowers (Discipline) → Claude Code (Execution)
    └─ tasks.md              └─ Subagent parallelism    └─ Install deps
 ```
 
-A key design detail: **OpenSpec's spec output is ~250 lines vs ~800 from Spec Kit.** Intentionally concise — specs that are too long don't get read, and AI loses context. Specs describe behavior (GIVEN/WHEN/THEN), not implementation steps.
+A key design detail: **OpenSpec deliberately caps each spec file around 200–300 lines** (noticeably leaner than alternatives like [Spec Kit](https://github.com/github/spec-kit)). Specs that are too long don't get read, and the AI loses context inside them. Specs should describe *behavior* (GIVEN/WHEN/THEN), not implementation steps.
 
 Another counterintuitive design: **Superpowers' TDD skill deletes code written before tests.** Not warns — deletes. This prevents AI from writing implementation first and then retrofitting tests that only verify "code does what it does" rather than "code does what it should."
 
@@ -402,7 +409,7 @@ Catching these before coding reduced fix costs by an estimated 5-10x. Tasks expa
 
 **Key insight**: The value isn't just "AI writes code for you" — it's "AI finds problems you hadn't thought of before you start coding." Pure Claude Code can't do this because it starts coding immediately without multi-perspective requirement review.
 
-## Layer 6: Knowing When NOT to Use It
+## Layer 6: When NOT to Run the Full Claude Code + OpenSpec + Superpowers Stack
 
 ```mermaid
 flowchart TD
