@@ -4,3 +4,5 @@ public/*
 .playwright-mcp
 .playwright-cli
 plans/
+cache/
+.claude/scheduled_tasks.lock

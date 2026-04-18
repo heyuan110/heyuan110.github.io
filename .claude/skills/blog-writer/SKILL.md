@@ -49,7 +49,18 @@ description: "技术博客深度写作。不是内容生成器，是观点表达
 
 #### 2.1 读取素材
 
-用户提供的链接必须**认真阅读全文**，不可凭标题猜测。优先 WebFetch，反爬时用 Playwright MCP。
+用户提供的链接必须**认真阅读全文**，不可凭标题猜测。按素材类型分流：
+
+- **网页文章**：优先 WebFetch，反爬时用 Playwright MCP
+- **YouTube / Bilibili 视频**：⛔ **禁止用 WebFetch（只能拿到 footer），必须调 youtube-fetch skill**
+  ```bash
+  bash .claude/skills/youtube-fetch/fetch.sh <url>
+  # 等几分钟（无字幕视频会自动 whisper 转写）
+  # 然后 Read cache/youtube/<videoId>/transcript.txt 拿全文
+  # Read cache/youtube/<videoId>/metadata.json 拿元数据
+  ```
+- **PDF / 文档**：直接用 Read 工具
+- **GitHub 仓库**：用 `gh` CLI 或 WebFetch GitHub URL
 
 #### 2.2 ⚠️ "参考文章写深度文"特殊模式
 
