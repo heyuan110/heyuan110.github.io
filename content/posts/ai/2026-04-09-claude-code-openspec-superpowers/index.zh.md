@@ -42,7 +42,23 @@ answer = "工具能大幅降低编码门槛，但你仍需能看懂生成的代�
 
 这三个问题不是靠写更好的 prompt 能解决的——它们需要**不同层面的工具**来分别应对。这就是今天要聊的三件套：Claude Code + OpenSpec + Superpowers。
 
-![AI coding three common problems: requirement drift, missing discipline, decision amnesia](03-comparison-three-problems.webp)
+```mermaid
+flowchart LR
+    A["一句话需求"] -->|坑 1| B["做出来的不是你要的<br/>(要 JWT 给了 Session)"]
+    A -->|坑 2| C["不建分支 / 不写测试<br/>不做 review"]
+    A -->|坑 3| D["关掉聊天窗口<br/>所有决策就没了"]
+
+    B --> E["Token 白烧<br/>反复返工"]
+    C --> F["出活快<br/>翻车也快"]
+    D --> G["三个月后维护<br/>谁都想不起来为啥"]
+
+    style B fill:#c53030,color:#fff
+    style C fill:#dd6b20,color:#fff
+    style D fill:#805ad5,color:#fff
+    style E fill:#4a5568,color:#fff
+    style F fill:#4a5568,color:#fff
+    style G fill:#4a5568,color:#fff
+```
 
 ## 第一层：认识这三个工具
 
@@ -106,7 +122,23 @@ OpenSpec 的 propose 已经把需求探索和设计决策做完了（proposal.md
 
 **一句话总结**：OpenSpec 管规划，Superpowers 管编码纪律，Claude Code 负责执行。两个装在同一个项目里完全不冲突，各管各的阶段。
 
-![Three-layer architecture: OpenSpec requirements, Superpowers discipline, Claude Code execution](04-framework-three-layers.webp)
+<div style="display:grid;grid-template-columns:1fr;gap:12px;margin:24px 0;font-family:system-ui,-apple-system,sans-serif;">
+  <div style="background:linear-gradient(135deg,#018472 0%,#015f54 100%);color:#fff;padding:18px 24px;border-radius:10px;">
+    <div style="font-size:12px;letter-spacing:1.5px;opacity:.75;">第 1 层 · 需求</div>
+    <div style="font-size:20px;font-weight:700;margin:4px 0 8px;">OpenSpec</div>
+    <div style="font-size:14px;opacity:.9;line-height:1.5;">proposal.md · specs/ · design.md · tasks.md —— 做什么、为什么、不做什么，落盘持久化。</div>
+  </div>
+  <div style="background:linear-gradient(135deg,#2b6cb0 0%,#1e4e8c 100%);color:#fff;padding:18px 24px;border-radius:10px;">
+    <div style="font-size:12px;letter-spacing:1.5px;opacity:.75;">第 2 层 · 纪律</div>
+    <div style="font-size:20px;font-weight:700;margin:4px 0 8px;">Superpowers</div>
+    <div style="font-size:14px;opacity:.9;line-height:1.5;">TDD · code-review · verification · subagent-driven-dev —— 怎么写，前提是你在 CLAUDE.md 里写进去。</div>
+  </div>
+  <div style="background:linear-gradient(135deg,#4a5568 0%,#2d3748 100%);color:#fff;padding:18px 24px;border-radius:10px;">
+    <div style="font-size:12px;letter-spacing:1.5px;opacity:.75;">第 3 层 · 执行</div>
+    <div style="font-size:20px;font-weight:700;margin:4px 0 8px;">Claude Code</div>
+    <div style="font-size:14px;opacity:.9;line-height:1.5;">改文件 · 跑测试 · 管 git · 派 subagent —— 真正动手打字的那双手。</div>
+  </div>
+</div>
 
 ## 第二层：装起来，让三件套能跑
 
@@ -217,7 +249,22 @@ OpenSpec 会在 `openspec/changes/user-auth/` 下生成四份文档。**你要�
 
 **这一步你获得了什么**：一份结构化的、所有人都能看懂的开发蓝图。AI 后续的所有工作都基于这份蓝图，而不是基于你的一句话描述。
 
-![OpenSpec generates four structured documents from one requirement: proposal, specs, design, tasks](05-infographic-openspec-docs.webp)
+```mermaid
+flowchart LR
+    Req["一句话需求：<br/><i>Express + MongoDB + JWT<br/>做个用户认证 API</i>"]
+    Req --> Propose["/opsx:propose"]
+    Propose --> P["<b>proposal.md</b><br/>为什么 · 做什么<br/>不做什么"]
+    Propose --> S["<b>specs/</b><br/>GIVEN / WHEN / THEN<br/>行为规格"]
+    Propose --> D["<b>design.md</b><br/>bcrypt vs argon2<br/>JWT 过期时间 · ORM 选型"]
+    Propose --> T["<b>tasks.md</b><br/>每个任务 2–5 分钟"]
+
+    style Req fill:#2d3748,color:#fff
+    style Propose fill:#018472,color:#fff
+    style P fill:#1e4e8c,color:#fff
+    style S fill:#1e4e8c,color:#fff
+    style D fill:#1e4e8c,color:#fff
+    style T fill:#1e4e8c,color:#fff
+```
 
 ### 3.2 规划阶段已完成，进入编码纪律
 
@@ -275,7 +322,26 @@ Brainstorming 完成后，Superpowers 自动生成任务计划（`tasks.md`）�
 
 **这一步你获得了什么**：AI 在隔离的 Git 分支上、按照你在 CLAUDE.md 中定义的规范、走着 TDD 流程在干活。搞砸了可以直接丢弃分支，不会影响你的主代码。**场景二的问题也解决了**。
 
-![TDD cycle enforced by Superpowers: RED (write failing test) → GREEN (write implementation) → REFACTOR](06-flowchart-tdd-cycle.webp)
+```mermaid
+stateDiagram-v2
+    [*] --> RED
+    RED: 🔴 RED<br/>先写一个会失败的测试<br/>(此时还没有实现代码)
+    GREEN: 🟢 GREEN<br/>写刚好够让测试通过<br/>的实现代码
+    REFACTOR: 🔵 REFACTOR<br/>测试保持绿，清理代码
+    REVIEW: ✅ Code Review<br/>Superpowers 自动审查
+
+    RED --> GREEN: 测试运行并失败
+    GREEN --> REFACTOR: 测试通过
+    REFACTOR --> REVIEW: 没有回归
+    REVIEW --> RED: 下一个任务
+    REVIEW --> [*]: 任务列表完成
+
+    note right of RED
+      如果测试之前就有实现代码，
+      Superpowers 会直接删掉
+      —— 不是警告，是删除。
+    end note
+```
 
 ### 3.4 验证 + 归档
 
@@ -306,7 +372,28 @@ curl -X POST http://localhost:5000/api/register \
 
 到这里，从一句话需求到可运行的 API，全流程跑完了。你的工作是：确认需求 → 回答设计问题 → Review 计划 → 验证结果。核心代码由 AI 按规范生成。
 
-![Three-layer workflow pipeline: specification, discipline enforcement, and code execution](02-workflow-pipeline.webp)
+```mermaid
+flowchart LR
+    U["你：<br/>一句话<br/>需求"] --> Propose
+    subgraph OpenSpec
+        Propose["/opsx:propose"] --> Artifacts["proposal / specs<br/>design / tasks"]
+    end
+    subgraph Superpowers
+        Artifacts --> Plan["tasks.md<br/>复核"]
+        Plan --> TDD["TDD 循环<br/>(RED→GREEN→REVIEW)"]
+    end
+    subgraph ClaudeCode["Claude Code"]
+        TDD --> Exec["改文件 · 跑测试 · git"]
+    end
+    Exec --> Archive["/opsx:archive<br/>spec delta 合并"]
+    Archive --> U
+
+    style OpenSpec fill:#018472,color:#fff
+    style Superpowers fill:#2b6cb0,color:#fff
+    style ClaudeCode fill:#4a5568,color:#fff
+    style U fill:#1a202c,color:#fff
+    style Archive fill:#c05621,color:#fff
+```
 
 ## 第四层：理解为什么三个缺一不可
 
@@ -330,7 +417,20 @@ curl -X POST http://localhost:5000/api/register \
 
 理解了这张表，再看每种组合缺什么就很清楚了。
 
-![Four combinations compared: Claude Code only, two-tool combos, and full triple stack](07-comparison-combinations.webp)
+```mermaid
+quadrantChart
+    title 四种组合分别落在哪个象限
+    x-axis "纪律弱" --> "纪律强"
+    y-axis "记忆短" --> "记忆持久"
+    quadrant-1 "三件套 ✅"
+    quadrant-2 "OpenSpec + Claude Code"
+    quadrant-3 "只有 Claude Code"
+    quadrant-4 "Superpowers + Claude Code"
+    "只用 Claude Code": [0.18, 0.15]
+    "加 Superpowers": [0.78, 0.22]
+    "加 OpenSpec": [0.22, 0.80]
+    "三件套": [0.82, 0.86]
+```
 
 ### 只用 Claude Code：快但乱
 
@@ -414,7 +514,26 @@ Spec 管的是"要什么结果"，不管"怎么写代码"。后者是 Superpower
 
 ## 第六层：知道什么时候不该用
 
-![Decision matrix for choosing the right tool combination](01-decision-matrix.webp)
+```mermaid
+flowchart TD
+    Start["新任务来了"] --> Dur{"预估工时？"}
+    Dur -->|< 2h 原型| Solo["只用 Claude Code<br/><i>不写 spec 不跑 TDD</i>"]
+    Dur -->|2–8h 个人| Pair["Claude Code +<br/>Superpowers<br/><i>TDD + worktree</i>"]
+    Dur -->|4–16h 团队| Team{"团队协作 /<br/>长期维护？"}
+    Dur -->|大型 / 多特性并行| Full["三件套 +<br/>并行 worktree"]
+
+    Team -->|是| Full
+    Team -->|否| Pair
+
+    Solo --> Risk1{"要上生产？"}
+    Risk1 -->|是| Pair
+    Risk1 -->|否，一次性脚本| Solo
+
+    style Solo fill:#4a5568,color:#fff
+    style Pair fill:#2b6cb0,color:#fff
+    style Full fill:#018472,color:#fff
+    style Start fill:#1a202c,color:#fff
+```
 
 到这里，你可能已经对三件套很有好感了。但我必须泼一盆冷水：**不是所有项目都适合上全套**。过度工程化和工程化不足一样有害。
 

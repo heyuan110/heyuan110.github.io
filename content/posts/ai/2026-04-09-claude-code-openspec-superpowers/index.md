@@ -42,7 +42,23 @@ If you've used Claude Code or any AI coding tool seriously, these scenarios will
 
 These problems can't be solved with better prompts — they require **different tools operating at different layers.** That's what this article is about: Claude Code + OpenSpec + Superpowers.
 
-![AI coding three common problems: requirement drift, missing discipline, decision amnesia](03-comparison-three-problems.webp)
+```mermaid
+flowchart LR
+    A["Natural-language<br/>request"] -->|Wall 1| B["Wrong feature shipped<br/>(Session auth instead of JWT)"]
+    A -->|Wall 2| C["Skips tests, branches,<br/>code review"]
+    A -->|Wall 3| D["Decisions vanish<br/>when chat closes"]
+
+    B --> E["Burnt tokens,<br/>rework"]
+    C --> F["Ships fast,<br/>breaks silently"]
+    D --> G["No audit trail<br/>3 months later"]
+
+    style B fill:#c53030,color:#fff
+    style C fill:#dd6b20,color:#fff
+    style D fill:#805ad5,color:#fff
+    style E fill:#4a5568,color:#fff
+    style F fill:#4a5568,color:#fff
+    style G fill:#4a5568,color:#fff
+```
 
 ## Layer 1: Meet the Three Tools
 
@@ -104,7 +120,23 @@ Without OpenSpec, Superpowers handles everything — brainstorming first explore
 
 **One-line summary**: OpenSpec handles planning, Superpowers handles coding discipline, Claude Code executes. They don't conflict — each owns its stage.
 
-![Three-layer architecture: OpenSpec requirements, Superpowers discipline, Claude Code execution](04-framework-three-layers.webp)
+<div style="display:grid;grid-template-columns:1fr;gap:12px;margin:24px 0;font-family:system-ui,-apple-system,sans-serif;">
+  <div style="background:linear-gradient(135deg,#018472 0%,#015f54 100%);color:#fff;padding:18px 24px;border-radius:10px;">
+    <div style="font-size:12px;letter-spacing:1.5px;opacity:.75;text-transform:uppercase;">Layer 1 · Requirements</div>
+    <div style="font-size:20px;font-weight:700;margin:4px 0 8px;">OpenSpec</div>
+    <div style="font-size:14px;opacity:.9;line-height:1.5;">proposal.md · specs/ · design.md · tasks.md — what you build and why, persisted on disk.</div>
+  </div>
+  <div style="background:linear-gradient(135deg,#2b6cb0 0%,#1e4e8c 100%);color:#fff;padding:18px 24px;border-radius:10px;">
+    <div style="font-size:12px;letter-spacing:1.5px;opacity:.75;text-transform:uppercase;">Layer 2 · Discipline</div>
+    <div style="font-size:20px;font-weight:700;margin:4px 0 8px;">Superpowers</div>
+    <div style="font-size:14px;opacity:.9;line-height:1.5;">TDD · code-review · verification · subagent-driven-dev — how it gets built, if you wire it in CLAUDE.md.</div>
+  </div>
+  <div style="background:linear-gradient(135deg,#4a5568 0%,#2d3748 100%);color:#fff;padding:18px 24px;border-radius:10px;">
+    <div style="font-size:12px;letter-spacing:1.5px;opacity:.75;text-transform:uppercase;">Layer 3 · Execution</div>
+    <div style="font-size:20px;font-weight:700;margin:4px 0 8px;">Claude Code</div>
+    <div style="font-size:14px;opacity:.9;line-height:1.5;">Edits files · runs tests · handles Git · spawns subagents — the hands that actually type.</div>
+  </div>
+</div>
 
 ## Layer 2: Installation — Get All Three Running
 
@@ -177,7 +209,22 @@ Refine if needed by editing the files directly — there's no separate refine co
 
 **What you gained**: A structured blueprint. All subsequent AI work is based on this document, not your one-sentence description.
 
-![OpenSpec generates four structured documents from one requirement: proposal, specs, design, tasks](05-infographic-openspec-docs.webp)
+```mermaid
+flowchart LR
+    Req["One-sentence request:<br/><i>user auth API with Express + MongoDB + JWT</i>"]
+    Req --> Propose["/opsx:propose"]
+    Propose --> P["<b>proposal.md</b><br/>Why · What · <br/>Out-of-Scope"]
+    Propose --> S["<b>specs/</b><br/>GIVEN / WHEN / THEN<br/>behaviour"]
+    Propose --> D["<b>design.md</b><br/>bcrypt vs argon2<br/>JWT TTL · ORM choice"]
+    Propose --> T["<b>tasks.md</b><br/>2–5 min checkboxes"]
+
+    style Req fill:#2d3748,color:#fff
+    style Propose fill:#018472,color:#fff
+    style P fill:#1e4e8c,color:#fff
+    style S fill:#1e4e8c,color:#fff
+    style D fill:#1e4e8c,color:#fff
+    style T fill:#1e4e8c,color:#fff
+```
 
 ### 3.2 Planning Done, Coding Discipline Takes Over
 
@@ -211,7 +258,26 @@ With TDD configured in CLAUDE.md, subagent mode activates — parallel execution
 
 **What you gained**: AI working on an isolated Git branch, following specs, with TDD enforcement (when configured in CLAUDE.md). If it goes wrong, discard the branch — your main code is untouched. **Wall 2 solved.**
 
-![TDD cycle enforced by Superpowers: RED (write failing test) → GREEN (write implementation) → REFACTOR](06-flowchart-tdd-cycle.webp)
+```mermaid
+stateDiagram-v2
+    [*] --> RED
+    RED: 🔴 RED<br/>Write a failing test<br/>(no implementation yet)
+    GREEN: 🟢 GREEN<br/>Write just enough code<br/>to pass the test
+    REFACTOR: 🔵 REFACTOR<br/>Clean up while tests stay green
+    REVIEW: ✅ Code Review<br/>Superpowers self-audit
+
+    RED --> GREEN: test runs and fails
+    GREEN --> REFACTOR: test passes
+    REFACTOR --> REVIEW: no regression
+    REVIEW --> RED: next task
+    REVIEW --> [*]: task list done
+
+    note right of RED
+      If any implementation
+      exists before the test,
+      Superpowers deletes it.
+    end note
+```
 
 ### 3.4 Verify + Archive
 
@@ -231,7 +297,28 @@ curl -X POST http://localhost:5000/api/register \
 
 Requirements to running API — your work was: confirm requirements → answer design questions → review plan → verify results.
 
-![Three-layer workflow pipeline: specification, discipline enforcement, and code execution](02-workflow-pipeline.webp)
+```mermaid
+flowchart LR
+    U["You:<br/>one-line<br/>request"] --> Propose
+    subgraph OpenSpec
+        Propose["/opsx:propose"] --> Artifacts["proposal / specs<br/>design / tasks"]
+    end
+    subgraph Superpowers
+        Artifacts --> Plan["tasks.md<br/>review"]
+        Plan --> TDD["TDD loop<br/>(RED→GREEN→REVIEW)"]
+    end
+    subgraph ClaudeCode["Claude Code"]
+        TDD --> Exec["edits · tests · git"]
+    end
+    Exec --> Archive["/opsx:archive<br/>spec delta merged"]
+    Archive --> U
+
+    style OpenSpec fill:#018472,color:#fff
+    style Superpowers fill:#2b6cb0,color:#fff
+    style ClaudeCode fill:#4a5568,color:#fff
+    style U fill:#1a202c,color:#fff
+    style Archive fill:#c05621,color:#fff
+```
 
 ## Layer 4: Why All Three Are Necessary
 
@@ -253,7 +340,20 @@ Only the first two rows overlap. Everything else is **purely complementary.** Pe
 
 With this table in mind, it's clear what breaks when you remove each tool.
 
-![Four combinations compared: Claude Code only, two-tool combos, and full triple stack](07-comparison-combinations.webp)
+```mermaid
+quadrantChart
+    title Four tool combinations — where they land
+    x-axis "Low discipline" --> "High discipline"
+    y-axis "Short memory" --> "Persistent memory"
+    quadrant-1 "Full triple ✅"
+    quadrant-2 "OpenSpec + Claude Code"
+    quadrant-3 "Claude Code alone"
+    quadrant-4 "Superpowers + Claude Code"
+    "Claude Code only": [0.18, 0.15]
+    "+ Superpowers": [0.78, 0.22]
+    "+ OpenSpec": [0.22, 0.80]
+    "Full triple": [0.82, 0.86]
+```
 
 ### Claude Code Only: Fast but Chaotic
 
@@ -304,7 +404,26 @@ Catching these before coding reduced fix costs by an estimated 5-10x. Tasks expa
 
 ## Layer 6: Knowing When NOT to Use It
 
-![Decision matrix for choosing the right tool combination](01-decision-matrix.webp)
+```mermaid
+flowchart TD
+    Start["New task arrives"] --> Dur{"Estimated effort?"}
+    Dur -->|< 2h prototype| Solo["Claude Code only<br/><i>no specs, no TDD</i>"]
+    Dur -->|2–8h personal| Pair["Claude Code +<br/>Superpowers<br/><i>TDD + worktree</i>"]
+    Dur -->|4–16h team| Team{"Team collab /<br/>long-term maint?"}
+    Dur -->|Large / parallel| Full["Full triple +<br/>parallel worktrees"]
+
+    Team -->|Yes| Full
+    Team -->|No| Pair
+
+    Solo --> Risk1{"Shipping to prod?"}
+    Risk1 -->|Yes| Pair
+    Risk1 -->|No, throwaway| Solo
+
+    style Solo fill:#4a5568,color:#fff
+    style Pair fill:#2b6cb0,color:#fff
+    style Full fill:#018472,color:#fff
+    style Start fill:#1a202c,color:#fff
+```
 
 **Not every project needs the full stack.** Over-engineering is just as harmful as under-engineering.
 
