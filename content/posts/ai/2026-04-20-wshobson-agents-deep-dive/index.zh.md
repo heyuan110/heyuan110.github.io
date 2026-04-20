@@ -90,68 +90,41 @@ flowchart TB
 这是 README 应该一开头就放的参考手册。我拉了完整的 `marketplace.json`（1.6.0 版本，声明有 79 个 Plugin——78 个本地的加上外部的 `qa-orchestra`），每个都浓缩成一行：干什么用、什么时候装。如果你认真用这个仓库，把这一节收藏起来，接到新任务时回来查。
 
 ```mermaid
+%%{init: {"theme":"dark","themeVariables":{"fontSize":"15px","fontFamily":"ui-sans-serif,system-ui","lineColor":"#60a5fa"}}}%%
 mindmap
-  root((79 Plugin<br/>25 分类))
-    开发 6
-      debugging-toolkit
-      backend-development
-      frontend-mobile-development
-      multi-platform-apps
-      ui-design
-      developer-essentials
-    基础设施 5
-      cloud-infrastructure
-      kubernetes-operations
-      cicd-automation
-      deployment-strategies
-      deployment-validation
-    安全 6
-      security-scanning
-      security-compliance
-      backend-api-security
-      frontend-mobile-security
-      reverse-engineering
-      block-no-verify
-    语言 10
+  root((📦 79 Plugin<br/>25 分类))
+    🎨 开发 + 语言
       python-development
       javascript-typescript
-      systems-programming
-      jvm-languages
-      web-scripting
-      functional-programming
-      julia-development
-      shell-scripting
-      dotnet-contribution
-      arm-cortex
-    工作流 5
-      conductor
-      full-stack-orchestration
-      tdd-workflows
-      git-pr-workflows
-      agent-teams
-    运维 4
+      backend-development
+    ☁️ 基础设施 + 运维
+      kubernetes-operations
+      cloud-infrastructure
       incident-response
-      error-diagnostics
-      distributed-debugging
-      observability-monitoring
-    质量 3
-      comprehensive-review
-      performance-testing-review
-      plugin-eval
-    治理 2
-      protect-mcp
-      signed-audit-trails
-    AI_ML 4
+    🔒 安全 + 治理
+      security-scanning
+      ⭐ protect-mcp
+      ⭐ block-no-verify
+    🔄 工作流 + 质量
+      ⭐ conductor
+      ⭐ agent-teams
+      ⭐ plugin-eval
+    🤖 AI/ML + 数据
       llm-application-dev
       agent-orchestration
-      context-management
       machine-learning-ops
-    商业 4
-      business-analytics
+    📚 文档 + 架构
+      c4-architecture
+      ⭐ HADS
+    💼 商业 + 营销
       startup-business-analyst
-      hr-legal-compliance
-      customer-sales-automation
+      seo-content-creation
+    🎨 垂直领域
+      blockchain-web3
+      quantitative-trading
+      meigen-ai-design
 ```
+<p style="text-align:center;color:#64748b;font-size:13px;margin-top:-10px">⭐ = 竞品没有的独家组件（每类仅列 2-3 个代表，完整 79 项见下面目录）</p>
 
 ### 🎨 开发类 Development（6 个）
 
@@ -375,40 +348,50 @@ mindmap
 现在看 Agent 层。每个 Agent 都在 frontmatter 声明 `model` 字段——决定了跑它多贵。分布：
 
 ```mermaid
-flowchart LR
-    subgraph T1["Tier 1 · Opus 4.7<br/>42 Agent · $5/$25 每 M token"]
+%%{init: {"theme":"dark","themeVariables":{"fontSize":"14px","fontFamily":"ui-sans-serif,system-ui"}}}%%
+flowchart TB
+    subgraph T1["🧠 Tier 1 · Opus 4.7 &nbsp;·&nbsp; 42 Agent &nbsp;·&nbsp; $5 / $25 每 M &nbsp;—&nbsp; 规划 + 审查"]
+        direction LR
         A1[backend-architect]
         A2[security-auditor]
         A3[ai-engineer]
         A4[code-reviewer]
     end
-    subgraph T2["Tier 2 · Inherit<br/>42 Agent · 跟随会话默认"]
+    subgraph T2["⚙️ Tier 2 · Inherit &nbsp;·&nbsp; 42 Agent &nbsp;·&nbsp; 跟随会话默认 &nbsp;—&nbsp; 成本可控"]
+        direction LR
         B1[frontend-developer]
         B2[ml-engineer]
+        B3[mobile-developer]
+        B4[flutter-expert]
     end
-    subgraph T3["Tier 3 · Sonnet 4.6<br/>51 Agent · $3/$15 每 M"]
+    subgraph T3["🔧 Tier 3 · Sonnet 4.6 &nbsp;·&nbsp; 51 Agent &nbsp;·&nbsp; $3 / $15 每 M &nbsp;—&nbsp; 实施 + 测试"]
+        direction LR
         C1[python-pro]
-        C2[test-automator]
-        C3[debugger]
+        C2[typescript-pro]
+        C3[test-automator]
+        C4[debugger]
     end
-    subgraph T4["Tier 4 · Haiku 4.5<br/>18 Agent · $1/$5 每 M"]
+    subgraph T4["⚡ Tier 4 · Haiku 4.5 &nbsp;·&nbsp; 18 Agent &nbsp;·&nbsp; $1 / $5 每 M &nbsp;—&nbsp; 快速操作"]
+        direction LR
         D1[seo-meta-optimizer]
         D2[sales-automator]
         D3[c4-code]
+        D4[reference-builder]
     end
 
-    T1 -->|规划 + 审查| T3
-    T3 -->|实施 + 测试| T4
-    T4 -->|部署 + 打磨| T4
+    T1 ==>|规划| T3
+    T3 ==>|实施| T4
 
-    classDef opus fill:#7c2d12,stroke:#f59e0b,color:#fff
-    classDef inherit fill:#374151,stroke:#9ca3af,color:#fff
-    classDef sonnet fill:#065f46,stroke:#34d399,color:#fff
-    classDef haiku fill:#1e3a8a,stroke:#60a5fa,color:#fff
+    classDef opus fill:#7c2d12,stroke:#f59e0b,color:#fde68a,stroke-width:2px
+    classDef inherit fill:#374151,stroke:#9ca3af,color:#f3f4f6,stroke-width:2px
+    classDef sonnet fill:#065f46,stroke:#34d399,color:#d1fae5,stroke-width:2px
+    classDef haiku fill:#1e3a8a,stroke:#60a5fa,color:#dbeafe,stroke-width:2px
+    classDef node fill:#1e293b,stroke:#475569,color:#e2e8f0
     class T1 opus
     class T2 inherit
     class T3 sonnet
     class T4 haiku
+    class A1,A2,A3,A4,B1,B2,B3,B4,C1,C2,C3,C4,D1,D2,D3,D4 node
 ```
 
 **Tier 1（42 个 Opus Agent）** 是思考者：`backend-architect`、`security-auditor`、`code-reviewer`、`ai-engineer`、`prompt-engineer`、`ml-engineer`、`database-architect`。决策错了代价昂贵的场景——系统设计、威胁建模、捕捉架构漂移的代码审查。

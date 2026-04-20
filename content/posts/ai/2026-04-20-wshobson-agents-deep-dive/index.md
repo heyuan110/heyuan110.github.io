@@ -90,68 +90,41 @@ One plugin can ship any combination. The `python-development` plugin ships 3 age
 This is the reference section the repo's README should have opened with. I pulled the full `marketplace.json` (version 1.6.0, which declares 79 plugins — 78 local plus the external `qa-orchestra`) and distilled each one into a single line: what it does, and when to install it. If you are going to use this repo seriously, bookmark this section and come back when you pick up a new task.
 
 ```mermaid
+%%{init: {"theme":"dark","themeVariables":{"fontSize":"15px","fontFamily":"ui-sans-serif,system-ui","lineColor":"#60a5fa"}}}%%
 mindmap
-  root((79 plugins<br/>25 categories))
-    Development 6
-      debugging-toolkit
-      backend-development
-      frontend-mobile-development
-      multi-platform-apps
-      ui-design
-      developer-essentials
-    Infrastructure 5
-      cloud-infrastructure
-      kubernetes-operations
-      cicd-automation
-      deployment-strategies
-      deployment-validation
-    Security 6
-      security-scanning
-      security-compliance
-      backend-api-security
-      frontend-mobile-security
-      reverse-engineering
-      block-no-verify
-    Languages 10
+  root((📦 79 plugins<br/>25 categories))
+    🎨 Dev + Languages
       python-development
       javascript-typescript
-      systems-programming
-      jvm-languages
-      web-scripting
-      functional-programming
-      julia-development
-      shell-scripting
-      dotnet-contribution
-      arm-cortex
-    Workflows 5
-      conductor
-      full-stack-orchestration
-      tdd-workflows
-      git-pr-workflows
-      agent-teams
-    Operations 4
+      backend-development
+    ☁️ Infra + Ops
+      kubernetes-operations
+      cloud-infrastructure
       incident-response
-      error-diagnostics
-      distributed-debugging
-      observability-monitoring
-    Quality 3
-      comprehensive-review
-      performance-testing-review
-      plugin-eval
-    Governance 2
-      protect-mcp
-      signed-audit-trails
-    AI_ML 4
+    🔒 Security + Governance
+      security-scanning
+      ⭐ protect-mcp
+      ⭐ block-no-verify
+    🔄 Workflows + Quality
+      ⭐ conductor
+      ⭐ agent-teams
+      ⭐ plugin-eval
+    🤖 AI/ML + Data
       llm-application-dev
       agent-orchestration
-      context-management
       machine-learning-ops
-    Business 4
-      business-analytics
+    📚 Docs + Architecture
+      c4-architecture
+      ⭐ HADS
+    💼 Business + Marketing
       startup-business-analyst
-      hr-legal-compliance
-      customer-sales-automation
+      seo-content-creation
+    🎨 Vertical domains
+      blockchain-web3
+      quantitative-trading
+      meigen-ai-design
 ```
+<p style="text-align:center;color:#64748b;font-size:13px;margin-top:-10px">⭐ = moats competitors do not ship (2-3 representatives shown per cluster; full 79-entry catalog below)</p>
 
 ### 🎨 Development (6 plugins)
 
@@ -375,40 +348,50 @@ The takeaway: **the language packs are table stakes**. The six components above 
 Now the agent layer. Every agent declares a `model` field that decides how expensive it is to run. The distribution:
 
 ```mermaid
-flowchart LR
-    subgraph T1["Tier 1 — Opus 4.7<br/>42 agents · $5/$25 per M tokens"]
+%%{init: {"theme":"dark","themeVariables":{"fontSize":"14px","fontFamily":"ui-sans-serif,system-ui"}}}%%
+flowchart TB
+    subgraph T1["🧠 Tier 1 · Opus 4.7 &nbsp;·&nbsp; 42 agents &nbsp;·&nbsp; $5 / $25 per M &nbsp;—&nbsp; plan + review"]
+        direction LR
         A1[backend-architect]
         A2[security-auditor]
         A3[ai-engineer]
         A4[code-reviewer]
     end
-    subgraph T2["Tier 2 — Inherit<br/>42 agents · your session default"]
+    subgraph T2["⚙️ Tier 2 · Inherit &nbsp;·&nbsp; 42 agents &nbsp;·&nbsp; session default &nbsp;—&nbsp; cost-controlled"]
+        direction LR
         B1[frontend-developer]
         B2[ml-engineer]
+        B3[mobile-developer]
+        B4[flutter-expert]
     end
-    subgraph T3["Tier 3 — Sonnet 4.6<br/>51 agents · $3/$15 per M"]
+    subgraph T3["🔧 Tier 3 · Sonnet 4.6 &nbsp;·&nbsp; 51 agents &nbsp;·&nbsp; $3 / $15 per M &nbsp;—&nbsp; implement + test"]
+        direction LR
         C1[python-pro]
-        C2[test-automator]
-        C3[debugger]
+        C2[typescript-pro]
+        C3[test-automator]
+        C4[debugger]
     end
-    subgraph T4["Tier 4 — Haiku 4.5<br/>18 agents · $1/$5 per M"]
+    subgraph T4["⚡ Tier 4 · Haiku 4.5 &nbsp;·&nbsp; 18 agents &nbsp;·&nbsp; $1 / $5 per M &nbsp;—&nbsp; fast ops"]
+        direction LR
         D1[seo-meta-optimizer]
         D2[sales-automator]
         D3[c4-code]
+        D4[reference-builder]
     end
 
-    T1 -->|plan + review| T3
-    T3 -->|implement + test| T4
-    T4 -->|deploy + polish| T4
+    T1 ==>|plan| T3
+    T3 ==>|implement| T4
 
-    classDef opus fill:#7c2d12,stroke:#f59e0b,color:#fff
-    classDef inherit fill:#374151,stroke:#9ca3af,color:#fff
-    classDef sonnet fill:#065f46,stroke:#34d399,color:#fff
-    classDef haiku fill:#1e3a8a,stroke:#60a5fa,color:#fff
+    classDef opus fill:#7c2d12,stroke:#f59e0b,color:#fde68a,stroke-width:2px
+    classDef inherit fill:#374151,stroke:#9ca3af,color:#f3f4f6,stroke-width:2px
+    classDef sonnet fill:#065f46,stroke:#34d399,color:#d1fae5,stroke-width:2px
+    classDef haiku fill:#1e3a8a,stroke:#60a5fa,color:#dbeafe,stroke-width:2px
+    classDef node fill:#1e293b,stroke:#475569,color:#e2e8f0
     class T1 opus
     class T2 inherit
     class T3 sonnet
     class T4 haiku
+    class A1,A2,A3,A4,B1,B2,B3,B4,C1,C2,C3,C4,D1,D2,D3,D4 node
 ```
 
 **Tier 1 (42 Opus agents)** are the thinkers: `backend-architect`, `security-auditor`, `code-reviewer`, `ai-engineer`, `prompt-engineer`, `ml-engineer`, `database-architect`. They handle the decisions where wrong-ness is expensive — system design, threat modeling, code review catching architectural drift.
