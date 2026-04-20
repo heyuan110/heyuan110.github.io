@@ -56,8 +56,15 @@ metadata:
 | Diagram won't render | Check unmatched brackets, quotes |
 | List syntax error | `[1.Item]` not `[1. Item]` |
 | Subgraph reference fails | Use ID not display name |
-| Too crowded | Split into multiple diagrams |
+| Too crowded | Trim to 2-3 representatives per branch — see [aesthetics.md §1](references/aesthetics.md) |
 | Crossing connections | Use different layout direction or invisible edges `~~~` |
+| Ugly / cramped / cut off | See [aesthetics.md](references/aesthetics.md) — do NOT swap to HTML before trying the 6 fixes there |
+| Subgraph sizes uneven | Fill sparse groups up to match — [aesthetics.md §3](references/aesthetics.md) |
+| LR diagram cut off at right | Switch to TB when subgraphs ≥ 4 — [aesthetics.md §2](references/aesthetics.md) |
+
+## Aesthetics (how to make diagrams not ugly)
+
+Rendering correctly ≠ looking good. When a user says "this chart is ugly / make it prettier / fix the layout," **optimize the existing diagram first — do not switch to HTML/architecture**. Full playbook with before/after examples, density ceilings, theme variable templates, and color palette lives at [references/aesthetics.md](references/aesthetics.md). Run its 10-item self-check after any non-trivial chart.
 
 ---
 

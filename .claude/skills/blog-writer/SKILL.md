@@ -537,3 +537,5 @@ blog-growth → 选题 → blog-writer（本 skill）
 ```
 
 **决策口诀**：能 mermaid 不 architecture，能 architecture 不 AI 生图；一定要 AI 生图时，信息卡走 blog-diagram，插画走 blog-illustrator。
+
+**mermaid 画丑了怎么办**：用户反馈"图丑 / 看不清 / 布局乱"时，**先优化原图不要换技术栈**——查 `.claude/skills/mermaid/references/aesthetics.md`，按顺序检查：① 节点密度（mindmap ≤ 25、subgraph ≤ 5）→ ② 方向 LR/TB（4+ subgraph 必须 TB）→ ③ 主题变量（fontSize/lineColor/theme）→ ④ classDef 三件套（fill+stroke+color）→ ⑤ subgraph 节点数平衡。把原图美化到位远比换成 HTML grid 好——换技术栈 = 推翻重建 = 没听懂"美化"需求。
