@@ -2,10 +2,10 @@
 date = '2026-04-03T14:00:00+08:00'
 draft = false
 title = 'Claude 订阅价格全对比 2026：Pro/Max/Team/API 哪个最划算？'
-description = 'Claude 多少钱？Pro 20 美元值不值？Max 5x 和 20x 怎么选？一文讲透 2026 年免费版、Pro、Max、Team、Enterprise 和 API 所有套餐的价格、用量上限和适用场景，附省钱建议和选型决策树。'
+description = '2026 年 Claude Pro 还是 20 美元/月吗？API 价格多少？免费额度够用吗？一文讲透免费版、Pro、Max 5x/20x、Team、Enterprise 和 API 六档套餐的最新价格、用量上限与适用场景，附省钱建议和选型决策树。'
 toc = true
 tags = ['Claude', 'AI Tools', 'Pricing', 'Claude Code']
-keywords = ['claude 价格 2026', 'claude pro 价格', 'claude max 套餐', 'claude 免费版限制', 'claude code 费用', 'claude pro 限制', 'claude 订阅多少钱', 'claude team 价格', 'claude 多少钱', 'claude 值不值', 'claude pro vs max', 'claude api 价格']
+keywords = ['claude 价格 2026', 'claude pro 价格 2026', 'claude pro 当前价格 2026', 'claude pro 额度 2026', 'claude pro 订阅多少钱', 'claude api 价格 2026', 'claude 免费额度 2026', 'claude ai 最新版本 2026', 'claude max 套餐', 'claude 免费版限制', 'claude code 费用', 'claude team 价格', 'claude 多少钱', 'claude pro vs max', 'claude pro 官方价格 2026']
 
 [[params.faqItems]]
 question = "Claude Pro 一个月多少钱？值不值得订阅？"
@@ -236,7 +236,7 @@ Claude Code 是 Anthropic 的终端编程代理，在 Pro、Max、Team、API 上
 - **快速模式上线**：Opus 4.6 提供 6 倍速度的付费选项
 - **Team 版改版**：标准座位和高级座位灵活搭配
 
-## 延伸阅读
+## 相关阅读
 
 - [Claude Code 定价完全指南](/posts/ai/2026-02-25-claude-code-pricing/) — API 真实成本和用量估算
 - [Claude 速率限制详解](/posts/ai/2026-02-28-claude-rate-limits/) — 滚动窗口、模型选择和对话长度怎么影响限额

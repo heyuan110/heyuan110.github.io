@@ -2,10 +2,10 @@
 date = '2026-03-17T10:00:00+08:00'
 draft = false
 title = 'Chrome DevTools MCP 完整配置指南：三种连接方式与避坑实录'
-description = '解决 Chrome DevTools MCP 最常见的坑：AI 每次打开新窗口、登录态丢失。三种连接方式（9222 端口、autoConnect、user-data-dir）详解，适用 Claude Code 和 Cursor，配完即用。'
+description = '2026 Chrome DevTools MCP 最全配置教程：彻底解决「AI 每次开新窗口、登录态全丢」两大坑。三种连接方式（9222 端口、autoConnect、user-data-dir）详解，适用 Claude Code 和 Cursor，10 分钟配完即用。'
 toc = true
 tags = ['Chrome DevTools', 'MCP', 'AI Coding Tools', 'Claude Code']
-keywords = ['Chrome DevTools MCP 配置教程', 'Chrome DevTools MCP 怎么用', 'Claude Code 浏览器调试', 'MCP 打开新窗口怎么解决', 'Chrome 远程调试端口 9222', 'Chrome MCP 连接已有浏览器', 'AI 调试工具 MCP 配置', 'Cursor MCP 浏览器配置', 'Chrome DevTools MCP 避坑', 'MCP 浏览器自动化 2026']
+keywords = ['chrome mcp 教程 2026', 'chrome devtools mcp 安装', 'chrome devtools mcp claude code 配置', 'chrome mcp autoconnect', 'chrome mcp 端口 9222 教程', 'mcp 浏览器工具推荐', 'Chrome DevTools MCP 配置教程', 'Chrome DevTools MCP 怎么用', 'Claude Code 浏览器调试', 'MCP 打开新窗口怎么解决', 'Chrome MCP 连接已有浏览器', 'Cursor MCP 浏览器配置', 'Chrome DevTools MCP 避坑', 'MCP 浏览器自动化 2026']
 
 [[params.faqItems]]
 question = "Chrome DevTools MCP 是什么？"

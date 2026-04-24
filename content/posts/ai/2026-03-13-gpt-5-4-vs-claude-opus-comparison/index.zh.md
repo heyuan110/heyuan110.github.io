@@ -2,10 +2,10 @@
 date = '2026-03-13T10:00:00+08:00'
 draft = false
 title = 'GPT-5.4 vs Claude Opus 4.6 终极对比 2026：编程/价格/Agent 谁赢？'
-description = 'GPT-5 和 Claude 到底哪个强？实测 SWE-bench Pro（57.7% vs 45.9%）、API 价格（便宜一半）、100 万上下文、Agent Teams 并行开发等 8 大维度，给出编程/写作/自动化场景的明确选型结论。'
+description = '一文看懂 2026 AI 模型选型。GPT-5 和 Claude 到底哪个强？实测 SWE-bench Pro（57.7% vs 45.9%）、API 价格（便宜一半）、100 万上下文、Agent Teams 并行开发等 8 大维度，给出编程/写作/自动化场景的明确选型结论。'
 toc = true
 tags = ['AI Coding Tools', 'GPT-5.4', 'Claude Code', 'AI Agent']
-keywords = ['GPT-5.4 和 Claude Opus 4.6 哪个好', 'GPT-5.4 对比 Claude Opus', 'GPT-5 评测 2026', 'Claude Opus 4.6 评测', 'AI 编程模型哪个强', 'GPT-5.4 vs Claude 价格对比', 'ChatGPT 和 Claude 哪个更好用', '最强 AI 编程模型 2026', 'AI 模型选哪个 2026', 'GPT-5.4 Claude Opus 性价比对比', 'GPT-5 vs Claude', 'GPT 还是 Claude', 'Claude 和 ChatGPT 哪个好']
+keywords = ['gpt-5 和 claude 哪个好 2026', 'gpt-5.4 评测 2026', 'claude opus 4.6 测评', 'claude gpt 对比 2026', 'ai 大模型 对比 2026', 'chatgpt 和 claude 哪个更好', '2026 最强 ai 模型', 'GPT-5.4 和 Claude Opus 4.6 哪个好', 'GPT-5.4 对比 Claude Opus', 'AI 编程模型哪个强', 'GPT-5.4 vs Claude 价格对比', 'AI 模型选哪个 2026', 'GPT-5.4 Claude Opus 性价比对比', 'GPT 还是 Claude']
 
 [[params.faqItems]]
 question = "GPT-5.4 和 Claude Opus 4.6 哪个更适合写代码？"
@@ -245,7 +245,7 @@ Agent Teams 让多个 Opus 实例并行处理项目的不同部分。主代理�
 **GPT-5.4 能操控电脑吗？**
 可以。GPT-5.4 内置原生电脑操控功能——它能识别屏幕内容并操控鼠标键盘，自动化各种桌面应用的工作流。它在 OSWorld-Verified 上拿到 75% 的得分，超过了人类平均水平。
 
-## 延伸阅读
+## 相关阅读
 
 - [2026 年 AI 编程 Agent 大横评](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — AI 编程工具全景
 - [Claude Code Agent Teams 指南](/posts/ai/2026-02-22-claude-code-agent-teams/) — 多代理编排深度解析

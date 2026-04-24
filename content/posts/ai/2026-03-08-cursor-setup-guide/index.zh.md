@@ -2,11 +2,11 @@
 date = '2026-03-08T18:00:00+08:00'
 draft = false
 title = 'Cursor 完全指南 2026：从安装到高级 Agent 模式实战'
-description = '详细的 Cursor IDE 配置教程，涵盖安装、Agent 模式、Rules 配置、TDD 工作流、并行执行等高效 AI 编程实践，助你最大化开发效率。'
+description = '2026 Cursor IDE 从零上手实测教程：10 分钟装好、Agent 模式/Rules 配置/TDD 工作流/Git Worktrees 并行执行全流程讲透。新手老手都能照做，直接上生产。'
 toc = true
 tags = ['Cursor', 'AI Coding Tools', 'AI IDE', 'Setup Guide']
 categories = ['AI Guides']
-keywords = ['cursor 使用教程', 'cursor ide 配置', 'cursor agent 模式', 'cursor 最佳实践 2026', 'cursor 规则配置', 'ai ide 设置', 'cursor 入门指南']
+keywords = ['cursor 新手教程 2026', 'cursor 下载安装', 'cursor agent 怎么用', 'cursor ide 配置教程', 'cursor 和 claude code 对比', 'cursor 使用教程', 'cursor ide 配置', 'cursor agent 模式', 'cursor 最佳实践 2026', 'cursor 规则配置', 'ai ide 设置', 'cursor 入门指南', 'cursor rules 配置', 'cursor 安装教程 2026']
 
 [[params.faqItems]]
 question = "Cursor Agent 模式是什么？怎么用？"
@@ -442,7 +442,7 @@ Cursor 支持在 `.cursor/commands/` 中定义自定义命令，实现可复用�
 
 Cursor 不只是一个装了 AI 的编辑器。配置得当、用对方法，它能真正成为你开发效率的倍增器。
 
-## 延伸阅读
+## 相关阅读
 
 - [Claude Code vs Cursor：哪个 AI 编程工具更适合你？](/posts/ai/2026-02-28-claude-code-vs-cursor/)
 - [Claude Code 完全指南](/posts/ai/2026-02-28-claude-code-complete-guide/)

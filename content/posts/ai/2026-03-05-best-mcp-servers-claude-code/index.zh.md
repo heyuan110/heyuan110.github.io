@@ -2,11 +2,11 @@
 date = '2026-03-03T14:00:00+08:00'
 draft = false
 title = '2026 年最值得装的 18 个 MCP 服务器：Claude Code 实测精选'
-description = '从 10000+ 个 MCP 服务器里帮你挑出最实用的 18 个：数据库直连、浏览器自动化、GitHub 操作、文档查询全覆盖。每个附安装命令 + 使用场景，30 分钟配好你的 AI 全套工具链。'
+description = '2026 从 10000+ 个 MCP 服务器里帮你挑出最实用的 18 个：数据库直连、浏览器自动化、GitHub 操作、文档查询全覆盖。每个附安装命令 + 使用场景，30 分钟配好你的 AI 全套工具链。'
 toc = true
 tags = ['Claude Code', 'MCP', 'AI Tools', 'Developer Tools']
 categories = ['AI Guides']
-keywords = ['Claude Code MCP 服务器推荐', '最好用的 MCP 服务器 2026', 'MCP 服务器怎么安装', 'Claude Code 必装插件', 'MCP 是什么怎么用', 'MCP 服务器列表推荐', 'Claude Code 扩展工具', 'AI 编程工具链配置 2026', 'MCP 浏览器自动化服务器', 'Claude Code 提效工具']
+keywords = ['mcp 服务器推荐 2026', 'claude code mcp 推荐', '好用的 mcp 服务器', 'mcp server 安装教程', 'claude 插件推荐', 'Claude Code MCP 服务器推荐', '最好用的 MCP 服务器 2026', 'MCP 服务器怎么安装', 'Claude Code 必装插件', 'MCP 是什么怎么用', 'MCP 服务器列表推荐', 'Claude Code 扩展工具', 'AI 编程工具链配置 2026', 'MCP 浏览器自动化服务器', 'Claude Code 提效工具']
 
 [[params.faqItems]]
 question = "Claude Code 同时运行多少个 MCP 服务器比较合适？"

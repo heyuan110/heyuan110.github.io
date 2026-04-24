@@ -2,11 +2,11 @@
 date = '2026-02-25T12:00:00+08:00'
 draft = false
 title = 'Claude Code 安装配置完全指南 2026：10 分钟从零上手'
-description = 'Claude Code 2026 最新安装教程：终端一条命令安装、API Key 与 OAuth 登录、VS Code/JetBrains 集成、CLAUDE.md 配置、权限设置，附常见报错排查，10 分钟搞定。'
+description = 'Claude Code 2026 最新安装教程：macOS/Windows 终端一条命令搞定、API Key 与 OAuth 登录、VS Code/JetBrains 集成、CLAUDE.md 配置、常见 command not found 报错排查，10 分钟从零上手。'
 toc = true
 tags = ['Claude Code', 'Setup', 'Tutorial', 'Getting Started']
 categories = ['AI Guides']
-keywords = ['Claude Code 安装', 'Claude Code 配置', 'Claude Code 教程', 'Claude Code 使用指南', 'Claude Code 入门', 'Claude Code VS Code', 'Claude Code 怎么用', 'Claude Code 安装失败']
+keywords = ['claude code 安装教程 2026', 'claude code windows 安装', 'claude code mac 安装', 'claude code 报错 command not found', 'claude code api key 配置', 'claude code 怎么登录', 'Claude Code 安装', 'Claude Code 配置', 'Claude Code 教程', 'Claude Code 使用指南', 'Claude Code 入门', 'Claude Code VS Code', 'Claude Code 怎么用', 'Claude Code 安装失败']
 
 [[params.faqItems]]
 question = "Claude Code 怎么安装？需要 Node.js 吗？"
