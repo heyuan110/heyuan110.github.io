@@ -1,6 +1,6 @@
 # 搜索词动态聚类算法
 
-在 RUBE_REMOTE_BASH_TOOL 中执行以下 Python 代码，对 GSC 搜索词进行动态聚类分析。
+在本地 Bash 工具中用 `python3 << 'PYEOF'` 执行以下代码（RUBE 过渡期也可用其远程沙箱），对 GSC 搜索词进行动态聚类分析。
 
 ## 核心代码
 

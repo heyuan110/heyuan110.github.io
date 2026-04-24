@@ -89,11 +89,19 @@ Quick 模式应尽量「不调 API」：
 
 ### 1.1 GSC 数据（搜索表现）
 
-通过 RUBE MCP 连接 Google Search Console，并行拉取 4 组数据：
+通过 **GSC MCP** 连接 Google Search Console，并行拉取 4 组数据。
+
+**MCP 来源**（2026-04-23 起 RUBE 将于 5/15 停服，已迁移到独立开源 MCP）：
+- 推荐：`mcp-search-console` / `mcp-gsc`（[AminForou/mcp-gsc](https://github.com/AminForou/mcp-gsc)）
+- 过渡期（~5/15 前）：RUBE MCP 仍可用
+
+**工具名约定**（运行时根据当前 MCP 配置动态解析，下方是语义签名）：
+- `list_properties` — 获取站点列表
+- `get_search_analytics` — 核心查询（对应 RUBE 的 `GOOGLE_SEARCH_CONSOLE_SEARCH_ANALYTICS_QUERY`）
 
 **连接配置**：
 ```
-# site_url 不要写死，运行时通过 GOOGLE_SEARCH_CONSOLE_LIST_SITES 动态获取
+# site_url 不要写死，运行时通过 list_properties 动态获取
 # 从返回的 siteEntry 中选择 sc-domain 类型的站点
 data_state: "final"
 ```
@@ -107,14 +115,21 @@ data_state: "final"
 
 ### 1.2 GA 数据（用户行为）
 
-通过 RUBE MCP 连接 Google Analytics，并行拉取 5 组数据：
+通过 **GA4 MCP** 连接 Google Analytics，并行拉取 5 组数据。
+
+**MCP 来源**（2026-04-23 迁移说明）：
+- 推荐：`ga4-mcp-server`（[surendranb/google-analytics-mcp](https://github.com/surendranb/google-analytics-mcp)）
+- 过渡期（~5/15 前）：RUBE MCP 仍可用
+
+**工具名约定**：
+- `search_schema` / `list_dimension_categories` — Schema 发现
+- `get_ga4_data` — 核心报告（对应 RUBE 的 `GOOGLE_ANALYTICS_RUN_REPORT`）
 
 **连接配置**：
 ```
 # property ID 不要写死在 skill 里，运行时通过 API 动态获取：
-# 1. 调用 GOOGLE_ANALYTICS_LIST_ACCOUNTS_V1_BETA 获取账号
-# 2. 调用 GOOGLE_ANALYTICS_LIST_PROPERTIES 获取该账号下的 property
-# 3. 用返回的 properties[].name 作为 property 参数
+# 方案 A (ga4-mcp-server): 通过环境变量 GA4_PROPERTY_ID 预配置
+# 方案 B (RUBE 过渡期): GOOGLE_ANALYTICS_LIST_ACCOUNTS_V1_BETA → GOOGLE_ANALYTICS_LIST_PROPERTIES_FILTERED
 ```
 
 | 报告 | 维度 | 指标 | 用途 |
@@ -125,9 +140,9 @@ data_state: "final"
 | 每日趋势 | date | activeUsers, sessions, screenPageViews | 日度走势 |
 | 设备分布 | deviceCategory | sessions, activeUsers, engagementRate | 移动端优先级判断 |
 
-### 1.3 数据处理（在 RUBE_REMOTE_BASH_TOOL 中执行）
+### 1.3 数据处理（本地 Bash + python3 执行）
 
-数据量大时用远程沙箱处理，提取以下关键指标：
+数据量大时用本地 `python3 << 'PYEOF'` 脚本处理（RUBE 过渡期也可用其远程沙箱），提取以下关键指标：
 
 **GSC 关键指标**：
 - Top 15 页面（按 clicks 排序）
