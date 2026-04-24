@@ -377,3 +377,10 @@ Cursor Agent 编码的核心原则可以归纳为：
 - [Cursor 官方文档](https://cursor.com/docs)
 - [原文：Best Practices for Agent Coding](https://cursor.com/blog/agent-best-practices)
 - [Cursor Rules 配置指南](https://cursor.com/docs/rules)
+
+## 相关阅读
+
+- [Cursor 完全指南 2026：从安装到高级 Agent 模式实战](/zh/posts/ai/2026-03-08-cursor-setup-guide/) — Cursor 的完整上手路径
+- [Cursor Composer 2 深度评测：Kimi K2.5 风波背后的真相与启示](/zh/posts/ai/2026-04-01-cursor-composer-2-review/) — Composer 2 的深度拆解
+- [Claude Code vs Cursor 2026：哪个 AI 编程工具更强？](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/) — 和 Claude Code 的正面对决
+- [5 款 AI 编程工具实测对比：为什么只选一个是错的](/zh/posts/ai/2026-04-03-claude-code-vs-cursor-vs-copilot/) — 多工具组合的实战视角

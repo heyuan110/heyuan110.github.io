@@ -236,3 +236,10 @@ FaceFusion 是目前开源换脸工具里效果最好的之一，而且完全免
 用途很多：影视后期、短视频创作、表情包制作... 当然，别拿去干坏事。
 
 技术是中性的，怎么用看人。
+
+## 相关阅读
+
+- [Draw Things 完全指南：Mac 本地 AI 生图从入门到精通](/zh/posts/ai/2026-02-15-draw-things-ultimate-guide/) — 另一类本地生成工具的系统讲解
+- [Mac Mini M4 本地 AI 生图：ComfyUI vs Draw Things 实测](/zh/posts/ai/2026-02-15-mac-mini-local-image-generation/) — 本地 GPU 算力怎么选
+- [Seedance 2.0 技术深度拆解：字节跳动如何做出排名第一的 AI 视频模型](/zh/posts/ai/2026-03-29-seedance-2-bytedance-ai-video/) — AI 视频生成的新阶段
+- [Mac mini / Mac Studio AI 本地开发完全指南 2026](/zh/posts/ai/2026-04-14-mac-apple-silicon-ai-workstation/) — Apple Silicon 做 AI 工作站选配参考

@@ -354,7 +354,7 @@ def process_order(
 5. **给 Python 加上类型注解** — 这是提升 Python 项目 AI 代码生成质量的最低成本方案
 6. **正向飞轮效应真实存在** — AI 工具推动 TypeScript 采用率上升，带来更多 TypeScript 训练数据，进而提升 AI 工具效果。这个循环将持续加速
 
-## 延伸阅读
+## 相关阅读
 
 - [TypeScript 为何暴涨 66%](/posts/ai/2026-03-10-typescript-ai-tools/) — 数据背后的故事
 - [2026 年 AI 编程代理工具：7 款横评](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — 各工具与不同语言的配合情况

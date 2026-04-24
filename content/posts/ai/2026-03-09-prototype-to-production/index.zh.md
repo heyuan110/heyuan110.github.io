@@ -683,7 +683,7 @@ jobs:
 
 用好这份检查清单。通过全部六道关卡。自信上线。
 
-## 延伸阅读
+## 相关阅读
 
 - [Claude Code 完整指南](/posts/ai/2026-02-28-claude-code-complete-guide/) — 搭建面向生产工作流的 AI 开发环境
 - [2026 年 MCP 安全指南](/posts/ai/2026-03-10-mcp-security-2026/) — 深入了解 AI 工具集成的安全实践

@@ -156,3 +156,11 @@ Claude Code 开源版 是一个技术上令人印象深刻的项目，诞生于�
 - [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/)
 - [2026 年 AI 编程代理横向对比](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)
 - [MCP 安全分析 2026](/posts/ai/2026-03-10-mcp-security-2026/)
+
+## 相关阅读
+
+- [Claude Code 完全指南 2026：从安装到工作流一篇看懂](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — Claude Code 整体能力和生态
+- [Harness Engineering 实战：模型是 AI Agent 里最不重要的部分](/zh/posts/ai/2026-03-30-harness-engineering-guide/) — Claude Code 背后的 harness 架构原理
+- [深度挖掘 wshobson/agents：33.9K Star 的 Claude Code 插件市场 79 个 Plugin 到底怎么用](/zh/posts/ai/2026-04-20-wshobson-agents-deep-dive/) — 开源生态里的 Claude Code 插件市场
+- [OpenCode 深度评测：这款开源 AI 编程代理能替代 Claude Code 吗？](/zh/posts/ai/2026-03-13-opencode-ai-coding-agent-review/) — 开源替代品深度评测
+- [2026 终端 AI 编程工具深度横评](/zh/posts/ai/2026-04-14-terminal-ai-coding-tools-2026-comparison/) — 开源 + 闭源工具全景

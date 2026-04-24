@@ -508,7 +508,7 @@ RAG、LangChain、向量数据库、prompt 工程。如果你也做评估加 `pl
 
 ---
 
-## 延伸阅读
+## 相关阅读
 
 - [Harness Engineering：6 层倒着建，80% 稳定性来自第 5、6 层](/zh/posts/ai/2026-04-18-harness-six-layers-reverse-build/) — 为什么 eval + recovery 层驱动了 80% 的 Agent 稳定性
 - [Harness Subagent 架构](/zh/posts/ai/2026-04-13-harness-subagent-architecture/) — 子代理市场背后的设计原则

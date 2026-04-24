@@ -213,3 +213,10 @@ Code to Canvas 是 Figma 和 Anthropic 对"AI 时代设计与开发如何协作"
 对于已经在使用 Claude Code 的开发者来说，Code to Canvas 是一个值得尝试的工作流升级。对于设计师来说，这是一个了解 AI 辅助设计趋势、主动拥抱变化的好机会。
 
 而对于整个行业来说，Code to Canvas 或许预示着一个更大的变革：**未来的产品创造过程，将不再有严格的"设计阶段"和"开发阶段"之分，取而代之的是设计与代码在同一个工作流中的自由流动。**
+
+## 相关阅读
+
+- [Claude Code + Remotion：用 AI 对话生成专业视频](/zh/posts/ai/2026-01-26-claude-code-remotion-video/) — Claude Code 在视觉产出上的另一条路径
+- [Claude Code + Draw Things：Mac 本地 AI 自动配图完全指南](/zh/posts/ai/2026-02-16-claude-code-draw-things-workflow/) — 把 AI 生图融入写作流程
+- [Claude Code 完全指南 2026：从安装到工作流一篇看懂](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — Claude Code 生态的完整概览
+- [Xcode 26.3 Agentic Coding 深度解析](/zh/posts/ai/2026-02-20-xcode-agentic-coding/) — 另一个把 Agent 塞进设计/开发 IDE 的案例

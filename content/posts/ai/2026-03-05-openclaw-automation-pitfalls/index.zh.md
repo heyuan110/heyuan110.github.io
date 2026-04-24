@@ -681,7 +681,7 @@ clawdhub inspect <skill-name>
 
 ---
 
-## 延伸阅读
+## 相关阅读
 
 - [OpenClaw 安装配置指南：从零搭建你的 AI Agent](/posts/ai/2026-03-05-openclaw-setup-guide/) —— 新手从这里开始
 - [OpenClaw 多 Agent 配置：打造协同工作的 AI 团队](/posts/ai/2026-03-05-openclaw-multi-agent-setup/) —— Agent 跑稳之后再看这篇

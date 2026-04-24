@@ -511,3 +511,11 @@ CLAUDE.md 的本质，是把"上下文"固化下来。
 **AI 没有记忆，但你可以给它装一个。**
 
 CLAUDE.md 就是那个记忆体。
+
+## 相关阅读
+
+- [CLAUDE.md vs README.md：一个给 AI 看，一个给人看](/zh/posts/ai/2026-01-31-claudemd-vs-readme/) — 两份文件的定位差异
+- [CLAUDE.md 完全指南：让 AI 每次都精准理解你的项目](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) — 更完整的写作模板
+- [CLAUDE.md 最佳实践：我把 90 行砍到 50 行，Agent 表现反而提升 — Harness #2](/zh/posts/ai/2026-03-31-harness-claudemd-guide/) — 不是写越多越好
+- [CLAUDE.md 最佳实践：写出真正有效的配置文件](/zh/posts/ai/2026-03-05-claude-code-claudemd-best-practices/) — 有效配置的 9 条经验
+- [上下文工程：2026 年最被低估的 AI 开发技能](/zh/posts/ai/2026-03-10-context-engineering-guide/) — CLAUDE.md 背后的 context engineering

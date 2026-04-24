@@ -232,3 +232,11 @@ Xcode 26.3 的 Agentic Coding 标志着 Apple 开发生态正式进入 AI 智能
 - [InfoQ: Xcode 26.3 Brings Integrated Agentic Coding](https://www.infoq.com/news/2026/02/xcode-26-3-agentic-coding/)
 - [Swift with Majid: Agentic coding in Xcode](https://swiftwithmajid.com/2026/02/10/agentic-coding-in-xcode/)
 - [Swiftjective-C: Agentic Coding in Xcode 26.3](https://swiftjectivec.com/Agentic-Coding-Codex-Claude-Code-in-Xcode/)
+
+## 相关阅读
+
+- [Claude Agent SDK 实战指南：3 行 Python 搭建生产级 AI Agent](/zh/posts/ai/2026-04-17-claude-agent-sdk-guide/) — Xcode Agentic Coding 底层用的 SDK
+- [Claude Code 完全指南 2026：从安装到工作流一篇看懂](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — Claude Code 的系统讲解
+- [Google Antigravity 深度测评：Agent-First IDE 到底怎么样？](/zh/posts/ai/2026-03-10-google-antigravity-review/) — 另一家厂商的 Agent IDE 尝试
+- [GitHub Agent HQ + VS Code 完整指南 2026](/zh/posts/ai/2026-03-13-github-agent-hq-vscode-guide/) — VS Code 这条线的 Agent 整合
+- [Cursor 完全指南 2026：从安装到高级 Agent 模式实战](/zh/posts/ai/2026-03-08-cursor-setup-guide/) — Cursor 的 Agent 模式

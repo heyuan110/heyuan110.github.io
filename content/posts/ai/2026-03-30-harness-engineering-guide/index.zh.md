@@ -347,7 +347,7 @@ Harness 不是万金油。投错场景等于用大炮打蚊子。三种情况别
 
 **预测三：模型厂商会开始发布"Harness 感知"训练版本**。未来的模型会基于真实 Harness 失败轨迹的数据来训练，学会在特定 Harness 下工作得更好。押注理由——Harness 是 Agent 生产性能的瓶颈，模型厂商迟早会意识到"训练一个通用强模型"的回报已经饱和，"训练一个在主流 Harness 下跑得更好的模型"回报更高。
 
-## 延伸阅读
+## 相关阅读
 
 - [Harness Engineering 系列第 2 篇：CLAUDE.md 最佳实践](/posts/ai/2026-03-31-harness-claudemd-guide/) —— 写好引导器文件，60 行陷阱怎么绕开
 - [Harness Engineering 系列第 3 篇：Sub-Agent 架构](/posts/ai/2026-04-13-harness-subagent-architecture/) —— 按任务路由模型，降本 60% 的完整拆解

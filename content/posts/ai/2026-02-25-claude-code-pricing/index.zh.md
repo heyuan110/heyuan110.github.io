@@ -378,7 +378,7 @@ Claude Code 不会停止——而是**变慢**。响应等待时间变长，Opus
 
 *价格数据截至 2026 年 3 月。Anthropic 会不定期调整价格，最新信息请查看 [anthropic.com/pricing](https://www.anthropic.com/pricing)。*
 
-## 延伸阅读
+## 相关阅读
 
 - [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/) — 掌握 Claude Code 全部功能
 - [Claude Code vs Cursor vs Windsurf：实测对比](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/) — 详细横向评测

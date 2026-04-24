@@ -208,7 +208,7 @@ Claude Code 原生支持这个层级。**离编辑文件越近的规则优先级
 
 **铁律 3：领域规则走 Skills，不塞主文件。** 数据库迁移、API 规范、部署流程这类领域知识全部放 Skills 按需加载。主 CLAUDE.md 只保留每个任务都相关的全局约束。参考 [Skills 指南](/posts/ai/2026-02-28-claude-code-skills-guide/)。
 
-## 延伸阅读
+## 相关阅读
 
 - [Harness Engineering #1：为什么模型之外的一切更重要](/posts/ai/2026-03-30-harness-engineering-guide/) — 系列开篇，Agent = 模型 + Harness 的核心公式
 - [Harness Engineering #3：Sub-Agent 架构设计](/posts/ai/2026-04-13-harness-subagent-architecture/) — 下一篇，多 Agent 协作如何不让上下文爆炸

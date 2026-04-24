@@ -659,7 +659,7 @@ SDK v2 将包拆分为 `@modelcontextprotocol/server` 和 `@modelcontextprotocol
 
 MCP 生态正在快速增长。你构建的每一个 MCP Server 都能立刻被 Claude Code、Cursor、Copilot 以及未来任何兼容 MCP 的工具使用。现在就开始构建吧。
 
-## 相关文章
+## 相关阅读
 
 - [MCP 协议详解：AI 工具的通用标准](/posts/ai/2026-02-28-mcp-protocol-explained/)
 - [Claude Code MCP 配置：连接 AI 到任何外部服务](/posts/ai/2026-02-28-claude-code-mcp-setup/)

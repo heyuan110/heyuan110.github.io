@@ -309,3 +309,10 @@ Agent 起草了一封联系邮件，提到了她最近的演讲，提到了和�
 - [METR - AI 能力追踪机构](https://metr.org/)
 - [Agent Skills：用大白话写程序的时代来了](/posts/ai/2026-01-19-agent-skills-new-programming/)
 - [Claude Code 入门指南](/posts/ai/2026-01-14-claude-code-guide/)
+
+## 相关阅读
+
+- [AI 时代，一个人的 Taste 比以往任何时候都重要](/zh/posts/ai/2026-01-23-taste-matters-in-ai-era/) — AGI 时代的人类价值重估
+- [2026 Agentic Coding 趋势报告：Claude Code 年入 25 亿美元背后的 8 大趋势](/zh/posts/ai/2026-02-23-agentic-coding-trends-2026/) — AGI 落地到编程工具的第一批证据
+- [AI Agent 记忆系统全解析：RAG 与上下文工程的对比与选择](/zh/posts/ai/2026-02-21-ai-agent-memory-systems/) — 让 Agent 持续成长的关键一环
+- [一个人+AI Agent 月增 2000 客户：Paperclip 营销自动化实战拆解](/zh/posts/ai/2026-04-04-ai-agent-marketing-automation/) — AGI 雏形如何改变一人公司

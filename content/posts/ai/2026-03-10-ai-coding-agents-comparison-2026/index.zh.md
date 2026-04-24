@@ -439,7 +439,7 @@ SWE-1 模型还行，但不算出彩。标准编码任务处理得不错，在�
 
 先从 Cursor + Claude Code 的 40 美元月度组合开始，加上 Antigravity 做免费并行 Agent，然后根据你的技术栈和工作流调整。
 
-## 延伸阅读
+## 相关阅读
 
 - [2026 Claude Code 完全指南](/posts/ai/2026-02-28-claude-code-complete-guide/) —— 关于 Claude Code 你需要知道的一切
 - [2026 Claude Code vs Cursor 对比](/posts/ai/2026-02-28-claude-code-vs-cursor/) —— 详细的正面对比

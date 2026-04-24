@@ -939,7 +939,7 @@ console.print(f"[dim]Token 统计 — 输入: {total_input_tokens} | 输出: {to
 
 完整代码就在这篇文章里——复制、粘贴、运行。从 20 行到 250 行，从聊天机器人到自主 Agent，你现在拥有了在这套模式上构建任何东西的基础。
 
-## 延伸阅读
+## 相关阅读
 
 - [Claude Code 完全指南](/posts/ai/2026-02-28-claude-code-complete-guide/) — 深入掌握 Claude Code 的高效用法
 - [CLAUDE.md 终极指南](/posts/ai/2026-02-28-claude-code-claudemd-guide/) — AI 编程助手如何理解项目上下文

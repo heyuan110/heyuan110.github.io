@@ -414,3 +414,11 @@ Devin 是高端选择。它只做一件事——软件工程——而且做得�
 - [OpenClaw Tavily Integration: Add Web Search to Your AI Agent](/posts/ai/2026-03-05-openclaw-tavily-integration/) — 为 Agent 添加网页搜索能力
 - [OpenClaw Pitfalls: 15 Automation Mistakes and Fixes](/posts/ai/2026-03-05-openclaw-automation-pitfalls/) — 避免最常见的配置和运行错误
 - [OpenClaw Architecture Deep Dive](/posts/ai/2026-02-14-openclaw-architecture-deep-dive/) — 深入了解系统运作原理
+
+## 相关阅读
+
+- [OpenClaw 多 Agent 配置实战：别让 LLM 做编排](/zh/posts/ai/2026-04-02-openclaw-multi-agent-setup-guide/) — OpenClaw 多 Agent 的工程化方法
+- [OpenClaw 记忆实施策略解析：工具驱动的 RAG 与"按需回忆"](/zh/posts/ai/2026-01-31-openclaw-memory-strategy/) — OpenClaw 的记忆机制
+- [OpenClaw 2026.3.1 新功能详解：WebSocket 流式传输、Agent 路由与 K8s 支持](/zh/posts/ai/2026-03-03-openclaw-2026-3-1-new-features/) — 最新版本变化
+- [OpenClaw 超详细上手教程：小白友好 + 老鸟技巧](/zh/posts/ai/2026-02-12-openclaw-usage-tutorial/) — 从零开始的使用教程
+- [2026 年 AI 编程工具全面对比：7 款主流工具实测评析](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — 把 OpenClaw 放回 AI 编程工具全景里对比

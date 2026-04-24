@@ -554,7 +554,7 @@ Agent Teams 改变了你对 AI 辅助开发的思维方式。从"如何让一个
 
 AI 编程的未来不是单个全能 Agent，而是协调有序的专业 Agent 团队，各自聚焦擅长领域，像人类工程师一样沟通协作——只是更快。
 
-## 延伸阅读
+## 相关阅读
 
 - [Claude Code 安装配置指南 2026](/posts/ai/2026-02-25-claude-code-setup-guide/) — 从安装到配置的完整教程
 - [Claude Code 定价指南 2026](/posts/ai/2026-02-25-claude-code-pricing/) — 选择适合你的订阅方案

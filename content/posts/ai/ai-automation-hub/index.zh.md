@@ -24,7 +24,7 @@ keywords = ['AI 自动化导航', 'Claude Code 教程合集', 'OpenClaw 教程',
 4. [Moltbot 深度解析](/posts/ai/2026-01-29-moltbot-deep-dive/)
 5. [Codex CLI 实战指南](/posts/ai/2026-02-12-codex-cli-mastery-guide/)
 
-## 推荐阅读（用于内链）
+## 相关阅读
 
 - [Claude Code 命令大全](/posts/ai/2025-01-23-claude-code-commands/)
 - [Claude Code Skill 指南](/posts/ai/2026-01-08-claudecode-skill-guide/)

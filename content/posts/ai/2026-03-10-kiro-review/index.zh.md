@@ -284,7 +284,7 @@ Kiro 的规格驱动模式确实是一个有创意的差异化方向，比起"�
 
 *本文基于 2026 年 3 月的 Kiro 版本撰写。功能和定价随时可能更新，请访问 [kiro.dev](https://kiro.dev/) 获取最新信息。*
 
-## 延伸阅读
+## 相关阅读
 
 - [Google Antigravity 评测](/posts/ai/2026-03-10-google-antigravity-review/) — 免费的代理优先方案
 - [Claude Code 完全指南](/posts/ai/2026-02-28-claude-code-complete-guide/) — 终端优先的开发方式

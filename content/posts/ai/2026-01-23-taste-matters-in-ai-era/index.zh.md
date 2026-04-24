@@ -228,7 +228,7 @@ Taste 的培养是以年为单位的。
 
 ---
 
-## 参考资料
+## 相关阅读
 
 - [The Rise of Taste - Debris Studio](https://debris.studio/the-rise-of-taste)
 - [唐杰、姚顺雨、杨植麟、林俊旸同台对话：2026年最重要的AI趋势观察](https://www.jiemian.com/article/13868639.html)

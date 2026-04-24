@@ -866,7 +866,7 @@ main Agent 将预警和摘要发送到 Telegram
 
 如果你发现自己不断对 AI 助手说"忽略那个，专注这个"——是时候拆分成多个 Agent 了。
 
-## 延伸阅读
+## 相关阅读
 
 - [OpenClaw 2026.3.1: WebSocket Streaming, Agent Routing, and K8s Support](/posts/ai/2026-03-03-openclaw-2026-3-1-new-features/) —— 最新功能，包括新的 Agent 路由 CLI
 - [OpenClaw Automation Pitfalls: Installing 3 Skills Does Not Mean It Works](/posts/ai/2026-02-14-openclaw-automation-pitfalls/) —— 会话隔离、proactive-agent 配置及真实踩坑案例

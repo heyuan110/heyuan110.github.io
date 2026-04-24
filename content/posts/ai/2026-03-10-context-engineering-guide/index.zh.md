@@ -495,3 +495,11 @@ tests/api/test_users.py
 从一个改变开始：创建或改进你的 CLAUDE.md 文件。让它具体、及时、简洁。然后观察后续每一次AI交互如何改善。
 
 这就是上下文工程的乘法威力。
+
+## 相关阅读
+
+- [斯坦福 CS146S 精读（二）：上下文工程——AI 编程最被低估的核心能力](/zh/posts/ai/2026-02-24-context-engineering-deep-dive/) — 斯坦福视角下的上下文工程
+- [CLAUDE.md 完全指南：让 AI 每次都精准理解你的项目](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) — 静态项目上下文的具体载体
+- [AI Agent 记忆系统全解析：RAG 与上下文工程的对比与选择](/zh/posts/ai/2026-02-21-ai-agent-memory-systems/) — 记忆系统与上下文工程的边界
+- [CLAUDE.md 最佳实践：我把 90 行砍到 50 行，Agent 表现反而提升 — Harness #2](/zh/posts/ai/2026-03-31-harness-claudemd-guide/) — 上下文不是越多越好
+- [Harness Engineering 实战：模型是 AI Agent 里最不重要的部分](/zh/posts/ai/2026-03-30-harness-engineering-guide/) — Harness 六层里的 Context 层

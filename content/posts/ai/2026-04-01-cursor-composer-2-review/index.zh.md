@@ -147,3 +147,11 @@ Cursor 选了经济上合理的路，却在伦理上栽了跟头。更讽刺的�
 ---
 
 *更多 AI 编程工具的深度内容，请阅读 [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/) 和 [AI 编程代理横评](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)。*
+
+## 相关阅读
+
+- [Cursor 完全指南 2026：从安装到高级 Agent 模式实战](/zh/posts/ai/2026-03-08-cursor-setup-guide/) — Cursor 的完整上手路径
+- [Cursor Agent 编码最佳实践：官方指南完整解读](/zh/posts/ai/2026-01-19-cursor-agent-best-practices/) — Cursor Agent 的使用范式
+- [Claude Code vs Cursor 2026：哪个 AI 编程工具更强？](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/) — Composer 2 的直接对手
+- [2026 年 AI 编程工具全面对比：7 款主流工具实测评析](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — Composer 2 在横评中的位置
+- [GPT-5.4 vs Claude Opus 4.6 终极对比 2026](/zh/posts/ai/2026-03-13-gpt-5-4-vs-claude-opus-comparison/) — 底座模型层面的对比参考

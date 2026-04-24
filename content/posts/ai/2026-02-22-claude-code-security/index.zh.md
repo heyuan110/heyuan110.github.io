@@ -150,3 +150,11 @@ Claude Code Security 作为 Claude Code 的内置功能运行，代码需要通�
 ### 跟 GitHub 的安全扫描有什么区别？
 
 GitHub 的安全扫描（如 Dependabot、CodeQL）主要基于已知漏洞数据库和预定义的查询规则，擅长发现**已知的、有 CVE 编号的**漏洞和依赖安全问题。Claude Code Security 则是基于 AI 的语义理解来发现**未知的、零日的**漏洞，尤其是业务逻辑层面的安全缺陷。两者是互补关系而非替代关系 —— 最佳实践是将两者结合使用，既覆盖已知威胁，也排查未知风险。
+
+## 相关阅读
+
+- [2026 年 AI 代码安全工具横评：Codex Security、Claude Code Security 与 Snyk 谁更强？](/zh/posts/ai/2026-03-13-ai-code-security-tools-compared/) — Claude Code Security 放回竞品里的对比
+- [MCP 安全实战指南：AI Agent 时代的攻防博弈与防护策略](/zh/posts/ai/2026-02-23-mcp-security-guide/) — Agent 生态的安全视角
+- [MCP 安全危机：60 天内曝出 30 个 CVE，到底怎么了？](/zh/posts/ai/2026-03-10-mcp-security-2026/) — 真实攻击面的现状
+- [斯坦福 CS146S 精读（四）：Secure Vibe Coding](/zh/posts/ai/2026-02-24-secure-vibe-coding/) — AI 代码安全的系统化教学
+- [AI Agent 安全指南：2026 年自动化工作流防护全攻略](/zh/posts/ai/2026-02-27-ai-agent-security/) — 更宽视野下的 Agent 安全

@@ -855,7 +855,7 @@ Tmux 是那种用得越多回报越大的工具。单独使用它已经是一个
 
 终端没有死。有了 tmux 和 AI，它比以往任何时候都更加生机勃勃。
 
-## 延伸阅读
+## 相关阅读
 
 - [Claude Code Worktree：并行运行多个 AI 任务](/posts/ai/2026-02-28-claude-code-worktree-guide/) — 深入了解 Git worktree 模式实现并行 Claude Code 会话
 - [Claude Code 团队协作：多智能体协作模式](/posts/ai/2026-02-28-claude-code-teams-guide/) — 掌握 Agent Teams 实现协调的多智能体开发

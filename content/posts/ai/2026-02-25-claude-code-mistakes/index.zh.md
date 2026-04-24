@@ -285,7 +285,7 @@ claude --worktree "Fix the pagination bug in /api/products"
 
 把这些基础做好，Claude Code 就能从"好用的聊天机器人"变成"不可或缺的团队成员"。
 
-## 延伸阅读
+## 相关阅读
 
 - [Claude Code Setup Guide: Installation to First Project](/posts/ai/2026-02-25-claude-code-setup-guide/) — 从零开始正确配置
 - [Claude Code Pricing 2026: Is the Max Plan Worth It?](/posts/ai/2026-02-25-claude-code-pricing/) — 选择适合你的套餐

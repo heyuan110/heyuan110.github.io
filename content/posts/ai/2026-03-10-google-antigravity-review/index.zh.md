@@ -268,7 +268,7 @@ Google Antigravity 是 2026 年最具创新性的 AI 编程工具。Manager View
 
 *本测评基于 Google Antigravity 2026 年 3 月公开预览版。功能和定价可能随产品迭代而变化。*
 
-## 延伸阅读
+## 相关阅读
 
 - [Claude Code Complete Guide 2026](/posts/ai/2026-02-28-claude-code-complete-guide/) — Terminal-First 的替代方案
 - [Claude Code vs Cursor: Which Wins?](/posts/ai/2026-02-28-claude-code-vs-cursor/) — Editor-First vs Terminal-First 对比

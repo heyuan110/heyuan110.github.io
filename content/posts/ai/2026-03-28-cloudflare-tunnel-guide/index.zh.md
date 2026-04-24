@@ -552,7 +552,7 @@ ERR Failed to fetch features error="lookup cfd-features.argotunnel.com: i/o time
 
 根据你当前的约束条件选就好。反正以后要换也不难 —— 不管中间的隧道是什么，最终的模式（反向代理 → 本地服务）都一样。
 
-## 延伸阅读
+## 相关阅读
 
 - [Chrome DevTools MCP：AI 驱动的浏览器调试](/posts/ai/2026-03-17-chrome-devtools-mcp-guide/) — 用 AI 辅助调试 Web 应用
 - [Tmux 终端复用指南](/posts/ai/2026-03-03-tmux-guide-ai-development/) — AI 开发场景下的终端管理

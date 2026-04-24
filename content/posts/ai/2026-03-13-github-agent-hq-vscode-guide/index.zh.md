@@ -342,7 +342,7 @@ Agent 的输出通过 GitHub 基础设施处理，隐私保障与 Copilot 一致
 
 不是。你可以在 github.com（仓库里的 Agents 标签）、GitHub 移动端和 VS Code 中启动 Agent 会话。云端 Agent 的结果在所有平台同步。
 
-## 延伸阅读
+## 相关阅读
 
 - [2026 年 AI 编程 Agent 全面评测（7 款工具实测）](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — Agent HQ 各 Agent 的单独表现对比
 - [Claude Code vs GitHub Copilot 2026：两个都用之后的选择建议](/posts/ai/2026-03-05-claude-code-vs-copilot/) — Copilot 与 Claude 的详细对比

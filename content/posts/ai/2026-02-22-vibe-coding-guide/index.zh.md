@@ -327,3 +327,11 @@ Vibe Coding 并非孤立存在，最有效的方式是将其嵌入现有开发�
 Vibe Coding 正在重新定义软件开发的方式。它不是银弹，也不是玩具，而是一种强大的新范式。2026 年，最聪明的做法不是争论"AI 能不能写好代码"，而是学会如何**与 AI 高效协作**，让自己的创造力和判断力通过 AI 实现 10 倍放大。
 
 现在就挑一个工具，开始你的第一次 Vibe Coding 吧。
+
+## 相关阅读
+
+- [Vibe Coding 详解：它是什么，怎样才能用好？](/zh/posts/ai/2026-02-28-vibe-coding-explained/) — 另一篇从实用角度讲 Vibe Coding
+- [斯坦福 CS146S 精读（四）：Secure Vibe Coding——AI 代码安全攻防全指南](/zh/posts/ai/2026-02-24-secure-vibe-coding/) — Vibe Coding 里的安全边界
+- [AI 编程方法论对比 2026：Vibe Coding vs SDD vs BMAD 怎么选？](/zh/posts/ai/2026-03-11-ai-development-methodologies-compared/) — Vibe Coding 与其他方法论的对位
+- [Claude Code 完全指南 2026：从安装到工作流一篇看懂](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — Vibe Coding 最主流的载体
+- [5 款 AI 编程工具实测对比：为什么只选一个是错的](/zh/posts/ai/2026-04-03-claude-code-vs-cursor-vs-copilot/) — Vibe Coding 工具选型参考

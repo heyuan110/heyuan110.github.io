@@ -361,3 +361,10 @@ Chunk 太大：噪音太多，语义被稀释
 另外，这个领域还在快速发展。今天的最佳实践，半年后可能就过时了。保持关注，但别盲目追新。
 
 先把基础搞明白，再折腾花活。
+
+## 相关阅读
+
+- [RAG 管道搭建指南：向量数据库 + LLM 集成实战](/zh/posts/ai/2026-03-01-rag-pipeline-setup/) — 把向量数据库放回 RAG 流程看它真正的位置
+- [AI Agent 记忆系统全解析：RAG 与上下文工程的对比与选择](/zh/posts/ai/2026-02-21-ai-agent-memory-systems/) — 记忆系统里向量库扮演什么角色
+- [QMD：本地语义搜索引擎，帮 AI Agent 省下 90% Token 开销](/zh/posts/ai/2026-03-25-qmd-local-search-ai-agent-memory/) — 本地化向量检索的落地案例
+- [上下文工程：2026 年最被低估的 AI 开发技能](/zh/posts/ai/2026-03-10-context-engineering-guide/) — 搭完 RAG 之后真正决定效果的是上下文

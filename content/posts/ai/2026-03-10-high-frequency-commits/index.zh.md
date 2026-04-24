@@ -299,7 +299,7 @@ Flaky 测试——没有代码变更却时过时不过的测试——是高频�
 
 ---
 
-## 延伸阅读
+## 相关阅读
 
 - [Claude Code 完全指南](/posts/ai/2026-02-28-claude-code-complete-guide/) — 搭建支撑高频工作流的 AI 编程助手
 - [AI 开发环境搭建](/posts/ai/2026-03-10-ai-dev-environment-setup/) — 为 AI 辅助编程配置开发环境

@@ -825,7 +825,7 @@ args = ["-title", "Codex CLI", "-message", "Task complete", "-sound", "default"]
 5. **写好 AGENTS.md**——它直接决定 Codex 理解你项目的程度
 6. **不必在 Codex CLI 和 Claude Code 之间二选一**——各取所长
 
-## 延伸阅读
+## 相关阅读
 
 - [Claude Code Complete Guide 2026](/posts/ai/2026-02-28-claude-code-complete-guide/) — 全面掌握 Claude Code 的功能
 - [Claude Code vs ChatGPT Codex: Detailed Comparison](/posts/ai/2026-02-19-claude-code-vs-codex/) — Opus 4.6 与 GPT-5.3 深度对比

@@ -142,3 +142,12 @@ MCP 和 Skill 是两种不同层次的抽象：
 理解这个区别，能帮你更好地扩展 AI 的能力：需要接入新工具时，找或写 MCP 服务器；需要让 AI 掌握新"手艺"时，创建 Skill。
 
 就像软件开发中的分层设计：底层库提供基础能力，上层框架封装最佳实践。两者各司其职，配合使用才能发挥最大价值。
+
+
+## 相关阅读
+
+- [MCP、Skills、Hooks 到底有什么区别？Claude Code 三大扩展机制深度对比](/zh/posts/ai/2026-04-02-mcp-vs-skills-claude-code/) — 三种扩展机制的系统对比
+- [MCP 协议全面解析：AI 连接万物的通用标准](/zh/posts/ai/2026-02-20-mcp-protocol-guide/) — MCP 协议本身的完整剖析
+- [Claude Code Skill 完全指南：让 AI 学会你的工作流程](/zh/posts/ai/2026-01-08-claudecode-skill-guide/) — Skill 的机制和写法
+- [Claude Code 的 Skill 与 SubAgent 区别](/zh/posts/ai/2025-12-26-claudecode-skill&subagent/) — Skill 和 SubAgent 的另一个对照维度
+- [2026 年最值得装的 18 个 MCP 服务器：Claude Code 实测精选](/zh/posts/ai/2026-03-05-best-mcp-servers-claude-code/) — MCP 生态现状

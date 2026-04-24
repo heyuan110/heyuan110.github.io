@@ -545,7 +545,7 @@ Symphony 体现的"约束工程"范式——为 AI 代理设计约束和反馈�
 
 ---
 
-## 延伸阅读
+## 相关阅读
 
 - [Claude Code Agent Teams: How to Run Multiple AI Agents in Parallel](/posts/ai/2026-02-28-claude-code-teams-guide/) — 对比 Symphony 的项目级编排与 Claude Code 的会话级多代理方案
 - [Claude Code Complete Guide](/posts/ai/2026-02-28-claude-code-complete-guide/) — 如果你更倾向于手动操作而非全自动化

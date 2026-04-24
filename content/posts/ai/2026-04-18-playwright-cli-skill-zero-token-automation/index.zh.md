@@ -292,7 +292,7 @@ Playwright CLI 是合适的原语，因为它默认就是「snapshot 写盘」�
 
 如果这篇文章只能带走一句话：**不要让 AI 反复探索已经解决的问题。** 10 倍效率提升就摆在那里，等你说一句「把这个蒸馏成 Skill」。
 
-## 延伸阅读
+## 相关阅读
 
 - [Browser Automation in Claude Code: 5 Tools Compared](/posts/ai/2026-01-28-claude-code-browser-automation/) — MCP / CLI / agent-browser / browser-use / DevTools MCP 五工具完整 Token 基准
 - [Vercel Agent Browser：AI 原生浏览器自动化 CLI](/posts/ai/2026-01-13-vercel-agent-browser/) — 什么时候应该选 agent-browser 而不是 Playwright CLI

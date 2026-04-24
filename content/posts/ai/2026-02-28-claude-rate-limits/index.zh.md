@@ -298,7 +298,7 @@ Claude会降速而不是完全停止。你会发现响应间隔变长。Opus请�
 
 *速率限制数据截至2026年2月。Anthropic会定期调整限额——请查看 [anthropic.com/pricing](https://www.anthropic.com/pricing) 和 [API速率限制文档](https://docs.anthropic.com/en/docs/about-claude/rate-limits) 获取最新信息。*
 
-## 延伸阅读
+## 相关阅读
 
 - [Claude定价2026：从免费到Max $200全方位解析](/posts/ai/2026-02-25-claude-code-pricing/) — 完整定价对比与竞品基准
 - [Claude Code安装指南：完整设置教程](/posts/ai/2026-02-25-claude-code-setup-guide/) — Claude Code快速上手

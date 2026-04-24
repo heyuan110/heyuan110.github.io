@@ -238,3 +238,10 @@ Agent Browser 填补了 AI 代理领域浏览器自动化工具的空白。它�
 **项目地址**：[https://github.com/vercel-labs/agent-browser](https://github.com/vercel-labs/agent-browser)
 
 **开源协议**：Apache 2.0
+
+## 相关阅读
+
+- [Claude Code 浏览器自动化怎么选？5 套方案实测对比（2026）](/zh/posts/ai/2026-01-28-claude-code-browser-automation/) — 浏览器自动化方案横评
+- [Playwright CLI + Skill 三段式：把 AI 浏览器自动化做到 0 Token](/zh/posts/ai/2026-04-18-playwright-cli-skill-zero-token-automation/) — 低 Token 浏览器自动化的工程技巧
+- [Chrome DevTools MCP 完整配置指南](/zh/posts/ai/2026-03-17-chrome-devtools-mcp-guide/) — 另一条让 AI 操作浏览器的路径
+- [MCP 协议全面解析：AI 连接万物的通用标准](/zh/posts/ai/2026-02-20-mcp-protocol-guide/) — Agent Browser 背后的协议基础

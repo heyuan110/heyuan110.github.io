@@ -763,3 +763,10 @@ Remotion 更适合做：产品演示、数据报告、动态图表、文字动�
 ---
 
 *用 AI 做视频，这才是程序员该有的打开方式。如果你试了觉得好用，欢迎在评论区分享你的作品！*
+
+## 相关阅读
+
+- [Claude Code + Draw Things：Mac 本地 AI 自动配图完全指南](/zh/posts/ai/2026-02-16-claude-code-draw-things-workflow/) — 另一种 AI 媒体产出工作流
+- [Figma Code to Canvas：Anthropic 联手打造代码转设计新范式](/zh/posts/ai/2026-02-19-figma-code-to-canvas/) — 另一个 Claude Code 的视觉产出方向
+- [Seedance 2.0 技术深度拆解：字节跳动如何做出排名第一的 AI 视频模型](/zh/posts/ai/2026-03-29-seedance-2-bytedance-ai-video/) — AI 视频模型现状
+- [Claude Code 完全指南 2026：从安装到工作流一篇看懂](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — Claude Code 整体能力概览

@@ -249,7 +249,7 @@ Sub-Agent 会继承一件大多数团队低估的东西：**工具权限**。如
 
 如果这篇文章你只落地一件事，就落地那张路由决策树。打印出来贴在显示器旁边，每个任务都走一遍流程再决定要不要 `spawn_subagent()`。你会 spawn 得更少、花得更少、跑得更快，也会少掉很多因为"一个本不该拆的决策被拆开了"而互相打架的子 Agent。
 
-## 延伸阅读
+## 相关阅读
 
 - [Harness Engineering 完全指南](/posts/ai/2026-03-30-harness-engineering-guide/) — 系列第一篇，总体框架。
 - [CLAUDE.md 最佳实践：写得少才是写得好](/posts/ai/2026-03-31-harness-claudemd-guide/) — 系列第二篇，前馈控件，决定每个子 Agent 的初始"世界观"。

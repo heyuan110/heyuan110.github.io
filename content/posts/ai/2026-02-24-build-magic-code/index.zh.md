@@ -892,7 +892,7 @@ console.print(f"[dim]本次会话 token — 输入: {total_input_tokens} | 输�
 
 > 理解你所使用的工具是如何构建的，这就是用户和工程师的区别。不要只是使用 Claude Code——理解它，然后构建更好的东西。
 
-## 延伸阅读
+## 相关阅读
 
 - [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/) — 深入了解如何高效使用 Claude Code
 - [CLAUDE.md 记忆指南：让 AI 记住你的项目](/posts/ai/2026-01-12-claudemd-memory-guide/) — AI 编程助手如何理解项目上下文

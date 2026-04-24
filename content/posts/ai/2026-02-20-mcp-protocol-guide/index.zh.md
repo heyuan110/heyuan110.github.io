@@ -307,3 +307,12 @@ MCP 的出现，解决了 AI 应用生态中一个长期存在的痛点：缺乏
 对于开发者而言，现在正是学习和投入 MCP 生态的最佳时机。无论是开发自己的 MCP Server 来暴露现有服务的能力，还是在 AI 应用中集成 MCP Client 来获得丰富的工具生态，MCP 都提供了成熟的 SDK 和完善的文档支持。
 
 AI 连接万物的时代，需要一个通用的"接口标准"。MCP，正是这个标准。
+
+## 相关阅读
+
+- [MCP 协议详解：AI 工具的通用连接标准](/zh/posts/ai/2026-02-28-mcp-protocol-explained/) — MCP 协议的另一视角深度解读
+- [MCP 安全实战指南：AI Agent 时代的攻防博弈与防护策略](/zh/posts/ai/2026-02-23-mcp-security-guide/) — 协议之上的安全防护
+- [用 TypeScript 构建 MCP Server：从零到发布完整教程](/zh/posts/ai/2026-03-02-building-mcp-servers-typescript/) — 动手写一个 MCP Server
+- [用 Python 构建 MCP 服务器：完整分步教程](/zh/posts/ai/2026-03-05-build-mcp-server-python/) — Python 版 MCP Server 教程
+- [2026 年最值得装的 18 个 MCP 服务器：Claude Code 实测精选](/zh/posts/ai/2026-03-05-best-mcp-servers-claude-code/) — MCP 生态当前最值得装的服务器
+- [MCP、Skills、Hooks 到底有什么区别？](/zh/posts/ai/2026-04-02-mcp-vs-skills-claude-code/) — 把 MCP 放回 Claude Code 扩展机制中对比

@@ -248,7 +248,7 @@ Vibe Coding 是一种**工具，而非信仰**。和所有工具一样，正确�
 
 *Vibe Coding 正在快速演进。本指南反映了 2026 年 2 月的实践现状。*
 
-## 延伸阅读
+## 相关阅读
 
 - [Claude Code 完全指南 2026](/posts/ai/2026-02-28-claude-code-complete-guide/) — 最强 Vibe Coding 工具的完整指南
 - [Claude Code 安装教程](/posts/ai/2026-02-25-claude-code-setup-guide/) — 10 分钟上手

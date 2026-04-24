@@ -308,7 +308,7 @@ video_url = response.json()["data"]["video_url"]
 
 竞争格局很清晰：字节靠内容生态（抖音/TikTok、剪映/CapCut）把 Seedance 2.0 推给几亿用户。Sora 2 有 OpenAI 的品牌。Veo 3 有 Google 的基础设施。但它们都没有一个拥有十亿用户的原生视频创作平台。字节有。
 
-## 延伸阅读
+## 相关阅读
 
 - [Mac Mini M4 本地 AI 图像生成对比评测](/posts/ai/2026-02-15-mac-mini-local-image-generation/) — Apple Silicon 上的本地 AI 创作
 - [Google Antigravity 评测 2026](/posts/ai/2026-03-10-google-antigravity-review/) — 另一个科技巨头的 AI 重磅发布

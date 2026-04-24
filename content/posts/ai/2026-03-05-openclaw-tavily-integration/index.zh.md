@@ -599,7 +599,7 @@ Tavily 的免费额度很慷慨（每月 1,000 次），但一个搜索欲旺盛
 复用上次的搜索结果，不要重新搜索。
 ```
 
-## 延伸阅读
+## 相关阅读
 
 - [OpenClaw 安装配置指南](/posts/ai/2026-03-05-openclaw-setup-guide/) —— 如果你还没有搭建 OpenClaw，从这里开始
 - [OpenClaw 多 Agent 配置：打造协同工作的 AI 团队](/posts/ai/2026-03-05-openclaw-multi-agent-setup/) —— 按角色分配 Tavily 权限的 Agent 团队配置

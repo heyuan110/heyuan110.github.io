@@ -716,7 +716,7 @@ RAG 管道不是一项单一技术，而是由多个环环相扣的组件构成�
 
 关于 RAG 如何融入更广泛的 AI 系统，可以参阅[上下文工程指南](/posts/ai/2026-03-10-context-engineering-guide/)，了解如何设计 AI 系统接收的信息流。
 
-## 延伸阅读
+## 相关阅读
 
 - [从零用 Python 构建 AI Agent](/posts/ai/2026-03-07-build-ai-agent-python/) —— 学习如何构建可将 RAG 作为工具使用的 Agent 循环
 - [AI Agent 记忆系统](/posts/ai/2026-02-21-ai-agent-memory-systems/) —— Agent 如何使用向量数据库实现长期记忆

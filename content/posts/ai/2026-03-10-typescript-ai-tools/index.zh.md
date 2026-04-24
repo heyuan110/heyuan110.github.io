@@ -329,7 +329,7 @@ function createUser(input: unknown): User {
 
 「类型是可选的样板代码」的时代结束了。在 AI 时代，**类型是你能给工具的最重要的上下文**。
 
-## 延伸阅读
+## 相关阅读
 
 - [AI 编程 Agent 2026：7 款工具横评](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — 哪些工具最适合 TypeScript
 - [Claude Code 完全指南](/posts/ai/2026-02-28-claude-code-complete-guide/) — TypeScript 是 Claude Code 最强的语言

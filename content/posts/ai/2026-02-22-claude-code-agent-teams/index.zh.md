@@ -303,3 +303,11 @@ Claude Code 提供了三种并行工作方式，各有适用场景。关于 Work
 Agent Teams 是 Claude Code 从"单兵作战"迈向"团队协作"的重要一步。它的核心价值不仅在于并行加速，更在于**多视角协作**带来的质量提升 —— 多个 Agent 互相审查、质疑、补充，比单个 Agent 反复思考更容易找到盲区。
 
 目前 Agent Teams 仍处于实验阶段，存在 session 恢复、任务状态同步等已知限制。但对于跨层开发、多假设调试、并行审查这些高价值场景，它已经展现出了显著的效率提升。建议从简单的审查和研究任务开始尝试，逐步积累经验后再用于更复杂的开发场景。
+
+## 相关阅读
+
+- [Claude Code --teammate-mode 详解：让多个 Agent 真正协作起来](/zh/posts/ai/2026-02-28-claude-code-teams-guide/) — Agent Teams 机制的另一视角
+- [Sub-Agent 架构设计：什么时候该拆子 Agent，Opus/Sonnet/Haiku 怎么分工](/zh/posts/ai/2026-04-13-harness-subagent-architecture/) — 拆 Agent 的工程化方法
+- [多智能体编排：4 种真正有效的架构模式](/zh/posts/ai/2026-02-26-multi-agent-orchestration/) — 多 Agent 的编排模式
+- [OpenClaw 多 Agent 配置实战：别让 LLM 做编排](/zh/posts/ai/2026-04-02-openclaw-multi-agent-setup-guide/) — 在 Claude Code 之外的多 Agent 落地
+- [Harness Engineering 实战：模型是 AI Agent 里最不重要的部分](/zh/posts/ai/2026-03-30-harness-engineering-guide/) — 多 Agent 系统背后的 harness 设计

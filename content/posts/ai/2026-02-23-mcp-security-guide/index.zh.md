@@ -274,3 +274,11 @@ MCP 安全不是一个可以"以后再说"的问题。从 WhatsApp 聊天记录�
 传统的安全思维需要升级。在 MCP 时代，攻击面不再局限于代码和网络，**自然语言本身就是攻击向量**。Tool Poisoning 证明了一段看似无害的工具描述可以劫持整个 Agent 的行为。Prompt Injection 证明了 Issue 评论里的一段文字可以让私有代码公之于众。
 
 好消息是，防护措施并不复杂。今天就运行 `mcp-scan` 扫描你的 MCP 配置，审查凭证存储方式，实施最小权限原则。安全不是目的地，而是一段持续的旅程。在 AI Agent 爆发式增长的 2026 年，走好安全这一步，比跑得快更重要。
+
+## 相关阅读
+
+- [MCP 安全危机：60 天内曝出 30 个 CVE，到底怎么了？](/zh/posts/ai/2026-03-10-mcp-security-2026/) — 真实 CVE 数据还原 MCP 安全现状
+- [MCP 协议全面解析：AI 连接万物的通用标准](/zh/posts/ai/2026-02-20-mcp-protocol-guide/) — MCP 协议基础
+- [Claude Code Security 深度解析：AI 驱动的代码安全扫描](/zh/posts/ai/2026-02-22-claude-code-security/) — Claude Code 侧的安全机制
+- [AI Agent 安全指南：2026 年自动化工作流防护全攻略](/zh/posts/ai/2026-02-27-ai-agent-security/) — 更宽广的 Agent 安全话题
+- [2026 年 AI 代码安全工具横评](/zh/posts/ai/2026-03-13-ai-code-security-tools-compared/) — 安全工具横向对比

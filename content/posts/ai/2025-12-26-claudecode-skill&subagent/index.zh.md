@@ -82,3 +82,11 @@ Agent 的竞争正在从"能调用多少工具"转向"怎么优雅地管理这�
 是共享全局变量图省事，还是严格隔离状态保持干净？
 
 这些老问题换了个皮，又回来了。
+
+## 相关阅读
+
+- [Claude Code Skill 完全指南：让 AI 学会你的工作流程](/zh/posts/ai/2026-01-08-claudecode-skill-guide/) — Skill 概念的底层原理
+- [MCP、Skills、Hooks 到底有什么区别？Claude Code 三大扩展机制深度对比](/zh/posts/ai/2026-04-02-mcp-vs-skills-claude-code/) — 三种扩展方式的选型方法
+- [Claude Code Skills 完全指南：用 SKILL.md 打造自定义工作流](/zh/posts/ai/2026-02-28-claude-code-skills-guide/) — 自己写 Skill 的落地模板
+- [Sub-Agent 架构设计：什么时候该拆子 Agent，Opus/Sonnet/Haiku 怎么分工](/zh/posts/ai/2026-04-13-harness-subagent-architecture/) — Sub-Agent 的工程化切分原则
+- [Claude Code 多 Agent 协作教程 2026：Agent Teams 配置与实战](/zh/posts/ai/2026-02-22-claude-code-agent-teams/) — Sub-Agent 的多人协作进阶形态

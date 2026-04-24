@@ -324,7 +324,7 @@ SWE-bench Verified 被认为是真实世界编程评估的金标准。它在真�
 
 实际建议？**不要把自己锁定在一个模型上。** 过去一年 API 价格下降了 80%。使用多个模型的成本比以往更低，而为每个任务选择合适工具的收益是实实在在的。
 
-## 相关文章
+## 相关阅读
 
 - [Claude Pricing 2026: Complete Plan Comparison](/posts/ai/2026-02-25-claude-code-pricing/)
 - [GitHub Copilot vs Claude Code vs Cursor: Real-World Benchmarks](/posts/ai/2026-02-28-copilot-vs-claude-vs-cursor/)

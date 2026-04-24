@@ -285,3 +285,11 @@ Claude Code 正在快速进化。值得关注的方向：
 | [定价 2026](/posts/ai/2026-02-25-claude-code-pricing/) | 定价 | 方案与成本分析 |
 | [速率限制](/posts/ai/2026-02-28-claude-rate-limits/) | 指南 | 使用限制详解 |
 | [10 个常见错误](/posts/ai/2026-02-25-claude-code-mistakes/) | 技巧 | 常见陷阱 |
+
+## 相关阅读
+
+- [Claude Code vs Cursor 2026：哪个 AI 编程工具更强？](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/) — 主流对手对比
+- [Claude Code 价格 2026：免费/Pro $20/Max $200 真实花费对比](/zh/posts/ai/2026-02-25-claude-code-pricing/) — 付费方案怎么选
+- [Claude Code 10 大常见坑 2026：新手必看的避坑指南](/zh/posts/ai/2026-02-25-claude-code-mistakes/) — 实战踩坑总结
+- [Claude Code 多 Agent 协作教程 2026](/zh/posts/ai/2026-02-22-claude-code-agent-teams/) — 进阶：Agent Teams
+- [2026 终端 AI 编程工具深度横评](/zh/posts/ai/2026-04-14-terminal-ai-coding-tools-2026-comparison/) — 和同类终端工具放一起看

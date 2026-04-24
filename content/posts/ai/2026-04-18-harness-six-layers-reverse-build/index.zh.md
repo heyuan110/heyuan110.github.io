@@ -205,7 +205,7 @@ Anthropic 的 Context Revert 模式是同一思路的优雅版本。不让一个
 
 如果你的 agent 卡在 60-70% 成功率，问题几乎肯定不在你正在调的那一层。**问题是你没有仪表盘告诉你哪一层真的坏了。** 先建那个。
 
-## 延伸阅读
+## 相关阅读
 
 - [Harness Engineering：60 天后我发现，模型是最不重要的部分](/posts/ai/2026-03-30-harness-engineering-guide/) —— 60 天生产数据和路由表的原文
 - [60 行 CLAUDE.md 铁律（以及我 90 行的为什么挂了）](/posts/ai/2026-03-31-harness-claudemd-guide/) —— 第 1 层（Context）战术，含 ETH Zurich 数据

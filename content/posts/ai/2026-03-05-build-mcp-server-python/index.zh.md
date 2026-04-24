@@ -992,7 +992,7 @@ FastMCP 是官方 MCP Python SDK（PyPI 上的 `mcp` 包）中包含的高级框
 
 MCP 生态系统正在快速增长——仅 Python SDK 每月下载量就达数百万次。你构建的每个服务器都能立即与 Claude Code、Cursor、VS Code Copilot 以及未来任何兼容 MCP 的工具一起使用。现在就开始构建吧。
 
-## 相关文章
+## 相关阅读
 
 - [MCP 协议详解：AI 工具的通用标准](/posts/ai/2026-02-28-mcp-protocol-explained/) — 深入了解 MCP 架构和概念
 - [用 TypeScript 构建 MCP 服务器：从零到部署教程](/posts/ai/2026-03-02-building-mcp-servers-typescript/) — 本教程的 TypeScript 版本

@@ -218,7 +218,7 @@ Claude Code → 复杂重构、自动化、架构规划
 
 *对比数据截至 2026 年 2 月。两个工具都在快速迭代中。*
 
-## 延伸阅读
+## 相关阅读
 
 - [Claude Code Guide 2026: Everything You Need to Know](/posts/ai/2026-02-28-claude-code-complete-guide/) — Claude Code 完整功能概览
 - [Claude Pricing 2026: Every Plan from Free to Max $200](/posts/ai/2026-02-25-claude-code-pricing/) — 详细定价分析

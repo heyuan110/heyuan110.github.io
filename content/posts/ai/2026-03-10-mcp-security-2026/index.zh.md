@@ -450,3 +450,11 @@ Claude Code 实现了多层防护：所有 MCP 工具调用需要明确的权限
 - [Claude Code MCP 配置指南](/posts/ai/2026-02-28-claude-code-mcp-setup/) — 在 Claude Code 中安全配置 MCP 服务端
 - [Claude Code 最佳 MCP 服务端精选](/posts/ai/2026-03-05-best-mcp-servers-claude-code/) — 经过审查的可信 MCP 服务端
 - [Claude Code Hooks 指南](/posts/ai/2026-02-28-claude-code-hooks-guide/) — 用 Hooks 为 MCP 操作添加自定义安全控制
+
+## 相关阅读
+
+- [MCP 安全实战指南：AI Agent 时代的攻防博弈与防护策略](/zh/posts/ai/2026-02-23-mcp-security-guide/) — MCP 安全的系统化攻防指南
+- [MCP 协议全面解析：AI 连接万物的通用标准](/zh/posts/ai/2026-02-20-mcp-protocol-guide/) — MCP 协议本身
+- [Claude Code Security 深度解析](/zh/posts/ai/2026-02-22-claude-code-security/) — Claude Code 侧的安全机制
+- [2026 年 AI 代码安全工具横评](/zh/posts/ai/2026-03-13-ai-code-security-tools-compared/) — 安全工具的横向对比
+- [AI Agent 安全指南：2026 年自动化工作流防护全攻略](/zh/posts/ai/2026-02-27-ai-agent-security/) — 更宽的 Agent 安全面

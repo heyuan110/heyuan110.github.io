@@ -258,7 +258,7 @@ skillport install skill-name
 - [视觉目录](https://awesomeclaude.ai/awesome-claude-skills)
 - [Skills 市场](https://skillsmp.com)
 
-## 延伸阅读
+## 相关阅读
 
 - [Claude Code Skills 完全指南](/zh/posts/ai/2026-01-08-claudecode-skill-guide/) — 从零理解 Skills 系统和写法
 - [Claude Code Skills 模式总结](/zh/posts/ai/2026-01-12-claudecode-skill-patterns/) — 高质量 Skill 的 6 种设计模式

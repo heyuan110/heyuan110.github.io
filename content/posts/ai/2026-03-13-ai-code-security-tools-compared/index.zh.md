@@ -302,7 +302,7 @@ Claude Code Security发布后，[网络安全股票大幅下跌](https://www.the
 
 Codex Security和Claude Code Security都在研究预览阶段——建议作为补充扫描工具使用，不要作为主要安全关卡。Snyk和SonarQube已经是生产就绪的，有SLA和合规认证。
 
-## 延伸阅读
+## 相关阅读
 
 - [Claude Code Security: How AI-Powered Code Scanning Changes Everything](/posts/ai/2026-02-22-claude-code-security/) — Claude Code Security的架构与成果深度解析
 - [AI Agent Security: Protecting Your AI-Powered Development Workflow](/posts/ai/2026-02-27-ai-agent-security/) — AI开发中的安全全景

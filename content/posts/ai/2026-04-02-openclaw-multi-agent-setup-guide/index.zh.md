@@ -706,7 +706,7 @@ Supervisor 用 LLM 判断该委派给谁，通过 sessions_send 动态通信。�
 
 ---
 
-## 延伸阅读
+## 相关阅读
 
 多 Agent 配置只是起点。配好之后继续探索：
 

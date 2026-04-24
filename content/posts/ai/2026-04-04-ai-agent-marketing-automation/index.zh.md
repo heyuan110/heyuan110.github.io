@@ -197,7 +197,7 @@ Nevo 的聪明之处在于，他很清楚地画了这条线：AI 做 80% 的苦�
 
 这种编排能力，会成为未来创始人的核心竞争力。
 
-## 延伸阅读
+## 相关阅读
 
 - [Harness Engineering：Agent 外围系统比模型更重要](/posts/ai/2026-03-30-harness-engineering-guide/)
 - [MCP vs Skills：Claude Code 两种扩展方式怎么选](/posts/ai/2026-04-02-mcp-vs-skills-claude-code/)

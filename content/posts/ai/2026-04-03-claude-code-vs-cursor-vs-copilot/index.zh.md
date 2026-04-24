@@ -138,7 +138,7 @@ Cursor 认为 IDE 是宇宙中心。Claude Code 认为终端才是。Copilot 认
 
 **别找最好的工具，找最好的工具组合。** 接受五个工具各有不可替代的场景，然后组合出你的栈——才是真正的竞争优势。
 
-## 延伸阅读
+## 相关阅读
 
 - [Harness Engineering：Agent 外围系统比模型更重要](/posts/ai/2026-03-30-harness-engineering-guide/)
 - [Cursor Composer 2：Kimi K2.5 争议始末](/posts/ai/2026-04-01-cursor-composer-2-review/)

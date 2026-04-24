@@ -528,3 +528,11 @@ Lark CLI 解决了一个真实的痛点：**飞书操作太碎片化，自动化
 ---
 
 > 本文更新于 2026 年 3 月 | 基于 lark-cli v1.0.0 版本撰写
+
+## 相关阅读
+
+- [Tmux 完全指南：从入门到 AI 多智能体并行开发工作流](/zh/posts/ai/2026-03-03-tmux-guide-ai-development/) — 另一个命令行神器
+- [Lazygit：用了就回不去的终端 Git 神器](/zh/posts/ai/2026-04-10-lazygit-guide/) — 类似风格的 CLI 工具
+- [内网穿透实战：SSH 隧道、frp、Cloudflare Tunnel 三种方案深度对比](/zh/posts/ai/2026-03-28-cloudflare-tunnel-guide/) — 给 Agent 工作流搭通路
+- [Claude Code 斜杠命令、快捷键与 CLI 完全参考手册](/zh/posts/ai/2026-03-05-claude-code-slash-commands/) — CLI 时代的开发生产力
+- [一个人 + AI Agent 月增 2000 客户：Paperclip 营销自动化实战拆解](/zh/posts/ai/2026-04-04-ai-agent-marketing-automation/) — CLI + Agent 的实战商业案例

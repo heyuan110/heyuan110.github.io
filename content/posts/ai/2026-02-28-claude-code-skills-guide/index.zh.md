@@ -883,7 +883,7 @@ description: This is a single-line description that works correctly
 - 缩短描述（保留关键词，去掉填充词）
 - 设置 `SLASH_COMMAND_TOOL_CHAR_BUDGET` 环境变量覆盖限制
 
-## 延伸阅读
+## 相关阅读
 
 - [Claude Code Setup Guide: Installation to First Project](/posts/ai/2026-02-25-claude-code-setup-guide/) — Claude Code 安装与配置
 - [CLAUDE.md Guide: Give AI Perfect Project Context](/posts/ai/2026-02-28-claude-code-claudemd-guide/) — 掌握与 Skills 互补的项目上下文系统

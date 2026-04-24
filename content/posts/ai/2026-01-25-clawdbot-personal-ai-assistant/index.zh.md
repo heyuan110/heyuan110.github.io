@@ -466,3 +466,10 @@ ClawdBot 是一个真正能帮你"干活"的 AI Agent：
 ---
 
 > 📅 **本文更新于 2026 年 1 月** | 基于 ClawdBot 最新版本撰写
+
+## 相关阅读
+
+- [MoltBot 是什么？改名 OpenClaw 全解析：原理、功能与上手教程](/zh/posts/ai/2026-02-18-what-is-moltbot/) — 类似定位的个人 AI 管家
+- [Moltbot 是什么？8 万 Star 爆红项目的改名真相与安全避坑指南](/zh/posts/ai/2026-01-29-moltbot-deep-dive/) — 深度对比同赛道产品
+- [Hermes Agent 完全指南 2026：Nous Research 出品的"会成长"的个人 AI 代理](/zh/posts/ai/2026-04-14-hermes-agent-guide/) — 另一个个人 AI 代理产品
+- [一个人 + AI Agent 月增 2000 客户：Paperclip 营销自动化实战拆解](/zh/posts/ai/2026-04-04-ai-agent-marketing-automation/) — 个人 Agent 的商业化应用场景

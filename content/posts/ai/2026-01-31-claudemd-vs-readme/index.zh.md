@@ -388,3 +388,11 @@ allowed-tools: Read, Edit, Write, Grep, Glob
 ---
 
 > 本文更新于 2026 年 1 月 | 基于 Claude Code v1.x 撰写
+
+## 相关阅读
+
+- [Claude Code 记忆术：一个文件让 AI 永远记住你是谁](/zh/posts/ai/2026-01-12-claudemd-memory-guide/) — CLAUDE.md 记忆机制
+- [CLAUDE.md 完全指南：让 AI 每次都精准理解你的项目](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) — 更完整的 CLAUDE.md 指南
+- [CLAUDE.md 最佳实践：我把 90 行砍到 50 行，Agent 表现反而提升 — Harness #2](/zh/posts/ai/2026-03-31-harness-claudemd-guide/) — 精简 CLAUDE.md 的工程方法
+- [CLAUDE.md 最佳实践：写出真正有效的配置文件](/zh/posts/ai/2026-03-05-claude-code-claudemd-best-practices/) — 另一视角的最佳实践
+- [上下文工程：2026 年最被低估的 AI 开发技能](/zh/posts/ai/2026-03-10-context-engineering-guide/) — CLAUDE.md 背后的底层原理
