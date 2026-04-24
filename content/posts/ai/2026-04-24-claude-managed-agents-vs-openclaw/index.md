@@ -210,7 +210,7 @@ flowchart TB
 
 If the enclosure analysis is right, these are likely outcomes in the next 18 months.
 
-**First, OpenClaw pivots or gets acquired.** With the subscription funnel cut, OpenClaw's growth curve is halved. Three futures: pivot to full multi-model (decouple from Anthropic entirely), get acquired by Anthropic or Microsoft cheap, or wither. I'd bet on "multi-model pivot plus Microsoft acquisition" — Microsoft needs a counter to Managed Agents and GitHub Copilot Chat isn't it.
+**First, OpenClaw pivots or gets acquired.** With the subscription funnel cut, OpenClaw's growth curve is halved. Three futures: pivot to full multi-model (decouple from Anthropic entirely), get acquired by Anthropic or Microsoft cheap, or wither. I'd bet on "multi-model pivot plus Microsoft acquisition" — Microsoft needs a counter to Managed Agents and GitHub Copilot Chat isn't it. Meanwhile, a third path is emerging from the community — [Hermes Agent v0.10 hit 113K stars in 8 days](/posts/ai/2026-04-24-hermes-agent-v010-deep-review/), walking a "MIT open source plus Tool Gateway subscription" route that is neither vendor-enclosed nor enterprise-first. The simultaneity with OpenClaw's enclosure and Managed Agents' commercialization is not coincidence.
 
 **Second, Managed Agents opens custom runtimes.** The "no custom Docker image" limit is untenable for enterprise. Expect Anthropic to open custom runtimes in 6-9 months, gated behind enterprise pricing. This is when the real revenue inflection happens — custom runtimes are how enterprise committed spend gets justified.
 
@@ -224,6 +224,7 @@ If the enclosure analysis is right, these are likely outcomes in the next 18 mon
 
 ## Further Reading
 
+- [Hermes Agent v0.10 Review: 113K Stars in 7 Weeks, Economic Innovation, Not Technical](/posts/ai/2026-04-24-hermes-agent-v010-deep-review/) (same-day sibling, the third path that escapes enclosure)
 - [Harness Engineering: After 60 Days, the Model Was the Least Important Part](/posts/ai/2026-03-30-harness-engineering-guide/)
 - [The 60-Line CLAUDE.md Rule: Context Layer Engineering](/posts/ai/2026-03-31-harness-claudemd-guide/)
 - [Harness Engineering: Build the 6 Layers Backwards](/posts/ai/2026-04-18-harness-six-layers-reverse-build/)

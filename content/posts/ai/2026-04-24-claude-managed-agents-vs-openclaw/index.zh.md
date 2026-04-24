@@ -216,7 +216,7 @@ flowchart TB
 
 最后给一个预测——如果你信我上面的分析，那么未来 18 个月这几件事大概率会发生：
 
-**第一，OpenClaw 会转型或被收购**。被 Anthropic 封了订阅入口之后，OpenClaw 的增长曲线已经被拦腰斩。它要么转向多模型（完全脱钩 Anthropic）、要么被 Anthropic 或 Microsoft 低价收购、要么逐渐凋零。我押的是"转多模型 + 被微软收购"，因为微软正好缺一个对抗 Managed Agents 的牌。
+**第一，OpenClaw 会转型或被收购**。被 Anthropic 封了订阅入口之后，OpenClaw 的增长曲线已经被拦腰斩。它要么转向多模型（完全脱钩 Anthropic）、要么被 Anthropic 或 Microsoft 低价收购、要么逐渐凋零。我押的是"转多模型 + 被微软收购"，因为微软正好缺一个对抗 Managed Agents 的牌。同时看到社区的另一个回应——[Hermes Agent v0.10 在 8 天内冲到 113K star](/zh/posts/ai/2026-04-24-hermes-agent-v010-deep-review/)，它走的是"MIT 开源 + Tool Gateway 订阅"的第三条路，和 OpenClaw 被封禁、Managed Agents 商业化同时发生不是巧合。
 
 **第二，Managed Agents 会开放 custom runtime**。公测期不能自定义 Docker image 是硬伤，企业客户的第一需求就是把自己的私有包带进沙箱。Anthropic 6-9 个月内会开这个口子，但会绑定到企业版定价。
 
@@ -230,6 +230,7 @@ flowchart TB
 
 ## 延伸阅读
 
+- [Hermes Agent v0.10 深度评测：113K star 的黑马是真自生长还是营销包装？](/zh/posts/ai/2026-04-24-hermes-agent-v010-deep-review/)（同日姊妹篇，第三条路）
 - [Harness Engineering：60 天后我发现，模型是最不重要的部分](/posts/ai/2026-03-30-harness-engineering-guide/)
 - [60 行 CLAUDE.md 铁律：Harness 上下文层的工程规范](/posts/ai/2026-03-31-harness-claudemd-guide/)
 - [Harness 六层倒着建：80% 稳定性来自第 5、6 层](/posts/ai/2026-04-18-harness-six-layers-reverse-build/)
