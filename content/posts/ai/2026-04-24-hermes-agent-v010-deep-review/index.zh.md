@@ -18,7 +18,7 @@ answer = "如果你每月在 Firecrawl（web search）、FAL（图像生成）�
 
 [[params.faqItems]]
 question = "v0.10 说的 118 个技能是真的还是营销数字？"
-answer = "数字是真的（GitHub 仓库 hermes/skills 目录可数），但"能用"和"有用"是两回事。我实测下来大约 60 个是高频生产级（file ops、git、web search、browser、memory ops、markdown 处理等），30 个是小众（特定 SaaS 的 API 调用，比如 Notion、Linear），剩下 28 个是实验性或重复封装（比如好几个 YouTube 字幕抓取的变种）。数量是营销锚点，真正能用到的 20-30 个才是核心。"
+answer = "数字是真的（GitHub 仓库 hermes/skills 目录可数），但「能用」和「有用」是两回事。我实测下来大约 60 个是高频生产级（file ops、git、web search、browser、memory ops、markdown 处理等），30 个是小众（特定 SaaS 的 API 调用，比如 Notion、Linear），剩下 28 个是实验性或重复封装（比如好几个 YouTube 字幕抓取的变种）。数量是营销锚点，真正能用到的 20-30 个才是核心。"
 
 [[params.faqItems]]
 question = "OpenClaw 用户要不要切 Hermes？"
@@ -26,7 +26,7 @@ answer = "看你被 Anthropic 4/4 封禁影响多大。如果你一直用 API ke
 
 [[params.faqItems]]
 question = "Hermes 能完全替代付费 AI IDE 吗？"
-answer = "不能，用错方向了。Hermes 是后台自主 Agent，不是交互式编码工具——它没有内联补全、没有 diff 视图、没有 IDE 集成。它的位置是"你下班后还在服务器上干活的夜班工人"，不是"你敲代码时帮你补全的副驾驶"。合理组合是白天 Cursor/Claude Code + 夜间 Hermes 跑数据处理/监控/报告生成，两个是互补不是替代。单独把 Hermes 当 IDE 用你会失望。"
+answer = "不能，用错方向了。Hermes 是后台自主 Agent，不是交互式编码工具——它没有内联补全、没有 diff 视图、没有 IDE 集成。它的位置是「你下班后还在服务器上干活的夜班工人」，不是「你敲代码时帮你补全的副驾驶」。合理组合是白天 Cursor/Claude Code + 夜间 Hermes 跑数据处理/监控/报告生成，两个是互补不是替代。单独把 Hermes 当 IDE 用你会失望。"
 +++
 
 ![Hermes Agent v0.10 深度评测：113K star 开源 Agent 黑马](cover.webp)
