@@ -1,11 +1,11 @@
 +++
 date = '2026-04-14T10:00:00+08:00'
 draft = false
-title = 'Hermes Agent 完全指南 2026：Nous Research 出品的"会成长"的个人 AI 代理'
-description = 'Hermes Agent 是 Nous Research 开源的自改进 AI 代理，出厂就带缰绳、会自己写 Skill、三层记忆跨会话连续。本文基于官方 PDF 教程 v260407 讲清楚怎么装、怎么用、和 Claude Code 有什么区别。'
+title = 'Hermes Agent v0.9 评测 + 安装指南：Nous Research 27K star 自改进 AI 代理（2026）'
+description = 'Nous Research 开源 Hermes Agent v0.9.0 实战评测：4 月 13 日发布、GitHub 27000+ stars、$5 Hetzner VPS 起步、自改进 + 自写 Skill + 三层记忆。完整安装步骤、最佳模型选择（Claude Haiku / DeepSeek）、与 Claude Code 的对比和分工建议。'
 toc = true
 tags = ['AI Agent', 'Hermes Agent', 'Nous Research', 'Harness Engineering', 'MCP']
-keywords = ['Hermes Agent 教程', 'Nous Research AI 代理', '个人 AI agent', 'Hermes Agent 安装', 'AI agent 会成长', 'Hermes Agent 和 Claude Code 区别', 'Hermes Agent v0.9.0', '自改进 Agent']
+keywords = ['Hermes Agent 评测', 'Hermes Agent 安装', 'Hermes Agent v0.9', 'Hermes Agent 中文教程', 'Nous Research Hermes Agent', 'Hermes Agent vs Claude Code', 'Hermes Agent 安装指南 2026', 'Hermes Agent 是什么', '自改进 AI 代理']
 
 [[params.faqItems]]
 question = '''Hermes Agent 是什么？'''

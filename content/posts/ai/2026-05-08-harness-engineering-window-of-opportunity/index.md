@@ -188,6 +188,7 @@ If you've read this far and only take one thing away, take this: **Harness Engin
 
 - [Harness Engineering in Practice: Why the Model Is the Least Important Part of an AI Agent](/posts/ai/2026-03-30-harness-engineering-guide/) — the 60-day pipeline retrospective this piece builds on
 - [Six Layers of Harness Engineering, Built in Reverse](/posts/ai/2026-04-18-harness-six-layers-reverse-build/) — why Layers 5-6 dominate and the construction order
+- [Hermes Agent v0.9 Review (April 2026): Nous Research Setup, Best Models, Harness](/posts/ai/2026-04-14-hermes-agent-guide/) — the open-source agent that ships with the harness built in
 - [Hermes Agent v0.10 Deep Review × Harness Three Kingdoms](/posts/ai/2026-04-24-hermes-agent-v010-deep-review/) — comparing harness designs across three vendors
 - [Claude Managed Agents vs OpenClaw](/posts/ai/2026-04-24-claude-managed-agents-vs-openclaw/) — when frontier labs ship harness primitives directly
 

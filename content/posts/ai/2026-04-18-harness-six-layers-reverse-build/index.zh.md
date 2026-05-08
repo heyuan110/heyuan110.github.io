@@ -210,6 +210,7 @@ Anthropic 的 Context Revert 模式是同一思路的优雅版本。不让一个
 - [Harness Engineering：60 天后我发现，模型是最不重要的部分](/posts/ai/2026-03-30-harness-engineering-guide/) —— 60 天生产数据和路由表的原文
 - [60 行 CLAUDE.md 铁律（以及我 90 行的为什么挂了）](/posts/ai/2026-03-31-harness-claudemd-guide/) —— 第 1 层（Context）战术，含 ETH Zurich 数据
 - [AI 编程 Harness 的 Sub-Agent 架构](/posts/ai/2026-04-13-harness-subagent-architecture/) —— 第 3 层（Execution），什么时候 spawn sub-agent + 路由策略
+- [Hermes Agent v0.9 评测 + 安装指南：Nous Research 27K star 自改进 AI 代理](/posts/ai/2026-04-14-hermes-agent-guide/) —— 出厂自带六层 Harness 的开源参考实现
 - [Browser Automation in Claude Code: 5 Tools Compared](/posts/ai/2026-01-28-claude-code-browser-automation/) —— 第 2 层（Tools）正确的选型方法
 - [Claude Code Skills 模式：哪些写法挺到了生产](/posts/ai/2026-01-12-claudecode-skill-patterns/) —— 第 1 + 2 层在 Skills 形态下的落地
 

@@ -188,6 +188,7 @@ Harness 不会消失，Harness 会上移。这个迁移规律才是真正的经�
 
 - [Harness Engineering 实战：模型是 AI Agent 里最不重要的部分（60 天管线复盘）](/posts/ai/2026-03-30-harness-engineering-guide/) — 本文论证依赖的 60 天 pipeline 数据来源
 - [Harness 六层架构倒着建：80% 稳定性来自第 5、6 层](/posts/ai/2026-04-18-harness-six-layers-reverse-build/) — Layer 5/6 为什么主导稳定性
+- [Hermes Agent v0.9 评测 + 安装指南：Nous Research 27K star 自改进 AI 代理](/posts/ai/2026-04-14-hermes-agent-guide/) — 出厂自带 Harness 的开源 Agent 实战
 - [Hermes Agent v0.10 深度评测 × Harness 三国杀](/posts/ai/2026-04-24-hermes-agent-v010-deep-review/) — 三家厂商 Harness 设计横向对比
 - [Claude Managed Agents vs OpenClaw](/posts/ai/2026-04-24-claude-managed-agents-vs-openclaw/) — 大厂直接交付 Harness 原语意味着什么
 

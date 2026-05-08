@@ -1,11 +1,11 @@
 +++
 date = '2026-04-14T10:00:00+08:00'
 draft = false
-title = 'Hermes Agent Hands-On: Nous Research Personal AI Agent Review'
-description = 'Nous Research just shipped Hermes Agent v0.9.0 "the everywhere release". Hands-on review of the first AI agent that ships with the harness built in — self-evolving skills, three-layer memory, 40+ tools, $5 VPS to run.'
+title = 'Hermes Agent v0.9 Review (April 2026): Nous Research Setup, Best Models, Harness'
+description = "Nous Research Hermes Agent v0.9.0 hands-on review (April 2026): 27K+ GitHub stars, installation guide on $5 Hetzner VPS, best models for the harness (Claude Haiku / DeepSeek), Claude Code integration, and harness engineering pattern explained."
 toc = true
 tags = ['AI Agent', 'Hermes Agent', 'Nous Research', 'Harness Engineering', 'MCP']
-keywords = ['hermes agent nous research', 'hermes agent v0.9 review', 'personal ai agent 2026', 'self-improving ai agent', 'hermes agent install guide', 'agent that grows with you', 'hermes vs claude code', 'nous research open source agent']
+keywords = ['hermes agent review', 'hermes agent v0.9', 'hermes agent nous research', 'hermes agent installation guide 2026', 'hermes agent harness engineering', 'best model for hermes agent nous research 2026', 'hermes agent vs claude code', 'hermes agent github stars 2026', 'hermes agent current version april 2026']
 
 [[params.faqItems]]
 question = "What is Hermes Agent?"

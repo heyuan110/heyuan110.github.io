@@ -210,6 +210,7 @@ If your agent is stuck in the 60-70% success rate band, the problem is almost ce
 - [Harness Engineering: After 60 Days, the Model Was the Least Important Part](/posts/ai/2026-03-30-harness-engineering-guide/) — the original 60-day production data and routing tables
 - [The 60-Line CLAUDE.md Rule (and Why My 90-Line File Failed)](/posts/ai/2026-03-31-harness-claudemd-guide/) — Layer 1 (Context) tactics with the ETH Zurich data
 - [Sub-Agent Architecture for AI Coding Harnesses](/posts/ai/2026-04-13-harness-subagent-architecture/) — Layer 3 (Execution) when to spawn sub-agents and routing strategies
+- [Hermes Agent v0.9 Review (April 2026): Nous Research Setup, Best Models, Harness](/posts/ai/2026-04-14-hermes-agent-guide/) — the open-source reference implementation that ships with all six layers
 - [Browser Automation in Claude Code: 5 Tools Compared](/posts/ai/2026-01-28-claude-code-browser-automation/) — Layer 2 (Tools) selection done right
 - [Claude Code Skills: Patterns That Survived Production](/posts/ai/2026-01-12-claudecode-skill-patterns/) — Layer 1 + Layer 2 in the Skills format
 
