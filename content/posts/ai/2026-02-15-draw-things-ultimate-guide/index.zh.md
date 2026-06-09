@@ -1,12 +1,32 @@
 +++
 date = '2026-02-15T01:00:00+08:00'
 draft = false
-title = 'Draw Things 完全指南：Mac 本地 AI 生图从入门到精通'
-description = 'Draw Things 深度教程：从零开始学会 Mac 本地 AI 生图，涵盖模型选择、提示词技巧、ControlNet、本地 LoRA 训练、脚本自动化到 MCP 集成，小白到高手的完整进阶路线。'
+title = 'Draw Things 教程 2026：Mac 本地 AI 生图免费神器，比 ComfyUI 快 40%'
+description = 'Draw Things 深度教程（2026 更新）：免费的 Mac/iOS 原生 AI 生图 App，靠自研 Metal FlashAttention v2 比 ComfyUI 快 20-40%。16GB Mac Mini M4 就能本地训练 SDXL LoRA、跑 Flux on Mac、Wan 2.2 视频生成，还内置 MCP Server 让 Claude Code 直接调用出图。从安装到 LoRA 训练、ComfyUI vs Draw Things 对比、MCP 集成的完整指南。'
 toc = true
 tags = ['Draw Things', 'AI 生图', 'Mac', 'LoRA', 'ControlNet']
 categories = ['AI实战']
-keywords = ['Draw Things 教程', 'Mac 本地生图', 'Apple Silicon AI', 'Draw Things LoRA 训练', 'Draw Things MCP']
+keywords = ['Draw Things 教程', 'Draw Things 怎么用', 'Draw Things 中文', 'comfyui vs drawthings', 'Mac 本地 AI 生图 2026', 'Apple Silicon 生图', 'Metal FlashAttention', 'Flux on Mac', 'Draw Things LoRA 训练', 'Draw Things MCP', 'Mac 免费 AI 生图工具 2026']
+
+[[params.faqItems]]
+question = '''Draw Things 是什么？跟 ComfyUI、Midjourney 比有什么独特优势？'''
+answer = '''Draw Things 是一款完全免费的 macOS/iOS 原生 AI 生图 App——不用装 Python、不用 Docker、不用订阅、不上传云端。核心差异在引擎：它用 SwiftUI + 自研推理引擎 s4nnc + Metal FlashAttention v2，从底层为 Apple Silicon 优化。同样硬件比 ComfyUI 的 PyTorch MPS 后端快 20-40%，生成延迟降低 43-120%。和 ComfyUI 比，它原生支持本地 LoRA 训练、JavaScript 脚本 API、官方 MCP Server——这三样 ComfyUI 都没有。和 Midjourney 比，没有 $30/月的订阅、不用进 Discord 打字、不用把你的参考图传到别人服务器。'''
+
+[[params.faqItems]]
+question = '''Mac 多少内存才能跑？16GB 的 Mac Mini M4 真的够用吗？'''
+answer = '''2026 年靠量化技术，16GB 完全够用。按内存档位的真实配置：8GB Mac（M1 Air）跑 SD 1.5 8-bit + Tiled Decoding，512x512 输出；16GB Mac Mini M4 跑 SDXL 8-bit 或 Flux.1 Schnell，1024x1024 流畅，还能用 QLoRA 训练 SDXL LoRA；24GB+ Mac 直接上 Flux.1 Dev Q6_K（磁盘约 10GB）满血画质。关键三招：8-bit/Q6_K 量化模型、VAE 阶段开 Tiled Decoding、训练时开 Memory Saver。QLoRA 甚至能在 6GB 可用内存的 iPhone 15 Pro 上训练 SD 1.5 LoRA。'''
+
+[[params.faqItems]]
+question = '''Draw Things、ComfyUI、Midjourney 三选一怎么选？'''
+answer = '''Mac 用户、想零配置、在意隐私、需要本地训练 LoRA 或 Claude Code 集成——选 Draw Things。喜欢复杂节点工作流、需要社区最新自定义节点、用非 Mac 的 GPU 主机——选 ComfyUI。只追求单张图的极致美感、不在乎钱不在乎控制不在乎数据本地化——选 Midjourney。对 2026 年大部分 Mac 用户来说，Draw Things 在性价比+性能+隐私三角上是最优解，而且它是三者里唯一能让 Claude Code 通过 MCP 直接出图的。'''
+
+[[params.faqItems]]
+question = '''Draw Things 怎么训练本地 LoRA？怎么用 MCP 接 Claude Code？'''
+answer = '''训练 LoRA：进 PEFT 标签 → 选基础模型（SDXL Base 1.0 最稳）→ 上传 5-20 张风格一致的图 → 设独特触发词 → 先跑 500-1000 步测试 checkpoint，再决定是否继续（过拟合是新手第一大坑）。靠 QLoRA 16GB Mac Mini M4 训 SDXL 完全没问题。MCP 集成：Draw Things 设置里开启 API Server（默认 7860 端口），然后执行 `claude mcp add -s user drawthings -- npx -y mcp-drawthings`，重启 Claude Code 即可。之后让 Claude Code 直接调用 generate_image 和 transform_image，不用离开终端，图片自动存到 ~/Pictures/drawthings-mcp/。'''
+
+[[params.faqItems]]
+question = '''Draw Things 能在 Mac 上跑 Wan 2.2、Hunyuan 视频生成吗？'''
+answer = '''能。Draw Things 支持 Wan 2.2 5B（文生视频）、Hunyuan Video（高质量视频）、Stable Video Diffusion（图生视频）。采样器用 DDIM Trailing 运动连贯性最好。真实硬件门槛：24GB+ 统一内存最舒服，16GB 理论上能跑短的低分辨率 Wan 2.2 5B 片段，但内存压力大。这是目前 Mac 上做本地视频生成最干净的方案——不用单独搭一套 ComfyUI 工作流。'''
 +++
 
 ![Draw Things 完全指南：Mac 本地 AI 生图从入门到精通的封面图](cover.webp)

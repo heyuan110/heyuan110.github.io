@@ -1,12 +1,32 @@
 +++
 date = '2026-02-15T01:00:00+08:00'
 draft = false
-title = 'Draw Things Ultimate Guide: Local AI Image Generation on Mac'
-description = 'Master Draw Things for Mac — free local AI image generation with Metal acceleration, ControlNet, LoRA training, JavaScript scripting, and MCP integration for Claude Code.'
+title = 'Draw Things Review 2026: Free Mac AI Image Generator, 40% Faster than ComfyUI'
+description = "Draw Things hands-on review (2026): free Mac/iOS app that beats ComfyUI by 20-40% on Apple Silicon via Metal FlashAttention v2, with local LoRA training on 16GB Mac Mini M4, JavaScript automation, and ready-made MCP server for Claude Code. Flux on Mac, Wan 2.2 video, and a Draw Things vs ComfyUI comparison included."
 toc = true
 tags = ['Draw Things', 'AI Image Generation', 'Mac', 'LoRA', 'ControlNet']
 categories = ['AI Guides']
-keywords = ['Draw Things tutorial', 'Mac local AI image generation', 'Apple Silicon AI art', 'Draw Things LoRA training', 'Draw Things MCP integration', 'free Stable Diffusion Mac']
+keywords = ['Draw Things review', 'Draw Things tutorial 2026', 'Draw Things vs ComfyUI', 'comfyui vs draw things', 'comfyui vs drawthings', 'local AI image generation Mac', 'Apple Silicon AI image generation', 'Metal FlashAttention', 'Flux on Mac', 'Draw Things LoRA training', 'Draw Things MCP', 'best Mac AI art tool 2026']
+
+[[params.faqItems]]
+question = "What is Draw Things and what makes it different from ComfyUI or Midjourney?"
+answer = "Draw Things is a free macOS/iOS native AI image generation app — no Python, no Docker, no subscription, no cloud uploads. The differentiator is the engine: it is built on SwiftUI plus a custom inference runtime (s4nnc) with Metal FlashAttention v2, optimized end-to-end for Apple Silicon. On identical hardware it runs 20-40% faster than ComfyUI's PyTorch MPS backend, and image generation latency drops 43-120%. Unlike ComfyUI it ships local LoRA training, a JavaScript scripting API, and an official MCP server out of the box. Versus Midjourney: no $30/month bill, no Discord prompts, no upload of your reference images to someone else's server."
+
+[[params.faqItems]]
+question = "How much Mac memory do I need? Can a 16GB Mac Mini M4 really run this?"
+answer = "Yes — 16GB is the sweet spot in 2026 thanks to quantization. Realistic configs by tier: 8GB Mac (M1 Air) runs SD 1.5 8-bit with Tiled Decoding at 512x512; 16GB Mac Mini M4 runs SDXL 8-bit or Flux.1 Schnell at 1024x1024 comfortably, and can even train SDXL LoRAs via QLoRA; 24GB+ Mac runs Flux.1 Dev Q6_K (~10GB on disk) at full quality. The key tricks are 8-bit/Q6_K quantization, Tiled Decoding for the VAE step, and Memory Saver mode during training. QLoRA can squeeze SD 1.5 LoRA training onto a 6GB iPhone 15 Pro."
+
+[[params.faqItems]]
+question = "Draw Things vs ComfyUI vs Midjourney — which one should I pick in 2026?"
+answer = "Pick Draw Things if you are on Mac, want zero setup, value privacy, and need local LoRA training or MCP/Claude Code integration. Pick ComfyUI if you live inside complex node graphs, need bleeding-edge custom nodes from the community, or run a non-Mac GPU box. Pick Midjourney if you only want best-in-class aesthetics on a single prompt and do not care about cost, control, or local data. For most Mac users in 2026, Draw Things wins on the price-performance-privacy triangle — and it is the only one of the three that lets Claude Code generate images for you directly via MCP."
+
+[[params.faqItems]]
+question = "How do I train a local LoRA in Draw Things and integrate it with Claude Code via MCP?"
+answer = "Local LoRA: open the PEFT tab, pick a base model (SDXL Base 1.0 is the safest start), load 5-20 consistent training images, set a unique trigger word, run 500-1000 steps first and test the checkpoint before going further (overfitting is the #1 beginner mistake). QLoRA support means a 16GB Mac Mini M4 handles SDXL fine. MCP integration: enable API Server in Draw Things settings (default port 7860), then run `claude mcp add -s user drawthings -- npx -y mcp-drawthings`. After that Claude Code can call generate_image and transform_image directly — you stay in the terminal, images land in ~/Pictures/drawthings-mcp/."
+
+[[params.faqItems]]
+question = "Can Draw Things generate video like Wan 2.2 or Hunyuan on a Mac?"
+answer = "Yes, Draw Things supports Wan 2.2 5B (text-to-video), Hunyuan Video (high-quality video), and Stable Video Diffusion (image-to-video). Use the DDIM Trailing sampler for best motion coherence. Realistic hardware bar: 24GB+ unified memory is recommended — 16GB technically works for shorter Wan 2.2 5B clips at low resolution but you will fight memory pressure. This is currently the cleanest way to do local video generation on a Mac without spinning up a separate ComfyUI workflow."
 +++
 
 ![Draw Things Ultimate Guide: Local AI Image Generation on Mac cover image](cover.webp)

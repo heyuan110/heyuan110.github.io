@@ -1,11 +1,31 @@
 +++
 date = '2026-03-17T10:00:00+08:00'
 draft = false
-title = 'Chrome DevTools MCP Setup 2026: Connect AI to Your Existing Browser Session'
-description = 'Step-by-step Chrome DevTools MCP setup guide. Fix the new-window problem, configure port 9222 remote debugging, enable autoConnect, and avoid the user-data-dir pitfall. Works with Claude Code and Cursor.'
+title = 'Chrome DevTools MCP Setup 2026: Fix "Opens New Window" + Port 9222 (Claude Code & Cursor)'
+description = 'How to connect AI to your already-logged-in Chrome browser. Fix the new-window problem in 3 steps, configure remote debugging port 9222 on macOS, enable autoConnect on Chrome 146+, and solve the user-data-dir conflict. Works with Claude Code, Cursor, Windsurf.'
 toc = true
 tags = ['Chrome DevTools', 'MCP', 'AI Coding Tools', 'Claude Code']
-keywords = ['Chrome DevTools MCP', 'chrome devtools mcp setup', 'chrome devtools mcp setup 2026', 'chrome remote debugging port 9222', 'autoConnect chrome mcp', 'AI browser debugging', 'chrome devtools mcp claude code', 'mcp server chrome setup']
+keywords = ['Chrome DevTools MCP', 'chrome devtools mcp setup', 'chrome devtools mcp setup 2026', 'chrome devtools mcp not connecting', 'chrome remote debugging port 9222', 'chrome remote debugging port 9222 mac', 'autoConnect chrome mcp', 'chrome devtools mcp autoConnect', 'chrome devtools mcp user-data-dir', 'AI browser debugging', 'AI browser session login', 'claude code chrome mcp', 'chrome devtools mcp claude code', 'cursor chrome devtools mcp', 'mcp server chrome setup', 'how to connect AI to existing chrome browser']
+
+[[params.faqItems]]
+question = "What is Chrome DevTools MCP and which AI tools support it?"
+answer = "Chrome DevTools MCP is an open-source MCP server built by the Google Chrome team that exposes 29 Chrome DevTools capabilities (console logs, network requests, performance traces, Lighthouse audits, JavaScript execution, screenshots) to AI coding assistants. It works with any MCP-compatible client, including Claude Code, Cursor, Windsurf, Cline, VS Code GitHub Copilot, and Gemini CLI."
+
+[[params.faqItems]]
+question = "Why does Chrome DevTools MCP open a new window every time instead of using my existing browser?"
+answer = "By default the MCP server launches a fresh Chrome instance using its own user data directory at ~/.cache/chrome-devtools-mcp/chrome-profile-stable, so it has none of your cookies or login sessions. To connect to your existing logged-in browser, either use --autoConnect (Chrome 146+ stable) or start Chrome yourself with --remote-debugging-port=9222 and point the MCP server at it via --browserUrl http://127.0.0.1:9222."
+
+[[params.faqItems]]
+question = "How do I fix the user-data-dir conflict when starting Chrome with --remote-debugging-port=9222?"
+answer = "Since Chrome 136, the --remote-debugging-port flag is silently ignored when Chrome runs on the default profile directory for security reasons. The fix is to (1) kill all existing Chrome processes with `killall -9 \"Google Chrome\"` on macOS or `taskkill /F /IM chrome.exe` on Windows, then (2) relaunch Chrome with both --remote-debugging-port=9222 AND --user-data-dir pointing to a non-default path like /tmp/chrome-debug-profile. Verify with `curl http://127.0.0.1:9222/json/version`."
+
+[[params.faqItems]]
+question = "autoConnect vs --browserUrl: which connection method should I use?"
+answer = "Use --autoConnect for daily debugging on Chrome 146+ stable — it is the simplest, keeps your real browser profile, and requires no manual --user-data-dir setup. Use --browserUrl when you are on Chrome 145 or below, running inside Docker or a sandboxed environment, need fine-grained control over the debug port, or want to connect a remote MCP server to a local Chrome. Default mode (new instance) is only useful for CI/CD or testing public pages."
+
+[[params.faqItems]]
+question = "Does Chrome DevTools MCP work with Claude Code, Cursor, and Windsurf?"
+answer = "Yes. For Claude Code run `claude mcp add chrome-devtools -- npx chrome-devtools-mcp@latest --autoConnect`. For Cursor, go to Settings → MCP → Add New MCP Server and paste the npx config. For Windsurf and Cline, add chrome-devtools to the MCP config JSON the same way. VS Code GitHub Copilot uses .vscode/mcp.json. All clients use the same underlying server binary, only the registration UI differs."
 +++
 
 ![Chrome DevTools MCP connecting AI agent to browser for debugging](cover.webp)

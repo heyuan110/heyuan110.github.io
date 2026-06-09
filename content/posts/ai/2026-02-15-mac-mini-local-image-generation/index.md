@@ -1,12 +1,12 @@
 +++
 date = '2026-02-15T00:30:00+08:00'
 draft = false
-title = 'Mac Mini M4 AI Image Generation: ComfyUI vs Draw Things (50s Flux Benchmark)'
-description = 'Benchmarked ComfyUI, Draw Things, and DiffusionBee on Mac Mini M4 Pro 24GB. Draw Things beats ComfyUI by 20% on Apple Silicon. Flux 1024×1024 in 50 seconds. Full setup guide.'
+title = 'Mac Mini M4 AI Image Generation 2026: ComfyUI vs Draw Things (24GB/48GB Flux 50s Benchmark)'
+description = 'Flux 1024×1024 in 50 seconds on Mac Mini M4 Pro 24GB — full benchmark of ComfyUI, Draw Things, DiffusionBee. Draw Things beats ComfyUI by 20% on Apple Silicon; 48GB unlocks FP16. Setup guide + GGUF quantization picks for 16GB/24GB/48GB.'
 toc = true
 tags = ['Mac Mini', 'AI Image Generation', 'ComfyUI', 'Draw Things', 'Stable Diffusion', 'Flux']
 categories = ['AI Guides']
-keywords = ['Mac Mini local image generation', 'ComfyUI Mac setup', 'Draw Things review', 'Draw Things vs ComfyUI', 'Apple Silicon AI image generation', 'Flux Mac Mini M4', 'local AI image generator 2026', 'ComfyUI vs Draw Things', 'best Mac AI art tool', 'GGUF quantization Flux', 'Mac Mini M4 Stable Diffusion', 'mac mini m4 ai image generation', 'local ai image generation mac']
+keywords = ['mac mini m4 ai image generation 2026', 'comfyui vs drawthings', 'ComfyUI vs Draw Things', 'Draw Things vs ComfyUI', 'local ai image generation mac', 'Apple Silicon AI image generation', 'Flux Mac Mini 48GB', 'Flux Mac Mini M4', 'Mac Mini local image generation', 'ComfyUI Mac setup', 'Draw Things review', 'local AI image generator 2026', 'best Mac AI art tool', 'GGUF quantization Flux', 'Mac Mini M4 Stable Diffusion', 'Mac Mini 24GB Flux benchmark', 'Draw Things Metal FlashAttention']
 
 [[params.faqItems]]
 question = "Can a Mac Mini M4 run local AI image generation?"
@@ -27,6 +27,10 @@ answer = "Apple Silicon is roughly 3-5x slower than RTX 4090 and 2-3x slower tha
 [[params.faqItems]]
 question = "Draw Things vs ComfyUI: which should I choose on Mac?"
 answer = "Choose Draw Things for ease of use, Apple-native optimization, and faster performance on Apple Silicon. Choose ComfyUI if you need complex node-based workflows, the broadest model support, or API-driven automation. Both can be installed simultaneously."
+
+[[params.faqItems]]
+question = "Is a 48GB Mac Mini M4 Pro worth it for Flux image generation?"
+answer = "Yes, if Flux is your primary workload. 48GB lets you run Flux.1 Dev at full FP16 (~24GB model) without quantization, eliminating any quality loss and enabling faster batch generation. On 24GB you are forced into Q6_K GGUF quantization (still excellent quality, ~50–90s per 1024×1024 image). The 48GB upgrade also future-proofs you for FLUX.2 and larger video models like Hunyuan. For SDXL-only workflows, 24GB is plenty."
 +++
 
 ![Mac Mini M4 local AI image generation tool comparison: ComfyUI, DiffusionBee, Draw Things](cover.webp)

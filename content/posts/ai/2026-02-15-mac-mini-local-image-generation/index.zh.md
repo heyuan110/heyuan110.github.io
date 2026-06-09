@@ -1,12 +1,12 @@
 +++
 date = '2026-02-15T00:30:00+08:00'
 draft = false
-title = 'Mac Mini M4 本地 AI 生图：ComfyUI vs Draw Things 实测，Flux 出图仅需 50 秒'
-description = 'Mac Mini M4 跑 AI 生图到底行不行？实测 ComfyUI、DiffusionBee、Draw Things 三款工具，对比速度、显存占用和出图质量，附 Flux 量化方案选择指南。'
+title = 'Mac Mini M4 本地 AI 生图 2026：ComfyUI vs Draw Things 实测，24GB 跑 Flux 仅需 50 秒'
+description = 'Mac Mini M4 Pro 24GB 跑 Flux 1024×1024 仅需 50 秒——实测 ComfyUI、DiffusionBee、Draw Things 三款工具，Draw Things 凭 Metal FlashAttention 比 ComfyUI 快 20%。附 16GB/24GB/48GB 内存配置选购指南和 Apple Silicon 生图量化方案。'
 toc = true
 tags = ['Mac Mini', 'AI 生图', 'ComfyUI', 'Draw Things', 'Stable Diffusion', 'Flux']
 categories = ['AI实战']
-keywords = ['Mac Mini 本地生图', 'ComfyUI Mac', 'DiffusionBee', 'Draw Things', 'Apple Silicon AI 生图', 'Flux Mac Mini', 'Mac Mini M4 AI', '本地 AI 生图 2026', 'Mac Mini AI 图像生成', 'ComfyUI 最新版本 2026']
+keywords = ['Mac Mini M4 AI 生图 2026', 'comfyui vs drawthings', 'ComfyUI vs Draw Things', 'Apple Silicon 生图 2026', 'Flux Mac Mini 48GB', 'Mac Mini 本地生图', 'ComfyUI Mac', 'DiffusionBee', 'Draw Things', 'Apple Silicon AI 生图', 'Flux Mac Mini', 'Mac Mini M4 AI', '本地 AI 生图 2026', 'Mac Mini AI 图像生成', 'ComfyUI 最新版本 2026', 'local ai image generation mac', 'Mac Mini 24GB Flux 实测', 'Draw Things Metal FlashAttention']
 
 [[params.faqItems]]
 question = "Mac Mini M4 能跑本地 AI 生图吗？"
@@ -27,6 +27,10 @@ answer = "Apple Silicon 大约比 RTX 4090 慢 3-5 倍，比 RTX 4070 慢 2-3 �
 [[params.faqItems]]
 question = "Draw Things 和 ComfyUI 怎么选？"
 answer = "追求易用、Apple 原生优化、速度最快选 Draw Things；需要复杂节点工作流、最广模型支持或 API 自动化选 ComfyUI。两者可以同时安装互不干扰，日常快速出图用 Draw Things，需要精细控制时切到 ComfyUI。"
+
+[[params.faqItems]]
+question = "Mac Mini M4 Pro 48GB 内存值得为 Flux 多花这笔钱吗？"
+answer = """如果 Flux 是你的主力模型，值得。48GB 可以直接跑 Flux.1 Dev 的原始 FP16 版本（约 24GB 模型文件），完全无需量化、画质零损失，批量生成速度也更快；而 24GB 必须用 Q6_K GGUF 量化（画质依然优秀，1024×1024 出图 50–90 秒）。48GB 还能为 FLUX.2 和 Hunyuan 等更大的视频模型留足空间。如果你只跑 SDXL 不碰 Flux，24GB 完全够用，不必加钱。"""
 +++
 
 ![Mac Mini M4 本地 AI 生图工具选型指南封面，对比 ComfyUI、DiffusionBee、Draw Things](cover.webp)

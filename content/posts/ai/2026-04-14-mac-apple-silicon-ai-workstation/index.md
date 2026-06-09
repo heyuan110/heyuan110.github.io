@@ -1,11 +1,11 @@
 +++
 date = '2026-04-14T10:00:00+08:00'
 draft = false
-title = 'Apple Silicon AI Workstation 2026: M4 Pro vs M3 Max for Local LLM & Image Gen'
-description = 'M4 Pro 48GB vs M3 Max 64GB for local AI: Ollama, llama.cpp, MLX, ComfyUI, Draw Things benchmarked. Memory bandwidth beats Neural Engine. Full decision framework inside.'
+title = 'Best Mac for Local LLM 2026: M4 Pro vs M3 Max Llama 3.3 70B Benchmark (9.8 tok/s)'
+description = 'M3 Max 64GB beats new M4 Pro for local LLM: 7.5 tok/s on Llama 3.3 70B vs OOM. Memory bandwidth (300-400 GB/s) wins, Neural Engine is dead weight. Full benchmarks for Ollama, MLX, llama.cpp, ComfyUI, Draw Things across 48GB/64GB/128GB unified memory tiers.'
 toc = true
 tags = ['Apple Silicon', 'M4 Pro', 'M3 Max', 'Local LLM', 'Ollama', 'MLX', 'AI Workstation', 'ComfyUI', 'Draw Things']
-keywords = ['apple silicon local AI', 'M4 Pro AI workstation', 'M3 Max LLM benchmark', 'mac local image generation', 'draw things comfyui mac', 'unified memory LLM', 'MLX vs PyTorch mac', 'Ollama Apple Silicon', 'mac studio local AI 2026', 'M4 Max vs M3 Max AI', 'best mac for llama 70B', 'mac neural engine useless']
+keywords = ['best mac for local llm 2026', 'M4 Pro vs M3 Max LLM', 'apple silicon llama 70B', 'mac unified memory ai', 'memory bandwidth llm inference', 'mac vs nvidia local ai', 'mlx vs ollama mac', 'draw things comfyui mac benchmark', 'apple silicon local AI', 'M3 Max LLM benchmark', 'how much ram for llama 70B mac', 'is M4 Pro good for AI', 'mac studio vs mac mini ai', 'M4 Max vs M3 Max AI', 'mac neural engine useless', 'M3 Max 64GB vs 128GB', 'apple silicon tokens per second']
 
 [[params.faqItems]]
 question = "Is M4 Pro or M3 Max better for local AI in 2026?"
@@ -26,6 +26,10 @@ answer = "Use MLX when you want the fastest inference on a single Apple Silicon 
 [[params.faqItems]]
 question = "Does thermal throttling make Mac mini M4 Pro a bad AI workstation?"
 answer = "For steady-state LLM inference, no. LLM token generation is memory-bandwidth bound, not compute bound, so the GPU runs well below thermal limits. Thermal throttling does matter for long image generation batches (ComfyUI running SDXL queues for 30+ minutes) and MLX training. If you plan sustained heavy GPU workloads, Mac Studio has a much better cooling headroom than Mac mini."
+
+[[params.faqItems]]
+question = "M4 Max is out now: should I wait for it or buy M3 Max today?"
+answer = "M4 Max MacBook Pro is shipping with 410-546 GB/s memory bandwidth (vs M3 Max 300-400 GB/s) and 128GB max unified memory, so it does beat M3 Max on LLM tok/s by ~15-25%. But there is no M4 Max Mac Studio yet in early 2026, and refurbished M3 Max Studio 64GB sells for roughly half the price of a new M4 Max MacBook Pro at the same memory tier. If you need portability, buy M4 Max MBP now. If you want a desktop AI workstation, the M3 Max Mac Studio (64-128GB) remains the best dollar-per-tok/s purchase until the M4 Max Studio arrives."
 +++
 
 ![Apple Silicon AI workstation comparison: M4 Pro vs M3 Max running Ollama, MLX, ComfyUI, and Draw Things locally](cover.webp)

@@ -1,11 +1,11 @@
 +++
 date = '2026-04-14T10:00:00+08:00'
 draft = false
-title = 'Mac mini / Mac Studio AI 本地开发完全指南 2026：选配、跑大模型、出图实测'
-description = 'Mac mini M4 Pro vs Mac Studio M3 Max 本地 AI 实测：Ollama、ComfyUI、Draw Things 跑大模型和出图。内存选 48GB 还是 64GB？国行、教育优惠、官翻、闲鱼怎么买最划算？'
+title = '2026 年 Mac 本地跑大模型实测：M4 Pro vs M3 Max 谁更快？Llama 3.3 70B 9.8 tok/s'
+description = 'M3 Max 64GB 跑 Llama 3.3 70B 实测 7.5 tok/s，新款 M4 Pro 直接 OOM 跑不动。内存带宽 300-400 GB/s 才是决胜参数，ANE 神经网络引擎对开源 AI 完全没用。Ollama / MLX / ComfyUI / Draw Things 在 48GB、64GB、128GB 三档机器上完整跑分，附国内购买决策框架。'
 toc = true
 tags = ['Apple Silicon', 'M4 Pro', 'M3 Max', 'Local LLM', 'Ollama', 'MLX', 'AI Workstation', 'ComfyUI', 'Draw Things']
-keywords = ['mac mini 本地 AI', 'mac studio 跑大模型', 'Apple Silicon 统一内存', '本地出图 Mac', 'M4 Pro 24GB 够吗', 'Mac mini M4 Pro 选配', 'Mac Studio M3 Max 二手', 'Ollama 苹果 芯片', '本地跑 70B 模型', 'mac 跑 llama 3.3', 'Draw Things 中文', 'ComfyUI mac 实测']
+keywords = ['M4 Pro vs M3 Max 跑 AI', 'mac mini 本地 LLM', 'mac studio 本地 AI 工作站', 'Apple Silicon 跑大模型', '本地跑 llama 70B 苹果', 'M3 Max 64GB vs 128GB', '苹果统一内存 AI', 'mac mini 本地 AI', 'mac studio 跑大模型', '本地出图 Mac', 'M4 Pro 24GB 够吗', 'Mac mini M4 Pro 选配', 'Mac Studio M3 Max 二手', 'Ollama 苹果芯片', 'mac 跑 llama 3.3', 'Draw Things 中文', 'ComfyUI mac 实测', '内存带宽 LLM 推理', 'M4 Max 值得买吗']
 
 [[params.faqItems]]
 question = "M4 Pro 24GB 内存跑本地 AI 够不够？"
@@ -26,6 +26,10 @@ answer = "取决于用量。按 Claude Sonnet / GPT-4o 类 API 价格，1.5 万�
 [[params.faqItems]]
 question = "神经网络引擎（ANE）那 38 TOPS 算力到底有用吗？"
 answer = "对开源本地 AI 基本没用。Ollama、llama.cpp、ComfyUI、Draw Things、MLX 全部跑在 GPU（Metal）上，不用 ANE。ANE 只在 Core ML 和 Apple Intelligence 这种封闭生态里用。选 Mac 跑 AI 看三个真实指标：GPU 核心数、内存带宽、统一内存总量，ANE 的 TOPS 数字可以忽略。Apple 发布会上吹的 NPU 算力在开源圈是沉默资产。"
+
+[[params.faqItems]]
+question = "M4 Max 已经上市了，现在还该买 M3 Max 吗？"
+answer = """M4 Max MacBook Pro 内存带宽提升到 410-546 GB/s（M3 Max 是 300-400 GB/s），128GB 统一内存封顶不变，跑 LLM 比 M3 Max 快 15-25%。但 2026 年初**还没有 M4 Max 版本的 Mac Studio**，而京东大促或官翻的 M3 Max Studio 64GB 价格大概只有同档 M4 Max MBP 的一半。结论：要便携买 M4 Max MBP，要桌面 AI 工作站继续买 M3 Max Studio 64-128GB——在 M4 Max Studio 上市前，它仍是单位 tok/s 性价比最高的选择。"""
 +++
 
 ![Mac mini M4 Pro 和 Mac Studio M3 Max 本地 AI 工作站对比，跑 Ollama、MLX、ComfyUI 实测](cover.webp)
