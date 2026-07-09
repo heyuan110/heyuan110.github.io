@@ -106,10 +106,10 @@ head -30 <文章目录>/index.md
 
 按优先级尝试两种方案。详细的 API 调用代码和 Pillow 兜底脚本见 [references/generation-methods.md](references/generation-methods.md)。
 
-**方案 A（首选）**：Rube MCP + Gemini AI 生图
+**方案 A（首选）**：直连 Gemini 生图（已弃用 Rube MCP）
 - 读取 [base-prompt.md](references/base-prompt.md) 获取系统级生图指令
 - 根据文章内容和选定维度构造英文提示词
-- 调用 `GEMINI_GENERATE_IMAGE`，下载并转换为 WebP
+- 跑 `references/gemini-generate.py`（用 `GOOGLE_API_KEY`，先出 4K 再降采样存 WebP）
 
 **方案 B（兜底）**：Python/Pillow 程序化生成
 - 当 AI 生图失败时使用

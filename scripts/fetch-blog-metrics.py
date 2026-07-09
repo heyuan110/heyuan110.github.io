@@ -22,11 +22,8 @@ import sys
 from datetime import date, timedelta
 from pathlib import Path
 
-# Force ADC — ignore any pre-set GOOGLE_APPLICATION_CREDENTIALS pointing at
-# unrelated service accounts.
-os.environ.pop("GOOGLE_APPLICATION_CREDENTIALS", None)
-
 import google.auth
+from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from google.analytics.data_v1beta import BetaAnalyticsDataClient
 from google.analytics.data_v1beta.types import (
@@ -43,6 +40,19 @@ SCOPES = [
     "https://www.googleapis.com/auth/webmasters.readonly",
     "https://www.googleapis.com/auth/analytics.readonly",
 ]
+# Prefer a service-account key (bypasses OAuth restricted-scope blocking).
+# Set SA_KEY env to a PERSONAL service-account key; falls back to ADC.
+# Do NOT default to a work/company key here.
+SA_KEY = os.environ.get("SA_KEY")
+
+
+def get_credentials():
+    if SA_KEY and os.path.exists(SA_KEY):
+        print(f"→ Auth: service account {SA_KEY}", file=sys.stderr)
+        creds = service_account.Credentials.from_service_account_file(SA_KEY, scopes=SCOPES)
+        return creds, getattr(creds, "project_id", None)
+    print("→ Auth: application default credentials", file=sys.stderr)
+    return google.auth.default(scopes=SCOPES)
 
 
 def gsc_query(svc, start: str, end: str, dims: list[str], row_limit: int = 5000) -> list[dict]:
@@ -93,8 +103,8 @@ def main() -> int:
     print(f"→ Current: {start_cur} to {end_cur}", file=sys.stderr)
     print(f"→ Prior:   {start_prev} to {end_prev}", file=sys.stderr)
 
-    creds, project = google.auth.default(scopes=SCOPES)
-    print(f"→ ADC project: {project}", file=sys.stderr)
+    creds, project = get_credentials()
+    print(f"→ Auth project: {project}", file=sys.stderr)
 
     out: dict = {"window": {"current": [str(start_cur), str(end_cur)],
                               "prior": [str(start_prev), str(end_prev)]},
