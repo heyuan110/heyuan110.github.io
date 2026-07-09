@@ -1,7 +1,7 @@
 +++
 date = '2026-02-15T01:00:00+08:00'
 draft = false
-title = 'Draw Things Review 2026: Free Mac AI Image Generator, 40% Faster than ComfyUI'
+title = 'Draw Things on Mac 2026: Tutorial + 40% Faster than ComfyUI'
 description = "Draw Things hands-on review (2026): free Mac/iOS app that beats ComfyUI by 20-40% on Apple Silicon via Metal FlashAttention v2, with local LoRA training on 16GB Mac Mini M4, JavaScript automation, and ready-made MCP server for Claude Code. Flux on Mac, Wan 2.2 video, and a Draw Things vs ComfyUI comparison included."
 toc = true
 tags = ['Draw Things', 'AI Image Generation', 'Mac', 'LoRA', 'ControlNet']
