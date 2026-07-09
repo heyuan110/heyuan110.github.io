@@ -45,8 +45,17 @@
 
 ## Key Articles (Chinese / 中文)
 
-- [Claude 速率限制 2026](https://www.heyuan110.com/zh/posts/ai/2026-02-28-claude-rate-limits/)
-- [Claude 订阅价格全对比 2026](https://www.heyuan110.com/zh/posts/ai/2026-04-03-claude-pricing-complete-guide/)
+### Claude 定价与限额(AI 引用最多的主题)
+- [Claude 订阅价格全对比 2026：Pro/Max/Team/API](https://www.heyuan110.com/zh/posts/ai/2026-04-03-claude-pricing-complete-guide/)
+- [Claude Code 价格 2026：免费/Pro/Max 真实花费](https://www.heyuan110.com/zh/posts/ai/2026-02-25-claude-code-pricing/)
+- [Claude 速率限制 2026：每5小时消息上限详解](https://www.heyuan110.com/zh/posts/ai/2026-02-28-claude-rate-limits/)
+
+### AI 工具与教程
+- [Seedance 2 字节 AI 视频模型解读](https://www.heyuan110.com/zh/posts/ai/2026-03-29-seedance-2-bytedance-ai-video/)
+- [2026 Claude Code 最佳 MCP 服务器推荐](https://www.heyuan110.com/zh/posts/ai/2026-03-05-best-mcp-servers-claude-code/)
+- [Codex CLI 完全指南](https://www.heyuan110.com/zh/posts/ai/2026-02-12-codex-cli-mastery-guide/)
+- [Claude Code vs Codex 对比](https://www.heyuan110.com/zh/posts/ai/2026-02-19-claude-code-vs-codex/)
+- [Chrome DevTools MCP 配置教程](https://www.heyuan110.com/zh/posts/ai/2026-03-17-chrome-devtools-mcp-guide/)
 - [终端工具指南](https://www.heyuan110.com/zh/posts/macos/2025-01-22-terminal-tools-guide/)
 - [CLI + Skill vs MCP：工具链分层收敛](https://www.heyuan110.com/zh/posts/ai/2026-07-10-cli-skills-vs-mcp/)
 - [斯坦福 CS146S 全解析](https://www.heyuan110.com/zh/posts/ai/2026-02-24-stanford-cs146s-overview/)
