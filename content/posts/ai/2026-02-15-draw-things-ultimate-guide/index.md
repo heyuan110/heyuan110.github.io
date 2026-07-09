@@ -633,6 +633,15 @@ Make sure your Draw Things version has Metal FlashAttention v2 enabled. Check th
 
 v2 reduces memory usage by an additional **20-25%** compared to v1, especially noticeable during LoRA training.
 
+## Hardware That Makes Draw Things Fly
+
+Draw Things is free — the only money question is the Mac under it:
+
+- **[Mac mini M4, 24GB](https://www.amazon.com/s?k=Mac+mini+M4+24GB&tag=heyuan110-20)** — this guide's benchmark machine; SDXL and quantized Flux run comfortably
+- **[Portable SSD, 2TB](https://www.amazon.com/s?k=portable+NVMe+SSD+2TB&tag=heyuan110-20)** — LoRA training sets and model collections outgrow internal storage fast
+
+*As an Amazon Associate I earn from qualifying purchases. Links open Amazon search so you can pick the exact configuration.*
+
 ## Hidden Power-User Features
 
 ### Moodboard Multi-Image Reference

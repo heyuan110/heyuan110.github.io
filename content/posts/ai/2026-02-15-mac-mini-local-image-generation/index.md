@@ -426,6 +426,16 @@ ComfyUI workflows save as JSON files, meaning you can:
 
 > **Advanced tip**: You can take this further by using [Claude Code to drive Draw Things for automated image generation workflows](/posts/ai/2026-02-16-claude-code-draw-things-workflow/), letting AI handle everything from prompt generation to batch output. This leverages [Claude Code's browser automation capabilities](/posts/ai/2026-01-28-claude-code-browser-automation/).
 
+## Recommended Hardware (What the Benchmarks Point To)
+
+If you are buying a Mac specifically for local image generation, the benchmarks in this article point to three configurations:
+
+- **[Mac mini M4, 24GB unified memory](https://www.amazon.com/s?k=Mac+mini+M4+24GB&tag=heyuan110-20)** — the price/performance sweet spot: Flux 1024×1024 in ~50s, handles SDXL and GGUF-quantized Flux comfortably
+- **[Mac mini M4 Pro, 48GB](https://www.amazon.com/s?k=Mac+mini+M4+Pro+48GB&tag=heyuan110-20)** — unlocks FP16 Flux and comfortable LoRA training headroom
+- **[Portable NVMe SSD, 2TB](https://www.amazon.com/s?k=Samsung+T9+portable+SSD+2TB&tag=heyuan110-20)** — model checkpoints eat 20-40GB each; keep them off your system drive
+
+*As an Amazon Associate I earn from qualifying purchases. Links open Amazon search so you can pick the exact configuration.*
+
 ## Quick Installation Guide
 
 ### Draw Things (Recommended)

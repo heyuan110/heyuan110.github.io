@@ -167,6 +167,16 @@ After all the benchmarks, here is the decision framework I actually give friends
 
 **Overkill for most:** M2 Ultra Studio 192GB. This is the right machine for serving 70B+ with long context, but the $6000+ price tag is hard to justify unless you are running a local inference business.
 
+## Recommended Hardware (Tested Configurations)
+
+Matching the benchmark results above to actual buying decisions:
+
+- **[MacBook Pro M4 Pro, 48GB](https://www.amazon.com/s?k=MacBook+Pro+M4+Pro+48GB&tag=heyuan110-20)** — runs Llama 3.3 70B Q4 at the 9.8 tok/s measured in this article
+- **[Mac Studio M4 Max, 64GB+](https://www.amazon.com/s?k=Mac+Studio+M4+Max&tag=heyuan110-20)** — the memory-bandwidth king for 70B+ models and sustained loads (no thermal throttling)
+- **[Thunderbolt NVMe SSD, 4TB](https://www.amazon.com/s?k=Thunderbolt+NVMe+SSD+4TB&tag=heyuan110-20)** — the "forgotten workstation problem" from the storage section: model libraries grow past 1TB fast
+
+*As an Amazon Associate I earn from qualifying purchases. Links open Amazon search so you can pick the exact configuration.*
+
 ## Related Reading
 
 For the full tooling picture around Apple Silicon AI development:
