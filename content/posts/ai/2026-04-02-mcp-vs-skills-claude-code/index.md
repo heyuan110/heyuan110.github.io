@@ -308,7 +308,7 @@ Start minimal and add extensions as you identify repeated patterns. The goal is 
 
 ## Related Reading
 
-- [Skills vs MCP in Claude Code: Two Ways to Extend AI](/posts/ai/2026-01-06-skill&mcp/) — Earlier overview of Skills and MCP fundamentals
+- [Skills vs MCP in Claude Code: Two Ways to Extend AI](/posts/ai/2026-01-06-skillmcp/) — Earlier overview of Skills and MCP fundamentals
 - [Claude Code MCP Setup: Connect AI to Any External Service](/posts/ai/2026-02-28-claude-code-mcp-setup/) — Hands-on guide to installing and building MCP servers
 - [Claude Code Skills Guide: Create Custom SKILL.md Workflows](/posts/ai/2026-02-28-claude-code-skills-guide/) — Deep dive into creating production-ready Skills
 - [Claude Code Hooks 2026: Complete Event List + Ready-to-Use Configs](/posts/ai/2026-02-28-claude-code-hooks-guide/) — All Hook events explained with copy-paste configurations

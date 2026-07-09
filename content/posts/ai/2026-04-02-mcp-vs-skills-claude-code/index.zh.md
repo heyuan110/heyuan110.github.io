@@ -356,7 +356,7 @@ Hook (Stop):         把部署结果记录到审计日志 → 合规要求
 
 ## 相关阅读
 
-- [Skill 与 MCP 的区别：两种扩展 AI 能力的方式](/posts/ai/2026-01-06-skill&mcp/) — 早期对 Skills 和 MCP 基础概念的梳理
+- [Skill 与 MCP 的区别：两种扩展 AI 能力的方式](/posts/ai/2026-01-06-skillmcp/) — 早期对 Skills 和 MCP 基础概念的梳理
 - [Claude Code MCP 配置指南：连接 AI 到任何外部服务](/posts/ai/2026-02-28-claude-code-mcp-setup/) — MCP 服务器安装和自建的实操教程
 - [Claude Code Skills 完全指南：创建自定义 SKILL.md 工作流](/posts/ai/2026-02-28-claude-code-skills-guide/) — 从零创建生产级 Skill 的详细指南
 - [Claude Code Hooks 2026：完整事件列表 + 即用配置](/posts/ai/2026-02-28-claude-code-hooks-guide/) — 所有 Hook 事件详解，附可直接复制的配置

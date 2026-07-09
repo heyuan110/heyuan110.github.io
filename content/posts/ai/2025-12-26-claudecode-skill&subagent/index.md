@@ -91,7 +91,7 @@ These old questions have put on new clothes — but they're very much back.
 
 ## Related Reading
 
-- [Skills vs MCP in Claude Code: Two Ways to Extend AI Capabilities](/posts/ai/2026-01-06-skill-mcp/) — How Skills and MCP servers complement each other
+- [Skills vs MCP in Claude Code: Two Ways to Extend AI Capabilities](/posts/ai/2026-01-06-skillmcp/) — How Skills and MCP servers complement each other
 - [Claude Code Skills Guide: Teach AI Your Exact Workflow](/posts/ai/2026-01-08-claudecode-skill-guide/) — Hands-on guide to creating custom Skills
 - [Claude Code Skills: Create Custom AI Abilities in 30 Seconds](/posts/ai/2026-01-12-claudecode-skill-patterns/) — Advanced patterns for Skill development
 - [Claude Code Agent Teams 2026: Parallel Multi-Agent Development](/posts/ai/2026-02-22-claude-code-agent-teams/) — How multi-agent collaboration works in practice

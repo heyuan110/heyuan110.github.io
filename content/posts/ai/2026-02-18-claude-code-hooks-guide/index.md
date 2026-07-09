@@ -800,6 +800,6 @@ Start with the simplest ones -- desktop notifications and auto-formatting -- the
 - [Claude Code Browser Automation Compared (2026 Update)](/posts/ai/2026-01-28-claude-code-browser-automation/)
 - [Claude Code + Draw Things: Local AI Image Generation on Mac](/posts/ai/2026-02-16-claude-code-draw-things-workflow/)
 - [Claude Code Skills Guide: Teach AI Your Workflow](/posts/ai/2026-01-08-claudecode-skill-guide/)
-- [Skills vs MCP: Two Ways to Extend AI Capabilities](/posts/ai/2026-01-06-skill&mcp/)
+- [Skills vs MCP: Two Ways to Extend AI Capabilities](/posts/ai/2026-01-06-skillmcp/)
 - [Claude Code Memory: One File to Make AI Remember You](/posts/ai/2026-01-12-claudemd-memory-guide/)
 - [OpenClaw Author's Claude Code Development Methodology](/posts/ai/2026-01-31-openclaw-claude-code-workflow/)

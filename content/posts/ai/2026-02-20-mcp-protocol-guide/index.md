@@ -315,4 +315,4 @@ The era of AI connecting everything needs a universal interface standard. MCP is
 - [Best MCP Servers for Claude Code: 18 Tools You Need in 2026](/posts/ai/2026-03-05-best-mcp-servers-claude-code/) — Curated list of community MCP servers
 - [MCP Security Guide: Attack Patterns, Real CVEs, and Defense Strategies](/posts/ai/2026-02-23-mcp-security-guide/) — Security considerations for MCP deployments
 - [Build an MCP Server with Claude Code: TypeScript Tutorial](/posts/ai/2026-02-22-claude-code-mcp-server-tutorial/) — Hands-on tutorial using Claude Code as the development tool
-- [Skills vs MCP in Claude Code: Two Ways to Extend AI Capabilities](/posts/ai/2026-01-06-skill-mcp/) — How MCP and Skills work together
+- [Skills vs MCP in Claude Code: Two Ways to Extend AI Capabilities](/posts/ai/2026-01-06-skillmcp/) — How MCP and Skills work together
