@@ -130,18 +130,18 @@ def run(task, max_iter=10, budget_usd=5.0, deadline_s=1800):
 
 ```mermaid
 sequenceDiagram
-    participant Loop as 循环控制器
+    participant Ctrl as 循环控制器
     participant Maker as Maker(生成 Agent)
     participant Checker as Checker(测试/类型/怀疑者模型)
-    Loop->>Maker: 实现任务 N
-    Maker->>Loop: diff + 「完成 ✅」
-    Loop->>Checker: 验证(Maker 改不到这里)
+    Ctrl->>Maker: 实现任务 N
+    Maker->>Ctrl: diff + 「完成 ✅」
+    Ctrl->>Checker: 验证(Maker 改不到这里)
     alt Checker 说不
-        Checker-->>Loop: 失败:3 个测试红了、类型错误
-        Loop->>Maker: 打回 —— 这是失败详情,重写
+        Checker-->>Ctrl: 失败:3 个测试红了、类型错误
+        Ctrl->>Maker: 打回 —— 这是失败详情,重写
     else Checker 说行
-        Checker-->>Loop: 通过
-        Loop->>Loop: 标记任务 N 完成
+        Checker-->>Ctrl: 通过
+        Ctrl->>Ctrl: 标记任务 N 完成
     end
 ```
 

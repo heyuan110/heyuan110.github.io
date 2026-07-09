@@ -130,18 +130,18 @@ The strongest critic is not another LLM; it is a deterministic gate the agent ca
 
 ```mermaid
 sequenceDiagram
-    participant Loop as Loop controller
+    participant Ctrl as Loop controller
     participant Maker as Maker agent
     participant Checker as Checker (tests / type / skeptic model)
-    Loop->>Maker: implement task N
-    Maker->>Loop: diff + "done ✅"
-    Loop->>Checker: verify (maker CANNOT edit this)
+    Ctrl->>Maker: implement task N
+    Maker->>Ctrl: diff + "done ✅"
+    Ctrl->>Checker: verify (maker CANNOT edit this)
     alt Checker says NO
-        Checker-->>Loop: FAIL: 3 tests red, type error
-        Loop->>Maker: rejected — here is the failure, retry
+        Checker-->>Ctrl: FAIL: 3 tests red, type error
+        Ctrl->>Maker: rejected — here is the failure, retry
     else Checker says YES
-        Checker-->>Loop: PASS
-        Loop->>Loop: mark task N complete
+        Checker-->>Ctrl: PASS
+        Ctrl->>Ctrl: mark task N complete
     end
 ```
 
