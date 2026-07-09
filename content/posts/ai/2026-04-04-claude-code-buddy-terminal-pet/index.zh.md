@@ -2,7 +2,7 @@
 date = '2026-04-04T16:00:00+08:00'
 draft = false
 title = 'Claude Code Buddy 终端宠物：藏在 AI 编程工具里的电子宠物'
-description = '深度体验 Claude Code Buddy 终端宠物功能——18 种物种、5 级稀有度、双层架构生成独一无二的编程伙伴，附完整命令和稀有度速查表。'
+description = 'Claude Code Buddy 是内置在 Claude Code v2.1.89+ 的终端电子宠物：输入 /buddy 即可孵化，18 种物种、5 级稀有度，基于用户 ID 用 FNV-1a 哈希确定性生成。深度拆解 Bones+Soul 双层架构，附完整命令与稀有度速查表。'
 toc = true
 tags = ['Claude Code', 'Developer Tools', 'AI Coding']
 keywords = ['Claude Code buddy', 'Claude Code 终端宠物', 'Claude Code buddy 怎么用', 'Claude Code buddy 物种', 'Claude Code buddy 稀有度', 'Claude Code 宠物功能']

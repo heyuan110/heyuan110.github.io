@@ -2,7 +2,7 @@
 date = '2026-03-05T14:00:00+08:00'
 draft = false
 title = '用 Python 构建 MCP 服务器：完整分步教程'
-description = '学习如何用 Python 和 FastMCP 构建 MCP 服务器。涵盖工具、资源、提示词、MCP Inspector 测试与部署的完整教程。'
+description = '用 Python 构建 MCP 服务器分步教程：基于 FastMCP 装饰器 API，不到 50 行代码就能跑起一个服务器，要求 Python 3.10+。涵盖工具/资源/提示词三种能力、MCP Inspector 测试、接入 Claude Code 与 SQLite 实战案例。'
 toc = true
 tags = ['MCP', 'Python', 'Claude Code', 'AI Agent', 'Tutorial']
 categories = ['AI Guides']

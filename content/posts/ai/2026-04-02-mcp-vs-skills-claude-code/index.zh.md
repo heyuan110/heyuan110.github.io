@@ -2,7 +2,7 @@
 date = '2026-04-02T10:00:00+08:00'
 draft = false
 title = 'MCP、Skills、Hooks 到底有什么区别？Claude Code 三大扩展机制深度对比'
-description = '一文讲透 Claude Code 的 MCP、Skills 和 Hooks 三种扩展方式——它们各自解决什么问题、怎么选、怎么配合使用，附带实操示例和决策流程图。'
+description = 'MCP、Skills、Hooks 的区别一文讲透：MCP 连外部服务提供能力，Skill 是教 AI 做事的知识包，Hooks 强制执行硬规则。一个 15 工具的 MCP 服务器常驻占约 1500-3000 Token，建议只留 2-4 个，附决策流程图与三层协同实践。'
 toc = true
 tags = ['Claude Code', 'MCP', 'Skills', 'Hooks', 'AI Architecture']
 keywords = ['MCP和Skill的区别', 'mcp skill 区别', 'Claude Code MCP Skill Hooks 对比', 'MCP是什么', 'Skill怎么用', 'Claude Code扩展方式', 'MCP vs Skills']

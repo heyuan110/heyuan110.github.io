@@ -2,7 +2,7 @@
 date = '2026-04-10T10:00:00+08:00'
 draft = false
 title = 'Claude HUD：Claude Code 最该内置却没有的状态栏'
-description = 'Claude HUD 让你实时看到 Claude Code 的 context 用量、rate limit 消耗和 agent 状态。18000+ 开发者已经装了，3 分钟搞定安装配置。'
+description = 'Claude HUD 是 Claude Code 的实时状态栏插件：监控 context 用量、rate limit 消耗与 agent 状态，2026 年 1 月发布已获 18000+ GitHub stars。3 分钟装好，context 超 85% 前预警，附配置与 ccstatusline 对比。'
 toc = true
 tags = ['Claude Code', 'Developer Tools', 'Productivity', 'AI Coding']
 keywords = ['claude hud 安装', 'claude code 状态栏', 'claude code 上下文窗口', 'claude code 插件推荐', 'claude code 用量监控', 'claude code rate limit']

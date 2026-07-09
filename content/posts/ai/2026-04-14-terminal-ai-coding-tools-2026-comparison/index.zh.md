@@ -2,7 +2,7 @@
 date = '2026-04-14T10:00:00+08:00'
 draft = false
 title = '2026 终端 AI 编程工具深度横评：Claude Code、Codex CLI、Gemini CLI、Aider 怎么选'
-description = '从架构哲学到真实定价，深度拆解 2026 年 4 款主流终端 AI 编程 CLI 的能力边界。不做扁平对比，按三赛道分层给出 $0/$40/$200 三档预算的组合推荐。'
+description = '2026 终端 AI 编程工具横评：Claude Code、Codex CLI、Gemini CLI、Aider 分属三条赛道——预算 $0 选 Gemini CLI（免费 1000 次/天）+ Aider，$40 选 Pro 组合，$200 上 Claude Code Max。按赛道拆解真实能力边界与定价。'
 toc = true
 tags = ['Claude Code', 'Codex CLI', 'Gemini CLI', 'Aider', 'AI Coding Tools', 'Terminal']
 keywords = ['终端 AI 编程工具', 'AI 编程工具对比 2026', 'Claude Code 对比 Codex CLI', 'Gemini CLI 免费', 'Aider AI 编程', 'AI CLI 工具推荐', '终端编程工具哪个好', '2026 AI 编程工具横评']

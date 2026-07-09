@@ -2,7 +2,7 @@
 date = '2026-02-20T11:00:00+08:00'
 draft = false
 title = 'MCP 协议全面解析：AI 连接万物的通用标准'
-description = 'MCP（Model Context Protocol）协议深度解析，涵盖架构设计、核心能力、MCP Apps 交互式 UI、Linux Foundation 捐赠、与 Function Calling 对比及开发实践'
+description = 'MCP 协议（Model Context Protocol）被称为 AI 领域的 USB-C：2024 年 11 月由 Anthropic 发布，现已捐赠 Linux Foundation，SDK 月下载破 9700 万。详解架构设计、六大核心能力与 Function Calling 对比。'
 toc = true
 tags = ['MCP', 'Model Context Protocol', 'AI Architecture', 'Claude Code']
 categories = ['AI Guides']

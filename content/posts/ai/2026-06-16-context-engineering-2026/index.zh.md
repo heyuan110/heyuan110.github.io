@@ -2,7 +2,7 @@
 date = '2026-06-16T11:00:00+08:00'
 draft = false
 title = '面向编码 Agent 的上下文工程 2026：把窗口当预算管'
-description = '2026 年编码 Agent 的上下文工程实战：把上下文窗口当预算来分配，精准检索、及时压缩、CLAUDE.md 保持精简，并识别那些让 Agent 变差的伪需求。'
+description = '上下文工程 2026 实战：把上下文窗口当预算管——Sourcegraph 实测 5K token 精准检索胜过 100K 摘要，结构化代码检索让 precision@5 从 0.14 升到 0.48。附压缩卸载阈值、CLAUDE.md 精简原则与四个真正有效的技巧。'
 toc = true
 tags = ['Context Engineering', 'AI Coding Agents', 'Context Window', 'Claude Code', 'LLM']
 keywords = ['上下文工程 2026', 'context engineering', '编码 agent 上下文', '上下文窗口管理', '上下文压缩']

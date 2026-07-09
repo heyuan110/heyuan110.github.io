@@ -2,7 +2,7 @@
 date = '2026-03-03T14:00:00+08:00'
 draft = false
 title = '2026 年最值得装的 18 个 MCP 服务器：Claude Code 实测精选'
-description = '2026 从 10000+ 个 MCP 服务器里帮你挑出最实用的 18 个：数据库直连、浏览器自动化、GitHub 操作、文档查询全覆盖。每个附安装命令 + 使用场景，30 分钟配好你的 AI 全套工具链。'
+description = '2026 年最值得装的 MCP 服务器实测精选：从 10000+ 个里挑出 18 个真正实用的，覆盖 PostgreSQL 数据库直连、Playwright 浏览器自动化、GitHub 操作与 Context7 文档查询，每个附安装命令，30 分钟配好 Claude Code 工具链。'
 toc = true
 tags = ['Claude Code', 'MCP', 'AI Tools', 'Developer Tools']
 categories = ['AI Guides']

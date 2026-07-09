@@ -2,7 +2,7 @@
 date = '2026-03-10T14:00:00+08:00'
 draft = false
 title = 'AI 开发环境搭建：2026 年工具、配置与 Dotfiles 完全指南'
-description = '从零搭建高效 AI 开发环境，涵盖 Claude Code、Cursor、终端配置和 Dotfiles。附带可直接复制的模板、Shell 别名和工作流技巧。'
+description = 'AI 开发环境搭建 2026 完全指南：Claude Code 负责规划推理 + Cursor 负责日常编码的组合月均约 40 美元即可覆盖几乎所有场景。涵盖 CLAUDE.md、MCP 服务器、tmux、Dotfiles 配置，附可直接复制的模板与 Shell 别名。'
 toc = true
 tags = ['AI Development', 'Developer Setup', 'Claude Code', 'Workflow']
 categories = ['AI Guides']

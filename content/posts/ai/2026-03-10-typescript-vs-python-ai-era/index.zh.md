@@ -2,7 +2,7 @@
 date = '2026-03-10T20:00:00+08:00'
 draft = false
 title = 'TypeScript vs Python：AI 时代该选哪门语言？2026 全面对比'
-description = 'TypeScript 在 GitHub 上以 66% 的增速超越 Python。从 AI 辅助编程、机器学习开发、全栈应用到职业规划，全面对比两门语言在 2026 年的优劣势。'
+description = 'TypeScript vs Python 2026 全面对比：TypeScript 以 66% 增速登顶 GitHub（月活 263 万），Python 增长 48% 但仍占近 50% 的新建 AI 仓库。结论是分赛道使用——TS 写应用和 API、Python 做 ML 训练，附职业规划建议。'
 toc = true
 tags = ['TypeScript', 'Python', 'AI Coding Tools', 'Comparison']
 categories = ['Comparisons']

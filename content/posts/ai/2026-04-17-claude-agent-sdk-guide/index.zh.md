@@ -2,7 +2,7 @@
 date = '2026-04-17T10:00:00+08:00'
 draft = false
 title = 'Claude Agent SDK 实战指南：3 行 Python 搭建生产级 AI Agent'
-description = '从 pip install 到生产部署，手把手教你用 Claude Agent SDK 搭建能读写文件、执行命令、多轮对话的 AI Agent。含完整代码、权限管控和避坑指南。'
+description = 'Claude Agent SDK 用 3 行 Python 就能搭出能读写文件、执行命令的 AI Agent——LangChain 同样功能约需 80 行。详解 query() 与 ClaudeSDKClient 怎么选、10+ 内置工具、权限管控三层防御与 MCP 自定义工具，附生产避坑指南。'
 toc = true
 tags = ['Claude Code', 'AI Agent', 'Agent SDK', 'Python', 'MCP']
 keywords = ['claude agent sdk', 'claude agent sdk 教程', 'ai agent 开发 python', 'claude agent sdk 实战', 'claude code sdk 搭建', 'ai agent 从零开始']

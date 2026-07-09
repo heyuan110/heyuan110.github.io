@@ -2,7 +2,7 @@
 date = '2026-03-13T10:00:00+08:00'
 draft = false
 title = 'OpenCode 深度评测：这款开源AI编程代理能替代Claude Code吗？'
-description = '两周实测12万星开源AI编程代理OpenCode，详解LSP自修正、多模型切换、权限控制等核心能力，与Claude Code、Cursor的真实对比。'
+description = 'OpenCode 深度评测：两周实测这个 GitHub 12 万星的 MIT 开源 AI 编程代理——支持 75+ 模型提供商、LSP 自修正是杀手锏，但客户端-服务器架构曾曝出 CVSS 约 10 分的未认证 RCE 漏洞。与 Claude Code、Cursor 真实对比。'
 toc = true
 tags = ['OpenCode', 'AI Agent', 'Coding Tools', 'CLI', 'Developer Tools']
 keywords = ['OpenCode 评测', '开源编程代理', 'OpenCode vs Claude Code', 'AI编程工具对比', '终端AI助手']

@@ -2,7 +2,7 @@
 date = '2026-03-09T14:00:00+08:00'
 draft = false
 title = 'MCP 安全危机：60 天内曝出 30 个 CVE，到底怎么了？'
-description = '深入剖析 MCP 生态在 60 天内曝出的 30+ 个漏洞。涵盖攻击模式分析、CVE 时间线、OWASP Agentic Top 10、安全工具横评，以及 MCP 服务端运维实战防御清单。'
+description = 'MCP 安全危机实录：2026 年 1-2 月 60 天内曝出 30+ 个 CVE，受影响下载 43.7 万次，被扫描的 2614 个 MCP 实现中 82% 存在路径穿越风险、43% 的漏洞是 Shell 注入。附攻击模式分析、mcp-scan 扫描方法与防御清单。'
 toc = true
 tags = ['MCP', 'Security', 'AI Agent', 'Claude Code']
 categories = ['AI Guides']

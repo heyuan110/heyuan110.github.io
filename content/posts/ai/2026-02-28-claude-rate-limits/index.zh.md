@@ -2,7 +2,7 @@
 date = '2026-02-28T10:00:00+08:00'
 draft = false
 title = 'Claude 速率限制 2026：免费版/Pro/Max 每5小时消息上限详解'
-description = '2026年 Claude 各套餐具体限额：免费版约15条、Pro约45条、Max 5x约225条（每5小时）。含每周限额、API 限制、触发限速后的应对策略。'
+description = 'Claude 速率限制 2026 实测数据：Pro 每 5 小时约 10-45 条消息，Max 5x 约 50-200 条，Max 20x 约 200-800 条，另有 2025 年 8 月起的 7 天周限额。详解滚动窗口机制、消息按 token 计算方式与触发限速后的应对策略。'
 toc = true
 tags = ['Claude Code', 'Rate Limits', 'Pricing', 'AI Coding Tools']
 categories = ['AI Guides']

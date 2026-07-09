@@ -2,7 +2,7 @@
 date = '2026-04-04T18:00:00+08:00'
 draft = false
 title = '一个人+AI Agent 月增 2000 客户：Paperclip 营销自动化实战拆解'
-description = '拆解 Postiz 创始人如何用 Paperclip + Claude Code + Skill 系统搭建 AI 营销部。附 6 层工具栈架构、3 步启动框架，以及全自动化的 3 个坑。'
+description = 'AI Agent 营销自动化实战：Postiz 创始人用 Paperclip + Claude Code 搭起 4 个 AI 员工的虚拟营销部，一个人月增 2000 客户、MRR 做到 $45K，API 成本仅 $50-200/月。拆解三条自动化流水线与全自动化的 3 个坑。'
 toc = true
 tags = ['AI Agent', 'Marketing Automation', 'Paperclip', 'Claude Code', 'Solo Founder']
 keywords = ['AI Agent 营销自动化', 'Paperclip 是什么', 'AI 替代营销团队', '一个人创业 AI 工具', 'Skill 系统', 'AI 内容营销', 'Claude Code 营销']

@@ -2,7 +2,7 @@
 date = '2026-03-29T10:00:00+08:00'
 draft = false
 title = 'Seedance 2.0 技术深度拆解：字节跳动如何做出排名第一的AI视频模型'
-description = '从架构原理到落地实操，全面拆解 Seedance 2.0：联合生成为什么是技术突破、实际质量如何（优势和短板）、国内外使用指南、竞品场景化对比、IP 争议的影响。'
+description = 'Seedance 2.0 深度拆解：字节跳动 2026 年 2 月发布的 AI 视频模型以 Elo 1269 登顶 Artificial Analysis 盲测榜，击败 Veo 3 和 Sora 2。详解音视频联合生成架构、约 1 元/15 秒的 API 定价、国内外使用入口与 IP 争议。'
 toc = true
 tags = ['Seedance', 'AI Video', 'ByteDance', 'AI Tools', 'Video Generation']
 keywords = ['Seedance 2.0', '字节跳动 AI 视频', 'Seedance 2.0 评测', 'AI 视频生成 2026', 'Seedance 对比 Sora', '即梦 AI', 'CapCut AI 视频', 'Seedance 2.0 使用教程', '火山引擎 API', 'Seedance 定价']

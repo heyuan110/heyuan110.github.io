@@ -2,7 +2,7 @@
 date = '2026-03-07T14:00:00+08:00'
 draft = false
 title = 'Codex CLI 深度指南：安装配置、安全模型与 20+ 高手技巧'
-description = '全面掌握 OpenAI Codex CLI：从安装配置、模型切换、会话恢复、MCP 集成到安全沙箱机制，附 Codex CLI 与 Claude Code 真实对比。'
+description = 'Codex CLI 深度指南：默认模型 gpt-5.3-codex，需要 ChatGPT Plus/Pro（$20-200/月）或 API Key。详解 Auto/Read Only/Full Access 三种沙箱权限模式、MCP 集成与会话恢复，附 20+ 高手技巧和 Claude Code 对比。'
 toc = true
 tags = ['Codex CLI', 'OpenAI', 'AI Coding Tools', 'Terminal']
 categories = ['AI Guides']

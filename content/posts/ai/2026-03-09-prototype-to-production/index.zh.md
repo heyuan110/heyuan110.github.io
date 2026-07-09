@@ -2,7 +2,7 @@
 date = '2026-03-09T18:00:00+08:00'
 draft = false
 title = '从原型到生产：AI 应用上线完整检查清单'
-description = '一份完整的 AI 应用从原型到生产部署的检查清单，涵盖测试、安全、可扩展性、可观测性和自动化运维六大关卡。'
+description = 'AI 应用从原型到生产的完整检查清单：构建原型只占总工作量的 10%，剩下 90% 才是产品与 Demo 的分界线。逐一拆解测试覆盖、安全加固、可扩展性、可观测性、自动化运维、持续演进六道关卡，附各阶段 AI 自动化率数据与 Google 四大黄金信号监控方案。'
 toc = true
 tags = ['AI Agent', 'DevOps', 'Production', 'Deployment']
 categories = ['AI Guides']

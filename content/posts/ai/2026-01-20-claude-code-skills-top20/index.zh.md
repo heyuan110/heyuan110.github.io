@@ -1,7 +1,7 @@
 +++
 date = '2026-01-20T10:51:00+08:00'
 title = 'Claude Code Skills Top 20 推荐 2026：最值得安装的技能包'
-description = '2026 最热门 Claude Code Skills Top 20 排行：开发工作流、AI/LLM、前端 Code Review、PR 自动化、superpowers 全覆盖。附安装建议和选型指南，帮你快速挑出真正有用的技能包。'
+description = 'Claude Code Skills Top 20 排行（2026 年 1 月实测）：基于 GitHub Stars 与使用量精选，官方 anthropics/skills 已达 45.1k 星，create-pr、superpowers 等全覆盖，附安装方法与选型建议。'
 toc = true
 tags = ['Claude Code', 'AI 编程', 'Skills', 'Agent', '开发工具']
 categories = ['AI实战']

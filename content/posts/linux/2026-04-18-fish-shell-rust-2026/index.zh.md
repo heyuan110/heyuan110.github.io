@@ -2,7 +2,7 @@
 date = '2026-04-18T10:00:00+08:00'
 draft = false
 title = 'fish shell 4.6 实测：最舒服的交互 shell，但别当默认'
-description = 'fish 4.6 发布，Rust 重写后仍不兼容 POSIX。实测九个月后，我的结论是 fish 做交互壳、zsh 给 AI agent 跑命令——双 shell 架构才是 2026 年的正解。'
+description = 'fish shell 4.6（2026 年 3 月发布）实测九个月结论：Rust 重写 2600+ commits 却没让 shell 变快，POSIX 不兼容还会坑 Claude Code 等 AI agent。推荐双 shell 架构——fish 管交互、zsh 给 agent 跑命令，附完整配置。'
 toc = true
 tags = ['Fish Shell', 'Shell', 'Developer Tools', 'Claude Code', 'Rust']
 keywords = ['fish shell 4.6', 'fish shell 值得用吗', 'fish shell 和 zsh 对比', 'fish shell rust 重写', 'fish shell claude code', '默认 shell 推荐', 'fish shell 不兼容 posix']

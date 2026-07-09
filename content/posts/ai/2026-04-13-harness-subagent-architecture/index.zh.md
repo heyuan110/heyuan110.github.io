@@ -2,7 +2,7 @@
 date = '2026-04-13T10:00:00+08:00'
 draft = false
 title = 'Sub-Agent 架构设计：什么时候该拆子 Agent，Opus/Sonnet/Haiku 怎么分工'
-description = '大多数团队把 Sub-Agent 当"并行加速器"用错了。它的本质是上下文垃圾回收。一份讲清楚什么时候该拆、三种编排模式怎么选、Opus/Sonnet/Haiku 怎么路由、成本怎么算的实操指南。'
+description = 'Sub-Agent 架构的本质是上下文垃圾回收，不是并行加速器。实测经验：每次 spawn 至少 10000 token 输入才划算，Sonnet 做调度、Opus 做最终生成、Haiku 做扫描的路由让成本降约 60%。附决策树、三种编排模式与模型分工表。'
 toc = true
 tags = ['Harness Engineering', 'Sub-Agents', 'Claude Code', 'AI Agents', 'AI Engineering']
 keywords = ['Sub-Agent 架构', 'Claude Code 子 Agent', '子 Agent 怎么用', 'Opus Sonnet Haiku 分工', 'AI Agent 编排模式', '多 Agent 协作', '上下文隔离', '子 Agent 成本优化', '子 Agent 最佳实践']

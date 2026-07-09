@@ -2,7 +2,7 @@
 date = '2026-03-10T10:00:00+08:00'
 draft = false
 title = '上下文工程：2026年最被低估的AI开发技能'
-description = '掌握上下文工程，构建更好的AI系统。深入解析五大维度、四种失效模式和实战框架，帮你从业余提示词玩家进阶为生产级AI开发者。'
+description = '上下文工程是 2026 年最被低估的 AI 开发技能：研究显示上下文超过约 3000 token 推理质量就开始下降，指令最佳长度是 150-300 个单词。深入拆解信息选择等五大维度、污染/干扰/混淆/冲突四种失效模式，以及 CLAUDE.md、MCP、对话管理等生产级实战框架。'
 toc = true
 tags = ['Context Engineering', 'AI Development', 'Prompt Engineering', 'Claude Code']
 categories = ['AI Guides']

@@ -2,7 +2,7 @@
 date = '2026-03-08T18:00:00+08:00'
 draft = false
 title = 'Cursor 完全指南 2026：从安装到高级 Agent 模式实战'
-description = '2026 Cursor IDE 从零上手实测教程：10 分钟装好、Agent 模式/Rules 配置/TDD 工作流/Git Worktrees 并行执行全流程讲透。新手老手都能照做，直接上生产。'
+description = 'Cursor 完全指南 2026：从下载安装到高级 Agent 模式全流程——Shift+Tab 启用规划模式、.cursor/rules/ 配置项目规则、Git Worktrees 让多个 Agent 并行执行。基于 VS Code 无缝迁移插件与快捷键，新手 10 分钟上手。'
 toc = true
 tags = ['Cursor', 'AI Coding Tools', 'AI IDE', 'Setup Guide']
 categories = ['AI Guides']

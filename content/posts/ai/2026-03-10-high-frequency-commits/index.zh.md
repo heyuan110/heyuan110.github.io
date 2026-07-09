@@ -2,7 +2,7 @@
 date = '2026-03-10T18:00:00+08:00'
 draft = false
 title = '高频提交：如何做到日均 100+ Commit 而不翻车'
-description = '日均 100+ 次 Git 提交，代码库照样稳如磐石。本文详解原子提交、约定式提交、分层测试、渐进式发布等五大工程护城河，帮你在 AI 编程时代安全提速。'
+description = '日均 100+ 次 Git 提交怎么不翻车？AI 编程让团队日产 50-150 次提交成为常态，答案不是放慢速度而是建护栏：原子提交、约定式提交、5-15 分钟内返回结果的分层测试 CI、功能开关与渐进式发布——五大工程护城河帮你在 AI 时代安全提速。'
 toc = true
 tags = ['Git', 'AI Workflow', 'CI/CD', 'Engineering']
 categories = ['AI Guides']

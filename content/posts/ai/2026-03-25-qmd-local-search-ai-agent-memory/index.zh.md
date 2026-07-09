@@ -2,7 +2,7 @@
 date = '2026-03-25T10:00:00+08:00'
 draft = false
 title = 'QMD：本地语义搜索引擎，帮 AI Agent 省下 90% Token 开销'
-description = '深度解析 QMD——Shopify 创始人 Tobi 打造的本地混合搜索引擎，通过 BM25、向量检索和 LLM 重排序三层架构，让 AI Agent 精准回忆，彻底告别 Token 浪费。'
+description = 'QMD 是 Shopify CEO Tobi Lütke 开源的本地语义搜索引擎：BM25 + 向量检索 + LLM 重排序三层架构，全部本地运行、模型总共不到 2GB，让 AI Agent 按需精准回忆，Token 开销直降 90%。附搜索管线拆解与安装使用指南。'
 toc = true
 tags = ['AI Agent', 'MCP', 'Token Optimization', 'RAG']
 keywords = ['QMD 本地搜索', 'AI Agent Token 优化', '语义搜索引擎', 'MCP 记忆服务器', '减少 Token 消耗', 'AI 成本优化']

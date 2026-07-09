@@ -2,7 +2,7 @@
 date = '2026-04-10T10:00:00+08:00'
 draft = false
 title = 'uv 完全指南：一个工具干掉 pip + conda + pyenv'
-description = 'uv 是用 Rust 写的 Python 包管理器，比 pip 快 10-100 倍。本文对比 uv、pip、conda、pyenv 的核心差异，附决策流程图和 5 分钟上手命令。'
+description = 'uv 是 Rust 写的 Python 包管理器，比 pip 快 10-100 倍：实测装 JupyterLab pip 要 21.4 秒、uv 只需 2.6 秒，2026 年月下载量已达 7500 万次。一个工具替代 pip+venv+pyenv，附与 conda 的取舍和 5 分钟上手命令。'
 toc = true
 tags = ['Python', 'uv', 'Package Management', 'pip', 'conda']
 keywords = ['uv Python 包管理器', 'uv vs pip', 'uv vs conda', 'Python 环境管理', 'uv 安装教程', 'pyenv 替代方案', 'Python 包管理工具对比']

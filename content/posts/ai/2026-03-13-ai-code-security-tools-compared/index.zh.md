@@ -2,7 +2,7 @@
 date = '2026-03-13T10:00:00+08:00'
 draft = false
 title = '2026年AI代码安全工具横评：Codex Security、Claude Code Security与Snyk谁更强？'
-description = '深度对比Codex Security、Claude Code Security和Snyk三大AI安全扫描工具，包含真实漏洞发现数据、价格对比和选型建议，帮你找到最适合的代码安全方案。'
+description = 'AI代码安全工具横评 2026：Codex Security（3 月发布，扫描 120 万次提交发现 792 个严重漏洞、14 个 CVE）、Claude Code Security（2 月发布，基于 Opus 4.6）与 Snyk、SonarQube 逐项对比，附定价与选型建议。'
 toc = true
 tags = ['AI Security', 'Code Audit', 'Claude Code', 'DevSecOps', 'Vulnerability Scanning']
 keywords = ['AI代码安全工具对比', 'Codex Security评测', 'Claude Code Security使用体验', 'Snyk替代方案', '代码安全扫描工具2026', 'AI漏洞扫描']

@@ -2,7 +2,7 @@
 date = '2026-07-08T10:00:00+08:00'
 draft = false
 title = 'Claude 免费版额度实测 2026：能用多久，何时升 Pro'
-description = 'Claude 免费版 2026 每 5 小时能发 15-40 条、每天约 30-100 条，实测能撑多久、哪些能力用不了、出现哪些信号就必须升级 Pro，一篇讲清楚。'
+description = 'Claude 免费版额度 2026 实测：每 5 小时滚动窗口约 15-40 条消息，全天约 30-100 条，按 token 计费而非条数。免费版含 Sonnet、联网搜索与 Artifacts，但没有 Opus 和 Claude Code——撞上三堵墙再花 20 美元升 Pro 才划算。'
 toc = true
 tags = ['Claude', 'AI Pricing', 'Claude Pro', 'LLM']
 keywords = ['claude 免费版额度', 'claude 免费能用多久', 'claude 免费版限制 2026', 'claude 免费版 vs pro', 'claude 免费版能用 opus 吗']

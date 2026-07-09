@@ -2,7 +2,7 @@
 date = '2026-03-09T10:00:00+08:00'
 draft = false
 title = 'TypeScript 暴涨 66% 的真相：AI 编程工具正在重塑语言选择'
-description = 'TypeScript 以 66% 的增长率登顶 GitHub 第一语言，背后推手是 AI 编程工具。深入分析静态类型如何帮助大模型生成更优质的代码，以及便利循环效应的运作机制。'
+description = 'TypeScript 以 66.6% 年增长率登顶 GitHub 第一语言，月活贡献者达 263 万，一年内超越 Python 和 JavaScript。背后推手是 AI 编程工具：研究发现 94% 的 LLM 编译错误是类型检查失败，静态类型让 AI 生成代码更可靠，「便利循环」如何运作一文讲透。'
 toc = true
 tags = ['TypeScript', 'AI Coding Tools', 'GitHub', 'Developer Trends']
 categories = ['AI Guides']

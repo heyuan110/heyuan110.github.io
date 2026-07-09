@@ -2,7 +2,7 @@
 date = '2026-05-08T10:00:00+08:00'
 draft = false
 title = 'Harness Engineering 是炒作还是红利期？投资象限决策框架（60 天实测）'
-description = "一个 7 周前才被随口命名的词，怎么就成了大厂行业共识？60 天生产环境跑下来我的判断：不是噱头也不是永久护城河，是 2026-2027 红利窗口。附投资象限决策框架和现在就该建/缓/放弃的清单。"
+description = "Harness Engineering 是炒作吗？这个 2026 年 2 月才诞生的词 7 周成为大厂共识：LangChain 不换模型只改 Harness，TerminalBench 2.0 从 52.8% 跳到 66.5%。60 天生产实测判断：它是 2026-2027 红利窗口，附投资象限决策框架。"
 toc = true
 tags = ['Harness Engineering', 'AI Agents', 'AI Engineering', 'Claude Code', 'OpenAI Codex']
 keywords = ['harness engineering 是不是炒作', 'harness engineering 中文', 'AI Agent 工程红利', 'harness engineering 窗口期', 'AI Agent 投资决策', 'harness engineering 实战', 'AI 编程工具投入产出比', 'claude code harness 设计']
