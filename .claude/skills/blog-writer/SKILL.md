@@ -276,6 +276,7 @@ ls content/posts/ai/
 **关键词密度**：
 - 核心关键词在正文中自然出现 3-5 次（不要刻意堆砌）
 - 第一段必须包含核心关键词
+- **GEO 可引用块(2026-07 起)**:关键结论必须自带日期+数字("As of July 2026, Sonnet 5 costs $3/$15"),AI 引擎(ChatGPT 搜索/Perplexity/AI Overviews)引用时会保留归属——被 AI 引用是新流量入口,GA4 AI Assistant 渠道互动率全站最高
 - 至少 2 个 H2 标题包含核心关键词或近义词
 - 图片 ALT 文本包含关键词
 
