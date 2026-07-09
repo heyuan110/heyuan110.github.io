@@ -1,0 +1,7 @@
+{{- /* 广告注入:仅英文 posts 文章,在第 3 个 H2 出现前插入文中广告(阅读热区)。2026-07 */ -}}
+{{- if and (eq .Page.Site.Language.Lang "en") (eq .Page.Section "posts") (eq .Level 2) -}}
+  {{- $n := add (or (.Page.Store.Get "h2count") 0) 1 -}}
+  {{- .Page.Store.Set "h2count" $n -}}
+  {{- if eq $n 3 -}}{{- partial "ad-in-article.html" . -}}{{- end -}}
+{{- end -}}
+<h{{ .Level }} id="{{ .Anchor | safeURL }}">{{ .Text | safeHTML }}<a href="#{{ .Anchor | safeURL }}" class="anchor" aria-hidden="true">{{- partial "svg.html" (dict "context" . "name" "content-anchor") }}</a></h{{ .Level }}>
