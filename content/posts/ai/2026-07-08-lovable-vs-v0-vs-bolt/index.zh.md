@@ -1,5 +1,6 @@
 +++
-date = '2026-07-09T12:00:00+08:00'
+date = '2026-07-08T12:00:00+08:00'
+aliases = ['/posts/ai/2026-07-09-lovable-vs-v0-vs-bolt/']
 draft = false
 title = 'Lovable vs v0 vs Bolt:2026 AI 应用生成器怎么选'
 description = 'Lovable、v0、Bolt 深度评测:三种计费模式的隐藏成本、技术栈锁定真相、国内可用性与替代品,以及什么时候直接用 Claude Code 更划算。'

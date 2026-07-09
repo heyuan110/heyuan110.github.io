@@ -1,5 +1,6 @@
 +++
-date = '2026-07-09T11:00:00+08:00'
+date = '2026-07-07T11:00:00+08:00'
+aliases = ['/posts/ai/2026-07-09-best-ai-coding-models-2026/']
 draft = false
 title = 'Best AI Coding Models 2026: Fable 5 vs Sonnet 5 vs GPT-5.6'
 description = 'Fable 5 tops SWE-bench at 95%, but Sonnet 5 beats Opus 4.8 on Terminal-Bench at 40% of the price. A decision framework for picking your coding model in 2026.'

@@ -1,5 +1,6 @@
 +++
-date = '2026-07-09T12:00:00+08:00'
+date = '2026-07-08T12:00:00+08:00'
+aliases = ['/posts/ai/2026-07-09-lovable-vs-v0-vs-bolt/']
 draft = false
 title = 'Lovable vs v0 vs Bolt: AI App Builders Compared 2026'
 description = 'Lovable vs v0 vs Bolt in 2026: real pricing traps, tech-stack lock-in, and who each tool actually fits — plus when to skip all three for Claude Code.'

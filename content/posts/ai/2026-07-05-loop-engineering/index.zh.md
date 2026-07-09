@@ -1,5 +1,6 @@
 +++
-date = '2026-07-09T10:00:00+08:00'
+date = '2026-07-05T10:00:00+08:00'
+aliases = ['/posts/ai/2026-07-09-loop-engineering/']
 draft = false
 title = 'Loop Engineering 循环工程:给 AI Agent 造一个笼子'
 description = '循环工程(Loop Engineering)是 2026 年 AI Agent 工程栈的最外层学科。四大支柱——上下文保洁、刹车机制、毒舌评审、幂等工具——每根都配可直接抄的伪代码和真实翻车案例。核心立场:模型是水电煤,循环护栏才是护城河。'

@@ -1,5 +1,6 @@
 +++
-date = '2026-07-09T11:00:00+08:00'
+date = '2026-07-07T11:00:00+08:00'
+aliases = ['/posts/ai/2026-07-09-best-ai-coding-models-2026/']
 draft = false
 title = '2026 最强 AI 编码模型对比：Fable 5、Sonnet 5 还是 GPT-5.6？'
 description = 'Fable 5 以 95% SWE-bench Verified 和 WebDev Arena 榜首成为 2026 最强编码模型，但 Sonnet 5 在 Terminal-Bench 上反超旗舰 Opus 4.8，价格只有四成。本文给出个人、团队、企业的模型选择决策树，以及什么场景千万别用旗舰。'

@@ -1,5 +1,6 @@
 +++
-date = '2026-07-09T10:00:00+08:00'
+date = '2026-07-05T10:00:00+08:00'
+aliases = ['/posts/ai/2026-07-09-loop-engineering/']
 draft = false
 title = 'Loop Engineering: Building the Cage Your AI Agent Runs In'
 description = 'Loop engineering is the 2026 discipline of building the cage your AI agent runs in: context hygiene, stop conditions, a real critic, and idempotent tools.'
