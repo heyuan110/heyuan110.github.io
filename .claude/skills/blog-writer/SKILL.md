@@ -448,7 +448,7 @@ ls content/posts/ai/
 
 #### 画图渲染验证（2026-04 起必查）
 
-- [ ] **mermaid 代码块语法正确**：本地 `hugo server` 打开文章，所有 mermaid 图表正常渲染（不是代码块原文）
+- [ ] **mermaid 代码块语法正确**：跑 `node scripts/check-mermaid.mjs`（用站点同款 mermaid 引擎离线校验全站所有块，5 秒出结果）——2026-07 实锤教训：agent 写的 sequenceDiagram 参与者起名 `Loop` 撞保留字、quadrantChart 中文标签没加引号，上线才被读者发现。此脚本必须在每次发布前跑，不能靠肉眼
 - [ ] **architecture HTML 无错位**：浏览器打开看分层色块对齐、响应式在移动宽度不断裂
 - [ ] **WebP 图片路径正确**：`![](diagram-xxx.webp)` 引用的文件确实存在于文章目录
 - [ ] **中英文配图一致**：两版引用相同的 `.webp`；mermaid/architecture 代码块可以各写一份但信息量要对等
