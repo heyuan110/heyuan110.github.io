@@ -129,6 +129,7 @@ flowchart LR
 
 ## 延伸阅读
 
+- [Claude API 成本计算器](/tools/claude-token-cost-calculator.html) — 按你的用量实时对比各模型每次调用/每月成本
 - [Claude Code 定价：到底要花多少钱](/posts/ai/2026-02-25-claude-code-pricing/)
 - [Claude 速率限制机制详解](/posts/ai/2026-02-28-claude-rate-limits/)
 - [Claude 定价完全指南（免费 / Pro / Max / API）](/posts/ai/2026-04-03-claude-pricing-complete-guide/)

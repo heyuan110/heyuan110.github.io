@@ -141,6 +141,7 @@ If you remember three sentences from this post: Sonnet 5 is the best AI coding m
 
 ## Related Reading
 
+- [Claude API Cost Calculator](/tools/claude-token-cost-calculator.html) — interactive per-call / monthly cost comparison across all current models
 - [Claude Free Tier Limits in 2026: What You Actually Get](/posts/ai/2026-07-08-claude-free-tier-limits/)
 - [Claude Pricing Complete Guide: API vs Pro vs Max](/posts/ai/2026-04-03-claude-pricing-complete-guide/)
 - [Claude Code vs Codex: Which Agentic CLI Wins](/posts/ai/2026-02-19-claude-code-vs-codex/)

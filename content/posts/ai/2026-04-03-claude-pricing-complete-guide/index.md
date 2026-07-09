@@ -279,6 +279,7 @@ Several significant pricing changes happened in early 2026:
 
 ## Related Reading
 
+- [Claude API Cost Calculator](/tools/claude-token-cost-calculator.html) — interactive per-call / monthly cost comparison across all current models
 - [Claude Code Pricing: Complete Breakdown](/posts/ai/2026-02-25-claude-code-pricing/) — Detailed API costs and real-world usage estimates for Claude Code
 - [Claude Rate Limits Explained](/posts/ai/2026-02-28-claude-rate-limits/) — How rolling windows, model choice, and conversation length affect your limits
 - [Claude Code Teams Guide](/posts/ai/2026-02-28-claude-code-teams-guide/) — Setting up and managing Claude Code for team environments

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude API Cost Calculator 2026 — Token Pricing for Fable 5, Sonnet 5, GPT-5.6, Gemini</title>
+<meta name="description" content="Free Claude API cost calculator. Compare token pricing across Fable 5, Opus 4.8, Sonnet 5, Haiku 4.5, GPT-5.6 and Gemini 3.1 Pro — per call, per day, per month. Prices verified July 2026.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://www.heyuan110.com/tools/claude-token-cost-calculator.html">
+<meta property="og:title" content="Claude API Cost Calculator 2026 — Compare LLM Token Pricing">
+<meta property="og:description" content="Compare API costs across Claude Fable 5, Opus 4.8, Sonnet 5, GPT-5.6, Gemini 3.1 Pro. Instant per-call, daily and monthly estimates.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.heyuan110.com/tools/claude-token-cost-calculator.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Claude API Cost Calculator","url":"https://www.heyuan110.com/tools/claude-token-cost-calculator.html","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Compare LLM API token costs across Claude, GPT and Gemini models with per-call, daily and monthly estimates."}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How much does the Claude API cost in 2026?","acceptedAnswer":{"@type":"Answer","text":"As of July 2026: Claude Fable 5 costs $10 per million input tokens and $50 per million output tokens. Opus 4.8 is $5/$25, Sonnet 5 is $3/$15 (introductory $2/$10 through August 31, 2026), and Haiku 4.5 is $1/$5."}},
+{"@type":"Question","name":"Which Claude model is cheapest for coding?","acceptedAnswer":{"@type":"Answer","text":"Haiku 4.5 ($1/$5 per million tokens) is cheapest for high-volume low-difficulty tasks. For serious coding agents, Sonnet 5 at $3/$15 offers the best price-to-capability ratio — it beats Opus 4.8 on Terminal-Bench 2.1 at 60% of the price."}},
+{"@type":"Question","name":"How do I estimate tokens from words?","acceptedAnswer":{"@type":"Answer","text":"A rough rule: 1,000 English words is about 1,300–1,500 tokens; code averages closer to 1 token per 3 characters. For budgeting, assume 750 words per 1,000 tokens."}},
+{"@type":"Question","name":"Is GPT-5.6 available via API?","acceptedAnswer":{"@type":"Answer","text":"Not publicly. As of July 2026, GPT-5.6 (Sol/Terra/Luna) is restricted to roughly 20 government-approved partner companies. Its listed prices are vendor-published and included here for comparison only."}}]}
+</script>
+<meta name="google-adsense-account" content="ca-pub-2215311867116766">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2215311867116766" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CT8E5N460D"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-CT8E5N460D');</script>
+<style>
+:root{--bg:#0b1020;--panel:#131a2e;--panel2:#182136;--line:#26314d;--text:#e6ecf8;--dim:#93a3c4;--teal:#2dd4bf;--amber:#f59e0b;--coral:#fb7185}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:ui-sans-serif,system-ui,"SF Pro Display","PingFang SC",sans-serif;background:radial-gradient(120% 130% at 12% 0%,#16203a 0%,var(--bg) 55%,#070a14 100%);color:var(--text);min-height:100vh;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:40px 20px 80px}
+.brand{font:600 13px/1 ui-monospace,Menlo,monospace;color:var(--dim);letter-spacing:.08em;margin-bottom:26px}
+.brand a{color:var(--teal);text-decoration:none}
+h1{font-size:clamp(26px,4.5vw,38px);font-weight:800;letter-spacing:-.02em;line-height:1.15;margin-bottom:10px}
+.sub{color:var(--dim);font-size:16px;max-width:640px;margin-bottom:8px}
+.verified{display:inline-block;font:600 12px/1 ui-monospace,Menlo,monospace;color:var(--teal);border:1px solid #2dd4bf55;background:#2dd4bf14;padding:6px 12px;border-radius:999px;margin:10px 0 30px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+label{display:block;font-size:13px;color:var(--dim);margin-bottom:6px;font-weight:600}
+input,select{width:100%;background:var(--panel2);border:1px solid var(--line);border-radius:9px;color:var(--text);font-size:16px;padding:10px 12px;outline:none}
+input:focus,select:focus{border-color:var(--teal)}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th{text-align:left;color:var(--dim);font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;padding:10px 10px;border-bottom:1px solid var(--line)}
+td{padding:11px 10px;border-bottom:1px solid #1d2740;white-space:nowrap}
+tr.best td{background:#2dd4bf10}
+.tag{font:600 10.5px/1 ui-monospace,monospace;padding:3px 8px;border-radius:999px;margin-left:8px;vertical-align:1px}
+.tag.best{color:#0b1020;background:var(--teal)}
+.tag.intro{color:var(--amber);border:1px solid #f59e0b66}
+.tag.locked{color:var(--coral);border:1px solid #fb718566}
+.bar{height:5px;border-radius:3px;background:var(--teal);opacity:.75;min-width:3px}
+.money{font-variant-numeric:tabular-nums;font-weight:700}
+h2{font-size:21px;margin:34px 0 12px;letter-spacing:-.01em}
+.links a{color:var(--teal);text-decoration:none}
+.links li{margin:8px 0;color:var(--dim)}
+.faq p{color:var(--dim);font-size:14.5px;margin:4px 0 14px}
+.faq b{color:var(--text)}
+.foot{margin-top:44px;color:#7c88a8;font:500 13px/1.7 ui-monospace,Menlo,monospace}
+.foot a{color:var(--teal);text-decoration:none}
+@media(max-width:640px){td,th{padding:9px 6px}.hidem{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><a href="https://www.heyuan110.com/">Bruce's Blog</a> · tools</div>
+  <h1>Claude API Cost Calculator</h1>
+  <p class="sub">Compare token pricing across Claude Fable 5, Opus 4.8, Sonnet 5, Haiku 4.5, GPT-5.6 and Gemini 3.1 Pro — per call, per day, per month.</p>
+  <span class="verified">✓ Prices verified July 9, 2026</span>
+
+  <div class="card">
+    <div class="grid">
+      <div><label for="tin">Input tokens per call</label><input id="tin" type="number" min="0" value="12000"></div>
+      <div><label for="tout">Output tokens per call</label><input id="tout" type="number" min="0" value="2500"></div>
+      <div><label for="calls">Calls per day</label><input id="calls" type="number" min="0" value="50"></div>
+      <div><label for="days">Days per month</label><input id="days" type="number" min="1" max="31" value="22"></div>
+    </div>
+  </div>
+
+  <div class="card" style="overflow-x:auto">
+    <table id="tbl">
+      <thead><tr>
+        <th>Model</th><th>$/M in · out</th><th>Per call</th><th class="hidem">Per day</th><th>Per month</th><th class="hidem" style="width:120px"></th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <h2>Where these numbers come from</h2>
+  <ul class="links">
+    <li><a href="/posts/ai/2026-07-07-best-ai-coding-models-2026/">Best AI Coding Models 2026: Fable 5 vs Sonnet 5 vs GPT-5.6</a> — full benchmark and pricing analysis behind this table</li>
+    <li><a href="/posts/ai/2026-04-03-claude-pricing-complete-guide/">Claude Pricing 2026: Pro vs Max vs API ROI</a> — when a subscription beats the API</li>
+    <li><a href="/posts/ai/2026-07-08-claude-free-tier-limits/">Claude Free Tier Limits 2026</a> — how far $0 actually goes</li>
+    <li><a href="/posts/ai/2026-02-28-claude-rate-limits/">Claude Rate Limits 2026</a> — the caps that hit before your budget does</li>
+  </ul>
+
+  <h2>FAQ</h2>
+  <div class="faq">
+    <p><b>How accurate is this?</b><br>Prices are the official published API rates as of July 9, 2026. Real bills vary with prompt caching (up to 90% off cached input), batch discounts (50%), and always-on thinking tokens on Fable 5.</p>
+    <p><b>Why is Sonnet 5 shown twice?</b><br>Anthropic's introductory pricing ($2/$10) runs through August 31, 2026; the standard rate is $3/$15. Both are shown so you can budget past September.</p>
+    <p><b>Why is GPT-5.6 marked "restricted"?</b><br>As of July 2026 it is limited to ~20 government-approved partners. Prices are vendor-published, included for comparison only.</p>
+    <p><b>Tokens vs words?</b><br>Budget roughly 750 English words (or ~2,500 characters of code) per 1,000 tokens.</p>
+  </div>
+
+  <div class="foot">
+    Built by <a href="https://www.heyuan110.com/">Bruce's Blog</a> — AI engineering, benchmarked and billed for real.<br>
+    Corrections welcome. Prices change; the linked articles track them.
+  </div>
+</div>
+
+<script>
+const MODELS=[
+ {name:"Claude Haiku 4.5",i:1,o:5},
+ {name:"GPT-5.6 Luna",i:1,o:6,tag:"locked"},
+ {name:"Gemini 3.1 Pro",i:2,o:12},
+ {name:"Claude Sonnet 5 (intro → Aug 31)",i:2,o:10,tag:"intro"},
+ {name:"GPT-5.6 Terra",i:2.5,o:15,tag:"locked"},
+ {name:"Claude Sonnet 5 (standard)",i:3,o:15},
+ {name:"Claude Opus 4.8",i:5,o:25},
+ {name:"GPT-5.6 Sol",i:5,o:30,tag:"locked"},
+ {name:"Claude Fable 5",i:10,o:50}
+];
+const $=id=>document.getElementById(id);
+const fmt=v=>v>=100?"$"+v.toFixed(0):v>=1?"$"+v.toFixed(2):"$"+v.toFixed(4);
+function calc(){
+  const tin=+$("tin").value||0,tout=+$("tout").value||0,calls=+$("calls").value||0,days=+$("days").value||1;
+  const rows=MODELS.map(m=>{
+    const call=(tin*m.i+tout*m.o)/1e6;
+    return {...m,call,day:call*calls,month:call*calls*days};
+  }).sort((a,b)=>a.month-b.month);
+  const max=rows[rows.length-1].month||1;
+  const tb=document.querySelector("#tbl tbody");
+  tb.innerHTML=rows.map((r,idx)=>{
+    const tags=(idx===0?'<span class="tag best">CHEAPEST</span>':"")+(r.tag==="intro"?'<span class="tag intro">INTRO PRICE</span>':"")+(r.tag==="locked"?'<span class="tag locked">RESTRICTED</span>':"");
+    return `<tr${idx===0?' class="best"':''}><td>${r.name}${tags}</td><td>$${r.i} · $${r.o}</td><td class="money">${fmt(r.call)}</td><td class="money hidem">${fmt(r.day)}</td><td class="money">${fmt(r.month)}</td><td class="hidem"><div class="bar" style="width:${Math.max(3,r.month/max*100)}%"></div></td></tr>`;
+  }).join("");
+}
+["tin","tout","calls","days"].forEach(id=>$(id).addEventListener("input",calc));
+calc();
+</script>
+</body>
+</html>

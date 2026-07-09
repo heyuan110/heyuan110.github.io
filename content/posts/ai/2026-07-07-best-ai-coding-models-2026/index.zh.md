@@ -141,6 +141,7 @@ flowchart TD
 
 ## 相关阅读
 
+- [Claude API 成本计算器](/tools/claude-token-cost-calculator.html) — 按你的用量实时对比各模型每次调用/每月成本
 - [2026 年 Claude 免费额度实测：免费版到底能干什么](/posts/ai/2026-07-08-claude-free-tier-limits/)
 - [Claude 价格完全指南：API、Pro、Max 怎么选](/posts/ai/2026-04-03-claude-pricing-complete-guide/)
 - [Claude Code vs Codex：两大 agentic CLI 对决](/posts/ai/2026-02-19-claude-code-vs-codex/)

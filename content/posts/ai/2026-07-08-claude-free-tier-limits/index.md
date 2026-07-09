@@ -129,6 +129,7 @@ The second mistake is **staying free too long.** The mirror image is the develop
 
 ## Related Reading
 
+- [Claude API Cost Calculator](/tools/claude-token-cost-calculator.html) — interactive per-call / monthly cost comparison across all current models
 - [Claude Code Pricing: What It Really Costs](/posts/ai/2026-02-25-claude-code-pricing/)
 - [Claude Rate Limits Explained](/posts/ai/2026-02-28-claude-rate-limits/)
 - [The Complete Claude Pricing Guide (Free, Pro, Max, API)](/posts/ai/2026-04-03-claude-pricing-complete-guide/)

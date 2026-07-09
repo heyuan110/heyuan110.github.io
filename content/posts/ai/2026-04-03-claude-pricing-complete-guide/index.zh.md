@@ -238,6 +238,7 @@ Claude Code 是 Anthropic 的终端编程代理，在 Pro、Max、Team、API 上
 
 ## 相关阅读
 
+- [Claude API 成本计算器](/tools/claude-token-cost-calculator.html) — 按你的用量实时对比各模型每次调用/每月成本
 - [Claude Code 定价完全指南](/posts/ai/2026-02-25-claude-code-pricing/) — API 真实成本和用量估算
 - [Claude 速率限制详解](/posts/ai/2026-02-28-claude-rate-limits/) — 滚动窗口、模型选择和对话长度怎么影响限额
 - [Claude Code Teams 使用指南](/posts/ai/2026-02-28-claude-code-teams-guide/) — 团队环境下的部署和管理
