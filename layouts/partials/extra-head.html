@@ -40,26 +40,16 @@
 <link rel="alternate" hreflang="en" href="{{ .Site.BaseURL }}" />
 <link rel="alternate" hreflang="zh" href="{{ .Site.BaseURL }}zh/" />
 <link rel="alternate" hreflang="x-default" href="{{ .Site.BaseURL }}" />
-{{ else if .IsPage }}
-{{ if eq site.Language.Lang "en" }}
-<link rel="alternate" hreflang="en" href="{{ $canonicalURL }}" />
-{{- $zhPath := replaceRE "^/" "/zh/" $canonicalURL -}}
-<link rel="alternate" hreflang="zh" href="{{ $zhPath }}" />
-{{ else }}
-<link rel="alternate" hreflang="zh" href="{{ $canonicalURL }}" />
-{{- $enPath := replaceRE "^/zh/" "/" $canonicalURL -}}
-<link rel="alternate" hreflang="en" href="{{ $enPath }}" />
+{{ else if or .IsPage .IsSection }}
+{{/* 用 Hugo 原生 .Translations 取真实翻译页 URL——字符串替换在完整 URL 上永远匹配不到 ^/，是 2026-07 修掉的 hreflang 全指自己 bug */}}
+<link rel="alternate" hreflang="{{ site.Language.Lang }}" href="{{ $canonicalURL }}" />
+{{ range .Translations }}
+<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" />
 {{ end }}
-<link rel="alternate" hreflang="x-default" href="{{ if eq site.Language.Lang "en" }}{{ $canonicalURL }}{{ else }}{{ replaceRE "^/zh/" "/" $canonicalURL }}{{ end }}" />
-{{ else if .IsSection }}
 {{ if eq site.Language.Lang "en" }}
-<link rel="alternate" hreflang="en" href="{{ $canonicalURL }}" />
-{{- $zhPath := replaceRE "^/" "/zh/" $canonicalURL -}}
-<link rel="alternate" hreflang="zh" href="{{ $zhPath }}" />
+<link rel="alternate" hreflang="x-default" href="{{ $canonicalURL }}" />
 {{ else }}
-<link rel="alternate" hreflang="zh" href="{{ $canonicalURL }}" />
-{{- $enPath := replaceRE "^/zh/" "/" $canonicalURL -}}
-<link rel="alternate" hreflang="en" href="{{ $enPath }}" />
+{{ range .Translations }}{{ if eq .Language.Lang "en" }}<link rel="alternate" hreflang="x-default" href="{{ .Permalink }}" />{{ end }}{{ end }}
 {{ end }}
 {{ end }}
 
