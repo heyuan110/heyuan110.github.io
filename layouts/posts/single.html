@@ -26,13 +26,13 @@
 			</header>
 			<div class="content">
 				{{ .Content | safeHTML }}
-			{{- if eq .Site.Language.Lang "en" }}{{ partial "ad-multiplex.html" . }}{{ end }}
+			{{ partial "ad-multiplex.html" . }}
 			</div>
 			{{- if .Site.Params.relatedPosts }}
 			{{- partial "related-posts.html" . -}}
 			{{- end }}
 			<hr class="post-end">
-			<footer class="post-description">{{- partial "posts_single_info.html" . -}}</footer>		
+			<footer class="post-description">{{- partial "posts_single_info.html" . -}}</footer>
 		</article>
 		{{- else -}}
 		<article class="thin">
@@ -44,7 +44,7 @@
 			<hr class="post-end">
 			<div class="content">
 				 {{ .Content | safeHTML }}
-			{{- if eq .Site.Language.Lang "en" }}{{ partial "ad-multiplex.html" . }}{{ end }}
+			{{ partial "ad-multiplex.html" . }}
 			</div>
 			{{ partial "brainMade.html" . }}
 			{{- if .Site.Params.relatedPosts }}

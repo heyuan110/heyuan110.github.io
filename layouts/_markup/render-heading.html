@@ -1,5 +1,7 @@
-{{- /* 广告注入:仅英文 posts 文章,在第 3 个 H2 出现前插入文中广告(阅读热区)。2026-07 */ -}}
-{{- if and (eq .Page.Site.Language.Lang "en") (eq .Page.Section "posts") (eq .Level 2) -}}
+{{- /* 广告注入:所有语言的 posts 文章,在第 3 个 H2 出现前插入文中广告(阅读热区)。
+       中文页于 2026-07-10 开放:中文页 81% 的 PV 里有 39% 在中国大陆之外(美国 7.6k PV/月),
+       大陆用户本就加载不出 googlesyndication,加广告位对其零影响。 */ -}}
+{{- if and (eq .Page.Section "posts") (eq .Level 2) -}}
   {{- $n := add (or (.Page.Store.Get "h2count") 0) 1 -}}
   {{- .Page.Store.Set "h2count" $n -}}
   {{- if eq $n 3 -}}{{- partial "ad-in-article.html" . -}}{{- end -}}
