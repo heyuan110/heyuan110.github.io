@@ -1,5 +1,6 @@
 +++
-date = '2026-07-10T18:00:00+08:00'
+date = '2026-07-09T18:00:00+08:00'
+aliases = ['/posts/ai/2026-07-10-seedream-5-pro/']
 draft = false
 title = "Seedream 5.0 Pro: ByteDance's Image Model Takes On Gemini"
 description = "Seedream 5.0 Pro launched July 8, 2026 at $0.045 per 1K image. I fact-check the Gemini comparison, walk through the API, and map who should actually switch."
