@@ -95,6 +95,8 @@ quadrantChart
 
 ## GPT-5.6 和 Gemini 3：牌桌上的其他人
 
+> **更新（2026 年 7 月 9 日）**：本文发布两天后，GPT-5.6 正式全量开放。"约 20 家政府批准企业"的预览限制已解除——Sol（$5/$30）、Terra（$2.50/$15）、Luna（$1/$6）现已登陆 ChatGPT、API、Codex 和全新的 ChatGPT Work。下面这一节保留 GA 前的原文不动；关于这次发布的完整解读（包括为什么跑分依然要打折听），见新文[《GPT-5.6 正式发布：三档价格、Codex 并入 ChatGPT Work 全解读》](/posts/ai/2026-07-10-gpt-5-6-general-availability/)。
+
 **GPT-5.6 是今年最诡异的发布：一场你用不上的发布。** OpenAI 在 [6 月 26 日预览了 Sol、Terra、Luna 三件套](https://openai.com/index/previewing-gpt-5-6-sol/)——旗舰 Sol $5/$30，Terra 约半价，Luna $1/$6——然后[应美国政府要求](https://techcrunch.com/2026/06/26/openai-limits-gpt-5-6-rollout-after-government-request-says-restrictions-shouldnt-be-the-norm/)把访问限制在约 20 家获批合作企业的预览里，仅限 API 和 Codex，ChatGPT 里连影子都没有。OpenAI 称限制是"短期措施"、不应成为常态，但没有任何公开时间表。所以你读到的每一篇"Fable 5 对比 GPT-5.6"，本质上都是拿一个买得到的模型去比一个买不到的模型的厂商自报数字。我的建议无聊但正确：在你能给 GPT-5.6 创建 API key 的那天之前，把它从你的选型里划掉；到那天再重跑一遍这个对比。参考两家前沿实验室一个月内先后经历的"政府预览"模式，公开访问大概率是几周量级的事。
 
 **Gemini 3.1 Pro 是有真实论据的预算之选。** $2/$12 比 Sonnet 5 恢复原价后还便宜，SWE-bench Verified 80.6% 放在半年前就是全场最强。它输给 Sonnet 5 的地方——我的实测和 agentic 类 benchmark 一致——是长 agent 循环里的工具使用纪律：它是个很强的问答引擎，但只是个中游的终端操作员。如果你的工作流是对话式编码辅助而非自主 agent，或者账单就是你的硬约束，它站得住。再补一个让所有人保持谦卑的数据点：中国的开源权重模型 GLM-5.2 本月[在 Design Arena 的 HTML 榜上反超了 Fable 5](https://www.techradar.com/pro/chinas-answer-to-claudes-fable-5-comes-top-of-the-html-web-design-contest-as-the-ceo-tells-elon-musk-glm-will-reach-mythos-class-before-q1-2027)。2026 年的榜单排名，半衰期以周计——这也是别为一个可能撑不过这个季度的领先优势支付旗舰溢价的又一条理由。
