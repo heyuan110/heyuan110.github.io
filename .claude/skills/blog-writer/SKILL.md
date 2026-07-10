@@ -5,6 +5,8 @@ description: "技术博客深度写作。不是内容生成器，是观点表达
 
 # 技术博客深度写作
 
+> Battle-tested on [heyuan110.com](https://www.heyuan110.com/) — a bilingual (EN/ZH) AI engineering blog. Every rule in this skill was earned from real GSC/GA data, not theory.
+
 ## 核心理念
 
 **这不是一个内容生成工具，而是一个观点表达工具。**
