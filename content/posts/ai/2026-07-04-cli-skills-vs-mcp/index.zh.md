@@ -1,5 +1,6 @@
 +++
-date = '2026-07-10T10:00:00+08:00'
+date = '2026-07-04T10:00:00+08:00'
+aliases = ['/posts/ai/2026-07-10-cli-skills-vs-mcp/']
 draft = false
 title = 'MCP 落伍了？CLI + Skill 才是 Agent 工具链的未来'
 description = 'Perplexity 弃用 MCP、Garry Tan 公开炮轰，我自己的工具链一天内三次 MCP 掉链子、三次被 CLI 脚本救场。用第一手生产系统证据讲清 CLI + Skill 为什么正在接管 Agent 工具链，MCP 退守哪些场景，附可直接套用的迁移决策框架。'

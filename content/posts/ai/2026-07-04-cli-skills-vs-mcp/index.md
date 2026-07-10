@@ -1,5 +1,6 @@
 +++
-date = '2026-07-10T10:00:00+08:00'
+date = '2026-07-04T10:00:00+08:00'
+aliases = ['/posts/ai/2026-07-10-cli-skills-vs-mcp/']
 draft = false
 title = 'MCP vs Skills: Why CLI + Skill Wins the Agent Toolchain'
 description = 'MCP servers burn 50K tokens where a 200-token SKILL.md does the same job. Why Perplexity, YC, and my own stack moved to CLI + Skills — and when MCP still wins.'

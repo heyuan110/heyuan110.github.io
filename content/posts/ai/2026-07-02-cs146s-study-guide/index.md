@@ -1,5 +1,6 @@
 +++
-date = '2026-07-10T14:00:00+08:00'
+date = '2026-07-02T14:00:00+08:00'
+aliases = ['/posts/ai/2026-07-10-cs146s-study-guide/']
 draft = false
 title = 'CS146S Study Guide 2026: Lecture-by-Lecture Notes & Workbook'
 description = 'Self-study Stanford CS146S in 2026: lecture-by-lecture verdicts, the exercises worth doing, Claude Code/Cursor tool mappings, and a route that skips filler.'
