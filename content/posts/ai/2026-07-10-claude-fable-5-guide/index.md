@@ -30,62 +30,84 @@ answer = "Unknown. Anthropic's official statement says it plans to restore Fable
 
 ![Claude Fable 5 guide: when the $10/$50 flagship is worth it and how to use it well](cover.webp)
 
-On July 12, 2026 at 11:59 PM Pacific, Claude Fable 5 leaves every subscription plan. From July 13, the strongest model you can buy bills like a metered utility — $10 per million input tokens, $50 per million output — even if you already pay $200 a month for Max. No frontier lab has done this before: shipped its best model, let everyone taste it, then moved it behind a separate meter. Which means **claude fable 5** now poses a question no previous model did. Not "which model should I default to" — I answered that in [my cross-vendor comparison](/posts/ai/2026-07-07-best-ai-coding-models-2026/), and the answer is still Sonnet 5. The new question is: **when is a single Fable 5 run worth real money, and how do you make sure you don't waste it?** This post answers only those two things.
+Three tasks burned 73% of a five-hour usage window — and one of the three never even finished. That happened to 卡兹克 (Kazike), a Chinese blogger on the $200/month Max 20x plan, the most expensive consumer tier Anthropic sells, during Fable 5's free window. He wrote that it was the first time he had ever felt token scarcity. In all his time developing on Opus 4.8, it had never happened once.
 
-My position up front: Fable 5 is a per-task purchase, not a monthly teammate. A serious agentic run costs $30–100 in my estimate — so it only clears its own bar when one run plausibly replaces half a day of your work, *and* you've done the cheap preparation first. The most expensive thing you can feed Fable 5 is a prompt you haven't thought through.
+Here's the part that should worry you: that was while Fable 5 was free.
 
-## Fable 5 Availability in July 2026: What Actually Changed
+From July 13, 2026, **Claude Fable 5** leaves every subscription plan. The same burn rate now draws real dollars from a separately funded usage-credit balance: $10 per million input tokens, $50 per million output. No frontier lab has done this before — ship your best model, let everyone taste it, then put it behind its own meter.
 
-The status question has to come first, because most of what was written about Fable 5 access in June is already wrong. Here is the verified timeline, from Anthropic's own statements:
+So this post is about money, start to finish: what a Fable 5 task actually costs, which tasks deserve that price, and how to make sure the run you pay for isn't wasted. "What should my default model be" is a different question — I answered it in [my cross-vendor comparison](/posts/ai/2026-07-07-best-ai-coding-models-2026/), and the answer is still Sonnet 5.
+
+My position, on the table: Fable 5 is a per-task purchase, not a monthly teammate. At $30–100 a run, it only makes sense when one successful run plausibly replaces half a day of your own work.
+
+## Where Fable 5 Lives After July 13
+
+Fable 5 didn't disappear; it moved from subscription perk to metered add-on. Its status has whipsawed all month, so here is the whole saga, verified against Anthropic's own statements and compressed into one table:
 
 | Date (2026) | What happened |
 |---|---|
-| June 9 | Fable 5 GA on the API and in paid Claude plans; in-plan access announced through June 22 |
-| June 12 | US government [directive orders Anthropic to suspend access](https://www.anthropic.com/news/fable-mythos-access) for all foreign nationals |
+| June 9 | GA; in-plan access announced as free through June 22 |
+| June 12 | US government [directive suspends access](https://www.anthropic.com/news/fable-mythos-access) for all foreign nationals |
 | June 30 | Export controls lifted |
-| July 1 | [Redeployed globally](https://www.anthropic.com/news/redeploying-fable-5) on Claude.ai, Claude Code, Claude Cowork, and the API; included in Pro/Max/Team and select Enterprise plans for up to 50% of weekly usage limits, through July 7 |
-| July 7 | After subscriber backlash, Anthropic [extends the window five days](https://www.forbes.com/sites/sandycarter/2026/07/07/claude-fable-5-extends-by-five-more-days-10-moves-to-make-now/), to July 12 at 11:59 PM PT |
+| July 1 | [Redeployed globally](https://www.anthropic.com/news/redeploying-fable-5); Pro/Max/Team get it for up to 50% of weekly limits, through July 7 |
+| July 7 | After subscriber backlash, [extended five days](https://www.forbes.com/sites/sandycarter/2026/07/07/claude-fable-5-extends-by-five-more-days-10-moves-to-make-now/) to July 12, 11:59 PM PT |
 | July 13 → | Usage credits only, at API rates, on top of any plan |
 
-Two corrections to widely repeated claims. First, **Fable 5 is not "API-only" after the cutoff**. That framing spread from launch-week coverage, but the actual mechanism is different: the model stays selectable inside Claude.ai and Claude Code — it just draws from a separately funded usage-credit balance instead of your plan's included limits. You can keep your $20 Pro plan and still run Fable 5 tonight; you'll just watch a dollar meter instead of a usage bar. Second, the removal is framed as temporary but is **open-ended**: Anthropic's redeployment statement commits to restoring Fable 5 as a standard plan feature when serving capacity allows, and as of July 12, 2026, no timeline exists. Plan for the metered state to last months, not days.
+Read that sequence again: free, banned overnight, restored, removed — four states in one month. The July 7 extension was forced by subscriber backlash, and the backlash ran on the math in the next section, not on principle.
 
 > As of July 13, 2026, Claude Fable 5 is not included in any Claude subscription plan. It bills through a separate usage-credit balance at $10 per million input tokens and $50 per million output tokens, and Anthropic has announced no date for restoring in-plan access.
 
-One more status fact that matters if you're deciding whether to build on it: the compliance profile didn't change with the redeployment. Fable 5 (and its unclassified sibling Mythos 5, still limited to Project Glasswing partners) carries [mandatory 30-day data retention and is excluded from zero-data-retention agreements](https://platform.claude.com/docs/en/about-claude/models/introducing-claude-fable-5-and-claude-mythos-5) — ZDR organizations get a 400 on every request, full stop. And its safety classifiers can decline requests with `stop_reason: "refusal"`, which for security-adjacent work happens often enough to matter. Both of these were true in June and remain true now.
+Two widely repeated claims need correcting. First, Fable 5 is **not "API-only"** after the cutoff. The model stays selectable inside Claude.ai and Claude Code; it just draws from your usage-credit balance instead of your plan's included limits. You can keep a $20 Pro plan and run Fable 5 tonight — you'll just be watching a dollar meter instead of a usage bar.
 
-## The Real Fable 5 Pricing: Why $10/$50 Understates the Bill
+Second, the removal is framed as temporary but is open-ended. Anthropic commits to restoring in-plan access when serving capacity allows, and as of July 12 there is no timeline. Budget for months, not days.
 
-The sticker price is the least useful number in this decision, and I want to show the math rather than assert it. Three multipliers sit between "$10/$50" and what you actually spend.
+Two hard constraints also carry over unchanged from June. Fable 5 has [mandatory 30-day data retention and is excluded from zero-data-retention agreements](https://platform.claude.com/docs/en/about-claude/models/introducing-claude-fable-5-and-claude-mythos-5) — ZDR organizations get a 400 on every request, full stop. And its safety classifiers decline with `stop_reason: "refusal"` often enough to matter for anything security-adjacent. Its unclassified sibling Mythos 5 remains limited to Project Glasswing partners, so it isn't an option for the rest of us.
 
-**Multiplier one: thinking you cannot turn off.** On Fable 5, [adaptive thinking is the only mode](https://platform.claude.com/docs/en/about-claude/models/introducing-claude-fable-5-and-claude-mythos-5) — `thinking: {"type": "disabled"}` is not supported, and thinking tokens bill as output at $50 per million. A "short answer" still carries reasoning overhead, and hard turns can think for minutes. The `effort` parameter is your only throttle, and most people never touch it. Compare that with Opus 4.8, where you choose when to pay for extended thinking, and the effective output-price gap becomes larger than the nominal 2x.
+## Fable 5 Pricing in Practice: How $10/$50 Becomes $30–100 a Task
 
-**Multiplier two: agentic compounding.** A Claude Code session is not one API call; it's dozens of turns, each re-reading a growing context. Prompt caching softens this enormously — cache reads cost around a tenth of fresh input — but the snowball still rolls. A two-hour session over a mid-sized repo routinely accumulates tens of millions of cache-read tokens plus hundreds of thousands of output tokens. Priced out: roughly 15M cache reads (~$15) + 1M fresh input ($10) + 400K output including thinking ($20) lands a single deep task at about $45. That's the anatomy behind my working estimate: **a serious agentic Fable 5 task costs $30–100 in API-equivalent terms as of July 2026**. Plug your own numbers into my [Claude token cost calculator](/tools/claude-token-cost-calculator.html) — the difference between a 20-turn and an 80-turn session is the difference between a coffee and a dinner.
+The sticker price is the least informative number in this whole decision. Three multipliers sit between $10/$50 and what you actually spend — here's the math, so you can plug in your own numbers.
 
-**Multiplier three: retries you cause yourself.** Every run that comes back wrong because you under-specified the task is a full-price run. This is the multiplier nobody budgets for and the one you control most directly — the second half of this post is entirely about shrinking it.
+**Multiplier one: thinking you cannot turn off.** On Fable 5, [adaptive thinking is the only mode](https://platform.claude.com/docs/en/about-claude/models/introducing-claude-fable-5-and-claude-mythos-5) — `thinking: {"type": "disabled"}` isn't supported, and thinking tokens bill as output at $50 per million. Even a "short answer" carries reasoning overhead, hard turns can think for minutes, and your only throttle is the `effort` parameter, which most people never touch.
 
-The compounding is not theoretical. During the free window, one of the most-shared Chinese write-ups on the launch came from the blogger 卡兹克, a $200/month Max 20x subscriber who publicly reported that **3 tasks — one of which never finished — consumed 73% of a full 5-hour usage window**. On the highest consumer tier Anthropic sells. He described it as the first time he'd ever felt token scarcity, something that never happened to him on Opus 4.8. Roughly speaking, one deep Fable 5 task ate a quarter of a Max 20x window; run three deep tasks a day through usage credits at my per-task estimate and you're staring at a ~$3,000 month. That, not abstract principle, is why the subscriber backlash forced the five-day extension — and why "is fable 5 worth it" is the wrong question in aggregate. It's only answerable per task. (For how the subscription tiers map to real usage generally, see my [Claude pricing complete guide](/posts/ai/2026-04-03-claude-pricing-complete-guide/).)
+The thinking tax deserves its own line item. A 60-turn coding session averaging 5K thinking tokens per turn is 300K tokens of pure thought — $15 before a single line of code gets written. Opus 4.8 ($5/$25) lets you choose when to pay for extended thinking, so the effective output-price gap is much wider than the nominal 2x.
 
-## When Is Fable 5 Worth It? The Half-Day Test
+**Multiplier two: agentic compounding.** A Claude Code session isn't one API call; it's dozens of turns, each re-reading a growing context. Prompt caching absorbs most of it — cache reads cost about a tenth of fresh input — but the snowball still rolls: a two-hour session over a mid-sized repo routinely racks up tens of millions of cache-read tokens plus hundreds of thousands of output tokens.
 
-Here is the rule I actually use: **turn on Fable 5 only when a single successful run would plausibly replace at least half a day of your own skilled work.** At $30–100 per run against a half-day of engineer time ($300+ at typical rates), that's a 3–10x return — comfortable margin even when a run partially misses. Below that bar, you're paying a 5–20x model premium for outcomes a cheaper model delivers indistinguishably.
+Dissect a typical deep task: ~15M cache reads ($15) + 1M fresh input ($10) + 400K output including thinking ($20) lands around $45. That's the anatomy behind my working estimate of $30–100 per serious run. Plug your own usage into my [Claude token cost calculator](/tools/claude-token-cost-calculator.html) — a 20-turn session and an 80-turn session are the difference between a coffee and a dinner.
 
-Three task archetypes clear the bar consistently, and the evidence for each is concrete. The first is the **one-shot feature build**. The same Max subscriber above had spent two design sessions with Opus 4.8 trying to add a time-decayed "trending" section to his AI news aggregator — clustering, decay weighting, the edge case where a quiet day should collapse the section entirely — and wasn't satisfied either time. He handed the same requirement to Fable 5, which designed and shipped the entire feature to production in 30 minutes, edge cases included. That's the profile: a task with real design judgment in it, where the flagship's extra depth converts directly into not needing you in the loop.
+**Multiplier three: retries you cause yourself.** Every run that comes back wrong because you under-specified it is a full-price run. Nobody budgets for this one, and it's the one you control most directly — the last section of this post is entirely about shrinking it.
 
-The second archetype is the **deep analysis report**, and it's the one that changed my mind about what the price buys. Same user, same pattern: he'd asked Opus 4.8 to back-test a month of scoring data across his monitoring pipeline and got a report he described as insight-free. Fable 5 ran autonomously for 1 hour 18 minutes and produced an analysis so detailed it took him 20 minutes to read — surfacing problems in his scoring system he had never thought to ask about. Hold onto that phrasing, because it's the bridge to the second half of this post: the tasks where Fable 5 earns its price are precisely the ones dense with *unknown unknowns*, where you're paying the model to find the questions, not just the answers.
+With all three multipliers on the table, that opening 73% dissects cleanly: one deep Fable 5 task ate roughly a quarter of a Max 20x window, on Anthropic's priciest consumer tier. Translate that to post-July-13 billing and it gets scarier — three deep tasks a day at my per-task estimate is a roughly $3,000 month. The same tasks on Sonnet 5: about $0.50 to $2 each.
 
-The third is the **massive mechanical migration** — the category Anthropic's own launch material staked out with Stripe running a full-library migration across a 50-million-line Ruby codebase in a day, work a team would have scheduled in months. Few of us have Stripe's problem, but the shape generalizes: enormous, latency-tolerant, machine-checkable work where a per-run fee is noise against the alternative.
+This isn't a price hike. It's a change of unit — from dollars per month to dollars per task.
 
-And the bar cuts hard the other way. Interactive edit-run-fix loops fail the test twice over — the task value is small and the always-on thinking latency wrecks the loop; a model that answers in 15 seconds at 90% quality beats one that answers in four minutes at 97% when you're iterating. High-volume pipeline work (test generation, lint sweeps, commit messages) fails on value. Security and pentest tooling fails on refusals — the classifiers that triggered June's export drama also decline benign hardening requests; the same user reported Fable 5 refusing to audit *his own codebase* for vulnerabilities. And ZDR organizations fail on a hard 400. None of these are edge cases; together they're most of a normal week. That's the honest core of any **fable 5 review**: it is simultaneously the best model I've used and the wrong model for most hours of the day.
+Which is why "is Fable 5 worth it" has no answer in aggregate; it only resolves per task. (For how the subscription tiers map to real usage generally, see my [Claude pricing complete guide](/posts/ai/2026-04-03-claude-pricing-complete-guide/).) The next section is the per-task answer.
 
-## The "Should I Turn On Fable 5?" Decision Tree
+## The Half-Day Test: Which Tasks Deserve Fable 5
 
-Compressed into one picture — this is the screenshot to keep:
+The rule I actually use has one clause: **turn on Fable 5 only when a single successful run would plausibly replace at least half a day of your own skilled work.** At $30–100 per run against $300+ of engineer time, that's a 3–10x return with margin for partial misses. Below the bar, you're paying a 5–20x premium for output a cheaper model delivers indistinguishably.
+
+Three archetypes clear the bar consistently, each with concrete evidence.
+
+**The one-shot feature build.** Back to Kazike: he wanted a time-decayed "trending" section for his AI news site — clustering, decay weighting, plus the edge case where a quiet news day should collapse the section entirely. Two design sessions with Opus 4.8 left him unsatisfied both times; the same requirement handed to Fable 5 was designed, built, and in production in 30 minutes, edge cases included.
+
+That's the profile: a task with real design judgment in it, where the flagship's extra depth converts directly into not needing you in the loop.
+
+**The deep analysis report.** This is the archetype that changed my mind about what the price buys. The same user asked Opus 4.8 to back-test a month of scoring data and got a report he described as insight-free; Fable 5 ran autonomously for 1 hour 18 minutes and produced an analysis that took him 20 minutes to read — flagging problems in his scoring system he had never thought to ask about. Hold onto "never thought to ask"; the last section collects on it.
+
+**The massive mechanical migration.** This is the category Anthropic's own launch material staked out: Stripe ran a full-library migration across a 50-million-line Ruby codebase in a single day — work a team would have scheduled in months. Few of us have Stripe's problem, but the shape generalizes: enormous, latency-tolerant, machine-checkable, where a per-run fee is noise against the alternative.
+
+The bar cuts just as hard the other way. Interactive edit-run-fix loops fail twice over: the task value is small, and the always-on thinking latency wrecks the rhythm — while iterating, a model that answers in 15 seconds at 90% beats one that answers in four minutes at 97%. High-volume pipeline work (test generation, lint sweeps, commit messages) fails on value. Security work fails on refusals: Kazike reported Fable 5 declining to audit *his own codebase* for vulnerabilities. ZDR organizations fail with a hard 400.
+
+None of those are edge cases. Together they cover most of a normal working week — which is the honest core of any Fable 5 review: it is simultaneously the strongest model available and the wrong choice for most hours of the day.
+
+The whole ledger, compressed into the screenshot to keep:
 
 ```mermaid
 flowchart TD
     A["A task on your desk, July 2026"] --> B{"Zero-data-retention org?"}
     B -- "Yes" --> Z["Fable 5 returns 400 for ZDR orgs<br/>use Opus 4.8"]
-    B -- "No" --> C{"Security / bio adjacent work?"}
+    B -- "No" --> C{"Security / pentest adjacent?"}
     C -- "Yes" --> Z2["Safety classifiers will refuse<br/>use Opus 4.8"]
     C -- "No" --> D{"Would one successful run replace<br/>half a day of your work?"}
     D -- "No" --> E["Stay on Sonnet 5<br/>escalate to Opus 4.8 after two failures"]
@@ -97,7 +119,9 @@ flowchart TD
     G -- "Yes" --> I["Turn on Fable 5<br/>one long session, expect $30-100"]
 ```
 
-Note what this tree is not: it's not a "which vendor" tree — that one lives in the [cross-vendor comparison](/posts/ai/2026-07-07-best-ai-coding-models-2026/) and picks your *default*. This tree runs per task, after your default is set, and its most important node is the one that loops: if your unknowns aren't clarified, the tree sends you back to a cheap model before it lets you spend. The quick-reference version, by task type:
+The most important node is the one that loops: if your unknowns aren't clarified, the tree won't let you spend — it sends you back to a cheap model first. Note also what this tree is not: it doesn't pick your vendor or your default; that's the [cross-vendor comparison](/posts/ai/2026-07-07-best-ai-coding-models-2026/). This one runs per task, after your default is set.
+
+Quick reference by task type:
 
 | Task type | Model | Why | Cost per run (my estimate) |
 |---|---|---|---|
@@ -111,13 +135,15 @@ Note what this tree is not: it's not a "which vendor" tree — that one lives in
 | Security / pentest tooling | Opus 4.8 | Fable's classifiers refuse benign security work | — |
 | Brainstorming / clarifying unknowns | Sonnet 5 | the prep loop for a Fable run | cents |
 
-## How to Use Fable 5 Well: Close Your Unknowns Before You Pay
+## Close Your Unknowns Before You Pay
 
-Deciding *when* is half the job. The other half is making sure the run you pay for is the run that works — and here the best guidance comes from inside Anthropic. Thariq Shihipar, an engineer on the Claude Code team, published [A Field Guide to Fable: Finding Your Unknowns](https://x.com/trq212/status/2073100352921215386) on July 3, and it racked up over two million views within days for one sentence in particular: "Fable is the first model where I find the quality of the work is bottlenecked by my ability to clarify its unknowns."
+Deciding *when* to turn Fable 5 on is half the job; the other half is making sure the paid run is the one that works. The best guidance here comes from inside Anthropic: Thariq Shihipar, an engineer on the Claude Code team, published [A Field Guide to Fable: Finding Your Unknowns](https://x.com/trq212/status/2073100352921215386) on July 3, and it passed two million views within days on the strength of one sentence: "Fable is the first model where I find the quality of the work is bottlenecked by my ability to clarify its unknowns."
 
-His frame: your prompt and context are a *map*; the codebase and its real constraints are the *territory*; and "the difference between the map and the territory is what I call unknowns. When Claude runs into an unknown, it needs to make a decision based on its best guess of what I want." For years the bottleneck was model capability — you pushed the model, and the model was the thing that fell short. Fable 5 inverts that. When a run comes back wrong now, the cause is usually a gap in *your* map, and — this is my addition to his argument — **at $50 per million output tokens, every unknown the model has to guess at is a line item on your bill**. Thariq's own summary is accidentally a billing strategy: "Every explainer, brainstorm, interview, prototype, and reference is a cheap way to find out what you didn't know before it gets expensive to fix."
+His frame is simple. Your prompt and context are a map; the codebase and its real constraints are the territory; the gap between them is the unknowns — and when Claude hits an unknown, it decides based on its best guess of what you want. For years the bottleneck was model capability: you pushed the model, and the model was what fell short. Fable 5 inverts that. When a run comes back wrong now, the cause is usually a hole in your map.
 
-He sorts unknowns into the classic four quadrants, and each quadrant has a distinct move:
+My one addition is a cost footnote: at $50 per million output tokens, every unknown the model has to guess at is a line item on your bill. Thariq's own summary is accidentally a billing strategy: "Every explainer, brainstorm, interview, prototype, and reference is a cheap way to find out what you didn't know before it gets expensive to fix."
+
+He sorts unknowns into four quadrants, each with its own move:
 
 ```mermaid
 quadrantChart
@@ -130,25 +156,51 @@ quadrantChart
     quadrant-4 "Known unknowns: let Claude interview you"
 ```
 
-**Known knowns** are the easy quadrant — things you can state, so state them; this is ordinary spec-writing. **Known unknowns** — the decisions you know you haven't made — get resolved by flipping the interview: "Interview me one question at a time about anything ambiguous. Prioritize questions whose answers would change the architecture." That prioritization clause does real work; without it the model asks trivia. **Unknown knowns** are the sneaky quadrant: standards you hold but would never think to write down, the "I'll know it when I see it" layer. You can't articulate these, so you fish for them — ask for four throwaway design directions in one HTML page with fake data, react to what's wrong, and your reaction *is* the missing spec. And **unknown unknowns** — the questions you don't know to ask — are the quadrant where you name the problem explicitly: "I'm adding an auth provider but I've never touched the auth module. Do a blindspot pass: what are my unknown unknowns here, so I can prompt you better?" Telling the model who you are and what you don't know is the point, not an embarrassment.
+**If you can state it, state it.** Known knowns are ordinary spec-writing; no technique required.
 
-Notice the loop closing: the analysis-report archetype from the half-day test is valuable *because* it's a paid, industrial-strength unknown-unknowns pass over your data. The framework isn't separate advice from the cost math — it's the same economics viewed from the prompt side.
+**If you know you haven't decided, get interviewed.** One prompt does it: "Interview me one question at a time about anything ambiguous. Prioritize questions whose answers would change the architecture." That last clause does the real work — without it, the model asks trivia.
 
-## From Framework to Routine: My Pre-Flight Checklist
+**If you'd only recognize it on sight, go fishing.** Unknown knowns are the standards you hold but would never think to write down. Ask for four throwaway design directions in one HTML page with fake data; your reaction to what's wrong *is* the missing spec.
 
-The four quadrants become operational when you attach them to a sequence, and my single biggest concrete recommendation is one Thariq's guide implies but doesn't state: **run the entire clarification phase on Sonnet 5, and let Fable 5 touch only the final execution run.** Clarification is conversational, latency-sensitive, many-turn work — everything Fable 5 is bad at and Sonnet 5 is nearly free at. The cheap model asks the questions; the expensive model does the work. This is [context engineering](/posts/ai/2026-06-16-context-engineering-2026/) in its purest form: the artifacts you produce in the prep loop — spec, prototype, references, plan — are exactly the curated context the expensive run consumes.
+**If you can't even name the question, ask for a blindspot pass.** Say it straight: "I'm adding an auth provider but I've never touched this codebase's auth module. Do a blindspot pass: what are my unknown unknowns here?" Telling the model what you don't know is the method, not an embarrassment.
 
-**Before (Sonnet 5, ~$1 of tokens):** blindspot pass if any part of the territory is unfamiliar; interview, one question at a time, architecture-changing questions first; a throwaway prototype with fake data for anything visual or UX-shaped; pointers to reference code — "this Rust crate in `vendor/rate-limiter` has the backoff semantics I want; reimplement them in our TypeScript client" beats three paragraphs of prose; finally an implementation plan ordered with the most volatile decisions at the top — data model changes, type interfaces, anything user-facing — because those are what you'll actually want to veto.
+Now to collect on that phrase from the half-day test. The analysis-report archetype is worth $100 precisely because it *is* a paid, industrial-strength unknown-unknowns pass — run over your data instead of your prompt. The framework and the cost math aren't two separate pieces of advice; they're the same economics viewed from the prompt side.
 
-**During (Fable 5, the metered part):** start a fresh session and feed it the artifacts, not the conversation that produced them. Run it as one long session rather than several short ones — a warm cache and intact context beat re-clarifying every restart, and on a per-token meter, restarts are literally money. Have it maintain an `implementation-notes.md`: when it hits an edge case and must deviate from the plan, take the conservative option, log the deviation, keep moving. And decide before you launch what "done" means and when the loop should stop — designing the loop *before* paying for the loop is the whole thesis of [loop engineering](/posts/ai/2026-07-05-loop-engineering/), and it matters most when each lap has a price on it.
+### My Pre-Flight Checklist
 
-**After (either model):** ask for a walkthrough report, then a quiz on the changes — and hold yourself to Thariq's standard of merging only on a perfect score. A $50 run that ships code you don't understand isn't leverage; it's deferred debugging at flagship prices.
+The quadrants become a routine once you pin them to a sequence, and my biggest concrete recommendation is one Thariq's guide implies but never states: **run the entire clarification phase on Sonnet 5, and let Fable 5 touch only the final execution run.** Clarification is conversational, latency-sensitive, many-turn work — everything Fable 5 is bad at and Sonnet 5 is nearly free at. The cheap model asks the questions; the expensive model does the work.
 
-I'll add the perspective from my own setup, because it shaped my rules here. This blog's entire production pipeline runs on Claude Code — parallel agents drafting posts, generating covers, running validation — and parallelism is exactly what makes flagship pricing dangerous: a 5x per-token premium multiplied across N concurrent agents isn't an upgrade, it's a leak. So my standing configuration is boring by design: the pipeline defaults to cheap models, Fable 5 sits behind a manual, per-task escalation, and it only comes out for the single deep pass — the site-wide audit, the gnarly feature — where the half-day test genuinely clears. I burned real quota learning that the always-on thinking tax applies even to tasks that don't need thinking; don't relearn it on your own credits.
+**Before** (Sonnet 5, ~$1 of tokens):
 
-## The Bottom Line
+- Blindspot pass over any unfamiliar territory
+- Interview, one question at a time, architecture-changing questions first
+- Throwaway prototype with fake data for anything visual or UX-shaped
+- Reference pointers: "this Rust crate in `vendor/rate-limiter` has the backoff semantics I want; reimplement them in our TypeScript client" beats three paragraphs of prose
+- An implementation plan with the most volatile decisions at the top — data model changes, type interfaces, anything user-facing — because those are what you'll actually want to veto
 
-Three sentences to keep. As of July 13, 2026, Fable 5 is a metered add-on — $10/$50, usage credits, no restoration date — so treat it as a per-task purchase whose real price is $30–100 a run, not as a subscription perk that's temporarily missing. Turn it on only for tasks that pass the half-day test — one-shot builds, deep analysis, huge migrations — and keep Sonnet 5 as the default everything else runs on. And before every paid run, spend a dollar of cheap-model tokens closing your unknowns, because with a model this strong, the bottleneck — and the bill — is your own clarity.
+The artifacts that prep loop produces — spec, prototype, references, plan — are exactly the curated context the expensive run consumes. That's [context engineering](/posts/ai/2026-06-16-context-engineering-2026/) in its purest form.
+
+**During** (Fable 5, the metered part):
+
+- Start a fresh session and feed it the artifacts, not the conversation that produced them
+- Run one long session, not several short ones — warm cache and intact context beat re-clarifying every restart, and on a per-token meter, restarts are literally money
+- Have it keep an `implementation-notes.md`: on an edge case, take the conservative option, log the deviation, keep moving
+- Define "done" — and when the loop stops — before you launch; designing the loop before paying for it is the whole thesis of [loop engineering](/posts/ai/2026-07-05-loop-engineering/), and it matters most when every lap has a price
+
+**After** (either model):
+
+- Ask for a walkthrough report, then a quiz on the changes
+- Hold Thariq's line: merge only on a perfect score
+
+A $50 run that ships code you don't understand isn't leverage; it's deferred debugging at flagship prices.
+
+One last note from my own setup, because these rules were burned into me rather than reasoned out. This blog's entire production pipeline runs on Claude Code — parallel agents drafting posts, generating covers, running validation — and parallelism is exactly where flagship pricing turns dangerous: a 5x per-token premium multiplied across N concurrent agents isn't an upgrade, it's a leak.
+
+So my standing config is boring on purpose: cheap models by default, Fable 5 behind a manual, per-task escalation, released only for the single deep pass — the site-wide audit, the gnarly feature — where the half-day test genuinely clears. I paid real quota to learn that the thinking tax applies even to tasks that need no thinking. You don't have to pay it again.
+
+## What to Remember
+
+As of July 13, 2026, Fable 5 is a metered add-on: $10/$50, usage credits, no restoration date. Treat it as a per-task purchase whose real price is $30–100 a run, turn it on only for tasks that pass the half-day test — one-shot builds, deep analysis, huge migrations — and let Sonnet 5 run everything else. Before every paid run, spend a dollar of cheap tokens closing your unknowns: with a model this strong, the bottleneck and the bill point at the same thing — your own clarity.
 
 ## Related Reading
 
