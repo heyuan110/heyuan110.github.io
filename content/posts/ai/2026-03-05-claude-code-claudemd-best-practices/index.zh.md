@@ -35,7 +35,7 @@ answer = "可以，而且这是使用多种 AI 工具的团队的推荐做法。
 
 一份写得好的 CLAUDE.md 能将 Claude Code 从一个通用助手转变为了解你的技术栈、遵循你的规范、避免项目特定陷阱的团队成员。一份写得差的则浪费上下文 token，给你一种虚假的掌控感。
 
-本指南聚焦于**如何做**——编写真正能改变 Claude 行为的 CLAUDE.md 实用模式。你将看到不同项目类型的真实示例、让 CLAUDE.md 失效的具体错误，以及 CLAUDE.md vs AGENTS.md vs .cursorrules 的清晰对比。如果你需要先了解基础知识（CLAUDE.md 是什么、如何加载、三层系统），请先阅读我们的 [CLAUDE.md 入门指南](/posts/ai/2026-02-28-claude-code-claudemd-guide/)。
+本指南聚焦于**如何做**——编写真正能改变 Claude 行为的 CLAUDE.md 实用模式。你将看到不同项目类型的真实示例、让 CLAUDE.md 失效的具体错误，以及 CLAUDE.md vs AGENTS.md vs .cursorrules 的清晰对比。如果你需要先了解基础知识（CLAUDE.md 是什么、如何加载、三层系统），请先阅读我们的 [CLAUDE.md 入门指南](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/)。
 
 ## CLAUDE.md 的加载机制
 
@@ -483,7 +483,7 @@ See @AGENTS.md
 
 **第三步**：可选地创建 `.cursorrules`，包含同样的通用规则（因为 Cursor 原生读取 `.cursorrules`）。
 
-这样，每个 AI 工具都读取相同的核心指令。Claude 专属功能如 [Skills](/posts/ai/2026-02-28-claude-code-skills-guide/) 和 [Hooks](/posts/ai/2026-02-28-claude-code-hooks-guide/) 留在 CLAUDE.md 中，各归其位。
+这样，每个 AI 工具都读取相同的核心指令。Claude 专属功能如 [Skills](/zh/posts/ai/2026-02-28-claude-code-skills-guide/) 和 [Hooks](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) 留在 CLAUDE.md 中，各归其位。
 
 ## 10 个常见错误（及修复方法）
 
@@ -515,7 +515,7 @@ See @AGENTS.md
 
 **症状**：大段解释项目做什么、为什么构建、徽章、截图。
 
-**修复**：README 回答"这是什么？"CLAUDE.md 回答"我应该如何参与开发？"让它们分开。详细对比请参阅我们的 [CLAUDE.md vs README.md 对比](/posts/ai/2026-01-31-claudemd-vs-readme/)。
+**修复**：README 回答"这是什么？"CLAUDE.md 回答"我应该如何参与开发？"让它们分开。详细对比请参阅我们的 [CLAUDE.md vs README.md 对比](/zh/posts/ai/2026-01-31-claudemd-vs-readme/)。
 
 ### 6. 在共享文件中放个人偏好
 
@@ -600,7 +600,7 @@ Claude Code 支持 `.claude/rules/*.md`，将规则组织到自动加载的独�
 
 ### CLAUDE.md + Hooks：自动化执行
 
-你的 CLAUDE.md 可以通过 [Claude Code Hooks](/posts/ai/2026-02-28-claude-code-hooks-guide/) 引用自动化检查：
+你的 CLAUDE.md 可以通过 [Claude Code Hooks](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) 引用自动化检查：
 
 ```markdown
 ## 自动化检查（不要手动重复这些）
@@ -635,13 +635,13 @@ Claude Code 支持 `.claude/rules/*.md`，将规则组织到自动加载的独�
 
 ## 相关阅读
 
-- [CLAUDE.md 指南：给 AI 完美的上下文](/posts/ai/2026-02-28-claude-code-claudemd-guide/) —— CLAUDE.md 基础知识和三层系统
-- [CLAUDE.md vs README.md](/posts/ai/2026-01-31-claudemd-vs-readme/) —— 为什么这两个文件服务于不同受众
-- [Claude Code 设置指南 2026](/posts/ai/2026-02-25-claude-code-setup-guide/) —— 安装、认证和首个项目设置
-- [Claude Code Hooks 指南](/posts/ai/2026-02-28-claude-code-hooks-guide/) —— 在 Claude Code 操作前后自动执行动作
-- [Claude Code Skills 指南](/posts/ai/2026-02-28-claude-code-skills-guide/) —— 构建补充 CLAUDE.md 的可复用任务工作流
-- [Claude Code 十大错误](/posts/ai/2026-02-25-claude-code-mistakes/) —— 常见陷阱，包括忽略 CLAUDE.md
-- [Claude Code 定价 2026](/posts/ai/2026-02-25-claude-code-pricing/) —— 选择适合你使用量的计划
+- [CLAUDE.md 指南：给 AI 完美的上下文](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) —— CLAUDE.md 基础知识和三层系统
+- [CLAUDE.md vs README.md](/zh/posts/ai/2026-01-31-claudemd-vs-readme/) —— 为什么这两个文件服务于不同受众
+- [Claude Code 设置指南 2026](/zh/posts/ai/2026-02-25-claude-code-setup-guide/) —— 安装、认证和首个项目设置
+- [Claude Code Hooks 指南](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) —— 在 Claude Code 操作前后自动执行动作
+- [Claude Code Skills 指南](/zh/posts/ai/2026-02-28-claude-code-skills-guide/) —— 构建补充 CLAUDE.md 的可复用任务工作流
+- [Claude Code 十大错误](/zh/posts/ai/2026-02-25-claude-code-mistakes/) —— 常见陷阱，包括忽略 CLAUDE.md
+- [Claude Code 定价 2026](/zh/posts/ai/2026-02-25-claude-code-pricing/) —— 选择适合你使用量的计划
 
 ---
 

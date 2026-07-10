@@ -281,6 +281,6 @@ docker run --name redis -d -p 6379:6379 -v redis-data:/data docker.patpat.vip:95
 
 ## 相关文章
 
-- [Docker 入门指南：核心概念、安装配置与容器化实践](/posts/docker/2019-05-13-learn-docker/) - Docker 基础概念与入门教程
-- [Docker Compose 完全指南：从入门到生产实践](/posts/docker/2026-01-19-docker-compose-complete-guide/) - 多容器编排与生产环境最佳实践
-- [使用 Nexus3 搭建 Docker 私有镜像仓库](/posts/docker/2019-06-12-next3-dockerhub/) - 企业级私有仓库搭建方案
+- [Docker 入门指南：核心概念、安装配置与容器化实践](/zh/posts/docker/2019-05-13-learn-docker/) - Docker 基础概念与入门教程
+- [Docker Compose 完全指南：从入门到生产实践](/zh/posts/docker/2026-01-19-docker-compose-complete-guide/) - 多容器编排与生产环境最佳实践
+- [使用 Nexus3 搭建 Docker 私有镜像仓库](/zh/posts/docker/2019-06-12-next3-dockerhub/) - 企业级私有仓库搭建方案

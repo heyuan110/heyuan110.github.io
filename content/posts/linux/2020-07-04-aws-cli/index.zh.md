@@ -511,6 +511,6 @@ AWS CLI 是管理云资源的强大工具，掌握常用命令可以大幅提升
 
 ## 相关阅读
 
-- [curl 命令完全指南](/posts/linux/2020-06-29-curl/)
-- [Oh My Zsh 配置指南](/posts/linux/2015-06-17-shell-zsh/)
-- [Docker 常用命令速查](/posts/docker/2019-11-14-docker-commands/)
+- [curl 命令完全指南](/zh/posts/linux/2020-06-29-curl/)
+- [Oh My Zsh 配置指南](/zh/posts/linux/2015-06-17-shell-zsh/)
+- [Docker 常用命令速查](/zh/posts/docker/2019-11-14-docker-commands/)

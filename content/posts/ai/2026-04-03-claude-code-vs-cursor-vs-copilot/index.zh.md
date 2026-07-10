@@ -69,7 +69,7 @@ Cursor 认为 IDE 是宇宙中心。Claude Code 认为终端才是。Copilot 认
 
 80.8% 和 80.0% 差 0.8 个百分点。实际使用中你感受不到这个差异。**OpenAI 已经不再报告 SWE-bench Verified 分数了**——他们自己的审计发现前沿模型能"背答案"。这个 benchmark 部分失效了。
 
-真正决定效果的不是模型，是模型外面的[线束（Harness）](/posts/ai/2026-03-30-harness-engineering-guide/)。LangChain 不换模型只改 Harness 就从 TerminalBench 第 30 名升到第 5 名。
+真正决定效果的不是模型，是模型外面的[线束（Harness）](/zh/posts/ai/2026-03-30-harness-engineering-guide/)。LangChain 不换模型只改 Harness 就从 TerminalBench 第 30 名升到第 5 名。
 
 所以别根据模型选工具。根据工作流选。
 
@@ -87,7 +87,7 @@ Cursor 认为 IDE 是宇宙中心。Claude Code 认为终端才是。Copilot 认
 
 **杀手场景：** 日常编辑。Tab 补全瞬间完成，Agent 模式搞定 80% 的日常编程。
 
-**致命短板：** 绑定 VS Code。[Composer 2 底座是 Kimi K2.5 但刻意隐瞒](/posts/ai/2026-04-01-cursor-composer-2-review/)。
+**致命短板：** 绑定 VS Code。[Composer 2 底座是 Kimi K2.5 但刻意隐瞒](/zh/posts/ai/2026-04-01-cursor-composer-2-review/)。
 
 **我的真实体验：** 日常编辑的主力。但关键任务更信任 Claude Code。
 
@@ -140,8 +140,8 @@ Cursor 认为 IDE 是宇宙中心。Claude Code 认为终端才是。Copilot 认
 
 ## 相关阅读
 
-- [Harness Engineering：Agent 外围系统比模型更重要](/posts/ai/2026-03-30-harness-engineering-guide/)
-- [Cursor Composer 2：Kimi K2.5 争议始末](/posts/ai/2026-04-01-cursor-composer-2-review/)
-- [Codex CLI 精通指南](/posts/ai/2026-02-12-codex-cli-mastery-guide/)
-- [Claude Code 完全指南](/posts/ai/2026-02-28-claude-code-complete-guide/)
-- [2026 AI 编程工具横评](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)
+- [Harness Engineering：Agent 外围系统比模型更重要](/zh/posts/ai/2026-03-30-harness-engineering-guide/)
+- [Cursor Composer 2：Kimi K2.5 争议始末](/zh/posts/ai/2026-04-01-cursor-composer-2-review/)
+- [Codex CLI 精通指南](/zh/posts/ai/2026-02-12-codex-cli-mastery-guide/)
+- [Claude Code 完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)
+- [2026 AI 编程工具横评](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)

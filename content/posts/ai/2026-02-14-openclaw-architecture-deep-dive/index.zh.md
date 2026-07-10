@@ -20,7 +20,7 @@ keywords = ['OpenClaw 架构', 'OpenClaw Gateway', 'OpenClaw Heartbeat', 'OpenCl
 OpenClaw 的答案不是"更聪明的模型"，而是一套**清晰的控制平面（Gateway）+ 可插拔执行面（Skills/Tools/Nodes）+ 可持续调度（Heartbeat/Cron）** 的工程架构。
 
 如果你还没上手安装，建议先读这篇入门（实战视角）：
-- [OpenClaw 超详细上手教程](/posts/ai/2026-02-12-openclaw-usage-tutorial/)
+- [OpenClaw 超详细上手教程](/zh/posts/ai/2026-02-12-openclaw-usage-tutorial/)
 
 本文则从"系统是怎么运转的"出发，把 OpenClaw 的关键组件拆开讲清楚。
 
@@ -102,7 +102,7 @@ flowchart LR
 - Workspace 作为"家"的规范：https://docs.openclaw.ai/concepts/agent-workspace
 
 你也可以结合站内文章理解"多角色 + 隔离"的价值：
-- [OpenClaw + Claude Code 的协作工作流](/posts/ai/2026-01-31-openclaw-claude-code-workflow/)
+- [OpenClaw + Claude Code 的协作工作流](/zh/posts/ai/2026-01-31-openclaw-claude-code-workflow/)
 
 ---
 
@@ -125,7 +125,7 @@ OpenClaw 使用的是与 AgentSkills 兼容的 skill 文件夹规范：一个 sk
 - AgentSkills 规范（生态层面）：https://agentskills.io
 
 站内延伸阅读（技能=新编程范式）：
-- [Agent Skills：AI 时代的新编程方式](/posts/ai/2026-01-19-agent-skills-new-programming/)
+- [Agent Skills：AI 时代的新编程方式](/zh/posts/ai/2026-01-19-agent-skills-new-programming/)
 
 ---
 
@@ -157,7 +157,7 @@ Channels 的价值不是"支持很多 IM"，而是把每个平台不同的消息
 - Nodes 概念与配对（devices approve、node host、exec approvals）：https://docs.openclaw.ai/nodes
 
 站内延伸（你会更关注"怎么用"，不是"是什么"）：
-- [OpenClaw 使用教程（含多渠道/配对/排障）](/posts/ai/2026-02-12-openclaw-usage-tutorial/)
+- [OpenClaw 使用教程（含多渠道/配对/排障）](/zh/posts/ai/2026-02-12-openclaw-usage-tutorial/)
 
 ---
 
@@ -175,9 +175,9 @@ Channels 的价值不是"支持很多 IM"，而是把每个平台不同的消息
 - 你可以做隐私边界（哪些文件只在 main 私聊加载，哪些不加载）
 
 站内文章建议你配套阅读：
-- [OpenClaw 的 Memory Strategy（怎么组织长期记忆）](/posts/ai/2026-01-31-openclaw-memory-strategy/)
-- [ClaudeMD vs README：把知识放在哪更有效](/posts/ai/2026-01-31-claudemd-vs-readme/)
-- [Claude 的记忆与文档协作指南](/posts/ai/2026-01-12-claudemd-memory-guide/)
+- [OpenClaw 的 Memory Strategy（怎么组织长期记忆）](/zh/posts/ai/2026-01-31-openclaw-memory-strategy/)
+- [ClaudeMD vs README：把知识放在哪更有效](/zh/posts/ai/2026-01-31-claudemd-vs-readme/)
+- [Claude 的记忆与文档协作指南](/zh/posts/ai/2026-01-12-claudemd-memory-guide/)
 
 ---
 
@@ -274,17 +274,17 @@ Cron 是 Gateway 内置 scheduler。它和 Heartbeat 的关系可以这样理解
 - Nodes 的执行权限要配合 allowlist/approvals；默认应该保守。
 
 如果你对"OpenClaw 自动化会踩的坑"更感兴趣，可以读我同日写的排坑清单：
-- [OpenClaw 自动化常见坑与规避策略](/posts/ai/2026-02-14-openclaw-automation-pitfalls/)
+- [OpenClaw 自动化常见坑与规避策略](/zh/posts/ai/2026-02-14-openclaw-automation-pitfalls/)
 
 ---
 
 ## 相关阅读（站内）
 
-- [OpenClaw 超详细上手教程](/posts/ai/2026-02-12-openclaw-usage-tutorial/)
-- [OpenClaw 的 Memory Strategy](/posts/ai/2026-01-31-openclaw-memory-strategy/)
-- [OpenClaw + Claude Code 的协作工作流](/posts/ai/2026-01-31-openclaw-claude-code-workflow/)
-- [Agent Skills：AI 时代的新编程方式](/posts/ai/2026-01-19-agent-skills-new-programming/)
-- [ClaudeMD vs README](/posts/ai/2026-01-31-claudemd-vs-readme/)
+- [OpenClaw 超详细上手教程](/zh/posts/ai/2026-02-12-openclaw-usage-tutorial/)
+- [OpenClaw 的 Memory Strategy](/zh/posts/ai/2026-01-31-openclaw-memory-strategy/)
+- [OpenClaw + Claude Code 的协作工作流](/zh/posts/ai/2026-01-31-openclaw-claude-code-workflow/)
+- [Agent Skills：AI 时代的新编程方式](/zh/posts/ai/2026-01-19-agent-skills-new-programming/)
+- [ClaudeMD vs README](/zh/posts/ai/2026-01-31-claudemd-vs-readme/)
 
 ## 相关阅读（外链）
 

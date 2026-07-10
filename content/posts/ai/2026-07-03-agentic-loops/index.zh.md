@@ -57,7 +57,7 @@ flowchart TD
     style H fill:#1f3a5f,stroke:#4da6ff,color:#fff
 ```
 
-我在[2026 agentic coding 趋势](/posts/ai/2026-02-23-agentic-coding-trends-2026/)里写过，这些循环一旦能连续跑上几小时，用起来就越来越不像工具、越来越像同事。循环是底座，2026 年真正变的是它的持续时长，以及随之而来的自主性。
+我在[2026 agentic coding 趋势](/zh/posts/ai/2026-02-23-agentic-coding-trends-2026/)里写过，这些循环一旦能连续跑上几小时，用起来就越来越不像工具、越来越像同事。循环是底座，2026 年真正变的是它的持续时长，以及随之而来的自主性。
 
 ## Ralph loop：故意把上下文扔掉
 
@@ -131,7 +131,7 @@ flowchart TD
 
 ## 它在 2026 agent 技术栈里的位置
 
-循环是原语，不是整个系统。一旦你有了一个可靠的单 agent 循环，很自然的下一个问题是怎么同时跑好几个，这就是循环遇上编排的地方。我在[多 agent 编排](/posts/ai/2026-02-26-multi-agent-orchestration/)里论证过，大多数"多 agent"复杂度都是过早优化，而 Ralph 正好给这个判断做了个现实检验：Huntley 刻意偏向"单个循环 agent + 强上下文工程"，而不是精巧的多 agent 编排。如果一个 spec 写好、护栏配齐的循环就能把活出了，你根本不需要一委员会的 agent。当你确实需要并行时——移植大型代码库、把互相独立的 story 铺开——[Claude Code agent teams](/posts/ai/2026-02-22-claude-code-agent-teams/) 和[agent 管理者模式](/posts/ai/2026-02-24-agent-manager-patterns/)里的做法是在**监督**这些循环，而不是替代它们。而"扔掉上下文"这招之所以这么管用，直接连着 [AI agent 记忆系统](/posts/ai/2026-02-21-ai-agent-memory-systems/)如何把状态外置——Ralph 是记忆系统极简主义推到尽头的形态：仓库**本身**就是记忆。
+循环是原语，不是整个系统。一旦你有了一个可靠的单 agent 循环，很自然的下一个问题是怎么同时跑好几个，这就是循环遇上编排的地方。我在[多 agent 编排](/zh/posts/ai/2026-02-26-multi-agent-orchestration/)里论证过，大多数"多 agent"复杂度都是过早优化，而 Ralph 正好给这个判断做了个现实检验：Huntley 刻意偏向"单个循环 agent + 强上下文工程"，而不是精巧的多 agent 编排。如果一个 spec 写好、护栏配齐的循环就能把活出了，你根本不需要一委员会的 agent。当你确实需要并行时——移植大型代码库、把互相独立的 story 铺开——[Claude Code agent teams](/zh/posts/ai/2026-02-22-claude-code-agent-teams/) 和[agent 管理者模式](/zh/posts/ai/2026-02-24-agent-manager-patterns/)里的做法是在**监督**这些循环，而不是替代它们。而"扔掉上下文"这招之所以这么管用，直接连着 [AI agent 记忆系统](/zh/posts/ai/2026-02-21-ai-agent-memory-systems/)如何把状态外置——Ralph 是记忆系统极简主义推到尽头的形态：仓库**本身**就是记忆。
 
 ## 我的判断：谁该跑自主循环，谁不该
 
@@ -141,10 +141,10 @@ flowchart TD
 
 ## 延伸阅读
 
-- [2026 Agentic Coding 趋势](/posts/ai/2026-02-23-agentic-coding-trends-2026/)
-- [多 Agent 编排](/posts/ai/2026-02-26-multi-agent-orchestration/)
-- [Claude Code Agent Teams](/posts/ai/2026-02-22-claude-code-agent-teams/)
-- [Agent 管理者模式](/posts/ai/2026-02-24-agent-manager-patterns/)
-- [AI Agent 记忆系统](/posts/ai/2026-02-21-ai-agent-memory-systems/)
+- [2026 Agentic Coding 趋势](/zh/posts/ai/2026-02-23-agentic-coding-trends-2026/)
+- [多 Agent 编排](/zh/posts/ai/2026-02-26-multi-agent-orchestration/)
+- [Claude Code Agent Teams](/zh/posts/ai/2026-02-22-claude-code-agent-teams/)
+- [Agent 管理者模式](/zh/posts/ai/2026-02-24-agent-manager-patterns/)
+- [AI Agent 记忆系统](/zh/posts/ai/2026-02-21-ai-agent-memory-systems/)
 
 **参考来源：** [Geoffrey Huntley — everything is a ralph loop](https://ghuntley.com/loop/) · [snarktank/ralph（GitHub）](https://github.com/snarktank/ralph) · [2026：Ralph Loop Agent 元年（DEV）](https://dev.to/alexandergekov/2026-the-year-of-the-ralph-loop-agent-1gkj) · [What Is an Agentic Loop?（MindStudio）](https://www.mindstudio.ai/blog/what-is-an-agentic-loop-ai-coding-agents)

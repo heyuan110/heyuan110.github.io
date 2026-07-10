@@ -607,7 +607,7 @@ flowchart TD
 
 **Related Reading:**
 
-- [Superpowers 深度解析：让 Claude Code 变身高级工程师的技能框架](/posts/ai/2026-02-01-superpowers-deep-dive/)
-- [CLAUDE.md 终极指南：把 AI 助手训练成你的理想同事](/posts/ai/2026-02-28-claude-code-claudemd-guide/)
-- [Harness Engineering：不换模型，只改 Harness 就能大幅提升 AI Agent 效果](/posts/ai/2026-03-30-harness-engineering-guide/)
-- [Claude Code 完全指南：从入门到精通](/posts/ai/2026-02-28-claude-code-complete-guide/)
+- [Superpowers 深度解析：让 Claude Code 变身高级工程师的技能框架](/zh/posts/ai/2026-02-01-superpowers-deep-dive/)
+- [CLAUDE.md 终极指南：把 AI 助手训练成你的理想同事](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/)
+- [Harness Engineering：不换模型，只改 Harness 就能大幅提升 AI Agent 效果](/zh/posts/ai/2026-03-30-harness-engineering-guide/)
+- [Claude Code 完全指南：从入门到精通](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)

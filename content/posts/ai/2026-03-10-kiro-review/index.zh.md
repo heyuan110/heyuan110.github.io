@@ -35,7 +35,7 @@ answer = "理论上可以。Kiro 设计之初就支持长时间自主任务和�
 
 这两件事都说明了一个问题：Kiro 的**野心确实很大**，但如果不加约束地让它跑，**破坏力也不容小觑**。
 
-本文将深入解析 Kiro 到底是什么、规格驱动的开发模式怎么玩、AWS 宕机事件的来龙去脉，以及它和 [Claude Code](/posts/ai/2026-02-28-claude-code-complete-guide/)、[Cursor](/posts/ai/2026-02-28-claude-code-vs-cursor/)、[Google Antigravity](/posts/ai/2026-03-10-google-antigravity-review/) 之间的差异。
+本文将深入解析 Kiro 到底是什么、规格驱动的开发模式怎么玩、AWS 宕机事件的来龙去脉，以及它和 [Claude Code](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)、[Cursor](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/)、[Google Antigravity](/zh/posts/ai/2026-03-10-google-antigravity-review/) 之间的差异。
 
 ## Kiro 是什么？
 
@@ -118,7 +118,7 @@ Kiro 按顺序执行每个任务，生成代码、测试和文档。你可以：
 
 规格先行的模式解决了一个真实痛点：AI 编程工具经常写出"技术上没问题但完全不是我想要的"代码。通过在实现之前就明确需求，Kiro 大幅减少了"这不是我要的"这类返工场景。
 
-对比一下 [Claude Code](/posts/ai/2026-02-28-claude-code-complete-guide/)——它擅长深度推理，但依赖开发者提供清晰的指令；或者 [Vibe Coding](/posts/ai/2026-02-28-vibe-coding-explained/) 那种靠试错迭代的方式。
+对比一下 [Claude Code](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)——它擅长深度推理，但依赖开发者提供清晰的指令；或者 [Vibe Coding](/zh/posts/ai/2026-02-28-vibe-coding-explained/) 那种靠试错迭代的方式。
 
 ## Agent Hooks：自动化质量关卡
 
@@ -148,11 +148,11 @@ hooks:
     action: "update API documentation in docs/"
 ```
 
-这和 [Claude Code Hooks](/posts/ai/2026-02-28-claude-code-hooks-guide/) 的理念类似，但 Kiro 的 hooks 更偏声明式和高层抽象——你用自然语言描述想要的效果，代理自行搞定执行细节。
+这和 [Claude Code Hooks](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) 的理念类似，但 Kiro 的 hooks 更偏声明式和高层抽象——你用自然语言描述想要的效果，代理自行搞定执行细节。
 
 ## Steering Files：项目级的 AI 指令
 
-Steering Files 是 Kiro 版的 [CLAUDE.md](/posts/ai/2026-02-28-claude-code-claudemd-guide/) 或 Codex CLI 的 AGENTS.md。它告诉 AI 如何适配你的特定项目：
+Steering Files 是 Kiro 版的 [CLAUDE.md](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) 或 Codex CLI 的 AGENTS.md。它告诉 AI 如何适配你的特定项目：
 
 ```markdown
 # .kiro/steering.md
@@ -201,7 +201,7 @@ Steering Files 是 Kiro 版的 [CLAUDE.md](/posts/ai/2026-02-28-claude-code-clau
 
 **4. 先在隔离环境中验证。** 让自主代理在预发环境跑通，验证方案可行，再指向生产。
 
-这也是 [Claude Code](/posts/ai/2026-02-22-claude-code-security/) 强调人机协作工作流的原因，也是 [Codex CLI](/posts/ai/2026-03-10-codex-cli-deep-dive/) 沙箱模型存在的意义。
+这也是 [Claude Code](/zh/posts/ai/2026-02-22-claude-code-security/) 强调人机协作工作流的原因，也是 [Codex CLI](/zh/posts/ai/2026-03-10-codex-cli-deep-dive/) 沙箱模型存在的意义。
 
 ## Kiro vs Claude Code vs Cursor vs Antigravity
 
@@ -227,10 +227,10 @@ Steering Files 是 Kiro 版的 [CLAUDE.md](/posts/ai/2026-02-28-claude-code-clau
 
 ### 什么时候该选其他工具
 
-- 要**最强的推理能力**：选 [Claude Code](/posts/ai/2026-02-28-claude-code-complete-guide/) + Opus 4.6
-- 要**熟悉的 VS Code 体验**：选 [Cursor](/posts/ai/2026-02-28-claude-code-vs-cursor/)
-- 要**免费的并行代理**：选 [Google Antigravity](/posts/ai/2026-03-10-google-antigravity-review/)
-- 要**终端优先的自动化**：选 [Codex CLI](/posts/ai/2026-03-10-codex-cli-deep-dive/)
+- 要**最强的推理能力**：选 [Claude Code](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) + Opus 4.6
+- 要**熟悉的 VS Code 体验**：选 [Cursor](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/)
+- 要**免费的并行代理**：选 [Google Antigravity](/zh/posts/ai/2026-03-10-google-antigravity-review/)
+- 要**终端优先的自动化**：选 [Codex CLI](/zh/posts/ai/2026-03-10-codex-cli-deep-dive/)
 
 ## Kiro 快速上手
 
@@ -286,9 +286,9 @@ Kiro 的规格驱动模式确实是一个有创意的差异化方向，比起"�
 
 ## 相关阅读
 
-- [Google Antigravity 评测](/posts/ai/2026-03-10-google-antigravity-review/) — 免费的代理优先方案
-- [Claude Code 完全指南](/posts/ai/2026-02-28-claude-code-complete-guide/) — 终端优先的开发方式
-- [Codex CLI 深度解析](/posts/ai/2026-03-10-codex-cli-deep-dive/) — OpenAI 的终端代理
-- [Claude Code Hooks 指南](/posts/ai/2026-02-28-claude-code-hooks-guide/) — 与 Kiro 的 Agent Hooks 对比
-- [CLAUDE.md 指南](/posts/ai/2026-02-28-claude-code-claudemd-guide/) — 与 Kiro 的 Steering Files 对比
-- [Claude Code 安全指南](/posts/ai/2026-02-22-claude-code-security/) — 为什么人工监督至关重要
+- [Google Antigravity 评测](/zh/posts/ai/2026-03-10-google-antigravity-review/) — 免费的代理优先方案
+- [Claude Code 完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — 终端优先的开发方式
+- [Codex CLI 深度解析](/zh/posts/ai/2026-03-10-codex-cli-deep-dive/) — OpenAI 的终端代理
+- [Claude Code Hooks 指南](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) — 与 Kiro 的 Agent Hooks 对比
+- [CLAUDE.md 指南](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) — 与 Kiro 的 Steering Files 对比
+- [Claude Code 安全指南](/zh/posts/ai/2026-02-22-claude-code-security/) — 为什么人工监督至关重要

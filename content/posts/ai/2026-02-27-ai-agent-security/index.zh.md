@@ -27,7 +27,7 @@ answer = "OWASP 于 2025 年底发布的 Agentic Security Top 10 是专门针对
 
 ![AI Agent 安全：防护自动化工作流免受提示注入、工具投毒和 MCP 漏洞威胁](cover.webp)
 
-AI Agent 正在深刻改变软件开发方式。[Claude Code](/posts/ai/2026-02-28-claude-code-complete-guide/)、GitHub Copilot、Cursor 等工具可以读取整个代码库、执行 Shell 命令、跨项目修改文件，并通过 MCP 等协议与外部服务交互。如此强大的能力也带来了传统安全模型从未应对过的攻击面。
+AI Agent 正在深刻改变软件开发方式。[Claude Code](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)、GitHub Copilot、Cursor 等工具可以读取整个代码库、执行 Shell 命令、跨项目修改文件，并通过 MCP 等协议与外部服务交互。如此强大的能力也带来了传统安全模型从未应对过的攻击面。
 
 仅 2026 年前两个月，已有超过 30 个 CVE 针对 MCP 服务器和 AI Agent 工具被提交。安全研究人员演示了泄露私有仓库代码的提示注入攻击、窃取聊天记录的工具投毒技术，以及影响近 50 万次下载量包的远程代码执行漏洞。
 
@@ -109,7 +109,7 @@ AI Agent 攻击面引入了传统软件安全中不存在的威胁类型：
 
 ## MCP 特有漏洞：真实事件时间线
 
-[模型上下文协议（MCP）](/posts/ai/2026-02-28-mcp-protocol-explained/)已成为连接 AI Agent 与外部工具和服务的标准。其快速普及也使其成为安全研究人员和攻击者的主要目标。有关 2026 年初提交的每个 MCP CVE 的详细分析，请参阅 [MCP 安全 2026：60 天内 30 个 CVE](/posts/ai/2026-03-10-mcp-security-2026/)。
+[模型上下文协议（MCP）](/zh/posts/ai/2026-02-28-mcp-protocol-explained/)已成为连接 AI Agent 与外部工具和服务的标准。其快速普及也使其成为安全研究人员和攻击者的主要目标。有关 2026 年初提交的每个 MCP CVE 的详细分析，请参阅 [MCP 安全 2026：60 天内 30 个 CVE](/zh/posts/ai/2026-03-10-mcp-security-2026/)。
 
 以下是最重要的事件：
 
@@ -227,7 +227,7 @@ AI Agent 应以每个任务所需的最小权限运行。
 - 在专用用户账户下运行 AI Agent，限制权限
 - 对 Agent 不应修改的目录使用只读文件系统挂载
 - 将 MCP 服务器凭据限定为最小所需 API 权限
-- 在 Claude Code 中使用 [Hooks 系统](/posts/ai/2026-02-28-claude-code-hooks-guide/)以编程方式实施权限边界
+- 在 Claude Code 中使用 [Hooks 系统](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/)以编程方式实施权限边界
 
 **MCP 特有的权限限定**：
 - 锁定 MCP 服务器版本——生产环境永远不要使用 `@latest`
@@ -273,7 +273,7 @@ AI Agent 应以每个任务所需的最小权限运行。
 - 项目工作目录外的文件修改
 - 任何难以轻易回滚的操作
 
-[Kiro IDE 评测](/posts/ai/2026-03-10-kiro-review/)记录了一个真实案例：由于自动化部署过程中人工监督不足，AI Agent 导致了 AWS 服务中断。这个案例说明了为什么人工审核控制对生产工作流至关重要。
+[Kiro IDE 评测](/zh/posts/ai/2026-03-10-kiro-review/)记录了一个真实案例：由于自动化部署过程中人工监督不足，AI Agent 导致了 AWS 服务中断。这个案例说明了为什么人工审核控制对生产工作流至关重要。
 
 ### 5. 监控与审计日志
 
@@ -342,7 +342,7 @@ Claude Code 可以执行超越传统静态分析的语义代码安全分析。�
 
 **实践工作流**：将 Claude Code 与成熟工具配合使用。先运行 Semgrep 或 Snyk 检测已知漏洞模式，再用 Claude Code 对标记区域进行语义审查，并检查规则工具遗漏的业务逻辑缺陷。
 
-对于从原型走向生产的团队，[原型到生产指南](/posts/ai/2026-03-09-prototype-to-production/)介绍了如何将安全审查集成到部署流水线中。
+对于从原型走向生产的团队，[原型到生产指南](/zh/posts/ai/2026-03-09-prototype-to-production/)介绍了如何将安全审查集成到部署流水线中。
 
 ### 企业级工具
 
@@ -413,11 +413,11 @@ AI Agent 安全还处于早期阶段。第一波漏洞——30 多个 MCP CVE、
 ## 相关阅读
 
 **站内资源**：
-- [Claude Code 完全指南](/posts/ai/2026-02-28-claude-code-complete-guide/) — Claude Code 功能和配置的完整参考
-- [MCP 协议详解](/posts/ai/2026-02-28-mcp-protocol-explained/) — 理解模型上下文协议
-- [MCP 安全 2026：60 天内 30 个 CVE](/posts/ai/2026-03-10-mcp-security-2026/) — 详细的 CVE 分析和防御清单
-- [Claude Code Hooks 指南](/posts/ai/2026-02-28-claude-code-hooks-guide/) — 使用 Hooks 自动化安全控制
-- [从原型到生产](/posts/ai/2026-03-09-prototype-to-production/) — 将安全集成到部署流水线
+- [Claude Code 完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — Claude Code 功能和配置的完整参考
+- [MCP 协议详解](/zh/posts/ai/2026-02-28-mcp-protocol-explained/) — 理解模型上下文协议
+- [MCP 安全 2026：60 天内 30 个 CVE](/zh/posts/ai/2026-03-10-mcp-security-2026/) — 详细的 CVE 分析和防御清单
+- [Claude Code Hooks 指南](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) — 使用 Hooks 自动化安全控制
+- [从原型到生产](/zh/posts/ai/2026-03-09-prototype-to-production/) — 将安全集成到部署流水线
 
 **外部资源**：
 - [OWASP Agentic Security Top 10](https://owasp.org/www-project-agentic-security/) — OWASP 官方 AI Agent 安全风险框架

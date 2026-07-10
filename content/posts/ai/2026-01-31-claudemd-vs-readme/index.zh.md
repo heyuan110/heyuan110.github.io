@@ -239,7 +239,7 @@ OpenClaw 选择同时维护 `CLAUDE.md` 和 `AGENTS.md`，让不同的 AI 工具
 
 **3. 用指针，不要复制。** 不要把代码片段嵌入 CLAUDE.md，用 `file:line` 引用。也可以用 `@` 导入语法引用其他文件：`@docs/backend/api-spec.md`。
 
-**4. 领域知识放 Skill，不放 CLAUDE.md。** CLAUDE.md 每次会话都加载，领域知识按需加载更高效。参考：[Skill 开发指南](/posts/ai/2026-01-08-claudecode-skill-guide/)。
+**4. 领域知识放 Skill，不放 CLAUDE.md。** CLAUDE.md 每次会话都加载，领域知识按需加载更高效。参考：[Skill 开发指南](/zh/posts/ai/2026-01-08-claudecode-skill-guide/)。
 
 **5. 像对待代码一样对待 CLAUDE.md。** 提交到 Git，定期审查，删除过时规则。
 
@@ -322,7 +322,7 @@ allowed-tools: Read, Edit, Write, Grep, Glob
 
 调用方式：`/maintain-claude-md 新增 Redis 缓存相关规则`
 
-更多 Skill 用法参考：[Claude Code Skills Top20](/posts/ai/2026-01-20-claude-code-skills-top20/)
+更多 Skill 用法参考：[Claude Code Skills Top20](/zh/posts/ai/2026-01-20-claude-code-skills-top20/)
 
 ---
 
@@ -374,12 +374,12 @@ allowed-tools: Read, Edit, Write, Grep, Glob
 
 ## 十一、延伸阅读
 
-- [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/) - 从零开始上手 Claude Code
-- [CLAUDE.md 记忆系统详解](/posts/ai/2026-01-12-claudemd-memory-guide/) - 深入理解记忆层级和加载机制
-- [Claude Code Skill 开发指南](/posts/ai/2026-01-08-claudecode-skill-guide/) - 编写自定义 Skill
-- [Claude Code Skills Top20](/posts/ai/2026-01-20-claude-code-skills-top20/) - 最实用的 20 个 Skill
-- [AI 开发工作流](/posts/ai/2026-01-19-ai-dev-workflow/) - Claude Code 驱动的完整开发流程
-- [Claude Code 最佳实践](/posts/ai/2026-01-06-claudecode-best-practices/) - 提升 AI 编码效率的实战技巧
+- [Claude Code 完全指南](/zh/posts/ai/2026-01-14-claude-code-guide/) - 从零开始上手 Claude Code
+- [CLAUDE.md 记忆系统详解](/zh/posts/ai/2026-01-12-claudemd-memory-guide/) - 深入理解记忆层级和加载机制
+- [Claude Code Skill 开发指南](/zh/posts/ai/2026-01-08-claudecode-skill-guide/) - 编写自定义 Skill
+- [Claude Code Skills Top20](/zh/posts/ai/2026-01-20-claude-code-skills-top20/) - 最实用的 20 个 Skill
+- [AI 开发工作流](/zh/posts/ai/2026-01-19-ai-dev-workflow/) - Claude Code 驱动的完整开发流程
+- [Claude Code 最佳实践](/zh/posts/ai/2026-01-06-claudecode-best-practices/) - 提升 AI 编码效率的实战技巧
 
 ---
 

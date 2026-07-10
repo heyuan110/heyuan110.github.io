@@ -36,7 +36,7 @@ answer = "先核对三个信号：官方 CLI 存在（gh、lark-cli、aws 等）
 
 先讲故事，因为这三个故事比任何论证都有说服力——它们的失败模式完全不同，但结局一模一样。
 
-**第一次：连不上我自己浏览器的浏览器 MCP。** 那天我想抓这个博客的 Google Search Console 数据。GSC 我在 Chrome 里天天登着，看起来最顺手的方案是 chrome-devtools MCP——它把导航、点击、抓网络请求都封装成了工具。结果 MCP server 起的是一个全新 profile 的隔离 Chrome 实例：没有 cookie，没有登录态。我想那就登录一次呗，Google 的自动化检测直接把登录流程拦了。改成 attach 到我真实的浏览器，tab 定位又失灵，点击落在错误的页面上。跟这层抽象搏斗了四十分钟之后，我删掉 MCP 配置，用 puppeteer-core 写了 60 行左右的脚本，直连我已登录 Chrome 的调试端口——就是我在 [Chrome DevTools MCP 配置教程](/posts/ai/2026-03-17-chrome-devtools-mcp-guide/)里写过的 9222 端口那套。一次跑通。复盘时我意识到问题的本质：MCP 层不是没帮上忙，而是**主动在我和一个我本来就拥有的资源之间插了一道隔离墙**。
+**第一次：连不上我自己浏览器的浏览器 MCP。** 那天我想抓这个博客的 Google Search Console 数据。GSC 我在 Chrome 里天天登着，看起来最顺手的方案是 chrome-devtools MCP——它把导航、点击、抓网络请求都封装成了工具。结果 MCP server 起的是一个全新 profile 的隔离 Chrome 实例：没有 cookie，没有登录态。我想那就登录一次呗，Google 的自动化检测直接把登录流程拦了。改成 attach 到我真实的浏览器，tab 定位又失灵，点击落在错误的页面上。跟这层抽象搏斗了四十分钟之后，我删掉 MCP 配置，用 puppeteer-core 写了 60 行左右的脚本，直连我已登录 Chrome 的调试端口——就是我在 [Chrome DevTools MCP 配置教程](/zh/posts/ai/2026-03-17-chrome-devtools-mcp-guide/)里写过的 9222 端口那套。一次跑通。复盘时我意识到问题的本质：MCP 层不是没帮上忙，而是**主动在我和一个我本来就拥有的资源之间插了一道隔离墙**。
 
 **第二次：直接消失的 MCP server。** 我的博客封面图生成，原来走的是 Rube——一个托管 MCP 聚合服务，代理 Gemini 的生图 API。Rube 停服了。不是变慢，不是降级，是没了。所有路由经过它的工作流当场全灭。修复花了一个下午：写了一个一百行出头的 Python 脚本直连 Gemini API，先按 4K 出图再降采样成 1200×630 的 WebP。比走 MCP 时更快、更稳，还支持了代理层从来没暴露过的高分辨率。这个脚本现在已经活得比它替代的那层「基础设施」久了，而且我很确定它会继续活下去——因为脚本的依赖是 `python + 一个 API key`，而托管 MCP server 的依赖清单里包含**别人家公司的商业模式**。
 
@@ -50,7 +50,7 @@ answer = "先核对三个信号：官方 CLI 存在（gh、lark-cli、aws 等）
 
 这波转向真正扎心的地方在于**是谁在退**。Sentry 的 David Cramer 亲手搭过 Sentry 自己的 MCP server，然后公开写下[「许多 MCP server 根本没有存在的必要」](https://thenewstack.io/skills-vs-mcp-agent-architecture/)——要么是糟糕的 API 封装，要么一个 Skill 文件就能替代。连 Anthropic 自己——MCP 的发明者——都发了一篇[工程博客](https://www.anthropic.com/engineering/code-execution-with-mcp)承认把全量工具定义灌进上下文撑不住规模，建议让 Agent 写代码去调 MCP 工具而不是直接调。协议作者本人建议在模型和协议之间垫一层代码，这个信号怎么解读都不算乐观。
 
-国内的动向和硅谷是同频的。飞书在 3 月底开源了 lark-cli——注意，是 CLI，不是又一个 MCP server——覆盖 11 个业务域、200 多条命令，还官方配套了 Agent Skill。我当时写过[完整评测](/posts/ai/2026-03-29-lark-cli-guide/)，现在它是我整套自动化的地基。当国内头部协作平台选择用 CLI + Skill 的形态对接 Agent 生态时，这已经不是社区偏好，是厂商用真金白银的研发资源投的票。
+国内的动向和硅谷是同频的。飞书在 3 月底开源了 lark-cli——注意，是 CLI，不是又一个 MCP server——覆盖 11 个业务域、200 多条命令，还官方配套了 Agent Skill。我当时写过[完整评测](/zh/posts/ai/2026-03-29-lark-cli-guide/)，现在它是我整套自动化的地基。当国内头部协作平台选择用 CLI + Skill 的形态对接 Agent 生态时，这已经不是社区偏好，是厂商用真金白银的研发资源投的票。
 
 ## CLI 是模型的母语，账单不会说谎
 
@@ -58,11 +58,11 @@ answer = "先核对三个信号：官方 CLI 存在（gh、lark-cli、aws 等）
 
 然后是账单，这部分有可验证的数字。[《Markdown is the New API》](https://juliofalbo.medium.com/markdown-is-the-new-api-how-skill-md-and-ai-gateways-unlock-ai-native-organizations-e929d05c0470)记录了那个经典案例：GitHub 官方 MCP server 光工具描述就要吃掉约 5 万 token 上下文（后来砍到约 2.3 万），而一份写着「用 gh 命令行操作，示例如下」的 SKILL.md 只要约 200 token 就达到同样效果——广为流传的「250 倍」就是从这组数字算出来的。这笔钱是在任务开始前、每个会话都要交的，不管这次任务碰不碰 GitHub。至于中文社区流传更广的另一组数据——「MCP 调用成本 10-32 倍、任务可靠率 72%」——我没能找到可复现的 benchmark 出处，姑且当作社区流传的对比看待，别拿去做严肃决策。但你也不需要那组数字：GitHub 这一个案例的 token 账就足够定性了。
 
-上下文成本还有一层比账单更疼的二阶伤害：**它让模型变笨**。每一千 token 的 schema，就是模型少一千 token 思考你真正问题的空间，工具列表越长、选错工具的概率越高。我在[上下文工程那篇](/posts/ai/2026-06-16-context-engineering-2026/)里展开过这个机制——注意力是稀缺资源，而 MCP 的设计把它花在了管道上。CLI 在结构上有三个 MCP 给不了的东西：管道预过滤（`| jq '.data | length'`，数据没进上下文之前先精简）、报错即重跑（错误是模型见过的纯文本）、调试即复现（把命令原样粘到你自己的终端就行）。MCP 出问题时你在看别人 server 的日志，CLI 出问题时命令本身就是复现步骤——这条差异在我迁移之后的日常里，比省下的 token 更值钱。
+上下文成本还有一层比账单更疼的二阶伤害：**它让模型变笨**。每一千 token 的 schema，就是模型少一千 token 思考你真正问题的空间，工具列表越长、选错工具的概率越高。我在[上下文工程那篇](/zh/posts/ai/2026-06-16-context-engineering-2026/)里展开过这个机制——注意力是稀缺资源，而 MCP 的设计把它花在了管道上。CLI 在结构上有三个 MCP 给不了的东西：管道预过滤（`| jq '.data | length'`，数据没进上下文之前先精简）、报错即重跑（错误是模型见过的纯文本）、调试即复现（把命令原样粘到你自己的终端就行）。MCP 出问题时你在看别人 server 的日志，CLI 出问题时命令本身就是复现步骤——这条差异在我迁移之后的日常里，比省下的 token 更值钱。
 
 ## 真正替代 MCP 的是 Skill 这一层：27 个飞书 Skill 的生产实践
 
-这里有个多数「CLI vs MCP」文章都漏掉的关键：光有 CLI 并没有掀翻 MCP，掀翻它的是 **CLI + 一层知识文件**。Skill 就是这层知识——一份 SKILL.md，写清楚跑哪些命令、什么顺序、边界情况怎么处理、什么时候该停下来问人。它是写给模型看的 SOP。我在 [Agent Skills：用大白话写程序的时代来了](/posts/ai/2026-01-19-agent-skills-new-programming/)里论证过这是一种真正的编程范式，半年之后我想把结论磨得更尖锐一点：**Skill 接管了 MCP 的「编排」价值，CLI 接管了它的「执行」价值，两头一夹，常规场景下 MCP 就没剩下什么了。**
+这里有个多数「CLI vs MCP」文章都漏掉的关键：光有 CLI 并没有掀翻 MCP，掀翻它的是 **CLI + 一层知识文件**。Skill 就是这层知识——一份 SKILL.md，写清楚跑哪些命令、什么顺序、边界情况怎么处理、什么时候该停下来问人。它是写给模型看的 SOP。我在 [Agent Skills：用大白话写程序的时代来了](/zh/posts/ai/2026-01-19-agent-skills-new-programming/)里论证过这是一种真正的编程范式，半年之后我想把结论磨得更尖锐一点：**Skill 接管了 MCP 的「编排」价值，CLI 接管了它的「执行」价值，两头一夹，常规场景下 MCP 就没剩下什么了。**
 
 我自己就在生产环境里跑这套架构，不是玩具。我的日常主力是 27 个封装 lark-cli 的飞书 Skill——lark-im 发消息、lark-doc 编辑文档、lark-base 操作多维表格、lark-calendar 排日程、lark-approval 处理审批、lark-vc 查会议纪要……每一个都是一份 SKILL.md：写明用哪些子命令、给出标准调用示例、标注身份和权限的坑。常驻 MCP server 数量：零。当我对 Agent 说「把昨天的会议纪要拉出来，摘要发给团队群」，它读两份 Markdown（各几百 token，触发时才加载），跑四条 CLI 命令，结束。同样的拓扑换成 MCP，是两个常驻 server、几万 token 的 schema，外加两个随时可能挂掉的进程。这个博客本身也是同一套打法——前面第二个故事里那个封面图 Skill，现在就是一份 SKILL.md 编排一个直连 API 的 Python 脚本。
 
@@ -102,7 +102,7 @@ flowchart TB
 
 **工具池真的高频变化时，动态发现是真价值。** 我的飞书 Skill 能跑得稳，是因为 lark-cli 的命令面稳定。一个面向开放生态的 C 端 Agent——用户在运行时接入自己的第三方服务——真的需要运行时发现，这时带 schema 的协议就是比一个文件夹的 Markdown 强。2025 年的错误不是造了 MCP，而是**把动态发现协议当成了静态工具集的默认方案**，为没人用到的灵活性付了全额账单。
 
-**托管授权和审计边界。** 我的 puppeteer 脚本连上已登录 Chrome 时，继承的是我的完整会话——方便，但也正是让安全团队睡不着的那种全量授权。远程 MCP server 配托管 OAuth，给企业的是一个卡口：细粒度 token、可撤销、每次调用留痕。而且要对 CLI 路线的另一面诚实：**给 Agent 一个 shell，等于给它任意命令执行的能力**。我在 [MCP 安全指南](/posts/ai/2026-02-23-mcp-security-guide/)里写过这个张力——当威胁模型里有提示词注入时，受限的协议面反而是优点。跨平台也是同理：我的 Skill 默默假设了 macOS，搬去 Windows 得返工，协议 schema 则不挑操作系统。
+**托管授权和审计边界。** 我的 puppeteer 脚本连上已登录 Chrome 时，继承的是我的完整会话——方便，但也正是让安全团队睡不着的那种全量授权。远程 MCP server 配托管 OAuth，给企业的是一个卡口：细粒度 token、可撤销、每次调用留痕。而且要对 CLI 路线的另一面诚实：**给 Agent 一个 shell，等于给它任意命令执行的能力**。我在 [MCP 安全指南](/zh/posts/ai/2026-02-23-mcp-security-guide/)里写过这个张力——当威胁模型里有提示词注入时，受限的协议面反而是优点。跨平台也是同理：我的 Skill 默默假设了 macOS，搬去 Windows 得返工，协议 schema 则不挑操作系统。
 
 注意这些 MCP 赢面的共性：全是**环境约束**——没 shell、工具不稳定、凭证不能落地。没有一条是「在 CLI 存在且能用的前提下，MCP 集成得更好」。这就是我说「降级而非死亡」的准确含义：MCP 守住的是由约束定义的领土，在开发者有得选的地方全线撤退。
 
@@ -110,7 +110,7 @@ flowchart TB
 
 那收敛到哪里？目前最可信的预览来自微软。他们的 [.NET Skills Executor](https://devblogs.microsoft.com/foundry/dotnet-ai-skills-executor-azure-openai-mcp/) 是个混合体：从目录里发现 SKILL.md 文件驱动 Agent 主循环，MCP server 沉到下面做众多执行后端之一，Skill 的某一步需要时才在后台静默调用。智能住在 Markdown 里，协议被降级为由 Skill 作者按步骤挑选的水管。微软同时还在维护[官方 Skill 仓库](https://github.com/microsoft/skills)。当最擅长把标准落地成企业产品的公司把 Skill 放上层、MCP 压下层时，未来工具栈的组织架构图已经画出来了：**Skill 当 SOP 层，CLI/脚本当默认执行层，MCP 当前两层够不到时的兜底传输。**
 
-这也解开了「MCP 是否已死」的伪二元对立。问题从来不是「要不要协议」，而是**知识住在哪一层**。2025 年我们试图把流程知识塞进工具 schema——那些 5 万 token 的定义，本质上就是压缩得很烂的 SOP——失败是因为 schema 是承载判断力的糟糕介质。知识搬进 Markdown 之后，便宜、可版本化、人和模型都能读；一旦知识层独立出来，下面的传输层就沦为大宗商品，而大宗商品按成本竞争。CLI 是世界上最便宜的传输，因为模型本来就会说它。我在一月份的 [Skill 与 MCP 的区别](/posts/ai/2026-01-06-skillmcp/)里把两者当互补的平级来写；跑了半年生产之后我要修正结论：互补没错，平级不再——一个是主干，一个是支线。
+这也解开了「MCP 是否已死」的伪二元对立。问题从来不是「要不要协议」，而是**知识住在哪一层**。2025 年我们试图把流程知识塞进工具 schema——那些 5 万 token 的定义，本质上就是压缩得很烂的 SOP——失败是因为 schema 是承载判断力的糟糕介质。知识搬进 Markdown 之后，便宜、可版本化、人和模型都能读；一旦知识层独立出来，下面的传输层就沦为大宗商品，而大宗商品按成本竞争。CLI 是世界上最便宜的传输，因为模型本来就会说它。我在一月份的 [Skill 与 MCP 的区别](/zh/posts/ai/2026-01-06-skillmcp/)里把两者当互补的平级来写；跑了半年生产之后我要修正结论：互补没错，平级不再——一个是主干，一个是支线。
 
 ## 迁移决策框架：什么信号出现就该动手
 
@@ -148,10 +148,10 @@ flowchart TD
 
 ## Related Reading
 
-- [Skill 与 MCP 的区别：两种扩展 AI 能力的方式](/posts/ai/2026-01-06-skillmcp/)
-- [MCP vs Skills vs Hooks：Claude Code 三种扩展怎么选](/posts/ai/2026-04-02-mcp-vs-skills-claude-code/)
-- [Agent Skills：用大白话写程序的时代来了](/posts/ai/2026-01-19-agent-skills-new-programming/)
-- [Lark CLI 完全指南：用命令行和 AI Agent 操控飞书](/posts/ai/2026-03-29-lark-cli-guide/)
-- [Chrome DevTools MCP 配置教程：9222 端口连接已登录浏览器](/posts/ai/2026-03-17-chrome-devtools-mcp-guide/)
-- [MCP 协议全面解析：AI 连接万物的通用标准](/posts/ai/2026-02-20-mcp-protocol-guide/)
-- [Context Engineering for Coding Agents 2026: What Works](/posts/ai/2026-06-16-context-engineering-2026/)
+- [Skill 与 MCP 的区别：两种扩展 AI 能力的方式](/zh/posts/ai/2026-01-06-skillmcp/)
+- [MCP vs Skills vs Hooks：Claude Code 三种扩展怎么选](/zh/posts/ai/2026-04-02-mcp-vs-skills-claude-code/)
+- [Agent Skills：用大白话写程序的时代来了](/zh/posts/ai/2026-01-19-agent-skills-new-programming/)
+- [Lark CLI 完全指南：用命令行和 AI Agent 操控飞书](/zh/posts/ai/2026-03-29-lark-cli-guide/)
+- [Chrome DevTools MCP 配置教程：9222 端口连接已登录浏览器](/zh/posts/ai/2026-03-17-chrome-devtools-mcp-guide/)
+- [MCP 协议全面解析：AI 连接万物的通用标准](/zh/posts/ai/2026-02-20-mcp-protocol-guide/)
+- [Context Engineering for Coding Agents 2026: What Works](/zh/posts/ai/2026-06-16-context-engineering-2026/)

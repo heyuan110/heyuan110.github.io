@@ -479,7 +479,7 @@ Symphony 与主流方案相比如何？
 
 **vs. Devin**：Devin 是闭源商业产品。Symphony 是一个可定制、可扩展、可自托管的开放框架。Devin 更"开箱即用"但灵活性更低。
 
-**vs. Claude Code Agent Teams**：[Claude Code 的多代理系统](/posts/ai/2026-02-28-claude-code-teams-guide/)在会话级别运行——你需要手动为特定任务启动代理团队。Symphony 在项目级别运行——持续监控和处理工单，无需人工启动。
+**vs. Claude Code Agent Teams**：[Claude Code 的多代理系统](/zh/posts/ai/2026-02-28-claude-code-teams-guide/)在会话级别运行——你需要手动为特定任务启动代理团队。Symphony 在项目级别运行——持续监控和处理工单，无需人工启动。
 
 **vs. CrewAI / LangGraph**：这些是通用代理框架。Symphony 专为代码任务编排而生，具备工作区隔离、工单系统集成和 CI 验证等专用功能。
 
@@ -510,7 +510,7 @@ Symphony 很强大，但不是万能的。以下是当前的局限：
 Symphony 代表了 AI 辅助开发演进中的一个重要里程碑。我们正在经历：
 
 1. **代码补全**（2021-2023）：AI 建议下一行 → GitHub Copilot
-2. **代码对话**（2023-2025）：AI 讨论和修改代码 → [Claude Code](/posts/ai/2026-02-28-claude-code-complete-guide/)、Cursor
+2. **代码对话**（2023-2025）：AI 讨论和修改代码 → [Claude Code](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)、Cursor
 3. **代码编排**（2025+）：AI 自主处理项目工作 → Symphony
 
 Symphony 体现的"约束工程"范式——为 AI 代理设计约束和反馈回路——很可能成为一个独立的工程学科。正如 DevOps 连接了开发和运维，约束工程连接了人类项目管理和 AI 执行。
@@ -547,12 +547,12 @@ Symphony 体现的"约束工程"范式——为 AI 代理设计约束和反馈�
 
 ## 相关阅读
 
-- [Claude Code Agent Teams: How to Run Multiple AI Agents in Parallel](/posts/ai/2026-02-28-claude-code-teams-guide/) — 对比 Symphony 的项目级编排与 Claude Code 的会话级多代理方案
-- [Claude Code Complete Guide](/posts/ai/2026-02-28-claude-code-complete-guide/) — 如果你更倾向于手动操作而非全自动化
-- [Claude Code vs GitHub Copilot 2026](/posts/ai/2026-03-05-claude-code-vs-copilot/) — Copilot 的编码代理与 Symphony 的对比
-- [Building MCP Servers with Python](/posts/ai/2026-03-05-build-mcp-server-python/) — 了解驱动 AI 工具集成的协议层
-- [Best MCP Servers for Claude Code 2026](/posts/ai/2026-03-05-best-mcp-servers-claude-code/) — 探索自主代理依赖的工具生态
-- [OpenClaw vs Other AI Agents 2026](/posts/ai/2026-03-05-openclaw-vs-ai-agents/) — Symphony 在更广泛的 AI 代理版图中的位置
+- [Claude Code Agent Teams: How to Run Multiple AI Agents in Parallel](/zh/posts/ai/2026-02-28-claude-code-teams-guide/) — 对比 Symphony 的项目级编排与 Claude Code 的会话级多代理方案
+- [Claude Code Complete Guide](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — 如果你更倾向于手动操作而非全自动化
+- [Claude Code vs GitHub Copilot 2026](/zh/posts/ai/2026-03-05-claude-code-vs-copilot/) — Copilot 的编码代理与 Symphony 的对比
+- [Building MCP Servers with Python](/zh/posts/ai/2026-03-05-build-mcp-server-python/) — 了解驱动 AI 工具集成的协议层
+- [Best MCP Servers for Claude Code 2026](/zh/posts/ai/2026-03-05-best-mcp-servers-claude-code/) — 探索自主代理依赖的工具生态
+- [OpenClaw vs Other AI Agents 2026](/zh/posts/ai/2026-03-05-openclaw-vs-ai-agents/) — Symphony 在更广泛的 AI 代理版图中的位置
 
 ---
 

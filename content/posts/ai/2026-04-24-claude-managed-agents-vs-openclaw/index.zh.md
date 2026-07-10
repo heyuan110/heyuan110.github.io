@@ -67,7 +67,7 @@ timeline
 
 ### Harness 层是什么
 
-如果你已经读过我之前的 [Harness Engineering 60 天](/posts/ai/2026-03-30-harness-engineering-guide/) 和 [Harness 六层倒着建](/posts/ai/2026-04-18-harness-six-layers-reverse-build/)，这段你可以快速跳过。对新读者用一句话解释：**模型负责推理，Harness 负责让推理真的跑起来**——上下文管理、工具调用、步骤编排、错误恢复、跨轮次记忆、可观测性，这六层加起来就是 Harness。一个没有 Harness 的模型只能完成 30 秒内的 one-shot 任务；一个设计良好的 Harness 能让同一个模型完成 2 小时的复杂编程任务。
+如果你已经读过我之前的 [Harness Engineering 60 天](/zh/posts/ai/2026-03-30-harness-engineering-guide/) 和 [Harness 六层倒着建](/zh/posts/ai/2026-04-18-harness-six-layers-reverse-build/)，这段你可以快速跳过。对新读者用一句话解释：**模型负责推理，Harness 负责让推理真的跑起来**——上下文管理、工具调用、步骤编排、错误恢复、跨轮次记忆、可观测性，这六层加起来就是 Harness。一个没有 Harness 的模型只能完成 30 秒内的 one-shot 任务；一个设计良好的 Harness 能让同一个模型完成 2 小时的复杂编程任务。
 
 Anthropic 内部有 Claude Code 这个 Harness，但 Claude Code 是面向开发者的 CLI 工具、不是面向企业部署的运行时。真正企业级、多租户、带 SLA 的 Harness 产品，他们以前没有。**这个位置之前是 OpenClaw 在占着**。
 
@@ -77,7 +77,7 @@ Anthropic 内部有 Claude Code 这个 Harness，但 Claude Code 是面向开发
 
 **第一，吃了企业侧的价值捕获**。OpenClaw 的商业版 clawdhub 直接卖 agent runtime，企业客户付费给 OpenClaw、而不是付 Anthropic 的 API 费用——虽然底层调的还是 Anthropic API，但**定价权和客户关系都在 OpenClaw 手里**。企业选型一个 agent 平台，用户记住的是"我们用的是 OpenClaw"，不是"我们用的是 Claude"。
 
-**第二，建立了插件生态**。到 4 月初 clawdhub 上已经有 1200+ 个 Skill，包括 tavily-search、find-skills、proactive-agent 这些高频组件。我在 [OpenClaw 自动化别踩坑](/posts/ai/2026-02-14-openclaw-automation-pitfalls/) 里写过这些组件怎么配、[OpenClaw 多 Agent 配置指南](/posts/ai/2026-04-02-openclaw-multi-agent-setup-guide/) 里讲了企业级部署的细节。一旦这个生态规模继续长大，OpenClaw 就是 Agent 时代的 VS Code——宿主层不可替代。**Anthropic 如果不出手，明年看到的就是 Claude 被降级为"OpenClaw 可选的模型 provider 之一"**。
+**第二，建立了插件生态**。到 4 月初 clawdhub 上已经有 1200+ 个 Skill，包括 tavily-search、find-skills、proactive-agent 这些高频组件。我在 [OpenClaw 自动化别踩坑](/zh/posts/ai/2026-02-14-openclaw-automation-pitfalls/) 里写过这些组件怎么配、[OpenClaw 多 Agent 配置指南](/zh/posts/ai/2026-04-02-openclaw-multi-agent-setup-guide/) 里讲了企业级部署的细节。一旦这个生态规模继续长大，OpenClaw 就是 Agent 时代的 VS Code——宿主层不可替代。**Anthropic 如果不出手，明年看到的就是 Claude 被降级为"OpenClaw 可选的模型 provider 之一"**。
 
 **第三，开始降低 vendor lock-in**。OpenClaw 去年底开始支持 Anthropic + OpenAI + DeepSeek 多模型切换，同一个 Skill 可以在不同模型 provider 之间路由。这是最刺痛 Anthropic 的——如果用户可以一键把 Claude 换成 GPT-5，Anthropic 的定价权就没了。
 
@@ -153,7 +153,7 @@ run = client.managed_agents.runs.create(
 
 **路径二：迁到 Managed Agents**。如果你是做产品、要对客户收费、要过 SOC2 审计，Managed Agents 的运维省心值得迁移成本。迁移主要三块工作：多 Agent 编排逻辑要重写成 Anthropic 原生调用、Skills 要拆成 built-in + custom tools 组合、CLAUDE.md 风格的规则要翻译成 system prompt + context files。一个中等复杂度项目估计 5-10 人天。**迁移优先级：有合规要求 > 有多租户 > 只是个人用 > 纯内部工具**。
 
-**路径三：迁到 Claude Agent SDK 或其他开源 harness**。如果你既不想被 Anthropic 绑住、又不想继续依赖 OpenClaw，可以看 [Claude Agent SDK 入门](/posts/ai/2026-04-17-claude-agent-sdk-guide/)。Agent SDK 是 Anthropic 出的官方 SDK 但是偏底层——你自己搭 harness、SDK 只提供 Claude 特有的能力封装，控制力最强但工作量最大。LangGraph、CrewAI 也是候选，不过都没有 OpenClaw 的插件生态那么丰富。
+**路径三：迁到 Claude Agent SDK 或其他开源 harness**。如果你既不想被 Anthropic 绑住、又不想继续依赖 OpenClaw，可以看 [Claude Agent SDK 入门](/zh/posts/ai/2026-04-17-claude-agent-sdk-guide/)。Agent SDK 是 Anthropic 出的官方 SDK 但是偏底层——你自己搭 harness、SDK 只提供 Claude 特有的能力封装，控制力最强但工作量最大。LangGraph、CrewAI 也是候选，不过都没有 OpenClaw 的插件生态那么丰富。
 
 **我的具体建议**：做决策前先问自己一个问题——**你的项目对"agent runtime 属于谁"这件事敏感吗？** 如果客户在意、合规在意、商业模式依赖这件事——去 Managed Agents 或自研。如果不敏感——留在 OpenClaw 用 API key 最省事。不要因为社区情绪跟风迁移。
 
@@ -172,7 +172,7 @@ run = client.managed_agents.runs.create(
 
 **这些产品有一个共同点：它们都是 Harness 层，不是模型层**。没人在这个月发新模型——Opus 4.7 只是 Claude 家的小升级，GPT-5、Gemini 3 都没动静。但每家都在围绕"如何让模型跑成一个持续的 agent"这件事做产品。
 
-我在 [wshobson/agents 深度挖掘](/posts/ai/2026-04-20-wshobson-agents-deep-dive/) 里写过 33.9K Star 的插件市场，本质上也是 Harness 层的生态争夺——只不过是从"插件目录"这个切片切进去。[OpenClaw vs AI Agents](/posts/ai/2026-03-05-openclaw-vs-ai-agents/) 对比的是不同 harness 的能力边界。[OpenClaw 多 Agent 指南](/posts/ai/2026-02-23-openclaw-multi-agent-guide/) 讲的是怎么用社区 harness 搭多 agent 系统。**这些文章的共同底色都是：开发者现在做的每一个 harness 选型，都是在押注谁活得过下一个 18 个月**。
+我在 [wshobson/agents 深度挖掘](/zh/posts/ai/2026-04-20-wshobson-agents-deep-dive/) 里写过 33.9K Star 的插件市场，本质上也是 Harness 层的生态争夺——只不过是从"插件目录"这个切片切进去。[OpenClaw vs AI Agents](/zh/posts/ai/2026-03-05-openclaw-vs-ai-agents/) 对比的是不同 harness 的能力边界。[OpenClaw 多 Agent 指南](/zh/posts/ai/2026-02-23-openclaw-multi-agent-guide/) 讲的是怎么用社区 harness 搭多 agent 系统。**这些文章的共同底色都是：开发者现在做的每一个 harness 选型，都是在押注谁活得过下一个 18 个月**。
 
 为什么是 Harness 层？因为模型本身开始同质化了。Opus 4.7、GPT-5、Gemini 3 在编程基准上的差距已经不到 5 分，用户感知上基本打平。差异化的唯一出路是"用模型怎么干活"——也就是 Harness。**谁能让开发者在自己的 Harness 里留下来、建出生态、产生切换成本，谁就赢了下一轮**。Anthropic 封 OpenClaw 的深层逻辑就是这个——不让其他人在 Claude 之上建生态。
 
@@ -231,15 +231,15 @@ flowchart TB
 ## 延伸阅读
 
 - [Hermes Agent v0.10 深度评测：113K star 的黑马是真自生长还是营销包装？](/zh/posts/ai/2026-04-24-hermes-agent-v010-deep-review/)（同日姊妹篇，第三条路）
-- [Harness Engineering：60 天后我发现，模型是最不重要的部分](/posts/ai/2026-03-30-harness-engineering-guide/)
-- [60 行 CLAUDE.md 铁律：Harness 上下文层的工程规范](/posts/ai/2026-03-31-harness-claudemd-guide/)
-- [Harness 六层倒着建：80% 稳定性来自第 5、6 层](/posts/ai/2026-04-18-harness-six-layers-reverse-build/)
-- [Sub-Agent 架构：AI 编程 harness 的多 agent 组织](/posts/ai/2026-04-13-harness-subagent-architecture/)
-- [Claude Agent SDK 入门：官方 SDK 的能力边界](/posts/ai/2026-04-17-claude-agent-sdk-guide/)
-- [OpenClaw 自动化别踩坑：装 3 个 Skill 不等于真的好用](/posts/ai/2026-02-14-openclaw-automation-pitfalls/)
-- [OpenClaw 多 Agent 配置完整指南](/posts/ai/2026-04-02-openclaw-multi-agent-setup-guide/)
-- [OpenClaw vs AI Agents：开源 harness 能力边界对比](/posts/ai/2026-03-05-openclaw-vs-ai-agents/)
-- [wshobson/agents 深度挖掘：79 个插件的护城河在哪](/posts/ai/2026-04-20-wshobson-agents-deep-dive/)
+- [Harness Engineering：60 天后我发现，模型是最不重要的部分](/zh/posts/ai/2026-03-30-harness-engineering-guide/)
+- [60 行 CLAUDE.md 铁律：Harness 上下文层的工程规范](/zh/posts/ai/2026-03-31-harness-claudemd-guide/)
+- [Harness 六层倒着建：80% 稳定性来自第 5、6 层](/zh/posts/ai/2026-04-18-harness-six-layers-reverse-build/)
+- [Sub-Agent 架构：AI 编程 harness 的多 agent 组织](/zh/posts/ai/2026-04-13-harness-subagent-architecture/)
+- [Claude Agent SDK 入门：官方 SDK 的能力边界](/zh/posts/ai/2026-04-17-claude-agent-sdk-guide/)
+- [OpenClaw 自动化别踩坑：装 3 个 Skill 不等于真的好用](/zh/posts/ai/2026-02-14-openclaw-automation-pitfalls/)
+- [OpenClaw 多 Agent 配置完整指南](/zh/posts/ai/2026-04-02-openclaw-multi-agent-setup-guide/)
+- [OpenClaw vs AI Agents：开源 harness 能力边界对比](/zh/posts/ai/2026-03-05-openclaw-vs-ai-agents/)
+- [wshobson/agents 深度挖掘：79 个插件的护城河在哪](/zh/posts/ai/2026-04-20-wshobson-agents-deep-dive/)
 
 外部链接：
 

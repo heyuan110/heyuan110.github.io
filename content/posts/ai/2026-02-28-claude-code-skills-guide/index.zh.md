@@ -113,8 +113,8 @@ Skills 在特定场景下效果最好。以下是使用它们的判断标准：
 
 **不适合用 Skills 的场景：**
 
-- **静态项目上下文** —— 使用 [CLAUDE.md](/posts/ai/2026-02-28-claude-code-claudemd-guide/) 代替。技术栈、项目结构和通用约定应放在 CLAUDE.md 中，而非 Skill 里。
-- **必须执行的操作** —— 使用 [Hooks](/posts/ai/2026-02-28-claude-code-hooks-guide/) 代替。如果某个步骤必须始终运行（如编辑文件后自动 lint），Hook 可以保证执行。Skills 是建议性的——Claude 自行决定是否使用。
+- **静态项目上下文** —— 使用 [CLAUDE.md](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) 代替。技术栈、项目结构和通用约定应放在 CLAUDE.md 中，而非 Skill 里。
+- **必须执行的操作** —— 使用 [Hooks](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) 代替。如果某个步骤必须始终运行（如编辑文件后自动 lint），Hook 可以保证执行。Skills 是建议性的——Claude 自行决定是否使用。
 - **一次性任务** —— 直接在提示中描述即可。Skills 是为你会反复使用的模式设计的。
 
 ## 创建你的第一个 Skill
@@ -674,7 +674,7 @@ Claude Code 有三个相互补充的配置系统。理解它们如何协同工�
 
 ### CLAUDE.md：定义"你是谁"
 
-[CLAUDE.md](/posts/ai/2026-02-28-claude-code-claudemd-guide/) 定义你项目的身份和规范。它在每次会话开始时都会被加载。
+[CLAUDE.md](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) 定义你项目的身份和规范。它在每次会话开始时都会被加载。
 
 **适合存放**：
 - 技术栈和架构
@@ -696,7 +696,7 @@ Skills 为特定任务定义分步工作流。按需加载。
 
 ### Hooks：保证"一定执行"
 
-[Hooks](/posts/ai/2026-02-28-claude-code-hooks-guide/) 在特定生命周期节点运行 shell 命令。始终执行——不涉及 AI 判断。
+[Hooks](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) 在特定生命周期节点运行 shell 命令。始终执行——不涉及 AI 判断。
 
 **适合用于**：
 - 编辑文件后自动 lint
@@ -885,11 +885,11 @@ description: This is a single-line description that works correctly
 
 ## 相关阅读
 
-- [Claude Code Setup Guide: Installation to First Project](/posts/ai/2026-02-25-claude-code-setup-guide/) — Claude Code 安装与配置
-- [CLAUDE.md Guide: Give AI Perfect Project Context](/posts/ai/2026-02-28-claude-code-claudemd-guide/) — 掌握与 Skills 互补的项目上下文系统
-- [Claude Code Hooks Guide](/posts/ai/2026-02-28-claude-code-hooks-guide/) — 用保证执行的 Hooks 自动化工作流
-- [Claude Code MCP Setup](/posts/ai/2026-02-28-claude-code-mcp-setup/) — 用外部工具集成扩展 Claude
-- [10 Claude Code Mistakes Beginners Make](/posts/ai/2026-02-25-claude-code-mistakes/) — 避免常见陷阱
+- [Claude Code Setup Guide: Installation to First Project](/zh/posts/ai/2026-02-25-claude-code-setup-guide/) — Claude Code 安装与配置
+- [CLAUDE.md Guide: Give AI Perfect Project Context](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) — 掌握与 Skills 互补的项目上下文系统
+- [Claude Code Hooks Guide](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) — 用保证执行的 Hooks 自动化工作流
+- [Claude Code MCP Setup](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/) — 用外部工具集成扩展 Claude
+- [10 Claude Code Mistakes Beginners Make](/zh/posts/ai/2026-02-25-claude-code-mistakes/) — 避免常见陷阱
 - [Official Skills Documentation](https://code.claude.com/docs/en/skills) — Anthropic 官方参考文档
 - [anthropics/skills Repository](https://github.com/anthropics/skills) — 官方 Skills 合集（78k+ stars）
 - [Superpowers Framework](https://github.com/obra/superpowers) — 全面的开发方法论 Skills 框架（42k+ stars）

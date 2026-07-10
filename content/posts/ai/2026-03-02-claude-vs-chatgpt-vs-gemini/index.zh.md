@@ -134,7 +134,7 @@ HumanEval 在 2026 年基本饱和——多个模型得分 95% 以上。它已�
 
 **定价结论**：Gemini 2.5 Pro 以 $1.25/$10 提供最佳性价比。GPT-5.2 是中等选项，$1.75/$14。Claude Opus 4.6 成本最高，$5/$25，但代码质量也最高。三者价格都大幅下降——仅 Claude Opus 就从最初的 $15/$75 降价了 67%。
 
-想深入了解 Claude 的定价层级，请看我的 [Claude 2026 定价指南](/posts/ai/2026-02-25-claude-code-pricing/)。
+想深入了解 Claude 的定价层级，请看我的 [Claude 2026 定价指南](/zh/posts/ai/2026-02-25-claude-code-pricing/)。
 
 ## 上下文窗口和输出限制
 
@@ -166,7 +166,7 @@ HumanEval 在 2026 年基本饱和——多个模型得分 95% 以上。它已�
 | 自主规划 | 强 | 强 | 中等 |
 | 自我纠错 | 优秀 | 良好 | 良好 |
 
-Claude Opus 4.6 是最强的 Agent 模型，正如 [Anthropic 的 Opus 4.6 公告](https://www.anthropic.com/news/claude-opus-4-6) 所强调的。它的 [Claude Code](/posts/ai/2026-02-28-claude-code-complete-guide/) CLI 工具展示了这一点——它可以自主导航代码库、创建文件、运行测试，并在多步骤工作流中修复错误。
+Claude Opus 4.6 是最强的 Agent 模型，正如 [Anthropic 的 Opus 4.6 公告](https://www.anthropic.com/news/claude-opus-4-6) 所强调的。它的 [Claude Code](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) CLI 工具展示了这一点——它可以自主导航代码库、创建文件、运行测试，并在多步骤工作流中修复错误。
 
 ### 代码理解
 
@@ -210,13 +210,13 @@ Gemini 2.5 Pro 拥有最强的多模态能力，原生支持音频和视频以�
 
 | 工具 | 底层模型 | 类型 |
 |------|---------|------|
-| [Claude Code](/posts/ai/2026-02-28-claude-code-complete-guide/) | Claude Opus 4.6 / Sonnet 4.5 | CLI Agent |
+| [Claude Code](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) | Claude Opus 4.6 / Sonnet 4.5 | CLI Agent |
 | ChatGPT Codex | GPT-5.2 / GPT-5.3-Codex | 应用 + CLI + IDE |
-| [Cursor](/posts/ai/2026-02-28-copilot-vs-claude-vs-cursor/) | Claude + GPT（可配置） | IDE |
+| [Cursor](/zh/posts/ai/2026-02-28-copilot-vs-claude-vs-cursor/) | Claude + GPT（可配置） | IDE |
 | GitHub Copilot | GPT-4o / Claude（可配置） | IDE 扩展 |
 | Gemini Code Assist | Gemini 2.5 Pro | IDE 扩展 |
 
-如果你选的是编程工具而非原始 API，请查看我的 [GitHub Copilot vs Claude Code vs Cursor 对比](/posts/ai/2026-02-28-copilot-vs-claude-vs-cursor/)。
+如果你选的是编程工具而非原始 API，请查看我的 [GitHub Copilot vs Claude Code vs Cursor 对比](/zh/posts/ai/2026-02-28-copilot-vs-claude-vs-cursor/)。
 
 ## 实战体验：我的真实感受
 
@@ -228,7 +228,7 @@ Gemini 2.5 Pro 拥有最强的多模态能力，原生支持音频和视频以�
 - 首次尝试就能生成更完整、更接近生产级别的代码
 - 更擅长理解复杂架构并建议适当的设计模式
 - 用直觉类比解释代码，让复杂逻辑变得通俗易懂
-- [Claude Code 的 Agent 模式](/posts/ai/2026-02-25-claude-code-setup-guide/) 在自主开发方面无与伦比
+- [Claude Code 的 Agent 模式](/zh/posts/ai/2026-02-25-claude-code-setup-guide/) 在自主开发方面无与伦比
 
 **劣势**：
 - API 价格最贵
@@ -326,7 +326,7 @@ SWE-bench Verified 被认为是真实世界编程评估的金标准。它在真�
 
 ## 相关阅读
 
-- [Claude Pricing 2026: Complete Plan Comparison](/posts/ai/2026-02-25-claude-code-pricing/)
-- [GitHub Copilot vs Claude Code vs Cursor: Real-World Benchmarks](/posts/ai/2026-02-28-copilot-vs-claude-vs-cursor/)
-- [Claude Code vs Cursor: Which Wins for Real Projects?](/posts/ai/2026-02-28-claude-code-vs-cursor/)
-- [Claude Code Complete Guide 2026](/posts/ai/2026-02-28-claude-code-complete-guide/)
+- [Claude Pricing 2026: Complete Plan Comparison](/zh/posts/ai/2026-02-25-claude-code-pricing/)
+- [GitHub Copilot vs Claude Code vs Cursor: Real-World Benchmarks](/zh/posts/ai/2026-02-28-copilot-vs-claude-vs-cursor/)
+- [Claude Code vs Cursor: Which Wins for Real Projects?](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/)
+- [Claude Code Complete Guide 2026](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)

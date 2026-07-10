@@ -57,7 +57,7 @@ toc = true
 
 ### 2.4 和 Claude Code 有什么不同？
 
-可能有人听说过 [Claude Code](/posts/ai/2026-01-14-claude-code-guide/)，它也是基于 Claude 的工具，但定位完全不同：
+可能有人听说过 [Claude Code](/zh/posts/ai/2026-01-14-claude-code-guide/)，它也是基于 Claude 的工具，但定位完全不同：
 
 | 对比项 | Claude Code | ClawdBot |
 |--------|-------------|----------|
@@ -72,7 +72,7 @@ toc = true
 - **Claude Code** = 你雇的一个程序员，坐在你旁边帮你写代码
 - **ClawdBot** = 你雇的一个私人秘书，24 小时待命处理杂事
 
-如果你是程序员，两个都可以用——[Claude Code 帮你写代码](/posts/ai/2026-01-14-claude-code-guide/)，ClawdBot 帮你处理生活琐事。如果你不是程序员，那 ClawdBot 更适合你。
+如果你是程序员，两个都可以用——[Claude Code 帮你写代码](/zh/posts/ai/2026-01-14-claude-code-guide/)，ClawdBot 帮你处理生活琐事。如果你不是程序员，那 ClawdBot 更适合你。
 
 ### 2.5 谁做的？
 
@@ -165,7 +165,7 @@ ClawdBot 是由奥地利工程师 **Peter Steinberger** 和社区一起开发的
 3. AI 大脑想好怎么做后，ClawdBot 就在你的电脑上执行
 4. 做完了，通过手机告诉你结果
 
-这种能自主思考、自主执行的 AI，就叫做 **AI Agent**（AI 智能体）。这是 [2025 年 AI 发展的重要趋势](/posts/ai/2026-01-19-ai-dev-workflow/)。
+这种能自主思考、自主执行的 AI，就叫做 **AI Agent**（AI 智能体）。这是 [2025 年 AI 发展的重要趋势](/zh/posts/ai/2026-01-19-ai-dev-workflow/)。
 
 ---
 
@@ -222,7 +222,7 @@ ClawdBot 需要一个 AI 大脑来思考。推荐使用 Claude（效果最好）
 
 你会看到一个黑色（或白色）的窗口，里面有一个闪烁的光标。
 
-> 💡 如果你想了解更多终端技巧，可以参考 [终端工具推荐](/posts/macos/2025-01-22-terminal-tools-guide/)。
+> 💡 如果你想了解更多终端技巧，可以参考 [终端工具推荐](/zh/posts/macos/2025-01-22-terminal-tools-guide/)。
 
 ### 6.2 安装 ClawdBot
 
@@ -369,7 +369,7 @@ ClawdBot 支持 [50 多种工具集成](https://clawd.bot/)：
 
 ### 8.2 教它新技能
 
-ClawdBot 可以学习新技能，这和 [Claude Code 的 Skill 系统](/posts/ai/2026-01-08-claudecode-skill-guide/)类似。比如：
+ClawdBot 可以学习新技能，这和 [Claude Code 的 Skill 系统](/zh/posts/ai/2026-01-08-claudecode-skill-guide/)类似。比如：
 
 ```
 我教你一个新技能：
@@ -454,10 +454,10 @@ ClawdBot 是一个真正能帮你"干活"的 AI Agent：
 
 ## 十三、延伸阅读
 
-- [Claude Code 完全指南：终端里的全能 AI 助手](/posts/ai/2026-01-14-claude-code-guide/) - 程序员专属的 AI 编程助手
-- [AI 开发工作流的变革](/posts/ai/2026-01-19-ai-dev-workflow/) - AI Agent 如何改变我们的工作方式
-- [2025 年最值得使用的 20 个 Claude Code Skills](/posts/ai/2026-01-20-claude-code-skills-top20/) - 提升效率的 Skill 合集
-- [终端工具推荐：23 款高效终端对比](/posts/macos/2025-01-22-terminal-tools-guide/) - 选择适合你的终端
+- [Claude Code 完全指南：终端里的全能 AI 助手](/zh/posts/ai/2026-01-14-claude-code-guide/) - 程序员专属的 AI 编程助手
+- [AI 开发工作流的变革](/zh/posts/ai/2026-01-19-ai-dev-workflow/) - AI Agent 如何改变我们的工作方式
+- [2025 年最值得使用的 20 个 Claude Code Skills](/zh/posts/ai/2026-01-20-claude-code-skills-top20/) - 提升效率的 Skill 合集
+- [终端工具推荐：23 款高效终端对比](/zh/posts/macos/2025-01-22-terminal-tools-guide/) - 选择适合你的终端
 
 ---
 

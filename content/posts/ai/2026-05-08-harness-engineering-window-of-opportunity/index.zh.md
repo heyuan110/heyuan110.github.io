@@ -30,7 +30,7 @@ answer = "不是。Framework 是货架上的成品 Harness，Harness Engineering
 
 ![Harness Engineering 投资象限——任务重复度对模型代差的四区决策矩阵](cover.webp)
 
-> 这是 **Harness Engineering 系列第 5 篇**。前面 [第 1 篇讲是什么](/posts/ai/2026-03-30-harness-engineering-guide/)、[第 2 篇拆 CLAUDE.md](/posts/ai/2026-03-31-harness-claudemd-guide/)、[第 3 篇讲 Sub-Agent 架构](/posts/ai/2026-04-13-harness-subagent-architecture/)、[第 4 篇讲六层倒着建](/posts/ai/2026-04-18-harness-six-layers-reverse-build/)。这一篇要回答前 4 篇刻意绕开的问题——这个词本身是不是炒作，红利窗口还能开多久。
+> 这是 **Harness Engineering 系列第 5 篇**。前面 [第 1 篇讲是什么](/zh/posts/ai/2026-03-30-harness-engineering-guide/)、[第 2 篇拆 CLAUDE.md](/zh/posts/ai/2026-03-31-harness-claudemd-guide/)、[第 3 篇讲 Sub-Agent 架构](/zh/posts/ai/2026-04-13-harness-subagent-architecture/)、[第 4 篇讲六层倒着建](/zh/posts/ai/2026-04-18-harness-six-layers-reverse-build/)。这一篇要回答前 4 篇刻意绕开的问题——这个词本身是不是炒作，红利窗口还能开多久。
 
 一个新词从一句"姑且这么叫"到被两家前沿大厂当作正式工程范式，只用了 7 周。这种传播速度任何一个搞技术的人看到都该心生警惕。Mitchell Hashimoto 在 2026 年 2 月 5 日的博客里几乎是带着歉意提了一句"我也不知道业界有没有公认的叫法，姑且管它叫 **Harness Engineering**"。6 天后 OpenAI 把这个词放进了一篇重磅工程复盘的标题里。3 月 24 日 Anthropic 发了第二篇 Harness 论文，给出完整的三 Agent 架构。整段弧线——从一个开发者的私人博客到被两家前沿实验室当作命名学科——比大多数团队完成一个 sprint 的时间还短。
 
@@ -186,11 +186,11 @@ Harness 不会消失，Harness 会上移。这个迁移规律才是真正的经�
 
 ## 相关阅读
 
-- [Harness Engineering 实战：模型是 AI Agent 里最不重要的部分（60 天管线复盘）](/posts/ai/2026-03-30-harness-engineering-guide/) — 本文论证依赖的 60 天 pipeline 数据来源
-- [Harness 六层架构倒着建：80% 稳定性来自第 5、6 层](/posts/ai/2026-04-18-harness-six-layers-reverse-build/) — Layer 5/6 为什么主导稳定性
-- [Hermes Agent v0.9 评测 + 安装指南：Nous Research 27K star 自改进 AI 代理](/posts/ai/2026-04-14-hermes-agent-guide/) — 出厂自带 Harness 的开源 Agent 实战
-- [Hermes Agent v0.10 深度评测 × Harness 三国杀](/posts/ai/2026-04-24-hermes-agent-v010-deep-review/) — 三家厂商 Harness 设计横向对比
-- [Claude Managed Agents vs OpenClaw](/posts/ai/2026-04-24-claude-managed-agents-vs-openclaw/) — 大厂直接交付 Harness 原语意味着什么
+- [Harness Engineering 实战：模型是 AI Agent 里最不重要的部分（60 天管线复盘）](/zh/posts/ai/2026-03-30-harness-engineering-guide/) — 本文论证依赖的 60 天 pipeline 数据来源
+- [Harness 六层架构倒着建：80% 稳定性来自第 5、6 层](/zh/posts/ai/2026-04-18-harness-six-layers-reverse-build/) — Layer 5/6 为什么主导稳定性
+- [Hermes Agent v0.9 评测 + 安装指南：Nous Research 27K star 自改进 AI 代理](/zh/posts/ai/2026-04-14-hermes-agent-guide/) — 出厂自带 Harness 的开源 Agent 实战
+- [Hermes Agent v0.10 深度评测 × Harness 三国杀](/zh/posts/ai/2026-04-24-hermes-agent-v010-deep-review/) — 三家厂商 Harness 设计横向对比
+- [Claude Managed Agents vs OpenClaw](/zh/posts/ai/2026-04-24-claude-managed-agents-vs-openclaw/) — 大厂直接交付 Harness 原语意味着什么
 
 ## 一手资料
 

@@ -191,8 +191,8 @@ Context window 是任何 AI 编码 session 最关键的资源，而在 Claude HU
 
 ## 相关阅读
 
-- [Claude Code 完全指南：从安装到高级工作流](/posts/ai/2026-02-28-claude-code-complete-guide/) — 全面的安装和使用指南
-- [CLAUDE.md 最佳实践：配置你的 AI 编码助手](/posts/ai/2026-03-05-claude-code-claudemd-best-practices/) — 优化 CLAUDE.md 获得更好效果
-- [Claude Code vs Cursor vs Copilot：2026 年 AI 编程工具横评](/posts/ai/2026-04-03-claude-code-vs-cursor-vs-copilot/) — Claude Code 与竞品对比
-- [Claude Code Hooks 指南：自动化开发工作流](/posts/ai/2026-02-28-claude-code-hooks-guide/) — 用 Hooks 扩展 Claude Code
-- [Claude Code Rate Limit 详解](/posts/ai/2026-02-28-claude-rate-limits/) — 理解和管理你的用量限制
+- [Claude Code 完全指南：从安装到高级工作流](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — 全面的安装和使用指南
+- [CLAUDE.md 最佳实践：配置你的 AI 编码助手](/zh/posts/ai/2026-03-05-claude-code-claudemd-best-practices/) — 优化 CLAUDE.md 获得更好效果
+- [Claude Code vs Cursor vs Copilot：2026 年 AI 编程工具横评](/zh/posts/ai/2026-04-03-claude-code-vs-cursor-vs-copilot/) — Claude Code 与竞品对比
+- [Claude Code Hooks 指南：自动化开发工作流](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) — 用 Hooks 扩展 Claude Code
+- [Claude Code Rate Limit 详解](/zh/posts/ai/2026-02-28-claude-rate-limits/) — 理解和管理你的用量限制

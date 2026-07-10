@@ -435,7 +435,7 @@ codex    # 开始任务 B，修完搞定
 codex resume   # 选择任务 A 的会话
 ```
 
-这是 [Claude Code](/posts/ai/2026-01-14-claude-code-guide/) 原生不支持的——关闭 Claude Code 会话意味着丢失上下文。
+这是 [Claude Code](/zh/posts/ai/2026-01-14-claude-code-guide/) 原生不支持的——关闭 Claude Code 会话意味着丢失上下文。
 
 ## 模型切换与推理级别
 
@@ -590,7 +590,7 @@ disabled_tools = ["dangerous_tool"]     # 黑名单
 | PostgreSQL | 数据库操作 | `codex mcp add db -- npx -y @modelcontextprotocol/server-postgres` |
 | Sentry | 错误日志查询 | `codex mcp add sentry -- npx -y @sentry/mcp-server` |
 
-想了解更多 MCP 服务器，请看 [Best MCP Servers for Claude Code](/posts/ai/2026-03-05-best-mcp-servers-claude-code/)——大部分服务器同样适用于 Codex CLI。
+想了解更多 MCP 服务器，请看 [Best MCP Servers for Claude Code](/zh/posts/ai/2026-03-05-best-mcp-servers-claude-code/)——大部分服务器同样适用于 Codex CLI。
 
 ## Web 搜索：三种模式
 
@@ -654,7 +654,7 @@ codex --add-dir /path/to/shared-library
 | **Web 搜索** | 内置（缓存/实时） | 内置 |
 | **代码审查** | `/review` + GitHub App | 通过对话进行 |
 | **IDE 集成** | VS Code 扩展 | VS Code + JetBrains |
-| **指令系统** | AGENTS.md（多级） | [CLAUDE.md](/posts/ai/2026-02-28-claude-code-claudemd-guide/)（多级） |
+| **指令系统** | AGENTS.md（多级） | [CLAUDE.md](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/)（多级） |
 | **定价** | ChatGPT 订阅或 API | Anthropic 订阅或 API |
 
 ### 什么时候用哪个
@@ -665,12 +665,12 @@ codex --add-dir /path/to/shared-library
 - CI/CD 自动化（`codex exec` + JSON 输出）
 - 精确的 Token 成本控制
 
-**[Claude Code](/posts/ai/2026-02-28-claude-code-complete-guide/) 更强的场景：**
+**[Claude Code](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) 更强的场景：**
 - 深度推理和复杂多步骤任务
 - UI 开发和前端工作
 - 交互式开发，实时反馈
-- 更丰富的 [MCP 生态](/posts/ai/2026-02-28-claude-code-mcp-setup/)
-- [多代理协作](/posts/ai/2026-02-22-claude-code-agent-teams/)
+- 更丰富的 [MCP 生态](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/)
+- [多代理协作](/zh/posts/ai/2026-02-22-claude-code-agent-teams/)
 
 ### 务实的做法
 
@@ -814,7 +814,7 @@ command = "terminal-notifier"
 args = ["-title", "Codex CLI", "-message", "Task complete", "-sound", "default"]
 ```
 
-对比 Claude Code 的 [Hooks 系统](/posts/ai/2026-02-28-claude-code-hooks-guide/)，后者提供更细粒度的事件触发，但设置也更复杂。
+对比 Claude Code 的 [Hooks 系统](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/)，后者提供更细粒度的事件触发，但设置也更复杂。
 
 ## 核心要点
 
@@ -827,9 +827,9 @@ args = ["-title", "Codex CLI", "-message", "Task complete", "-sound", "default"]
 
 ## 相关阅读
 
-- [Claude Code Complete Guide 2026](/posts/ai/2026-02-28-claude-code-complete-guide/) — 全面掌握 Claude Code 的功能
-- [Claude Code vs ChatGPT Codex: Detailed Comparison](/posts/ai/2026-02-19-claude-code-vs-codex/) — Opus 4.6 与 GPT-5.3 深度对比
-- [MCP Protocol Explained](/posts/ai/2026-02-28-mcp-protocol-explained/) — 两个工具都用的通用标准
-- [Claude Code vs Cursor: Which Wins?](/posts/ai/2026-02-28-claude-code-vs-cursor/) — 另一个关键工具对比
-- [CLAUDE.md Guide](/posts/ai/2026-02-28-claude-code-claudemd-guide/) — Claude Code 版的 AGENTS.md
-- [Best MCP Servers for Claude Code](/posts/ai/2026-03-05-best-mcp-servers-claude-code/) — 两个工具都能用的 MCP 服务器
+- [Claude Code Complete Guide 2026](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — 全面掌握 Claude Code 的功能
+- [Claude Code vs ChatGPT Codex: Detailed Comparison](/zh/posts/ai/2026-02-19-claude-code-vs-codex/) — Opus 4.6 与 GPT-5.3 深度对比
+- [MCP Protocol Explained](/zh/posts/ai/2026-02-28-mcp-protocol-explained/) — 两个工具都用的通用标准
+- [Claude Code vs Cursor: Which Wins?](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/) — 另一个关键工具对比
+- [CLAUDE.md Guide](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) — Claude Code 版的 AGENTS.md
+- [Best MCP Servers for Claude Code](/zh/posts/ai/2026-03-05-best-mcp-servers-claude-code/) — 两个工具都能用的 MCP 服务器

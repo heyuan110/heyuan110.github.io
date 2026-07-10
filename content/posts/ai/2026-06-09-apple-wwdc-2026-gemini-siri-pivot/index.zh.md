@@ -17,7 +17,7 @@ answer = '''WWDC 2026 苹果没公布中国大陆方案。Gemini 在大陆封禁
 
 [[params.faqItems]]
 question = "现在还该不该买 M5 Mac mini 搞本地 AI？"
-answer = '''该买，而且 WWDC 2026 之后买的理由更强了，不是更弱。原因是苹果系统级 AI 不再跟你的 Ollama / MLX / Draw Things 抢算力——苹果模型层都让出去了，本地开源工具反而获得了更纯净的硬件资源。Apple Silicon 硬件路线没变，M5 / M6 还会继续堆统一内存和带宽。本地 70B 推理仍是 64GB 起步、跑 Qwen 2.5 / Llama 3.3 仍是当前性价比最高的方案。详见我之前写的 [M4 Pro vs M3 Max 实测](/posts/ai/2026-04-14-mac-apple-silicon-ai-workstation/)。'''
+answer = '''该买，而且 WWDC 2026 之后买的理由更强了，不是更弱。原因是苹果系统级 AI 不再跟你的 Ollama / MLX / Draw Things 抢算力——苹果模型层都让出去了，本地开源工具反而获得了更纯净的硬件资源。Apple Silicon 硬件路线没变，M5 / M6 还会继续堆统一内存和带宽。本地 70B 推理仍是 64GB 起步、跑 Qwen 2.5 / Llama 3.3 仍是当前性价比最高的方案。详见我之前写的 [M4 Pro vs M3 Max 实测](/zh/posts/ai/2026-04-14-mac-apple-silicon-ai-workstation/)。'''
 
 [[params.faqItems]]
 question = "苹果不是说一切隐私优先吗？现在数据要上传谷歌云，隐私故事还成立吗？"
@@ -109,9 +109,9 @@ timeline
 
 这个风险蒸发了。**苹果已经不拥有模型层了，是从谷歌租的**。神经网络引擎从此沦为外围加速器，不再是 AI 战略的中心。Ollama、llama.cpp、MLX、ComfyUI、Draw Things、LM Studio——所有跑 Metal、用统一内存的开源工具，继续做它们之前做的事，只不过现在不用和一个库比蒂诺味道的引力井打架了。
 
-我在 [Apple Silicon 本地 AI 工作站实测那篇文章](/posts/ai/2026-04-14-mac-apple-silicon-ai-workstation/) 里写过底层经济学——简短结论是：M3 Max 及以上的内存带宽是本地跑 70B 推理可行的前提，而这个硬件投入会继续，跟操作系统层发生什么完全无关。苹果不会停止卖更高内存的 M5、M6、M7 Mac，芯片还是会一年比一年强。变了的只是：系统级 AI 不再是芯片的首要客户。
+我在 [Apple Silicon 本地 AI 工作站实测那篇文章](/zh/posts/ai/2026-04-14-mac-apple-silicon-ai-workstation/) 里写过底层经济学——简短结论是：M3 Max 及以上的内存带宽是本地跑 70B 推理可行的前提，而这个硬件投入会继续，跟操作系统层发生什么完全无关。苹果不会停止卖更高内存的 M5、M6、M7 Mac，芯片还是会一年比一年强。变了的只是：系统级 AI 不再是芯片的首要客户。
 
-二阶效应更妙。苹果从"我们自己做 AI"转成"难的事我们外包"，等于在营销上**默许了 Mac 上 AI 的多元主义**——正确答案是多个专用工具、本地控制、按任务切换。这正是 [Mac mini 本地出图](/posts/ai/2026-02-15-mac-mini-local-image-generation/) 用户和 [Draw Things 重度用户](/posts/ai/2026-02-15-draw-things-ultimate-guide/) 已经生活的世界。
+二阶效应更妙。苹果从"我们自己做 AI"转成"难的事我们外包"，等于在营销上**默许了 Mac 上 AI 的多元主义**——正确答案是多个专用工具、本地控制、按任务切换。这正是 [Mac mini 本地出图](/zh/posts/ai/2026-02-15-mac-mini-local-image-generation/) 用户和 [Draw Things 重度用户](/zh/posts/ai/2026-02-15-draw-things-ultimate-guide/) 已经生活的世界。
 
 ## 六、要不要现在买 M5 Mac mini？我的决策框架
 
@@ -127,7 +127,7 @@ timeline
 
 WWDC 2026 之后的关键判断是：**苹果硬件投入的方向不变，但软件锁定的压力消失了**。这意味着今天买的任何 M 系列 Mac，未来三年都不会因为"系统级 AI 抢算力"或"开源工具被弃用"而贬值。从这个角度看，现在反而是配置本地 AI 工作站最稳的时间点。
 
-国内购买渠道我之前在 [那篇 Mac AI 工作站文章](/posts/ai/2026-04-14-mac-apple-silicon-ai-workstation/) 里给过详细对比，简短结论：教育优惠 > 京东 618/双 11 > 官翻 > 闲鱼无保二手。
+国内购买渠道我之前在 [那篇 Mac AI 工作站文章](/zh/posts/ai/2026-04-14-mac-apple-silicon-ai-workstation/) 里给过详细对比，简短结论：教育优惠 > 京东 618/双 11 > 官翻 > 闲鱼无保二手。
 
 ## 七、苹果新版"隐私故事"到底是什么意思
 
@@ -148,7 +148,7 @@ WWDC 2026 之后的关键判断是：**苹果硬件投入的方向不变，但�
 如果你在 Apple 平台上做消费类 AI 应用，我的建议是**别再假设苹果会提供一个有竞争力的默认 LLM**，按这个前提重新设计：
 
 1. **把 Apple Intelligence 当路由目标，不当模型**。需要一个快速本地动作就用系统 API 调蒸馏模型；需要推理、总结、任何质量敏感的任务，直接接你自己选的 LLM 供应商，别假设苹果的云端路径会比你直连更好。
-2. **Mac 现在是比发布会暗示的更好的本地 AI 开发机**。苹果刚刚把自己的 AI 雄心从计算里拿掉了。统一内存还在涨、Metal 还在改、芯片还在升。本地搭你的 [Agent harness](/posts/ai/2026-04-14-hermes-agent-guide/) 然后跑就行，OS 不会再来挡你。
+2. **Mac 现在是比发布会暗示的更好的本地 AI 开发机**。苹果刚刚把自己的 AI 雄心从计算里拿掉了。统一内存还在涨、Metal 还在改、芯片还在升。本地搭你的 [Agent harness](/zh/posts/ai/2026-04-14-hermes-agent-guide/) 然后跑就行，OS 不会再来挡你。
 3. **隐私文案要重新写**。如果你的应用之前主打"Apple Intelligence 让你的数据留在设备上"，这条卖点不干净了。要么走更严格的路线（纯本地、基于 MLX），要么诚实告诉用户你的 AI 功能会通过苹果的管道接触谷歌云。
 4. **中国市场要做两套**。Gemini 在大陆不可用，国行 Apple Intelligence 会接本地 LLM 供应商（百度 / 阿里 / 腾讯之一或多个），时间表苹果说了不算。如果你的应用要上国行 App Store，准备好一个跟全球版可能差 1-2 个季度的中国 AI 体验方案。
 
@@ -174,7 +174,7 @@ WWDC 2026 你只需要记住一件事：**苹果刚刚宣布自己不是 AI 平�
 
 ## 延伸阅读
 
-- [2026 年 Mac 本地跑大模型实测：M4 Pro vs M3 Max](/posts/ai/2026-04-14-mac-apple-silicon-ai-workstation/) — 苹果硬件路线为什么比软件故事更重要
-- [Mac mini 本地出图完整指南](/posts/ai/2026-02-15-mac-mini-local-image-generation/) — 跟苹果 OS 层做什么完全无关的本地 AI 工作流
-- [Draw Things 终极指南](/posts/ai/2026-02-15-draw-things-ultimate-guide/) — Mac 原生本地出图最佳选择，完全独立于 Apple Intelligence
-- [Hermes Agent 工程指南](/posts/ai/2026-04-14-hermes-agent-guide/) — 自建 Agent harness，按需路由本地和前沿模型，不依赖系统级 AI
+- [2026 年 Mac 本地跑大模型实测：M4 Pro vs M3 Max](/zh/posts/ai/2026-04-14-mac-apple-silicon-ai-workstation/) — 苹果硬件路线为什么比软件故事更重要
+- [Mac mini 本地出图完整指南](/zh/posts/ai/2026-02-15-mac-mini-local-image-generation/) — 跟苹果 OS 层做什么完全无关的本地 AI 工作流
+- [Draw Things 终极指南](/zh/posts/ai/2026-02-15-draw-things-ultimate-guide/) — Mac 原生本地出图最佳选择，完全独立于 Apple Intelligence
+- [Hermes Agent 工程指南](/zh/posts/ai/2026-04-14-hermes-agent-guide/) — 自建 Agent harness，按需路由本地和前沿模型，不依赖系统级 AI

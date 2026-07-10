@@ -307,7 +307,7 @@ Claude Code 和其他工具比起来怎么样？
 ### 选 Max 20x（$200/月），如果你：
 - 每天在 Claude Code 上花 6 小时以上
 - 5x 的限制频繁打断工作流
-- 需要跑多个并发任务或使用 [Agent Teams](/posts/ai/2026-02-22-claude-code-agent-teams/)
+- 需要跑多个并发任务或使用 [Agent Teams](/zh/posts/ai/2026-02-22-claude-code-agent-teams/)
 - 对响应延迟有要求
 
 ### 走 API，如果你：
@@ -324,15 +324,15 @@ Claude Code 和其他工具比起来怎么样？
 
 2. **写清晰具体的提示词**。含糊的提示导致更多来回对话，意味着更多 Token。"修复 auth.py 第 42 行的登录 Bug"比"登录好像有问题"省钱得多。
 
-3. **用好 [CLAUDE.md](/posts/ai/2026-01-12-claudemd-memory-guide/)**。一份写得好的 CLAUDE.md 文件让 Claude Code 不用每次都重新探索项目结构——省下成千上万 Token。
+3. **用好 [CLAUDE.md](/zh/posts/ai/2026-01-12-claudemd-memory-guide/)**。一份写得好的 CLAUDE.md 文件让 Claude Code 不用每次都重新探索项目结构——省下成千上万 Token。
 
 4. **用 `/cost` 监控用量**。定期运行 `/cost` 查看当前会话的 Token 消耗。如果发现 Token 消耗异常，及时调整策略。
 
 5. **大任务拆成小会话**。一次马拉松式的长会话会积累大量上下文，成本越来越高。不相关的任务请开新会话。
 
-6. **用 [Hooks](/posts/ai/2026-02-18-claude-code-hooks-guide/) 做自动化**。Hooks 可以自动执行重复的验证步骤，减少 Agent 来回交互的次数。
+6. **用 [Hooks](/zh/posts/ai/2026-02-18-claude-code-hooks-guide/) 做自动化**。Hooks 可以自动执行重复的验证步骤，减少 Agent 来回交互的次数。
 
-7. **用 [Worktree 模式](/posts/ai/2026-02-20-claude-code-worktree/)跑并行任务**。通过 Worktree 运行并行 Agent 比在单个会话中切换上下文更省 Token。
+7. **用 [Worktree 模式](/zh/posts/ai/2026-02-20-claude-code-worktree/)跑并行任务**。通过 Worktree 运行并行 Agent 比在单个会话中切换上下文更省 Token。
 
 ## 常见问题
 
@@ -380,9 +380,9 @@ Claude Code 不会停止——而是**变慢**。响应等待时间变长，Opus
 
 ## 相关阅读
 
-- [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/) — 掌握 Claude Code 全部功能
-- [Claude Code vs Cursor vs Windsurf：实测对比](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/) — 详细横向评测
-- [Claude Code vs ChatGPT Codex](/posts/ai/2026-02-19-claude-code-vs-codex/) — Opus 4.6 vs GPT-5.3 深度对比
-- [CLAUDE.md 指南：给 AI 完美的项目上下文](/posts/ai/2026-01-12-claudemd-memory-guide/) — 用更好的项目配置节省 Token
-- [Claude Code Hooks：12 个自动化配置](/posts/ai/2026-02-18-claude-code-hooks-guide/) — 自动化任务以减少 API 调用
-- [从零构建你自己的 Claude Code](/posts/ai/2026-02-24-build-magic-code/) — 深入理解背后的架构
+- [Claude Code 完全指南](/zh/posts/ai/2026-01-14-claude-code-guide/) — 掌握 Claude Code 全部功能
+- [Claude Code vs Cursor vs Windsurf：实测对比](/zh/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/) — 详细横向评测
+- [Claude Code vs ChatGPT Codex](/zh/posts/ai/2026-02-19-claude-code-vs-codex/) — Opus 4.6 vs GPT-5.3 深度对比
+- [CLAUDE.md 指南：给 AI 完美的项目上下文](/zh/posts/ai/2026-01-12-claudemd-memory-guide/) — 用更好的项目配置节省 Token
+- [Claude Code Hooks：12 个自动化配置](/zh/posts/ai/2026-02-18-claude-code-hooks-guide/) — 自动化任务以减少 API 调用
+- [从零构建你自己的 Claude Code](/zh/posts/ai/2026-02-24-build-magic-code/) — 深入理解背后的架构

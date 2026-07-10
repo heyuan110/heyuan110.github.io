@@ -48,7 +48,7 @@ answer = "OpenClaw 安装最简单——一条 npm 命令加一个配置文件�
 | **[AutoGen](https://github.com/microsoft/autogen)** | 多智能体框架 | Python | 40K+ | MIT | 多智能体对话 |
 | **[Devin](https://devin.ai/)** | 商业 AI 工程师 | 闭源 | N/A | 商业 | 自主软件开发 |
 
-> **关于名称**：如果你在网上看到过 "Moltbot" 或 "Clawdbot"，那些是 OpenClaw 的旧名称，其实是同一个项目。详情参见我们的[项目历史介绍](/posts/ai/2026-02-18-what-is-moltbot/)。
+> **关于名称**：如果你在网上看到过 "Moltbot" 或 "Clawdbot"，那些是 OpenClaw 的旧名称，其实是同一个项目。详情参见我们的[项目历史介绍](/zh/posts/ai/2026-02-18-what-is-moltbot/)。
 
 ## 架构设计：各工具的技术路线
 
@@ -72,7 +72,7 @@ OpenClaw 采用**网关架构**。中央网关负责认证、消息路由和会�
 
 在本文对比的所有工具中，OpenClaw 是唯一一个被设计为**持续在线的个人智能体**而非框架或一次性任务执行器的产品。
 
-更多内部架构细节请参见 [OpenClaw 架构深度解析](/posts/ai/2026-02-14-openclaw-architecture-deep-dive/)。
+更多内部架构细节请参见 [OpenClaw 架构深度解析](/zh/posts/ai/2026-02-14-openclaw-architecture-deep-dive/)。
 
 ### AutoGPT：基于循环的自主智能体
 
@@ -194,7 +194,7 @@ Devin 是**最精致的端到端体验**——你描述想要构建的东西，�
 
 **最简单**：Devin 零设置——它是 SaaS 产品，注册、连接 GitHub、开始分配任务。CrewAI 是最简单的开源方案：`pip install crewai` 加几行 Python 代码。
 
-**中等**：OpenClaw 大约需要15分钟。通过 npm 安装，创建配置文件，连接 Telegram Bot，添加 API 密钥即可。我们的 [OpenClaw 安装指南](/posts/ai/2026-03-05-openclaw-setup-guide/) 有详细步骤。
+**中等**：OpenClaw 大约需要15分钟。通过 npm 安装，创建配置文件，连接 Telegram Bot，添加 API 密钥即可。我们的 [OpenClaw 安装指南](/zh/posts/ai/2026-03-05-openclaw-setup-guide/) 有详细步骤。
 
 ```bash
 # OpenClaw 三步安装
@@ -211,7 +211,7 @@ AutoGen 需要搭建 Python 环境并理解其 Agent 对话模型。概念本身
 
 这是各工具差异最大的维度。
 
-**OpenClaw** 为每个 Agent 提供完全隔离的工作区——独立的记忆、会话、API 密钥，甚至可以使用不同的 AI 模型。Agent 之间通过内置的 `sessions_send` 工具通信。这种隔离机制避免了单 Agent 架构常见的上下文污染问题。完整教程参见 [多智能体配置指南](/posts/ai/2026-03-05-openclaw-multi-agent-setup/)。
+**OpenClaw** 为每个 Agent 提供完全隔离的工作区——独立的记忆、会话、API 密钥，甚至可以使用不同的 AI 模型。Agent 之间通过内置的 `sessions_send` 工具通信。这种隔离机制避免了单 Agent 架构常见的上下文污染问题。完整教程参见 [多智能体配置指南](/zh/posts/ai/2026-03-05-openclaw-multi-agent-setup/)。
 
 **CrewAI** 把多智能体作为默认模式。定义带角色和背景故事的 Agent，分配任务，Crew 按顺序或层级方式执行。如果你有团队管理背景，这是最自然的思维方式。
 
@@ -247,7 +247,7 @@ clawdhub install tavily-search
 clawdhub install proactive-agent
 ```
 
-详细教程请参见 [Tavily 集成指南](/posts/ai/2026-03-05-openclaw-tavily-integration/)。
+详细教程请参见 [Tavily 集成指南](/zh/posts/ai/2026-03-05-openclaw-tavily-integration/)。
 
 **LangGraph** 和 **CrewAI** 都受益于 LangChain 生态，后者拥有数百个与数据库、API 和服务的集成。如果你已经在用 LangChain，这是一个显著优势。
 
@@ -283,7 +283,7 @@ OpenClaw 在自托管方面比其他方案更进一步，它的**节点系统**�
 | **AutoGen** | 免费 | $5-30 | $5-30 |
 | **Devin** | $500/月 | 包含 | $500 |
 
-AutoGPT 的 API 费用往往更高，因为它的自主循环会产生大量连续调用。OpenClaw 的费用取决于你运行多少 Agent 以及分配了哪些模型——日常任务用 Claude Sonnet、复杂推理才用 Opus，可以有效控制成本。更多省钱技巧参见[常见坑与解决方案](/posts/ai/2026-03-05-openclaw-automation-pitfalls/)。
+AutoGPT 的 API 费用往往更高，因为它的自主循环会产生大量连续调用。OpenClaw 的费用取决于你运行多少 Agent 以及分配了哪些模型——日常任务用 Claude Sonnet、复杂推理才用 Opus，可以有效控制成本。更多省钱技巧参见[常见坑与解决方案](/zh/posts/ai/2026-03-05-openclaw-automation-pitfalls/)。
 
 CrewAI 和 LangGraph 通常最便宜，因为你完全控制哪些调用在何时发生——没有自主循环或心跳产生后台 API 调用。
 
@@ -321,7 +321,7 @@ AutoGen 有微软的企业背书，文档扎实且有长期支持保障。
 
 OpenClaw 的独特定位在于它是唯一一个把"AI 框架"和"个人助手"之间的鸿沟填平的工具。它不是要成为一个 Python 库——它要成为你永远在线的 AI 员工。
 
-**从这里开始**: [OpenClaw 安装指南](/posts/ai/2026-03-05-openclaw-setup-guide/)
+**从这里开始**: [OpenClaw 安装指南](/zh/posts/ai/2026-03-05-openclaw-setup-guide/)
 
 ### 选 AutoGPT，如果你...
 
@@ -409,11 +409,11 @@ Devin 是高端选择。它只做一件事——软件工程——而且做得�
 
 如果你决定使用 OpenClaw，以下指南帮你快速上手：
 
-- [OpenClaw Setup Guide: Install and Configure Your AI Agent](/posts/ai/2026-03-05-openclaw-setup-guide/) — 完整安装教程
-- [OpenClaw Multi-Agent Setup: Build AI Teams That Work](/posts/ai/2026-03-05-openclaw-multi-agent-setup/) — 配置 Agent 团队和协作模式
-- [OpenClaw Tavily Integration: Add Web Search to Your AI Agent](/posts/ai/2026-03-05-openclaw-tavily-integration/) — 为 Agent 添加网页搜索能力
-- [OpenClaw Pitfalls: 15 Automation Mistakes and Fixes](/posts/ai/2026-03-05-openclaw-automation-pitfalls/) — 避免最常见的配置和运行错误
-- [OpenClaw Architecture Deep Dive](/posts/ai/2026-02-14-openclaw-architecture-deep-dive/) — 深入了解系统运作原理
+- [OpenClaw Setup Guide: Install and Configure Your AI Agent](/zh/posts/ai/2026-03-05-openclaw-setup-guide/) — 完整安装教程
+- [OpenClaw Multi-Agent Setup: Build AI Teams That Work](/zh/posts/ai/2026-03-05-openclaw-multi-agent-setup/) — 配置 Agent 团队和协作模式
+- [OpenClaw Tavily Integration: Add Web Search to Your AI Agent](/zh/posts/ai/2026-03-05-openclaw-tavily-integration/) — 为 Agent 添加网页搜索能力
+- [OpenClaw Pitfalls: 15 Automation Mistakes and Fixes](/zh/posts/ai/2026-03-05-openclaw-automation-pitfalls/) — 避免最常见的配置和运行错误
+- [OpenClaw Architecture Deep Dive](/zh/posts/ai/2026-02-14-openclaw-architecture-deep-dive/) — 深入了解系统运作原理
 
 ## 相关阅读
 

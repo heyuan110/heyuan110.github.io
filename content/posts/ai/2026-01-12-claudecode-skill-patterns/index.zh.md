@@ -433,7 +433,7 @@ description: 分析用户反馈、客户评价、差评、投诉、建议、吐�
 
 ## 相关阅读
 
-- [Claude Code Skills 完全指南](/posts/ai/2026-01-08-claudecode-skill-guide/)
-- [Claude Code 浏览器自动化方案对比：Agent Browser、Playwright、DevTools](/posts/ai/2026-01-28-claude-code-browser-automation/)
-- [Claude Code 最佳实践指南](/posts/ai/2026-01-06-claudecode-best-practices/)
-- [Agent Skills：AI 编程的新范式](/posts/ai/2026-01-19-agent-skills-new-programming/)
+- [Claude Code Skills 完全指南](/zh/posts/ai/2026-01-08-claudecode-skill-guide/)
+- [Claude Code 浏览器自动化方案对比：Agent Browser、Playwright、DevTools](/zh/posts/ai/2026-01-28-claude-code-browser-automation/)
+- [Claude Code 最佳实践指南](/zh/posts/ai/2026-01-06-claudecode-best-practices/)
+- [Agent Skills：AI 编程的新范式](/zh/posts/ai/2026-01-19-agent-skills-new-programming/)

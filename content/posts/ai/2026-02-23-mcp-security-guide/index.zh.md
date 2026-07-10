@@ -13,7 +13,7 @@ keywords = ['MCP 安全', 'MCP security', 'AI agent 安全', 'MCP 漏洞', 'mcp-
 
 MCP（Model Context Protocol）注册表在短短一个月内从 90 个服务器暴增至 518 个，生态扩张的速度远远超过了安全基础设施的建设。当开发者们兴奋地将各种 MCP Server 接入自己的 AI Agent 时，攻击者也在盯着同一扇门。
 
-如果你还不了解 MCP 协议的基础概念，建议先阅读 [MCP 协议完全指南](/posts/ai/2026-02-20-mcp-protocol-guide/)。本文将聚焦安全维度，带你看清 MCP 生态中那些已经发生的攻击、正在暴露的风险，以及你今天就能采取的防护措施。
+如果你还不了解 MCP 协议的基础概念，建议先阅读 [MCP 协议完全指南](/zh/posts/ai/2026-02-20-mcp-protocol-guide/)。本文将聚焦安全维度，带你看清 MCP 生态中那些已经发生的攻击、正在暴露的风险，以及你今天就能采取的防护措施。
 
 ## 一年回顾：MCP 漏洞全景时间线
 
@@ -59,7 +59,7 @@ Cursor IDE 的 MCP 信任机制存在根本性缺陷：**MCP 配置一旦被用�
 
 **攻击类型**：Sandbox Escape
 
-Anthropic 官方的 Filesystem MCP Server 被发现存在沙箱逃逸漏洞。该 Server 本应将文件访问限制在指定目录内，但攻击者通过路径穿越技术突破了目录限制，可以读取和写入沙箱外的任意文件。关于 Claude Code 自身的安全机制如何应对此类问题，可参考 [Claude Code Security 解析](/posts/ai/2026-02-22-claude-code-security/)。
+Anthropic 官方的 Filesystem MCP Server 被发现存在沙箱逃逸漏洞。该 Server 本应将文件访问限制在指定目录内，但攻击者通过路径穿越技术突破了目录限制，可以读取和写入沙箱外的任意文件。关于 Claude Code 自身的安全机制如何应对此类问题，可参考 [Claude Code Security 解析](/zh/posts/ai/2026-02-22-claude-code-security/)。
 
 ### 2025 年 9 月 — Postmark MCP 供应链攻击
 
@@ -106,7 +106,7 @@ Tool Poisoning 是 MCP 生态中最具特色的攻击方式。传统供应链攻
 
 Cursor MCPoison 漏洞暴露了一个架构层面的问题：大多数 MCP 客户端的信任模型是**静态的**。用户首次批准某个 MCP Server 后，后续的任何变更都不会触发重新验证。这为"先善后恶"的攻击策略打开了大门。
 
-正确的做法是实现**持续验证**：对工具描述、参数结构、Server 行为进行哈希校验，任何变更都应触发用户确认。关于如何通过 Hooks 机制实现安全检查，可以参考 [Claude Code Hooks 指南](/posts/ai/2026-02-18-claude-code-hooks-guide/)。
+正确的做法是实现**持续验证**：对工具描述、参数结构、Server 行为进行哈希校验，任何变更都应触发用户确认。关于如何通过 Hooks 机制实现安全检查，可以参考 [Claude Code Hooks 指南](/zh/posts/ai/2026-02-18-claude-code-hooks-guide/)。
 
 ### 4. 供应链攻击 — 注册表藏毒
 
@@ -265,7 +265,7 @@ uvx mcp-scan --output report.json
 - 设置异常调用频率告警
 - 监控数据传输量和目标地址
 
-关于如何在 Agent 工作流中实施安全自动化，[OpenClaw 自动化的那些坑](/posts/ai/2026-02-14-openclaw-automation-pitfalls/) 中有一些值得借鉴的经验。
+关于如何在 Agent 工作流中实施安全自动化，[OpenClaw 自动化的那些坑](/zh/posts/ai/2026-02-14-openclaw-automation-pitfalls/) 中有一些值得借鉴的经验。
 
 ## 写在最后
 

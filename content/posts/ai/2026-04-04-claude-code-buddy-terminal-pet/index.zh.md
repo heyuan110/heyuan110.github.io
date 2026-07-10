@@ -247,7 +247,7 @@ SNARK      → 毒舌程度（高 = 吐槽，低 = 鼓励）
 
 ## 相关阅读
 
-- [Claude Code vs Cursor vs Copilot：5 款 AI 编程工具横评](/posts/ai/2026-04-03-claude-code-vs-cursor-vs-copilot/) — buddy 所在的工具生态对比
-- [Claude Code 开源：从闭源工具到开放 Agent 架构](/posts/ai/2026-04-01-claude-code-open-source-agent/) — 暴露 buddy 源码的那次开源事件
-- [2026 Claude 全系列定价指南](/posts/ai/2026-04-03-claude-pricing-complete-guide/) — 解锁 buddy 的 Pro 订阅详解
-- [MCP vs Skills：Claude Code 的两套扩展架构](/posts/ai/2026-04-02-mcp-vs-skills-claude-code/) — buddy 未来可能接入的扩展系统
+- [Claude Code vs Cursor vs Copilot：5 款 AI 编程工具横评](/zh/posts/ai/2026-04-03-claude-code-vs-cursor-vs-copilot/) — buddy 所在的工具生态对比
+- [Claude Code 开源：从闭源工具到开放 Agent 架构](/zh/posts/ai/2026-04-01-claude-code-open-source-agent/) — 暴露 buddy 源码的那次开源事件
+- [2026 Claude 全系列定价指南](/zh/posts/ai/2026-04-03-claude-pricing-complete-guide/) — 解锁 buddy 的 Pro 订阅详解
+- [MCP vs Skills：Claude Code 的两套扩展架构](/zh/posts/ai/2026-04-02-mcp-vs-skills-claude-code/) — buddy 未来可能接入的扩展系统

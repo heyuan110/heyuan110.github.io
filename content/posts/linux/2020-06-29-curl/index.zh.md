@@ -9,9 +9,9 @@ categories = ['Linux']
 keywords = ['curl 命令详解', 'curl 用法大全', 'curl 常用参数', 'curl post 请求', 'curl get 请求', 'curl 下载文件', 'curl json', 'curl 代理', 'curl 证书', 'curl linux', 'curl 教程', 'curl 命令 2026']
 +++
 
-在日常开发和运维中，**curl 命令**几乎是使用频率最高的[命令行](/posts/linux/2020-03-19-linux-mac-commands/)工具之一。它支持 HTTP、HTTPS、FTP 等 20+ 种协议，无论是调试 REST API、发送 POST 请求、下载文件还是测试网络连通性，一条 curl 命令就能搞定。
+在日常开发和运维中，**curl 命令**几乎是使用频率最高的[命令行](/zh/posts/linux/2020-03-19-linux-mac-commands/)工具之一。它支持 HTTP、HTTPS、FTP 等 20+ 种协议，无论是调试 REST API、发送 POST 请求、下载文件还是测试网络连通性，一条 curl 命令就能搞定。
 
-本文是一份系统的 curl 命令详解教程，涵盖 GET/POST/PUT/DELETE 等 HTTP 请求方法、JSON 数据发送、文件上传下载、Bearer Token 认证、代理配置、耗时分析等全部核心用法。如果你还需要排查网络链路问题，可以配合 [traceroute 命令详解](/posts/linux/2020-06-28-traceroute/) 一起使用。
+本文是一份系统的 curl 命令详解教程，涵盖 GET/POST/PUT/DELETE 等 HTTP 请求方法、JSON 数据发送、文件上传下载、Bearer Token 认证、代理配置、耗时分析等全部核心用法。如果你还需要排查网络链路问题，可以配合 [traceroute 命令详解](/zh/posts/linux/2020-06-28-traceroute/) 一起使用。
 
 <!--more-->
 
@@ -471,11 +471,11 @@ curl 是一个功能强大的命令行工具，掌握它能大幅提升你的工
 
 ## 相关阅读
 
-- [traceroute 命令详解：路由追踪与网络故障排查](/posts/linux/2020-06-28-traceroute/) - 定位网络延迟瓶颈，与 curl 配合排查问题
-- [Linux/macOS 常用命令速查手册](/posts/linux/2020-03-19-linux-mac-commands/) - 运维开发常用命令参考
-- [Linux 运维基础 Hub](/posts/linux/linux-ops-basics-hub/) - 系统运维知识汇总
-- [AWS CLI 完全指南](/posts/linux/2020-07-04-aws-cli/) - 云服务命令行管理
-- [Oh My Zsh 安装配置指南](/posts/linux/2015-06-17-shell-zsh/) - 打造高效终端环境
+- [traceroute 命令详解：路由追踪与网络故障排查](/zh/posts/linux/2020-06-28-traceroute/) - 定位网络延迟瓶颈，与 curl 配合排查问题
+- [Linux/macOS 常用命令速查手册](/zh/posts/linux/2020-03-19-linux-mac-commands/) - 运维开发常用命令参考
+- [Linux 运维基础 Hub](/zh/posts/linux/linux-ops-basics-hub/) - 系统运维知识汇总
+- [AWS CLI 完全指南](/zh/posts/linux/2020-07-04-aws-cli/) - 云服务命令行管理
+- [Oh My Zsh 安装配置指南](/zh/posts/linux/2015-06-17-shell-zsh/) - 打造高效终端环境
 
 ## 参考资源
 

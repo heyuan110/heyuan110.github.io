@@ -34,7 +34,7 @@ keywords = ['AI Agent 记忆系统', 'RAG 检索增强生成', '上下文工程'
 
 现代 LLM 在固定的上下文窗口内运行。Claude Sonnet 4 支持 200K token，GPT-4o 支持 128K，Gemini 1.5 Pro 则可达 2M token。这些数字听起来很大，但实际使用中消耗极快。
 
-以一个典型的 [Claude Code](/posts/ai/2026-02-28-claude-code-complete-guide/) 会话为例。每次工具调用——读取文件、运行命令、编写代码——消耗 1,000 到 10,000 个 token。一个中等复杂度的开发任务涉及 50 次以上的工具调用。token 消耗以 **二次方** 增长，因为每次新的工具调用都必须包含之前所有的上下文。大约在 50 次工具调用后，200K 的上下文窗口就会被耗尽。
+以一个典型的 [Claude Code](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) 会话为例。每次工具调用——读取文件、运行命令、编写代码——消耗 1,000 到 10,000 个 token。一个中等复杂度的开发任务涉及 50 次以上的工具调用。token 消耗以 **二次方** 增长，因为每次新的工具调用都必须包含之前所有的上下文。大约在 50 次工具调用后，200K 的上下文窗口就会被耗尽。
 
 ### 会话失忆症
 
@@ -166,11 +166,11 @@ Claude-Mem 的架构展示了生产级 RAG 记忆的实际形态：
 | **信息结构** | 如何组织展示的内容 | 分层文档：设计 → 计划 → 代码 |
 | **信息质量** | 确保没有错误或矛盾 | 清理过时的注释和文档 |
 | **信息时序** | 何时提供何种信息 | 先给架构概览，再给实现细节 |
-| **工具配置** | 通过工具扩展感知能力 | 通过 [MCP](/posts/ai/2026-02-28-mcp-protocol-explained/) 连接数据库 schema、API 文档 |
+| **工具配置** | 通过工具扩展感知能力 | 通过 [MCP](/zh/posts/ai/2026-02-28-mcp-protocol-explained/) 连接数据库 schema、API 文档 |
 
 ### CLAUDE.md：上下文工程的基石
 
-最简单也最广泛使用的上下文工程工具是 [CLAUDE.md](/posts/ai/2026-02-28-claude-code-claudemd-guide/)——一个 Claude Code 在每次会话开始时读取的 Markdown 文件，充当持久化的、人工策划的记忆。
+最简单也最广泛使用的上下文工程工具是 [CLAUDE.md](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/)——一个 Claude Code 在每次会话开始时读取的 Markdown 文件，充当持久化的、人工策划的记忆。
 
 一个结构良好的 CLAUDE.md 通常包含：
 
@@ -311,7 +311,7 @@ CLAUDE.md       → AI 专用指导
 
 对大多数个人开发者来说，从这里起步：
 
-**第 1 步：** 在项目根目录创建 `CLAUDE.md`，写入技术栈、编码规范和关键架构决策。详细模板参见 [CLAUDE.md 最佳实践指南](/posts/ai/2026-02-28-claude-code-claudemd-guide/)。
+**第 1 步：** 在项目根目录创建 `CLAUDE.md`，写入技术栈、编码规范和关键架构决策。详细模板参见 [CLAUDE.md 最佳实践指南](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/)。
 
 **第 2 步：** 维护一个 `docs/` 目录，存放设计文档和实现计划。在 CLAUDE.md 中引用这些文档，让 Agent 知道去哪里找详细上下文。
 
@@ -319,7 +319,7 @@ CLAUDE.md       → AI 专用指导
 - 每周审查和更新 CLAUDE.md
 - 一次对话聚焦一个任务
 - 新话题开新会话，而非延续旧会话
-- 只启用当前任务需要的 [MCP 服务](/posts/ai/2026-02-28-mcp-protocol-explained/)
+- 只启用当前任务需要的 [MCP 服务](/zh/posts/ai/2026-02-28-mcp-protocol-explained/)
 
 这个方案零基础设施投入，即刻生效。
 
@@ -358,7 +358,7 @@ schema.sql             → 数据库 schema（数据真相源）
 
 ### 方案四：用 Python 构建自定义记忆
 
-如果你想 [从零构建自己的 AI Agent](/posts/ai/2026-03-07-build-ai-agent-python/) 并为其添加记忆功能，以下是一个最小化的 RAG 记忆实现：
+如果你想 [从零构建自己的 AI Agent](/zh/posts/ai/2026-03-07-build-ai-agent-python/) 并为其添加记忆功能，以下是一个最小化的 RAG 记忆实现：
 
 ```python
 import chromadb
@@ -447,10 +447,10 @@ CLAUDE.md 是一个放置在项目根目录的 Markdown 文件，Claude Code 在
 
 ## 相关阅读
 
-- [Claude Code 完全指南 2026](/posts/ai/2026-02-28-claude-code-complete-guide/) — Claude Code 全部功能和工作流的汇总页面
-- [CLAUDE.md 最佳实践指南](/posts/ai/2026-02-28-claude-code-claudemd-guide/) — 深入了解 CLAUDE.md 的上下文工程实践
-- [上下文工程指南](/posts/ai/2026-03-10-context-engineering-guide/) — 从提示词工程到上下文工程
-- [MCP 协议详解](/posts/ai/2026-02-28-mcp-protocol-explained/) — 通过工具集成扩展 AI Agent 上下文
-- [用 Python 从零构建 AI Agent](/posts/ai/2026-03-07-build-ai-agent-python/) — 实现你自己的带记忆功能的 Agent
+- [Claude Code 完全指南 2026](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — Claude Code 全部功能和工作流的汇总页面
+- [CLAUDE.md 最佳实践指南](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) — 深入了解 CLAUDE.md 的上下文工程实践
+- [上下文工程指南](/zh/posts/ai/2026-03-10-context-engineering-guide/) — 从提示词工程到上下文工程
+- [MCP 协议详解](/zh/posts/ai/2026-02-28-mcp-protocol-explained/) — 通过工具集成扩展 AI Agent 上下文
+- [用 Python 从零构建 AI Agent](/zh/posts/ai/2026-03-07-build-ai-agent-python/) — 实现你自己的带记忆功能的 Agent
 - [Anthropic: Writing Effective Tools for Agents](https://www.anthropic.com/engineering/writing-tools-for-agents) — Anthropic 关于影响上下文质量的工具设计原则
 - [How Long Contexts Fail](https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html) — 上下文失败模式和缓解策略的研究

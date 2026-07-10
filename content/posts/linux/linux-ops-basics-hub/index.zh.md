@@ -18,16 +18,16 @@ keywords = ['Linux 运维', '命令行基础', '网络排障', 'Docker 容器', 
 
 ## 核心文章列表
 
-1. [Linux/Mac 常用命令汇总](/posts/linux/2020-03-19-linux-mac-commands/)
-2. [curl 命令大全](/posts/linux/2020-06-29-curl/)
-3. [traceroute 命令详解](/posts/linux/2020-06-28-traceroute/)
-4. [Docker Compose 完全指南](/posts/docker/2026-01-19-docker-compose-complete-guide/)
-5. [AWS CLI 完全指南](/posts/linux/2020-07-04-aws-cli/)
+1. [Linux/Mac 常用命令汇总](/zh/posts/linux/2020-03-19-linux-mac-commands/)
+2. [curl 命令大全](/zh/posts/linux/2020-06-29-curl/)
+3. [traceroute 命令详解](/zh/posts/linux/2020-06-28-traceroute/)
+4. [Docker Compose 完全指南](/zh/posts/docker/2026-01-19-docker-compose-complete-guide/)
+5. [AWS CLI 完全指南](/zh/posts/linux/2020-07-04-aws-cli/)
 
 ## 推荐阅读（用于内链）
 
-- [Shell + Zsh 配置](/posts/linux/2015-06-17-shell-zsh/)
-- [Shell 变量详解](/posts/linux/2019-05-13-linux-shell-vars/)
-- [IP/CIDR 入门](/posts/linux/2018-10-06-ip-cidr/)
-- [Docker 常用命令速查](/posts/docker/2019-11-14-docker-commands/)
-- [docker-compose.yml 详解](/posts/docker/2026-01-24-docker-compose-yml-explained/)
+- [Shell + Zsh 配置](/zh/posts/linux/2015-06-17-shell-zsh/)
+- [Shell 变量详解](/zh/posts/linux/2019-05-13-linux-shell-vars/)
+- [IP/CIDR 入门](/zh/posts/linux/2018-10-06-ip-cidr/)
+- [Docker 常用命令速查](/zh/posts/docker/2019-11-14-docker-commands/)
+- [docker-compose.yml 详解](/zh/posts/docker/2026-01-24-docker-compose-yml-explained/)

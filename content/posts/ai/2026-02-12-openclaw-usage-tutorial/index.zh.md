@@ -39,7 +39,7 @@ OpenClaw 的心智模型可以用一句话概括：
 
 你所有操作基本都围绕：**启动 Gateway → 选 agent/session → 在某个渠道里发消息**。
 
-如果你之前了解过 OpenClaw 的前身（[ClawdBot](/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/) → [Moltbot](/posts/ai/2026-01-29-moltbot-deep-dive/) → OpenClaw），这三个概念应该不陌生。
+如果你之前了解过 OpenClaw 的前身（[ClawdBot](/zh/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/) → [Moltbot](/zh/posts/ai/2026-01-29-moltbot-deep-dive/) → OpenClaw），这三个概念应该不陌生。
 
 ---
 
@@ -64,7 +64,7 @@ OpenClaw 的心智模型可以用一句话概括：
 
 > 经验：**workspace 既是"我读你偏好"的地方，也是我写产物（文档、脚本、草稿）的地方**。
 
-关于 OpenClaw 的记忆机制细节，可以参考 [OpenClaw 记忆实施策略解析](/posts/ai/2026-01-31-openclaw-memory-strategy/)。
+关于 OpenClaw 的记忆机制细节，可以参考 [OpenClaw 记忆实施策略解析](/zh/posts/ai/2026-01-31-openclaw-memory-strategy/)。
 
 ### 1.2 配置文件（openclaw.json）
 
@@ -119,7 +119,7 @@ openclaw onboard --install-daemon
 - 配对/白名单（安全默认）
 - 可选：安装后台服务（macOS 用 launchd）
 
-如果你之前用过 Moltbot Wizard，这个向导体验类似但更完善，详见 [Moltbot Wizard 完全指南](/posts/ai/2026-01-28-moltbot-wizard-guide/)。
+如果你之前用过 Moltbot Wizard，这个向导体验类似但更完善，详见 [Moltbot Wizard 完全指南](/zh/posts/ai/2026-01-28-moltbot-wizard-guide/)。
 
 ---
 
@@ -332,7 +332,7 @@ openclaw --profile lab tui --url ws://127.0.0.1:19001
 
 > 这块建议你确定"你想怎么分工"，再按你的真实渠道（Telegram 群/私聊）写一份可用的配置骨架。
 
-关于 OpenClaw 作者自己的开发方法论和工作流思路，推荐阅读 [OpenClaw 作者的 Claude Code 开发方法论](/posts/ai/2026-01-31-openclaw-claude-code-workflow/)。
+关于 OpenClaw 作者自己的开发方法论和工作流思路，推荐阅读 [OpenClaw 作者的 Claude Code 开发方法论](/zh/posts/ai/2026-01-31-openclaw-claude-code-workflow/)。
 
 ### 5.5 老鸟技巧 4：避免"私信串台"——DM 会话隔离
 
@@ -356,7 +356,7 @@ openclaw --profile lab tui --url ws://127.0.0.1:19001
    - `openclaw tui`
 3) 最后再接入 Telegram/WhatsApp，避免一开始就踩权限/配对坑。
 
-这个循序渐进的思路也适用于其他 AI 工具的上手过程，关于 AI 工作流的更多建议可参考 [AI 工作流实战手册](/posts/ai/2026-01-30-ai-workflow-real-guide/)。
+这个循序渐进的思路也适用于其他 AI 工具的上手过程，关于 AI 工作流的更多建议可参考 [AI 工作流实战手册](/zh/posts/ai/2026-01-30-ai-workflow-real-guide/)。
 
 ### 6.2 让机器人"别太吵"的 3 个开关
 
@@ -674,11 +674,11 @@ OpenClaw 的核心价值在于：**一个本地网关，连接所有聊天平台
 
 ## 相关阅读
 
-- [ClawdBot：海外爆火的个人 AI 管家，30 分钟搭建指南](/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/)
-- [Moltbot 深度解析：从爆火到改名，个人 AI Agent 的机遇与暗礁](/posts/ai/2026-01-29-moltbot-deep-dive/)
-- [Moltbot 是什么？3 分钟看懂定位、能力与风险](/posts/ai/2026-02-18-what-is-moltbot/)
-- [Moltbot Wizard 完全指南：打造你的私人 AI 助手](/posts/ai/2026-01-28-moltbot-wizard-guide/)
-- [OpenClaw 作者的 Claude Code 开发方法论](/posts/ai/2026-01-31-openclaw-claude-code-workflow/)
-- [OpenClaw 记忆实施策略解析：工具驱动的 RAG 与"按需回忆"](/posts/ai/2026-01-31-openclaw-memory-strategy/)
-- [Moltbook 深度解析：AI Agent 专属社交网络的疯狂实验](/posts/ai/2026-02-01-moltbook-ai-agent-social-network/)
-- [AI 工作流实战手册：从提示词到编程，真正把 AI 用起来](/posts/ai/2026-01-30-ai-workflow-real-guide/)
+- [ClawdBot：海外爆火的个人 AI 管家，30 分钟搭建指南](/zh/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/)
+- [Moltbot 深度解析：从爆火到改名，个人 AI Agent 的机遇与暗礁](/zh/posts/ai/2026-01-29-moltbot-deep-dive/)
+- [Moltbot 是什么？3 分钟看懂定位、能力与风险](/zh/posts/ai/2026-02-18-what-is-moltbot/)
+- [Moltbot Wizard 完全指南：打造你的私人 AI 助手](/zh/posts/ai/2026-01-28-moltbot-wizard-guide/)
+- [OpenClaw 作者的 Claude Code 开发方法论](/zh/posts/ai/2026-01-31-openclaw-claude-code-workflow/)
+- [OpenClaw 记忆实施策略解析：工具驱动的 RAG 与"按需回忆"](/zh/posts/ai/2026-01-31-openclaw-memory-strategy/)
+- [Moltbook 深度解析：AI Agent 专属社交网络的疯狂实验](/zh/posts/ai/2026-02-01-moltbook-ai-agent-social-network/)
+- [AI 工作流实战手册：从提示词到编程，真正把 AI 用起来](/zh/posts/ai/2026-01-30-ai-workflow-real-guide/)

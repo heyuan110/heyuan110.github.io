@@ -465,7 +465,7 @@ tmux attach -t claude
 # 你的整个对话都保留着
 ```
 
-如果你还没设置 Claude Code，可以先看我们的[完整安装指南](/posts/ai/2026-02-25-claude-code-setup-guide/)。仅凭这一点就值得学习 tmux。你的 Claude Code 会话变成了**持久化工作空间**，能够在以下情况中存活：
+如果你还没设置 Claude Code，可以先看我们的[完整安装指南](/zh/posts/ai/2026-02-25-claude-code-setup-guide/)。仅凭这一点就值得学习 tmux。你的 Claude Code 会话变成了**持久化工作空间**，能够在以下情况中存活：
 
 - 笔记本休眠/唤醒
 - SSH 断开
@@ -558,7 +558,7 @@ P(至少一个成功) = 1 - (0.75)^4 ≈ 68%
 
 ### 方法一：手动 Tmux + Git Worktree
 
-Git worktree 为每个智能体提供**隔离的仓库副本**，防止文件冲突。关于 Claude Code 原生 worktree 支持的深入介绍，请参阅我们的 [Claude Code Worktree 指南](/posts/ai/2026-02-28-claude-code-worktree-guide/)。
+Git worktree 为每个智能体提供**隔离的仓库副本**，防止文件冲突。关于 Claude Code 原生 worktree 支持的深入介绍，请参阅我们的 [Claude Code Worktree 指南](/zh/posts/ai/2026-02-28-claude-code-worktree-guide/)。
 
 ```bash
 # 为并行智能体创建 worktree
@@ -584,7 +584,7 @@ tmux attach -t agents
 
 ### 方法二：Claude Code Agent Teams（内置功能）
 
-Claude Code 有实验性的原生多智能体团队支持，使用 tmux 来显示。我们在 [Agent Teams 协作指南](/posts/ai/2026-02-28-claude-code-teams-guide/)中详细介绍了这个功能。
+Claude Code 有实验性的原生多智能体团队支持，使用 tmux 来显示。我们在 [Agent Teams 协作指南](/zh/posts/ai/2026-02-28-claude-code-teams-guide/)中详细介绍了这个功能。
 
 **启用 Agent Teams**：
 
@@ -752,7 +752,7 @@ tmux new -t shared -s paired
 
 ### 钩子和通知
 
-当 AI 智能体完成时收到通知。关于更高级的自动化，请参阅我们的 [Claude Code Hooks 指南](/posts/ai/2026-02-28-claude-code-hooks-guide/)——钩子可以在各种生命周期事件中触发脚本。
+当 AI 智能体完成时收到通知。关于更高级的自动化，请参阅我们的 [Claude Code Hooks 指南](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/)——钩子可以在各种生命周期事件中触发脚本。
 
 ```bash
 # 添加到 ~/.tmux.conf
@@ -857,8 +857,8 @@ Tmux 是那种用得越多回报越大的工具。单独使用它已经是一个
 
 ## 相关阅读
 
-- [Claude Code Worktree：并行运行多个 AI 任务](/posts/ai/2026-02-28-claude-code-worktree-guide/) — 深入了解 Git worktree 模式实现并行 Claude Code 会话
-- [Claude Code 团队协作：多智能体协作模式](/posts/ai/2026-02-28-claude-code-teams-guide/) — 掌握 Agent Teams 实现协调的多智能体开发
-- [Claude Code Hooks 指南：12 种自动化配置](/posts/ai/2026-02-28-claude-code-hooks-guide/) — 通过生命周期钩子自动化格式化、文件保护和通知
-- [如何安装 Claude Code：完整安装指南](/posts/ai/2026-02-25-claude-code-setup-guide/) — 从零开始使用 Claude Code
-- [Claude Code 指南 2026：你需要知道的一切](/posts/ai/2026-02-28-claude-code-complete-guide/) — 涵盖所有 Claude Code 功能的综合参考
+- [Claude Code Worktree：并行运行多个 AI 任务](/zh/posts/ai/2026-02-28-claude-code-worktree-guide/) — 深入了解 Git worktree 模式实现并行 Claude Code 会话
+- [Claude Code 团队协作：多智能体协作模式](/zh/posts/ai/2026-02-28-claude-code-teams-guide/) — 掌握 Agent Teams 实现协调的多智能体开发
+- [Claude Code Hooks 指南：12 种自动化配置](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) — 通过生命周期钩子自动化格式化、文件保护和通知
+- [如何安装 Claude Code：完整安装指南](/zh/posts/ai/2026-02-25-claude-code-setup-guide/) — 从零开始使用 Claude Code
+- [Claude Code 指南 2026：你需要知道的一切](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — 涵盖所有 Claude Code 功能的综合参考

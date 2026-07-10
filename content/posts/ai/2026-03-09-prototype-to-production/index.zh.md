@@ -37,7 +37,7 @@ answer = "AI 工具擅长快速生成原型（在原型阶段自动化率可达 
 
 本文为你提供一份结构化、可执行的检查清单来跨越这道鸿沟。基于斯坦福 CS146S 课程（第 8-9 周）关于现代软件开发与实际部署模式的内容，我们将逐一介绍每个 AI 生成应用上线前必须通过的六道关卡。
 
-无论你使用的是 [Claude Code](/posts/ai/2026-02-28-claude-code-complete-guide/)、Cursor、v0 还是其他 AI 编程工具，这些关卡都普遍适用。
+无论你使用的是 [Claude Code](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)、Cursor、v0 还是其他 AI 编程工具，这些关卡都普遍适用。
 
 ## 现实差距：原型 vs. 生产
 
@@ -177,7 +177,7 @@ AI 擅长从现有代码生成测试骨架。但**测试意图**——测什么�
 
 ### 关卡二：从"能用"到安全
 
-安全是 AI 生成代码最危险的地方。AI 工具的优化目标是"让它跑起来"，而不是"让它安全"。关于 AI 安全实践的深入探讨，请参阅 [2026 年 MCP 安全指南](/posts/ai/2026-03-10-mcp-security-2026/)。
+安全是 AI 生成代码最危险的地方。AI 工具的优化目标是"让它跑起来"，而不是"让它安全"。关于 AI 安全实践的深入探讨，请参阅 [2026 年 MCP 安全指南](/zh/posts/ai/2026-03-10-mcp-security-2026/)。
 
 #### AI 应用的 OWASP 检查清单
 
@@ -499,7 +499,7 @@ async def create_order(order: OrderCreate):
 运维角色的演进：
 
 - **手动调试**变为**引导 AI 调查**——你指方向，AI 收集数据
-- **编写 Runbook**变为**训练 AI Agent**——将运维知识编码到 Agent 上下文中（最佳实践请参阅[上下文工程指南](/posts/ai/2026-03-10-context-engineering-guide/)）
+- **编写 Runbook**变为**训练 AI Agent**——将运维知识编码到 Agent 上下文中（最佳实践请参阅[上下文工程指南](/zh/posts/ai/2026-03-10-context-engineering-guide/)）
 - **被动救火**变为**主动预防**——AI 持续分析指标，在影响用户之前预测问题
 
 [Resolve AI](https://resolve.ai/)、PagerDuty AIOps 和 Datadog Watchdog 等工具正在引领这一变革。关键是从低风险的自动化操作开始（重启 Pod、扩容副本），随着信任的建立逐步扩大 AI 的权限。
@@ -560,7 +560,7 @@ jobs:
 4. **用户反馈**通过应用内调查和工单收集
 5. **AI Agent 报告**每周汇总运维模式
 
-这个反馈闭环正是 [Vibe Coding](/posts/ai/2026-02-28-vibe-coding-explained/) 与工程纪律的交汇点。你可以用 AI 快速原型化修复和新功能，但方向来自生产数据，而非臆测。
+这个反馈闭环正是 [Vibe Coding](/zh/posts/ai/2026-02-28-vibe-coding-explained/) 与工程纪律的交汇点。你可以用 AI 快速原型化修复和新功能，但方向来自生产数据，而非臆测。
 
 ## AI 应用开发完整生命周期
 
@@ -685,10 +685,10 @@ jobs:
 
 ## 相关阅读
 
-- [Claude Code 完整指南](/posts/ai/2026-02-28-claude-code-complete-guide/) — 搭建面向生产工作流的 AI 开发环境
-- [2026 年 MCP 安全指南](/posts/ai/2026-03-10-mcp-security-2026/) — 深入了解 AI 工具集成的安全实践
-- [Vibe Coding 详解](/posts/ai/2026-02-28-vibe-coding-explained/) — 理解 AI 辅助开发的方法论
-- [AI 开发环境搭建](/posts/ai/2026-03-10-ai-dev-environment-setup/) — 配置面向生产级 AI 开发的工具
-- [上下文工程指南](/posts/ai/2026-03-10-context-engineering-guide/) — 掌握为 AI Agent 提供上下文的技巧
+- [Claude Code 完整指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — 搭建面向生产工作流的 AI 开发环境
+- [2026 年 MCP 安全指南](/zh/posts/ai/2026-03-10-mcp-security-2026/) — 深入了解 AI 工具集成的安全实践
+- [Vibe Coding 详解](/zh/posts/ai/2026-02-28-vibe-coding-explained/) — 理解 AI 辅助开发的方法论
+- [AI 开发环境搭建](/zh/posts/ai/2026-03-10-ai-dev-environment-setup/) — 配置面向生产级 AI 开发的工具
+- [上下文工程指南](/zh/posts/ai/2026-03-10-context-engineering-guide/) — 掌握为 AI Agent 提供上下文的技巧
 - [Google SRE Book](https://sre.google/sre-book/introduction/) — 站点可靠性工程的奠基之作
 - [OWASP Top 10](https://owasp.org/www-project-top-ten/) — Web 应用安全风险的行业标准

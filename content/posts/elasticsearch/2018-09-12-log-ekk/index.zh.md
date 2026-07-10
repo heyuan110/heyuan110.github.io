@@ -327,5 +327,5 @@ Kinesis agent相关操作：
 
 ## 相关文章
 
-- [Elasticsearch 入门教程：索引、分词、DSL 查询与高级搜索实战](/posts/elasticsearch/2018-09-12-elasticsearch/) - ES 核心概念与查询语法详解
-- [ELK 日志系统搭建教程：Elasticsearch + Logstash + Kibana + Kafka 完整指南](/posts/elasticsearch/2018-09-11-log-elk/) - 企业级日志收集分析平台搭建
+- [Elasticsearch 入门教程：索引、分词、DSL 查询与高级搜索实战](/zh/posts/elasticsearch/2018-09-12-elasticsearch/) - ES 核心概念与查询语法详解
+- [ELK 日志系统搭建教程：Elasticsearch + Logstash + Kibana + Kafka 完整指南](/zh/posts/elasticsearch/2018-09-11-log-elk/) - 企业级日志收集分析平台搭建

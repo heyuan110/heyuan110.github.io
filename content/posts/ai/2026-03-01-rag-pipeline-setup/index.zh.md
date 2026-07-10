@@ -29,7 +29,7 @@ answer = "当你需要查询大型、频繁更新的知识库并需要来源归�
 
 大语言模型（LLM）非常强大，但有两个根本性的局限：知识截止于训练数据的日期，而且对你的私有数据一无所知。检索增强生成（RAG）通过在查询时将 LLM 连接到外部知识库来解决这两个问题。
 
-本指南将带你从零搭建一套完整的 RAG 管道。你将了解 Embedding 的工作原理、如何选择向量数据库、如何实施有效的分块策略，以及如何用 Python 把所有组件串联起来。无论你是在构建客服机器人、文档助手，还是[带记忆的 AI Agent](/posts/ai/2026-02-21-ai-agent-memory-systems/)，RAG 管道都是基础设施。
+本指南将带你从零搭建一套完整的 RAG 管道。你将了解 Embedding 的工作原理、如何选择向量数据库、如何实施有效的分块策略，以及如何用 Python 把所有组件串联起来。无论你是在构建客服机器人、文档助手，还是[带记忆的 AI Agent](/zh/posts/ai/2026-02-21-ai-agent-memory-systems/)，RAG 管道都是基础设施。
 
 ## 什么是 RAG？为什么重要？
 
@@ -644,7 +644,7 @@ def rerank(query: str, chunks: list[dict], top_k: int = 3) -> list[dict]:
 
 对于大多数刚起步的团队，RAG 是正确的第一步。它是将 LLM 连接到你数据的最具性价比的方式，不需要训练基础设施，而且天然支持在不重新训练的情况下更新知识库。
 
-如果你在构建 AI Agent，RAG 管道就更加重要了。[AI Agent](/posts/ai/2026-03-07-build-ai-agent-python/) 可以将 RAG 作为工具使用 —— 在 Agent 循环中调用检索函数作为可用操作之一。这种模式在生产系统中广泛使用，包括 [Claude Code](/posts/ai/2026-02-28-claude-code-complete-guide/) 等工具，它们使用 [MCP 协议](/posts/ai/2026-02-28-mcp-protocol-explained/)连接外部数据源。
+如果你在构建 AI Agent，RAG 管道就更加重要了。[AI Agent](/zh/posts/ai/2026-03-07-build-ai-agent-python/) 可以将 RAG 作为工具使用 —— 在 Agent 循环中调用检索函数作为可用操作之一。这种模式在生产系统中广泛使用，包括 [Claude Code](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) 等工具，它们使用 [MCP 协议](/zh/posts/ai/2026-02-28-mcp-protocol-explained/)连接外部数据源。
 
 ## 生产清单
 
@@ -714,13 +714,13 @@ RAG 管道不是一项单一技术，而是由多个环环相扣的组件构成�
 
 先搭建简单版本。衡量检索质量。然后优化最弱的环节。大多数 RAG 失败是检索失败，而大多数检索失败是分块或 Embedding 模型的问题 —— 而非向量数据库的问题。
 
-关于 RAG 如何融入更广泛的 AI 系统，可以参阅[上下文工程指南](/posts/ai/2026-03-10-context-engineering-guide/)，了解如何设计 AI 系统接收的信息流。
+关于 RAG 如何融入更广泛的 AI 系统，可以参阅[上下文工程指南](/zh/posts/ai/2026-03-10-context-engineering-guide/)，了解如何设计 AI 系统接收的信息流。
 
 ## 相关阅读
 
-- [从零用 Python 构建 AI Agent](/posts/ai/2026-03-07-build-ai-agent-python/) —— 学习如何构建可将 RAG 作为工具使用的 Agent 循环
-- [AI Agent 记忆系统](/posts/ai/2026-02-21-ai-agent-memory-systems/) —— Agent 如何使用向量数据库实现长期记忆
-- [MCP 协议详解](/posts/ai/2026-02-28-mcp-protocol-explained/) —— 将 AI 工具连接到外部数据源的协议
-- [上下文工程指南](/posts/ai/2026-03-10-context-engineering-guide/) —— 为 AI 系统设计信息流
+- [从零用 Python 构建 AI Agent](/zh/posts/ai/2026-03-07-build-ai-agent-python/) —— 学习如何构建可将 RAG 作为工具使用的 Agent 循环
+- [AI Agent 记忆系统](/zh/posts/ai/2026-02-21-ai-agent-memory-systems/) —— Agent 如何使用向量数据库实现长期记忆
+- [MCP 协议详解](/zh/posts/ai/2026-02-28-mcp-protocol-explained/) —— 将 AI 工具连接到外部数据源的协议
+- [上下文工程指南](/zh/posts/ai/2026-03-10-context-engineering-guide/) —— 为 AI 系统设计信息流
 - [MTEB 排行榜](https://huggingface.co/spaces/mteb/leaderboard) —— 比较 Embedding 模型性能（外部链接）
 - [Qdrant 文档](https://qdrant.tech/documentation/) —— Qdrant 向量数据库官方文档（外部链接）

@@ -13,7 +13,7 @@ jira和confluence都是Atlassian公司产品。jira是项目与事务跟踪工�
 
 ## 一、环境
 
-前一篇讲了[挖矿病毒](/posts/linux/2019-04-12-linux-kerberods/)的入侵，决定对那台服务器上相关服务拆分迁移。上面的jira和confluence共用jira账号体系，迁移时两者要注意安装顺序，最后确定的方案：
+前一篇讲了[挖矿病毒](/zh/posts/linux/2019-04-12-linux-kerberods/)的入侵，决定对那台服务器上相关服务拆分迁移。上面的jira和confluence共用jira账号体系，迁移时两者要注意安装顺序，最后确定的方案：
 
 ![](https://raw.githubusercontent.com/heyuan110/static-source/master/media/15553944919153/15553972819985.jpg)
 

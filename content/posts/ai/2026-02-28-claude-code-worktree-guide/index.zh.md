@@ -274,7 +274,7 @@ claude -w implement-subscriptions
 > changes, then the API endpoints, then the webhook handlers.
 ```
 
-规划者拥有完整代码库的只读上下文。实现者在隔离环境中编写代码。两个会话的上下文互不污染。更多关于多 Agent 协作模式的内容，请参阅我们的 [Claude Code 团队协作指南](/posts/ai/2026-02-28-claude-code-teams-guide/)。
+规划者拥有完整代码库的只读上下文。实现者在隔离环境中编写代码。两个会话的上下文互不污染。更多关于多 Agent 协作模式的内容，请参阅我们的 [Claude Code 团队协作指南](/zh/posts/ai/2026-02-28-claude-code-teams-guide/)。
 
 ### 场景五：功能开发中途修复 Bug
 
@@ -335,7 +335,7 @@ claude -w stuff
 > Run npm install before starting any development work.
 ```
 
-或者在你的 [CLAUDE.md](/posts/ai/2026-02-28-claude-code-claudemd-guide/) 中添加规则，让 Claude 始终记住：
+或者在你的 [CLAUDE.md](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) 中添加规则，让 Claude 始终记住：
 
 ```markdown
 ## Worktree Rules
@@ -343,7 +343,7 @@ claude -w stuff
   before starting work in a new worktree.
 ```
 
-你还可以使用 [Claude Code hooks](/posts/ai/2026-02-28-claude-code-hooks-guide/) 来自动化这一过程——设置一个 post-session hook，检测到新的 worktree 时自动运行安装命令。
+你还可以使用 [Claude Code hooks](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) 来自动化这一过程——设置一个 post-session hook，检测到新的 worktree 时自动运行安装命令。
 
 ### 处理 .env 文件
 
@@ -495,7 +495,7 @@ Worktree 复制你的源文件，但**不复制** `.git` 目录（这是所有 w
 
 ### Git hooks 在 worktree 中能用吗？
 
-能用。Git hooks（pre-commit、pre-push 等）在 worktree 中的工作方式完全相同，因为它们定义在共享的 `.git/hooks` 目录中。如果你使用 [Claude Code hooks](/posts/ai/2026-02-28-claude-code-hooks-guide/) 进行自动化（格式化、lint、文件保护），这些在 worktree 会话中同样生效——`.claude/` 配置从仓库根目录读取。
+能用。Git hooks（pre-commit、pre-push 等）在 worktree 中的工作方式完全相同，因为它们定义在共享的 `.git/hooks` 目录中。如果你使用 [Claude Code hooks](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) 进行自动化（格式化、lint、文件保护），这些在 worktree 会话中同样生效——`.claude/` 配置从仓库根目录读取。
 
 ### 如果手动删除了 worktree 目录会怎样？
 
@@ -525,7 +525,7 @@ AI 辅助开发的瓶颈不再是模型思考的速度，而是你能同时给�
 
 ## 相关阅读
 
-- [Claude Code Setup Guide 2026](/posts/ai/2026-02-25-claude-code-setup-guide/) -- 从零开始安装和配置 Claude Code
-- [Claude Code for Teams: Multi-Agent Collaboration](/posts/ai/2026-02-28-claude-code-teams-guide/) -- 运行多个 Claude 实例的高级模式
-- [Claude Code Hooks Guide](/posts/ai/2026-02-28-claude-code-hooks-guide/) -- 自动化格式化、lint 和安全检查
-- [10 Claude Code Mistakes Beginners Make](/posts/ai/2026-02-25-claude-code-mistakes/) -- 常见陷阱及避免方法
+- [Claude Code Setup Guide 2026](/zh/posts/ai/2026-02-25-claude-code-setup-guide/) -- 从零开始安装和配置 Claude Code
+- [Claude Code for Teams: Multi-Agent Collaboration](/zh/posts/ai/2026-02-28-claude-code-teams-guide/) -- 运行多个 Claude 实例的高级模式
+- [Claude Code Hooks Guide](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) -- 自动化格式化、lint 和安全检查
+- [10 Claude Code Mistakes Beginners Make](/zh/posts/ai/2026-02-25-claude-code-mistakes/) -- 常见陷阱及避免方法

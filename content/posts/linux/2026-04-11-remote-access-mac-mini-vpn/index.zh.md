@@ -259,7 +259,7 @@ zerotier-idtool genmoon moon.json
 
 > **Cloudflare Tunnel**（原 Argo Tunnel）利用 Cloudflare 的全球网络做中继。`cloudflared` 有 1.3 万+ GitHub Star（[来源](https://github.com/cloudflare/cloudflared)）。不需要公网 IP，不需要开端口——你的设备主动向 Cloudflare 发起连接。
 
-Cloudflare Tunnel 的详细搭建教程我在[另一篇文章](/posts/linux/2026-03-28-cloudflare-tunnel-guide/)里写过，包括架构图和完整步骤。简要版：
+Cloudflare Tunnel 的详细搭建教程我在[另一篇文章](/zh/posts/ai/2026-03-28-cloudflare-tunnel-guide/)里写过，包括架构图和完整步骤。简要版：
 
 ```bash
 brew install cloudflare/cloudflare/cloudflared
@@ -427,7 +427,7 @@ sudo zerotier-cli leave <id>       # 离开网络
 
 ### 12.3 SSH 隧道能不能作为简单替代？
 
-**可以。** SSH 反向隧道（`ssh -R`）是最简单的单服务暴露方案，需要一台有公网 IP 的 VPS。缺点是稳定性差——SSH 连接会断，需要 `autossh` 这样的工具来保活。详细教程见我的[内网穿透指南](/posts/linux/2026-03-28-cloudflare-tunnel-guide/)。
+**可以。** SSH 反向隧道（`ssh -R`）是最简单的单服务暴露方案，需要一台有公网 IP 的 VPS。缺点是稳定性差——SSH 连接会断，需要 `autossh` 这样的工具来保活。详细教程见我的[内网穿透指南](/zh/posts/ai/2026-03-28-cloudflare-tunnel-guide/)。
 
 ---
 
@@ -445,9 +445,9 @@ sudo zerotier-cli leave <id>       # 离开网络
 
 ## 十四、延伸阅读
 
-- [内网穿透完全指南：SSH 隧道、frp、Cloudflare Tunnel](/posts/linux/2026-03-28-cloudflare-tunnel-guide/) - 反向隧道的架构图解和完整搭建教程
-- [Linux 和 macOS 常用命令速查](/posts/linux/2020-03-19-linux-mac-commands/) - 服务器管理必备终端命令
-- [Docker Compose 完全指南](/posts/docker/2026-01-19-docker-compose-complete-guide/) - 用容器跑 frp 或 WireGuard 服务
+- [内网穿透完全指南：SSH 隧道、frp、Cloudflare Tunnel](/zh/posts/ai/2026-03-28-cloudflare-tunnel-guide/) - 反向隧道的架构图解和完整搭建教程
+- [Linux 和 macOS 常用命令速查](/zh/posts/linux/2020-03-19-linux-mac-commands/) - 服务器管理必备终端命令
+- [Docker Compose 完全指南](/zh/posts/docker/2026-01-19-docker-compose-complete-guide/) - 用容器跑 frp 或 WireGuard 服务
 
 ---
 

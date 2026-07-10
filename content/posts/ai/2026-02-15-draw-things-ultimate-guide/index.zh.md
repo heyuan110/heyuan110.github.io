@@ -722,7 +722,7 @@ Draw Things 是 Mac 上**被严重低估**的 AI 生图工具。它不只是一�
 
 ## 相关阅读
 
-- [Mac Mini 本地 AI 生图选型指南：ComfyUI、DiffusionBee、Draw Things 深度对比](/posts/ai/2026-02-15-mac-mini-local-image-generation/)
-- [AI 工作流实战指南：不是未来，是现在](/posts/ai/2026-01-30-ai-workflow-real-guide/)
-- [Claude Code 最佳实践：从入门到精通的完整指南](/posts/ai/2026-01-06-claudecode-best-practices/)
-- [Claude Code 浏览器自动化实战：用 AI 操控网页的完整指南](/posts/ai/2026-01-28-claude-code-browser-automation/)
+- [Mac Mini 本地 AI 生图选型指南：ComfyUI、DiffusionBee、Draw Things 深度对比](/zh/posts/ai/2026-02-15-mac-mini-local-image-generation/)
+- [AI 工作流实战指南：不是未来，是现在](/zh/posts/ai/2026-01-30-ai-workflow-real-guide/)
+- [Claude Code 最佳实践：从入门到精通的完整指南](/zh/posts/ai/2026-01-06-claudecode-best-practices/)
+- [Claude Code 浏览器自动化实战：用 AI 操控网页的完整指南](/zh/posts/ai/2026-01-28-claude-code-browser-automation/)

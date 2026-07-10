@@ -53,7 +53,7 @@ Lovable 的数据夸张到离谱:据 [TechCrunch 报道](https://techcrunch.com/
 
 25 美元/月的 Pro 档([官方定价页](https://lovable.dev/pricing):每月 100 credits 加每日赠送)买到的是:聊着天就能得到完整应用——React 前端、真实的 PostgreSQL 数据库、能用的登录系统、文件存储、一键上线。计费按 credit:改个按钮颜色约 0.5 credit,"做个带图片的落地页"约 1.7 credit。单人验证一个想法,一个月的迭代基本装得进 Pro 档。对比外包一个 MVP 动辄三五万人民币,这个性价比不需要多解释。
 
-但我要给一个 Lovable 自己的营销绝对不会说的硬判断:**Lovable 是验证工具,不是生产平台**。两个具体的坑等着没想明白这一点的人。第一,credit 消耗随应用复杂度非线性上涨——应用小的时候改什么都便宜,等功能之间开始互相牵扯,每次修改要带的上下文更多、消耗更大、失败率也更高,第十周的迭代成本是第一周的好几倍。第二,[Veracode 的 GenAI 安全报告](https://www.veracode.com/blog/)发现约 45% 的 AI 生成代码样本过不了安全测试,存在 OWASP 类漏洞——Lovable 的输出不例外,而它的目标用户恰恰是最没能力发现这些问题的人群。涉及支付或用户数据的应用,上线前的人工安全审查我认为没有商量余地,具体为什么可以看我之前写的[安全 vibe coding 指南](/posts/ai/2026-02-24-secure-vibe-coding/)。
+但我要给一个 Lovable 自己的营销绝对不会说的硬判断:**Lovable 是验证工具,不是生产平台**。两个具体的坑等着没想明白这一点的人。第一,credit 消耗随应用复杂度非线性上涨——应用小的时候改什么都便宜,等功能之间开始互相牵扯,每次修改要带的上下文更多、消耗更大、失败率也更高,第十周的迭代成本是第一周的好几倍。第二,[Veracode 的 GenAI 安全报告](https://www.veracode.com/blog/)发现约 45% 的 AI 生成代码样本过不了安全测试,存在 OWASP 类漏洞——Lovable 的输出不例外,而它的目标用户恰恰是最没能力发现这些问题的人群。涉及支付或用户数据的应用,上线前的人工安全审查我认为没有商量余地,具体为什么可以看我之前写的[安全 vibe coding 指南](/zh/posts/ai/2026-02-24-secure-vibe-coding/)。
 
 **国内视角**还要加三条:官网访问没问题,但付费需要国际信用卡;底层 Supabase 的国内访问延迟明显,面向国内用户的应用体验会打折;部署产物默认在海外节点,备案更是无从谈起。所以我的建议是——Lovable 适合做**面向海外用户**的产品验证,或者纯粹的内部演示;要做国内 C 端产品,要么验证完导出代码自己部署到国内云,要么直接看下文的国产替代。
 
@@ -63,7 +63,7 @@ v0 在 2024-2025 年一直被定型为"React 组件生成器",说实话这个定
 
 导入已有代码库这个功能是战略信号。Lovable 和 Bolt 是项目"出生"的地方,v0 现在把自己定位成往现有产品上"续建"的地方。一个已经跑在 Vercel 上的 Next.js 团队,设计师或产品经理打开 v0 描述一个新的设置页,产出的是一个真实的、工程师可以按正常流程 review 的 PR。三个工具里只有 v0 做到了这一点,而这恰恰化解了 AI 生成工具最恶心的问题——产出物锁在一个团队没人能审的花园里。
 
-代价同样真实。第一是**生态引力**:v0 没有合同意义上的锁定,但它的一切默认假设都是 Next.js + Vercel。想用 v0 做一个部署到阿里云的项目,等于逆流游泳。第二是**计费不可预测**:v0 改成了按 token 折算 credit 的计费,社区价格追踪站[记录到 2026 年初费率大约翻倍](https://costbench.com/software/ai-coding-assistants/v0-vercel/)而套餐标价不动。简单组件几分钱,复杂的多文件生成几个 prompt 就能吃掉 20 美元月度额度的一大块,而且跑完才知道花了多少。我在 [Claude Code vs Cursor vs Windsurf 对比](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/)里说过:不可预测的计量会让人开始"省着问",迭代自由度没了,工具的意义就打了对折。
+代价同样真实。第一是**生态引力**:v0 没有合同意义上的锁定,但它的一切默认假设都是 Next.js + Vercel。想用 v0 做一个部署到阿里云的项目,等于逆流游泳。第二是**计费不可预测**:v0 改成了按 token 折算 credit 的计费,社区价格追踪站[记录到 2026 年初费率大约翻倍](https://costbench.com/software/ai-coding-assistants/v0-vercel/)而套餐标价不动。简单组件几分钱,复杂的多文件生成几个 prompt 就能吃掉 20 美元月度额度的一大块,而且跑完才知道花了多少。我在 [Claude Code vs Cursor vs Windsurf 对比](/zh/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/)里说过:不可预测的计量会让人开始"省着问",迭代自由度没了,工具的意义就打了对折。
 
 **国内视角有个致命细节**:v0 生成的项目默认部署到 Vercel,而 **vercel.app 域名在国内长期无法直接访问**。很多人用 v0 快速做了个落地页发到群里,才发现国内用户全部打不开。解法是绑定自定义域名并配置合适的 DNS 解析,但这已经超出了"非技术用户"的舒适区。所以我的判断:v0 适合**做海外市场前端的工程师和团队**;国内业务用它写组件、拿代码可以,别指望它的部署链路。
 
@@ -102,7 +102,7 @@ Bolt 的坑是结构性的,我直说,因为这是全网评测里最少被讲透�
 
 接下来是大多数对比文章不写的部分,因为写了就没法挂返佣链接了:**对一大类用户,"Lovable vs v0 vs Bolt"的正确答案是"都不用"**。
 
-边界线我这样画。应用生成器打包卖三样东西:AI 编码模型、托管环境(部署、数据库、域名)、隐藏文件的聊天抽象层。模型已经不是差异点——Claude Code、Cursor 和这三家用的都是前沿模型。所以你真正付费购买的是环境和抽象层。如果这两样你本来就有——你会用终端,知道 `git push` 和部署是什么——那这个打包对你就是纯粹的开销,终端原生的 Agent 给你严格更多的控制,成本曲线还更平。具体工作流我在 [Claude Code 完全指南](/posts/ai/2026-02-28-claude-code-complete-guide/)里写透了;而我在 [2026 Agentic Coding 趋势](/posts/ai/2026-02-23-agentic-coding-trends-2026/)里描述的趋势只在加速:编码 Agent 这一侧在不断吞掉应用生成器的地盘——Agent 现在也能部署、也能开浏览器、也能管基础设施,Vercel 自己都推出了[面向 Agent 的浏览器工具链](/posts/ai/2026-01-13-vercel-agent-browser/),方向再明显不过。
+边界线我这样画。应用生成器打包卖三样东西:AI 编码模型、托管环境(部署、数据库、域名)、隐藏文件的聊天抽象层。模型已经不是差异点——Claude Code、Cursor 和这三家用的都是前沿模型。所以你真正付费购买的是环境和抽象层。如果这两样你本来就有——你会用终端,知道 `git push` 和部署是什么——那这个打包对你就是纯粹的开销,终端原生的 Agent 给你严格更多的控制,成本曲线还更平。具体工作流我在 [Claude Code 完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)里写透了;而我在 [2026 Agentic Coding 趋势](/zh/posts/ai/2026-02-23-agentic-coding-trends-2026/)里描述的趋势只在加速:编码 Agent 这一侧在不断吞掉应用生成器的地盘——Agent 现在也能部署、也能开浏览器、也能管基础设施,Vercel 自己都推出了[面向 Agent 的浏览器工具链](/zh/posts/ai/2026-01-13-vercel-agent-browser/),方向再明显不过。
 
 具体来说,满足以下任何一条就跳过这三个生成器:
 
@@ -156,7 +156,7 @@ flowchart TD
 
 ## 从原型到生产:现实的工作流
 
-所以我在 2026 年真正推荐的不是"选一个工具",而是"设计一条带交接点的管线"——这是我从[原型到生产](/posts/ai/2026-03-09-prototype-to-production/)那篇之后持续打磨的流程:
+所以我在 2026 年真正推荐的不是"选一个工具",而是"设计一条带交接点的管线"——这是我从[原型到生产](/zh/posts/ai/2026-03-09-prototype-to-production/)那篇之后持续打磨的流程:
 
 ```mermaid
 flowchart LR
@@ -195,9 +195,9 @@ flowchart LR
 
 ## Related Reading
 
-- [Claude Code vs Cursor vs Windsurf:2026 对比](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/)
-- [Claude Code 完全指南](/posts/ai/2026-02-28-claude-code-complete-guide/)
-- [2026 Agentic Coding 趋势](/posts/ai/2026-02-23-agentic-coding-trends-2026/)
-- [Vercel Agent Browser 意味着什么](/posts/ai/2026-01-13-vercel-agent-browser/)
-- [从原型到生产](/posts/ai/2026-03-09-prototype-to-production/)
-- [安全 Vibe Coding 指南](/posts/ai/2026-02-24-secure-vibe-coding/)
+- [Claude Code vs Cursor vs Windsurf:2026 对比](/zh/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/)
+- [Claude Code 完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)
+- [2026 Agentic Coding 趋势](/zh/posts/ai/2026-02-23-agentic-coding-trends-2026/)
+- [Vercel Agent Browser 意味着什么](/zh/posts/ai/2026-01-13-vercel-agent-browser/)
+- [从原型到生产](/zh/posts/ai/2026-03-09-prototype-to-production/)
+- [安全 Vibe Coding 指南](/zh/posts/ai/2026-02-24-secure-vibe-coding/)

@@ -462,7 +462,7 @@ tools:                     # 限制此技能可用的工具
 
 传统命令继续有效。如果你有现成的 `.claude/commands/` 文件，它们会继续工作。方便时再迁移——或者不迁移也行。同名的 Skill 和命令会优先解析为 Skill。
 
-要深入了解构建高级 Skills，请参阅 [Claude Code Skills 指南](/posts/ai/2026-02-28-claude-code-skills-guide/)。
+要深入了解构建高级 Skills，请参阅 [Claude Code Skills 指南](/zh/posts/ai/2026-02-28-claude-code-skills-guide/)。
 
 ## 环境变量
 
@@ -667,9 +667,9 @@ claude -p "your query" \
 
 ## 相关阅读
 
-- [Claude Code Guide 2026: Everything You Need to Know](/posts/ai/2026-02-28-claude-code-complete-guide/) -- 链接所有 Claude Code 指南的中心页面
-- [Claude Code Hooks: Automate Your AI Workflow](/posts/ai/2026-03-05-claude-code-hooks-guide/) -- 使用生命周期钩子实现确定性自动化
-- [Claude Code Skills Guide: Create Custom Workflows](/posts/ai/2026-02-28-claude-code-skills-guide/) -- 深入了解构建 Skills
-- [CLAUDE.md Best Practices: Write Files That Actually Work](/posts/ai/2026-03-05-claude-code-claudemd-best-practices/) -- 高效的项目配置
-- [Install Claude Code in 5 Minutes](/posts/ai/2026-02-25-claude-code-setup-guide/) -- 从零开始入门
-- [10 Claude Code Mistakes Beginners Make](/posts/ai/2026-02-25-claude-code-mistakes/) -- 避免常见陷阱
+- [Claude Code Guide 2026: Everything You Need to Know](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) -- 链接所有 Claude Code 指南的中心页面
+- [Claude Code Hooks: Automate Your AI Workflow](/zh/posts/ai/2026-03-05-claude-code-hooks-guide/) -- 使用生命周期钩子实现确定性自动化
+- [Claude Code Skills Guide: Create Custom Workflows](/zh/posts/ai/2026-02-28-claude-code-skills-guide/) -- 深入了解构建 Skills
+- [CLAUDE.md Best Practices: Write Files That Actually Work](/zh/posts/ai/2026-03-05-claude-code-claudemd-best-practices/) -- 高效的项目配置
+- [Install Claude Code in 5 Minutes](/zh/posts/ai/2026-02-25-claude-code-setup-guide/) -- 从零开始入门
+- [10 Claude Code Mistakes Beginners Make](/zh/posts/ai/2026-02-25-claude-code-mistakes/) -- 避免常见陷阱

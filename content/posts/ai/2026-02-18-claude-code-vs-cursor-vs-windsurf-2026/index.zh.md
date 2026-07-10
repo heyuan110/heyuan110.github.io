@@ -243,8 +243,8 @@ keywords = ['Claude Code vs Cursor', 'Windsurf 对比', 'AI IDE 选型', 'AI编�
 
 ## 相关阅读
 
-- [OpenClaw 作者的 Claude Code 开发方法论：一个人如何用 AI 写出 10 万星项目](/posts/ai/2026-01-31-openclaw-claude-code-workflow/)
-- [Cursor Agent 编码最佳实践：官方指南完整解读](/posts/ai/2026-01-19-cursor-agent-best-practices/)
-- [OpenClaw 超详细上手教程：小白友好 + 老鸟技巧](/posts/ai/2026-02-12-openclaw-usage-tutorial/)
-- [Claude Code Hooks 实战指南：12 个即用配置让 AI 自动守规矩](/posts/ai/2026-02-18-claude-code-hooks-guide/)
-- [OpenClaw 自动化别踩坑：装 3 个 Skill 不等于真的好用](/posts/ai/2026-02-14-openclaw-automation-pitfalls/)
+- [OpenClaw 作者的 Claude Code 开发方法论：一个人如何用 AI 写出 10 万星项目](/zh/posts/ai/2026-01-31-openclaw-claude-code-workflow/)
+- [Cursor Agent 编码最佳实践：官方指南完整解读](/zh/posts/ai/2026-01-19-cursor-agent-best-practices/)
+- [OpenClaw 超详细上手教程：小白友好 + 老鸟技巧](/zh/posts/ai/2026-02-12-openclaw-usage-tutorial/)
+- [Claude Code Hooks 实战指南：12 个即用配置让 AI 自动守规矩](/zh/posts/ai/2026-02-18-claude-code-hooks-guide/)
+- [OpenClaw 自动化别踩坑：装 3 个 Skill 不等于真的好用](/zh/posts/ai/2026-02-14-openclaw-automation-pitfalls/)

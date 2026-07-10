@@ -214,7 +214,7 @@ VS Code 的子 Agent 功能会隔离各 Agent 的上下文，并行执行不会�
 
 ### Agent HQ vs Claude Code CLI
 
-[Claude Code CLI](/posts/ai/2026-01-14-claude-code-guide/) 是 Anthropic 推出的终端编程 Agent，不依赖任何 IDE。
+[Claude Code CLI](/zh/posts/ai/2026-01-14-claude-code-guide/) 是 Anthropic 推出的终端编程 Agent，不依赖任何 IDE。
 
 | 维度 | Agent HQ（VS Code 中的 Claude） | Claude Code CLI |
 |------|-------------------------------|-----------------|
@@ -222,14 +222,14 @@ VS Code 的子 Agent 功能会隔离各 Agent 的上下文，并行执行不会�
 | **多 Agent** | 同时运行 Claude + Codex + Copilot | 仅 Claude |
 | **工作流** | 点击操作，会话面板 | 命令驱动，可脚本化 |
 | **上下文** | VS Code 工作区上下文 | 完整文件系统 + Shell 访问 |
-| **Hook 和自动化** | 有限 | 丰富（前后置 Hook、[worktree](/posts/ai/2026-02-20-claude-code-worktree/)） |
+| **Hook 和自动化** | 有限 | 丰富（前后置 Hook、[worktree](/zh/posts/ai/2026-02-20-claude-code-worktree/)） |
 | **适合** | 团队协作、可视化工作流、Agent 对比 | 高级用户、自动化、CI/CD 集成 |
 
-**结论：** 想要多 Agent 对比和可视化会话管理，Agent HQ 更强。想要极致的控制力、脚本化能力和[深度自动化](/posts/ai/2026-02-18-claude-code-hooks-guide/)，Claude Code CLI 依然是更好的选择。
+**结论：** 想要多 Agent 对比和可视化会话管理，Agent HQ 更强。想要极致的控制力、脚本化能力和[深度自动化](/zh/posts/ai/2026-02-18-claude-code-hooks-guide/)，Claude Code CLI 依然是更好的选择。
 
 ### Agent HQ vs Cursor
 
-[Cursor](/posts/ai/2026-03-08-cursor-setup-guide/) 是基于 VS Code 魔改的 AI 原生 IDE，有自己的 Agent 模式。
+[Cursor](/zh/posts/ai/2026-03-08-cursor-setup-guide/) 是基于 VS Code 魔改的 AI 原生 IDE，有自己的 Agent 模式。
 
 | 维度 | Agent HQ | Cursor |
 |------|----------|--------|
@@ -239,13 +239,13 @@ VS Code 的子 Agent 功能会隔离各 Agent 的上下文，并行执行不会�
 | **多 Agent** | 原生支持，一等公民 | 不支持 |
 | **价格** | Copilot Pro+（$39/月） | Cursor Pro（$20/月）+ API 费用 |
 
-**结论：** 如果多 Agent 工作流对你重要，Cursor 目前没有对等方案。如果你更喜欢紧密集成的单 Agent 体验和优秀的行内补全，[Cursor 仍然很强](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/)。
+**结论：** 如果多 Agent 工作流对你重要，Cursor 目前没有对等方案。如果你更喜欢紧密集成的单 Agent 体验和优秀的行内补全，[Cursor 仍然很强](/zh/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/)。
 
 ### Agent HQ vs 独立 Copilot
 
 Agent HQ 本质上是 Copilot 的升级版。之前 Copilot 能做的事一样都没少，只是多了 Claude 和 Codex。如果你的订阅等级够，没有理由不升级。
 
-更详细的工具对比可以参考我们的 [2026 年 AI 编程 Agent 全面评测](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)。
+更详细的工具对比可以参考我们的 [2026 年 AI 编程 Agent 全面评测](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)。
 
 ## 实用建议和最佳实践
 
@@ -318,7 +318,7 @@ Agent HQ 目前还在公测阶段，有一些需要了解的不足：
 2. **会话配额** — 每个 Agent 会话消耗高级请求，频繁使用三 Agent 工作流开销不小
 3. **跨会话无共享上下文** — 各会话独立运行没有共享记忆，Agent 之间传递上下文需要手动操作
 4. **云端 Agent 启动慢** — 云端会话可能需要几分钟才能启动，不适合快速提问
-5. **Agent 定制能力有限** — 除了 Prompt 工程之外无法调整 Agent 行为（不像 [Claude Code 的 CLAUDE.md](/posts/ai/2026-02-28-claude-code-claudemd-guide/) 或[自定义 Skills](/posts/ai/2026-02-28-claude-code-skills-guide/)）
+5. **Agent 定制能力有限** — 除了 Prompt 工程之外无法调整 Agent 行为（不像 [Claude Code 的 CLAUDE.md](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) 或[自定义 Skills](/zh/posts/ai/2026-02-28-claude-code-skills-guide/)）
 
 ## 常见问题
 
@@ -332,7 +332,7 @@ Agent HQ 目前还在公测阶段，有一些需要了解的不足：
 
 **Q：Agent HQ 能替代 Claude Code CLI 吗？**
 
-不完全能。Claude Code CLI 有更深的终端集成、[Hook 自动化](/posts/ai/2026-02-18-claude-code-hooks-guide/)和 [worktree 工作流](/posts/ai/2026-02-28-claude-code-worktree-guide/)，这些 Agent HQ 做不到。两者服务于不同的工作流——Agent HQ 适合可视化多 Agent 协作，CLI 适合自动化和脚本化。
+不完全能。Claude Code CLI 有更深的终端集成、[Hook 自动化](/zh/posts/ai/2026-02-18-claude-code-hooks-guide/)和 [worktree 工作流](/zh/posts/ai/2026-02-28-claude-code-worktree-guide/)，这些 Agent HQ 做不到。两者服务于不同的工作流——Agent HQ 适合可视化多 Agent 协作，CLI 适合自动化和脚本化。
 
 **Q：Agent HQ 怎么处理代码隐私？**
 
@@ -344,8 +344,8 @@ Agent 的输出通过 GitHub 基础设施处理，隐私保障与 Copilot 一致
 
 ## 相关阅读
 
-- [2026 年 AI 编程 Agent 全面评测（7 款工具实测）](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — Agent HQ 各 Agent 的单独表现对比
-- [Claude Code vs GitHub Copilot 2026：两个都用之后的选择建议](/posts/ai/2026-03-05-claude-code-vs-copilot/) — Copilot 与 Claude 的详细对比
-- [Claude Code vs Codex CLI：8 个维度正面对决](/posts/ai/2026-02-19-claude-code-vs-codex/) — Claude 与 Codex 深度对比
-- [Claude Code vs Cursor vs Windsurf 2026：速度、成本与控制力](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/) — 更广泛的 AI IDE 对比
-- [GitHub Copilot vs Claude Code vs Cursor：2026 年三方对比](/posts/ai/2026-02-28-copilot-vs-claude-vs-cursor/) — 三款工具横评
+- [2026 年 AI 编程 Agent 全面评测（7 款工具实测）](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — Agent HQ 各 Agent 的单独表现对比
+- [Claude Code vs GitHub Copilot 2026：两个都用之后的选择建议](/zh/posts/ai/2026-03-05-claude-code-vs-copilot/) — Copilot 与 Claude 的详细对比
+- [Claude Code vs Codex CLI：8 个维度正面对决](/zh/posts/ai/2026-02-19-claude-code-vs-codex/) — Claude 与 Codex 深度对比
+- [Claude Code vs Cursor vs Windsurf 2026：速度、成本与控制力](/zh/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/) — 更广泛的 AI IDE 对比
+- [GitHub Copilot vs Claude Code vs Cursor：2026 年三方对比](/zh/posts/ai/2026-02-28-copilot-vs-claude-vs-cursor/) — 三款工具横评

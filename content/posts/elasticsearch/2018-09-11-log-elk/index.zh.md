@@ -1154,5 +1154,5 @@ Elasticsearch-head：http://x.x.x.x:9100/?auth_user=elastic&auth_password=change
 
 ## 相关文章
 
-- [Elasticsearch 入门教程：索引、分词、DSL 查询与高级搜索实战](/posts/elasticsearch/2018-09-12-elasticsearch/) - ES 核心概念与查询语法详解
-- [AWS EKK 日志系统搭建：Elasticsearch + Kinesis + Kibana 实战教程](/posts/elasticsearch/2018-09-12-log-ekk/) - 基于 AWS 托管服务的日志方案
+- [Elasticsearch 入门教程：索引、分词、DSL 查询与高级搜索实战](/zh/posts/elasticsearch/2018-09-12-elasticsearch/) - ES 核心概念与查询语法详解
+- [AWS EKK 日志系统搭建：Elasticsearch + Kinesis + Kibana 实战教程](/zh/posts/elasticsearch/2018-09-12-log-ekk/) - 基于 AWS 托管服务的日志方案

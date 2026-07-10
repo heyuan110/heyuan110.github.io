@@ -40,7 +40,7 @@ Claude Code 是这轮增长的核心引擎。它比 ChatGPT 更快达到 $1B ARR
 
 Claude Code 的 Agent Teams 功能正是这一趋势的代表。通过 `/agents` 命令，开发者可以编排多个专门化 Agent，每个 Agent 有独立的系统提示和工具权限，以主从架构协作完成复杂项目。
 
-如果你对多 Agent 实践感兴趣，推荐阅读 [Claude Code Agent Teams 教程](/posts/ai/2026-02-22-claude-code-agent-teams/)，里面有完整的配置和实战案例。
+如果你对多 Agent 实践感兴趣，推荐阅读 [Claude Code Agent Teams 教程](/zh/posts/ai/2026-02-22-claude-code-agent-teams/)，里面有完整的配置和实战案例。
 
 ### 趋势二：Papercut 革命——技术债务归零
 
@@ -56,7 +56,7 @@ Agentic Coding 让修复这些历史技术债务的成本**趋近于零**。过�
 
 Agentic Coding 正在打破这道墙。**非技术团队正在借助 AI Agent 自建工具**，这被 Anthropic 称为"Cowork Agent 民主化"。市场团队自己搭建数据分析管道，客服团队自己创建工单自动分类系统，HR 团队自己开发招聘流程自动化——所有这些都不再需要传统意义上的"编程"。
 
-这是 [Vibe Coding](/posts/ai/2026-02-22-vibe-coding-guide/) 理念的企业级落地：用自然语言描述需求，让 AI 负责实现。
+这是 [Vibe Coding](/zh/posts/ai/2026-02-22-vibe-coding-guide/) 理念的企业级落地：用自然语言描述需求，让 AI 负责实现。
 
 ### 趋势四：自修复代码
 
@@ -81,7 +81,7 @@ Agentic Coding 正在打破这道墙。**非技术团队正在借助 AI Agent �
 | 遗留系统迁移 | 自研 Agent | 需要理解特定业务逻辑 |
 | 部署和运维 | 混合 | 通用工具 + 内部 CI/CD 集成 |
 
-关于如何选择适合自己的 AI 编程工具，可以参考这篇 [AI 编程工具横评](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/)。
+关于如何选择适合自己的 AI 编程工具，可以参考这篇 [AI 编程工具横评](/zh/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/)。
 
 ### 趋势六：企业级 Agent 安全框架成型
 
@@ -123,7 +123,7 @@ Agentic Coding 的终极演进方向是：AI 从"帮你写代码"进化为"帮�
 | L4 系统 Agent | 跨模块协调的多 Agent | Agent Teams | 快速发展 |
 | L5 自治系统 | 端到端自主开发 | - | 早期探索 |
 
-我们正处于 L3 到 L4 的过渡期。关于 Claude Code 和 ChatGPT Codex 在 L3 阶段的能力对比，可以参考 [Claude Code vs ChatGPT Codex 深度对比](/posts/ai/2026-02-19-claude-code-vs-codex/)。
+我们正处于 L3 到 L4 的过渡期。关于 Claude Code 和 ChatGPT Codex 在 L3 阶段的能力对比，可以参考 [Claude Code vs ChatGPT Codex 深度对比](/zh/posts/ai/2026-02-19-claude-code-vs-codex/)。
 
 ## 2026 市场格局：谁在领跑？
 
@@ -235,7 +235,7 @@ Agentic Coding 市场正在快速膨胀，主要玩家的竞争格局如下：
 
 数据显示，60% 的日常工作流已经在使用 AI，但完全无监督的委派仅占 0-20%。最高效的开发者不是完全依赖 AI 或完全拒绝 AI 的人，而是**掌握了人机协作最佳实践**的人。
 
-关于如何高效使用 Claude Code，强烈推荐阅读 [Claude Code 最佳实践指南](/posts/ai/2026-01-06-claudecode-best-practices/)。
+关于如何高效使用 Claude Code，强烈推荐阅读 [Claude Code 最佳实践指南](/zh/posts/ai/2026-01-06-claudecode-best-practices/)。
 
 ### 3. 构建你的 Agent 工具箱
 
@@ -265,8 +265,8 @@ Claude Code 6 个月 $1B、14 个月 $2.5B 的增长曲线不是偶然，而是�
 
 **相关阅读：**
 
-- [Claude Code vs ChatGPT Codex 深度对比](/posts/ai/2026-02-19-claude-code-vs-codex/)
-- [Claude Code 最佳实践指南](/posts/ai/2026-01-06-claudecode-best-practices/)
-- [Claude Code Agent Teams 教程](/posts/ai/2026-02-22-claude-code-agent-teams/)
-- [Vibe Coding 完全指南](/posts/ai/2026-02-22-vibe-coding-guide/)
-- [AI 编程工具横评](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/)
+- [Claude Code vs ChatGPT Codex 深度对比](/zh/posts/ai/2026-02-19-claude-code-vs-codex/)
+- [Claude Code 最佳实践指南](/zh/posts/ai/2026-01-06-claudecode-best-practices/)
+- [Claude Code Agent Teams 教程](/zh/posts/ai/2026-02-22-claude-code-agent-teams/)
+- [Vibe Coding 完全指南](/zh/posts/ai/2026-02-22-vibe-coding-guide/)
+- [AI 编程工具横评](/zh/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/)

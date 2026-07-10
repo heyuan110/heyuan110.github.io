@@ -17,7 +17,7 @@ keywords = ['Claude Code MCP 配置', 'MCP 服务器教程', 'Model Context Prot
 
 本指南涵盖了从安装第一个社区 MCP 服务器到用 TypeScript 从零构建自定义服务器的全部内容。读完之后，你将掌握如何让 Claude Code 与任何东西对话。
 
-> **前置条件**：你需要已经安装并配置好 Claude Code。如果还没有，请先参考我们的 [Claude Code 安装指南](/posts/ai/2026-02-25-claude-code-setup-guide/)。
+> **前置条件**：你需要已经安装并配置好 Claude Code。如果还没有，请先参考我们的 [Claude Code 安装指南](/zh/posts/ai/2026-02-25-claude-code-setup-guide/)。
 
 ## MCP 是什么？60 秒搞懂架构
 
@@ -110,7 +110,7 @@ claude mcp add github -e GITHUB_TOKEN=ghp_your_token_here npx @anthropic/mcp-git
 claude mcp add slack npx @anthropic/mcp-slack
 ```
 
-让 Claude Code 读取和发送 Slack 消息、搜索频道、发布更新。当长时间运行的任务完成时，自动通知非常有用。（配合 [Claude Code Hooks](/posts/ai/2026-02-18-claude-code-hooks-guide/) 可实现完整自动化。）
+让 Claude Code 读取和发送 Slack 消息、搜索频道、发布更新。当长时间运行的任务完成时，自动通知非常有用。（配合 [Claude Code Hooks](/zh/posts/ai/2026-02-18-claude-code-hooks-guide/) 可实现完整自动化。）
 
 **必需**：设置 `SLACK_BOT_TOKEN` 和 `SLACK_TEAM_ID`。
 
@@ -790,7 +790,7 @@ server.registerTool(
 
 ### MCP + CLAUDE.md
 
-在你的 [CLAUDE.md 文件](/posts/ai/2026-02-28-claude-code-claudemd-guide/)中，你可以告诉 Claude 何时以及如何使用特定的 MCP 工具：
+在你的 [CLAUDE.md 文件](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/)中，你可以告诉 Claude 何时以及如何使用特定的 MCP 工具：
 
 ```markdown
 ## MCP Tools
@@ -804,7 +804,7 @@ server.registerTool(
 
 ### MCP + Hooks
 
-[Claude Code Hooks](/posts/ai/2026-02-18-claude-code-hooks-guide/) 可以围绕 MCP 工具使用实现自动化操作。例如，你可以设置一个 Hook 来记录每次 MCP 工具调用，用于审计：
+[Claude Code Hooks](/zh/posts/ai/2026-02-18-claude-code-hooks-guide/) 可以围绕 MCP 工具使用实现自动化操作。例如，你可以设置一个 Hook 来记录每次 MCP 工具调用，用于审计：
 
 ```json
 {
@@ -821,7 +821,7 @@ server.registerTool(
 
 ## 避免常见 MCP 错误的技巧
 
-如果你是 Claude Code 新手，你可能会觉得我们的 [10 个常见 Claude Code 错误](/posts/ai/2026-02-25-claude-code-mistakes/)清单很有帮助。以下是 MCP 相关的常见坑：
+如果你是 Claude Code 新手，你可能会觉得我们的 [10 个常见 Claude Code 错误](/zh/posts/ai/2026-02-25-claude-code-mistakes/)清单很有帮助。以下是 MCP 相关的常见坑：
 
 1. **使用 `console.log` 而不是 `console.error`**。这是 MCP 服务器崩溃的第一大原因。Stdout 是为 JSON-RPC 协议消息保留的。你所有的调试输出必须通过 `console.error` 发送到 stderr。
 
@@ -889,7 +889,7 @@ REST API 是为应用之间通信设计的。MCP 是为 AI 与工具之间通信
 
 只有你授权才行。MCP 服务器作为普通进程运行，拥有你赋予的任何权限。除非你明确传递目录路径作为参数或你的服务器代码读取文件，否则它无法访问你的文件系统。
 
-Claude Code 在调用 MCP 工具之前始终会征求你的许可，除非你在 [设置或 CLAUDE.md](/posts/ai/2026-02-28-claude-code-claudemd-guide/) 中预先批准了它。
+Claude Code 在调用 MCP 工具之前始终会征求你的许可，除非你在 [设置或 CLAUDE.md](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) 中预先批准了它。
 
 ## 快速参考
 
@@ -973,7 +973,7 @@ await server.connect(transport);
 
 ## 相关阅读
 
-- [Claude Code 安装指南 2026](/posts/ai/2026-02-25-claude-code-setup-guide/) — 安装和配置 Claude Code
-- [10 个 Claude Code 新手常犯错误](/posts/ai/2026-02-25-claude-code-mistakes/) — 避免最常见的坑
-- [Claude Code Hooks 指南](/posts/ai/2026-02-18-claude-code-hooks-guide/) — 自动化你的 Claude Code 工作流
-- [CLAUDE.md 指南](/posts/ai/2026-02-28-claude-code-claudemd-guide/) — 配置项目上下文以获得更好的 AI 效果
+- [Claude Code 安装指南 2026](/zh/posts/ai/2026-02-25-claude-code-setup-guide/) — 安装和配置 Claude Code
+- [10 个 Claude Code 新手常犯错误](/zh/posts/ai/2026-02-25-claude-code-mistakes/) — 避免最常见的坑
+- [Claude Code Hooks 指南](/zh/posts/ai/2026-02-18-claude-code-hooks-guide/) — 自动化你的 Claude Code 工作流
+- [CLAUDE.md 指南](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) — 配置项目上下文以获得更好的 AI 效果

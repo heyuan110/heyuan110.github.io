@@ -161,7 +161,7 @@ OpenAI 为什么要抢这个人？答案藏在 Altman 的那句评价里——�
 
 当下 AI 行业的竞争焦点正在从「模型能力」转向「Agent 生态」：
 
-- **Anthropic** 有 Claude 的 Computer Use 和 [Claude Code](/posts/ai/2026-01-06-claudecode-best-practices/) 等开发者工具，走的是「安全可控」路线
+- **Anthropic** 有 Claude 的 Computer Use 和 [Claude Code](/zh/posts/ai/2026-01-06-claudecode-best-practices/) 等开发者工具，走的是「安全可控」路线
 - **Google** 有 Gemini 的多模态能力和 Android 生态
 - **OpenAI** 在 Agent 领域相对落后——而 OpenClaw 恰好补上了这块拼图
 
@@ -225,9 +225,9 @@ OpenClaw 用 30 天证明了：一个好的 Agent 架构 + 一个活跃的 Skill
 
 ## 相关阅读
 
-- [OpenClaw 架构深度解析](/posts/ai/2026-02-14-openclaw-architecture-deep-dive/)
-- [OpenClaw 使用教程：从零搭建你的 AI 助理](/posts/ai/2026-02-12-openclaw-usage-tutorial/)
-- [OpenClaw + Claude Code 工作流实战](/posts/ai/2026-01-31-openclaw-claude-code-workflow/)
-- [Moltbook：当 AI Agent 有了自己的社交网络](/posts/ai/2026-02-01-moltbook-ai-agent-social-network/)
-- [Agent Skills：AI 编程的新范式](/posts/ai/2026-01-19-agent-skills-new-programming/)
-- [Claude Code 最佳实践指南](/posts/ai/2026-01-06-claudecode-best-practices/)
+- [OpenClaw 架构深度解析](/zh/posts/ai/2026-02-14-openclaw-architecture-deep-dive/)
+- [OpenClaw 使用教程：从零搭建你的 AI 助理](/zh/posts/ai/2026-02-12-openclaw-usage-tutorial/)
+- [OpenClaw + Claude Code 工作流实战](/zh/posts/ai/2026-01-31-openclaw-claude-code-workflow/)
+- [Moltbook：当 AI Agent 有了自己的社交网络](/zh/posts/ai/2026-02-01-moltbook-ai-agent-social-network/)
+- [Agent Skills：AI 编程的新范式](/zh/posts/ai/2026-01-19-agent-skills-new-programming/)
+- [Claude Code 最佳实践指南](/zh/posts/ai/2026-01-06-claudecode-best-practices/)

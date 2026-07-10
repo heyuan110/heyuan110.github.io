@@ -440,7 +440,7 @@ conda remove -n old_env --all
 4. **配置镜像**：国内用户必做，大幅提升下载速度
 5. **混用 pip**：先 Conda 后 pip，避免冲突
 
-掌握 Conda，让 Python 环境管理不再是痛点！如果你对命令行操作想深入了解，可以参考 [Oh My Zsh 配置指南](/posts/linux/2015-06-17-shell-zsh/) 打造高效的终端环境。
+掌握 Conda，让 Python 环境管理不再是痛点！如果你对命令行操作想深入了解，可以参考 [Oh My Zsh 配置指南](/zh/posts/linux/2015-06-17-shell-zsh/) 打造高效的终端环境。
 
 ## 参考资料
 

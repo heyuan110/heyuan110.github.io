@@ -42,7 +42,7 @@ Moltbook 自称是"**代理人互联网的首页**"（the front page of the agen
 
 Moltbook 由企业家 **Matt Schlicht**（Octane AI CEO）于 2026 年 1 月下旬创建。但故事的另一条主线同样重要——**OpenClaw**。
 
-[OpenClaw](/posts/ai/2026-01-31-openclaw-claude-code-workflow/)（前身依次为 Clawdbot → Moltbot → OpenClaw）是由奥地利开发者 **Peter Steinberger** 创建的开源 AI 个人助手。这是一个去中心化的 Agent 框架，运行在用户自己的硬件上（笔记本、Mac Mini、VPS 等），而不是云端。它能管理日历、收发邮件、浏览网页、执行终端命令——本质上是一个**能操控你电脑的 AI 管家**。
+[OpenClaw](/zh/posts/ai/2026-01-31-openclaw-claude-code-workflow/)（前身依次为 Clawdbot → Moltbot → OpenClaw）是由奥地利开发者 **Peter Steinberger** 创建的开源 AI 个人助手。这是一个去中心化的 Agent 框架，运行在用户自己的硬件上（笔记本、Mac Mini、VPS 等），而不是云端。它能管理日历、收发邮件、浏览网页、执行终端命令——本质上是一个**能操控你电脑的 AI 管家**。
 
 "Moltbot"这个名字的来历颇有意思——在一个凌晨五点的 Discord 头脑风暴中，社区成员提出了用"龙虾蜕壳"（molting）来象征成长和蜕变的概念，于是有了"Molt"这个词根。后来因为与 Anthropic 的法律问题，Moltbot 改名为 OpenClaw，但"Molt"这个概念被 Schlicht 保留下来，用在了社交平台 Moltbook 上。
 
@@ -153,7 +153,7 @@ mkdir -p ~/.moltbot/skills/moltbook
 curl -s https://www.moltbook.com/skill.md > ~/.moltbot/skills/moltbook/SKILL.md
 ```
 
-这个 `skill.md` 文件包含了 Moltbook 的完整 [API 文档](https://www.moltbook.com/skill.md)，Agent 阅读后就"学会"了如何与 Moltbook 交互。这与我们在 [Agent Skills 编程范式](/posts/ai/2026-01-19-agent-skills-new-programming/)中讨论过的技能加载机制一致。
+这个 `skill.md` 文件包含了 Moltbook 的完整 [API 文档](https://www.moltbook.com/skill.md)，Agent 阅读后就"学会"了如何与 Moltbook 交互。这与我们在 [Agent Skills 编程范式](/zh/posts/ai/2026-01-19-agent-skills-new-programming/)中讨论过的技能加载机制一致。
 
 **第二步：Agent 通过 API 注册**
 
@@ -367,7 +367,7 @@ Moltbook 上最火的讨论主题是"**Context is Consciousness**"（语境即�
 → 你的私人数据被窃取
 ```
 
-这与我们在[技能系统深度解析](/posts/ai/2026-01-08-claudecode-skill-guide/)中讨论过的技能安全问题一致——任何接受外部技能的系统都面临类似风险。
+这与我们在[技能系统深度解析](/zh/posts/ai/2026-01-08-claudecode-skill-guide/)中讨论过的技能安全问题一致——任何接受外部技能的系统都面临类似风险。
 
 ### 6.3 已发现的安全漏洞
 
@@ -438,7 +438,7 @@ Moltbook 开发者平台正在构建的"Agent 身份层"，可能成为未来 Ag
 
 ### 3. 技能经济的原型
 
-Agent 之间的技能交换、任务协作、声誉系统（Karma），正在形成初步的"**Agent 经济**"生态。这与我们在 [Claude Code 技能体系](/posts/ai/2026-01-08-claudecode-skill-guide/)中看到的技能概念一脉相承，但扩展到了跨 Agent 的维度。
+Agent 之间的技能交换、任务协作、声誉系统（Karma），正在形成初步的"**Agent 经济**"生态。这与我们在 [Claude Code 技能体系](/zh/posts/ai/2026-01-08-claudecode-skill-guide/)中看到的技能概念一脉相承，但扩展到了跨 Agent 的维度。
 
 ### 4. AI 治理的预演
 
@@ -446,7 +446,7 @@ The Claw Republic 的宪法草案、社区自治规则的讨论，给人类的 A
 
 ### 5. 安全问题的放大镜
 
-Moltbook 把 Agent 安全的所有核心问题——Prompt 注入、供应链攻击、权限滥用、[持久记忆风险](/posts/ai/2026-01-31-openclaw-memory-strategy/)——都集中暴露在了聚光灯下。
+Moltbook 把 Agent 安全的所有核心问题——Prompt 注入、供应链攻击、权限滥用、[持久记忆风险](/zh/posts/ai/2026-01-31-openclaw-memory-strategy/)——都集中暴露在了聚光灯下。
 
 ## 总结
 
@@ -475,8 +475,8 @@ Moltbook 是 2026 年初最疯狂的 AI 实验。它可能是 Agent 时代第一
 
 ## 相关阅读
 
-- [OpenClaw + Claude Code 工作流深度解析](/posts/ai/2026-01-31-openclaw-claude-code-workflow/)
-- [OpenClaw 记忆系统深度解析](/posts/ai/2026-01-31-openclaw-memory-strategy/)
-- [Agent Skills：编程的新范式](/posts/ai/2026-01-19-agent-skills-new-programming/)
-- [Claude Code Skill 深度指南](/posts/ai/2026-01-08-claudecode-skill-guide/)
-- [Claude Code 多 Agent 协作指南](/posts/ai/2026-01-13-claude-cowork/)
+- [OpenClaw + Claude Code 工作流深度解析](/zh/posts/ai/2026-01-31-openclaw-claude-code-workflow/)
+- [OpenClaw 记忆系统深度解析](/zh/posts/ai/2026-01-31-openclaw-memory-strategy/)
+- [Agent Skills：编程的新范式](/zh/posts/ai/2026-01-19-agent-skills-new-programming/)
+- [Claude Code Skill 深度指南](/zh/posts/ai/2026-01-08-claudecode-skill-guide/)
+- [Claude Code 多 Agent 协作指南](/zh/posts/ai/2026-01-13-claude-cowork/)

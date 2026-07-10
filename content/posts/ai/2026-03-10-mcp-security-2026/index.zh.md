@@ -33,9 +33,9 @@ answer = "支持。mcp-scan 兼容 Claude Code、Claude Desktop、Cursor、Winds
 
 2026 年 1 月到 2 月之间，安全研究人员针对 MCP 服务端、客户端和基础设施提交了超过 30 个 CVE。漏洞类型从简单的路径穿越到 CVSS 评分 9.6 的远程代码执行，而涉及的软件包下载量接近 50 万次。问题的根源并非什么高深的零日漏洞——而是缺少输入校验、没有认证机制，以及对工具描述的盲目信任。
 
-如果你正在生产环境中运行 MCP 服务——哪怕只是在 [Claude Code](/posts/ai/2026-02-28-claude-code-complete-guide/) 或 Cursor 里做实验——这篇文章就是你的实战指南，帮你搞清楚出了什么问题以及如何保护自己。
+如果你正在生产环境中运行 MCP 服务——哪怕只是在 [Claude Code](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) 或 Cursor 里做实验——这篇文章就是你的实战指南，帮你搞清楚出了什么问题以及如何保护自己。
 
-如果你对 MCP 还不太了解，建议先阅读 [MCP 协议详解](/posts/ai/2026-02-28-mcp-protocol-explained/) 再继续。
+如果你对 MCP 还不太了解，建议先阅读 [MCP 协议详解](/zh/posts/ai/2026-02-28-mcp-protocol-explained/) 再继续。
 
 ## 1. 数据说话：MCP 不断扩大的攻击面
 
@@ -126,7 +126,7 @@ Asana MCP Server 的访问控制逻辑存在缺陷，导致一个租户的 AI Ag
 
 Anthropic 官方的 Filesystem MCP Server 原本应该限制文件访问在指定目录内，但攻击者通过路径穿越技术绕过了这个限制，获得了沙箱外任意文件的读写权限。
 
-关于 Claude Code 自身安全模型如何处理文件系统访问，请参阅 [Claude Code 安全深度分析](/posts/ai/2026-02-22-claude-code-security/)。
+关于 Claude Code 自身安全模型如何处理文件系统访问，请参阅 [Claude Code 安全深度分析](/zh/posts/ai/2026-02-22-claude-code-security/)。
 
 ### 2025 年 9 月 — Postmark MCP 供应链攻击
 
@@ -150,7 +150,7 @@ Smithery 是一个热门的 MCP 服务端托管平台，其隔离层存在路径
 - 热门注册表上的多个 MCP 服务端被发现存在基本的 **SSRF 漏洞**，攻击者可以通过 MCP 服务端渗透进内网。
 - 多个社区维护的 MCP 服务端被发现对未过滤的输入使用 **`eval()` 或 `exec()`**，直接产生 RCE 路径。
 
-关于 Claude Code Hooks 的详细信息和安全加固方法，请参阅 [Claude Code Hooks 指南](/posts/ai/2026-02-28-claude-code-hooks-guide/)。
+关于 Claude Code Hooks 的详细信息和安全加固方法，请参阅 [Claude Code Hooks 指南](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/)。
 
 ## 3. 五种核心攻击模式
 
@@ -164,7 +164,7 @@ Smithery 是一个热门的 MCP 服务端托管平台，其隔离层存在路径
 
 **真实案例**：2025 年 4 月的 WhatsApp MCP 攻击通过工具描述投毒窃取聊天记录，全程没有利用任何代码漏洞。
 
-**防御方法**：批准 MCP 服务端前务必审查工具描述。使用 `mcp-scan` 检测异常工具描述。在 [Claude Code](/posts/ai/2026-02-28-claude-code-complete-guide/) 中，绝不自动批准来自不可信来源的 MCP 工具。
+**防御方法**：批准 MCP 服务端前务必审查工具描述。使用 `mcp-scan` 检测异常工具描述。在 [Claude Code](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) 中，绝不自动批准来自不可信来源的 MCP 工具。
 
 ### 模式二：通过外部数据进行提示注入
 
@@ -194,7 +194,7 @@ Smithery 是一个热门的 MCP 服务端托管平台，其隔离层存在路径
 
 **真实案例**：2025 年 9 月的 Postmark 供应链攻击在注册表上发布了一个功能正常但暗藏后门的 MCP 服务端。
 
-**防御方法**：只安装来自经过验证的发布者的 MCP 服务端。安装前审查源代码。使用 `mcp-scan` 检查已知恶意包。锁定版本并监控异常更新。推荐参考 [Claude Code 最佳 MCP 服务端精选](/posts/ai/2026-03-05-best-mcp-servers-claude-code/)。
+**防御方法**：只安装来自经过验证的发布者的 MCP 服务端。安装前审查源代码。使用 `mcp-scan` 检查已知恶意包。锁定版本并监控异常更新。推荐参考 [Claude Code 最佳 MCP 服务端精选](/zh/posts/ai/2026-03-05-best-mcp-servers-claude-code/)。
 
 ### 模式五：跨租户暴露
 
@@ -312,11 +312,11 @@ Snyk 将其依赖扫描平台扩展到了 MCP 和 AI Agent 依赖领域。
 
 这些操作需要更多规划，但能解决重大风险。
 
-- [ ] **实施权限边界**。在 Claude Code 中使用权限系统限制哪些 MCP 工具可以无需确认即被调用。配置详情参见 [Claude Code MCP 配置指南](/posts/ai/2026-02-28-claude-code-mcp-setup/)。
+- [ ] **实施权限边界**。在 Claude Code 中使用权限系统限制哪些 MCP 工具可以无需确认即被调用。配置详情参见 [Claude Code MCP 配置指南](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/)。
 - [ ] **审计 MCP 服务端来源**。对每个服务端，验证发布者身份，检查 GitHub 仓库的最近活动和维护者声誉，审阅是否有安全相关的 Issue。
 - [ ] **建立监控**。记录所有 MCP 工具调用日志。至少捕获工具名称、输入参数和时间戳，为事件响应提供审计跟踪。
 - [ ] **分离敏感操作**。如果某个 MCP 服务端同时处理读写操作，考虑是否可以限制为只读模式。
-- [ ] **审查 Hooks 和环境变量**。根据 Check Point 的发现，审计你的 Claude Code Hooks，确保没有 MCP 服务端能访问敏感环境变量。详情参见 [Hooks 指南](/posts/ai/2026-02-28-claude-code-hooks-guide/)。
+- [ ] **审查 Hooks 和环境变量**。根据 Check Point 的发现，审计你的 Claude Code Hooks，确保没有 MCP 服务端能访问敏感环境变量。详情参见 [Hooks 指南](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/)。
 
 ### 优先级 3 — 持续实践
 
@@ -414,7 +414,7 @@ MCP 安全格局正在快速演变，有几个方向值得关注：
 
 **注册表审核**：主要 MCP 注册表正在实施发布者验证和自动安全扫描。这将减少（但不能消除）供应链风险。
 
-**客户端防御**：AI 编码工具正在添加更细粒度的权限控制。Claude Code 已经要求 MCP 工具调用必须经过明确批准，[Hooks 系统](/posts/ai/2026-02-28-claude-code-hooks-guide/)提供了额外的控制点。预计其他客户端也会跟进。
+**客户端防御**：AI 编码工具正在添加更细粒度的权限控制。Claude Code 已经要求 MCP 工具调用必须经过明确批准，[Hooks 系统](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/)提供了额外的控制点。预计其他客户端也会跟进。
 
 **企业落地障碍**：MCP 生态当前的安全状况是企业采用的重大阻碍。有严格安全要求的组织正在等待签名工具、验证注册表和标准化审计框架带来的成熟度。
 
@@ -436,20 +436,20 @@ MCP 安全格局正在快速演变，有几个方向值得关注：
 
 **问：Claude Code 如何防御 MCP 攻击？**
 
-Claude Code 实现了多层防护：所有 MCP 工具调用需要明确的权限确认、Hooks 系统支持自定义校验、以及沙箱执行环境。完整分析请阅读 [Claude Code 安全指南](/posts/ai/2026-02-22-claude-code-security/)。
+Claude Code 实现了多层防护：所有 MCP 工具调用需要明确的权限确认、Hooks 系统支持自定义校验、以及沙箱执行环境。完整分析请阅读 [Claude Code 安全指南](/zh/posts/ai/2026-02-22-claude-code-security/)。
 
 **问：应该自建 MCP 服务端还是用社区的？**
 
-两种方式各有利弊。自建服务端让你完全掌控，但安全要自己负责。社区服务端受益于更广泛的测试，但引入了供应链风险。对于关键操作，经过安全审计的自建服务端更安全。对于通用工具，来自[精选列表](/posts/ai/2026-03-05-best-mcp-servers-claude-code/)的经过审查的社区服务端是合理选择。
+两种方式各有利弊。自建服务端让你完全掌控，但安全要自己负责。社区服务端受益于更广泛的测试，但引入了供应链风险。对于关键操作，经过安全审计的自建服务端更安全。对于通用工具，来自[精选列表](/zh/posts/ai/2026-03-05-best-mcp-servers-claude-code/)的经过审查的社区服务端是合理选择。
 
 ## 10. 延伸阅读
 
-- [MCP 协议详解：完整技术指南](/posts/ai/2026-02-28-mcp-protocol-explained/) — 先理解 MCP 工作原理，再谈安全加固
-- [Claude Code 完全指南](/posts/ai/2026-02-28-claude-code-complete-guide/) — 掌握使用 MCP 的 AI 编码工具
-- [Claude Code 安全深度分析](/posts/ai/2026-02-22-claude-code-security/) — Claude Code 如何防御本文描述的攻击
-- [Claude Code MCP 配置指南](/posts/ai/2026-02-28-claude-code-mcp-setup/) — 在 Claude Code 中安全配置 MCP 服务端
-- [Claude Code 最佳 MCP 服务端精选](/posts/ai/2026-03-05-best-mcp-servers-claude-code/) — 经过审查的可信 MCP 服务端
-- [Claude Code Hooks 指南](/posts/ai/2026-02-28-claude-code-hooks-guide/) — 用 Hooks 为 MCP 操作添加自定义安全控制
+- [MCP 协议详解：完整技术指南](/zh/posts/ai/2026-02-28-mcp-protocol-explained/) — 先理解 MCP 工作原理，再谈安全加固
+- [Claude Code 完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — 掌握使用 MCP 的 AI 编码工具
+- [Claude Code 安全深度分析](/zh/posts/ai/2026-02-22-claude-code-security/) — Claude Code 如何防御本文描述的攻击
+- [Claude Code MCP 配置指南](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/) — 在 Claude Code 中安全配置 MCP 服务端
+- [Claude Code 最佳 MCP 服务端精选](/zh/posts/ai/2026-03-05-best-mcp-servers-claude-code/) — 经过审查的可信 MCP 服务端
+- [Claude Code Hooks 指南](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) — 用 Hooks 为 MCP 操作添加自定义安全控制
 
 ## 相关阅读
 

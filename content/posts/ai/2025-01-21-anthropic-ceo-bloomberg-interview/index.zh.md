@@ -48,7 +48,7 @@ Anthropic 内部有一个负责「Code」产品的团队。这个团队的**首�
 
 更夸张的是，他们最近发布了一个叫「Coachwork」的工具，整个开发过程只用了一个半星期，几乎完全是 Claude 写的。
 
-这与我们在 [Claude Code 实战指南](/posts/ai/2026-01-14-claude-code-guide/) 中介绍的趋势一致——AI 正在从辅助工具变成主力开发者。
+这与我们在 [Claude Code 实战指南](/zh/posts/ai/2026-01-14-claude-code-guide/) 中介绍的趋势一致——AI 正在从辅助工具变成主力开发者。
 
 ---
 
@@ -96,7 +96,7 @@ Amodei 对 AI 的经济影响有一个惊人的预测。
 
 去年 Amodei 曾预测 AI 将抹去 50% 的入门级工作岗位。在这次访谈中，他没有否认这个说法。
 
-这也是为什么我们需要关注 [AI 开发工作流的变革](/posts/ai/2026-01-19-ai-dev-workflow/)——不是为了担忧，而是为了提前做好准备。
+这也是为什么我们需要关注 [AI 开发工作流的变革](/zh/posts/ai/2026-01-19-ai-dev-workflow/)——不是为了担忧，而是为了提前做好准备。
 
 ---
 
@@ -178,7 +178,7 @@ Anthropic 不这样。他们专注于**企业和开发者市场**。目标是「
 
 这种商业模式有一个好处：更稳定、更可预测、利润率更高。
 
-这也解释了为什么 [Claude Code](/posts/ai/2026-01-14-claude-code-guide/) 和 [Claude 的 Skill 系统](/posts/ai/2026-01-20-claude-code-skills-top20/) 如此注重开发者体验——这是 Anthropic 的核心战略。
+这也解释了为什么 [Claude Code](/zh/posts/ai/2026-01-14-claude-code-guide/) 和 [Claude 的 Skill 系统](/zh/posts/ai/2026-01-20-claude-code-skills-top20/) 如此注重开发者体验——这是 Anthropic 的核心战略。
 
 ---
 
@@ -245,6 +245,6 @@ AI 做的事情，是让这种超级智能变得更加集中、更加强大、�
 
 ## 相关阅读
 
-- [Claude Code 实战指南：从入门到精通](/posts/ai/2026-01-14-claude-code-guide/)
-- [2025 年最值得使用的 20 个 Claude Code Skills](/posts/ai/2026-01-20-claude-code-skills-top20/)
-- [AI 开发工作流的变革](/posts/ai/2026-01-19-ai-dev-workflow/)
+- [Claude Code 实战指南：从入门到精通](/zh/posts/ai/2026-01-14-claude-code-guide/)
+- [2025 年最值得使用的 20 个 Claude Code Skills](/zh/posts/ai/2026-01-20-claude-code-skills-top20/)
+- [AI 开发工作流的变革](/zh/posts/ai/2026-01-19-ai-dev-workflow/)

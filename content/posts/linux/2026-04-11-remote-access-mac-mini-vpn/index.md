@@ -259,7 +259,7 @@ zerotier-idtool genmoon moon.json
 
 > **Cloudflare Tunnel** (formerly Argo Tunnel) uses Cloudflare's global network as a relay. The `cloudflared` daemon has 13,700+ GitHub stars ([source](https://github.com/cloudflare/cloudflared)). It requires no public IP and no open ports — your machine initiates an outbound connection to Cloudflare.
 
-I covered Cloudflare Tunnel in depth in a [previous article](/posts/linux/2026-03-28-cloudflare-tunnel-guide/), including architecture diagrams and full setup steps. The short version for remote access:
+I covered Cloudflare Tunnel in depth in a [previous article](/posts/ai/2026-03-28-cloudflare-tunnel-guide/), including architecture diagrams and full setup steps. The short version for remote access:
 
 ```bash
 brew install cloudflare/cloudflare/cloudflared
@@ -427,7 +427,7 @@ sudo zerotier-cli leave <id>       # Leave a network
 
 ### 12.3 What about SSH tunneling as a simple alternative?
 
-**Answer**: SSH reverse tunneling (`ssh -R`) is the simplest approach for accessing a single service. It requires a VPS with a public IP and works everywhere. The downside is reliability — SSH connections drop, and you need a process manager like `autossh` to keep them alive. For a deep dive, see my [tunneling guide](/posts/linux/2026-03-28-cloudflare-tunnel-guide/).
+**Answer**: SSH reverse tunneling (`ssh -R`) is the simplest approach for accessing a single service. It requires a VPS with a public IP and works everywhere. The downside is reliability — SSH connections drop, and you need a process manager like `autossh` to keep them alive. For a deep dive, see my [tunneling guide](/posts/ai/2026-03-28-cloudflare-tunnel-guide/).
 
 ---
 
@@ -445,7 +445,7 @@ sudo zerotier-cli leave <id>       # Leave a network
 
 ## 14. Further Reading
 
-- [Expose Localhost to the Internet: SSH Tunnels, frp, and Cloudflare Tunnel](/posts/linux/2026-03-28-cloudflare-tunnel-guide/) - Deep dive into reverse tunneling with architecture diagrams and full setup guides
+- [Expose Localhost to the Internet: SSH Tunnels, frp, and Cloudflare Tunnel](/posts/ai/2026-03-28-cloudflare-tunnel-guide/) - Deep dive into reverse tunneling with architecture diagrams and full setup guides
 - [Linux and macOS Command Reference](/posts/linux/2020-03-19-linux-mac-commands/) - Essential terminal commands for server management
 - [Docker Compose Complete Guide](/posts/docker/2026-01-19-docker-compose-complete-guide/) - Useful for containerizing frp or WireGuard services
 

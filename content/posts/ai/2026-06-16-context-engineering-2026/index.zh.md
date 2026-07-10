@@ -28,7 +28,7 @@ answer = "越小越好。它会被拼接进每一轮对话，所以每一行都�
 
 关于 2026 年的编码 Agent，有一个不太舒服的事实：模型很少是瓶颈。决定 Claude Code、Codex 或 Cursor 能否干净地完成一次跨文件重构、还是空转一小时的，是你摆在它面前的东西。Anthropic 2026 年的 Agentic Coding 报告把上下文工程称为「2026 年的承重技能」，数据也支持这个说法——维护良好上下文文件的团队，出错率低 40%，任务完成速度快 55%。
 
-今年早些时候我写过一篇[偏理论的上下文工程深潜](/posts/ai/2026-02-24-context-engineering-deep-dive/)，讲的是失效模式和「Specs 是新的源代码」这套论证。这篇正好相反：它是给真正在跑编码 Agent 的人准备的 2026 实战手册——哪些技巧真有效、有什么数据佐证、哪些流行做法其实是让 Agent 悄悄变差的伪工作。我的核心主张很简单：**别再把上下文窗口当成一个要装满的桶，把它当成一份要花的预算。**
+今年早些时候我写过一篇[偏理论的上下文工程深潜](/zh/posts/ai/2026-02-24-context-engineering-deep-dive/)，讲的是失效模式和「Specs 是新的源代码」这套论证。这篇正好相反：它是给真正在跑编码 Agent 的人准备的 2026 实战手册——哪些技巧真有效、有什么数据佐证、哪些流行做法其实是让 Agent 悄悄变差的伪工作。我的核心主张很简单：**别再把上下文窗口当成一个要装满的桶，把它当成一份要花的预算。**
 
 ## 2026 年的上下文工程：从写文档到管预算
 
@@ -70,7 +70,7 @@ Agent 一旦跑得够长，再聪明的检索也挡不住对话被填满。这�
 
 ### 4. 工具极简主义
 
-你暴露的每一个工具定义，都在每一轮里占着上下文窗口；每一对近似重复的工具，都会逼模型花一轮去纠结选哪个。这不是可以忽略的零头。带着相互冲突假设的臃肿工具集，是有据可查的「浪费轮数、把 Agent 搞糊涂」的根源。我的规则是：只暴露覆盖当前任务所需的、最小的一组无歧义工具，并且按需动态加载工具组，而不是一次性挂上你拥有的每一个 [MCP 服务器](/posts/ai/2026-02-20-mcp-protocol-guide/)。Agent 在写后端代码时并不需要一个 Figma 工具在作用域里，那个定义纯粹是税。更少、更锋利的工具，永远好过一个大而全的 API 包装。
+你暴露的每一个工具定义，都在每一轮里占着上下文窗口；每一对近似重复的工具，都会逼模型花一轮去纠结选哪个。这不是可以忽略的零头。带着相互冲突假设的臃肿工具集，是有据可查的「浪费轮数、把 Agent 搞糊涂」的根源。我的规则是：只暴露覆盖当前任务所需的、最小的一组无歧义工具，并且按需动态加载工具组，而不是一次性挂上你拥有的每一个 [MCP 服务器](/zh/posts/ai/2026-02-20-mcp-protocol-guide/)。Agent 在写后端代码时并不需要一个 Figma 工具在作用域里，那个定义纯粹是税。更少、更锋利的工具，永远好过一个大而全的 API 包装。
 
 ## 上下文窗口管理：分配它，而不是填满它
 
@@ -112,9 +112,9 @@ flowchart TD
 
 ## 组织 CLAUDE.md 与 AGENTS.md：精简、分层、按需
 
-因为 [CLAUDE.md 和 AGENTS.md](/posts/ai/2026-02-28-claude-code-claudemd-guide/) 会被拼接进每一轮，它们是大多数团队预算里被最过度纵容的科目。我经常见到 400 行的 CLAUDE.md，把整个架构重讲一遍。这里面每一行，都在每一轮被永久征税，不管当前任务碰不碰那个子系统。
+因为 [CLAUDE.md 和 AGENTS.md](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) 会被拼接进每一轮，它们是大多数团队预算里被最过度纵容的科目。我经常见到 400 行的 CLAUDE.md，把整个架构重讲一遍。这里面每一行，都在每一轮被永久征税，不管当前任务碰不碰那个子系统。
 
-精简原则：只有稳定的、全项目通用的规则才放进「永远加载」的文件——约定、硬约束、那几条「到处都别这么干」的规则。所有任务相关的东西都推到 Agent 按需加载的文件里去。一个短短的根文件写着「鉴权逻辑在 `src/auth/`，动它之前先读 `src/auth/README.md`」，比 200 行重述那个二十次任务里只碰一次的鉴权流程有价值得多。我在 [CLAUDE.md 记忆指南](/posts/ai/2026-01-12-claudemd-memory-guide/) 里更细地讲了怎么组织这些文件，同样的分层逻辑也支撑着持久的 [Agent 记忆系统](/posts/ai/2026-02-21-ai-agent-memory-systems/)——常驻层保持极小，可检索层承载大头。
+精简原则：只有稳定的、全项目通用的规则才放进「永远加载」的文件——约定、硬约束、那几条「到处都别这么干」的规则。所有任务相关的东西都推到 Agent 按需加载的文件里去。一个短短的根文件写着「鉴权逻辑在 `src/auth/`，动它之前先读 `src/auth/README.md`」，比 200 行重述那个二十次任务里只碰一次的鉴权流程有价值得多。我在 [CLAUDE.md 记忆指南](/zh/posts/ai/2026-01-12-claudemd-memory-guide/) 里更细地讲了怎么组织这些文件，同样的分层逻辑也支撑着持久的 [Agent 记忆系统](/zh/posts/ai/2026-02-21-ai-agent-memory-systems/)——常驻层保持极小，可检索层承载大头。
 
 ## 那些伪需求：该停下来的做法
 
@@ -168,10 +168,10 @@ flowchart TD
 
 ## 延伸阅读
 
-- [上下文工程深潜：AI 编程中最被低估的核心技能](/posts/ai/2026-02-24-context-engineering-deep-dive/) —— 这份实战手册背后的理论与失效模式
-- [CLAUDE.md 记忆指南](/posts/ai/2026-01-12-claudemd-memory-guide/) —— 如何组织那份「永远加载」的上下文文件
-- [Claude Code CLAUDE.md 指南](/posts/ai/2026-02-28-claude-code-claudemd-guide/) —— CLAUDE.md/AGENTS.md 的实用组织方式
-- [AI Agent 记忆系统](/posts/ai/2026-02-21-ai-agent-memory-systems/) —— 上下文窗口之外的持久记忆
-- [MCP 协议完全指南](/posts/ai/2026-02-20-mcp-protocol-guide/) —— 连接工具而不撑爆上下文
+- [上下文工程深潜：AI 编程中最被低估的核心技能](/zh/posts/ai/2026-02-24-context-engineering-deep-dive/) —— 这份实战手册背后的理论与失效模式
+- [CLAUDE.md 记忆指南](/zh/posts/ai/2026-01-12-claudemd-memory-guide/) —— 如何组织那份「永远加载」的上下文文件
+- [Claude Code CLAUDE.md 指南](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) —— CLAUDE.md/AGENTS.md 的实用组织方式
+- [AI Agent 记忆系统](/zh/posts/ai/2026-02-21-ai-agent-memory-systems/) —— 上下文窗口之外的持久记忆
+- [MCP 协议完全指南](/zh/posts/ai/2026-02-20-mcp-protocol-guide/) —— 连接工具而不撑爆上下文
 
 外部来源：[Anthropic 2026 Agentic Coding 报告摘要](https://www.claudeainews.com/news/anthropic-2026-agentic-coding-report)、[Sourcegraph：上下文工程实战指南](https://sourcegraph.com/blog/context-engineering)、[LangChain：Deep Agents 的上下文管理](https://www.langchain.com/blog/context-management-for-deepagents)、[开源软件中 AI Agent 的上下文工程（arXiv）](https://arxiv.org/html/2510.21413v1)。

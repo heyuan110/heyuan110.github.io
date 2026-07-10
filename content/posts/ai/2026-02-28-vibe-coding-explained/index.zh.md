@@ -121,13 +121,13 @@ Vibe Coding 并非万能。以下是它表现出色的场景：
 
 ### 终端 Agent（适合正式项目）
 
-**[Claude Code](/posts/ai/2026-02-28-claude-code-complete-guide/)** — 最强大的自主编码 Agent。给它一个任务，它会自动规划、实现、测试和迭代。最适合后端开发、CLI 工具和复杂的多文件项目。
+**[Claude Code](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)** — 最强大的自主编码 Agent。给它一个任务，它会自动规划、实现、测试和迭代。最适合后端开发、CLI 工具和复杂的多文件项目。
 
 **Codex CLI** — OpenAI 的终端 Agent，类似概念，使用 GPT 模型。
 
 ### IDE Agent
 
-**[Cursor](/posts/ai/2026-02-28-claude-code-vs-cursor/)** — AI 原生 IDE，Composer 模式非常适合 Vibe Coding。最适合有视觉反馈需求的全栈开发。
+**[Cursor](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/)** — AI 原生 IDE，Composer 模式非常适合 Vibe Coding。最适合有视觉反馈需求的全栈开发。
 
 **Windsurf** — 按额度计费的经济型选择。
 
@@ -165,7 +165,7 @@ Vibe Coding 在你清楚**做什么**、让 AI 处理**怎么做**的时候效�
 
 ### 2. 使用 CLAUDE.md 或 Cursor Rules
 
-在 AI 生成任何代码之前，先给它项目上下文。一个结构良好的 [CLAUDE.md 文件](/posts/ai/2026-02-28-claude-code-claudemd-guide/)能防止 AI 做出让你后悔的架构决策。
+在 AI 生成任何代码之前，先给它项目上下文。一个结构良好的 [CLAUDE.md 文件](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/)能防止 AI 做出让你后悔的架构决策。
 
 ### 3. 测试一切
 
@@ -236,9 +236,9 @@ Vibe Coding 是一种**工具，而非信仰**。和所有工具一样，正确�
 
 如果你想负责任地尝试 Vibe Coding：
 
-1. **安装 [Claude Code](/posts/ai/2026-02-25-claude-code-setup-guide/)** 或 **Cursor** — 目前最强的两个工具
+1. **安装 [Claude Code](/zh/posts/ai/2026-02-25-claude-code-setup-guide/)** 或 **Cursor** — 目前最强的两个工具
 2. **从低风险项目开始** — 内部工具、个人项目、原型
-3. **配置 [CLAUDE.md](/posts/ai/2026-02-28-claude-code-claudemd-guide/)** — 给 AI 你的项目上下文
+3. **配置 [CLAUDE.md](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/)** — 给 AI 你的项目上下文
 4. **用自然语言描述功能** — 对需求描述要具体
 5. **测试每个输出** — 运行它、点击它、尝试打破它
 6. **提交可用状态** — 版本控制是你的安全网
@@ -250,8 +250,8 @@ Vibe Coding 是一种**工具，而非信仰**。和所有工具一样，正确�
 
 ## 相关阅读
 
-- [Claude Code 完全指南 2026](/posts/ai/2026-02-28-claude-code-complete-guide/) — 最强 Vibe Coding 工具的完整指南
-- [Claude Code 安装教程](/posts/ai/2026-02-25-claude-code-setup-guide/) — 10 分钟上手
-- [Claude Code 新手常犯的 10 个错误](/posts/ai/2026-02-25-claude-code-mistakes/) — 避免常见陷阱
-- [Claude Code vs Cursor 2026](/posts/ai/2026-02-28-claude-code-vs-cursor/) — 两大 Vibe Coding 工具对比
-- [CLAUDE.md 指南](/posts/ai/2026-02-28-claude-code-claudemd-guide/) — 提升 AI 输出质量的项目上下文配置
+- [Claude Code 完全指南 2026](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — 最强 Vibe Coding 工具的完整指南
+- [Claude Code 安装教程](/zh/posts/ai/2026-02-25-claude-code-setup-guide/) — 10 分钟上手
+- [Claude Code 新手常犯的 10 个错误](/zh/posts/ai/2026-02-25-claude-code-mistakes/) — 避免常见陷阱
+- [Claude Code vs Cursor 2026](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/) — 两大 Vibe Coding 工具对比
+- [CLAUDE.md 指南](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) — 提升 AI 输出质量的项目上下文配置

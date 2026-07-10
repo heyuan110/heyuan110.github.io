@@ -36,7 +36,7 @@ Prompt Engineering 关注的是"怎么问问题"，Context Engineering 关注的
 | **信息组织** | 以什么结构呈现信息 | 分层文档：设计文档 → 实施计划 → 具体代码 |
 | **信息质量** | 确保上下文中没有错误或矛盾 | 清理过时的注释和文档 |
 | **信息时机** | 什么时候提供什么信息 | 先给架构概览，再给具体实现 |
-| **工具配置** | 通过 [MCP](/posts/ai/2026-02-20-mcp-protocol-guide/)/工具扩展 AI 的感知范围 | 连接数据库 schema、API 文档、项目管理工具 |
+| **工具配置** | 通过 [MCP](/zh/posts/ai/2026-02-20-mcp-protocol-guide/)/工具扩展 AI 的感知范围 | 连接数据库 schema、API 文档、项目管理工具 |
 
 StockApp 团队在实践中总结了一个精辟的公式：**好代码是好上下文的副产品。**
 
@@ -51,7 +51,7 @@ CLAUDE.md        → AI 本地化指导
 README.md        → 项目概览
 ```
 
-这种结构的每一层都有明确的受众和目的：designs 给决策者看，plans 给执行者（包括 AI）看，guides 给消费者看。而 [CLAUDE.md](/posts/ai/2026-01-12-claudemd-memory-guide/) 是专门给 AI Agent 看的"使用说明书"——告诉它这个项目的约定、禁忌和偏好。
+这种结构的每一层都有明确的受众和目的：designs 给决策者看，plans 给执行者（包括 AI）看，guides 给消费者看。而 [CLAUDE.md](/zh/posts/ai/2026-01-12-claudemd-memory-guide/) 是专门给 AI Agent 看的"使用说明书"——告诉它这个项目的约定、禁忌和偏好。
 
 ## Spec 是新的源代码
 
@@ -127,9 +127,9 @@ Databricks 的研究表明，模型在处理超过 32K token 的上下文时，�
 
 Berkeley 的函数调用排行榜显示：**每个模型在获得更多工具时性能都会下降**。Llama 3.1 8B 在 19 个工具时能正常工作，到 46 个工具时就开始失败。即使是 GPT-4 级别的模型也不能免疫。
 
-这就是为什么 Anthropic 在 [Writing Effective Tools for Agents](https://www.anthropic.com/engineering/writing-tools-for-agents) 中强调："少而精的工具优于面面俱到的 API 封装"。不是把所有能力都暴露给 AI，而是只给它当前任务需要的工具。关于[工具设计的实战经验](/posts/ai/2026-02-22-claude-code-mcp-server-tutorial/)，可以参考 MCP Server 开发教程。
+这就是为什么 Anthropic 在 [Writing Effective Tools for Agents](https://www.anthropic.com/engineering/writing-tools-for-agents) 中强调："少而精的工具优于面面俱到的 API 封装"。不是把所有能力都暴露给 AI，而是只给它当前任务需要的工具。关于[工具设计的实战经验](/zh/posts/ai/2026-02-22-claude-code-mcp-server-tutorial/)，可以参考 MCP Server 开发教程。
 
-**对策**：根据任务动态加载工具和上下文。比如在 [Claude Code](/posts/ai/2026-01-14-claude-code-guide/) 中，不要一次性加载所有可用的 MCP Server。
+**对策**：根据任务动态加载工具和上下文。比如在 [Claude Code](/zh/posts/ai/2026-01-14-claude-code-guide/) 中，不要一次性加载所有可用的 MCP Server。
 
 ### 失败模式四：上下文冲突（Context Conflict）
 
@@ -296,18 +296,18 @@ CS146S Week 3 教会我们的核心认知可以浓缩为一句话：
 
 ## 相关阅读
 
-- [CLAUDE.md 记忆术：一个文件让 AI 永远记住你是谁](/posts/ai/2026-01-12-claudemd-memory-guide/) — 上下文工程最直接的实践
-- [MCP 协议全面解析](/posts/ai/2026-02-20-mcp-protocol-guide/) — 通过 MCP 扩展 AI 的上下文感知范围
-- [Claude Code 从入门到精通完全指南](/posts/ai/2026-01-14-claude-code-guide/) — 上下文工程的最佳实践平台
-- [Claude Code 最佳实践](/posts/ai/2026-01-06-claudecode-best-practices/) — Claude Code 创始人分享的实操经验
-- [从零手搓一个 Claude Code](/posts/ai/2026-02-24-build-magic-code/) — 动手理解 AI 编程助手的底层架构
+- [CLAUDE.md 记忆术：一个文件让 AI 永远记住你是谁](/zh/posts/ai/2026-01-12-claudemd-memory-guide/) — 上下文工程最直接的实践
+- [MCP 协议全面解析](/zh/posts/ai/2026-02-20-mcp-protocol-guide/) — 通过 MCP 扩展 AI 的上下文感知范围
+- [Claude Code 从入门到精通完全指南](/zh/posts/ai/2026-01-14-claude-code-guide/) — 上下文工程的最佳实践平台
+- [Claude Code 最佳实践](/zh/posts/ai/2026-01-06-claudecode-best-practices/) — Claude Code 创始人分享的实操经验
+- [从零手搓一个 Claude Code](/zh/posts/ai/2026-02-24-build-magic-code/) — 动手理解 AI 编程助手的底层架构
 
 ## 系列文章导航
 
 本文是「斯坦福 Vibe Coding 课程精读」系列第 2 篇：
 
-1. [斯坦福 CS146S 精读（一）：Vibe Coding 如何成为正式学科](/posts/ai/2026-02-24-stanford-cs146s-overview/)
+1. [斯坦福 CS146S 精读（一）：Vibe Coding 如何成为正式学科](/zh/posts/ai/2026-02-24-stanford-cs146s-overview/)
 2. **本文**：斯坦福 CS146S 精读（二）：上下文工程（Week 3）
-3. [斯坦福 CS146S 精读（三）：Agent Manager](/posts/ai/2026-02-24-agent-manager-patterns/)（Week 4）
-4. [斯坦福 CS146S 精读（四）：Secure Vibe Coding](/posts/ai/2026-02-24-secure-vibe-coding/)（Week 6-7）
-5. [斯坦福 CS146S 精读（五）：从原型到生产](/posts/ai/2026-02-24-prototype-to-production/)（Week 8-9）
+3. [斯坦福 CS146S 精读（三）：Agent Manager](/zh/posts/ai/2026-02-24-agent-manager-patterns/)（Week 4）
+4. [斯坦福 CS146S 精读（四）：Secure Vibe Coding](/zh/posts/ai/2026-02-24-secure-vibe-coding/)（Week 6-7）
+5. [斯坦福 CS146S 精读（五）：从原型到生产](/zh/posts/ai/2026-02-24-prototype-to-production/)（Week 8-9）

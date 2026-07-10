@@ -87,7 +87,7 @@ v2.1.50 新增了 `WorktreeCreate` 和 `WorktreeRemove` 两个 Hook 事件，可
 }
 ```
 
-Worktree 功能的内容很丰富，这里只做概述。更详细的使用教程、最佳实践和常见问题，请参考 [Claude Code Worktree 实战指南](/posts/ai/2026-02-20-claude-code-worktree/)。
+Worktree 功能的内容很丰富，这里只做概述。更详细的使用教程、最佳实践和常见问题，请参考 [Claude Code Worktree 实战指南](/zh/posts/ai/2026-02-20-claude-code-worktree/)。
 
 ## 后台任务管理
 
@@ -237,7 +237,7 @@ export CLAUDE_CODE_DISABLE_1M_CONTEXT=1
 
 ### Worktree 和普通分支有什么区别？
 
-普通分支只隔离 Git 历史记录，文件系统仍然共享同一个工作目录。Worktree 会创建完全独立的工作目录，每个目录对应一个分支。所以两个 Claude 会话可以同时在不同 Worktree 中修改文件，互不干扰。详见 [Worktree 完全指南](/posts/ai/2026-02-20-claude-code-worktree/)。
+普通分支只隔离 Git 历史记录，文件系统仍然共享同一个工作目录。Worktree 会创建完全独立的工作目录，每个目录对应一个分支。所以两个 Claude 会话可以同时在不同 Worktree 中修改文件，互不干扰。详见 [Worktree 完全指南](/zh/posts/ai/2026-02-20-claude-code-worktree/)。
 
 ### 后台任务怎么查看输出？
 
@@ -249,7 +249,7 @@ Simple Mode 适合两类人：一是非开发者，只需要 Claude 帮忙处理
 
 ## 相关阅读
 
-- [Claude Code Worktree 实战指南](/posts/ai/2026-02-20-claude-code-worktree/) - Worktree 的完整教程和最佳实践
-- [Claude Code 浏览器自动化方案对比](/posts/ai/2026-01-28-claude-code-browser-automation/) - 测试和调试方案选择
-- [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/) - 从入门到进阶的全面指南
-- [Claude Code Skills Top20](/posts/ai/2026-01-20-claude-code-skills-top20/) - 最实用的 Skills 排行
+- [Claude Code Worktree 实战指南](/zh/posts/ai/2026-02-20-claude-code-worktree/) - Worktree 的完整教程和最佳实践
+- [Claude Code 浏览器自动化方案对比](/zh/posts/ai/2026-01-28-claude-code-browser-automation/) - 测试和调试方案选择
+- [Claude Code 完全指南](/zh/posts/ai/2026-01-14-claude-code-guide/) - 从入门到进阶的全面指南
+- [Claude Code Skills Top20](/zh/posts/ai/2026-01-20-claude-code-skills-top20/) - 最实用的 Skills 排行

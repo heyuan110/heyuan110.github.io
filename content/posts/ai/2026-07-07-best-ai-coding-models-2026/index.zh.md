@@ -71,7 +71,7 @@ quadrantChart
 
 这一代模型里信息量最大、却被大多数报道埋掉的一个数字是：在 [Terminal-Bench 2.1](https://llm-stats.com/blog/research/claude-sonnet-5-vs-claude-opus-4-8) 上，**Sonnet 5 拿了 80.4，旗舰 Opus 4.8 只有 74.6**。注意，这不是"便宜模型缩小了差距"，而是中端模型在同一测试框架下正面赢了旗舰。而 Terminal-Bench 测的恰恰是编码 agent 每天真正在干的事：跑 shell 命令、管理环境、从报错里恢复、串联多步终端操作。如果你用 Claude Code、Cursor 的 agent 模式或任何终端驱动的工作流，Terminal-Bench 对你体验的预测力远高于 SWE-bench。
 
-为什么会出现中端反超？因为 SWE-bench Pro 这类深度推理测试奖励的是"对着一个棘手的多文件补丁苦想"——这方面 Opus 4.8 依然明显领先（69.2 对 63.2）。但 agentic 终端工作奖励的是另一种性格：回合快、工具用得果断、不对一条 `sed` 命令过度思考。Anthropic 自己的迁移文档也写了，Sonnet 5"默认更 agentic"，更愿意主动调工具、跑自检循环。旗舰多出来的那截推理深度，在占编码工作八成的"管道活"上是浪费的，有时甚至是负资产。这和我在 [Claude Code vs Codex](/posts/ai/2026-02-19-claude-code-vs-codex/) 那篇里反复撞见的结论是同一个：模型的能力天花板，不如它的默认行为跟你工作循环的匹配度重要。
+为什么会出现中端反超？因为 SWE-bench Pro 这类深度推理测试奖励的是"对着一个棘手的多文件补丁苦想"——这方面 Opus 4.8 依然明显领先（69.2 对 63.2）。但 agentic 终端工作奖励的是另一种性格：回合快、工具用得果断、不对一条 `sed` 命令过度思考。Anthropic 自己的迁移文档也写了，Sonnet 5"默认更 agentic"，更愿意主动调工具、跑自检循环。旗舰多出来的那截推理深度，在占编码工作八成的"管道活"上是浪费的，有时甚至是负资产。这和我在 [Claude Code vs Codex](/zh/posts/ai/2026-02-19-claude-code-vs-codex/) 那篇里反复撞见的结论是同一个：模型的能力天花板，不如它的默认行为跟你工作循环的匹配度重要。
 
 我在 Reddit、在各种团队群、在我自己过去的行为里反复看到同一个错误：把 benchmark 排行榜当成"买得起就买榜一"的购物清单。正确的读法是：**先找到跟你工作负载对应的那个 benchmark，然后买过线模型里最便宜的那个。** 2026 年 7 月，对终端驱动的 agentic 编码，这个模型就是 Sonnet 5——把价格放进等式之后，甚至不接近。
 
@@ -91,11 +91,11 @@ quadrantChart
 
 由此得出我会给任何团队的升级规则：**默认 Sonnet 5；同一个任务 Sonnet 连败两次再升 Opus 4.8；Fable 5 只留给"一次运行可能顶一天工作量"的任务。** "连败两次"这个门槛比看起来重要：第一次失败里有相当比例是 prompt 或上下文的问题，换 Opus 也一样败，第一败就升级纯属把差价烧掉。两连败才说明任务是推理受限而不是执行受限——那正是 Opus 溢价能赚回来的区间。
 
-有一个坑要在做预算前先算进去：Sonnet 5 换了新 tokenizer，同样的文本会产生**约 30% 更多的 token**。单价没变，但迁移过来的工作负载单请求成本会往上飘，按 Sonnet 4.6 调好的 `max_tokens` 还可能悄悄截断输出。如果你走订阅而不是 API，这事基本不影响你——各档订阅怎么换算成实际用量，我在 [Claude 价格完全指南](/posts/ai/2026-04-03-claude-pricing-complete-guide/)里拆过；想先白嫖试试水的，可以看[2026 年 Claude 免费额度实测](/posts/ai/2026-07-08-claude-free-tier-limits/)。
+有一个坑要在做预算前先算进去：Sonnet 5 换了新 tokenizer，同样的文本会产生**约 30% 更多的 token**。单价没变，但迁移过来的工作负载单请求成本会往上飘，按 Sonnet 4.6 调好的 `max_tokens` 还可能悄悄截断输出。如果你走订阅而不是 API，这事基本不影响你——各档订阅怎么换算成实际用量，我在 [Claude 价格完全指南](/zh/posts/ai/2026-04-03-claude-pricing-complete-guide/)里拆过；想先白嫖试试水的，可以看[2026 年 Claude 免费额度实测](/zh/posts/ai/2026-07-08-claude-free-tier-limits/)。
 
 ## GPT-5.6 和 Gemini 3：牌桌上的其他人
 
-> **更新（2026 年 7 月 9 日）**：本文发布两天后，GPT-5.6 正式全量开放。"约 20 家政府批准企业"的预览限制已解除——Sol（$5/$30）、Terra（$2.50/$15）、Luna（$1/$6）现已登陆 ChatGPT、API、Codex 和全新的 ChatGPT Work。下面这一节保留 GA 前的原文不动；关于这次发布的完整解读（包括为什么跑分依然要打折听），见新文[《GPT-5.6 正式发布：三档价格、Codex 并入 ChatGPT Work 全解读》](/posts/ai/2026-07-10-gpt-5-6-general-availability/)。
+> **更新（2026 年 7 月 9 日）**：本文发布两天后，GPT-5.6 正式全量开放。"约 20 家政府批准企业"的预览限制已解除——Sol（$5/$30）、Terra（$2.50/$15）、Luna（$1/$6）现已登陆 ChatGPT、API、Codex 和全新的 ChatGPT Work。下面这一节保留 GA 前的原文不动；关于这次发布的完整解读（包括为什么跑分依然要打折听），见新文[《GPT-5.6 正式发布：三档价格、Codex 并入 ChatGPT Work 全解读》](/zh/posts/ai/2026-07-10-gpt-5-6-general-availability/)。
 
 **GPT-5.6 是今年最诡异的发布：一场你用不上的发布。** OpenAI 在 [6 月 26 日预览了 Sol、Terra、Luna 三件套](https://openai.com/index/previewing-gpt-5-6-sol/)——旗舰 Sol $5/$30，Terra 约半价，Luna $1/$6——然后[应美国政府要求](https://techcrunch.com/2026/06/26/openai-limits-gpt-5-6-rollout-after-government-request-says-restrictions-shouldnt-be-the-norm/)把访问限制在约 20 家获批合作企业的预览里，仅限 API 和 Codex，ChatGPT 里连影子都没有。OpenAI 称限制是"短期措施"、不应成为常态，但没有任何公开时间表。所以你读到的每一篇"Fable 5 对比 GPT-5.6"，本质上都是拿一个买得到的模型去比一个买不到的模型的厂商自报数字。我的建议无聊但正确：在你能给 GPT-5.6 创建 API key 的那天之前，把它从你的选型里划掉；到那天再重跑一遍这个对比。参考两家前沿实验室一个月内先后经历的"政府预览"模式，公开访问大概率是几周量级的事。
 
@@ -121,7 +121,7 @@ flowchart TD
     K -- 否 --> G
 ```
 
-几条落地注意事项。"连败两次"的门槛前面说过，不再重复。ZDR 那个分支是硬约束不是偏好——Fable 5 对零数据保留组织直接拒绝服务，这类团队的"最强模型"问题在 Opus 4.8 处自动收敛。另外，如果你同时在选 harness 而不只是模型，那是另一个维度的决策，我在 [Claude Code vs Cursor vs Windsurf](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/) 里写过——一句话结论：2026 年，harness 的选择对结果的影响大于模型升一档。
+几条落地注意事项。"连败两次"的门槛前面说过，不再重复。ZDR 那个分支是硬约束不是偏好——Fable 5 对零数据保留组织直接拒绝服务，这类团队的"最强模型"问题在 Opus 4.8 处自动收敛。另外，如果你同时在选 harness 而不只是模型，那是另一个维度的决策，我在 [Claude Code vs Cursor vs Windsurf](/zh/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/) 里写过——一句话结论：2026 年，harness 的选择对结果的影响大于模型升一档。
 
 ## 什么场景别碰旗舰
 
@@ -144,7 +144,7 @@ flowchart TD
 ## 相关阅读
 
 - [Claude API 成本计算器](/tools/claude-token-cost-calculator.html) — 按你的用量实时对比各模型每次调用/每月成本
-- [2026 年 Claude 免费额度实测：免费版到底能干什么](/posts/ai/2026-07-08-claude-free-tier-limits/)
-- [Claude 价格完全指南：API、Pro、Max 怎么选](/posts/ai/2026-04-03-claude-pricing-complete-guide/)
-- [Claude Code vs Codex：两大 agentic CLI 对决](/posts/ai/2026-02-19-claude-code-vs-codex/)
-- [Claude Code vs Cursor vs Windsurf：2026 终极对比](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/)
+- [2026 年 Claude 免费额度实测：免费版到底能干什么](/zh/posts/ai/2026-07-08-claude-free-tier-limits/)
+- [Claude 价格完全指南：API、Pro、Max 怎么选](/zh/posts/ai/2026-04-03-claude-pricing-complete-guide/)
+- [Claude Code vs Codex：两大 agentic CLI 对决](/zh/posts/ai/2026-02-19-claude-code-vs-codex/)
+- [Claude Code vs Cursor vs Windsurf：2026 终极对比](/zh/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/)

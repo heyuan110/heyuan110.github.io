@@ -554,7 +554,7 @@ ERR Failed to fetch features error="lookup cfd-features.argotunnel.com: i/o time
 
 ## 相关阅读
 
-- [Chrome DevTools MCP：AI 驱动的浏览器调试](/posts/ai/2026-03-17-chrome-devtools-mcp-guide/) — 用 AI 辅助调试 Web 应用
-- [Tmux 终端复用指南](/posts/ai/2026-03-03-tmux-guide-ai-development/) — AI 开发场景下的终端管理
-- [AI 开发环境搭建](/posts/ai/2026-03-10-ai-dev-environment-setup/) — 完整的 AI 开发环境配置指南
-- [MCP 协议详解](/posts/ai/2026-02-28-mcp-protocol-explained/) — 理解模型上下文协议
+- [Chrome DevTools MCP：AI 驱动的浏览器调试](/zh/posts/ai/2026-03-17-chrome-devtools-mcp-guide/) — 用 AI 辅助调试 Web 应用
+- [Tmux 终端复用指南](/zh/posts/ai/2026-03-03-tmux-guide-ai-development/) — AI 开发场景下的终端管理
+- [AI 开发环境搭建](/zh/posts/ai/2026-03-10-ai-dev-environment-setup/) — 完整的 AI 开发环境配置指南
+- [MCP 协议详解](/zh/posts/ai/2026-02-28-mcp-protocol-explained/) — 理解模型上下文协议

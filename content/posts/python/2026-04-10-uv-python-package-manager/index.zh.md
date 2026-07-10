@@ -215,7 +215,7 @@ uv 是第一个真正做到这件事的工具。它不是又一个"更好的 pip
 
 ## Related Reading
 
-- [Conda Guide: How to Manage Multiple Python Versions and Environments](/posts/python/2020-01-11-python-conda/) - 如果你需要深入了解 conda 的使用
+- [Conda Guide: How to Manage Multiple Python Versions and Environments](/zh/posts/python/2020-01-11-python-conda/) - 如果你需要深入了解 conda 的使用
 - [uv Official Documentation](https://docs.astral.sh/uv/) - uv 的完整官方文档
 - [A Year of uv: Pros, Cons, and Should You Migrate](https://www.bitecode.dev/p/a-year-of-uv-pros-cons-and-should) - 一位开发者使用 uv 一年的深度评测
 - [uv vs pip - Real Python](https://realpython.com/uv-vs-pip/) - Real Python 的详细对比测评

@@ -59,7 +59,7 @@ Vibe Coding 是最简单的方式：直接和 AI 聊，看会发生什么。没�
 
 **适用场景**：快速原型、一次性脚本、探索性开发、个人玩具项目。如果你在做下周就会扔掉的东西，Vibe Coding 再合适不过。
 
-**失效场景**：项目超过几百行代码的那一刻。没有结构，AI 容易积累矛盾——修一个 bug 的同时引入两个新 bug。[Vibe Coding](/posts/ai/2026-02-22-vibe-coding-guide/) 第一个小时感觉很神奇，到第十个小时就痛苦了。
+**失效场景**：项目超过几百行代码的那一刻。没有结构，AI 容易积累矛盾——修一个 bug 的同时引入两个新 bug。[Vibe Coding](/zh/posts/ai/2026-02-22-vibe-coding-guide/) 第一个小时感觉很神奇，到第十个小时就痛苦了。
 
 **核心问题**：Vibe Coding 把代码当成一次性的。代码确实是一次性的时候没问题。但大多数专业软件不是。
 
@@ -160,7 +160,7 @@ title: "认证"
 他的哲学可以提炼为四条规则：
 
 - **"不再写完整规范——直接跟它聊，一起构建功能"** — 对于大多数任务，交互式迭代优于编写规范。
-- **"保持 [AGENTS.md](/posts/ai/2026-03-05-claude-code-claudemd-best-practices/) 精简。`logs: axiom or vercel cli` ——一行就够了"** — 简洁、聚焦的上下文优于全面的文档。
+- **"保持 [AGENTS.md](/zh/posts/ai/2026-03-05-claude-code-claudemd-best-practices/) 精简。`logs: axiom or vercel cli` ——一行就够了"** — 简洁、聚焦的上下文优于全面的文档。
 - **"不用 MCP——用 CLI 工具"** — 简单、直接的 CLI 命令（Vercel、psql、gh、axiom）比复杂的集成更可靠。
 - **"约 20% 的时间用于完全由 agent 驱动的重构"** — AI 擅长大规模机械性重构。让它自主运行这类任务。
 
@@ -215,7 +215,7 @@ BMAD（Breakthrough Method for Agile AI-Driven Development）用 AI 模拟整个
 - `SEND: <消息>`：向人类发送消息
 - `RESTART`：放弃进度，重新开始
 
-核心洞察是**上下文窗口污染是一个真实问题**。AI agent 工作时间越长，就会积累越多过时的上下文、矛盾的指令和认知漂移。通过每次迭代全新开始，但通过文件和 [git 提交](/posts/ai/2026-03-10-high-frequency-commits/) 持久化进度，Ralph 完全避免了这个问题。
+核心洞察是**上下文窗口污染是一个真实问题**。AI agent 工作时间越长，就会积累越多过时的上下文、矛盾的指令和认知漂移。通过每次迭代全新开始，但通过文件和 [git 提交](/zh/posts/ai/2026-03-10-high-frequency-commits/) 持久化进度，Ralph 完全避免了这个问题。
 
 **适用场景**：长时间运行的自动化任务、上下文窗口溢出的项目、需要 AI 连夜自主运行的场景。
 
@@ -233,7 +233,7 @@ CDD 与其说是特定框架，不如说是指导原则：**专注于给 AI 提�
 
 CDD 实践者关注：代码库理解、错误消息、截图、相关代码片段——任何帮助 AI 理解 *当前情况* 而非遵循预定计划的信息。
 
-这与新兴的[上下文工程](/posts/ai/2026-03-10-context-engineering-guide/)领域一致，该领域将 AI 周围的信息环境视为提升输出质量的主要杠杆。
+这与新兴的[上下文工程](/zh/posts/ai/2026-03-10-context-engineering-guide/)领域一致，该领域将 AI 周围的信息环境视为提升输出质量的主要杠杆。
 
 ## SDD 工具全景
 
@@ -249,7 +249,7 @@ CDD 实践者关注：代码库理解、错误消息、截图、相关代码片�
 - **格式**：每个模块 3 个 markdown 文件
 - **特色**：EARS 标记法用于需求，"steering" 记忆库
 - **问题**：即使是微小的 bug 也要走完整的三文件流程
-- **评价**：适合已在 AWS 生态中的团队。更多详情请看 [Kiro 评测](/posts/ai/2026-03-10-kiro-review/)。
+- **评价**：适合已在 AWS 生态中的团队。更多详情请看 [Kiro 评测](/zh/posts/ai/2026-03-10-kiro-review/)。
 
 ### GitHub Spec-Kit
 
@@ -317,13 +317,13 @@ Kiro 风格命令，支持 7+ AI 工具
 
 ### 混合 AI 开发的五大支柱
 
-1. **保持 AGENTS.md 精简**（Peter 风格） — 核心规则 + 技术栈 + 约束，不超过 200 行。你的 [CLAUDE.md](/posts/ai/2026-02-28-claude-code-claudemd-guide/) 或 AGENTS.md 应该是备忘单，不是百科全书。
+1. **保持 AGENTS.md 精简**（Peter 风格） — 核心规则 + 技术栈 + 约束，不超过 200 行。你的 [CLAUDE.md](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) 或 AGENTS.md 应该是备忘单，不是百科全书。
 
 2. **给 docs/ 添加 frontmatter**（OpenClaw 风格） — `summary` + `read_when` 头信息，让 AI 按需读取文档，而非一次性全部加载。
 
 3. **仅为复杂功能编写规范**（SDD 风格） — 不是每个任务都需要三文件仪式。把它留给歧义可能造成真正损害的功能。
 
-4. **原子化 git 提交**（Ralph 风格） — 每个变更独立且可回滚。当[多个 agent 并行工作](/posts/ai/2026-02-23-openclaw-multi-agent-guide/)时这至关重要。
+4. **原子化 git 提交**（Ralph 风格） — 每个变更独立且可回滚。当[多个 agent 并行工作](/zh/posts/ai/2026-02-23-openclaw-multi-agent-guide/)时这至关重要。
 
 5. **交互式迭代作为默认**（Peter 当前实践） — 对于大多数任务，直接跟 AI 对话。通过对话构建功能。只在复杂度需要时才切换到正式流程。
 
@@ -357,7 +357,7 @@ title: "文档标题"
 
 3. **更少的上下文往往意味着更好**。Peter Steinberger 最大的洞察：塞更多信息到 AI 的上下文窗口 *反而降低* 质量。聚焦的、相关的上下文胜过全面的文档。
 
-4. **Git 才是真正的持久化层**。无论你使用 Ralph Loop 还是多 agent 工作流，git 提交是你保持理智的方式。[高频原子提交](/posts/ai/2026-01-31-high-frequency-commits-strategy/)不是可选的——而是必需的。
+4. **Git 才是真正的持久化层**。无论你使用 Ralph Loop 还是多 agent 工作流，git 提交是你保持理智的方式。[高频原子提交](/zh/posts/ai/2026-01-31-high-frequency-commits-strategy/)不是可选的——而是必需的。
 
 5. **最好的方法论是你真正会遵循的那个**。你的团队忽略的完美 SDD 流程，不如你的团队实际使用的非正式 Vibe Coding。从简单开始，在痛点出现时添加结构。
 
@@ -381,13 +381,13 @@ Peter Steinberger 的经验表明 **3-8 个 agent** 是最佳范围。低于 3 �
 
 ## 相关阅读
 
-- [Vibe Coding Explained: Write Code by Talking to AI](/posts/ai/2026-02-28-vibe-coding-explained/) — 对话式编码入门指南
-- [Context Engineering Deep Dive](/posts/ai/2026-03-10-context-engineering-guide/) — 如何优化 AI 看到的内容
-- [Claude Code CLAUDE.md Best Practices](/posts/ai/2026-03-05-claude-code-claudemd-best-practices/) — 编写有效的 AI 项目指令
-- [High-Frequency Commits Strategy](/posts/ai/2026-01-31-high-frequency-commits-strategy/) — AI 工作流中原子提交的重要性
-- [OpenClaw Multi-Agent Guide](/posts/ai/2026-02-23-openclaw-multi-agent-guide/) — 并行运行多个 AI agent
-- [AI Coding Agents Comparison 2026](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — 详细工具对比
-- [Kiro Review](/posts/ai/2026-03-10-kiro-review/) — AWS SDD IDE 深度评测
+- [Vibe Coding Explained: Write Code by Talking to AI](/zh/posts/ai/2026-02-28-vibe-coding-explained/) — 对话式编码入门指南
+- [Context Engineering Deep Dive](/zh/posts/ai/2026-03-10-context-engineering-guide/) — 如何优化 AI 看到的内容
+- [Claude Code CLAUDE.md Best Practices](/zh/posts/ai/2026-03-05-claude-code-claudemd-best-practices/) — 编写有效的 AI 项目指令
+- [High-Frequency Commits Strategy](/zh/posts/ai/2026-01-31-high-frequency-commits-strategy/) — AI 工作流中原子提交的重要性
+- [OpenClaw Multi-Agent Guide](/zh/posts/ai/2026-02-23-openclaw-multi-agent-guide/) — 并行运行多个 AI agent
+- [AI Coding Agents Comparison 2026](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — 详细工具对比
+- [Kiro Review](/zh/posts/ai/2026-03-10-kiro-review/) — AWS SDD IDE 深度评测
 
 ## 参考资料
 

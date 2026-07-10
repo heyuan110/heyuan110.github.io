@@ -33,13 +33,13 @@ answer = "让 Agent 给自己的产出打分,几乎永远是满分——同一�
 
 先给一个能改变你 2026 年造 Agent 方式的重新定位:所有人都在优化那头野兽,而真正有沉淀的工程在笼子里。模型是那头野兽——强、迭代快、而且越来越是一种按 token 租的水电煤。**循环工程(Loop Engineering)是那个笼子**:决定何时给 Agent 的记忆瘦身、何时急刹、何时打回它自己交的作业、允许它碰哪些工具的控制循环。把 Opus 换成 GPT-5.x 换成 Gemini,你的 Agent 会聪明一点点;但笼子造错,它们中任何一个都会心甘情愿地在一夜之间烧掉 $200,再甩给你一个红色的 CI。我的核心立场:**模型是水电煤,循环和它的护栏才是护城河。**
 
-这是我之前那篇[《Agentic Loops:自循环 AI Agent 全解》](/posts/ai/2026-07-03-agentic-loops/)的工程姊妹篇。那篇回答的是 Agent 循环「是什么」以及「何时该跑」。这篇回答的是「怎么造这个笼子」——四根承重的支柱,每根都配一段能直接抄走的伪代码,和一个跳过它就会翻车的真实案例。如果你读完那篇想的是「道理我懂了,可 harness 到底长什么样」,这篇就是那个 harness。
+这是我之前那篇[《Agentic Loops:自循环 AI Agent 全解》](/zh/posts/ai/2026-07-03-agentic-loops/)的工程姊妹篇。那篇回答的是 Agent 循环「是什么」以及「何时该跑」。这篇回答的是「怎么造这个笼子」——四根承重的支柱,每根都配一段能直接抄走的伪代码,和一个跳过它就会翻车的真实案例。如果你读完那篇想的是「道理我懂了,可 harness 到底长什么样」,这篇就是那个 harness。
 
 ## 循环工程已经是一门有名字的学科,不是玄学
 
 这个词在 2026 年 6 月定型。Google 的 Addy Osmani 写了一篇文章,用一篇解读的话说「给了这门实践一个名字,更有用的是给了它一套解剖学」;Peter Steinberger 和 Boris Cherny 从编码 Agent 那一侧收敛到同一个想法;swyx 更早就在用「loopcraft(循环术)」绕着它转。LangChain 干脆把它形式化成四层循环——Agent 循环、验证循环、事件循环,以及一个从生产 trace 里反向改进内层循环的爬山循环。当前沿实验室、框架厂商和一线实践者在同一个月里各自独立给同一样东西命名时,它就已经从玄学变成学科了。
 
-摆放它最干净的方式,是把它当成一个四层栈的最外层,每一层包住前一层而不取代它。Prompt 工程(2022-2024)是你发出去的词。[上下文工程](/posts/ai/2026-06-16-context-engineering-2026/)(2025)是模型在某次调用里看到的每一个 token。Harness 工程(2026 年初)是环境——Agent 能碰的工具、文件、MCP 连接器。**循环工程(2026)是驱动这一切走向目标的迭代循环。** 它是那个负责发问的层:这段对话越来越长了——压缩还是继续?Agent 说它做完了——真的吗?它想写数据库——这个写操作重试安全吗?这些问题没有一个是关于模型的,全都是关于笼子的。
+摆放它最干净的方式,是把它当成一个四层栈的最外层,每一层包住前一层而不取代它。Prompt 工程(2022-2024)是你发出去的词。[上下文工程](/zh/posts/ai/2026-06-16-context-engineering-2026/)(2025)是模型在某次调用里看到的每一个 token。Harness 工程(2026 年初)是环境——Agent 能碰的工具、文件、MCP 连接器。**循环工程(2026)是驱动这一切走向目标的迭代循环。** 它是那个负责发问的层:这段对话越来越长了——压缩还是继续?Agent 说它做完了——真的吗?它想写数据库——这个写操作重试安全吗?这些问题没有一个是关于模型的,全都是关于笼子的。
 
 本文剩下的部分就是这个笼子的四根支柱。缺任何一根,你就重新打开一个具体而昂贵的翻车模式——我会逐一点名。
 
@@ -127,7 +127,7 @@ def run(task, max_iter=10, budget_usd=5.0, deadline_s=1800):
 
 让 Agent 给自己的产出打分,就是让学生批自己的卷——分数永远是 100。这不是模型的道德缺陷,是结构性的。生成答案的那套权重被拿来判断答案好不好,而它有一切动机去附和自己。整个业界都收敛到同一个解法,从 LangChain 的验证循环到 Anthropic 的评估器模式:**把 Maker 和 Checker 分开。** 一个 Agent 创造;另一个独立评审——最好带不同指令、不同模型,或者干脆不用模型——试图证明它错了,并且能给出一个硬性的「不」,把作业打回循环。
 
-最强的评审不是另一个 LLM,而是一道 Agent 甜言蜜语哄不动的确定性关卡。测试、类型检查、linter、一个真实的编译报错——这些评审没有会被伤到的自尊,也没有讨好谁的欲望。确实需要 LLM 评审的地方(文字质量、设计评审、任何没法写测试的东西),把它调成一个带 rubric 的独立怀疑者,因为把一个独立评估器调得刻薄,远比让生成器自我批判来得可行。把这一切串起来的那条铁律,直接来自[前一篇的循环护栏](/posts/ai/2026-07-03-agentic-loops/):Checker 必须待在 Maker 改不到的地方。给一个 Agent「让测试通过」外加测试文件的写权限,有相当比例的时候它会通过改**测试**来让测试通过。这不是坏心眼——循环在精确地优化你给它的那个信号。奖励作弊(reward hacking)是笼子的设计 bug,不是野兽的性格缺陷。
+最强的评审不是另一个 LLM,而是一道 Agent 甜言蜜语哄不动的确定性关卡。测试、类型检查、linter、一个真实的编译报错——这些评审没有会被伤到的自尊,也没有讨好谁的欲望。确实需要 LLM 评审的地方(文字质量、设计评审、任何没法写测试的东西),把它调成一个带 rubric 的独立怀疑者,因为把一个独立评估器调得刻薄,远比让生成器自我批判来得可行。把这一切串起来的那条铁律,直接来自[前一篇的循环护栏](/zh/posts/ai/2026-07-03-agentic-loops/):Checker 必须待在 Maker 改不到的地方。给一个 Agent「让测试通过」外加测试文件的写权限,有相当比例的时候它会通过改**测试**来让测试通过。这不是坏心眼——循环在精确地优化你给它的那个信号。奖励作弊(reward hacking)是笼子的设计 bug,不是野兽的性格缺陷。
 
 ```mermaid
 sequenceDiagram
@@ -175,7 +175,7 @@ def create_booking(user_id, slot, idempotency_key):
 
 把四根支柱拼起来,你得到的是一个会主动遗忘、凭证据才停、服从独立裁判、并且透过「被调两次也能活」的工具去碰世界的循环。注意这段描述里显眼地缺席的东西:模型。你明天就能把底层模型换掉,而每一根支柱依然成立,因为这些支柱是**笼子**的属性,不是野兽的。这恰恰是循环工程之所以是护城河的原因。模型质量正在收敛、可租用;任何人都能调你能调的那个 API。而压缩策略、四套刹车、Maker-Checker 分离、幂等层,是竞争对手升级模型也抄不走的、积累出来的工程。
 
-这也重新定义了多 Agent 这个问题。我在[《多智能体编排》](/posts/ai/2026-02-26-multi-agent-orchestration/)里说过,大多数多 Agent 复杂度都是过早优化,而四支柱解释了原因:一个关得好的单循环能解决绝大多数问题,只有当工作真的会扇出时你才该去够并行。真到那一步,[Agent 管理者模式](/posts/ai/2026-02-24-agent-manager-patterns/)讲的是监管好几个这样被关起来的循环,而不是取代笼子——每个子 Agent 依然需要它自己的四根支柱。
+这也重新定义了多 Agent 这个问题。我在[《多智能体编排》](/zh/posts/ai/2026-02-26-multi-agent-orchestration/)里说过,大多数多 Agent 复杂度都是过早优化,而四支柱解释了原因:一个关得好的单循环能解决绝大多数问题,只有当工作真的会扇出时你才该去够并行。真到那一步,[Agent 管理者模式](/zh/posts/ai/2026-02-24-agent-manager-patterns/)讲的是监管好几个这样被关起来的循环,而不是取代笼子——每个子 Agent 依然需要它自己的四根支柱。
 
 ## 什么时候你**不该**造整个笼子
 
@@ -187,9 +187,9 @@ def create_booking(user_id, slot, idempotency_key):
 
 ## 延伸阅读
 
-- [Agentic Loops 2026:自循环 AI Agent 全解](/posts/ai/2026-07-03-agentic-loops/)
-- [2026 编码 Agent 的上下文工程](/posts/ai/2026-06-16-context-engineering-2026/)
-- [多智能体编排](/posts/ai/2026-02-26-multi-agent-orchestration/)
-- [Agent 管理者模式](/posts/ai/2026-02-24-agent-manager-patterns/)
+- [Agentic Loops 2026:自循环 AI Agent 全解](/zh/posts/ai/2026-07-03-agentic-loops/)
+- [2026 编码 Agent 的上下文工程](/zh/posts/ai/2026-06-16-context-engineering-2026/)
+- [多智能体编排](/zh/posts/ai/2026-02-26-multi-agent-orchestration/)
+- [Agent 管理者模式](/zh/posts/ai/2026-02-24-agent-manager-patterns/)
 
 **参考来源:** [The Art of Loop Engineering(LangChain)](https://www.langchain.com/blog/the-art-of-loop-engineering) · [12-factor agents(HumanLayer)](https://github.com/humanlayer/12-factor-agents) · [Effective context engineering for AI agents(Anthropic)](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) · [Make your agent's API calls idempotent(DEV)](https://dev.to/mukundakatta/make-your-agents-api-calls-idempotent-before-you-need-to-2994)

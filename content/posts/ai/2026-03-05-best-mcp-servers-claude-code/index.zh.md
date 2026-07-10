@@ -76,7 +76,7 @@ claude mcp remove <name>
 
 **经验法则**：通用工具（GitHub、Context7、浏览器）使用 `--scope user`，项目专属连接（数据库、内部 API）使用 project scope。
 
-更详细的 MCP 设置教程请参阅我们的 [Claude Code MCP 配置指南](/posts/ai/2026-02-28-claude-code-mcp-setup/)。
+更详细的 MCP 设置教程请参阅我们的 [Claude Code MCP 配置指南](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/)。
 
 ---
 
@@ -165,7 +165,7 @@ claude mcp add playwright \
 
 **适用场景**：编写和调试端到端测试、抓取网页数据、自动化重复性浏览器操作、修改代码后验证 UI 变化。这是进行严肃浏览器自动化的首选方案。
 
-更多浏览器自动化选项请参阅我们的[浏览器自动化指南](/posts/ai/2026-01-28-claude-code-browser-automation/)。
+更多浏览器自动化选项请参阅我们的[浏览器自动化指南](/zh/posts/ai/2026-01-28-claude-code-browser-automation/)。
 
 ### 5. Fetch
 
@@ -346,7 +346,7 @@ claude mcp add slack \
 - 频道管理（列表、加入、创建）
 - 支持主题讨论
 
-**适用场景**：Claude 完成长任务后自动发送通知、从团队讨论中获取上下文，或发布部署摘要。搭配 [Claude Code Hooks](/posts/ai/2026-02-28-claude-code-hooks-guide/) 可实现完全自动化的工作流。
+**适用场景**：Claude 完成长任务后自动发送通知、从团队讨论中获取上下文，或发布部署摘要。搭配 [Claude Code Hooks](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) 可实现完全自动化的工作流。
 
 ### 13. Linear
 
@@ -565,8 +565,8 @@ claude mcp list
 
 ## 相关阅读
 
-- [Claude Code MCP 配置指南](/posts/ai/2026-02-28-claude-code-mcp-setup/) —— MCP 服务器安装、配置和构建的完整教程
-- [用 TypeScript 构建 MCP 服务器](/posts/ai/2026-03-02-building-mcp-servers-typescript/) —— 从零创建你自己的 MCP 服务器
-- [MCP 协议详解](/posts/ai/2026-02-28-mcp-protocol-explained/) —— MCP 底层工作原理的技术深入分析
-- [MCP 安全指南](/posts/ai/2026-02-23-mcp-security-guide/) —— 安全运行 MCP 服务器的最佳实践
-- [Claude Code 完全指南](/posts/ai/2026-02-28-claude-code-complete-guide/) —— 关于 Claude Code 你需要知道的一切
+- [Claude Code MCP 配置指南](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/) —— MCP 服务器安装、配置和构建的完整教程
+- [用 TypeScript 构建 MCP 服务器](/zh/posts/ai/2026-03-02-building-mcp-servers-typescript/) —— 从零创建你自己的 MCP 服务器
+- [MCP 协议详解](/zh/posts/ai/2026-02-28-mcp-protocol-explained/) —— MCP 底层工作原理的技术深入分析
+- [MCP 安全指南](/zh/posts/ai/2026-02-23-mcp-security-guide/) —— 安全运行 MCP 服务器的最佳实践
+- [Claude Code 完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) —— 关于 Claude Code 你需要知道的一切

@@ -73,7 +73,7 @@ Claude Code 和 GitHub Copilot 之间的根本区别在于架构理念。理解�
 - **完整系统访问**：可运行任何终端命令、访问文件、执行脚本
 - **深度代码理解**：在修改前先阅读和分析整个项目结构
 - **Agent 优先设计**：自主规划和执行多步骤任务，不只是建议下一行
-- **可扩展**：[MCP 服务器](/posts/ai/2026-02-28-claude-code-mcp-setup/)、[Hooks](/posts/ai/2026-03-05-claude-code-hooks-guide/) 和 [Skills](/posts/ai/2026-02-28-claude-code-skills-guide/) 让你自定义行为
+- **可扩展**：[MCP 服务器](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/)、[Hooks](/zh/posts/ai/2026-03-05-claude-code-hooks-guide/) 和 [Skills](/zh/posts/ai/2026-02-28-claude-code-skills-guide/) 让你自定义行为
 
 ### GitHub Copilot：多模型平台
 
@@ -187,7 +187,7 @@ Copilot 的上下文比较碎片化——不同功能使用不同的上下文窗
 - 处理框架迁移（如将 50+ 文件的 React 类组件迁移到 Hooks）
 - 理解导入链和依赖关系
 - 可在一次操作中重构数据库 Schema 并更新所有相关代码
-- [Agent Teams](/posts/ai/2026-02-22-claude-code-agent-teams/) 可将大型重构分配给多个并行会话
+- [Agent Teams](/zh/posts/ai/2026-02-22-claude-code-agent-teams/) 可将大型重构分配给多个并行会话
 
 实际案例："将我们的 Express.js API 迁移到 Fastify，更新所有路由处理器、中间件和测试。"Claude Code 将此作为单个任务处理，协调数十个文件的修改。
 
@@ -245,7 +245,7 @@ Copilot 的多文件编辑随 Agent 模式显著改善：
 - Pro 版 20 倍用量上限
 - 适合将 Claude Code 作为主力工具的高级用户
 
-定价详细分析请看 [Claude 定价 2026](/posts/ai/2026-02-25-claude-code-pricing/)。
+定价详细分析请看 [Claude 定价 2026](/zh/posts/ai/2026-02-25-claude-code-pricing/)。
 
 ### 团队与企业
 
@@ -312,26 +312,26 @@ Claude Code 从第一天起就被设计为 Agent，其生态系统反映了这�
 - 通过阅读错误输出并调整方法进行自我修正
 - 在长会话中保持上下文
 
-**[Hooks](/posts/ai/2026-03-05-claude-code-hooks-guide/)**：基于事件触发的确定性自动化规则：
+**[Hooks](/zh/posts/ai/2026-03-05-claude-code-hooks-guide/)**：基于事件触发的确定性自动化规则：
 - 用于执行编码标准的前/后工具 Hook
 - 长时间任务的通知 Hook
 - 在测试通过前阻止提交的验证 Hook
 
-**[Skills](/posts/ai/2026-02-28-claude-code-skills-guide/)**：可复用的领域知识文件：
+**[Skills](/zh/posts/ai/2026-02-28-claude-code-skills-guide/)**：可复用的领域知识文件：
 - 将自定义工作流编码为 Skills
 - 通过斜杠命令按需加载 Skills
 - 跨团队共享 Skills
 
-**[MCP（模型上下文协议）](/posts/ai/2026-02-28-claude-code-mcp-setup/)**：连接外部服务：
+**[MCP（模型上下文协议）](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/)**：连接外部服务：
 - 数据库访问、API 集成、浏览器自动化
 - 为专有工具创建自定义 MCP 服务器
-- 社区和[官方 MCP 服务器](/posts/ai/2026-03-05-best-mcp-servers-claude-code/)生态系统
+- 社区和[官方 MCP 服务器](/zh/posts/ai/2026-03-05-best-mcp-servers-claude-code/)生态系统
 
-**[Agent Teams](/posts/ai/2026-02-22-claude-code-agent-teams/)**：多 Agent 协调：
+**[Agent Teams](/zh/posts/ai/2026-02-22-claude-code-agent-teams/)**：多 Agent 协调：
 - 主 Agent 分配任务给团队成员
 - 团队成员独立工作，拥有自己的上下文
 - 跨 Agent 通信和协调
-- [Worktree](/posts/ai/2026-02-28-claude-code-worktree-guide/) 隔离实现并行任务
+- [Worktree](/zh/posts/ai/2026-02-28-claude-code-worktree-guide/) 隔离实现并行任务
 
 ### GitHub Copilot：平台化 Agent
 
@@ -463,7 +463,7 @@ Claude Code 和 GitHub Copilot 严格意义上不是竞争对手——它们是�
 
 ## 相关阅读
 
-- [GitHub Copilot vs Claude Code vs Cursor：2026年对比](/posts/ai/2026-02-28-copilot-vs-claude-vs-cursor/) — 包含 Cursor 的三方对比
-- [Claude Code 2026完全指南](/posts/ai/2026-02-28-claude-code-complete-guide/) — Claude Code 完整概述
-- [Claude vs ChatGPT vs Gemini：2026年最佳编程 LLM](/posts/ai/2026-03-02-claude-vs-chatgpt-vs-gemini/) — 编程任务的 LLM 模型对比
-- [Claude 定价 2026](/posts/ai/2026-02-25-claude-code-pricing/) — 完整定价分析与竞品对比
+- [GitHub Copilot vs Claude Code vs Cursor：2026年对比](/zh/posts/ai/2026-02-28-copilot-vs-claude-vs-cursor/) — 包含 Cursor 的三方对比
+- [Claude Code 2026完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — Claude Code 完整概述
+- [Claude vs ChatGPT vs Gemini：2026年最佳编程 LLM](/zh/posts/ai/2026-03-02-claude-vs-chatgpt-vs-gemini/) — 编程任务的 LLM 模型对比
+- [Claude 定价 2026](/zh/posts/ai/2026-02-25-claude-code-pricing/) — 完整定价分析与竞品对比

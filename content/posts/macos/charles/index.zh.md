@@ -160,9 +160,9 @@ PS:补充breakpoints调试
 
 ## 相关阅读
 
-- [curl 命令大全（Linux/macOS）](/posts/linux/2020-06-29-curl/)
-- [traceroute 命令详解：网络延迟定位与路由故障排查](/posts/linux/2020-06-28-traceroute/)
-- [Linux/macOS 常用命令大全](/posts/linux/2020-03-19-linux-mac-commands/)
-- [Docker Compose 完全指南（2026）](/posts/docker/2026-01-19-docker-compose-complete-guide/)
-- [OpenClaw 超详细上手教程：小白友好 + 老鸟技巧](/posts/ai/2026-02-12-openclaw-usage-tutorial/)
+- [curl 命令大全（Linux/macOS）](/zh/posts/linux/2020-06-29-curl/)
+- [traceroute 命令详解：网络延迟定位与路由故障排查](/zh/posts/linux/2020-06-28-traceroute/)
+- [Linux/macOS 常用命令大全](/zh/posts/linux/2020-03-19-linux-mac-commands/)
+- [Docker Compose 完全指南（2026）](/zh/posts/docker/2026-01-19-docker-compose-complete-guide/)
+- [OpenClaw 超详细上手教程：小白友好 + 老鸟技巧](/zh/posts/ai/2026-02-12-openclaw-usage-tutorial/)
 

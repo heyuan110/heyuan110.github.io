@@ -49,7 +49,7 @@ Claude Code 是 Anthropic 推出的命令行 AI 编程助手，直接在终端�
 - **128K 最大输出 token**：单次生成的代码量大幅提升
 - **Terminal-Bench 2.0 和 Humanity's Last Exam 双料第一**：在终端操作和复杂推理两个关键基准上领先所有其他模型
 
-如果你对 Claude Code 的日常使用还不熟悉，可以先看看我之前写的 [Claude Code 最佳实践指南](/posts/ai/2026-01-06-claudecode-best-practices/)。
+如果你对 Claude Code 的日常使用还不熟悉，可以先看看我之前写的 [Claude Code 最佳实践指南](/zh/posts/ai/2026-01-06-claudecode-best-practices/)。
 
 ## ChatGPT Codex 是什么
 
@@ -67,7 +67,7 @@ OpenAI Codex 是 OpenAI 推出的 AI 编程 Agent 平台，提供 App（桌面�
 - **Web Search 集成**：CLI 和 IDE 扩展中支持实时网页搜索获取最新技术文档
 - **个性化模式**：通过 `/personality` 命令切换简洁风格或对话式风格
 
-关于 Codex CLI 的详细使用方法，我在之前的 [Codex CLI 实战指南](/posts/ai/2026-02-12-codex-cli-mastery-guide/) 中有深入介绍。
+关于 Codex CLI 的详细使用方法，我在之前的 [Codex CLI 实战指南](/zh/posts/ai/2026-02-12-codex-cli-mastery-guide/) 中有深入介绍。
 
 ## 核心功能对比
 
@@ -113,7 +113,7 @@ OpenAI Codex 是 OpenAI 推出的 AI 编程 Agent 平台，提供 App（桌面�
 
 在 Agent 能力上，两者都在 2026 年初引入了多 Agent 协作，但方式有所不同。Claude Code 的 Agent Teams 强调团队协作模式，有明确的 Lead/Teammate 角色划分；Codex 则更强调灵活性，通过 Agents SDK 和 MCP 实现松耦合的多 Agent 协同。
 
-关于 Claude Code 的 Agent Teams 和 Skill 系统，可以参考我的 [Claude Code Skill 进阶指南](/posts/ai/2026-01-08-claudecode-skill-guide/)。
+关于 Claude Code 的 Agent Teams 和 Skill 系统，可以参考我的 [Claude Code Skill 进阶指南](/zh/posts/ai/2026-01-08-claudecode-skill-guide/)。
 
 ### 产品形态
 
@@ -128,7 +128,7 @@ OpenAI Codex 是 OpenAI 推出的 AI 编程 Agent 平台，提供 App（桌面�
 
 产品形态上的差异体现了两家公司截然不同的哲学。Claude Code 坚持"终端即一切"的理念，认为命令行是开发者最自然的环境；Codex 则走全渠道路线，App + CLI + IDE 三管齐下，覆盖更多使用场景。
 
-如果你对 Claude Code 的浏览器自动化能力感兴趣，可以看看 [Claude Code 浏览器自动化实战](/posts/ai/2026-01-28-claude-code-browser-automation/)。
+如果你对 Claude Code 的浏览器自动化能力感兴趣，可以看看 [Claude Code 浏览器自动化实战](/zh/posts/ai/2026-01-28-claude-code-browser-automation/)。
 
 ### 价格与计划
 
@@ -177,7 +177,7 @@ Claude Code 对代码库的理解能力确实出色。当我把一个复杂的�
 
 **3. 终端工作流**
 
-作为一个重度终端用户，Claude Code 的纯 CLI 体验让我非常舒适。不需要切换窗口，不需要复制粘贴，一切都在终端中完成。配合 [Claude Code Hooks](/posts/ai/2026-02-18-claude-code-hooks-guide/)，可以实现很多自动化流程。
+作为一个重度终端用户，Claude Code 的纯 CLI 体验让我非常舒适。不需要切换窗口，不需要复制粘贴，一切都在终端中完成。配合 [Claude Code Hooks](/zh/posts/ai/2026-02-18-claude-code-hooks-guide/)，可以实现很多自动化流程。
 
 **不满意的地方**：Max 计划的费率限制确实是个痛点。在密集开发期间，Opus 的配额很容易用完，不得不降级到 Sonnet 或者等待配额恢复。
 
@@ -283,7 +283,7 @@ ChatGPT Codex 代表的是"快速迭代"的开发理念 -- 先快速生成可用
 
 对于大多数开发者，我的真实建议是：**不要只选一个**。在 AI 工具日新月异的今天，掌握多个工具并根据场景灵活切换，才是最务实的策略。就像我们不会只用一种编程语言一样，AI 编程工具也应该是工具箱里的多把利器。
 
-如果你对 AI 编程工具的更广泛比较感兴趣，包括 Cursor 和 Windsurf 的对比，可以看看我最近写的 [2026 年 AI 编程工具横评](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/)。
+如果你对 AI 编程工具的更广泛比较感兴趣，包括 Cursor 和 Windsurf 的对比，可以看看我最近写的 [2026 年 AI 编程工具横评](/zh/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/)。
 
 
 ## 相关阅读

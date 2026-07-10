@@ -123,7 +123,7 @@ OLLAMA_KEEP_ALIVE=1h ollama serve
 
 ## 五、本地出图：Mac 上 Draw Things 仍然完胜 ComfyUI
 
-出图我在 [Mac mini 本地 AI 生图：ComfyUI vs Draw Things 实测](/posts/ai/2026-02-15-mac-mini-local-image-generation/) 写过详细测评，这里说结论并且给出跨机器对比数据，因为**出图和 LLM 的硬件需求不一样**。
+出图我在 [Mac mini 本地 AI 生图：ComfyUI vs Draw Things 实测](/zh/posts/ai/2026-02-15-mac-mini-local-image-generation/) 写过详细测评，这里说结论并且给出跨机器对比数据，因为**出图和 LLM 的硬件需求不一样**。
 
 出图是**算力瓶颈**，不是带宽瓶颈。这就反过来了，Max 档位的 GPU 核心数优势比 LLM 更明显。Draw Things 跑 1024×1024 Flux 图：
 
@@ -179,12 +179,12 @@ LLM 推理是内存带宽瓶颈，GPU 占用率一般在 60-70%，封装温度�
 
 围绕 Apple Silicon 本地 AI 开发的完整工具链：
 
-- [Mac mini M4 本地 AI 生图：ComfyUI vs Draw Things 实测](/posts/ai/2026-02-15-mac-mini-local-image-generation/) — 出图工具的深度测评，和本文互补
-- [Draw Things 终极指南](/posts/ai/2026-02-15-draw-things-ultimate-guide/) — 硬件搞定后的实操教程
-- [AI 开发环境搭建指南](/posts/ai/2026-03-10-ai-dev-environment-setup/) — macOS 上更广泛的 AI 开发者工具链
-- [Codex CLI 深度指南](/posts/ai/2026-03-10-codex-cli-deep-dive/) — 本地模型 + 编码 Agent 组合拳
-- [Claude Code 浏览器自动化](/posts/ai/2026-01-28-claude-code-browser-automation/) — 在新工作站上跑 Agent
-- [Claude Code 安全使用指南](/posts/ai/2026-02-22-claude-code-security/) — 本地化部署的隐私优势
+- [Mac mini M4 本地 AI 生图：ComfyUI vs Draw Things 实测](/zh/posts/ai/2026-02-15-mac-mini-local-image-generation/) — 出图工具的深度测评，和本文互补
+- [Draw Things 终极指南](/zh/posts/ai/2026-02-15-draw-things-ultimate-guide/) — 硬件搞定后的实操教程
+- [AI 开发环境搭建指南](/zh/posts/ai/2026-03-10-ai-dev-environment-setup/) — macOS 上更广泛的 AI 开发者工具链
+- [Codex CLI 深度指南](/zh/posts/ai/2026-03-10-codex-cli-deep-dive/) — 本地模型 + 编码 Agent 组合拳
+- [Claude Code 浏览器自动化](/zh/posts/ai/2026-01-28-claude-code-browser-automation/) — 在新工作站上跑 Agent
+- [Claude Code 安全使用指南](/zh/posts/ai/2026-02-22-claude-code-security/) — 本地化部署的隐私优势
 
 ## 写在最后：给国内读者的诚实建议
 

@@ -222,7 +222,7 @@ claude -w review-pr-456
 - **Claude A**（主目录）：负责代码分析、方案设计、任务拆分
 - **Claude B**（worktree）：负责具体的代码实现
 
-这种模式下，规划者在主目录里读代码、出方案，执行者在 worktree 里按方案写代码，两者上下文完全隔离，不会互相污染。关于多 Agent 协作的更多玩法，可以参考[Claude 多 Agent 协作实践](/posts/ai/2026-01-13-claude-cowork/)。
+这种模式下，规划者在主目录里读代码、出方案，执行者在 worktree 里按方案写代码，两者上下文完全隔离，不会互相污染。关于多 Agent 协作的更多玩法，可以参考[Claude 多 Agent 协作实践](/zh/posts/ai/2026-01-13-claude-cowork/)。
 
 ## 四、使用技巧和最佳实践
 
@@ -356,7 +356,7 @@ Worktree 只复制工作文件，不复制 `.git` 目录（所有 worktree 共�
 
 ### Q7：能和 Hooks 配合使用吗？
 
-可以。Hooks 配置对 worktree 中的 Claude 会话同样生效。比如你在 [Hooks 配置](/posts/ai/2026-02-18-claude-code-hooks-guide/) 中设置了自动格式化或文件保护规则，这些规则在 worktree 会话中也会自动执行。
+可以。Hooks 配置对 worktree 中的 Claude 会话同样生效。比如你在 [Hooks 配置](/zh/posts/ai/2026-02-18-claude-code-hooks-guide/) 中设置了自动格式化或文件保护规则，这些规则在 worktree 会话中也会自动执行。
 
 ## 总结
 
@@ -376,7 +376,7 @@ Claude Code 的 `--worktree` 模式把 Git Worktree 的隔离能力和 AI 编程
 
 **相关阅读**：
 
-- [Claude Code Hooks 实战指南](/posts/ai/2026-02-18-claude-code-hooks-guide/) -- 用 Hooks 让 AI 自动守规矩
-- [Claude Code vs Codex CLI 深度对比](/posts/ai/2026-02-19-claude-code-vs-codex/) -- 两大 AI 编程工具的全方位对决
-- [Claude 多 Agent 协作实践](/posts/ai/2026-01-13-claude-cowork/) -- 多 Claude 实例的协作模式
-- [Claude Code 浏览器自动化实战](/posts/ai/2026-01-28-claude-code-browser-automation/) -- 用 Claude Code 驱动浏览器测试
+- [Claude Code Hooks 实战指南](/zh/posts/ai/2026-02-18-claude-code-hooks-guide/) -- 用 Hooks 让 AI 自动守规矩
+- [Claude Code vs Codex CLI 深度对比](/zh/posts/ai/2026-02-19-claude-code-vs-codex/) -- 两大 AI 编程工具的全方位对决
+- [Claude 多 Agent 协作实践](/zh/posts/ai/2026-01-13-claude-cowork/) -- 多 Claude 实例的协作模式
+- [Claude Code 浏览器自动化实战](/zh/posts/ai/2026-01-28-claude-code-browser-automation/) -- 用 Claude Code 驱动浏览器测试

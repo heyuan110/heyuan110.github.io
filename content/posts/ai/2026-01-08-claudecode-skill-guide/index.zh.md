@@ -602,7 +602,7 @@ Skill 就是让 AI 学会你的专业知识的最简单方式。不需要写代�
 
 ## 相关阅读
 
-- [Claude Code 浏览器自动化方案对比：Agent Browser、Playwright、DevTools](/posts/ai/2026-01-28-claude-code-browser-automation/)
-- [Claude Code 最佳实践指南](/posts/ai/2026-01-06-claudecode-best-practices/)
-- [Claude Code Skill 高级模式详解](/posts/ai/2026-01-12-claudecode-skill-patterns/)
-- [Agent Skills：AI 编程的新范式](/posts/ai/2026-01-19-agent-skills-new-programming/)
+- [Claude Code 浏览器自动化方案对比：Agent Browser、Playwright、DevTools](/zh/posts/ai/2026-01-28-claude-code-browser-automation/)
+- [Claude Code 最佳实践指南](/zh/posts/ai/2026-01-06-claudecode-best-practices/)
+- [Claude Code Skill 高级模式详解](/zh/posts/ai/2026-01-12-claudecode-skill-patterns/)
+- [Agent Skills：AI 编程的新范式](/zh/posts/ai/2026-01-19-agent-skills-new-programming/)

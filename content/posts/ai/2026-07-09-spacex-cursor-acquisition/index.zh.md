@@ -75,7 +75,7 @@ timeline
 
 买下 Cursor,xAI 一次补齐三块短板。**入口**:100 多万日活开发者、64% 的财富 500 强,一夜到手——这是 Grok 靠自己十年也攒不出来的分发渠道。**数据**:专业开发者的交互流——哪些补全被接受、哪些被拒绝、agent 任务的完整轨迹——是 Anthropic 和 OpenAI 之外最优质的编程 RLHF 语料,HN 上多位评论者都判断这才是收购的真实标的。**报表**:40 亿美元高速增长的年化营收,装进一家急需向公众市场证明 1.7 万亿估值合理性的新上市公司,立竿见影。
 
-更让人无法乐观的是:**600 亿全股票,对 SpaceX 来说近乎免费**。约 15 倍远期营收的估值倍数在 2026 年的 AI 市场不算离谱,而支付货币是市值 2 万亿的新股——用泡沫纸换真实营收,这买卖怎么算都划算。我在[《2026 Agentic Coding 趋势》](/posts/ai/2026-02-23-agentic-coding-trends-2026/)里判断过:2026 年编程工具市场会向"模型 + harness 一体化"的巨头收敛。SpaceX 这次直接把最大的独立 harness 买走了,应验的方式比我预想的粗暴得多。
+更让人无法乐观的是:**600 亿全股票,对 SpaceX 来说近乎免费**。约 15 倍远期营收的估值倍数在 2026 年的 AI 市场不算离谱,而支付货币是市值 2 万亿的新股——用泡沫纸换真实营收,这买卖怎么算都划算。我在[《2026 Agentic Coding 趋势》](/zh/posts/ai/2026-02-23-agentic-coding-trends-2026/)里判断过:2026 年编程工具市场会向"模型 + harness 一体化"的巨头收敛。SpaceX 这次直接把最大的独立 harness 买走了,应验的方式比我预想的粗暴得多。
 
 ## Claude 会不会被切:Windsurf 剧本大概率不会重演
 
@@ -107,7 +107,7 @@ flowchart TB
     style CUR1 fill:#1f6feb,stroke:#123f8c,color:#fff
 ```
 
-温水的具体形态:联合模型成为新用户默认;Grok 拿到最快的响应通道、最深的 agent 集成、最松的用量限制;Claude 和 GPT 名义上还在模型列表里,但逐步挪进更贵的档位、新功能适配永远慢半拍。Cursor 其实早就排练过这个剧本——自研的 Composer 模型,我在 [Composer 2 评测](/posts/ai/2026-04-01-cursor-composer-2-review/)里分析过,当时它是对冲;现在,"造世界上最有用的 AI 模型"写进了 Truell 的官方声明,自研模型从对冲变成了使命。**模型选择器曾经是 Cursor 的产品本体,以后会变成导流漏斗**——这是我对这笔交易最核心的判断。
+温水的具体形态:联合模型成为新用户默认;Grok 拿到最快的响应通道、最深的 agent 集成、最松的用量限制;Claude 和 GPT 名义上还在模型列表里,但逐步挪进更贵的档位、新功能适配永远慢半拍。Cursor 其实早就排练过这个剧本——自研的 Composer 模型,我在 [Composer 2 评测](/zh/posts/ai/2026-04-01-cursor-composer-2-review/)里分析过,当时它是对冲;现在,"造世界上最有用的 AI 模型"写进了 Truell 的官方声明,自研模型从对冲变成了使命。**模型选择器曾经是 Cursor 的产品本体,以后会变成导流漏斗**——这是我对这笔交易最核心的判断。
 
 ## 国内开发者的三个现实问题
 
@@ -121,9 +121,9 @@ flowchart TB
 
 ## 替代品盘点:迁移去哪里
 
-如果决定迁移或者准备退路,2026 年 7 月这个时间点的选项比 2025 年好得多。我在[《Claude Code vs Cursor vs Windsurf 2026 对比》](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/)里做过完整横评,这里按"你在乎什么"给结论:
+如果决定迁移或者准备退路,2026 年 7 月这个时间点的选项比 2025 年好得多。我在[《Claude Code vs Cursor vs Windsurf 2026 对比》](/zh/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/)里做过完整横评,这里按"你在乎什么"给结论:
 
-- **在乎模型上限、做重度 agentic 开发** → **Claude Code**。Opus 系列在复杂重构和多文件任务上仍是天花板,terminal-first 的工作流迁移成本比想象中低——你在 Cursor agent 里积累的习惯(任务拆解、规则文件、MCP 配置)几乎原样平移,我的 [Cursor Agent 最佳实践](/posts/ai/2026-01-19-cursor-agent-best-practices/)里写的方法论八成能直接复用。
+- **在乎模型上限、做重度 agentic 开发** → **Claude Code**。Opus 系列在复杂重构和多文件任务上仍是天花板,terminal-first 的工作流迁移成本比想象中低——你在 Cursor agent 里积累的习惯(任务拆解、规则文件、MCP 配置)几乎原样平移,我的 [Cursor Agent 最佳实践](/zh/posts/ai/2026-01-19-cursor-agent-best-practices/)里写的方法论八成能直接复用。
 - **在乎 IDE 体验、想要"没有 SpaceX 的 Cursor"** → **Windsurf**。同为 VS Code fork,体验最接近,$15/月更便宜,而且它现在的销售话术从"比 Cursor 便宜"升级成了"不是 SpaceX 的 Cursor"——这个定位反而因祸得福。
 - **在乎预算、需求以补全为主** → **GitHub Copilot**,$10/月,背靠微软,企业合规最省心,那些"不能接受马斯克实体"的大公司订单正在自动流向它。
 - **在乎数据完全不出门** → **Continue.dev + 本地模型**,全链路自托管。
@@ -154,7 +154,7 @@ flowchart TD
 
 亮明我自己的立场:**现在我不会把新团队的工作流建在 Cursor 上**。不是产品变差了——它的 agent 工具链依然顶级——而是它的"前提假设"变得不稳了。给团队选工具,本质是给它未来 18 个月的路线图背书;而 Cursor 接下来 18 个月的主线任务是融入一个万亿级母公司、推自家模型、向股东证明 600 亿花得值。这些事没有一件是为用户做的。
 
-个人用户可以从容得多。如果 Auto 模式够用,留下没问题——背靠 Colossus 级算力,联合模型说不定真会很能打。但请把配置保持在"可携带"状态:`.cursorrules`、MCP 配置、常用 prompt 存好。这跟 [WWDC 2026 苹果把 Siri 交给 Gemini](/posts/ai/2026-06-09-apple-wwdc-2026-gemini-siri-pivot/) 那篇里我说的是同一个道理:平台方的战略转向从不提前打招呼,用户能做的就是让自己的迁移成本永远小于一个周末。
+个人用户可以从容得多。如果 Auto 模式够用,留下没问题——背靠 Colossus 级算力,联合模型说不定真会很能打。但请把配置保持在"可携带"状态:`.cursorrules`、MCP 配置、常用 prompt 存好。这跟 [WWDC 2026 苹果把 Siri 交给 Gemini](/zh/posts/ai/2026-06-09-apple-wwdc-2026-gemini-siri-pivot/) 那篇里我说的是同一个道理:平台方的战略转向从不提前打招呼,用户能做的就是让自己的迁移成本永远小于一个周末。
 
 ## 写在最后
 
@@ -164,9 +164,9 @@ SpaceX 收购 Cursor,是已核实的事实、算得过来的生意,以及对"中
 
 ## 相关阅读
 
-- [Claude Code vs Cursor vs Windsurf:2026 全面对比](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/)
-- [Cursor Agent 最佳实践](/posts/ai/2026-01-19-cursor-agent-best-practices/)
-- [2026 Agentic Coding 趋势](/posts/ai/2026-02-23-agentic-coding-trends-2026/)
-- [Cursor Composer 2 评测:自研模型这步棋](/posts/ai/2026-04-01-cursor-composer-2-review/)
-- [苹果 WWDC 2026 大转向:Siri 改用 Gemini](/posts/ai/2026-06-09-apple-wwdc-2026-gemini-siri-pivot/)
-- [Anthropic 9650 亿估值与 Managed Agents](/posts/ai/2026-06-12-anthropic-965b-managed-agents/)
+- [Claude Code vs Cursor vs Windsurf:2026 全面对比](/zh/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/)
+- [Cursor Agent 最佳实践](/zh/posts/ai/2026-01-19-cursor-agent-best-practices/)
+- [2026 Agentic Coding 趋势](/zh/posts/ai/2026-02-23-agentic-coding-trends-2026/)
+- [Cursor Composer 2 评测:自研模型这步棋](/zh/posts/ai/2026-04-01-cursor-composer-2-review/)
+- [苹果 WWDC 2026 大转向:Siri 改用 Gemini](/zh/posts/ai/2026-06-09-apple-wwdc-2026-gemini-siri-pivot/)
+- [Anthropic 9650 亿估值与 Managed Agents](/zh/posts/ai/2026-06-12-anthropic-965b-managed-agents/)

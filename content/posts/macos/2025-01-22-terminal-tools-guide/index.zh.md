@@ -9,9 +9,9 @@ toc = true
 keywords = ['终端工具', '终端模拟器', 'iTerm2', 'Warp', 'Ghostty', 'Tabby', 'Windows Terminal', '跨平台终端', 'SSH客户端', '命令行工具']
 +++
 
-作为开发者，终端是我们每天打交道最多的工具之一。一款好用的终端工具不仅能提升工作效率，还能让枯燥的[命令行操作](/posts/linux/2020-03-19-linux-mac-commands/)变得更加愉悦。本文将全面介绍 23 款主流终端工具，涵盖 Windows、macOS 和 Linux 三大平台，帮你找到最适合自己的那一款。
+作为开发者，终端是我们每天打交道最多的工具之一。一款好用的终端工具不仅能提升工作效率，还能让枯燥的[命令行操作](/zh/posts/linux/2020-03-19-linux-mac-commands/)变得更加愉悦。本文将全面介绍 23 款主流终端工具，涵盖 Windows、macOS 和 Linux 三大平台，帮你找到最适合自己的那一款。
 
-> 💡 **提示**：选好终端后，别忘了配置一个好用的 Shell。推荐阅读 [Oh My Zsh 安装配置指南](/posts/linux/2015-06-17-shell-zsh/)，让你的终端体验更上一层楼。
+> 💡 **提示**：选好终端后，别忘了配置一个好用的 Shell。推荐阅读 [Oh My Zsh 安装配置指南](/zh/posts/linux/2015-06-17-shell-zsh/)，让你的终端体验更上一层楼。
 
 <!--more-->
 
@@ -24,7 +24,7 @@ keywords = ['终端工具', '终端模拟器', 'iTerm2', 'Warp', 'Ghostty', 'Tab
 - **主题定制**：支持自定义配色、字体等，打造个性化工作环境
 - **跨平台支持**：在不同操作系统上保持一致的使用体验
 - **SSH 管理**：方便地连接和管理远程服务器
-- **AI 集成**：2025 年的新趋势，让 AI 辅助你的命令行操作（推荐了解 [Claude Code 终端 AI 助手](/posts/ai/2026-01-14-claude-code-guide/)）
+- **AI 集成**：2025 年的新趋势，让 AI 辅助你的命令行操作（推荐了解 [Claude Code 终端 AI 助手](/zh/posts/ai/2026-01-14-claude-code-guide/)）
 
 ## macOS 平台终端推荐
 
@@ -380,9 +380,9 @@ keywords = ['终端工具', '终端模拟器', 'iTerm2', 'Warp', 'Ghostty', 'Tab
 
 ## 相关阅读
 
-- [Oh My Zsh 安装配置指南：打造高效终端环境](/posts/linux/2015-06-17-shell-zsh/) - 终端配好了，Shell 也要配置好
-- [Linux/macOS 常用命令速查手册](/posts/linux/2020-03-19-linux-mac-commands/) - 常用命令快速查阅
-- [Claude Code 完全指南：终端里的全能 AI 助手](/posts/ai/2026-01-14-claude-code-guide/) - 用 AI 提升终端效率
+- [Oh My Zsh 安装配置指南：打造高效终端环境](/zh/posts/linux/2015-06-17-shell-zsh/) - 终端配好了，Shell 也要配置好
+- [Linux/macOS 常用命令速查手册](/zh/posts/linux/2020-03-19-linux-mac-commands/) - 常用命令快速查阅
+- [Claude Code 完全指南：终端里的全能 AI 助手](/zh/posts/ai/2026-01-14-claude-code-guide/) - 用 AI 提升终端效率
 
 ## 参考资源
 

@@ -332,5 +332,5 @@ Pick a tool and start your first Vibe Coding session now.
 - [AI Development Methodologies Compared: From Vibe Coding to SDD](/posts/ai/2026-03-11-ai-development-methodologies-compared/) — Where Vibe Coding fits among other AI development approaches
 - [Claude Code Complete Guide: From Beginner to Power User](/posts/ai/2026-01-14-claude-code-guide/) — Master the most popular Vibe Coding tool
 - [Cursor Agent Best Practices: The Complete Guide to AI Coding](/posts/ai/2026-01-19-cursor-agent-best-practices/) — Vibe Coding techniques specific to Cursor
-- [Harness Engineering: Why the System Around Your AI Agent Matters More Than the Model](/posts/ai/2026-04-04-harness-engineering-guide/) — Building reliable infrastructure for AI-assisted coding
+- [Harness Engineering: Why the System Around Your AI Agent Matters More Than the Model](/posts/ai/2026-03-30-harness-engineering-guide/) — Building reliable infrastructure for AI-assisted coding
 - [AI Workflow Playbook: From Prompts to Production Code](/posts/ai/2026-01-30-ai-workflow-real-guide/) — Turn Vibe Coding output into production-ready systems

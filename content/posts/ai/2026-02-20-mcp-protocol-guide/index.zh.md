@@ -51,7 +51,7 @@ MCP Client 嵌入在 Host 应用中，负责：
 - 接收 Server 的响应和通知
 - 在 Host 应用的需求和 MCP 协议之间进行翻译
 
-一个 Host 可以同时维护多个 Client 实例，每个 Client 连接一个 Server。比如在 [Claude Code](/posts/ai/2026-02-19-claude-code-vs-codex/) 中，你可以同时配置 GitHub Server、Playwright Server、文件系统 Server 等。
+一个 Host 可以同时维护多个 Client 实例，每个 Client 连接一个 Server。比如在 [Claude Code](/zh/posts/ai/2026-02-19-claude-code-vs-codex/) 中，你可以同时配置 GitHub Server、Playwright Server、文件系统 Server 等。
 
 ### Server（服务端）
 
@@ -59,8 +59,8 @@ MCP Server 是能力的实际提供者。每个 Server 通常聚焦于一个特�
 
 - GitHub Server：提供仓库管理、Issue 操作、PR 审查等能力
 - PostgreSQL Server：提供数据库查询和管理能力
-- Playwright Server：提供[浏览器自动化](/posts/ai/2026-01-28-claude-code-browser-automation/)能力
-- Figma Server：提供[设计稿读取和操作](/posts/ai/2026-02-19-figma-code-to-canvas/)能力
+- Playwright Server：提供[浏览器自动化](/zh/posts/ai/2026-01-28-claude-code-browser-automation/)能力
+- Figma Server：提供[设计稿读取和操作](/zh/posts/ai/2026-02-19-figma-code-to-canvas/)能力
 
 ### Transport（传输层）
 
@@ -258,7 +258,7 @@ MCP 的生态增长速度令人瞩目：
 
 - **Server 数量**：公开注册的 MCP Server 超过万个，涵盖数据库、版本控制、通信工具、云服务等各个领域
 - **SDK 下载量**：月下载量突破 9700 万次
-- **客户端支持**：Claude Desktop、ChatGPT、VS Code、Cursor、Windsurf、[Claude Code](/posts/ai/2026-01-13-claude-cowork/) 等主流 AI 应用均已支持
+- **客户端支持**：Claude Desktop、ChatGPT、VS Code、Cursor、Windsurf、[Claude Code](/zh/posts/ai/2026-01-13-claude-cowork/) 等主流 AI 应用均已支持
 - **企业采纳**：Gartner 预测到 2026 年底，40% 的企业应用将包含特定任务的 AI Agent，较 2025 年的不到 5% 大幅增长
 - **市场规模**：全球 MCP Server 市场预计从 2025 年的 27 亿美元增长到 2034 年的 55 亿美元
 

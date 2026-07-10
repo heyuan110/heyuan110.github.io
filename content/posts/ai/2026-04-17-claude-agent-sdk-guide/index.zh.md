@@ -271,7 +271,7 @@ async for message in query(
 
 内置工具覆盖了文件操作和代码搜索，但真实场景往往需要更多：查数据库、调 API、操作浏览器。这就是 MCP（Model Context Protocol）的用武之地。
 
-关于 MCP 的基础概念，我在[之前的文章](/posts/ai/2026-02-20-mcp-protocol-guide/)中有详细介绍。这里聚焦 Agent SDK 中的两种 MCP 用法。
+关于 MCP 的基础概念，我在[之前的文章](/zh/posts/ai/2026-02-20-mcp-protocol-guide/)中有详细介绍。这里聚焦 Agent SDK 中的两种 MCP 用法。
 
 ### 方式一：连接外部 MCP Server
 
@@ -301,7 +301,7 @@ asyncio.run(main())
 
 `mcp_servers` 字典的 key 是服务器名，value 是启动配置。SDK 会自动启动这个进程、发现它提供的工具、让 Claude 按需调用。你可以连接[数百个现成的 MCP Server](https://github.com/modelcontextprotocol/servers)——数据库、浏览器、Slack、GitHub 等等。
 
-如果你对构建自己的 MCP Server 感兴趣，可以参考我的 [Python MCP Server 搭建教程](/posts/ai/2026-03-05-build-mcp-server-python/)。
+如果你对构建自己的 MCP Server 感兴趣，可以参考我的 [Python MCP Server 搭建教程](/zh/posts/ai/2026-03-05-build-mcp-server-python/)。
 
 ### 方式二：用 @tool 装饰器自定义工具
 
@@ -447,7 +447,7 @@ async def main():
             print(message.result)
 ```
 
-关于 Hooks 的更多用法和最佳实践，可以参考我的 [Claude Code Hooks 完全指南](/posts/ai/2026-02-18-claude-code-hooks-guide/)。
+关于 Hooks 的更多用法和最佳实践，可以参考我的 [Claude Code Hooks 完全指南](/zh/posts/ai/2026-02-18-claude-code-hooks-guide/)。
 
 ### 三层防御组合
 
@@ -584,7 +584,7 @@ asyncio.run(main())
 
 注意 `allowed_tools` 里必须包含 `"Agent"`——这是子 Agent 调用的前提。每个子 Agent 有独立的工具白名单，安全审计 Agent 不需要写文件能力，就只给 Read/Glob/Grep。
 
-如果你对 Claude Code 的子 Agent 架构感兴趣，我在[子 Agent 架构深度解析](/posts/ai/2026-04-13-harness-subagent-architecture/)中有更详细的分析。
+如果你对 Claude Code 的子 Agent 架构感兴趣，我在[子 Agent 架构深度解析](/zh/posts/ai/2026-04-13-harness-subagent-architecture/)中有更详细的分析。
 
 ## 生产化三板斧
 
@@ -666,9 +666,9 @@ Agent SDK 的核心价值不是"又一个 LLM API wrapper"，而是**把经过�
 
 ## Related Reading
 
-- [Claude Code 完全入门指南](/posts/ai/2026-02-28-claude-code-complete-guide/) — 如果你对 Claude Code 本身还不熟悉
-- [Python MCP Server 搭建教程](/posts/ai/2026-03-05-build-mcp-server-python/) — 自定义工具的进阶方式
-- [Claude Code Hooks 完全指南](/posts/ai/2026-02-18-claude-code-hooks-guide/) — Hooks 权限管控的详细用法
-- [子 Agent 架构深度解析](/posts/ai/2026-04-13-harness-subagent-architecture/) — 多 Agent 协作的设计模式
-- [MCP 协议完全指南](/posts/ai/2026-02-20-mcp-protocol-guide/) — MCP 的基础概念和生态
-- [Claude Code 常见错误与避坑指南](/posts/ai/2026-02-25-claude-code-mistakes/) — 使用 Claude Code 生态的常见坑
+- [Claude Code 完全入门指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — 如果你对 Claude Code 本身还不熟悉
+- [Python MCP Server 搭建教程](/zh/posts/ai/2026-03-05-build-mcp-server-python/) — 自定义工具的进阶方式
+- [Claude Code Hooks 完全指南](/zh/posts/ai/2026-02-18-claude-code-hooks-guide/) — Hooks 权限管控的详细用法
+- [子 Agent 架构深度解析](/zh/posts/ai/2026-04-13-harness-subagent-architecture/) — 多 Agent 协作的设计模式
+- [MCP 协议完全指南](/zh/posts/ai/2026-02-20-mcp-protocol-guide/) — MCP 的基础概念和生态
+- [Claude Code 常见错误与避坑指南](/zh/posts/ai/2026-02-25-claude-code-mistakes/) — 使用 Claude Code 生态的常见坑

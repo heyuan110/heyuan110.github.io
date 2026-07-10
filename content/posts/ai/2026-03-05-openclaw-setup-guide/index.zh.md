@@ -49,7 +49,7 @@ OpenClaw 是奥地利开发者 **Peter Steinberger**（[@steipete](https://githu
 
 **这三个名字指的是同一个项目。** 如果你看到旧教程里写的是 Moltbot 或 Clawdbot，核心概念完全相通——换个名字就行。当前的文档和 CLI 命令统一用 `openclaw`。
 
-关于命名历史和核心架构的详细介绍，请参考 [MoltBot（OpenClaw）完全解读：架构与发展历程](/posts/ai/2026-02-18-what-is-moltbot/)。
+关于命名历史和核心架构的详细介绍，请参考 [MoltBot（OpenClaw）完全解读：架构与发展历程](/zh/posts/ai/2026-02-18-what-is-moltbot/)。
 
 ### OpenClaw 与众不同在哪里
 
@@ -180,7 +180,7 @@ openclaw onboard --install-daemon
 4. **配对与白名单** ——控制谁能向你的 Agent 发送指令
 5. **守护进程** ——可选的后台服务安装
 
-如果你之前用过 Moltbot Wizard，这是它的升级版。更多背景请参考 [Moltbot Wizard 使用指南](/posts/ai/2026-01-28-moltbot-wizard-guide/)。
+如果你之前用过 Moltbot Wizard，这是它的升级版。更多背景请参考 [Moltbot Wizard 使用指南](/zh/posts/ai/2026-01-28-moltbot-wizard-guide/)。
 
 ### 手动配置（备选方案）
 
@@ -371,7 +371,7 @@ Claude 是 OpenClaw 用户最常选择的模型，配置方法：
 }
 ```
 
-从 [OpenClaw 2026.3.1](/posts/ai/2026-03-03-openclaw-2026-3-1-new-features/) 版本开始，OpenAI 模型默认使用 WebSocket 传输以获得更快的流式响应。
+从 [OpenClaw 2026.3.1](/zh/posts/ai/2026-03-03-openclaw-2026-3-1-new-features/) 版本开始，OpenAI 模型默认使用 WebSocket 传输以获得更快的流式响应。
 
 ### 本地模型（Ollama）
 
@@ -575,7 +575,7 @@ clawdhub install proactive-agent
 
 一个常见错误是一口气装几十个 Skills，然后期望一切自动运转。实际上 Skills 越多，Agent 需要管理的上下文就越大，容易导致行为混乱和 Token 费用飙升。
 
-建议从 3-5 个核心 Skills 起步，有明确需求时再添加。关于这个问题的深入分析，推荐阅读 [OpenClaw 自动化踩坑实录：3 个 Skills 远远不够](/posts/ai/2026-02-14-openclaw-automation-pitfalls/)。
+建议从 3-5 个核心 Skills 起步，有明确需求时再添加。关于这个问题的深入分析，推荐阅读 [OpenClaw 自动化踩坑实录：3 个 Skills 远远不够](/zh/posts/ai/2026-02-14-openclaw-automation-pitfalls/)。
 
 ## 多 Agent 配置入门
 
@@ -629,7 +629,7 @@ OpenClaw 最强大的功能之一就是在一个实例上运行多个专精 Agen
 
 ### 通过命令行管理 Agent 路由
 
-从 [OpenClaw 2026.3.1](/posts/ai/2026-03-03-openclaw-2026-3-1-new-features/) 版本开始，支持命令行管理路由：
+从 [OpenClaw 2026.3.1](/zh/posts/ai/2026-03-03-openclaw-2026-3-1-new-features/) 版本开始，支持命令行管理路由：
 
 ```bash
 # 将 Agent 绑定到消息账号
@@ -642,7 +642,7 @@ openclaw agents bindings
 openclaw agents unbind --agent research --account whatsapp-main
 ```
 
-关于多 Agent 的高级模式——包括层级式、流水线式和协作式架构——请阅读 [OpenClaw 多 Agent 深度指南](/posts/ai/2026-02-23-openclaw-multi-agent-guide/)。
+关于多 Agent 的高级模式——包括层级式、流水线式和协作式架构——请阅读 [OpenClaw 多 Agent 深度指南](/zh/posts/ai/2026-02-23-openclaw-multi-agent-guide/)。
 
 ### 工作空间结构
 
@@ -661,7 +661,7 @@ openclaw agents unbind --agent research --account whatsapp-main
 
 `SOUL.md` 文件定义了每个 Agent 的独特个性。比如个人助手的 SOUL.md 可以写"你是一个专注于效率和日程规划的私人助手"，而调研 Agent 的则写"你是一个严谨的调研分析师，提供充分引用的深度分析"。
 
-关于 OpenClaw 如何跨 Agent 管理记忆的详解，请参考 [OpenClaw 记忆策略分析](/posts/ai/2026-01-31-openclaw-memory-strategy/)。
+关于 OpenClaw 如何跨 Agent 管理记忆的详解，请参考 [OpenClaw 记忆策略分析](/zh/posts/ai/2026-01-31-openclaw-memory-strategy/)。
 
 ## 安全最佳实践
 
@@ -919,24 +919,24 @@ openclaw doctor --fix
 现在你已经有了一个可用的 OpenClaw 环境：消息平台已对接、AI 模型已配置、安全措施已到位。根据你的下一步需求，推荐继续阅读：
 
 **深入理解架构：**
-- [OpenClaw 架构深度剖析](/posts/ai/2026-02-14-openclaw-architecture-deep-dive/) ——了解内部设计与扩展点
+- [OpenClaw 架构深度剖析](/zh/posts/ai/2026-02-14-openclaw-architecture-deep-dive/) ——了解内部设计与扩展点
 
 **掌握多 Agent 模式：**
-- [OpenClaw 多 Agent 深度指南](/posts/ai/2026-02-23-openclaw-multi-agent-guide/) ——层级式 Agent、流水线工作流、协作模式
+- [OpenClaw 多 Agent 深度指南](/zh/posts/ai/2026-02-23-openclaw-multi-agent-guide/) ——层级式 Agent、流水线工作流、协作模式
 
 **避开常见坑：**
-- [OpenClaw 自动化踩坑实录](/posts/ai/2026-02-14-openclaw-automation-pitfalls/) ——规模化运行时会遇到什么问题，以及如何解决
+- [OpenClaw 自动化踩坑实录](/zh/posts/ai/2026-02-14-openclaw-automation-pitfalls/) ——规模化运行时会遇到什么问题，以及如何解决
 
 **了解开发工作流：**
-- [OpenClaw 作者如何使用 Claude Code](/posts/ai/2026-01-31-openclaw-claude-code-workflow/) ——一个 200K+ Star 项目背后的开发方法论
+- [OpenClaw 作者如何使用 Claude Code](/zh/posts/ai/2026-01-31-openclaw-claude-code-workflow/) ——一个 200K+ Star 项目背后的开发方法论
 
 **跟进最新动态：**
-- [OpenClaw 2026.3.1 新功能](/posts/ai/2026-03-03-openclaw-2026-3-1-new-features/) ——WebSocket 传输、K8s 支持、Agent 路由 CLI
+- [OpenClaw 2026.3.1 新功能](/zh/posts/ai/2026-03-03-openclaw-2026-3-1-new-features/) ——WebSocket 传输、K8s 支持、Agent 路由 CLI
 
 ## 相关阅读
 
-- [MoltBot（OpenClaw）完全解读：架构与发展历程](/posts/ai/2026-02-18-what-is-moltbot/) ——全面讲解 OpenClaw 是什么以及它的演变过程
-- [OpenClaw 记忆策略分析](/posts/ai/2026-01-31-openclaw-memory-strategy/) ——OpenClaw 如何在会话之间管理持久化记忆
-- [OpenClaw 架构深度剖析](/posts/ai/2026-02-14-openclaw-architecture-deep-dive/) ——内部架构与系统设计
-- [OpenClaw 多 Agent 深度指南](/posts/ai/2026-02-23-openclaw-multi-agent-guide/) ——高级多 Agent 协作模式
-- [OpenClaw 自动化踩坑实录](/posts/ai/2026-02-14-openclaw-automation-pitfalls/) ——真实自动化场景中的经验教训
+- [MoltBot（OpenClaw）完全解读：架构与发展历程](/zh/posts/ai/2026-02-18-what-is-moltbot/) ——全面讲解 OpenClaw 是什么以及它的演变过程
+- [OpenClaw 记忆策略分析](/zh/posts/ai/2026-01-31-openclaw-memory-strategy/) ——OpenClaw 如何在会话之间管理持久化记忆
+- [OpenClaw 架构深度剖析](/zh/posts/ai/2026-02-14-openclaw-architecture-deep-dive/) ——内部架构与系统设计
+- [OpenClaw 多 Agent 深度指南](/zh/posts/ai/2026-02-23-openclaw-multi-agent-guide/) ——高级多 Agent 协作模式
+- [OpenClaw 自动化踩坑实录](/zh/posts/ai/2026-02-14-openclaw-automation-pitfalls/) ——真实自动化场景中的经验教训

@@ -49,7 +49,7 @@ answer = "默认是 Sonnet 4.6，日常 80% 任务都够用。用 /model opus �
 - **内存**：至少 4 GB
 - **网络连接**：必须联网（Claude Code 依赖 Anthropic 的 API 服务）
 - **Anthropic 账号**：如果还没有，可以在 [claude.ai](https://claude.ai) 注册
-- **付费计划或 API 密钥**：Claude Code 需要 Pro/Max 订阅（$20+/月）或一个有余额的 API 密钥。详细的方案对比可以参考我们的 [Claude Code 定价指南](/posts/ai/2026-02-25-claude-code-pricing/)。
+- **付费计划或 API 密钥**：Claude Code 需要 Pro/Max 订阅（$20+/月）或一个有余额的 API 密钥。详细的方案对比可以参考我们的 [Claude Code 定价指南](/zh/posts/ai/2026-02-25-claude-code-pricing/)。
 
 > Node.js **不再需要了**。2026 版的原生安装器会搞定一切。如果你之前是通过 npm 安装的，可以迁移到新方式——下面会讲到。
 
@@ -187,7 +187,7 @@ Claude Code 默认使用 **Sonnet 4.6**——在速度、能力和成本之间�
 
 ## 第四步：配置 CLAUDE.md
 
-这是提升 Claude Code 效果最立竿见影的一件事。[CLAUDE.md 文件](/posts/ai/2026-01-12-claudemd-memory-guide/) 是放在项目根目录的一个 Markdown 文档，它告诉 Claude Code 关于你项目的一切必要信息。
+这是提升 Claude Code 效果最立竿见影的一件事。[CLAUDE.md 文件](/zh/posts/ai/2026-01-12-claudemd-memory-guide/) 是放在项目根目录的一个 Markdown 文档，它告诉 Claude Code 关于你项目的一切必要信息。
 
 现在就创建一个：
 
@@ -379,7 +379,7 @@ You > 给 API 端点添加速率限制
    修改的文件：src/middleware/rateLimiter.ts（新建）、src/api/routes.ts
 ```
 
-这就是 [Agentic Loop](/posts/ai/2026-02-24-build-magic-code/)——Claude Code 自主规划、执行、验证，把多个工具调用串联起来直到任务完成。一条指令，七次工具调用，零人工干预。
+这就是 [Agentic Loop](/zh/posts/ai/2026-02-24-build-magic-code/)——Claude Code 自主规划、执行、验证，把多个工具调用串联起来直到任务完成。一条指令，七次工具调用，零人工干预。
 
 ### 留意你的用量
 
@@ -467,19 +467,19 @@ export HTTPS_PROXY=http://proxy.company.com:8080
 
 你已经准备就绪了。以下是进阶的方向：
 
-1. **[正式配置 CLAUDE.md](/posts/ai/2026-01-12-claudemd-memory-guide/)** — 提升效率最大的一步
-2. **[学习 Claude Code Hooks](/posts/ai/2026-02-18-claude-code-hooks-guide/)** — 自动化每次改动的代码检查、测试和格式化
-3. **[了解定价方案](/posts/ai/2026-02-25-claude-code-pricing/)** — 根据你的使用量选择合适的方案
-4. **[自己动手实现 Claude Code](/posts/ai/2026-02-24-build-magic-code/)** — 深入理解底层的 Agentic Loop 架构
-5. **[掌握 Claude Code 高级技巧](/posts/ai/2025-01-23-claude-code-commands/)** — 24 个进阶用法
+1. **[正式配置 CLAUDE.md](/zh/posts/ai/2026-01-12-claudemd-memory-guide/)** — 提升效率最大的一步
+2. **[学习 Claude Code Hooks](/zh/posts/ai/2026-02-18-claude-code-hooks-guide/)** — 自动化每次改动的代码检查、测试和格式化
+3. **[了解定价方案](/zh/posts/ai/2026-02-25-claude-code-pricing/)** — 根据你的使用量选择合适的方案
+4. **[自己动手实现 Claude Code](/zh/posts/ai/2026-02-24-build-magic-code/)** — 深入理解底层的 Agentic Loop 架构
+5. **[掌握 Claude Code 高级技巧](/zh/posts/ai/2025-01-23-claude-code-commands/)** — 24 个进阶用法
 
 Claude Code 给的上下文越充分，它的表现就越好。花点时间打磨你的 CLAUDE.md，配置合理的权限，从小任务开始再逐步交付复杂的重构。用不了一周，你就会纳闷以前没有它是怎么写代码的。
 
 ## 相关阅读
 
-- [Claude Code 2026 定价：Max 方案值不值？](/posts/ai/2026-02-25-claude-code-pricing/) — 完整的费用拆解
-- [CLAUDE.md 指南：给 AI 完美的项目上下文](/posts/ai/2026-01-12-claudemd-memory-guide/) — 高效使用 Claude Code 的必备知识
-- [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/) — 所有功能的深度解析
-- [Claude Code Hooks：12 种自动化配置](/posts/ai/2026-02-18-claude-code-hooks-guide/) — 自动化你的工作流
-- [从零构建自己的 Claude Code](/posts/ai/2026-02-24-build-magic-code/) — 理解底层架构
-- [Claude Code vs Cursor vs Windsurf](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/) — 哪个工具更适合你？
+- [Claude Code 2026 定价：Max 方案值不值？](/zh/posts/ai/2026-02-25-claude-code-pricing/) — 完整的费用拆解
+- [CLAUDE.md 指南：给 AI 完美的项目上下文](/zh/posts/ai/2026-01-12-claudemd-memory-guide/) — 高效使用 Claude Code 的必备知识
+- [Claude Code 完全指南](/zh/posts/ai/2026-01-14-claude-code-guide/) — 所有功能的深度解析
+- [Claude Code Hooks：12 种自动化配置](/zh/posts/ai/2026-02-18-claude-code-hooks-guide/) — 自动化你的工作流
+- [从零构建自己的 Claude Code](/zh/posts/ai/2026-02-24-build-magic-code/) — 理解底层架构
+- [Claude Code vs Cursor vs Windsurf](/zh/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/) — 哪个工具更适合你？

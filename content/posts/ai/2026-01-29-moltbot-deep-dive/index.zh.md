@@ -16,7 +16,7 @@ keywords = ['Moltbot 是什么', 'Moltbot', 'OpenClaw', 'Moltbot 改名', 'Moltb
 
 这个 Moltbot AI Agent 到底有什么魔力？它是不是名副其实的"个人贾维斯"？背后又藏着多少你不知道的坑？
 
-这篇文章，我们不聊安装教程（想看搭建指南可以移步[这篇文章](/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/)），而是从架构原理、改名始末、安全风险等角度来深度剖析这个现象级项目，帮你全面了解 Moltbot 的背景与真相。
+这篇文章，我们不聊安装教程（想看搭建指南可以移步[这篇文章](/zh/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/)），而是从架构原理、改名始末、安全风险等角度来深度剖析这个现象级项目，帮你全面了解 Moltbot 的背景与真相。
 
 > 名称沿革说明：本文统一使用 **OpenClaw（原 Clawdbot，后更名 Moltbot）** 来指代同一项目在不同阶段的名称，便于你对照搜索结果与历史资料。
 
@@ -329,11 +329,11 @@ Moltbot（原 Clawdbot）在短短一周内从默默无闻到 8 万 Star，再�
 
 ## 相关阅读
 
-- [ClawdBot：海外爆火的个人 AI 管家，30 分钟搭建指南](/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/) - 新手友好的搭建教程
-- [Claude Code 完全指南：终端里的全能 AI 助手](/posts/ai/2026-01-14-claude-code-guide/) - 程序员专属的 AI 编程助手
-- [Agent Skills：AI 编程的新范式](/posts/ai/2026-01-19-agent-skills-new-programming/) - 理解 AI Agent 的技能系统
-- [AI 开发工作流的变革](/posts/ai/2026-01-19-ai-dev-workflow/) - AI Agent 如何改变我们的工作方式
-- [AGI 已经来了？Anthropic CEO 的深度分析](/posts/ai/2026-01-26-agi-is-here/) - AI 发展的宏观趋势
+- [ClawdBot：海外爆火的个人 AI 管家，30 分钟搭建指南](/zh/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/) - 新手友好的搭建教程
+- [Claude Code 完全指南：终端里的全能 AI 助手](/zh/posts/ai/2026-01-14-claude-code-guide/) - 程序员专属的 AI 编程助手
+- [Agent Skills：AI 编程的新范式](/zh/posts/ai/2026-01-19-agent-skills-new-programming/) - 理解 AI Agent 的技能系统
+- [AI 开发工作流的变革](/zh/posts/ai/2026-01-19-ai-dev-workflow/) - AI Agent 如何改变我们的工作方式
+- [AGI 已经来了？Anthropic CEO 的深度分析](/zh/posts/ai/2026-01-26-agi-is-here/) - AI 发展的宏观趋势
 
 ---
 
@@ -385,9 +385,9 @@ Peter Steinberger 是奥地利软件开发者，OpenClaw（原 Clawdbot/Moltbot�
 
 ## 相关阅读 / Related
 
-- [AI 自动化导航 Hub](/posts/ai/ai-automation-hub/)
-- [Clawdbot：个人 AI 助手实战](/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/)
-- [OpenClaw 自动化的坑与避坑](/posts/ai/2026-02-14-openclaw-automation-pitfalls/)
-- [OpenClaw 超详细上手教程](/posts/ai/2026-02-12-openclaw-usage-tutorial/)
-- [OpenClaw 与 OpenAI 关系深度分析](/posts/ai/2026-02-16-openclaw-openai-analysis/)
-- [Moltbot 是什么？3 分钟看懂](/posts/ai/2026-02-18-what-is-moltbot/)
+- [AI 自动化导航 Hub](/zh/posts/ai/ai-automation-hub/)
+- [Clawdbot：个人 AI 助手实战](/zh/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/)
+- [OpenClaw 自动化的坑与避坑](/zh/posts/ai/2026-02-14-openclaw-automation-pitfalls/)
+- [OpenClaw 超详细上手教程](/zh/posts/ai/2026-02-12-openclaw-usage-tutorial/)
+- [OpenClaw 与 OpenAI 关系深度分析](/zh/posts/ai/2026-02-16-openclaw-openai-analysis/)
+- [Moltbot 是什么？3 分钟看懂](/zh/posts/ai/2026-02-18-what-is-moltbot/)

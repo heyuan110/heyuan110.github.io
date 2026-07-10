@@ -191,13 +191,13 @@ PRD → 技术文档 → 开发计划 → 编码 → 测试
 
 把初版代码拉到正式 IDE 里精修。AI 生成的代码往往"能跑但不够好"——变量命名不规范、缺少错误处理、架构不清晰，这些都需要人工把关。
 
-关于 AI 编程的更多细节，可以看我之前写的 [我的 AI 开发工作流：从需求到上线](/posts/ai/2026-01-19-ai-dev-workflow/) 和 [Cursor Agent 编码最佳实践](/posts/ai/2026-01-19-cursor-agent-best-practices/)。
+关于 AI 编程的更多细节，可以看我之前写的 [我的 AI 开发工作流：从需求到上线](/zh/posts/ai/2026-01-19-ai-dev-workflow/) 和 [Cursor Agent 编码最佳实践](/zh/posts/ai/2026-01-19-cursor-agent-best-practices/)。
 
 ### 第四步：自动化测试
 
 让 AI 写测试用例，配合 chrome-dev-tool MCP 跑自动化测试。这一步很多人会跳过，但它能帮你发现大量边界问题。
 
-如果你在用 Claude Code，可以参考 [Claude Code 浏览器自动化方案对比](/posts/ai/2026-01-28-claude-code-browser-automation/)，了解不同自动化测试方案的优劣。
+如果你在用 Claude Code，可以参考 [Claude Code 浏览器自动化方案对比](/zh/posts/ai/2026-01-28-claude-code-browser-automation/)，了解不同自动化测试方案的优劣。
 
 ### 第五步：后端开发
 
@@ -269,7 +269,7 @@ AI 领域变化太快，工具半年一换、模型月月更新。保持信息�
 
 ### 相关阅读
 
-- [我的 AI 开发工作流：从需求到上线](/posts/ai/2026-01-19-ai-dev-workflow/)
-- [Cursor Agent 编码最佳实践：官方指南完整解读](/posts/ai/2026-01-19-cursor-agent-best-practices/)
-- [Claude Code 浏览器自动化方案对比](/posts/ai/2026-01-28-claude-code-browser-automation/)
-- [AI 时代，一个人的 Taste 比以往任何时候都重要](/posts/ai/2026-01-23-taste-matters-in-ai-era/)
+- [我的 AI 开发工作流：从需求到上线](/zh/posts/ai/2026-01-19-ai-dev-workflow/)
+- [Cursor Agent 编码最佳实践：官方指南完整解读](/zh/posts/ai/2026-01-19-cursor-agent-best-practices/)
+- [Claude Code 浏览器自动化方案对比](/zh/posts/ai/2026-01-28-claude-code-browser-automation/)
+- [AI 时代，一个人的 Taste 比以往任何时候都重要](/zh/posts/ai/2026-01-23-taste-matters-in-ai-era/)

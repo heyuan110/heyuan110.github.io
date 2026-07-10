@@ -43,7 +43,7 @@ answer = "简单知识性问题。Claude Code 是 Agent，每次启动都要加�
 
 **代价**：没有项目上下文，Claude Code 每次都要重新摸索你的技术栈、编码规范和项目结构。这意味着更多的提问、更多的错误假设、更多浪费的 Token，以及更多的反复修改。
 
-**解决方案**：在项目根目录创建 [CLAUDE.md](/posts/ai/2026-01-12-claudemd-memory-guide/)，写明技术栈、编码规范、常用命令和架构说明。不需要写太长——哪怕 20 行的上下文信息也能显著改善效果。
+**解决方案**：在项目根目录创建 [CLAUDE.md](/zh/posts/ai/2026-01-12-claudemd-memory-guide/)，写明技术栈、编码规范、常用命令和架构说明。不需要写太长——哪怕 20 行的上下文信息也能显著改善效果。
 
 ```markdown
 # Project: E-commerce API
@@ -119,7 +119,7 @@ Ctrl+C → claude    → 开启新会话
 
 **代价**：每次手动验证请求都是一个额外的 Agent 轮次——更多 Token，更多时间。而忘记验证的结果就是代码出了问题，后面需要花更多轮次来修复。
 
-**解决方案**：设置 [Hooks](/posts/ai/2026-02-18-claude-code-hooks-guide/) 来自动执行修改后的验证。Hooks 在[特定生命周期节点](https://docs.anthropic.com/en/docs/claude-code/hooks)运行 Shell 命令——工具调用前/后、提交前/后等。
+**解决方案**：设置 [Hooks](/zh/posts/ai/2026-02-18-claude-code-hooks-guide/) 来自动执行修改后的验证。Hooks 在[特定生命周期节点](https://docs.anthropic.com/en/docs/claude-code/hooks)运行 Shell 命令——工具调用前/后、提交前/后等。
 
 示例：每次文件写入后自动 lint：
 
@@ -204,7 +204,7 @@ Ctrl+C → claude    → 开启新会话
 
 **代价**：每次权限提示都会打断你的工作节奏，浪费几秒钟。整个会话下来，几百个明显安全的命令请求加起来就是大量的时间浪费。
 
-**解决方案**：在[设置](/posts/ai/2026-02-25-claude-code-setup-guide/)中预先批准常用的安全命令：
+**解决方案**：在[设置](/zh/posts/ai/2026-02-25-claude-code-setup-guide/)中预先批准常用的安全命令：
 
 ```json
 {
@@ -236,7 +236,7 @@ Ctrl+C → claude    → 开启新会话
 
 **代价**：在单个会话中切换上下文会让对话历史充斥无关信息。每个新任务都带着之前任务的包袱，让 Claude Code 注意力分散且成本更高。
 
-**解决方案**：使用 [Worktree 模式](/posts/ai/2026-02-20-claude-code-worktree/)在独立的 [Git worktree](https://git-scm.com/docs/git-worktree) 分支中并行处理任务：
+**解决方案**：使用 [Worktree 模式](/zh/posts/ai/2026-02-20-claude-code-worktree/)在独立的 [Git worktree](https://git-scm.com/docs/git-worktree) 分支中并行处理任务：
 
 ```bash
 # 在新的 worktree 中启动任务
@@ -287,10 +287,10 @@ claude --worktree "Fix the pagination bug in /api/products"
 
 ## 相关阅读
 
-- [Claude Code Setup Guide: Installation to First Project](/posts/ai/2026-02-25-claude-code-setup-guide/) — 从零开始正确配置
-- [Claude Code Pricing 2026: Is the Max Plan Worth It?](/posts/ai/2026-02-25-claude-code-pricing/) — 选择适合你的套餐
-- [CLAUDE.md Guide: Give AI Perfect Project Context](/posts/ai/2026-01-12-claudemd-memory-guide/) — 错误 #1 的深度指南
-- [Claude Code Hooks: 12 Automation Configs](/posts/ai/2026-02-18-claude-code-hooks-guide/) — 错误 #5 的深度指南
-- [Claude Code Worktree: Parallel AI Tasks](/posts/ai/2026-02-20-claude-code-worktree/) — 错误 #9 的深度指南
-- [Claude Code Best Practices](/posts/ai/2026-01-06-claudecode-best-practices/) — 官方推荐的工作流
-- [Build Your Own Claude Code from Scratch](/posts/ai/2026-02-24-build-magic-code/) — 理解架构才能用得更好
+- [Claude Code Setup Guide: Installation to First Project](/zh/posts/ai/2026-02-25-claude-code-setup-guide/) — 从零开始正确配置
+- [Claude Code Pricing 2026: Is the Max Plan Worth It?](/zh/posts/ai/2026-02-25-claude-code-pricing/) — 选择适合你的套餐
+- [CLAUDE.md Guide: Give AI Perfect Project Context](/zh/posts/ai/2026-01-12-claudemd-memory-guide/) — 错误 #1 的深度指南
+- [Claude Code Hooks: 12 Automation Configs](/zh/posts/ai/2026-02-18-claude-code-hooks-guide/) — 错误 #5 的深度指南
+- [Claude Code Worktree: Parallel AI Tasks](/zh/posts/ai/2026-02-20-claude-code-worktree/) — 错误 #9 的深度指南
+- [Claude Code Best Practices](/zh/posts/ai/2026-01-06-claudecode-best-practices/) — 官方推荐的工作流
+- [Build Your Own Claude Code from Scratch](/zh/posts/ai/2026-02-24-build-magic-code/) — 理解架构才能用得更好

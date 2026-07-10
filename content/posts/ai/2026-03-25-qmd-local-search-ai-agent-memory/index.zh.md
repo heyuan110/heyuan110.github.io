@@ -175,7 +175,7 @@ qmd query "认证 Token 的最佳实践"
 
 ## MCP 集成：让 Agent 拥有精准记忆
 
-这是 QMD 最强大的用法。通过 [MCP 协议](/posts/ai/2026-02-20-mcp-protocol-guide/)把 QMD 暴露为工具，Agent 可以在需要时主动搜索文档，只把相关内容拉进上下文。
+这是 QMD 最强大的用法。通过 [MCP 协议](/zh/posts/ai/2026-02-20-mcp-protocol-guide/)把 QMD 暴露为工具，Agent 可以在需要时主动搜索文档，只把相关内容拉进上下文。
 
 ### 配置 MCP 服务器
 
@@ -247,7 +247,7 @@ HTTP 模式的好处是模型常驻 VRAM，没有冷启动开销。Embedding 上
 | Token 消耗 | 5,000 | ~500 |
 | 节省 | — | **90%** |
 
-实测下来，日常使用 AI Agent 一天能省掉几万个 Token。按 Claude API 的价格算，一个月能省下不少钱。对于用 [OpenClaw](/posts/ai/2026-03-05-openclaw-multi-agent-setup/) 跑多 Agent 的同学，省得更多。
+实测下来，日常使用 AI Agent 一天能省掉几万个 Token。按 Claude API 的价格算，一个月能省下不少钱。对于用 [OpenClaw](/zh/posts/ai/2026-03-05-openclaw-multi-agent-setup/) 跑多 Agent 的同学，省得更多。
 
 ## QMD vs 其他方案
 
@@ -351,9 +351,9 @@ A：QMD 本质上就是一个开箱即用的本地 RAG 管线——但打包成�
 
 ## 相关阅读
 
-- [MCP 协议详解：让 AI Agent 连接任何工具](/posts/ai/2026-02-20-mcp-protocol-guide/) — 理解 QMD 用于 Agent 集成的底层协议
-- [AI Agent 记忆系统：架构与最佳实践](/posts/ai/2026-02-21-ai-agent-memory-systems/) — 记忆管理方案的全景对比
-- [Context Engineering 深度指南](/posts/ai/2026-02-24-context-engineering-deep-dive/) — 为什么上下文的内容比提示词的写法更重要
-- [OpenClaw 多 Agent 配置指南](/posts/ai/2026-03-05-openclaw-multi-agent-setup/) — 在 OpenClaw 中使用 QMD 优化多 Agent 工作流
-- [2026 年最佳 MCP 服务器推荐](/posts/ai/2026-03-05-best-mcp-servers-claude-code/) — QMD 与其他必备 MCP 服务器
-- [RAG 管线搭建：从零到生产](/posts/ai/2026-03-01-rag-pipeline-setup/) — 对比 QMD 与传统 RAG 架构的异同
+- [MCP 协议详解：让 AI Agent 连接任何工具](/zh/posts/ai/2026-02-20-mcp-protocol-guide/) — 理解 QMD 用于 Agent 集成的底层协议
+- [AI Agent 记忆系统：架构与最佳实践](/zh/posts/ai/2026-02-21-ai-agent-memory-systems/) — 记忆管理方案的全景对比
+- [Context Engineering 深度指南](/zh/posts/ai/2026-02-24-context-engineering-deep-dive/) — 为什么上下文的内容比提示词的写法更重要
+- [OpenClaw 多 Agent 配置指南](/zh/posts/ai/2026-03-05-openclaw-multi-agent-setup/) — 在 OpenClaw 中使用 QMD 优化多 Agent 工作流
+- [2026 年最佳 MCP 服务器推荐](/zh/posts/ai/2026-03-05-best-mcp-servers-claude-code/) — QMD 与其他必备 MCP 服务器
+- [RAG 管线搭建：从零到生产](/zh/posts/ai/2026-03-01-rag-pipeline-setup/) — 对比 QMD 与传统 RAG 架构的异同

@@ -27,7 +27,7 @@ answer = "Agent Teams 需要 Claude Max 订阅（$100/月或 $200/月），因�
 
 2 月 5 日，Anthropic 随 Claude Opus 4.6 一同发布了 **Claude Code Agent Teams** —— 一项让多个 Claude Code 实例组成团队、并行协作的实验性功能。如果说之前的 Subagent 是"你派出去跑腿的助手"，那 Agent Teams 就是"一支能互相讨论、自主协调的工程小队"。对于需要跨模块开发、多视角审查、并行调试的复杂场景，Agent Teams 可以将小时级的串行工作压缩到分钟级完成。
 
-本文基于[官方文档](https://code.claude.com/docs/en/agent-teams)和实际使用经验，从架构原理到实战案例，完整拆解 Agent Teams 的核心能力。如果你还不熟悉 Claude Code 的基础用法，建议先阅读 [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/)。
+本文基于[官方文档](https://code.claude.com/docs/en/agent-teams)和实际使用经验，从架构原理到实战案例，完整拆解 Agent Teams 的核心能力。如果你还不熟悉 Claude Code 的基础用法，建议先阅读 [Claude Code 完全指南](/zh/posts/ai/2026-01-14-claude-code-guide/)。
 
 ## 什么是 Agent Teams
 
@@ -194,7 +194,7 @@ Teammate 会进入只读的 Plan 模式，提交方案后由 Lead 审批。被�
 
 ### 用 Hooks 强制质量门禁
 
-通过 [Hooks](/posts/ai/2026-01-14-claude-code-guide/) 机制，可以在关键节点插入自动检查：
+通过 [Hooks](/zh/posts/ai/2026-01-14-claude-code-guide/) 机制，可以在关键节点插入自动检查：
 
 - **`TeammateIdle`**：Teammate 即将空闲时触发。返回 exit code 2 可以发送反馈让 Teammate 继续工作。
 - **`TaskCompleted`**：任务被标记完成时触发。返回 exit code 2 可以阻止完成并发送反馈。
@@ -243,7 +243,7 @@ Agent Teams 的 Token 消耗大约是单会话的 **3-4 倍**。每个 Teammate 
 
 ## 与其他并行方案对比
 
-Claude Code 提供了三种并行工作方式，各有适用场景。关于 Worktree 的详细用法，可以参考 [Claude Code Worktree 实战指南](/posts/ai/2026-02-20-claude-code-worktree/)。
+Claude Code 提供了三种并行工作方式，各有适用场景。关于 Worktree 的详细用法，可以参考 [Claude Code Worktree 实战指南](/zh/posts/ai/2026-02-20-claude-code-worktree/)。
 
 | 维度 | Agent Teams | Subagent | Worktree |
 |------|-------------|----------|----------|
@@ -259,7 +259,7 @@ Claude Code 提供了三种并行工作方式，各有适用场景。关于 Work
 - 需要跨角色沟通和协调 -> **Agent Teams**
 - 独立功能分支、长期并行开发 -> **Worktree**
 
-更多 Claude Code 的最新功能变化，可以查看 [Claude Code 2 月更新](/posts/ai/2026-02-22-claude-code-february-updates/)。
+更多 Claude Code 的最新功能变化，可以查看 [Claude Code 2 月更新](/zh/posts/ai/2026-02-22-claude-code-february-updates/)。
 
 ## 命令速查表
 
@@ -296,7 +296,7 @@ Claude Code 提供了三种并行工作方式，各有适用场景。关于 Work
 
 ### Token 消耗 3-4x，值得吗？
 
-取决于场景。对于代码审查、多假设调试、跨层特性开发这类天然并行的工作，Agent Teams 能将 1-2 小时的串行工作压缩到 15-20 分钟。**时间价值远大于额外的 Token 成本**。但对于简单的顺序任务，单会话 + Subagent 是更经济的选择。如果你对 Claude Code 的其他高级能力也感兴趣，推荐阅读 [Superpowers 深度解析](/posts/ai/2026-02-01-superpowers-deep-dive/)。
+取决于场景。对于代码审查、多假设调试、跨层特性开发这类天然并行的工作，Agent Teams 能将 1-2 小时的串行工作压缩到 15-20 分钟。**时间价值远大于额外的 Token 成本**。但对于简单的顺序任务，单会话 + Subagent 是更经济的选择。如果你对 Claude Code 的其他高级能力也感兴趣，推荐阅读 [Superpowers 深度解析](/zh/posts/ai/2026-02-01-superpowers-deep-dive/)。
 
 ## 总结
 

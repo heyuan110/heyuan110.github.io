@@ -18,16 +18,16 @@ keywords = ['AI 自动化导航', 'Claude Code 教程合集', 'OpenClaw 教程',
 
 ## 核心文章列表
 
-1. [Claude Code 使用指南](/posts/ai/2026-01-14-claude-code-guide/)
-2. [Claude Code 浏览器自动化方案对比](/posts/ai/2026-01-28-claude-code-browser-automation/)
-3. [OpenClaw 使用教程](/posts/ai/2026-02-12-openclaw-usage-tutorial/)
-4. [Moltbot 深度解析](/posts/ai/2026-01-29-moltbot-deep-dive/)
-5. [Codex CLI 实战指南](/posts/ai/2026-02-12-codex-cli-mastery-guide/)
+1. [Claude Code 使用指南](/zh/posts/ai/2026-01-14-claude-code-guide/)
+2. [Claude Code 浏览器自动化方案对比](/zh/posts/ai/2026-01-28-claude-code-browser-automation/)
+3. [OpenClaw 使用教程](/zh/posts/ai/2026-02-12-openclaw-usage-tutorial/)
+4. [Moltbot 深度解析](/zh/posts/ai/2026-01-29-moltbot-deep-dive/)
+5. [Codex CLI 实战指南](/zh/posts/ai/2026-02-12-codex-cli-mastery-guide/)
 
 ## 相关阅读
 
-- [Claude Code 命令大全](/posts/ai/2025-01-23-claude-code-commands/)
-- [Claude Code Skill 指南](/posts/ai/2026-01-08-claudecode-skill-guide/)
-- [CLAUDE.md 记忆策略](/posts/ai/2026-01-12-claudemd-memory-guide/)
-- [OpenClaw 记忆策略](/posts/ai/2026-01-31-openclaw-memory-strategy/)
-- [OpenClaw 自动化坑点](/posts/ai/2026-02-14-openclaw-automation-pitfalls/)
+- [Claude Code 命令大全](/zh/posts/ai/2025-01-23-claude-code-commands/)
+- [Claude Code Skill 指南](/zh/posts/ai/2026-01-08-claudecode-skill-guide/)
+- [CLAUDE.md 记忆策略](/zh/posts/ai/2026-01-12-claudemd-memory-guide/)
+- [OpenClaw 记忆策略](/zh/posts/ai/2026-01-31-openclaw-memory-strategy/)
+- [OpenClaw 自动化坑点](/zh/posts/ai/2026-02-14-openclaw-automation-pitfalls/)

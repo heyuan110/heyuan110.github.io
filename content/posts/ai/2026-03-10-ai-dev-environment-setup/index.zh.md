@@ -56,7 +56,7 @@ AI 工具的效果取决于你的配置。大多数开发者安装完 Claude Cod
 
 核心理念是：**Claude Code 擅长思考，Cursor 擅长输出。** 当你需要 AI 理解复杂问题、评估权衡或规划多步骤变更时，用 Claude Code。当你知道该写什么、需要快速流畅地实现时，切换到 Cursor。
 
-这就是我们在 [Claude Code vs Cursor 对比](/posts/ai/2026-02-28-claude-code-vs-cursor/) 中介绍的多工具策略，不过这里我们聚焦于**实际配置**，而非概念层面的差异。
+这就是我们在 [Claude Code vs Cursor 对比](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/) 中介绍的多工具策略，不过这里我们聚焦于**实际配置**，而非概念层面的差异。
 
 ## 核心工具配置
 
@@ -64,7 +64,7 @@ AI 工具的效果取决于你的配置。大多数开发者安装完 Claude Cod
 
 Claude Code 是 Anthropic 推出的终端 AI 编程智能体。与 IDE 插件只能建议代码片段不同，Claude Code 作为自主代理运行——它能阅读整个代码库、规划多步骤变更、执行 Shell 命令，并持续迭代直到任务完成。
 
-如需深入了解 Claude Code 的全部功能，请参阅 [Claude Code 完全指南](/posts/ai/2026-02-28-claude-code-complete-guide/)。
+如需深入了解 Claude Code 的全部功能，请参阅 [Claude Code 完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)。
 
 #### 安装
 
@@ -138,7 +138,7 @@ npm run db:reset     # 重置并重新填充数据库
 - 缓存：Redis，API 响应默认 5 分钟 TTL
 ````
 
-如需了解如何编写高质量的 CLAUDE.md，请参阅 [CLAUDE.md 完全指南](/posts/ai/2026-02-28-claude-code-claudemd-guide/)。
+如需了解如何编写高质量的 CLAUDE.md，请参阅 [CLAUDE.md 完全指南](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/)。
 
 **编写 CLAUDE.md 的核心原则：**
 
@@ -178,7 +178,7 @@ MCP 配置文件位于 `~/.claude/mcp.json`（全局）或 `.claude/mcp.json`（
 }
 ```
 
-如需了解 10+ 种 MCP 服务器的完整配置，请参阅 [Claude Code MCP 服务器配置指南](/posts/ai/2026-02-28-claude-code-mcp-setup/)。
+如需了解 10+ 种 MCP 服务器的完整配置，请参阅 [Claude Code MCP 服务器配置指南](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/)。
 
 **我推荐的 MCP 组合：**
 
@@ -209,7 +209,7 @@ Hooks 让你定义在 Claude Code 操作前后自动执行的规则。与提示�
 }
 ```
 
-完整的 Hooks 使用指南请参阅 [Claude Code Hooks 指南](/posts/ai/2026-02-28-claude-code-hooks-guide/)。
+完整的 Hooks 使用指南请参阅 [Claude Code Hooks 指南](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/)。
 
 ### Cursor：你的 AI 编码引擎
 
@@ -485,7 +485,7 @@ Claude Code 的推理能力能产出比自动补全工具更全面的测试套�
 | Cursor | Pro | $20 | 快速实现，自动补全 |
 | **合计** | | **$40** | **完整 AI 开发工具栈** |
 
-如需详细的 Claude Code 定价分析，请参阅 [Claude Code 价格指南](/posts/ai/2026-02-25-claude-code-pricing/)。
+如需详细的 Claude Code 定价分析，请参阅 [Claude Code 价格指南](/zh/posts/ai/2026-02-25-claude-code-pricing/)。
 
 **成本优化技巧：**
 
@@ -764,7 +764,7 @@ Claude Code 会分析每个变更的文件，撰写详尽的 PR 描述，并通�
 - **批量提问。** 与其开五个会话问五个相关问题，不如在一个会话中全部问完。
 - **关闭空闲会话。** 每个活跃的 Claude Code 会话都在内存中维护上下文。用完就关掉。
 
-如需详细的定价策略，请参阅 [Claude Code 定价：方案、成本与优化](/posts/ai/2026-02-25-claude-code-pricing/)。
+如需详细的定价策略，请参阅 [Claude Code 定价：方案、成本与优化](/zh/posts/ai/2026-02-25-claude-code-pricing/)。
 
 ## 总结
 
@@ -789,12 +789,12 @@ AI 开发环境不只是一堆工具的集合——它是一个**系统**。每�
 
 以下指南对本文涉及的各个主题做了更深入的讲解：
 
-- [Claude Code Guide 2026: Everything You Need to Know](/posts/ai/2026-02-28-claude-code-complete-guide/) — Claude Code 全部功能的完整概览
-- [The Complete CLAUDE.md Guide](/posts/ai/2026-02-28-claude-code-claudemd-guide/) — 掌握让 Claude Code 高效工作的配置文件
-- [Claude Code MCP Server Setup Guide](/posts/ai/2026-02-28-claude-code-mcp-setup/) — 将 Claude Code 连接到外部服务
-- [Claude Code Hooks Guide](/posts/ai/2026-02-28-claude-code-hooks-guide/) — 自动化质量关卡与工作流
-- [Claude Code Pricing: Plans, Costs, and Optimization](/posts/ai/2026-02-25-claude-code-pricing/) — 理解成本并优化支出
-- [Claude Code vs Cursor: Which AI Coding Tool Should You Use?](/posts/ai/2026-02-28-claude-code-vs-cursor/) — 两款工具的详细对比
-- [Codex CLI Deep Dive: Setup, Config, and Power User Tips](/posts/ai/2026-03-10-codex-cli-deep-dive/) — OpenAI 的终端 AI 智能体
-- [Google Antigravity Review](/posts/ai/2026-03-10-google-antigravity-review/) — Google 最新的 AI 开发产品
-- [What Is Vibe Coding? The AI-First Development Philosophy](/posts/ai/2026-02-28-vibe-coding-explained/) — 理解更广泛的 AI 编程运动
+- [Claude Code Guide 2026: Everything You Need to Know](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — Claude Code 全部功能的完整概览
+- [The Complete CLAUDE.md Guide](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) — 掌握让 Claude Code 高效工作的配置文件
+- [Claude Code MCP Server Setup Guide](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/) — 将 Claude Code 连接到外部服务
+- [Claude Code Hooks Guide](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) — 自动化质量关卡与工作流
+- [Claude Code Pricing: Plans, Costs, and Optimization](/zh/posts/ai/2026-02-25-claude-code-pricing/) — 理解成本并优化支出
+- [Claude Code vs Cursor: Which AI Coding Tool Should You Use?](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/) — 两款工具的详细对比
+- [Codex CLI Deep Dive: Setup, Config, and Power User Tips](/zh/posts/ai/2026-03-10-codex-cli-deep-dive/) — OpenAI 的终端 AI 智能体
+- [Google Antigravity Review](/zh/posts/ai/2026-03-10-google-antigravity-review/) — Google 最新的 AI 开发产品
+- [What Is Vibe Coding? The AI-First Development Philosophy](/zh/posts/ai/2026-02-28-vibe-coding-explained/) — 理解更广泛的 AI 编程运动

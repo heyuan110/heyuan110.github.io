@@ -12,7 +12,7 @@ keywords = ['docker compose 教程', 'docker-compose.yml 详解', 'docker compos
 
 Docker Compose 是目前最流行的多容器编排工具，而 **docker-compose.yml**（新版推荐命名为 `compose.yaml`）就是它的核心配置文件。无论你是刚接触容器化的新手，还是想系统梳理配置细节的老手，这篇 Docker Compose 教程都适合你。
 
-本文将逐字段讲解 compose.yaml 中 services、volumes、networks、ports、environment、healthcheck 等所有配置项的含义和用法，并通过 WordPress + MySQL 等实战案例帮你快速上手。配合 [Docker 常用命令速查](/posts/docker/2019-11-14-docker-commands/) 一起使用效果更佳。
+本文将逐字段讲解 compose.yaml 中 services、volumes、networks、ports、environment、healthcheck 等所有配置项的含义和用法，并通过 WordPress + MySQL 等实战案例帮你快速上手。配合 [Docker 常用命令速查](/zh/posts/docker/2019-11-14-docker-commands/) 一起使用效果更佳。
 
 很多人一看到 `compose.yaml` 就头大，一堆冒号、缩进，不知道从何下手。其实它没那么复杂，下面我用最通俗的方式，带你彻底搞懂这个文件。
 
@@ -926,8 +926,8 @@ Docker Compose 用于**单机多容器编排**，适合开发环境和小规模�
 
 ## 相关阅读
 
-- [Docker 入门教程](/posts/docker/2019-05-13-learn-docker/) - Docker 基础概念和安装配置
-- [Docker 常用命令速查](/posts/docker/2019-11-14-docker-commands/) - 容器、镜像、网络等管理命令
-- [Docker Compose 完全指南](/posts/docker/2026-01-19-docker-compose-complete-guide/) - 从安装到部署的全流程指南
-- [Linux/macOS 常用命令速查手册](/posts/linux/2020-03-19-linux-mac-commands/) - 运维开发常用命令参考
-- [Linux 运维基础 Hub](/posts/linux/linux-ops-basics-hub/)
+- [Docker 入门教程](/zh/posts/docker/2019-05-13-learn-docker/) - Docker 基础概念和安装配置
+- [Docker 常用命令速查](/zh/posts/docker/2019-11-14-docker-commands/) - 容器、镜像、网络等管理命令
+- [Docker Compose 完全指南](/zh/posts/docker/2026-01-19-docker-compose-complete-guide/) - 从安装到部署的全流程指南
+- [Linux/macOS 常用命令速查手册](/zh/posts/linux/2020-03-19-linux-mac-commands/) - 运维开发常用命令参考
+- [Linux 运维基础 Hub](/zh/posts/linux/linux-ops-basics-hub/)

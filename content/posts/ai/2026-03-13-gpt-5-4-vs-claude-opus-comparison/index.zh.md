@@ -80,7 +80,7 @@ GPT-5.4 在 OSWorld-Verified 上拿到 **75%**，超过了人类平均水平，�
 
 ### Claude Opus 4.6：Agent Teams
 
-Opus 4.6 的核心卖点是 [Agent Teams](/posts/ai/2026-02-22-claude-code-agent-teams/)。不再是一个模型实例从头干到尾，而是：
+Opus 4.6 的核心卖点是 [Agent Teams](/zh/posts/ai/2026-02-22-claude-code-agent-teams/)。不再是一个模型实例从头干到尾，而是：
 
 - **启动多个并行子代理**，各自负责项目的不同部分
 - **按任务性质分工**（前端、后端、测试各一个代理）
@@ -99,7 +99,7 @@ GPT-5.4 走了另一条路——不搞多代理，而是让单个代理变得极
 - **Tool Search** 智能选择调用哪些工具，复杂任务的 token 用量比 GPT-5.2 降低 **47%**
 - **前置规划**展示模型的推理过程，让开发者可以中途介入而不必重头来过
 
-Tool Search 值得重点关注。当你使用 [MCP 服务器](/posts/ai/2026-02-20-mcp-protocol-guide/)或复杂工具链时，GPT-5.4 会智能搜索可用工具，而不是把所有工具定义都塞进上下文。这不只是省钱——它让模型能驾驭更庞大的工具集而不影响性能。
+Tool Search 值得重点关注。当你使用 [MCP 服务器](/zh/posts/ai/2026-02-20-mcp-protocol-guide/)或复杂工具链时，GPT-5.4 会智能搜索可用工具，而不是把所有工具定义都塞进上下文。这不只是省钱——它让模型能驾驭更庞大的工具集而不影响性能。
 
 ### 哪种 Agent 架构更好？
 
@@ -117,7 +117,7 @@ Tool Search 值得重点关注。当你使用 [MCP 服务器](/posts/ai/2026-02-
 
 **GPT-5.4** 通过 API 提供 100 万 token。OpenAI 的策略是用 Tool Search 从源头减少上下文消耗——"用更少的上下文做更多事"，而不是 Anthropic 的"给你更大的上下文，让它更可靠"。
 
-对于处理[大型代码库](/posts/ai/2026-02-28-claude-code-complete-guide/)的开发者来说，Opus 4.6 的优势在于你可以加载更多文件并信任模型的跨文件推理能力。GPT-5.4 的优势在于成本——token 用量减少 47%，同一个大上下文任务，Opus 花 $1.00，GPT-5.4 可能只要 $0.10-$0.15。
+对于处理[大型代码库](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)的开发者来说，Opus 4.6 的优势在于你可以加载更多文件并信任模型的跨文件推理能力。GPT-5.4 的优势在于成本——token 用量减少 47%，同一个大上下文任务，Opus 花 $1.00，GPT-5.4 可能只要 $0.10-$0.15。
 
 ## 定价：GPT-5.4 便宜得多
 
@@ -144,12 +144,12 @@ GPT-5.4 标准版的输入价格只有 Opus 4.6 的**一半**，输出价格便�
 Claude Code 仍然是大多数开发者使用 Opus 4.6 的主要方式，核心功能包括：
 
 - **Agent Teams** 并行执行任务
-- **[Worktree 支持](/posts/ai/2026-02-20-claude-code-worktree/)** 隔离开发分支
-- **[Hooks](/posts/ai/2026-02-18-claude-code-hooks-guide/)** 自定义自动化触发器
-- **[CLAUDE.md](/posts/ai/2026-02-28-claude-code-claudemd-guide/)** 项目配置文件实现持久化上下文
-- **[MCP 服务器集成](/posts/ai/2026-02-28-claude-code-mcp-setup/)** 扩展能力边界
+- **[Worktree 支持](/zh/posts/ai/2026-02-20-claude-code-worktree/)** 隔离开发分支
+- **[Hooks](/zh/posts/ai/2026-02-18-claude-code-hooks-guide/)** 自定义自动化触发器
+- **[CLAUDE.md](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/)** 项目配置文件实现持久化上下文
+- **[MCP 服务器集成](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/)** 扩展能力边界
 
-Claude Code 中的 Agent Teams 尤其强大——你可以配置一个主代理负责任务拆解，然后启动子代理各自在独立的 [worktree](/posts/ai/2026-02-28-claude-code-worktree-guide/) 中工作，避免合并冲突。这是直接内置在终端里的生产级多代理编排。
+Claude Code 中的 Agent Teams 尤其强大——你可以配置一个主代理负责任务拆解，然后启动子代理各自在独立的 [worktree](/zh/posts/ai/2026-02-28-claude-code-worktree-guide/) 中工作，避免合并冲突。这是直接内置在终端里的生产级多代理编排。
 
 ### OpenAI Codex 和 ChatGPT
 
@@ -165,8 +165,8 @@ GPT-5.4 的电脑操控能力开辟了独特的集成路径——它可以直接
 
 两个模型都可以在主流 AI 编程工具中使用：
 
-- **[Cursor](/posts/ai/2026-03-08-cursor-setup-guide/)**：同时支持 GPT-5.4 和 Claude Opus 4.6
-- **[Copilot](/posts/ai/2026-03-05-claude-code-vs-copilot/)**：主要使用 GPT-5.4，Claude 可通过插件接入
+- **[Cursor](/zh/posts/ai/2026-03-08-cursor-setup-guide/)**：同时支持 GPT-5.4 和 Claude Opus 4.6
+- **[Copilot](/zh/posts/ai/2026-03-05-claude-code-vs-copilot/)**：主要使用 GPT-5.4，Claude 可通过插件接入
 - **Windsurf**：两个模型都支持
 - **[Bind AI](https://blog.getbind.co/)**、**Cline** 等工具：一般通过 API 支持两个模型
 
@@ -216,7 +216,7 @@ OpenAI 报告称 GPT-5.4 的单条陈述**虚假概率降低 33%**，完整回�
 
 Anthropic 没有为 Opus 4.6 公布同类数据，但独立测试表明两个模型在编码任务中的幻觉率相当。不过幻觉的表现形式不同：GPT-5.4 倾向于编造看似合理但不存在的 API 方法，Opus 4.6 偶尔会在大型代码库中记错函数签名。
 
-对于安全关键的代码，无论用哪个模型，都必须搭配[自动化测试](/posts/ai/2026-01-31-unit-test-report-tools/)和代码审查——目前没有任何前沿模型可靠到可以跳过验证直接上线。
+对于安全关键的代码，无论用哪个模型，都必须搭配[自动化测试](/zh/posts/ai/2026-01-31-unit-test-report-tools/)和代码审查——目前没有任何前沿模型可靠到可以跳过验证直接上线。
 
 ## 更大的图景：2026 年 3 月的 AI 格局
 
@@ -226,7 +226,7 @@ OpenAI 的策略是打造一个全能型通用模型——编码、推理、工�
 
 两种路线都有道理。把它们当作互补工具而非竞争对手来用的开发者，会比死守单一生态的人走得更快。
 
-更多模型的横向对比，可以看我们的 [2026 年 AI 编程 Agent 大横评](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)。
+更多模型的横向对比，可以看我们的 [2026 年 AI 编程 Agent 大横评](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)。
 
 ## 常见问题
 
@@ -247,9 +247,9 @@ Agent Teams 让多个 Opus 实例并行处理项目的不同部分。主代理�
 
 ## 相关阅读
 
-- [2026 年 AI 编程 Agent 大横评](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — AI 编程工具全景
-- [Claude Code Agent Teams 指南](/posts/ai/2026-02-22-claude-code-agent-teams/) — 多代理编排深度解析
-- [Claude Code 完全指南](/posts/ai/2026-02-28-claude-code-complete-guide/) — 关于 Claude Code 你需要知道的一切
-- [Claude Code vs Cursor vs Windsurf](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/) — AI 辅助开发 IDE 对比
-- [MCP 协议指南](/posts/ai/2026-02-20-mcp-protocol-guide/) — 理解 Model Context Protocol
-- [上下文工程深度解析](/posts/ai/2026-02-24-context-engineering-deep-dive/) — 如何优化 AI 模型看到的内容
+- [2026 年 AI 编程 Agent 大横评](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — AI 编程工具全景
+- [Claude Code Agent Teams 指南](/zh/posts/ai/2026-02-22-claude-code-agent-teams/) — 多代理编排深度解析
+- [Claude Code 完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — 关于 Claude Code 你需要知道的一切
+- [Claude Code vs Cursor vs Windsurf](/zh/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/) — AI 辅助开发 IDE 对比
+- [MCP 协议指南](/zh/posts/ai/2026-02-20-mcp-protocol-guide/) — 理解 Model Context Protocol
+- [上下文工程深度解析](/zh/posts/ai/2026-02-24-context-engineering-deep-dive/) — 如何优化 AI 模型看到的内容

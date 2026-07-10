@@ -19,7 +19,7 @@ Week 8 的嘉宾是 Vercel AI 研究负责人 Gaspar Garcia，他现场演示了
 
 CS146S 的态度很明确：**快速原型只是起点。** Week 8 教你怎么快速造出来，Week 9 教你怎么让它在生产环境中活下去。这两周合在一起，讲的是 AI 应用从 demo 到 production 的完整路径。
 
-而"从 demo 到 production"之间的那道鸿沟，恰恰是大多数 [Vibe Coder](/posts/ai/2026-02-22-vibe-coding-guide/) 倒下的地方。
+而"从 demo 到 production"之间的那道鸿沟，恰恰是大多数 [Vibe Coder](/zh/posts/ai/2026-02-22-vibe-coding-guide/) 倒下的地方。
 
 ## 一句话做 App：能力与边界
 
@@ -286,10 +286,10 @@ Week 8 的作业 [Multi-stack Web App Builds](https://github.com/mihail911/moder
 
 这个系列覆盖了 CS146S 课程的核心内容：
 
-1. [精读（一）：课程全解读](/posts/ai/2026-02-24-stanford-cs146s-overview/) — 全局认知
-2. [精读（二）：上下文工程](/posts/ai/2026-02-24-context-engineering-deep-dive/) — AI 编程的核心能力
-3. [精读（三）：Agent Manager](/posts/ai/2026-02-24-agent-manager-patterns/) — 人机协作的最佳实践
-4. [精读（四）：Secure Vibe Coding](/posts/ai/2026-02-24-secure-vibe-coding/) — 安全攻防底线
+1. [精读（一）：课程全解读](/zh/posts/ai/2026-02-24-stanford-cs146s-overview/) — 全局认知
+2. [精读（二）：上下文工程](/zh/posts/ai/2026-02-24-context-engineering-deep-dive/) — AI 编程的核心能力
+3. [精读（三）：Agent Manager](/zh/posts/ai/2026-02-24-agent-manager-patterns/) — 人机协作的最佳实践
+4. [精读（四）：Secure Vibe Coding](/zh/posts/ai/2026-02-24-secure-vibe-coding/) — 安全攻防底线
 5. **本文**：从原型到生产 — 完整生命周期
 
 如果你只有时间读一篇，读第 1 篇获得全局认知。如果有时间读两篇，加上第 2 篇理解上下文工程。如果五篇都读了——恭喜你，你已经具备了一个"斯坦福水平"的 Vibe Coding 知识框架。
@@ -301,18 +301,18 @@ Week 8 的作业 [Multi-stack Web App Builds](https://github.com/mihail911/moder
 
 ## 相关阅读
 
-- [Vibe Coding 完全指南](/posts/ai/2026-02-22-vibe-coding-guide/) — 从原型到生产，Vibe Coding 的完整方法论
-- [Claude Code vs Cursor vs Windsurf 实测对比](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/) — 不同 AI 编程工具在生产场景中的表现
-- [MCP 协议全面解析](/posts/ai/2026-02-20-mcp-protocol-guide/) — 通过 MCP 扩展 AI 的运维能力
-- [Claude Code Hooks 实战指南](/posts/ai/2026-02-18-claude-code-hooks-guide/) — CI/CD 自动化的实用配置
-- [从零手搓一个 Claude Code](/posts/ai/2026-02-24-build-magic-code/) — 理解 AI 编程工具的底层原理
+- [Vibe Coding 完全指南](/zh/posts/ai/2026-02-22-vibe-coding-guide/) — 从原型到生产，Vibe Coding 的完整方法论
+- [Claude Code vs Cursor vs Windsurf 实测对比](/zh/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/) — 不同 AI 编程工具在生产场景中的表现
+- [MCP 协议全面解析](/zh/posts/ai/2026-02-20-mcp-protocol-guide/) — 通过 MCP 扩展 AI 的运维能力
+- [Claude Code Hooks 实战指南](/zh/posts/ai/2026-02-18-claude-code-hooks-guide/) — CI/CD 自动化的实用配置
+- [从零手搓一个 Claude Code](/zh/posts/ai/2026-02-24-build-magic-code/) — 理解 AI 编程工具的底层原理
 
 ## 系列文章导航
 
 本文是「斯坦福 Vibe Coding 课程精读」系列第 5 篇（完结）：
 
-1. [斯坦福 CS146S 精读（一）：Vibe Coding 如何成为正式学科](/posts/ai/2026-02-24-stanford-cs146s-overview/)
-2. [斯坦福 CS146S 精读（二）：上下文工程](/posts/ai/2026-02-24-context-engineering-deep-dive/)（Week 3）
-3. [斯坦福 CS146S 精读（三）：Agent Manager](/posts/ai/2026-02-24-agent-manager-patterns/)（Week 4）
-4. [斯坦福 CS146S 精读（四）：Secure Vibe Coding](/posts/ai/2026-02-24-secure-vibe-coding/)（Week 6-7）
+1. [斯坦福 CS146S 精读（一）：Vibe Coding 如何成为正式学科](/zh/posts/ai/2026-02-24-stanford-cs146s-overview/)
+2. [斯坦福 CS146S 精读（二）：上下文工程](/zh/posts/ai/2026-02-24-context-engineering-deep-dive/)（Week 3）
+3. [斯坦福 CS146S 精读（三）：Agent Manager](/zh/posts/ai/2026-02-24-agent-manager-patterns/)（Week 4）
+4. [斯坦福 CS146S 精读（四）：Secure Vibe Coding](/zh/posts/ai/2026-02-24-secure-vibe-coding/)（Week 6-7）
 5. **本文**：斯坦福 CS146S 精读（五）：从原型到生产（Week 8-9）

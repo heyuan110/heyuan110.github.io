@@ -77,7 +77,7 @@ Claude Code 是 Anthropic 推出的终端优先编程 Agent，凭借纯粹的实
 
 Claude Code 真正的杀手锏是**推理深度**。当你抛给它真正有难度的问题——跨 50 个文件的复杂重构、一个微妙的竞态条件、需要权衡多种方案的架构决策——它的表现碾压所有竞品。Opus 4.6 模型处理细微差别和上下文的能力，目前其他模型无法企及。
 
-[CLAUDE.md 系统](/posts/ai/2026-02-28-claude-code-complete-guide/)——一个跨会话持久化的项目级配置文件——是另一个杀手级功能。再加上 Skills、Hooks 和 Worktree 并行执行，Claude Code 提供了这份清单中最深度的定制能力。
+[CLAUDE.md 系统](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)——一个跨会话持久化的项目级配置文件——是另一个杀手级功能。再加上 Skills、Hooks 和 Worktree 并行执行，Claude Code 提供了这份清单中最深度的定制能力。
 
 **优点：**
 - 基准测试最高分（80.9% SWE-bench）
@@ -94,9 +94,9 @@ Claude Code 真正的杀手锏是**推理深度**。当你抛给它真正有难�
 - 高强度使用时可能触及速率限制
 - 需要接受 AI 自主修改代码
 
-**价格：** $20/月（Pro）、$100/月（Max 5x）、$200/月（Max 20x）。详见我们的[价格详解](/posts/ai/2026-02-25-claude-code-pricing/)。
+**价格：** $20/月（Pro）、$100/月（Max 5x）、$200/月（Max 20x）。详见我们的[价格详解](/zh/posts/ai/2026-02-25-claude-code-pricing/)。
 
-深入了解请阅读 [2026 Claude Code 完全指南](/posts/ai/2026-02-28-claude-code-complete-guide/)。
+深入了解请阅读 [2026 Claude Code 完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)。
 
 ---
 
@@ -127,7 +127,7 @@ Cursor 真正的闪光点在于**日常编码体验**。行内补全非常出色
 
 **价格：** $20/月（Pro）、$40/月（Business）、$200/月（Ultra）。
 
-详细对比请参阅 [2026 Claude Code vs Cursor 对比](/posts/ai/2026-02-28-claude-code-vs-cursor/)。
+详细对比请参阅 [2026 Claude Code vs Cursor 对比](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/)。
 
 ---
 
@@ -159,7 +159,7 @@ Gemini 3 相比 Gemini 2 是一次真正的飞跃。上下文处理能力大幅�
 
 **价格：** 免费。
 
-完整评测请看我们的 [Google Antigravity 评测](/posts/ai/2026-03-10-google-antigravity-review/)。
+完整评测请看我们的 [Google Antigravity 评测](/zh/posts/ai/2026-03-10-google-antigravity-review/)。
 
 ---
 
@@ -218,7 +218,7 @@ Kiro 是 Amazon 的 AI 编程入场券，采用了一种根本不同的方法：
 
 **价格：** 免费套餐、$19/月（Pro）。
 
-详细评测请看我们的 [2026 Kiro 评测](/posts/ai/2026-03-10-kiro-review/)。
+详细评测请看我们的 [2026 Kiro 评测](/zh/posts/ai/2026-03-10-kiro-review/)。
 
 ---
 
@@ -248,7 +248,7 @@ Codex CLI 是 OpenAI 对标 Claude Code 的产品——一个在命令行运行�
 
 **价格：** $20/月（Pro）、$200/月（Max）。
 
-完整分析请看我们的 [Codex CLI 深度评测](/posts/ai/2026-03-10-codex-cli-deep-dive/)。
+完整分析请看我们的 [Codex CLI 深度评测](/zh/posts/ai/2026-03-10-codex-cli-deep-dive/)。
 
 ---
 
@@ -354,7 +354,7 @@ SWE-1 模型还行，但不算出彩。标准编码任务处理得不错，在�
 
 核心原则：**在每个工具最强的领域使用它，而不是在它仅仅"勉强能用"的地方。**
 
-如果你想更深入理解这种理念，请阅读我们的 [Vibe Coding 详解](/posts/ai/2026-02-28-vibe-coding-explained/)——让 AI 处理实现细节，而你专注于方向和审查。
+如果你想更深入理解这种理念，请阅读我们的 [Vibe Coding 详解](/zh/posts/ai/2026-02-28-vibe-coding-explained/)——让 AI 处理实现细节，而你专注于方向和审查。
 
 ## 价格对比
 
@@ -441,10 +441,10 @@ SWE-1 模型还行，但不算出彩。标准编码任务处理得不错，在�
 
 ## 相关阅读
 
-- [2026 Claude Code 完全指南](/posts/ai/2026-02-28-claude-code-complete-guide/) —— 关于 Claude Code 你需要知道的一切
-- [2026 Claude Code vs Cursor 对比](/posts/ai/2026-02-28-claude-code-vs-cursor/) —— 详细的正面对比
-- [Claude Code 价格指南](/posts/ai/2026-02-25-claude-code-pricing/) —— 了解 Pro、Max 5x 和 Max 20x 套餐
-- [Codex CLI 深度评测](/posts/ai/2026-03-10-codex-cli-deep-dive/) —— OpenAI 的终端 Agent 全面解析
-- [Google Antigravity 评测](/posts/ai/2026-03-10-google-antigravity-review/) —— 免费的 Agent 优先 IDE
-- [2026 Kiro 评测](/posts/ai/2026-03-10-kiro-review/) —— Amazon 的规格驱动编程 Agent
-- [Vibe Coding 详解](/posts/ai/2026-02-28-vibe-coding-explained/) —— AI 辅助开发的新范式
+- [2026 Claude Code 完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) —— 关于 Claude Code 你需要知道的一切
+- [2026 Claude Code vs Cursor 对比](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/) —— 详细的正面对比
+- [Claude Code 价格指南](/zh/posts/ai/2026-02-25-claude-code-pricing/) —— 了解 Pro、Max 5x 和 Max 20x 套餐
+- [Codex CLI 深度评测](/zh/posts/ai/2026-03-10-codex-cli-deep-dive/) —— OpenAI 的终端 Agent 全面解析
+- [Google Antigravity 评测](/zh/posts/ai/2026-03-10-google-antigravity-review/) —— 免费的 Agent 优先 IDE
+- [2026 Kiro 评测](/zh/posts/ai/2026-03-10-kiro-review/) —— Amazon 的规格驱动编程 Agent
+- [Vibe Coding 详解](/zh/posts/ai/2026-02-28-vibe-coding-explained/) —— AI 辅助开发的新范式

@@ -86,10 +86,10 @@ Claude Code 是 Anthropic 推出的命令行 AI 编程工具，直接在终端�
 关键特性：
 - **Agent 模式**：自主规划、编写、测试代码，能执行终端命令
 - **Worktree 隔离**：在独立的 Git 工作树中操作，不影响主分支
-- **Agent Teams**：多个 Claude Code 实例协作完成复杂任务（详见 [Claude Code Agent Teams 多智能体协作](/posts/ai/2026-02-22-claude-code-agent-teams/)）
+- **Agent Teams**：多个 Claude Code 实例协作完成复杂任务（详见 [Claude Code Agent Teams 多智能体协作](/zh/posts/ai/2026-02-22-claude-code-agent-teams/)）
 - **MCP 协议**：通过 Model Context Protocol 扩展能力（浏览器自动化、数据库等）
 
-想深入了解 Claude Code，推荐阅读 [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/)。
+想深入了解 Claude Code，推荐阅读 [Claude Code 完全指南](/zh/posts/ai/2026-01-14-claude-code-guide/)。
 
 ### Cursor
 
@@ -139,7 +139,7 @@ Windsurf（原 Codeium）的核心特色是 Cascade——一个能理解代码�
 - **Code 与 Chat 双模式**：分别用于代码修改和问答对话
 - **Supercomplete**：快速智能补全
 
-关于 Claude Code 与 Cursor、Windsurf 的详细对比，可以参考 [Claude Code vs Cursor vs Windsurf 2026 全面对比](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/)。
+关于 Claude Code 与 Cursor、Windsurf 的详细对比，可以参考 [Claude Code vs Cursor vs Windsurf 2026 全面对比](/zh/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/)。
 
 ### v0.dev / bolt.new / Lovable
 
@@ -163,7 +163,7 @@ OpenAI 推出的轻量级开源终端工具，用 Rust 编写，支持 macOS、W
 - **内置搜索**：默认开启 Web 搜索能力
 - **多种权限模式**：从只读建议到全自动执行
 
-关于 Claude Code 与 Codex CLI 的对比分析，详见 [Claude Code vs Codex 深度对比](/posts/ai/2026-02-19-claude-code-vs-codex/)。
+关于 Claude Code 与 Codex CLI 的对比分析，详见 [Claude Code vs Codex 深度对比](/zh/posts/ai/2026-02-19-claude-code-vs-codex/)。
 
 ## 工具对比表
 
@@ -230,7 +230,7 @@ AI 理解后继续修改，几分钟内完成所有优化。
 
 从需求描述到可部署的完整应用，整个过程可能只需要 **15-30 分钟**。这就是 Vibe Coding 的威力——你的时间花在"想要什么"而非"怎么写"。
 
-想了解更多 Claude Code 的高级技巧，可以参考 [Claude Code Skills Top 20](/posts/ai/2026-01-20-claude-code-skills-top20/) 和 [Claude Code 浏览器自动化方案对比](/posts/ai/2026-01-28-claude-code-browser-automation/)。
+想了解更多 Claude Code 的高级技巧，可以参考 [Claude Code Skills Top 20](/zh/posts/ai/2026-01-20-claude-code-skills-top20/) 和 [Claude Code 浏览器自动化方案对比](/zh/posts/ai/2026-01-28-claude-code-browser-automation/)。
 
 ## Vibe Coding 的边界：适合与不适合
 

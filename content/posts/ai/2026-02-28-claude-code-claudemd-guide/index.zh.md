@@ -17,7 +17,7 @@ keywords = ['CLAUDE.md 指南', 'CLAUDE.md 教程', 'Claude Code 配置', 'Claud
 
 CLAUDE.md 能彻底解决这个问题。它是一个纯 Markdown 文件，Claude Code 会在每次会话开始时自动读取。把项目上下文写一次，Claude 就永远遵守——再也不需要反复提醒。
 
-本指南涵盖全部内容：CLAUDE.md 是什么、三层配置体系、四种管理方式、可直接复制的模板，以及来自真实项目的高级技巧。如果你是 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 新手，建议先阅读我们的[安装指南](/posts/ai/2026-02-25-claude-code-setup-guide/)。
+本指南涵盖全部内容：CLAUDE.md 是什么、三层配置体系、四种管理方式、可直接复制的模板，以及来自真实项目的高级技巧。如果你是 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 新手，建议先阅读我们的[安装指南](/zh/posts/ai/2026-02-25-claude-code-setup-guide/)。
 
 ## 什么是 CLAUDE.md？
 
@@ -647,7 +647,7 @@ Claude Code 会加载根目录的 CLAUDE.md，再加上它正在处理的文件�
 
 ### CLAUDE.md + Skills 组合
 
-CLAUDE.md 定义环境，[Skills](/posts/ai/2026-02-28-claude-code-skills-guide/) 定义特定任务的工作流。它们是互补关系。
+CLAUDE.md 定义环境，[Skills](/zh/posts/ai/2026-02-28-claude-code-skills-guide/) 定义特定任务的工作流。它们是互补关系。
 
 **CLAUDE.md** 设定标准：
 
@@ -675,11 +675,11 @@ description: Review code changes against project standards
 4. Summarize: total issues found, severity breakdown
 ```
 
-Skill 会自动引用 CLAUDE.md 中的规则——无需重复。更多关于组合使用的内容，请参阅我们的 [Skills 指南](/posts/ai/2026-02-28-claude-code-skills-guide/)。
+Skill 会自动引用 CLAUDE.md 中的规则——无需重复。更多关于组合使用的内容，请参阅我们的 [Skills 指南](/zh/posts/ai/2026-02-28-claude-code-skills-guide/)。
 
 ### CLAUDE.md + Hooks 集成
 
-[Hooks](/posts/ai/2026-02-28-claude-code-hooks-guide/) 让你在 Claude Code 操作前后自动执行动作。你的 CLAUDE.md 可以引用 hook 行为：
+[Hooks](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) 让你在 Claude Code 操作前后自动执行动作。你的 CLAUDE.md 可以引用 hook 行为：
 
 ```markdown
 ## Automated Checks
@@ -759,11 +759,11 @@ Skill 会自动引用 CLAUDE.md 中的规则——无需重复。更多关于组
 
 如果你正在搭建完整的 Claude Code 工作流，以下指南涵盖了其他模块：
 
-- **[Claude Code 安装指南 2026](/posts/ai/2026-02-25-claude-code-setup-guide/)** — 安装、认证和首次项目配置
-- **[Claude Code 定价 2026](/posts/ai/2026-02-25-claude-code-pricing/)** — 了解成本、选择合适方案、优化 token 用量
-- **[Claude Code 十大常见错误](/posts/ai/2026-02-25-claude-code-mistakes/)** — 常见陷阱及避坑方法（第一个错误就是不写 CLAUDE.md）
-- **[Claude Code Hooks 指南](/posts/ai/2026-02-28-claude-code-hooks-guide/)** — 在 Claude Code 操作前后自动执行动作
-- **[Claude Code Skills 指南](/posts/ai/2026-02-28-claude-code-skills-guide/)** — 构建可复用的任务工作流，与 CLAUDE.md 互补
+- **[Claude Code 安装指南 2026](/zh/posts/ai/2026-02-25-claude-code-setup-guide/)** — 安装、认证和首次项目配置
+- **[Claude Code 定价 2026](/zh/posts/ai/2026-02-25-claude-code-pricing/)** — 了解成本、选择合适方案、优化 token 用量
+- **[Claude Code 十大常见错误](/zh/posts/ai/2026-02-25-claude-code-mistakes/)** — 常见陷阱及避坑方法（第一个错误就是不写 CLAUDE.md）
+- **[Claude Code Hooks 指南](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/)** — 在 Claude Code 操作前后自动执行动作
+- **[Claude Code Skills 指南](/zh/posts/ai/2026-02-28-claude-code-skills-guide/)** — 构建可复用的任务工作流，与 CLAUDE.md 互补
 
 ---
 

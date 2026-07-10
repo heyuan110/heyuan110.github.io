@@ -21,7 +21,7 @@ CS146S 第四周的课程标题叫"Coding Agent Patterns"（编程 Agent 模式�
 2. **任务分解力**：能把复杂需求拆成 Agent 能独立完成的子任务
 3. **沟通精确度**：能用最少的信息量传达最准确的意图
 
-这周的嘉宾是 **Boris Cherney**——[Claude Code](/posts/ai/2026-01-14-claude-code-guide/) 的创始人。直接从工具创造者的口中学习如何使用工具，这个含金量不言而喻。
+这周的嘉宾是 **Boris Cherney**——[Claude Code](/zh/posts/ai/2026-01-14-claude-code-guide/) 的创始人。直接从工具创造者的口中学习如何使用工具，这个含金量不言而喻。
 
 ## Agent 的自治度光谱
 
@@ -64,7 +64,7 @@ Devin（Cognition）的 [Agents 101](https://devin.ai/agents101) 文档把这个
 
 CS146S 这周的必读材料之一是 [How Anthropic Uses Claude Code](https://www-cdn.anthropic.com/58284b19e702b49db9302d5b6f135ad8871e7658.pdf)——这是 Anthropic 内部工程团队使用 Claude Code 的第一手经验。
 
-配合 [Claude Code Best Practices](https://www.anthropic.com/engineering/claude-code-best-practices)（[中文解读](/posts/ai/2026-01-06-claudecode-best-practices/)），可以提炼出以下核心模式：
+配合 [Claude Code Best Practices](https://www.anthropic.com/engineering/claude-code-best-practices)（[中文解读](/zh/posts/ai/2026-01-06-claudecode-best-practices/)），可以提炼出以下核心模式：
 
 ### 模式一：从规划开始，而非从编码开始
 
@@ -83,7 +83,7 @@ CS146S 这周的必读材料之一是 [How Anthropic Uses Claude Code](https://w
 
 ### 模式二：使用 CLAUDE.md 建立项目规范
 
-[CLAUDE.md](/posts/ai/2026-01-12-claudemd-memory-guide/) 是 Claude Code 读取的项目级配置文件。它的作用就像"给新员工的入职手册"——告诉 Agent 这个项目的约定、技术栈、编码风格和禁忌。
+[CLAUDE.md](/zh/posts/ai/2026-01-12-claudemd-memory-guide/) 是 Claude Code 读取的项目级配置文件。它的作用就像"给新员工的入职手册"——告诉 Agent 这个项目的约定、技术栈、编码风格和禁忌。
 
 一个好的 CLAUDE.md 至少包含：
 
@@ -180,7 +180,7 @@ Week 4 的阅读材料中，[Good Context Good Code](https://blog.stockapp.com/g
 
 ### MCP Server 矩阵
 
-StockApp 部署了多个 [MCP Server](/posts/ai/2026-02-20-mcp-protocol-guide/) 来扩展 AI 的感知范围：
+StockApp 部署了多个 [MCP Server](/zh/posts/ai/2026-02-20-mcp-protocol-guide/) 来扩展 AI 的感知范围：
 
 | MCP Server | 用途 |
 |-----------|------|
@@ -291,18 +291,18 @@ Boris Cherney 创造 Claude Code 的初衷正是如此——不是做一个更�
 
 ## 相关阅读
 
-- [Claude Code 从入门到精通完全指南](/posts/ai/2026-01-14-claude-code-guide/) — Boris Cherney 创造的这个工具，值得深入了解
-- [Claude Code 最佳实践](/posts/ai/2026-01-06-claudecode-best-practices/) — 创始人亲自分享的使用之道
-- [Claude Code Agent Teams 完全指南](/posts/ai/2026-02-22-claude-code-agent-teams/) — 从单 Agent 到多 Agent 协作
-- [CLAUDE.md 记忆术](/posts/ai/2026-01-12-claudemd-memory-guide/) — 项目级上下文管理的核心实践
-- [从零手搓一个 Claude Code](/posts/ai/2026-02-24-build-magic-code/) — 理解 Agent 底层架构的最佳方式
+- [Claude Code 从入门到精通完全指南](/zh/posts/ai/2026-01-14-claude-code-guide/) — Boris Cherney 创造的这个工具，值得深入了解
+- [Claude Code 最佳实践](/zh/posts/ai/2026-01-06-claudecode-best-practices/) — 创始人亲自分享的使用之道
+- [Claude Code Agent Teams 完全指南](/zh/posts/ai/2026-02-22-claude-code-agent-teams/) — 从单 Agent 到多 Agent 协作
+- [CLAUDE.md 记忆术](/zh/posts/ai/2026-01-12-claudemd-memory-guide/) — 项目级上下文管理的核心实践
+- [从零手搓一个 Claude Code](/zh/posts/ai/2026-02-24-build-magic-code/) — 理解 Agent 底层架构的最佳方式
 
 ## 系列文章导航
 
 本文是「斯坦福 Vibe Coding 课程精读」系列第 3 篇：
 
-1. [斯坦福 CS146S 精读（一）：Vibe Coding 如何成为正式学科](/posts/ai/2026-02-24-stanford-cs146s-overview/)
-2. [斯坦福 CS146S 精读（二）：上下文工程](/posts/ai/2026-02-24-context-engineering-deep-dive/)（Week 3）
+1. [斯坦福 CS146S 精读（一）：Vibe Coding 如何成为正式学科](/zh/posts/ai/2026-02-24-stanford-cs146s-overview/)
+2. [斯坦福 CS146S 精读（二）：上下文工程](/zh/posts/ai/2026-02-24-context-engineering-deep-dive/)（Week 3）
 3. **本文**：斯坦福 CS146S 精读（三）：Agent Manager（Week 4）
-4. [斯坦福 CS146S 精读（四）：Secure Vibe Coding](/posts/ai/2026-02-24-secure-vibe-coding/)（Week 6-7）
-5. [斯坦福 CS146S 精读（五）：从原型到生产](/posts/ai/2026-02-24-prototype-to-production/)（Week 8-9）
+4. [斯坦福 CS146S 精读（四）：Secure Vibe Coding](/zh/posts/ai/2026-02-24-secure-vibe-coding/)（Week 6-7）
+5. [斯坦福 CS146S 精读（五）：从原型到生产](/zh/posts/ai/2026-02-24-prototype-to-production/)（Week 8-9）

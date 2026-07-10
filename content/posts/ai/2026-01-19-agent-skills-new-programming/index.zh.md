@@ -249,12 +249,12 @@ Skills 的门槛是什么？**会说话就行。**
 
 **相关链接**：
 - [原帖：@_kaichen 关于 Agent Skills 的思考](https://x.com/_kaichen/status/2012542549777592769)
-- [Cursor Agent 编码最佳实践](/posts/ai/2026-01-19-cursor-agent-best-practices/)
+- [Cursor Agent 编码最佳实践](/zh/posts/ai/2026-01-19-cursor-agent-best-practices/)
 
 ## 相关阅读
 
-- [Claude Code 浏览器自动化方案对比：Agent Browser、Playwright、DevTools](/posts/ai/2026-01-28-claude-code-browser-automation/)
-- [Claude Code Skills 完全指南](/posts/ai/2026-01-08-claudecode-skill-guide/)
-- [Claude Code Skill 高级模式详解](/posts/ai/2026-01-12-claudecode-skill-patterns/)
-- [Moltbot 深度解析：从爆火到改名，个人 AI Agent 的机遇与暗礁](/posts/ai/2026-01-29-moltbot-deep-dive/)
+- [Claude Code 浏览器自动化方案对比：Agent Browser、Playwright、DevTools](/zh/posts/ai/2026-01-28-claude-code-browser-automation/)
+- [Claude Code Skills 完全指南](/zh/posts/ai/2026-01-08-claudecode-skill-guide/)
+- [Claude Code Skill 高级模式详解](/zh/posts/ai/2026-01-12-claudecode-skill-patterns/)
+- [Moltbot 深度解析：从爆火到改名，个人 AI Agent 的机遇与暗礁](/zh/posts/ai/2026-01-29-moltbot-deep-dive/)
 - [Claude Code 官方文档](https://docs.anthropic.com/claude/docs/claude-code)

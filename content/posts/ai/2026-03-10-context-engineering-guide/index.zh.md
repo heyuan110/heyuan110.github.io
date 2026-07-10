@@ -111,9 +111,9 @@ Bug: 用户重置密码后认证失败。
 
 信息**何时**进入上下文非常重要。有三种时机策略：
 
-**静态上下文**在每次交互开始时加载，包括项目规格、编码规范和工具配置。在 Claude Code 中，你的 [CLAUDE.md 文件](/posts/ai/2026-02-28-claude-code-claudemd-guide/)就承担这个角色。
+**静态上下文**在每次交互开始时加载，包括项目规格、编码规范和工具配置。在 Claude Code 中，你的 [CLAUDE.md 文件](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/)就承担这个角色。
 
-**动态上下文**在交互过程中根据模型需要进行检索。[MCP（模型上下文协议）](/posts/ai/2026-02-28-mcp-protocol-explained/)服务器是主要机制——它让模型按需拉取数据库结构、API响应或文档。
+**动态上下文**在交互过程中根据模型需要进行检索。[MCP（模型上下文协议）](/zh/posts/ai/2026-02-28-mcp-protocol-explained/)服务器是主要机制——它让模型按需拉取数据库结构、API响应或文档。
 
 **对话上下文**在交互过程中逐步积累。这是最脆弱的维度，因为它的增长不受控制，很快就会超出有效范围。
 
@@ -175,7 +175,7 @@ Bug: 用户重置密码后认证失败。
 
 ### 第一层：项目级静态上下文（CLAUDE.md）
 
-[CLAUDE.md 文件](/posts/ai/2026-02-28-claude-code-claudemd-guide/)是基础。它在每次 Claude Code 会话开始时加载，影响后续所有交互。
+[CLAUDE.md 文件](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/)是基础。它在每次 Claude Code 会话开始时加载，影响后续所有交互。
 
 **CLAUDE.md 中应该包含的：**
 
@@ -204,7 +204,7 @@ Bug: 用户重置密码后认证失败。
 
 核心原则是：**"规格说明就是新的源代码。"** 你的 CLAUDE.md 不是 README——它是驱动AI行为的核心产物。要用对待生产代码的严谨态度来对待它。
 
-关于 CLAUDE.md 最佳实践的详细指南，请参阅我们的 [CLAUDE.md 完全指南](/posts/ai/2026-02-28-claude-code-claudemd-guide/)。
+关于 CLAUDE.md 最佳实践的详细指南，请参阅我们的 [CLAUDE.md 完全指南](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/)。
 
 ### 第二层：会话级动态上下文
 
@@ -234,11 +234,11 @@ Bug: 用户重置密码后认证失败。
 
 **最佳实践：超过30轮对话或50K token后开启新会话**，以先到者为准。这不是失败——而是一种工程卫生习惯。总结当前状态，重新开始，把总结作为新会话的前置上下文。
 
-如果你使用 [Claude Code](/posts/ai/2026-02-28-claude-code-complete-guide/)，可以在状态栏看到token用量。当它超过50K时，就该开启新会话了。
+如果你使用 [Claude Code](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)，可以在状态栏看到token用量。当它超过50K时，就该开启新会话了。
 
 ### 第三层：工具提供的上下文（MCP）
 
-[MCP（模型上下文协议）](/posts/ai/2026-02-28-mcp-protocol-explained/)服务器提供动态上下文，模型可以按需拉取。这才是上下文工程真正强大的地方——你不需要预先加载所有东西，而是给模型**信息源的访问权限**，让它自行检索所需内容。
+[MCP（模型上下文协议）](/zh/posts/ai/2026-02-28-mcp-protocol-explained/)服务器提供动态上下文，模型可以按需拉取。这才是上下文工程真正强大的地方——你不需要预先加载所有东西，而是给模型**信息源的访问权限**，让它自行检索所需内容。
 
 常见的 MCP 上下文源：
 
@@ -252,7 +252,7 @@ Bug: 用户重置密码后认证失败。
 
 关键洞察：MCP 将上下文从**推送模式**（你提前决定包含什么）转变为**拉取模式**（AI在执行过程中决定需要什么）。这大幅减少了上下文干扰，同时保持了对全面信息的访问能力。
 
-关于 MCP 与 Claude Code 的集成设置，请参阅我们的 [MCP 协议指南](/posts/ai/2026-02-28-mcp-protocol-explained/)。
+关于 MCP 与 Claude Code 的集成设置，请参阅我们的 [MCP 协议指南](/zh/posts/ai/2026-02-28-mcp-protocol-explained/)。
 
 ### 第四层：动态检索与 RAG
 
@@ -388,7 +388,7 @@ tests:
 
 ### 使用 Hooks 实现上下文自动化
 
-[Claude Code hooks](/posts/ai/2026-02-28-claude-code-hooks-guide/) 让你可以自动化上下文管理。例如：
+[Claude Code hooks](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) 让你可以自动化上下文管理。例如：
 
 - **会话前置 hooks**：根据当前 Git 分支自动加载相关上下文
 - **工具后置 hooks**：在工具输出进入上下文前进行验证
@@ -432,7 +432,7 @@ tests/api/test_users.py
 
 完成任务后，如果出现了新模式就更新 CLAUDE.md。模型是否在某个地方遇到了困难，而更好的静态上下文本可以避免？加上去。
 
-这套工作流与 [vibe coding](/posts/ai/2026-02-28-vibe-coding-explained/) 实践天然契合——关键区别在于上下文工程让 vibe coding 变得**可靠且可复现**，而不是靠运气。
+这套工作流与 [vibe coding](/zh/posts/ai/2026-02-28-vibe-coding-explained/) 实践天然契合——关键区别在于上下文工程让 vibe coding 变得**可靠且可复现**，而不是靠运气。
 
 ## 上下文工程 vs. 提示词工程：直接对比
 
@@ -472,11 +472,11 @@ tests/api/test_users.py
 
 如果你认真对待上下文工程实践，以下工具可以很好地协同：
 
-- **[Claude Code](/posts/ai/2026-02-28-claude-code-complete-guide/)**：上下文工程的主要环境，集成 CLAUDE.md、MCP 和 Hooks
-- **[CLAUDE.md](/posts/ai/2026-02-28-claude-code-claudemd-guide/)**：项目级上下文配置深度指南
-- **[MCP 协议](/posts/ai/2026-02-28-mcp-protocol-explained/)**：通过工具集成实现动态上下文
-- **[Claude Code Hooks](/posts/ai/2026-02-28-claude-code-hooks-guide/)**：自动化上下文管理
-- **[Codex CLI](/posts/ai/2026-03-10-codex-cli-deep-dive/)**：替代工具，有自己的上下文模式（instructions.md）
+- **[Claude Code](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)**：上下文工程的主要环境，集成 CLAUDE.md、MCP 和 Hooks
+- **[CLAUDE.md](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/)**：项目级上下文配置深度指南
+- **[MCP 协议](/zh/posts/ai/2026-02-28-mcp-protocol-explained/)**：通过工具集成实现动态上下文
+- **[Claude Code Hooks](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/)**：自动化上下文管理
+- **[Codex CLI](/zh/posts/ai/2026-03-10-codex-cli-deep-dive/)**：替代工具，有自己的上下文模式（instructions.md）
 - **[Promptfoo](https://www.promptfoo.dev/)**：上下文测试的 CI/CD 工具
 - **[LangChain](https://blog.langchain.dev/context-engineering/)**：提供上下文策略框架（写入、选择、压缩、隔离）
 

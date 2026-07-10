@@ -683,5 +683,5 @@ content-length: 1141
 
 ## 相关文章
 
-- [ELK 日志系统搭建教程：Elasticsearch + Logstash + Kibana + Kafka 完整指南](/posts/elasticsearch/2018-09-11-log-elk/) - 企业级日志收集分析平台搭建
-- [AWS EKK 日志系统搭建：Elasticsearch + Kinesis + Kibana 实战教程](/posts/elasticsearch/2018-09-12-log-ekk/) - 基于 AWS 托管服务的日志方案
+- [ELK 日志系统搭建教程：Elasticsearch + Logstash + Kibana + Kafka 完整指南](/zh/posts/elasticsearch/2018-09-11-log-elk/) - 企业级日志收集分析平台搭建
+- [AWS EKK 日志系统搭建：Elasticsearch + Kinesis + Kibana 实战教程](/zh/posts/elasticsearch/2018-09-12-log-ekk/) - 基于 AWS 托管服务的日志方案

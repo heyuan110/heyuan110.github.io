@@ -27,7 +27,7 @@ answer = "可以。因为本教程使用 OpenAI Python SDK 的标准接口，你
 
 ![用 Python 从零构建 AI 编程 Agent——完整实战教程，涵盖 Agentic Loop 与工具调用](cover.webp)
 
-每一款 AI 编程工具——[Claude Code](/posts/ai/2026-02-28-claude-code-complete-guide/)、Cursor、Copilot——底层跑的都是同一套架构。这篇教程带你亲手搭建这套架构：一个终端 AI 编程 Agent，从零开始，250 行代码，能读文件、写代码、跑命令、自主做多步决策。
+每一款 AI 编程工具——[Claude Code](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)、Cursor、Copilot——底层跑的都是同一套架构。这篇教程带你亲手搭建这套架构：一个终端 AI 编程 Agent，从零开始，250 行代码，能读文件、写代码、跑命令、自主做多步决策。
 
 不用框架，不加抽象层，只有 Python 和对 AI Agent 运行原理的透彻理解。
 
@@ -58,7 +58,7 @@ answer = "可以。因为本教程使用 OpenAI Python SDK 的标准接口，你
 
 当你理解了架构，就能定制它、扩展它、调试它，或者在同样的基础上造出全新的东西。本教程要讲的三个概念——**Agentic Loop**、**工具调用（Function Calling）**和**消息协议**——正是当今市面上每一款 AI 编程 Agent 的核心。
 
-这也是一次[上下文工程](/posts/ai/2026-03-10-context-engineering-guide/)的实战练习——设计 AI 接收什么信息、以何种方式接收。你在本教程中编写的系统提示词、工具定义和对话历史，都是直接影响 Agent 质量的上下文工程决策。
+这也是一次[上下文工程](/zh/posts/ai/2026-03-10-context-engineering-guide/)的实战练习——设计 AI 接收什么信息、以何种方式接收。你在本教程中编写的系统提示词、工具定义和对话历史，都是直接影响 Agent 质量的上下文工程决策。
 
 ## 架构解析：Agent 和聊天机器人的本质区别
 
@@ -197,7 +197,7 @@ python v1_basic.py
 
 **`history` 列表**就是对话记忆。每条用户消息和 AI 回复都被追加进去，整个列表随每次 API 调用一起发送。没有什么神奇的持久化机制——就是一个不断增长的消息数组。这也是为什么长对话会撞上 Token 限制，而且费用越来越高。
 
-**`system` 消息**定义了 AI 的角色和行为规则。它的作用和 Claude Code 中的 [CLAUDE.md 文件](/posts/ai/2026-02-28-claude-code-claudemd-guide/)一样——告诉模型自己是谁、该怎么做。
+**`system` 消息**定义了 AI 的角色和行为规则。它的作用和 Claude Code 中的 [CLAUDE.md 文件](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/)一样——告诉模型自己是谁、该怎么做。
 
 ## V2：流式输出——打字机效果
 
@@ -794,7 +794,7 @@ python magic.py
 
 ## 6 个工具 vs 生产级 Agent
 
-你可能会问：6 个工具够用吗？看看 MagicCode 和 [Claude Code](/posts/ai/2026-02-28-claude-code-complete-guide/) 等生产级 Agent 的对比：
+你可能会问：6 个工具够用吗？看看 MagicCode 和 [Claude Code](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) 等生产级 Agent 的对比：
 
 | 能力 | MagicCode | Claude Code |
 |------|-----------|-------------|
@@ -809,7 +809,7 @@ python magic.py
 | Notebook 编辑 | 未包含 | 支持 |
 | 网页搜索 | 未包含 | 支持 |
 
-Claude Code 大约有 15 个内置工具。我们的 6 个工具覆盖了日常使用场景的大约 **80%**。剩下的 20% 主要是 [MCP 集成](/posts/ai/2026-02-28-mcp-protocol-explained/)和 Notebook 编辑等高级功能——有用，但不是架构的核心。
+Claude Code 大约有 15 个内置工具。我们的 6 个工具覆盖了日常使用场景的大约 **80%**。剩下的 20% 主要是 [MCP 集成](/zh/posts/ai/2026-02-28-mcp-protocol-explained/)和 Notebook 编辑等高级功能——有用，但不是架构的核心。
 
 ## 五种扩展方向
 
@@ -835,7 +835,7 @@ def execute_tool_with_confirm(name, params):
 
 ### 2. 项目上下文加载
 
-[Claude Code 会自动读取项目根目录的 CLAUDE.md](/posts/ai/2026-02-28-claude-code-claudemd-guide/) 来理解上下文。你也可以这样做：
+[Claude Code 会自动读取项目根目录的 CLAUDE.md](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) 来理解上下文。你也可以这样做：
 
 ```python
 def load_project_context():
@@ -921,9 +921,9 @@ console.print(f"[dim]Token 统计 — 输入: {total_input_tokens} | 输出: {to
 
 你在这里构建的架构不只是练手——它和整个行业用的是同一套模式。根据 [Anthropic 关于构建有效 Agent 的研究](https://www.anthropic.com/engineering/building-effective-agents)，带工具调用的 Agentic Loop 是所有生产级 AI Agent 的基础模式。
 
-如果你想看这套模式如何扩展到生产级，可以把你构建的东西和我们 [AI 编程 Agent 横评](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)中涵盖的 Agent 做对比。你会发现每一个的核心都是同样的三个组件——LLM API、工具定义、Agentic Loop。
+如果你想看这套模式如何扩展到生产级，可以把你构建的东西和我们 [AI 编程 Agent 横评](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)中涵盖的 Agent 做对比。你会发现每一个的核心都是同样的三个组件——LLM API、工具定义、Agentic Loop。
 
-要深入了解工具集成的演进方向，可以看我们的 [MCP 协议指南](/posts/ai/2026-02-28-mcp-protocol-explained/)，它标准化了 AI Agent 发现和连接外部工具的方式。
+要深入了解工具集成的演进方向，可以看我们的 [MCP 协议指南](/zh/posts/ai/2026-02-28-mcp-protocol-explained/)，它标准化了 AI Agent 发现和连接外部工具的方式。
 
 如果你想了解上下文工程原则（比如你设计的系统提示词和工具描述）如何大规模应用，[OpenAI Prompt Engineering Guide](https://platform.openai.com/docs/guides/prompt-engineering) 是一份优秀的外部资源。
 
@@ -941,9 +941,9 @@ console.print(f"[dim]Token 统计 — 输入: {total_input_tokens} | 输出: {to
 
 ## 相关阅读
 
-- [Claude Code 完全指南](/posts/ai/2026-02-28-claude-code-complete-guide/) — 深入掌握 Claude Code 的高效用法
-- [CLAUDE.md 终极指南](/posts/ai/2026-02-28-claude-code-claudemd-guide/) — AI 编程助手如何理解项目上下文
-- [MCP 协议详解](/posts/ai/2026-02-28-mcp-protocol-explained/) — AI 工具集成的通用标准
-- [上下文工程指南](/posts/ai/2026-03-10-context-engineering-guide/) — 系统提示词设计与上下文管理
-- [2026 AI 编程 Agent 横评](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — 顶级 AI 编程工具对比
-- [Vibe Coding 详解](/posts/ai/2026-02-28-vibe-coding-explained/) — 自然语言驱动的 AI 编程
+- [Claude Code 完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — 深入掌握 Claude Code 的高效用法
+- [CLAUDE.md 终极指南](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) — AI 编程助手如何理解项目上下文
+- [MCP 协议详解](/zh/posts/ai/2026-02-28-mcp-protocol-explained/) — AI 工具集成的通用标准
+- [上下文工程指南](/zh/posts/ai/2026-03-10-context-engineering-guide/) — 系统提示词设计与上下文管理
+- [2026 AI 编程 Agent 横评](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — 顶级 AI 编程工具对比
+- [Vibe Coding 详解](/zh/posts/ai/2026-02-28-vibe-coding-explained/) — 自然语言驱动的 AI 编程

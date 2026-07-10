@@ -31,7 +31,7 @@ answer = "智能体通过结构化消息传递进行通信 — 通常是通过�
 
 解决方案不是更聪明的模型，而是**更好的架构**。
 
-多智能体编排 — 协调多个专业化智能体处理复杂任务的实践 — 已经在 2026 年从研究论文走向了生产系统。[Claude Code](/posts/ai/2026-02-28-claude-code-complete-guide/)、Cursor 和 [Google Antigravity](/posts/ai/2026-03-10-google-antigravity-review/) 等工具底层都使用了多智能体模式。对于严肃的 AI 工程师来说，理解这些模式已经不再是可选项。
+多智能体编排 — 协调多个专业化智能体处理复杂任务的实践 — 已经在 2026 年从研究论文走向了生产系统。[Claude Code](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)、Cursor 和 [Google Antigravity](/zh/posts/ai/2026-03-10-google-antigravity-review/) 等工具底层都使用了多智能体模式。对于严肃的 AI 工程师来说，理解这些模式已经不再是可选项。
 
 本指南涵盖四种在生产中真正有效的编排模式、各自的适用场景，以及如何有效实现它们。
 
@@ -186,11 +186,11 @@ answer = "智能体通过结构化消息传递进行通信 — 通常是通过�
 
 **生产案例：**
 
-[**Claude Code Worktree：**](/posts/ai/2026-02-28-claude-code-worktree-guide/) Claude Code 的 Worktree 功能是教科书式的编排者-工作者实现。主 Claude Code 实例充当编排者 — 分析任务，为并行工作创建独立的 git worktree，在每个 worktree 中生成子智能体，最后合并结果。每个工作者在隔离的文件系统分支中操作，防止冲突。
+[**Claude Code Worktree：**](/zh/posts/ai/2026-02-28-claude-code-worktree-guide/) Claude Code 的 Worktree 功能是教科书式的编排者-工作者实现。主 Claude Code 实例充当编排者 — 分析任务，为并行工作创建独立的 git worktree，在每个 worktree 中生成子智能体，最后合并结果。每个工作者在隔离的文件系统分支中操作，防止冲突。
 
 **Cursor 后台智能体：** Cursor 的多智能体系统允许你生成并行智能体，同时在代码库的不同部分工作。每个智能体获得自己的沙箱环境，结果合并回主分支。
 
-[**Google Antigravity Manager View：**](/posts/ai/2026-03-10-google-antigravity-review/) Antigravity 的 Manager View 提供了编排多个智能体的可视化仪表板。你可以看到每个智能体的进度，重新分配任务，在智能体卡住时进行干预 — 本质上是编排者-工作者模式的 GUI。
+[**Google Antigravity Manager View：**](/zh/posts/ai/2026-03-10-google-antigravity-review/) Antigravity 的 Manager View 提供了编排多个智能体的可视化仪表板。你可以看到每个智能体的进度，重新分配任务，在智能体卡住时进行干预 — 本质上是编排者-工作者模式的 GUI。
 
 ### 模式四：评估器-优化器（Evaluator-Optimizer）
 
@@ -348,7 +348,7 @@ Boris Cherney 在斯坦福 CS146S 的演讲中指出，智能体管理是 AI 辅
 - 保持上下文一致 — 不同上下文层中的矛盾指令会导致不可预测的行为
 - 每个子任务后更新上下文 — 下一个任务可能需要前一个任务输出的信息
 
-这就是 [CLAUDE.md 配置文件](/posts/ai/2026-02-28-claude-code-complete-guide/)大显身手的地方。一个写得好的 CLAUDE.md 充当每个智能体会话都继承的持久上下文，消除了在每个提示中重复项目规范的需要。
+这就是 [CLAUDE.md 配置文件](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)大显身手的地方。一个写得好的 CLAUDE.md 充当每个智能体会话都继承的持久上下文，消除了在每个提示中重复项目规范的需要。
 
 ## 智能体间通信
 
@@ -408,7 +408,7 @@ Boris Cherney 在斯坦福 CS146S 的演讲中指出，智能体管理是 AI 辅
 
 ### Claude Code Worktree：编排者-工作者的实践
 
-[Claude Code 的 Worktree 功能](/posts/ai/2026-02-28-claude-code-worktree-guide/)是编码任务中最干净的编排者-工作者生产实现。
+[Claude Code 的 Worktree 功能](/zh/posts/ai/2026-02-28-claude-code-worktree-guide/)是编码任务中最干净的编排者-工作者生产实现。
 
 **工作流程：**
 1. 你给 Claude Code 一个复杂任务（例如，"为 API 添加认证"）
@@ -420,7 +420,7 @@ Boris Cherney 在斯坦福 CS146S 的演讲中指出，智能体管理是 AI 辅
 
 **为什么效果好：** Git worktree 提供了真正的文件系统隔离。重构 auth 模块的智能体 A 不可能意外破坏智能体 B 在用户端点上的工作，因为它们实际上在代码的不同副本上工作。这消除了困扰大多数多智能体编码设置的协调开销。
 
-深入了解 Worktree 的设置和使用，请参阅 [Claude Code Worktree 指南](/posts/ai/2026-02-28-claude-code-worktree-guide/)。
+深入了解 Worktree 的设置和使用，请参阅 [Claude Code Worktree 指南](/zh/posts/ai/2026-02-28-claude-code-worktree-guide/)。
 
 ### Cursor 后台智能体：并行执行
 
@@ -430,11 +430,11 @@ Cursor 采用了不同的多智能体编码方法。其后台智能体在云沙�
 
 **权衡：** 云沙箱相比本地执行增加了延迟。但对于在大型代码库上工作的团队来说，并行性的收益大于每个智能体的额外开销。
 
-关于不同工具如何处理多智能体工作流的比较，请参阅 [AI 编码智能体对比](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)。
+关于不同工具如何处理多智能体工作流的比较，请参阅 [AI 编码智能体对比](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)。
 
 ### Antigravity Manager View：可视化编排
 
-[Google Antigravity 的 Manager View](/posts/ai/2026-03-10-google-antigravity-review/) 为智能体编排带来了可视化界面。你得到的不是通过 CLI 命令或配置文件管理智能体，而是一个仪表板，显示：
+[Google Antigravity 的 Manager View](/zh/posts/ai/2026-03-10-google-antigravity-review/) 为智能体编排带来了可视化界面。你得到的不是通过 CLI 命令或配置文件管理智能体，而是一个仪表板，显示：
 
 - 每个智能体的当前任务和进度
 - 每个智能体的实时输出
@@ -445,7 +445,7 @@ Cursor 采用了不同的多智能体编码方法。其后台智能体在云沙�
 
 ### Claude Code Agent Teams：基于团队的编排
 
-对于需要多个开发者通过 AI 智能体协调的团队，[Claude Code 的 Teams 功能](/posts/ai/2026-02-28-claude-code-teams-guide/)提供了共享上下文、一致的编码标准和跨团队成员的协调多智能体工作流。这将编排者-工作者模式从单个开发者扩展到整个工程团队。
+对于需要多个开发者通过 AI 智能体协调的团队，[Claude Code 的 Teams 功能](/zh/posts/ai/2026-02-28-claude-code-teams-guide/)提供了共享上下文、一致的编码标准和跨团队成员的协调多智能体工作流。这将编排者-工作者模式从单个开发者扩展到整个工程团队。
 
 ## 生产最佳实践
 
@@ -512,7 +512,7 @@ Cursor 采用了不同的多智能体编码方法。其后台智能体在云沙�
 
 ## 构建你自己的多智能体系统
 
-如果你想深入了解并从零构建多智能体编排，[从零构建 AI 智能体](/posts/ai/2026-03-07-build-ai-agent-python/)指南详细介绍了 Python 中智能体架构的基础 — 包括工具使用、记忆管理和多智能体协调所需的编排原语。
+如果你想深入了解并从零构建多智能体编排，[从零构建 AI 智能体](/zh/posts/ai/2026-03-07-build-ai-agent-python/)指南详细介绍了 Python 中智能体架构的基础 — 包括工具使用、记忆管理和多智能体协调所需的编排原语。
 
 作为实践起点，以下是一个最小的编排者-工作者设置：
 
@@ -559,11 +559,11 @@ class Orchestrator:
 
 ## 相关阅读
 
-- [Claude Code 完全指南](/posts/ai/2026-02-28-claude-code-complete-guide/) — 掌握开创编码编排者-工作者模式的工具
-- [Claude Code Worktree 指南](/posts/ai/2026-02-28-claude-code-worktree-guide/) — 深入了解使用 git worktree 的并行智能体执行
-- [Claude Code Teams 指南](/posts/ai/2026-02-28-claude-code-teams-guide/) — 跨工程团队的多智能体协调
-- [AI 编码智能体对比 2026](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — 不同工具如何实现多智能体模式
-- [从零构建 AI 智能体](/posts/ai/2026-03-07-build-ai-agent-python/) — 通过亲手构建来理解智能体内部原理
-- [Google Antigravity 评测](/posts/ai/2026-03-10-google-antigravity-review/) — 可视化智能体编排与 Manager View
+- [Claude Code 完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — 掌握开创编码编排者-工作者模式的工具
+- [Claude Code Worktree 指南](/zh/posts/ai/2026-02-28-claude-code-worktree-guide/) — 深入了解使用 git worktree 的并行智能体执行
+- [Claude Code Teams 指南](/zh/posts/ai/2026-02-28-claude-code-teams-guide/) — 跨工程团队的多智能体协调
+- [AI 编码智能体对比 2026](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — 不同工具如何实现多智能体模式
+- [从零构建 AI 智能体](/zh/posts/ai/2026-03-07-build-ai-agent-python/) — 通过亲手构建来理解智能体内部原理
+- [Google Antigravity 评测](/zh/posts/ai/2026-03-10-google-antigravity-review/) — 可视化智能体编排与 Manager View
 - [LangChain: 选择多智能体架构](https://blog.langchain.com/choosing-the-right-multi-agent-architecture/) — 框架层面的编排模式视角
 - [Anthropic: 构建高效智能体](https://docs.anthropic.com/en/docs/agents-overview) — Claude 团队的官方智能体设计指南

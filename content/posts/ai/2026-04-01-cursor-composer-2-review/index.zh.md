@@ -77,7 +77,7 @@ Cursor 的 RL 训练确实有价值，它让模型学会在 Cursor 的工具链�
 
 ## Composer 2 对比 Claude Code：实战体验
 
-两个工具我都深度使用过。如果你看过我之前写的 [AI 编程工具对比](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/)，你知道我更看重实际体验而非跑分。
+两个工具我都深度使用过。如果你看过我之前写的 [AI 编程工具对比](/zh/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/)，你知道我更看重实际体验而非跑分。
 
 ### Cursor Composer 2 赢在哪里
 
@@ -87,9 +87,9 @@ Cursor 的 RL 训练确实有价值，它让模型学会在 Cursor 的工具链�
 
 ### Claude Code 赢在哪里
 
-- **深度代码理解。** [100 万 token 上下文窗口](/posts/ai/2026-01-14-claude-code-guide/)意味着能把整个代码库装进记忆。大型重构、架构调整、跨文件 debug——这不是锦上添花，是刚需。
-- **复杂推理。** [Claude Code + Opus 4.6](/posts/ai/2026-03-13-gpt-5-4-vs-claude-opus-comparison/) 处理多步推理链的能力是 Composer 2 做不到的。安全审计、架构决策、细致的权衡分析。
-- **终端原生。** Claude Code 跑在终端里，不绑定编辑器，跟 git 深度集成，支持 [Agent Teams](/posts/ai/2026-02-22-claude-code-agent-teams/) 并行执行。
+- **深度代码理解。** [100 万 token 上下文窗口](/zh/posts/ai/2026-01-14-claude-code-guide/)意味着能把整个代码库装进记忆。大型重构、架构调整、跨文件 debug——这不是锦上添花，是刚需。
+- **复杂推理。** [Claude Code + Opus 4.6](/zh/posts/ai/2026-03-13-gpt-5-4-vs-claude-opus-comparison/) 处理多步推理链的能力是 Composer 2 做不到的。安全审计、架构决策、细致的权衡分析。
+- **终端原生。** Claude Code 跑在终端里，不绑定编辑器，跟 git 深度集成，支持 [Agent Teams](/zh/posts/ai/2026-02-22-claude-code-agent-teams/) 并行执行。
 - **透明度。** 你清楚知道自己在用什么模型，没有任何遮掩。
 
 ### 2026 年的最佳组合
@@ -97,7 +97,7 @@ Cursor 的 RL 训练确实有价值，它让模型学会在 Cursor 的工具链�
 我认识的高效开发者大多两个都用：
 
 - **Cursor + Composer 2** 负责 80% 的日常工作——快速编辑、常规实现
-- **Claude Code** 负责 20% 的硬骨头——复杂调试、大型重构、[安全分析](/posts/ai/2026-02-22-claude-code-security/)、架构决策
+- **Claude Code** 负责 20% 的硬骨头——复杂调试、大型重构、[安全分析](/zh/posts/ai/2026-02-22-claude-code-security/)、架构决策
 
 这不是非此即彼的竞争。两个工具解决不同层次的问题。
 
@@ -134,7 +134,7 @@ Cursor 选了经济上合理的路，却在伦理上栽了跟头。更讽刺的�
 - 一个绑定 IDE 的封闭体验
 - 好看的跑分里有"主场优势"的成分
 
-2026 年最好的 AI 编程体验，不是选边站，而是搭建适合自己的[工具组合](/posts/ai/2026-01-19-ai-dev-workflow/)。Composer 2 在这个组合里有一席之地。只是它没有资格假装一切都是自己从零做起的。
+2026 年最好的 AI 编程体验，不是选边站，而是搭建适合自己的[工具组合](/zh/posts/ai/2026-01-19-ai-dev-workflow/)。Composer 2 在这个组合里有一席之地。只是它没有资格假装一切都是自己从零做起的。
 
 ## 核心要点
 
@@ -146,7 +146,7 @@ Cursor 选了经济上合理的路，却在伦理上栽了跟头。更讽刺的�
 
 ---
 
-*更多 AI 编程工具的深度内容，请阅读 [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/) 和 [AI 编程代理横评](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)。*
+*更多 AI 编程工具的深度内容，请阅读 [Claude Code 完全指南](/zh/posts/ai/2026-01-14-claude-code-guide/) 和 [AI 编程代理横评](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)。*
 
 ## 相关阅读
 

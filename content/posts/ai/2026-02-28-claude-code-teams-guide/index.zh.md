@@ -89,7 +89,7 @@ Agent Teams 让你在单个会话中同时运行多个 Claude Code Agent。但�
 - **用 Subagents**：当任务可以干净地拆分——"搜索所有使用这个废弃函数的地方" 或 "为这个模块写单元测试"。不需要协调。
 - **用 Agent Teams**：当任务有依赖关系且涉及系统多个部分——"跨前端、后端、数据库构建完整功能" 或 "从多个角度调查这个生产 Bug"。
 
-关于 Subagents 的更多内容，参见 [Claude Code Skills 指南](/posts/ai/2026-02-28-claude-code-skills-guide/)。
+关于 Subagents 的更多内容，参见 [Claude Code Skills 指南](/zh/posts/ai/2026-02-28-claude-code-skills-guide/)。
 
 ## 快速上手：配置 Agent Teams
 
@@ -118,7 +118,7 @@ claude
 
 也可以添加到项目级的 `.claude/settings.json` 中。
 
-如果你还没有安装 Claude Code，请先阅读 [Claude Code 安装配置指南](/posts/ai/2026-02-25-claude-code-setup-guide/)。
+如果你还没有安装 Claude Code，请先阅读 [Claude Code 安装配置指南](/zh/posts/ai/2026-02-25-claude-code-setup-guide/)。
 
 ### 第 2 步：用自然语言创建团队
 
@@ -292,7 +292,7 @@ Team Lead 会展示任务列表并等待你的确认。这对大型或敏感变�
 
 ### 用 Hooks 设置质量门禁
 
-Claude Code [Hooks](/posts/ai/2026-02-28-claude-code-hooks-guide/) 通过两个团队专属事件与 Agent Teams 集成：
+Claude Code [Hooks](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) 通过两个团队专属事件与 Agent Teams 集成：
 
 - **`TeammateIdle`**：当 Teammate 完成所有分配任务时触发
 - **`TaskCompleted`**：当任何单个任务被标记为完成时触发
@@ -335,7 +335,7 @@ Opus 处理需要深度推理和架构决策的任务，Sonnet 处理更机械�
 
 ### Worktree 集成
 
-Agent Teams 可以与 Claude Code 的 [Worktree](/posts/ai/2026-02-28-claude-code-worktree-guide/) 功能配合使用。每个 Teammate 可以在自己的 git worktree 中操作，获得完全隔离的文件系统：
+Agent Teams 可以与 Claude Code 的 [Worktree](/zh/posts/ai/2026-02-28-claude-code-worktree-guide/) 功能配合使用。每个 Teammate 可以在自己的 git worktree 中操作，获得完全隔离的文件系统：
 
 ```
 创建带 Worktree 隔离的团队：
@@ -419,7 +419,7 @@ Agent Team 的输出质量很大程度上取决于你如何拆分任务。遵循
 
 4. **复用上下文**：如果多个 Agent 需要理解相同代码库，考虑让 Team Lead 提供摘要上下文，而非让每个 Agent 独立阅读相同文件。
 
-5. **Max 计划用户**：如果你用的是 Max 20x 计划（$200/月），Agent Teams 包含在使用额度内。固定费率下单次会话成本不那么重要。参见 [Claude Code 定价指南](/posts/ai/2026-02-25-claude-code-pricing/) 了解各计划对比。
+5. **Max 计划用户**：如果你用的是 Max 20x 计划（$200/月），Agent Teams 包含在使用额度内。固定费率下单次会话成本不那么重要。参见 [Claude Code 定价指南](/zh/posts/ai/2026-02-25-claude-code-pricing/) 了解各计划对比。
 
 ## 对比表：Agent Teams vs. Subagent vs. Worktree
 
@@ -439,7 +439,7 @@ Agent Team 的输出质量很大程度上取决于你如何拆分任务。遵循
 
 **选择 Subagents**：当每个子任务自成一体，不需要了解其他子任务。
 
-**选择 Worktrees**：当你需要完整的 git 隔离——每项工作在独立分支上，完全无文件冲突可能。详见 [Worktree 指南](/posts/ai/2026-02-28-claude-code-worktree-guide/)。
+**选择 Worktrees**：当你需要完整的 git 隔离——每项工作在独立分支上，完全无文件冲突可能。详见 [Worktree 指南](/zh/posts/ai/2026-02-28-claude-code-worktree-guide/)。
 
 ## 命令参考
 
@@ -534,11 +534,11 @@ claude --teammate-mode split-panes
 
 完全可以。Agent Teams 兼容：
 
-- **[Hooks](/posts/ai/2026-02-28-claude-code-hooks-guide/)**：任务完成时的质量门禁
-- **[Skills](/posts/ai/2026-02-28-claude-code-skills-guide/)**：每个 Teammate 都能使用斜杠命令和自定义 Skills
-- **[Worktrees](/posts/ai/2026-02-28-claude-code-worktree-guide/)**：每个 Teammate 独立的 git 隔离
-- **[MCP Servers](/posts/ai/2026-02-28-claude-code-mcp-setup/)**：每个 Teammate 都能访问已配置的 MCP 工具
-- **CLAUDE.md**：所有 Teammates 继承 [CLAUDE.md 配置](/posts/ai/2026-02-28-claude-code-claudemd-guide/) 中的项目指令
+- **[Hooks](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/)**：任务完成时的质量门禁
+- **[Skills](/zh/posts/ai/2026-02-28-claude-code-skills-guide/)**：每个 Teammate 都能使用斜杠命令和自定义 Skills
+- **[Worktrees](/zh/posts/ai/2026-02-28-claude-code-worktree-guide/)**：每个 Teammate 独立的 git 隔离
+- **[MCP Servers](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/)**：每个 Teammate 都能访问已配置的 MCP 工具
+- **CLAUDE.md**：所有 Teammates 继承 [CLAUDE.md 配置](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) 中的项目指令
 
 ## 立即开始
 
@@ -556,9 +556,9 @@ AI 编程的未来不是单个全能 Agent，而是协调有序的专业 Agent �
 
 ## 相关阅读
 
-- [Claude Code 安装配置指南 2026](/posts/ai/2026-02-25-claude-code-setup-guide/) — 从安装到配置的完整教程
-- [Claude Code 定价指南 2026](/posts/ai/2026-02-25-claude-code-pricing/) — 选择适合你的订阅方案
-- [Claude Code Hooks 指南](/posts/ai/2026-02-28-claude-code-hooks-guide/) — 用生命周期钩子自动化工作流
-- [Claude Code Worktree 指南](/posts/ai/2026-02-28-claude-code-worktree-guide/) — 用 Git Worktree 隔离并行 AI 任务
-- [Claude Code Skills 指南](/posts/ai/2026-02-28-claude-code-skills-guide/) — 构建可复用的斜杠命令和工作流
-- [CLAUDE.md 指南](/posts/ai/2026-02-28-claude-code-claudemd-guide/) — 让 AI 每次会话都获得完美的项目上下文
+- [Claude Code 安装配置指南 2026](/zh/posts/ai/2026-02-25-claude-code-setup-guide/) — 从安装到配置的完整教程
+- [Claude Code 定价指南 2026](/zh/posts/ai/2026-02-25-claude-code-pricing/) — 选择适合你的订阅方案
+- [Claude Code Hooks 指南](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) — 用生命周期钩子自动化工作流
+- [Claude Code Worktree 指南](/zh/posts/ai/2026-02-28-claude-code-worktree-guide/) — 用 Git Worktree 隔离并行 AI 任务
+- [Claude Code Skills 指南](/zh/posts/ai/2026-02-28-claude-code-skills-guide/) — 构建可复用的斜杠命令和工作流
+- [CLAUDE.md 指南](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) — 让 AI 每次会话都获得完美的项目上下文

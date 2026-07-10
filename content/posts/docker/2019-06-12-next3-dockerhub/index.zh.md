@@ -103,6 +103,6 @@ http://localhost:9503
 
 ## 相关文章
 
-- [Docker 入门指南：核心概念、安装配置与容器化实践](/posts/docker/2019-05-13-learn-docker/) - Docker 基础概念与入门教程
-- [Docker Compose 完全指南：从入门到生产实践](/posts/docker/2026-01-19-docker-compose-complete-guide/) - 多容器编排与生产环境最佳实践
-- [Docker 常用命令速查手册](/posts/docker/2019-11-14-docker-commands/) - 日常开发必备命令参考
+- [Docker 入门指南：核心概念、安装配置与容器化实践](/zh/posts/docker/2019-05-13-learn-docker/) - Docker 基础概念与入门教程
+- [Docker Compose 完全指南：从入门到生产实践](/zh/posts/docker/2026-01-19-docker-compose-complete-guide/) - 多容器编排与生产环境最佳实践
+- [Docker 常用命令速查手册](/zh/posts/docker/2019-11-14-docker-commands/) - 日常开发必备命令参考

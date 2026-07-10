@@ -466,8 +466,8 @@ Shell 特殊变量是脚本编程的基础工具：
 
 ## 相关阅读
 
-- [Oh My Zsh 安装配置指南：打造高效终端环境](/posts/linux/2015-06-17-shell-zsh/) - 强大的 Zsh 配置框架
-- [Linux/macOS 常用命令速查手册](/posts/linux/2020-03-19-linux-mac-commands/) - 运维开发常用命令参考
+- [Oh My Zsh 安装配置指南：打造高效终端环境](/zh/posts/linux/2015-06-17-shell-zsh/) - 强大的 Zsh 配置框架
+- [Linux/macOS 常用命令速查手册](/zh/posts/linux/2020-03-19-linux-mac-commands/) - 运维开发常用命令参考
 
 ## 参考资料
 

@@ -31,7 +31,7 @@ answer = "不会。Python 在 GitHub 上同比增长了 48%（新增 85 万贡�
 
 ![2026 年 AI 时代 TypeScript vs Python 对比](cover.webp)
 
-十多年来，GitHub 上使用量最高的语言第一次换了——不是 Python，而是 [TypeScript 以 66% 的增速](/posts/ai/2026-03-10-typescript-ai-tools/)超越了 Python 和 JavaScript，背后的推手是 AI 编程工具与类型化语言之间形成的"正向飞轮"。
+十多年来，GitHub 上使用量最高的语言第一次换了——不是 Python，而是 [TypeScript 以 66% 的增速](/zh/posts/ai/2026-03-10-typescript-ai-tools/)超越了 Python 和 JavaScript，背后的推手是 AI 编程工具与类型化语言之间形成的"正向飞轮"。
 
 这是否意味着 Python 在走下坡路？你该不该转投 TypeScript？现实远比标题党复杂得多。
 
@@ -161,14 +161,14 @@ Python 做不到这一点。Django/FastAPI 是很优秀的后端框架，但前�
 
 ### AI 辅助编码体验
 
-各 [AI 编程工具](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)与两种语言的配合如何？
+各 [AI 编程工具](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)与两种语言的配合如何？
 
 | 工具 | TypeScript 体验 | Python 体验 |
 |------|----------------|-------------|
-| **[Claude Code](/posts/ai/2026-02-28-claude-code-complete-guide/)** | 优秀 — 利用类型深度理解代码 | 很好 — 有类型注解时更佳 |
-| **[Cursor](/posts/ai/2026-02-28-claude-code-vs-cursor/)** | 优秀 — 行内补全高度准确 | 良好 — 没有类型时精度下降 |
+| **[Claude Code](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)** | 优秀 — 利用类型深度理解代码 | 很好 — 有类型注解时更佳 |
+| **[Cursor](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/)** | 优秀 — 行内补全高度准确 | 良好 — 没有类型时精度下降 |
 | **GitHub Copilot** | 优秀 — 类型感知的智能建议 | 良好 — 依赖上下文 |
-| **[Codex CLI](/posts/ai/2026-03-10-codex-cli-deep-dive/)** | 很好 | 很好 |
+| **[Codex CLI](/zh/posts/ai/2026-03-10-codex-cli-deep-dive/)** | 很好 | 很好 |
 
 实际差异：当你让 AI 工具"给这个 API 端点加上错误处理"时，TypeScript 的类型告诉 AI：
 - 可能出现哪些错误（类型化的错误联合体）
@@ -232,7 +232,7 @@ Python 客观上更容易入门。语法读起来像自然语言，几分钟就�
 
 ### 3. 最大化 AI 编程工具效果
 
-如果你每天都用 [Claude Code](/posts/ai/2026-02-28-claude-code-complete-guide/) 或 [Cursor](/posts/ai/2026-02-28-claude-code-vs-cursor/)，想要最好的 AI 辅助编码体验，TypeScript 能给你可衡量的更好结果。
+如果你每天都用 [Claude Code](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) 或 [Cursor](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/)，想要最好的 AI 辅助编码体验，TypeScript 能给你可衡量的更好结果。
 
 ### 4. 多人协作的团队项目
 
@@ -356,9 +356,9 @@ def process_order(
 
 ## 相关阅读
 
-- [TypeScript 为何暴涨 66%](/posts/ai/2026-03-10-typescript-ai-tools/) — 数据背后的故事
-- [2026 年 AI 编程代理工具：7 款横评](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — 各工具与不同语言的配合情况
-- [上下文工程指南](/posts/ai/2026-03-10-context-engineering-guide/) — 类型就是一种上下文工程
-- [Claude Code 完全指南](/posts/ai/2026-02-28-claude-code-complete-guide/) — TypeScript 和 Python 都能用好
-- [AI 开发环境搭建](/posts/ai/2026-03-10-ai-dev-environment-setup/) — 配置多语言 AI 工作流
-- [Vibe Coding 详解](/posts/ai/2026-02-28-vibe-coding-explained/) — TypeScript 让 vibe coding 更可靠
+- [TypeScript 为何暴涨 66%](/zh/posts/ai/2026-03-10-typescript-ai-tools/) — 数据背后的故事
+- [2026 年 AI 编程代理工具：7 款横评](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — 各工具与不同语言的配合情况
+- [上下文工程指南](/zh/posts/ai/2026-03-10-context-engineering-guide/) — 类型就是一种上下文工程
+- [Claude Code 完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — TypeScript 和 Python 都能用好
+- [AI 开发环境搭建](/zh/posts/ai/2026-03-10-ai-dev-environment-setup/) — 配置多语言 AI 工作流
+- [Vibe Coding 详解](/zh/posts/ai/2026-02-28-vibe-coding-explained/) — TypeScript 让 vibe coding 更可靠

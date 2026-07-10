@@ -156,7 +156,7 @@ go install github.com/jesseduffield/lazygit@latest
 
 ![Lazygit 在 AI 编程工作流中的位置：AI 生成代码，lazygit 策划提交](02-ai-coding-workflow.webp)
 
-这是大部分 lazygit 文章没讲到的角度：2026 年开发者工作流已经根本性地转向 AI 辅助编码。[Claude Code](/posts/ai/2026-02-28-claude-code-complete-guide/)、Cursor 这些工具生成代码的速度让 Git 操作更频繁而不是更少。当 AI agent 一次改了 15 个文件做重构，你需要快速 review、选择性暂存、按逻辑单元提交。
+这是大部分 lazygit 文章没讲到的角度：2026 年开发者工作流已经根本性地转向 AI 辅助编码。[Claude Code](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)、Cursor 这些工具生成代码的速度让 Git 操作更频繁而不是更少。当 AI agent 一次改了 15 个文件做重构，你需要快速 review、选择性暂存、按逻辑单元提交。
 
 Lazygit 完美适配这个工作流。Claude Code 完成多文件改动后，我打开 lazygit review 每个文件，逐行暂存，创建结构化 commit。替代方案——对每个逻辑单元运行 `git diff`、`git add -p`、`git commit`——需要 3-4 倍时间。
 
@@ -174,7 +174,7 @@ Lazygit 完美适配这个工作流。Claude Code 完成多文件改动后，我
 
 一个快捷键在 Neovim 里打开 lazygit 浮动窗口，review、暂存、提交、推送，然后回到编辑器，全程不离开终端。在 AI 生成代码、人类策划 commit 的时代，lazygit 就是那个策划工具。
 
-对于 [Claude Code worktree 工作流](/posts/ai/2026-02-28-claude-code-worktree-guide/)，lazygit 的 worktree 支持（分支面板按 `w`）特别有用。你可以可视化地创建、切换、管理 worktree——我在多个 Claude Code session 跑不同 feature 分支时每天都在用。
+对于 [Claude Code worktree 工作流](/zh/posts/ai/2026-02-28-claude-code-worktree-guide/)，lazygit 的 worktree 支持（分支面板按 `w`）特别有用。你可以可视化地创建、切换、管理 worktree——我在多个 Claude Code session 跑不同 feature 分支时每天都在用。
 
 ## 什么时候不该用 Lazygit
 
@@ -202,8 +202,8 @@ Lazygit 完美适配这个工作流。Claude Code 完成多文件改动后，我
 
 ## 相关阅读
 
-- [Claude Code 完全指南](/posts/ai/2026-02-28-claude-code-complete-guide/) — 和 lazygit 搭配最好的 AI 编码工具
-- [Claude Code Worktree 指南](/posts/ai/2026-02-28-claude-code-worktree-guide/) — lazygit 让 worktree 工作流可视化
-- [AI 开发工作流实战指南](/posts/ai/2026-01-19-ai-dev-workflow/) — lazygit 在现代开发中的定位
-- [高频提交策略](/posts/ai/2026-03-10-high-frequency-commits/) — 为什么频繁、干净的提交很重要
-- [tmux 指南：AI 开发环境](/posts/ai/2026-03-03-tmux-guide-ai-development/) — 和 lazygit 互补的终端复用器
+- [Claude Code 完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — 和 lazygit 搭配最好的 AI 编码工具
+- [Claude Code Worktree 指南](/zh/posts/ai/2026-02-28-claude-code-worktree-guide/) — lazygit 让 worktree 工作流可视化
+- [AI 开发工作流实战指南](/zh/posts/ai/2026-01-19-ai-dev-workflow/) — lazygit 在现代开发中的定位
+- [高频提交策略](/zh/posts/ai/2026-03-10-high-frequency-commits/) — 为什么频繁、干净的提交很重要
+- [tmux 指南：AI 开发环境](/zh/posts/ai/2026-03-03-tmux-guide-ai-development/) — 和 lazygit 互补的终端复用器

@@ -56,11 +56,11 @@ Rust 层组织为 **6 个 crate 的工作空间，包含 16 个运行时模块**
 - **19 个权限控制工具**：文件读写、Bash 执行、Git 操作、网页抓取、LSP 集成、Notebook 编辑、子代理生成
 - **15 个斜杠命令**：会话管理、模型切换、成本追踪、上下文压缩
 - **多模型支持**：提供商无关设计，支持 Claude、OpenAI 及本地模型——这是与 Claude Code 最核心的差异
-- **MCP 集成**：6 种传输类型、自动名称规范化、OAuth 支持。关于 MCP 的安全考量，可参考我的 [MCP 安全分析](/posts/ai/2026-03-10-mcp-security-2026/)
+- **MCP 集成**：6 种传输类型、自动名称规范化、OAuth 支持。关于 MCP 的安全考量，可参考我的 [MCP 安全分析](/zh/posts/ai/2026-03-10-mcp-security-2026/)
 
 ## 架构深度对比
 
-我长期使用 Claude Code，也研究过其[代理架构原理](/posts/ai/2026-04-04-harness-engineering-guide/)。以下是两者在关键架构层面的对比。
+我长期使用 Claude Code，也研究过其[代理架构原理](/zh/posts/ai/2026-03-30-harness-engineering-guide/)。以下是两者在关键架构层面的对比。
 
 ### Agent 循环
 
@@ -74,7 +74,7 @@ Claude Code 内置约 40 个工具，Claude Code 开源版 目前实现了 19 �
 
 ### 上下文管理
 
-两者都通过**会话记录压缩**来管理上下文窗口——对旧的对话轮次进行摘要以控制 Token 用量。Claude Code 的实现更精细，具有多层记忆和持久化知识图谱。Claude Code 开源版 有基础的会话持久化，但深度不及 Claude Code 的[记忆策略](/posts/ai/2026-01-31-openclaw-memory-strategy/)。
+两者都通过**会话记录压缩**来管理上下文窗口——对旧的对话轮次进行摘要以控制 Token 用量。Claude Code 的实现更精细，具有多层记忆和持久化知识图谱。Claude Code 开源版 有基础的会话持久化，但深度不及 Claude Code 的[记忆策略](/zh/posts/ai/2026-01-31-openclaw-memory-strategy/)。
 
 ### 多代理编排
 
@@ -116,7 +116,7 @@ Claude Code 开源版 称之为 "swarms"——主代理为独立子任务生成�
 - 已深度依赖 Claude Code 生态（Skills、Hooks、CLAUDE.md）
 - 稳定性优先于可定制性
 
-更多 AI 编程工具的横向对比，可以参考我的 [2026 年 AI 编程代理对比](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)。
+更多 AI 编程工具的横向对比，可以参考我的 [2026 年 AI 编程代理对比](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)。
 
 ## 对 AI 工具生态的启示
 
@@ -152,10 +152,10 @@ Claude Code 开源版 是一个技术上令人印象深刻的项目，诞生于�
 ---
 
 *延伸阅读：*
-- [代理架构工程：AI 编程工具背后的设计原理](/posts/ai/2026-04-04-harness-engineering-guide/)
-- [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/)
-- [2026 年 AI 编程代理横向对比](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)
-- [MCP 安全分析 2026](/posts/ai/2026-03-10-mcp-security-2026/)
+- [代理架构工程：AI 编程工具背后的设计原理](/zh/posts/ai/2026-03-30-harness-engineering-guide/)
+- [Claude Code 完全指南](/zh/posts/ai/2026-01-14-claude-code-guide/)
+- [2026 年 AI 编程代理横向对比](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)
+- [MCP 安全分析 2026](/zh/posts/ai/2026-03-10-mcp-security-2026/)
 
 ## 相关阅读
 

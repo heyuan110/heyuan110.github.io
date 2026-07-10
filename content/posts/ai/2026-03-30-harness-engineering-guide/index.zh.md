@@ -30,7 +30,7 @@ answer = "三种情况别投。第一，一次性脚本——你不会再跑第�
 
 ![Harness Engineering 架构——层层包裹 AI Agent 核心的护栏、反馈循环和监控系统](cover.webp)
 
-> 这是 **Harness Engineering 系列第 1 篇**。[第 2 篇](/posts/ai/2026-03-31-harness-claudemd-guide/) 拆 CLAUDE.md 最佳实践，[第 3 篇](/posts/ai/2026-04-13-harness-subagent-architecture/) 讲 Sub-Agent 架构。
+> 这是 **Harness Engineering 系列第 1 篇**。[第 2 篇](/zh/posts/ai/2026-03-31-harness-claudemd-guide/) 拆 CLAUDE.md 最佳实践，[第 3 篇](/zh/posts/ai/2026-04-13-harness-subagent-architecture/) 讲 Sub-Agent 架构。
 
 我过去 60 天在跑一个 Claude Code 驱动的博客管线：选题、调研、写作、配图、SEO、分发，全部交给 Agent。跑下来最反直觉的一条经验是——**模型是这套系统里最不重要的部分**。
 
@@ -111,13 +111,13 @@ graph TB
 
 我踩过最贵的一次坑，是试图用"朴素多 Agent 架构"来写长文——调度 Agent 把任务切成 6 份丢给 6 个写作 Sub-Agent 并行，最后合并。跑出来的文章风格撕裂、论点自相矛盾、互相打架。我翻 Cognition 团队关于 Devin 的公开复盘才反应过来，他们给出的一条核心结论就是——**朴素的多 Agent 架构在真实任务上不 work，宁可用一个大上下文窗口的单 Agent 也别用松散 swarm，除非交接契约写得比 API 文档还死**。
 
-我最后的妥协方案：单 Agent 写作，上下文窗口塞满；只把"搜资料"、"查事实"、"生成配图"这几件**边界清晰、输出结构化**的事情拆出去给 Sub-Agent。质量立刻回来。这个教训在[第 3 篇 Sub-Agent 架构](/posts/ai/2026-04-13-harness-subagent-architecture/)里会完整展开。
+我最后的妥协方案：单 Agent 写作，上下文窗口塞满；只把"搜资料"、"查事实"、"生成配图"这几件**边界清晰、输出结构化**的事情拆出去给 Sub-Agent。质量立刻回来。这个教训在[第 3 篇 Sub-Agent 架构](/zh/posts/ai/2026-04-13-harness-subagent-architecture/)里会完整展开。
 
 ### 结论三：CLAUDE.md 写太长，是我犯过最隐蔽的错
 
 早期我把所有能想到的约定都塞进 CLAUDE.md，一路写到 90 行。表现开始不稳——Agent 有时候忽然忘记项目约定，产出莫名其妙的代码风格。我一度以为是模型的问题。后来看到苏黎世联邦理工的一项研究：**CLAUDE.md 超过 60 行会让 Agent 表现下降约 20%**，人写的简洁版本反而比 LLM 生成的冗长版本更强。我把我的 CLAUDE.md 砍到 40 行，把其余细节挪到 Skills（按需加载）和 Hooks（自动触发），Agent 的稳定性当天就回来了。
 
-这条反直觉到什么程度——给 Agent 更少的指令，它反而更听话。详细拆解看[第 2 篇 CLAUDE.md 最佳实践](/posts/ai/2026-03-31-harness-claudemd-guide/)。
+这条反直觉到什么程度——给 Agent 更少的指令，它反而更听话。详细拆解看[第 2 篇 CLAUDE.md 最佳实践](/zh/posts/ai/2026-03-31-harness-claudemd-guide/)。
 
 ## 核心组件：引导器与传感器
 
@@ -135,7 +135,7 @@ Martin Fowler 把 Harness 的组件分成两大类，这是我见过最干净的
 | 类型定义 | 计算型 | TypeScript 类型收窄解题空间 |
 | 示例模式 | 推理型 | "正确做法"的参考代码片段 |
 
-在 Claude Code 里，你手头的引导器至少包括——CLAUDE.md 和 AGENTS.md（约定与约束）、MCP Server 配置（可用工具）、[Skills](/posts/ai/2026-02-28-claude-code-skills-guide/)（按需加载的能力包）。挑选原则是计算型优先、推理型兜底：一条拦截循环引用的 lint 规则比一句"不要创建循环引用"的提示词可靠一万倍。
+在 Claude Code 里，你手头的引导器至少包括——CLAUDE.md 和 AGENTS.md（约定与约束）、MCP Server 配置（可用工具）、[Skills](/zh/posts/ai/2026-02-28-claude-code-skills-guide/)（按需加载的能力包）。挑选原则是计算型优先、推理型兜底：一条拦截循环引用的 lint 规则比一句"不要创建循环引用"的提示词可靠一万倍。
 
 ### 传感器（Sensors）—— 反馈控制
 
@@ -149,7 +149,7 @@ Martin Fowler 把 Harness 的组件分成两大类，这是我见过最干净的
 | AI 代码审查 | 推理型 | 语义问题、设计缺陷 |
 | 集成测试 | 计算型 | 跨组件故障 |
 
-在 Claude Code 里你用的传感器就是——[Hooks](/posts/ai/2026-02-28-claude-code-hooks-guide/)（PreToolUse、PostToolUse）、自动跑的测试套件、类型检查（tsc、mypy）。一个关键细节：传感器的输出要为 LLM 优化。比如 lint 错误写成 `Error: unused variable 'x' on line 42` 就比一个裸的错误码有用得多，写成纠错指令（"移除第 42 行未使用的变量 x"）效果最好。
+在 Claude Code 里你用的传感器就是——[Hooks](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/)（PreToolUse、PostToolUse）、自动跑的测试套件、类型检查（tsc、mypy）。一个关键细节：传感器的输出要为 LLM 优化。比如 lint 错误写成 `Error: unused variable 'x' on line 42` 就比一个裸的错误码有用得多，写成纠错指令（"移除第 42 行未使用的变量 x"）效果最好。
 
 ### 为什么必须两个都要
 
@@ -225,7 +225,7 @@ Stripe 的自主 Agent 系统每周合并 1300+ 个 PR。他们的 Harness 里�
 }
 ```
 
-实操建议：别跑完整测试套件，跑相关子集就好。完整套件放 CI。否则 5 分钟一次的反馈循环会让 Agent 的迭代速度变成负数。更完整的 Hook 模式见 [Claude Code Hooks 完全指南](/posts/ai/2026-02-28-claude-code-hooks-guide/)。
+实操建议：别跑完整测试套件，跑相关子集就好。完整套件放 CI。否则 5 分钟一次的反馈循环会让 Agent 的迭代速度变成负数。更完整的 Hook 模式见 [Claude Code Hooks 完全指南](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/)。
 
 ### 第三层：按需加载（Skills）
 
@@ -245,7 +245,7 @@ description: 创建或修改数据库迁移时使用
 - 永远不要修改已有迁移，创建新的
 ```
 
-只有做迁移时才加载这段上下文，其他时候不占窗口、不污染注意力。完整用法见 [Claude Code Skills 完全指南](/posts/ai/2026-02-28-claude-code-skills-guide/)。
+只有做迁移时才加载这段上下文，其他时候不占窗口、不污染注意力。完整用法见 [Claude Code Skills 完全指南](/zh/posts/ai/2026-02-28-claude-code-skills-guide/)。
 
 ### 第四层：Sub-Agent 路由
 
@@ -253,7 +253,7 @@ description: 创建或修改数据库迁移时使用
 
 父 Agent（调度，用 Sonnet）负责任务拆解和关键决策。子 Agent 按任务类型路由——需要推理的写作任务用 Opus，高吞吐低智力密度的搜索粗筛用 Haiku，每个子 Agent 返回精简结果加文件/行号引用，不把原始上下文带回父 Agent。这样父 Agent 的窗口保持干净，同时每一类任务用的都是最合适的模型。
 
-详细的路由策略、交接契约、failure mode 分析在[第 3 篇 Sub-Agent 架构](/posts/ai/2026-04-13-harness-subagent-architecture/)。
+详细的路由策略、交接契约、failure mode 分析在[第 3 篇 Sub-Agent 架构](/zh/posts/ai/2026-04-13-harness-subagent-architecture/)。
 
 ### 第五层：架构约束（适应度函数）
 
@@ -349,12 +349,12 @@ Harness 不是万金油。投错场景等于用大炮打蚊子。三种情况别
 
 ## 相关阅读
 
-- [Harness Engineering 系列第 2 篇：CLAUDE.md 最佳实践](/posts/ai/2026-03-31-harness-claudemd-guide/) —— 写好引导器文件，60 行陷阱怎么绕开
-- [Harness Engineering 系列第 3 篇：Sub-Agent 架构](/posts/ai/2026-04-13-harness-subagent-architecture/) —— 按任务路由模型，降本 60% 的完整拆解
-- [Claude Code Hooks 完全指南](/posts/ai/2026-02-28-claude-code-hooks-guide/) —— Harness 的传感器层实操
-- [Claude Code Skills 完全指南](/posts/ai/2026-02-28-claude-code-skills-guide/) —— 按需加载的引导器能力包
-- [Context Engineering 指南](/posts/ai/2026-03-10-context-engineering-guide/) —— Harness Engineering 的上一代
-- [2026 AI 开发方法论对比](/posts/ai/2026-03-11-ai-development-methodologies-compared/) —— Harness Engineering 在更大图景里的位置
+- [Harness Engineering 系列第 2 篇：CLAUDE.md 最佳实践](/zh/posts/ai/2026-03-31-harness-claudemd-guide/) —— 写好引导器文件，60 行陷阱怎么绕开
+- [Harness Engineering 系列第 3 篇：Sub-Agent 架构](/zh/posts/ai/2026-04-13-harness-subagent-architecture/) —— 按任务路由模型，降本 60% 的完整拆解
+- [Claude Code Hooks 完全指南](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) —— Harness 的传感器层实操
+- [Claude Code Skills 完全指南](/zh/posts/ai/2026-02-28-claude-code-skills-guide/) —— 按需加载的引导器能力包
+- [Context Engineering 指南](/zh/posts/ai/2026-03-10-context-engineering-guide/) —— Harness Engineering 的上一代
+- [2026 AI 开发方法论对比](/zh/posts/ai/2026-03-11-ai-development-methodologies-compared/) —— Harness Engineering 在更大图景里的位置
 - [Martin Fowler 的 Harness Engineering 原文](https://martinfowler.com/articles/exploring-gen-ai.html) —— 概念起源
 - [Cognition 团队 Devin 的公开复盘](https://cognition.ai/blog) —— 朴素多 Agent 为什么不 work
 - [Ashby 必要多样性定律](https://en.wikipedia.org/wiki/Variety_(cybernetics)) —— 约束为什么等于能力

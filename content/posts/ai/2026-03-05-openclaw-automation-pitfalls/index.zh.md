@@ -39,7 +39,7 @@ answer = "从最低自主权开始，逐步提升。先用审批模式——Agen
 
 这篇指南整理了 OpenClaw 自动化中最常见的 15 个坑，分为四大类：配置、Agent 行为、成本和安全。每个坑都包含出了什么问题、你一定会眼熟的真实场景，以及具体的修复方案。如果你用 OpenClaw 超过一周，这里面至少有三个你已经踩过了。
 
-刚接触 OpenClaw？建议先看 [安装配置指南](/posts/ai/2026-03-05-openclaw-setup-guide/)，等 Agent 跑起来之后再回来看这篇。
+刚接触 OpenClaw？建议先看 [安装配置指南](/zh/posts/ai/2026-03-05-openclaw-setup-guide/)，等 Agent 跑起来之后再回来看这篇。
 
 ---
 
@@ -216,7 +216,7 @@ openclaw setup
 
 **怎么修：**
 
-为每个 Agent 创建独立的 Soul 文件。如果你在用 [多 Agent 架构](/posts/ai/2026-03-05-openclaw-multi-agent-setup/)，每个 Agent 都应该有自己的：
+为每个 Agent 创建独立的 Soul 文件。如果你在用 [多 Agent 架构](/zh/posts/ai/2026-03-05-openclaw-multi-agent-setup/)，每个 Agent 都应该有自己的：
 
 ```markdown
 <!-- ~/.openclaw/agents/researcher/SOUL.md -->
@@ -236,7 +236,7 @@ openclaw setup
 5. 被问到专业范围外的问题时，引导到对应的 Agent
 ```
 
-在多 Agent 团队中，清晰的角色边界能防止 Agent 之间互相越界。研究员不写代码，程序员不写博客，写手不做架构决策。详细的团队配置方案请看 [多 Agent 配置指南](/posts/ai/2026-03-05-openclaw-multi-agent-setup/)。
+在多 Agent 团队中，清晰的角色边界能防止 Agent 之间互相越界。研究员不写代码，程序员不写博客，写手不做架构决策。详细的团队配置方案请看 [多 Agent 配置指南](/zh/posts/ai/2026-03-05-openclaw-multi-agent-setup/)。
 
 ### 坑 7：上下文窗口溢出
 
@@ -265,7 +265,7 @@ openclaw setup
 
 **2. 用 MEMORY.md 保存持久化上下文：**
 
-将项目上下文、偏好和参考数据存储在 [MEMORY.md 文件](/posts/ai/2026-01-31-openclaw-memory-strategy/) 中，而不是放在对话消息里。MEMORY.md 跨会话持久化，不会像对话历史那样占用上下文窗口空间。
+将项目上下文、偏好和参考数据存储在 [MEMORY.md 文件](/zh/posts/ai/2026-01-31-openclaw-memory-strategy/) 中，而不是放在对话消息里。MEMORY.md 跨会话持久化，不会像对话历史那样占用上下文窗口空间。
 
 **3. 定时重置会话：**
 
@@ -417,7 +417,7 @@ openclaw stats --period month --by-skill
 
 **会出什么问题：** 所有 Agent 的性能都下降。响应变慢，任务排队，系统变得不稳定。内存不足的机器上，Agent 互相争抢内存，整个系统都会卡死。
 
-**真实场景：** 你看了 [多 Agent 架构指南](/posts/ai/2026-03-05-openclaw-multi-agent-setup/) 之后立马搞了 8 个专属 Agent。你那台 16GB 内存的 Mac Mini M4 直接卡到不能用。每个 Agent 都要维护自己的会话状态、内存文件和工具实例。系统花在 Agent 之间切换上下文的时间比干活还多。
+**真实场景：** 你看了 [多 Agent 架构指南](/zh/posts/ai/2026-03-05-openclaw-multi-agent-setup/) 之后立马搞了 8 个专属 Agent。你那台 16GB 内存的 Mac Mini M4 直接卡到不能用。每个 Agent 都要维护自己的会话状态、内存文件和工具实例。系统花在 Agent 之间切换上下文的时间比干活还多。
 
 **为什么会这样：** Agent 越多感觉能力越强。人们把 Agent 数量等同于生产力，却没考虑每个 Agent 的资源开销。
 
@@ -683,9 +683,9 @@ clawdhub inspect <skill-name>
 
 ## 相关阅读
 
-- [OpenClaw 安装配置指南：从零搭建你的 AI Agent](/posts/ai/2026-03-05-openclaw-setup-guide/) —— 新手从这里开始
-- [OpenClaw 多 Agent 配置：打造协同工作的 AI 团队](/posts/ai/2026-03-05-openclaw-multi-agent-setup/) —— Agent 跑稳之后再看这篇
-- [OpenClaw 架构深度解析](/posts/ai/2026-02-14-openclaw-architecture-deep-dive/) —— 理解消息从输入到执行的完整流转
-- [OpenClaw 记忆策略（MEMORY.md 实战）](/posts/ai/2026-01-31-openclaw-memory-strategy/) —— 用持久化记忆解决上下文溢出
-- [Claude Code 安全最佳实践](/posts/ai/2026-02-22-claude-code-security/) —— 适用于所有 AI Agent 系统的安全原则
-- [OpenClaw 2026年3月新功能](/posts/ai/2026-03-03-openclaw-2026-3-1-new-features/) —— 最新更新和能力
+- [OpenClaw 安装配置指南：从零搭建你的 AI Agent](/zh/posts/ai/2026-03-05-openclaw-setup-guide/) —— 新手从这里开始
+- [OpenClaw 多 Agent 配置：打造协同工作的 AI 团队](/zh/posts/ai/2026-03-05-openclaw-multi-agent-setup/) —— Agent 跑稳之后再看这篇
+- [OpenClaw 架构深度解析](/zh/posts/ai/2026-02-14-openclaw-architecture-deep-dive/) —— 理解消息从输入到执行的完整流转
+- [OpenClaw 记忆策略（MEMORY.md 实战）](/zh/posts/ai/2026-01-31-openclaw-memory-strategy/) —— 用持久化记忆解决上下文溢出
+- [Claude Code 安全最佳实践](/zh/posts/ai/2026-02-22-claude-code-security/) —— 适用于所有 AI Agent 系统的安全原则
+- [OpenClaw 2026年3月新功能](/zh/posts/ai/2026-03-03-openclaw-2026-3-1-new-features/) —— 最新更新和能力

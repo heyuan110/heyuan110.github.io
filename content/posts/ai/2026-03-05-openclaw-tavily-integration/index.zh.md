@@ -110,7 +110,7 @@ Tavily 从设计之初就是为 LLM 服务的。它不会把原始网页丢给�
 
 确保你已准备好以下环境：
 
-1. **OpenClaw 已安装并运行** —— 如果还没有，请先参考 [OpenClaw 安装配置指南](/posts/ai/2026-03-05-openclaw-setup-guide/)
+1. **OpenClaw 已安装并运行** —— 如果还没有，请先参考 [OpenClaw 安装配置指南](/zh/posts/ai/2026-03-05-openclaw-setup-guide/)
 2. **ClawdHub CLI 已安装** —— OpenClaw 技能的包管理器
 3. **Node.js 20+** —— tavily-search 技能的运行依赖
 
@@ -124,7 +124,7 @@ npm i -g clawdhub
 clawdhub --version
 ```
 
-> 常见错误：很多教程把命令写成 `clawhub`（少了个 'd'）。正确的命令是 **`clawdhub`**。关于这个命名混淆的更多细节，参见 [OpenClaw 自动化常见坑](/posts/ai/2026-02-14-openclaw-automation-pitfalls/)。
+> 常见错误：很多教程把命令写成 `clawhub`（少了个 'd'）。正确的命令是 **`clawdhub`**。关于这个命名混淆的更多细节，参见 [OpenClaw 自动化常见坑](/zh/posts/ai/2026-02-14-openclaw-automation-pitfalls/)。
 
 ### 第 1 步：安装技能
 
@@ -246,7 +246,7 @@ OpenClaw 允许你通过 `openclaw.json` 中的 `tools.allow` 和 `tools.deny` �
 
 这种配置遵循**最小权限原则**：每个 Agent 只能访问它真正需要的工具。研究 Agent 可以搜索网络但不能执行 Shell 命令，编码 Agent 可以运行代码但不会浪费 Tavily 额度去做无意义的搜索。
 
-关于 Agent 专属配置的更多细节，参见 [OpenClaw 多 Agent 配置指南](/posts/ai/2026-03-05-openclaw-multi-agent-setup/)。
+关于 Agent 专属配置的更多细节，参见 [OpenClaw 多 Agent 配置指南](/zh/posts/ai/2026-03-05-openclaw-multi-agent-setup/)。
 
 ### 让所有 Agent 都拥有搜索权限
 
@@ -411,7 +411,7 @@ OpenClaw 会将其设置为定时任务。每天早上 Agent 自动执行 Tavily
 
 ### 3. 写作前的资料调研
 
-如果你用 OpenClaw 来辅助写作（参见 [OpenClaw + Claude Code 工作流](/posts/ai/2026-01-31-openclaw-claude-code-workflow/)），Tavily 能确保 Agent 基于最新事实而非过时的训练数据来写作：
+如果你用 OpenClaw 来辅助写作（参见 [OpenClaw + Claude Code 工作流](/zh/posts/ai/2026-01-31-openclaw-claude-code-workflow/)），Tavily 能确保 Agent 基于最新事实而非过时的训练数据来写作：
 
 ```
 调研 2026 年 AI Agent 框架的现状，
@@ -468,7 +468,7 @@ Tavily 提供多种搜索深度级别，在延迟和质量之间有不同的权�
 - 当用户指定可信来源时，严格遵守域名过滤要求
 ```
 
-最后一条规则——关于失败时必须主动报告——至关重要。如果没有这条规则，当 Tavily 调用失败时，Agent 会静默回退到基于训练数据生成回答。你会得到一个看起来很自信的回复，但内容完全是编造的。关于这种失败模式的深入分析，参见 [OpenClaw 自动化常见坑](/posts/ai/2026-02-14-openclaw-automation-pitfalls/)。
+最后一条规则——关于失败时必须主动报告——至关重要。如果没有这条规则，当 Tavily 调用失败时，Agent 会静默回退到基于训练数据生成回答。你会得到一个看起来很自信的回复，但内容完全是编造的。关于这种失败模式的深入分析，参见 [OpenClaw 自动化常见坑](/zh/posts/ai/2026-02-14-openclaw-automation-pitfalls/)。
 
 ### 为多个 Agent 配置不同的环境
 
@@ -601,8 +601,8 @@ Tavily 的免费额度很慷慨（每月 1,000 次），但一个搜索欲旺盛
 
 ## 相关阅读
 
-- [OpenClaw 安装配置指南](/posts/ai/2026-03-05-openclaw-setup-guide/) —— 如果你还没有搭建 OpenClaw，从这里开始
-- [OpenClaw 多 Agent 配置：打造协同工作的 AI 团队](/posts/ai/2026-03-05-openclaw-multi-agent-setup/) —— 按角色分配 Tavily 权限的 Agent 团队配置
-- [OpenClaw 自动化常见坑](/posts/ai/2026-02-14-openclaw-automation-pitfalls/) —— 安装 Tavily 等技能后最容易踩的坑
-- [OpenClaw 记忆策略](/posts/ai/2026-01-31-openclaw-memory-strategy/) —— 记忆系统如何与 Tavily 等工具协同工作
-- [OpenClaw 2026.3.1 新功能](/posts/ai/2026-03-03-openclaw-2026-3-1-new-features/) —— 最新版本的 Agent 路由和 WebSocket 流式传输功能
+- [OpenClaw 安装配置指南](/zh/posts/ai/2026-03-05-openclaw-setup-guide/) —— 如果你还没有搭建 OpenClaw，从这里开始
+- [OpenClaw 多 Agent 配置：打造协同工作的 AI 团队](/zh/posts/ai/2026-03-05-openclaw-multi-agent-setup/) —— 按角色分配 Tavily 权限的 Agent 团队配置
+- [OpenClaw 自动化常见坑](/zh/posts/ai/2026-02-14-openclaw-automation-pitfalls/) —— 安装 Tavily 等技能后最容易踩的坑
+- [OpenClaw 记忆策略](/zh/posts/ai/2026-01-31-openclaw-memory-strategy/) —— 记忆系统如何与 Tavily 等工具协同工作
+- [OpenClaw 2026.3.1 新功能](/zh/posts/ai/2026-03-03-openclaw-2026-3-1-new-features/) —— 最新版本的 Agent 路由和 WebSocket 流式传输功能

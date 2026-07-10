@@ -35,7 +35,7 @@ Claude Code 本质上是概率性的。让它格式化代码，它可能会做�
 
 Claude Code Hooks 解决了这个问题。它们是在 Claude 运行过程中特定节点自动执行的 Shell 命令、HTTP 端点或 LLM 提示。在文件编辑之前、命令执行之后、会话开始时、Claude 完成任务时——Hooks 让你对工作流中不能靠运气的部分拥有确定性控制。
 
-本指南涵盖你需要的一切：什么是 Hooks、全部 17 个生命周期事件、配置格式、8 个可直接复制使用的实战案例、matcher 规则，以及何时选择 Hooks 而非 [CLAUDE.md](/posts/ai/2026-02-28-claude-code-claudemd-guide/) 或 [Skills](/posts/ai/2026-02-28-claude-code-skills-guide/)。
+本指南涵盖你需要的一切：什么是 Hooks、全部 17 个生命周期事件、配置格式、8 个可直接复制使用的实战案例、matcher 规则，以及何时选择 Hooks 而非 [CLAUDE.md](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) 或 [Skills](/zh/posts/ai/2026-02-28-claude-code-skills-guide/)。
 
 ## 什么是 Claude Code Hooks？
 
@@ -750,7 +750,7 @@ Hooks 对命令有 600 秒的默认超时。如果你的 hook 调用了慢速外
 
 Claude Code 有三种扩展机制。它们服务于不同目的：
 
-| 特性 | [Hooks](https://code.claude.com/docs/en/hooks) | [CLAUDE.md](/posts/ai/2026-02-28-claude-code-claudemd-guide/) | [Skills](/posts/ai/2026-02-28-claude-code-skills-guide/) |
+| 特性 | [Hooks](https://code.claude.com/docs/en/hooks) | [CLAUDE.md](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) | [Skills](/zh/posts/ai/2026-02-28-claude-code-skills-guide/) |
 |------|-------|-----------|--------|
 | **功能** | 在生命周期事件运行代码 | 提供持久的项目上下文 | 定义可复用的提示工作流 |
 | **运行时机** | 自动，每次事件触发 | 会话启动时加载，始终在上下文中 | 手动，用户调用斜杠命令时 |
@@ -762,8 +762,8 @@ Claude Code 有三种扩展机制。它们服务于不同目的：
 **决策框架：**
 
 - 某件事必须**自动且可靠地**每次都发生？用 **Hooks**（格式化、保护、日志、通知）。
-- Claude 需要**了解**你项目的某些信息？用 **[CLAUDE.md](/posts/ai/2026-02-28-claude-code-claudemd-guide/)**（技术栈、规范、命令、架构）。
-- 你想要一个**按需触发的可复用工作流**？用 **[Skills](/posts/ai/2026-02-28-claude-code-skills-guide/)**（部署、代码审查、脚手架）。
+- Claude 需要**了解**你项目的某些信息？用 **[CLAUDE.md](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/)**（技术栈、规范、命令、架构）。
+- 你想要一个**按需触发的可复用工作流**？用 **[Skills](/zh/posts/ai/2026-02-28-claude-code-skills-guide/)**（部署、代码审查、脚手架）。
 
 ## 开始使用
 
@@ -779,9 +779,9 @@ Claude Code 有三种扩展机制。它们服务于不同目的：
 
 ## 相关阅读
 
-- [Claude Code 完全指南](/posts/ai/2026-02-28-claude-code-complete-guide/) -- Claude Code 功能和设置全面概览
-- [Claude Code 安装指南](/posts/ai/2026-02-25-claude-code-setup-guide/) -- 安装和初始配置
-- [CLAUDE.md 指南](/posts/ai/2026-02-28-claude-code-claudemd-guide/) -- 项目上下文和记忆配置
-- [Claude Code Skills 指南](/posts/ai/2026-02-28-claude-code-skills-guide/) -- 斜杠命令和可复用工作流
-- [Claude Code MCP 配置](/posts/ai/2026-02-28-claude-code-mcp-setup/) -- 通过 MCP 集成外部服务
+- [Claude Code 完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) -- Claude Code 功能和设置全面概览
+- [Claude Code 安装指南](/zh/posts/ai/2026-02-25-claude-code-setup-guide/) -- 安装和初始配置
+- [CLAUDE.md 指南](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) -- 项目上下文和记忆配置
+- [Claude Code Skills 指南](/zh/posts/ai/2026-02-28-claude-code-skills-guide/) -- 斜杠命令和可复用工作流
+- [Claude Code MCP 配置](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/) -- 通过 MCP 集成外部服务
 - [官方 Claude Code Hooks 参考文档](https://code.claude.com/docs/en/hooks) -- Anthropic 的完整参考文档

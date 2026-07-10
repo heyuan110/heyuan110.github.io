@@ -536,9 +536,9 @@ claude mcp add drawthings -- npx -y mcp-drawthings
 
 ## 相关阅读
 
-- [Draw Things 完全指南：Mac 本地 AI 生图从入门到精通](/posts/ai/2026-02-15-draw-things-ultimate-guide/)
-- [Mac Mini 本地 AI 生图性价比方案](/posts/ai/2026-02-15-mac-mini-local-image-generation/)
-- [Claude Code 浏览器自动化方案对比（2026 最新）](/posts/ai/2026-01-28-claude-code-browser-automation/)
-- [我的 AI 开发工作流：从需求到上线](/posts/ai/2026-01-19-ai-dev-workflow/)
-- [Claude Code 最佳实践指南](/posts/ai/2026-01-06-claudecode-best-practices/)
-- [Claude Code Skills 完全指南](/posts/ai/2026-01-08-claudecode-skill-guide/)
+- [Draw Things 完全指南：Mac 本地 AI 生图从入门到精通](/zh/posts/ai/2026-02-15-draw-things-ultimate-guide/)
+- [Mac Mini 本地 AI 生图性价比方案](/zh/posts/ai/2026-02-15-mac-mini-local-image-generation/)
+- [Claude Code 浏览器自动化方案对比（2026 最新）](/zh/posts/ai/2026-01-28-claude-code-browser-automation/)
+- [我的 AI 开发工作流：从需求到上线](/zh/posts/ai/2026-01-19-ai-dev-workflow/)
+- [Claude Code 最佳实践指南](/zh/posts/ai/2026-01-06-claudecode-best-practices/)
+- [Claude Code Skills 完全指南](/zh/posts/ai/2026-01-08-claudecode-skill-guide/)

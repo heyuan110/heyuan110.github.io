@@ -281,7 +281,7 @@ openclaw agents bindings
 # devops-bot    → discord-engineering (active)
 ```
 
-更多多 Agent 模式相关内容，请参阅 [OpenClaw 多 Agent 指南](/posts/ai/2026-02-23-openclaw-multi-agent-guide/)。
+更多多 Agent 模式相关内容，请参阅 [OpenClaw 多 Agent 指南](/zh/posts/ai/2026-02-23-openclaw-multi-agent-guide/)。
 
 ## 外部密钥管理
 
@@ -323,7 +323,7 @@ openclaw secrets reload
 - **审计追踪**：追踪哪个 Agent 在何时访问了哪个密钥
 - **无明文密钥**：凭证保存在密钥库中，而非配置文件中
 
-安全加固详情请参阅 [OpenClaw 自动化常见陷阱指南](/posts/ai/2026-02-14-openclaw-automation-pitfalls/)——其中描述的许多凭证管理问题现已被此功能解决。
+安全加固详情请参阅 [OpenClaw 自动化常见陷阱指南](/zh/posts/ai/2026-02-14-openclaw-automation-pitfalls/)——其中描述的许多凭证管理问题现已被此功能解决。
 
 ## Discord 和 Telegram 会话改进
 
@@ -494,12 +494,12 @@ Discord 线程会话现在会持续更长时间（直到不活跃超时），而
 
 ## 相关阅读
 
-- [OpenClaw 多 Agent 指南](/posts/ai/2026-02-23-openclaw-multi-agent-guide/) — 在一个实例上设置多个专业化 Agent
-- [OpenClaw 自动化常见陷阱](/posts/ai/2026-02-14-openclaw-automation-pitfalls/) — 避免 OpenClaw 自动化中的常见错误
-- [OpenClaw 架构深度解析](/posts/ai/2026-02-14-openclaw-architecture-deep-dive/) — 理解网关、Agent 和插件系统
-- [OpenClaw 使用教程](/posts/ai/2026-02-12-openclaw-usage-tutorial/) — 从零开始上手
-- [MCP 安全指南](/posts/ai/2026-02-23-mcp-security-guide/) — 保护你的 AI Agent 集成
-- [Claude Code 2026 定价](/posts/ai/2026-02-25-claude-code-pricing/) — 比较你的 OpenClaw Agent 的 Claude API 成本
+- [OpenClaw 多 Agent 指南](/zh/posts/ai/2026-02-23-openclaw-multi-agent-guide/) — 在一个实例上设置多个专业化 Agent
+- [OpenClaw 自动化常见陷阱](/zh/posts/ai/2026-02-14-openclaw-automation-pitfalls/) — 避免 OpenClaw 自动化中的常见错误
+- [OpenClaw 架构深度解析](/zh/posts/ai/2026-02-14-openclaw-architecture-deep-dive/) — 理解网关、Agent 和插件系统
+- [OpenClaw 使用教程](/zh/posts/ai/2026-02-12-openclaw-usage-tutorial/) — 从零开始上手
+- [MCP 安全指南](/zh/posts/ai/2026-02-23-mcp-security-guide/) — 保护你的 AI Agent 集成
+- [Claude Code 2026 定价](/zh/posts/ai/2026-02-25-claude-code-pricing/) — 比较你的 OpenClaw Agent 的 Claude API 成本
 
 ---
 

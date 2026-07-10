@@ -29,7 +29,7 @@ question = "Vibe Coding 和 Agentic Engineering 有什么区别？"
 answer = "Vibe Coding 侧重个人生产力——向 AI 描述需求，接受生成的代码。Agentic Engineering 是 Karpathy 2026 年提出的进化概念，强调编排多个 AI Agent 覆盖整个工程流程，配合更多的监督和审查机制。"
 +++
 
-从 Andrej Karpathy 在 2025 年 2 月发推提出 [Vibe Coding](/posts/ai/2026-02-22-vibe-coding-guide/)，到斯坦福大学在同年秋季正式开设 CS146S 课程，前后不到 8 个月。一个社交媒体上的热词，以这样的速度进入全球顶级高校的课程体系，在计算机科学的历史上极为罕见。
+从 Andrej Karpathy 在 2025 年 2 月发推提出 [Vibe Coding](/zh/posts/ai/2026-02-22-vibe-coding-guide/)，到斯坦福大学在同年秋季正式开设 CS146S 课程，前后不到 8 个月。一个社交媒体上的热词，以这样的速度进入全球顶级高校的课程体系，在计算机科学的历史上极为罕见。
 
 这不是一门"教你用 ChatGPT 写代码"的水课。CS146S 覆盖了从 LLM 原理到 Agent 架构、从上下文工程到安全攻防、从自动化构建到生产运维的完整软件工程生命周期。它的嘉宾名单读起来像一份 AI 编程领域的"名人堂"——Claude Code 创始人、Vercel AI 研究负责人、Semgrep CEO、a16z 合伙人……
 
@@ -86,7 +86,7 @@ answer = "Vibe Coding 侧重个人生产力——向 AI 描述需求，接受生
 
 ### Week 2：Coding Agent 解剖学
 
-**主题**：Agent architecture and components / Tool use and function calling / [MCP (Model Context Protocol)](/posts/ai/2026-02-20-mcp-protocol-guide/)
+**主题**：Agent architecture and components / Tool use and function calling / [MCP (Model Context Protocol)](/zh/posts/ai/2026-02-20-mcp-protocol-guide/)
 
 如果说第一周教你"怎么跟 LLM 对话"，第二周教你"怎么给 LLM 装上手脚"。
 
@@ -125,7 +125,7 @@ Agent 不是一个聪明的聊天机器人，而是一个**带工具的自主系
 
 **核心认知**：从 Prompt Engineering 到 Context Engineering，这是 AI 编程范式的第二次跃迁。好代码是好上下文的副产品。
 
-> 关于上下文工程的深度解读，请看系列第 2 篇：[斯坦福 CS146S 精读（二）：上下文工程](/posts/ai/2026-02-24-context-engineering-deep-dive/)
+> 关于上下文工程的深度解读，请看系列第 2 篇：[斯坦福 CS146S 精读（二）：上下文工程](/zh/posts/ai/2026-02-24-context-engineering-deep-dive/)
 
 ### Week 4：Coding Agent 模式
 
@@ -133,7 +133,7 @@ Agent 不是一个聪明的聊天机器人，而是一个**带工具的自主系
 
 这周的核心问题是：**Agent 的自治度应该设到多高？人类应该在什么节点介入？**
 
-阅读材料几乎是 [Claude Code](/posts/ai/2026-01-14-claude-code-guide/) 生态的全景：
+阅读材料几乎是 [Claude Code](/zh/posts/ai/2026-01-14-claude-code-guide/) 生态的全景：
 
 - **[How Anthropic Uses Claude Code](https://www-cdn.anthropic.com/58284b19e702b49db9302d5b6f135ad8871e7658.pdf)**——Anthropic 内部如何使用自家工具的第一手材料
 - **[Claude Code Best Practices](https://www.anthropic.com/engineering/claude-code-best-practices)**——官方最佳实践
@@ -146,7 +146,7 @@ Agent 不是一个聪明的聊天机器人，而是一个**带工具的自主系
 
 **核心认知**：Devin 的 Agents 101 文档总结得很好：Agent 的自治度从简单任务（直接描述即可）到中等任务（预期节省 80% 时间但需要人类打磨）到复杂任务（需要多个检查点审查）。关键不在于 Agent 多强，而在于**你多会管理它**。
 
-> 关于 Agent Manager 模式的深度解读，请看系列第 3 篇：[斯坦福 CS146S 精读（三）：Agent Manager](/posts/ai/2026-02-24-agent-manager-patterns/)
+> 关于 Agent Manager 模式的深度解读，请看系列第 3 篇：[斯坦福 CS146S 精读（三）：Agent Manager](/zh/posts/ai/2026-02-24-agent-manager-patterns/)
 
 ### Week 5：现代终端
 
@@ -181,7 +181,7 @@ AI IDE 解决的是"写代码"的问题，AI 终端解决的是"跑代码、管�
 
 **核心认知**：很多 AI 编程课只教你怎么写得快，这门课把**交付的底线**拉出来了：可测、可审、可防。
 
-> 关于安全主题的深度解读，请看系列第 4 篇：[斯坦福 CS146S 精读（四）：Secure Vibe Coding](/posts/ai/2026-02-24-secure-vibe-coding/)
+> 关于安全主题的深度解读，请看系列第 4 篇：[斯坦福 CS146S 精读（四）：Secure Vibe Coding](/zh/posts/ai/2026-02-24-secure-vibe-coding/)
 
 ### Week 7：代码审查与软件支持
 
@@ -211,7 +211,7 @@ AI IDE 解决的是"写代码"的问题，AI 终端解决的是"跑代码、管�
 
 **核心认知**：快速原型只是起点。课程真正想传达的是：你得能把这个原型**纳入测试、安全、Code Review 这些工程规范中**。很多人用 AI 做了 demo 就觉得大功告成，但从 demo 到 production 之间还有一道鸿沟。
 
-> 关于从原型到生产的深度解读，请看系列第 5 篇：[斯坦福 CS146S 精读（五）：从原型到生产](/posts/ai/2026-02-24-prototype-to-production/)
+> 关于从原型到生产的深度解读，请看系列第 5 篇：[斯坦福 CS146S 精读（五）：从原型到生产](/zh/posts/ai/2026-02-24-prototype-to-production/)
 
 ### Week 9：部署后运维
 
@@ -290,7 +290,7 @@ CS146S 不是孤例。Vibe Coding 正在全球高校遍地开花：
 
 ## 从 Vibe Coding 到 Agentic Engineering
 
-CS146S 的课程结构暗合了一个更大的叙事：Vibe Coding 只是起点，终点是 **[Agentic Engineering](/posts/ai/2026-02-23-agentic-coding-trends-2026/)**。
+CS146S 的课程结构暗合了一个更大的叙事：Vibe Coding 只是起点，终点是 **[Agentic Engineering](/zh/posts/ai/2026-02-23-agentic-coding-trends-2026/)**。
 
 课程的前半段（Week 1-5）教你如何作为个体用 AI 编程工具提效——这是 Vibe Coding 的基本形态。后半段（Week 6-10）转向工程体系：安全、审查、构建、运维、趋势——这是从个人生产力到组织级工程范式的跃迁。
 
@@ -302,21 +302,21 @@ CS146S 的课程结构暗合了一个更大的叙事：Vibe Coding 只是起点�
 
 如果你对 Vibe Coding 和 AI 编程工具的实战感兴趣，推荐这些文章：
 
-- [Claude Code 从入门到精通完全指南](/posts/ai/2026-01-14-claude-code-guide/) — 课程中高频提及的核心工具
-- [Vibe Coding 完全指南](/posts/ai/2026-02-22-vibe-coding-guide/) — Vibe Coding 的理念、工具与实战
-- [MCP 协议全面解析](/posts/ai/2026-02-20-mcp-protocol-guide/) — Week 2-3 核心主题的深入解读
-- [CLAUDE.md 记忆术](/posts/ai/2026-01-12-claudemd-memory-guide/) — 理解 AI 编程助手的项目感知机制
-- [2026 Agentic Coding 趋势报告](/posts/ai/2026-02-23-agentic-coding-trends-2026/) — 从 Vibe Coding 到 Agentic Engineering 的演进
-- [Claude Code Hooks 实战指南](/posts/ai/2026-02-18-claude-code-hooks-guide/) — Claude Code 的自动化扩展能力
+- [Claude Code 从入门到精通完全指南](/zh/posts/ai/2026-01-14-claude-code-guide/) — 课程中高频提及的核心工具
+- [Vibe Coding 完全指南](/zh/posts/ai/2026-02-22-vibe-coding-guide/) — Vibe Coding 的理念、工具与实战
+- [MCP 协议全面解析](/zh/posts/ai/2026-02-20-mcp-protocol-guide/) — Week 2-3 核心主题的深入解读
+- [CLAUDE.md 记忆术](/zh/posts/ai/2026-01-12-claudemd-memory-guide/) — 理解 AI 编程助手的项目感知机制
+- [2026 Agentic Coding 趋势报告](/zh/posts/ai/2026-02-23-agentic-coding-trends-2026/) — 从 Vibe Coding 到 Agentic Engineering 的演进
+- [Claude Code Hooks 实战指南](/zh/posts/ai/2026-02-18-claude-code-hooks-guide/) — Claude Code 的自动化扩展能力
 
 ## 系列文章导航
 
 这是「斯坦福 Vibe Coding 课程精读」系列的第 1 篇。后续文章将对课程中最有价值的主题做深度解读：
 
 1. **本文**：斯坦福 CS146S 精读（一）：Vibe Coding 如何成为正式学科
-2. [斯坦福 CS146S 精读（二）：上下文工程](/posts/ai/2026-02-24-context-engineering-deep-dive/)（Week 3）
-3. [斯坦福 CS146S 精读（三）：Agent Manager](/posts/ai/2026-02-24-agent-manager-patterns/)（Week 4）
-4. [斯坦福 CS146S 精读（四）：Secure Vibe Coding](/posts/ai/2026-02-24-secure-vibe-coding/)（Week 6-7）
-5. [斯坦福 CS146S 精读（五）：从原型到生产](/posts/ai/2026-02-24-prototype-to-production/)（Week 8-9）
+2. [斯坦福 CS146S 精读（二）：上下文工程](/zh/posts/ai/2026-02-24-context-engineering-deep-dive/)（Week 3）
+3. [斯坦福 CS146S 精读（三）：Agent Manager](/zh/posts/ai/2026-02-24-agent-manager-patterns/)（Week 4）
+4. [斯坦福 CS146S 精读（四）：Secure Vibe Coding](/zh/posts/ai/2026-02-24-secure-vibe-coding/)（Week 6-7）
+5. [斯坦福 CS146S 精读（五）：从原型到生产](/zh/posts/ai/2026-02-24-prototype-to-production/)（Week 8-9）
 
 课程资源全部免费公开，你需要的只是行动力。

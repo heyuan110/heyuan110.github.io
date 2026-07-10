@@ -158,6 +158,6 @@ keywords = ['高频提交', '原子化提交', 'Conventional Commits', 'git bise
 
 ### 相关阅读
 
-- [OpenClaw 的记忆策略：从 MEMORY.md 到可检索的长期记忆](/posts/ai/2026-01-31-openclaw-memory-strategy/)
-- [Claude Code Skill 开发指南：从入门到实战](/posts/ai/2026-01-08-claudecode-skill-guide/)
+- [OpenClaw 的记忆策略：从 MEMORY.md 到可检索的长期记忆](/zh/posts/ai/2026-01-31-openclaw-memory-strategy/)
+- [Claude Code Skill 开发指南：从入门到实战](/zh/posts/ai/2026-01-08-claudecode-skill-guide/)
 - [如何用 Git bisect 快速定位引入 bug 的提交（官方文档）](https://git-scm.com/docs/git-bisect)

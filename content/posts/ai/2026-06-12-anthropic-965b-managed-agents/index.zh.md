@@ -88,7 +88,7 @@ flowchart TB
 
 模型——"脑"——负责规划、推理、工具选择。"手"——沙箱代码执行、凭证保险库、调度器、tracing 层——是真正让 Agent 在生产环境干活的运行时组件。Anthropic 同时掌握这两层以及它们之间的契约。关键点在于 5 月 19 日开放的 Self-hosted Sandboxes 公测——它让客户可以在自己的基础设施里跑"手"，但**"脑"和编排循环仍然留在 Anthropic 的控制面上**。这不是慷慨开源，这是教科书级别的平台打法。
 
-这一点对估值意味着什么？因为模型层在收敛。我在之前的 [Hermes Agent v0.9 评测](/posts/ai/2026-04-14-hermes-agent-guide/) 和 [Harness Engineering 窗口期决策框架](/posts/ai/2026-05-08-harness-engineering-window-of-opportunity/) 里反复论证过这个点——LangChain 不换模型只重新设计 harness，TerminalBench 分数从 52.8% 跳到 66.5%，排名从第 30 名外冲到前 5。模型保持不变，harness——也就是生产运行时，也就是 Anthropic 现在产品化成 Managed Agents 这个东西——决定了一切。
+这一点对估值意味着什么？因为模型层在收敛。我在之前的 [Hermes Agent v0.9 评测](/zh/posts/ai/2026-04-14-hermes-agent-guide/) 和 [Harness Engineering 窗口期决策框架](/zh/posts/ai/2026-05-08-harness-engineering-window-of-opportunity/) 里反复论证过这个点——LangChain 不换模型只重新设计 harness，TerminalBench 分数从 52.8% 跳到 66.5%，排名从第 30 名外冲到前 5。模型保持不变，harness——也就是生产运行时，也就是 Anthropic 现在产品化成 Managed Agents 这个东西——决定了一切。
 
 如果模型可替代而运行时决定胜负，那谁掌握生产运行时谁就掌握经济。这就是 9650 亿在买的东西。
 
@@ -146,7 +146,7 @@ Self-hosted Sandboxes 不做的是：把 Agent 编排循环的控制权给你。
 - 支付风险：海外卡 + 海外注册地址不是中国大陆居民能轻易合规拿到的。
 - 数据合规风险：如果你的代码涉及客户数据、个人信息或商业秘密，跨境传输到 Anthropic 美国服务器是合规黑洞。
 
-我之前写过 [Claude Code 定价拆解](/posts/ai/2026-02-25-claude-code-pricing/) 和 [Claude API 限速实测](/posts/ai/2026-02-28-claude-rate-limits/) 这两篇文章，里面有详细的成本和限速对比。对个人写代码 OK，**对公司产品化部署不要走这条路。**
+我之前写过 [Claude Code 定价拆解](/zh/posts/ai/2026-02-25-claude-code-pricing/) 和 [Claude API 限速实测](/zh/posts/ai/2026-02-28-claude-rate-limits/) 这两篇文章，里面有详细的成本和限速对比。对个人写代码 OK，**对公司产品化部署不要走这条路。**
 
 ### 路径 B：国内 API + 开源 Agent 运行时自建（推荐企业方案）
 
@@ -161,7 +161,7 @@ Self-hosted Sandboxes 不做的是：把 Agent 编排循环的控制权给你。
 
 务实路径：
 1. **模型层**：根据成本和能力选一家国内 API（我个人偏好通义 Qwen 3.7 Max + 智谱 ChatGLM 备用）。
-2. **Agent 运行时**：用开源方案自建——我之前评测过的 [Hermes Agent v0.9](/posts/ai/2026-04-14-hermes-agent-guide/) 和 [Hermes v0.10 深度拆解](/posts/ai/2026-04-24-hermes-agent-v010-deep-review/) 是最接近 Managed Agents 等价物的开源选项，另外 LangGraph、AutoGen 也能拼。
+2. **Agent 运行时**：用开源方案自建——我之前评测过的 [Hermes Agent v0.9](/zh/posts/ai/2026-04-14-hermes-agent-guide/) 和 [Hermes v0.10 深度拆解](/zh/posts/ai/2026-04-24-hermes-agent-v010-deep-review/) 是最接近 Managed Agents 等价物的开源选项，另外 LangGraph、AutoGen 也能拼。
 3. **凭证管理**：HashiCorp Vault 或自建 secrets 服务。
 4. **Cron 调度**：Temporal 或 Airflow，或者云厂商自带的调度服务。
 5. **Tracing**：Langfuse、自建 Jaeger，或阿里云 ARMS。
@@ -172,13 +172,13 @@ Self-hosted Sandboxes 不做的是：把 Agent 编排循环的控制权给你。
 
 我的判断：12-18 个月内会有一家国内厂商推出生产级 Managed Agents 对标方案。最可能的候选是阿里（基于通义+阿里云基础设施天然有优势）或字节（已有 Agent 平台，差的是生产级运行时打磨）。这条路适合等不及而且不愿意承担合规风险的企业。
 
-我个人会推荐路径 B，理由是：不能等。Agent 经济的窗口期就是这两年（我在 [Harness Engineering 窗口期框架](/posts/ai/2026-05-08-harness-engineering-window-of-opportunity/) 里详细论证过为什么是 2026-2027 这两年）。等国内对标到位再上车，红利已经被早动手的吃完了。
+我个人会推荐路径 B，理由是：不能等。Agent 经济的窗口期就是这两年（我在 [Harness Engineering 窗口期框架](/zh/posts/ai/2026-05-08-harness-engineering-window-of-opportunity/) 里详细论证过为什么是 2026-2027 这两年）。等国内对标到位再上车，红利已经被早动手的吃完了。
 
 ## OpenAI 的 Codex CLI：只有脑没有手
 
 让 9650 亿估值合理化的对比，是 OpenAI 在 Agent 这一侧到底交付了什么。这是递交后报道里最被低估的故事，值得专门拎出来。
 
-OpenAI 的 Codex CLI 在自主性上确实印象深刻。长程编码任务、多步推理、不错的失败恢复能力。在原始模型 + agentic 能力上，GPT-5 在 Codex 里跟 Claude Opus 4.7 在 Claude Code 里相当——我在 [Codex CLI 上手指南](/posts/ai/2026-02-12-codex-cli-mastery-guide/) 和后续的 [Claude Code vs Codex 深度对比](/posts/ai/2026-02-19-claude-code-vs-codex/) 里有详细评测。声明：两个都好用，我都常用。
+OpenAI 的 Codex CLI 在自主性上确实印象深刻。长程编码任务、多步推理、不错的失败恢复能力。在原始模型 + agentic 能力上，GPT-5 在 Codex 里跟 Claude Opus 4.7 在 Claude Code 里相当——我在 [Codex CLI 上手指南](/zh/posts/ai/2026-02-12-codex-cli-mastery-guide/) 和后续的 [Claude Code vs Codex 深度对比](/zh/posts/ai/2026-02-19-claude-code-vs-codex/) 里有详细评测。声明：两个都好用，我都常用。
 
 但 Codex CLI 没有托管运行时对应物。具体说：
 
@@ -202,7 +202,7 @@ OpenAI 没在睡觉。这些他们都能造。这个差距是工程差距，不�
 
 **如果你的诉求是 12 个月内交付 + 不接受任何合规风险**：等 12-18 个月，阿里或字节会推出对标方案。在等的期间用国内模型 + 极简 Agent 框架做 PoC，积累工作流和数据。
 
-**如果你在做 Agent 框架（LangChain、AutoGen、CrewAI 等）**：地基动了。框架原本的价值主张是"我们抽象掉 Agent 运行时的混乱"。Anthropic 把运行时产品化了，剩下的价值在跨模型抽象和供应商中立的编排——是真的但更小。我之前在 [Claude Code + OpenSpec 工作流](/posts/ai/2026-04-09-claude-code-openspec-superpowers/) 里也聊过框架与产品的张力，这个原理可推广到这里。
+**如果你在做 Agent 框架（LangChain、AutoGen、CrewAI 等）**：地基动了。框架原本的价值主张是"我们抽象掉 Agent 运行时的混乱"。Anthropic 把运行时产品化了，剩下的价值在跨模型抽象和供应商中立的编排——是真的但更小。我之前在 [Claude Code + OpenSpec 工作流](/zh/posts/ai/2026-04-09-claude-code-openspec-superpowers/) 里也聊过框架与产品的张力，这个原理可推广到这里。
 
 **如果你是投资人或战略岗**：9650 亿暗含的判断是 Anthropic 的运行时护城河会复利 24-36 个月再被竞争对手有意义地追平。如果你信这个——我信，扣除执行风险——估值贵但不疯。如果你认为 OpenAI 能在 6 个月内追平——这需要他们把产品优先级从前沿模型研究里大幅切换出来——你该做空。我不在那个阵营。
 
@@ -216,7 +216,7 @@ OpenAI 没在睡觉。这些他们都能造。这个差距是工程差距，不�
 
 ## 我现在做什么
 
-我 Claude Code 每天在用，公测期把几个个人 Agent 工作负载迁到了 Managed Agents。6 月 9 日 cron + 凭证保险库的更新实质改变了我对这个平台能做什么的判断——之前我有 Hermes Agent 在一台 5 美金 Hetzner VPS 上跑定时任务（详见 [Hermes v0.10 深度拆解](/posts/ai/2026-04-24-hermes-agent-v010-deep-review/)），现在我把生产关键路径迁到 Managed Agents，因为运维负担消失了。
+我 Claude Code 每天在用，公测期把几个个人 Agent 工作负载迁到了 Managed Agents。6 月 9 日 cron + 凭证保险库的更新实质改变了我对这个平台能做什么的判断——之前我有 Hermes Agent 在一台 5 美金 Hetzner VPS 上跑定时任务（详见 [Hermes v0.10 深度拆解](/zh/posts/ai/2026-04-24-hermes-agent-v010-deep-review/)），现在我把生产关键路径迁到 Managed Agents，因为运维负担消失了。
 
 如果你在犹豫，给你一个一句话测试：**你有没有一个 Agent 工作负载需要在你不看着的时候自己跑？** 如果有，Managed Agents 是最便宜的放置点（前提是你能合规接入）。如果没有，留在交互式 Claude Code 里，三个月后再回来看。
 

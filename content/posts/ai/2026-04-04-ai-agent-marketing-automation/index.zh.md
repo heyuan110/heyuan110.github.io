@@ -38,13 +38,13 @@ Postiz 创始人 Nevo David 上个月在 X 上发了一篇长文，记录了他�
 
 ## 从"个人助手"到"虚拟团队"：AI 用法正在发生质变
 
-2026 年初，AI 助手赛道爆发。[OpenClaw](/posts/ai/2026-02-12-openclaw-usage-tutorial/) 能连 Telegram、操控电脑，从回邮件到砍健身房会费无所不能。这类工具的核心逻辑是把你的各种服务"挂"到一个 AI 上，让它替你跑日常事务。
+2026 年初，AI 助手赛道爆发。[OpenClaw](/zh/posts/ai/2026-02-12-openclaw-usage-tutorial/) 能连 Telegram、操控电脑，从回邮件到砍健身房会费无所不能。这类工具的核心逻辑是把你的各种服务"挂"到一个 AI 上，让它替你跑日常事务。
 
 但 Nevo 很快撞上了一堵墙：OpenClaw 是**一对一**的——"我指挥 AI 干活"。可如果他想让 AI 生成 TikTok 视频，然后 DevRel 在上面加评论改进呢？如果他想让多个 AI 之间互相传递任务呢？
 
 这就是"一对一"和"多对多"的本质区别。一对一就像一个老板带着一个全能秘书，秘书很能干但只听你一个人的。多对多则像一个真正的团队——AI 和人之间的任务是双向流动的，甚至 AI 可以反过来给你布置任务："这条视频数据很好，建议追加同类内容"。
 
-我自己在[搭建博客自动化工作流](/posts/ai/2026-03-30-harness-engineering-guide/)的过程中也有同样的感受。当你只有一个 AI 帮你写文章的时候，它是工具。当你有一个 AI 写文章、一个 AI 生成封面图、一个 AI 做 SEO 分析、一个 AI 分发到各平台，而且它们之间能互相传递上下文和结果——这就不是工具了，这是一支团队。
+我自己在[搭建博客自动化工作流](/zh/posts/ai/2026-03-30-harness-engineering-guide/)的过程中也有同样的感受。当你只有一个 AI 帮你写文章的时候，它是工具。当你有一个 AI 写文章、一个 AI 生成封面图、一个 AI 做 SEO 分析、一个 AI 分发到各平台，而且它们之间能互相传递上下文和结果——这就不是工具了，这是一支团队。
 
 从 Copilot 到 Agent，AI 的自主权在急剧增长。ChatGPT 时代是"我说一句，你做一步"。现在的 AI Agent 是"我定个目标，你自己安排工作，每天自动跑，遇到问题来问我"。这个转变，是理解 Nevo 整个案例的前提。
 
@@ -64,7 +64,7 @@ Nevo 搭了三条并行的自动化流水线，分别解决拉新、留存和 SE
 
 通俗打个比方：AI 是个实习生，issue 就是他的工作日志。每做完一件事就记一笔，老板看完在下面批注。实习生下次干活前先翻翻之前的批注，就不会重复犯错。没有这个系统会怎样？AI 跑了 100 个视频，但完全不知道哪些好哪些差——因为它没有记忆。每次都从零开始，永远停在"第一天实习生"的水平。
 
-这里最聪明的设计是什么？是那个 **issue 系统形成了人机协作的飞轮**：AI 生成 → 数据反馈 → 人工点评 → AI 学习 → 下一轮更好。第一批视频可能很粗糙，但第十批就会像样得多。这和我在博客运营中用的思路完全一样——我给 [blog-writer Skill](/posts/ai/2026-01-08-claudecode-skill-guide/) 加了"逐段打磨"机制，AI 写完一段就自检一段，不合格就当场重写，而不是一口气生成全文。
+这里最聪明的设计是什么？是那个 **issue 系统形成了人机协作的飞轮**：AI 生成 → 数据反馈 → 人工点评 → AI 学习 → 下一轮更好。第一批视频可能很粗糙，但第十批就会像样得多。这和我在博客运营中用的思路完全一样——我给 [blog-writer Skill](/zh/posts/ai/2026-01-08-claudecode-skill-guide/) 加了"逐段打磨"机制，AI 写完一段就自检一段，不合格就当场重写，而不是一口气生成全文。
 
 ![人机协作飞轮 — AI 生成→数据反馈→人工点评→AI 学习的循环](02-flowchart-feedback-flywheel.webp)
 
@@ -89,7 +89,7 @@ Nevo 说了一句大实话："如果用户不流失，Postiz 早该赚几百万�
 
 Nevo 特别建议用 distribb 这类专业服务而不是直接让 AI 写文章，原因很实在：distribb 会帮你做关键词密度、文章结构、meta tags、内链外链——这些你让通用 AI 做很难做到位。他甚至写了一个 WordPress Skill，用 wp-json API 直接操作 WordPress 后台，连管理界面都不用打开。
 
-这里有一个判断我认为非常正确：**AI 擅长的是"从结构化信息生成内容"，而不是"从零创造有灵魂的内容"**。把 AI 放对位置，让专业工具干专业的事，这才是高效的做法。我自己的 [博客增长实践](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) 也印证了这一点——AI 生成的初稿必须经过人工的判断框架和逐段打磨，否则出来的就是千篇一律的"AI 味"文章。
+这里有一个判断我认为非常正确：**AI 擅长的是"从结构化信息生成内容"，而不是"从零创造有灵魂的内容"**。把 AI 放对位置，让专业工具干专业的事，这才是高效的做法。我自己的 [博客增长实践](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) 也印证了这一点——AI 生成的初稿必须经过人工的判断框架和逐段打磨，否则出来的就是千篇一律的"AI 味"文章。
 
 ## Nevo 的 6 层工具栈：可组合的乐高架构
 
@@ -110,7 +110,7 @@ Nevo 特别建议用 distribb 这类专业服务而不是直接让 AI 写文章�
 
 而 Paperclip 的 Routine 系统就是把所有积木固定在一起的底板。没有 Routine，每次都要手动触发 Agent；有了 Routine，整个流程就像上了发条一样自动运转。
 
-这让我想到一个更深层的观察：在 AI Agent 领域，[线束（Harness）比模型重要](/posts/ai/2026-03-30-harness-engineering-guide/)。LangChain 不换模型只改 Harness，就从 TerminalBench 第 30 名升到第 5 名。Nevo 的 6 层架构本质上就是一个精心设计的 Harness——Claude Code 只是其中一层，真正决定效果的是外面那 5 层的编排。
+这让我想到一个更深层的观察：在 AI Agent 领域，[线束（Harness）比模型重要](/zh/posts/ai/2026-03-30-harness-engineering-guide/)。LangChain 不换模型只改 Harness，就从 TerminalBench 第 30 名升到第 5 名。Nevo 的 6 层架构本质上就是一个精心设计的 Harness——Claude Code 只是其中一层，真正决定效果的是外面那 5 层的编排。
 
 ## Skill 系统：AI 世界的 App Store
 
@@ -122,11 +122,11 @@ Nevo 用了一个很形象的比喻：
 
 这里有一个趋势值得关注：**Skill 正在变成 AI Agent 世界的 App Store**。Nevo 在文末呼吁大家在评论区提交自己的 SaaS Skill，他会测试后加到 Paperclip 里。这种社区驱动的 Skill 生态，和十年前手机 App 生态的早期一模一样。
 
-我自己的博客运营也深度依赖 [Skill 系统](/posts/ai/2026-04-02-mcp-vs-skills-claude-code/)——blog-writer、blog-cover-image、blog-illustrator、blog-growth 这些 Skill 串联起来，就是一条从选题到发布的完整流水线。Skill 本质上是给 AI 喂一份"操作手册"，你喂得越细，AI 干活越靠谱。
+我自己的博客运营也深度依赖 [Skill 系统](/zh/posts/ai/2026-04-02-mcp-vs-skills-claude-code/)——blog-writer、blog-cover-image、blog-illustrator、blog-growth 这些 Skill 串联起来，就是一条从选题到发布的完整流水线。Skill 本质上是给 AI 喂一份"操作手册"，你喂得越细，AI 干活越靠谱。
 
 不过 Nevo 也提到了一个小痛点：Paperclip 的 Skill 需要给每个 Agent 单独安装，没有"全局 Skill"的概念。他的解决方案是直接把 Skill 装在 Claude Code 上，这样所有 Agent 都能自动继承。这个 workaround 很实用，说明平台还在成熟中。
 
-他还提到 MCP（Model Context Protocol）作为 Skill 的替代方案。如果某个服务没有现成的 Skill，可以通过 [MCP 连接](/posts/ai/2026-04-02-mcp-vs-skills-claude-code/)。两种方式各有优势：Skill 更轻量、更容易分享；MCP 更标准化、连接更多外部服务。
+他还提到 MCP（Model Context Protocol）作为 Skill 的替代方案。如果某个服务没有现成的 Skill，可以通过 [MCP 连接](/zh/posts/ai/2026-04-02-mcp-vs-skills-claude-code/)。两种方式各有优势：Skill 更轻量、更容易分享；MCP 更标准化、连接更多外部服务。
 
 ## 全自动化的三个坑
 
@@ -199,11 +199,11 @@ Nevo 的聪明之处在于，他很清楚地画了这条线：AI 做 80% 的苦�
 
 ## 相关阅读
 
-- [Harness Engineering：Agent 外围系统比模型更重要](/posts/ai/2026-03-30-harness-engineering-guide/)
-- [MCP vs Skills：Claude Code 两种扩展方式怎么选](/posts/ai/2026-04-02-mcp-vs-skills-claude-code/)
-- [OpenClaw 使用教程](/posts/ai/2026-02-12-openclaw-usage-tutorial/)
-- [Claude Code Skill 开发指南](/posts/ai/2026-01-08-claudecode-skill-guide/)
-- [5 款 AI 编程工具实测对比](/posts/ai/2026-04-03-claude-code-vs-cursor-vs-copilot/)
+- [Harness Engineering：Agent 外围系统比模型更重要](/zh/posts/ai/2026-03-30-harness-engineering-guide/)
+- [MCP vs Skills：Claude Code 两种扩展方式怎么选](/zh/posts/ai/2026-04-02-mcp-vs-skills-claude-code/)
+- [OpenClaw 使用教程](/zh/posts/ai/2026-02-12-openclaw-usage-tutorial/)
+- [Claude Code Skill 开发指南](/zh/posts/ai/2026-01-08-claudecode-skill-guide/)
+- [5 款 AI 编程工具实测对比](/zh/posts/ai/2026-04-03-claude-code-vs-cursor-vs-copilot/)
 
 **相关资源：**
 - [Paperclip 官方网站](https://paperclip.ing/)

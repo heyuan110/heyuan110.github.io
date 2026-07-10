@@ -832,7 +832,7 @@ SELECT * FROM performance_schema.data_lock_waits;
 
 ### 7.1 EXPLAIN 执行计划
 
-分析 SQL 性能的第一步是查看执行计划，详细内容请参考 [MySQL EXPLAIN 执行计划详解](/posts/mysql/2019-09-06-mysql-explain/)。
+分析 SQL 性能的第一步是查看执行计划，详细内容请参考 [MySQL EXPLAIN 执行计划详解](/zh/posts/mysql/2019-09-06-mysql-explain/)。
 
 ```sql
 EXPLAIN SELECT * FROM users WHERE username = 'zhangsan';

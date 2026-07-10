@@ -80,7 +80,7 @@ flowchart LR
 
 机制其实不性感：**CLI 把 snapshot 存到磁盘返回路径；MCP 把 snapshot 塞进你的上下文。** 就这点差别。同一个浏览器，下面也都是 Playwright，账单天差地别。
 
-5 个工具的完整对比我在 [Browser Automation in Claude Code: 5 Tools Compared](/posts/ai/2026-01-28-claude-code-browser-automation/) 里写过——这篇要讲的是选好 CLI 之后，**怎么用 Skill 和脚本进一步压缩成本**。
+5 个工具的完整对比我在 [Browser Automation in Claude Code: 5 Tools Compared](/zh/posts/ai/2026-01-28-claude-code-browser-automation/) 里写过——这篇要讲的是选好 CLI 之后，**怎么用 Skill 和脚本进一步压缩成本**。
 
 ## 第一段 → 第二段：Skill 提炼这一手是分水岭
 
@@ -105,7 +105,7 @@ Skill 质量比 harness 重要得多。烂 Skill 比没 Skill 还糟——它会
 1. **第三次成功执行后必须重新蒸馏。** 第一版 Skill 一定漏了点东西。第三次跑完，AI 又踩了两个新边界，那时再生成才稳。
 2. **删掉解释文字。** Skill 应该是命令 + 「if X then Y」规则的集合，不是散文。Skill 写得像博客，AI 就会当博客对待——选择性忽略某些段落。
 
-更深的 Skill 写作模式我在 [Claude Code Skills 模式：哪些写法挺到了生产](/posts/ai/2026-01-12-claudecode-skill-patterns/) 里写过。
+更深的 Skill 写作模式我在 [Claude Code Skills 模式：哪些写法挺到了生产](/zh/posts/ai/2026-01-12-claudecode-skill-patterns/) 里写过。
 
 ## 第二段 → 第三段：什么时候彻底踢掉 AI
 
@@ -194,7 +194,7 @@ cron 每晚跑这个脚本。exit 非零就发通知，附上截图和摘要。A
 
 6 周下来，测试执行的 Token 花费：0。偶尔的重新生成和诊断总共 ~¥20。
 
-如果想配上定时触发器，[OpenClaw 的 cron 风格 Agent runner](/posts/ai/2026-01-31-openclaw-claude-code-workflow/) 是最干净的方案——它会跑你的脚本，失败时把上下文喂给 AI 一次性诊断。
+如果想配上定时触发器，[OpenClaw 的 cron 风格 Agent runner](/zh/posts/ai/2026-01-31-openclaw-claude-code-workflow/) 是最干净的方案——它会跑你的脚本，失败时把上下文喂给 AI 一次性诊断。
 
 ## 我实际在用的工具决策矩阵
 
@@ -222,7 +222,7 @@ flowchart TD
 简明指引：
 
 - **新任务默认上 Playwright CLI。** 最便宜、最灵活、最容易后续推到脚本。
-- **长会话每个 Token 都要省：agent-browser。** `snapshot -i` 只返回交互元素（200-400 Token，相比完整快照 13K）。架构细节我在 [Vercel Agent Browser](/posts/ai/2026-01-13-vercel-agent-browser/) 写过。
+- **长会话每个 Token 都要省：agent-browser。** `snapshot -i` 只返回交互元素（200-400 Token，相比完整快照 13K）。架构细节我在 [Vercel Agent Browser](/zh/posts/ai/2026-01-13-vercel-agent-browser/) 写过。
 - **没有 shell 访问（沙箱 Agent、网页助手）：MCP 是唯一选项。** 别硬刚。
 - **调试性能或网络问题：Chrome DevTools MCP。** CLI 工具暴露不出请求瀑布图和内存快照。
 
@@ -294,11 +294,11 @@ Playwright CLI 是合适的原语，因为它默认就是「snapshot 写盘」�
 
 ## 相关阅读
 
-- [Browser Automation in Claude Code: 5 Tools Compared](/posts/ai/2026-01-28-claude-code-browser-automation/) — MCP / CLI / agent-browser / browser-use / DevTools MCP 五工具完整 Token 基准
-- [Vercel Agent Browser：AI 原生浏览器自动化 CLI](/posts/ai/2026-01-13-vercel-agent-browser/) — 什么时候应该选 agent-browser 而不是 Playwright CLI
-- [Claude Code Skills 模式：哪些写法挺到了生产](/posts/ai/2026-01-12-claudecode-skill-patterns/) — 怎么写不会侵蚀的 Skill
+- [Browser Automation in Claude Code: 5 Tools Compared](/zh/posts/ai/2026-01-28-claude-code-browser-automation/) — MCP / CLI / agent-browser / browser-use / DevTools MCP 五工具完整 Token 基准
+- [Vercel Agent Browser：AI 原生浏览器自动化 CLI](/zh/posts/ai/2026-01-13-vercel-agent-browser/) — 什么时候应该选 agent-browser 而不是 Playwright CLI
+- [Claude Code Skills 模式：哪些写法挺到了生产](/zh/posts/ai/2026-01-12-claudecode-skill-patterns/) — 怎么写不会侵蚀的 Skill
 - [Claude Code + Skills + Subagent：可工作的架构](/posts/ai/2025-12-26-claudecode-skill&subagent/) — Skill 和 Subagent 隔离怎么组合
-- [OpenClaw + Claude Code 工作流](/posts/ai/2026-01-31-openclaw-claude-code-workflow/) — 三段式怎么配上定时触发器
+- [OpenClaw + Claude Code 工作流](/zh/posts/ai/2026-01-31-openclaw-claude-code-workflow/) — 三段式怎么配上定时触发器
 
 ## 外部参考
 

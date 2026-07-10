@@ -83,7 +83,7 @@ Codex Security的公开预览面向**ChatGPT Pro、Enterprise、Business和Edu**
 
 ### 工作原理
 
-Claude Code Security走了一条完全不同的路线。它没有构建单独的扫描Agent，而是把安全扫描能力**直接内置到Claude Code中**，由[Claude Opus 4.6](/posts/ai/2026-02-22-claude-code-security/)驱动，像人类安全研究员一样对代码进行推理分析。
+Claude Code Security走了一条完全不同的路线。它没有构建单独的扫描Agent，而是把安全扫描能力**直接内置到Claude Code中**，由[Claude Opus 4.6](/zh/posts/ai/2026-02-22-claude-code-security/)驱动，像人类安全研究员一样对代码进行推理分析。
 
 关键词是"推理"。Claude Code Security不仅仅追踪数据流——它**理解代码的语义**。它能把握组件之间的交互关系，跨模块追踪数据流向，发现那些由多个单独安全的组件组合在一起才会出现的漏洞。
 
@@ -237,7 +237,7 @@ def transfer_funds(request):
 
 ### 选Claude Code Security，如果你：
 
-- 已经在用[Claude Code](/posts/ai/2026-01-14-claude-code-guide/)做开发
+- 已经在用[Claude Code](/zh/posts/ai/2026-01-14-claude-code-guide/)做开发
 - 看重**精度而非数量**（更少的误报）
 - 想要安全扫描**集成到AI编码工作流中**
 - 团队重视人在回路的审查机制
@@ -304,9 +304,9 @@ Codex Security和Claude Code Security都在研究预览阶段——建议作为�
 
 ## 相关阅读
 
-- [Claude Code Security: How AI-Powered Code Scanning Changes Everything](/posts/ai/2026-02-22-claude-code-security/) — Claude Code Security的架构与成果深度解析
-- [AI Agent Security: Protecting Your AI-Powered Development Workflow](/posts/ai/2026-02-27-ai-agent-security/) — AI开发中的安全全景
-- [MCP Security Guide: Securing Your AI Tool Integrations](/posts/ai/2026-02-23-mcp-security-guide/) — AI工具MCP连接的安全指南
-- [Secure Vibe Coding: Writing Safe Code with AI Assistance](/posts/ai/2026-02-24-secure-vibe-coding/) — 用AI编码时的安全最佳实践
-- [Claude Code vs Codex CLI: Which AI Coding Agent Wins?](/posts/ai/2026-02-19-claude-code-vs-codex/) — OpenAI与Anthropic编码工具的全面对比
-- [MCP Security Deep Dive 2026](/posts/ai/2026-03-10-mcp-security-2026/) — 最新MCP安全动态
+- [Claude Code Security: How AI-Powered Code Scanning Changes Everything](/zh/posts/ai/2026-02-22-claude-code-security/) — Claude Code Security的架构与成果深度解析
+- [AI Agent Security: Protecting Your AI-Powered Development Workflow](/zh/posts/ai/2026-02-27-ai-agent-security/) — AI开发中的安全全景
+- [MCP Security Guide: Securing Your AI Tool Integrations](/zh/posts/ai/2026-02-23-mcp-security-guide/) — AI工具MCP连接的安全指南
+- [Secure Vibe Coding: Writing Safe Code with AI Assistance](/zh/posts/ai/2026-02-24-secure-vibe-coding/) — 用AI编码时的安全最佳实践
+- [Claude Code vs Codex CLI: Which AI Coding Agent Wins?](/zh/posts/ai/2026-02-19-claude-code-vs-codex/) — OpenAI与Anthropic编码工具的全面对比
+- [MCP Security Deep Dive 2026](/zh/posts/ai/2026-03-10-mcp-security-2026/) — 最新MCP安全动态

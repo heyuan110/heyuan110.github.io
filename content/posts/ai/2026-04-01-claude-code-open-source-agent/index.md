@@ -69,7 +69,7 @@ The Rust layer is organized as a **6-crate workspace with 16 runtime modules**, 
 
 ## Architecture Comparison: Claude Code Open Source vs Claude Code
 
-Having worked extensively with Claude Code's [harness architecture](/posts/ai/2026-04-04-harness-engineering-guide/) and studied the leaked source, here is how the two systems compare at a structural level.
+Having worked extensively with Claude Code's [harness architecture](/posts/ai/2026-03-30-harness-engineering-guide/) and studied the leaked source, here is how the two systems compare at a structural level.
 
 ### The Agent Loop
 
@@ -181,7 +181,7 @@ The question is no longer whether agent harnesses should be open. It is how fast
 ---
 
 *Further reading:*
-- [Harness Engineering: The Architecture Behind AI Coding Agents](/posts/ai/2026-04-04-harness-engineering-guide/)
+- [Harness Engineering: The Architecture Behind AI Coding Agents](/posts/ai/2026-03-30-harness-engineering-guide/)
 - [Claude Code Complete Guide](/posts/ai/2026-01-14-claude-code-guide/)
 - [AI Coding Agents Comparison 2026](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)
 - [MCP Security in 2026](/posts/ai/2026-03-10-mcp-security-2026/)

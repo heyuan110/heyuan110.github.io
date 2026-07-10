@@ -59,7 +59,7 @@ Week 7 讲审查：AI 产出的代码，我们到底能信任到什么程度？
 - 能执行 shell 命令
 - 有"自动批准"模式
 
-[Claude Code](/posts/ai/2026-01-14-claude-code-guide/) 通过权限模型来缓解这个风险——高风险操作需要明确授权，而且操作会显示给用户确认。但这也意味着：**作为用户，你不能无脑批准 AI 的每个操作。** 每次点"确认"之前，你需要理解它要做什么。
+[Claude Code](/zh/posts/ai/2026-01-14-claude-code-guide/) 通过权限模型来缓解这个风险——高风险操作需要明确授权，而且操作会显示给用户确认。但这也意味着：**作为用户，你不能无脑批准 AI 的每个操作。** 每次点"确认"之前，你需要理解它要做什么。
 
 ## OWASP Top 10 在 Agent 时代的新威胁
 
@@ -82,7 +82,7 @@ Prompt Injection 特别危险，因为它攻击的不是你的应用，而是**�
 
 Palo Alto Networks Unit42 的研究揭示了 AI Agent 在安全方面的几个系统性弱点：
 
-1. **身份欺骗和冒充**：攻击者可以伪装成合法服务，通过 [MCP](/posts/ai/2026-02-20-mcp-protocol-guide/) 等协议与你的 AI Agent 交互。
+1. **身份欺骗和冒充**：攻击者可以伪装成合法服务，通过 [MCP](/zh/posts/ai/2026-02-20-mcp-protocol-guide/) 等协议与你的 AI Agent 交互。
 2. **过度信任外部数据**：AI Agent 倾向于信任它读取的所有内容，包括可能被篡改的文档和配置。
 3. **权限边界模糊**：当 AI Agent 连接了多个 MCP Server 时，一个被攻破的 Server 可能影响整个系统。
 
@@ -127,7 +127,7 @@ Week 6 的阅读材料中，[Semgrep 的研究](https://semgrep.dev/blog/2025/fi
 
 ### 结论
 
-AI 安全扫描的现状可以类比为：一个有直觉但不太靠谱的初级安全研究员。它能发现一些人类容易忽视的问题，但误报率高、结果不稳定。正确的用法是把它作为安全工具链中的一环，而不是唯一手段（关于 Claude Code 内置的安全扫描能力，可参考 [Claude Code Security 深度解析](/posts/ai/2026-02-22-claude-code-security/)）。
+AI 安全扫描的现状可以类比为：一个有直觉但不太靠谱的初级安全研究员。它能发现一些人类容易忽视的问题，但误报率高、结果不稳定。正确的用法是把它作为安全工具链中的一环，而不是唯一手段（关于 Claude Code 内置的安全扫描能力，可参考 [Claude Code Security 深度解析](/zh/posts/ai/2026-02-22-claude-code-security/)）。
 
 ## Context Rot 与安全的隐秘关联
 
@@ -141,7 +141,7 @@ Context Rot 指的是模型性能随输入长度增加而持续退化的现象�
 
 3. **AI 的安全意识不是恒定的**：同一个模型在短上下文中可能正确拒绝不安全的操作，但在长上下文中可能因为"注意力衰减"而放过。
 
-**对策**：安全相关的约束应该放在上下文中最显著的位置（如 [CLAUDE.md](/posts/ai/2026-01-12-claudemd-memory-guide/) 的开头），并且定期在新会话中重申。不要指望 AI 在 100 轮对话后还能记住第 1 轮的安全要求。
+**对策**：安全相关的约束应该放在上下文中最显著的位置（如 [CLAUDE.md](/zh/posts/ai/2026-01-12-claudemd-memory-guide/) 的开头），并且定期在新会话中重申。不要指望 AI 在 100 轮对话后还能记住第 1 轮的安全要求。
 
 ## AI Code Review：信任边界在哪里
 
@@ -266,7 +266,7 @@ Graphite 的 CPO Tomas Reimers 在 Week 7 的演讲中分享了百万次 AI Code
 
 在 CI/CD 流程中集成自动化安全检查：
 
-- **[Pre-commit hook](/posts/ai/2026-02-18-claude-code-hooks-guide/)**：运行 lint 和基础安全检查
+- **[Pre-commit hook](/zh/posts/ai/2026-02-18-claude-code-hooks-guide/)**：运行 lint 和基础安全检查
 - **CI Pipeline**：运行完整的测试套件 + 静态分析 + 依赖扫描
 - **PR Review**：自动运行 AI Code Review 工具
 
@@ -309,18 +309,18 @@ CS146S 的回答是：**不安全的快，是假的快。**
 
 ## 相关阅读
 
-- [Claude Code Security 深度解析](/posts/ai/2026-02-22-claude-code-security/) — Claude Code 内置的安全扫描能力详解
-- [Claude Code Hooks 实战指南](/posts/ai/2026-02-18-claude-code-hooks-guide/) — 用 Hooks 自动化安全检查流程
-- [MCP 协议全面解析](/posts/ai/2026-02-20-mcp-protocol-guide/) — 理解 MCP 安全边界的前提
-- [MCP 安全指南](/posts/ai/2026-02-23-mcp-security-guide/) — MCP Server 的安全最佳实践
-- [从零手搓一个 Claude Code](/posts/ai/2026-02-24-build-magic-code/) — 亲手实现安全检查机制，理解更深
+- [Claude Code Security 深度解析](/zh/posts/ai/2026-02-22-claude-code-security/) — Claude Code 内置的安全扫描能力详解
+- [Claude Code Hooks 实战指南](/zh/posts/ai/2026-02-18-claude-code-hooks-guide/) — 用 Hooks 自动化安全检查流程
+- [MCP 协议全面解析](/zh/posts/ai/2026-02-20-mcp-protocol-guide/) — 理解 MCP 安全边界的前提
+- [MCP 安全指南](/zh/posts/ai/2026-02-23-mcp-security-guide/) — MCP Server 的安全最佳实践
+- [从零手搓一个 Claude Code](/zh/posts/ai/2026-02-24-build-magic-code/) — 亲手实现安全检查机制，理解更深
 
 ## 系列文章导航
 
 本文是「斯坦福 Vibe Coding 课程精读」系列第 4 篇：
 
-1. [斯坦福 CS146S 精读（一）：Vibe Coding 如何成为正式学科](/posts/ai/2026-02-24-stanford-cs146s-overview/)
-2. [斯坦福 CS146S 精读（二）：上下文工程](/posts/ai/2026-02-24-context-engineering-deep-dive/)（Week 3）
-3. [斯坦福 CS146S 精读（三）：Agent Manager](/posts/ai/2026-02-24-agent-manager-patterns/)（Week 4）
+1. [斯坦福 CS146S 精读（一）：Vibe Coding 如何成为正式学科](/zh/posts/ai/2026-02-24-stanford-cs146s-overview/)
+2. [斯坦福 CS146S 精读（二）：上下文工程](/zh/posts/ai/2026-02-24-context-engineering-deep-dive/)（Week 3）
+3. [斯坦福 CS146S 精读（三）：Agent Manager](/zh/posts/ai/2026-02-24-agent-manager-patterns/)（Week 4）
 4. **本文**：斯坦福 CS146S 精读（四）：Secure Vibe Coding（Week 6-7）
-5. [斯坦福 CS146S 精读（五）：从原型到生产](/posts/ai/2026-02-24-prototype-to-production/)（Week 8-9）
+5. [斯坦福 CS146S 精读（五）：从原型到生产](/zh/posts/ai/2026-02-24-prototype-to-production/)（Week 8-9）

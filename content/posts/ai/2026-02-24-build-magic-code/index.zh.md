@@ -11,7 +11,7 @@ keywords = ['自己动手构建 Claude Code', 'Agentic Loop 教程', 'Python AI 
 
 ![MagicCode 终端 AI 编程助手演示](cover.webp)
 
-你可能用过 [Claude Code](/posts/ai/2026-01-14-claude-code-guide/)，或者至少听过关于它的各种传说。它能读懂你的代码库、写文件、跑测试、修 bug——全部在终端里完成。用起来像魔法一样。
+你可能用过 [Claude Code](/zh/posts/ai/2026-01-14-claude-code-guide/)，或者至少听过关于它的各种传说。它能读懂你的代码库、写文件、跑测试、修 bug——全部在终端里完成。用起来像魔法一样。
 
 但事实是：**它背后的核心架构出奇地简单。** 简单到你可以在一个下午用 Python 和大约 250 行代码从零重建它。
 
@@ -35,7 +35,7 @@ keywords = ['自己动手构建 Claude Code', 'Agentic Loop 教程', 'Python AI 
 
 在写任何代码之前，先回答一个根本性的问题：**Claude Code 和普通聊天机器人的区别到底是什么？**
 
-答案只有两个字：**[工具调用](/posts/ai/2026-01-19-agent-skills-new-programming/)**。
+答案只有两个字：**[工具调用](/zh/posts/ai/2026-01-19-agent-skills-new-programming/)**。
 
 ### 普通聊天机器人 vs. AI 编程智能体
 
@@ -58,7 +58,7 @@ AI：（创建 hello.py → 写入代码 → 运行 → 报告结果）
 
 ### Agentic Loop（智能体循环）
 
-Claude Code——以及每一个 AI 编程智能体——的灵魂是一种叫做 **[Agentic Loop](/posts/ai/2026-02-23-agentic-coding-trends-2026/)** 的模式：
+Claude Code——以及每一个 AI 编程智能体——的灵魂是一种叫做 **[Agentic Loop](/zh/posts/ai/2026-02-23-agentic-coding-trends-2026/)** 的模式：
 
 ![MagicCode 核心架构——Agentic Loop 流程图](02-architecture.webp)
 
@@ -162,7 +162,7 @@ python v1_basic.py
 
 **`history` 列表**就是对话记忆。每条用户消息和 AI 回复都会追加进去，每次 API 调用时整个列表都会被发送。这就是 LLM "记住"上下文的方式——没有什么魔法般的持久化，只是一个不断增长的消息数组。（这也是为什么长对话最终会撞到 token 限制且费用越来越高。）
 
-**`system` 消息**定义了 AI 的角色和行为规则。它在编程上等同于 Claude Code 的 [`CLAUDE.md`](/posts/ai/2026-01-12-claudemd-memory-guide/)——告诉模型它是谁以及该如何行动。在 OpenAI 的 API 中，它是 `messages` 列表中的第一条消息。
+**`system` 消息**定义了 AI 的角色和行为规则。它在编程上等同于 Claude Code 的 [`CLAUDE.md`](/zh/posts/ai/2026-01-12-claudemd-memory-guide/)——告诉模型它是谁以及该如何行动。在 OpenAI 的 API 中，它是 `messages` 列表中的第一条消息。
 
 ## V2：流式输出——打字机效果
 
@@ -400,7 +400,7 @@ def execute_tool(name: str, params: dict) -> str:
 
 1. **`read_file` 返回带行号的内容**：这让 AI 在后续需要编辑文件时可以精确引用位置——正是 Claude Code 的 Read 工具的工作方式。
 2. **`write_file` 自动创建目录**：`os.makedirs(exist_ok=True)` 消除了"目录不存在"的错误。AI 不应该操心创建父目录。
-3. **`run_command` 有安全黑名单**：简单但有效地防范破坏性操作。（关于 AI 编程安全的深入探讨，参见 [安全的 Vibe Coding](/posts/ai/2026-02-24-secure-vibe-coding/)。）
+3. **`run_command` 有安全黑名单**：简单但有效地防范破坏性操作。（关于 AI 编程安全的深入探讨，参见 [安全的 Vibe Coding](/zh/posts/ai/2026-02-24-secure-vibe-coding/)。）
 4. **所有工具返回字符串**：这是 API 的要求——工具结果必须是可序列化的文本。
 
 ### Agentic Loop——一切的核心
@@ -776,7 +776,7 @@ python magic.py
 
 ![MagicCode vs Claude Code 工具对比](03-tools-table.webp)
 
-Claude Code 大约有 15 个内置工具。我们的 6 个工具覆盖了大约 **80% 的日常使用场景**。剩下的 20% 主要是高级功能，如 [MCP 集成](/posts/ai/2026-02-20-mcp-protocol-guide/)、多文件 diff 和笔记本编辑——锦上添花，但并非核心体验。如果你对 MCP 集成感兴趣，可以看看 [MCP Server 开发教程](/posts/ai/2026-02-22-claude-code-mcp-server-tutorial/)。
+Claude Code 大约有 15 个内置工具。我们的 6 个工具覆盖了大约 **80% 的日常使用场景**。剩下的 20% 主要是高级功能，如 [MCP 集成](/zh/posts/ai/2026-02-20-mcp-protocol-guide/)、多文件 diff 和笔记本编辑——锦上添花，但并非核心体验。如果你对 MCP 集成感兴趣，可以看看 [MCP Server 开发教程](/zh/posts/ai/2026-02-22-claude-code-mcp-server-tutorial/)。
 
 ## 五个进阶方向
 
@@ -784,7 +784,7 @@ Claude Code 大约有 15 个内置工具。我们的 6 个工具覆盖了大约 
 
 ### 1. 权限确认
 
-Claude Code 在写文件或执行命令前会请求确认（关于 Claude Code 安全模型的更多内容，参见 [Claude Code 安全深度解析](/posts/ai/2026-02-22-claude-code-security/)）。实现起来很简单：
+Claude Code 在写文件或执行命令前会请求确认（关于 Claude Code 安全模型的更多内容，参见 [Claude Code 安全深度解析](/zh/posts/ai/2026-02-22-claude-code-security/)）。实现起来很简单：
 
 ```python
 def execute_tool_with_confirm(name, params):
@@ -802,7 +802,7 @@ def execute_tool_with_confirm(name, params):
 
 ### 2. 项目上下文加载（CLAUDE.md）
 
-[Claude Code 会自动读取项目根目录的 `CLAUDE.md` 来了解上下文](/posts/ai/2026-01-12-claudemd-memory-guide/)。我们也可以这样做：
+[Claude Code 会自动读取项目根目录的 `CLAUDE.md` 来了解上下文](/zh/posts/ai/2026-01-12-claudemd-memory-guide/)。我们也可以这样做：
 
 ```python
 def load_project_context():
@@ -886,7 +886,7 @@ console.print(f"[dim]本次会话 token — 输入: {total_input_tokens} | 输�
 | V3 | 精美终端 UI | 35 | Rich + Markdown 渲染 |
 | V4 | 工具系统 + Agentic Loop | 250 | Function Calling + 自主循环 |
 
-整个架构归结为**三样东西**：一个 LLM API、工具定义和一个 Agentic Loop。就这些。掌握这三个概念，你就理解了 [Claude Code](/posts/ai/2026-01-14-claude-code-guide/)、[Cursor Agent](/posts/ai/2026-01-19-cursor-agent-best-practices/)、Copilot Workspace 以及市面上所有其他 AI 编程工具的核心架构。
+整个架构归结为**三样东西**：一个 LLM API、工具定义和一个 Agentic Loop。就这些。掌握这三个概念，你就理解了 [Claude Code](/zh/posts/ai/2026-01-14-claude-code-guide/)、[Cursor Agent](/zh/posts/ai/2026-01-19-cursor-agent-best-practices/)、Copilot Workspace 以及市面上所有其他 AI 编程工具的核心架构。
 
 完整代码就在这篇文章里——复制、粘贴、运行。如果你在此基础上构建了有趣的东西，欢迎在评论区分享。
 
@@ -894,10 +894,10 @@ console.print(f"[dim]本次会话 token — 输入: {total_input_tokens} | 输�
 
 ## 相关阅读
 
-- [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/) — 深入了解如何高效使用 Claude Code
-- [CLAUDE.md 记忆指南：让 AI 记住你的项目](/posts/ai/2026-01-12-claudemd-memory-guide/) — AI 编程助手如何理解项目上下文
-- [上下文工程：最被低估的 AI 技能](/posts/ai/2026-02-24-context-engineering-deep-dive/) — 系统提示设计与上下文管理
-- [MCP 协议：AI 集成的通用标准](/posts/ai/2026-02-20-mcp-protocol-guide/) — AI 工具可扩展性的未来
-- [2026 Agentic Coding 趋势报告](/posts/ai/2026-02-23-agentic-coding-trends-2026/) — Agentic Loop 如何重塑软件开发
-- [Claude Code Hooks 自动化指南](/posts/ai/2026-02-18-claude-code-hooks-guide/) — 用自定义自动化扩展 Claude Code
-- [Vibe Coding 完全指南](/posts/ai/2026-02-22-vibe-coding-guide/) — 自然语言驱动的 AI 编程方法论
+- [Claude Code 完全指南](/zh/posts/ai/2026-01-14-claude-code-guide/) — 深入了解如何高效使用 Claude Code
+- [CLAUDE.md 记忆指南：让 AI 记住你的项目](/zh/posts/ai/2026-01-12-claudemd-memory-guide/) — AI 编程助手如何理解项目上下文
+- [上下文工程：最被低估的 AI 技能](/zh/posts/ai/2026-02-24-context-engineering-deep-dive/) — 系统提示设计与上下文管理
+- [MCP 协议：AI 集成的通用标准](/zh/posts/ai/2026-02-20-mcp-protocol-guide/) — AI 工具可扩展性的未来
+- [2026 Agentic Coding 趋势报告](/zh/posts/ai/2026-02-23-agentic-coding-trends-2026/) — Agentic Loop 如何重塑软件开发
+- [Claude Code Hooks 自动化指南](/zh/posts/ai/2026-02-18-claude-code-hooks-guide/) — 用自定义自动化扩展 Claude Code
+- [Vibe Coding 完全指南](/zh/posts/ai/2026-02-22-vibe-coding-guide/) — 自然语言驱动的 AI 编程方法论

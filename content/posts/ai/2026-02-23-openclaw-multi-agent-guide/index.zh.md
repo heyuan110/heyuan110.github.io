@@ -672,7 +672,7 @@ OpenClaw 支持在不同渠道使用不同模型，甚至同一 Agent 在不同�
 
 **会的。** 每次 `sessions_send` 都是一次 API 调用。减少不必要通信的方法：
 - 主管 Agent 在派单前先判断任务复杂度，简单任务自己处理
-- 使用 [Token 优化策略](/posts/ai/2026-02-14-openclaw-automation-pitfalls/)减少每次通信的上下文长度
+- 使用 [Token 优化策略](/zh/posts/ai/2026-02-14-openclaw-automation-pitfalls/)减少每次通信的上下文长度
 - 给子 Agent 设置更轻量的模型
 
 ### Q3：如何处理 Agent 之间的"理解偏差"？
@@ -701,9 +701,9 @@ Agent A 的输出交给 Agent B 时，可能出现理解不一致。解决方案
 
 ## 相关阅读
 
-- [OpenClaw 超详细上手教程：小白友好 + 老鸟技巧](/posts/ai/2026-02-12-openclaw-usage-tutorial/)
-- [拆解 OpenClaw 自动化架构：从消息到执行的完整链路](/posts/ai/2026-02-14-openclaw-architecture-deep-dive/)
-- [OpenClaw 自动化别踩坑：装 3 个 Skill 不等于真的好用](/posts/ai/2026-02-14-openclaw-automation-pitfalls/)
-- [OpenClaw 记忆实施策略解析：工具驱动的 RAG 与"按需回忆"](/posts/ai/2026-01-31-openclaw-memory-strategy/)
-- [Claude Code Agent Teams 完全指南：多 Agent 协作开发实战](/posts/ai/2026-02-22-claude-code-agent-teams/)
-- [Agent Skills：用大白话写程序的时代来了](/posts/ai/2026-01-19-agent-skills-new-programming/)
+- [OpenClaw 超详细上手教程：小白友好 + 老鸟技巧](/zh/posts/ai/2026-02-12-openclaw-usage-tutorial/)
+- [拆解 OpenClaw 自动化架构：从消息到执行的完整链路](/zh/posts/ai/2026-02-14-openclaw-architecture-deep-dive/)
+- [OpenClaw 自动化别踩坑：装 3 个 Skill 不等于真的好用](/zh/posts/ai/2026-02-14-openclaw-automation-pitfalls/)
+- [OpenClaw 记忆实施策略解析：工具驱动的 RAG 与"按需回忆"](/zh/posts/ai/2026-01-31-openclaw-memory-strategy/)
+- [Claude Code Agent Teams 完全指南：多 Agent 协作开发实战](/zh/posts/ai/2026-02-22-claude-code-agent-teams/)
+- [Agent Skills：用大白话写程序的时代来了](/zh/posts/ai/2026-01-19-agent-skills-new-programming/)

@@ -310,7 +310,7 @@ video_url = response.json()["data"]["video_url"]
 
 ## 相关阅读
 
-- [Mac Mini M4 本地 AI 图像生成对比评测](/posts/ai/2026-02-15-mac-mini-local-image-generation/) — Apple Silicon 上的本地 AI 创作
-- [Google Antigravity 评测 2026](/posts/ai/2026-03-10-google-antigravity-review/) — 另一个科技巨头的 AI 重磅发布
-- [2026 AI 编程工具横评](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — AI 工具跨领域对比
-- [OpenAI Symphony 自主编程深度解析](/posts/ai/2026-03-05-openai-symphony-autonomous-coding/) — 字节最大竞争对手的 AI 战略
+- [Mac Mini M4 本地 AI 图像生成对比评测](/zh/posts/ai/2026-02-15-mac-mini-local-image-generation/) — Apple Silicon 上的本地 AI 创作
+- [Google Antigravity 评测 2026](/zh/posts/ai/2026-03-10-google-antigravity-review/) — 另一个科技巨头的 AI 重磅发布
+- [2026 AI 编程工具横评](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — AI 工具跨领域对比
+- [OpenAI Symphony 自主编程深度解析](/zh/posts/ai/2026-03-05-openai-symphony-autonomous-coding/) — 字节最大竞争对手的 AI 战略

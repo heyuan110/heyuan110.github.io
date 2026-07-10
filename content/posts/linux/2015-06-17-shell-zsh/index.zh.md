@@ -9,7 +9,7 @@ toc = true
 keywords = ['Oh My Zsh', 'Zsh 配置', 'Powerlevel10k', '终端美化', 'Shell 配置', 'zsh-autosuggestions']
 +++
 
-如果你使用 Linux 或 macOS，终端是每天都要打交道的工具。默认的 Bash 虽然够用，但 **Zsh** 配合 **Oh My Zsh** 能带来更强大的功能和更愉悦的使用体验。本文将手把手教你打造一个高效、美观的终端环境，让你的[命令行操作](/posts/linux/2020-03-19-linux-mac-commands/)效率翻倍。
+如果你使用 Linux 或 macOS，终端是每天都要打交道的工具。默认的 Bash 虽然够用，但 **Zsh** 配合 **Oh My Zsh** 能带来更强大的功能和更愉悦的使用体验。本文将手把手教你打造一个高效、美观的终端环境，让你的[命令行操作](/zh/posts/linux/2020-03-19-linux-mac-commands/)效率翻倍。
 
 <!--more-->
 
@@ -327,13 +327,13 @@ source ~/.zshrc
 4. **插件组合** 提供智能补全和语法高亮
 5. **自定义别名** 提升日常操作效率
 
-终端是开发者的核心工具，花时间打造一个顺手的环境绝对值得。如果你对终端工具感兴趣，也可以看看 [2025年终端工具推荐](/posts/macos/2025-01-22-terminal-tools-guide/)，了解更多优秀的终端模拟器。
+终端是开发者的核心工具，花时间打造一个顺手的环境绝对值得。如果你对终端工具感兴趣，也可以看看 [2025年终端工具推荐](/zh/posts/macos/2025-01-22-terminal-tools-guide/)，了解更多优秀的终端模拟器。
 
 ## 相关阅读
 
-- [Linux/macOS 常用命令速查手册](/posts/linux/2020-03-19-linux-mac-commands/) - 掌握常用命令
-- [Shell 脚本特殊变量详解](/posts/linux/2019-05-13-linux-shell-vars/) - Shell 脚本编程必备
-- [2025年终端工具推荐：23款高效终端对比](/posts/macos/2025-01-22-terminal-tools-guide/) - 选择适合你的终端
+- [Linux/macOS 常用命令速查手册](/zh/posts/linux/2020-03-19-linux-mac-commands/) - 掌握常用命令
+- [Shell 脚本特殊变量详解](/zh/posts/linux/2019-05-13-linux-shell-vars/) - Shell 脚本编程必备
+- [2025年终端工具推荐：23款高效终端对比](/zh/posts/macos/2025-01-22-terminal-tools-guide/) - 选择适合你的终端
 
 ## 参考资源
 

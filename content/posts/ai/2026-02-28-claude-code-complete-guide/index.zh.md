@@ -73,7 +73,7 @@ answer = "适合。Team 版（年付 25 美元/人/月，最少 5 人）提供 S
 
 从零到高效开发的最短路径：
 
-**[Claude Code 安装指南：完整配置教程 (2026)](/posts/ai/2026-02-25-claude-code-setup-guide/)**
+**[Claude Code 安装指南：完整配置教程 (2026)](/zh/posts/ai/2026-02-25-claude-code-setup-guide/)**
 
 涵盖内容：
 - 通过原生安装器（推荐）或 npm 安装
@@ -88,7 +88,7 @@ answer = "适合。Team 版（年付 25 美元/人/月，最少 5 人）提供 S
 
 提升 Claude Code 效率最有效的一件事：
 
-**[CLAUDE.md 指南：让 AI 每次都能获取完美的项目上下文](/posts/ai/2026-02-28-claude-code-claudemd-guide/)**
+**[CLAUDE.md 指南：让 AI 每次都能获取完美的项目上下文](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/)**
 
 涵盖内容：
 - CLAUDE.md 是什么，为什么重要
@@ -103,7 +103,7 @@ answer = "适合。Team 版（年付 25 美元/人/月，最少 5 人）提供 S
 
 从别人的错误中学习，节省数小时的折腾：
 
-**[Claude Code 新手最容易犯的 10 个错误（以及如何避免）](/posts/ai/2026-02-25-claude-code-mistakes/)**
+**[Claude Code 新手最容易犯的 10 个错误（以及如何避免）](/zh/posts/ai/2026-02-25-claude-code-mistakes/)**
 
 涵盖最常见的问题：
 - 不写 CLAUDE.md 就开始用
@@ -118,7 +118,7 @@ answer = "适合。Team 版（年付 25 美元/人/月，最少 5 人）提供 S
 
 MCP（Model Context Protocol）让 Claude Code 能与数据库、API、云服务等外部系统交互：
 
-**[Claude Code MCP 配置：让 AI 连接任何外部服务](/posts/ai/2026-02-28-claude-code-mcp-setup/)**
+**[Claude Code MCP 配置：让 AI 连接任何外部服务](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/)**
 
 涵盖内容：
 - MCP 是什么，工作原理
@@ -131,7 +131,7 @@ MCP（Model Context Protocol）让 Claude Code 能与数据库、API、云服务
 
 Hooks 让你设定 AI 必须遵守的规则 —— 格式化、文件保护、命令限制：
 
-**[Claude Code Hooks 指南：12 个实用自动化配置 (2026)](/posts/ai/2026-02-28-claude-code-hooks-guide/)**
+**[Claude Code Hooks 指南：12 个实用自动化配置 (2026)](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/)**
 
 涵盖内容：
 - 所有生命周期事件（PreToolUse、PostToolUse、Notification 等）
@@ -144,7 +144,7 @@ Hooks 让你设定 AI 必须遵守的规则 —— 格式化、文件保护、�
 
 Skills 把你的专业知识封装成 SKILL.md 文件，让 Claude Code 按需调用：
 
-**[Claude Code Skills：教 AI 你的自定义工作流](/posts/ai/2026-02-28-claude-code-skills-guide/)**
+**[Claude Code Skills：教 AI 你的自定义工作流](/zh/posts/ai/2026-02-28-claude-code-skills-guide/)**
 
 涵盖内容：
 - 用 SKILL.md 创建 Skills
@@ -157,7 +157,7 @@ Skills 把你的专业知识封装成 SKILL.md 文件，让 Claude Code 按需�
 
 同时运行多个 Claude Code 会话，不会有分支冲突：
 
-**[Claude Code Worktree：并行运行多个 AI 任务](/posts/ai/2026-02-28-claude-code-worktree-guide/)**
+**[Claude Code Worktree：并行运行多个 AI 任务](/zh/posts/ai/2026-02-28-claude-code-worktree-guide/)**
 
 涵盖内容：
 - Git worktree 基础知识及 Claude Code 的使用方式
@@ -170,7 +170,7 @@ Skills 把你的专业知识封装成 SKILL.md 文件，让 Claude Code 按需�
 
 协调多个 Claude Code 智能体，各自负责任务的不同部分：
 
-**[Claude Code 团队协作：多智能体协作模式](/posts/ai/2026-02-28-claude-code-teams-guide/)**
+**[Claude Code 团队协作：多智能体协作模式](/zh/posts/ai/2026-02-28-claude-code-teams-guide/)**
 
 涵盖内容：
 - Agent Teams 架构（主智能体 + 子智能体）
@@ -185,7 +185,7 @@ Skills 把你的专业知识封装成 SKILL.md 文件，让 Claude Code 按需�
 
 全面了解定价方案：
 
-**[Claude 定价 2026：从免费到 Max $200 全方案解析](/posts/ai/2026-02-25-claude-code-pricing/)**
+**[Claude 定价 2026：从免费到 Max $200 全方案解析](/zh/posts/ai/2026-02-25-claude-code-pricing/)**
 
 涵盖内容：
 - 所有方案：Free、Pro ($20)、Max 5x ($100)、Max 20x ($200)、Team、Enterprise
@@ -198,7 +198,7 @@ Skills 把你的专业知识封装成 SKILL.md 文件，让 Claude Code 按需�
 
 关于实际能用多少的权威指南：
 
-**[Claude 速率限制 2026：各方案消息配额详解](/posts/ai/2026-02-28-claude-rate-limits/)**
+**[Claude 速率限制 2026：各方案消息配额详解](/zh/posts/ai/2026-02-28-claude-rate-limits/)**
 
 涵盖内容：
 - 每个方案每 5 小时窗口的消息数
@@ -213,12 +213,12 @@ Skills 把你的专业知识封装成 SKILL.md 文件，让 Claude Code 按需�
 
 | 你的情况 | 从这里开始 |
 |---------|-----------|
-| **从未用过 Claude Code** | [安装指南](/posts/ai/2026-02-25-claude-code-setup-guide/) → [常见错误](/posts/ai/2026-02-25-claude-code-mistakes/) |
-| **在用但经常碰到限制** | [速率限制](/posts/ai/2026-02-28-claude-rate-limits/) → [定价](/posts/ai/2026-02-25-claude-code-pricing/) |
-| **想要更多自动化** | [Hooks](/posts/ai/2026-02-28-claude-code-hooks-guide/) → [Skills](/posts/ai/2026-02-28-claude-code-skills-guide/) |
-| **处理大型项目** | [CLAUDE.md](/posts/ai/2026-02-28-claude-code-claudemd-guide/) → [MCP](/posts/ai/2026-02-28-claude-code-mcp-setup/) |
-| **需要更高吞吐量** | [Worktree](/posts/ai/2026-02-28-claude-code-worktree-guide/) → [Teams](/posts/ai/2026-02-28-claude-code-teams-guide/) |
-| **和竞品对比评估** | [定价](/posts/ai/2026-02-25-claude-code-pricing/)（含 Copilot、Cursor、Codex 对比） |
+| **从未用过 Claude Code** | [安装指南](/zh/posts/ai/2026-02-25-claude-code-setup-guide/) → [常见错误](/zh/posts/ai/2026-02-25-claude-code-mistakes/) |
+| **在用但经常碰到限制** | [速率限制](/zh/posts/ai/2026-02-28-claude-rate-limits/) → [定价](/zh/posts/ai/2026-02-25-claude-code-pricing/) |
+| **想要更多自动化** | [Hooks](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) → [Skills](/zh/posts/ai/2026-02-28-claude-code-skills-guide/) |
+| **处理大型项目** | [CLAUDE.md](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) → [MCP](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/) |
+| **需要更高吞吐量** | [Worktree](/zh/posts/ai/2026-02-28-claude-code-worktree-guide/) → [Teams](/zh/posts/ai/2026-02-28-claude-code-teams-guide/) |
+| **和竞品对比评估** | [定价](/zh/posts/ai/2026-02-25-claude-code-pricing/)（含 Copilot、Cursor、Codex 对比） |
 
 ## 进阶工作流
 
@@ -275,16 +275,16 @@ Claude Code 正在快速进化。值得关注的方向：
 
 | 文章 | 类型 | 主题 |
 |------|------|------|
-| [安装指南](/posts/ai/2026-02-25-claude-code-setup-guide/) | 安装 | 安装与第一个项目 |
-| [CLAUDE.md 指南](/posts/ai/2026-02-28-claude-code-claudemd-guide/) | 指南 | 项目配置 |
-| [MCP 配置](/posts/ai/2026-02-28-claude-code-mcp-setup/) | 指南 | 外部服务集成 |
-| [Hooks 指南](/posts/ai/2026-02-28-claude-code-hooks-guide/) | 指南 | 自动化规则 |
-| [Skills 指南](/posts/ai/2026-02-28-claude-code-skills-guide/) | 指南 | 自定义工作流 |
-| [Worktree 指南](/posts/ai/2026-02-28-claude-code-worktree-guide/) | 指南 | 并行执行 |
-| [Teams 指南](/posts/ai/2026-02-28-claude-code-teams-guide/) | 指南 | 多智能体协作 |
-| [定价 2026](/posts/ai/2026-02-25-claude-code-pricing/) | 定价 | 方案与成本分析 |
-| [速率限制](/posts/ai/2026-02-28-claude-rate-limits/) | 指南 | 使用限制详解 |
-| [10 个常见错误](/posts/ai/2026-02-25-claude-code-mistakes/) | 技巧 | 常见陷阱 |
+| [安装指南](/zh/posts/ai/2026-02-25-claude-code-setup-guide/) | 安装 | 安装与第一个项目 |
+| [CLAUDE.md 指南](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) | 指南 | 项目配置 |
+| [MCP 配置](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/) | 指南 | 外部服务集成 |
+| [Hooks 指南](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) | 指南 | 自动化规则 |
+| [Skills 指南](/zh/posts/ai/2026-02-28-claude-code-skills-guide/) | 指南 | 自定义工作流 |
+| [Worktree 指南](/zh/posts/ai/2026-02-28-claude-code-worktree-guide/) | 指南 | 并行执行 |
+| [Teams 指南](/zh/posts/ai/2026-02-28-claude-code-teams-guide/) | 指南 | 多智能体协作 |
+| [定价 2026](/zh/posts/ai/2026-02-25-claude-code-pricing/) | 定价 | 方案与成本分析 |
+| [速率限制](/zh/posts/ai/2026-02-28-claude-rate-limits/) | 指南 | 使用限制详解 |
+| [10 个常见错误](/zh/posts/ai/2026-02-25-claude-code-mistakes/) | 技巧 | 常见陷阱 |
 
 ## 相关阅读
 

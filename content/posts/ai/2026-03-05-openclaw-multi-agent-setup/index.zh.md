@@ -39,7 +39,7 @@ answer = "可以。每个 Agent 都能配置不同的模型。比如用 Claude �
 
 这篇指南将带你完成 OpenClaw 多 Agent 团队的搭建。你会了解架构设计、配置方法、通信机制，以及让多 Agent 系统真正跑起来的协作模式——不是纸上谈兵，而是可以直接落地的实操。
 
-如果你还没用过 OpenClaw，建议先看[入门教程](/posts/ai/2026-02-12-openclaw-usage-tutorial/)。如果你已经在跑单个 Agent，这篇正好是下一步。
+如果你还没用过 OpenClaw，建议先看[入门教程](/zh/posts/ai/2026-02-12-openclaw-usage-tutorial/)。如果你已经在跑单个 Agent，这篇正好是下一步。
 
 ## 为什么单个 Agent 不够用
 
@@ -453,7 +453,7 @@ export TAVILY_API_KEY="tvly-xxxxxxxxxxxxxxxx"
 clawdhub install proactive-agent
 ```
 
-> **重要提醒**：很多教程还在引用 `proactive-agent-1-2-4`，但作者已将其更名为 `proactive-agent`（当前版本 v3.1.0）。另外 CLI 命令是 `clawdhub`（带 d），不是 `clawhub`。详细说明见 [OpenClaw 自动化踩坑指南](/posts/ai/2026-02-14-openclaw-automation-pitfalls/)。
+> **重要提醒**：很多教程还在引用 `proactive-agent-1-2-4`，但作者已将其更名为 `proactive-agent`（当前版本 v3.1.0）。另外 CLI 命令是 `clawdhub`（带 d），不是 `clawhub`。详细说明见 [OpenClaw 自动化踩坑指南](/zh/posts/ai/2026-02-14-openclaw-automation-pitfalls/)。
 
 配合 Tavily，你的研究 Agent 就能自主搜索信息、整合发现，并主动向 Supervisor 汇报结果——不需要你隔一会儿就去看一眼。
 
@@ -667,7 +667,7 @@ main Agent 审核草稿 → 需要修改就打回 → 交付最终版本
 main Agent 将预警和摘要发送到 Telegram
 ```
 
-这利用了 OpenClaw 内置的 Heartbeat 和 Cron 功能。底层原理详见我们的[架构深度解析](/posts/ai/2026-02-14-openclaw-architecture-deep-dive/)。
+这利用了 OpenClaw 内置的 Heartbeat 和 Cron 功能。底层原理详见我们的[架构深度解析](/zh/posts/ai/2026-02-14-openclaw-architecture-deep-dive/)。
 
 ## 性能优化与成本管理
 
@@ -868,9 +868,9 @@ main Agent 将预警和摘要发送到 Telegram
 
 ## 相关阅读
 
-- [OpenClaw 2026.3.1: WebSocket Streaming, Agent Routing, and K8s Support](/posts/ai/2026-03-03-openclaw-2026-3-1-new-features/) —— 最新功能，包括新的 Agent 路由 CLI
-- [OpenClaw Automation Pitfalls: Installing 3 Skills Does Not Mean It Works](/posts/ai/2026-02-14-openclaw-automation-pitfalls/) —— 会话隔离、proactive-agent 配置及真实踩坑案例
-- [OpenClaw Architecture Deep Dive](/posts/ai/2026-02-14-openclaw-architecture-deep-dive/) —— 消息从 Gateway 到 Agent 再到执行的完整流转
-- [OpenClaw Memory Strategy: Tool-Driven RAG and On-Demand Recall](/posts/ai/2026-01-31-openclaw-memory-strategy/) —— 隔离 Agent 下的记忆工作机制
-- [Claude Code Agent Teams: Multi-Agent Collaborative Development](/posts/ai/2026-02-22-claude-code-agent-teams/) —— 编码工作流中的多 Agent 协作方案
-- [Agentic Coding Trends in 2026](/posts/ai/2026-02-23-agentic-coding-trends-2026/) —— 多 Agent 开发的未来趋势
+- [OpenClaw 2026.3.1: WebSocket Streaming, Agent Routing, and K8s Support](/zh/posts/ai/2026-03-03-openclaw-2026-3-1-new-features/) —— 最新功能，包括新的 Agent 路由 CLI
+- [OpenClaw Automation Pitfalls: Installing 3 Skills Does Not Mean It Works](/zh/posts/ai/2026-02-14-openclaw-automation-pitfalls/) —— 会话隔离、proactive-agent 配置及真实踩坑案例
+- [OpenClaw Architecture Deep Dive](/zh/posts/ai/2026-02-14-openclaw-architecture-deep-dive/) —— 消息从 Gateway 到 Agent 再到执行的完整流转
+- [OpenClaw Memory Strategy: Tool-Driven RAG and On-Demand Recall](/zh/posts/ai/2026-01-31-openclaw-memory-strategy/) —— 隔离 Agent 下的记忆工作机制
+- [Claude Code Agent Teams: Multi-Agent Collaborative Development](/zh/posts/ai/2026-02-22-claude-code-agent-teams/) —— 编码工作流中的多 Agent 协作方案
+- [Agentic Coding Trends in 2026](/zh/posts/ai/2026-02-23-agentic-coding-trends-2026/) —— 多 Agent 开发的未来趋势

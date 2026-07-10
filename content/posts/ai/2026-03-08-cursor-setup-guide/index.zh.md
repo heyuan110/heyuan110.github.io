@@ -33,7 +33,7 @@ Cursor 已经成为 2026 年最强大的 AI 原生 IDE 之一，但大多数开�
 
 Cursor 是 Visual Studio Code 的一个分支，在开发体验的各个层面都深度集成了 AI。和后期加装的 AI 插件不同，Cursor 的 Agent 模式是从编辑器核心层构建的——它能读取文件、搜索代码库、执行终端命令，还能自主编辑代码。
 
-如果你在对比各种 AI 编程工具，可以看看我们的 [AI 编程工具对比](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)，了解 2026 年的全景。想看和另一款热门工具的正面对决，请看 [Claude Code vs Cursor](/posts/ai/2026-02-28-claude-code-vs-cursor/)。
+如果你在对比各种 AI 编程工具，可以看看我们的 [AI 编程工具对比](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)，了解 2026 年的全景。想看和另一款热门工具的正面对决，请看 [Claude Code vs Cursor](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/)。
 
 Cursor 和普通 VS Code + Copilot 的根本区别在于：Cursor 把 AI 当作一等公民。它不只是自动补全——而是一个能规划、执行和迭代的 Agent。
 
@@ -68,7 +68,7 @@ Cursor 和普通 VS Code + Copilot 的根本区别在于：Cursor 把 AI 当作�
 
 Cursor 团队针对每个支持的模型调优了这些组件，所以不管你选哪个模型，Agent 都知道如何高效使用它的工具。
 
-这种架构在概念上和其他 AI 编程工具类似。比如 Claude Code 用 CLAUDE.md 配置实现了类似的方案——可以看看我们的 [CLAUDE.md 指南](/posts/ai/2026-02-28-claude-code-claudemd-guide/) 对比不同工具处理项目上下文的方式。
+这种架构在概念上和其他 AI 编程工具类似。比如 Claude Code 用 CLAUDE.md 配置实现了类似的方案——可以看看我们的 [CLAUDE.md 指南](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) 对比不同工具处理项目上下文的方式。
 
 ## 规划模式：先想清楚再动手
 
@@ -153,7 +153,7 @@ Cursor 团队针对每个支持的模型调优了这些组件，所以不管你�
 
 用 `@Past Chats` 可以选择性地将之前对话的上下文导入新对话。这样既能获取相关历史，又不带入累积的噪音，两全其美。
 
-上下文管理是 AI 辅助开发中的通用原则。想深入了解，可以看我们的 [上下文工程指南](/posts/ai/2026-03-10-context-engineering-guide/)。
+上下文管理是 AI 辅助开发中的通用原则。想深入了解，可以看我们的 [上下文工程指南](/zh/posts/ai/2026-03-10-context-engineering-guide/)。
 
 ## 配置 Rules 和 Skills
 
@@ -281,7 +281,7 @@ TDD 和 Agent 模式天然契合。测试给了 Agent 一个明确的、可验�
 不要修改任何测试文件。
 ```
 
-这种工作流和 [Vibe Coding](/posts/ai/2026-02-28-vibe-coding-explained/) 的理念相通——开发者通过高层意图引导 AI，而不是纠结于底层指令。
+这种工作流和 [Vibe Coding](/zh/posts/ai/2026-02-28-vibe-coding-explained/) 的理念相通——开发者通过高层意图引导 AI，而不是纠结于底层指令。
 
 ## 代码审查：信任但要验证
 
@@ -444,9 +444,9 @@ Cursor 不只是一个装了 AI 的编辑器。配置得当、用对方法，它
 
 ## 相关阅读
 
-- [Claude Code vs Cursor：哪个 AI 编程工具更适合你？](/posts/ai/2026-02-28-claude-code-vs-cursor/)
-- [Claude Code 完全指南](/posts/ai/2026-02-28-claude-code-complete-guide/)
-- [2026 年 AI 编程工具对比](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)
-- [AI 开发的上下文工程指南](/posts/ai/2026-03-10-context-engineering-guide/)
+- [Claude Code vs Cursor：哪个 AI 编程工具更适合你？](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/)
+- [Claude Code 完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)
+- [2026 年 AI 编程工具对比](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)
+- [AI 开发的上下文工程指南](/zh/posts/ai/2026-03-10-context-engineering-guide/)
 - [Cursor 官方文档](https://cursor.com/docs)
 - [Cursor Agent 最佳实践博客](https://cursor.com/blog/agent-best-practices)

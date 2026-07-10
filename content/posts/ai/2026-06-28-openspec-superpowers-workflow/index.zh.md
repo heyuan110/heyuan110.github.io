@@ -34,7 +34,7 @@ answer = "它能提升一致性、减少返工,但解决不了更深层的问题
 
 搜索数据讲得很清楚:大量人在搜 "openspec vs superpowers",期待有个赢家。但我把两者在真实项目里跑了几个月后,诚实的答案是——"二选一"这个框架本身就是个坑。这两个工具争的根本不是同一件事,就像施工图纸和工地监理不是竞品一样。一个决定"造什么"并保留"为什么这么造";另一个决定"造得好不好",死活不让代理偷工减料。非要问"哪个更好",等于问编译器和 linter 谁更好——它们在同一条流水线的不同层。
 
-今年早些时候我写过一篇[Claude Code + OpenSpec + Superpowers 三件套完整拆解](/posts/ai/2026-04-09-claude-code-openspec-superpowers/),那篇回答的是"这些工具是什么、三个一起上是不是过度"。这篇是续作,回答大家真正反复在搜的问题:面对眼前一个真实功能,**我到底该抓哪个,又怎么把它们接起来让它们配合而不是打架?** 想看安装和分层理论,先读母文;这里我默认你两个都装好了,只想要能用的实战闭环。
+今年早些时候我写过一篇[Claude Code + OpenSpec + Superpowers 三件套完整拆解](/zh/posts/ai/2026-04-09-claude-code-openspec-superpowers/),那篇回答的是"这些工具是什么、三个一起上是不是过度"。这篇是续作,回答大家真正反复在搜的问题:面对眼前一个真实功能,**我到底该抓哪个,又怎么把它们接起来让它们配合而不是打架?** 想看安装和分层理论,先读母文;这里我默认你两个都装好了,只想要能用的实战闭环。
 
 数据能说明这个话题为什么值得深挖。截至 2026 年年中,[Superpowers](https://github.com/obra/superpowers) 已经约 24.9 万 star,而且——这是多数对比文章漏掉的关键——它早已不是 Claude 专属插件了,如今能装进 Codex、Cursor、Antigravity、Copilot CLI、Kimi、OpenCode 等等。它已经从一个插件长成了一套方法论。[OpenSpec](https://openspec.dev/) 约 5.9 万 star,刻意做得更窄,只专注一件事:别让实现意图困在会话历史里,而是落进带版本的文件。
 
@@ -154,7 +154,7 @@ sequenceDiagram
 
 这个块做了三件工具自己不会做的事。它把规划路由给 OpenSpec,让 Superpowers 的 brainstorming 别再抢戏。它在 `apply` 期间手动打开 Superpowers 的执行技能——因为关键在于,TDD、代码审查、worktree 隔离在 `/opsx:apply` 里*不会自动激活*,只有 CLAUDE.md 明确要求时才触发。它还把归档变成不可商量的动作,从而堵住 OpenSpec 最常见的一个坑:忘了归档,然后眼睁睁看下个会话把已经做完的活重做一遍。
 
-如果这篇文章你只记一句话,记这句:**工具给你零件,CLAUDE.md 是装配说明书,没有它,零件之间会主动互相干扰。** 关于这些技能怎么加载、怎么触发的底层机制,我的 [Claude Code 技能指南](/posts/ai/2026-01-08-claudecode-skill-guide/)和 [Superpowers 深度拆解](/posts/ai/2026-02-01-superpowers-deep-dive/)讲了背后的模型。
+如果这篇文章你只记一句话,记这句:**工具给你零件,CLAUDE.md 是装配说明书,没有它,零件之间会主动互相干扰。** 关于这些技能怎么加载、怎么触发的底层机制,我的 [Claude Code 技能指南](/zh/posts/ai/2026-01-08-claudecode-skill-guide/)和 [Superpowers 深度拆解](/zh/posts/ai/2026-02-01-superpowers-deep-dive/)讲了背后的模型。
 
 ## 我踩过的 5 个坑
 
@@ -174,13 +174,13 @@ sequenceDiagram
 
 如果只带走一个决策框架:**默认用 Superpowers,当一个功能越过"多人、多会话反复迭代"这条线时,升级到组合。** Superpowers 是那个能改善任何项目的工具——它的对话优先规划和 TDD 强制在任何规模都加分,而且 2026 年它几乎能跑在每个编程代理上,不只是 Claude Code。光是这份通用性,就让它成为更稳的默认赌注。OpenSpec 是你在"决策可追溯"变成真实、可感的瓶颈时才加的专才——通常就是队友问出"我们当初为什么这么做?"而没人答得上来的那一刻。
 
-别把完整组合套在所有东西上,那是母文警告过的过度工程陷阱,现在依然成立。一个 30 分钟的脚本不需要 Delta/Archive 审计链。但当你真的组合它们时,CLAUDE.md 路由块不是可有可无的点缀——它才是把两个互相无视的工具变成一个连贯闭环的关键。路由接对了,你就拿到两层的最好部分:OpenSpec 记住*为什么*,Superpowers 保证*造得好不好*,Claude Code 负责敲键盘。关于这一切所在的更大的 Claude Code 工作流,我的 [Claude Code 完全指南](/posts/ai/2026-02-28-claude-code-complete-guide/)是地图。
+别把完整组合套在所有东西上,那是母文警告过的过度工程陷阱,现在依然成立。一个 30 分钟的脚本不需要 Delta/Archive 审计链。但当你真的组合它们时,CLAUDE.md 路由块不是可有可无的点缀——它才是把两个互相无视的工具变成一个连贯闭环的关键。路由接对了,你就拿到两层的最好部分:OpenSpec 记住*为什么*,Superpowers 保证*造得好不好*,Claude Code 负责敲键盘。关于这一切所在的更大的 Claude Code 工作流,我的 [Claude Code 完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)是地图。
 
 ---
 
 **延伸阅读:**
 
-- [Claude Code + OpenSpec + Superpowers:三件套还是过度组合?](/posts/ai/2026-04-09-claude-code-openspec-superpowers/)
-- [Superpowers 深度拆解:把 Claude Code 变成资深工程师的技能框架](/posts/ai/2026-02-01-superpowers-deep-dive/)
-- [Claude Code 技能指南:Agent Skills 到底怎么工作](/posts/ai/2026-01-08-claudecode-skill-guide/)
-- [Claude Code 完全指南:从入门到精通](/posts/ai/2026-02-28-claude-code-complete-guide/)
+- [Claude Code + OpenSpec + Superpowers:三件套还是过度组合?](/zh/posts/ai/2026-04-09-claude-code-openspec-superpowers/)
+- [Superpowers 深度拆解:把 Claude Code 变成资深工程师的技能框架](/zh/posts/ai/2026-02-01-superpowers-deep-dive/)
+- [Claude Code 技能指南:Agent Skills 到底怎么工作](/zh/posts/ai/2026-01-08-claudecode-skill-guide/)
+- [Claude Code 完全指南:从入门到精通](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)

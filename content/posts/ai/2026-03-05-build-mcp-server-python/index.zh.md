@@ -47,7 +47,7 @@ MCP 服务器暴露三种类型的能力：
 | **资源（Resources）** | 让 AI 读取数据 | 配置文件、日志、系统信息 |
 | **提示词（Prompts）** | 可复用的交互模板 | 代码审查模板、分析模板 |
 
-关于 MCP 架构的深入了解，请参阅 [MCP 协议详解：AI 工具的通用标准](/posts/ai/2026-02-28-mcp-protocol-explained/)。如果你已经用 TypeScript 构建过服务器，请参阅 [用 TypeScript 构建 MCP 服务器](/posts/ai/2026-03-02-building-mcp-servers-typescript/) 进行对比。
+关于 MCP 架构的深入了解，请参阅 [MCP 协议详解：AI 工具的通用标准](/zh/posts/ai/2026-02-28-mcp-protocol-explained/)。如果你已经用 TypeScript 构建过服务器，请参阅 [用 TypeScript 构建 MCP 服务器](/zh/posts/ai/2026-03-02-building-mcp-servers-typescript/) 进行对比。
 
 本教程聚焦于 **Python**——非常适合数据科学工作流、ML 管道以及 Python 已经是你主要语言的脚本任务。
 
@@ -520,7 +520,7 @@ claude mcp list
 > 列出天气服务器中所有可用的城市
 ```
 
-Claude Code 会自动发现你的工具并调用它们。有关 Claude Code 中 MCP 配置的更多详情，请参阅 [Claude Code MCP 设置：将 AI 连接到任何外部服务](/posts/ai/2026-02-28-claude-code-mcp-setup/)。
+Claude Code 会自动发现你的工具并调用它们。有关 Claude Code 中 MCP 配置的更多详情，请参阅 [Claude Code MCP 设置：将 AI 连接到任何外部服务](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/)。
 
 ### 修改代码后重启
 
@@ -830,7 +830,7 @@ claude mcp add sqlite-server -- uv run --directory /absolute/path/to/weather-mcp
 
 AI 会编写 SQL 查询，调用你的 `query_database` 工具，并呈现结果——全部自动完成。
 
-这个模式适用于任何 SQLite 数据库。将 `DB_PATH` 指向你项目的数据库文件，Claude Code 就能立即获得查询能力。关于通过 MCP 暴露数据库的安全最佳实践，请参阅 [MCP 安全指南](/posts/ai/2026-02-23-mcp-security-guide/)。
+这个模式适用于任何 SQLite 数据库。将 `DB_PATH` 指向你项目的数据库文件，Claude Code 就能立即获得查询能力。关于通过 MCP 暴露数据库的安全最佳实践，请参阅 [MCP 安全指南](/zh/posts/ai/2026-02-23-mcp-security-guide/)。
 
 ## 部署选项
 
@@ -940,7 +940,7 @@ claude mcp add weather-server weather-mcp-server
 
 ### 与社区分享
 
-将你的服务器提交到 [awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers) 仓库和 [MCP 官方服务器注册表](https://modelcontextprotocol.io/examples)。查看 [Claude Code 最佳 MCP 服务器](/posts/ai/2026-03-05-best-mcp-servers-claude-code/) 了解文档规范的 MCP 服务器列表是什么样的。
+将你的服务器提交到 [awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers) 仓库和 [MCP 官方服务器注册表](https://modelcontextprotocol.io/examples)。查看 [Claude Code 最佳 MCP 服务器](/zh/posts/ai/2026-03-05-best-mcp-servers-claude-code/) 了解文档规范的 MCP 服务器列表是什么样的。
 
 ## 常见错误与解决方案
 
@@ -994,7 +994,7 @@ MCP 生态系统正在快速增长——仅 Python SDK 每月下载量就达数�
 
 ## 相关阅读
 
-- [MCP 协议详解：AI 工具的通用标准](/posts/ai/2026-02-28-mcp-protocol-explained/) — 深入了解 MCP 架构和概念
-- [用 TypeScript 构建 MCP 服务器：从零到部署教程](/posts/ai/2026-03-02-building-mcp-servers-typescript/) — 本教程的 TypeScript 版本
-- [Claude Code MCP 设置：将 AI 连接到任何外部服务](/posts/ai/2026-02-28-claude-code-mcp-setup/) — Claude Code 中 MCP 配置的完整指南
-- [Claude Code 最佳 MCP 服务器：2026 年必备的 18 个工具](/posts/ai/2026-03-05-best-mcp-servers-claude-code/) — 精选的最佳社区 MCP 服务器列表
+- [MCP 协议详解：AI 工具的通用标准](/zh/posts/ai/2026-02-28-mcp-protocol-explained/) — 深入了解 MCP 架构和概念
+- [用 TypeScript 构建 MCP 服务器：从零到部署教程](/zh/posts/ai/2026-03-02-building-mcp-servers-typescript/) — 本教程的 TypeScript 版本
+- [Claude Code MCP 设置：将 AI 连接到任何外部服务](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/) — Claude Code 中 MCP 配置的完整指南
+- [Claude Code 最佳 MCP 服务器：2026 年必备的 18 个工具](/zh/posts/ai/2026-03-05-best-mcp-servers-claude-code/) — 精选的最佳社区 MCP 服务器列表

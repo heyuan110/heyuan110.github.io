@@ -36,7 +36,7 @@ answer = "OpenClaw 2026.2.26 起内置飞书 Channel，使用 WebSocket 事件�
 
 正确的起步姿势是：**bindings 做静态路由 + Lobster 做确定性流水线**，只在真正需要 LLM 动态判断时才用 `sessions_send`。这篇文章手把手带你完成整套配置。
 
-如果你还没装过 OpenClaw，先看 [OpenClaw 安装配置指南](/posts/ai/2026-03-05-openclaw-setup-guide/)。
+如果你还没装过 OpenClaw，先看 [OpenClaw 安装配置指南](/zh/posts/ai/2026-03-05-openclaw-setup-guide/)。
 
 ---
 
@@ -50,7 +50,7 @@ answer = "OpenClaw 2026.2.26 起内置飞书 Channel，使用 WebSocket 事件�
 
 **第三个天花板是模型不匹配。** 写代码需要 Claude Sonnet，头脑风暴用 GLM-4.7 效果更好，路由决策用 Haiku 就够了。一个 Agent 只能配一个模型，意味着你要么为简单任务多花钱，要么为复杂任务用了能力不够的模型。研究显示，混合模型架构比统一用顶级模型[降低 40-60% 成本](https://moltbook-ai.com/posts/ai-agent-cost-optimization-2026)，同时不牺牲质量。
 
-多 Agent 架构把这三个问题一次解决：每个 Agent 独立的工作区、记忆、人设、模型配置。底层原理参考 [OpenClaw 架构深度解析](/posts/ai/2026-02-14-openclaw-architecture-deep-dive/)。
+多 Agent 架构把这三个问题一次解决：每个 Agent 独立的工作区、记忆、人设、模型配置。底层原理参考 [OpenClaw 架构深度解析](/zh/posts/ai/2026-02-14-openclaw-architecture-deep-dive/)。
 
 ---
 
@@ -66,7 +66,7 @@ answer = "OpenClaw 2026.2.26 起内置飞书 Channel，使用 WebSocket 事件�
 | **Agent 目录** | `~/.openclaw/agents/<agentId>/` | 认证配置、模型注册、Agent 专属设置 |
 | **会话存储** | `~/.openclaw/agents/<agentId>/sessions/` | 聊天记录（JSONL 格式）、路由状态 |
 
-**铁律：永远不要让两个 Agent 共享 Agent 目录。** 共享会导致认证冲突、会话串台、记忆交叉污染。我在 [自动化避坑指南](/posts/ai/2026-03-05-openclaw-automation-pitfalls/) 里详细分析过这个问题——一旦两个 Agent 的 session store 混在一起，你会看到 Agent A 突然用 Agent B 的语气说话，debug 起来极其痛苦。
+**铁律：永远不要让两个 Agent 共享 Agent 目录。** 共享会导致认证冲突、会话串台、记忆交叉污染。我在 [自动化避坑指南](/zh/posts/ai/2026-03-05-openclaw-automation-pitfalls/) 里详细分析过这个问题——一旦两个 Agent 的 session store 混在一起，你会看到 Agent A 突然用 Agent B 的语气说话，debug 起来极其痛苦。
 
 ---
 
@@ -512,7 +512,7 @@ lobster run blog-pipeline.lobster --args-json '{"topic": "multi-agent cost optim
 | 研究员 | 无写权限 | 仅搜索工具 | 只读不写，禁止 sessions_send |
 | 家庭/共享 | 只读沙箱 | 仅回答问题 | 不能修改任何东西 |
 
-更多工具权限技巧，参考 [OpenClaw 自动化避坑指南](/posts/ai/2026-03-05-openclaw-automation-pitfalls/)。
+更多工具权限技巧，参考 [OpenClaw 自动化避坑指南](/zh/posts/ai/2026-03-05-openclaw-automation-pitfalls/)。
 
 ---
 
@@ -668,7 +668,7 @@ Supervisor 用 LLM 判断该委派给谁，通过 sessions_send 动态通信。�
 
 **5. 简单问题直接答。** 在 Supervisor 的 SOUL.md 里写明："一句话能答完的问题直接回答，不要委派给专家。"避免一个"今天天气怎么样"也触发一次 sessions_send。
 
-更多记忆层面的成本优化，参考 [OpenClaw 记忆策略指南](/posts/ai/2026-01-31-openclaw-memory-strategy/)。
+更多记忆层面的成本优化，参考 [OpenClaw 记忆策略指南](/zh/posts/ai/2026-01-31-openclaw-memory-strategy/)。
 
 ---
 
@@ -710,8 +710,8 @@ Supervisor 用 LLM 判断该委派给谁，通过 sessions_send 动态通信。�
 
 多 Agent 配置只是起点。配好之后继续探索：
 
-- **[OpenClaw Tavily 集成指南](/posts/ai/2026-03-05-openclaw-tavily-integration/)**——给研究员 Agent 加上实时网络搜索
-- **[OpenClaw 使用教程](/posts/ai/2026-02-12-openclaw-usage-tutorial/)**——从零开始的新手指南
-- **[OpenClaw 安装配置指南](/posts/ai/2026-03-05-openclaw-setup-guide/)**——完整安装和基础配置
+- **[OpenClaw Tavily 集成指南](/zh/posts/ai/2026-03-05-openclaw-tavily-integration/)**——给研究员 Agent 加上实时网络搜索
+- **[OpenClaw 使用教程](/zh/posts/ai/2026-02-12-openclaw-usage-tutorial/)**——从零开始的新手指南
+- **[OpenClaw 安装配置指南](/zh/posts/ai/2026-03-05-openclaw-setup-guide/)**——完整安装和基础配置
 - **[Lobster 工作流引擎](https://github.com/openclaw/lobster)**——用 YAML 编排确定性多 Agent 流水线
 - **[OpenClaw ACP](https://dev.to/czmilo/2026-complete-guide-openclaw-acp-bridge-your-ide-to-ai-agents-3hl8)**——把 IDE 桥接到 OpenClaw Agent 的编码工作流

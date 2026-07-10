@@ -130,7 +130,7 @@ Agentic Coding 最直接的影响是降低了 Apple 平台的开发门槛。Appl
 
 从战略层面看，Apple 选择了**合作而非自研**的路线。它没有试图构建自己的编程 AI 模型，而是通过 MCP 开放标准将 Xcode 打造成一个**平台**——任何 AI 供应商都可以接入。这种灵活性对开发者来说是好消息，因为它意味着你总是可以使用当下最好的 AI 模型，而不会被锁定在某一家。
 
-如果你对 Claude Code 和 Codex 的详细对比感兴趣，可以参考我之前的文章：[Claude Code vs Codex 对比](/posts/ai/2026-02-19-claude-code-vs-codex/)。
+如果你对 Claude Code 和 Codex 的详细对比感兴趣，可以参考我之前的文章：[Claude Code vs Codex 对比](/zh/posts/ai/2026-02-19-claude-code-vs-codex/)。
 
 ## 实际使用建议
 
@@ -183,7 +183,7 @@ ln -sf $(which claude) ~/Library/Developer/Xcode/CodingAssistant/Agents/Versions
 4. **灵活切换 Agent**：Apple 支持在同一项目中轻松切换 Claude Agent 和 Codex，不同任务可以选择最合适的智能体
 5. **保持审查习惯**：跟踪 Agent 的 transcript，点击代码变更定位到具体位置，确保每个修改都在预期范围内
 
-关于如何更好地与 AI Agent 协作编程，可以参考：[Claude Cowork 协作指南](/posts/ai/2026-01-13-claude-cowork/)。
+关于如何更好地与 AI Agent 协作编程，可以参考：[Claude Cowork 协作指南](/zh/posts/ai/2026-01-13-claude-cowork/)。
 
 ## 常见问题
 

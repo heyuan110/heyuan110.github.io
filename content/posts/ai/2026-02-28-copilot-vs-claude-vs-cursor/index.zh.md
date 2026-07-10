@@ -62,7 +62,7 @@ answer = "可以。GitHub Copilot Pro 和 Pro+ 支持 Claude Sonnet 4 作为可�
 
 **算力之王**：Claude Code Max 5x 月费 $100，得益于 5.5 倍的 Token 效率优势，每一分钱都能换来更多计算量。
 
-Claude 详细定价请参考 [Claude 定价 2026](/posts/ai/2026-02-25-claude-code-pricing/)。
+Claude 详细定价请参考 [Claude 定价 2026](/zh/posts/ai/2026-02-25-claude-code-pricing/)。
 
 ## 代码补全
 
@@ -108,11 +108,11 @@ Copilot 的 Agent 模式（2025+）在 IDE 内运行：
 Claude Code 从设计之初就是一个 Agent：
 - 完整的终端访问权限——可运行任何命令
 - 规划跨数十个文件的多步骤实现
-- [Hooks](/posts/ai/2026-02-28-claude-code-hooks-guide/) 用于确定性自动化规则
-- [Skills](/posts/ai/2026-02-28-claude-code-skills-guide/) 用于可复用的领域知识
-- [MCP](/posts/ai/2026-02-28-claude-code-mcp-setup/) 用于连接数据库、API 和服务
-- [Agent Teams](/posts/ai/2026-02-28-claude-code-teams-guide/) 用于多 Agent 并行执行
-- [Worktree](/posts/ai/2026-02-28-claude-code-worktree-guide/) 用于隔离的并行任务
+- [Hooks](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) 用于确定性自动化规则
+- [Skills](/zh/posts/ai/2026-02-28-claude-code-skills-guide/) 用于可复用的领域知识
+- [MCP](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/) 用于连接数据库、API 和服务
+- [Agent Teams](/zh/posts/ai/2026-02-28-claude-code-teams-guide/) 用于多 Agent 并行执行
+- [Worktree](/zh/posts/ai/2026-02-28-claude-code-worktree-guide/) 用于隔离的并行任务
 
 ### Cursor：IDE 集成 Agent
 
@@ -226,7 +226,7 @@ Copilot Pro ($10) + Cursor Pro ($20) + Claude Code Max 5x ($100)
 
 ## 相关阅读
 
-- [Claude Code vs Cursor 2026: Which AI Coding Tool Wins?](/posts/ai/2026-02-28-claude-code-vs-cursor/) — 深度双向对比
-- [Claude Code Guide 2026](/posts/ai/2026-02-28-claude-code-complete-guide/) — Claude Code 完整指南
-- [Claude Pricing 2026](/posts/ai/2026-02-25-claude-code-pricing/) — 完整定价分析及竞品基准对比
-- [Claude Rate Limits 2026](/posts/ai/2026-02-28-claude-rate-limits/) — 各方案用量限制详解
+- [Claude Code vs Cursor 2026: Which AI Coding Tool Wins?](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/) — 深度双向对比
+- [Claude Code Guide 2026](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — Claude Code 完整指南
+- [Claude Pricing 2026](/zh/posts/ai/2026-02-25-claude-code-pricing/) — 完整定价分析及竞品基准对比
+- [Claude Rate Limits 2026](/zh/posts/ai/2026-02-28-claude-rate-limits/) — 各方案用量限制详解

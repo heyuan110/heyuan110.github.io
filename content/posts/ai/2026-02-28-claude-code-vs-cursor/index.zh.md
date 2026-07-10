@@ -59,11 +59,11 @@ Claude Code 从第一天起就作为自主 Agent 来构建。它的 Agent 循环
 5. **验证** 结果，测试失败则迭代修复
 
 核心 Agent 特性：
-- **[Agent Teams](/posts/ai/2026-02-28-claude-code-teams-guide/)**：多个 Agent 并行协作，共享任务列表
-- **[Worktree 隔离](/posts/ai/2026-02-28-claude-code-worktree-guide/)**：每个会话独立 git worktree
-- **[Hooks](/posts/ai/2026-02-28-claude-code-hooks-guide/)**：确定性自动化规则，Agent 必须遵守
-- **[Skills](/posts/ai/2026-02-28-claude-code-skills-guide/)**：可复用的领域知识包
-- **[MCP 集成](/posts/ai/2026-02-28-claude-code-mcp-setup/)**：连接任意外部服务
+- **[Agent Teams](/zh/posts/ai/2026-02-28-claude-code-teams-guide/)**：多个 Agent 并行协作，共享任务列表
+- **[Worktree 隔离](/zh/posts/ai/2026-02-28-claude-code-worktree-guide/)**：每个会话独立 git worktree
+- **[Hooks](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/)**：确定性自动化规则，Agent 必须遵守
+- **[Skills](/zh/posts/ai/2026-02-28-claude-code-skills-guide/)**：可复用的领域知识包
+- **[MCP 集成](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/)**：连接任意外部服务
 
 ### Cursor：IDE 集成 Agent
 
@@ -167,7 +167,7 @@ $20 档位两者差不多。差异出现在更高档位：
 
 **性价比**：考虑到 Claude Code 5.5 倍的 token 效率优势，$100/月的 Max 5x 方案实际产出可能比 $200/月的 Cursor Ultra 更多。
 
-详细定价分析见 [Claude 定价 2026](/posts/ai/2026-02-25-claude-code-pricing/)。
+详细定价分析见 [Claude 定价 2026](/zh/posts/ai/2026-02-25-claude-code-pricing/)。
 
 ## 5. 最佳使用场景
 
@@ -220,7 +220,7 @@ Claude Code → 复杂重构、自动化、架构规划
 
 ## 相关阅读
 
-- [Claude Code Guide 2026: Everything You Need to Know](/posts/ai/2026-02-28-claude-code-complete-guide/) — Claude Code 完整功能概览
-- [Claude Pricing 2026: Every Plan from Free to Max $200](/posts/ai/2026-02-25-claude-code-pricing/) — 详细定价分析
-- [Claude Rate Limits 2026](/posts/ai/2026-02-28-claude-rate-limits/) — 用量限制说明
-- [GitHub Copilot vs Claude Code vs Cursor](/posts/ai/2026-02-28-copilot-vs-claude-vs-cursor/) — 三方对比
+- [Claude Code Guide 2026: Everything You Need to Know](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — Claude Code 完整功能概览
+- [Claude Pricing 2026: Every Plan from Free to Max $200](/zh/posts/ai/2026-02-25-claude-code-pricing/) — 详细定价分析
+- [Claude Rate Limits 2026](/zh/posts/ai/2026-02-28-claude-rate-limits/) — 用量限制说明
+- [GitHub Copilot vs Claude Code vs Cursor](/zh/posts/ai/2026-02-28-copilot-vs-claude-vs-cursor/) — 三方对比

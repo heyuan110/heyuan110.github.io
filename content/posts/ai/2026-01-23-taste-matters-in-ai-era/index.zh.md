@@ -21,7 +21,7 @@ keywords = ['AI时代品味', 'Taste重要性', '人工智能创造力', '审美
 
 写代码、画画、剪视频、做音乐——每一项都需要几个月甚至几年的练习。而现在呢？
 
-- 用 [Claude Code](/posts/ai/2026-01-14-claude-code-guide/) 写代码，只需要描述你想要什么
+- 用 [Claude Code](/zh/posts/ai/2026-01-14-claude-code-guide/) 写代码，只需要描述你想要什么
 - 用 Midjourney 画图，打几个关键词就能出图
 - 用 Suno 作曲，哼一段旋律就能生成完整的歌
 

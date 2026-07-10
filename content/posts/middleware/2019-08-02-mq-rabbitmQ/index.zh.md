@@ -6,7 +6,7 @@ toc = true
 tags = ['RabbitMQ', '消息队列', 'AMQP', '中间件']
 categories = ['中间件']
 +++
-前面文章[《消息队列 MQ 技术选型指南》](/posts/middleware/2019-07-31-mq/)我们了解了消息队列技术选型，本文我们来学习开源消息队列RabbitMQ。
+前面文章[《消息队列 MQ 技术选型指南》](/zh/posts/middleware/2019-07-31-mq/)我们了解了消息队列技术选型，本文我们来学习开源消息队列RabbitMQ。
 
 
 ## 1. RabbitMQ简介
@@ -1135,4 +1135,4 @@ RabbitMQ会自动减慢这个连接的速率，让client端以为网络带宽变
 
 ## 相关文章
 
-- [消息队列 MQ 技术选型指南：核心概念与分布式系统应用场景](/posts/middleware/2019-07-31-mq/) - MQ 核心概念、架构模型与技术选型对比
+- [消息队列 MQ 技术选型指南：核心概念与分布式系统应用场景](/zh/posts/middleware/2019-07-31-mq/) - MQ 核心概念、架构模型与技术选型对比

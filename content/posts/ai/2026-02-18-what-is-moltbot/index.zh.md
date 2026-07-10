@@ -109,7 +109,7 @@ MoltBot 通过 Chrome DevTools Protocol（CDP）控制浏览器，能完成几�
 
 与 ChatGPT 的短期记忆不同，MoltBot 的记忆是**跨会话、跨天数持久化的**。它不会因为你关闭聊天窗口就忘记一切。
 
-想深入了解记忆系统的设计，可以参考 [OpenClaw 记忆系统策略解析](/posts/ai/2026-01-31-openclaw-memory-strategy/)。
+想深入了解记忆系统的设计，可以参考 [OpenClaw 记忆系统策略解析](/zh/posts/ai/2026-01-31-openclaw-memory-strategy/)。
 
 ### 2.4 技能系统（Skills）
 
@@ -239,7 +239,7 @@ AI 做出决策后，由工具层负责实际执行。包括浏览器控制（CD
 | 记忆存储 | 本地 Markdown 文件 |
 | 发布渠道 | stable / beta / dev 三轨制 |
 
-想了解更详细的架构剖析，推荐阅读 [OpenClaw 架构深度解析](/posts/ai/2026-02-14-openclaw-architecture-deep-dive/)。
+想了解更详细的架构剖析，推荐阅读 [OpenClaw 架构深度解析](/zh/posts/ai/2026-02-14-openclaw-architecture-deep-dive/)。
 
 ---
 
@@ -276,7 +276,7 @@ Steinberger 将项目改名为 **MoltBot**。"Molt" 在英文中是"蜕壳"的�
 
 OpenClaw 项目将移交给一个独立的开源基金会，由 OpenAI 提供支持，继续保持开源。
 
-更多关于这个事件的分析，可以阅读 [OpenClaw 创始人加入 OpenAI 意味着什么](/posts/ai/2026-02-16-openclaw-openai-analysis/)。
+更多关于这个事件的分析，可以阅读 [OpenClaw 创始人加入 OpenAI 意味着什么](/zh/posts/ai/2026-02-16-openclaw-openai-analysis/)。
 
 > **总结改名时间线**：Clawdbot（2025.11）-> MoltBot（2026.1.27）-> OpenClaw（2026.1.29）。不管用哪个名字搜索，说的都是同一个项目。
 
@@ -313,7 +313,7 @@ OpenClaw 项目将移交给一个独立的开源基金会，由 OpenAI 提供支
 **不适合你的场景**：
 
 - 你没有技术背景，不想折腾部署
-- 你只需要一个编程助手（用 [Claude Code](/posts/ai/2026-01-14-claude-code-guide/) 更合适）
+- 你只需要一个编程助手（用 [Claude Code](/zh/posts/ai/2026-01-14-claude-code-guide/) 更合适）
 - 你对安全风险零容忍（MoltBot 的安全机制仍在完善中）
 - 你只是偶尔需要 AI 帮忙（直接用 ChatGPT/Claude 网页版就够了）
 
@@ -326,7 +326,7 @@ MoltBot 不只是一个工具，它已经形成了一个小生态：
 - **MoltWorker**：Cloudflare 推出的云端版本，不需要本地硬件
 - **ClawHub**：技能市场，5700+ 社区贡献的技能插件
 
-想了解 MoltBook 的故事，可以阅读 [MoltBook：当 AI Agent 有了自己的社交网络](/posts/ai/2026-02-01-moltbook-ai-agent-social-network/)。
+想了解 MoltBook 的故事，可以阅读 [MoltBook：当 AI Agent 有了自己的社交网络](/zh/posts/ai/2026-02-01-moltbook-ai-agent-social-network/)。
 
 ---
 
@@ -423,7 +423,7 @@ sudo ufw deny 18789
 sudo ufw allow from 127.0.0.1 to any port 18789
 ```
 
-更详细的安全部署指南，请参考 [Moltbot 深度解析中的安全章节](/posts/ai/2026-01-29-moltbot-deep-dive/)。
+更详细的安全部署指南，请参考 [Moltbot 深度解析中的安全章节](/zh/posts/ai/2026-01-29-moltbot-deep-dive/)。
 
 ---
 
@@ -451,7 +451,7 @@ Palo Alto Networks 将 MoltBot 称为安全"致命三合一"：拥有私人数�
 | **定期审查** | 定期检查 `~/.openclaw/` 目录下的凭证文件 |
 | **选好模型** | Claude Opus 4.5 的提示注入防护相对更强 |
 
-想了解更多自动化中的安全陷阱，推荐阅读 [OpenClaw 自动化的那些坑](/posts/ai/2026-02-14-openclaw-automation-pitfalls/)。
+想了解更多自动化中的安全陷阱，推荐阅读 [OpenClaw 自动化的那些坑](/zh/posts/ai/2026-02-14-openclaw-automation-pitfalls/)。
 
 ---
 
@@ -505,25 +505,25 @@ OpenClaw（MoltBot）本身是开源免费的，你可以在自己的电脑上�
 
 ### MoltBot 安全吗？会不会泄露我的数据？
 
-MoltBot 运行在你自己的电脑上，数据默认不上传到任何第三方服务器。但由于它能执行 Shell 命令和操作浏览器，使用不当存在安全风险。建议在沙箱环境中运行，并仔细审查第三方技能插件。详细安全分析见 [OpenClaw 自动化的那些坑](/posts/ai/2026-02-14-openclaw-automation-pitfalls/)。
+MoltBot 运行在你自己的电脑上，数据默认不上传到任何第三方服务器。但由于它能执行 Shell 命令和操作浏览器，使用不当存在安全风险。建议在沙箱环境中运行，并仔细审查第三方技能插件。详细安全分析见 [OpenClaw 自动化的那些坑](/zh/posts/ai/2026-02-14-openclaw-automation-pitfalls/)。
 
 ### MoltBot 和 Claude Code 有什么区别？
 
-MoltBot（OpenClaw）是通用个人 AI 助手，通过聊天工具操控电脑执行日常任务；Claude Code 是专业的 AI 编程工具，专注于代码开发。两者定位不同：MoltBot 面向所有用户的生活和工作任务，Claude Code 面向开发者的编程场景。详细对比见 [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/)。
+MoltBot（OpenClaw）是通用个人 AI 助手，通过聊天工具操控电脑执行日常任务；Claude Code 是专业的 AI 编程工具，专注于代码开发。两者定位不同：MoltBot 面向所有用户的生活和工作任务，Claude Code 面向开发者的编程场景。详细对比见 [Claude Code 完全指南](/zh/posts/ai/2026-01-14-claude-code-guide/)。
 
 ---
 
 ## 相关阅读
 
-- [Moltbot 深度解析：从爆火到改名，个人 AI Agent 的机遇与暗礁](/posts/ai/2026-01-29-moltbot-deep-dive/) - 深度分析文章
-- [OpenClaw 架构深度解析](/posts/ai/2026-02-14-openclaw-architecture-deep-dive/) - 技术架构详解
-- [OpenClaw 实用教程](/posts/ai/2026-02-12-openclaw-usage-tutorial/) - 实操教程
-- [OpenClaw 记忆系统策略解析](/posts/ai/2026-01-31-openclaw-memory-strategy/) - 记忆系统设计
-- [OpenClaw 自动化的那些坑](/posts/ai/2026-02-14-openclaw-automation-pitfalls/) - 避坑指南
-- [OpenClaw 创始人加入 OpenAI 意味着什么](/posts/ai/2026-02-16-openclaw-openai-analysis/) - 最新动态分析
-- [MoltBook：当 AI Agent 有了自己的社交网络](/posts/ai/2026-02-01-moltbook-ai-agent-social-network/) - 生态延伸
-- [ClawdBot 搭建指南](/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/) - 新手安装教程
-- [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/) - 另一种 AI Agent 体验
+- [Moltbot 深度解析：从爆火到改名，个人 AI Agent 的机遇与暗礁](/zh/posts/ai/2026-01-29-moltbot-deep-dive/) - 深度分析文章
+- [OpenClaw 架构深度解析](/zh/posts/ai/2026-02-14-openclaw-architecture-deep-dive/) - 技术架构详解
+- [OpenClaw 实用教程](/zh/posts/ai/2026-02-12-openclaw-usage-tutorial/) - 实操教程
+- [OpenClaw 记忆系统策略解析](/zh/posts/ai/2026-01-31-openclaw-memory-strategy/) - 记忆系统设计
+- [OpenClaw 自动化的那些坑](/zh/posts/ai/2026-02-14-openclaw-automation-pitfalls/) - 避坑指南
+- [OpenClaw 创始人加入 OpenAI 意味着什么](/zh/posts/ai/2026-02-16-openclaw-openai-analysis/) - 最新动态分析
+- [MoltBook：当 AI Agent 有了自己的社交网络](/zh/posts/ai/2026-02-01-moltbook-ai-agent-social-network/) - 生态延伸
+- [ClawdBot 搭建指南](/zh/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/) - 新手安装教程
+- [Claude Code 完全指南](/zh/posts/ai/2026-01-14-claude-code-guide/) - 另一种 AI Agent 体验
 
 ---
 

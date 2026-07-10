@@ -211,7 +211,7 @@ const transport = new StdioServerTransport();
 await server.connect(transport);
 ```
 
-完整的构建和部署教程请参阅 [Claude Code MCP 配置指南](/posts/ai/2026-02-28-claude-code-mcp-setup/)。
+完整的构建和部署教程请参阅 [Claude Code MCP 配置指南](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/)。
 
 ## MCP 与其他方案的对比
 
@@ -273,7 +273,7 @@ MCP 的开放性也带来了安全挑战：
 - 保持 MCP Server 依赖更新
 - 遵循官方[安全最佳实践](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)
 
-更多 MCP 安全内容请参阅 [Claude Code MCP 配置指南：安全章节](/posts/ai/2026-02-28-claude-code-mcp-setup/)。
+更多 MCP 安全内容请参阅 [Claude Code MCP 配置指南：安全章节](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/)。
 
 ## MCP 的未来展望
 
@@ -295,7 +295,7 @@ MCP 正在从早期采用转向企业级标准：
 
 ## 相关阅读
 
-- [Claude Code MCP 配置指南：连接 AI 与任意外部服务](/posts/ai/2026-02-28-claude-code-mcp-setup/) —— MCP Server 安装与创建实操
-- [Claude Code 完全指南 2026](/posts/ai/2026-02-28-claude-code-complete-guide/) —— Claude Code 全面介绍
-- [Claude Code Hooks 指南](/posts/ai/2026-02-28-claude-code-hooks-guide/) —— 与 MCP 互补的自动化规则
-- [Claude Code vs Cursor 2026](/posts/ai/2026-02-28-claude-code-vs-cursor/) —— 工具对比（含 MCP 支持情况）
+- [Claude Code MCP 配置指南：连接 AI 与任意外部服务](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/) —— MCP Server 安装与创建实操
+- [Claude Code 完全指南 2026](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) —— Claude Code 全面介绍
+- [Claude Code Hooks 指南](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) —— 与 MCP 互补的自动化规则
+- [Claude Code vs Cursor 2026](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/) —— 工具对比（含 MCP 支持情况）

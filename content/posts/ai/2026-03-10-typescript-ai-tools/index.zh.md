@@ -31,7 +31,7 @@ TypeScript 刚刚成为 **GitHub 上的第一语言**。不是缓慢爬升——
 
 GitHub [Octoverse 报告](https://github.blog/news-insights/octoverse/octoverse-a-new-developer-joins-github-every-second-as-ai-leads-typescript-to-1/)讲了一个清晰的故事：AI 编程工具正在从根本上改变开发者的语言选择。工具在有类型的语言上表现更好，开发者注意到了，采用率自然跟上。GitHub 开发者布道师 Andrea Griffiths 将此称为**「便利循环」(convenience loop)**——一旦理解了这个循环，TypeScript 的统治地位就是必然的。
 
-这对每一位使用 [Claude Code](/posts/ai/2026-02-28-claude-code-complete-guide/)、[Cursor](/posts/ai/2026-02-28-claude-code-vs-cursor/) 或其他 [AI 编程 Agent](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) 的开发者都至关重要。你写代码用的语言，直接决定了 AI 能帮到你多少。
+这对每一位使用 [Claude Code](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)、[Cursor](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/) 或其他 [AI 编程 Agent](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) 的开发者都至关重要。你写代码用的语言，直接决定了 AI 能帮到你多少。
 
 ## 数据说话：TypeScript 的爆发式增长
 
@@ -133,7 +133,7 @@ function cancelOrder(orderId: OrderId): void { ... }
 
 ### 接口契约引导 AI 架构设计
 
-当 [Claude Code](/posts/ai/2026-02-28-claude-code-complete-guide/) 或 [Cursor](/posts/ai/2026-02-28-claude-code-vs-cursor/) 等 AI 工具需要生成与现有系统交互的代码时，TypeScript 接口充当了**引导代码生成的契约**：
+当 [Claude Code](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) 或 [Cursor](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/) 等 AI 工具需要生成与现有系统交互的代码时，TypeScript 接口充当了**引导代码生成的契约**：
 
 ```typescript
 // 这个接口精确地告诉 AI 如何实现服务
@@ -156,7 +156,7 @@ class StripePaymentService implements PaymentService {
 
 ### Claude Code 与 TypeScript
 
-[Claude Code](/posts/ai/2026-02-28-claude-code-complete-guide/) 利用 TypeScript 的类型系统深度理解代码。当你让 Claude Code「给支付流程加上错误处理」时，它会通过 TypeScript 类型来理解：
+[Claude Code](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) 利用 TypeScript 的类型系统深度理解代码。当你让 Claude Code「给支付流程加上错误处理」时，它会通过 TypeScript 类型来理解：
 - 可能发生哪些错误（类型化的错误联合）
 - 调用方期望返回什么（返回类型）
 - 允许哪些副作用（void 和 Promise 类型）
@@ -165,7 +165,7 @@ class StripePaymentService implements PaymentService {
 
 ### Cursor 与 TypeScript
 
-[Cursor](/posts/ai/2026-02-28-claude-code-vs-cursor/) 的行内补全在 TypeScript 下明显更准确。编辑器可以在你输入时向 AI 提供类型信息，补全结果因此能够：
+[Cursor](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/) 的行内补全在 TypeScript 下明显更准确。编辑器可以在你输入时向 AI 提供类型信息，补全结果因此能够：
 - 匹配预期的返回类型
 - 使用正确的方法签名
 - 正确处理可空类型
@@ -220,7 +220,7 @@ mv src/utils.js src/utils.ts
 ### 如果你要开始新项目
 
 Web 项目默认选 TypeScript。仅 AI 方面的优势就足以证明这个选择：
-- 用 TypeScript 做 [Vibe Coding](/posts/ai/2026-02-28-vibe-coding-explained/) 结果更可靠
+- 用 TypeScript 做 [Vibe Coding](/zh/posts/ai/2026-02-28-vibe-coding-explained/) 结果更可靠
 - AI 生成的测试在有类型的代码上更准确
 - 用 AI 工具重构时，类型能自动捕获回归问题
 
@@ -331,9 +331,9 @@ function createUser(input: unknown): User {
 
 ## 相关阅读
 
-- [AI 编程 Agent 2026：7 款工具横评](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — 哪些工具最适合 TypeScript
-- [Claude Code 完全指南](/posts/ai/2026-02-28-claude-code-complete-guide/) — TypeScript 是 Claude Code 最强的语言
-- [上下文工程指南](/posts/ai/2026-03-10-context-engineering-guide/) — 类型就是代码的上下文工程
-- [Vibe Coding 详解](/posts/ai/2026-02-28-vibe-coding-explained/) — TypeScript 让 Vibe Coding 更可靠
-- [AI 开发环境搭建](/posts/ai/2026-03-10-ai-dev-environment-setup/) — 配置你的 TypeScript + AI 工作流
-- [Claude Code vs Cursor](/posts/ai/2026-02-28-claude-code-vs-cursor/) — 两者在 TypeScript 上都很出色
+- [AI 编程 Agent 2026：7 款工具横评](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — 哪些工具最适合 TypeScript
+- [Claude Code 完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — TypeScript 是 Claude Code 最强的语言
+- [上下文工程指南](/zh/posts/ai/2026-03-10-context-engineering-guide/) — 类型就是代码的上下文工程
+- [Vibe Coding 详解](/zh/posts/ai/2026-02-28-vibe-coding-explained/) — TypeScript 让 Vibe Coding 更可靠
+- [AI 开发环境搭建](/zh/posts/ai/2026-03-10-ai-dev-environment-setup/) — 配置你的 TypeScript + AI 工作流
+- [Claude Code vs Cursor](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/) — 两者在 TypeScript 上都很出色

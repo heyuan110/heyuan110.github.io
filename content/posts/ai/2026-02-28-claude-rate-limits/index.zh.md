@@ -151,7 +151,7 @@ Pro套餐是最常见的——也是被吐槽最多的：
 | **优先级** | 最高（零等待） | 最高 |
 | **额外用量** | 是（按API费率） | 是（按API费率） |
 
-在20x套餐下，单个用户基本不可能触发5小时限制。如果整周通过 [worktree模式](/posts/ai/2026-02-28-claude-code-worktree-guide/) 运行多个并发Claude Code会话，周Opus限额仍有可能触发。
+在20x套餐下，单个用户基本不可能触发5小时限制。如果整周通过 [worktree模式](/zh/posts/ai/2026-02-28-claude-code-worktree-guide/) 运行多个并发Claude Code会话，周Opus限额仍有可能触发。
 
 ### Team套餐速率限制
 
@@ -192,9 +192,9 @@ Team套餐有独特的机制：
 - 你的使用量**波动很大**（某些周很重，另一些闲置）
 - 你需要**精确的成本控制**，按token计费
 - 你需要**更高的吞吐量**用于自动化工作流（Tier 3-4的RPM远超订阅）
-- 你在构建需要 [Claude Code Agent能力](/posts/ai/2026-02-28-claude-code-skills-guide/) 的自定义工具
+- 你在构建需要 [Claude Code Agent能力](/zh/posts/ai/2026-02-28-claude-code-skills-guide/) 的自定义工具
 
-详细的成本对比请参阅我们的 [Claude定价2026指南](/posts/ai/2026-02-25-claude-code-pricing/)。
+详细的成本对比请参阅我们的 [Claude定价2026指南](/zh/posts/ai/2026-02-25-claude-code-pricing/)。
 
 ## 避免触发速率限制的7个策略
 
@@ -223,7 +223,7 @@ Unix时间戳。"
 
 ### 3. 使用CLAUDE.md提供项目上下文
 
-一个结构良好的 [CLAUDE.md文件](/posts/ai/2026-02-28-claude-code-claudemd-guide/) 意味着Claude Code不需要在每次会话中浪费token重新了解你的项目结构。仅此一项就能减少20-30%的token消耗。
+一个结构良好的 [CLAUDE.md文件](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) 意味着Claude Code不需要在每次会话中浪费token重新了解你的项目结构。仅此一项就能减少20-30%的token消耗。
 
 ### 4. 不相关的任务开启新会话
 
@@ -239,7 +239,7 @@ Unix时间戳。"
 
 ### 7. 使用Hooks处理重复任务
 
-[Claude Code Hooks](/posts/ai/2026-02-28-claude-code-hooks-guide/) 可以自动化格式化、代码检查和测试——减少Claude完成任务所需的自主操作次数。
+[Claude Code Hooks](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) 可以自动化格式化、代码检查和测试——减少Claude完成任务所需的自主操作次数。
 
 ## 速率限制时间线：变更历史
 
@@ -266,7 +266,7 @@ Unix时间戳。"
 | 需要零等待优先级 | **Max 20x**（$200） |
 | 每周使用量波动极大 | **API**（按token付费） |
 
-完整的定价细节和竞品对比请参阅 [Claude定价2026：从免费到Max $200全方位解析](/posts/ai/2026-02-25-claude-code-pricing/)。
+完整的定价细节和竞品对比请参阅 [Claude定价2026：从免费到Max $200全方位解析](/zh/posts/ai/2026-02-25-claude-code-pricing/)。
 
 ## 常见问题
 
@@ -300,8 +300,8 @@ Claude会降速而不是完全停止。你会发现响应间隔变长。Opus请�
 
 ## 相关阅读
 
-- [Claude定价2026：从免费到Max $200全方位解析](/posts/ai/2026-02-25-claude-code-pricing/) — 完整定价对比与竞品基准
-- [Claude Code安装指南：完整设置教程](/posts/ai/2026-02-25-claude-code-setup-guide/) — Claude Code快速上手
-- [CLAUDE.md指南：为AI提供完美的项目上下文](/posts/ai/2026-02-28-claude-code-claudemd-guide/) — 通过更好的项目配置减少token浪费
-- [Claude Code Hooks指南：12个自动化配置](/posts/ai/2026-02-28-claude-code-hooks-guide/) — 自动化任务以减少自主操作次数
-- [Claude Code Worktree指南](/posts/ai/2026-02-28-claude-code-worktree-guide/) — 高效运行并行会话
+- [Claude定价2026：从免费到Max $200全方位解析](/zh/posts/ai/2026-02-25-claude-code-pricing/) — 完整定价对比与竞品基准
+- [Claude Code安装指南：完整设置教程](/zh/posts/ai/2026-02-25-claude-code-setup-guide/) — Claude Code快速上手
+- [CLAUDE.md指南：为AI提供完美的项目上下文](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) — 通过更好的项目配置减少token浪费
+- [Claude Code Hooks指南：12个自动化配置](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) — 自动化任务以减少自主操作次数
+- [Claude Code Worktree指南](/zh/posts/ai/2026-02-28-claude-code-worktree-guide/) — 高效运行并行会话

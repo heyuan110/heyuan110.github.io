@@ -440,8 +440,8 @@ Claude-Mem 解决了 AI 编码助手最根本的痛点之一——**记忆的连
 
 ## 相关阅读
 
-- [CLAUDE.md 记忆管理指南：让 AI 真正理解你的项目](/posts/ai/2026-01-12-claudemd-memory-guide/)
-- [Claude Code 最佳实践：从入门到精通的完整指南](/posts/ai/2026-01-06-claudecode-best-practices/)
-- [Claude Code Skills 深度解析：自定义技能系统](/posts/ai/2026-01-08-claudecode-skill-guide/)
-- [Claude Code 浏览器自动化实战](/posts/ai/2026-01-28-claude-code-browser-automation/)
-- [Superpowers Skills 深度剖析](/posts/ai/2026-02-01-superpowers-deep-dive/)
+- [CLAUDE.md 记忆管理指南：让 AI 真正理解你的项目](/zh/posts/ai/2026-01-12-claudemd-memory-guide/)
+- [Claude Code 最佳实践：从入门到精通的完整指南](/zh/posts/ai/2026-01-06-claudecode-best-practices/)
+- [Claude Code Skills 深度解析：自定义技能系统](/zh/posts/ai/2026-01-08-claudecode-skill-guide/)
+- [Claude Code 浏览器自动化实战](/zh/posts/ai/2026-01-28-claude-code-browser-automation/)
+- [Superpowers Skills 深度剖析](/zh/posts/ai/2026-02-01-superpowers-deep-dive/)

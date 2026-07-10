@@ -14,7 +14,7 @@ keywords = ['traceroute 命令详解', 'traceroute 用法', '网络诊断命令'
 
 网站打开慢、视频卡顿、SSH 连接超时——这些问题的根源往往藏在网络链路的某一跳。**traceroute 命令**（Windows 上叫 `tracert`）就是帮你找出"到底慢在哪里"的利器。它通过追踪数据包从你的电脑到目标服务器经过的每一个路由节点，测量每一跳的延迟，让网络瓶颈无处遁形。
 
-本文是一份完整的 traceroute 命令详解教程，将从 TTL 工作原理、Linux/macOS/Windows 三平台用法差异、输出解读技巧到网络故障排查实战案例，帮你系统掌握这个网络诊断必备工具。如果你同时需要调试 HTTP 请求，推荐配合 [curl 命令详解](/posts/linux/2020-06-29-curl/) 一起使用。
+本文是一份完整的 traceroute 命令详解教程，将从 TTL 工作原理、Linux/macOS/Windows 三平台用法差异、输出解读技巧到网络故障排查实战案例，帮你系统掌握这个网络诊断必备工具。如果你同时需要调试 HTTP 请求，推荐配合 [curl 命令详解](/zh/posts/linux/2020-06-29-curl/) 一起使用。
 
 ## 一、Traceroute 是什么
 
@@ -427,8 +427,8 @@ Traceroute 是网络诊断的基础工具，掌握它能帮助你：
 
 ## 相关阅读
 
-- [curl 命令详解：GET/POST、文件上传下载与调试实战](/posts/linux/2020-06-29-curl/) - HTTP 请求调试神器，与 traceroute 配合使用定位网络问题
-- [Linux/macOS 常用命令速查手册](/posts/linux/2020-03-19-linux-mac-commands/) - 运维开发常用命令参考，包含 ping、netstat 等网络诊断命令
+- [curl 命令详解：GET/POST、文件上传下载与调试实战](/zh/posts/linux/2020-06-29-curl/) - HTTP 请求调试神器，与 traceroute 配合使用定位网络问题
+- [Linux/macOS 常用命令速查手册](/zh/posts/linux/2020-03-19-linux-mac-commands/) - 运维开发常用命令参考，包含 ping、netstat 等网络诊断命令
 
 ## 参考资料
 

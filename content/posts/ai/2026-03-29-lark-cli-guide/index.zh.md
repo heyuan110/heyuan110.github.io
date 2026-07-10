@@ -515,11 +515,11 @@ Lark CLI 解决了一个真实的痛点：**飞书操作太碎片化，自动化
 
 ## 十三、延伸阅读
 
-- [Claude Code 完全指南：从入门到精通](/posts/ai/2026-01-14-claude-code-guide/) - 如果你还不了解 Claude Code，先看这篇
-- [Claude Code Skills Top20](/posts/ai/2026-01-20-claude-code-skills-top20/) - 更多好用的 Skills 推荐
-- [Claude Code Skill 开发指南](/posts/ai/2026-01-08-claudecode-skill-guide/) - 想自己写 Skill？看这篇
-- [AI 开发工作流](/posts/ai/2026-01-19-ai-dev-workflow/) - 把 Lark CLI 融入你的日常工作流
-- [终端工具推荐](/posts/macos/2025-01-22-terminal-tools-guide/) - 让你的终端更好用
+- [Claude Code 完全指南：从入门到精通](/zh/posts/ai/2026-01-14-claude-code-guide/) - 如果你还不了解 Claude Code，先看这篇
+- [Claude Code Skills Top20](/zh/posts/ai/2026-01-20-claude-code-skills-top20/) - 更多好用的 Skills 推荐
+- [Claude Code Skill 开发指南](/zh/posts/ai/2026-01-08-claudecode-skill-guide/) - 想自己写 Skill？看这篇
+- [AI 开发工作流](/zh/posts/ai/2026-01-19-ai-dev-workflow/) - 把 Lark CLI 融入你的日常工作流
+- [终端工具推荐](/zh/posts/macos/2025-01-22-terminal-tools-guide/) - 让你的终端更好用
 
 ---
 

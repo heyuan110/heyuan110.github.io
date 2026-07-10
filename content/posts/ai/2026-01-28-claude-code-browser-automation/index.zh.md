@@ -719,11 +719,11 @@ chrome.exe --remote-debugging-port=9222
 
 ### 相关阅读
 
-- [Claude Code 完全指南：从入门到精通](/posts/ai/2026-01-14-claude-code-guide/)
-- [Claude Code 最佳实践](/posts/ai/2026-01-06-claudecode-best-practices/)
-- [Claude Code 常用命令速查](/posts/ai/2025-01-23-claude-code-commands/)
-- [Anthropic 发布 Claude Cowork：让 AI 直接操作你的电脑文件](/posts/ai/2026-01-13-claude-cowork/)
-- [OpenClaw 的 30 天狂飙：180K Star、40+ 漏洞、创始人加入 OpenAI](/posts/ai/2026-02-16-openclaw-openai-analysis/)
+- [Claude Code 完全指南：从入门到精通](/zh/posts/ai/2026-01-14-claude-code-guide/)
+- [Claude Code 最佳实践](/zh/posts/ai/2026-01-06-claudecode-best-practices/)
+- [Claude Code 常用命令速查](/zh/posts/ai/2025-01-23-claude-code-commands/)
+- [Anthropic 发布 Claude Cowork：让 AI 直接操作你的电脑文件](/zh/posts/ai/2026-01-13-claude-cowork/)
+- [OpenClaw 的 30 天狂飙：180K Star、40+ 漏洞、创始人加入 OpenAI](/zh/posts/ai/2026-02-16-openclaw-openai-analysis/)
 
 ---
 
@@ -736,6 +736,6 @@ chrome.exe --remote-debugging-port=9222
 - [Chrome DevTools Protocol 文档](https://chromedevtools.github.io/devtools-protocol/)
 ## 相关阅读 / Related
 
-- [AI 自动化导航 Hub](/posts/ai/ai-automation-hub/)
-- [Claude Code 使用教程（OpenClaw 实战）](/posts/ai/2026-02-12-openclaw-usage-tutorial/)
-- [Codex CLI 实战指南](/posts/ai/2026-02-12-codex-cli-mastery-guide/)
+- [AI 自动化导航 Hub](/zh/posts/ai/ai-automation-hub/)
+- [Claude Code 使用教程（OpenClaw 实战）](/zh/posts/ai/2026-02-12-openclaw-usage-tutorial/)
+- [Codex CLI 实战指南](/zh/posts/ai/2026-02-12-codex-cli-mastery-guide/)

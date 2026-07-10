@@ -797,9 +797,9 @@ Hooks 是 Claude Code 从"有用的 AI 助手"进化为"可靠的自动化工作
 
 ## 相关阅读
 
-- [Claude Code 浏览器自动化方案对比（2026 最新）](/posts/ai/2026-01-28-claude-code-browser-automation/)
-- [Claude Code + Draw Things：Mac 本地 AI 自动配图完全指南](/posts/ai/2026-02-16-claude-code-draw-things-workflow/)
-- [Claude Code Skill 完全指南：让 AI 学会你的工作流程](/posts/ai/2026-01-08-claudecode-skill-guide/)
-- [Skill 与 MCP 的区别：两种扩展 AI 能力的方式](/posts/ai/2026-01-06-skillmcp/)
-- [Claude Code 记忆术：一个文件让 AI 永远记住你是谁](/posts/ai/2026-01-12-claudemd-memory-guide/)
-- [OpenClaw 作者的 Claude Code 开发方法论](/posts/ai/2026-01-31-openclaw-claude-code-workflow/)
+- [Claude Code 浏览器自动化方案对比（2026 最新）](/zh/posts/ai/2026-01-28-claude-code-browser-automation/)
+- [Claude Code + Draw Things：Mac 本地 AI 自动配图完全指南](/zh/posts/ai/2026-02-16-claude-code-draw-things-workflow/)
+- [Claude Code Skill 完全指南：让 AI 学会你的工作流程](/zh/posts/ai/2026-01-08-claudecode-skill-guide/)
+- [Skill 与 MCP 的区别：两种扩展 AI 能力的方式](/zh/posts/ai/2026-01-06-skillmcp/)
+- [Claude Code 记忆术：一个文件让 AI 永远记住你是谁](/zh/posts/ai/2026-01-12-claudemd-memory-guide/)
+- [OpenClaw 作者的 Claude Code 开发方法论](/zh/posts/ai/2026-01-31-openclaw-claude-code-workflow/)

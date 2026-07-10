@@ -334,8 +334,8 @@ A：不需要。autoConnect 用的是 Chrome 内置的远程调试请求 API（C
 
 ## Related Reading
 
-- [MCP 协议详解：AI 如何连接外部工具](/posts/ai/2026-02-28-mcp-protocol-explained/) — Chrome DevTools MCP 背后的协议原理
-- [2026 年 Claude Code 最佳 MCP 服务器推荐](/posts/ai/2026-03-05-best-mcp-servers-claude-code/) — Chrome DevTools MCP 和其他必装服务器
-- [Python 实战：从零构建 MCP 服务器](/posts/ai/2026-03-05-build-mcp-server-python/) — 自己动手写一个 MCP 服务器
-- [Claude Code 浏览器自动化指南](/posts/ai/2026-01-28-claude-code-browser-automation/) — 其他浏览器自动化方案
-- [MCP 安全指南：保护你的 AI 工具集成](/posts/ai/2026-03-10-mcp-security-2026/) — MCP 服务器安全最佳实践
+- [MCP 协议详解：AI 如何连接外部工具](/zh/posts/ai/2026-02-28-mcp-protocol-explained/) — Chrome DevTools MCP 背后的协议原理
+- [2026 年 Claude Code 最佳 MCP 服务器推荐](/zh/posts/ai/2026-03-05-best-mcp-servers-claude-code/) — Chrome DevTools MCP 和其他必装服务器
+- [Python 实战：从零构建 MCP 服务器](/zh/posts/ai/2026-03-05-build-mcp-server-python/) — 自己动手写一个 MCP 服务器
+- [Claude Code 浏览器自动化指南](/zh/posts/ai/2026-01-28-claude-code-browser-automation/) — 其他浏览器自动化方案
+- [MCP 安全指南：保护你的 AI 工具集成](/zh/posts/ai/2026-03-10-mcp-security-2026/) — MCP 服务器安全最佳实践

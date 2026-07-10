@@ -40,7 +40,7 @@ Anthropic 从不公布任何消费级套餐的确切条数。[官方帮助文档
 
 最关键的一点是：这**不是一个消息计数器，Claude 计的是 token，不是条数**。一个 token 差不多是四分之三个英文单词（中文更耗），你的提问和 Claude 的回答从同一份预算里扣。这就是为什么区间这么宽——一场全是短文本的简短问答可能让你发到 35-40 条，而一场你甩进去一个 40 页 PDF 让它详细总结的对话，可能**五到八条就烧光**。我那周实测里，最快一次触顶就是一次长文档分析加三个追问；最慢的一次是一下午零碎的事实性提问，压根没碰到上限。
 
-第二个坑是**滚动 5 小时窗口**。你的额度不在午夜重置，而是从你发第一条消息开始计时，5 小时后逐步回满。这个设计是故意的——防止有人攒一整天的额度在凌晨 0:01 一次性倒出来。落到实操上就是：免费版奖励「细水长流」，惩罚「马拉松式猛怼」。你要是 90 分钟内把话全说完，一定撞墙；你要是一天里分几次来问，可能压根见不到墙。我在[Claude 速率限制机制那篇](/posts/ai/2026-02-28-claude-rate-limits/)里拆过这套窗口的底层逻辑，因为付费版走的也是同一套 token 预算。
+第二个坑是**滚动 5 小时窗口**。你的额度不在午夜重置，而是从你发第一条消息开始计时，5 小时后逐步回满。这个设计是故意的——防止有人攒一整天的额度在凌晨 0:01 一次性倒出来。落到实操上就是：免费版奖励「细水长流」，惩罚「马拉松式猛怼」。你要是 90 分钟内把话全说完，一定撞墙；你要是一天里分几次来问，可能压根见不到墙。我在[Claude 速率限制机制那篇](/zh/posts/ai/2026-02-28-claude-rate-limits/)里拆过这套窗口的底层逻辑，因为付费版走的也是同一套 token 预算。
 
 ## 免费版到底送了什么（比你想的多）
 
@@ -78,7 +78,7 @@ flowchart TD
 
 ### 第二堵墙：你需要 Claude Code 或那些 agent 工具
 
-这是开发者撞的墙，而且是堵硬墙。**Claude Code**——那个能读你仓库、改文件、跑命令的终端 agent 工具——是付费专属。Claude Cowork（桌面任务自动化）和 Claude Design 也是。如果你的工作流是「在浏览器里聊天」，免费版没问题；如果你的工作流是「放一个 agent 在我代码库里干活」，免费版在这一块给你的是零，而且没有替代方案。这是开发者最该停止硬撑免费版的头号理由。我另外写过[Claude Code 的真实成本](/posts/ai/2026-02-25-claude-code-pricing/)，也写过[大家在 Claude Code 上踩的烧钱坑](/posts/ai/2026-02-25-claude-code-mistakes/)——在你真掏钱之前值得先看看。
+这是开发者撞的墙，而且是堵硬墙。**Claude Code**——那个能读你仓库、改文件、跑命令的终端 agent 工具——是付费专属。Claude Cowork（桌面任务自动化）和 Claude Design 也是。如果你的工作流是「在浏览器里聊天」，免费版没问题；如果你的工作流是「放一个 agent 在我代码库里干活」，免费版在这一块给你的是零，而且没有替代方案。这是开发者最该停止硬撑免费版的头号理由。我另外写过[Claude Code 的真实成本](/zh/posts/ai/2026-02-25-claude-code-pricing/)，也写过[大家在 Claude Code 上踩的烧钱坑](/zh/posts/ai/2026-02-25-claude-code-mistakes/)——在你真掏钱之前值得先看看。
 
 ### 第三堵墙：你需要 Research 模式或高峰期不被限速
 
@@ -97,7 +97,7 @@ flowchart TD
 | 要带引用的多源调研或高峰期快速响应 | 你需要 Research / 优先权 | **升级（第三堵墙）** |
 | 就是聊聊天、偶尔传个文档 | 免费版是完整产品 | **继续白嫖** |
 
-诚实说清代价：**[Claude Pro](https://claude.ai/upgrade) 每月 20 美元，年付则每月约 17 美元。** 对一个靠这工具吃饭的专业人士，这是零头，别纠结。但对一个一天聊几句的学生或轻度用户，这就是真金白银，买的还是你可能永远碰不到的能力——「为了保险」而付费，是另一个方向上的错。想看 Pro、Max、API 之间完整的 ROI 账，我在[Claude 定价完全指南](/posts/ai/2026-04-03-claude-pricing-complete-guide/)里算过。
+诚实说清代价：**[Claude Pro](https://claude.ai/upgrade) 每月 20 美元，年付则每月约 17 美元。** 对一个靠这工具吃饭的专业人士，这是零头，别纠结。但对一个一天聊几句的学生或轻度用户，这就是真金白银，买的还是你可能永远碰不到的能力——「为了保险」而付费，是另一个方向上的错。想看 Pro、Max、API 之间完整的 ROI 账，我在[Claude 定价完全指南](/zh/posts/ai/2026-04-03-claude-pricing-complete-guide/)里算过。
 
 下面这条时间线，能让你看清「免费能用多久」为什么是个问错了的问题——它完全取决于你拿每个窗口去干什么。
 
@@ -130,7 +130,7 @@ flowchart LR
 ## 延伸阅读
 
 - [Claude API 成本计算器](/tools/claude-token-cost-calculator.html) — 按你的用量实时对比各模型每次调用/每月成本
-- [Claude Code 定价：到底要花多少钱](/posts/ai/2026-02-25-claude-code-pricing/)
-- [Claude 速率限制机制详解](/posts/ai/2026-02-28-claude-rate-limits/)
-- [Claude 定价完全指南（免费 / Pro / Max / API）](/posts/ai/2026-04-03-claude-pricing-complete-guide/)
-- [大家在 Claude Code 上踩的烧钱坑](/posts/ai/2026-02-25-claude-code-mistakes/)
+- [Claude Code 定价：到底要花多少钱](/zh/posts/ai/2026-02-25-claude-code-pricing/)
+- [Claude 速率限制机制详解](/zh/posts/ai/2026-02-28-claude-rate-limits/)
+- [Claude 定价完全指南（免费 / Pro / Max / API）](/zh/posts/ai/2026-04-03-claude-pricing-complete-guide/)
+- [大家在 Claude Code 上踩的烧钱坑](/zh/posts/ai/2026-02-25-claude-code-mistakes/)

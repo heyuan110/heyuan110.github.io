@@ -337,7 +337,7 @@ ping 192.168.1.1
 traceroute 8.8.8.8
 ```
 
-更多 Linux 网络命令，可以参考 [Linux/macOS 常用命令速查手册](/posts/linux/2020-03-19-linux-mac-commands/)。
+更多 Linux 网络命令，可以参考 [Linux/macOS 常用命令速查手册](/zh/posts/linux/2020-03-19-linux-mac-commands/)。
 
 ## 总结
 
@@ -353,9 +353,9 @@ traceroute 8.8.8.8
 
 ## 相关阅读
 
-- [Linux/macOS 常用命令速查手册](/posts/linux/2020-03-19-linux-mac-commands/) - 网络诊断命令
-- [Traceroute 网络诊断命令详解](/posts/linux/2020-06-28-traceroute/) - 网络路由跟踪
-- [curl 命令完全指南](/posts/linux/2020-06-29-curl/) - HTTP 请求与 API 调试
+- [Linux/macOS 常用命令速查手册](/zh/posts/linux/2020-03-19-linux-mac-commands/) - 网络诊断命令
+- [Traceroute 网络诊断命令详解](/zh/posts/linux/2020-06-28-traceroute/) - 网络路由跟踪
+- [curl 命令完全指南](/zh/posts/linux/2020-06-29-curl/) - HTTP 请求与 API 调试
 
 ## 参考资源
 

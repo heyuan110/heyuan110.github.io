@@ -30,7 +30,7 @@ answer = "未经独立验证。Sol 的 Coding Agent Index 80 分是在 OpenAI �
 
 ![GPT-5.6 正式发布：Sol、Terra、Luna 全量开放，Codex 并入 ChatGPT Work](cover.webp)
 
-两周前我在[模型选型那篇](/posts/ai/2026-07-07-best-ai-coding-models-2026/)里写过一句话："在你能给 GPT-5.6 创建 API key 的那天之前，把它从选型里划掉。"这一天来得比我预期快：2026 年 7 月 9 日，OpenAI [宣布 GPT-5.6 正式全量发布](https://openai.com/index/gpt-5-6/)——Sol、Terra、Luna 三档模型同时登陆 ChatGPT、API、Codex，外加一个全新的 agent 产品 ChatGPT Work，24 小时内全球铺开。6 月 26 日那场"只有约 20 家政府批准企业能用"的预览式发布，正式翻篇。
+两周前我在[模型选型那篇](/zh/posts/ai/2026-07-07-best-ai-coding-models-2026/)里写过一句话："在你能给 GPT-5.6 创建 API key 的那天之前，把它从选型里划掉。"这一天来得比我预期快：2026 年 7 月 9 日，OpenAI [宣布 GPT-5.6 正式全量发布](https://openai.com/index/gpt-5-6/)——Sol、Terra、Luna 三档模型同时登陆 ChatGPT、API、Codex，外加一个全新的 agent 产品 ChatGPT Work，24 小时内全球铺开。6 月 26 日那场"只有约 20 家政府批准企业能用"的预览式发布，正式翻篇。
 
 所以这篇是我欠读者的续集。挖了两天资料之后，我的判断是：**这次发布里跑分是最不重要的部分，产品线合并才是最重要的部分。** OpenAI 把 Codex 整个并进了 ChatGPT，押注"一个 App 装下所有 agent 工作流"——这个赌注，而不是那个在自家 harness 上跑出来的 2.8 分领先，才是真正会影响你未来半年工具选择的东西。下面按顺序讲：到底发布了什么、厂商跑分该打几折、Codex 合并释放了什么信号、国内用户怎么低成本试水，以及 Claude Code 用户什么信号出现之前不要动。
 
@@ -48,7 +48,7 @@ answer = "未经独立验证。Sol 的 Coding Agent Index 80 分是在 OpenAI �
 
 再看 OpenAI 希望你记住的数字：Sol 在 **Coding Agent Index 拿 80 分，比 Claude Fable 5 高 2.8**；在 **Agents' Last Exam 拿 53.6，比 Fable 5 高 13.1**；Intelligence Index 上与 Fable 5 差距不到 1 分，但耗时少 61%、估算成本约一半。数字很漂亮——而每一条都需要打折，原因发布页不会主动告诉你。
 
-关键细节在这里：[Artificial Analysis 那个 80 分，是 Sol 装在 OpenAI 自家 Codex harness 里跑出来的](https://artificialanalysis.ai/articles/gpt-5-6-has-landed)。如果你觉得这个剧情眼熟，没错——三周前 Anthropic 给 Fable 5 发布 SWE-bench Pro 80.3% 时用的也是自家 agentic 脚手架，独立评测方当场质疑中立框架下能剩多少，我在[模型选型那篇](/posts/ai/2026-07-07-best-ai-coding-models-2026/)里详细拆过。现在完全相同的剧本反向重演了一遍，连分数都诡异地同为 80。一条我反复强调的原则：**模型装在厂商为它调校的 harness 里跑出来的分，是天花板数字，不是你的日常体验。**
+关键细节在这里：[Artificial Analysis 那个 80 分，是 Sol 装在 OpenAI 自家 Codex harness 里跑出来的](https://artificialanalysis.ai/articles/gpt-5-6-has-landed)。如果你觉得这个剧情眼熟，没错——三周前 Anthropic 给 Fable 5 发布 SWE-bench Pro 80.3% 时用的也是自家 agentic 脚手架，独立评测方当场质疑中立框架下能剩多少，我在[模型选型那篇](/zh/posts/ai/2026-07-07-best-ai-coding-models-2026/)里详细拆过。现在完全相同的剧本反向重演了一遍，连分数都诡异地同为 80。一条我反复强调的原则：**模型装在厂商为它调校的 harness 里跑出来的分，是天花板数字，不是你的日常体验。**
 
 反方证据就摆在公开数据里。SWE-bench Pro 上 **Fable 5 以 80% 对 Sol 的 64.6% 领先 15 分**——这是目前公开可查的最深编码 benchmark。OpenAI 的应对方式很有戏剧性：不去争这个分数，而是[发了一份审计报告，声称 SWE-bench Pro 约 30% 的任务本身是坏的](https://simonwillison.net/2026/Jul/9/gpt-5-6/)。这份审计也许有道理——benchmark 年久失修是真实问题。但注意这个模式：每家实验室都拥抱自己赢的榜、质疑自己输的榜的方法论。当裁判开始下场踢球，记分牌就不再是证据。Simon Willison 上手实测的结论和我的预期一致：Sol"确实非常能干"，但在他日常跑的复杂编码任务上并没有超过 Anthropic 的模型——这是这场发布迄今最诚实的一句话。
 
@@ -84,9 +84,9 @@ flowchart TB
     A4 --> B3
 ```
 
-这是一次哲学分叉，两条路都值得说清楚。OpenAI 现在押注 agent 工作流属于**一个消费级超级 App**：你聊天的那个窗口，同时改你的表格、重构你的仓库、替你上网办事。Anthropic 走的是完全相反的路——Claude Code 是独立的 CLI/SDK，可组合的原语才是产品，App 只是配角。我在 [CLI + Skills vs MCP 那篇](/posts/ai/2026-07-10-cli-skills-vs-mcp/)里论证过：agent 能力越来越多地长在"薄而可脚本化"的分层里，而不是一体化的壳里；OpenAI 刚刚在一体化的壳上下了重注。两个赌注面向的是不同人群：超级 App 赢的是做 PPT 的分析师和管表格的 PM，CLI 赢的是想把 agent 塞进 CI、cron 和 git worktree 的工程师。
+这是一次哲学分叉，两条路都值得说清楚。OpenAI 现在押注 agent 工作流属于**一个消费级超级 App**：你聊天的那个窗口，同时改你的表格、重构你的仓库、替你上网办事。Anthropic 走的是完全相反的路——Claude Code 是独立的 CLI/SDK，可组合的原语才是产品，App 只是配角。我在 [CLI + Skills vs MCP 那篇](/zh/posts/ai/2026-07-10-cli-skills-vs-mcp/)里论证过：agent 能力越来越多地长在"薄而可脚本化"的分层里，而不是一体化的壳里；OpenAI 刚刚在一体化的壳上下了重注。两个赌注面向的是不同人群：超级 App 赢的是做 PPT 的分析师和管表格的 PM，CLI 赢的是想把 agent 塞进 CI、cron 和 git worktree 的工程师。
 
-这次合并暴露了 OpenAI 对市场的判断：Codex 作为独立开发者产品，撑不起一个自己的 App；但 Codex 作为大众 agent 产品背后的肌肉，是大得多的生意。商业上这很理性——代价由开发者承担。当你的编码 agent 变成一个消费级 App 里的标签页，它的路线图就跟着消费级优先级走。如果你去年冬天在 [Claude Code vs Codex](/posts/ai/2026-02-19-claude-code-vs-codex/) 的对比后选了 Codex，你选的那个工具刚刚在内部换了东家，Codex CLI 接下来两个季度的"二等公民"待遇值得盯着看。
+这次合并暴露了 OpenAI 对市场的判断：Codex 作为独立开发者产品，撑不起一个自己的 App；但 Codex 作为大众 agent 产品背后的肌肉，是大得多的生意。商业上这很理性——代价由开发者承担。当你的编码 agent 变成一个消费级 App 里的标签页，它的路线图就跟着消费级优先级走。如果你去年冬天在 [Claude Code vs Codex](/zh/posts/ai/2026-02-19-claude-code-vs-codex/) 的对比后选了 Codex，你选的那个工具刚刚在内部换了东家，Codex CLI 接下来两个季度的"二等公民"待遇值得盯着看。
 
 ## 价格战：三档价格全是对着 Claude 定的
 
@@ -122,7 +122,7 @@ quadrantChart
 
 第二，封号风险。这轮 GA 没有放松风控，反而因为 ChatGPT Work 能操作本地文件和浏览器，账号与设备环境的绑定更深了。历史规律依然成立：虚拟卡开 Pro 档、IP 频繁跳区、多人共享账号，是三个最常见的触发条件。如果你只是想评估模型能力，我的建议很明确：**别为了 GPT-5.6 去冒充值几百美元订阅费的封号风险，API 中转按量试完再说。** 模型能力用 API 就能完整评估，ChatGPT Work 的产品体验不值得押上账号。
 
-第三，ChatGPT Work 的国内体验。它首发只在 Pro（$200/月）、Enterprise、Edu 三档，Plus 要再等几天；而且它的核心卖点——读本地文件、操作本地应用、内置浏览器连续工作几小时——每一项都要求稳定的网络长连接。挂着代理跑一个持续数小时的 agent 任务，断线重连的体验可以想象。加上数据层面的现实问题（你让它读的本地文件会上传到 OpenAI 的执行环境），我给国内读者的判断是：ChatGPT Work 这个产品形态值得关注，但作为日常生产力工具，国内可用性在未来一两个季度内都不会及格。想要"能连续干几小时活的 agent"，本地跑的 Claude Code 或开源替代品仍是国内环境下更现实的选择——顺带一提，Anthropic 各档订阅和免费额度国内怎么用，我在 [Claude 免费额度实测](/posts/ai/2026-07-08-claude-free-tier-limits/)里写过。
+第三，ChatGPT Work 的国内体验。它首发只在 Pro（$200/月）、Enterprise、Edu 三档，Plus 要再等几天；而且它的核心卖点——读本地文件、操作本地应用、内置浏览器连续工作几小时——每一项都要求稳定的网络长连接。挂着代理跑一个持续数小时的 agent 任务，断线重连的体验可以想象。加上数据层面的现实问题（你让它读的本地文件会上传到 OpenAI 的执行环境），我给国内读者的判断是：ChatGPT Work 这个产品形态值得关注，但作为日常生产力工具，国内可用性在未来一两个季度内都不会及格。想要"能连续干几小时活的 agent"，本地跑的 Claude Code 或开源替代品仍是国内环境下更现实的选择——顺带一提，Anthropic 各档订阅和免费额度国内怎么用，我在 [Claude 免费额度实测](/zh/posts/ai/2026-07-08-claude-free-tier-limits/)里写过。
 
 ## Claude Code 用户：三个信号出现之前不要动
 
@@ -138,7 +138,7 @@ GPT-5.6 的发布是真的、全球的、定价带着杀气的——这些经得
 
 ## 相关阅读
 
-- [2026 最强 AI 编码模型对比：Fable 5、Sonnet 5 还是 GPT-5.6](/posts/ai/2026-07-07-best-ai-coding-models-2026/) — 本文更新的正是这篇的 GA 前判断
-- [MCP vs Skills：为什么 CLI + Skill 赢下 agent 工具链](/posts/ai/2026-07-10-cli-skills-vs-mcp/) — 理解 Codex 合并背后哲学分叉的分层论
-- [Claude Code vs Codex：8 维度正面对决](/posts/ai/2026-02-19-claude-code-vs-codex/) — Codex 变形前的两大 agent CLI 对比
-- [2026 年 Claude 免费额度实测：免费版到底能干什么](/posts/ai/2026-07-08-claude-free-tier-limits/)
+- [2026 最强 AI 编码模型对比：Fable 5、Sonnet 5 还是 GPT-5.6](/zh/posts/ai/2026-07-07-best-ai-coding-models-2026/) — 本文更新的正是这篇的 GA 前判断
+- [MCP vs Skills：为什么 CLI + Skill 赢下 agent 工具链](/zh/posts/ai/2026-07-10-cli-skills-vs-mcp/) — 理解 Codex 合并背后哲学分叉的分层论
+- [Claude Code vs Codex：8 维度正面对决](/zh/posts/ai/2026-02-19-claude-code-vs-codex/) — Codex 变形前的两大 agent CLI 对比
+- [2026 年 Claude 免费额度实测：免费版到底能干什么](/zh/posts/ai/2026-07-08-claude-free-tier-limits/)

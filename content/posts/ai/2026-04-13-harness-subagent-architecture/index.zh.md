@@ -26,7 +26,7 @@ answer = "Tool 是一个确定性的函数调用，不带思考。MCP Server 是
 
 ![Sub-Agent 架构示意图：主 Agent 向隔离的子 Agent 分发任务，每个子 Agent 拥有独立的上下文窗口](cover.webp)
 
-这是 [Harness Engineering 系列](/posts/ai/2026-03-30-harness-engineering-guide/) 的**第三篇**。第一篇讲了框架（Agent = 模型 + Harness），[第二篇](/posts/ai/2026-03-31-harness-claudemd-guide/) 拆了 `CLAUDE.md` 这个最重要的前馈控件，这篇讲的是多数团队都做错了的结构决策：**什么时候该拆 Sub-Agent、怎么路由、到底花多少钱**。
+这是 [Harness Engineering 系列](/zh/posts/ai/2026-03-30-harness-engineering-guide/) 的**第三篇**。第一篇讲了框架（Agent = 模型 + Harness），[第二篇](/zh/posts/ai/2026-03-31-harness-claudemd-guide/) 拆了 `CLAUDE.md` 这个最重要的前馈控件，这篇讲的是多数团队都做错了的结构决策：**什么时候该拆 Sub-Agent、怎么路由、到底花多少钱**。
 
 先给结论，这个结论你大概率在别的地方看不到：
 
@@ -131,7 +131,7 @@ graph TD
     E --> F
 ```
 
-**什么时候好用**：你有反复出现的任务类型，能从专用上下文和工具限制里受益。这也是 Claude Code 官方内置子 Agent 的模式，和 [Claude Code Agent Teams](/posts/ai/2026-02-22-claude-code-agent-teams/) 的设计一脉相承。
+**什么时候好用**：你有反复出现的任务类型，能从专用上下文和工具限制里受益。这也是 Claude Code 官方内置子 Agent 的模式，和 [Claude Code Agent Teams](/zh/posts/ai/2026-02-22-claude-code-agent-teams/) 的设计一脉相承。
 
 **什么时候翻车**：专家化过度。七个子 Agent，每个一个月调用两次，每个要维护自己的 `CLAUDE.md` 片段，每个 prompt 质量都在缓慢漂移。把这个模式当微服务看待——**同一形态的任务至少在主 Agent 里处理过三次之后，才值得抽成专家子 Agent**。
 
@@ -201,8 +201,8 @@ flowchart TD
 因为这套术语滑溜得很，我给出和相邻概念的清晰边界：
 
 - **Tool** 是确定性的函数调用。Tool 不思考。`read_file(path)` 是 tool。
-- **[MCP Server](/posts/ai/2026-02-20-mcp-protocol-guide/)** 把一组 tool 封装在标准协议后面。MCP Server 暴露 tool，它本身不发起 LLM 调用。
-- **[Skill](/posts/ai/2026-02-28-claude-code-skills-guide/)** 是加载到当前 Agent 上下文里的指令包。Skill 是 **prompt 扩展**——跑在父 Agent 的上下文里，**不隔离**。
+- **[MCP Server](/zh/posts/ai/2026-02-20-mcp-protocol-guide/)** 把一组 tool 封装在标准协议后面。MCP Server 暴露 tool，它本身不发起 LLM 调用。
+- **[Skill](/zh/posts/ai/2026-02-28-claude-code-skills-guide/)** 是加载到当前 Agent 上下文里的指令包。Skill 是 **prompt 扩展**——跑在父 Agent 的上下文里，**不隔离**。
 - **Sub-Agent** 是独立的一次 LLM 调用，有自己的上下文窗口和（通常）独立的 system prompt。关键特征是**上下文隔离**：子 Agent 读过、想过、算过的东西，**不会**污染父 Agent。
 
 如果你在纠结"这个应该做成 skill 还是 sub-agent？"，判据只有一条：**父 Agent 是否需要对中间推理过程保持无感知？** 需要隔离——sub-agent；不需要——skill。
@@ -211,7 +211,7 @@ flowchart TD
 
 Sub-Agent 会继承一件大多数团队低估的东西：**工具权限**。如果主 Agent 能执行 shell、能写文件，你的子 Agent 默认也能，除非你显式缩权。如果一段 prompt injection 从外部内容（比如抓回来的网页）钻进子 Agent 的输入里，它就能触发父 Agent 本会拦截的破坏性操作。
 
-防御模式很简单：**子 Agent 用最小权限白名单定义**。`search-agent` 只给 `read_file` 和 `grep`，别的不给。`docstring-agent` 给 `read_file` 和 `edit_file`，不给 shell。这就是 [Claude Code 安全模型](/posts/ai/2026-02-22-claude-code-security/) 在子 Agent 上真正落地的地方——没有权限边界的子 Agent 就是带着主 Agent 全部权限的小号。
+防御模式很简单：**子 Agent 用最小权限白名单定义**。`search-agent` 只给 `read_file` 和 `grep`，别的不给。`docstring-agent` 给 `read_file` 和 `edit_file`，不给 shell。这就是 [Claude Code 安全模型](/zh/posts/ai/2026-02-22-claude-code-security/) 在子 Agent 上真正落地的地方——没有权限边界的子 Agent 就是带着主 Agent 全部权限的小号。
 
 ## 一个具体案例：我的博客写作管线
 
@@ -251,12 +251,12 @@ Sub-Agent 会继承一件大多数团队低估的东西：**工具权限**。如
 
 ## 相关阅读
 
-- [Harness Engineering 完全指南](/posts/ai/2026-03-30-harness-engineering-guide/) — 系列第一篇，总体框架。
-- [CLAUDE.md 最佳实践：写得少才是写得好](/posts/ai/2026-03-31-harness-claudemd-guide/) — 系列第二篇，前馈控件，决定每个子 Agent 的初始"世界观"。
-- [Claude Code Agent Teams：多 Agent 系统实战](/posts/ai/2026-02-22-claude-code-agent-teams/) — 专家化委派模式的具体落地。
-- [Claude Code Skills 指南](/posts/ai/2026-02-28-claude-code-skills-guide/) — 什么时候用 Skill 代替 Sub-Agent。
-- [Claude Code 安全模型](/posts/ai/2026-02-22-claude-code-security/) — 子 Agent 工具白名单为什么重要。
-- [AI Agent 记忆系统](/posts/ai/2026-02-21-ai-agent-memory-systems/) — 隔离的另一半故事。
+- [Harness Engineering 完全指南](/zh/posts/ai/2026-03-30-harness-engineering-guide/) — 系列第一篇，总体框架。
+- [CLAUDE.md 最佳实践：写得少才是写得好](/zh/posts/ai/2026-03-31-harness-claudemd-guide/) — 系列第二篇，前馈控件，决定每个子 Agent 的初始"世界观"。
+- [Claude Code Agent Teams：多 Agent 系统实战](/zh/posts/ai/2026-02-22-claude-code-agent-teams/) — 专家化委派模式的具体落地。
+- [Claude Code Skills 指南](/zh/posts/ai/2026-02-28-claude-code-skills-guide/) — 什么时候用 Skill 代替 Sub-Agent。
+- [Claude Code 安全模型](/zh/posts/ai/2026-02-22-claude-code-security/) — 子 Agent 工具白名单为什么重要。
+- [AI Agent 记忆系统](/zh/posts/ai/2026-02-21-ai-agent-memory-systems/) — 隔离的另一半故事。
 
 ## 外链参考
 

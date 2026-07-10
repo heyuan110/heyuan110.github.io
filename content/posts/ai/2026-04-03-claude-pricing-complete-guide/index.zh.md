@@ -82,7 +82,7 @@ Anthropic 用的是动态滚动窗口，不是固定的每日配额。Pro 用户
 2. **模型选择**：用 Opus 4.6 消耗额度的速度是 Sonnet 4.6 的 3-5 倍
 3. **时间段**：美国工作日的白天是高峰期，额度会收紧；晚上和周末相对宽松
 
-关于限制的详细机制，可以看 [Claude 速率限制详解](/posts/ai/2026-02-28-claude-rate-limits/)。
+关于限制的详细机制，可以看 [Claude 速率限制详解](/zh/posts/ai/2026-02-28-claude-rate-limits/)。
 
 **Pro 适合谁：** 每天用 Claude 5 次以上、需要 Opus 模型、或者要用 Claude Code 写代码的人。
 
@@ -113,7 +113,7 @@ Anthropic 用的是动态滚动窗口，不是固定的每日配额。Pro 用户
 
 对于 Claude Code 用户，平均 API 消耗约 6 美元/天。Max 5x 的 100 美元/月提供了可预测的账单上限，不用盯着 token 消耗。如果你同时跑多个实例或自动化流水线，Max 20x 的 200 美元/月更踏实。
 
-详细的 Claude Code 费用拆解看这篇：[Claude Code 定价完全指南](/posts/ai/2026-02-25-claude-code-pricing/)。
+详细的 Claude Code 费用拆解看这篇：[Claude Code 定价完全指南](/zh/posts/ai/2026-02-25-claude-code-pricing/)。
 
 ## Team 版（$25-30/人/月）：团队的正确打开方式
 
@@ -145,7 +145,7 @@ Anthropic 用的是动态滚动窗口，不是固定的每日配额。Pro 用户
 
 多花 50 美元/月，换来 SSO、集中管理、更高用量——大多数公司这笔账很好算。
 
-团队部署的完整指南看：[Claude Code Teams 使用指南](/posts/ai/2026-02-28-claude-code-teams-guide/)。
+团队部署的完整指南看：[Claude Code Teams 使用指南](/zh/posts/ai/2026-02-28-claude-code-teams-guide/)。
 
 ## Enterprise：大厂专属
 
@@ -208,7 +208,7 @@ Claude Code 是 Anthropic 的终端编程代理，在 Pro、Max、Team、API 上
 
 国内开发者的一个实操建议：如果你主要用 Claude Code 做中文项目开发，Sonnet 4.6 已经足够好用，没必要强上 Opus 白白消耗额度。Opus 留给需要深度推理的架构设计和复杂 debug 场景。
 
-新手入门可以看 [Claude Code 安装配置指南](/posts/ai/2026-02-25-claude-code-setup-guide/)。
+新手入门可以看 [Claude Code 安装配置指南](/zh/posts/ai/2026-02-25-claude-code-setup-guide/)。
 
 ## 怎么选：三步决策法
 
@@ -239,9 +239,9 @@ Claude Code 是 Anthropic 的终端编程代理，在 Pro、Max、Team、API 上
 ## 相关阅读
 
 - [Claude API 成本计算器](/tools/claude-token-cost-calculator.html) — 按你的用量实时对比各模型每次调用/每月成本
-- [Claude Code 定价完全指南](/posts/ai/2026-02-25-claude-code-pricing/) — API 真实成本和用量估算
-- [Claude 速率限制详解](/posts/ai/2026-02-28-claude-rate-limits/) — 滚动窗口、模型选择和对话长度怎么影响限额
-- [Claude Code Teams 使用指南](/posts/ai/2026-02-28-claude-code-teams-guide/) — 团队环境下的部署和管理
-- [Claude Code 安装配置指南](/posts/ai/2026-02-25-claude-code-setup-guide/) — 从零开始的安装教程
-- [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/) — Claude Code 功能全面解读
-- [Claude vs ChatGPT vs Gemini 2026](/posts/ai/2026-03-02-claude-vs-chatgpt-vs-gemini/) — 三大 AI 助手功能和价格对比
+- [Claude Code 定价完全指南](/zh/posts/ai/2026-02-25-claude-code-pricing/) — API 真实成本和用量估算
+- [Claude 速率限制详解](/zh/posts/ai/2026-02-28-claude-rate-limits/) — 滚动窗口、模型选择和对话长度怎么影响限额
+- [Claude Code Teams 使用指南](/zh/posts/ai/2026-02-28-claude-code-teams-guide/) — 团队环境下的部署和管理
+- [Claude Code 安装配置指南](/zh/posts/ai/2026-02-25-claude-code-setup-guide/) — 从零开始的安装教程
+- [Claude Code 完全指南](/zh/posts/ai/2026-01-14-claude-code-guide/) — Claude Code 功能全面解读
+- [Claude vs ChatGPT vs Gemini 2026](/zh/posts/ai/2026-03-02-claude-vs-chatgpt-vs-gemini/) — 三大 AI 助手功能和价格对比

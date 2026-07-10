@@ -30,7 +30,7 @@ answer = "五个问题扫一遍：行数是否 ≤ 60？有没有「你是一位
 
 ![精简后的 CLAUDE.md 文件在编辑器中展示，标注出 50 行边界与分层结构](cover.webp)
 
-这是 **Harness Engineering 系列第 2 篇**。[第 1 篇](/posts/ai/2026-03-30-harness-engineering-guide/)讲了 `Agent = 模型 + Harness` 的核心公式，[第 3 篇](/posts/ai/2026-04-13-harness-subagent-architecture/)会深入 Sub-Agent 架构设计。这篇聚焦 Harness 里投入产出比最高的单个文件：`CLAUDE.md`。
+这是 **Harness Engineering 系列第 2 篇**。[第 1 篇](/zh/posts/ai/2026-03-30-harness-engineering-guide/)讲了 `Agent = 模型 + Harness` 的核心公式，[第 3 篇](/zh/posts/ai/2026-04-13-harness-subagent-architecture/)会深入 Sub-Agent 架构设计。这篇聚焦 Harness 里投入产出比最高的单个文件：`CLAUDE.md`。
 
 先把结论放出来：**CLAUDE.md 是你为 AI 编程 Agent 写的 ROI 最高的一个文件——但多数团队写错了。** 三个最常见的坑：写太长（超过 60 行性能反降）、让 LLM 自动生成（实测降低 20%）、一个仓库一份不分层（领域规则互相干扰）。
 
@@ -60,7 +60,7 @@ answer = "五个问题扫一遍：行数是否 ≤ 60？有没有「你是一位
 
 研究团队的结论很直接：**完全不要用 AI 生成的 agentfile，人工编写的也只保留 Agent 无法自行推断的信息。** 这和 Cognition 团队在 Devin 复盘里强调的观点一致：[自然语言指令的交接是有损的](https://cognition.ai/blog/dont-build-multi-agents)——你写进去的每一行，到 Agent 那边都会被解释、压缩、权重重排。写越多，失真越严重。
 
-这也印证了 [Harness Engineering 第 1 篇](/posts/ai/2026-03-30-harness-engineering-guide/)里的核心观点：Harness 的作用是**缩小解空间**，不是往里面堆信息。60 行的精准约束能把 Agent 稳稳压在正确轨道；300 行的文档倾倒只是在噪音里淹没 Agent。
+这也印证了 [Harness Engineering 第 1 篇](/zh/posts/ai/2026-03-30-harness-engineering-guide/)里的核心观点：Harness 的作用是**缩小解空间**，不是往里面堆信息。60 行的精准约束能把 Agent 稳稳压在正确轨道；300 行的文档倾倒只是在噪音里淹没 Agent。
 
 ## 三个必须打破的误区
 
@@ -104,7 +104,7 @@ flowchart TD
 
 Claude Code 原生支持这个层级。**离编辑文件越近的规则优先级越高。** 根目录说"用 Jest"，`packages/web/CLAUDE.md` 说"用 Vitest"——编辑那个包时 Agent 会用 Vitest，其他地方还是 Jest。
 
-我自己博客仓库现在的结构：根目录只有 `see @AGENTS.md` 一行加全局指向；AGENTS.md 约 80 行放团队共享规则；主题开发相关的细节放在 [Skills 指南](/posts/ai/2026-02-28-claude-code-skills-guide/)里按需加载，而不是塞进主配置。
+我自己博客仓库现在的结构：根目录只有 `see @AGENTS.md` 一行加全局指向；AGENTS.md 约 80 行放团队共享规则；主题开发相关的细节放在 [Skills 指南](/zh/posts/ai/2026-02-28-claude-code-skills-guide/)里按需加载，而不是塞进主配置。
 
 ## 我的 50 行 CLAUDE.md 模板（可拷贝）
 
@@ -148,7 +148,7 @@ Claude Code 原生支持这个层级。**离编辑文件越近的规则优先级
 
 **Language 段**防止 Agent 用英文跟我对话或者把正文写成中文；**Stack 段**两行给 Agent 一个锚点，不用去扒 `hugo.toml`；**Commands 段**是 Agent 最容易走歪的地方，精确命令比"运行测试"有用十倍；**Hard Rules 段**是红线，违反会造成实际损害（URL 变动会把已索引的流量全丢掉）；**Where to look 段**防止 Agent 开工前做一堆 `find`/`grep` 探路。
 
-领域规则（比如内容写作时的 SEO 要求、SCSS 的命名空间约定）不放这里，放在 [Skills](/posts/ai/2026-02-28-claude-code-skills-guide/) 里按需加载。Hooks 层面的自动化（构建后验证、推送前检查）用 [Claude Code Hooks](/posts/ai/2026-02-28-claude-code-hooks-guide/) 处理，不写进 CLAUDE.md。
+领域规则（比如内容写作时的 SEO 要求、SCSS 的命名空间约定）不放这里，放在 [Skills](/zh/posts/ai/2026-02-28-claude-code-skills-guide/) 里按需加载。Hooks 层面的自动化（构建后验证、推送前检查）用 [Claude Code Hooks](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) 处理，不写进 CLAUDE.md。
 
 ## 该放什么，不该放什么
 
@@ -206,13 +206,13 @@ Claude Code 原生支持这个层级。**离编辑文件越近的规则优先级
 
 **铁律 2：规则必须来自真实错误，不来自想象。** 我不会因为"感觉应该有"就加规则。必须是 Agent 实际翻车过、我纠正过 2-3 次以上的问题，才值得固化到 CLAUDE.md。这样每一行都有明确的"防御对象"。
 
-**铁律 3：领域规则走 Skills，不塞主文件。** 数据库迁移、API 规范、部署流程这类领域知识全部放 Skills 按需加载。主 CLAUDE.md 只保留每个任务都相关的全局约束。参考 [Skills 指南](/posts/ai/2026-02-28-claude-code-skills-guide/)。
+**铁律 3：领域规则走 Skills，不塞主文件。** 数据库迁移、API 规范、部署流程这类领域知识全部放 Skills 按需加载。主 CLAUDE.md 只保留每个任务都相关的全局约束。参考 [Skills 指南](/zh/posts/ai/2026-02-28-claude-code-skills-guide/)。
 
 ## 相关阅读
 
-- [Harness Engineering #1：为什么模型之外的一切更重要](/posts/ai/2026-03-30-harness-engineering-guide/) — 系列开篇，Agent = 模型 + Harness 的核心公式
-- [Harness Engineering #3：Sub-Agent 架构设计](/posts/ai/2026-04-13-harness-subagent-architecture/) — 下一篇，多 Agent 协作如何不让上下文爆炸
-- [Claude Code Hooks 指南](/posts/ai/2026-02-28-claude-code-hooks-guide/) — 用 Hooks 处理自动化，而不是塞进 CLAUDE.md
-- [Claude Code Skills 指南](/posts/ai/2026-02-28-claude-code-skills-guide/) — 领域知识按需加载，保持主配置精简
+- [Harness Engineering #1：为什么模型之外的一切更重要](/zh/posts/ai/2026-03-30-harness-engineering-guide/) — 系列开篇，Agent = 模型 + Harness 的核心公式
+- [Harness Engineering #3：Sub-Agent 架构设计](/zh/posts/ai/2026-04-13-harness-subagent-architecture/) — 下一篇，多 Agent 协作如何不让上下文爆炸
+- [Claude Code Hooks 指南](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) — 用 Hooks 处理自动化，而不是塞进 CLAUDE.md
+- [Claude Code Skills 指南](/zh/posts/ai/2026-02-28-claude-code-skills-guide/) — 领域知识按需加载，保持主配置精简
 - [Anthropic 官方 CLAUDE.md 文档](https://docs.claude.com/en/docs/claude-code/memory) — 分层作用域、@import、用户级覆盖的完整语法
 - [Martin Fowler: LLM engineering patterns](https://martinfowler.com/articles/2025-agentic-ai-patterns.html) — harness 视角下的 Agent 工程模式

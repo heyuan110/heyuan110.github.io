@@ -15,7 +15,7 @@ keywords = ['Claude Code Security', 'AI 代码安全扫描', 'Claude 漏洞检�
 
 ## Claude Code Security 是什么
 
-Claude Code Security 是 Anthropic 在 [Claude Code](/posts/ai/2026-01-14-claude-code-guide/) 中内置的代码安全扫描能力。它基于最新的 Claude Opus 4.6 模型，能够自主扫描整个代码库，发现安全漏洞并生成针对性的修复补丁建议。
+Claude Code Security 是 Anthropic 在 [Claude Code](/zh/posts/ai/2026-01-14-claude-code-guide/) 中内置的代码安全扫描能力。它基于最新的 Claude Opus 4.6 模型，能够自主扫描整个代码库，发现安全漏洞并生成针对性的修复补丁建议。
 
 与传统安全扫描工具最大的区别在于：它不依赖预定义的规则库或模式匹配，而是**像人类安全研究员一样推理你的代码**。用 Anthropic 官方的说法：
 
@@ -49,7 +49,7 @@ Claude Code Security 能够理解软件组件之间的交互关系，追踪数�
 
 AI 负责发现问题和建议解决方案，开发者做最终决定。这不仅是安全考虑，也是对"AI 辅助"而非"AI 替代"理念的坚守。系统提供集成的审查面板，开发者可以逐一检视、确认或拒绝每个发现和修复建议。
 
-如果你对 Claude Code 的自动化控制机制感兴趣，可以参考 [Claude Code Hooks 指南](/posts/ai/2026-02-18-claude-code-hooks-guide/)，了解如何通过 Hooks 精细控制 AI 的行为边界。
+如果你对 Claude Code 的自动化控制机制感兴趣，可以参考 [Claude Code Hooks 指南](/zh/posts/ai/2026-02-18-claude-code-hooks-guide/)，了解如何通过 Hooks 精细控制 AI 的行为边界。
 
 ## 与传统 SAST 工具对比
 
@@ -116,7 +116,7 @@ Claude Code Security 目前以有限的研究预览形式提供，获取途径�
 
 该功能经过 Anthropic 内部红队超过一年的压力测试，包括 Capture the Flag 竞赛和与太平洋西北国家实验室（Pacific Northwest National Laboratory）的合作，以确保扫描准确性。
 
-如果你还没有使用过 Claude Code，建议先阅读 [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/) 了解基础功能。如果你关注 Claude Code 的最新动态，[2 月更新汇总](/posts/ai/2026-02-22-claude-code-february-updates/)中也有相关信息。
+如果你还没有使用过 Claude Code，建议先阅读 [Claude Code 完全指南](/zh/posts/ai/2026-01-14-claude-code-guide/) 了解基础功能。如果你关注 Claude Code 的最新动态，[2 月更新汇总](/zh/posts/ai/2026-02-22-claude-code-february-updates/)中也有相关信息。
 
 ## 对开发者的意义
 
@@ -131,7 +131,7 @@ Claude Code Security 的出现，加速了一个已经持续数年的趋势：**
 - **技术管理者**：安全审计的效率和覆盖率大幅提升，成本显著降低
 - **开源社区**：Anthropic 提供免费加速通道，有望提升整个开源生态的安全水位
 
-随着 Claude Code 生态的不断发展 —— 从 [Hooks 自定义控制](/posts/ai/2026-02-18-claude-code-hooks-guide/) 到 [Agent Teams 多智能体协作](/posts/ai/2026-02-22-claude-code-agent-teams/) —— 安全扫描只是 AI 深入开发流程的又一步。建议开发者现在就开始关注 AI 辅助安全审计的实践，这将很快从"nice to have"变成"must have"。
+随着 Claude Code 生态的不断发展 —— 从 [Hooks 自定义控制](/zh/posts/ai/2026-02-18-claude-code-hooks-guide/) 到 [Agent Teams 多智能体协作](/zh/posts/ai/2026-02-22-claude-code-agent-teams/) —— 安全扫描只是 AI 深入开发流程的又一步。建议开发者现在就开始关注 AI 辅助安全审计的实践，这将很快从"nice to have"变成"must have"。
 
 ## 常见问题 FAQ
 

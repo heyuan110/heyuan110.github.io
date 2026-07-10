@@ -678,7 +678,7 @@ exit 0
 
 命名模式是 `mcp__<服务器名>__<工具名>`。使用 `mcp__.*` 匹配所有 MCP 工具，或 `mcp__github__.*` 匹配特定服务器的所有工具。
 
-这对于为 MCP 操作添加日志或审批工作流特别有用。更多 MCP 配置信息请参阅我们的 [Claude Code MCP 设置指南](/posts/ai/2026-02-28-claude-code-mcp-setup/)。
+这对于为 MCP 操作添加日志或审批工作流特别有用。更多 MCP 配置信息请参阅我们的 [Claude Code MCP 设置指南](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/)。
 
 ### 常见坑点
 
@@ -742,8 +742,8 @@ Claude Code 有三种扩展机制，它们服务于不同的目的：
 
 **经验法则**：
 - 当某事必须自动且可靠地发生时使用 **Hooks**（格式化、保护、日志记录）
-- 当你想要人工按需触发的可复用提示词时使用 **Skills**。详见我们的 [Claude Code Skills 指南](/posts/ai/2026-02-28-claude-code-skills-guide/)。
-- 当 Claude 需要与外部服务交互时使用 **MCP**。详见我们的 [MCP 设置指南](/posts/ai/2026-02-28-claude-code-mcp-setup/)。
+- 当你想要人工按需触发的可复用提示词时使用 **Skills**。详见我们的 [Claude Code Skills 指南](/zh/posts/ai/2026-02-28-claude-code-skills-guide/)。
+- 当 Claude 需要与外部服务交互时使用 **MCP**。详见我们的 [MCP 设置指南](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/)。
 
 ## 开始使用
 
@@ -759,8 +759,8 @@ Claude Code 有三种扩展机制，它们服务于不同的目的：
 
 ## 相关阅读
 
-- [Claude Code 安装指南](/posts/ai/2026-02-25-claude-code-setup-guide/) — 安装和初始配置
-- [CLAUDE.md 指南](/posts/ai/2026-02-28-claude-code-claudemd-guide/) — 项目上下文和记忆配置
-- [Claude Code Skills 指南](/posts/ai/2026-02-28-claude-code-skills-guide/) — 斜杠命令和可复用工作流
-- [Claude Code MCP 设置](/posts/ai/2026-02-28-claude-code-mcp-setup/) — 外部服务集成
+- [Claude Code 安装指南](/zh/posts/ai/2026-02-25-claude-code-setup-guide/) — 安装和初始配置
+- [CLAUDE.md 指南](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) — 项目上下文和记忆配置
+- [Claude Code Skills 指南](/zh/posts/ai/2026-02-28-claude-code-skills-guide/) — 斜杠命令和可复用工作流
+- [Claude Code MCP 设置](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/) — 外部服务集成
 - [官方 Claude Code Hooks 文档](https://docs.anthropic.com/en/docs/claude-code/hooks) — Anthropic 的参考文档

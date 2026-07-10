@@ -54,7 +54,7 @@ answer = "只要你在 Windows 上写脚本就需要。PowerShell 7.4.6+ 是 AI 
 
 先说 WSL。Windows Terminal 会自动发现每一个已安装的 Linux 发行版，给每个都配一个 profile，于是在 Ubuntu、PowerShell 7 会话、和原生 `cmd` 之间切换只需要点一个 tab。Windows 上没有别的终端能做到这么干净的集成，因为没有别的终端是由那个同时开发 WSL 的公司做的。如果你的日常就是"VS Code 里写代码、WSL2 的 Ubuntu 里跑"，这一项集成的价值就超过任何 20 倍的渲染跑分。
 
-再说 AI 层，这是大多数对比文章漏掉的部分。GitHub Copilot CLI 现在内联在 Windows Terminal 里，微软的 Intelligent Terminal 会在命令失败时自动浮现上下文，并让你在专门的 agent 面板里跑修复。值得注意的是，早先的 AI Shell 项目在 2026 年 1 月已经归档——微软把这块能力直接折进了终端本身，而不是做成一个外挂模块。这是个很明确的信号：AI 能力现在是终端原生的，不是你去别处装的插件。如果你的日常主力是 AI 编码 agent——比如我在[《Claude Code 完全指南》](/posts/ai/2026-02-28-claude-code-complete-guide/)里详细写过的那套 Claude Code 工作流——把它跑在一个同时能读懂你报错命令的终端里，是实打实的便利。
+再说 AI 层，这是大多数对比文章漏掉的部分。GitHub Copilot CLI 现在内联在 Windows Terminal 里，微软的 Intelligent Terminal 会在命令失败时自动浮现上下文，并让你在专门的 agent 面板里跑修复。值得注意的是，早先的 AI Shell 项目在 2026 年 1 月已经归档——微软把这块能力直接折进了终端本身，而不是做成一个外挂模块。这是个很明确的信号：AI 能力现在是终端原生的，不是你去别处装的插件。如果你的日常主力是 AI 编码 agent——比如我在[《Claude Code 完全指南》](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)里详细写过的那套 Claude Code 工作流——把它跑在一个同时能读懂你报错命令的终端里，是实打实的便利。
 
 它诚实的短板是渲染速度。在 vtebench 滚动测试里，Windows Terminal 大约要 2460ms，而 Alacritty 只要 106ms 左右——纸面上 20 倍的差距。这个数字是真的，同时也基本和日常无关：除非你经常 `cat` 巨大的文件，或者跑那种每秒吐几万行的工具，否则你根本感知不到。我把 Windows Terminal 当日用主力，正常写代码、跑 git、跑构建时从没觉得"这也太慢了"。跑分延迟和体感延迟是两回事，卖你 Rust 终端的人心里都清楚。
 
@@ -64,9 +64,9 @@ answer = "只要你在 Windows 上写脚本就需要。PowerShell 7.4.6+ 是 AI 
 
 WezTerm 是我推荐给"真正用腻了 Windows Terminal"的人的终端——不是自以为用腻了，而是撞上了某个具体的墙。它是 Rust 写的 GPU 加速终端，带着一个 Windows Terminal 和 Alacritty 都没有开箱能力：一个真正的单进程多路复用器，带可搜索的回滚缓冲、分屏、workspace 和会话管理，全部用 Lua 配置。
 
-杀手锏是一致性。WezTerm 在 Windows、macOS、Linux 上表现完全一样，由同一份 `~/.wezterm.lua` 驱动。换机器时——公司的 Windows 台式、家里的 Mac——你拿到一个逐字节一致的终端，快捷键都不用重学。这是 Windows Terminal 结构上做不到的、持久的优势，因为 Windows Terminal 设计上就只能跑在 Windows。如果你读过我的[《macOS 终端横评》](/posts/macos/2025-01-22-terminal-tools-guide/)、在 Mac 上配了一套喜欢的环境，WezTerm 就是把这套原样搬到 Windows 的办法。
+杀手锏是一致性。WezTerm 在 Windows、macOS、Linux 上表现完全一样，由同一份 `~/.wezterm.lua` 驱动。换机器时——公司的 Windows 台式、家里的 Mac——你拿到一个逐字节一致的终端，快捷键都不用重学。这是 Windows Terminal 结构上做不到的、持久的优势，因为 Windows Terminal 设计上就只能跑在 Windows。如果你读过我的[《macOS 终端横评》](/zh/posts/macos/2025-01-22-terminal-tools-guide/)、在 Mac 上配了一套喜欢的环境，WezTerm 就是把这套原样搬到 Windows 的办法。
 
-内置多路复用器的意义也比听起来大。在 Windows Terminal 上，想要持久会话和复杂分屏布局，你得在 WSL 里用 tmux——这能用，我在[《面向 AI 开发的 tmux 指南》](/posts/ai/2026-03-03-tmux-guide-ai-development/)里也讲过。WezTerm 把这个能力原生烤进去了，于是你在原生 Windows shell 上也能有分屏和持久 workspace，不止 WSL 里能用。对那种要 SSH 到一堆机器的活儿，这是实打实的体验提升。
+内置多路复用器的意义也比听起来大。在 Windows Terminal 上，想要持久会话和复杂分屏布局，你得在 WSL 里用 tmux——这能用，我在[《面向 AI 开发的 tmux 指南》](/zh/posts/ai/2026-03-03-tmux-guide-ai-development/)里也讲过。WezTerm 把这个能力原生烤进去了，于是你在原生 Windows shell 上也能有分屏和持久 workspace，不止 WSL 里能用。对那种要 SSH 到一堆机器的活儿，这是实打实的体验提升。
 
 代价是配置。WezTerm 要你写 Lua，没有 Windows Terminal 那种丰富的设置界面，你改的是一个配置文件，能力越强学习曲线越陡。对很多人这是特性，对另一些人这是一个不太想花的周末下午。
 
@@ -88,7 +88,7 @@ Alacritty 只回答一个问题：我能跑的、延迟最低最快的终端是�
 
 Warp 于 2026 年 5 月上了 Windows 预览版，是这份清单里真正最不一样的选项。它不是"更快的 Windows Terminal"，而是对"终端是什么"的重新设计。输入和输出被组织成一个个可导航、可分享、可重跑的 block；内置 AI 命令生成；Agent Mode 能带 step-by-step 审批地执行多步任务，用的是你的 shell、保存的命令和代码库上下文。
 
-对某类工作流，这非常爽。如果你经常问"这个命令行操作怎么做"、贴一段报错让它给修复方案、或者想通过 Warp Drive 保存并分享团队 Workflow，Warp 在做别人不做的事。它是最围绕 AI 驱动和协作工作打造的终端，如果那就是你的日常，它当得起这个位置。这一块 Warp 在概念上也和 agent 驱动的浏览器/shell 自动化重叠——我在[《Claude Code 浏览器自动化》](/posts/ai/2026-01-28-claude-code-browser-automation/)里探讨过这个方向。
+对某类工作流，这非常爽。如果你经常问"这个命令行操作怎么做"、贴一段报错让它给修复方案、或者想通过 Warp Drive 保存并分享团队 Workflow，Warp 在做别人不做的事。它是最围绕 AI 驱动和协作工作打造的终端，如果那就是你的日常，它当得起这个位置。这一块 Warp 在概念上也和 agent 驱动的浏览器/shell 自动化重叠——我在[《Claude Code 浏览器自动化》](/zh/posts/ai/2026-01-28-claude-code-browser-automation/)里探讨过这个方向。
 
 但我想直说为什么我不把它排成默认。Warp 要账号、要登录——这是实打实的摩擦，对某些团队还是个合规问题：终端上下文流去了哪里。它的块状界面用来探索很愉快，但对一个只想要快速、安静、离线提示符的人来说会显得笨重。而关键在于，2026 年你**不需要换终端就能在命令行里拿到 AI**——微软已经把 Copilot CLI 直接塞进了 Windows Terminal。Warp 是个*不同物种*，不是 Windows Terminal 的平替。你该因为想要它的 block-and-agent 模型去用它，而不是因为你以为"终端里要 AI 就得换成它"。
 
@@ -100,7 +100,7 @@ Warp 于 2026 年 5 月上了 Windows 预览版，是这份清单里真正最不
 
 shell 这头，2026 年你只要在 Windows 上写脚本，就装 PowerShell 7 并设成默认 profile——别凑合用系统自带那个老版 Windows PowerShell 5.1。PowerShell 7 跨平台、明显更快，而且 7.4.6+ 是 AI Shell 和 Copilot 集成能跑起来的必需版本。这是一个两分钟的 WinGet 安装，很多人跳过了，然后纳闷自己的 AI 工具为什么抽风。
 
-环境这头，WSL2 是当下多数开发真正干活的地方。你 Windows 终端的职责就是当一扇干净、快速、Unicode 正确的窗，照向你的 Linux 发行版——而这正是 Windows Terminal（和 WezTerm）擅长的。这一层也是你 AI 编码 agent 住的地方：在 WSL 里、在一个好终端下跑 Claude Code、Codex CLI 或 Copilot CLI，是 2026 年的标准配置。如果你在搭这套栈，我那篇[《终端 AI 编码工具 2026 横评》](/posts/ai/2026-04-14-terminal-ai-coding-tools-2026-comparison/)讲了终端搞定之后该选哪个 agent。
+环境这头，WSL2 是当下多数开发真正干活的地方。你 Windows 终端的职责就是当一扇干净、快速、Unicode 正确的窗，照向你的 Linux 发行版——而这正是 Windows Terminal（和 WezTerm）擅长的。这一层也是你 AI 编码 agent 住的地方：在 WSL 里、在一个好终端下跑 Claude Code、Codex CLI 或 Copilot CLI，是 2026 年的标准配置。如果你在搭这套栈，我那篇[《终端 AI 编码工具 2026 横评》](/zh/posts/ai/2026-04-14-terminal-ai-coding-tools-2026-comparison/)讲了终端搞定之后该选哪个 agent。
 
 下面这张图就是我实际会推荐给 2026 年 Windows 开发者的组合——终端、shell、环境、AI agent 作为一整套栈：
 
@@ -159,8 +159,8 @@ flowchart TD
 
 ## 延伸阅读
 
-- [2025 年终端模拟器横评：23 款全平台工具对比](/posts/macos/2025-01-22-terminal-tools-guide/) —— 跨平台姊妹篇，含 macOS 与 Linux 选择
-- [面向 AI 开发的 tmux 指南](/posts/ai/2026-03-03-tmux-guide-ai-development/) —— 和 Windows Terminal、Alacritty 搭配的多路复用器
-- [终端 AI 编码工具 2026 横评](/posts/ai/2026-04-14-terminal-ai-coding-tools-2026-comparison/) —— 终端搞定后该选哪个 AI agent
-- [Claude Code 完全指南](/posts/ai/2026-02-28-claude-code-complete-guide/) —— 我在 WSL 里跑的 AI 编码 agent
-- [Claude Code 浏览器自动化](/posts/ai/2026-01-28-claude-code-browser-automation/) —— 命令行里的 agent 驱动自动化
+- [2025 年终端模拟器横评：23 款全平台工具对比](/zh/posts/macos/2025-01-22-terminal-tools-guide/) —— 跨平台姊妹篇，含 macOS 与 Linux 选择
+- [面向 AI 开发的 tmux 指南](/zh/posts/ai/2026-03-03-tmux-guide-ai-development/) —— 和 Windows Terminal、Alacritty 搭配的多路复用器
+- [终端 AI 编码工具 2026 横评](/zh/posts/ai/2026-04-14-terminal-ai-coding-tools-2026-comparison/) —— 终端搞定后该选哪个 AI agent
+- [Claude Code 完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) —— 我在 WSL 里跑的 AI 编码 agent
+- [Claude Code 浏览器自动化](/zh/posts/ai/2026-01-28-claude-code-browser-automation/) —— 命令行里的 agent 驱动自动化

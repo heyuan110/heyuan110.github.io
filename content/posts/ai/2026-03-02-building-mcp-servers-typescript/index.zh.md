@@ -27,7 +27,7 @@ answer = "SDK v2 将包拆分为 @modelcontextprotocol/server 和 @modelcontextp
 
 ![用 TypeScript 从零构建 MCP Server 到发布](cover.webp)
 
-MCP（Model Context Protocol，模型上下文协议）是 2026 年让 AI 模型访问外部工具、数据和服务的标准方式。如果你用过 [Claude Code](/posts/ai/2026-02-28-claude-code-complete-guide/) 或 Cursor，你已经在使用 MCP Server 了——从数据库查询到 API 集成，都是它在背后驱动。
+MCP（Model Context Protocol，模型上下文协议）是 2026 年让 AI 模型访问外部工具、数据和服务的标准方式。如果你用过 [Claude Code](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) 或 Cursor，你已经在使用 MCP Server 了——从数据库查询到 API 集成，都是它在背后驱动。
 
 本教程将带你从零开始用 TypeScript 构建自己的 MCP Server，从项目初始化到发布到 npm。完成后，你将拥有一个任何 MCP 兼容客户端都能使用的可运行服务器。
 
@@ -58,11 +58,11 @@ MCP Server 暴露三种能力：
 
 **工具** 是最常用的——也是本教程的重点。
 
-关于 MCP 协议的更全面概述，请参阅我的 [MCP 协议详解](/posts/ai/2026-02-28-mcp-protocol-explained/) 指南。
+关于 MCP 协议的更全面概述，请参阅我的 [MCP 协议详解](/zh/posts/ai/2026-02-28-mcp-protocol-explained/) 指南。
 
 ## 为什么用 Claude Code 构建 MCP Server
 
-你可以用任何编辑器构建 MCP Server，但 [Claude Code](/posts/ai/2026-02-25-claude-code-setup-guide/) 在这方面有独特优势：
+你可以用任何编辑器构建 MCP Server，但 [Claude Code](/zh/posts/ai/2026-02-25-claude-code-setup-guide/) 在这方面有独特优势：
 
 1. **Claude Code 本身就是 MCP 客户端。** 运行 `claude mcp add` 就能即时测试你的服务器——无需额外搭建客户端。
 2. **实时测试循环。** 写好一个工具，注册它，让 Claude 调用它。实时调试。
@@ -277,7 +277,7 @@ Claude Code 会自动发现你的 `get_weather` 和 `compare_weather` 工具并�
 claude mcp list
 ```
 
-关于 Claude Code 的 MCP 集成详情，请参阅我的 [Claude Code MCP 配置指南](/posts/ai/2026-02-28-claude-code-mcp-setup/)。
+关于 Claude Code 的 MCP 集成详情，请参阅我的 [Claude Code MCP 配置指南](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/)。
 
 ## 添加资源和提示
 
@@ -661,7 +661,7 @@ MCP 生态正在快速增长。你构建的每一个 MCP Server 都能立刻被 
 
 ## 相关阅读
 
-- [MCP 协议详解：AI 工具的通用标准](/posts/ai/2026-02-28-mcp-protocol-explained/)
-- [Claude Code MCP 配置：连接 AI 到任何外部服务](/posts/ai/2026-02-28-claude-code-mcp-setup/)
-- [Claude Code 2026 完全指南](/posts/ai/2026-02-28-claude-code-complete-guide/)
-- [Claude Code Hooks：自动化配置](/posts/ai/2026-02-28-claude-code-hooks-guide/)
+- [MCP 协议详解：AI 工具的通用标准](/zh/posts/ai/2026-02-28-mcp-protocol-explained/)
+- [Claude Code MCP 配置：连接 AI 到任何外部服务](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/)
+- [Claude Code 2026 完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)
+- [Claude Code Hooks：自动化配置](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/)

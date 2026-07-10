@@ -48,7 +48,7 @@ clawdhub install proactive-agent   # 原名 proactive-agent-1-2-4，已更名
 
 这篇文章不讲"该装哪些 Skill"——那些文章到处都是。我要讲的是：**装完之后，你需要做哪些系统配置，才能让这些 Skill 真正稳定地跑起来。**
 
-如果你还没装过 OpenClaw，建议先看这篇入门教程：[OpenClaw 超详细上手教程](/posts/ai/2026-02-12-openclaw-usage-tutorial/)。
+如果你还没装过 OpenClaw，建议先看这篇入门教程：[OpenClaw 超详细上手教程](/zh/posts/ai/2026-02-12-openclaw-usage-tutorial/)。
 
 ---
 
@@ -469,9 +469,9 @@ tavily-search 给了助手搜索能力，find-skills 给了它工具发现能力
 
 ## 相关阅读
 
-- [OpenClaw 超详细上手教程（从 0 到可用）](/posts/ai/2026-02-12-openclaw-usage-tutorial/)
-- [拆解 OpenClaw 自动化架构：从消息到执行的完整链路](/posts/ai/2026-02-14-openclaw-architecture-deep-dive/)
-- [OpenClaw × Claude Code 工作流实践](/posts/ai/2026-01-31-openclaw-claude-code-workflow/)
-- [OpenClaw 记忆系统策略（MEMORY.md 实战）](/posts/ai/2026-01-31-openclaw-memory-strategy/)
-- [Claude Code 的 Skill 设计模式](/posts/ai/2026-01-12-claudecode-skill-patterns/)
-- [AI 时代的工作流：从想法到交付的完整指南](/posts/ai/2026-01-30-ai-workflow-real-guide/)
+- [OpenClaw 超详细上手教程（从 0 到可用）](/zh/posts/ai/2026-02-12-openclaw-usage-tutorial/)
+- [拆解 OpenClaw 自动化架构：从消息到执行的完整链路](/zh/posts/ai/2026-02-14-openclaw-architecture-deep-dive/)
+- [OpenClaw × Claude Code 工作流实践](/zh/posts/ai/2026-01-31-openclaw-claude-code-workflow/)
+- [OpenClaw 记忆系统策略（MEMORY.md 实战）](/zh/posts/ai/2026-01-31-openclaw-memory-strategy/)
+- [Claude Code 的 Skill 设计模式](/zh/posts/ai/2026-01-12-claudecode-skill-patterns/)
+- [AI 时代的工作流：从想法到交付的完整指南](/zh/posts/ai/2026-01-30-ai-workflow-real-guide/)

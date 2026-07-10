@@ -255,7 +255,7 @@ AI won't replace developers. But developers who use AI effectively will outperfo
 ## Related Reading
 
 - [AI Workflow Playbook: From Prompts to Production Code](/posts/ai/2026-01-30-ai-workflow-real-guide/) — Practical patterns for AI-assisted development
-- [Harness Engineering: Why the System Around Your AI Agent Matters More Than the Model](/posts/ai/2026-04-04-harness-engineering-guide/) — Building robust infrastructure for AI workflows
+- [Harness Engineering: Why the System Around Your AI Agent Matters More Than the Model](/posts/ai/2026-03-30-harness-engineering-guide/) — Building robust infrastructure for AI workflows
 - [Vibe Coding: The Complete Guide (2026)](/posts/ai/2026-02-22-vibe-coding-guide/) — Natural language coding methodology
 - [High-Frequency Commits: Engineering Practices for 100+ Commits per Day](/posts/ai/2026-01-31-high-frequency-commits-strategy/) — Commit strategies for AI-powered development
 - [Claude Code Complete Guide: From Beginner to Power User](/posts/ai/2026-01-14-claude-code-guide/) — The comprehensive Claude Code reference

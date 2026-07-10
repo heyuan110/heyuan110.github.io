@@ -326,8 +326,8 @@ sudo systemctl status supervisord
 
 ## 相关阅读
 
-- [Linux/macOS 常用命令大全](/posts/linux/2020-03-19-linux-mac-commands/)
-- [curl 命令大全（Linux/macOS）](/posts/linux/2020-06-29-curl/)
-- [traceroute 命令详解](/posts/linux/2020-06-28-traceroute/)
-- [Docker Compose 完全指南（2026）](/posts/docker/2026-01-19-docker-compose-complete-guide/)
-- [docker-compose.yml 详解](/posts/docker/2026-01-24-docker-compose-yml-explained/)
+- [Linux/macOS 常用命令大全](/zh/posts/linux/2020-03-19-linux-mac-commands/)
+- [curl 命令大全（Linux/macOS）](/zh/posts/linux/2020-06-29-curl/)
+- [traceroute 命令详解](/zh/posts/linux/2020-06-28-traceroute/)
+- [Docker Compose 完全指南（2026）](/zh/posts/docker/2026-01-19-docker-compose-complete-guide/)
+- [docker-compose.yml 详解](/zh/posts/docker/2026-01-24-docker-compose-yml-explained/)

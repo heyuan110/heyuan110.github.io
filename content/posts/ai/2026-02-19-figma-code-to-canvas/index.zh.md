@@ -35,7 +35,7 @@ Code to Canvas 是 Figma 与 Anthropic 深度合作推出的集成功能，核�
 
 ## 工作原理与技术架构
 
-Code to Canvas 的技术实现依赖于一个关键协议：**MCP（Model Context Protocol）**。如果你关注过 [Claude Code 的生态发展](/posts/ai/2026-01-28-claude-code-browser-automation/)，对 MCP 应该不会陌生——它是一个开放标准，允许 AI 工具与外部数据源和应用程序进行连接，本质上是 AI Agent 与外部世界的"通用适配器"。
+Code to Canvas 的技术实现依赖于一个关键协议：**MCP（Model Context Protocol）**。如果你关注过 [Claude Code 的生态发展](/zh/posts/ai/2026-01-28-claude-code-browser-automation/)，对 MCP 应该不会陌生——它是一个开放标准，允许 AI 工具与外部数据源和应用程序进行连接，本质上是 AI Agent 与外部世界的"通用适配器"。
 
 在 Code to Canvas 的场景中，Figma 提供了一个本地运行的 **Dev Mode MCP Server**。这个 Server 不仅仅是一个传输通道，它能语义化地读取 Figma 中的组件库、设计变量、样式系统和布局结构。当 Claude Code 通过 MCP 与 Figma 连接时，双方建立的是一个**结构化的双向通信**，而不是简单的数据搬运。
 
@@ -138,7 +138,7 @@ PM、设计师和工程师可以在同一个 Figma Frame 上进行标注和评�
 
 ### 场景四：AI 生成代码的设计审查
 
-在 [AI 辅助编程越来越普及](/posts/ai/2026-01-13-claude-cowork/)的今天，很多代码是由 AI 生成的。但 AI 生成的 UI 代码，视觉效果往往不够精致。通过 Code to Canvas，设计师可以把 AI 生成的界面拉到 Figma 中，用专业的设计眼光进行审查和优化，然后再把调整后的设计稿反馈给开发。
+在 [AI 辅助编程越来越普及](/zh/posts/ai/2026-01-13-claude-cowork/)的今天，很多代码是由 AI 生成的。但 AI 生成的 UI 代码，视觉效果往往不够精致。通过 Code to Canvas，设计师可以把 AI 生成的界面拉到 Figma 中，用专业的设计眼光进行审查和优化，然后再把调整后的设计稿反馈给开发。
 
 ## 与其他 AI 设计方案的对比
 
@@ -180,7 +180,7 @@ PM、设计师和工程师可以在同一个 Figma Frame 上进行标注和评�
 
 Code to Canvas 不会取代设计师，反而会**强化设计师的角色**。当 AI 可以在几秒钟内生成多个 UI 方案时，"创建设计稿"这件事的稀缺性下降了，但**判断哪个方案更好**的能力变得更加重要。设计师的角色从"生产者"向"策展人"转变——你不再需要花大量时间亲手画每个方案，而是从 AI 生成的多个选项中挑选、组合、精炼出最优解。
 
-这与 [AI 辅助创作领域的一个共同趋势](/posts/ai/2026-02-15-mac-mini-local-image-generation/)高度一致：AI 降低了创作的执行成本，但提高了对审美判断力和设计决策力的要求。
+这与 [AI 辅助创作领域的一个共同趋势](/zh/posts/ai/2026-02-15-mac-mini-local-image-generation/)高度一致：AI 降低了创作的执行成本，但提高了对审美判断力和设计决策力的要求。
 
 ### 对开发者
 

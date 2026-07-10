@@ -25,7 +25,7 @@ toc = true
 
 **Claude Code 做**：自动生成 React 代码，渲染出一个专业的 MP4 视频文件。
 
-是的，你没看错。现在用 [Claude Code](/posts/ai/2026-01-14-claude-code-guide/) 配合 Remotion，真的可以用聊天的方式做视频了。
+是的，你没看错。现在用 [Claude Code](/zh/posts/ai/2026-01-14-claude-code-guide/) 配合 Remotion，真的可以用聊天的方式做视频了。
 
 ---
 
@@ -512,7 +512,7 @@ brew install node
 
 ### 5.2 安装 Claude Code
 
-如果你还没装 Claude Code，参考这篇文章：[Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/)
+如果你还没装 Claude Code，参考这篇文章：[Claude Code 完全指南](/zh/posts/ai/2026-01-14-claude-code-guide/)
 
 ```bash
 # 安装 Claude Code
@@ -540,7 +540,7 @@ claude --version
 
 ### 6.1 安装 Remotion Skill
 
-确保你已经安装了 [Claude Code](/posts/ai/2026-01-14-claude-code-guide/)，然后运行：
+确保你已经安装了 [Claude Code](/zh/posts/ai/2026-01-14-claude-code-guide/)，然后运行：
 
 ```bash
 npx skills add remotion-dev/skills
@@ -682,7 +682,7 @@ npx remotion lambda render ...
 
 当然，如果你想深入学习 Remotion，直接写代码是更好的选择。但如果你只是想快速出活，Claude Code + Remotion Skills 是效率最高的方案。
 
-想了解更多 Claude Code 的高级玩法？看这篇：[Claude Code Skills 指南](/posts/ai/2026-01-08-claudecode-skill-guide/)
+想了解更多 Claude Code 的高级玩法？看这篇：[Claude Code Skills 指南](/zh/posts/ai/2026-01-08-claudecode-skill-guide/)
 
 ---
 
@@ -755,10 +755,10 @@ Remotion 更适合做：产品演示、数据报告、动态图表、文字动�
 
 ## 十四、延伸阅读
 
-- [Claude Code 完全指南](/posts/ai/2026-01-14-claude-code-guide/) - 从零开始学习 Claude Code
-- [Claude Code Skills 指南](/posts/ai/2026-01-08-claudecode-skill-guide/) - 深入理解 Skills 系统
-- [2026 年最值得安装的 20 个 Claude Code Skills](/posts/ai/2026-01-20-claude-code-skills-top20/) - 精选技能推荐
-- [AI 开发工作流](/posts/ai/2026-01-19-ai-dev-workflow/) - 如何用 AI 提升开发效率
+- [Claude Code 完全指南](/zh/posts/ai/2026-01-14-claude-code-guide/) - 从零开始学习 Claude Code
+- [Claude Code Skills 指南](/zh/posts/ai/2026-01-08-claudecode-skill-guide/) - 深入理解 Skills 系统
+- [2026 年最值得安装的 20 个 Claude Code Skills](/zh/posts/ai/2026-01-20-claude-code-skills-top20/) - 精选技能推荐
+- [AI 开发工作流](/zh/posts/ai/2026-01-19-ai-dev-workflow/) - 如何用 AI 提升开发效率
 
 ---
 

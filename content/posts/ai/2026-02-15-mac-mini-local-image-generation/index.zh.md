@@ -424,7 +424,7 @@ ComfyUI 的工作流可以保存为 JSON 文件，意味着你可以：
 - 只需修改提示词就能快速出图
 - 通过 API 接口实现自动化生成
 
-> **进阶推荐**：如果你想进一步提升效率，可以用 [Claude Code 驱动 Draw Things 实现自动化生图工作流](/posts/ai/2026-02-16-claude-code-draw-things-workflow/)，让 AI 帮你完成从提示词生成到批量出图的全流程。这背后用到了 [Claude Code 的浏览器自动化能力](/posts/ai/2026-01-28-claude-code-browser-automation/)。
+> **进阶推荐**：如果你想进一步提升效率，可以用 [Claude Code 驱动 Draw Things 实现自动化生图工作流](/zh/posts/ai/2026-02-16-claude-code-draw-things-workflow/)，让 AI 帮你完成从提示词生成到批量出图的全流程。这背后用到了 [Claude Code 的浏览器自动化能力](/zh/posts/ai/2026-01-28-claude-code-browser-automation/)。
 
 ## 九、安装指南速查
 
@@ -541,8 +541,8 @@ Mac Mini 本地 AI 生图在 2026 年已经是一个**完全可行且实用**的
 
 ## 相关阅读
 
-- [Claude Code + Draw Things 自动化工作流：AI 生图效率翻倍](/posts/ai/2026-02-16-claude-code-draw-things-workflow/) — 本文的进阶篇，用 Claude Code 驱动 Draw Things 实现自动化批量生图
-- [Claude Code 浏览器自动化实战：用 AI 操控网页的完整指南](/posts/ai/2026-01-28-claude-code-browser-automation/) — 了解 AI 代理如何自动化操控桌面应用和浏览器
-- [Claude Code 最佳实践：从入门到精通的完整指南](/posts/ai/2026-01-06-claudecode-best-practices/)
-- [AI 工作流实战指南：不是未来，是现在](/posts/ai/2026-01-30-ai-workflow-real-guide/)
-- [Codex CLI 完全指南：OpenAI 的开源终端 AI 编程助手](/posts/ai/2026-02-12-codex-cli-mastery-guide/)
+- [Claude Code + Draw Things 自动化工作流：AI 生图效率翻倍](/zh/posts/ai/2026-02-16-claude-code-draw-things-workflow/) — 本文的进阶篇，用 Claude Code 驱动 Draw Things 实现自动化批量生图
+- [Claude Code 浏览器自动化实战：用 AI 操控网页的完整指南](/zh/posts/ai/2026-01-28-claude-code-browser-automation/) — 了解 AI 代理如何自动化操控桌面应用和浏览器
+- [Claude Code 最佳实践：从入门到精通的完整指南](/zh/posts/ai/2026-01-06-claudecode-best-practices/)
+- [AI 工作流实战指南：不是未来，是现在](/zh/posts/ai/2026-01-30-ai-workflow-real-guide/)
+- [Codex CLI 完全指南：OpenAI 的开源终端 AI 编程助手](/zh/posts/ai/2026-02-12-codex-cli-mastery-guide/)
