@@ -339,7 +339,7 @@ mindmap
 
 ### 6. HADS — Human-AI Document Standard
 
-`code-documentation` 里的单个 Skill：**hads**（Human-AI Document Standard）。为 token 高效 AI 阅读设计的语义化 Markdown 标签。思想是：给章节加机器可读的标签（`<<purpose>>`、`<<constraints>>`、`<<examples>>`），Claude 读你的文档用一小部分 token，人读原始 Markdown 不受干扰。小，但是我看到的**第一个以 Skill 形式认真实现"文档作为 AI Agent 的 API"**的尝试。如果你维护的知识库很大、Claude 频繁读取，值得拿几个文档试一下测 token 差。
+`code-documentation` 里的单个 Skill：**hads**（Human-AI Document Standard）。为 token 高效 AI 阅读设计的语义化 Markdown 标签。思想是：给章节加机器可读的标签（`<<purpose>>`、`<<constraints>>`、`<<examples>>`），Claude 读你的文档用一小部分 token，人读原始 Markdown 不受干扰。小，但是我看到的<strong>第一个以 Skill 形式认真实现"文档作为 AI Agent 的 API"</strong>的尝试。如果你维护的知识库很大、Claude 频繁读取，值得拿几个文档试一下测 token 差。
 
 带走的判断：**语言包是入门门槛**。上面这 6 个组件才是这个仓库区别于 GitHub 上其他 Claude Code 集合的关键。
 

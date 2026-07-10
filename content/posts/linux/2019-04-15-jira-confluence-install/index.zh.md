@@ -54,11 +54,11 @@ OpenJDK 64-Bit Server VM (build 25.191-b12, mixed mode)
 
 ### 1.下载文件
 
-**a)**下载jira，选择和老机器上jira相同的版本
+<strong>a)</strong>下载jira，选择和老机器上jira相同的版本
 
 >wget https://downloads.atlassian.com/software/jira/downloads/atlassian-jira-software-7.3.8-x64.bin
 
-**b)**下载jira7.3.8破解文件
+<strong>b)</strong>下载jira7.3.8破解文件
 
 >wget https://raw.githubusercontent.com/heyuan110/static-source/master/media/15553944919153/jira-lib-7.3.8.zip
 
@@ -120,7 +120,7 @@ FLUSH PRIVILEGES;
 
 >sudo /etc/init.d/jira stop
 
-**a)**用破解文件atlassian-extras-3.2.jar替换`/opt/atlassian/jira/atlassian-jira/WEB-INF/lib/atlassian-extras-3.2.jar`文件
+<strong>a)</strong>用破解文件atlassian-extras-3.2.jar替换`/opt/atlassian/jira/atlassian-jira/WEB-INF/lib/atlassian-extras-3.2.jar`文件
 
 ```
 #先备份原文件
@@ -130,7 +130,7 @@ mv /opt/atlassian/jira/atlassian-jira/WEB-INF/lib/atlassian-extras-3.2.jar /tmp/
 cp /破解文件目录/atlassian-extras-3.2.jar /opt/atlassian/jira/atlassian-jira/WEB-INF/lib/atlassian-extras-3.2.jar
 ```
 
-**b)**确保jira可访问mysql，将mysql-connector-java-5.1.39-bin.jar拷贝`/opt/atlassian/jira/atlassian-jira/WEB-INF/lib/`路径下
+<strong>b)</strong>确保jira可访问mysql，将mysql-connector-java-5.1.39-bin.jar拷贝`/opt/atlassian/jira/atlassian-jira/WEB-INF/lib/`路径下
 
 ```
 cp /破解文件目录/mysql-connector-java-5.1.39-bin.jar /opt/atlassian/jira/atlassian-jira/WEB-INF/lib/mysql-connector-java-5.1.39-bin.jar
@@ -159,7 +159,7 @@ cp /破解文件目录/mysql-connector-java-5.1.39-bin.jar /opt/atlassian/jira/a
 
 ### 5.老机器jira数据备份，新机器jira数据恢复
 
-**a)**管理员账号登录老机器jira
+<strong>a)</strong>管理员账号登录老机器jira
 
 点击右上角的"系统"-"导入导出"-"备份系统"，Jira默认会打开自动备份的功能，备份路径为`/var/atlassian/application-data/jira/export`；入如果没有打开，也可以手动进行备份，如下，可以自定义备份的文件名。
 
@@ -174,7 +174,7 @@ jira附件都保存到服务器的/var/atlassian/application-data/jira/data/atta
 
 将jira的备份文件jira-backup.zip和attachments.zip文件拷贝到新机器。
 
-**b)**管理员账号登录新机器jira
+<strong>b)</strong>管理员账号登录新机器jira
 
 停止jira服务，将附件备份文件attachments.zip解压替换`/var/atlassian/application-data/jira/data/attachments`目录(可先备份)。
 
@@ -194,11 +194,11 @@ jira附件都保存到服务器的/var/atlassian/application-data/jira/data/atta
 
 ### 1.下载文件
 
-**a)**下载confluence，选择和老机器上confluence相同的版本
+<strong>a)</strong>下载confluence，选择和老机器上confluence相同的版本
 
 >wget https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-6.6.12-x64.bin
 
-**b)**下载mysql链接库和破解工具
+<strong>b)</strong>下载mysql链接库和破解工具
 
 >wget https://raw.githubusercontent.com/heyuan110/static-source/master/media/15553944919153/confluence-crack-tool.zip
 
@@ -274,7 +274,7 @@ FLUSH PRIVILEGES;
 
 >sudo /etc/init.d/confluence stop
 
-**a)**替换库文件
+<strong>a)</strong>替换库文件
 
 将confluence库文件`/opt/atlassian/confluence/confluence/WEB-INF/lib/atlassian-extras-decoder-v2-3.2.jar`通过scp拷贝到本地(可使用scp,rsync,ftp等)
 
@@ -298,7 +298,7 @@ FLUSH PRIVILEGES;
 
 > cp -a  atlassian-extras-decoder-v2-3.3.0.jar /opt/atlassian/confluence/confluence/WEB-INF/lib/
 
-**b)**确保jira可访问mysql，将mysql-connector-java-5.1.39-bin.jar(放在破解工具目录)拷贝`/opt/atlassian/confluence/lib/`路径下
+<strong>b)</strong>确保jira可访问mysql，将mysql-connector-java-5.1.39-bin.jar(放在破解工具目录)拷贝`/opt/atlassian/confluence/lib/`路径下
 
 启动confluence服务
 
@@ -340,7 +340,7 @@ FLUSH PRIVILEGES;
 
 ### 5.老机器confluence数据备份，新机器confluence数据恢复
 
-**a)**管理员账号登录老机器confluence
+<strong>a)</strong>管理员账号登录老机器confluence
 
 点击右上角的"一般配置"-"每日备份管理"，如下图（默认配置）：
 ![](https://raw.githubusercontent.com/heyuan110/static-source/master/media/15553944919153/15555697603764.jpg)
@@ -357,7 +357,7 @@ FLUSH PRIVILEGES;
 
 将confluence的备份文件confluence-backup.zip和attachments.zip文件拷贝到新机器。
 
-**b)**管理员账号登录新机器confluence
+<strong>b)</strong>管理员账号登录新机器confluence
 
 停止confluence服务，将附件备份文件attachments.zip解压替换`/var/atlassian/application-data/confluence/attachments`目录(可先备份)。
 

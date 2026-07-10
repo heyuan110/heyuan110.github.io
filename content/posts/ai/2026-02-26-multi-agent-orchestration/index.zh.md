@@ -186,11 +186,11 @@ answer = "智能体通过结构化消息传递进行通信 — 通常是通过�
 
 **生产案例：**
 
-[**Claude Code Worktree：**](/zh/posts/ai/2026-02-28-claude-code-worktree-guide/) Claude Code 的 Worktree 功能是教科书式的编排者-工作者实现。主 Claude Code 实例充当编排者 — 分析任务，为并行工作创建独立的 git worktree，在每个 worktree 中生成子智能体，最后合并结果。每个工作者在隔离的文件系统分支中操作，防止冲突。
+[**Claude Code Worktree**：](/zh/posts/ai/2026-02-28-claude-code-worktree-guide/) Claude Code 的 Worktree 功能是教科书式的编排者-工作者实现。主 Claude Code 实例充当编排者 — 分析任务，为并行工作创建独立的 git worktree，在每个 worktree 中生成子智能体，最后合并结果。每个工作者在隔离的文件系统分支中操作，防止冲突。
 
 **Cursor 后台智能体：** Cursor 的多智能体系统允许你生成并行智能体，同时在代码库的不同部分工作。每个智能体获得自己的沙箱环境，结果合并回主分支。
 
-[**Google Antigravity Manager View：**](/zh/posts/ai/2026-03-10-google-antigravity-review/) Antigravity 的 Manager View 提供了编排多个智能体的可视化仪表板。你可以看到每个智能体的进度，重新分配任务，在智能体卡住时进行干预 — 本质上是编排者-工作者模式的 GUI。
+[**Google Antigravity Manager View**：](/zh/posts/ai/2026-03-10-google-antigravity-review/) Antigravity 的 Manager View 提供了编排多个智能体的可视化仪表板。你可以看到每个智能体的进度，重新分配任务，在智能体卡住时进行干预 — 本质上是编排者-工作者模式的 GUI。
 
 ### 模式四：评估器-优化器（Evaluator-Optimizer）
 
@@ -283,7 +283,7 @@ answer = "智能体通过结构化消息传递进行通信 — 通常是通过�
 
 这是大多数实际开发工作的所在。智能体处理 80% 的实现，但你需要审查架构选择、处理边界情况，并确保与现有代码库的一致性。
 
-你的角色从"敲代码的人"转变为**"结对编程伙伴"** — 你和智能体协作，你专注于智能体无法做好的决策。
+你的角色从"敲代码的人"转变为"**结对编程伙伴**" — 你和智能体协作，你专注于智能体无法做好的决策。
 
 ### 高自主性：战略委派
 

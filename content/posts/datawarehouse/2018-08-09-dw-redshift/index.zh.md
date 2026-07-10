@@ -90,7 +90,7 @@ VACUUM SORT ONLY sales;
 
 ### 4. VACUUM REINDEX
 
-针对使用**交错排序键（Interleaved Sort Key）**的表。它会重新分析排序键列的值分布，然后执行完整 VACUUM。
+针对使用<strong>交错排序键（Interleaved Sort Key）</strong>的表。它会重新分析排序键列的值分布，然后执行完整 VACUUM。
 
 ```sql
 VACUUM REINDEX listing;

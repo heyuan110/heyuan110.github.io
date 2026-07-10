@@ -106,7 +106,7 @@ SELECT * FROM products WHERE price BETWEEN 100 AND 200;
 
 MySQL 存 100 万个 768 维向量，每次查询都算一遍余弦相似度？服务器会哭的。
 
-所以需要专门的**近似最近邻（ANN）**算法和索引结构。
+所以需要专门的<strong>近似最近邻（ANN）</strong>算法和索引结构。
 
 ## 4. 向量数据库的核心能力拆解
 

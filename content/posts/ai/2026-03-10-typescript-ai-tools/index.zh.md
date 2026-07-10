@@ -29,7 +29,7 @@ answer = "所有主流工具对 TypeScript 的支持都很出色。Claude Code �
 
 TypeScript 刚刚成为 **GitHub 上的第一语言**。不是缓慢爬升——而是以 **66.6% 的年增长率**飙升至月活 260 万贡献者，一年内超越 Python 和 JavaScript。原因不是什么新框架或杀手级特性，而是 AI。
 
-GitHub [Octoverse 报告](https://github.blog/news-insights/octoverse/octoverse-a-new-developer-joins-github-every-second-as-ai-leads-typescript-to-1/)讲了一个清晰的故事：AI 编程工具正在从根本上改变开发者的语言选择。工具在有类型的语言上表现更好，开发者注意到了，采用率自然跟上。GitHub 开发者布道师 Andrea Griffiths 将此称为**「便利循环」(convenience loop)**——一旦理解了这个循环，TypeScript 的统治地位就是必然的。
+GitHub [Octoverse 报告](https://github.blog/news-insights/octoverse/octoverse-a-new-developer-joins-github-every-second-as-ai-leads-typescript-to-1/)讲了一个清晰的故事：AI 编程工具正在从根本上改变开发者的语言选择。工具在有类型的语言上表现更好，开发者注意到了，采用率自然跟上。GitHub 开发者布道师 Andrea Griffiths 将此称为<strong>「便利循环」(convenience loop)</strong>——一旦理解了这个循环，TypeScript 的统治地位就是必然的。
 
 这对每一位使用 [Claude Code](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)、[Cursor](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/) 或其他 [AI 编程 Agent](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) 的开发者都至关重要。你写代码用的语言，直接决定了 AI 能帮到你多少。
 

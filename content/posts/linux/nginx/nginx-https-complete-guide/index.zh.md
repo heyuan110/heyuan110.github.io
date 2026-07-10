@@ -207,7 +207,7 @@ server {
 ### 2.4 要点总结
 
 - `location ~*` 使用正则匹配，不区分大小写
-- HTTPS 下的静态资源也要走 HTTPS 代理，否则浏览器会报**混合内容（Mixed Content）**警告
+- HTTPS 下的静态资源也要走 HTTPS 代理，否则浏览器会报<strong>混合内容（Mixed Content）</strong>警告
 - `X-Forwarded-Proto` 头让后端知道原始请求是 HTTP 还是 HTTPS
 
 > **补充**：如今大多数场景推荐全站 HTTPS，配合 HSTS 头部使用。部分 HTTPS 的方案适用于特定的历史遗留项目。

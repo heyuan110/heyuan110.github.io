@@ -30,7 +30,7 @@ answer = '''截至 2026-06-12 已知信息：S-1 在 6 月 2 日秘密递交，�
 
 ![Anthropic 9650 亿估值与 Claude Managed Agents 基础设施架构](cover.webp)
 
-2026 年 6 月 2 日，Anthropic 秘密递交 IPO 招股书。Series H 融资 650 亿美元、**post-money 估值 9650 亿美元**——投资方阵容包含 Altimeter Capital、Dragoneer、Greenoaks、Sequoia Capital、Capital Group、Coatue、D1 Capital Partners。两天前公司披露 5 月底年化收入冲破 **470 亿美元**，并预期 Q2 单季度收入 **109 亿美元**——环比翻倍。**这是生成式 AI 历史上最大的一次私募估值跳跃，也是 Anthropic 估值首次超过 OpenAI。**
+2026 年 6 月 2 日，Anthropic 秘密递交 IPO 招股书。Series H 融资 650 亿美元、**post-money 估值 9650 亿美元**——投资方阵容包含 Altimeter Capital、Dragoneer、Greenoaks、Sequoia Capital、Capital Group、Coatue、D1 Capital Partners。两天前公司披露 5 月底年化收入冲破 **470 亿美元**，并预期 Q2 单季度收入 **109 亿美元——环比翻倍**。**这是生成式 AI 历史上最大的一次私募估值跳跃，也是 Anthropic 估值首次超过 OpenAI。**
 
 国内媒体的标题党解读基本上都是一个味道："Claude 赢了"——模型故事。
 
@@ -86,7 +86,7 @@ flowchart TB
     style Cron fill:#dbeafe,stroke:#3b82f6,color:#000
 ```
 
-模型——"脑"——负责规划、推理、工具选择。"手"——沙箱代码执行、凭证保险库、调度器、tracing 层——是真正让 Agent 在生产环境干活的运行时组件。Anthropic 同时掌握这两层以及它们之间的契约。关键点在于 5 月 19 日开放的 Self-hosted Sandboxes 公测——它让客户可以在自己的基础设施里跑"手"，但**"脑"和编排循环仍然留在 Anthropic 的控制面上**。这不是慷慨开源，这是教科书级别的平台打法。
+模型——"脑"——负责规划、推理、工具选择。"手"——沙箱代码执行、凭证保险库、调度器、tracing 层——是真正让 Agent 在生产环境干活的运行时组件。Anthropic 同时掌握这两层以及它们之间的契约。关键点在于 5 月 19 日开放的 Self-hosted Sandboxes 公测——它让客户可以在自己的基础设施里跑"手"，但<strong>"脑"和编排循环仍然留在 Anthropic 的控制面上</strong>。这不是慷慨开源，这是教科书级别的平台打法。
 
 这一点对估值意味着什么？因为模型层在收敛。我在之前的 [Hermes Agent v0.9 评测](/zh/posts/ai/2026-04-14-hermes-agent-guide/) 和 [Harness Engineering 窗口期决策框架](/zh/posts/ai/2026-05-08-harness-engineering-window-of-opportunity/) 里反复论证过这个点——LangChain 不换模型只重新设计 harness，TerminalBench 分数从 52.8% 跳到 66.5%，排名从第 30 名外冲到前 5。模型保持不变，harness——也就是生产运行时，也就是 Anthropic 现在产品化成 Managed Agents 这个东西——决定了一切。
 

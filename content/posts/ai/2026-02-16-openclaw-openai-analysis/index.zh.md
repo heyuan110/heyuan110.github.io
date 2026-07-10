@@ -146,7 +146,7 @@ Steinberger 在个人博客中解释了他的决定：
 
 ### OpenClaw 的开源承诺
 
-一个关键细节是：OpenAI 承诺 OpenClaw 将继续作为开源项目存在，并被放入一个**基金会（Foundation）**结构中。这意味着：
+一个关键细节是：OpenAI 承诺 OpenClaw 将继续作为开源项目存在，并被放入一个<strong>基金会（Foundation）</strong>结构中。这意味着：
 
 - OpenClaw 的代码仍然开源
 - 社区仍然可以贡献和使用
