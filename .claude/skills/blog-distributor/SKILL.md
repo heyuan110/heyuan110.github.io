@@ -58,7 +58,7 @@ python3 scripts/devto-publish.py content/posts/ai/<文章目录> --publish  # �
 
 **脚本自动处理**：TOML front matter → 标题/描述/标签（≤4 个）；相对图片和站内链接 → 绝对 URL；mermaid 块 → 替换为回原文的链接（dev.to 不渲染 mermaid）；自动设置 `canonical_url` 指回原文并附 "Originally published" 尾注——发的是**全文**（canonical 保护下全文比摘要在 dev.to 上表现更好）。
 
-**发布策略**：默认存草稿给用户过目；用户明确说"直接发"时才用 `--publish`。发布后把 dev.to URL 回报给用户。
+**发布策略**：默认 `--publish` 直接公开（2026-07-10 用户授权"默认直接同步 dev.to，直接 publish"）。发布后把 dev.to URL 回报给用户。canonical_url 已指回原文，SEO 无风险。
 
 #### 2.2 掘金/V2EX 版本（中文文章）
 
