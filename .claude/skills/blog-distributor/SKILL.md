@@ -47,43 +47,18 @@ git log --diff-filter=A --name-only -1 --pretty=format: -- 'content/posts/ai/*/i
 
 #### 2.1 dev.to 版本（英文文章）
 
-通过 Rube MCP 的 `DEVTO_CREATE_ARTICLE` 自动发布：
+用 `scripts/devto-publish.py` 走 dev.to 官方 REST API（⚠️ 旧版走 Rube MCP `DEVTO_CREATE_ARTICLE`，Rube 已弃用，禁止再用）：
 
-**准备工作**：
-- 首次使用需先连接 dev.to 账号：调用 `RUBE_MANAGE_CONNECTIONS` with `toolkits: ["devto"]`
-- 用户需要在浏览器完成 OAuth 授权
-
-**发布参数**：
-```
-tool_slug: DEVTO_CREATE_ARTICLE
-arguments:
-  title: <文章标题>
-  body_markdown: <摘要内容，见下方模板>
-  tags: <最多4个标签，从文章tags中选>
-  canonical_url: <原文完整URL>
-  description: <文章description>
-  published: false  # 先存草稿，让用户确认后再发布
+```bash
+python3 scripts/devto-publish.py content/posts/ai/<文章目录>            # 存草稿
+python3 scripts/devto-publish.py content/posts/ai/<文章目录> --publish  # 直接公开发布
 ```
 
-**摘要模板**：
-```markdown
-*Originally published at [my blog](<原文URL>)*
+**准备工作（一次性）**：dev.to → Settings → Extensions → DEV Community API Keys → Generate，key 存入 `~/.config/devto/api_key`（⛔ 不入仓库）。
 
-<文章前500字>
+**脚本自动处理**：TOML front matter → 标题/描述/标签（≤4 个）；相对图片和站内链接 → 绝对 URL；mermaid 块 → 替换为回原文的链接（dev.to 不渲染 mermaid）；自动设置 `canonical_url` 指回原文并附 "Originally published" 尾注——发的是**全文**（canonical 保护下全文比摘要在 dev.to 上表现更好）。
 
----
-
-**[Read the full article →](<原文URL>)**
-
-This article covers:
-- <要点1>
-- <要点2>  
-- <要点3>
-
-If you found this useful, check out [my blog](<博客首页URL>) for more AI engineering guides.
-```
-
-**发布后**：告诉用户 dev.to 草稿链接，用户确认后可改为 `published: true`。
+**发布策略**：默认存草稿给用户过目；用户明确说"直接发"时才用 `--publish`。发布后把 dev.to URL 回报给用户。
 
 #### 2.2 掘金/V2EX 版本（中文文章）
 
