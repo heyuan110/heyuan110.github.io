@@ -1,8 +1,8 @@
 +++
 date = '2026-06-09T10:00:00+08:00'
 draft = false
-title = "Apple's AI Capitulation at WWDC 2026: Gemini-Powered Siri and What It Means for Local AI"
-description = "WWDC 2026 confirmed Apple's Siri now runs on Google Gemini, with Apple Foundation Models v2 trained jointly and AFM Cloud Pro hosted on Google Cloud NVIDIA GPUs. Why this is Apple's biggest strategic reversal since Intel-to-Apple-Silicon, and why local AI users on Ollama and MLX are the unexpected winners."
+title = 'Apple WWDC 2026: Siri Runs on Google Gemini — the Verdict'
+description = "WWDC 2026 verdict: Siri now runs on Google Gemini and AFM Cloud Pro on NVIDIA GPUs in Google Cloud. Who won, who lost, why local AI on Macs comes out ahead."
 toc = true
 tags = ['Apple WWDC 2026', 'Apple Intelligence', 'Google Gemini', 'Siri', 'Apple Foundation Models', 'Local AI', 'Apple Silicon', 'MLX', 'NVIDIA', 'Private Cloud Compute']
 keywords = ['Apple WWDC 2026', 'Apple Intelligence Gemini', 'Apple Siri Google Gemini partnership', 'Apple Foundation Models v2', 'AFM Cloud Pro NVIDIA', 'Apple AI strategy pivot', 'local AI Apple Silicon 2026', 'MLX framework WWDC 2026', 'Apple Intelligence China', 'Apple Private Cloud Compute dead', 'Siri rebuild 2026', 'Apple Google AI deal', 'iOS 27 AI features', 'Apple AI capitulation', 'who won WWDC 2026']
@@ -30,26 +30,26 @@ answer = "Google and NVIDIA, by a wide margin. Google gets the search and intent
 
 ![Apple WWDC 2026 Gemini Siri partnership: Apple Foundation Models v2 routed to Google Cloud NVIDIA GPUs for complex queries](cover.webp)
 
-On June 8, 2026, on the Apple Park stage, Apple confirmed something that would have been unthinkable two years ago: **the new Siri is powered by Google's Gemini models**, and the next generation of Apple Foundation Models is being co-developed with Google. Complex queries route to a service called **AFM Cloud Pro**, hosted on Google Cloud and running on **NVIDIA GPUs** inside a confidential compute environment.
+Apple WWDC 2026 will go down as the most expensive admission of defeat in the company's history — a two-hour keynote whose actual headline is that Apple quit trying to win AI. The proof fits in one sentence: **the new Siri runs on Google's Gemini models**, Apple Foundation Models v2 is being co-developed with Google, and complex queries route to **AFM Cloud Pro** — hosted on **Google Cloud**, running on **NVIDIA GPUs**, inside a confidential compute environment. Nobody leaked this. Apple said it out loud, on its own stage, on June 8.
 
-For a company that spent 2024 and 2025 building an entire marketing narrative around **Private Cloud Compute** — Apple's own AI servers, in Apple's own data centers, running on Apple Silicon — this is the largest strategic reversal since the Intel-to-Apple-Silicon transition. And it goes in the opposite direction. The Apple Silicon transition was about taking control of the stack. WWDC 2026 is about giving the most valuable layer of the stack to a competitor.
+Sit with what that replaces. This is the company that spent 2024 and 2025 selling **Private Cloud Compute**: Apple's own AI servers, in Apple's own data centers, on Apple's own silicon, with cryptographic proof that nobody — not even Apple — could see your data. The Intel-to-Apple-Silicon transition was about seizing the entire stack. WWDC 2026 is that move in reverse: handing the most valuable layer of the stack to the company Apple has fought longest.
 
-I want to be direct: **Apple's "everything on device" story is dead**, the privacy argument has been quietly rewritten, and the real winners are Google, NVIDIA, and — counterintuitively — the open-source local AI community running Ollama, MLX, and ComfyUI on Apple Silicon. Let me explain why.
+Three calls, up front. One: this was forced, not chosen — the Siri rebuild didn't converge, and the deal is the price of finally shipping. Two: the winners are Google and NVIDIA, by a mile. Three — and this is the part nobody on stage would say — the group that quietly comes out ahead is the local AI crowd running Ollama, MLX, and ComfyUI on Apple Silicon. If that's you, the back half of this post is yours.
 
-## What Apple Actually Announced at WWDC 2026
+## The WWDC 2026 Facts, Minus the Stagecraft
 
-Strip away the keynote choreography and the substance is small. The new Siri ships across **iOS 27, iPadOS 27, macOS Golden Gate, watchOS 27, visionOS 27, CarPlay, and AirPods**. Under the hood, two things changed:
+Strip the keynote choreography and the substance fits on an index card. The new Siri ships across **iOS 27, iPadOS 27, macOS Golden Gate, watchOS 27, visionOS 27, CarPlay, and AirPods**. Under the hood, exactly two things changed:
 
-1. **A distilled on-device model handles simple queries** — fast, local, no network. Apple did not disclose the parameter count, the distillation ratio, or which devices get which model size. Treat any specific number you see in third-party coverage as a guess.
-2. **Complex queries route to AFM Cloud Pro**, which is **Google Cloud + NVIDIA GPUs + confidential compute**. The "Apple Foundation Models v2" branding stays, but the model and the infrastructure are now joint with Google.
+1. **Simple queries stay local**, handled by a distilled on-device model — fast, offline, no network round-trip. Apple didn't disclose the parameter count, the distillation ratio, or which devices get which model size. Any specific number you've seen in third-party coverage is a guess.
+2. **Hard queries go to AFM Cloud Pro**, which, stripped of its branding, is Google Cloud plus NVIDIA GPUs plus confidential compute. The "Apple Foundation Models v2" name survives; the model and the infrastructure underneath it are now joint with Google.
 
-The peripheral features — Visual Intelligence, Safari tab organization with price-drop alerts, Photos AI editing (Cleanup, Extend, Spatial Reframe, with SynthID watermarking), redesigned Image Playground, smart Messages replies that mimic your writing style, natural-language Shortcuts creation, cross-app context awareness, Passwords app hardening, VoiceOver and Voice Control upgrades — are all real, but they are downstream consequences of the same architecture. None of them work without the Gemini-backed cloud path.
+Everything else on stage — Visual Intelligence, Safari tab organization with price-drop alerts, Photos AI editing (Cleanup, Extend, Spatial Reframe, with SynthID watermarking), the redesigned Image Playground, Messages smart replies that mimic your writing style, natural-language Shortcuts creation, cross-app context awareness, Passwords hardening, VoiceOver and Voice Control upgrades — is real, but it's all downstream of the same two-tier architecture. None of it works without the Gemini-backed cloud path.
 
-What Apple did **not** announce is more telling. There was no detailed roadmap for Private Cloud Compute. No new Apple-designed inference silicon. No frontier-model benchmark claim. No MLX framework updates with specifics (as of writing on June 9 morning, the developer documentation deeper than the keynote slides is not yet public). The keynote silence on these topics is the loudest signal of the day.
+The silences were louder than the announcements. No Private Cloud Compute roadmap. No new Apple-designed inference silicon. No frontier-model benchmark claims — not a single number. No MLX framework specifics either (as of the morning of June 9, developer documentation deeper than the keynote slides still isn't public). When Apple has something, it brags. When it says nothing, believe the nothing.
 
-## The Apple AI Timeline: From "Everything On Device" to "Trust Google with the Hard Part"
+## Two Years From "On-Device First" to "Google Does the Hard Part"
 
-To see how big a reversal this is, you have to remember what Apple was saying eighteen months ago.
+To feel the whiplash, rewind eighteen months and listen to what Apple was saying then.
 
 ```mermaid
 timeline
@@ -73,33 +73,17 @@ timeline
               : "On device first" narrative ends
 ```
 
-Notice the shape: a two-year arc that started with the most ambitious vertical-integration story in consumer AI and ended with Apple paying Google to do the hard part. The Private Cloud Compute pitch was that Apple would build its own silicon for inference, run it in its own data centers, and prove cryptographically that nobody — not even Apple — could see your data. WWDC 2026 replaced that with **"confidential compute on Google Cloud with NVIDIA GPUs."** The technical primitive is plausible. The brand story is gone.
+The arc is brutal when you read it straight through: the most ambitious vertical-integration story in consumer AI, ending with Apple paying Google to do the hard part. And the brand story it torched was the entire competitive moat. The 2024 pitch was "we're the only platform that does AI without surveilling you." The 2026 pitch is "we're the only platform that does AI with Google as the inference provider, but with extra encryption." Try selling that in one sentence. You can't.
 
-This matters because the brand story was the entire competitive moat. Apple's pitch in 2024 was "we are the only platform that does AI without surveilling you." In 2026 that pitch becomes "we are the only platform that does AI with Google as the inference provider, but with extra encryption." Try selling that to a consumer in one sentence. You cannot.
+Why did Apple do it anyway? Because it had no choice. Through late 2025, multiple reporting threads pointed the same direction: Apple's internal LLM scaling was behind the frontier, and the gap between Apple Foundation Models v1 and Gemini 2.x / GPT-5 / Claude 4 was widening, not closing. Apple's unified-memory advantage doesn't translate to data-center training scale, where NVIDIA's CUDA-plus-interconnect stack still dominates outright. And Apple's training corpus is constrained by its own privacy posture — the company genuinely doesn't have Google's data.
 
-## Why This Was Probably Forced
+When you can't win the model layer, you've got two options: ship a worse product, or partner. Apple promised the Siri rebuild in 2024, missed in 2025, and couldn't afford to miss again. The Google deal is what shipping finally cost.
 
-Nobody at Apple wanted this. The most likely explanation, based on the public evidence, is that the Siri rebuild simply did not converge in time.
+That price is steeper than it looks. Apple has now conceded, in public, that **the model layer isn't a place it can compete** — and that concession cascades: into developer APIs, into the App Store's AI-app ecosystem, into future hardware (why design an AI accelerator when your stack runs on H100s in Google's data center?), and into what the M-series chip means in the next decade of Apple marketing.
 
-Through late 2025, multiple reporting threads suggested Apple's internal LLM scaling efforts were behind the frontier — the gap between Apple Foundation Models v1 and Gemini 2.x / GPT-5 / Claude 4 was widening, not closing. Apple's hardware advantage in unified memory does not translate cleanly to data center training scale, where NVIDIA's CUDA + interconnect stack still dominates by a wide margin. Apple's data corpus is also constrained by its privacy posture — the company genuinely does not have the training data that Google does.
+## Who Actually Won WWDC 2026
 
-When you cannot win the model layer, you have two options: ship a worse product, or partner. Apple shipped the original Siri rebuild promise in 2024, missed it in 2025, and could not afford to miss again in 2026. The Google deal is the cost of finally shipping.
-
-The strategic cost is severe. Apple has effectively conceded that **the model layer is not a place it can compete**. That concession has implications for everything downstream: developer APIs, the App Store ecosystem of AI apps, future hardware (why build an AI accelerator if your stack runs on H100s in Google's data center?), and the position of M-series chips in the next decade of AI marketing.
-
-## Why Local AI Users on Apple Silicon Just Won
-
-Here is the counterintuitive part. **The open-source local AI community on Apple Silicon comes out of WWDC 2026 better off than they were on June 7.**
-
-The reason is that until this week, there was a real risk that Apple would lock the on-device AI stack to Apple Foundation Models and the Neural Engine — the same way Apple has historically locked photography to its Image Signal Processor and audio to AudioToolbox. If Apple had succeeded in shipping a competitive on-device LLM, the next move would have been: deprecate the open APIs, tax the third-party ecosystem, push everything through ANE-accelerated AFM. That is the Apple playbook for every layer the company controls.
-
-That risk just evaporated. Apple does not own the model layer anymore; it rents it from Google. The Neural Engine becomes a peripheral accelerator, not the centerpiece. **Ollama, llama.cpp, MLX, ComfyUI, Draw Things, LM Studio** — every tool that runs on Metal against unified memory — keeps doing exactly what it was doing, except now without competing against a Cupertino-flavored gravity well.
-
-I covered the underlying hardware economics in [my Apple Silicon AI workstation deep-dive](/posts/ai/2026-04-14-mac-apple-silicon-ai-workstation/) — the short version is that memory bandwidth on M3 Max and above is what makes local 70B inference viable, and that hardware investment continues regardless of what happens at the OS layer. Apple is not going to stop selling M5 / M6 / M7 Macs with more unified memory. The chips keep getting better. The only thing that changed is that the system AI is no longer trying to be the chip's primary customer.
-
-The second-order effect is even better. Apple's marketing pivot from "we do AI ourselves" to "we partner for the hard stuff" implicitly legitimizes the **pluralist** view of AI on the Mac: that the right answer is multiple specialized tools, locally controlled, swapped per task. That is exactly the world that [Mac mini local image generation](/posts/ai/2026-02-15-mac-mini-local-image-generation/) users and [Draw Things power users](/posts/ai/2026-02-15-draw-things-ultimate-guide/) already inhabit.
-
-## The Real Winners and Losers Scorecard
+Here's the scorecard, and it isn't close:
 
 | Player | Position Before WWDC 2026 | Position After | Net |
 |--------|---------------------------|----------------|-----|
@@ -112,50 +96,52 @@ The second-order effect is even better. Apple's marketing pivot from "we do AI o
 | OpenAI (previous opt-in partner) | Default ChatGPT fallback in iOS 18-19 | Likely sidelined by deeper Gemini integration | Loss |
 | Consumer privacy narrative | "Apple does not see your data" | "Confidential compute on Google Cloud" | Lost |
 
-If you want a one-line summary of the entire keynote: **Google bought Apple's intent data with a model API. NVIDIA sold the picks and shovels. Apple shipped a better Siri but stopped being an AI platform.**
+One line for the whole keynote: **Google bought Apple's intent data with a model API. NVIDIA sold the picks and shovels. Apple shipped a better Siri and stopped being an AI platform.**
 
-## What the New "Privacy" Story Actually Means
+The privacy row deserves a closer look, because Apple didn't drop the pitch — it rewrote it. The 2024 version: your data never leaves the device unless absolutely necessary, and when it does, it goes to Apple's own servers on Apple's own chips with end-to-end attestation. The 2026 version: same opening clause, but the destination is **a confidential compute environment on Google Cloud, on NVIDIA GPUs, with cryptographic isolation**.
 
-Apple did not abandon the privacy pitch. It rewrote it.
+To be fair, the technical primitive is real. Confidential compute — where the cloud operator can't read tenant data even with full physical access — is a credible architecture, and NVIDIA H100/H200/Blackwell support it legitimately. The math works. The trust boundary is different from 2024's, but it isn't nothing.
 
-The 2024 version was: your data never leaves the device unless absolutely necessary, and if it does, it goes to Apple's own servers running on Apple's own chips with end-to-end attestation. The 2026 version is: **your data never leaves the device unless absolutely necessary, and if it does, it goes to a confidential compute environment on Google Cloud running on NVIDIA GPUs with cryptographic isolation.**
+What collapsed is the consumer differentiation. In 2024, the pitch to a non-technical iPhone buyer was dead simple: **"Apple doesn't upload your stuff. Google does."** In 2026, both companies are saying "we encrypt what we upload," and cryptographic nuance doesn't survive translation to a billboard. Apple kept the technical posture and lost the marketing weapon.
 
-The technical primitive — confidential compute, where the cloud operator cannot read tenant data even with full physical access — is real and credible. NVIDIA H100/H200/Blackwell with confidential compute is a legitimate architecture. The math works. The trust boundary is different from the 2024 version, but it is not nothing.
+If you handle sensitive data and you'd been leaning on Apple's on-device promise, this lands on your desk directly: you now need to read the AFM Cloud Pro confidential-compute attestation documents and decide whether Google's operational security clears your threat model. That's a different job than the 2024 version — and Apple hasn't published the developer-facing details yet (nothing deeper than the slides as of June 9 morning).
 
-The problem is that the consumer differentiation collapses. In 2024 the pitch to a non-technical iPhone buyer was simple: **"Apple does not upload your stuff. Google does."** In 2026 that distinction is gone. Both are now "we encrypt the stuff we upload." Cryptographic nuance does not survive translation to a billboard ad. Apple has kept the technical posture and lost the marketing weapon.
+## The Winner Nobody Named: Local AI on Apple Silicon
 
-For developers and serious users, the implication is more concrete: if you handle sensitive data and you used to rely on Apple's on-device promise, you now need to read the AFM Cloud Pro confidential compute attestation documents and decide whether Google's operational security is acceptable in your threat model. That is a different kind of work than the 2024 version, and Apple has not yet published the developer-facing details (the deeper docs are not out as of June 9 morning).
+Now the counterintuitive part, and the reason I'm not writing this as a eulogy. **The open-source local AI community on Apple Silicon walked out of WWDC 2026 better off than it walked in.**
 
-## What to Do If You Build on Apple Platforms
+Until this week, there was a live risk hanging over every local AI tool on the Mac: that Apple would lock the on-device AI stack to Apple Foundation Models and the Neural Engine, the same way it locked photography to its Image Signal Processor and audio to AudioToolbox. If Apple had shipped a competitive on-device LLM, the next moves write themselves — deprecate the open APIs, tax the third-party ecosystem, funnel everything through ANE-accelerated AFM. That's the Apple playbook for every layer it controls. It's not paranoia; it's pattern recognition.
 
-For developers shipping consumer apps that touch AI, my recommendation is to **stop assuming Apple will provide a competitive default LLM** and design accordingly.
+That risk just evaporated. Apple doesn't own the model layer anymore — it rents it from Google. The Neural Engine becomes a peripheral accelerator instead of the centerpiece of a strategy. **Ollama, llama.cpp, MLX, ComfyUI, Draw Things, LM Studio** — every tool that runs on Metal against unified memory keeps doing exactly what it was doing, except without a Cupertino-flavored gravity well forming next door.
 
-Concretely:
+And the hardware side of the bargain doesn't change at all. I covered the economics in [my Apple Silicon AI workstation deep-dive](/posts/ai/2026-04-14-mac-apple-silicon-ai-workstation/): memory bandwidth on M3 Max and above is what makes local 70B inference viable, and that investment continues regardless of what happens at the OS layer. Apple isn't going to stop selling M5 / M6 / M7 Macs with ever more unified memory. The chips keep getting better. The only thing that changed is that the system AI stopped auditioning to be the chip's primary customer.
 
-1. **Treat Apple Intelligence as a routing target, not a model**. If your app needs a fast on-device action, fine, use the distilled model via the system APIs. If your app needs reasoning, summarization, or anything you actually care about quality on, do not assume the Apple-provided cloud path will beat your direct integration with the underlying provider. Ship your own.
-2. **The Mac is now a much better local AI development machine than its keynote suggests**. Apple just removed its own AI ambitions from the calculus. Unified memory keeps growing, Metal keeps improving, the chips keep getting better. Build your own [agent harnesses](/posts/ai/2026-04-14-hermes-agent-guide/) and run them locally — the OS will not get in the way.
-3. **Privacy stories need updating**. If your app's marketing leaned on "Apple Intelligence keeps your data on the device," that's no longer a clean claim. Either go more strict (local-only, MLX-based) or be honest that your AI features touch Google Cloud through Apple's pipe.
-4. **The China iOS market just got more uncertain**. Gemini is unavailable in mainland China; Apple Intelligence in the PRC will need a local LLM partner, and the timeline is not Apple's to set. If you ship to China, plan for a separate AI experience that may lag the global version by quarters.
+The second-order effect might be the best part. By pivoting from "we do AI ourselves" to "we partner for the hard stuff," Apple has implicitly blessed the **pluralist** model of AI on the Mac: multiple specialized tools, locally controlled, swapped per task. That's not a future scenario — it's the world that [Mac mini local image generation](/posts/ai/2026-02-15-mac-mini-local-image-generation/) users and [Draw Things power users](/posts/ai/2026-02-15-draw-things-ultimate-guide/) already live in. Apple just stopped pretending it wanted to replace it.
 
-## What This Does Not Mean
+## Four Moves If You Build on Apple Platforms
 
-A few things this announcement is **not**, despite the temptation to overread it.
+The operating assumption to retire today: that Apple will provide a competitive default LLM. It won't. Design accordingly:
 
-It is not the end of Apple Silicon. Apple's chip roadmap is independent of its model strategy, and the M5 / M6 generations will keep pushing memory bandwidth and unified memory ceilings. Local AI on the Mac gets better every year because of hardware, not because of WWDC keynotes.
+1. **Treat Apple Intelligence as a routing target, not a model.** Fast on-device action? Fine, hit the distilled model through the system APIs. Reasoning, summarization, anything where quality matters? Don't assume Apple's cloud path beats a direct integration with the underlying provider. Ship your own.
+2. **The Mac is now a better local AI dev machine than the keynote suggests.** Apple just removed its own AI ambitions from the calculus. Unified memory keeps growing, Metal keeps improving. Build your own [agent harnesses](/posts/ai/2026-04-14-hermes-agent-guide/) and run them locally — the OS won't get in your way.
+3. **Update your privacy story.** If your marketing leaned on "Apple Intelligence keeps your data on the device," that claim is no longer clean. Either go stricter — local-only, MLX-based — or say plainly that your AI features touch Google Cloud through Apple's pipe.
+4. **Plan for China separately.** Gemini is unavailable in mainland China, so Apple Intelligence there will need a local LLM partner, on a timeline Apple doesn't control. If you ship to China, budget for a separate AI experience that may trail the global version by quarters.
 
-It is not the end of on-device AI broadly. The distilled local model is still real, and the **Visual Intelligence**, **Photos AI editing**, and **Smart Reply** features mostly run on-device. The on-device tier is just no longer the strategic story — it is the table stakes.
+## What This Isn't — and What It Is
 
-It is not Apple "giving up" in any dramatic sense. Apple is doing the thing every successful platform company eventually does when it loses a layer: partner, take the margin, and re-anchor competition somewhere it still wins (in Apple's case, the device, the OS integration, the privacy posture, and the ecosystem lock-in). This is not a death sentence; it is a downgrade from "AI platform owner" to "premium AI distribution channel."
+Three overreads worth killing before they spread.
 
-But it is a downgrade, and the keynote choreography cannot hide that. The Apple Intelligence story that began on this same stage two years ago was about Apple winning AI on its own terms. WWDC 2026 was about Apple winning Siri by accepting that it would not win AI on its own terms. Those are very different stories.
+It's not the end of Apple Silicon. The chip roadmap is independent of the model strategy, and the M5 / M6 generations will keep pushing memory bandwidth and unified-memory ceilings. Local AI on the Mac gets better every year because of hardware, not keynotes.
 
-## Bottom Line: The Strategic Reframe
+It's not the end of on-device AI, either. The distilled local model is real, and **Visual Intelligence**, **Photos AI editing**, and **Smart Reply** mostly run on-device. The local tier just stopped being the strategic story. It's table stakes now.
 
-If you remember one thing from WWDC 2026, remember this: **Apple just announced that it is not an AI platform. It is a customer of one.** Google is the platform now. NVIDIA is the infrastructure. Apple's role is distribution, integration, and the trust wrapper.
+And it's not Apple "giving up" in some dramatic, terminal sense. This is what every successful platform company does when it loses a layer: partner, take the margin, and re-anchor competition where it still wins — the device, the OS integration, the privacy posture, the ecosystem lock-in. Not a death sentence. A downgrade: from AI platform owner to premium AI distribution channel.
 
-For end users this mostly does not matter — the new Siri will work better, the privacy posture is technically defensible, and the on-device features are real improvements. For developers building on the Mac, this is quietly excellent news: the platform risk to local AI just dropped meaningfully, and Apple Silicon hardware investment continues without a competing internal narrative. For investors and strategists, this is the biggest single-day repricing of Apple's AI ambitions since the iPhone 16 launch.
+But a downgrade is what it is, and no amount of stagecraft hides it. The Apple Intelligence story that began on this same stage two years ago was about Apple winning AI on its own terms. WWDC 2026 was about Apple winning Siri by accepting that it won't.
 
-The pivot is done. The story changed on a Monday in June. The only question now is whether Apple ever tries again to own the model layer — and based on every signal in this keynote, the answer is probably not.
+So here's the one thing to remember: **Apple just told you it isn't an AI platform. It's a customer of one.** Google is the platform. NVIDIA is the infrastructure. Apple is distribution, integration, and the trust wrapper. For end users, mostly fine — Siri will finally work, and the on-device features are real improvements. For anyone building on the Mac, quietly excellent news — the platform risk to local AI just dropped hard, and the hardware keeps coming. For investors, the biggest single-day repricing of Apple's AI ambitions since the iPhone 16 launch.
+
+The pivot is done. The story changed on a Monday in June. The only open question is whether Apple ever takes another run at owning the model layer — and everything in this keynote says no.
 
 ## Related Reading
 

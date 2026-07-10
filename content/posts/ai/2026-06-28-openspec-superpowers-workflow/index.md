@@ -1,8 +1,8 @@
 +++
 date = '2026-06-28T13:00:00+08:00'
 draft = false
-title = 'OpenSpec vs Superpowers: The Real Spec-Driven Workflow'
-description = 'OpenSpec vs Superpowers is the wrong question. Get the decision rule for when to use each, plus the CLAUDE.md wiring that makes them cooperate.'
+title = 'OpenSpec vs Superpowers: My Spec-Driven Workflow'
+description = 'How I run OpenSpec and Superpowers together in Claude Code: the CLAUDE.md routing that stops them fighting, plus a decision rule for when each pays off.'
 toc = true
 tags = ['Claude Code', 'OpenSpec', 'Superpowers', 'AI Development', 'Spec-Driven Development']
 keywords = ['openspec superpowers', 'openspec vs superpowers', 'spec driven development claude code', 'openspec workflow', 'superpowers plugin claude code', 'claude code spec driven workflow 2026']
@@ -30,21 +30,23 @@ answer = "It improves consistency and reduces rework, but it does not fix the de
 
 ![OpenSpec vs Superpowers spec-driven development workflow diagram](cover.webp)
 
-## OpenSpec vs Superpowers: You're Asking the Wrong Question
+The first time I pointed OpenSpec and Superpowers at the same feature, I ended up with two spec documents for one checkbox. Superpowers' brainstorming skill fired on its own and wrote a design doc into `docs/superpowers/specs/`; I ran `/opsx:propose` anyway and got a second spec in `openspec/changes/<id>/proposal.md`. Within the hour the two files disagreed with each other, and both looked authoritative. The same unrouted setup bit me again later: `/opsx:apply` cheerfully wrote an entire implementation with zero tests, and I didn't notice until code review.
 
-Search traffic tells a clear story: people type "openspec vs superpowers" expecting a winner. After running both across real projects for months, my honest answer is that the versus framing is a trap. These tools do not compete for the same job any more than a blueprint competes with a site foreman. One decides *what* gets built and preserves *why*; the other decides *how well* it gets built and refuses to let the agent cut corners. Picking "the better one" is like asking whether a compiler or a linter is better — they live at different layers of the same pipeline.
+These days the same class of feature runs clean. One `/opsx:propose`, a failing test before every line of implementation, and an `/opsx:archive` at the end that freezes the reasoning for whoever reopens the feature in three weeks. Nothing about either tool changed. The entire difference is a routing block in CLAUDE.md, about a dozen lines long — and this post is the field report on getting from the first state to the second: the spec-driven development workflow that actually works, commands included.
 
-I wrote the [full triple-stack breakdown of Claude Code, OpenSpec and Superpowers](/posts/ai/2026-04-09-claude-code-openspec-superpowers/) earlier this year, and it answered "what are these tools and is running all three overkill." This piece is the sequel that answers the question people actually keep searching for: given a real feature in front of you, *which one do you reach for, and how do you wire them so they cooperate instead of fighting?* If you want installation and the layer theory, read the mother article first. Here I assume you have both installed and want the working loop.
+One thing to clear up front, because search traffic tells me most people arrive here typing "openspec vs superpowers" and expecting a winner. After months of running both on real projects, I'm convinced the versus framing is a trap. These tools don't compete for the same job any more than a blueprint competes with a site foreman. One decides *what* gets built and preserves *why*; the other decides *how well* it gets built and refuses to let the agent cut corners. Asking which is "better" is like asking whether a compiler or a linter is better — they live at different layers of the same pipeline.
 
-The data backs up why this cluster matters. As of mid-2026, [Superpowers](https://github.com/obra/superpowers) sits at roughly 249,000 GitHub stars and — this is the part most comparisons miss — it is no longer a Claude-only plugin. It now installs into Codex, Cursor, Antigravity, Copilot CLI, Kimi, OpenCode and more. It stopped being a plugin and became a methodology. [OpenSpec](https://openspec.dev/) sits at roughly 59,000 stars, deliberately narrower, focused on one thing: keeping implementation intent out of ephemeral chat history and in versioned files.
+I wrote the [full triple-stack breakdown of Claude Code, OpenSpec and Superpowers](/posts/ai/2026-04-09-claude-code-openspec-superpowers/) earlier this year; it answered "what are these tools, and is running all three overkill." This piece is the sequel: it assumes you have both installed and walks you to the working loop — where they collide, how to wire them, and when each one is worth reaching for.
 
-## The Layer Map: What Each Tool Actually Owns
+## What OpenSpec and Superpowers Each Actually Own
 
-Before any decision rule makes sense, you have to see the two tools on a single axis. The mistake I see repeated in every "vs" post is comparing them feature-by-feature as if they were rival editors. They are not on the same row of the table — they are on different rows.
+You can't route two tools until you know what job each one holds, and the mistake every "vs" post repeats is comparing them feature-by-feature as if they were rival editors. They're not on the same row of the table — they're on different rows.
 
-OpenSpec owns the **artifact layer**. Its output is a set of files: `proposal.md` (including the critical Out-of-Scope section), a `specs/` directory of GIVEN/WHEN/THEN behavior, `design.md` for the reasoning behind choices, and `tasks.md` as the checklist. Its unique power is not that it writes these files — Superpowers writes design docs too — it is the *Delta/Archive model*. Every change lives in its own versioned folder and gets archived on completion, so three iterations later you can still reconstruct why version 1 chose bcrypt and version 2 switched to argon2. That history is the thing nothing else on this list preserves.
+The numbers alone hint at how differently they're positioned. As of mid-2026, [Superpowers](https://github.com/obra/superpowers) sits at roughly 249,000 GitHub stars, and — the part most comparisons miss — it's no longer a Claude-only plugin. It now installs into Codex, Cursor, Antigravity, Copilot CLI, Kimi, OpenCode and more. It stopped being a plugin and became a methodology. [OpenSpec](https://openspec.dev/) sits at roughly 59,000 stars, deliberately narrower, focused on one thing: keeping implementation intent out of ephemeral chat history and inside versioned files.
 
-Superpowers owns the **behavior layer**. It does not hand you a template to fill in. It opens a conversation — "What are you really trying to do? Who is the user? What are the constraints?" — and teases the spec out of that dialogue. Then it enforces execution: true red/green TDD, subagent-driven development where independent agents work through each task with a two-stage review, and the notorious rule that any implementation written before its test gets *deleted, not warned about*. Its value is discipline, not documentation.
+OpenSpec owns the **artifact layer**. Its output is a set of files: `proposal.md` (including the critical Out-of-Scope section), a `specs/` directory of GIVEN/WHEN/THEN behavior, `design.md` for the reasoning behind choices, and `tasks.md` as the checklist. Its unique power isn't that it writes these files — Superpowers writes design docs too — it's the *Delta/Archive model*. Every change lives in its own versioned folder and gets archived on completion, so three iterations later you can still reconstruct why version 1 chose bcrypt and version 2 switched to argon2. That history is the thing nothing else in this stack preserves.
+
+Superpowers owns the **behavior layer**. It doesn't hand you a template to fill in. It opens a conversation — "What are you really trying to do? Who's the user? What are the constraints?" — and teases the spec out of that dialogue. Then it enforces execution: true red/green TDD, subagent-driven development where independent agents work through each task with a two-stage review, and the notorious rule that any implementation written before its test gets *deleted, not warned about*. Its value is discipline, not documentation.
 
 ```mermaid
 flowchart TB
@@ -70,44 +72,47 @@ flowchart TB
     style SA fill:#1e4e8c,color:#fff
 ```
 
-Here is the reframe that changes how you choose: **OpenSpec is document-first, Superpowers is conversation-first.** That single difference explains almost every situational trade-off. When your requirements are already crisp, document-first is faster — you just write them down. When your requirements are fuzzy, conversation-first is faster, because the dialogue does the discovery work that a blank template cannot. So the real question was never "which tool is better" but "how settled are my requirements right now?"
+Here's the reframe that makes everything downstream click: **OpenSpec is document-first, Superpowers is conversation-first.** That single difference explains almost every situational trade-off. When your requirements are already crisp, document-first is faster — you just write them down. When your requirements are fuzzy, conversation-first is faster, because the dialogue does the discovery work that a blank template can't. So the real question was never "which tool is better" but "how settled are my requirements right now?"
 
-## The Decision Rule: When OpenSpec, When Superpowers, When Both
+## Wiring OpenSpec and Superpowers So They Don't Fight
 
-I resisted writing a decision tree for a long time because "it depends" felt more honest. But "it depends" is useless when you have a feature in front of you at 2pm and need to start. So here is the rule I actually follow, reduced to the two variables that matter: **how settled are the requirements, and how many times will this feature be touched?**
+Back to the collision from the opening, because this is the part almost every tutorial skips and it's exactly where people get burned. **OpenSpec and Superpowers do not auto-chain.** Neither tool detects the other. Install both with zero configuration and the next time you describe a feature, Superpowers' `brainstorming` skill fires automatically *and* you still want to run `/opsx:propose` — so you get a `docs/superpowers/specs/` design doc and an `openspec/changes/<id>/proposal.md` for the same feature, drifting out of sync within the hour. What makes it maddening is that both files look authoritative.
 
-If requirements are fuzzy and it is a one-shot build, use Superpowers alone. Its conversation-first brainstorming is literally designed for the case where you cannot write the spec yet, and its TDD keeps a throwaway from becoming a liability. This is my default for probably 70% of daily work. Do not reach for OpenSpec here — writing a document-first spec for requirements you have not thought through yet is the single most common way people waste an hour and produce a spec they immediately rewrite.
+The fix is convention, enforced in CLAUDE.md. You pick one planning system by writing it down, because nothing else will pick it for you. Here's the routing block I paste into every project that runs both — copy it, adjust the paths, and the collision disappears:
 
-If requirements are settled and the feature is a single clean unit, OpenSpec alone is genuinely faster than talking it out. You already know what you want; `/opsx:propose` turns it into structured artifacts in one pass, and you skip the Socratic questioning. But — and this is the honest edge case the "vs" posts skip — you lose Superpowers' execution discipline. So OpenSpec-alone only makes sense if you are comfortable reviewing the code yourself, or if you add TDD rules to CLAUDE.md manually.
+````markdown
+## Spec-driven routing (OpenSpec + Superpowers)
 
-The combination earns its overhead in exactly one quadrant: **a feature that will be iterated more than once, by more than one person, over more than one session.** That is where OpenSpec's Delta/Archive stops being theoretical. When a teammate reopens the feature in three weeks and asks "why is the session TTL 30 days?", the archived design delta answers instantly. Superpowers alone would have overwritten that reasoning on the next brainstorm.
+- For any NEW feature, ALWAYS start with `/opsx:propose`.
+  Do NOT run Superpowers `brainstorming` or `writing-plans` —
+  OpenSpec owns the planning phase in this repo.
+- When running `/opsx:apply`, ALWAYS follow TDD:
+  write a failing test first, then implementation. Delete any
+  implementation written before its test.
+- During apply, run the code-review skill before every commit,
+  and open an isolated git worktree for the change.
+- `/opsx:archive` is ALWAYS the last action of a completed change.
+  Never leave a change un-archived — the next session will
+  re-read the stale spec and re-implement finished work.
+````
 
-```mermaid
-flowchart TD
-    Start["Feature in front of you"] --> Q1{"Requirements<br/>settled?"}
-    Q1 -->|"No, still fuzzy"| SP["Superpowers alone<br/><i>conversation teases out spec<br/>+ TDD execution</i>"]
-    Q1 -->|"Yes, crisp"| Q2{"Iterated more than<br/>once, by more<br/>than one person?"}
-    Q2 -->|"No, one-shot"| OS["OpenSpec alone<br/><i>propose in one pass<br/>add TDD rule manually</i>"]
-    Q2 -->|"Yes, long-lived"| Both["Both, routed<br/><i>OpenSpec plans + archives<br/>Superpowers executes</i>"]
-    SP --> Ship1["Ship"]
-    OS --> Ship2["Ship"]
-    Both --> Ship3["Ship + audit trail"]
-    style Start fill:#1a202c,color:#fff
-    style SP fill:#2b6cb0,color:#fff
-    style OS fill:#018472,color:#fff
-    style Both fill:#c05621,color:#fff
-    style Ship1 fill:#4a5568,color:#fff
-    style Ship2 fill:#4a5568,color:#fff
-    style Ship3 fill:#4a5568,color:#fff
-```
+That block does three things the tools won't do on their own.
 
-## The Combined Loop in Practice: One Feature, Two Iterations
+First, it routes planning to OpenSpec, so Superpowers' brainstorming stops competing for the same job.
 
-Theory is cheap. Here is the actual rhythm when you run both on a feature that gets revised — the case where the combination pays off. Say you are building a "remember me" login option, then two weeks later product decides the session length was wrong. This is where the two-tool loop shines and where a single tool quietly loses information.
+Second, it manually switches on Superpowers' execution skills during apply — because TDD, code review, and worktree isolation *do not activate automatically* inside `/opsx:apply`. They fire only if CLAUDE.md tells them to. That's the exact gap behind my zero-test implementation: OpenSpec plans; it does not discipline execution.
 
-Iteration one starts with `/opsx:propose Add remember-me checkbox with 30-day sessions`. OpenSpec generates the four artifacts. You open `proposal.md` and check Out-of-Scope — confirming the agent did not silently add "remember this device" fingerprinting you never asked for. Because planning already happened here, you do *not* let Superpowers' brainstorming fire again (more on why in the wiring section). Then `/opsx:apply` runs, and — only because your CLAUDE.md says so — Superpowers' TDD takes over: each task writes a failing test first, implements, self-reviews, commits. You finish with `/opsx:archive`, which merges the spec delta and freezes iteration one's reasoning.
+Third, it makes archiving non-negotiable, which prevents the single most common OpenSpec bug: forgetting to archive, then watching the next session re-read the stale spec and re-implement work that's already done.
 
-Two weeks later the requirement changes to 7-day sessions with a refresh token. You run `/opsx:propose` again — a *new* change folder, not an edit of the old one. The archived first iteration still exists. When your reviewer asks "wait, why did we ever pick 30 days?", the answer is one `git log` away in the archived delta. Superpowers alone cannot do this: its second brainstorming session overwrites the first design doc, and the original reasoning is gone. That is the entire argument for the combination, made concrete.
+If you only remember one sentence from this article, make it this: **the tools give you the parts, CLAUDE.md is the assembly instructions, and without it the parts actively interfere with each other.** For the deeper mechanics of how these skills load and trigger, my [Claude Code skills guide](/posts/ai/2026-01-08-claudecode-skill-guide/) and the [Superpowers deep dive](/posts/ai/2026-02-01-superpowers-deep-dive/) cover the underlying model.
+
+## The Working Loop: One Feature, Two Iterations
+
+With the routing in place, here's the rhythm the combination settles into. I'll walk it on a concrete example — a "remember me" login option whose session length gets revised two weeks later — because a feature that gets *revised* is exactly where the two-tool loop shines and where a single tool quietly loses information. Every command below is copy-pasteable.
+
+Iteration one starts with `/opsx:propose Add remember-me checkbox with 30-day sessions`. OpenSpec generates the four artifacts. Open `proposal.md` and check Out-of-Scope first — you're confirming the agent didn't silently add "remember this device" fingerprinting you never asked for. Because planning already happened here, Superpowers' brainstorming must *not* fire again; that's the routing block doing its job. Then run `/opsx:apply`, and — only because your CLAUDE.md says so — Superpowers' TDD takes over: each task writes a failing test first, implements, self-reviews, commits. Finish with `/opsx:archive`, which merges the spec delta and freezes iteration one's reasoning.
+
+Two weeks later the requirement changes to 7-day sessions with a refresh token. Run `/opsx:propose` again — it creates a *new* change folder, not an edit of the old one. The archived first iteration still exists. When your reviewer asks "wait, why did we ever pick 30 days?", the answer is one `git log` away in the archived delta. Superpowers alone can't do this: its second brainstorming session overwrites the first design doc, and the original reasoning is gone. That's the entire argument for the combination, made concrete.
 
 ```mermaid
 sequenceDiagram
@@ -131,41 +136,44 @@ sequenceDiagram
     Note over You,OS: "Why 30 days originally?"<br/>→ answer lives in v1 archive
 ```
 
-## Wiring Them So They Don't Fight
+## When OpenSpec, When Superpowers, When Both
 
-This is the part almost every tutorial skips, and it is where people get burned. **OpenSpec and Superpowers do not auto-chain.** Install both with no configuration and you get a collision: the next time you describe a feature, Superpowers' `brainstorming` skill fires automatically *and* you also want to run `/opsx:propose`. Now you have a `docs/superpowers/specs/` design doc and an `openspec/changes/<id>/proposal.md` for the same feature, drifting out of sync within the hour. I have done this. It is maddening because both files look authoritative.
+The loop above is the *both* case, but most features don't earn it. I resisted writing a decision rule for a long time because "it depends" felt more honest — except "it depends" is useless at 2pm with a feature in front of you and a need to start. So here's the rule I actually follow, reduced to the two variables that matter: **how settled are the requirements, and how many times will this feature be touched?**
 
-The fix is convention, enforced in CLAUDE.md. You pick one planning system by writing it down, because neither tool detects the other. Here is the routing block I paste into every project that runs both — copy it, adjust the paths, and the collision disappears:
+Fuzzy requirements plus a one-shot build: Superpowers alone. Its conversation-first brainstorming is literally designed for the case where you can't write the spec yet, and its TDD keeps a throwaway from becoming a liability. This is my default for probably 70% of daily work. Don't reach for OpenSpec here — writing a document-first spec for requirements you haven't thought through yet is the single most common way to waste an hour and produce a spec you immediately rewrite.
 
-````markdown
-## Spec-driven routing (OpenSpec + Superpowers)
+Settled requirements plus a single clean unit: OpenSpec alone is genuinely faster than talking it out. You already know what you want; `/opsx:propose` turns it into structured artifacts in one pass, and you skip the Socratic questioning. But — and this is the honest edge case the "vs" posts skip — you lose Superpowers' execution discipline. So OpenSpec-alone only makes sense if you're comfortable reviewing the code yourself, or if you add the TDD rules to CLAUDE.md manually.
 
-- For any NEW feature, ALWAYS start with `/opsx:propose`.
-  Do NOT run Superpowers `brainstorming` or `writing-plans` —
-  OpenSpec owns the planning phase in this repo.
-- When running `/opsx:apply`, ALWAYS follow TDD:
-  write a failing test first, then implementation. Delete any
-  implementation written before its test.
-- During apply, run the code-review skill before every commit,
-  and open an isolated git worktree for the change.
-- `/opsx:archive` is ALWAYS the last action of a completed change.
-  Never leave a change un-archived — the next session will
-  re-read the stale spec and re-implement finished work.
-````
+The combination earns its overhead in exactly one quadrant: **a feature that will be iterated more than once, by more than one person, over more than one session.** That's where OpenSpec's Delta/Archive stops being theoretical — the "why is the session TTL 30 days?" moment from the walkthrough above. Superpowers alone would have overwritten that reasoning on the next brainstorm.
 
-That block does three things the tools will not do on their own. It routes planning to OpenSpec so Superpowers' brainstorming stops competing. It manually turns on Superpowers' execution skills during `apply` — because, critically, TDD, code review, and worktree isolation *do not activate automatically* inside `/opsx:apply`; they only fire if CLAUDE.md tells them to. And it makes archiving non-negotiable, which prevents the single most common OpenSpec bug: forgetting to archive, then watching the next session re-implement work that is already done.
-
-If you only remember one sentence from this article, make it this: **the tools give you the parts, CLAUDE.md is the assembly instructions, and without it the parts actively interfere with each other.** For the deeper mechanics of how these skills load and trigger, my [Claude Code skills guide](/posts/ai/2026-01-08-claudecode-skill-guide/) and the [Superpowers deep dive](/posts/ai/2026-02-01-superpowers-deep-dive/) cover the underlying model.
+```mermaid
+flowchart TD
+    Start["Feature in front of you"] --> Q1{"Requirements<br/>settled?"}
+    Q1 -->|"No, still fuzzy"| SP["Superpowers alone<br/><i>conversation teases out spec<br/>+ TDD execution</i>"]
+    Q1 -->|"Yes, crisp"| Q2{"Iterated more than<br/>once, by more<br/>than one person?"}
+    Q2 -->|"No, one-shot"| OS["OpenSpec alone<br/><i>propose in one pass<br/>add TDD rule manually</i>"]
+    Q2 -->|"Yes, long-lived"| Both["Both, routed<br/><i>OpenSpec plans + archives<br/>Superpowers executes</i>"]
+    SP --> Ship1["Ship"]
+    OS --> Ship2["Ship"]
+    Both --> Ship3["Ship + audit trail"]
+    style Start fill:#1a202c,color:#fff
+    style SP fill:#2b6cb0,color:#fff
+    style OS fill:#018472,color:#fff
+    style Both fill:#c05621,color:#fff
+    style Ship1 fill:#4a5568,color:#fff
+    style Ship2 fill:#4a5568,color:#fff
+    style Ship3 fill:#4a5568,color:#fff
+```
 
 ## Five Pitfalls I Hit Running This for Real
 
 The mother article listed generic pitfalls; these are the specific ones that bit me *while running the combined workflow*, which is a different and sharper set.
 
-**Treating "openspec vs superpowers" as either/or.** I spent my first week trying to decide which one to standardize on, when the answer was "both, at different layers." If you find yourself arguing which tool wins, you have misdiagnosed the layers. Reread the layer map.
+**Treating "openspec vs superpowers" as either/or.** I spent my first week trying to decide which one to standardize on, when the answer was "both, at different layers." If you find yourself arguing which tool wins, you've misdiagnosed the layers. Reread the layer map.
 
-**Over-speccing fuzzy requirements.** OpenSpec's document-first model punishes you when requirements are not settled. I once ran `/opsx:propose` on a half-formed idea, got a confident four-file spec, and rewrote all four files twice. Superpowers' conversation would have surfaced the ambiguity before committing anything to disk. Match the tool to how settled the requirement is.
+**Over-speccing fuzzy requirements.** OpenSpec's document-first model punishes you when requirements aren't settled. I once ran `/opsx:propose` on a half-formed idea, got a confident four-file spec, and rewrote all four files twice. Superpowers' conversation would have surfaced the ambiguity before committing anything to disk. Match the tool to how settled the requirement is.
 
-**Assuming `/opsx:apply` enforces TDD.** It does not. The first time I ran the combined loop without the CLAUDE.md routing block, apply happily wrote implementation with zero tests, and I only noticed at code review. OpenSpec plans; it does not discipline execution. That is Superpowers' job, and only if you wire it in.
+**Assuming `/opsx:apply` enforces TDD.** It doesn't — this is the zero-test story from the opening. The first time I ran the combined loop without the CLAUDE.md routing block, apply happily wrote implementation with zero tests, and I only noticed at code review. OpenSpec plans; it does not discipline execution. That's Superpowers' job, and only if you wire it in.
 
 **Subagent token blowup on large task lists.** Superpowers' subagent-driven development rebuilds context per agent, which is fantastic for isolation and expensive for a 40-task change. On big features I now split into multiple OpenSpec changes rather than one giant `tasks.md`, so each subagent run stays cheap. The Hacker News crowd is right that token cost is the real trade-off here.
 
@@ -175,7 +183,7 @@ The mother article listed generic pitfalls; these are the specific ones that bit
 
 If you take one decision framework away: **default to Superpowers, promote to the combination when a feature crosses the "iterated by more than one person, over more than one session" line.** Superpowers is the tool that improves any project — its conversation-first planning and TDD enforcement add value at every scale, and in 2026 it works across nearly every coding agent, not just Claude Code. That breadth alone makes it the safer default bet. OpenSpec is the specialist you add when decision traceability becomes a real, felt bottleneck — usually the moment a teammate asks "why did we build it this way?" and nobody can answer.
 
-Do not run the full combination on everything; that is the over-engineering trap the mother article warned about, and it is still true. A 30-minute script does not need a Delta/Archive audit trail. But when you do combine them, the CLAUDE.md routing block is not optional garnish — it is the thing that turns two tools that ignore each other into one coherent loop. Get the routing right and you get the best of both layers: OpenSpec remembers *why*, Superpowers guarantees *how well*, and Claude Code does the typing. For the broader Claude Code workflow this all sits inside, my [complete Claude Code guide](/posts/ai/2026-02-28-claude-code-complete-guide/) is the map.
+Don't run the full combination on everything; that's the over-engineering trap the mother article warned about, and it's still true. A 30-minute script does not need a Delta/Archive audit trail. But when you do combine them, the CLAUDE.md routing block is not optional garnish — it's the thing that turns two tools that ignore each other into one coherent loop. Get the routing right and you get the best of both layers: OpenSpec remembers *why*, Superpowers guarantees *how well*, and Claude Code does the typing. For the broader Claude Code workflow this all sits inside, my [complete Claude Code guide](/posts/ai/2026-02-28-claude-code-complete-guide/) is the map.
 
 ---
 
