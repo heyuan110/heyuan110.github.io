@@ -6,4 +6,5 @@ resources/_gen/
 .playwright-cli
 plans/
 cache/
-.claude/scheduled_tasks.lock.claude/settings.local.json
+.claude/scheduled_tasks.lock
+.claude/settings.local.json
