@@ -1,7 +1,7 @@
 +++
 title = 'About'
 description = 'Bruce — AI engineer writing practical guides on Claude Code, AI agents, and developer tooling. 150+ articles, 10+ years in backend systems.'
-date = '2010-03-15'
+date = '2026-07-15'
 comments = true
 +++
 
@@ -27,7 +27,7 @@ This blog has **150+ articles**. Most of them are the guides I wished existed wh
 
 One rule: **every article starts from real usage, not speculation.**
 
-I use the tools, run into the problems, figure out the solutions — then write it up. AI helps me write faster and more clearly, but the experience and judgment behind each article are mine.
+I install the tool, run it on an actual project, hit the problems, and work out the fixes — then I write it up and edit it line by line myself. Every command, config, and benchmark on this site was run before it was published. If a claim isn't tested, it doesn't go in.
 
 I also don't bury the answer. If you're here for a specific solution, you'll find it fast.
 
