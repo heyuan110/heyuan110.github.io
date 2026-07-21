@@ -1,0 +1,33 @@
+{{- /*
+  让宽表格在窄视口里可横向滚动，而不是被 html/body 的 overflow-x:hidden 裁掉。
+  2026-07-21：移动端实测发现 390px 视口里存在 427px 宽的表格，右半部分不可见也不可滑。
+*/ -}}
+<div class="table-wrap">
+  <table
+    {{- range $k, $v := .Attributes }}
+      {{- if $v }} {{ $k }}="{{ $v }}"{{ end }}
+    {{- end }}>
+    <thead>
+      {{- range .THead }}
+        <tr>
+          {{- range . }}
+            <th
+              {{- with .Alignment }} style="text-align: {{ . }}"{{ end -}}
+            >{{ .Text }}</th>
+          {{- end }}
+        </tr>
+      {{- end }}
+    </thead>
+    <tbody>
+      {{- range .TBody }}
+        <tr>
+          {{- range . }}
+            <td
+              {{- with .Alignment }} style="text-align: {{ . }}"{{ end -}}
+            >{{ .Text }}</td>
+          {{- end }}
+        </tr>
+      {{- end }}
+    </tbody>
+  </table>
+</div>

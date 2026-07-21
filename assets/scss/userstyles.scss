@@ -8,6 +8,19 @@ html, body {
 // ==========================================
 
 // --- 表格美化 ---
+// 宽表格在窄视口里自己横向滚动。html/body 的 overflow-x:hidden 只是把溢出藏起来，
+// 移动端读者会看不到也滑不到表格右半边（2026-07-21 实测：390px 视口里有 427px 宽的表格）。
+.content .table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 1.5em 0;
+
+  table {
+    margin: 0;
+    min-width: max-content;
+  }
+}
+
 .content table {
   border-collapse: separate;
   border-spacing: 0;
