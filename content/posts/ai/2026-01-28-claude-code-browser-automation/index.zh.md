@@ -457,7 +457,7 @@ Playwright 支持三大浏览器引擎：
   "mcpServers": {
     "playwright": {
       "command": "npx",
-      "args": ["@anthropic-ai/mcp-server-playwright"]
+      "args": ["@playwright/mcp@latest"]
     }
   }
 }
@@ -516,7 +516,7 @@ DevTools MCP 需要配合 Chrome 扩展使用：
   "mcpServers": {
     "devtools": {
       "command": "npx",
-      "args": ["@anthropic-ai/mcp-server-chrome-devtools"]
+      "args": ["chrome-devtools-mcp@latest"]
     }
   }
 }
@@ -608,7 +608,7 @@ chrome.exe --remote-debugging-port=9222
     },
     "devtools": {
       "command": "npx",
-      "args": ["@anthropic-ai/mcp-server-chrome-devtools"]
+      "args": ["chrome-devtools-mcp@latest"]
     }
   }
 }
@@ -661,7 +661,7 @@ chrome.exe --remote-debugging-port=9222
 检查几个常见问题：
 1. 确保已安装 Node.js 18+
 2. 确保 MCP Server 配置正确
-3. 尝试手动运行 `npx @anthropic-ai/mcp-server-playwright` 看报错
+3. 尝试手动运行 `npx @playwright/mcp@latest` 看报错
 
 ### Q2：DevTools MCP 提示"无法连接到 Chrome"？
 

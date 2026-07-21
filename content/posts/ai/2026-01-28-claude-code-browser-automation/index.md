@@ -450,7 +450,7 @@ Additional professional testing features include:
   "mcpServers": {
     "playwright": {
       "command": "npx",
-      "args": ["@anthropic-ai/mcp-server-playwright"]
+      "args": ["@playwright/mcp@latest"]
     }
   }
 }
@@ -509,7 +509,7 @@ DevTools MCP requires a Chrome extension:
   "mcpServers": {
     "devtools": {
       "command": "npx",
-      "args": ["@anthropic-ai/mcp-server-chrome-devtools"]
+      "args": ["chrome-devtools-mcp@latest"]
     }
   }
 }
@@ -601,7 +601,7 @@ These tools are not mutually exclusive. Configure all of them and let the AI pic
     },
     "devtools": {
       "command": "npx",
-      "args": ["@anthropic-ai/mcp-server-chrome-devtools"]
+      "args": ["chrome-devtools-mcp@latest"]
     }
   }
 }
@@ -654,7 +654,7 @@ When you need the same operation on multiple pages:
 Check these common issues:
 1. Ensure Node.js 18+ is installed
 2. Verify the MCP Server configuration is correct
-3. Try running `npx @anthropic-ai/mcp-server-playwright` manually to see errors
+3. Try running `npx @playwright/mcp@latest` manually to see errors
 
 ### Q2: DevTools MCP says "Cannot connect to Chrome"?
 
