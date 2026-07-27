@@ -1,12 +1,32 @@
 +++
 date = '2026-02-18T11:00:00+08:00'
 draft = false
-title = 'Claude Code Hooks Guide: 12 Ready-to-Use Configs for Automation'
-description = 'Master Claude Code Hooks with 12 copy-paste configurations covering auto-formatting, file protection, dangerous command blocking, Slack notifications, and more. Complete guide to all 15 lifecycle events.'
+title = 'Claude Code Hooks Examples: 12 Copy-Paste Automation Configs'
+description = '12 copy-paste Claude Code hook configs: auto-format on save, protect .env files, block rm -rf, Git auto-stage, Slack alerts, plus a full team setup example.'
 toc = true
 tags = ['Claude Code', 'AI Coding', 'Hooks', 'Automation', 'Developer Tools']
 categories = ['AI Guides']
-keywords = ['Claude Code Hooks', 'Claude Code automation', 'Claude Code configuration', 'PreToolUse', 'PostToolUse', 'AI coding workflow', 'Claude Code hooks guide']
+keywords = ['claude code hooks examples', 'claude code hook config examples', 'claude code auto format hook', 'claude code protect env files hook', 'claude code block dangerous commands', 'claude code slack notification hook', 'claude code hooks cheat sheet']
+
+[[params.faqItems]]
+question = "Which Claude Code hook examples should I set up first?"
+answer = "Start with three: desktop notifications (so you know when Claude is waiting for you), sensitive file protection (blocks edits to .env and lockfiles), and auto-formatting with Prettier or ESLint. These three configs remove the most daily friction and are safe to copy-paste as-is."
+
+[[params.faqItems]]
+question = "How do I make Claude Code auto-format files after every edit?"
+answer = "Use a PostToolUse hook with a matcher of Edit|Write. The hook pipes the tool input JSON through jq to get the file path, then runs npx prettier --write on it. Append 2>/dev/null; exit 0 so unsupported file types never block Claude. Config 1 in this guide is a complete snippet you can paste directly."
+
+[[params.faqItems]]
+question = "How do I stop Claude Code from touching .env and lock files?"
+answer = "Add a PreToolUse hook that runs a small shell script before every Edit or Write. The script reads the target file path from stdin, compares it against a protection list (.env, package-lock.json, yarn.lock, .git/, etc.), and exits with code 2 to block the operation and tell Claude why. Config 3 provides the full script."
+
+[[params.faqItems]]
+question = "Can my whole team share these hook configs?"
+answer = "Yes. Put team-wide configs like formatting and file protection in .claude/settings.json and commit it to Git — every teammate gets the same automation automatically. Keep personal preferences like desktop notifications in ~/.claude/settings.json, and machine-specific tweaks in .claude/settings.local.json (gitignored)."
+
+[[params.faqItems]]
+question = "What do I need installed to use these hook examples?"
+answer = "Most configs need jq for JSON parsing (brew install jq on macOS, apt install jq on Debian/Ubuntu). The formatting examples need Prettier or ESLint installed in your project. The Slack example needs an Incoming Webhook URL. Everything else uses standard shell tools already on your system."
 +++
 
 If you use Claude Code daily, you have probably run into these problems:
@@ -20,7 +40,7 @@ The root cause is simple: **Claude is probabilistic, but your workflow needs det
 
 Hooks solve this. They are lifecycle callbacks built into Claude Code -- you define the rules, and Claude Code enforces them automatically at key moments. Instead of hoping the AI "remembers," you make the system "guarantee."
 
-This article gives you 12 copy-paste Hook configurations that cover everything from code formatting to security protection.
+This article is a config library: 12 copy-paste hook examples covering everything from code formatting to security protection, plus a complete team setup that combines them.
 
 ## What Are Hooks? Core Concepts in 3 Minutes
 
@@ -797,6 +817,8 @@ Start with the simplest ones -- desktop notifications and auto-formatting -- the
 
 ## Related Reading
 
+- [Claude Code Hooks: PreToolUse, PostToolUse & settings.json](/posts/ai/2026-02-28-claude-code-hooks-guide/) — Deep reference for events, matchers, and exit codes
+- [How Claude Code Hooks Work: 17 Lifecycle Events Explained](/posts/ai/2026-03-05-claude-code-hooks-guide/) — Beginner-friendly concepts and full event reference
 - [Claude Code Browser Automation Compared (2026 Update)](/posts/ai/2026-01-28-claude-code-browser-automation/)
 - [Claude Code + Draw Things: Local AI Image Generation on Mac](/posts/ai/2026-02-16-claude-code-draw-things-workflow/)
 - [Claude Code Skills Guide: Teach AI Your Workflow](/posts/ai/2026-01-08-claudecode-skill-guide/)

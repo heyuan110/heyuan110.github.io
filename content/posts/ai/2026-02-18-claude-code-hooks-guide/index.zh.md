@@ -1,12 +1,32 @@
 +++
 date = '2026-02-18T11:00:00+08:00'
 draft = false
-title = 'Claude Code Hooks 实战指南：12 个即用配置让 AI 自动守规矩'
-description = '深入讲解 Claude Code Hooks 机制，涵盖 15 个生命周期事件、3 种 Hook 类型（command/prompt/agent）、12 个可直接复制使用的实战配置。从自动格式化、敏感文件保护、危险命令拦截到 Slack 通知一网打尽，附完整组合配置方案。'
+title = 'Claude Code Hooks 配置大全：12 个可直接复制的自动化片段'
+description = '12 个拿来即用的 Claude Code Hook 配置：保存自动格式化、.env 敏感文件保护、危险命令拦截、Git 自动暂存、Slack 通知，附完整团队组合配置方案。'
 toc = true
 tags = ['Claude Code', 'AI 编程', 'Hooks', '自动化', '开发效率']
 categories = ['AI实战']
-keywords = ['Claude Code Hooks', 'Claude Code 自动化', 'Claude Code 配置', 'PreToolUse', 'PostToolUse', 'AI 编程工作流']
+keywords = ['Claude Code Hooks 配置大全', 'Claude Code 自动格式化', 'Claude Code 敏感文件保护', 'Claude Code 危险命令拦截', 'Claude Code Slack 通知', 'Claude Code Hook 示例']
+
+[[params.faqItems]]
+question = "哪几个 Claude Code Hook 配置最值得先装？"
+answer = "先装三个：桌面通知（Claude 等你输入时立刻知道）、敏感文件保护（拦住对 .env 和 lock 文件的改动）、自动格式化（Prettier/ESLint）。这三个配置消除了日常最大的摩擦，而且都可以直接复制粘贴，零改动即可生效。"
+
+[[params.faqItems]]
+question = "怎么让 Claude Code 每次改完文件自动格式化？"
+answer = "在 PostToolUse 事件下配一个 matcher 为 Edit|Write 的 command Hook：用 jq 从 stdin JSON 中取出文件路径，交给 npx prettier --write 处理，末尾加 2>/dev/null; exit 0 保证不支持的文件类型不会卡住 Claude。本文配置 1 就是完整可粘贴的片段。"
+
+[[params.faqItems]]
+question = "怎么防止 Claude Code 修改 .env 和 lock 文件？"
+answer = "写一个小脚本挂在 PreToolUse 事件上，在每次 Edit/Write 之前运行：从 stdin 读取目标文件路径，和保护名单（.env、package-lock.json、yarn.lock、.git/ 等）逐一比对，命中就 exit 2 阻止操作并把原因反馈给 Claude。本文配置 3 提供了完整脚本。"
+
+[[params.faqItems]]
+question = "这些 Hook 配置能全团队共用吗？"
+answer = "能。把格式化、文件保护这类团队规范放进项目的 .claude/settings.json 并提交到 Git，所有成员拉取代码后自动生效。个人偏好（如桌面通知）放 ~/.claude/settings.json，机器专属的调试配置放 .claude/settings.local.json（默认被 gitignore）。"
+
+[[params.faqItems]]
+question = "跑这些配置需要预装什么工具？"
+answer = "大部分配置依赖 jq 解析 JSON（macOS 用 brew install jq，Debian/Ubuntu 用 apt install jq）。格式化相关的需要项目里装好 Prettier 或 ESLint，Slack 通知需要一个 Incoming Webhook URL，其余全部使用系统自带的 shell 工具。"
 +++
 
 用 Claude Code 写代码，你一定遇到过这些问题：
@@ -797,6 +817,8 @@ Hooks 是 Claude Code 从"有用的 AI 助手"进化为"可靠的自动化工作
 
 ## 相关阅读
 
+- [Claude Code Hooks 详解：PreToolUse、PostToolUse 与 settings.json 配置](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) — 事件、matcher、退出码的深度参考
+- [什么是 Claude Code Hooks？17 个生命周期事件入门详解](/zh/posts/ai/2026-03-05-claude-code-hooks-guide/) — 新手友好的概念讲解与事件参考
 - [Claude Code 浏览器自动化方案对比（2026 最新）](/zh/posts/ai/2026-01-28-claude-code-browser-automation/)
 - [Claude Code + Draw Things：Mac 本地 AI 自动配图完全指南](/zh/posts/ai/2026-02-16-claude-code-draw-things-workflow/)
 - [Claude Code Skill 完全指南：让 AI 学会你的工作流程](/zh/posts/ai/2026-01-08-claudecode-skill-guide/)

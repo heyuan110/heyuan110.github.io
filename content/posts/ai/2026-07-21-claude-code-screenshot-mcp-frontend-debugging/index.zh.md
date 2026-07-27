@@ -1,11 +1,11 @@
 +++
 date = '2026-07-21T10:00:00+08:00'
 draft = false
-title = 'Claude Code 截图 MCP 实操:前端调试省 100 倍 token'
-description = '实测四种把页面交给 Claude Code 的方式:a11y snapshot 花了 10,220 token 什么也没查出来,79 token 的定向脚本直接点名了出问题的元素。含安装命令、fullPage 陷阱和防炸会话配置。'
+title = 'Claude Code 截图 MCP 配置:浏览器自动化调试省 100 倍 token'
+description = '一条命令配好 Claude Code 截图 MCP,再告诉你 Chrome DevTools MCP 和 Playwright MCP 怎么选:实测 snapshot 10,220 token,定向脚本只要 65。含 fullPage 陷阱和防炸会话配置。'
 toc = true
 tags = ['Claude Code', 'MCP', 'Browser Automation', 'Frontend', 'Developer Tools']
-keywords = ['claude code 截图', 'claude code mcp 截图', 'playwright mcp 安装', 'chrome devtools mcp 配置', 'claude code 前端调试', 'mcp 截图 token', 'claude code 浏览器自动化', 'mcp 图片过大报错']
+keywords = ['claude code 截图 mcp 配置', 'claude code 浏览器自动化', 'claude code playwright mcp', 'playwright mcp 浏览器测试', 'playwright mcp 安装', 'chrome devtools mcp 配置', 'chrome devtools mcp 和 playwright mcp 选哪个', 'claude code 截图', 'claude code mcp 截图', 'claude code 前端调试', 'mcp 截图 token', 'mcp 图片过大报错']
 
 [[params.faqItems]]
 question = "Claude Code 怎么配置截图 MCP?"
@@ -36,7 +36,7 @@ answer = "Chrome DevTools MCP(v1.6.0,52 个工具)强在“看”:Lighthouse 跑
 
 这是好结局。实际过程开头很难看:我老老实实照着官方工具说明,先调了 `take_snapshot`,烧掉 **10,220 个 token**,关于这个 bug 什么也没学到——因为无障碍树根本不会告诉你某个元素有 427 像素宽。
 
-这篇就是那趟弯路的记录:**Claude Code 截图 MCP** 怎么装才对、四种把页面交给模型的方式各自要花多少钱、`fullPage` 里藏着什么坑,以及我现在用的四步循环。
+这篇就是那趟弯路的记录:**Claude Code 截图 MCP** 怎么装才对——两个浏览器自动化服务 Chrome DevTools MCP 和 Playwright MCP 各配一条命令——四种把页面交给模型的方式各自要花多少钱、`fullPage` 里藏着什么坑,以及我现在用的四步循环。
 
 > **版本锚点**:2026-07-21 实测,chrome-devtools-mcp **1.6.0**(2026-07-14 发布),Claude Code 百万上下文。两个 MCP 都在频繁改动——Playwright MCP 做了 16 个月还停在 0.0.78——所以下面的 token 数字看的是量级关系,不是常量。
 

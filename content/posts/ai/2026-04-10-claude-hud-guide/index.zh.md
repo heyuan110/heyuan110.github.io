@@ -1,11 +1,11 @@
 +++
 date = '2026-04-10T10:00:00+08:00'
 draft = false
-title = 'Claude HUD：Claude Code 最该内置却没有的状态栏'
-description = 'Claude HUD 是 Claude Code 的实时状态栏插件：监控 context 用量、rate limit 消耗与 agent 状态，2026 年 1 月发布已获 18000+ GitHub stars。3 分钟装好，context 超 85% 前预警，附配置与 ccstatusline 对比。'
+title = 'Claude HUD 是什么？3 分钟装好 Claude Code 状态栏插件（2026）'
+description = 'Claude HUD 是 Claude Code 的开源状态栏插件，实时显示 context 用量、rate limit 消耗和 agent 状态，18000+ stars。本文给出 3 分钟安装命令、推荐配置和 ccstatusline 对比。'
 toc = true
 tags = ['Claude Code', 'Developer Tools', 'Productivity', 'AI Coding']
-keywords = ['claude hud 安装', 'claude code 状态栏', 'claude code 上下文窗口', 'claude code 插件推荐', 'claude code 用量监控', 'claude code rate limit']
+keywords = ['claude hud 是什么', 'claude hud 安装', 'claude-hud', 'claude hud', 'claude code hud', 'claude code 状态栏', 'claude code 状态栏插件', 'claude code 上下文窗口', 'claude code 插件推荐', 'claude code 用量监控', 'claude code rate limit']
 
 [[params.faqItems]]
 question = "Claude HUD 是什么？"
@@ -13,7 +13,7 @@ answer = "Claude HUD 是一个开源的 Claude Code 插件，在终端底部显�
 
 [[params.faqItems]]
 question = "Claude HUD 怎么安装？"
-answer = "在 Claude Code 中依次运行 /plugin marketplace add jarrodwatts/claude-hud、/plugin install claude-hud、/reload-plugins，最后运行 /claude-hud:setup 完成配置。"
+answer = "在 Claude Code 中依次运行 /plugin marketplace add jarrodwatts/claude-hud、/plugin install claude-hud、/reload-plugins，最后运行 /claude-hud:setup 完成配置。配置后重启 Claude Code，状态栏就会出现在输入框下方，全程约 3 分钟。"
 
 [[params.faqItems]]
 question = "Claude HUD 免费吗？"

@@ -1,11 +1,11 @@
 +++
 date = '2026-04-10T10:00:00+08:00'
 draft = false
-title = 'Claude HUD: The Status Bar That Claude Code Should Have Built In'
-description = 'Claude HUD gives you real-time visibility into context usage, rate limits, and agent activity in Claude Code. Here is why 18,000 developers installed it and how to set it up in 3 minutes.'
+title = "Claude HUD 2026: Claude Code's 18K-Star Status Bar in 3 Min"
+description = 'Claude HUD is a free Claude Code plugin: a live status bar for context usage, rate limits, and agent activity. Install with one /plugin command in 3 minutes.'
 toc = true
 tags = ['Claude Code', 'Developer Tools', 'Productivity', 'AI Coding']
-keywords = ['claude hud', 'claude code statusline', 'claude code context window', 'claude code plugin', 'claude code usage monitor', 'claude code rate limits']
+keywords = ['claude hud', 'claude-hud', 'claude code hud', 'claude hud install', 'claude hud setup', 'claude hud plugin', 'claude code statusline', 'claude code status bar', 'claude code context window', 'claude code plugin', 'claude code usage monitor', 'claude code rate limits']
 
 [[params.faqItems]]
 question = "What is Claude HUD?"
@@ -13,7 +13,7 @@ answer = "Claude HUD is an open-source Claude Code plugin that adds a real-time 
 
 [[params.faqItems]]
 question = "How do I install Claude HUD?"
-answer = "Run /plugin marketplace add jarrodwatts/claude-hud, then /plugin install claude-hud, then /reload-plugins, and finally /claude-hud:setup to configure it."
+answer = "Run /plugin marketplace add jarrodwatts/claude-hud, then /plugin install claude-hud, then /reload-plugins, and finally /claude-hud:setup to configure it. Restart Claude Code afterwards and the status bar appears below your input. Total setup time is about 3 minutes."
 
 [[params.faqItems]]
 question = "Is Claude HUD free?"

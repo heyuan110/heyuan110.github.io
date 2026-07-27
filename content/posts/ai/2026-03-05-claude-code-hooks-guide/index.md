@@ -1,20 +1,20 @@
 +++
 date = '2026-03-04T09:00:00+08:00'
 draft = false
-title = 'Claude Code Hooks: Automate Your AI Workflow (2026)'
-description = 'Complete guide to Claude Code hooks with practical examples. Learn to auto-format code, block dangerous commands, and automate workflows with lifecycle hooks.'
+title = 'How Claude Code Hooks Work: 17 Lifecycle Events Explained'
+description = 'What Claude Code hooks are and how they work: all 17 lifecycle events explained, hook types, matcher rules, and exit codes — a beginner-friendly reference.'
 toc = true
 tags = ['Claude Code', 'Hooks', 'Automation', 'Developer Tools']
 categories = ['AI Guides']
-keywords = ['claude code hooks', 'claude code hooks guide', 'claude code automation hooks', 'PreToolUse hooks', 'PostToolUse hooks', 'claude code lifecycle events', 'claude code settings.json hooks']
+keywords = ['what are claude code hooks', 'how do claude code hooks work', 'claude code lifecycle events', 'claude code hook events list', 'claude code hooks explained', 'claude code hooks for beginners', 'claude code hook types']
 
 [[params.faqItems]]
 question = "What are Claude Code hooks and how do they work?"
 answer = "Claude Code hooks are user-defined shell commands, HTTP endpoints, or LLM prompts that execute automatically at specific points in Claude Code's lifecycle. They are configured in settings.json and can run before or after tool calls, on session start/end, or when Claude finishes responding. Hooks receive JSON context via stdin and use exit codes or JSON output to control behavior."
 
 [[params.faqItems]]
-question = "Where do I configure Claude Code hooks?"
-answer = "Hooks are configured in JSON settings files at three scopes: project-level in .claude/settings.json (shared with your team via Git), user-level in ~/.claude/settings.json (applies to all your projects), or .claude/settings.local.json (project-specific but gitignored). Enterprise organizations can also set managed policy hooks."
+question = "How many lifecycle events do Claude Code hooks support?"
+answer = "Claude Code supports 17 lifecycle events, grouped into session events (SessionStart, InstructionsLoaded, SessionEnd), user input (UserPromptSubmit), the tool loop (PreToolUse, PermissionRequest, PostToolUse, PostToolUseFailure), completion events (Stop, SubagentStart, SubagentStop, Notification, TeammateIdle, TaskCompleted), and context/config events (PreCompact, ConfigChange, WorktreeCreate). Beginners should focus on five: PreToolUse, PostToolUse, Notification, Stop, and SessionStart."
 
 [[params.faqItems]]
 question = "Can Claude Code hooks block dangerous commands?"
@@ -35,7 +35,7 @@ Claude Code is probabilistic by nature. Ask it to format your code, and it might
 
 Claude Code hooks solve this. They are shell commands, HTTP endpoints, or LLM prompts that run automatically at specific points during Claude's operation. Before a file edit happens, after a command runs, when a session starts, when Claude finishes a task. Hooks give you deterministic control over the parts of your workflow that cannot be left to chance.
 
-This guide covers everything you need: what hooks are, all 17 lifecycle events, the configuration format, 8 practical examples you can copy-paste today, matcher rules, and when to choose hooks over [CLAUDE.md](/posts/ai/2026-02-28-claude-code-claudemd-guide/) or [Skills](/posts/ai/2026-02-28-claude-code-skills-guide/).
+This guide explains how hooks work from the ground up: what they are, all 17 lifecycle events, the configuration format, matcher rules, 8 starter examples, and when to choose hooks over [CLAUDE.md](/posts/ai/2026-02-28-claude-code-claudemd-guide/) or [Skills](/posts/ai/2026-02-28-claude-code-skills-guide/).
 
 ## What Are Claude Code Hooks?
 
@@ -779,6 +779,8 @@ From there, layer on more hooks as your workflow demands. The combined configura
 
 ## Related Reading
 
+- [Claude Code Hooks: PreToolUse, PostToolUse & settings.json](/posts/ai/2026-02-28-claude-code-hooks-guide/) -- Deep reference for the two most-used events and their config format
+- [Claude Code Hooks Examples: 12 Copy-Paste Automation Configs](/posts/ai/2026-02-18-claude-code-hooks-guide/) -- A recipe-style config library you can paste as-is
 - [Claude Code Complete Guide](/posts/ai/2026-02-28-claude-code-complete-guide/) -- Full overview of Claude Code features and setup
 - [Claude Code Setup Guide](/posts/ai/2026-02-25-claude-code-setup-guide/) -- Installation and initial configuration
 - [CLAUDE.md Guide](/posts/ai/2026-02-28-claude-code-claudemd-guide/) -- Project context and memory configuration

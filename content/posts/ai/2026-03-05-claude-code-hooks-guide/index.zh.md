@@ -1,20 +1,20 @@
 +++
 date = '2026-03-04T09:00:00+08:00'
 draft = false
-title = 'Claude Code Hooks 完全指南：自动化你的 AI 工作流（2026）'
-description = '详解 Claude Code Hooks 配置与实战案例。学习如何自动格式化代码、拦截危险命令、自动化工作流——覆盖全部 17 个生命周期事件。'
+title = '什么是 Claude Code Hooks？17 个生命周期事件入门详解'
+description = '零基础理解 Claude Code Hooks：它是什么、怎么工作，17 个生命周期事件逐一讲解，Hook 类型、matcher 规则与退出码全解析，新手入门首选参考。'
 toc = true
 tags = ['Claude Code', 'Hooks', 'Automation', 'Developer Tools']
 categories = ['AI Guides']
-keywords = ['claude code hooks', 'claude code hooks 教程', 'claude code 自动化', 'PreToolUse hooks', 'PostToolUse hooks', 'claude code 生命周期事件', 'claude code settings.json hooks']
+keywords = ['Claude Code Hooks 是什么', 'Claude Code Hooks 原理', 'Claude Code 生命周期事件', 'Claude Code Hooks 入门', 'Claude Code Hook 类型', 'Claude Code Hooks 教程']
 
 [[params.faqItems]]
 question = "什么是 Claude Code Hooks？它们如何工作？"
 answer = "Claude Code Hooks 是用户定义的 Shell 命令、HTTP 端点或 LLM 提示，会在 Claude Code 生命周期的特定节点自动执行。它们在 settings.json 中配置，可以在工具调用前后、会话开始/结束时或 Claude 完成响应时运行。Hooks 通过 stdin 接收 JSON 上下文，并通过退出码或 JSON 输出来控制行为。"
 
 [[params.faqItems]]
-question = "在哪里配置 Claude Code Hooks？"
-answer = "Hooks 在三个作用域的 JSON 配置文件中定义：项目级别 .claude/settings.json（通过 Git 与团队共享）、用户级别 ~/.claude/settings.json（适用于你所有的项目）、或 .claude/settings.local.json（项目专属但被 gitignore）。企业组织还可以设置托管策略 hooks。"
+question = "Claude Code Hooks 支持多少个生命周期事件？"
+answer = "共 17 个生命周期事件，分为五类：会话类（SessionStart、InstructionsLoaded、SessionEnd）、用户输入（UserPromptSubmit）、工具循环（PreToolUse、PermissionRequest、PostToolUse、PostToolUseFailure）、完成类（Stop、SubagentStart、SubagentStop、Notification、TeammateIdle、TaskCompleted）和上下文/配置类（PreCompact、ConfigChange、WorktreeCreate）。新手优先掌握 PreToolUse、PostToolUse、Notification、Stop 和 SessionStart 这五个即可覆盖日常场景。"
 
 [[params.faqItems]]
 question = "Claude Code Hooks 可以拦截危险命令吗？"
@@ -35,7 +35,7 @@ Claude Code 本质上是概率性的。让它格式化代码，它可能会做�
 
 Claude Code Hooks 解决了这个问题。它们是在 Claude 运行过程中特定节点自动执行的 Shell 命令、HTTP 端点或 LLM 提示。在文件编辑之前、命令执行之后、会话开始时、Claude 完成任务时——Hooks 让你对工作流中不能靠运气的部分拥有确定性控制。
 
-本指南涵盖你需要的一切：什么是 Hooks、全部 17 个生命周期事件、配置格式、8 个可直接复制使用的实战案例、matcher 规则，以及何时选择 Hooks 而非 [CLAUDE.md](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) 或 [Skills](/zh/posts/ai/2026-02-28-claude-code-skills-guide/)。
+本文从零讲透 Hooks 的工作原理：它们是什么、全部 17 个生命周期事件、配置格式、matcher 规则、8 个入门案例，以及何时选择 Hooks 而非 [CLAUDE.md](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) 或 [Skills](/zh/posts/ai/2026-02-28-claude-code-skills-guide/)。
 
 ## 什么是 Claude Code Hooks？
 
@@ -779,6 +779,8 @@ Claude Code 有三种扩展机制。它们服务于不同目的：
 
 ## 相关阅读
 
+- [Claude Code Hooks 详解：PreToolUse、PostToolUse 与 settings.json 配置](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) -- 最常用两个事件与配置格式的深度参考
+- [Claude Code Hooks 配置大全：12 个可直接复制的自动化片段](/zh/posts/ai/2026-02-18-claude-code-hooks-guide/) -- 拿来即用的配置速查库
 - [Claude Code 完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) -- Claude Code 功能和设置全面概览
 - [Claude Code 安装指南](/zh/posts/ai/2026-02-25-claude-code-setup-guide/) -- 安装和初始配置
 - [CLAUDE.md 指南](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) -- 项目上下文和记忆配置

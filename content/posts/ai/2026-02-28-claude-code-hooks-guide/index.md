@@ -1,16 +1,16 @@
 +++
 date = '2026-02-26T10:00:00+08:00'
 draft = false
-title = 'Claude Code Hooks: 12 Production Configs I Run Daily (with Failure Modes)'
-description = 'The 12 Claude Code hook configs running on my machine right now — PreToolUse guards, PostToolUse formatters, Stop notifiers — plus the 4 failure modes that silently broke my workflow before I caught them.'
+title = 'Claude Code Hooks: PreToolUse, PostToolUse & settings.json'
+description = 'How PreToolUse and PostToolUse hooks work in .claude/settings.json: hook events, matchers, exit codes, and 12 production configs with common failure modes.'
 toc = true
 tags = ['Claude Code', 'Hooks', 'Automation', 'Configuration']
 categories = ['AI Guides']
-keywords = ['claude code hooks events list 2026', 'claude code hooks 2026', 'anthropic pretooluse posttooluse stop hook example', 'claude code hooks guide', 'claude code hooks', 'claude code automation', 'PreToolUse PostToolUse', 'claude code lifecycle hooks', 'claude code hook configuration']
+keywords = ['claude code hooks pretooluse posttooluse settings.json', 'claude code hooks documentation', 'claude code hooks .claude/settings.json', 'pretooluse hook example', 'posttooluse hook example', 'claude code hooks settings.json documentation', 'claude code hook exit codes', 'claude code hook matcher']
 
 [[params.faqItems]]
-question = "What are Claude Code Hooks?"
-answer = "Hooks are shell commands or scripts that Claude Code executes automatically at specific lifecycle events — before a tool runs, after a file is edited, when a session starts or ends. They provide deterministic, programmatic control over your AI coding workflow without relying on prompting."
+question = "How do I configure PreToolUse and PostToolUse hooks in settings.json?"
+answer = "Add a hooks object to .claude/settings.json with the event name as the key. Each entry needs a type (usually command), the shell command to run, and an optional matcher regex like Edit|Write to filter which tools trigger it. PreToolUse hooks run before the tool call and can block it by exiting with code 2; PostToolUse hooks run after the tool succeeds and are ideal for auto-formatting and logging."
 
 [[params.faqItems]]
 question = "What hook events does Claude Code support?"
@@ -37,7 +37,7 @@ You need files auto-formatted on every save. You need `.env` files locked down. 
 
 That's what Claude Code Hooks do. They're lifecycle scripts that run at specific points during Claude's operation — before a tool runs, after a file is edited, when a session starts, when Claude stops. They give you programmatic control over the parts of your workflow that can't be left to chance.
 
-This guide gives you 12 production-ready hook configurations you can copy-paste into your project right now, plus the technical details to build your own.
+This guide is a working reference for the two events you will use most — PreToolUse and PostToolUse — and the `.claude/settings.json` format that wires them up: matchers, exit codes, structured JSON output, plus 12 production configs I run daily.
 
 ## What Are Claude Code Hooks?
 
@@ -759,6 +759,8 @@ From there, layer on more hooks as your workflow demands. The combined config ex
 
 ## Related Reading
 
+- [Claude Code Hooks Examples: 12 Copy-Paste Automation Configs](/posts/ai/2026-02-18-claude-code-hooks-guide/) — A recipe-style config library you can paste as-is
+- [How Claude Code Hooks Work: 17 Lifecycle Events Explained](/posts/ai/2026-03-05-claude-code-hooks-guide/) — Beginner-friendly concepts and full event reference
 - [Claude Code Setup Guide](/posts/ai/2026-02-25-claude-code-setup-guide/) — Installation and initial configuration
 - [CLAUDE.md Guide](/posts/ai/2026-02-28-claude-code-claudemd-guide/) — Project context and memory configuration
 - [Claude Code Skills Guide](/posts/ai/2026-02-28-claude-code-skills-guide/) — Slash commands and reusable workflows

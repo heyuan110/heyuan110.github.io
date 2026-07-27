@@ -1,11 +1,11 @@
 +++
 date = '2026-07-21T10:00:00+08:00'
 draft = false
-title = 'Claude Code Screenshot MCP Setup: Frontend Debugging 2026'
-description = 'I measured four ways to hand a page to Claude Code. The a11y snapshot cost 10,220 tokens. A targeted script cost 65 and actually found the bug. Setup, receipts, and the trap in fullPage.'
+title = 'Claude Code Screenshot MCP Setup: Browser Automation 2026'
+description = 'Set up screenshot MCP in Claude Code in one command. Chrome DevTools vs Playwright MCP for browser testing and frontend debugging, with measured token costs.'
 toc = true
 tags = ['Claude Code', 'MCP', 'Browser Automation', 'Frontend', 'Developer Tools']
-keywords = ['claude code screenshot mcp', 'claude code browser automation screenshot mcp setup', 'playwright mcp claude code setup', 'claude code frontend debugging', 'chrome devtools mcp screenshot', 'playwright mcp browser testing', 'claude code screenshot tokens', 'mcp screenshot too large']
+keywords = ['claude code screenshot mcp setup', 'claude code browser automation', 'claude code browser automation screenshot mcp setup', 'claude code playwright mcp', 'playwright mcp browser testing', 'playwright mcp claude code setup', 'claude code screenshot mcp', 'claude code frontend debugging', 'chrome devtools mcp screenshot', 'claude code screenshot tokens', 'mcp screenshot too large']
 
 [[params.faqItems]]
 question = "How do I set up screenshots in Claude Code with MCP?"
@@ -36,7 +36,7 @@ When I finally looked, it took one script and 79 tokens to find a table renderin
 
 That is the good ending. The actual session started badly: I did what the official tool description tells you to do, called `take_snapshot`, spent **10,220 tokens**, and learned nothing about the bug — because an accessibility tree cannot tell you that an element is 427 pixels wide.
 
-This is the writeup of that detour. It covers setting up **Claude Code screenshot MCP** access properly, what four different ways of handing a page to the model actually cost, the trap hiding inside `fullPage`, and the four-step loop I use now.
+This is the writeup of that detour. It covers setting up **Claude Code screenshot MCP** access properly — via the two browser automation servers, Chrome DevTools MCP and Playwright MCP — what four different ways of handing a page to the model actually cost, the trap hiding inside `fullPage`, and the four-step loop I use now.
 
 > **Version anchor.** Measured on 2026-07-21 against chrome-devtools-mcp **1.6.0** (released 2026-07-14) and Claude Code with a 1M-token context. Both MCP servers ship breaking changes often — Playwright MCP is still pre-1.0 after 16 months — so treat the token figures as a shape, not a constant.
 
