@@ -208,15 +208,16 @@ As of July 2026, no — the entire commit history spans December 11-22, 2025. Tr
 - [Browser Automation in Claude Code: 5 Tools Compared](/posts/ai/2026-01-28-claude-code-browser-automation/) — the wider field: Browser-use, Agent Browser, Playwright CLI, Playwright MCP, DevTools MCP
 - [Playwright CLI + Skills: 0-Token Browser Automation](/posts/ai/2026-04-18-playwright-cli-skill-zero-token-automation/) — how to get ubrowser-class economics from maintained tools
 - [Chrome DevTools MCP Setup Guide](/posts/ai/2026-03-17-chrome-devtools-mcp-guide/) — attaching to your real logged-in browser instead of a headless shell
+- [ego lite Review: Handing Claude Code Your Logged-In Browser](/posts/ai/2026-09-21-ego-lite-browser-review/) — the September 2026 sequel: the batch-and-evaluate cost model ubrowser promised, shipped as a real browser with your logins inside
 
 ## Series Navigation
 
 This is Part 6 of the **Browser Automation for AI Agents** series — the arc from headless drivers, to attaching to your real browser, to cutting the token bill, to sharing your logged-in session:
 
 1. [Vercel Agent Browser](/posts/ai/2026-01-13-vercel-agent-browser/) — a snapshot-driven CLI built for agents, not test suites
-2. [Browser Automation in Claude Code: 5 Tools Compared](/posts/ai/2026-01-28-claude-code-browser-automation/) — the field map: token cost, speed, stability
+2. [Browser Automation in Claude Code: 5 Tools Compared](/posts/ai/2026-01-28-claude-code-browser-automation/) — the field map — token cost, speed, stability
 3. [Chrome DevTools MCP Setup 2026](/posts/ai/2026-03-17-chrome-devtools-mcp-guide/) — attaching to your real browser, and the port 9222 traps
 4. [Playwright CLI + Skills: 0-Token Automation](/posts/ai/2026-04-18-playwright-cli-skill-zero-token-automation/) — the pattern that removes the MCP token tax
 5. [Claude Code Screenshot MCP Setup](/posts/ai/2026-07-21-claude-code-screenshot-mcp-frontend-debugging/) — the frontend debugging loop, 10,220 vs 65 tokens
 6. **This article**: ubrowser Review — the right design trapped in an abandoned repo
-7. ego lite Review: Your Logged-In Browser, Handed to Claude Code (coming next) — handing agents your logged-in session through Spaces
+7. [ego lite Review](/posts/ai/2026-09-21-ego-lite-browser-review/) — handing agents your logged-in session through Spaces

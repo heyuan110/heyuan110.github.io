@@ -317,4 +317,4 @@ Playwright CLI 是合适的原语，因为它默认就是「snapshot 写盘」�
 4. **本文**：Playwright CLI + Skill 三段式：0 Token 自动化 — 去掉 MCP token 税的三段式写法
 5. [Claude Code 截图 MCP 配置](/zh/posts/ai/2026-07-21-claude-code-screenshot-mcp-frontend-debugging/) — 前端调试闭环，10,220 对 65 token
 6. [ubrowser 实测](/zh/posts/ai/2026-07-27-ubrowser-review/) — 设计对了，仓库死了
-7. ego lite 实测：把你登录好的浏览器交给 Claude Code（即将发布）— 用 Spaces 把登录态交给 Agent
+7. [ego lite 实测](/zh/posts/ai/2026-09-21-ego-lite-browser-review/) — 用 Spaces 把登录态交给 Agent
