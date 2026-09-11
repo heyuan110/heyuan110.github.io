@@ -1,7 +1,16 @@
 // 用无头 Chrome 渲染 HTML 封面 → 1200x630 WebP。逃离 AI 生图的"无字/无厘头"困境。
 // 用法: node render-cover.mjs '<json-spec>'  或  node render-cover.mjs --file spec.json
-import puppeteer from '/Users/bruce/.claude/plugins/cache/claude-plugins-official/chrome-devtools-mcp/1.5.0/node_modules/puppeteer-core/lib/puppeteer/puppeteer-core.js';
 import fs from 'node:fs';
+import path from 'node:path';
+// Resolve puppeteer-core from the newest installed chrome-devtools-mcp plugin (version dir changes on upgrade)
+const PLUGIN_DIR = '/Users/bruce/.claude/plugins/cache/claude-plugins-official/chrome-devtools-mcp';
+const PUPPETEER = fs.readdirSync(PLUGIN_DIR)
+  .filter(v => /^\d+\.\d+\.\d+$/.test(v))
+  .sort((a, b) => b.localeCompare(a, undefined, { numeric: true }))
+  .map(v => path.join(PLUGIN_DIR, v, 'node_modules/puppeteer-core/lib/puppeteer/puppeteer-core.js'))
+  .find(p => fs.existsSync(p));
+if (!PUPPETEER) throw new Error('puppeteer-core not found under ' + PLUGIN_DIR);
+const puppeteer = (await import(PUPPETEER)).default;
 
 const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const arg = process.argv[2];

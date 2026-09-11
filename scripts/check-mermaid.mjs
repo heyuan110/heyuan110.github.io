@@ -1,7 +1,15 @@
 // 用站点自带的 mermaid.min.js 验证所有文章的 mermaid 块语法
-import puppeteer from '/Users/bruce/.claude/plugins/cache/claude-plugins-official/chrome-devtools-mcp/1.5.0/node_modules/puppeteer-core/lib/puppeteer/puppeteer-core.js';
 import fs from 'node:fs';
 import path from 'node:path';
+// Resolve puppeteer-core from the newest installed chrome-devtools-mcp plugin (version dir changes on upgrade)
+const PLUGIN_DIR = '/Users/bruce/.claude/plugins/cache/claude-plugins-official/chrome-devtools-mcp';
+const PUPPETEER = fs.readdirSync(PLUGIN_DIR)
+  .filter(v => /^\d+\.\d+\.\d+$/.test(v))
+  .sort((a, b) => b.localeCompare(a, undefined, { numeric: true }))
+  .map(v => path.join(PLUGIN_DIR, v, 'node_modules/puppeteer-core/lib/puppeteer/puppeteer-core.js'))
+  .find(p => fs.existsSync(p));
+if (!PUPPETEER) throw new Error('puppeteer-core not found under ' + PLUGIN_DIR);
+const puppeteer = (await import(PUPPETEER)).default;
 
 const ROOT = '/Users/bruce/heyuan110.github.io';
 const DIRS = fs.readdirSync(path.join(ROOT, 'content/posts/ai'))

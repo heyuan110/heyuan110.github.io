@@ -1,11 +1,11 @@
 +++
 date = '2026-04-10T10:00:00+08:00'
 draft = false
-title = 'uv in 2026: Why It Replaces pip, conda, and pyenv (With Decision Framework)'
-description = 'uv is a Rust-based Python package manager that is 10-100x faster than pip. This guide compares uv vs pip vs conda vs pyenv with benchmarks, a decision flowchart, and a 5-minute quickstart.'
+title = 'uv Package Manager 2026: Install, Workflow, Migration Guide'
+description = 'uv is a Rust-based Python package manager 10-100x faster than pip. How to install uv, set up projects and lock files, pin Python versions, and migrate from pip.'
 toc = true
 tags = ['Python', 'uv', 'Package Management', 'pip', 'conda']
-keywords = ['uv Python package manager', 'uv vs pip comparison', 'uv vs conda', 'Python environment management 2026', 'uv tutorial', 'pyenv alternative', 'Python dependency management']
+keywords = ['uv Python package manager', 'how to install uv', 'uv vs pip comparison', 'Python environment management 2026', 'uv tutorial', 'uv migration guide', 'Python dependency management']
 
 [[params.faqItems]]
 question = "What is uv and how is it different from pip?"
@@ -54,6 +54,8 @@ uv takes a different approach: **one tool, all four problems.** And because it r
 ![Python toolchain fragmentation vs uv unified approach](01-fragmentation-vs-unity.webp)
 
 ## Head-to-Head: uv vs pip vs conda vs pyenv
+
+> **For the full benchmarked comparison see [uv vs conda vs pyenv: Which Python Manager Wins in 2026?](/posts/python/2026-07-27-uv-vs-conda-vs-pyenv/)** — real install timings on the same hardware, the CUDA caveat, a decision tree, and a conda/pyenv-to-uv migration table. The section below is the short version.
 
 ### Speed: An Order of Magnitude, Not a Marginal Improvement
 

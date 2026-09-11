@@ -5,7 +5,7 @@ title = 'Claude 免费版额度 2026：能发多少条，何时升 Pro'
 description = 'Claude 免费版额度 2026 直接给答案：每 5 小时滚动窗口约 15-40 条消息，全天约 30-100 条，按 token 计费不按条数。免费版含 Sonnet 和联网搜索，但没有 Opus 和 Claude Code——撞上三堵墙再升 Pro 才划算。'
 toc = true
 tags = ['Claude', 'AI Pricing', 'Claude Pro', 'LLM']
-keywords = ['claude 免费版额度', 'claude 免费能用多久', 'claude 免费版限制 2026', 'claude 免费版 vs pro', 'claude 免费版能用 opus 吗']
+keywords = ['claude 免费版额度', 'claude 免费能用多久', 'claude 免费版限制 2026', 'claude 免费版 vs pro', 'claude 免费版能用 opus 吗', 'Claude 免費版限制', 'Claude Pro 限制', 'Claude 免費額度', 'Claude 用量限制', 'Claude 5小時限制']
 
 [[params.faqItems]]
 question = "Claude 免费版一天能发多少条？"

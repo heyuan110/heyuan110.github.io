@@ -1,12 +1,12 @@
 +++
 date = '2026-03-08T18:00:00+08:00'
 draft = false
-title = 'Cursor 完全指南 2026：从安装到高级 Agent 模式实战'
-description = 'Cursor 完全指南 2026：从下载安装到高级 Agent 模式全流程——Shift+Tab 启用规划模式、.cursor/rules/ 配置项目规则、Git Worktrees 让多个 Agent 并行执行。基于 VS Code 无缝迁移插件与快捷键，新手 10 分钟上手。'
+title = 'Cursor 安装教程 2026：官方下载、配置到 Agent 模式实战'
+description = 'Cursor 安装教程 2026：从 cursor.com 官方下载、安装到 Agent 模式——Shift+Tab 规划模式、.cursor/rules/ 规则、Git Worktrees 多 Agent 并行。'
 toc = true
 tags = ['Cursor', 'AI Coding Tools', 'AI IDE', 'Setup Guide']
 categories = ['AI Guides']
-keywords = ['cursor 新手教程 2026', 'cursor 下载安装', 'cursor agent 怎么用', 'cursor ide 配置教程', 'cursor 和 claude code 对比', 'cursor 使用教程', 'cursor ide 配置', 'cursor agent 模式', 'cursor 最佳实践 2026', 'cursor 规则配置', 'ai ide 设置', 'cursor 入门指南', 'cursor rules 配置', 'cursor 安装教程 2026']
+keywords = ['cursor 安装教程', 'cursor 官方下载', 'cursor 中文设置', 'cursor 教學', 'cursor 新手教程 2026', 'cursor 下载安装', 'cursor agent 怎么用', 'cursor ide 配置教程', 'cursor 和 claude code 对比', 'cursor 使用教程', 'cursor ide 配置', 'cursor agent 模式', 'cursor 最佳实践 2026', 'cursor 规则配置', 'ai ide 设置', 'cursor 入门指南', 'cursor rules 配置', 'cursor 安装教程 2026']
 
 [[params.faqItems]]
 question = "Cursor Agent 模式是什么？怎么用？"

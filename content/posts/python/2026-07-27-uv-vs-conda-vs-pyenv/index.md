@@ -2,10 +2,10 @@
 date = '2026-07-27T10:00:00+08:00'
 draft = false
 title = 'uv vs conda vs pyenv: Which Python Manager Wins in 2026?'
-description = 'uv vs conda vs pyenv, benchmarked on real hardware: uv installs 50x faster with a warm cache, but conda still wins for CUDA. Decision tree + migration table.'
+description = 'uv vs conda vs pyenv, benchmarked: uv installs 50x faster with a warm cache, conda still wins for CUDA, uv vs pyenv on version pinning. Plus a migration table.'
 toc = true
 tags = ['Python', 'uv', 'conda', 'pyenv', 'Package Management']
-keywords = ['uv vs conda', 'uv vs pyenv', 'pyenv vs uv', 'uv vs conda vs pyenv', 'python package manager comparison 2026', 'should i switch from conda to uv', 'conda alternative 2026', 'uv python version management']
+keywords = ['uv vs conda', 'uv vs pyenv', 'pyenv vs uv', 'conda vs uv', 'uv vs conda vs pyenv', 'python package manager comparison 2026', 'should i switch from conda to uv', 'conda alternative 2026', 'uv python version management']
 
 [[params.faqItems]]
 question = "Is uv a replacement for conda?"

@@ -1,11 +1,11 @@
 +++
 date = '2026-07-12T10:00:00+08:00'
 draft = false
-title = 'Codex App 完全指南（2026）：安装、工作流与避坑手册'
-description = 'Codex App 已并入 ChatGPT 桌面端，变成独立的 Codex 模式。本文讲清安装配置、并行 agent 工作流、credit 计费怎么算、和 CLI 及 Claude Code 怎么选，外加 6 个真实的坑。'
+title = 'OpenAI Codex App 2026：是什么、使用方法与避坑手册'
+description = 'OpenAI Codex 2026 是什么、怎么用？Codex App 已并入 ChatGPT 桌面端。手册讲清功能介绍、安装配置、使用方法、credit 计费与 CLI/Claude Code 怎么选。'
 toc = true
 tags = ['Codex', 'OpenAI', 'AI Coding Agents', 'Developer Tools']
-keywords = ['Codex App', 'Codex 应用', 'Codex App 教程', 'Codex 桌面版', 'Codex App 怎么用', 'Codex App 收费', 'Codex App 和 CLI 区别', 'ChatGPT 桌面版 Codex']
+keywords = ['openai codex 2026 使用方法', 'openai codex 2026 是什么', 'openai codex 2026 功能介绍', 'codex 手册', 'codex 安装教程 2026', 'Codex App', 'Codex 应用', 'Codex App 教程', 'Codex 桌面版', 'Codex App 怎么用', 'Codex App 收费', 'Codex App 和 CLI 区别', 'ChatGPT 桌面版 Codex']
 
 [[params.faqItems]]
 question = "ChatGPT 合并之后 Codex App 还能用吗？"

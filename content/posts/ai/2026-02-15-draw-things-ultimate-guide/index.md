@@ -2,11 +2,11 @@
 date = '2026-02-15T01:00:00+08:00'
 draft = false
 title = 'Draw Things on Mac 2026: Tutorial + 40% Faster than ComfyUI'
-description = "Draw Things hands-on review (2026): free Mac/iOS app that beats ComfyUI by 20-40% on Apple Silicon via Metal FlashAttention v2, with local LoRA training on 16GB Mac Mini M4, JavaScript automation, and ready-made MCP server for Claude Code. Flux on Mac, Wan 2.2 video, and a Draw Things vs ComfyUI comparison included."
+description = "Draw Things is a free Mac/iOS app for local AI image generation, 20-40% faster than ComfyUI on Apple Silicon. Setup, LoRA training, Flux, and Claude Code MCP."
 toc = true
 tags = ['Draw Things', 'AI Image Generation', 'Mac', 'LoRA', 'ControlNet']
 categories = ['AI Guides']
-keywords = ['Draw Things review', 'Draw Things tutorial 2026', 'Draw Things vs ComfyUI', 'comfyui vs draw things', 'comfyui vs drawthings', 'local AI image generation Mac', 'Apple Silicon AI image generation', 'Metal FlashAttention', 'Flux on Mac', 'Draw Things LoRA training', 'Draw Things MCP', 'best Mac AI art tool 2026']
+keywords = ['draw things mac', 'draw things macos', 'draw things ai', 'drawthings mac', 'draw things apple silicon', 'Draw Things review', 'Draw Things tutorial 2026', 'Draw Things vs ComfyUI', 'comfyui vs draw things', 'comfyui vs drawthings', 'local AI image generation Mac', 'Apple Silicon AI image generation', 'Metal FlashAttention', 'Flux on Mac', 'Draw Things LoRA training', 'Draw Things MCP', 'best Mac AI art tool 2026']
 
 [[params.faqItems]]
 question = "What is Draw Things and what makes it different from ComfyUI or Midjourney?"
@@ -27,6 +27,14 @@ answer = "Local LoRA: open the PEFT tab, pick a base model (SDXL Base 1.0 is the
 [[params.faqItems]]
 question = "Can Draw Things generate video like Wan 2.2 or Hunyuan on a Mac?"
 answer = "Yes, Draw Things supports Wan 2.2 5B (text-to-video), Hunyuan Video (high-quality video), and Stable Video Diffusion (image-to-video). Use the DDIM Trailing sampler for best motion coherence. Realistic hardware bar: 24GB+ unified memory is recommended — 16GB technically works for shorter Wan 2.2 5B clips at low resolution but you will fight memory pressure. This is currently the cleanest way to do local video generation on a Mac without spinning up a separate ComfyUI workflow."
+
+[[params.faqItems]]
+question = "Does Draw Things run on Intel Macs or only Apple Silicon?"
+answer = "Draw Things is built for Apple Silicon: Metal FlashAttention v2 and the 20-40% speed edge over ComfyUI require an M1 or newer chip, and every memory-tier recommendation in this guide (8GB M1 Air up to 24GB+ Mac) assumes an M-series Mac. It can be installed on Intel Macs from the App Store, but without Metal FlashAttention generation is far slower, so treat an M1 with 8GB as the realistic entry point."
+
+[[params.faqItems]]
+question = "Is Draw Things free on Mac?"
+answer = "Yes. Draw Things is completely free on macOS and iOS — no subscription, no paywall for local generation, no cloud uploads — and everything in this guide (LoRA training, JavaScript scripting, the MCP server for Claude Code, Wan 2.2 video) runs locally at no cost. The only money question is the Mac under it."
 +++
 
 ![Draw Things Ultimate Guide: Local AI Image Generation on Mac cover image](cover.webp)
@@ -715,6 +723,14 @@ Troubleshoot in order:
 2. Does `curl http://localhost:7860` return a response?
 3. Is a model loaded? (Generation fails with no model loaded)
 4. Is the MCP Server installed correctly? Try restarting Claude Code
+
+### Q6: Does Draw Things run on Intel Macs or only Apple Silicon?
+
+Draw Things is built for Apple Silicon. Metal FlashAttention v2 — the source of the 20-40% speed edge over ComfyUI — requires an M1 or newer chip, and every memory-tier recommendation above assumes an M-series Mac. It can be installed on Intel Macs from the App Store, but without Metal FlashAttention generation is far slower, so treat an M1 with 8GB as the realistic entry point.
+
+### Q7: Is Draw Things free on Mac?
+
+Yes. Draw Things is completely free on macOS and iOS — no subscription, no paywall for local generation, no cloud uploads. LoRA training, JavaScript scripting, the MCP server, and video generation all run locally at no cost. The only money question is the Mac under it.
 
 ## Conclusion
 

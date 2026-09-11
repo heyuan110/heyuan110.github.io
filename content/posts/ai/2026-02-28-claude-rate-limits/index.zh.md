@@ -2,15 +2,19 @@
 date = '2026-02-28T10:00:00+08:00'
 draft = false
 title = 'Claude 速率限制 2026：免费版/Pro/Max 每5小时消息上限详解'
-description = 'Claude 速率限制 2026 实测数据：Pro 每 5 小时约 10-45 条消息，Max 5x 约 50-200 条，Max 20x 约 200-800 条，另有 2025 年 8 月起的 7 天周限额。详解滚动窗口机制、消息按 token 计算方式与触发限速后的应对策略。'
+description = 'Claude 免费版限制与 Pro 限制 2026 实测：免费版每 5 小时约 2-5 条，Pro 约 10-45 条，Max 约 50-800 条，另有 7 天周限额，附滚动窗口机制与限速应对策略。'
 toc = true
 tags = ['Claude Code', 'Rate Limits', 'Pricing', 'AI Coding Tools']
 categories = ['AI Guides']
-keywords = ['Claude 速率限制', 'Claude Pro 限制', 'Claude 每5小时消息数', 'Claude Max 速率限制', 'Claude Pro 使用限制', 'Claude 每周限额', 'Claude API 速率限制', 'Claude Code 限制', 'Claude 免费版限制', 'Claude 消息上限']
+keywords = ['Claude 速率限制', 'Claude Pro 限制', 'Claude 每5小时消息数', 'Claude Max 速率限制', 'Claude Pro 使用限制', 'Claude 每周限额', 'Claude API 速率限制', 'Claude Code 限制', 'Claude 免费版限制', 'Claude 消息上限', 'Claude 免費版限制', 'Claude 免費額度', 'Claude 用量限制', 'Claude 5小時限制']
 
 [[params.faqItems]]
 question = "Claude Pro 有多少条消息可用？"
 answer = "在5小时滚动窗口内，使用Sonnet大约有10-45条消息，Opus更少。具体数量取决于消息长度、上下文大小和服务器负载。对话越长，每条消息消耗的token越多。"
+
+[[params.faqItems]]
+question = "Claude 免费版和 Pro 的限制各是多少？（免費版限制 / Pro 用量限制）"
+answer = "免费版每 5 小时窗口约 2-5 条消息，仅限 Sonnet，无 Opus 也无 Claude Code，无周限额。Pro（$20/月）每 5 小时约 10-45 条，另有每周约 40-80 小时的 7 天限额，Opus 为有限访问。"
 
 [[params.faqItems]]
 question = "触发Claude速率限制后会怎样？"

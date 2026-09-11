@@ -2,11 +2,11 @@
 date = '2026-07-02T14:00:00+08:00'
 aliases = ['/posts/ai/2026-07-10-cs146s-study-guide/']
 draft = false
-title = 'CS146S 自学工作手册 2026：逐讲精华与配套实操路线'
-description = '斯坦福 CS146S 自学不必按 10 周走：本文逐讲给出核心判断、最值得做的练习、2026 年工具映射（Claude Code/Cursor），附两周速通与六周完整两条路线图，以及替代 Final Project 的实操方案。'
+title = '斯坦福 CS146S 自学手册 2026：逐讲笔记与实操路线'
+description = '斯坦福 CS146S（The Modern Software Developer）自学手册：逐讲核心判断、必做练习与 2026 工具映射（Claude Code/Cursor），附两周速通与六周路线图。'
 toc = true
 tags = ['Stanford CS146S', 'Vibe Coding', 'AI Coding', 'Study Guide', 'Agentic Engineering']
-keywords = ['cs146s 自学', '斯坦福 cs146s 笔记', 'cs146s 课程', 'stanford ai 编程课', 'cs146s 学习路线', '斯坦福 vibe coding 课程', 'cs146s 作业']
+keywords = ['stanford cs146s', 'cs146s', '斯坦福 cs146s', 'cs146s 笔记', 'cs146s 自学', '斯坦福 cs146s 笔记', 'cs146s 课程', 'stanford ai 编程课', 'cs146s 学习路线', '斯坦福 vibe coding 课程', 'cs146s 作业']
 
 [[params.faqItems]]
 question = "CS146S 是什么课？"
