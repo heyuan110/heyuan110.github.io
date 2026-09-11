@@ -297,7 +297,7 @@ If you take one thing from this article: **stop letting AI re-explore solved pro
 - [Browser Automation in Claude Code: 5 Tools Compared](/posts/ai/2026-01-28-claude-code-browser-automation/) — full token benchmarks across MCP, CLI, agent-browser, browser-use, DevTools MCP
 - [Vercel Agent Browser: AI-Native Browser Automation CLI](/posts/ai/2026-01-13-vercel-agent-browser/) — when to prefer agent-browser over Playwright CLI
 - [Claude Code Skills: Patterns That Survived Production](/posts/ai/2026-01-12-claudecode-skill-patterns/) — how to write Skills that don't decay
-- [Claude Code + Skills + Subagent: A Working Architecture](/posts/ai/2025-12-26-claudecode-skill&subagent/) — composing Skills with subagent isolation
+- [Claude Code + Skills + Subagent: A Working Architecture](/posts/ai/2025-12-26-claudecode-skillsubagent/) — composing Skills with subagent isolation
 - [OpenClaw + Claude Code Workflow](/posts/ai/2026-01-31-openclaw-claude-code-workflow/) — pairing scheduled triggers with the 3-stage pattern
 
 ## External References
@@ -306,3 +306,15 @@ If you take one thing from this article: **stop letting AI re-explore solved pro
 - [Vercel agent-browser on GitHub](https://github.com/vercel-labs/agent-browser) — Rust-based daemon architecture
 - [Better Stack: Playwright CLI vs MCP benchmark](https://betterstack.com/community/guides/ai/playwright-cli-vs-mcp-browser/) — independent token consumption analysis
 - [TestDino: Playwright CLI and MCP integration with AI agents](https://testdino.com/blog/playwright-cli-vs-mcp/) — practical setup guide
+
+## Series Navigation
+
+This is Part 4 of the **Browser Automation for AI Agents** series — the arc from headless drivers, to attaching to your real browser, to cutting the token bill, to sharing your logged-in session:
+
+1. [Vercel Agent Browser](/posts/ai/2026-01-13-vercel-agent-browser/) — a snapshot-driven CLI built for agents, not test suites
+2. [Browser Automation in Claude Code: 5 Tools Compared](/posts/ai/2026-01-28-claude-code-browser-automation/) — the field map: token cost, speed, stability
+3. [Chrome DevTools MCP Setup 2026](/posts/ai/2026-03-17-chrome-devtools-mcp-guide/) — attaching to your real browser, and the port 9222 traps
+4. **This article**: Playwright CLI + Skills: 0-Token Automation — the pattern that removes the MCP token tax
+5. [Claude Code Screenshot MCP Setup](/posts/ai/2026-07-21-claude-code-screenshot-mcp-frontend-debugging/) — the frontend debugging loop, 10,220 vs 65 tokens
+6. [ubrowser Review](/posts/ai/2026-07-27-ubrowser-review/) — the right design trapped in an abandoned repo
+7. ego lite Review: Your Logged-In Browser, Handed to Claude Code (coming next) — handing agents your logged-in session through Spaces

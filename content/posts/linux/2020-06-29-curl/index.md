@@ -473,7 +473,6 @@ Consider saving your most-used commands as shell aliases or functions. For advan
 
 - [Traceroute Explained: Route Tracing and Network Troubleshooting](/posts/linux/2020-06-28-traceroute/) - Locate network latency bottlenecks alongside curl
 - [Linux/macOS Command Cheat Sheet](/posts/linux/2020-03-19-linux-mac-commands/) - Essential command reference for developers
-- [Linux Ops Basics Hub](/posts/linux/linux-ops-basics-hub/) - System administration knowledge base
 - [AWS CLI Complete Guide](/posts/linux/2020-07-04-aws-cli/) - Cloud service management from the terminal
 - [Oh My Zsh Setup Guide](/posts/linux/2015-06-17-shell-zsh/) - Build a productive shell environment
 

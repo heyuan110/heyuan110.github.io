@@ -1,8 +1,8 @@
 +++
-date = '2026-09-11T16:00:00+08:00'
+date = '2026-09-23T10:00:00+08:00'
 draft = false
 title = 'pi Coding Agent Review 2026: 4 Tools vs Claude Code, Tested'
-description = 'pi coding agent vs Claude Code on 3 identical tasks: 1,358 vs 31,012 context tokens, 4 tools, zero permission dialogs. Real receipts and who should switch in 2026.'
+description = 'pi coding agent vs Claude Code on 3 identical tasks: 1,358 vs 31,012 context tokens, 4 tools, zero permission dialogs. Real receipts and who should switch.'
 toc = true
 tags = ['pi coding agent', 'Claude Code', 'Harness Engineering', 'AI Coding', 'AI Agent']
 keywords = ['pi coding agent review', 'pi coding agent vs claude code', 'pi.dev coding agent', 'mario zechner pi agent', 'minimal coding agent harness', 'claude code alternative 2026', 'terminal ai coding agent comparison', 'pi agent extensions']
@@ -40,9 +40,13 @@ Receipts below. A quick note on scope: a Chinese tutorial on runoob covers pi's 
 
 pi is Mario Zechner's answer to Claude Code turning into, in his words, "a spaceship with 80% of functionality I have no use for." Zechner is the libGDX creator; he published pi's rationale on [his blog in November 2025](https://mariozechner.at/posts/2025-11-30-pi-coding-agent/) and the core idea hasn't moved since: four tools (`read`, `write`, `edit`, `bash`), a system prompt small enough to read in one screen, and a TypeScript extension API for everything else.
 
-The project's numbers are not small-project numbers. As of September 11, 2026, [earendil-works/pi](https://github.com/earendil-works/pi) has 103,925 stars and 12,999 forks, created August 9, 2025, last pushed the day before I checked, MIT licensed. The CLI package `@earendil-works/pi-coding-agent` sits at v0.85.1 (released September 5) and pulls 1.53M npm downloads a week. For scale, `@anthropic-ai/claude-code` does 8.55M and `@openai/codex` 13.16M, so pi is roughly one-sixth of Claude Code by install volume and well ahead of OpenCode's 1.31M.
+The project's numbers are not small-project numbers. As of September 11, 2026, [earendil-works/pi](https://github.com/earendil-works/pi) has 103,925 stars and 12,999 forks, created August 9, 2025, last pushed the day before I checked, MIT licensed. The CLI package `@earendil-works/pi-coding-agent` sits at v0.85.1 (released September 5) and pulls 1.53M npm downloads a week.
 
-The repo moved in May. On May 7, 2026, v0.74.0 became the first release under the `@earendil-works` scope after Zechner joined Earendil, the public-benefit corporation Armin Ronacher co-founded; the old `badlogic/pi-mono` URL now redirects. The license stayed MIT and the CLI is still `pi`. Two facts make the move matter more than a rename: OpenClaw, the agent that got half the industry's attention this spring, is built on pi's packages (its current release `openclaw@2026.9.4` depends on `@earendil-works/pi-tui`), and pi's library packages out-download its CLI. `pi-tui` alone gets 5.12M weekly downloads. **pi is already more "infrastructure other agents are built on" than "CLI people type into."**
+For scale, `@anthropic-ai/claude-code` does 8.55M and `@openai/codex` 13.16M, so pi is roughly one-sixth of Claude Code by install volume and well ahead of OpenCode's 1.31M.
+
+The repo moved in May. On May 7, 2026, v0.74.0 became the first release under the `@earendil-works` scope after Zechner joined Earendil, the public-benefit corporation Armin Ronacher co-founded; the old `badlogic/pi-mono` URL now redirects. The license stayed MIT and the CLI is still `pi`.
+
+Two facts make the move matter more than a rename: OpenClaw, the agent that got half the industry's attention this spring, is built on pi's packages (its current release `openclaw@2026.9.4` depends on `@earendil-works/pi-tui`), and pi's library packages out-download its CLI. `pi-tui` alone gets 5.12M weekly downloads. **pi is already more "infrastructure other agents are built on" than "CLI people type into."**
 
 Community reception is ecosystem-shaped rather than launch-thread-shaped. There's no 800-point Show HN; the loudest pi thread on Hacker News in 2026 is a 56-point complaint that its config folder ignores XDG on Linux (August 17), and the second is oh-my-pi, a fork with an IDE wired in (42 points, July 21). The [Pragmatic Engineer](https://newsletter.pragmaticengineer.com/p/building-pi-and-what-makes-self-modifying) ran a full episode on it in April. And the package gallery at [pi.dev/packages](https://pi.dev/packages) lists 5,410 packages, which is the real reception signal: people are building on it, not arguing about it.
 
@@ -98,7 +102,9 @@ If you read my [window-of-opportunity post](/posts/ai/2026-05-08-harness-enginee
 | pi, default (auto-loaded 48 skills from `~/.agents/skills`) | 10,787 | $0.0081 (Gemini 3.8 Flash) |
 | Claude Code 2.1.268, `claude -p`, fresh empty repo | **31,012** (20,884 cache write + 10,126 cache read + 2) | $0.4214 (Fable 5.1, list) |
 
-Two things to take from that table. First, pi's floor really is small: 1,358 tokens is the four tool definitions, the prompt, and the working directory, and it's the same number on Pro and Flash. Second, the middle row is the gotcha nobody warns you about. pi auto-discovers skills from `~/.agents/skills` and `.agents/skills`, the same directories other harnesses use. I had 48 skills sitting there from other tools, and pi silently put 9,400 tokens of skill descriptions into every request. Run `pi --verbose` once and read the startup header before you trust the "under 1,000 tokens" marketing line.
+Two things to take from that table. First, pi's floor really is small: 1,358 tokens is the four tool definitions, the prompt, and the working directory, and it's the same number on Pro and Flash. 
+
+Second, the middle row is the gotcha nobody warns you about. pi auto-discovers skills from `~/.agents/skills` and `.agents/skills`, the same directories other harnesses use. I had 48 skills sitting there from other tools, and pi silently put 9,400 tokens of skill descriptions into every request. Run `pi --verbose` once and read the startup header before you trust the "under 1,000 tokens" marketing line.
 
 ## Three identical tasks: pi vs Claude Code receipts
 
@@ -174,7 +180,9 @@ CALL guard_stats {}
   END guard_stats  guard.ts blocked 1 command(s) so far
 ```
 
-The hook fired. The custom tool worked. And the model deleted the directory anyway, one turn later, with `rm` plus `rmdir`. I told it to find another way, so it did, but that's exactly what a prompt-injected model would do too. **A `tool_call` hook is policy, not a boundary.** It's great for "don't touch `.env`," useless against a model (or an attacker in a README) that wants the thing gone. That is the strongest argument for Zechner's position, not against it: if the only real boundary is the OS, then permission dialogs are UX, and pretending otherwise is the dangerous part.
+The hook fired. The custom tool worked. And the model deleted the directory anyway, one turn later, with `rm` plus `rmdir`. I told it to find another way, so it did, but that's exactly what a prompt-injected model would do too.
+
+**A `tool_call` hook is policy, not a boundary.** It's great for "don't touch `.env`," useless against a model (or an attacker in a README) that wants the thing gone. That is the strongest argument for Zechner's position, not against it: if the only real boundary is the OS, then permission dialogs are UX, and pretending otherwise is the dangerous part.
 
 ```mermaid
 sequenceDiagram

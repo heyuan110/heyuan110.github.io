@@ -204,7 +204,7 @@ If you want a single takeaway to screenshot: copy the dual-shell config above, a
 
 - [Terminal Tools Guide for Developers](/posts/macos/2025-01-22-terminal-tools-guide/) — my earlier survey of iTerm2, Warp, tmux, starship, and the rest of the terminal stack.
 - [Claude Code Best Practices](/posts/ai/2026-01-06-claudecode-best-practices/) — how I configure environment and shell for agent-heavy workflows.
-- [Claude Code Skill and Sub-Agent Guide](/posts/ai/2025-12-26-claudecode-skill&subagent/) — context on why the agent's shell environment matters.
+- [Claude Code Skill and Sub-Agent Guide](/posts/ai/2025-12-26-claudecode-skillsubagent/) — context on why the agent's shell environment matters.
 - [AI Dev Workflow: A Real Guide](/posts/ai/2026-01-19-ai-dev-workflow/) — where fish / zsh sits inside my day-to-day AI engineering loop.
 
 ## External sources

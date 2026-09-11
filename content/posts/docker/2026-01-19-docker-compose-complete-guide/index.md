@@ -1546,6 +1546,5 @@ Container technology is now a fundamental part of modern software development. M
 
 ## Related Reading
 
-- [Linux 运维基础 Hub](/posts/linux/linux-ops-basics-hub/)
 - [docker-compose.yml 详解](/posts/docker/2026-01-24-docker-compose-yml-explained/)
 - [Docker 常用命令速查](/posts/docker/2019-11-14-docker-commands/)

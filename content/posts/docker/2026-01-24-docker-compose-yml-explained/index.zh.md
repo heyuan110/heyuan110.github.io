@@ -930,4 +930,3 @@ Docker Compose 用于**单机多容器编排**，适合开发环境和小规模�
 - [Docker 常用命令速查](/zh/posts/docker/2019-11-14-docker-commands/) - 容器、镜像、网络等管理命令
 - [Docker Compose 完全指南](/zh/posts/docker/2026-01-19-docker-compose-complete-guide/) - 从安装到部署的全流程指南
 - [Linux/macOS 常用命令速查手册](/zh/posts/linux/2020-03-19-linux-mac-commands/) - 运维开发常用命令参考
-- [Linux 运维基础 Hub](/zh/posts/linux/linux-ops-basics-hub/)

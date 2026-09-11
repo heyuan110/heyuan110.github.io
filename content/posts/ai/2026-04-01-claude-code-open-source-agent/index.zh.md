@@ -78,7 +78,7 @@ Claude Code 内置约 40 个工具，Claude Code 开源版 目前实现了 19 �
 
 ### 多代理编排
 
-Claude Code 开源版 称之为 "swarms"——主代理为独立子任务生成子代理并行执行。Claude Code 也有类似的[子代理机制](/posts/ai/2025-12-26-claudecode-skill%26subagent/)，不过生成模型有所不同。实际生产场景中，Claude Code 的子代理系统经过了更充分的验证。
+Claude Code 开源版 称之为 "swarms"——主代理为独立子任务生成子代理并行执行。Claude Code 也有类似的[子代理机制](/posts/ai/2025-12-26-claudecode-skillsubagent/)，不过生成模型有所不同。实际生产场景中，Claude Code 的子代理系统经过了更充分的验证。
 
 ### 各自优势一览
 

@@ -384,7 +384,6 @@ They serve different purposes. **Claude Code** is Anthropic's official terminal-
 
 ## Related Reading
 
-- [AI Automation Navigation Hub](/posts/ai/ai-automation-hub/)
 - [Clawdbot: Personal AI Assistant in Practice](/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/)
 - [OpenClaw Automation Pitfalls and How to Avoid Them](/posts/ai/2026-02-14-openclaw-automation-pitfalls/)
 - [OpenClaw Detailed Getting Started Tutorial](/posts/ai/2026-02-12-openclaw-usage-tutorial/)

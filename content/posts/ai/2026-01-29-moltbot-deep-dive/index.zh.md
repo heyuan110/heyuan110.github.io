@@ -385,7 +385,6 @@ Peter Steinberger 是奥地利软件开发者，OpenClaw（原 Clawdbot/Moltbot�
 
 ## 相关阅读 / Related
 
-- [AI 自动化导航 Hub](/zh/posts/ai/ai-automation-hub/)
 - [Clawdbot：个人 AI 助手实战](/zh/posts/ai/2026-01-25-clawdbot-personal-ai-assistant/)
 - [OpenClaw 自动化的坑与避坑](/zh/posts/ai/2026-02-14-openclaw-automation-pitfalls/)
 - [OpenClaw 超详细上手教程](/zh/posts/ai/2026-02-12-openclaw-usage-tutorial/)

@@ -473,7 +473,6 @@ curl 是一个功能强大的命令行工具，掌握它能大幅提升你的工
 
 - [traceroute 命令详解：路由追踪与网络故障排查](/zh/posts/linux/2020-06-28-traceroute/) - 定位网络延迟瓶颈，与 curl 配合排查问题
 - [Linux/macOS 常用命令速查手册](/zh/posts/linux/2020-03-19-linux-mac-commands/) - 运维开发常用命令参考
-- [Linux 运维基础 Hub](/zh/posts/linux/linux-ops-basics-hub/) - 系统运维知识汇总
 - [AWS CLI 完全指南](/zh/posts/linux/2020-07-04-aws-cli/) - 云服务命令行管理
 - [Oh My Zsh 安装配置指南](/zh/posts/linux/2015-06-17-shell-zsh/) - 打造高效终端环境
 

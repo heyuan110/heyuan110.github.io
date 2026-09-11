@@ -1574,6 +1574,5 @@ docker stack deploy -c docker-compose.yml myapp
 *如果这篇文章对你有帮助，欢迎分享给更多的朋友！*
 ## 相关阅读 / Related
 
-- [Linux 运维基础 Hub](/zh/posts/linux/linux-ops-basics-hub/)
 - [docker-compose.yml 详解](/zh/posts/docker/2026-01-24-docker-compose-yml-explained/)
 - [Docker 常用命令速查](/zh/posts/docker/2019-11-14-docker-commands/)

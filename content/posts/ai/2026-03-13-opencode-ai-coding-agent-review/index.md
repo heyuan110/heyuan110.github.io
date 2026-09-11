@@ -129,7 +129,7 @@ The LSP setup is configured in `opencode.json`:
 
 ## Multi-Agent System: Specialized Workflows
 
-OpenCode's agent system is similar in concept to [Claude Code's sub-agents](/posts/ai/2025-12-26-claudecode-skill&subagent/) but with a different design philosophy.
+OpenCode's agent system is similar in concept to [Claude Code's sub-agents](/posts/ai/2025-12-26-claudecode-skillsubagent/) but with a different design philosophy.
 
 ### Built-in Agents
 
@@ -351,4 +351,4 @@ OpenCode is the most ambitious open source AI coding agent available today. Its 
 - [AI Coding Agents Comparison 2026](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — Side-by-side comparison of all major AI coding tools
 - [Claude Code vs Cursor vs Windsurf](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/) — IDE-based vs terminal-based AI coding approaches
 - [MCP Protocol Explained](/posts/ai/2026-02-28-mcp-protocol-explained/) — Understanding the Model Context Protocol powering modern AI agents
-- [Claude Code Skills and Sub-Agents](/posts/ai/2025-12-26-claudecode-skill&subagent/) — How Claude Code handles multi-agent workflows
+- [Claude Code Skills and Sub-Agents](/posts/ai/2025-12-26-claudecode-skillsubagent/) — How Claude Code handles multi-agent workflows

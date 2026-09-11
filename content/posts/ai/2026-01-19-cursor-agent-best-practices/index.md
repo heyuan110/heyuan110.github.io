@@ -382,6 +382,6 @@ Investing time in learning how to communicate effectively with your AI Agent pay
 
 - [Cursor Setup Guide 2026: From Install to Advanced Agent Mode](/posts/ai/2026-03-08-cursor-setup-guide/) — Complete installation and configuration walkthrough
 - [Claude Code vs Cursor vs Windsurf 2026: Speed, Cost & Control](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/) — Side-by-side comparison of the top AI coding tools
-- [Cursor Composer 2 Review: The Kimi K2.5 Controversy](/posts/ai/2026-04-04-cursor-composer-2-review/) — Latest developments in Cursor's AI capabilities
+- [Cursor Composer 2 Review: The Kimi K2.5 Controversy](/posts/ai/2026-04-01-cursor-composer-2-review/) — Latest developments in Cursor's AI capabilities
 - [AI Coding Agents 2026: The Complete Comparison](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — How 7 AI coding tools stack up in practice
 - [Vibe Coding: The Complete Guide (2026)](/posts/ai/2026-02-22-vibe-coding-guide/) — The natural language coding methodology that works with any tool

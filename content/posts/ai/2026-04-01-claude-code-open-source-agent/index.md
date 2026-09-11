@@ -87,7 +87,7 @@ Both systems implement context window management through **transcript compaction
 
 ### Multi-Agent Orchestration
 
-Claude Code Open Source calls this "swarms" — parallel subtask execution where a primary agent spawns child agents for independent work. Claude Code has a similar concept with [subagents](/posts/ai/2025-12-26-claudecode-skill%26subagent/), though the spawning model differs. Claude Code's subagent system is more battle-tested in production workflows.
+Claude Code Open Source calls this "swarms" — parallel subtask execution where a primary agent spawns child agents for independent work. Claude Code has a similar concept with [subagents](/posts/ai/2025-12-26-claudecode-skillsubagent/), though the spawning model differs. Claude Code's subagent system is more battle-tested in production workflows.
 
 ### Where Claude Code Open Source Wins
 
@@ -189,7 +189,7 @@ The question is no longer whether agent harnesses should be open. It is how fast
 ## Related Reading
 
 - [OpenClaw vs CrewAI vs AutoGPT 2026: 6 AI Agent Frameworks Compared](/posts/ai/2026-03-05-openclaw-vs-ai-agents/) — How Claude Code Open Source fits in the broader agent framework landscape
-- [Cursor Composer 2 Review: The Kimi K2.5 Controversy](/posts/ai/2026-04-04-cursor-composer-2-review/) — Another AI coding tool making waves the same week
-- [Seedance 2.0 Deep Dive: ByteDance AI Video Model](/posts/ai/2026-04-04-seedance-2-bytedance-ai-video/) — Another open-source AI release from the same period
+- [Cursor Composer 2 Review: The Kimi K2.5 Controversy](/posts/ai/2026-04-01-cursor-composer-2-review/) — Another AI coding tool making waves the same week
+- [Seedance 2.0 Deep Dive: ByteDance AI Video Model](/posts/ai/2026-03-29-seedance-2-bytedance-ai-video/) — Another open-source AI release from the same period
 - [OpenCode Review: Can This Open Source AI Coding Agent Replace Claude Code?](/posts/ai/2026-03-13-opencode-ai-coding-agent-review/) — Earlier open-source Claude Code alternative
 - [Claude Code vs Cursor vs Windsurf 2026: Speed, Cost & Control](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/) — The proprietary tools that Claude Code Open Source aims to replace

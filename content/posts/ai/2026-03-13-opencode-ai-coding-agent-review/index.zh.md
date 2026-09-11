@@ -121,7 +121,7 @@ LSP 确认：没有错误了
 
 ## 多代理系统：分工协作
 
-OpenCode的代理系统跟[Claude Code的子代理](/zh/posts/ai/2025-12-26-claudecode-skill&subagent/)理念类似，但设计哲学不同。
+OpenCode的代理系统跟[Claude Code的子代理](/zh/posts/ai/2025-12-26-claudecode-skillsubagent/)理念类似，但设计哲学不同。
 
 ### 内置代理
 
@@ -335,4 +335,4 @@ OpenCode是目前最有野心的开源AI编程代理。LSP集成和模型灵活�
 - [2026年AI编程代理对比](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — 所有主流AI编程工具的全面对比
 - [Claude Code vs Cursor vs Windsurf](/zh/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/) — IDE路线 vs 终端路线的AI编程方案
 - [MCP协议详解](/zh/posts/ai/2026-02-28-mcp-protocol-explained/) — 理解驱动现代AI代理的模型上下文协议
-- [Claude Code Skills和子代理](/zh/posts/ai/2025-12-26-claudecode-skill&subagent/) — Claude Code如何处理多代理工作流
+- [Claude Code Skills和子代理](/zh/posts/ai/2025-12-26-claudecode-skillsubagent/) — Claude Code如何处理多代理工作流

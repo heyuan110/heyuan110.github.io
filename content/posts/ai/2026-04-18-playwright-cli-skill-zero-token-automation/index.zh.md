@@ -297,7 +297,7 @@ Playwright CLI 是合适的原语，因为它默认就是「snapshot 写盘」�
 - [Browser Automation in Claude Code: 5 Tools Compared](/zh/posts/ai/2026-01-28-claude-code-browser-automation/) — MCP / CLI / agent-browser / browser-use / DevTools MCP 五工具完整 Token 基准
 - [Vercel Agent Browser：AI 原生浏览器自动化 CLI](/zh/posts/ai/2026-01-13-vercel-agent-browser/) — 什么时候应该选 agent-browser 而不是 Playwright CLI
 - [Claude Code Skills 模式：哪些写法挺到了生产](/zh/posts/ai/2026-01-12-claudecode-skill-patterns/) — 怎么写不会侵蚀的 Skill
-- [Claude Code + Skills + Subagent：可工作的架构](/posts/ai/2025-12-26-claudecode-skill&subagent/) — Skill 和 Subagent 隔离怎么组合
+- [Claude Code + Skills + Subagent：可工作的架构](/posts/ai/2025-12-26-claudecode-skillsubagent/) — Skill 和 Subagent 隔离怎么组合
 - [OpenClaw + Claude Code 工作流](/zh/posts/ai/2026-01-31-openclaw-claude-code-workflow/) — 三段式怎么配上定时触发器
 
 ## 外部参考
@@ -306,3 +306,15 @@ Playwright CLI 是合适的原语，因为它默认就是「snapshot 写盘」�
 - [Vercel agent-browser GitHub](https://github.com/vercel-labs/agent-browser) — 基于 Rust 的 daemon 架构
 - [Better Stack：Playwright CLI vs MCP 基准测试](https://betterstack.com/community/guides/ai/playwright-cli-vs-mcp-browser/) — 独立第三方 Token 消耗分析
 - [TestDino：Playwright CLI 和 MCP 与 AI Agent 集成](https://testdino.com/blog/playwright-cli-vs-mcp/) — 实战配置指南
+
+## 系列文章导航
+
+这是「AI Agent 浏览器自动化」系列的第 4 篇。这条线的演进：headless 驱动 → 接管真实浏览器 → 把 token 砍到底 → 共享你的登录态：
+
+1. [Vercel Agent Browser](/zh/posts/ai/2026-01-13-vercel-agent-browser/) — 为 Agent 而不是测试套件设计的 snapshot 式 CLI
+2. [Claude Code 浏览器自动化：5 套方案实测对比](/zh/posts/ai/2026-01-28-claude-code-browser-automation/) — 这条线的地图：token 成本、速度、稳定性
+3. [Chrome DevTools MCP 2026 配置教程](/zh/posts/ai/2026-03-17-chrome-devtools-mcp-guide/) — 接管真实浏览器，以及 9222 端口的坑
+4. **本文**：Playwright CLI + Skill 三段式：0 Token 自动化 — 去掉 MCP token 税的三段式写法
+5. [Claude Code 截图 MCP 配置](/zh/posts/ai/2026-07-21-claude-code-screenshot-mcp-frontend-debugging/) — 前端调试闭环，10,220 对 65 token
+6. [ubrowser 实测](/zh/posts/ai/2026-07-27-ubrowser-review/) — 设计对了，仓库死了
+7. ego lite 实测：把你登录好的浏览器交给 Claude Code（即将发布）— 用 Spaces 把登录态交给 Agent

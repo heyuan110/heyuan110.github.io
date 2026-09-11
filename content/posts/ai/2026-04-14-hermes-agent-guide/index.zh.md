@@ -285,7 +285,7 @@ mcp_servers:
 
 注意 `allowed_tools` 字段——即使 GitHub MCP Server 提供了删除仓库、修改设置等高权限工具，Hermes 也只会用你白名单里的几个。**最小权限原则在 Agent 时代比以往任何时候都重要**。
 
-我在《[Skill 和 MCP 的关系](/zh/posts/ai/2026-01-06-skill&mcp/)》里详细聊过这两者的配合。简单说：MCP 解决"能连什么"，Skill 解决"怎么用"。两者配合效果最好。
+我在《[Skill 和 MCP 的关系](/zh/posts/ai/2026-01-06-skillmcp/)》里详细聊过这两者的配合。简单说：MCP 解决"能连什么"，Skill 解决"怎么用"。两者配合效果最好。
 
 ## 和其他 AI Agent 工具怎么选：不是选择题
 

@@ -310,6 +310,6 @@ Agent Teams is still experimental, with known limitations around session recover
 - [Claude Code Complete Guide: From Beginner to Power User](/posts/ai/2026-01-14-claude-code-guide/) — The comprehensive starting point for all Claude Code features
 - [Claude Code Worktree: Run Multiple AI Tasks in One Repo](/posts/ai/2026-02-20-claude-code-worktree/) — Another parallel execution approach using git worktrees
 - [Claude Code Hooks Guide: 12 Ready-to-Use Configs for Automation](/posts/ai/2026-02-18-claude-code-hooks-guide/) — Automate guardrails and workflows with event hooks
-- [Claude Code Skills vs SubAgents: Context Management Guide](/posts/ai/2025-12-26-claudecode-skill&subagent/) — Understand when to use Skills vs SubAgents vs Agent Teams
+- [Claude Code Skills vs SubAgents: Context Management Guide](/posts/ai/2025-12-26-claudecode-skillsubagent/) — Understand when to use Skills vs SubAgents vs Agent Teams
 - [Claude Code Pricing 2026: Free vs Pro $20 vs Max $200](/posts/ai/2026-02-25-claude-code-pricing/) — Understand the cost implications of multi-agent workflows
 - [Claude Code --teammate-mode Explained](/posts/ai/2026-02-28-claude-code-teams-guide/) — Detailed guide to running collaborative agent sessions

@@ -204,7 +204,7 @@ flowchart TD
 
 - [终端工具指南 for 开发者](/zh/posts/macos/2025-01-22-terminal-tools-guide/) —— 我之前写的 iTerm2、Warp、tmux、starship 等终端栈综述。
 - [Claude Code 最佳实践](/zh/posts/ai/2026-01-06-claudecode-best-practices/) —— agent 密集场景下的环境和 shell 配置方法。
-- [Claude Code Skill 与 Sub-Agent 指南](/posts/ai/2025-12-26-claudecode-skill&subagent/) —— 理解 agent 的 shell 环境为什么重要。
+- [Claude Code Skill 与 Sub-Agent 指南](/posts/ai/2025-12-26-claudecode-skillsubagent/) —— 理解 agent 的 shell 环境为什么重要。
 - [AI 开发工作流真实指南](/zh/posts/ai/2026-01-19-ai-dev-workflow/) —— fish / zsh 在我 AI 工程日常里的位置。
 
 ## 外部参考

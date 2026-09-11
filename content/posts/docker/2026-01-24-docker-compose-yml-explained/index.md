@@ -926,4 +926,3 @@ Named volumes are **preserved** after `docker compose down`. Only the `-v` flag 
 - [Docker Command Cheat Sheet](/posts/docker/2019-11-14-docker-commands/) — Container, image, and network management commands
 - [Docker Compose Complete Guide](/posts/docker/2026-01-19-docker-compose-complete-guide/) — End-to-end guide from installation to deployment
 - [Linux/macOS Command Cheat Sheet](/posts/linux/2020-03-19-linux-mac-commands/) — Essential commands for DevOps and development
-- [Linux Ops Basics Hub](/posts/linux/linux-ops-basics-hub/)

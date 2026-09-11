@@ -143,7 +143,7 @@ It mirrors the layered design pattern in software engineering — low-level libr
 
 ## Related Reading
 
-- [Claude Code Skills vs SubAgents: Context Management Guide](/posts/ai/2025-12-26-claudecode-skill-subagent/) — Deep dive into when to use Skills vs SubAgents
+- [Claude Code Skills vs SubAgents: Context Management Guide](/posts/ai/2025-12-26-claudecode-skillsubagent/) — Deep dive into when to use Skills vs SubAgents
 - [Claude Code Skills Guide: Teach AI Your Exact Workflow](/posts/ai/2026-01-08-claudecode-skill-guide/) — Step-by-step guide to creating your first Skill
 - [MCP Protocol Explained: The Universal Standard for AI Integration](/posts/ai/2026-02-20-mcp-protocol-guide/) — Complete technical breakdown of the MCP protocol
 - [Best MCP Servers for Claude Code: 18 Tools You Need in 2026](/posts/ai/2026-03-05-best-mcp-servers-claude-code/) — Curated list of the best community MCP servers

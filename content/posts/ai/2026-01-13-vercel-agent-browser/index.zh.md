@@ -245,3 +245,15 @@ Agent Browser 填补了 AI 代理领域浏览器自动化工具的空白。它�
 - [Playwright CLI + Skill 三段式：把 AI 浏览器自动化做到 0 Token](/zh/posts/ai/2026-04-18-playwright-cli-skill-zero-token-automation/) — 低 Token 浏览器自动化的工程技巧
 - [Chrome DevTools MCP 完整配置指南](/zh/posts/ai/2026-03-17-chrome-devtools-mcp-guide/) — 另一条让 AI 操作浏览器的路径
 - [MCP 协议全面解析：AI 连接万物的通用标准](/zh/posts/ai/2026-02-20-mcp-protocol-guide/) — Agent Browser 背后的协议基础
+
+## 系列文章导航
+
+这是「AI Agent 浏览器自动化」系列的第 1 篇。这条线的演进：headless 驱动 → 接管真实浏览器 → 把 token 砍到底 → 共享你的登录态：
+
+1. **本文**：Vercel Agent Browser — 为 Agent 而不是测试套件设计的 snapshot 式 CLI
+2. [Claude Code 浏览器自动化：5 套方案实测对比](/zh/posts/ai/2026-01-28-claude-code-browser-automation/) — 这条线的地图：token 成本、速度、稳定性
+3. [Chrome DevTools MCP 2026 配置教程](/zh/posts/ai/2026-03-17-chrome-devtools-mcp-guide/) — 接管真实浏览器，以及 9222 端口的坑
+4. [Playwright CLI + Skill 三段式：0 Token 自动化](/zh/posts/ai/2026-04-18-playwright-cli-skill-zero-token-automation/) — 去掉 MCP token 税的三段式写法
+5. [Claude Code 截图 MCP 配置](/zh/posts/ai/2026-07-21-claude-code-screenshot-mcp-frontend-debugging/) — 前端调试闭环，10,220 对 65 token
+6. [ubrowser 实测](/zh/posts/ai/2026-07-27-ubrowser-review/) — 设计对了，仓库死了
+7. ego lite 实测：把你登录好的浏览器交给 Claude Code（即将发布）— 用 Spaces 把登录态交给 Agent
