@@ -31,7 +31,7 @@ answer = "都不需要，两者用普通制表符渲染。lazygit 把 gui.nerdFo
 
 ![gitui vs lazygit 终端 Git 工具对比实测封面](cover.webp)
 
-11 毫秒。这是 gitui 在我 M5 MacBook 上打开 git/git 仓库（82,180 个 commit）到出可用画面的时间，换成 630 个 commit 的博客仓库，数字纹丝不动。同一个仓库，lazygit 用了 416 ms。如果你搜「lazygit gitui 对比」只想知道谁快，看到这里可以关页面了：gitui，快将近 40 倍。
+11 毫秒。这是 gitui 在我 M5 MacBook 上打开 git/git 仓库到出可用画面的时间，仓库有 82,180 个 commit。换成 630 个 commit 的博客仓库，数字纹丝不动。同一个仓库，lazygit 用了 416 ms。如果你搜「lazygit gitui 对比」只想知道谁快，看到这里可以关页面了：gitui，快将近 40 倍。
 
 但这也是整篇对比里最不重要的一个事实。快 40 倍的那个，不能做交互式 rebase，冲突文件的 diff 是空白的，没有自定义命令，没有 worktree 视图，最近 20 个月只发了 3 个版本。慢的那个，最近 12 个月发了 17 个。
 
@@ -41,7 +41,7 @@ answer = "都不需要，两者用普通制表符渲染。lazygit 把 gui.nerdFo
 
 先说方法。TUI 没法像测 `ls` 那样直接用 `hyperfine` 掐表：两个工具没有终端都拒绝启动，而且「启动时间」得定义成「画面上出现能操作的东西」才有意义。
 
-所以我写了个 Python 脚本，把工具 fork 在伪终端里，输出灌进 `pyte` 终端模拟器，等屏幕满足「就绪条件」时停表。lazygit 的就绪条件是「Commits 面板画出来并且有 commit 哈希」；gitui 的是「标签栏画出来，所有 `Loading ...` 占位符消失」。内存取整棵进程树的 RSS，因为 lazygit 启动时会拉起 `git` 子进程自动 fetch，那部分也得算。
+所以我写了个 Python 脚本，把工具 fork 在伪终端里，输出灌进 `pyte` 终端模拟器，等屏幕满足「就绪条件」时停表。lazygit 的就绪条件是「Commits 面板画出来并且有 commit 哈希」。gitui 的是「标签栏画出来，所有 `Loading ...` 占位符消失」。内存取整棵进程树的 RSS，因为 lazygit 启动时会拉起 `git` 子进程自动 fetch，那部分也得算。
 
 环境如下，方便你复现或者反驳：
 
@@ -95,13 +95,17 @@ xychart-beta
     bar [31, 716]
 ```
 
-lazygit 的 716 MB 不是内存泄漏，是分支图。它给每一个加载进来的 commit 都渲染分支线，git/git 这种 merge 密集的历史，图有几十列宽。gitui 压根不画图（分支可视化还是[路线图 #81](https://github.com/gitui-org/gitui/issues/81)），一张平铺列表，内存也平铺。
+lazygit 的 716 MB 不是内存泄漏，是分支图。它给每一个加载进来的 commit 都渲染分支线，git/git 这种 merge 密集的历史，图有几十列宽。gitui 压根不画图，分支可视化至今还在[路线图 #81](https://github.com/gitui-org/gitui/issues/81) 上。一张平铺列表，内存也跟着平铺。
 
-你用一张历史图换来了 23 倍的内存差。16 GB 的笔记本上这笔交易你根本不会注意；在跑着 200 万 commit 单体仓库的共享开发机上，这就是「能用的工具」和「被 kill 的工具」的区别。
+你用一张历史图换来了 23 倍的内存差。
 
-这也让 gitui 自家 README 里的跑分有了参照系。它引用的是 Linux 内核仓库（90 万+ commit）：gitui 24 秒、0.17 GB，lazygit 57 秒、2.6 GB，还标注 lazygit「会卡死」「偶尔崩溃」。
+16 GB 的笔记本上这笔交易你根本不会注意。换成跑着 200 万 commit 单体仓库的共享开发机，这就是「能用的工具」和「被 kill 的工具」的区别。
 
-那组数据来自 2020 年 RustBerlin 聚会的一次分享，测的是好几年前的 lazygit；我在 8.2 万 commit 上跑 v0.65.0，没见到任何卡死或崩溃。不过按我的内存曲线外推，90 万 commit 吃到 2.6 GB 完全说得通。README 没撒谎，它只是描述了一个我们大多数人不会碰到的仓库规模。
+这也让 gitui 自家 README 里的跑分有了参照系。它引用的是 90 万+ commit 的 Linux 内核仓库：gitui 24 秒、0.17 GB，lazygit 57 秒、2.6 GB。README 还给 lazygit 标了「会卡死」「偶尔崩溃」。
+
+那组数据来自 2020 年 RustBerlin 聚会的一次分享，测的是好几年前的 lazygit。我在 8.2 万 commit 上跑 v0.65.0，没见到任何卡死或崩溃。
+
+不过按我的内存曲线外推，90 万 commit 吃到 2.6 GB 完全说得通。README 没撒谎，它只是描述了一个我们大多数人不会碰到的仓库规模。
 
 **性能结论，2026-09-02 版**：仓库不到 10 万 commit，启动速度根本不该进入你的选型考虑。经常要通读 Linux 内核级别仓库的全部历史，两者里只有 gitui 能舒服地做到。
 
@@ -136,7 +140,7 @@ lazygit 的 716 MB 不是内存泄漏，是分支图。它给每一个加载进�
 
 **冲突。** 我建了个两个分支改同一行的仓库，两个工具都打开看。lazygit 把文件面板切成「(only conflicting)」，右侧显示 `<<<<<<<` / `=======` / `>>>>>>>` 块，底栏写着 `Pick hunk: <space> | Pick both hunks: b | Previous conflict: <left> | Next conflict: <right> | Undo: z`。
 
-gitui 给 `app.py` 标了个 `!`，diff 面板一行 `size: 0 B -> 62 B (+62 B)`，其余全空。唯一跟冲突有关的键是「Abort merge」。这是个未关闭的 bug（[#2865](https://github.com/gitui-org/gitui/issues/2865)），绕法是按 `e` 打开编辑器，而这恰恰是 TUI 本来应该帮你省掉的那一趟。
+gitui 给 `app.py` 标了个 `!`，diff 面板一行 `size: 0 B -> 62 B (+62 B)`，其余全空。唯一跟冲突有关的键是「Abort merge」。这是个未关闭的 bug，编号 [#2865](https://github.com/gitui-org/gitui/issues/2865)。绕法是按 `e` 打开编辑器，而这一趟恰恰是 TUI 本来该帮你省掉的。
 
 **blame 和文件树。** 这是 gitui 真正赢的地方，我不想让 rebase 那一段把它埋掉。lazygit 的 Files 面板只列**有改动**的文件，没有任何办法在仓库树里翻文件、问「这一行谁写的」。
 
@@ -146,7 +150,7 @@ gitui 的 Files 标签页显示任意 commit 的完整目录树，`B` 是带语�
 
 这一节是给从[Windows 终端推荐](/zh/posts/ai/2026-06-22-best-windows-terminal-2026/)那篇过来的读者写的。先坦白：这次实测是在 Mac 上做的，Windows 和 WSL2 我没在这轮里跑，下面的坑来自两个项目的 issue 和文档，不是我的一手翻车记录，请按这个可信度看。
 
-**安装本身两家都没问题。** Windows 原生装 lazygit：`winget install -e --id=JesseDuffield.lazygit`，或者 `scoop bucket add extras && scoop install lazygit`；装 gitui：`winget install gitui` 或 `scoop install gitui`，choco 也都有包。
+**安装本身两家都没问题。** Windows 原生装 lazygit：`winget install -e --id=JesseDuffield.lazygit`，或者 `scoop bucket add extras && scoop install lazygit`。装 gitui：`winget install gitui` 或 `scoop install gitui`，choco 也都有包。
 
 WSL2 里的 Ubuntu 走各自的 Linux 安装方式即可，gitui 的 Linux 包是 musl 静态链接，扔进任何发行版都能跑。
 
@@ -178,7 +182,7 @@ gitui 开箱就是干净的，因为它通过 libgit2 读 diff，不解析 porce
 
 2025 年之后我用 Git 的方式变了：机器上大部分 diff 是 Claude Code 或者 Codex 写的，我的活儿是审，不是写。这改变了我对 Git TUI 的需求，也把天平狠狠推向了 lazygit，具体是三件事。
 
-**逐 hunk 审 agent 的产出。** 两家都能按行暂存。但 agent 生成的 diff 恰恰是你想「留下好的一半、丢掉幻觉的一半、按 agent 没想到的逻辑单元分开提交」的场景。lazygit 的 `v` 范围选，加上「自定义补丁」流程（从 agent 已经提交的 commit 里把某几行抽出来），把这一套全覆盖了；gitui 到暂存为止。
+**逐 hunk 审 agent 的产出。** 两家都能按行暂存。但 agent 生成的 diff 恰恰是你想「留下好的一半、丢掉幻觉的一半、按 agent 没想到的逻辑单元分开提交」的场景。lazygit 的 `v` 范围选加上「自定义补丁」流程，能从 agent 已经提交的 commit 里把某几行抽出来，这一套它全覆盖。gitui 到暂存为止。
 
 **一个 agent 一个 worktree。** 并行跑两三个 agent 意味着[一个任务一个 worktree](/zh/posts/ai/2026-02-28-claude-code-worktree-guide/)，烦的从来不是创建，是记住哪个是哪个、以及事后清理。
 
@@ -200,9 +204,9 @@ customCommands:
     description: 'Start Claude Code in this worktree'
 ```
 
-gitui 两条都表达不了。它没有自定义命令系统，在 issue 里搜相关需求，除了一个已关闭的编译报错什么都没有。作为纯粹「看仓库」的工具这没问题；作为夹在我和 agent 之间的工具，这是一票否决。
+gitui 两条都表达不了。它没有自定义命令系统，在 issue 里搜相关需求，除了一个已关闭的编译报错什么都没有。作为纯粹「看仓库」的工具，这没问题。作为夹在我和 agent 之间的工具，这是一票否决。
 
-gitui 在 agent 工作流里唯一站得住的位置，是审 agent 改动的**陌生**代码：对那个文件按 `B` 看 blame，判断它改的那一行是不是承重墙、上一次是谁动的。我就为这个留着 gitui，一周大概打开两次。
+gitui 在 agent 工作流里唯一站得住的位置，是审 agent 改动过的**陌生**代码。对那个文件按 `B` 看 blame，就知道它改的那一行是不是承重墙、上一次是谁动的。我就为这个留着 gitui，一周大概打开两次。
 
 ## 结论：装 lazygit，留 gitui 看 blame
 
@@ -239,7 +243,7 @@ flowchart TB
 
 如果你是从 [fish shell](/zh/posts/linux/2026-04-18-fish-shell-rust-2026/) 和 Rust 工具链那波过来的，想先把终端本身理顺，我的[终端工具推荐](/zh/posts/macos/2025-01-22-terminal-tools-guide/)和 [Windows 终端横评](/zh/posts/ai/2026-06-22-best-windows-terminal-2026/)讲的是这两个工具底下那一层。
 
-*关于 tig 的脚注：它还活着（1.33 万 star，2026 年 6 月发了 v2.6.1），作为一个只读的 `git log` 翻页器，它比 gitui 还轻。但它不能暂存、不能 rebase、不能解冲突，所以不算第三个选手；它是一个非常好用的 Git 版 `less`。*
+*关于 tig 的脚注：它还活着（1.33 万 star，2026 年 6 月发了 v2.6.1），作为一个只读的 `git log` 翻页器，它比 gitui 还轻。但它不能暂存、不能 rebase、不能解冲突，所以不算第三个选手。它是一个非常好用的 Git 版 `less`。*
 
 ## 相关阅读
 

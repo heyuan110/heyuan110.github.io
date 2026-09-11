@@ -35,14 +35,15 @@ def measure(path: str) -> dict:
     lens = [len(p) for p in paras]
     sents = [x for p in paras for x in re.split(r"[。！？]", p) if x.strip()]
     slens = [len(x) for x in sents] or [0]
+    prose = "\n".join(paras)   # 只看正文散文:表格单元格里的分号是合法排版,不算文风问题
     return {
-        "dash": body.count("——"),
-        "semi": body.count("；"),
+        "dash": prose.count("——"),
+        "semi": prose.count("；"),
         "para_avg": sum(lens) // len(lens),
         "para_long": sum(1 for x in lens if x > 120) * 100 // len(lens),
         "sent_avg": sum(slens) // len(slens),
         "sent_long": sum(1 for x in slens if x > 60) * 100 // len(slens),
-        "vague": sum(body.count(v) for v in VAGUE),
+        "vague": sum(prose.count(v) for v in VAGUE),
         "_paras": len(paras),
     }
 
