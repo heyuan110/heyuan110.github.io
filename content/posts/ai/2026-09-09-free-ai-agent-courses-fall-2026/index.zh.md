@@ -1,6 +1,6 @@
 +++
-date = '2026-09-14T10:00:00+08:00'
-aliases = ['/posts/ai/2026-09-11-free-ai-agent-courses-fall-2026/']
+date = '2026-09-09T10:00:00+08:00'
+aliases = ['/posts/ai/2026-09-11-free-ai-agent-courses-fall-2026/', '/posts/ai/2026-09-14-free-ai-agent-courses-fall-2026/']
 draft = false
 title = '2026 秋季 5 门免费大学 AI Agent 课怎么跟：斯坦福、CMU、MIT'
 description = '斯坦福 CS146S/CS329Z/CS329A、CMU 11-768、MIT 多模态课五门免费 AI Agent 课程横向对比：哪门有公开视频、哪门只有材料、国内怎么获取、先跟哪门、每周几小时。'
@@ -10,7 +10,7 @@ keywords = ['ai agent 课程', '斯坦福 ai 课程', 'cmu ai agents', '免费 a
 
 [[params.faqItems]]
 question = "2026 秋季哪门免费 AI Agent 课有公开的课堂视频？"
-answer = "跟着本学期同步更新视频的只有 CMU 11-768 AI Agents（Graham Neubig 和 Daniel Fried）：截至 2026 年 9 月 11 日，28 节课里已有 4 节上了 YouTube，6 节有 PDF 讲义。斯坦福 CS329A 的 9 节 2025 秋季课在 Stanford Online 频道可以完整回看。斯坦福 CS146S 和 CS329Z 没有公开视频；MIT 多模态课有 2026 春季的 13 节视频。"
+answer = "跟着本学期同步更新视频的只有 CMU 11-768 AI Agents（Graham Neubig 和 Daniel Fried）：截至 2026 年 9 月 9 日，28 节课里已有 4 节上了 YouTube，6 节有 PDF 讲义。斯坦福 CS329A 的 9 节 2025 秋季课在 Stanford Online 频道可以完整回看。斯坦福 CS146S 和 CS329Z 没有公开视频；MIT 多模态课有 2026 春季的 13 节视频。"
 
 [[params.faqItems]]
 question = "斯坦福的 AI Agent 课程是免费的吗？"
@@ -33,7 +33,7 @@ answer = "两门需要。CMU 11-768 要求有训练神经语言模型的经验�
 
 2026 年秋季有 5 门大学**免费 AI Agent 课程**在跑或者刚放出材料，其中 3 门你根本看不到课。这是整篇文章的起点，因为搜索结果不会告诉你这一点。斯坦福 CS146S、斯坦福 CS329Z、斯坦福 CS329A、CMU 11-768、MIT 多模态课，五门都有公开官网、大纲和阅读清单；但今天能点开播放的只有两门，本学期边上边录的只有一门。
 
-我从今年 2 月开始写斯坦福 CS146S，[全解析](/zh/posts/ai/2026-02-24-stanford-cs146s-overview/)、[自学手册](/zh/posts/ai/2026-07-02-cs146s-study-guide/)和[2026 秋季跟课方案](/zh/posts/ai/2026-09-11-cs146s-fall-2026-follow-along/)是这个博客读得最多的页面。所以才有这篇导航页：读者一直在问"这几门到底跟哪门"，答案既不是"全跟"，也不是"跟斯坦福那门"。截至 2026 年 9 月 11 日，我把五门课的课程表全部从官网扒下来（CMU 官网是前端渲染的，我直接从它的 JS 包里取的数据），数了每个播放列表的视频数，读了每张评分表。下面是对比表、"到底什么免费"的诚实清单，以及我自己会怎么排。
+我从今年 2 月开始写斯坦福 CS146S，[全解析](/zh/posts/ai/2026-02-24-stanford-cs146s-overview/)、[自学手册](/zh/posts/ai/2026-07-02-cs146s-study-guide/)和[2026 秋季跟课方案](/zh/posts/ai/2026-09-11-cs146s-fall-2026-follow-along/)是这个博客读得最多的页面。所以才有这篇导航页：读者一直在问"这几门到底跟哪门"，答案既不是"全跟"，也不是"跟斯坦福那门"。截至 2026 年 9 月 9 日，我把五门课的课程表全部从官网扒下来（CMU 官网是前端渲染的，我直接从它的 JS 包里取的数据），数了每个播放列表的视频数，读了每张评分表。下面是对比表、"到底什么免费"的诚实清单，以及我自己会怎么排。
 
 ## 五门课一张表
 
@@ -42,7 +42,7 @@ answer = "两门需要。CMU 11-768 要求有训练神经语言模型的经验�
 | 课程 | 学期与日期 | 主讲 | 课堂视频 | 讲义 / 材料 | 作业公开？ | 前置要求 | 适合谁 |
 |---|---|---|---|---|---|---|---|
 | [斯坦福 CS146S](https://themodernsoftware.dev/) The Modern Software Developer | 2026 秋，9 月 22 日至 12 月 3 日，周二/周四 | Mihail Eric | **没有**（历来没有） | 大纲公开；2025 秋 PPT 公开；2026 版待发 | 2025 秋作业在 GitHub；2026 版待发 | 会编程 | 每天用 Claude Code / Codex、想系统补实践方法论的工程师 |
-| [CMU 11-768](https://www.cmu-agents.com/) AI Agents | 2026 秋，8 月 25 日至 12 月 3 日，周二/周四美东 15:30 到 16:50 | Graham Neubig、Daniel Fried | **有**，YouTube 持续更新（截至 9 月 11 日 28 节里 4 节） | 每讲 PDF 讲义（已发 6 份）、阅读清单 | 作业 1 起始仓库公开 | 训练过语言模型（11-667/11-711 水平） | 想吃透 harness、评测、RL 训练全链路的 builder |
+| [CMU 11-768](https://www.cmu-agents.com/) AI Agents | 2026 秋，8 月 25 日至 12 月 3 日，周二/周四美东 15:30 到 16:50 | Graham Neubig、Daniel Fried | **有**，YouTube 持续更新（截至 9 月 9 日 28 节里 4 节） | 每讲 PDF 讲义（已发 6 份）、阅读清单 | 作业 1 起始仓库公开 | 训练过语言模型（11-667/11-711 水平） | 想吃透 harness、评测、RL 训练全链路的 builder |
 | [斯坦福 CS329Z](https://cs329z.stanford.edu/) Engineering AI Agents | 2026 秋，9 月 23 日至 12 月 2 日，周一/周三太平洋 13:30 到 14:50 | Diyi Yang、Michael Ryan、John Yang | **没有**（仅 Canvas） | 大纲和课程表公开；PPT 待发 | 作业说明公开；起始代码不公开 | CS224N 级 NLP | 熟悉框架、想从零写 harness 并建立评测纪律的 builder |
 | [斯坦福 CS329A](https://cs329a.stanford.edu/) Self-Improving AI Agents | 2025 秋，2025 年 9 月 22 日至 12 月 5 日（回看） | Azalia Mirhoseini、Aakanksha Chowdhery | **有**，Stanford Online 9 节（2026 年 8 月上传） | 课程表公开；PPT 未链接 | 无 | ML 基础；懂 RL 更好 | 想听做过 PaLM、Gemini 的人讲 test-time compute、验证器、RL 前沿的人 |
 | [MIT MAS.S60 / 6.S985](https://mit-mi.github.io/mmai-course/spring2026/) Modeling: Multimodal AI | 2026 春，2026 年 2 月 3 日至 5 月 12 日（回看） | Paul Liang 及三位合授老师 | **有**，28 节里 13 节在 YouTube | 每讲都有 PPT；应用类客座课只有 PPT | 无 | 深度学习基础 | 做多模态或 GUI agent 的人；不是通用 agent 课 |
@@ -51,7 +51,7 @@ answer = "两门需要。CMU 11-768 要求有训练神经语言模型的经验�
 
 ## 能看的和只能读的
 
-**"免费"在这里有三种意思，区别决定你能不能跟得上。** 按 2026 年 9 月 11 日能点开播放的东西，我把五门分成三档：
+**"免费"在这里有三种意思，区别决定你能不能跟得上。** 按 2026 年 9 月 9 日能点开播放的东西，我把五门分成三档：
 
 **第一档，同步能看：CMU 11-768。** Graham Neubig 频道上的 [2026 秋季播放列表](https://www.youtube.com/playlist?list=PLSN0qpDfUvTM)我查的时候有 4 节课（每节 57 到 76 分钟），覆盖 8 月 25 日到 9 月 3 日的"什么是 agent"、工具调用、长上下文、skills 与记忆四讲。6 节课有 PDF 讲义。播放列表总播放量 1,413。这个数字很说明问题：五门里它最没人发现，却是唯一一门边上边录的。
 
@@ -131,7 +131,7 @@ flowchart TD
 **凡是需要一个真人看你作业的环节，五门课全部锁在注册墙后面。** 上面的表说"免费"，材料确实免费，但下面是你拿不到的东西的诚实清单，因为每门课的清单几乎一样：
 
 - **成绩和反馈。** CMU 50% 的项目、CS329Z 50% 的项目、CS329A 35% 的项目、CS146S 50% 的期末项目。没人读你的作品。替代方案：公开发出来，找你用的那个工具的社区求 review，差一些但不是零。
-- **作业起始代码，部分。** CMU 发了作业 1；作业 2 和 3 到 9 月 11 日还没公开。CS329Z 的 HW1 和 HW2 只有说明。CS146S 的 2026 作业未发；2025 那套在 GitHub。CS329A 和 MIT 一份都没发。
+- **作业起始代码，部分。** CMU 发了作业 1；作业 2 和 3 到 9 月 9 日还没公开。CS329Z 的 HW1 和 HW2 只有说明。CS146S 的 2026 作业未发；2025 那套在 GitHub。CS329A 和 MIT 一份都没发。
 - **API 和算力额度。** CMU 作业要 Modal 账号和一个 LLM key；课程给学生安排额度。用自己的 DeepSeek 或 OpenAI 兼容 key 跑 harness 作业，是这篇文章里唯一一项要花钱的，花多少我说不上来，因为我没跑过。
 - **讨论区和答疑。** Piazza、Ed、Canvas、助教答疑，五门都只对在校生。CS329Z 的测验还是闭卷个人完成。
 - **客座讲座，大部分。** CS329A 的 DeepMind 和 Reflection AI 客座不在 9 节公开视频里。CS146S 的八位客座压根没有视频。CMU 11 月的两次客座还没公布人选，录不录看讲者。
@@ -149,7 +149,7 @@ flowchart TD
 
 ## 这篇到此为止
 
-这是导航页。逐周的方案在各篇深挖里：实践线看 [CS146S 跟课方案](/zh/posts/ai/2026-09-11-cs146s-fall-2026-follow-along/)，主线看 [CMU 11-768 深挖](/zh/posts/ai/2026-09-16-cmu-11-768-ai-agents-course/)，想偷作业的看 [CS329Z 拆解](/zh/posts/ai/2026-09-18-stanford-cs329z-engineering-ai-agents/)。CMU 发出作业 2 和 3、CS146S 挂出 2026 版 PPT、CS329Z 或 CS329A 放出任何视频，我都会更新上面的表；正文里的"截至"日期就是标记。
+这是导航页。逐周的方案在各篇深挖里：实践线看 [CS146S 跟课方案](/zh/posts/ai/2026-09-11-cs146s-fall-2026-follow-along/)，主线看 [CMU 11-768 深挖](/zh/posts/ai/2026-09-08-cmu-11-768-ai-agents-course/)，想偷作业的看 [CS329Z 拆解](/zh/posts/ai/2026-09-04-stanford-cs329z-engineering-ai-agents/)。CMU 发出作业 2 和 3、CS146S 挂出 2026 版 PPT、CS329Z 或 CS329A 放出任何视频，我都会更新上面的表；正文里的"截至"日期就是标记。
 
 三件我没能核实、想记录在案的事：CMU 11 月的客座讲座会不会录像，用自己的 API key 跑 CMU 作业 1 要花多少钱，CS329A 2026-27 学年会不会再开。你要是在读其中任何一门、知道答案，评论区开着。
 

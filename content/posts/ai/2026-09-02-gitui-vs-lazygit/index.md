@@ -1,6 +1,6 @@
 +++
-date = '2026-09-12T10:00:00+08:00'
-aliases = ['/posts/ai/2026-09-11-gitui-vs-lazygit/']
+date = '2026-09-02T10:00:00+08:00'
+aliases = ['/posts/ai/2026-09-11-gitui-vs-lazygit/', '/posts/ai/2026-09-12-gitui-vs-lazygit/']
 draft = false
 title = 'gitui vs lazygit in 2026: Benchmarked on 82K Commits'
 description = 'gitui vs lazygit on an 82K-commit repo: gitui paints in 11 ms with 31 MB, lazygit needs 416 ms but owns rebase, conflicts, worktrees and custom commands. Pick guide.'
@@ -97,7 +97,7 @@ Lazygit at 716 MB isn't a leak, it's the commit graph. Lazygit renders the branc
 
 This also puts gitui's own README benchmark in perspective. It quotes the Linux kernel (900K+ commits): 24 s and 0.17 GB for gitui versus 57 s and 2.6 GB for lazygit, with lazygit "freezing" and "sometimes crashing." Those numbers date to a 2020 RustBerlin meetup talk and were measured on lazygit builds several years old; I saw no freezes or crashes at 82K commits on v0.65.0. Extrapolate my memory curve, though, and 2.6 GB at 900K commits is entirely plausible. The README isn't wrong, it's just describing a repo size most of us don't work in.
 
-**Verdict on performance, dated 2026-09-11:** if your repo has fewer than ~100K commits, startup speed should not be in your decision at all. If you routinely read the entire history of a Linux-kernel-sized repo, gitui is the only one of the two that does it comfortably.
+**Verdict on performance, dated 2026-09-02:** if your repo has fewer than ~100K commits, startup speed should not be in your decision at all. If you routinely read the entire history of a Linux-kernel-sized repo, gitui is the only one of the two that does it comfortably.
 
 ## Feature matrix from a week of real use
 
@@ -120,7 +120,7 @@ Everything below I did with my own hands on v0.65.0 and v0.28.1, not from the RE
 | UI languages | auto-detects zh-CN, zh-TW, ja, ko, ru, pl, nl, pt | English only |
 | Windows install | winget, scoop, choco | winget, scoop, choco |
 | Releases, last 12 months | 17 (v0.55.1 on 2025-09-17 through v0.65.0 on 2026-09-05) | 2 (v0.28.0 on 2025-12-14, v0.28.1 on 2026-03-24) |
-| GitHub stars (2026-09-11) | 82,214 | 22,477 |
+| GitHub stars (2026-09-02) | 82,214 | 22,477 |
 
 Three rows on that table decided the article for me.
 

@@ -1,6 +1,6 @@
 +++
-date = '2026-09-18T10:00:00+08:00'
-aliases = ['/posts/ai/2026-09-11-stanford-cs329z-engineering-ai-agents/']
+date = '2026-09-04T10:00:00+08:00'
+aliases = ['/posts/ai/2026-09-11-stanford-cs329z-engineering-ai-agents/', '/posts/ai/2026-09-18-stanford-cs329z-engineering-ai-agents/']
 draft = false
 title = '斯坦福 CS329Z Engineering AI Agents 课程拆解：没有公开录像，怎么用大纲自学'
 description = '斯坦福 CS329Z（2026 秋）把 AI Agent 当工程学科教：拆解、数据、评测三大挑战。完整带日期课表、HW1/HW2 作业说明、评分表、和 CS146S 怎么二选一，以及没有公开录像时用 Claude Code 复刻作业的逐模块自学方案。'
@@ -91,7 +91,7 @@ John Yang 造了整个编程 Agent 行业都在报分数的基准（[SWE-bench](
 
 ## 2026 秋季完整课表
 
-9 月 23 日到 12 月 2 日共 21 个课时：17 场正课、2 场嘉宾讲座（人选待定）、感恩节停课 2 天。官网标注课表"暂定、可能调整"，下表是 2026 年 9 月 11 日的版本。表里列的是必读材料，每讲还配有"补充阅读"（共 27 篇），我折进了后面的自学替代表。
+9 月 23 日到 12 月 2 日共 21 个课时：17 场正课、2 场嘉宾讲座（人选待定）、感恩节停课 2 天。官网标注课表"暂定、可能调整"，下表是 2026 年 9 月 4 日的版本。表里列的是必读材料，每讲还配有"补充阅读"（共 27 篇），我折进了后面的自学替代表。
 
 | 周 | 日期 | 讲题 | 必读 |
 |----|------|------|------|
@@ -215,7 +215,7 @@ flowchart LR
 
 模块二要单独提醒一句，因为自学者最容易在这里耗时间。DSPy 文档写得不错，但它是按"导览"组织的，不是按"课程"；10 月 7 日那讲能给选课学生的，是<strong>对比</strong>：signature/module/optimizer 对 LangGraph 的节点图对 LlamaIndex 的数据优先视角。没有这个框架，你往往学会一个框架的词汇表，然后把它误认为概念本身。解法就是表里那道练习：同一个 harness 移植到两个框架，用文字写出差异。文字才是交付物。
 
-想看这个秋季所有免费 Agent 课程的全景，包括 CMU 同期开的那门，见 [2026 秋季免费 AI Agent 课程汇总](/posts/ai/2026-09-14-free-ai-agent-courses-fall-2026/)和 [CMU 11-768 课程拆解](/posts/ai/2026-09-16-cmu-11-768-ai-agents-course/)。
+想看这个秋季所有免费 Agent 课程的全景，包括 CMU 同期开的那门，见 [2026 秋季免费 AI Agent 课程汇总](/posts/ai/2026-09-09-free-ai-agent-courses-fall-2026/)和 [CMU 11-768 课程拆解](/posts/ai/2026-09-08-cmu-11-768-ai-agents-course/)。
 
 ## 对本站读者最值钱的一周
 
@@ -249,8 +249,8 @@ CS329Z 是斯坦福第一门把 Agent 当工程学科而不是开发者技能来
 
 - [斯坦福 CS146S：The Modern Software Developer 2026 指南](/posts/ai/2026-02-24-stanford-cs146s-overview/)：开发者实践路线的姊妹课，完整拆解
 - [斯坦福 CS146S 2026 秋季开课了：不注册怎么免费跟课](/posts/ai/2026-09-11-cs146s-fall-2026-follow-along/)：今秋另一门斯坦福课的课表和跟课方案
-- [2026 秋季免费 AI Agent 课程汇总](/posts/ai/2026-09-14-free-ai-agent-courses-fall-2026/)：本学期所有公开 Agent 课程大纲的对比枢纽页
-- [CMU 11-768 AI Agent 课程拆解](/posts/ai/2026-09-16-cmu-11-768-ai-agents-course/)：CMU 的对应课程，以及它和 CS329Z 的差别
+- [2026 秋季免费 AI Agent 课程汇总](/posts/ai/2026-09-09-free-ai-agent-courses-fall-2026/)：本学期所有公开 Agent 课程大纲的对比枢纽页
+- [CMU 11-768 AI Agent 课程拆解](/posts/ai/2026-09-08-cmu-11-768-ai-agents-course/)：CMU 的对应课程，以及它和 CS329Z 的差别
 - [Harness 六层架构倒着建](/posts/ai/2026-04-18-harness-six-layers-reverse-build/)：为什么评测和恢复才是关键的两层，附生产数据
 - [上下文工程 2026](/posts/ai/2026-06-16-context-engineering-2026/)：第二讲的主题，深挖版
 - [Agentic Loops 2026](/posts/ai/2026-07-03-agentic-loops/)：HW1 逼你手写的那个 ReAct 式循环

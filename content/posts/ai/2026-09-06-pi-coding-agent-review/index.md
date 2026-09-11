@@ -1,5 +1,6 @@
 +++
-date = '2026-09-23T10:00:00+08:00'
+date = '2026-09-06T10:00:00+08:00'
+aliases = ['/posts/ai/2026-09-23-pi-coding-agent-review/']
 draft = false
 title = 'pi Coding Agent Review 2026: 4 Tools vs Claude Code, Tested'
 description = 'pi coding agent vs Claude Code on 3 identical tasks: 1,358 vs 31,012 context tokens, 4 tools, zero permission dialogs. Real receipts and who should switch.'
@@ -40,7 +41,7 @@ Receipts below. A quick note on scope: a Chinese tutorial on runoob covers pi's 
 
 pi is Mario Zechner's answer to Claude Code turning into, in his words, "a spaceship with 80% of functionality I have no use for." Zechner is the libGDX creator; he published pi's rationale on [his blog in November 2025](https://mariozechner.at/posts/2025-11-30-pi-coding-agent/) and the core idea hasn't moved since: four tools (`read`, `write`, `edit`, `bash`), a system prompt small enough to read in one screen, and a TypeScript extension API for everything else.
 
-The project's numbers are not small-project numbers. As of September 11, 2026, [earendil-works/pi](https://github.com/earendil-works/pi) has 103,925 stars and 12,999 forks, created August 9, 2025, last pushed the day before I checked, MIT licensed. The CLI package `@earendil-works/pi-coding-agent` sits at v0.85.1 (released September 5) and pulls 1.53M npm downloads a week.
+The project's numbers are not small-project numbers. As of September 6, 2026, [earendil-works/pi](https://github.com/earendil-works/pi) has 103,925 stars and 12,999 forks, created August 9, 2025, last pushed the day before I checked, MIT licensed. The CLI package `@earendil-works/pi-coding-agent` sits at v0.85.1 (released September 5) and pulls 1.53M npm downloads a week.
 
 For scale, `@anthropic-ai/claude-code` does 8.55M and `@openai/codex` 13.16M, so pi is roughly one-sixth of Claude Code by install volume and well ahead of OpenCode's 1.31M.
 

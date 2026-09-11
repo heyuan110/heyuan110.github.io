@@ -1,6 +1,6 @@
 +++
-date = '2026-09-14T10:00:00+08:00'
-aliases = ['/posts/ai/2026-09-11-free-ai-agent-courses-fall-2026/']
+date = '2026-09-09T10:00:00+08:00'
+aliases = ['/posts/ai/2026-09-11-free-ai-agent-courses-fall-2026/', '/posts/ai/2026-09-14-free-ai-agent-courses-fall-2026/']
 draft = false
 title = 'Free AI Agent Courses Fall 2026: Stanford, CMU, MIT Compared'
 description = 'Five free university AI agent courses for Fall 2026 compared: which have public lecture videos, which are materials-only, who each is for, and the stack to run.'
@@ -10,7 +10,7 @@ keywords = ['free ai agent courses 2026', 'stanford ai agents course', 'cmu ai a
 
 [[params.faqItems]]
 question = "Which free AI agent course has public lecture videos in Fall 2026?"
-answer = "Only CMU 11-768 AI Agents (Graham Neubig and Daniel Fried) posts Fall 2026 lecture recordings as the term runs: four of 28 sessions were on YouTube as of September 11, 2026, with slides for six. Stanford CS329A has all nine lectures from its Autumn 2025 run on the Stanford Online channel. Stanford CS146S and CS329Z have no public video; MIT's multimodal course has 13 videos from Spring 2026."
+answer = "Only CMU 11-768 AI Agents (Graham Neubig and Daniel Fried) posts Fall 2026 lecture recordings as the term runs: four of 28 sessions were on YouTube as of September 9, 2026, with slides for six. Stanford CS329A has all nine lectures from its Autumn 2025 run on the Stanford Online channel. Stanford CS146S and CS329Z have no public video; MIT's multimodal course has 13 videos from Spring 2026."
 
 [[params.faqItems]]
 question = "Is the Stanford AI agents course free?"
@@ -33,7 +33,7 @@ answer = "For two of them. CMU 11-768 expects prior experience training neural l
 
 Five universities are running or have just published **free AI agent courses for Fall 2026**, and three of them you cannot watch. That's the fact to start from, because the search results won't tell you. Stanford CS146S, Stanford CS329Z, Stanford CS329A, CMU 11-768, and MIT's multimodal course all have public websites, syllabi, and reading lists; only two of them have lecture recordings you can play today, and only one is recording *this* term as it happens.
 
-I've been covering Stanford CS146S since February, and its [overview](/posts/ai/2026-02-24-stanford-cs146s-overview/), [study guide](/posts/ai/2026-07-02-cs146s-study-guide/), and [Fall 2026 follow-along](/posts/ai/2026-09-11-cs146s-fall-2026-follow-along/) are the most-read pages on this blog. That's why this hub exists: readers keep asking "which of these should I follow," and the answer isn't "all five" or "the Stanford one." As of September 11, 2026, I pulled every schedule from the official sites (for CMU, from the site's JavaScript bundle, because the page is client-rendered), counted the videos on every playlist, and read every grading table. What follows is the comparison, the honest inventory of what's actually free, and the stack I'd run.
+I've been covering Stanford CS146S since February, and its [overview](/posts/ai/2026-02-24-stanford-cs146s-overview/), [study guide](/posts/ai/2026-07-02-cs146s-study-guide/), and [Fall 2026 follow-along](/posts/ai/2026-09-11-cs146s-fall-2026-follow-along/) are the most-read pages on this blog. That's why this hub exists: readers keep asking "which of these should I follow," and the answer isn't "all five" or "the Stanford one." As of September 9, 2026, I pulled every schedule from the official sites (for CMU, from the site's JavaScript bundle, because the page is client-rendered), counted the videos on every playlist, and read every grading table. What follows is the comparison, the honest inventory of what's actually free, and the stack I'd run.
 
 ## The Five Courses at a Glance
 
@@ -42,7 +42,7 @@ I've been covering Stanford CS146S since February, and its [overview](/posts/ai/
 | Course | Term and dates | Instructors | Live video? | Slides / materials | Assignments public? | Prereqs | Best for |
 |---|---|---|---|---|---|---|---|
 | [Stanford CS146S](https://themodernsoftware.dev/) The Modern Software Developer | Fall 2026, Sep 22 to Dec 3, Tue/Thu | Mihail Eric | **No** (none, ever) | Syllabus public; Fall 2025 decks public; 2026 decks TBD | Fall 2025 assignments on GitHub; 2026 TBD | Programming | Engineers who use Claude Code / Codex daily and want the practice canon |
-| [CMU 11-768](https://www.cmu-agents.com/) AI Agents | Fall 2026, Aug 25 to Dec 3, Tue/Thu 3:30 to 4:50 PM ET | Graham Neubig, Daniel Fried | **Yes**, YouTube, updating (4 of 28 as of Sep 11) | Slides PDF per lecture (6 so far), readings | Assignment 1 starter repo public | Trained an LM before (11-667/11-711 level) | Builders who want the whole loop: harness, eval, RL training |
+| [CMU 11-768](https://www.cmu-agents.com/) AI Agents | Fall 2026, Aug 25 to Dec 3, Tue/Thu 3:30 to 4:50 PM ET | Graham Neubig, Daniel Fried | **Yes**, YouTube, updating (4 of 28 as of Sep 9) | Slides PDF per lecture (6 so far), readings | Assignment 1 starter repo public | Trained an LM before (11-667/11-711 level) | Builders who want the whole loop: harness, eval, RL training |
 | [Stanford CS329Z](https://cs329z.stanford.edu/) Engineering AI Agents | Fall 2026, Sep 23 to Dec 2, Mon/Wed 1:30 to 2:50 PM PT | Diyi Yang, Michael Ryan, John Yang | **No** (Canvas-only) | Syllabus and schedule public; slides TBD | Descriptions public; starter code not | CS224N-level NLP | Framework-literate builders who want a from-scratch harness plus eval discipline |
 | [Stanford CS329A](https://cs329a.stanford.edu/) Self-Improving AI Agents | Autumn 2025, Sep 22 to Dec 5, 2025 (replay) | Azalia Mirhoseini, Aakanksha Chowdhery | **Yes**, 9 lectures on Stanford Online (posted Aug 2026) | Schedule public; slides not linked | No | ML basics; RL helps | Anyone who wants the test-time compute / verifier / RL frontier explained by people who shipped PaLM and Gemini |
 | [MIT MAS.S60 / 6.S985](https://mit-mi.github.io/mmai-course/spring2026/) Modeling: Multimodal AI | Spring 2026, Feb 3 to May 12, 2026 (replay) | Paul Liang and three co-instructors | **Yes**, 13 of 28 sessions on YouTube | Slides for every lecture; application guest lectures slides-only | No | Deep learning basics | People building multimodal or GUI agents; not a general agents course |
@@ -51,7 +51,7 @@ Two rows deserve a second look. CS146S and CMU 11-768 are both live this fall, b
 
 ## Which You Can Watch vs Which You Can Only Read
 
-**"Free" here means three different things, and the difference decides whether you can follow along.** I sort the five into three tiers by what you can press play on as of September 11, 2026:
+**"Free" here means three different things, and the difference decides whether you can follow along.** I sort the five into three tiers by what you can press play on as of September 9, 2026:
 
 **Tier 1, watchable live: CMU 11-768.** The [Fall 2026 playlist](https://www.youtube.com/playlist?list=PLSN0qpDfUvTM) on Graham Neubig's channel had four lectures (57 to 76 minutes each) when I checked, covering the "What is an agent," tool use, long-context, and skills-and-memory sessions from August 25 to September 3. Slides are linked as PDFs for six sessions. The playlist had 1,413 views. That number matters: this is the least-discovered of the five, and the only one recording as it goes.
 
@@ -131,7 +131,7 @@ Hours per week, with the assumptions stated. CMU live: two lectures at 60 to 76 
 **Everything that involves a human looking at your work stays behind enrollment, at all five.** The tables above say "free," and the materials are, but here's the honest list of what you don't get, because it's the same list every time:
 
 - **Grades and feedback.** CMU's 50% project, CS329Z's 50% project, CS329A's 35% project, CS146S's 50% final project. No one reads your work. Substitute: publish it and ask the tool's community to review, which is worse but not nothing.
-- **Assignment starter code, partially.** CMU posted Assignment 1; Assignments 2 and 3 weren't public on September 11. CS329Z's HW1 and HW2 are descriptions only. CS146S's 2026 assignments weren't posted; the 2025 set is on GitHub. CS329A and MIT posted none.
+- **Assignment starter code, partially.** CMU posted Assignment 1; Assignments 2 and 3 weren't public on September 9. CS329Z's HW1 and HW2 are descriptions only. CS146S's 2026 assignments weren't posted; the 2025 set is on GitHub. CS329A and MIT posted none.
 - **API and compute credits.** CMU's assignment expects a Modal account and an LLM key; the course arranges credits for students. Running the harness assignment on your own DeepSeek or OpenAI-compatible key is the one line item in this post that costs money, and I can't tell you how much because I haven't run it.
 - **Discussion and office hours.** Piazza, Ed, Canvas, and TA hours are enrolled-only everywhere. CS329Z even keeps its quizzes closed-book and individual.
 - **Guest lectures, mostly.** CS329A's DeepMind and Reflection AI guests aren't in the nine public videos. CS146S's eight guests have no video at all. CMU's two November guest lectures aren't named yet, and whether they're recorded is up to the speaker.
@@ -147,7 +147,7 @@ The real access question for readers in China is YouTube and Google Slides, and 
 
 ## Where This Page Stops
 
-This is the routing page. The deep dives are where the week-by-week plans live: the [CS146S follow-along](/posts/ai/2026-09-11-cs146s-fall-2026-follow-along/) for the practice track, the [CMU 11-768 deep dive](/posts/ai/2026-09-16-cmu-11-768-ai-agents-course/) for the spine, and the [CS329Z breakdown](/posts/ai/2026-09-18-stanford-cs329z-engineering-ai-agents/) for the homework you can steal. I'll update the table when CMU posts Assignments 2 and 3, when CS146S posts its 2026 decks, and if CS329Z or CS329A releases any video; the "as of" dates in the text are the tell.
+This is the routing page. The deep dives are where the week-by-week plans live: the [CS146S follow-along](/posts/ai/2026-09-11-cs146s-fall-2026-follow-along/) for the practice track, the [CMU 11-768 deep dive](/posts/ai/2026-09-08-cmu-11-768-ai-agents-course/) for the spine, and the [CS329Z breakdown](/posts/ai/2026-09-04-stanford-cs329z-engineering-ai-agents/) for the homework you can steal. I'll update the table when CMU posts Assignments 2 and 3, when CS146S posts its 2026 decks, and if CS329Z or CS329A releases any video; the "as of" dates in the text are the tell.
 
 Three things I couldn't verify and want on the record: whether CMU's November guest lectures will be recorded, the cost of running CMU Assignment 1 on your own API key, and whether CS329A will run again in 2026-27. If you're enrolled in any of these and know, the comments are open.
 

@@ -1,6 +1,6 @@
 +++
-date = '2026-09-16T10:00:00+08:00'
-aliases = ['/posts/ai/2026-09-11-cmu-11-768-ai-agents-course/']
+date = '2026-09-08T10:00:00+08:00'
+aliases = ['/posts/ai/2026-09-11-cmu-11-768-ai-agents-course/', '/posts/ai/2026-09-16-cmu-11-768-ai-agents-course/']
 draft = false
 title = 'CMU 11-768 AI Agents 课程拆解：OpenHands 作者教你搭 Harness、建评测、RL 训 Agent'
 description = 'CMU 11-768 AI Agents 2026 秋季课全拆解：Graham Neubig 与 Daniel Fried 的 28 节课表、三份作业（Harness/评测/RL 训练）、评分、免费视频和 PPT 怎么拿、国内怎么跟、和 CS146S 怎么选。'
@@ -14,7 +14,7 @@ answer = "11-768 是卡内基梅隆大学语言技术研究所 2026 年秋季新
 
 [[params.faqItems]]
 question = "11-768 的课程视频和 PPT 在哪里免费看？"
-answer = "PPT 是 cmu-agents.com 上的直链 PDF，不用登录；视频在 Graham Neubig 的 YouTube 播放列表，截至 2026 年 9 月 11 日有 4 节，需要能访问 YouTube。Piazza、Canvas、赞助算力和作业 2、3 只对在校生开放。"
+answer = "PPT 是 cmu-agents.com 上的直链 PDF，不用登录；视频在 Graham Neubig 的 YouTube 播放列表，截至 2026 年 9 月 8 日有 4 节，需要能访问 YouTube。Piazza、Canvas、赞助算力和作业 2、3 只对在校生开放。"
 
 [[params.faqItems]]
 question = "11-768 是不是一门 OpenHands 教程？"
@@ -33,13 +33,13 @@ answer = "官方要求有训练神经语言模型的经验，推荐修过 11-667
 
 第一课的下半场讲了十分钟，Graham Neubig 朝教室抛了一个我今年写了半年的问题。让 Agent 变强有两条路，他说：训模型，或者在模型外面做 Harness。举手表决，哪条更重要？训模型的举了几只手，Harness 举了一大片。Daniel Fried 举了两次，被当场提醒讲师没有投票权。
 
-然后 Neubig 给了自己的答案。截至 2026 年 9 月 11 日，**CMU 11-768 AI Agents** 一共放出四个半小时视频，这句是最值钱的："通常的流程是，你发现一个问题，先在 Harness 里把它解掉。然后训模型的人跟上来……你就不用再在 Harness 这边解它了。"他本人更认训练是根本解法，前提是你付得起。你通常付不起，所以从 Harness 开始。
+然后 Neubig 给了自己的答案。截至 2026 年 9 月 8 日，**CMU 11-768 AI Agents** 一共放出四个半小时视频，这句是最值钱的："通常的流程是，你发现一个问题，先在 Harness 里把它解掉。然后训模型的人跟上来……你就不用再在 Harness 这边解它了。"他本人更认训练是根本解法，前提是你付得起。你通常付不起，所以从 Harness 开始。
 
 这一段对话就把这门课定了性。斯坦福的 CS146S 是本站阅读量最高的课程页，它教你把 Agent *用*好。11-768 是供给侧：Harness、评测、RL 训出来的策略是怎么造的，讲课的是 OpenHands 的作者，搭档的研究组做人机交互。目前没有第二门公开的大学课程把搭脚手架、设计评测、Agent 强化学习放进同一份大纲。这篇把 28 次课、三份作业和"它到底适合谁"全部拆开。
 
 ## CMU 11-768 到底是什么
 
-官网 [cmu-agents.com](https://www.cmu-agents.com/) 是个 React 单页应用，直接抓页面只有一个标题。下表所有事实来自 9 月 11 日从站点 JavaScript 包里扒出来的课表数据、[作业 1 仓库](https://github.com/cmu-agents/assignment-1)和[第一课录像](https://www.youtube.com/watch?v=UwfjzyLnvMg)。没核实到的几条我放在文末。
+官网 [cmu-agents.com](https://www.cmu-agents.com/) 是个 React 单页应用，直接抓页面只有一个标题。下表所有事实来自 9 月 8 日从站点 JavaScript 包里扒出来的课表数据、[作业 1 仓库](https://github.com/cmu-agents/assignment-1)和[第一课录像](https://www.youtube.com/watch?v=UwfjzyLnvMg)。没核实到的几条我放在文末。
 
 | 项目 | 内容 |
 |---|---|
@@ -124,7 +124,7 @@ timeline
                        : Narasimhan、Rush、期末展示
 ```
 
-每一行都来自站点的课表数据。视频链接是截至 9 月 11 日 [YouTube 播放列表](https://www.youtube.com/playlist?list=PLSN0qpDfUvTM)里存在的四个录像；PPT 是 cmu-agents.com 上的直链 PDF（第 5 讲 18 MB，别用流量开）。没标讲者的就是 Neubig 或 Fried。
+每一行都来自站点的课表数据。视频链接是截至 9 月 8 日 [YouTube 播放列表](https://www.youtube.com/playlist?list=PLSN0qpDfUvTM)里存在的四个录像；PPT 是 cmu-agents.com 上的直链 PDF（第 5 讲 18 MB，别用流量开）。没标讲者的就是 Neubig 或 Fried。
 
 | 日期 | # | 标题 | 讲者 | 材料 |
 |---|---|---|---|---|
@@ -168,7 +168,7 @@ timeline
 
 这是这门课对实践者最值钱的部分，所以篇幅给得最多。
 
-[cmu-agents/assignment-1](https://github.com/cmu-agents/assignment-1) 8 月 31 日公开，到 9 月 11 日有 30 星、23 fork。它是个 `uv` 工程，带 Makefile、一个内置的国际象棋 Web 应用，`ASSIGNMENT.md` 里写着 100 分的评分细则。默认模型是走 OpenAI 兼容接口的 `deepseek/deepseek-v4-flash-0731`，每次工具调用都在 [Modal](https://modal.com/) 沙箱里跑。起始代码的测试是故意失败的，你负责填 TODO。我 9 月 11 日克隆下来跑了 `make setup`（uv sync 加上锁定版本的 `chess_app` 子模块）和 `uv run pytest`：11 个失败、4 个通过、4 个被跳过（需要 Modal 的计费测试），3.2 秒，每个失败都是 TODO 处的 `NotImplementedError`。这就是完整的离线循环，一分钱不花。
+[cmu-agents/assignment-1](https://github.com/cmu-agents/assignment-1) 8 月 31 日公开，到 9 月 8 日有 30 星、23 fork。它是个 `uv` 工程，带 Makefile、一个内置的国际象棋 Web 应用，`ASSIGNMENT.md` 里写着 100 分的评分细则。默认模型是走 OpenAI 兼容接口的 `deepseek/deepseek-v4-flash-0731`，每次工具调用都在 [Modal](https://modal.com/) 沙箱里跑。起始代码的测试是故意失败的，你负责填 TODO。我 9 月 8 日克隆下来跑了 `make setup`（uv sync 加上锁定版本的 `chess_app` 子模块）和 `uv run pytest`：11 个失败、4 个通过、4 个被跳过（需要 Modal 的计费测试），3.2 秒，每个失败都是 TODO 处的 `NotImplementedError`。这就是完整的离线循环，一分钱不花。
 
 按部分列一下你要造什么，以及它在你已经在用的工具里对应什么。
 
@@ -195,12 +195,12 @@ timeline
 
 ## 11-768、CS146S、CS329Z 该选哪个
 
-这个秋天三所顶尖学校都在讲 "AI Agent"，但它们不是替代品。整个赛道我在[2026 秋免费 AI Agent 课程盘点](/posts/ai/2026-09-14-free-ai-agent-courses-fall-2026/)里写全了，这里只做三方对比。
+这个秋天三所顶尖学校都在讲 "AI Agent"，但它们不是替代品。整个赛道我在[2026 秋免费 AI Agent 课程盘点](/posts/ai/2026-09-09-free-ai-agent-courses-fall-2026/)里写全了，这里只做三方对比。
 
 | | CMU 11-768 | 斯坦福 CS146S | 斯坦福 CS329Z |
 |---|---|---|---|
 | **回答的问题** | Agent 怎么造、怎么评、怎么训？ | 怎么用 Agent 交付软件？ | Agent 系统怎么做工程？ |
-| **你要写的** | 一个 ReAct Harness、评测、一次 RL 训练 | Prompt、MCP server、spec、用 Claude Code 做项目 | 见 [CS329Z 拆解](/posts/ai/2026-09-18-stanford-cs329z-engineering-ai-agents/) |
+| **你要写的** | 一个 ReAct Harness、评测、一次 RL 训练 | Prompt、MCP server、spec、用 Claude Code 做项目 | 见 [CS329Z 拆解](/posts/ai/2026-09-04-stanford-cs329z-engineering-ai-agents/) |
 | **先修的真实门槛** | 训过 4 到 7B 的模型 | 会编程 | 有系统背景 |
 | **公开视频** | 有，22 讲已出 4 讲 | 没有官方录像 | 见拆解 |
 | **最适合** | Agent 构建者、Harness 工程师、转 Agent 方向的算法工程师 | 想把 Claude Code / Cursor 用好的开发者 | 设计多智能体生产系统的工程师 |
@@ -226,9 +226,9 @@ timeline
 
 ## 怎么免费跟，视频什么时候上
 
-**没有直播。** 课是录下来批量传到 Neubig 的 YouTube 频道。现有四个视频全是 9 月 8 日上传的，覆盖 8 月 25 日到 9 月 3 日的课，延迟大约一到两周。第 5、6 讲（9 月 8 日、10 日）PPT 已上，视频截至 9 月 11 日还没有。别掐着上课时间定闹钟，每周二看一眼播放列表就行。
+**没有直播。** 课是录下来批量传到 Neubig 的 YouTube 频道。现有四个视频全是 9 月 8 日上传的，覆盖 8 月 25 日到 9 月 3 日的课，延迟大约一到两周。第 5、6 讲（9 月 8 日、10 日）PPT 已上，视频截至 9 月 8 日还没有。别掐着上课时间定闹钟，每周二看一眼播放列表就行。
 
-国内读者的获取路径：PPT 是 cmu-agents.com 的直链 PDF，不用登录，我这边直接 curl 就下下来了；视频只在 YouTube，没有 B 站官方搬运（截至 9 月 11 日我没搜到），需要自备访问方式。能访问的话，`yt-dlp --write-auto-subs --sub-langs en` 就能把自动英文字幕拉下来，第一课 1 万 1 千词，扔给任何一个模型做摘要都够用。
+国内读者的获取路径：PPT 是 cmu-agents.com 的直链 PDF，不用登录，我这边直接 curl 就下下来了；视频只在 YouTube，没有 B 站官方搬运（截至 9 月 8 日我没搜到），需要自备访问方式。能访问的话，`yt-dlp --write-auto-subs --sub-langs en` 就能把自动英文字幕拉下来，第一课 1 万 1 千词，扔给任何一个模型做摘要都够用。
 
 课程时间换算，供参考（匹兹堡 11 月 1 日前 UTC-4，之后 UTC-5）：
 
@@ -239,7 +239,7 @@ timeline
 | 北京 / 新加坡 | 周三、五 03:30 到 04:50 | 周三、五 04:30 到 05:50 |
 | 印度（IST） | 周三、五 01:00 到 02:20 | 周三、五 02:00 到 03:20 |
 
-**截至 2026 年 9 月 11 日，免费 vs 仅限在校生：**
+**截至 2026 年 9 月 8 日，免费 vs 仅限在校生：**
 
 | 免费 | 仅限在校生 |
 |---|---|
@@ -264,7 +264,7 @@ timeline
 
 没核实到、也不打算装作核实过的几条：
 
-- **作业 2、3 的内容。** 只有官网的一句话摘要（"设计评测框架"、"实现训练流程"）和 Fried 提到 A2 会做"基于 LLM-as-judge 的评测方法，以及其他评测"。截至 9 月 11 日没有仓库。
+- **作业 2、3 的内容。** 只有官网的一句话摘要（"设计评测框架"、"实现训练流程"）和 Fried 提到 A2 会做"基于 LLM-as-judge 的评测方法，以及其他评测"。截至 9 月 8 日没有仓库。
 - **第 5、6、9、11、13、14、15、20 讲谁讲。** 课表没列讲者，按站点惯例就是 Neubig 或 Fried，具体是谁我没确认。
 - **每节课是否都会录。** 已上的 6 节里 4 节有视频。客座讲座的录制政策没写。
 - **校外人跑完 A1 的 Modal 和 API 花费。** 我跑了环境搭建和离线测试，没跑计费流水线（`make run-code-agent`、SWE-bench 那一跑、四组下棋），不打算编一个数字。
@@ -274,8 +274,8 @@ timeline
 
 ## 延伸阅读
 
-- [2026 秋免费 AI Agent 课程盘点：斯坦福、CMU、MIT](/posts/ai/2026-09-14-free-ai-agent-courses-fall-2026/) — 把 11-768 和这学期所有公开课放在一起比的枢纽页
-- [斯坦福 CS329Z：Engineering AI Agents](/posts/ai/2026-09-18-stanford-cs329z-engineering-ai-agents/) — 系统侧的姊妹课
+- [2026 秋免费 AI Agent 课程盘点：斯坦福、CMU、MIT](/posts/ai/2026-09-09-free-ai-agent-courses-fall-2026/) — 把 11-768 和这学期所有公开课放在一起比的枢纽页
+- [斯坦福 CS329Z：Engineering AI Agents](/posts/ai/2026-09-04-stanford-cs329z-engineering-ai-agents/) — 系统侧的姊妹课
 - [斯坦福 CS146S：The Modern Software Developer](/posts/ai/2026-02-24-stanford-cs146s-overview/) — 需求侧的课，教用不教造
 - [Harness 工程：六层倒着建](/posts/ai/2026-04-18-harness-six-layers-reverse-build/) — 作业 1 就是第 1 到 4 层加一个评分器
 - [Harness 工程是窗口期，不是永久护城河](/posts/ai/2026-05-08-harness-engineering-window-of-opportunity/) — 从实践者角度论证 Neubig 的"先 Harness、训练随后跟上"

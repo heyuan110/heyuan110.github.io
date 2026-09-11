@@ -256,4 +256,4 @@ Agent Browser 填补了 AI 代理领域浏览器自动化工具的空白。它�
 4. [Playwright CLI + Skill 三段式：0 Token 自动化](/zh/posts/ai/2026-04-18-playwright-cli-skill-zero-token-automation/) — 去掉 MCP token 税的三段式写法
 5. [Claude Code 截图 MCP 配置](/zh/posts/ai/2026-07-21-claude-code-screenshot-mcp-frontend-debugging/) — 前端调试闭环，10,220 对 65 token
 6. [ubrowser 实测](/zh/posts/ai/2026-07-27-ubrowser-review/) — 设计对了，仓库死了
-7. [ego lite 实测](/zh/posts/ai/2026-09-21-ego-lite-browser-review/) — 用 Spaces 把登录态交给 Agent
+7. [ego lite 实测](/zh/posts/ai/2026-09-10-ego-lite-browser-review/) — 用 Spaces 把登录态交给 Agent

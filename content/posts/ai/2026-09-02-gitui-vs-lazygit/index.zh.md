@@ -1,6 +1,6 @@
 +++
-date = '2026-09-12T10:00:00+08:00'
-aliases = ['/posts/ai/2026-09-11-gitui-vs-lazygit/']
+date = '2026-09-02T10:00:00+08:00'
+aliases = ['/posts/ai/2026-09-11-gitui-vs-lazygit/', '/posts/ai/2026-09-12-gitui-vs-lazygit/']
 draft = false
 title = 'lazygit 还是 gitui：终端 Git 工具选型（2026 实测）'
 description = '8.2 万 commit 仓库实测：gitui 11 ms 出画面、全量历史只占 31 MB；lazygit 要 416 ms，却独占交互式 rebase、冲突解决、worktree 和自定义命令。附 Windows/WSL2 安装坑、中文路径显示和 AI 编程工作流选型。'
@@ -103,7 +103,7 @@ lazygit 的 716 MB 不是内存泄漏，是分支图。它给每一个加载进�
 
 那组数据来自 2020 年 RustBerlin 聚会的一次分享，测的是好几年前的 lazygit；我在 8.2 万 commit 上跑 v0.65.0，没见到任何卡死或崩溃。不过按我的内存曲线外推，90 万 commit 吃到 2.6 GB 完全说得通。README 没撒谎，它只是描述了一个我们大多数人不会碰到的仓库规模。
 
-**性能结论，2026-09-11 版**：仓库不到 10 万 commit，启动速度根本不该进入你的选型考虑。经常要通读 Linux 内核级别仓库的全部历史，两者里只有 gitui 能舒服地做到。
+**性能结论，2026-09-02 版**：仓库不到 10 万 commit，启动速度根本不该进入你的选型考虑。经常要通读 Linux 内核级别仓库的全部历史，两者里只有 gitui 能舒服地做到。
 
 ## 功能矩阵：一周真实使用的对照表
 
@@ -126,7 +126,7 @@ lazygit 的 716 MB 不是内存泄漏，是分支图。它给每一个加载进�
 | 界面语言 | 自动识别 zh-CN、zh-TW、ja、ko、ru、pl、nl、pt | 只有英文 |
 | Windows 安装 | winget、scoop、choco | winget、scoop、choco |
 | 最近 12 个月发版 | 17 个（2025-09-17 的 v0.55.1 到 2026-09-05 的 v0.65.0） | 2 个（2025-12-14 的 v0.28.0、2026-03-24 的 v0.28.1） |
-| GitHub star（2026-09-11） | 82,214 | 22,477 |
+| GitHub star（2026-09-02） | 82,214 | 22,477 |
 
 这张表里有三行，直接决定了这篇文章的结论。
 

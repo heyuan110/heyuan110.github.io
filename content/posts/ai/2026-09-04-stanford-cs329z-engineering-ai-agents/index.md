@@ -1,6 +1,6 @@
 +++
-date = '2026-09-18T10:00:00+08:00'
-aliases = ['/posts/ai/2026-09-11-stanford-cs329z-engineering-ai-agents/']
+date = '2026-09-04T10:00:00+08:00'
+aliases = ['/posts/ai/2026-09-11-stanford-cs329z-engineering-ai-agents/', '/posts/ai/2026-09-18-stanford-cs329z-engineering-ai-agents/']
 draft = false
 title = 'Stanford CS329Z Engineering AI Agents: Syllabus + Self-Study'
 description = 'Stanford CS329Z (Fall 2026) teaches AI agents as engineering: decomposition, data, evals. Full dated schedule, HW1/HW2, grading, and a no-video self-study plan.'
@@ -87,7 +87,7 @@ If you're a working developer whose agent exposure is Claude Code and Cursor, CS
 
 ## The Full Fall 2026 Schedule
 
-Twenty-one meeting slots between September 23 and December 2: 17 content lectures, 2 guest lectures (speakers TBA), and 2 Thanksgiving days off. The schedule is marked tentative on the site; this is the version as of September 11, 2026. Required readings are listed; each lecture also carries "additional readings" (27 in total) that I've folded into the self-study table further down.
+Twenty-one meeting slots between September 23 and December 2: 17 content lectures, 2 guest lectures (speakers TBA), and 2 Thanksgiving days off. The schedule is marked tentative on the site; this is the version as of September 4, 2026. Required readings are listed; each lecture also carries "additional readings" (27 in total) that I've folded into the self-study table further down.
 
 | Wk | Date | Lecture | Required readings |
 |----|------|---------|-------------------|
@@ -207,7 +207,7 @@ Every reading in the syllabus is public. Lecture slides "will be linked here as 
 
 One warning on module two, because it's where self-learners lose the most time. DSPy's docs are good but they're organized as a tour, not a course; the thing the Oct 7 lecture will give enrolled students is the *comparison*: signatures/modules/optimizers against LangGraph's graph-of-nodes against LlamaIndex's data-first view. Without that framing you tend to learn one framework's vocabulary and mistake it for the concept. The fix is the exercise in the table: port the same harness across two frameworks and write the diff in prose. The prose is the deliverable.
 
-For a broader map of what's free this fall, including CMU's parallel agents course, see the [Fall 2026 free AI agent courses hub](/posts/ai/2026-09-14-free-ai-agent-courses-fall-2026/) and the [CMU 11-768 breakdown](/posts/ai/2026-09-16-cmu-11-768-ai-agents-course/).
+For a broader map of what's free this fall, including CMU's parallel agents course, see the [Fall 2026 free AI agent courses hub](/posts/ai/2026-09-09-free-ai-agent-courses-fall-2026/) and the [CMU 11-768 breakdown](/posts/ai/2026-09-08-cmu-11-768-ai-agents-course/).
 
 ## The Most Valuable Week for Readers of This Blog
 
@@ -239,8 +239,8 @@ Without the recordings, the useful part of CS329Z is about 70% available: 50 pub
 
 - [Stanford CS146S: The Modern Software Developer, 2026 Guide](/posts/ai/2026-02-24-stanford-cs146s-overview/): the developer-practice sibling course, fully broken down
 - [CS146S Fall 2026: How to Watch and Follow Along Free](/posts/ai/2026-09-11-cs146s-fall-2026-follow-along/): calendar and follow-along plan for the other Stanford course this fall
-- [Free AI Agent Courses, Fall 2026](/posts/ai/2026-09-14-free-ai-agent-courses-fall-2026/): the hub page comparing every open agents syllabus this term
-- [CMU 11-768: AI Agents Course Breakdown](/posts/ai/2026-09-16-cmu-11-768-ai-agents-course/): the CMU counterpart, and how it differs from CS329Z
+- [Free AI Agent Courses, Fall 2026](/posts/ai/2026-09-09-free-ai-agent-courses-fall-2026/): the hub page comparing every open agents syllabus this term
+- [CMU 11-768: AI Agents Course Breakdown](/posts/ai/2026-09-08-cmu-11-768-ai-agents-course/): the CMU counterpart, and how it differs from CS329Z
 - [Harness Engineering: Build the 6 Layers Backwards](/posts/ai/2026-04-18-harness-six-layers-reverse-build/): why eval and recovery are the layers that matter, with production numbers
 - [Context Engineering for Coding Agents 2026](/posts/ai/2026-06-16-context-engineering-2026/): the lecture-two topic, in depth
 - [Agentic Loops 2026](/posts/ai/2026-07-03-agentic-loops/): the ReAct-style loop that HW1 makes you write by hand

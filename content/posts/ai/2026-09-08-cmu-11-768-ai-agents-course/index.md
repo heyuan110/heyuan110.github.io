@@ -1,6 +1,6 @@
 +++
-date = '2026-09-16T10:00:00+08:00'
-aliases = ['/posts/ai/2026-09-11-cmu-11-768-ai-agents-course/']
+date = '2026-09-08T10:00:00+08:00'
+aliases = ['/posts/ai/2026-09-11-cmu-11-768-ai-agents-course/', '/posts/ai/2026-09-16-cmu-11-768-ai-agents-course/']
 draft = false
 title = 'CMU 11-768 AI Agents Fall 2026: Full Syllabus Breakdown'
 description = 'CMU 11-768 AI Agents (Fall 2026) by Graham Neubig and Daniel Fried: all 28 sessions, the harness, eval and RL assignments, grading, free videos, who should take it.'
@@ -14,7 +14,7 @@ answer = "11-768 is a Fall 2026 graduate course at Carnegie Mellon's Language Te
 
 [[params.faqItems]]
 question = "Can I take CMU 11-768 for free?"
-answer = "Mostly. As of September 11, 2026, six lecture slide decks and four YouTube recordings are public at cmu-agents.com, and the Assignment 1 starter repo is on GitHub. Piazza, Canvas, grading, sponsored Modal and LLM credits, and Assignments 2 and 3 are for enrolled students only."
+answer = "Mostly. As of September 8, 2026, six lecture slide decks and four YouTube recordings are public at cmu-agents.com, and the Assignment 1 starter repo is on GitHub. Piazza, Canvas, grading, sponsored Modal and LLM credits, and Assignments 2 and 3 are for enrolled students only."
 
 [[params.faqItems]]
 question = "Is 11-768 an OpenHands course?"
@@ -33,13 +33,13 @@ answer = "Prior experience training neural language models. The site recommends 
 
 Ten minutes into the second half of lecture 1, Graham Neubig asks the room a question I've spent most of this year writing about. There are two ways to make an agent better, he says: train the LLM, or engineer the harness around it. Show of hands, which one matters more? A few hands go up for training. A lot go up for harness. Daniel Fried raises his hand twice and gets told instructors don't get to vote.
 
-Then Neubig gives his own answer, and it's the most useful sentence in the four and a half hours of **CMU 11-768 AI Agents** video that exist as of September 11, 2026: "Typically what happens is you identify a problem and you solve it in the harness first. Then the people training the models catch up... and you don't need to solve it in the harness side anymore." He favors training as the fundamental fix, when you can afford it. You usually can't, so you start with the harness.
+Then Neubig gives his own answer, and it's the most useful sentence in the four and a half hours of **CMU 11-768 AI Agents** video that exist as of September 8, 2026: "Typically what happens is you identify a problem and you solve it in the harness first. Then the people training the models catch up... and you don't need to solve it in the harness side anymore." He favors training as the fundamental fix, when you can afford it. You usually can't, so you start with the harness.
 
 That one exchange tells you what this course is. Stanford's CS146S, the most-read course page on this blog, teaches you to *use* agents well. 11-768 is the supply side: how the harness, the eval, and the RL-trained policy get built, taught by the person who built OpenHands and a co-instructor whose group works on human-agent interaction. There is no other public university course that puts scaffold-building, eval design and agent RL in one syllabus. This post breaks down all 28 sessions, the three assignments, and who it's actually for.
 
 ## What CMU 11-768 Actually Is
 
-The site at [cmu-agents.com](https://www.cmu-agents.com/) is a React app that renders nothing to a plain fetch, so every fact in this table comes from the site's JavaScript bundle (pulled September 11), the [Assignment 1 repo](https://github.com/cmu-agents/assignment-1), and the [lecture 1 recording](https://www.youtube.com/watch?v=UwfjzyLnvMg). I'll flag the few things I couldn't confirm at the end.
+The site at [cmu-agents.com](https://www.cmu-agents.com/) is a React app that renders nothing to a plain fetch, so every fact in this table comes from the site's JavaScript bundle (pulled September 8), the [Assignment 1 repo](https://github.com/cmu-agents/assignment-1), and the [lecture 1 recording](https://www.youtube.com/watch?v=UwfjzyLnvMg). I'll flag the few things I couldn't confirm at the end.
 
 | Item | Details |
 |---|---|
@@ -124,7 +124,7 @@ timeline
                    : Narasimhan, Rush, final presentations
 ```
 
-Every row comes from the site's schedule data. Video links are the four recordings that exist on the [YouTube playlist](https://www.youtube.com/playlist?list=PLSN0qpDfUvTM) as of September 11; slides are live PDFs on cmu-agents.com (lecture 5's deck is 18 MB, so don't open it on mobile data). Speaker is Neubig or Fried unless a name is listed.
+Every row comes from the site's schedule data. Video links are the four recordings that exist on the [YouTube playlist](https://www.youtube.com/playlist?list=PLSN0qpDfUvTM) as of September 8; slides are live PDFs on cmu-agents.com (lecture 5's deck is 18 MB, so don't open it on mobile data). Speaker is Neubig or Fried unless a name is listed.
 
 | Date | # | Title | Speaker | Materials |
 |---|---|---|---|---|
@@ -166,7 +166,7 @@ Two things about this table that matter more than the titles.
 
 This is where the course earns its keep for practitioners, so it gets the most space.
 
-[cmu-agents/assignment-1](https://github.com/cmu-agents/assignment-1) went public on August 31 and had 30 stars and 23 forks by September 11. It's a `uv` project with a Makefile, a vendored chess web app, and a 100-point rubric spelled out in `ASSIGNMENT.md`. The default model is `deepseek/deepseek-v4-flash-0731` through an OpenAI-compatible endpoint, and every tool call runs in a [Modal](https://modal.com/) sandbox. The starter's tests fail on purpose; you fill in the TODOs. I cloned it on September 11 and ran `make setup` (uv sync plus the pinned `chess_app` submodule) and `uv run pytest`: 11 failed, 4 passed, 4 deselected (the billable Modal tests), 3.2 seconds, every failure a `NotImplementedError` at a TODO. That's the whole offline loop, and it costs nothing.
+[cmu-agents/assignment-1](https://github.com/cmu-agents/assignment-1) went public on August 31 and had 30 stars and 23 forks by September 8. It's a `uv` project with a Makefile, a vendored chess web app, and a 100-point rubric spelled out in `ASSIGNMENT.md`. The default model is `deepseek/deepseek-v4-flash-0731` through an OpenAI-compatible endpoint, and every tool call runs in a [Modal](https://modal.com/) sandbox. The starter's tests fail on purpose; you fill in the TODOs. I cloned it on September 8 and ran `make setup` (uv sync plus the pinned `chess_app` submodule) and `uv run pytest`: 11 failed, 4 passed, 4 deselected (the billable Modal tests), 3.2 seconds, every failure a `NotImplementedError` at a TODO. That's the whole offline loop, and it costs nothing.
 
 Here's what you build, part by part, and what it corresponds to in the tools you already run.
 
@@ -191,12 +191,12 @@ Two honest caveats. The instructor tests and reference patches aren't in the rep
 
 ## Who Should Take 11-768 vs CS146S vs CS329Z
 
-Three courses now cover "AI agents" at top schools this fall, and they're not substitutes. I wrote up the whole field in [Free AI Agent Courses Fall 2026](/posts/ai/2026-09-14-free-ai-agent-courses-fall-2026/); here's the three-way call.
+Three courses now cover "AI agents" at top schools this fall, and they're not substitutes. I wrote up the whole field in [Free AI Agent Courses Fall 2026](/posts/ai/2026-09-09-free-ai-agent-courses-fall-2026/); here's the three-way call.
 
 | | CMU 11-768 | Stanford CS146S | Stanford CS329Z |
 |---|---|---|---|
 | **Question it answers** | How do you build, evaluate and train an agent? | How do you ship software with agents? | How do you engineer agent systems? |
-| **You write** | A ReAct harness, evals, an RL training run | Prompts, MCP servers, specs, projects with Claude Code | See the [CS329Z breakdown](/posts/ai/2026-09-18-stanford-cs329z-engineering-ai-agents/) |
+| **You write** | A ReAct harness, evals, an RL training run | Prompts, MCP servers, specs, projects with Claude Code | See the [CS329Z breakdown](/posts/ai/2026-09-04-stanford-cs329z-engineering-ai-agents/) |
 | **Prereq reality** | Have trained a 4-7B model | Can program | Systems background |
 | **Public video** | Yes, 4 of 22 so far | No official recordings | See breakdown |
 | **Best for** | Agent builders, harness engineers, ML engineers moving into agents | Developers who want to use Claude Code / Cursor well | Engineers designing multi-agent production systems |
@@ -220,7 +220,7 @@ Skip, for now: the SFT/RL block (lectures 8 to 12) unless you have a training jo
 
 ## How to Follow 11-768 Free, and When Videos Actually Drop
 
-**There's no livestream.** Lectures are recorded and uploaded in batches to Neubig's YouTube channel. All four current videos were posted on September 8, covering lectures from August 25 through September 3, so the lag is roughly one to two weeks. Lectures 5 and 6 (September 8 and 10) have slides up but no video as of September 11. Don't set an alarm for class time; check the playlist on Tuesdays.
+**There's no livestream.** Lectures are recorded and uploaded in batches to Neubig's YouTube channel. All four current videos were posted on September 8, covering lectures from August 25 through September 3, so the lag is roughly one to two weeks. Lectures 5 and 6 (September 8 and 10) have slides up but no video as of September 8. Don't set an alarm for class time; check the playlist on Tuesdays.
 
 For completeness, class time in other zones (Pittsburgh is UTC-4 until November 1, then UTC-5):
 
@@ -231,7 +231,7 @@ For completeness, class time in other zones (Pittsburgh is UTC-4 until November 
 | Beijing / Singapore | Wed/Fri 3:30 to 4:50 AM | Wed/Fri 4:30 to 5:50 AM |
 | India (IST) | Wed/Fri 1:00 to 2:20 AM | Wed/Fri 2:00 to 3:20 AM |
 
-**What's free vs. enrollment-only, as of September 11, 2026:**
+**What's free vs. enrollment-only, as of September 8, 2026:**
 
 | Free | Enrolled only |
 |---|---|
@@ -256,7 +256,7 @@ Grading, if you want to know what enrolled students are optimizing: Assignment 1
 
 Things I could not verify and won't pretend to:
 
-- **Assignment 2 and 3 contents.** Only the one-line summaries on the site ("design the evaluation framework," "implement the training procedures") and Fried's remark that A2 involves "LLM-as-judge based evaluation approaches among other evals." No repos as of September 11.
+- **Assignment 2 and 3 contents.** Only the one-line summaries on the site ("design the evaluation framework," "implement the training procedures") and Fried's remark that A2 involves "LLM-as-judge based evaluation approaches among other evals." No repos as of September 8.
 - **Who teaches lectures 5, 6, 9, 11, 13, 14, 15, 20.** The schedule lists no lecturer for those, which by the site's convention means Neubig or Fried; I haven't confirmed which.
 - **Whether every lecture will be recorded.** Four of six delivered lectures have video. The guest-lecture policy on recording isn't stated.
 - **Modal and API costs for an outsider doing A1 end to end.** I ran the setup and the offline test suite, not the billable pipeline (`make run-code-agent`, the SWE-bench run, the four chess runs); I'm not going to invent a dollar figure.
@@ -265,8 +265,8 @@ Everything else, from the 28 dates to the 100-point rubric to the quotes from le
 
 ## Related Reading
 
-- [Free AI Agent Courses Fall 2026: Stanford, CMU, MIT Compared](/posts/ai/2026-09-14-free-ai-agent-courses-fall-2026/) — the hub that places 11-768 against every other public course this term
-- [Stanford CS329Z: Engineering AI Agents](/posts/ai/2026-09-18-stanford-cs329z-engineering-ai-agents/) — the systems-side sibling
+- [Free AI Agent Courses Fall 2026: Stanford, CMU, MIT Compared](/posts/ai/2026-09-09-free-ai-agent-courses-fall-2026/) — the hub that places 11-768 against every other public course this term
+- [Stanford CS329Z: Engineering AI Agents](/posts/ai/2026-09-04-stanford-cs329z-engineering-ai-agents/) — the systems-side sibling
 - [Stanford CS146S: The Modern Software Developer](/posts/ai/2026-02-24-stanford-cs146s-overview/) — the demand-side course, for using agents rather than building them
 - [Harness Engineering: Build the 6 Layers Backwards](/posts/ai/2026-04-18-harness-six-layers-reverse-build/) — Assignment 1 is layers 1 through 4 with a grader
 - [Harness Engineering: Window of Opportunity, Not a Forever Moat](/posts/ai/2026-05-08-harness-engineering-window-of-opportunity/) — Neubig's "harness first, then training catches up," argued from the practitioner side

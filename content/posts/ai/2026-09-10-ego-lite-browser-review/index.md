@@ -1,5 +1,6 @@
 +++
-date = '2026-09-21T10:00:00+08:00'
+date = '2026-09-10T10:00:00+08:00'
+aliases = ['/posts/ai/2026-09-21-ego-lite-browser-review/']
 draft = false
 title = 'ego lite Review: Handing Claude Code Your Logged-In Browser'
 description = 'ego lite v0.5 tested with Claude Code on 3 tasks vs agent-browser and Chrome DevTools MCP: 16s/$0.12 best, 195s worst. The token win is real; the isolation is not.'
@@ -32,7 +33,7 @@ answer = "The skill's recommended pattern pipes JavaScript into ego-browser thro
 
 The first real task I gave ego lite was the one its whole pitch rests on: open GitHub and tell me who's logged in. The agent came back in 65 seconds with "not logged in." I *was* logged in. So was the browser. The agent had simply been handed the wrong one of my two imported profiles, and nothing in the skill, the docs, or the UI had told it that a second profile existed.
 
-That's the review in miniature. [ego lite](https://github.com/citrolabs/ego-lite) is the most ambitious answer yet to a problem this blog has been circling since January — how to give a coding agent a browser without paying for it in tokens, flakiness, or your own sanity. The series went from headless drivers ([Vercel's agent-browser](/posts/ai/2026-01-13-vercel-agent-browser/)) to [attaching to your real browser](/posts/ai/2026-03-17-chrome-devtools-mcp-guide/) to [cutting the token bill to zero](/posts/ai/2026-04-18-playwright-cli-skill-zero-token-automation/) to a [12-star repo with the right cost model and no maintainer](/posts/ai/2026-07-27-ubrowser-review/). ego lite is the current end of that arc: one Chromium you use every day, in which your agents get their own Spaces, your logins, and a JavaScript API instead of a CLI. 15,666 GitHub stars as of September 11, 2026, up from about 7,900 when the Chinese tech press covered it on August 3.
+That's the review in miniature. [ego lite](https://github.com/citrolabs/ego-lite) is the most ambitious answer yet to a problem this blog has been circling since January — how to give a coding agent a browser without paying for it in tokens, flakiness, or your own sanity. The series went from headless drivers ([Vercel's agent-browser](/posts/ai/2026-01-13-vercel-agent-browser/)) to [attaching to your real browser](/posts/ai/2026-03-17-chrome-devtools-mcp-guide/) to [cutting the token bill to zero](/posts/ai/2026-04-18-playwright-cli-skill-zero-token-automation/) to a [12-star repo with the right cost model and no maintainer](/posts/ai/2026-07-27-ubrowser-review/). ego lite is the current end of that arc: one Chromium you use every day, in which your agents get their own Spaces, your logins, and a JavaScript API instead of a CLI. 15,666 GitHub stars as of September 10, 2026, up from about 7,900 when the Chinese tech press covered it on August 3.
 
 I installed v0.5.0.28, drove it from Claude Code on three tasks of increasing difficulty, ran the same prompts through agent-browser and Chrome DevTools MCP, counted every token and every second, and then went looking for the seams. Cards on the table: at its best it was the cheapest agent browsing I have ever measured — one tool call, 16 seconds, twelve cents. At its worst it was the slowest — 30 turns and three minutes for a task agent-browser finished in 43 seconds. Both numbers are real, and the difference between them is a Claude Code setting, not the browser.
 

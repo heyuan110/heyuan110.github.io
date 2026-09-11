@@ -417,4 +417,4 @@ This is Part 3 of the **Browser Automation for AI Agents** series — the arc fr
 4. [Playwright CLI + Skills: 0-Token Automation](/posts/ai/2026-04-18-playwright-cli-skill-zero-token-automation/) — the pattern that removes the MCP token tax
 5. [Claude Code Screenshot MCP Setup](/posts/ai/2026-07-21-claude-code-screenshot-mcp-frontend-debugging/) — the frontend debugging loop, 10,220 vs 65 tokens
 6. [ubrowser Review](/posts/ai/2026-07-27-ubrowser-review/) — the right design trapped in an abandoned repo
-7. [ego lite Review](/posts/ai/2026-09-21-ego-lite-browser-review/) — handing agents your logged-in session through Spaces
+7. [ego lite Review](/posts/ai/2026-09-10-ego-lite-browser-review/) — handing agents your logged-in session through Spaces

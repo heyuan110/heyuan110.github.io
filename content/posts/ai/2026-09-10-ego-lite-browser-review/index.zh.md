@@ -1,5 +1,6 @@
 +++
-date = '2026-09-21T10:00:00+08:00'
+date = '2026-09-10T10:00:00+08:00'
+aliases = ['/posts/ai/2026-09-21-ego-lite-browser-review/']
 draft = false
 title = 'ego lite 实测：把你登录好的浏览器交给 Claude Code，token 省了多少'
 description = 'ego lite v0.5 接 Claude Code 跑 3 个真实任务，对比 agent-browser 和 Chrome DevTools MCP：最好 16 秒 $0.12，最差 195 秒。省 token 是真的，隔离是假的；本地 Chromium 不需要梯子。'
@@ -36,7 +37,7 @@ answer = "skill 推荐的写法是用 shell heredoc 把 JavaScript 喂给 ego-br
 
 这条线从 headless 驱动（[Vercel agent-browser](/zh/posts/ai/2026-01-13-vercel-agent-browser/)）走到[接管你的真实浏览器](/zh/posts/ai/2026-03-17-chrome-devtools-mcp-guide/)，再到[把 token 砍到零](/zh/posts/ai/2026-04-18-playwright-cli-skill-zero-token-automation/)，再到[一个成本模型对了但没人维护的 12 星仓库](/zh/posts/ai/2026-07-27-ubrowser-review/)。
 
-ego lite 是这条弧线现在的终点：一个你每天用的 Chromium，Agent 在里面有自己的 Space、你的登录态，以及一套 JavaScript API 而不是命令行。截至 2026 年 9 月 11 日 GitHub 15,666 星，8 月 3 日国内技术媒体报道时还是 7,900 左右——五周翻倍。
+ego lite 是这条弧线现在的终点：一个你每天用的 Chromium，Agent 在里面有自己的 Space、你的登录态，以及一套 JavaScript API 而不是命令行。截至 2026 年 9 月 10 日 GitHub 15,666 星，8 月 3 日国内技术媒体报道时还是 7,900 左右——五周翻倍。
 
 我装了 v0.5.0.28，从 Claude Code 里驱动它跑了三个难度递增的任务，同样的提示词又喂给 agent-browser 和 Chrome DevTools MCP，逐个数 token、数秒，然后专门去找接缝。先把结论摆桌上：状态最好的时候，它是我测过最便宜的 Agent 浏览——1 次工具调用、16 秒、一毛二美金。状态最差的时候，它是最慢的——30 轮、三分钟，而 agent-browser 43 秒干完。两个数字都是真的，中间的差别是一个 Claude Code 设置，不是浏览器本身。
 

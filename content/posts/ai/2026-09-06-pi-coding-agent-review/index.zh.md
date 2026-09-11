@@ -1,5 +1,6 @@
 +++
-date = '2026-09-23T10:00:00+08:00'
+date = '2026-09-06T10:00:00+08:00'
+aliases = ['/posts/ai/2026-09-23-pi-coding-agent-review/']
 draft = false
 title = 'pi coding agent 实测：只给 4 个工具的极简 Agent，比 Claude Code 少了什么、多了什么'
 description = 'pi coding agent 与 Claude Code 跑同样 3 个任务实测：上下文 1,358 vs 31,012 token，4 个工具、不弹权限框、不带沙箱。附 DeepSeek / 通义 / Kimi 接入配置、40 行守卫扩展代码、六轮实测收据和该不该换的判断。'
@@ -44,7 +45,7 @@ pi 是 Mario Zechner 对 Claude Code 的回应。用他自己的话说，Claude 
 
 四个工具（`read`、`write`、`edit`、`bash`），一屏能读完的系统提示词，其余一切走 TypeScript 扩展 API。
 
-它的规模早就不是小项目了。截至 2026 年 9 月 11 日，[earendil-works/pi](https://github.com/earendil-works/pi) 有 103,925 star、12,999 fork，2025 年 8 月 9 日创建，我查的前一天还有提交，MIT 协议。CLI 包 `@earendil-works/pi-coding-agent` 当前 v0.85.1（9 月 5 日发布），npm 周下载 153 万。
+它的规模早就不是小项目了。截至 2026 年 9 月 6 日，[earendil-works/pi](https://github.com/earendil-works/pi) 有 103,925 star、12,999 fork，2025 年 8 月 9 日创建，我查的前一天还有提交，MIT 协议。CLI 包 `@earendil-works/pi-coding-agent` 当前 v0.85.1（9 月 5 日发布），npm 周下载 153 万。
 
 对比一下：`@anthropic-ai/claude-code` 周下载 855 万，`@openai/codex` 1,316 万，所以 pi 的装机量大约是 Claude Code 的六分之一，但明显高于 OpenCode 的 131 万。
 

@@ -732,7 +732,7 @@ Now go let your AI assistant truly take the wheel.
 
 - [Claude Code Usage Tutorial (OpenClaw Case Study)](/posts/ai/2026-02-12-openclaw-usage-tutorial/)
 - [Codex CLI Mastery Guide](/posts/ai/2026-02-12-codex-cli-mastery-guide/)
-- [ego lite Review: Handing Claude Code Your Logged-In Browser](/posts/ai/2026-09-21-ego-lite-browser-review/) — September 2026 update to this comparison: the same tasks measured on ego lite, agent-browser, and Chrome DevTools MCP with real token and cost receipts
+- [ego lite Review: Handing Claude Code Your Logged-In Browser](/posts/ai/2026-09-10-ego-lite-browser-review/) — September 2026 update to this comparison: the same tasks measured on ego lite, agent-browser, and Chrome DevTools MCP with real token and cost receipts
 
 ## Series Navigation
 
@@ -744,4 +744,4 @@ This is Part 2 of the **Browser Automation for AI Agents** series — the arc fr
 4. [Playwright CLI + Skills: 0-Token Automation](/posts/ai/2026-04-18-playwright-cli-skill-zero-token-automation/) — the pattern that removes the MCP token tax
 5. [Claude Code Screenshot MCP Setup](/posts/ai/2026-07-21-claude-code-screenshot-mcp-frontend-debugging/) — the frontend debugging loop, 10,220 vs 65 tokens
 6. [ubrowser Review](/posts/ai/2026-07-27-ubrowser-review/) — the right design trapped in an abandoned repo
-7. [ego lite Review](/posts/ai/2026-09-21-ego-lite-browser-review/) — handing agents your logged-in session through Spaces
+7. [ego lite Review](/posts/ai/2026-09-10-ego-lite-browser-review/) — handing agents your logged-in session through Spaces
