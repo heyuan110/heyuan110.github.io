@@ -1,5 +1,6 @@
 +++
-date = '2026-09-11T11:00:00+08:00'
+date = '2026-09-16T10:00:00+08:00'
+aliases = ['/posts/ai/2026-09-11-cmu-11-768-ai-agents-course/']
 draft = false
 title = 'CMU 11-768 AI Agents 课程拆解：OpenHands 作者教你搭 Harness、建评测、RL 训 Agent'
 description = 'CMU 11-768 AI Agents 2026 秋季课全拆解：Graham Neubig 与 Daniel Fried 的 28 节课表、三份作业（Harness/评测/RL 训练）、评分、免费视频和 PPT 怎么拿、国内怎么跟、和 CS146S 怎么选。'
@@ -194,12 +195,12 @@ timeline
 
 ## 11-768、CS146S、CS329Z 该选哪个
 
-这个秋天三所顶尖学校都在讲 "AI Agent"，但它们不是替代品。整个赛道我在[2026 秋免费 AI Agent 课程盘点](/posts/ai/2026-09-11-free-ai-agent-courses-fall-2026/)里写全了，这里只做三方对比。
+这个秋天三所顶尖学校都在讲 "AI Agent"，但它们不是替代品。整个赛道我在[2026 秋免费 AI Agent 课程盘点](/posts/ai/2026-09-14-free-ai-agent-courses-fall-2026/)里写全了，这里只做三方对比。
 
 | | CMU 11-768 | 斯坦福 CS146S | 斯坦福 CS329Z |
 |---|---|---|---|
 | **回答的问题** | Agent 怎么造、怎么评、怎么训？ | 怎么用 Agent 交付软件？ | Agent 系统怎么做工程？ |
-| **你要写的** | 一个 ReAct Harness、评测、一次 RL 训练 | Prompt、MCP server、spec、用 Claude Code 做项目 | 见 [CS329Z 拆解](/posts/ai/2026-09-11-stanford-cs329z-engineering-ai-agents/) |
+| **你要写的** | 一个 ReAct Harness、评测、一次 RL 训练 | Prompt、MCP server、spec、用 Claude Code 做项目 | 见 [CS329Z 拆解](/posts/ai/2026-09-18-stanford-cs329z-engineering-ai-agents/) |
 | **先修的真实门槛** | 训过 4 到 7B 的模型 | 会编程 | 有系统背景 |
 | **公开视频** | 有，22 讲已出 4 讲 | 没有官方录像 | 见拆解 |
 | **最适合** | Agent 构建者、Harness 工程师、转 Agent 方向的算法工程师 | 想把 Claude Code / Cursor 用好的开发者 | 设计多智能体生产系统的工程师 |
@@ -273,8 +274,8 @@ timeline
 
 ## 延伸阅读
 
-- [2026 秋免费 AI Agent 课程盘点：斯坦福、CMU、MIT](/posts/ai/2026-09-11-free-ai-agent-courses-fall-2026/) — 把 11-768 和这学期所有公开课放在一起比的枢纽页
-- [斯坦福 CS329Z：Engineering AI Agents](/posts/ai/2026-09-11-stanford-cs329z-engineering-ai-agents/) — 系统侧的姊妹课
+- [2026 秋免费 AI Agent 课程盘点：斯坦福、CMU、MIT](/posts/ai/2026-09-14-free-ai-agent-courses-fall-2026/) — 把 11-768 和这学期所有公开课放在一起比的枢纽页
+- [斯坦福 CS329Z：Engineering AI Agents](/posts/ai/2026-09-18-stanford-cs329z-engineering-ai-agents/) — 系统侧的姊妹课
 - [斯坦福 CS146S：The Modern Software Developer](/posts/ai/2026-02-24-stanford-cs146s-overview/) — 需求侧的课，教用不教造
 - [Harness 工程：六层倒着建](/posts/ai/2026-04-18-harness-six-layers-reverse-build/) — 作业 1 就是第 1 到 4 层加一个评分器
 - [Harness 工程是窗口期，不是永久护城河](/posts/ai/2026-05-08-harness-engineering-window-of-opportunity/) — 从实践者角度论证 Neubig 的"先 Harness、训练随后跟上"

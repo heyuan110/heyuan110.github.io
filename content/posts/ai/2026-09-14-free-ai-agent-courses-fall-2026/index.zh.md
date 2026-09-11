@@ -1,5 +1,6 @@
 +++
-date = '2026-09-11T12:00:00+08:00'
+date = '2026-09-14T10:00:00+08:00'
+aliases = ['/posts/ai/2026-09-11-free-ai-agent-courses-fall-2026/']
 draft = false
 title = '2026 秋季 5 门免费大学 AI Agent 课怎么跟：斯坦福、CMU、MIT'
 description = '斯坦福 CS146S/CS329Z/CS329A、CMU 11-768、MIT 多模态课五门免费 AI Agent 课程横向对比：哪门有公开视频、哪门只有材料、国内怎么获取、先跟哪门、每周几小时。'
@@ -148,7 +149,7 @@ flowchart TD
 
 ## 这篇到此为止
 
-这是导航页。逐周的方案在各篇深挖里：实践线看 [CS146S 跟课方案](/zh/posts/ai/2026-09-11-cs146s-fall-2026-follow-along/)，主线看 [CMU 11-768 深挖](/zh/posts/ai/2026-09-11-cmu-11-768-ai-agents-course/)，想偷作业的看 [CS329Z 拆解](/zh/posts/ai/2026-09-11-stanford-cs329z-engineering-ai-agents/)。CMU 发出作业 2 和 3、CS146S 挂出 2026 版 PPT、CS329Z 或 CS329A 放出任何视频，我都会更新上面的表；正文里的"截至"日期就是标记。
+这是导航页。逐周的方案在各篇深挖里：实践线看 [CS146S 跟课方案](/zh/posts/ai/2026-09-11-cs146s-fall-2026-follow-along/)，主线看 [CMU 11-768 深挖](/zh/posts/ai/2026-09-16-cmu-11-768-ai-agents-course/)，想偷作业的看 [CS329Z 拆解](/zh/posts/ai/2026-09-18-stanford-cs329z-engineering-ai-agents/)。CMU 发出作业 2 和 3、CS146S 挂出 2026 版 PPT、CS329Z 或 CS329A 放出任何视频，我都会更新上面的表；正文里的"截至"日期就是标记。
 
 三件我没能核实、想记录在案的事：CMU 11 月的客座讲座会不会录像，用自己的 API key 跑 CMU 作业 1 要花多少钱，CS329A 2026-27 学年会不会再开。你要是在读其中任何一门、知道答案，评论区开着。
 

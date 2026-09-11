@@ -1,5 +1,6 @@
 +++
-date = '2026-09-11T11:00:00+08:00'
+date = '2026-09-16T10:00:00+08:00'
+aliases = ['/posts/ai/2026-09-11-cmu-11-768-ai-agents-course/']
 draft = false
 title = 'CMU 11-768 AI Agents Fall 2026: Full Syllabus Breakdown'
 description = 'CMU 11-768 AI Agents (Fall 2026) by Graham Neubig and Daniel Fried: all 28 sessions, the harness, eval and RL assignments, grading, free videos, who should take it.'
@@ -190,12 +191,12 @@ Two honest caveats. The instructor tests and reference patches aren't in the rep
 
 ## Who Should Take 11-768 vs CS146S vs CS329Z
 
-Three courses now cover "AI agents" at top schools this fall, and they're not substitutes. I wrote up the whole field in [Free AI Agent Courses Fall 2026](/posts/ai/2026-09-11-free-ai-agent-courses-fall-2026/); here's the three-way call.
+Three courses now cover "AI agents" at top schools this fall, and they're not substitutes. I wrote up the whole field in [Free AI Agent Courses Fall 2026](/posts/ai/2026-09-14-free-ai-agent-courses-fall-2026/); here's the three-way call.
 
 | | CMU 11-768 | Stanford CS146S | Stanford CS329Z |
 |---|---|---|---|
 | **Question it answers** | How do you build, evaluate and train an agent? | How do you ship software with agents? | How do you engineer agent systems? |
-| **You write** | A ReAct harness, evals, an RL training run | Prompts, MCP servers, specs, projects with Claude Code | See the [CS329Z breakdown](/posts/ai/2026-09-11-stanford-cs329z-engineering-ai-agents/) |
+| **You write** | A ReAct harness, evals, an RL training run | Prompts, MCP servers, specs, projects with Claude Code | See the [CS329Z breakdown](/posts/ai/2026-09-18-stanford-cs329z-engineering-ai-agents/) |
 | **Prereq reality** | Have trained a 4-7B model | Can program | Systems background |
 | **Public video** | Yes, 4 of 22 so far | No official recordings | See breakdown |
 | **Best for** | Agent builders, harness engineers, ML engineers moving into agents | Developers who want to use Claude Code / Cursor well | Engineers designing multi-agent production systems |
@@ -264,8 +265,8 @@ Everything else, from the 28 dates to the 100-point rubric to the quotes from le
 
 ## Related Reading
 
-- [Free AI Agent Courses Fall 2026: Stanford, CMU, MIT Compared](/posts/ai/2026-09-11-free-ai-agent-courses-fall-2026/) — the hub that places 11-768 against every other public course this term
-- [Stanford CS329Z: Engineering AI Agents](/posts/ai/2026-09-11-stanford-cs329z-engineering-ai-agents/) — the systems-side sibling
+- [Free AI Agent Courses Fall 2026: Stanford, CMU, MIT Compared](/posts/ai/2026-09-14-free-ai-agent-courses-fall-2026/) — the hub that places 11-768 against every other public course this term
+- [Stanford CS329Z: Engineering AI Agents](/posts/ai/2026-09-18-stanford-cs329z-engineering-ai-agents/) — the systems-side sibling
 - [Stanford CS146S: The Modern Software Developer](/posts/ai/2026-02-24-stanford-cs146s-overview/) — the demand-side course, for using agents rather than building them
 - [Harness Engineering: Build the 6 Layers Backwards](/posts/ai/2026-04-18-harness-six-layers-reverse-build/) — Assignment 1 is layers 1 through 4 with a grader
 - [Harness Engineering: Window of Opportunity, Not a Forever Moat](/posts/ai/2026-05-08-harness-engineering-window-of-opportunity/) — Neubig's "harness first, then training catches up," argued from the practitioner side

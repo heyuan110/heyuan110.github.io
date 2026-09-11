@@ -202,7 +202,7 @@ Lazygit 完美适配这个工作流。Claude Code 完成多文件改动后，我
 
 ## 相关阅读
 
-- [lazygit 还是 gitui：终端 Git 工具选型（2026 实测）](/zh/posts/ai/2026-09-11-gitui-vs-lazygit/) — 两个 Git TUI 的启动、内存、功能实测收据和选型决策
+- [lazygit 还是 gitui：终端 Git 工具选型（2026 实测）](/zh/posts/ai/2026-09-12-gitui-vs-lazygit/) — 两个 Git TUI 的启动、内存、功能实测收据和选型决策
 - [Claude Code 完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — 和 lazygit 搭配最好的 AI 编码工具
 - [Claude Code Worktree 指南](/zh/posts/ai/2026-02-28-claude-code-worktree-guide/) — lazygit 让 worktree 工作流可视化
 - [AI 开发工作流实战指南](/zh/posts/ai/2026-01-19-ai-dev-workflow/) — lazygit 在现代开发中的定位

@@ -1,5 +1,6 @@
 +++
-date = '2026-09-11T10:00:00+08:00'
+date = '2026-09-12T10:00:00+08:00'
+aliases = ['/posts/ai/2026-09-11-gitui-vs-lazygit/']
 draft = false
 title = 'gitui vs lazygit in 2026: Benchmarked on 82K Commits'
 description = 'gitui vs lazygit on an 82K-commit repo: gitui paints in 11 ms with 31 MB, lazygit needs 416 ms but owns rebase, conflicts, worktrees and custom commands. Pick guide.'

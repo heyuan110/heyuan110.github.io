@@ -308,7 +308,7 @@ CS146S 的课程结构暗合了一个更大的叙事：Vibe Coding 只是起点�
 - [CLAUDE.md 记忆术](/zh/posts/ai/2026-01-12-claudemd-memory-guide/) — 理解 AI 编程助手的项目感知机制
 - [2026 Agentic Coding 趋势报告](/zh/posts/ai/2026-02-23-agentic-coding-trends-2026/) — 从 Vibe Coding 到 Agentic Engineering 的演进
 - [Claude Code Hooks 实战指南](/zh/posts/ai/2026-02-18-claude-code-hooks-guide/) — Claude Code 的自动化扩展能力
-- [2026 秋季 5 门免费大学 AI Agent 课怎么跟：斯坦福、CMU、MIT](/zh/posts/ai/2026-09-11-free-ai-agent-courses-fall-2026/) — CS146S 和 CMU 11-768、CS329Z、CS329A、MIT 多模态课怎么搭配着跟
+- [2026 秋季 5 门免费大学 AI Agent 课怎么跟：斯坦福、CMU、MIT](/zh/posts/ai/2026-09-14-free-ai-agent-courses-fall-2026/) — CS146S 和 CMU 11-768、CS329Z、CS329A、MIT 多模态课怎么搭配着跟
 
 ## 系列文章导航
 

@@ -207,7 +207,7 @@ The transition cost is about two days of mild friction. The payoff is thousands 
 
 ## Related Reading
 
-- [gitui vs lazygit in 2026: Benchmarked on 82K Commits](/posts/ai/2026-09-11-gitui-vs-lazygit/) — startup, memory and feature receipts for the two Git TUIs, plus a decision guide
+- [gitui vs lazygit in 2026: Benchmarked on 82K Commits](/posts/ai/2026-09-12-gitui-vs-lazygit/) — startup, memory and feature receipts for the two Git TUIs, plus a decision guide
 - [Claude Code Complete Guide: From Setup to Advanced Workflows](/posts/ai/2026-02-28-claude-code-complete-guide/) — the AI coding tool that pairs best with lazygit
 - [Claude Code Worktree Guide](/posts/ai/2026-02-28-claude-code-worktree-guide/) — worktree workflows that lazygit makes visual
 - [AI Development Workflow: A Practical Guide](/posts/ai/2026-01-19-ai-dev-workflow/) — where lazygit fits in modern development

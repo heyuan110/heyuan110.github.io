@@ -1,5 +1,6 @@
 +++
-date = '2026-09-11T12:00:00+08:00'
+date = '2026-09-14T10:00:00+08:00'
+aliases = ['/posts/ai/2026-09-11-free-ai-agent-courses-fall-2026/']
 draft = false
 title = 'Free AI Agent Courses Fall 2026: Stanford, CMU, MIT Compared'
 description = 'Five free university AI agent courses for Fall 2026 compared: which have public lecture videos, which are materials-only, who each is for, and the stack to run.'
@@ -146,7 +147,7 @@ The real access question for readers in China is YouTube and Google Slides, and 
 
 ## Where This Page Stops
 
-This is the routing page. The deep dives are where the week-by-week plans live: the [CS146S follow-along](/posts/ai/2026-09-11-cs146s-fall-2026-follow-along/) for the practice track, the [CMU 11-768 deep dive](/posts/ai/2026-09-11-cmu-11-768-ai-agents-course/) for the spine, and the [CS329Z breakdown](/posts/ai/2026-09-11-stanford-cs329z-engineering-ai-agents/) for the homework you can steal. I'll update the table when CMU posts Assignments 2 and 3, when CS146S posts its 2026 decks, and if CS329Z or CS329A releases any video; the "as of" dates in the text are the tell.
+This is the routing page. The deep dives are where the week-by-week plans live: the [CS146S follow-along](/posts/ai/2026-09-11-cs146s-fall-2026-follow-along/) for the practice track, the [CMU 11-768 deep dive](/posts/ai/2026-09-16-cmu-11-768-ai-agents-course/) for the spine, and the [CS329Z breakdown](/posts/ai/2026-09-18-stanford-cs329z-engineering-ai-agents/) for the homework you can steal. I'll update the table when CMU posts Assignments 2 and 3, when CS146S posts its 2026 decks, and if CS329Z or CS329A releases any video; the "as of" dates in the text are the tell.
 
 Three things I couldn't verify and want on the record: whether CMU's November guest lectures will be recorded, the cost of running CMU Assignment 1 on your own API key, and whether CS329A will run again in 2026-27. If you're enrolled in any of these and know, the comments are open.
 

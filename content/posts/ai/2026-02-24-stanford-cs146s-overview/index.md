@@ -308,7 +308,7 @@ If you're interested in Vibe Coding and hands-on AI coding tools, check out thes
 - [CLAUDE.md Memory Techniques](/posts/ai/2026-01-12-claudemd-memory-guide/) — Understanding AI coding assistants' project awareness
 - [2026 Agentic Coding Trends Report](/posts/ai/2026-02-23-agentic-coding-trends-2026/) — The evolution from Vibe Coding to Agentic Engineering
 - [Claude Code Hooks Practical Guide](/posts/ai/2026-02-18-claude-code-hooks-guide/) — Claude Code's automation extension capabilities
-- [Free AI Agent Courses Fall 2026: Stanford, CMU, MIT Compared](/posts/ai/2026-09-11-free-ai-agent-courses-fall-2026/) — How CS146S fits alongside CMU 11-768, CS329Z, CS329A, and MIT's multimodal course
+- [Free AI Agent Courses Fall 2026: Stanford, CMU, MIT Compared](/posts/ai/2026-09-14-free-ai-agent-courses-fall-2026/) — How CS146S fits alongside CMU 11-768, CS329Z, CS329A, and MIT's multimodal course
 
 ## Series Navigation
 

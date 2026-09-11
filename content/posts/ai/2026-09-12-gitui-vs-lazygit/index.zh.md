@@ -1,5 +1,6 @@
 +++
-date = '2026-09-11T10:00:00+08:00'
+date = '2026-09-12T10:00:00+08:00'
+aliases = ['/posts/ai/2026-09-11-gitui-vs-lazygit/']
 draft = false
 title = 'lazygit 还是 gitui：终端 Git 工具选型（2026 实测）'
 description = '8.2 万 commit 仓库实测：gitui 11 ms 出画面、全量历史只占 31 MB；lazygit 要 416 ms，却独占交互式 rebase、冲突解决、worktree 和自定义命令。附 Windows/WSL2 安装坑、中文路径显示和 AI 编程工作流选型。'
