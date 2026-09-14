@@ -6,6 +6,30 @@ toc = true
 tags = ['AI', 'Claude Code', 'CLAUDE.md', '效率工具']
 categories = ['AI实战']
 keywords = ['CLAUDE.md 配置教程', 'Claude Code 记忆', 'CLAUDE.md 怎么写', 'Claude Code 开发环境配置', 'AI 代码规范']
+
+[[params.faqItems]]
+question = "CLAUDE.md 是什么？它什么时候会被读取？"
+answer = "就是一份普通的 Markdown 文件，用来给 Claude Code 持久记忆：技术栈、代码规范、常用命令、个人偏好。不需要你手动提醒，每次启动 Claude Code 或开新对话都会自动加载，顺序是 `~/.claude/CLAUDE.md` → `./CLAUDE.md` → `./CLAUDE.local.md`，后加载的覆盖先加载的。"
+
+[[params.faqItems]]
+question = "CLAUDE.md、CLAUDE.local.md、全局配置三层怎么分工？"
+answer = "按作用范围和是否进 Git 分。`./CLAUDE.md` 放项目根目录、要提交，写团队共识：技术栈、代码规范、目录结构、常用命令。`./CLAUDE.local.md` 同在项目根但要加进 .gitignore，写个人习惯、本地环境差异、临时调试指令。`~/.claude/CLAUDE.md` 全局生效，写你是谁和通用偏好。三层冲突时最后加载的个人配置赢，比如全局要求英文注释、个人要求中文，最终就是中文。"
+
+[[params.faqItems]]
+question = "怎么编辑 Claude 的记忆？有哪些用户可控的方式？"
+answer = "四种。`/init` 会读 package.json、tsconfig.json、.eslintrc 自动生成初稿，缺点是内容偏通用，还要手工补项目细节。对话里以 `#` 开头写一行，这条规则会被直接追加进配置文件，适合边写代码边沉淀规则。`/memory` 打开可视化编辑界面，可以选要改哪一层（全局/项目/个人）。配置太大时用 `@docs/architecture.md` 这类引用做模块化组合。"
+
+[[params.faqItems]]
+question = "配置文件太长了怎么拆？"
+answer = "用 `@` 引用拆成多文件：根目录留一份简短的 CLAUDE.md，里面写 `@docs/architecture.md`、`@docs/api-conventions.md`、`@docs/testing-guide.md`，Claude 会自动把被引用的文件一起读进去。经验阈值是配置超过几百行就该拆，模块化之后每块可以交给对应负责人维护，改动也更容易 review。"
+
+[[params.faqItems]]
+question = "CLAUDE.md 和 Skill 有什么区别？"
+answer = "CLAUDE.md 定义你是谁，Skill 定义某件事怎么做。前者装的是项目背景、代码规范、个人偏好，每次对话自动加载；后者装的是任务执行步骤，只在碰到匹配任务时才被激活。用比喻说：CLAUDE.md 是员工手册，Skill 是标准作业流程（SOP），两者互补而不是二选一。"
+
+[[params.faqItems]]
+question = "团队协作时 CLAUDE.md 该怎么维护？"
+answer = "4 条规矩。一，CLAUDE.md 必须提交到 Git，代码评审时顺带检查有没有遵守。二，CLAUDE.local.md 加进 .gitignore，别把个人偏好强加给别人，也能避免合并冲突。三，定期更新——Claude 反复犯同一个错，说明缺一条规则。四，新人入职第一天先读它，这份文件对人也是一份上手文档。"
 +++
 ![Memory Guide](memory-guide.webp)
 

@@ -6,6 +6,30 @@ toc = true
 tags = ['AI', 'Claude Code', 'Skills', 'SubAgent']
 categories = ['AI原理']
 keywords = ['Skill 和 SubAgent 区别', 'Claude Code SubAgent', 'AI Agent 上下文管理', 'Claude Code 能力扩展', 'Agent 架构模式']
+
+[[params.faqItems]]
+question = "Skill 和 SubAgent 到底有什么区别？"
+answer = "一个是内化能力，一个是外包能力。Skill 把能力说明、工具调用方式、注意事项全塞进主 Agent 的上下文，主 Agent 自己动手；SubAgent 则把任务派给独立的子 Agent，它在自己的上下文里跑完再把结果交回来，主 Agent 只负责派活和验收。差别的本质在上下文管理，不在功能强弱。"
+
+[[params.faqItems]]
+question = "什么时候该用 Skill，什么时候该拆 SubAgent？"
+answer = "看 2 件事：子任务有多重，以及你要不要中间过程的信息。任务不复杂、或者主 Agent 需要全程掌控就用 Skill——比如做入口路由，根据请求加载不同场景模式，还能享受懒加载（先只载入名字和简介，真用到才加载完整说明）。子任务很重、很耗时、中间过程啰嗦就拆 SubAgent，典型是 Chrome DevTools 这类工具说明臃肿的 MCP。"
+
+[[params.faqItems]]
+question = "为什么说上下文污染是真实的工程瓶颈？"
+answer = "把上下文想成一张固定大小的工作桌。Skill 模式下所有能力说明都铺在同一张桌上，好处是信息互通、推理连贯，坏处是桌子很快就乱——Prompt 越来越长，能力之间互相打架，AI 开始犯糊涂。SubAgent 模式下子 Agent 在另一张桌上干活，截图、DOM 树、网络请求这些中间产物全留在那边，主 Agent 桌面保持干净，代价是交接设计不好会丢关键信息。"
+
+[[params.faqItems]]
+question = "Skill 和 SubAgent 能结合起来用吗？"
+answer = "能，有 3 种进阶玩法。一是先展开再压缩：加载 Skill 跑完拿到结果后，把从加载到出结果这整段过程折叠掉，只保留结论——像两小时头脑风暴最后只留三条会议纪要。二是用文件系统做中转站：委托时不把背景资料写进指令而是存成文档只传地址，返回时也只给状态摘要加详细记录的文件路径，双方上下文都保持精简。"
+
+[[params.faqItems]]
+question = "上下文快用完了怎么抢救？"
+answer = "让 Claude 先把当前完成的工作总结成一份文档，再用 `rewind` 回滚到任务开始前的状态，然后告诉它：这件事已经做完了，记录在这个文件里。相当于跑马拉松快脱力时把已跑路线画成地图存档，然后瞬移回起点、精力充沛地带着地图重来。上下文被清空，成果保留下来。"
+
+[[params.faqItems]]
+question = "Agent 架构设计和软件架构设计有什么共通之处？"
+answer = "是同一批老问题换了层皮。把逻辑写进一个巨型函数，还是拆成模块化的微服务？共享全局变量图省事，还是严格隔离状态保持干净？Skill 对应前者，SubAgent 对应后者。Agent 的竞争正在从能调用多少工具转向怎么优雅地管理这些工具——AI 的工作记忆是有限的，你怎么组织它，决定了它能做多复杂的事。"
 +++
 ![ClaudeCode Skill](cc-skill-agent.webp)
 

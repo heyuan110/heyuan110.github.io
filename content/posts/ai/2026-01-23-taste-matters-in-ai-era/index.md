@@ -7,6 +7,30 @@ toc = true
 tags = ['AI', 'Taste', 'Creativity', 'Personal Growth', 'Career']
 categories = ['AI Guides']
 keywords = ['taste in AI era', 'AI creativity', 'personal taste importance', 'AI competitive advantage', 'curation vs creation']
+
+[[params.faqItems]]
+question = "What does taste actually mean in the AI era?"
+answer = "It is a form of literacy — the ability to read the world and judge what good looks like — built through exposure, study and reflection, not a preference for expensive things. Debris Studio calls it a trained instinct. Steve Jobs made the same point in 1995 when he said Microsoft's only problem was having no taste, and added that great products are a triumph of taste. In practice it shows up as knowing which features are core and which are noise."
+
+[[params.faqItems]]
+question = "Why is personal taste the moat when AI can generate anything?"
+answer = "Because skills can be learned, knowledge can be retrieved and processes can be automated, but taste is the compound product of every book, failure and conversation you have had — cultural context, aesthetic intuition and value judgment fused into something only you have. Han Xu of the China Academy of Art put it precisely: AI generates works faster and faster, but it cannot generate a person's intuition, experience, judgment, emotion, or originality rooted in a specific cultural background."
+
+[[params.faqItems]]
+question = "If AI can create anything, what is left for humans to do?"
+answer = "Direction. AI is a mirror, not a compass — it generates endlessly but does not know what should be generated, and it reflects whatever you feed it. Bain's innovation research found AI struggles to produce truly disruptive ideas, which keeps humans essential to the process. Skilled painters used to be scarce; now people who can select the right painting are scarce. When production cost hits zero, curation becomes the core skill."
+
+[[params.faqItems]]
+question = "How do I develop better taste?"
+answer = "5 steps, none of them fast. Expose yourself to great work and build a personal reference library of things that made you think this is genuinely good. Analyze deliberately — ask what specifically makes a piece good or bad rather than resting on a feeling. Practice extensively, since every piece you make trains your judgment; former Apple engineer Ken Kocienda describes using past work as the benchmark. Seek honest feedback from people with better taste. And be patient: it takes years, which is exactly why few people do it."
+
+[[params.faqItems]]
+question = "Will AI make everyone's output look the same?"
+answer = "The opposite — it widens the gap. Without taste, AI homogenizes your output and everything reads generic. With taste, AI amplifies what is distinctive about you, because you filter its output and keep only what is excellent. Fudan University research frames the same split: AI's strength is efficiency and precision, while creativity, insight and leadership remain the human capabilities algorithms cannot replace. Same tools, radically different results."
+
+[[params.faqItems]]
+question = "What does taste look like in day-to-day work?"
+answer = "3 concrete cases. In AI-assisted coding, taste means judging whether generated code fits the project's existing architecture and refactoring it for maintainability, rather than shipping because it runs. In content creation, it means using AI for a fast first draft and then investing the time in refinement, holding a point of view instead of chasing algorithmic trends. In product design, it means distinguishing core features from distractions and having the courage to remove things — what Jobs meant by focus being about saying no."
 +++
 
 ![Why taste matters in the AI era](cover.webp)

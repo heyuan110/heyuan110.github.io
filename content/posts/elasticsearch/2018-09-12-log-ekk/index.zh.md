@@ -5,6 +5,30 @@ description = '基于 AWS 托管服务搭建 EKK 日志系统完整教程，使�
 toc = true
 tags = ['Elasticsearch', 'AWS', 'Kinesis', 'Kibana', '日志分析']
 categories = ['Elasticsearch']
+
+[[params.faqItems]]
+question = "EKK 是什么？和 ELK 有什么区别？"
+answer = "EKK 指 Elasticsearch + Kinesis + Kibana，和 ELK 是同一套日志思路，区别是用 Kinesis 替掉 Logstash，且全部组件都是 AWS 托管服务。Amazon Elasticsearch Service 负责集群和 Kibana，Kinesis 负责采集投递，不用自己维护 Logstash 集群。代价是数据加工灵活性下降，原本 Logstash filter 干的活要挪到 Lambda 或索引模板里。"
+
+[[params.faqItems]]
+question = "怎么把 EC2 上的 Nginx 日志通过 Kinesis 送进 Elasticsearch？"
+answer = "先装 Kinesis Agent：clone `amazon-kinesis-agent`，装 openjdk-8-jdk，跑 `sudo ./setup --install`。再改 `/etc/aws-kinesis/agent.json`，填 IAM Key、对应区域 endpoint 和一个 flow——`filePattern` 指向 access.log，目的地填 `deliveryStream`（Firehose）或 `kinesisStream`。最后 `sudo service aws-kinesis-agent start` 启动，改配置后要 restart。"
+
+[[params.faqItems]]
+question = "Kinesis Agent 解析不出自定义字段怎么办？"
+answer = "因为内置的 COMMONAPACHELOG 只认标准 Apache 字段，你自己加的 upstream_response_time、request_time 它一概忽略。做法是保留 `optionName: LOGTOJSON`，同时自己写 `matchPattern` 正则，并用 `customFieldNames` 按捕获组顺序列出字段名。还有一个高频坑：Kinesis Agent 是 Java 程序，正则必须用 Java 语法和 Java 的转义规则，不能照搬 Python 或 PCRE 写法。"
+
+[[params.faqItems]]
+question = "matchPattern 正则怎么在上线前验证？"
+answer = "拿真实日志行去跑一遍 Java 再写进 agent.json。用在线 Java 运行器，`Pattern.compile()` 编译你的正则，`matcher(line).find()` 之后把每个 `m.group(n)` 都打印出来，确认分组顺序和 customFieldNames 一一对应。特别注意转义：JSON 配置里的一个反斜杠，写成 Java 字符串字面量要变成两个。分组全部打印正确了再拷回 matchPattern。"
+
+[[params.faqItems]]
+question = "为什么日志进了 ES，所有字段都是 text 类型？"
+answer = "因为没给映射，ES 动态推断默认全按 text 处理，结果是字节数没法做范围查询、时间字段也建不了时序图表。解法是在数据写入前建好索引模板：`PUT _template/nginx-access-log_template`，`template` 填通配符 `*-nginx-access-log-*`，这样 api-nginx-access-log-2018-08-02 这类按天索引会自动套用。body_bytes_sent 和 connection_serial_number 映射成 long，两个耗时字段用 double，文本字段加 keyword 子字段方便聚合。"
+
+[[params.faqItems]]
+question = "datetime 字段一直解析失败是什么原因？"
+answer = "因为 Nginx 的 time_local 不是 ISO 8601 格式。默认日志写出来是 `12/Sep/2018:03:59:12`，映射必须写成 `format: dd/MMM/YYYY:HH:mm:ss`，套常见的 ISO 格式根本匹配不上，字段就退回成 text。这个细节能坑掉好几个小时。另外这套管道有两个已知缺口：没有地理位置、没有解析浏览器和设备信息，补救办法是在 Firehose 和 ES 之间加一个 Lambda 做 GeoIP 和 User-Agent 解析。"
 +++
 
 EKK是一套基于AWS相关服务搭建的日志收集系统，包含Amazon Elasticsearch Service, Amazon Kinesis, and Kibana，简称EKK.相比ELK搭建维护运维复杂，EKK更加简便。下图是EKK基本架构：

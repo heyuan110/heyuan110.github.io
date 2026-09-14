@@ -7,6 +7,30 @@ tags = ['ClawdBot', 'AI Agent', 'AI Assistant', 'Open Source', 'Automation', 'An
 categories = ['AI Guides']
 keywords = ['ClawdBot setup guide', 'personal AI assistant', 'open source AI agent', 'Telegram AI bot', 'ClawdBot tutorial', 'self-hosted AI assistant']
 toc = true
+
+[[params.faqItems]]
+question = "What is ClawdBot and how is it different from ChatGPT?"
+answer = "ClawdBot is an open-source AI agent built by Austrian engineer Peter Steinberger that runs 24/7 on your own machine and talks to you through Telegram, WhatsApp, Discord, Slack or iMessage. It passed 9,000 GitHub stars by January 2026. The difference from a chat app is that it acts on its own schedule — it manages email, books things, runs research and proactively messages you, where Claude Code handles coding and ClawdBot handles everything else."
+
+[[params.faqItems]]
+question = "What do I need before installing ClawdBot?"
+answer = "Three things. A machine that stays powered on — a Mac Mini, a spare old computer, a VPS or a NAS all work, since the assistant is offline whenever the host is. An AI API key: sign up at console.anthropic.com, add a payment method and generate one; Claude gives the best results. And a messaging app to talk through, with Telegram the easiest to set up. No programming knowledge is needed — installation is copy and paste."
+
+[[params.faqItems]]
+question = "How long does ClawdBot take to install?"
+answer = "About 30 minutes end to end, of which the install itself is 1-2 minutes. Run `curl -fsSL https://clawd.bot/install.sh | bash` in Terminal and the setup wizard launches on its own when it finishes. Walk through the wizard, create a Telegram bot, then start the service with `clawdbot start` — you should see confirmation that it is running, connected to Telegram and ready for messages. Send it a hello from Telegram to verify."
+
+[[params.faqItems]]
+question = "How much does running ClawdBot cost per month?"
+answer = "Roughly $20-150 a month, essentially all of it model usage. The software is free and open source. The Claude API runs about $20-100 depending on how much you use it, and the machine costs $0-50 a month depending on whether you are reusing hardware or renting a VPS. There is no subscription to ClawdBot itself."
+
+[[params.faqItems]]
+question = "Is my data safe if the assistant reads my email?"
+answer = "It runs entirely on your own machine and nothing is uploaded to third-party servers — the data stays local, which is the main argument for self-hosting rather than using a cloud assistant. The tradeoff is availability: if the computer shuts down, the assistant goes offline, which is exactly why a dedicated always-on device such as a Mac Mini or a VPS is recommended."
+
+[[params.faqItems]]
+question = "What can ClawdBot actually automate?"
+answer = "Anything you can ask for in a message, across 50+ tool integrations including Gmail, Google Calendar, GitHub, Spotify and smart home devices. Concrete examples: say remind me in 3 days to call John and it messages you unprompted on the right day; say remind me to drink water tomorrow at 9 AM and it fires at 9. You can also teach it standing skills, such as checking the forecast every morning at 8 AM and telling you to take an umbrella if rain is expected, and run several specialized instances at once."
 +++
 
 ![ClawdBot personal AI assistant setup guide](cover.webp)

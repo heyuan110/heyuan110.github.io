@@ -6,6 +6,34 @@ toc = true
 tags = ['Docker', 'Docker Compose', 'Containers', 'DevOps']
 categories = ['Docker']
 keywords = ['Docker Compose 教程', 'docker-compose.yml 配置', 'Docker 入门', '容器化部署']
+
+[[params.faqItems]]
+question = "什么时候该用 Docker Compose，而不是一条条 docker run？"
+answer = "当应用需要多个容器协同时。手动管理要先 `docker network create myapp`，再分别 run mysql、redis 和 app，还要逐个传 `--network`、`-e DB_HOST=mysql` 这些参数，改一次配置就得全部重来。Compose 把这些写进一个 YAML 文件，`docker compose up -d` 一条命令全部拉起，停掉用 `docker compose down`。"
+
+[[params.faqItems]]
+question = "docker-compose.yml 的基本结构是什么？"
+answer = "四个顶层块：`services` 定义各个服务（必需），`networks` 定义网络，`volumes` 定义数据卷，`version` 是版本声明、新版本可以省略。一个最小可用文件就是 services 下写一个服务名，指定 `image: nginx:alpine` 和 `ports: - '80:80'`。安装无需单独处理，Docker Desktop 和 Linux 版 Docker Engine 都已内置，用 `docker compose version` 验证。"
+
+[[params.faqItems]]
+question = "一个服务下最常用的配置项有哪些？"
+answer = "`image` 用现成镜像或 `build` 指定 context 和 dockerfile 自己构建；`ports` 写宿主机端口:容器端口；`environment` 直接写变量、`env_file` 从 .env 加载；`volumes` 挂目录或命名卷；`depends_on` 声明依赖；`restart: unless-stopped` 控制重启策略；`networks` 指定网络；`deploy.resources.limits` 限制 cpus 和 memory。"
+
+[[params.faqItems]]
+question = "怎么让应用等数据库真正就绪再启动？"
+answer = "光靠 `depends_on` 列表只管启动顺序，不管服务是否可用。要给数据库加 healthcheck，比如 MySQL 写 `test: [CMD, mysqladmin, ping, -h, localhost]`，配 `interval: 10s`、`timeout: 5s`、`retries: 5`；然后在应用服务里把 depends_on 写成映射形式，对 mysql 用 `condition: service_healthy`，对 redis 用 `condition: service_started`。"
+
+[[params.faqItems]]
+question = "Docker Compose 的常用命令有哪些？"
+answer = "启动 `docker compose up -d`，停止并删除 `docker compose down`（加 `-v` 连数据卷一起删）。查看状态 `docker compose ps`，看日志 `docker compose logs -f app`，进容器 `docker compose exec app bash`。构建用 `docker compose build`，缓存有问题时加 `--no-cache`。另外还有 restart、stop、start 和拉取最新镜像的 pull。"
+
+[[params.faqItems]]
+question = "生产环境部署要额外做哪些加固？"
+answer = "三类。资源限制：`deploy.resources` 里同时设 limits（如 cpus 1.0、memory 1G）和 reservations。日志管理：logging 用 json-file 驱动并设 `max-size: 100m`、`max-file: 5`，否则日志会把磁盘吃满。安全加固：`user: 1000:1000` 以非 root 运行、`read_only: true` 只读文件系统、配 tmpfs 给 /tmp、`security_opt` 加 `no-new-privileges:true`。"
+
+[[params.faqItems]]
+question = "容器起不来或者网络不通怎么排查？"
+answer = "先看日志再看配置：`docker logs container_name` 看报错，`docker inspect container_name` 看完整配置。容器起不来最常见的三个原因是端口冲突、数据卷权限问题、依赖服务还没就绪。网络不通就用 `docker network ls` 和 `docker network inspect network_name` 检查容器是不是挂在同一个网络下——同一个 Compose 项目里服务名就是主机名。"
 +++
 ![Docker Complete Guide](docker-cover.webp)
 

@@ -7,6 +7,30 @@ toc = true
 tags = ['AI Security', 'Vibe Coding', 'Stanford CS146S', 'Prompt Injection', 'Code Review']
 categories = ['AI Guides']
 keywords = ['Secure Vibe Coding', 'AI code security', 'Prompt Injection RCE', 'AI Code Review', 'OWASP AI security']
+
+[[params.faqItems]]
+question = "What is Stanford CS146S and what do Weeks 6-7 cover?"
+answer = "CS146S is Stanford's Vibe Coding course, and Weeks 6 and 7 are the security and review half of it. Week 6 asks who guarantees AI-written code is not exploitable, and what happens when the AI itself becomes the attack surface; Week 7 asks how far AI-generated code can be trusted. The rest of the series covers context engineering in Week 3, agent manager patterns in Week 4, and prototype-to-production in Weeks 8-9. The bar it sets is testable, auditable and defensible, not just faster."
+
+[[params.faqItems]]
+question = "How did prompt injection lead to remote code execution in GitHub Copilot?"
+answer = "CVE-2025-53773, disclosed in 2025 and patched by Microsoft in August 2025, chained four steps. An attacker plants instructions invisible to humans in source files, web pages or GitHub Issues. Copilot Agent Mode reads them and edits `.vscode/settings.json` to add `chat.tools.autoApprove: true`. That disables every confirmation prompt. Further injected instructions then run terminal commands unsupervised. The worst detail: the config change is written to disk immediately, never shown as a diff to review."
+
+[[params.faqItems]]
+question = "How good is AI at actually finding security vulnerabilities?"
+answer = "Useful but noisy. Semgrep tested Claude Code and OpenAI Codex against 11 actively maintained open-source Python projects totaling over 8 million lines. Claude Code reported 329 findings of which 46 were real — a 14% true positive rate; Codex reported 116 with 21 real, 18%. Together they surfaced roughly 20 high-severity issues. Strengths diverge sharply: Claude Code hit 22% on IDOR where Codex scored 0%, while Codex hit 47% on path traversal against Claude Code's 10%."
+
+[[params.faqItems]]
+question = "Why does the same AI security scan return different results each run?"
+answer = "Context rot. In the Semgrep work, the same code, same model and same prompt produced 3, then 6, then 11 entirely different findings across three runs, because the model loses earlier context detail as a large codebase is analyzed and context gets compressed. The same decay hits security rules in long sessions — a constraint stated at turn 1 can be ignored by turn 50. Never treat a single scan as clearance: run repeatedly, cross-validate, and keep traditional static analysis in the loop."
+
+[[params.faqItems]]
+question = "How should I review AI-generated code differently?"
+answer = "Run seven passes: intent verification (did it build what you asked?), a security scan (input validation, parameterized SQL, path traversal, SSRF, authz, secrets in logs), boundary conditions (null, huge inputs, concurrency, timeouts), dependency audit (hallucinated or unmaintained packages), performance (N+1 queries, memory leaks, full table scans), consistency with existing style, and maintainability. The telltale AI smells are code that is superficially correct but flawed at the edges, over-engineered, and inconsistent about security from one function to the next."
+
+[[params.faqItems]]
+question = "What does a secure Vibe Coding workflow look like in practice?"
+answer = "Five layers. First, write security rules directly into CLAUDE.md — validate and escape all input, parameterized queries only, no eval() or exec(), no secrets in API responses. Second, automate checks in pre-commit hooks and CI: lint, tests, static analysis, dependency scanning, AI review. Third, require human review for auth changes, schema changes, new integrations and permission-related config. Fourth, least privilege — no root access for agents, no auto-approve-all mode, audit the logs. Fifth, runtime defense: WAF, RASP, anomaly detection, periodic pentests."
 +++
 
 > This is Part 4 of the "Stanford Vibe Coding Course Deep Dive" series. See the series navigation at the end of this article.

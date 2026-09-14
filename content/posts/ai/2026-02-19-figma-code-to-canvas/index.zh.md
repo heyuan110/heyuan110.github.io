@@ -7,6 +7,30 @@ toc = true
 tags = ['Figma', 'Claude Code', 'Anthropic', 'AI Design', 'MCP']
 categories = ['AI Guides']
 keywords = ['Figma Code to Canvas', 'Figma AI', 'Figma Anthropic', '代码转设计', 'Claude Code Figma', 'MCP Server', 'AI 设计工具']
+
+[[params.faqItems]]
+question = "Figma Code to Canvas 是什么？"
+answer = "2026 年 2 月 17 日 Figma 与 Anthropic 联合发布的功能，把 Claude Code 在浏览器里渲染出的 UI 界面，转成 Figma 画布上可编辑的 Frame。关键在于它捕获的不是截图，而是浏览器的渲染状态，再语义化解析成图层、文本、间距、颜色等属性，所以传过去的是能拖拽能改的矢量图层，不是位图。"
+
+[[params.faqItems]]
+question = "Code to Canvas 怎么配置？要装什么？"
+answer = "四步。先用 Claude Code 把 UI 建出来跑在本地或 staging 环境；打开 Figma 桌面端（浏览器版不支持）在偏好设置里开启 Dev Mode MCP Server，它会跑在 `http://127.0.0.1:3845/sse`；终端执行 `claude mcp add --transport sse figma-dev-mode-mcp-server http://127.0.0.1:3845/sse` 完成注册；最后在 Claude Code 里说一句 Send this to Figma。"
+
+[[params.faqItems]]
+question = "Figma MCP 能反过来把设计稿变成代码吗？"
+answer = "能，这条链路是双向的。在 Figma 里选中一个 Frame，把链接发给 Claude Code，它会按你已有的设计系统——组件库、设计变量、Tailwind 变量——生成生产级代码，而不是用通用 UI 框架从零拼。因为 Dev Mode MCP Server 能语义化读取 Figma 的组件库、样式系统和布局结构，AI 生成的界面天然更贴近现有规范。"
+
+[[params.faqItems]]
+question = "Code to Canvas 和 v0、Bolt、Lovable、Figma Make 有什么区别？"
+answer = "区别在方向。v0、Bolt、Lovable 都是从文本出发生成代码或可部署应用，解决「从 0 到 1 构建」；Code to Canvas 解决的是代码生成之后的问题——怎么让设计师参与、怎么在视觉层面协作决策，输出物是完全可编辑的 Figma Frame 而不是需要截图重建的界面。所以它不是竞品而是下游补充，可以先用 v0 生成代码再传进 Figma 审查。Figma Make 则是从设计到代码，两者构成双向闭环。"
+
+[[params.faqItems]]
+question = "Code to Canvas 目前有哪些限制？"
+answer = "六个。Claude Code 是命令行工具，不熟悉终端的设计师有学习成本；MCP Server 只支持 Figma 桌面应用；每个页面要单独捕获，多页面流程得逐个操作；文件大会多消耗 Token；需要 Figma Dev 或 Full Seat 权限。最关键的是缺少视觉微调回路——在 Figma 里改完间距或颜色，不会自动同步回代码，还得手动改。"
+
+[[params.faqItems]]
+question = "Code to Canvas 最适合什么场景？"
+answer = "四类。一是快速原型验证，把「写 PRD→出原型→开发→评审」压缩成自然语言描述后几分钟拿到可讨论的高保真原型。二是方案发散，让 Claude Code 一次生成 5-6 个变体全传上画布并排比较。三是设计还原度审查，把实际运行的界面和原始设计稿并排放，逐像素标差异。四是给 AI 生成的界面做设计审查，由设计师拉进 Figma 精修后再反馈给开发。"
 +++
 
 2026 年 2 月 17 日，Figma 与 Anthropic 联合发布了一项名为 **Code to Canvas** 的新功能。这不是又一个"AI 生成设计稿"的噱头，而是一次对设计与开发协作方式的根本性重构——它允许用户在 Claude Code 中构建的 UI 界面，直接以**可编辑的设计图层**形式传输到 Figma 画布上。

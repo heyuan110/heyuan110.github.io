@@ -5,6 +5,30 @@ description = 'RabbitMQ 消息队列入门教程，详解 AMQP 协议原理、�
 toc = true
 tags = ['RabbitMQ', '消息队列', 'AMQP', '中间件']
 categories = ['中间件']
+
+[[params.faqItems]]
+question = "RabbitMQ 的四种 Exchange 有什么区别？怎么选？"
+answer = "Direct 把消息的 Routing key 与绑定的 Routing key 做精确相等匹配，相等才投递；Topic 做通配符匹配；Fanout 直接转发给所有绑定的队列、完全忽略 Routing key，所以它转发最快；Headers 则拿消息的 headers 去匹配绑定参数。日常最常用的是 Direct 和 Topic，广播场景用 Fanout，Headers 用得很少。"
+
+[[params.faqItems]]
+question = "为什么生产者不能直接把消息发给队列，非要经过 Exchange？"
+answer = "因为 AMQP 协议的核心思想是生产者和消费者解耦。生产者只把消息发给交换机，并不知道消息最终进哪个队列；交换机按预先定义的路由策略转发到队列。这样生产者不用关心谁消费、消费者不用关心谁生产，只面向队列取消息。Exchange 把各层消息传递隔离开，每层只关心自己面向的下一层，整体耦合度大幅降低。"
+
+[[params.faqItems]]
+question = "Channel 和 Connection 有什么区别？为什么不直接用 TCP 连接？"
+answer = "Connection 就是一条 TCP 连接，Channel 是建立在它之上的虚拟连接，每个信道有唯一 ID，Rabbit 处理的每条指令都通过 Channel 完成。不直接用 TCP 是因为建连要 3 次握手、关闭要 4 次挥手，线程一多频繁建关开销极大且连接数有上限。RabbitMQ 采用类似 NIO 的做法复用 TCP：每个线程持一个信道。但信道流量很大时单条 connection 的带宽会成为瓶颈，这时要建多个 connection 把信道分摊过去。"
+
+[[params.faqItems]]
+question = "用 Docker 怎么快速装一个 RabbitMQ？"
+answer = "一条命令：`docker run -d -p 5672:5672 -p 15672:15672 --name rabbitmq rabbitmq:management`。5672 是 AMQP 服务端口，15672 是管理界面端口，management 镜像约 200M。装完浏览器打开 `http://ip:15672/`，默认账号密码都是 guest。适合本地学习，生产环境再走本地安装和集群配置。"
+
+[[params.faqItems]]
+question = "RabbitMQ 节点该选 disc 还是 ram 模式？"
+answer = "看你有没有别的高可用手段。disc 把消息存盘，需要把 exchange、queue、delivery mode 都设成 durable，好处是 RabbitMQ 挂掉重启后消息还能恢复；ram 模式处理效率高得多，两者效率比大约是 3:1。如果已有其他 HA 保障，选 ram 能显著提高吞吐。切换方式：`rabbitmqctl stop_app`、`rabbitmqctl change_cluster_node_type ram`、`rabbitmqctl start_app`。"
+
+[[params.faqItems]]
+question = "生产速度超过 RabbitMQ 处理能力会怎样？"
+answer = "RabbitMQ 会自动对该连接做流控——减慢速率，让客户端以为网络带宽变小了，从而限制发送速度。判断方法是执行 `rabbitmqctl list_connections`，如果某条连接状态显示为 flow，说明它正处于 flow-control 状态。看到这个状态就该考虑加消费者、优化消费逻辑或者扩节点了。"
 +++
 前面文章[《消息队列 MQ 技术选型指南》](/zh/posts/middleware/2019-07-31-mq/)我们了解了消息队列技术选型，本文我们来学习开源消息队列RabbitMQ。
 

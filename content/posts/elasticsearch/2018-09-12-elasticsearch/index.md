@@ -6,6 +6,30 @@ toc = true
 tags = ['Elasticsearch', '搜索引擎', '全文检索', 'API']
 categories = ['Elasticsearch']
 keywords = ['Elasticsearch tutorial', 'Elasticsearch REST API', 'Elasticsearch CRUD', 'Elasticsearch DSL query', 'Elasticsearch index document']
+
+[[params.faqItems]]
+question = "How do I list all indices in an Elasticsearch cluster?"
+answer = "Use the human-readable _cat API: `GET /_cat/indices?v`. The `?v` adds a header row, and the output gives health, status, index name, uuid, primary and replica counts, docs.count, docs.deleted and store size per index. `GET /_cat/` on its own lists every available _cat endpoint — allocation, shards, master, nodes, count, health, pending_tasks, aliases, thread_pool, templates and more. For a single index, `GET /_cat/indices/{index}`."
+
+[[params.faqItems]]
+question = "How do I create an index and a document with curl?"
+answer = "An index is one call: `PUT /test_index?pretty`, which returns acknowledged true. A document follows the pattern PUT /index/type/id, so `curl -XPUT http://host:9200/test_index/user/1 -H 'Content-Type: application/json' -d '...'` creates document 1. The response carries `_version` and result created. Delete either with the same path and `DELETE`. Note that from ES 7.x the type concept is deprecated and each index effectively has a single type."
+
+[[params.faqItems]]
+question = "Why does my cluster health show yellow instead of green?"
+answer = "Because replica shards cannot be allocated. Green means all primary and replica shards are active, yellow means all primaries are active but some replicas are unassigned, and red means primary shards are missing — actual data loss. A single-node cluster is permanently yellow by design: a replica must never sit on the same node as its primary, or it would provide no fault tolerance. Check with `GET /_cat/health?v`."
+
+[[params.faqItems]]
+question = "How do Elasticsearch concepts map to a relational database?"
+answer = "Index maps to database, type to table, document to row, and field to column. A cluster holds many indices, each index many types, each type many documents, each document many fields. The analogy is a useful on-ramp but breaks down past the basics, and it broke formally in ES 7.x when types were deprecated — an index now effectively holds one type, so index-equals-table is the closer modern reading."
+
+[[params.faqItems]]
+question = "How do I fix the error Fielddata is disabled on text fields by default?"
+answer = "It appears when you sort or aggregate on a `text` field. The quick fix is enabling fielddata in the mapping with a PUT to `/{index}/_mapping/{type}` setting the field to type text and `fielddata: true` — but that carries a heavy memory cost. The better fix is to sort on the `.keyword` sub-field instead, which Elasticsearch creates automatically for text fields with `ignore_above: 256`. Check what exists first with `GET /test_index/_mapping`."
+
+[[params.faqItems]]
+question = "Should I use query string search or the Query DSL?"
+answer = "Query strings for quick ad-hoc checks from curl, DSL for anything real. A query string like `_search?pretty&q=name:bruce&sort=email:desc` is fast to type and case-insensitive, but it cannot express compound conditions. DSL sends a JSON body where `query`, `_source`, `sort`, `from` and `size` all sit at root level, and a `bool` query can combine `must` with a `filter` containing a `range` using `gt`, `gte`, `lt` and `lte`. Watch the nesting — that is where most DSL errors come from."
 +++
 
 ![](https://raw.githubusercontent.com/heyuan110/static-source/master/cover/es.jpg)

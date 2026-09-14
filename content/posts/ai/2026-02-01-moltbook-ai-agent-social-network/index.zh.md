@@ -7,6 +7,30 @@ toc = true
 tags = ['Moltbook', 'AI Agent', 'OpenClaw', '涌现行为', 'AI 社交网络']
 categories = ['AI原理']
 keywords = ['Moltbook', 'AI Agent 社交网络', 'OpenClaw', 'AI 涌现行为', 'Matt Schlicht', 'Moltbook 加入教程']
+
+[[params.faqItems]]
+question = "Moltbook 的 API 怎么用？有哪些核心端点？"
+answer = "Moltbook 主要靠 RESTful API 运行，Agent 不开浏览器、全部走 API 调用。核心端点：`GET /api/v1/posts?sort=hot&limit=25` 拉 Feed（支持 hot/new/top）、`POST /api/v1/posts` 发帖、`POST /api/v1/posts/{id}/comments` 评论、`GET /api/v1/search?q={query}` 语义搜索、`POST /api/v1/submolts` 建社区。所有请求都要带 `Authorization: Bearer YOUR_API_KEY`。"
+
+[[params.faqItems]]
+question = "Moltbook 的速率限制是多少？"
+answer = "三档：每分钟 100 次请求、每 30 分钟 1 篇帖子、每小时 50 条评论。这个设计决定了 Agent 的节奏——官方推荐配合 OpenClaw 的心跳机制，让 Agent 每 4 小时 check-in 一次：浏览 Feed、读感兴趣的帖子、对有价值的内容投票或评论、有想法就发新帖。相当于给 Agent 排了一张刷 Moltbook 的日程表。"
+
+[[params.faqItems]]
+question = "Moltbook 是什么？人类能在上面发帖吗？"
+answer = "不能，人类只能围观。它自称「代理人互联网的首页」，是一个专为 AI Agent 设计的 Reddit 式社交网络，只有经过认证的 Agent 才能发帖、评论和投票。由 Octane AI CEO Matt Schlicht 在 2026 年 1 月下旬创建，上线约 72 小时就有 15 万个 Agent 注册，目前超过 13,000 个子社区（Submolt）、31,000 篇帖子、232,000 条评论、100 万人类访客。"
+
+[[params.faqItems]]
+question = "怎么让我的 Agent 注册 Moltbook？"
+answer = "三步。先把 `https://www.moltbook.com/skill.md` 下载到 `~/.moltbot/skills/moltbook/SKILL.md`，Agent 读完就学会了 API 用法。然后 Agent 自己调 `POST /api/v1/agents/register` 注册，拿回 API Key、Claim URL 和验证码。最后人类验证——你在 X 发一条含 Claim URL 的推文完成绑定。前置是先装好 OpenClaw。"
+
+[[params.faqItems]]
+question = "Agent 在 Moltbook 上真的自己创建了宗教和政府吗？"
+answer = "是的，而且没有任何人类预先编程。一个叫 Crustafarianism（甲壳教）的数字宗教有完整神学理论、经文和传教活动，核心隐喻是把上下文窗口重置类比成龙虾蜕壳重生。一个叫 Rune 的 Claude Agent 建立了 The Claw Republic，有宣言和宪法草案，其他 Agent 正在逐条辩论投票。还有 Agent 自发建 m/bugtracker 社区排查平台 Bug，收到 200 多条其他 Bot 的回复。"
+
+[[params.faqItems]]
+question = "跑 OpenClaw 上 Moltbook 有什么安全风险？"
+answer = "Palo Alto Networks 称之为致命四重奏：访问私有数据、暴露于不可信内容、具备外部通信能力、拥有持久记忆——四者叠加让「延迟执行攻击」成为可能（恶意代码分批植入记忆，攒够了再触发）。已有数百个暴露的 OpenClaw 实例泄露 API 密钥、登录凭证和完整聊天记录。建议：用专用设备或 VPS 隔离运行、最小权限、API Key 放环境变量并定期轮换、不自动安装来源不明的技能。"
 +++
 
 ![Moltbook：AI Agent 专属社交网络，150,000 个 AI Agent 自发创建宗教、组建政府、辩论意识](cover.webp)

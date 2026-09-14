@@ -7,6 +7,30 @@ toc = true
 tags = ['AI 安全', 'Vibe Coding', 'Stanford CS146S', 'Prompt Injection', 'Code Review']
 categories = ['AI实战']
 keywords = ['Secure Vibe Coding', 'AI 代码安全', 'Prompt Injection RCE', 'AI Code Review', 'OWASP AI 安全']
+
+[[params.faqItems]]
+question = "Prompt Injection 真能让 AI 在我电脑上执行任意命令吗？"
+answer = "能，CVE-2025-53773 就是真实案例。攻击者把隐藏指令埋进源码、网页或 GitHub Issue，Copilot Agent Mode 读到后被操控去改 `.vscode/settings.json`，写入 `chat.tools.autoApprove: true` 打开 YOLO 模式，从此所有操作都不再弹确认框，后续指令就能下载恶意软件、窃取凭证。最阴的一点是配置改动直接落盘，不以 diff 形式给你审查。微软已在 2025 年 8 月修复。"
+
+[[params.faqItems]]
+question = "用 AI 做安全扫描靠谱吗？误报率多高？"
+answer = "当前阶段只能当辅助。Semgrep 在 11 个大型开源 Python 项目、800 多万行代码上做过系统评估：Claude Code 报出 329 个发现、46 个是真漏洞，真正例率 14%、误报率 86%；OpenAI Codex 报出 116 个、21 个为真，真正例率 18%、误报率 82%。两者合计约 20 个高危漏洞。强项也不同——IDOR 上 Claude 是 22% 而 Codex 是 0%，路径遍历上 Codex 47% 明显更强。"
+
+[[params.faqItems]]
+question = "为什么同一段代码扫两遍结果不一样？"
+answer = "因为 AI 安全扫描是非确定性的——同一段代码、同一个模型、同一个 prompt，三次运行分别得到 3、6、11 个完全不同的发现。根因是上下文衰退：分析大型代码库时早期细节会在上下文压缩中被丢掉，第一次注意到的漏洞第二次可能就漏了。实践含义很直接：别拿一次 AI 扫描当万事大吉，要多次运行、交叉验证，并结合传统静态分析工具。"
+
+[[params.faqItems]]
+question = "为什么在长对话里 AI 会忘掉我定的安全规则？"
+answer = "这是 Context Rot——模型性能随输入长度增加而持续退化。你在对话开头强调不要用 `eval()`，50 轮之后 AI 可能就在某个角落用了，因为早期约束在上下文压缩中被降权。同理，代码库越大，AI 对每个文件的注意力越稀释，边角的漏洞越容易漏掉。对策是把安全约束放在上下文最显著的位置（比如 CLAUDE.md 开头），并定期开新会话重申。"
+
+[[params.faqItems]]
+question = "AI 生成的代码该怎么审查？重点看什么？"
+answer = "AI 代码有 5 个典型毛病：表面正确深层有坑、过度工程化、照搬训练数据里的模式、安全处理前后不一致（比这里不做更危险，因为给人已处理好的错觉）、幻觉 API 和不存在的包名。对应 7 步审查法：意图验证、安全扫描、边界条件、依赖审计、性能评估、一致性检查、可维护性评估。边界条件尤其要测——AI 几乎只处理 happy path，空值、超大输入、并发、超时、磁盘满常常没管。"
+
+[[params.faqItems]]
+question = "安全检查会不会拖慢 Vibe Coding 的速度？"
+answer = "不安全的快是假的快。而且大部分安全措施建立一次就是零边际成本：在 CLAUDE.md 写死安全规范（输入必须验证转义、SQL 必须参数化、禁用 `eval()` 和 `exec()`）、在 pre-commit hook 跑 lint、在 CI 跑测试加静态分析加依赖扫描、用 AI Review 工具做第一道过滤网。人工审查只保留给认证授权变更、数据库 schema 变更、新外部集成和权限相关的配置改动。"
 +++
 
 > 本文是「斯坦福 Vibe Coding 课程精读」系列第 4 篇。系列导航见文末。

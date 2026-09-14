@@ -6,6 +6,30 @@ toc = true
 tags = ['Linux', 'macOS', 'Shell', '命令行', '运维']
 categories = ['Linux']
 keywords = ['Linux 常用命令', 'macOS 终端命令', 'Shell 命令速查', '运维命令手册']
+
+[[params.faqItems]]
+question = "怎么查看某个端口被哪个进程占用了？"
+answer = "最快是 `lsof -i:3000`，直接给出进程名和 PID。Linux 下也可以用 `netstat -ntlp | grep 3000`（要加 `sudo` 才看得到进程名），或者用更快的替代品 `ss -tlnp`。macOS 的 netstat 不支持 `-p`，只能用 `netstat -an | grep LISTEN` 看端口，进程还得靠 `lsof`。想看全部监听端口：`sudo lsof -i -P | grep LISTEN`。"
+
+[[params.faqItems]]
+question = "kill -9 和 kill 有什么区别？什么时候该用哪个？"
+answer = "默认的 `kill <PID>` 发的是 -15（TERM）信号，进程能捕获后做清理再退出，属于正常终止；`kill -9` 发 KILL 信号，内核直接干掉进程，不给收尾机会，可能留下临时文件或脏数据。优先用默认信号，卡住不动再上 -9。另外 `-1`（HUP）常用于让 nginx 这类服务重新加载配置。按名字杀用 `pkill nginx` 或 `killall nginx`。"
+
+[[params.faqItems]]
+question = "怎么找出占磁盘最多的目录？"
+answer = "先用 `df -h` 定位是哪个分区满了（`df -i` 看 inode 是否耗尽），再用 `du` 往下钻：`du -h --max-depth=1` 看当前层各目录大小，`du -sh * | sort -hr` 按大小倒序排，`du -a /var | sort -rn | head -10` 直接列出最大的 10 个。交互式排查推荐 ncdu：`sudo apt install ncdu` 或 `brew install ncdu` 后跑 `ncdu /var`。"
+
+[[params.faqItems]]
+question = "find 命令怎么按时间和大小筛文件？"
+answer = "时间用 `-mtime`：`find . -mtime -7` 是 7 天内修改过的，`find . -mtime +30` 是 30 天前的。大小用 `-size`：`find . -size +100M` 大于 100M，`find . -size -1k` 小于 1k。类型用 `-type f` 或 `-type d`。找到后直接处理：`find . -name '*.tmp' -delete`，或者用 `-exec` 接任意命令。忽略大小写用 `-iname`。"
+
+[[params.faqItems]]
+question = "rsync 同步文件常用参数怎么配？"
+answer = "标配是 `rsync -av source/ dest/`：`-a` 归档模式保留权限和时间戳，`-v` 显示详情。跨机传输加 `-z` 压缩：`rsync -avz source/ user@host:/path/dest/`。要让目标端和源端完全一致就加 `--delete`（会删掉目标多余文件，慎用）。排除特定文件用 `rsync -av --exclude='*.log' source/ dest/`。注意源路径末尾那个斜杠决定的是同步目录内容还是目录本身。"
+
+[[params.faqItems]]
+question = "终端里有哪些快捷键值得记？"
+answer = "光标类：`Ctrl+A` 移到行首、`Ctrl+E` 移到行尾、`Ctrl+W` 删除前一个单词、`Ctrl+U` 删除光标前全部、`Ctrl+K` 删除光标后全部。控制类：`Ctrl+C` 终止、`Ctrl+Z` 暂停、`Ctrl+L` 清屏、`Ctrl+D` 退出终端。最值钱的是 `Ctrl+R` 搜索历史命令，配合 `!!` 重跑上一条、`!N` 执行历史第 N 条，能省掉大量重复输入。"
 +++
 Linux/macOS 命令行是开发者必备技能。本文整理了日常工作中高频使用的命令，按功能分类便于查找，持续更新中。
 

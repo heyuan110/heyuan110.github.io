@@ -7,6 +7,30 @@ toc = true
 tags = ['Claude Code', 'MCP', 'TypeScript', 'Tutorial']
 categories = ['AI Guides']
 keywords = ['Claude Code MCP 配置', 'MCP 服务器教程', 'Model Context Protocol', 'MCP TypeScript 教程', '构建 MCP 服务器', 'Claude Code 扩展']
+
+[[params.faqItems]]
+question = "Claude Code 的 MCP 是什么？"
+answer = "MCP 全称 Model Context Protocol，是 Anthropic 在 2024 年末发布的开放标准，相当于「AI 的 USB-C」：一个通用连接器，把 Postgres、Slack、公司内部 API 这些外部服务接进 Claude Code。架构是三层——客户端（Claude Code）发请求，服务器处理，中间用 JSON-RPC 2.0 over STDIO 或 HTTP 通信。服务器可以暴露 Tools（执行操作）、Resources（读取数据）、Prompts（预定义模板）三种能力。"
+
+[[params.faqItems]]
+question = "Claude Code 怎么配置 MCP 服务器？"
+answer = "用 `claude mcp add <名称> <命令>`。常用的几条：GitHub 是 `claude mcp add github npx @anthropic/mcp-github`（需要 GITHUB_TOKEN），Postgres 是 `claude mcp add postgres npx @anthropic/mcp-postgres 'postgresql://user:pass@localhost:5432/mydb'`，还有 Slack 和 Context7（查最新库文档）。环境变量可以用 `-e` 内联传，比如 `-e GITHUB_TOKEN=ghp_xxx`。"
+
+[[params.faqItems]]
+question = "MCP 服务器的项目作用域和用户作用域该怎么选？"
+answer = "`claude mcp add` 默认是项目作用域，只在当前目录下可用；加 `--scope user` 则所有项目都能用。实用原则是按服务器的性质分：数据库、项目专属 API 这类跟仓库绑定的用项目作用域，GitHub、Slack、文件系统这类通用工具用用户作用域，省得每个项目重配一遍。"
+
+[[params.faqItems]]
+question = "MCP 连接失败、服务器起不来怎么排查？"
+answer = "按错误信息对号入座：报 ENOENT 是 `claude mcp add` 里用了相对路径，必须换成构建产物的绝对路径；客户端报 Unexpected token 是代码里用了 `console.log`——stdout 被 JSON-RPC 占用，所有调试输出必须走 `console.error`；报 Cannot use import statement 是 package.json 里少了 `type: module`；服务器起来了但没有工具，是 `registerTool()` 写在了 `connect()` 之后。"
+
+[[params.faqItems]]
+question = "MCP 服务器怎么调试？有没有不依赖 Claude Code 的测试方法？"
+answer = "有。先用 MCP Inspector 单独测：`npx @modelcontextprotocol/inspector node dist/index.js`，会开一个 Web UI，能浏览工具、用测试输入调用、看原始 JSON-RPC 消息。要看协议级日志就加 `MCP_DEBUG=1`。已经接进 Claude Code 的话，stderr 输出落在 macOS 的 `~/Library/Logs/Claude Code/mcp*.log`、Linux 的 `~/.local/share/claude-code/logs/mcp*.log`。"
+
+[[params.faqItems]]
+question = "最多能同时挂几个 MCP 服务器？会不会拖慢 Claude Code？"
+answer = "没有硬限制，但每个服务器都是独立进程要吃内存。经验值是 3-5 个基本感觉不到影响，5-10 个启动时间略增，超过 10 个就该合并相关服务器或改成按需激活了。另一个容易忽略的点：单个服务器里塞 20 多个跨领域的工具，Claude 会搞不清该用哪个，保持服务器职责聚焦比堆数量重要。"
 +++
 
 ![Claude Code MCP 配置——将 AI 连接到外部服务](cover.webp)

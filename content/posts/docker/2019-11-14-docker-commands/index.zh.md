@@ -5,6 +5,30 @@ description = '高频 Docker 命令速查：pull/run/exec/logs、镜像清理、
 toc = true
 tags = ['Docker', '命令行', '容器', '运维', '速查手册']
 categories = ['Docker']
+
+[[params.faqItems]]
+question = "Docker 怎么清理没用的镜像释放磁盘？"
+answer = "先用 `docker system df` 看镜像、容器、数据卷各占多少空间。虚悬镜像（仓库名和标签都是 none）用 `docker image ls -f dangling=true` 列出、`docker image prune` 清掉。批量删除可以组合命令：`docker image rm $(docker image ls -q)` 删全部，`docker image rm $(docker image ls -q redis)` 只删 redis 仓库的。删镜像支持完整 ID、短 ID 和镜像名三种写法。"
+
+[[params.faqItems]]
+question = "怎么批量停止并删除所有已退出的容器？"
+answer = "两条管道命令：`docker ps -a | grep Exited | awk '{print $1}' | xargs docker stop` 和把最后的 stop 换成 `docker rm`。更粗暴的写法是 `docker rm $(docker ps -a -q)` 删除所有已停止容器、`docker kill $(docker ps -a -q)` 杀掉所有运行中的容器——这两条慎用。注意容器必须先 stop 才能 rm。"
+
+[[params.faqItems]]
+question = "docker run 的 -p、-v、-d 参数分别是什么意思？"
+answer = "`-d` 后台运行并返回容器 ID；`-p` 端口映射，格式是「主机端口:容器端口」，比如 `-p 80:80`，大写 `-P` 则是映射到主机随机端口；`-v` 挂载数据卷，格式是「主机目录:容器目录」，必须用绝对路径。还可以绑定到指定网卡，比如 `-p 127.0.0.1:80:8080/tcp` 只让本机访问。`--name` 给容器命名，方便后续 start/stop/exec。"
+
+[[params.faqItems]]
+question = "用 Docker 启动 MySQL 该挂载哪些目录？"
+answer = "至少挂数据目录，配置和日志按需。完整写法是 `-v /path/conf:/etc/mysql/conf.d -v /path/logs:/logs -v /path/data:/var/lib/mysql`，再用 `-e MYSQL_ROOT_PASSWORD=root` 初始化 root 密码，`-p 3306:3306` 映射端口。不挂 `/var/lib/mysql` 的话，容器一删数据就没了。Nginx 和 PHP 同理，分别挂 `/usr/share/nginx/html`、`/etc/nginx/conf.d` 和 `/var/www/html`。"
+
+[[params.faqItems]]
+question = "Windows 下挂载 MongoDB 数据目录报写入权限错误怎么办？"
+answer = "不要直接挂主机目录，先创建命名卷再映射：`docker volume create --name=mongodata`，然后 `docker run -d --name mongodb -p 32767:27017 -v mongodata:/data/db mongo:4.2.1`。查看卷用 `docker volume ls` 和 `docker volume inspect xxxx`。想直接翻卷里的文件，可以起一个临时容器把宿主根目录挂进去：`docker run --rm -it -v /:/vm-root alpine sh`。"
+
+[[params.faqItems]]
+question = "怎么查看容器的 IP 和在主机容器之间拷文件？"
+answer = "查 IP 有两种办法：进容器内部 `cat /etc/hosts`，或者在主机上 `docker inspect 容器id`。拷文件用 `docker cp`：`docker cp /www/xxxx test-container:/www/` 把主机目录拷进容器的 /www 下；写成 `docker cp /www/xxxx test-container:/www` 则是拷进去并重命名为 www。方向反过来也成立，把两个参数调换即可。"
 +++
 
 Docker常用命令记录

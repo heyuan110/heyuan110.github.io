@@ -5,6 +5,26 @@ description = '使用 Nexus3 搭建企业级 Docker 私有镜像仓库完整教�
 toc = true
 tags = ['Docker', 'Nexus3', 'Registry', '私有仓库', 'DevOps']
 categories = ['Docker']
+
+[[params.faqItems]]
+question = "Nexus3 搭建 Docker 私有仓库要映射哪些端口？"
+answer = "一共 4 个：9500 是 Nexus3 网页端，9501 是 docker hosted 私有仓（可 pull 也可 push），9502 是 docker proxy 代理远程仓（只能 pull），9503 是 group 组（只能 pull）。分工上运维维护镜像用 9501，项目拉取镜像用 9503，全部可匿名 pull。启动命令用 `docker run -id --privileged=true --name=nexus3 --restart=always -p 9500:8081 ... sonatype/nexus3:latest`。"
+
+[[params.faqItems]]
+question = "hosted、proxy、group 三种仓库类型分别是什么？"
+answer = "hosted 是本地仓库，自己构建的镜像推到这里；proxy 是代理仓库，用来代理 dockerhub 这类远程公共仓；group 是仓库组，把多个 hosted 和 proxy 合并成一个入口，项目只需要引用这一个地址。创建仓库前要先建好对应的 blob store，建 group 时注意调优先级，一般 hosted 高于 proxy。"
+
+[[params.faqItems]]
+question = "匿名 docker pull 报无权限怎么解决？"
+answer = "去 security → realms 页面（`http://localhost:9500/#admin/security/realms`），把 docker bearer token realm 添加到右侧激活列表。创建仓库时即使勾了匿名可 pull，没激活这个 realm 也会报无权限。Nexus3 网页端默认账号是 admin / admin123，首次登录后建议先改掉。"
+
+[[params.faqItems]]
+question = "客户端怎么配置才能连上这个私有仓？"
+answer = "私有仓走 HTTP，需要加进 insecure-registries。macOS 和 Windows 在 Docker 设置的 daemon 面板里添加 `http://localhost:9503`，要推镜像的运维再加一条 `http://localhost:9501`，然后重启 Docker。Ubuntu 编辑 `/etc/docker/daemon.json`，写入 insecure-registries 数组包含这两个地址，再 `sudo service docker restart`。"
+
+[[params.faqItems]]
+question = "镜像怎么推上去、怎么拉下来？"
+answer = "推之前先 `docker login localhost:9501`，看到 login success 才算成功。然后打 tag 再推：`docker tag php:7.0 localhost:9501/php:7.0`，`docker push localhost:9501/php:7.0`，推完可在网页端 browse 页看到。拉取走 group 端口：`docker pull localhost:9503/php:7.0`，搜索同理用 `docker search localhost:9503/php:7.0`，会按设定的优先级在组内各仓库搜。"
 +++
 
 [Nexus](https://www.sonatype.com/nexus-repository-oss)是有名的Maven仓库管理器。如果你使用Maven，你可以从Maven中央仓库下载所需要的构件（artifact），但这通常不是一个好的做法，你应该在本地架设一个Maven仓库服务器，在代理远程仓库的同时维护本地仓库，以节省带宽和时间，Nexus就可以满足这样的需要。此外，他还提供了强大的仓库管理功能，构件搜索功能，它基于REST，友好的UI是一个extjs的REST客户端，它占用较少的内存，基于简单文件系统而非数据库。这些优点使其日趋成为最流行的Maven仓库管理器。除此之外，最新Nexus3还可以管理多种格式的镜像，如下：

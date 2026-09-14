@@ -6,6 +6,30 @@ toc = true
 tags = ['Docker', 'Dockerfile', '容器化', 'DevOps', '镜像']
 categories = ['Docker']
 keywords = ['Docker tutorial', 'Docker beginner guide', 'Dockerfile instructions', 'Docker images containers', 'Docker registry', 'Docker data volumes']
+
+[[params.faqItems]]
+question = "What is the difference between a Docker image and a container?"
+answer = "An image is the read-only template, a container is a running instance of it — the same relationship as a class and an object. Images are immutable once built and are assembled from stacked filesystem layers via a union filesystem, one layer per build instruction. When a container starts, Docker adds a thin read-write layer on top, the container storage layer, which dies with the container. That is why containers should stay stateless and anything that must survive belongs in a volume."
+
+[[params.faqItems]]
+question = "Why does my container exit immediately after starting?"
+answer = "Because the command it runs is not in the foreground. A container is a process, not a virtual machine — there are no background services inside it. `CMD service nginx start` becomes `CMD ['sh', '-c', 'service nginx start']`, so as soon as the service command returns, sh exits and the container stops. Run the process in the foreground instead: `CMD ['nginx', '-g', 'daemon off;']`."
+
+[[params.faqItems]]
+question = "What is the difference between CMD and ENTRYPOINT?"
+answer = "When both are present, `CMD` is appended as arguments to `ENTRYPOINT` — the effective command is ENTRYPOINT followed by CMD. That makes ENTRYPOINT the right choice when the image should behave like a single command: with `ENTRYPOINT ['curl', '-s', 'https://httpbin.org/get']`, running `docker run myimage -I` passes `-I` straight through to curl. The other common use is an initialization script that runs before the main process."
+
+[[params.faqItems]]
+question = "How do I persist data so it survives container deletion?"
+answer = "Use data volumes, which bypass the union filesystem: they can be shared between containers, take effect immediately, are unaffected by image updates, and outlive the container. Create one inline with `docker run -d -P --name web -v /webapp training/webapp`, bind a host directory with `-v /src/webapp:/opt/webapp`, or make it read-only with a `:ro` suffix. Bind mounts cannot be declared in a Dockerfile, since host paths differ across operating systems."
+
+[[params.faqItems]]
+question = "How do I share one volume across several containers and back it up?"
+answer = "Create a dedicated data volume container — `docker run -d -v /dbdata --name dbdata training/postgres` — and attach it elsewhere with `docker run -d --volumes-from dbdata --name db1 training/postgres`. The volume survives even after every container using it is removed; deleting it requires `docker rm -v` on the last referencing container. Back it up by mounting the current directory into a throwaway container: `docker run --volumes-from dbdata -v $(pwd):/backup ubuntu tar cvf /backup/backup.tar /dbdata`."
+
+[[params.faqItems]]
+question = "How do I move an image to a machine with no internet access?"
+answer = "Export and import with save and load: `docker save alpine | gzip > alpine-latest.tar.gz` on the source machine, transfer the archive over SSH or SCP, then `docker load -i alpine-latest.tar.gz` on the target. It works for air-gapped environments, but a registry is the better default when one is reachable — a single registry hosts many repositories, each holding multiple tags that map to specific image versions."
 +++
 
 Docker is an open-source container engine built with Go. It lets developers package applications and their dependencies into lightweight, portable containers that run consistently across any Linux host.

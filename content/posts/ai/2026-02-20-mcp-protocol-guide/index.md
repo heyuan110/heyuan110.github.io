@@ -7,6 +7,30 @@ toc = true
 tags = ['MCP', 'Model Context Protocol', 'AI Architecture', 'Claude Code']
 categories = ['AI Guides']
 keywords = ['MCP protocol', 'Model Context Protocol', 'MCP Server', 'MCP Apps', 'AI tool integration', 'Agentic AI Foundation', 'MCP vs Function Calling']
+
+[[params.faqItems]]
+question = "Who controls MCP now that it went to the Linux Foundation?"
+answer = "No single company. Anthropic donated MCP in late 2025 to the Linux Foundation's Agentic AI Foundation, co-founded with Block and OpenAI and backed by Google, Microsoft, AWS, Cloudflare and Bloomberg. Maintainers operate independently of any one vendor's roadmap. Block's Goose and OpenAI's AGENTS.md joined as founding AAIF projects alongside it. The practical effect is that adopting MCP no longer means adopting a competitor's protocol."
+
+[[params.faqItems]]
+question = "What are the six core capabilities in the MCP specification?"
+answer = "Three server-side primitives and three client-side ones. Servers expose Tools (executable functions the model decides to call, following model initiates, user confirms, server executes), Resources (read-only data selected by the app or user rather than the model), and Prompts (structured message templates). Clients provide Sampling (the server requests an LLM completion through the client), Roots (the client declares which filesystem paths are reachable), and Elicitation (the server pauses mid-execution to ask the user for input)."
+
+[[params.faqItems]]
+question = "What is the difference between STDIO and Streamable HTTP transport?"
+answer = "STDIO is for local servers running on the same machine as the client, communicating over process stdin and stdout — simplest to set up and the default for local development. Streamable HTTP, introduced in the March 2025 specification, replaced the older HTTP+SSE approach: one HTTP endpoint handles both POST and GET with optional Server-Sent Events for streaming, so remote deployment needs a single endpoint instead of two. Remote servers have grown nearly 4x since May 2025, with 80% of popular servers offering remote support."
+
+[[params.faqItems]]
+question = "What are MCP Apps?"
+answer = "An extension released in January 2026 that lets a tool call return an interactive UI rendered inside the conversation instead of plain text or structured data — dashboards, forms, charts, multi-step workflows, live previews. The UI is HTML running in sandboxed iframes that cannot reach the parent window or make arbitrary network requests. Supported today in ChatGPT, Claude, Goose and Visual Studio Code, which was the first AI code editor with full support. It came from the MCP-UI project and OpenAI's Apps SDK jointly."
+
+[[params.faqItems]]
+question = "MCP or Function Calling — which should I build on?"
+answer = "Function Calling for a quick prototype with a handful of tools; MCP for production, multi-model support, or tools shared across projects. They are complementary layers, not rivals: Function Calling is the model-level capability of knowing when to invoke a tool, MCP is the infrastructure protocol standardizing how tools are discovered, invoked and interacted with — and MCP implementations still use Function Calling underneath. The deciding factor is portability: Function Calling formats are vendor-specific, so switching providers means rewriting integrations."
+
+[[params.faqItems]]
+question = "How big is the MCP ecosystem?"
+answer = "Over 10,000 publicly registered servers, 97 million+ SDK downloads per month, and client support across Claude Desktop, ChatGPT, VS Code, Cursor, Windsurf and Claude Code. Gartner projects that by end of 2026, 40% of enterprise applications will include task-specific AI agents, up from under 5% in 2025, and the MCP server market is forecast to grow from $2.7 billion in 2025 to $5.5 billion by 2034. An estimated 75% of API gateway vendors and 50% of iPaaS vendors are expected to integrate MCP by year-end."
 +++
 
 When AI models need to query databases, call APIs, or read files, every provider used to have its own proprietary integration approach. Developers were forced to rewrite integration code for each platform. MCP (Model Context Protocol) changed everything — often called the "USB-C for AI," it provides a universal open standard for connecting AI applications to external systems.

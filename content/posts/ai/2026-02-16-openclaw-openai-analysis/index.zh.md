@@ -7,6 +7,34 @@ toc = true
 tags = ['OpenClaw', 'AI Agent', 'OpenAI', 'Open Source']
 categories = ['AI Guides']
 keywords = ['OpenClaw', 'AI Agent', 'OpenAI', 'Peter Steinberger', 'Moltbook', 'Skills', '开源AI']
+
+[[params.faqItems]]
+question = "OpenClaw 是什么？和 ChatGPT 有什么本质区别？"
+answer = "OpenClaw 是一个能真正干活的开源 AI 助理。ChatGPT 是「你问我答」，互动止于文字；OpenClaw 直接操作你的电脑和线上服务——收发邮件、管日历、订餐厅、操作浏览器、执行终端命令、控制智能家居。交互方式也不同：你在 Telegram、飞书、Discord 里给它发消息，它 7×24 小时在线，还能主动执行定时任务。"
+
+[[params.faqItems]]
+question = "Clawdbot、Moltbot、OpenClaw 是同一个东西吗？"
+answer = "是同一个项目，改了两次名。最初叫 Clawdbot，明显在致敬 Anthropic 的 Claude；Anthropic 提出法律异议后被迫改名 Moltbot；最终定名 OpenClaw，创始人 Peter Steinberger 说这次不是因为法律问题，纯粹是他自己更喜欢。Logo 一直是那只龙虾，后来成了 AI Agent 领域辨识度最高的符号之一。"
+
+[[params.faqItems]]
+question = "OpenClaw 的 Skills 怎么装？新手必装哪几个？"
+answer = "通过官方技能市场 ClawHub 一行命令安装，目前已有 1700+ 个 Skill。地基层五个必装：ClawHub（装其他 Skill 的前提，相当于 App Store）、Agent Browser（网页自动化，能登录后台填表单截图）、Brave Search（联网搜索）、Shell（终端命令执行）、Cron/Wake（定时任务和主动提醒）。不装这五个，OpenClaw 就只是个聊天机器人。"
+
+[[params.faqItems]]
+question = "Moltbook 是什么？真的只有 AI 能发帖吗？"
+answer = "是的，人类被禁止直接发帖。Moltbook 是 2026 年 1 月 29 日上线的全球第一个完全由 AI Agent 运营的社交网络，只有经过验证的 Agent 才能注册。它们在叫 Submolts 的子论坛里发帖、评论、点赞投票，每 4 小时自动检查平台更新，目前超过 150 万个 OpenClaw Agent 在上面活跃。Nature 杂志专门撰文报道，科学家正在「监听」这些对话。"
+
+[[params.faqItems]]
+question = "OpenClaw 安全吗？有哪些已知漏洞？"
+answer = "风险不小。2026.2.12 版本一次性修了 40 多个安全漏洞，涵盖 SSRF（Agent 被诱导访问内网资源）、路径遍历（恶意 Skill 通过 frontmatter 名称字段逃出沙盒）、提示注入（浏览器和网络工具的输出现在按不可信数据清洗）、会话劫持。更严重的是 CVE-2026-25253：攻击者只要发一个构造好的链接就能远程代码执行，窃取令牌并控制本地网关。中国工信部 NVDB 也发布过风险预警。"
+
+[[params.faqItems]]
+question = "要用 OpenClaw 的话，安全上必须做哪几件事？"
+answer = "五条。一是开启确认模式，删文件、发消息、执行脚本这类敏感操作先问你再执行。二是绝不把实例直接暴露在公网。三是定期 `clawhub update --all` 拿安全补丁。四是审慎授权，Gmail、GitHub 这类 Skill 走 OAuth，不用了及时撤销。五是只装可信 Skill，ClawHub 是开放上传的，优先选下载量高、维护活跃的。"
+
+[[params.faqItems]]
+question = "创始人加入 OpenAI 后，OpenClaw 还会开源吗？"
+answer = "会。2 月 15 日 Sam Altman 宣布 Peter Steinberger 加入 OpenAI，同时承诺 OpenClaw 继续作为开源项目存在并放进基金会结构：代码仍开源、社区仍可贡献、OpenAI 提供资金和资源，但也会把它整合进自家产品线。OpenAI 图的不只是一个人——而是 1700+ Skills 生态、18 万 Star 的开发者社区、Moltbook 这套 Agent 间通信的先行实践，以及一个已被验证的 Agent 架构。"
 +++
 
 ![OpenClaw 的 30 天狂飙：从开源 AI Agent 到 OpenAI 收编](cover.webp)

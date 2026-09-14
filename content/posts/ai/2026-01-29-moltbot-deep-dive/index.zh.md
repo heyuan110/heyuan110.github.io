@@ -8,6 +8,30 @@ toc = true
 tags = ['OpenClaw', 'Moltbot', 'Clawdbot', 'AI Agent', '开源', '安全']
 categories = ['AI原理']
 keywords = ['Moltbot 是什么', 'Moltbot', 'OpenClaw', 'Moltbot 改名', 'Moltbot AI Agent', 'Clawdbot', 'Moltbot 介绍', 'Moltbot 原理', 'Moltbot 安全', 'moltbot是什么', 'moltbot改名', 'moltbot能做什么']
+
+[[params.faqItems]]
+question = "Moltbot 是什么？能做什么？"
+answer = "Moltbot 是 Peter Steinberger 创建的开源个人 AI Agent，24 小时跑在你的电脑或服务器上，通过 Telegram、WhatsApp、iMessage 等聊天工具接指令，自主操作浏览器、处理邮件、管理文件、执行 Shell 命令。它支持 Claude、GPT 和本地模型作大脑，配合 ClawHub 上 1700+ 技能插件可对接 Spotify、Obsidian、GitHub 等服务。一句话：能干活的 AI，不是只会聊天的 AI。"
+
+[[params.faqItems]]
+question = "Moltbot 为什么改名？和 OpenClaw、Clawdbot 是什么关系？"
+answer = "三个名字是同一个项目的不同阶段。最初叫 Clawdbot，因为 Clawd 和 Anthropic 的 Claude 太像，Anthropic 出于商标保护要求改名，2026 年 1 月 27 日改成 Moltbot——molt 是蜕壳的意思，呼应龙虾吉祥物；社区现在统一称 OpenClaw。搜任意一个名字都能找到同一套资料。"
+
+[[params.faqItems]]
+question = "Moltbot 安全吗？有哪些已知隐患？"
+answer = "目前有多个已知隐患，务必谨慎。一是 API Key、OAuth 令牌以明文存在 `~/.clawdbot/` 目录；二是认证默认信任 localhost，放在 Nginx 反代后面时所有外部连接都显示为 127.0.0.1，认证形同虚设；三是提示注入，研究员演示过一封构造好的邮件在 5 分钟内让它把用户最近 5 封邮件转发给攻击者；此外还有窃密木马和假冒 VSCode 扩展。"
+
+[[params.faqItems]]
+question = "改名时的 CLAWD 代币是官方发的吗？"
+answer = "不是，那是彻头彻尾的骗局。改名时旧账号释放与新账号注册之间有一个短暂空窗，骗子抢注了被释放的 GitHub 组织名和 X 账号，用这个看似官方的身份推一个叫 CLAWD 的假代币，市值几小时内被炒到 1600 万美元，随后暴跌 90%。Steinberger 已公开声明从未发行过任何代币，也没有这类计划。"
+
+[[params.faqItems]]
+question = "要用 Moltbot 的话，怎么部署才安全？"
+answer = "7 条硬要求：不要以 root 运行，另建低权限专用账号；部署在 VPS 上必须配防火墙和认证，不要裸奔端口；只授予特定文件夹的访问权限；先给只读权限，确认没问题再逐步开放写；用 Docker 容器做沙箱限制工具范围；定期检查 `~/.clawdbot/` 下的敏感文件；防提示注入建议用抗性更强的 Claude Opus 4.5。"
+
+[[params.faqItems]]
+question = "Moltbot 和 Claude Code 有什么区别？该选哪个？"
+answer = "定位不同。Claude Code 是 Anthropic 官方的终端 AI 编程助手，专注代码开发，在终端里用，更简单也更安全。Moltbot 是通用个人 AI Agent，覆盖邮件、日程、浏览器、文件管理等生活和工作场景，通过聊天工具远程指挥。只要编程辅助选 Claude Code；想要全能 AI 管家再考虑 Moltbot，但必须先做好安全防护。"
 +++
 
 **Moltbot 是什么？** 简单来说，Moltbot 是一个开源的个人 AI Agent（智能助手），它能 24 小时运行在你的电脑上，通过 Telegram、WhatsApp 等聊天工具接收指令，自主操作浏览器、处理邮件、执行各种任务——不只是聊天，而是真的帮你"干活"。它原名 Clawdbot，后改名 OpenClaw，是 2026 年初最火爆的开源 AI 项目之一。

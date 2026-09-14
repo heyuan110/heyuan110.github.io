@@ -7,6 +7,34 @@ toc = true
 tags = ['Claude Code', 'AI 安全', '代码审计', '漏洞扫描', 'Anthropic']
 categories = ['AI实战']
 keywords = ['Claude Code Security', 'AI 代码安全扫描', 'Claude 漏洞检测', 'AI 安全审计', 'Anthropic 安全工具']
+
+[[params.faqItems]]
+question = "Claude Code Security 是什么？"
+answer = "Anthropic 在 2026 年 2 月 20 日发布的 AI 代码安全扫描能力，内置在 Claude Code 里，基于 Claude Opus 4.6。它不靠预定义规则库或模式匹配，而是像人类安全研究员一样理解组件如何交互、数据如何在应用里流动，自主扫描整个代码库并生成针对性的修复补丁建议。"
+
+[[params.faqItems]]
+question = "它和 SonarQube、Snyk 这类传统 SAST 有什么区别？"
+answer = "传统 SAST 回答的是「这段代码是否匹配已知漏洞模式」，Claude Code Security 回答的是「这段代码是否安全」。前者靠规则库和签名，几乎发现不了业务逻辑漏洞和零日漏洞，跨文件分析能力有限，误报率高；后者基于 Claude Opus 4.6 做语义理解和数据流追踪，能跨组件发现认证绕过、输入验证缺口这类问题，并通过多阶段验证过滤误报，还会用自然语言解释成因。"
+
+[[params.faqItems]]
+question = "它真的能找出人工审了多年没发现的漏洞吗？"
+answer = "能。Anthropic 的 Frontier Red Team 用 Claude Opus 4.6 扫描大量生产级开源代码库，发现了超过 500 个漏洞，其中不少已经存在数十年、经过多年专家审查都没被发现，包括企业系统和关键基础设施所用开源软件里的严重零日漏洞。而且全程没有用专门的安全工具或自定义 prompt，它自主探索代码库、分析 commit 历史、构造输入验证发现。"
+
+[[params.faqItems]]
+question = "普通开发者现在能用上吗？怎么申请？"
+answer = "暂时不能。当前是限定 Research Preview，只对 Enterprise 和 Team 客户开放，通过 claude.com/contact-sales/security 申请；开源项目维护者有免费的加速获取通道。另外有使用限制：只能扫描自己公司拥有权利的代码，不能扫第三方或未授权的开源代码。该功能已经过 Anthropic 内部红队一年多的压力测试，包括 CTF 竞赛和与太平洋西北国家实验室的合作。"
+
+[[params.faqItems]]
+question = "发布当天为什么网安股集体下跌？"
+answer = "投资者担心 AI 以极低成本完成代码安全扫描，会重塑传统扫描工具几十亿美元的市场。当天 CrowdStrike 跌 8%，Cloudflare 跌 8.1%，Okta 跌 9.2%，SailPoint 跌 9.4%，Zscaler 跌 5.5%，Global X Cybersecurity ETF 跌 4.9%。但 Jefferies 分析师 Joseph Gallo 认为网安板块最终是 AI 的净受益者，因为 AI 系统本身也需要安全防护。"
+
+[[params.faqItems]]
+question = "它会自动改我的代码吗？能替代安全团队吗？"
+answer = "不会自动改，也替代不了安全团队。Human-in-the-Loop 是它最重要的设计原则之一：所有修复建议都必须经人类批准，没有任何改动会被自动应用，系统提供审查面板让开发者逐条确认或拒绝。它的定位是安全团队的力量倍增器——架构设计、威胁建模、合规审计、应急响应这些维度仍然需要专业团队。"
+
+[[params.faqItems]]
+question = "和 GitHub 的 Dependabot、CodeQL 冲突吗？"
+answer = "不冲突，是互补关系。GitHub 那套（Dependabot、CodeQL）主要基于已知漏洞数据库和预定义查询规则，强在发现有 CVE 编号的已知漏洞和依赖安全问题；Claude Code Security 靠语义理解找未知的、零日的漏洞，尤其是业务逻辑层面的缺陷。最佳实践是两者结合，既覆盖已知威胁也排查未知风险。"
 +++
 
 2026 年 2 月 20 日，Anthropic 正式发布了 **Claude Code Security** —— 一款基于 Claude Opus 4.6 的 AI 代码安全扫描工具。消息一出，当天网络安全板块集体跳水：CrowdStrike 下跌近 8%，Cloudflare 跌超 8%，Okta 跌 9.2%，Global X Cybersecurity ETF 跌至 2023 年 11 月以来的最低点。Bloomberg、Fortune、The Hacker News 等主流媒体密集报道，称这是 AI 对传统安全行业发起的一次正面冲击。

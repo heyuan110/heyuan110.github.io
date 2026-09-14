@@ -6,6 +6,30 @@ toc = true
 tags = ['AI', 'Claude Code', 'Skills', 'SubAgent']
 categories = ['AI Guides']
 keywords = ['Claude Code Skills vs SubAgents', 'AI agent context management', 'Claude Code SubAgent', 'agent architecture patterns', 'AI agent delegation']
+
+[[params.faqItems]]
+question = "What is the real difference between a Skill and a SubAgent?"
+answer = "Where the work happens. A Skill loads instructions, tool-calling patterns and best practices into the main agent's own context (think `SKILL.md` living on the same desk), so it does the job itself. A SubAgent is a separate agent that does the job at its own desk and hands back only the result. One internalizes the capability, the other outsources it — and the consequence is entirely about context: the Skill route keeps everything visible but crowds the desk, while the SubAgent route keeps the desk clean at the cost of designing the handoff."
+
+[[params.faqItems]]
+question = "When should I use a Skill instead of a SubAgent?"
+answer = "When the subtask is simple or the main agent must stay in control — for example using the agent as a router that loads a YouTube summarizer mode or a report-writing mode depending on the request. Skills win here because of lazy loading: only 2 lines — the skill name and a one-line description — sit in context until the skill is actually invoked, unlike MCP, which dumps every tool's full documentation into context up front."
+
+[[params.faqItems]]
+question = "When is a SubAgent the right choice?"
+answer = "When the subtask is heavy, slow, or produces verbose intermediate output. The canonical case is browser debugging: Chrome DevTools MCP is powerful but its tool descriptions are enormous, and loading them eats the main agent's capacity. Wrap `chrome-devtools` in a SubAgent, ask it to check the logs, take screenshots and analyze, and it returns a short conclusion while the screenshots, DOM trees and network details stay on its side and never pollute the main context."
+
+[[params.faqItems]]
+question = "What is context pollution and why does it matter?"
+answer = "It is what happens when 5 or 10 capabilities' instructions pile onto the same finite context window — the desk metaphor in the article. Prompts grow longer, capabilities start conflicting, and the agent makes more mistakes as the pile grows. It is an engineering bottleneck rather than a metaphor: an AI's working memory is fixed, so how you organize it sets the ceiling on task complexity the agent can handle."
+
+[[params.faqItems]]
+question = "Can I combine Skills and SubAgents?"
+answer = "Yes — the article gives 3 patterns. Expand then compress: load a Skill, run the complex operation, then collapse the whole sequence into a compact summary so only the minutes of the meeting survive. Use the file system as a relay: the main agent writes long background material to a file and passes the path, and the SubAgent returns done, blocked or need-a-decision plus a path to the detailed log. Both sides keep context lean."
+
+[[params.faqItems]]
+question = "What is the context rewind trick in Claude Code?"
+answer = "A way to rescue progress right before context runs out. Have Claude summarize everything completed into a document, then use the rewind feature to roll back to the state before the task started and tell it the task is already done and the record lives in that file. The context is cleared but the results survive — like mapping the route you just ran, teleporting back to the start with full energy, and carrying the map."
 +++
 ![ClaudeCode Skill](cc-skill-agent.webp)
 

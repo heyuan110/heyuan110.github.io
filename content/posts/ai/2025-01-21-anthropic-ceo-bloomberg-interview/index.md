@@ -7,6 +7,30 @@ description = 'Anthropic CEO Dario Amodei shares insights on AI exponential grow
 tags = ['AI', 'Anthropic', 'Claude', 'AI Trends', 'AI Economy']
 categories = ['AI Guides']
 keywords = ['Anthropic CEO interview', 'Dario Amodei Bloomberg', 'AI exponential growth', 'chip export controls', 'AI superintelligence', 'AI economic impact']
+
+[[params.faqItems]]
+question = "What did Dario Amodei mean by a country of geniuses in a data center?"
+answer = "It is his image for where AI is heading: imagine 100 million people, each one smarter than any Nobel Prize winner, all working for you. The point is not raw compute but genuine cognition at national scale — and a nation of that much superintelligent capacity will ultimately be controlled by some country, which is why Amodei treats it as a national security question rather than a product question."
+
+[[params.faqItems]]
+question = "Why does Amodei dislike the term AGI?"
+answer = "Not out of pessimism — he holds an extreme view of AI's power. His objection is that AGI implies a false mental model, as if one day we suddenly build something entirely different. A decade of observation instead shows a smooth exponential: not compute doubling every 18 months as in Moore's Law, but intelligence doubling every 4 to 12 months. As he put it, exponential growth looks really slow, speeds up a little, and then zooms right past you."
+
+[[params.faqItems]]
+question = "When does Anthropic's CEO expect AI to surpass humans?"
+answer = "Within the next 1 to 2 years for models smarter than humans in virtually every domain, and almost certainly before the decade is out. He backs it with what is already happening inside Anthropic: the lead engineer on the Code product team told him, I haven't personally written any code in the past two months — Claude wrote all of it, and his role shifted entirely to editing and reviewing. Anthropic also shipped a tool called Coachwork in a week and a half, built almost entirely by Claude."
+
+[[params.faqItems]]
+question = "What is Amodei's position on chip export controls to China?"
+answer = "He firmly opposes exporting advanced AI chips, comparing it to selling nuclear weapons to North Korea and then bragging that you built them. His evidence that the policy works: in enterprise deals Anthropic's real rivals are Google and OpenAI, and he has almost never lost a contract to a Chinese model — not for lack of effort on their side, but because Chinese AI CEOs themselves say the chip embargo is what holds them back."
+
+[[params.faqItems]]
+question = "What economic disruption does Amodei predict from AI?"
+answer = "A combination never seen in macroeconomic history: extremely rapid GDP growth paired with high unemployment, because AI raises the cognitive waterline and an entire tier of capability disappears rather than a single profession. He did not walk back his earlier prediction that AI would eliminate 50% of entry-level jobs. He also argues we have already passed the Gilded Age in wealth concentration, mostly for reasons other than AI, and that government intervention is now inevitable."
+
+[[params.faqItems]]
+question = "If AI is so capable, why is Amodei also warning about a bubble?"
+answer = "Because deployment lags capability. In his words, the technology's current capability is probably ten times what the world's enterprises can actually deploy — companies need years of change management, retraining and system rewrites, all far slower than model progress. Since the revenue timeline is uncertain, firms may overbuy compute, and some probably already have, which is where financial overextension comes from."
 +++
 ![Anthropic CEO Dario Amodei discusses AI trends and the future of superintelligence at Bloomberg](cover.webp)
 

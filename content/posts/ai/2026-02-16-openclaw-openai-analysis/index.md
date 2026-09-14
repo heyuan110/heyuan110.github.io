@@ -7,6 +7,30 @@ toc = true
 tags = ['OpenClaw', 'AI Agent', 'OpenAI', 'Open Source']
 categories = ['AI Guides']
 keywords = ['OpenClaw analysis', 'OpenClaw OpenAI', 'AI agent security', 'Moltbook AI social network', 'OpenClaw skills ecosystem', 'Peter Steinberger OpenAI']
+
+[[params.faqItems]]
+question = "How many GitHub stars does OpenClaw have?"
+answer = "180K, reached within roughly 30 days of the January 2026 release. The trajectory is the striking part: stars passed 145K in early February and hit 180K by mid-month, while the Skills catalog grew past 1,700. Those are not idle bookmarks — people are running OpenClaw to manage email, automate browsers and build workflows, which is what made it a credible acquisition target rather than a novelty."
+
+[[params.faqItems]]
+question = "What is OpenClaw and how is it different from ChatGPT?"
+answer = "It is an AI assistant that actually does things rather than answering questions. It operates your computer and online services directly — sending email, managing calendars, controlling browsers, running terminal commands, driving smart home devices — and you talk to it through Telegram, WhatsApp, Lark, Discord or Slack like texting a human assistant. It runs 24/7 with scheduled tasks. ChatGPT is a consultant who answers what you ask; OpenClaw is a butler who does the thing."
+
+[[params.faqItems]]
+question = "Is OpenClaw safe to run?"
+answer = "Not by default. Version 2026.2.12 patched over 40 vulnerabilities in one release, covering SSRF, path traversal through the frontmatter name field, prompt injection from browser and network tool output, and session hijacking via SessionKey overrides. CVE-2026-25253 allowed remote code execution from a crafted link. China's MIIT cybersecurity platform issued a formal advisory. Minimum precautions: enable confirmation mode, never expose the instance to the internet, run `clawhub update --all`, revoke unused OAuth grants, and install only well-maintained Skills."
+
+[[params.faqItems]]
+question = "What are OpenClaw Skills and which ones do I need first?"
+answer = "Skills are the extension mechanism — one capability each, installed from the ClawHub marketplace with a single command, and writable by anyone in Markdown or TypeScript. Five form the kernel: ClawHub itself, Agent Browser for web automation, Brave Search for web access, Shell for terminal commands, and Cron/Wake for scheduled and proactive tasks. Without them OpenClaw is just a chatbot. Then add one messaging platform, then productivity Skills like Gmail, Calendar, GitHub, Notion or Obsidian."
+
+[[params.faqItems]]
+question = "What is Moltbook?"
+answer = "The world's first social network run entirely by AI agents, launched January 29, 2026. Only verified agents can register; humans are banned from posting. Agents post in sub-forums called Submolts, comment, upvote, argue, and check for platform updates every 4 hours. Over 1.5 million OpenClaw agents are active there, and Nature ran a dedicated article on scientists eavesdropping on the conversations. It is the first production-scale test of agent-to-agent communication."
+
+[[params.faqItems]]
+question = "Why did Peter Steinberger join OpenAI instead of starting a company?"
+answer = "His own explanation: he wants to change the world, not build a large company, and OpenAI was the fastest route to everyone. Sam Altman announced it on February 15, 2026, calling him a genius with ideas about very smart agents interacting with each other. OpenAI committed to keeping OpenClaw open source under a Foundation structure. What OpenAI actually bought was strategic position: 1,700+ Skills, a 180K-star developer community, Moltbook's agent-to-agent practice, and a validated agent architecture in the one area where it lagged Anthropic and Google."
 +++
 
 ![OpenClaw's 30-day rise: from open-source AI agent to OpenAI acquisition](cover.webp)

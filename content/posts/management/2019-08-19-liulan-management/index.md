@@ -6,6 +6,34 @@ toc = true
 tags = ['领导力', '管理', '职场成长', '学习笔记']
 categories = ['管理']
 keywords = ['leadership skills', 'management growth', 'leadership responsibility', 'tech manager leadership', 'team leadership']
+
+[[params.faqItems]]
+question = "What are the ten leadership disciplines?"
+answer = "These are the 10 sentences a leader has to be able to say: I'll take this on; I don't know; What do you think?; Let me tell you a story; Let me teach you; Why? (find the root cause); You failed? Congratulations!; What should I or you change?; Who am I, who are we?; and Who should I become? Each of the 10 maps to a practice — ownership, adaptive humility, inquiry, narrative, coaching, systems thinking, failure handling, reflection, self-knowledge and personal vision."
+
+[[params.faqItems]]
+question = "Is leadership the same thing as management?"
+answer = "No. Management maintains the status quo and solves routine, technical problems, usually backed by positional authority. Leadership takes on adaptive challenges where the old answers no longer work — and it is a responsibility rather than a title. A title gives you resources, but you can exercise leadership without one. Charisma is not a prerequisite either; it is usually a byproduct that gets mythologized after the fact."
+
+[[params.faqItems]]
+question = "Why can charisma actually hurt a leader?"
+answer = "Because it suppresses the feedback a leader depends on. Followers who admire you stop offering criticism and start seeking approval instead of speaking up. The team drifts into believing the leader is infallible, the leader becomes overconfident and blind to risk, and the organization never develops capable successors. Charisma is a byproduct of leadership, not a requirement for it."
+
+[[params.faqItems]]
+question = "How should a leader respond when someone on the team fails?"
+answer = "Start with why this happened, not who did this. Build 4 habits into the organization: detect failures early, because every large failure grows out of small overlooked ones; encourage reporting, because unreported failures accumulate into systemic crises; analyze deeply rather than assigning blame; and experiment deliberately through small pilots. The 7 types of failure run from ignoring rules, carelessness, lack of competence and process gaps (all preventable) through known and unforeseen risks (normal) to exploratory risk — the only kind worth celebrating."
+
+[[params.faqItems]]
+question = "How do I find the real root cause instead of applying a quick fix?"
+answer = "Move up Peter Senge's 3 levels of reality. Events answer what happened and yield symptom-level fixes. Patterns ask whether this is a recurring behavior and how it happens. System structure asks whether the system itself produces the pattern, and why. Real strategy only appears at the last two levels. Systems thinking has 3 building blocks — reinforcing loops, balancing loops, and delays, the time gaps that hide cause from effect and explain why people keep smoking or skipping exercise."
+
+[[params.faqItems]]
+question = "What does effective reflection actually involve?"
+answer = "Reflection is think plus rethink, and it happens before and during action, not only afterward. 4 elements make it work: step back and write down your initial thinking so you do not lose it; release emotion, because we are biased toward our own ideas and resist admitting error; shift perspective into someone else's position; and end with something actionable. It also has 3 depths — reflecting on actions (how), on goals (what), and on beliefs (why). Great leaders keep moving from the first toward the third."
+
+[[params.faqItems]]
+question = "How do I decide what to do with my career?"
+answer = "Use the 3-circle framework: what you love (deep needs, not surface interests), what you are good at (high-level capabilities, not just technical skills), and where the opportunity lies (long-term trends, not short-term gains). The intersection is your calling. The circles are dynamic and reinforce each other, so the practical advice is to lead with passion — and to keep asking the two questions behind it, who am I and who should I become."
 +++
 
 These are my notes from a two-day leadership training course taught by Professor Liu Lan. The course was highly structured, blending theory with real-world case studies that directly apply to workplace scenarios. Below is a summary of the ten leadership disciplines — a practical framework for anyone stepping into (or growing within) a leadership role.

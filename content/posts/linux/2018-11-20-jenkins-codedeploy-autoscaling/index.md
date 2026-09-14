@@ -6,6 +6,30 @@ toc = true
 tags = ['Jenkins', 'AWS', 'CodeDeploy', 'AutoScaling', 'CI/CD', '蓝绿部署', 'DevOps']
 categories = ['Linux']
 keywords = ['Jenkins CodeDeploy tutorial', 'AWS CI/CD pipeline', 'blue green deployment AWS', 'AppSpec configuration', 'Auto Scaling CodeDeploy integration']
+
+[[params.faqItems]]
+question = "How does CodeDeploy know to deploy to a newly launched Auto Scaling instance?"
+answer = "Through Auto Scaling lifecycle hooks, which CodeDeploy creates and manages for you. On a scale-out event, Auto Scaling requests an instance, EC2 provisions it from the launch configuration, then Auto Scaling puts it in `Pending:Wait` and notifies CodeDeploy. CodeDeploy validates the configuration and deploys the last successfully deployed revision. On success it signals CONTINUE; on failure it signals ABANDON and Auto Scaling terminates the instance. Never edit these hooks by hand."
+
+[[params.faqItems]]
+question = "Why do my Auto Scaling instances keep launching and terminating in a loop?"
+answer = "Because a failing deployment marks each new instance for termination, Auto Scaling replaces it, and the same broken revision deploys again — an infinite launch-terminate cycle that a buggy revision will sustain indefinitely. Break it by disassociating the Auto Scaling group from the deployment group first, then testing the deployment on a standalone EC2 instance using the same AMI. Re-associate only once the scripts run clean."
+
+[[params.faqItems]]
+question = "When should I use blue/green instead of in-place deployment?"
+answer = "Use blue/green when you want to validate before taking traffic. In-place stops the app on each instance, installs the revision, restarts and validates, rolling through the group with instances optionally deregistered from the load balancer. Blue/green provisions a fresh replacement set, deploys there, allows an optional wait period for testing, then registers the new instances and deregisters the old. Rollback is just redirecting traffic back, provided the originals have not been terminated, and fresh instances avoid configuration drift. Blue/green requires EC2 instances."
+
+[[params.faqItems]]
+question = "What goes in the appspec.yml file?"
+answer = "It must be named exactly `appspec.yml` and sit at the root of the revision. It declares `version`, `os`, a `files` block mapping source to destination such as `/var/www/html`, and a `hooks` block attaching scripts to lifecycle events — ApplicationStop, BeforeInstall, AfterInstall, ApplicationStart. Each hook entry takes a `location` plus optional `timeout` and `runas`; production examples commonly use `timeout: 300` and `runas: root` for dependency installs and permission changes."
+
+[[params.faqItems]]
+question = "Why does my CodeDeploy agent race with the user data script?"
+answer = "Because the agent starts looking for deployments the moment it boots, and there is no ordering between a deployment and other startup scripts such as user data or cfn-init. Fix it by installing the CodeDeploy agent as the very last step of your user data, or by baking it into the AMI in a stopped state and starting it at the end of your bootstrap script. Related rule: never attach multiple deployment groups to one Auto Scaling group, since parallel unordered deployments cause one failure to kill the instance and fail the rest."
+
+[[params.faqItems]]
+question = "What does the full Jenkins to EC2 deployment flow look like?"
+answer = "Jenkins builds the application and uploads the package to a designated S3 bucket using the Jenkins CodeDeploy plugin. The CodeDeploy agent on each EC2 instance polls for new revisions, downloads and extracts the one it finds, then executes the phases declared in `appspec.yml`. Every instance in the deployment group gets the same package, which is what keeps the fleet consistent. The configuration repo is organized by platform, environment and project, each project holding codedeploy/, project-conf.d/ and server-applications/."
 +++
 
 This article walks through setting up a continuous delivery pipeline using Jenkins, AWS CodeDeploy, S3, and Auto Scaling. It covers everything from creating Auto Scaling groups to configuring blue/green deployments with lifecycle hooks.

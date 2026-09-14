@@ -5,6 +5,30 @@ description = 'Elasticsearch 入门教程，理解索引、类型、文档等核
 toc = true
 tags = ['Elasticsearch', '搜索引擎', '全文检索', 'API']
 categories = ['Elasticsearch']
+
+[[params.faqItems]]
+question = "怎么查看 Elasticsearch 集群里有哪些索引？"
+answer = "用 `GET /_cat/indices?v`，`?v` 会带上表头，输出包含 health、status、索引名、uuid、主分片和副本数、docs.count、docs.deleted 以及存储大小。只看单个索引用 `GET /_cat/indices/{index}`。想知道 _cat 还有哪些命令，直接 `GET /_cat/` 会列出全部端点：allocation、shards、nodes、count、health、aliases、thread_pool、fielddata 等。"
+
+[[params.faqItems]]
+question = "用 curl 怎么创建索引和写入文档？"
+answer = "建索引一条命令：`PUT /test_index?pretty`，返回 acknowledged 为 true。写文档走 `PUT /索引/类型/id` 的格式，例如 `curl -XPUT http://host:9200/test_index/user/1 -H 'Content-Type: application/json' -d '...'`，响应里会带 `_version` 和 result 为 created。删除用同样的路径换成 `DELETE`。注意 ES 7.x 之后 type 概念已废弃，一个索引只有一个类型。"
+
+[[params.faqItems]]
+question = "集群状态为什么一直是 yellow？"
+answer = "因为副本分片分配不出去。green 是所有主分片和副本分片都 active；yellow 是主分片都正常但部分副本处于不可用状态；red 是有主分片缺失，意味着真的丢数据了。单节点集群必然是 yellow——副本分片不能和它的主分片放在同一个节点上，否则起不到容错作用。用 `GET /_cat/health?v` 查看。"
+
+[[params.faqItems]]
+question = "ES 的索引、类型、文档对应关系型数据库的什么？"
+answer = "索引（index）对应数据库，类型（type）对应表，文档（document）对应行，字段（field）对应列。一个集群包含多个索引，一个索引包含多个类型，一个类型包含多个文档，一个文档包含多个字段。这个类比适合入门，但 ES 7.x 废弃 type 之后就不准了——现在更接近「一个索引等于一张表」。"
+
+[[params.faqItems]]
+question = "报错 Fielddata is disabled on text fields by default 怎么解决？"
+answer = "这是对 `text` 类型字段做排序或聚合时触发的。应急办法是改 mapping 把该字段的 `fielddata` 设成 true，但内存开销很大。更推荐的做法是改用 `.keyword` 子字段排序——ES 会自动给 text 字段生成一个 keyword 子字段（`ignore_above: 256`）。先用 `GET /test_index/_mapping` 看看现有映射结构再决定。"
+
+[[params.faqItems]]
+question = "查询该用 query string 还是 DSL？"
+answer = "临时查用 query string，正经查询用 DSL。`_search?pretty&q=name:bruce&sort=email:desc` 这种写法在命令行敲得快、大小写不敏感，但表达不了复合条件。DSL 用 JSON 请求体，`query`、`_source`、`sort`、`from`、`size` 都在根层级，`bool` 里 `must` 和 `filter` 是兄弟节点，`range` 支持 `gt`、`gte`、`lt`、`lte`。DSL 报错八成出在嵌套层级写错。"
 +++
 ![](https://raw.githubusercontent.com/heyuan110/static-source/master/cover/es.jpg)
 

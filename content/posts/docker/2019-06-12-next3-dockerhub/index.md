@@ -6,6 +6,26 @@ toc = true
 tags = ['Docker', 'Nexus3', 'Registry', '私有仓库', 'DevOps']
 categories = ['Docker']
 keywords = ['Nexus3 Docker registry', 'private Docker registry', 'Docker hosted proxy group', 'enterprise container registry', 'Nexus3 setup guide']
+
+[[params.faqItems]]
+question = "What is the difference between hosted, proxy, and group Docker repositories in Nexus 3?"
+answer = "Hosted stores the images your team builds and pushes internally. Proxy caches images from a remote registry such as Docker Hub, so the second pull costs no external bandwidth. Group combines hosted and proxy repositories behind a single URL so clients only configure one endpoint — and you set the priority so hosted images win over proxied ones. In practice ops pushes to the hosted repository and developers pull from the group."
+
+[[params.faqItems]]
+question = "How do I run a Nexus 3 private Docker registry in a container?"
+answer = "Pull `sonatype/nexus3`, then run it with the data directory mounted so the registry survives restarts and one port per repository type: `docker run -id --privileged=true --name=nexus3 --restart=always -p 9500:8081 -p 9501:9501 -p 9502:9502 -p 9503:9503 -v /usr/local/programs/nexus3/nexus-data:/nexus-data sonatype/nexus3:latest`. 9500 is the web UI (internally 8081), 9501 the hosted registry for push and pull, 9502 the proxy, 9503 the group for pulls. Log in at http://localhost:9500 with admin / admin123."
+
+[[params.faqItems]]
+question = "Why does anonymous docker pull from Nexus 3 fail with a permission error?"
+answer = "Because the Docker Bearer Token Realm is not enabled. Allowing anonymous access in the repository settings is only half the configuration — go to Security > Realms (http://localhost:9500/#admin/security/realms) and activate the Docker Bearer Token Realm as well. Until you do, every anonymous `docker pull` is rejected even though the repository itself permits it."
+
+[[params.faqItems]]
+question = "How do I let Docker use a private registry over plain HTTP?"
+answer = "Add the registry to `insecure-registries`. On macOS and Windows, open Docker Desktop settings, go to Docker Engine, and add the endpoints, for example `{ 'insecure-registries': ['localhost:9503'] }` — include `localhost:9501` too if you need to push, then restart Docker. On Ubuntu and other Linux distributions, edit `/etc/docker/daemon.json` with the same list and run `sudo service docker restart`. Without this, Docker refuses any non-HTTPS registry."
+
+[[params.faqItems]]
+question = "How do I push and pull images with a Nexus 3 registry?"
+answer = "Push through the hosted port: `docker login localhost:9501`, then tag and push, for example `docker tag php:7.0 localhost:9501/php:7.0` followed by `docker push localhost:9501/php:7.0`. Verify the upload at http://localhost:9500/#browse/browse. Pull through the group port instead — `docker pull localhost:9503/php:7.0` — which checks the hosted repository first and falls back to the proxy. `docker search localhost:9503/php` searches every repository in the group in priority order."
 +++
 
 [Nexus Repository Manager](https://www.sonatype.com/nexus-repository-oss) is a widely used artifact repository originally built for Maven. Beyond Maven, Nexus 3 supports many formats including Docker, npm, PyPI, and more. For Docker specifically, Nexus 3 lets you host private images, proxy Docker Hub, and group multiple registries behind a single endpoint — making it an excellent choice for enterprise container image management.

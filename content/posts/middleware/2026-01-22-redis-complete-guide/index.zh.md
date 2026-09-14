@@ -7,6 +7,34 @@ toc = true
 tags = ['Redis', 'Database', 'Cache', 'NoSQL', 'Middleware']
 categories = ['AI Guides']
 keywords = ['Redis安装', 'Redis教程', 'Redis数据类型', 'Redis持久化', 'Redis集群']
+
+[[params.faqItems]]
+question = "Redis 是什么？主要用在哪些场景？"
+answer = "Redis 是用 ANSI C 写的键值数据库，纯内存操作，读写可达 10 万+ QPS，支持 String、Hash、List、Set、Sorted Set 五种数据结构，所有操作都是原子的。最常见的六类用法：热点数据缓存、分布式系统的 Session 共享、用有序集合做实时排行榜、用 List 做简单消息队列、用原子操作做计数器和点赞数、以及跨进程的分布式锁。"
+
+[[params.faqItems]]
+question = "Mac 上怎么安装 Redis？"
+answer = "用 Homebrew 最省事：`brew update` 之后 `brew install redis`。启动推荐注册成后台服务 `brew services start redis`，开机自启且掉了会拉起来。Windows 没有官方原生版本，推荐走 WSL 或 Docker。装完先改 `redis.conf` 三项：`bind` 绑定具体 IP、`requirepass` 设密码（生产必须）、`maxmemory` 限制内存上限。"
+
+[[params.faqItems]]
+question = "RDB 和 AOF 有什么区别？该选哪个？"
+answer = "RDB 是定时快照，默认开启，靠 `save 900 1`、`save 300 10`、`save 60 10000` 这类规则触发，文件紧凑、恢复快、对性能影响小，但会丢最后一次快照之后的数据，fork 子进程时大数据量还会短暂卡顿。AOF 记录每条写命令追加到文件，用 `appendfsync everysec` 最多丢 1 秒数据，文件可读便于修复，代价是体积更大、恢复更慢。"
+
+[[params.faqItems]]
+question = "持久化策略到底怎么配才合理？"
+answer = "按数据重要性四档选：数据可丢就直接关掉持久化换最高性能；允许丢几分钟只开 RDB；数据很重要就上 RDB + AOF 混合持久化（`aof-use-rdb-preamble yes`，Redis 5.0 默认开启），重写后的 AOF 前半段是 RDB 格式全量、后半段是 AOF 增量；要最高安全性就用 AOF 且 `appendfsync always`，但这是最慢的一档。"
+
+[[params.faqItems]]
+question = "Redis 高可用有哪几种方案？"
+answer = "三级递进。主从复制是基础，实现多机备份和读写分离，但故障要人工切。哨兵模式在主从之上加自动故障转移，`sentinel monitor mymaster <ip> 6379 2` 指定监控和法定票数，`down-after-milliseconds` 设为 30000 判定主节点失联。集群模式再往上，用 16384 个哈希槽自动分片，典型是 3 主 3 从，每个实例开 `cluster-enabled yes`，适合大规模数据。"
+
+[[params.faqItems]]
+question = "内存不够时 Redis 会怎么淘汰数据？maxmemory-policy 怎么选？"
+answer = "先 `maxmemory 4gb` 设上限，再选淘汰策略。常用 `allkeys-lru`：在所有键里按 LRU 淘汰，适合纯缓存场景。其他选项包括 volatile-lru（只淘汰设了过期时间的键）、volatile-ttl（优先删快过期的）、allkeys-random 和 volatile-random（随机删），以及 noeviction——不删，内存满了写入直接报错。"
+
+[[params.faqItems]]
+question = "Redis 生产环境有哪些必须避开的坑？"
+answer = "六条最实用的：Key 用业务前缀设计，比如 `user:1001:profile`；Key 不超过 1KB、Value 不超过 10KB；一律设过期时间，避免内存无限增长；大 Hash/List/Set 要拆分，别造大 Key；批量操作走 Pipeline 减少网络往返；`KEYS *`、`FLUSHALL` 这类阻塞命令生产环境别用。排查性能问题就看慢查询：`slowlog-log-slower-than 10000`（微秒）配合 `SLOWLOG GET 10`。"
 +++
 ![Redis 从入门到精通：完整教程指南](cover.webp)
 

@@ -7,6 +7,34 @@ toc = true
 tags = ['Claude Code', 'MCP', 'TypeScript', 'AI 编程', 'MCP Server']
 categories = ['AI实战']
 keywords = ['MCP Server 开发', 'MCP Server 教程', 'Claude Code MCP', 'MCP TypeScript', 'Model Context Protocol', 'AI 工具开发', 'MCP Server 中文教程']
+
+[[params.faqItems]]
+question = "开发一个 MCP Server 需要准备什么环境？"
+answer = "四样东西：Node.js 18 以上（`node -v`）、npm 9 以上（`npm -v`）、最新版 Claude Code（`claude --version`）、TypeScript 5.0 以上（`npx tsc --version`）。项目依赖只要两个核心包：`npm install @modelcontextprotocol/server zod`，前者提供 McpServer 和 StdioServerTransport，后者负责定义工具的输入输出 Schema。"
+
+[[params.faqItems]]
+question = "写完的 MCP Server 怎么注册到 Claude Code 测试？"
+answer = "先 `npx tsc` 编译，再 `chmod +x dist/index.js` 给入口加执行权限，然后用 `claude mcp add weather-server node /你的绝对路径/dist/index.js` 注册。之后直接跟 Claude Code 对话，它会自动发现你注册的工具并调用。想确认是否加载成功就跑 `claude mcp list`，要重启 Server 就 remove 再 add 一次。"
+
+[[params.faqItems]]
+question = "package.json 和 tsconfig 有哪些必配项？"
+answer = "package.json 里 `type: module` 是硬性要求，MCP SDK 走 ESM，少了它 Server 根本起不来；还要配 `bin` 指向 `./dist/index.js`，以及 build 和 start 两个 script。tsconfig 里 target 用 ES2022，module 和 moduleResolution 都设 Node16，outDir 指向 ./dist、rootDir 指向 ./src，并打开 strict、esModuleInterop、declaration。"
+
+[[params.faqItems]]
+question = "MCP SDK v1 和 v2 写法差在哪？照旧教程写为什么跑不通？"
+answer = "三处变化。包名从 `@modelcontextprotocol/sdk` 拆成了 `@modelcontextprotocol/server` 和 `@modelcontextprotocol/client`；工具注册方法从 `server.tool()` 改成 `server.registerTool()`；输入校验必须用 `z.object()` 包裹完整的 Zod Schema。看到教程还在用 `server.tool()`，那就是 v1 的写法，照抄会报类型错误。"
+
+[[params.faqItems]]
+question = "MCP Server 起不来、工具不被识别，怎么排查？"
+answer = "对照五种常见现象：Server 无法启动是 package.json 少了 `type: module`；工具不被识别是 inputSchema 格式不对，必须用 `z.object()` 包裹；通信错乱是代码里用了 `console.log`——STDIO 的 stdout 是协议数据通道，日志必须走 `console.error`；类型报错是 SDK 版本不对；工具调用无响应是处理函数没返回 `{ content: [...] }`。"
+
+[[params.faqItems]]
+question = "一个 MCP Server 该注册多少个工具？"
+answer = "协议本身没有上限，但实践建议一个 Server 聚焦一个领域，注册 3-10 个相关工具就够。工具堆太多、跨领域混在一起，会明显拉低 AI 选择工具的准确率。真要覆盖多个领域，拆成多个 Server 比塞进一个更划算。"
+
+[[params.faqItems]]
+question = "我开发的 MCP Server 只能在 Claude Code 里用吗？"
+answer = "不是，任何支持 MCP 协议的客户端都能用，包括 Cursor、VS Code Copilot（通过插件）、Continue 等，一次开发到处使用。之所以推荐用 Claude Code 来开发，是因为它本身就是 MCP 客户端——写完直接 `claude mcp add` 就能测，不用另外配一套客户端，边写边验证效率最高。"
 +++
 
 **MCP Server** 是 2026 年 AI 工具生态的核心基础设施。Gartner 预测，到 2026 年底将有 40% 的企业应用嵌入 AI Agent。而 **Claude Code** 作为当下最强的 AI 编程工具之一，本身就是一个强大的 MCP 客户端。学会开发 MCP Server，就等于掌握了给 AI 装上新手脚的能力。

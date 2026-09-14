@@ -6,6 +6,34 @@ toc = true
 tags = ['RabbitMQ', '消息队列', 'AMQP', '中间件']
 categories = ['中间件']
 keywords = ['RabbitMQ tutorial', 'AMQP protocol', 'RabbitMQ exchange types', 'message queue PHP', 'RabbitMQ clustering']
+
+[[params.faqItems]]
+question = "What are the four RabbitMQ exchange types and when do I use each?"
+answer = "Direct routes a message only where the routing key matches the binding key exactly. Topic adds wildcards over dot-separated words, where `*` matches exactly one word and `#` matches zero or more, so `lazy.#` catches both `lazy.rabbit` and `lazy.red.fox`. Fanout ignores the routing key entirely and broadcasts to every bound queue — the fastest type. Headers routes on message header values instead of routing keys and is rarely used."
+
+[[params.faqItems]]
+question = "What is the difference between a connection and a channel?"
+answer = "A connection is the actual TCP connection between client and broker and must be closed properly or it leaks. A channel is a virtual connection multiplexed inside it, each with its own unique ID. The point is reuse: instead of opening a TCP connection per thread, open one connection and many channels, which cuts resource overhead and scales far better."
+
+[[params.faqItems]]
+question = "Why can't a producer send a message straight to a queue?"
+answer = "Because the exchange is the routing agent — producers always publish to an exchange, which then decides which queues receive the message. The decision uses two labels: the routing key the producer attaches to each message, and the binding key defined when a queue is bound to that exchange. Reliability comes from AMQP acknowledgments: a message is not removed from the queue until the consumer explicitly confirms it was processed."
+
+[[params.faqItems]]
+question = "What is the fastest way to get RabbitMQ running?"
+answer = "Docker, one line: `docker run -d -p 5672:5672 -p 15672:15672 --name rabbitmq rabbitmq:management`. Port 5672 carries AMQP traffic and 15672 serves the management UI at `http://localhost:15672`, where the default login is guest/guest. On a local Ubuntu install you must enable the UI yourself with `rabbitmq-plugins enable rabbitmq_management`, and to let guest connect remotely set `{loopback_users, []}` in `/etc/rabbitmq/rabbitmq.config`."
+
+[[params.faqItems]]
+question = "How do I build a RabbitMQ cluster?"
+answer = "Two steps. First unify the Erlang cookie — copy `/var/lib/rabbitmq/.erlang.cookie` from the first node to the others with scp, `chmod 400` it, and restart the service; clustering fails without this. Then on each additional node run `rabbitmqctl stop_app`, `rabbitmqctl join_cluster rabbit@rmq1`, `rabbitmqctl start_app`. Note that normal cluster mode shares only metadata — the message data itself lives on one node."
+
+[[params.faqItems]]
+question = "How do I make queues survive a node failure?"
+answer = "Turn on mirroring with a policy: `rabbitmqctl set_policy ha-all '^' '{ha-mode:all, ha-sync-mode:automatic}'` mirrors every queue in every vhost, while a scoped version such as `-p vhost1 ha-test '^test'` with `ha-mode` exactly and `ha-params` 2 mirrors only queues whose name starts with test onto 2 nodes. `ha-mode` accepts all, exactly or nodes, and `ha-sync-mode` accepts automatic or manual."
+
+[[params.faqItems]]
+question = "Should cluster nodes be RAM or disk nodes?"
+answer = "RAM nodes keep everything in memory and run roughly 3x faster; disk nodes persist to disk and survive restarts, so a cluster needs at least one. Switch a node with `rabbitmqctl stop_app`, `rabbitmqctl change_cluster_node_type ram`, `rabbitmqctl start_app`. If publishers suddenly slow down, that is flow control throttling them because the broker is overloaded — inspect it with `rabbitmqctl list_connections`."
 +++
 
 This guide builds on our [message queue fundamentals article](/posts/middleware/2019-07-31-mq/) and dives deep into RabbitMQ — one of the most popular open-source message brokers.

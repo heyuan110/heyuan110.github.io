@@ -6,6 +6,30 @@ toc = true
 tags = ['Elasticsearch', 'AWS', 'Kinesis', 'Kibana', '日志分析']
 categories = ['Elasticsearch']
 keywords = ['AWS EKK setup', 'Kinesis Elasticsearch Kibana', 'AWS log collection', 'Nginx log analysis AWS', 'Amazon Elasticsearch Service']
+
+[[params.faqItems]]
+question = "What is the EKK stack and how is it different from ELK?"
+answer = "EKK is Elasticsearch, Kinesis and Kibana — the same logging pattern as ELK, but with Kinesis replacing Logstash and every component running as an AWS managed service. Amazon Elasticsearch Service hosts the cluster and Kibana, and Kinesis handles ingestion, so there is no Logstash fleet to size, patch or babysit. The trade-off is less transform flexibility: enrichment that Logstash filters would do has to move into a Lambda function or an index template."
+
+[[params.faqItems]]
+question = "How do I ship Nginx logs from EC2 into Elasticsearch through Kinesis?"
+answer = "Install the Kinesis Agent on the instance — clone `amazon-kinesis-agent`, install openjdk-8-jdk, then run `sudo ./setup --install`. Configure `/etc/aws-kinesis/agent.json` with your IAM key pair, the region-specific endpoints, and a flow pointing `filePattern` at the Nginx access log plus a `deliveryStream` (Firehose) or `kinesisStream` (Data Streams) as the destination. Start it with `sudo service aws-kinesis-agent start`, and restart after every config change. Use Firehose for one destination, Data Streams to fan out to several."
+
+[[params.faqItems]]
+question = "Why does the Kinesis Agent fail to parse my custom Nginx fields?"
+answer = "Because the built-in `COMMONAPACHELOG` format only knows the standard Apache fields — anything you added, such as `upstream_response_time` or `request_time`, is ignored. Keep `optionName: LOGTOJSON` but supply your own `matchPattern` regex and a `customFieldNames` array listing the capture groups in order. The other trap: the Kinesis Agent is a Java application, so the pattern must be Java regex syntax with Java string escaping, not the Python or PCRE dialect you may be used to."
+
+[[params.faqItems]]
+question = "How do I test the Kinesis Agent matchPattern regex before deploying it?"
+answer = "Run it as real Java before it ever reaches `agent.json`. Paste a genuine log line and your pattern into an online Java code runner, compile the pattern with `Pattern.compile()`, call `matcher(line).find()`, and print every `m.group(n)` to confirm the groups line up with your `customFieldNames` order. Watch the escaping — a backslash in the JSON config becomes a double backslash in a Java string literal. Once the groups print correctly, copy the pattern into `matchPattern`."
+
+[[params.faqItems]]
+question = "Why does every field arrive in Elasticsearch as text type?"
+answer = "Because nothing told Elasticsearch otherwise — with no mapping, the dynamic default makes everything `text`, so you cannot do range queries on bytes or build a time-based dashboard. Fix it with an index template applied before data lands: PUT `_template/nginx-access-log_template` with `template` set to a glob such as `*-nginx-access-log-*` so daily indices like `api-nginx-access-log-2018-08-02` inherit it automatically. Map `body_bytes_sent` and `connection_serial_number` as `long`, the timing fields as `double`, and give text fields a `keyword` sub-field for aggregation."
+
+[[params.faqItems]]
+question = "Why does the datetime field fail to parse in the index template?"
+answer = "Because Nginx's `time_local` is not ISO 8601. A default log writes `12/Sep/2018:03:59:12`, so the mapping needs `{ 'type': 'date', 'format': 'dd/MMM/YYYY:HH:mm:ss' }` — the common ISO format will simply not match and the field falls back to text. This one detail costs people hours. While you are there, note two known gaps in this pipeline: no geolocation and no user-agent breakdown. Both are fixed by inserting a Lambda between Firehose and Elasticsearch to do GeoIP lookups and UA parsing."
 +++
 
 EKK is a log collection stack built entirely on AWS managed services: **Amazon Elasticsearch Service**, **Amazon Kinesis**, and **Kibana**. Compared to a self-managed ELK stack, EKK is significantly easier to set up and maintain since AWS handles the infrastructure. Here is the basic architecture:

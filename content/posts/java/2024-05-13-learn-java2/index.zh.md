@@ -6,6 +6,26 @@ toc = true
 tags = ['Java', 'Arrays', 'Collections', 'IO', 'Tutorial']
 categories = ['Java']
 keywords = ['Java Arrays工具类', 'Java集合框架', 'Java IO流', 'Lambda表达式', '正则表达式', '排序算法']
+
+[[params.faqItems]]
+question = "Arrays 工具类有哪些必会方法？"
+answer = "5 个最常用：`Arrays.toString(arr)` 直接打印数组内容；`Arrays.copyOfRange(arr, 1, 4)` 按索引范围拷贝，包前不包后；`Arrays.copyOf(arr, 10)` 拷贝并指定新数组长度；`Arrays.setAll(prices, ...)` 批量改写元素，比如把所有价格打八折再存回去；`Arrays.sort(arr)` 排序，默认升序。"
+
+[[params.faqItems]]
+question = "数组里存的是自定义对象，怎么排序？"
+answer = "两种方式。方式一让类实现 Comparable 接口并重写 compareTo，`Arrays.sort` 底层按返回值是正数、负数还是 0 来判定大小。方式二调用 `Arrays.sort(数组, Comparator比较器)`，额外传一个 Comparator 对象，底层按它的 compare 方法返回值判定。前者把排序规则写死在类里，后者可以按场景换不同比较器。"
+
+[[params.faqItems]]
+question = "Lambda 表达式能简化哪些代码？有什么前提？"
+answer = "它专门用来简化匿名内部类的书写，格式是 `(被重写方法的形参列表) -> { 方法体 }`。前提很硬：必须先有一个接口，而且接口中只能有一个抽象方法，这种接口叫函数式接口——只能是接口，不能是抽象类。只有基于函数式接口的匿名内部类才能被 Lambda 简化。"
+
+[[params.faqItems]]
+question = "方法引用有哪几种？分别怎么用？"
+answer = "3 种。静态方法引用：Lambda 方法体只是调用某个静态方法时，写成 `类名::静态方法名`，本质是用类名调方法但省略参数。实例方法引用：方法体只是用某个对象调实例方法时，写成 `对象名::方法名`。特定类型的方法引用：当第一个参数作为方法主调、其余参数作为入参时，写成 `类型::方法名`，这纯粹是语法约定，遇到这种场景照用即可。"
+
+[[params.faqItems]]
+question = "二分查找的前提和步骤是什么？"
+answer = "前提很苛刻：元素必须有序，否则不能用。步骤是先定义 left 和 right 两个索引，算出 `mid = (left + right) / 2`，拿中间元素和目标比较——中间元素小就 `left = mid + 1`，中间元素大就 `right = mid - 1`，相等就返回 mid。循环执行直到 left 大于 right 仍没找到，返回 -1。相比基本查找从 0 索引一个个往后找，二分每次能排除一半元素。"
 +++
 ![image](java-logo.webp)
 

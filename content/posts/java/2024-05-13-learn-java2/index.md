@@ -6,6 +6,30 @@ toc = true
 tags = ['Java', 'Arrays', 'Collections', 'IO', 'Tutorial']
 categories = ['Java']
 keywords = ['Java Arrays class', 'Java Lambda expressions', 'Java regex', 'Java sorting algorithms', 'binary search Java', 'method reference Java']
+
+[[params.faqItems]]
+question = "What does the java.util.Arrays utility class give me?"
+answer = "It packages the array operations you would otherwise write by hand. `Arrays.toString(arr)` prints a readable representation; `Arrays.copyOfRange(arr, 1, 4)` copies a slice with the start index inclusive and the end exclusive; `Arrays.copyOf(arr, 10)` copies into a new array of a given length; `Arrays.setAll(prices, fn)` rewrites every element through a generator function, which is how you apply something like a 20% discount across a price array; and `Arrays.sort(arr)` sorts ascending by default."
+
+[[params.faqItems]]
+question = "How do I sort an array of custom objects in Java?"
+answer = "Two ways. Make the class implement `Comparable` and override `compareTo` — `Arrays.sort()` reads the positive, negative or zero return value to decide ordering, and this defines the type's natural order once for all call sites. Or pass a `Comparator` as the second argument to `Arrays.sort(array, comparator)`, which uses the `compare` return value the same way but lets you define a different ordering per call without touching the class."
+
+[[params.faqItems]]
+question = "What are lambda expressions in Java and where can I use them?"
+answer = "A lambda is shorthand for an anonymous inner class, written as `(parameter list) -> { method body }`. The constraint that trips people up: it only works with a functional interface — an interface with exactly one abstract method — and never with an abstract class. So `Swimming s = () -> { System.out.println(...); };` replaces the whole `new Swimming(){ @Override public void swim(){...} }` block, with the compiler inferring which method you are implementing."
+
+[[params.faqItems]]
+question = "What is the difference between the three kinds of Java method reference?"
+answer = "A static method reference is `ClassName::methodName` — you name the static method and Java infers the parameters. An instance method reference is `object::methodName`, delegating to a method on a specific object you already have. A particular-type reference is `Type::methodName`, which applies when the lambda calls an instance method using its first parameter as the caller and passes the remaining parameters as arguments. The third one is pure syntax convenience — recognize the pattern and apply the shorthand."
+
+[[params.faqItems]]
+question = "How does binary search work, and when can I not use it?"
+answer = "You cannot use it on an unsorted array — that is the precondition. The algorithm keeps two indices, left and right, computes `mid = (left + right) / 2`, then compares `arr[mid]` with the key: if it is smaller, everything before mid is smaller too, so `left = mid + 1`; if larger, `right = mid - 1`; if equal, return mid. Repeat until left > right, then return -1. Each comparison eliminates half the remaining elements, which is why it beats linear search on large arrays."
+
+[[params.faqItems]]
+question = "How do I optimize selection sort?"
+answer = "Stop swapping inside the inner loop. The naive version divides the array into a sorted and unsorted region and swaps values repeatedly as it scans for the smallest element. Instead, track only the index of the minimum during the inner loop and perform a single swap after it finishes — same result, far fewer writes. Bubble sort is the other classic to know: it compares adjacent elements and swaps them, bubbling the largest unsorted element into place on each pass."
 +++
 ![image](java-logo.webp)
 

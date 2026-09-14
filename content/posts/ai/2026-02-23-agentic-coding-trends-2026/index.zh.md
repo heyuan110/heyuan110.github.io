@@ -7,6 +7,30 @@ toc = true
 tags = ['Agentic Coding', 'Claude Code', 'AI 编程', '趋势报告', 'Anthropic']
 categories = ['AI原理']
 keywords = ['agentic coding', 'agentic coding 趋势', 'Claude Code 2026', 'AI 编程趋势', 'Anthropic 收入', 'AI coding agent', 'Claude Code 收入']
+
+[[params.faqItems]]
+question = "Anthropic 的 2026 Agentic Coding 趋势报告讲了什么？"
+answer = "报告归纳了八个趋势：多 Agent 系统走向主流（57% 的组织已部署多步骤 Agent 工作流）、Papercut 革命把清理小技术债的成本压到接近零、非技术团队自己造工具的 Cowork Agent 民主化、自愈代码、47% 的组织采用通用工具加自研 Agent 的混合架构、企业 Agent 安全框架成型、AI 原生研发流程重构，以及从代码补全走向系统级自主。"
+
+[[params.faqItems]]
+question = "Claude Code 2026 年的收入到底有多少？"
+answer = "6 个月做到 10 亿美元年化收入（ARR），比 ChatGPT 更快；到 2026 年 2 月已是 25 亿美元 ARR。母公司 Anthropic 的整体 ARR 从 2024 年底的 10 亿涨到 2026 年 2 月的 140 亿，14 个月 14 倍，同期 OpenAI 是 3.4 倍。企业客户从不到 1000 家增长到超过 30 万家。"
+
+[[params.faqItems]]
+question = "2026 年有多少开发者真的在用 AI 编程工具？"
+answer = "84% 在用，67% 每天用，AI 生成的代码占比 41%。但只有 3% 高度信任 AI 生成的代码，完全不监督地交给 AI 的比例只有 0-20%——所以主流仍是「AI 写初稿、人类做审核」。可测量的收益是任务完成速度提升 55%、每人每月省下 15-25 小时。84% 的开发者同时用多个工具。"
+
+[[params.faqItems]]
+question = "企业落地 AI 编程 Agent 到哪一步了？最大的障碍是什么？"
+answer = "比宣传的慢得多。真正投入生产的企业只有 11%，30% 还在探索评估，38% 在跑试点，14% 在准备规模部署，也就是 68% 没走出试点阶段。两大障碍是遗留系统集成（46%）和安全合规要求（40%）。对照之下，Fortune 100 里已有 90% 采用了 GitHub Copilot。"
+
+[[params.faqItems]]
+question = "AI Agent 会怎么改变传统的研发流程？"
+answer = "传统的「需求→设计→开发→测试→部署」是为人设计的，领先企业正在按 Agent 重建：产品需求文档直接被 Agent 解析成代码任务、每次改动都有 AI 持续参与评审而不只在提交时、Agent 写代码的同时生成测试让 TDD 成为默认、代码变更自动同步文档。加拿大电信巨头 TELUS 做完全流程 AI 集成后，节省 50 万工程小时，交付速度提升 30%。"
+
+[[params.faqItems]]
+question = "Claude Code、GitHub Copilot、Cursor、Codex 谁在领先？"
+answer = "装机量上 GitHub Copilot 仍然领先，180 万付费用户、42% 市场份额，靠 IDE 内嵌和 GitHub 生态，但增速在放缓。Claude Code 是增长最快的搅局者，25 亿美元 ARR，强在大型代码库理解和终端原生的多 Agent 架构。Cursor 定义了 AI 原生 IDE 这个品类，5 亿美元 ARR、18% 份额。ChatGPT Codex 用户基数最大，49% 的开发者把它列为常用工具，主打云端异步执行。"
 +++
 
 6 个月，10 亿美元。

@@ -7,6 +7,30 @@ description = 'Anthropic CEO Dario Amodei 在彭博社最新访谈中分享了�
 tags = ['AI', 'Anthropic', 'Claude', 'AI Trends', 'AI Economy']
 categories = ['AI Guides']
 keywords = ['Anthropic CEO', 'Dario Amodei', 'AI 指数增长', 'Claude', '芯片出口', 'AI 安全']
+
+[[params.faqItems]]
+question = "Dario Amodei 说的「数据中心里的天才国度」是什么意思？"
+answer = "这是他对 AI 走向的比喻：想象 1 亿人，每一个都比任何诺贝尔奖得主更聪明，全部为你工作。重点不是算力而是真正的认知能力，而这种国家级的超智能产能最终会被某个国家掌控——所以他把它当成国家安全问题，而不是产品问题。"
+
+[[params.faqItems]]
+question = "Anthropic CEO 为什么不喜欢 AGI 这个词？"
+answer = "不是因为看空 AI，恰恰相反。他反对的是这个词暗示的错误心智模型：好像某一天会突然造出一个完全不同的东西。但十年的观察显示 AI 进步是平滑的指数曲线——不是摩尔定律里每 18 个月翻倍的算力，而是智能本身每 4 到 12 个月翻一倍。用他的话说，指数增长看起来很慢，稍微加速一点，然后就从你身边呼啸而过。"
+
+[[params.faqItems]]
+question = "他预测 AI 什么时候会全面超过人类？"
+answer = "未来 1 到 2 年内就可能出现在几乎所有领域都比人类聪明的模型，十年内几乎必然发生。他拿 Anthropic 内部的事作证据：Code 产品团队的首席工程师告诉他「过去两个月我个人一行代码都没写」，全部由 Claude 完成，他的角色完全转为编辑和审核。Anthropic 还有个叫 Coachwork 的工具，一周半做完，几乎全由 Claude 编写。"
+
+[[params.faqItems]]
+question = "Amodei 对芯片出口管制是什么态度？"
+answer = "坚决反对向中国出口先进 AI 芯片，他用了一个刻意极端的类比：这有点像把核武器卖给朝鲜，然后还吹嘘「哦，那是我们造的」。他给出的证据是禁令确实有效——企业合同竞争里 Anthropic 的对手主要是 Google 和 OpenAI，几乎没输给过中国模型，不是对方不努力，而是连中国 AI 公司 CEO 自己都承认「卡我们脖子的是芯片禁运」。"
+
+[[params.faqItems]]
+question = "他对 AI 带来的经济冲击有什么判断？"
+answer = "他预测会出现宏观经济史上从未有过的组合：GDP 极高速增长同时伴随高失业率。原因是 AI 抬高了「认知水位线」，消失的不是某个职业，而是一整个能力层级的工作。他去年说 AI 会消灭 50% 的入门级岗位，这次访谈里也没有收回。他还认为财富差距已经超过镀金时代，且主因不是 AI，政府干预已不可避免。"
+
+[[params.faqItems]]
+question = "既然这么看好 AI，他为什么还承认有泡沫风险？"
+answer = "因为技术跑得比落地快。他的原话是：技术当前的能力大概是全世界企业实际能部署的十倍。企业需要好几年做变革管理——培训员工、重构流程、更新系统，全都远慢于技术本身。由于收入兑现的时间点不确定，公司可能超买算力，有些大概已经买多了，财务过度扩张的风险就来自这里。"
 +++
 ![Anthropic CEO Dario Amodei 彭博社访谈，讨论 AI 发展趋势与未来](cover.webp)
 

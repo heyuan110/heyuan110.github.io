@@ -7,6 +7,30 @@ toc = true
 tags = ['Agent Manager', 'Claude Code', 'AI 编程', 'Stanford CS146S', '人机协作']
 categories = ['AI实战']
 keywords = ['Agent Manager', 'Claude Code 最佳实践', 'Coding Agent 模式', '人机协作 AI 编程', 'Agent 自治度']
+
+[[params.faqItems]]
+question = "Agent Manager 是什么？和写代码的开发者有什么不同？"
+answer = "不直接写代码、而是指挥 AI Agent 写代码的人。斯坦福 CS146S 第四周把它当成一项全新职业技能，要求同时具备 3 种能力：技术判断力（能评估 AI 产出的代码哪些能过、哪些不能）、任务分解能力（把复杂需求拆成 Agent 能独立完成的子任务）、沟通精准度（用最少的信息传达最准确的意图）。职业路径是从写代码、到指挥 AI 写、再到并行管理多个 Agent。"
+
+[[params.faqItems]]
+question = "Coding Agent 到底能帮我省多少时间？"
+answer = "看任务落在自治度光谱的哪一段。低自治度任务（改变量名、加类型标注、写单测、修 lint）几乎节省 100%；中自治度任务（实现一个 API 端点、重构模块）约节省 80%，剩下 20% 要人来打磨边界条件、性能和代码风格一致性；高自治度任务（设计数据库 schema、微服务通信、安全加固）只节省 30-60%，因为架构决策仍需人来拍板。"
+
+[[params.faqItems]]
+question = "什么时候该放手让 Agent 自己干，什么时候必须介入？"
+answer = "按 5 个维度判断。可以放手：改动只涉及单文件、容易回滚、只碰内部逻辑、有明确标准、有类似成功先例。必须介入：跨多个系统、难以撤销、涉及用户数据或鉴权、需要主观判断、是全新场景。Claude Code 自己的权限模型就是这个思路——信任但验证，删文件和执行 shell 命令这类高风险操作必须显式授权。"
+
+[[params.faqItems]]
+question = "人机协作的流程该怎么设计？有哪些最佳实践？"
+answer = "Anthropic 的 5 条核心模式：一是从规划开始而非从编码开始，先要实现计划、评审可行性再执行；二是用 CLAUDE.md 建立项目规范，写一次每轮对话都生效；三是给 Agent 接入反馈循环——测试结果、lint 和类型检查输出、构建日志、CI 反馈，让它能自我纠正；四是分而治之，子任务粒度不超过「一个 PR 能 review 的量」；五是一次会话一个任务，上下文跑偏就开新会话。"
+
+[[params.faqItems]]
+question = "2.5 倍生产力提升是怎么做到的？"
+answer = "靠一整套上下文管理体系，不是靠更好的 prompt。StockApp 团队跑分层流程：设计 → 规划 → 实现 → 测试 → 评审 → 更新，每个阶段都有对应文档（输出到 `docs/designs/` 和 `docs/plans/`）。他们还部署了 MCP Server 矩阵（Notion、Linear、AWS、GitHub、数据库），让 AI 看到的不只是代码而是完整业务上下文；再用集合方法让另一个模型交叉评审。对比通常报道的 30-50% 提升，这套做法达到约 2.5 倍。"
+
+[[params.faqItems]]
+question = "Claude Code 为什么选终端而不是做成 IDE 插件？"
+answer = "创始人 Boris Cherney 的刻意选择，不是倒退。三个理由：终端是最通用的开发环境，不绑定任何编辑器；终端天然支持自动化，可以被脚本调用、并行运行、嵌进 CI/CD；终端给了 Agent 完整的系统访问权——不只读写代码，还能跑测试、看日志、操作 Git。背后的定位是：Claude Code 不是更聪明的代码补全，而是一个能干软件工程师全部活的 Agent。"
 +++
 
 > 本文是「斯坦福 Vibe Coding 课程精读」系列第 3 篇。系列导航见文末。

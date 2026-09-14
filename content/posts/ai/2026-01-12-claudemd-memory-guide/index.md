@@ -7,6 +7,30 @@ toc = true
 tags = ['AI', 'Claude Code', 'CLAUDE.md', 'Developer Tools']
 categories = ['AI Guides']
 keywords = ['CLAUDE.md configuration', 'Claude Code memory', 'CLAUDE.md setup guide', 'Claude Code project config', 'AI coding standards']
+
+[[params.faqItems]]
+question = "What is CLAUDE.md and when does Claude Code read it?"
+answer = "It is a plain Markdown file that gives Claude Code persistent project memory — tech stack, coding standards, common commands, personal preferences. You never have to reference it: every time you launch Claude Code or start a new conversation it loads automatically, in the order `~/.claude/CLAUDE.md`, then `./CLAUDE.md`, then `./CLAUDE.local.md`. Later files override earlier ones, which is how personal preferences win over team defaults."
+
+[[params.faqItems]]
+question = "What is the difference between CLAUDE.md, CLAUDE.local.md, and the global config?"
+answer = "Scope and Git status. `./CLAUDE.md` sits in the project root, is committed, and carries team consensus — stack, standards, directory layout, commands. `./CLAUDE.local.md` sits beside it but belongs in .gitignore; it holds your personal habits, local environment settings and temporary debugging instructions. `~/.claude/CLAUDE.md` applies to every project and is the place for who you are and universal preferences. If global says comments in English and personal says Chinese, Chinese wins."
+
+[[params.faqItems]]
+question = "How do I edit or add to CLAUDE.md without opening the file?"
+answer = "Four ways. `/init` analyzes the project — package.json, tsconfig.json, .eslintrc and friends — and generates a first draft, though the output is generic and needs project detail added. Starting a line with `#` during a conversation appends that rule straight to the file, which is how you capture a rule the moment you discover it. `/memory` opens a visual editor and lets you pick which layer to edit. And `@docs/architecture.md` style references pull in other files."
+
+[[params.faqItems]]
+question = "How should I organize a CLAUDE.md that has grown too large?"
+answer = "Split it and compose with `@` references: keep a short root file that points at `@docs/architecture.md`, `@docs/api-conventions.md` and `@docs/testing-guide.md`, which Claude reads automatically. This is worth doing once the config passes a few hundred lines, because modular files are far easier to review and update than one long document, and each can be owned by whoever maintains that area."
+
+[[params.faqItems]]
+question = "What is the difference between CLAUDE.md and a Skill?"
+answer = "CLAUDE.md defines who you are, a Skill defines how to do a task. CLAUDE.md holds project context, code standards and preferences, and is loaded into every single conversation; a Skill holds step-by-step execution instructions and activates only when a matching task comes up. The analogy in the guide: CLAUDE.md is the employee handbook, a Skill is a standard operating procedure. They are complementary, not alternatives."
+
+[[params.faqItems]]
+question = "What are the team rules for keeping CLAUDE.md useful?"
+answer = "Four habits. Commit CLAUDE.md to Git and check compliance with it during code review, since it encodes team consensus. Add CLAUDE.local.md to .gitignore so personal preferences are not forced on anyone and merge conflicts do not appear. Update it as the project evolves — every time Claude repeats the same mistake, that is a missing rule. And have new hires read it on day one: it is onboarding documentation for humans as much as configuration for the AI."
 +++
 ![Memory Guide](memory-guide.webp)
 

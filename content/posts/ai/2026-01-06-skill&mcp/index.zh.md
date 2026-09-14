@@ -6,6 +6,26 @@ toc = true
 tags = ['AI', 'Claude Code', 'Skills', 'MCP']
 categories = ['AI原理']
 keywords = ['Skill 和 MCP 的区别', 'Claude Code Skill', 'Model Context Protocol', 'AI Agent 扩展能力', 'Claude Code MCP']
+
+[[params.faqItems]]
+question = "Skill 和 MCP 到底有什么区别？"
+answer = "层次不同。MCP 是 Anthropic 制定的开放协议（Model Context Protocol），相当于 AI 世界的 USB 接口，解决 AI 怎么跟外部世界交互，属于基础设施层；Skill 是 Claude Code 的能力模板，把指令、知识和工作流程打包，解决怎么优雅完成一类任务，属于应用层。用乐高打比方：MCP 工具是标准积木，Skill 是拼装说明书。"
+
+[[params.faqItems]]
+question = "MCP 服务器能提供哪几类东西？"
+answer = "3 类。Tools 是可执行操作，比如发邮件、查数据库、操作浏览器；Resources 是可读取的数据源，比如文档和配置文件；Prompts 是预设提示模板。以 Playwright MCP 为例，它暴露的是 `browser_navigate`、`browser_click`、`browser_type`、`browser_snapshot`、`browser_screenshot` 这类原子工具，每个都有明确的输入参数和输出格式，AI 调用它们就像程序员调 API。"
+
+[[params.faqItems]]
+question = "为什么说 MCP 占上下文是硬性的，Skill 是弹性的？"
+answer = "连上一个 MCP 服务器，它所有工具的名称、描述、参数格式都会常驻上下文，用不用都占着，工具越多占得越多。Skill 支持懒加载：平时只留触发词和简短描述，真正要用时才展开完整指令，用完还能从上下文里移除、只保留结果。比喻就是 MCP 把所有说明书摊在桌上，Skill 把说明书放抽屉里要用才拿——接 3 个以上 MCP 服务器时这个差异会非常明显。"
+
+[[params.faqItems]]
+question = "一个 Skill 里到底封装了什么？"
+answer = "不只是几条命令，而是一整套决策知识。以 `commit` 这个 Skill 为例，它包含怎么分析代码变更、怎么写出好的 commit message、什么时候该拆成多个 commit、敏感文件怎么处理、输出格式什么规范。`pdf` Skill 同理，从读取解析提取，到生成合并填表，各种场景都有对应策略。所以你只需要敲 `/commit`，剩下的流程它自己接管。"
+
+[[params.faqItems]]
+question = "什么时候该用 MCP，什么时候该写 Skill？"
+answer = "要跟外部服务打交道（数据库、API、浏览器）、任务是标准化原子操作、或者希望多个 AI 应用共享同一套工具，用 MCP。任务有固定工作流程、需要沉淀领域知识和最佳实践、想减少用户操作步骤、需要精细控制上下文占用，用 Skill。实际上很多 Skill 内部就在调 MCP 工具，比如一个 `/commit` Skill 编排多次 git 调用：Skill 负责编排和决策，MCP 负责具体执行。"
 +++
 ![Skill vs MCP](skill-vs-mcp.webp)
 

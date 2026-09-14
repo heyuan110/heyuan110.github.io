@@ -7,6 +7,30 @@ toc = true
 tags = ['Git', '工程效率', 'Conventional Commits', 'CI/CD', '测试']
 categories = ['AI实战']
 keywords = ['高频提交', '原子化提交', 'Conventional Commits', 'git bisect', '渐进式发布', 'feature flag']
+
+[[params.faqItems]]
+question = "一天提交上百次 commit，项目会不会失控？"
+answer = "会不会失控跟次数无关，取决于每次提交是否可解释、可回滚、可验证。高频本身是副产品：AI 辅助让反馈回路变短、变更颗粒度变小、交付节奏变密。真正炸掉项目的不是速度，而是用低频迭代时代的工程纪律去管理高频变更。"
+
+[[params.faqItems]]
+question = "什么是原子化提交？粒度该控制在多少？"
+answer = "一个 commit 只做一件事。diff 尽量控制在几十行到几百行，同时包含重构、新功能和修 bug 的提交必须拆开；大重构先拆成多次纯重构提交，再引入行为变更。这样做的收益是定位快——`git bisect` 要的不是漂亮历史而是可二分的历史，原子化越严格越接近 O(logN)；回滚时只回一个明确变更而不是一整天的工作；评审时认知负担也更低。"
+
+[[params.faqItems]]
+question = "Conventional Commits 有哪几种类型？为什么值得强制？"
+answer = "常用 6 种前缀：`feat:` 新功能、`fix:` 修复、`docs:` 文档、`refactor:` 重构（不改外部行为）、`test:` 测试、`chore:` 构建与杂项。频率一高人的记忆就跟不上，格式化的提交信息能把历史变成可检索数据：能统计项目到底在修 bug 还是做功能，能自动生成 release note，还能对不同类型设不同质量门槛，比如 feat 和 fix 走更严格的 CI。"
+
+[[params.faqItems]]
+question = "不同类型的变更要怎么隔离风险？"
+answer = "按风险等级分流。fix 允许高频但禁止扩大影响面：不改 API、不改数据结构、不引新依赖，更不能顺手重构。feat 必须挂 Feature Flag 且默认关闭，主分支可以快速合并但不等于立刻对所有用户生效。refactor 只改结构不改行为，必须能单独回滚并有测试兜底，否则就是带风险的重写。docs 同步更新，作用是控制产品复杂度。"
+
+[[params.faqItems]]
+question = "测试要做到什么程度才撑得住高频提交？"
+answer = "关键指标是反馈时间而不是覆盖率数字：核心测试集要能在 5-15 分钟内给出结论。做法是分层——快速单测必跑、集成测试按路径触发、E2E 按策略执行，另外维护一个最小可行回归集（smoke suite）守住登录、支付、消息发送这类关键链路。对 flaky test 零容忍，不稳定的测试会直接摧毁高频迭代。"
+
+[[params.faqItems]]
+question = "团队落地有没有可直接执行的清单？"
+answer = "有 10 条：1 强制一个 commit 一件事；2 CI 校验 Conventional Commits 或 PR 标题；3 feat 必挂 Feature Flag 默认关闭；4 refactor 保持行为不变；5 fix 不许顺手改结构；6 测试分层且核心回归集 15 分钟内出结果；7 建立 Beta → Stable 的灰度发布通道；8 数据库变更用 expand/contract 向前兼容迁移保证可回滚；9 用崩溃率、错误率、回滚次数、修复 lead time 监控质量；10 功能变更必须同步更新文档。"
 +++
 
 ![高频提交与稳定性交付的工程方法封面](cover.webp)

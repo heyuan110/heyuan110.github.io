@@ -6,6 +6,30 @@ toc = true
 tags = ["AWS", "AWS CLI", "S3", "EC2", "Cloud Computing", "DevOps", "CLI"]
 categories = ["Linux"]
 keywords = ["AWS CLI", "AWS 命令行", "S3 命令", "EC2 命令", "aws configure"]
+
+[[params.faqItems]]
+question = "AWS CLI 怎么安装？应该装 v1 还是 v2？"
+answer = "装 v2，更快更安全且支持全部新特性。macOS 推荐 `brew install awscli`，也可以下载官方包：`curl https://awscli.amazonaws.com/AWSCLIV2.pkg -o AWSCLIV2.pkg` 再 `sudo installer -pkg AWSCLIV2.pkg -target /`。Linux 下载 awscli-exe-linux-x86_64.zip（ARM 机器换 aarch64），解压后 `sudo ./aws/install`。Windows 跑 AWSCLIV2.msi。最后 `aws --version` 验证。"
+
+[[params.faqItems]]
+question = "aws configure 都配了些什么？配置文件在哪？"
+answer = "交互式填四项：Access Key ID、Secret Access Key、默认区域（如 us-west-2）、默认输出格式（如 json）。配完会在 `~/.aws/` 下生成两个文件——`~/.aws/credentials` 存访问密钥，`~/.aws/config` 存区域和输出格式。也可以不写文件，直接用环境变量注入。"
+
+[[params.faqItems]]
+question = "生产和测试账号怎么切换？"
+answer = "用 profile 隔离。`aws configure --profile prod` 和 `aws configure --profile dev` 各配一套，使用时要么在命令后加 `--profile prod`，要么 `export AWS_PROFILE=prod` 之后所有命令都走这套凭证。这样同一台机器上管多个 AWS 账号不会串。"
+
+[[params.faqItems]]
+question = "S3 上传下载和目录同步的命令怎么写？"
+answer = "单文件用 `aws s3 cp local-file.txt s3://my-bucket/`，整目录加 `--recursive`，可配 `--exclude` 和 `--include` 筛选。增量备份用 `aws s3 sync ./local-folder s3://my-bucket/folder/`，只传变化的文件；加 `--delete` 会删掉目标端多余文件，加 `--storage-class STANDARD_IA` 指定存储类别。统计目录大小用 `aws s3 ls --summarize --human-readable --recursive`。"
+
+[[params.faqItems]]
+question = "输出内容太多，怎么只取我要的字段？"
+answer = "用 `--query` 写 JMESPath 表达式。取实例 ID：`aws ec2 describe-instances --query Reservations[].Instances[].InstanceId`；要多列就写成数组 `[InstanceId,InstanceType,State.Name]` 再配 `--output table`；条件筛选用 `Reservations[].Instances[?State.Name=='running'].InstanceId`。结果多的时候配合 `--max-items 100` 和 `--starting-token` 分页。"
+
+[[params.faqItems]]
+question = "报 AccessDenied 或连不上 endpoint 怎么排查？"
+answer = "三类错分别对症：出现 InvalidAccessKeyId 说明 Access Key ID 填错或 IAM 用户状态异常，重新核对密钥；出现 AccessDenied 是权限问题，检查 IAM 用户或角色有没有挂对应策略；出现 Could not connect to the endpoint URL 通常是区域配错，部分服务只在特定区域提供。改动有风险的命令前可以先加 `--dry-run` 只校验权限不真执行。"
 +++
 ![AWS CLI 命令行工具完全指南](cover.webp)
 

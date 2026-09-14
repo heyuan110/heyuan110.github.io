@@ -7,6 +7,30 @@ toc = true
 tags = ['AI 应用开发', 'DevOps', 'Stanford CS146S', 'Vibe Coding', '部署运维']
 categories = ['AI实战']
 keywords = ['AI 应用生命周期', 'Vibe Coding 生产环境', 'AI 运维', 'AI 应用部署', '从原型到生产']
+
+[[params.faqItems]]
+question = "一句话让 AI 做出来的 App，离能上线还差多少？"
+answer = "差 90%。按 CS146S 给的工作量分布：原型只占 10%（AI 可替代 80% 以上），剩下的功能完善 25%、测试覆盖 15%、安全加固 10%、性能优化 10%、部署配置 10%、运维监控 20%——而 AI 在这些环节的可替代率一路降到 20-50%。安全加固是最低的一档，只有 20-30%。所以 demo 跑起来不等于大部分工作完成了。"
+
+[[params.faqItems]]
+question = "v0 这类 AI 生成工具做不好哪些事？"
+answer = "Vercel AI 研究负责人 Gaspar Garcia 列得很直接：复杂业务逻辑（多步表单、条件流程）、性能优化（懒加载、缓存策略、Bundle 分析）、可访问性 a11y、超出基础组件库的品牌定制、以及与现有系统的集成（认证、第三方 API、遗留系统）。它擅长的是分钟级生成 UI 原型、基础 CRUD、标准页面布局和常见前端交互。"
+
+[[params.faqItems]]
+question = "生产环境要盯哪些监控指标？"
+answer = "Google SRE 的四大黄金信号：延迟（请求响应时间的 P50/P95/P99）、流量（每秒请求数）、错误率（5xx 占比）、饱和度（CPU、内存、磁盘使用率）。可观测性还有另外两根支柱——结构化日志（用 JSON 而非纯文本，区分 DEBUG/INFO/WARN/ERROR，关键事件如登录、支付、权限变更必记）和链路追踪（Jaeger、Zipkin、OpenTelemetry），后者用来定位一个慢请求究竟卡在哪一跳。"
+
+[[params.faqItems]]
+question = "AI 原型代码要扩展到生产并发，先改哪里？"
+answer = "先查数据库。AI 生成的代码经常有 N+1 查询问题，用 ORM 的 eager loading 或查询优化器解决。然后是缓存（识别热点数据，加 Redis 或 CDN）、异步化（把邮件发送、文件处理、第三方 API 调用移出同步请求，走消息队列）、资源限制（API 限流、请求大小上限、超时设置），最后确认能不能水平扩展——应用有没有本地状态挡着多实例部署。"
+
+[[params.faqItems]]
+question = "AI 能接手多少运维工作？"
+answer = "能接的是上下文收集和初步归因，不是决策。Resolve AI 的实践把流程改成：告警触发 → AI 自动收集上下文 → AI 初步分析根因 → AI 推荐修复方案 → 人工确认执行（低风险操作可 AI 自动执行）→ AI 自动生成事后报告。效果明显的场景包括 Kubernetes Pod 频繁重启、数据库连接池耗尽、API 延迟突增、磁盘空间不足、证书即将过期。运维工程师的角色从手动排查变成指导 AI 排查。"
+
+[[params.faqItems]]
+question = "AI 在不同技术栈上的生成质量一样吗？"
+answer = "差别很大，取决于训练数据的丰富程度。React + Next.js 通常表现很好，Svelte、Solid 这类小众框架会明显退化；后端上 Python/FastAPI 的生成质量普遍高于 Rust/Actix；数据库代码的质量还取决于你走 ORM 还是原生 SQL。CS146S Week 8 的作业专门让学生跨技术栈对比，目的就是建立「AI 在哪些技术选择上更可靠」的直觉——这个直觉在做选型决策时很值钱。"
 +++
 
 > 本文是「斯坦福 Vibe Coding 课程精读」系列第 5 篇（完结篇）。系列导航见文末。

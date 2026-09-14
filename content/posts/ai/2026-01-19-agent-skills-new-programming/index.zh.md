@@ -6,6 +6,30 @@ toc = true
 tags = ['Agent', 'Skills', 'AI Coding', 'Natural Language Programming']
 categories = ['AI Guides']
 keywords = ['Agent Skills 编程', '自然语言编程', 'AI 编程范式', 'Markdown 编程', 'Skills 新编程']
+
+[[params.faqItems]]
+question = "Agent Skills 不就是一个 Markdown 文件吗？"
+answer = "是 Markdown 文件，但这正是关键——一个 `.md` 文件写清楚触发条件、执行步骤、输出格式，它就是一个完整的程序。比如一个会议纪要整理器只要十行：触发词、三步（读转录稿、提取议题和决议、套模板）、输出格式（议题、讨论要点、决议、待办）。不用编译、不用部署、不用装运行时。"
+
+[[params.faqItems]]
+question = "为什么说自然语言正在变成编程语言？"
+answer = "因为程序的核心要素它都有了：触发条件、有序步骤、工具调用、确定的输出格式，只是换成人话写。少掉的是工具链——传统做一个功能要走需求、架构、编码、构建、测试、部署，每一环都要专业知识，改一点就得重跑一遍；Skills 改一句话就生效。你用中文写它懂中文，用英文写它懂英文，门槛从语法变成了逻辑表达。"
+
+[[params.faqItems]]
+question = "Skills 和传统软件最大的区别是什么？"
+answer = "传统软件交付即冻结：想加功能等下个版本，发现 bug 提工单排期，改动必须由专业开发者做并重新部署。Skills 是活的——打开 `.md` 文件改几行立刻生效，甚至可以让 AI 帮你迭代这个文件本身。所以文章里的说法是：Skills 不只是文本，而是能自我进化的新一代程序。"
+
+[[params.faqItems]]
+question = "Skills 能用来做什么实际的事？"
+answer = "三类场景最典型。个人效率：每天 17:30 自动触发，读当天 Git 提交、日历会议、Todo 完成项，汇总成日报发到 Slack 或邮箱。团队协作：新 PR 提交时触发，分析变更、对照团队规范、找潜在安全问题，把评审意见发回 PR 评论。学习管理：给一篇文章链接，提取核心论点、解释关键概念、理清逻辑链，产出带知识库关联的结构化笔记。"
+
+[[params.faqItems]]
+question = "Skills 会不会取代程序员？"
+answer = "文章的判断是抬升而不是取代：按文档配环境、写 CRUD 接口、复制样板代码这类低级重复工作会持续减少，而复杂 Skill 的架构设计、多个 Skills 的编排、Agent 行为的调试优化、Skills 的安全可靠性，这些都是全新的技术领域。程序员的价值从来不在敲代码本身，而在解决问题——代码是一种工具，Skills 是另一种。"
+
+[[params.faqItems]]
+question = "想上手 Skills，第一步该做什么？"
+answer = "先选一个支持 Skills 的工具：Claude Code 支持项目级 Skills 和 CLAUDE.md 规则，Cursor 支持 Rules 和自定义 Skills。然后从最小需求起步，比如一个翻译助手——触发条件是用户给了外语文本，处理要求保证专业术语准确，输出中英对照。用起来马上会发现要改的地方，改几行、测一次、再改，这个迭代过程本身就是编程。最后把它分享出去，也去看别人写了什么。"
 +++
 ![Agent Skills 新编程范式](cover.webp)
 

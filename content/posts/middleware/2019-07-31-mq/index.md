@@ -6,6 +6,26 @@ toc = true
 tags = ['消息队列', '中间件', '分布式系统', '架构设计']
 categories = ['中间件']
 keywords = ['message queue', 'MQ fundamentals', 'RabbitMQ vs Kafka', 'distributed systems messaging', 'async processing architecture']
+
+[[params.faqItems]]
+question = "What is a message queue, in plain terms?"
+answer = "Middleware that holds messages in transit between a producer and a consumer so delivery survives the receiver being unavailable. It follows a 3-role Producer-Broker-Consumer model: the producer creates and sends messages, the broker stores, acknowledges and retries them across one or more queues, and the consumer pulls and processes them. In distributed systems it is used for three things — async processing for speed, smoothing traffic spikes, and cutting coupling between services."
+
+[[params.faqItems]]
+question = "What problems does a message queue actually solve?"
+answer = "Three. Decoupling: system A publishes once and B, C and later D each subscribe, so adding a consumer never requires changing A, and a downstream outage no longer fails the upstream write. Async processing: a flow that takes 120 seconds synchronously can return in 35 seconds when the non-critical steps move off the request path. Load leveling: if traffic spikes from 50 to 5,000 requests per second while MySQL tops out at 2,000, the queue absorbs the burst and drains it at a sustainable rate instead of crashing the database."
+
+[[params.faqItems]]
+question = "What are the downsides of introducing a message queue?"
+answer = "2 big ones. Availability drops, because the broker becomes a new point of failure — you now have to design for MQ downtime and message loss. Complexity rises: a direct API call is one hop, while a queue forces you to handle delivery guarantees, duplicate consumption, data consistency across services, and a longer delivery chain with higher end-to-end latency. If a synchronous call genuinely works, adding a queue makes the system worse."
+
+[[params.faqItems]]
+question = "When should I use a message queue instead of a direct API call?"
+answer = "3 situations. Data-driven task dependencies: instead of cron jobs with guessed buffer times between syncing orders, updating inventory and generating pick lists, each task publishes a completion signal and the next starts immediately — the queue carries the signal, not the data. Fire-and-forget workflows, where the caller does not need the outcome, such as triggering a confirmation email after an order. And long-running async operations like payment processing, where the client subscribes and gets the result when it is ready."
+
+[[params.faqItems]]
+question = "RabbitMQ or Kafka: which should I pick?"
+answer = "For most small-to-medium companies, RabbitMQ — it is easy to operate, has an active community, thorough documentation and broad language support, which matters more than raw throughput when your team is small. Kafka fits big data pipelines and high-throughput streaming, where the log-oriented design earns its extra operational cost. The real rule is that selection must follow actual business need, not benchmark tables: a 50-requests-per-second service with occasional spikes has different needs than a 100,000-events-per-second pipeline. Also on the list: RocketMQ and ActiveMQ."
 +++
 
 A message queue is a middleware component that stores messages in transit between producers and consumers. Its primary purpose is to provide reliable message delivery — if the receiver is unavailable when a message is sent, the queue holds it until delivery succeeds.

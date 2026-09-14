@@ -7,6 +7,34 @@ toc = true
 tags = ['AI Workflow', 'AI Coding', 'Prompt Engineering', 'AI Tools', 'Productivity']
 categories = ['AI Guides']
 keywords = ['AI workflow', 'AI coding best practices', 'prompt engineering tips', 'AI tools for developers', 'enterprise AI deployment']
+
+[[params.faqItems]]
+question = "What is an AI workflow playbook and why do I need one?"
+answer = "A playbook is the set of repeatable rules that turn AI from a chat toy into production output: which tool handles which step, how you classify a question before asking it, how you iterate a prompt, and how code goes from PRD to tested feature. Most people stay stuck in ask-a-question mode and blame the model when answers come back generic. The underlying truth is blunt — if your thinking is clear, AI accelerates you; if it is muddled, AI just mass-produces garbage faster."
+
+[[params.faqItems]]
+question = "How should I decide the way to phrase a question to AI?"
+answer = "Use the four-quadrant framework. Common ground, where you know exactly what you want: give a direct instruction and stop explaining. Blind spots, an unfamiliar domain: ask for background, use cases and trade-offs before asking for an answer. Private knowledge, involving your own business data: feed the context first — company type, 5,000+ SKUs, a 15% return rate — then ask for analysis. Unknown territory, where you cannot yet name what you want: ask the model to use Socratic questioning, one question at a time."
+
+[[params.faqItems]]
+question = "What is the fastest way to improve an AI answer's quality?"
+answer = "Name a thinking framework in the prompt. Ask for SMART to break down a goal, first principles to find a root cause, 5W2H for comprehensive analysis, Occam's Razor to simplify a solution, or the 80/20 rule to isolate what matters. Frameworks act as an operating system for the model: without one the output wanders, with one it gains direction and structure. For example, ask it to use SMART on growing a blog from 1,000 to 10,000 monthly visits in 3 months."
+
+[[params.faqItems]]
+question = "How do I actually write a good prompt? Is it a one-shot thing?"
+answer = "Never one-shot — it is three steps. First research the domain (for a children's picture book prompt, have the AI work out what makes a great picture book: story structure, language style, visual pacing, age fit). Second, paste that research back and ask for a structured meta-prompt. Third, run it, show the model the output and name the specific defects — expressions too stiff, background too dark — and have it fix those two things. Three to five rounds and the prompt gets genuinely precise."
+
+[[params.faqItems]]
+question = "How do I get AI to match a specific image style?"
+answer = "Use reference replication. Find an image in the style you want, send it to the model, and ask for a meta-prompt in JSON format capped at about 800 words, then swap in your own subject matter — this reproduces roughly 90% of the target style. If you have no reference, do not force a prompt from scratch: ask the model to interview you first about the effect you want, the audience, any examples you like, and your preferred palette."
+
+[[params.faqItems]]
+question = "What does spec-driven development look like with AI?"
+answer = "Five steps: PRD, prototype, refinement, tests, backend. Write the PRD with the AI but refuse the first draft — push on edge cases, offline behavior, and high concurrency until it holds. Prototype in an AI IDE's build mode to get core interactions running. Then move the code into a real IDE, because AI code usually runs but has weak naming, missing error handling and unclear architecture. Have the AI write tests and run them through chrome-dev-tool MCP. For backend work, summarize the docs folder and import API specs, schemas and business rules before any code gets written."
+
+[[params.faqItems]]
+question = "Where should a company start with AI, without betting everything?"
+answer = "Start with low-risk scenarios that pay back fast. Q&A: an internal knowledge base over company documents and policies, plus customer-facing bots that beat rule-based ones easily. Review and compliance: line-by-line contract checks that flag risk clauses, and automated verification that approval flows follow regulation. Content: PRDs, research reports, quarterly reviews from raw metrics. Data: text-to-SQL so a question like show me Q1 sales returns a visualized answer. BISHENG, Apache 2.0 licensed and free for commercial use, is a reasonable platform to experiment on."
 +++
 
 Most people have been using AI for months, yet they're still stuck in "ask a question, get an answer" mode. They've had plenty of conversations with ChatGPT, but when it comes to real work, the results always feel lacking — answers are too generic, generated code won't run, or the output screams "written by AI."

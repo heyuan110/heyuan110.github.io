@@ -7,6 +7,30 @@ toc = true
 tags = ['Product Thinking', 'Indie Development', 'Solopreneur', 'Product Strategy']
 categories = ['AI Guides']
 keywords = ['product thinking for developers', 'delete before optimize', 'indie developer methodology', 'solopreneur product strategy', 'product decision framework']
+
+[[params.faqItems]]
+question = "How do I decide whether to delete a feature or optimize it?"
+answer = "Ask three questions before touching the code. How many users touched it in the last 30 days — under 5% usage is a deletion candidate. Would anyone complain if it disappeared tomorrow — no complaints means nobody cares. Is it on the core value chain — if not, it is safe to cut. Only optimize what survives all three. The sequence matters: does this need to exist, can it be removed, and optimization last."
+
+[[params.faqItems]]
+question = "Why is deleting better than optimizing?"
+answer = "Because polish cannot fix something that should not exist. Two full weeks went into an advanced filter feature — new interaction design, UI tweaks, caching, documentation — and post-launch usage was near zero, because users never wanted to filter manually; they wanted one-click recommendations. Tesla's early line made the same call physically: rather than optimize the robot software that was slowing assembly, they cut the robots out, sawing a hole in the wall to remove them."
+
+[[params.faqItems]]
+question = "How do I tell a real requirement from an industry convention?"
+answer = "Trace every requirement to a named person. If a user asked, validate it with data. If a manager asked, dig for the need behind the request. If the answer is that everyone does it, that is the strongest signal to question it. Reject sources like legal said so, industry standard, or we have always done it this way. One manufacturer accepted a $120,000 component quote justified as industry standard pricing; after someone pushed back, the engineering team built it in-house for about $5,000 — a 24x gap nobody had tested."
+
+[[params.faqItems]]
+question = "Which assumptions should a solo developer question first?"
+answer = "The ones in your own head, not other people's. Every SaaS needs multi-tenancy, a landing page needs a demo video, you must post daily, an MVP needs an auth system — none of these are laws of physics. Run each through the same loop: obviously true, then question, then validate, then keep or cut. Do you really need a PRD when you are solo, or does a sketch do? Can you ship at 50% and see whether anyone uses it?"
+
+[[params.faqItems]]
+question = "Why is analytics data not enough to make product decisions?"
+answer = "Data tells you what happened but never why. A WeChat tool showed an average session of 5 minutes, which reads as deep engagement. Watching real users for 15 minutes revealed the opposite: they were stuck on one step, retrying and failing. They were not using the product, they were fighting it. That failure mode is invisible in a dashboard and only surfaces when you watch someone."
+
+[[params.faqItems]]
+question = "How do I observe real users without biasing them?"
+answer = "Run at least 1 session a month: find a real user, paying customers first, share their screen or record it, and watch them work end to end for at least 15 minutes without guiding or explaining anything, noting every point where they stall. Never ask what they think — they will politely say it is fine. Watch where the cursor hesitates, because that is where confusion lives. This is Tencent's 10/100/1000 rule: 10 deep user conversations a month, 100 pieces of feedback a week, 1000 behavior data points a day."
 +++
 
 What is the most common mistake people make when building products?

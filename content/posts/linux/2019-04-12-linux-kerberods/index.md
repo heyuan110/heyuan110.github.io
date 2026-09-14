@@ -6,6 +6,30 @@ toc = true
 tags = ['Linux', '安全', '挖矿病毒', 'Confluence', '故障排查', 'CPU']
 categories = ['Linux']
 keywords = ['kerberods malware removal', 'Linux cryptominer cleanup', 'khugepageds CPU 100%', 'Confluence CVE vulnerability', 'Linux server security incident']
+
+[[params.faqItems]]
+question = "What is khugepageds and why is it eating my CPU?"
+answer = "It is cryptomining malware masquerading as a kernel thread name. On our 16-core EC2 instance it ran on 15 of the 16 cores, leaving only CPU 4 free, while AWS CloudWatch showed CPU pinned at 100%. The name is chosen to look legitimate next to the real khugepaged kernel thread, which is why it survives a casual glance at process lists. It typically arrives through an unpatched public-facing service rather than a compromised login."
+
+[[params.faqItems]]
+question = "Why does top show only one CPU core when my server has 16?"
+answer = "Because the malware tampered with `top` to hide itself. The giveaway sequence: press `1` in top to expand per-core stats and only cpu0 appears, while `/proc/stat` and `mpstat -P ALL 1 3` show all 16 cores at high utilization, and `/var/log/syslog` contains the line about not collecting load info for all cpus with balancing broken. Rebooting does not fix it. When host tools contradict each other, trust the lower-level one."
+
+[[params.faqItems]]
+question = "How do I find a process that is hiding from top and ps?"
+answer = "Go under the userland tools. Dump what every core is actually executing with `echo l > /proc/sysrq-trigger` followed by `dmesg` — the kernel log prints one line per CPU with the PID and command name, which is how we caught khugepageds on 15 cores. Cross-check with `cat /proc/stat` and `mpstat -P ALL 1 3` for real per-core utilization, and compare against infrastructure-level monitoring such as CloudWatch, which the malware cannot touch."
+
+[[params.faqItems]]
+question = "How did the cryptominer get onto the server?"
+answer = "Through CVE-2019-3396, a remote code execution flaw in the Widget Connector component of Confluence Server. The attackers used it to drop the miner. Patching Confluence to a fixed version was a required part of the cleanup — removing the malware without closing the entry point just invites reinfection. Atlassian's security advisory of 2019-03-20 covers the affected versions."
+
+[[params.faqItems]]
+question = "How do I clean up a kerberods infection?"
+answer = "Snapshot the instance first, then run a published kerberods cleanup script (the lsd_malware_clean_tool repository carries one), and immediately patch the vulnerability that let it in — in our case upgrading Confluence. Services came back normally afterward. Note how much time the misdiagnosis cost: an engineer spent two hours chasing GitLab 502 errors and concurrency limits, and we filed an AWS hardware fault ticket, before anyone looked at `dmesg`."
+
+[[params.faqItems]]
+question = "What should I change after an incident like this?"
+answer = "Five things. Patch promptly, since Confluence, WordPress and Jenkins are constant targets. Stop trusting surface-level tools when numbers do not add up — a 16-core box reporting 1 core is a signal, not a glitch. Monitor CPU at the infrastructure level, because the AWS console showed 100% while `top` on the host looked normal. Keep backups. And segment services: running GitLab, Jira and Confluence on one instance meant a single vulnerable app compromised everything."
 +++
 
 The kerberods cryptomining malware has been hitting Linux servers hard, hijacking CPU resources and rendering legitimate services unusable. One of our production servers fell victim to it, and this article documents the entire incident — from the initial symptoms through investigation, root cause analysis, and cleanup.

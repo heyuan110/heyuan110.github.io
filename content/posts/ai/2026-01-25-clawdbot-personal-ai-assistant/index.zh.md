@@ -7,6 +7,30 @@ tags = ['ClawdBot', 'AI Agent', 'AI Assistant', 'Open Source', 'Automation', 'An
 categories = ['AI Guides']
 keywords = ['ClawdBot 搭建指南', 'AI 个人助手', 'AI Agent 开源', 'Telegram AI 助手', 'ClawdBot 教程']
 toc = true
+
+[[params.faqItems]]
+question = "ClawdBot 是什么？和 ChatGPT 有什么不同？"
+answer = "ClawdBot 是一个开源的 AI Agent 个人助手，24 小时跑在你自己的电脑上，通过 Telegram、WhatsApp 等聊天工具接收指令，自动处理邮件、日程、提醒这类任务。由奥地利工程师 Peter Steinberger 开发，截至 2026 年 1 月已有 9000+ GitHub Star。和 ChatGPT 的核心差别是它不只会说——它有「手」，能看网页、读文件、操作电脑、点按钮填表格，还记得你说过的每件事。"
+
+[[params.faqItems]]
+question = "搭建 ClawdBot 要准备什么？"
+answer = "三样：一台能 24 小时开机的电脑、一个 AI 大脑账号、一个聊天工具。电脑可以是 Mac Mini（省电稳定）、家里闲置的旧机器、云服务器或已有的 NAS。AI 大脑推荐 Claude，去 console.anthropic.com 注册、绑卡、拿 API Key。聊天渠道支持 Telegram（最简单）、WhatsApp、Discord、Slack，以及仅限 Mac 的 iMessage。"
+
+[[params.faqItems]]
+question = "ClawdBot 怎么安装？不会编程能装吗？"
+answer = "能装，全程只是复制粘贴几行命令，不用写代码。Mac 上按 `Command + 空格` 打开终端，执行 `curl -fsSL https://clawd.bot/install.sh | bash`，等 1-2 分钟装完会自动进配置向导：界面语言选 English，模型选 Anthropic，粘贴 Claude API Key，聊天渠道选 Telegram bot。最后 `clawdbot start` 启动，看到 Connected to Telegram 就成了。"
+
+[[params.faqItems]]
+question = "ClawdBot 一个月要花多少钱？"
+answer = "大约 20-150 美元/月。软件本身开源免费，电脑或服务器按你的选择是 0-50 美元/月（用家里闲置旧电脑就是 0），大头是 Claude API 的 20-100 美元/月，取决于用量。因为 API 是按使用量计费，建议直接在控制台设一个月度上限，避免某次跑飞了超支。"
+
+[[params.faqItems]]
+question = "ClawdBot 的数据安全吗？中文能用吗？"
+answer = "数据安全性较高，因为它跑在你自己的电脑上，所有数据存在本地，不会上传到别人的服务器。中文完全支持，可以直接用中文和它聊天并得到中文回复，只是配置向导的界面目前只有英文。需要注意的是它能操作你的电脑，所以别让它做危险操作，敏感信息也要留意。"
+
+[[params.faqItems]]
+question = "电脑关机了 ClawdBot 还能工作吗？"
+answer = "不能，关机就等于助手下线。它需要宿主机一直开着才能待命和执行定时任务，所以推荐拿一台专门的机器来跑——Mac Mini 省电又稳定，家里的旧电脑或已经 24 小时开着的 NAS 也可以，不想管硬件就上云服务器。"
 +++
 
 ![ClawdBot 个人 AI 管家搭建指南](cover.webp)

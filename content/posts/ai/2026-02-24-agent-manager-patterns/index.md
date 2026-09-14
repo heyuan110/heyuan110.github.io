@@ -7,6 +7,30 @@ toc = true
 tags = ['Agent Manager', 'Claude Code', 'AI Coding', 'Stanford CS146S', 'Human-AI Collaboration']
 categories = ['AI Guides']
 keywords = ['Agent Manager', 'Claude Code best practices', 'Coding Agent patterns', 'human-AI collaboration coding', 'Agent autonomy']
+
+[[params.faqItems]]
+question = "What is an Agent Manager?"
+answer = "Someone who does not write code directly but directs AI Agents to write it. Stanford CS146S Week 4 frames it as a distinct professional skill requiring three capabilities at once: technical judgment to evaluate what AI-generated code passes and what does not, task decomposition to split requirements into subtasks an Agent can finish independently, and communication precision to convey exact intent with minimal information. The career path runs from writing code, to guiding AI, to managing several Agents at once."
+
+[[params.faqItems]]
+question = "How much time does a coding Agent actually save?"
+answer = "It depends where the task sits on the autonomy spectrum. Low-autonomy work — renaming variables, adding type annotations, writing unit tests, fixing lint — saves close to 100%. Medium-autonomy work such as a new API endpoint or a module refactor saves around 80%, with the remaining 20% going to edge cases, performance and style consistency. High-autonomy work like schema design, microservice communication or security hardening saves only 30-60%, because a human still has to make the architectural calls."
+
+[[params.faqItems]]
+question = "When should I intervene instead of letting the Agent run?"
+answer = "Use five dimensions to calibrate. Let it run when the change touches a single file, rolls back easily, stays in internal logic, has clear standards, and resembles cases that already worked. Intervene when it spans multiple systems, is hard to undo, touches user data or authentication, needs subjective judgment, or is an entirely new scenario. Claude Code's own permission model follows the same idea — trust but verify, with explicit authorization required for deleting files or running shell commands."
+
+[[params.faqItems]]
+question = "What are Anthropic's core patterns for working with Claude Code?"
+answer = "Five. Start with planning rather than coding — ask for an implementation plan and review it before any code is written. Put project standards in CLAUDE.md, which pays back on every conversation. Wire the Agent into feedback loops so it sees test results, lint and type check output, build logs and CI results and can self-correct. Divide and conquer, keeping subtasks no larger than one reviewable PR. And keep one session to one task, starting fresh when context drifts."
+
+[[params.faqItems]]
+question = "How did the StockApp team reach 2.5x productivity?"
+answer = "With a full context management system rather than better prompts. They run a layered workflow — design, plan, implement, test, review, update — with documentation for each phase written to `docs/designs/` and `docs/plans/`. They deployed an MCP server matrix (Notion, Linear, AWS, GitHub, database) so the AI sees business context and not just code. And they use an ensemble method: code written by one model gets reviewed by another, because different models have different blind spots. That is 2.5x against the usual reported 30-50%."
+
+[[params.faqItems]]
+question = "Why does Claude Code run in the terminal instead of an IDE?"
+answer = "It is a deliberate choice by creator Boris Cherney, not a step backward. The terminal is the most universal development environment and is not tied to any editor; it naturally supports automation, so Claude Code can be scripted, run in parallel or embedded in CI/CD; and it gives the Agent full system access — running tests, reading logs, operating Git — not just reading and writing code. The implication is that Claude Code is meant to be an Agent that does what a software engineer does, not smarter autocomplete."
 +++
 
 > This is Part 3 of the "Stanford Vibe Coding Course Deep Dive" series. See the series navigation at the end of this article.

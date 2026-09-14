@@ -6,6 +6,26 @@ toc = true
 tags = ['Java', 'JDK', 'JVM', 'IDEA']
 categories = ['Java']
 keywords = ['Java入门教程', 'JDK JRE JVM区别', 'IDEA配置', 'Java基础语法', 'Java面向对象']
+
+[[params.faqItems]]
+question = "JDK、JRE、JVM 有什么区别？"
+answer = "三者是层层包含的关系。JVM（Java Virtual Machine）是真正运行 Java 程序的虚拟机；JRE（Java Runtime Environment）是运行环境，等于 JVM 加上核心类库；JDK（Java Development Kit）是开发工具包，在 JRE 之上再加编译工具 `javac` 和执行工具 `java`。只跑程序装 JRE 就够，要写代码必须装 JDK。"
+
+[[params.faqItems]]
+question = "Java 的四个权限修饰符能访问的范围分别是什么？"
+answer = "从小到大 4 个：private 只能在本类中访问；缺省（不写修饰符）能在本类和同一个包下的类中访问；protected 在前者基础上再加任意包下的子类；public 则是本类、同包类、任意包下的子类和任意包下的任意类都能访问。在本类内部，这 4 种权限的成员都可以直接调用。"
+
+[[params.faqItems]]
+question = "多态到底解决什么问题？怎么调用子类特有的方法？"
+answer = "多态让你用父类类型接收一切子类对象，比如方法签名写成 `go(People p)`，既能传 Teacher 也能传 Student，右边的实现解耦，扩展和维护都更方便。代价是多态形式下不能直接调用子类特有方法，需要先判断再向下转型：`if (父类变量 instanceof 子类) { 子类 变量名 = (子类)父类变量; }`。类型判断错了会抛 ClassCastException。"
+
+[[params.faqItems]]
+question = "final 修饰类、方法、变量分别是什么效果？常量怎么定义？"
+answer = "final 修饰类表示最终类，不能被继承；修饰方法表示最终方法，不能被重写；修饰变量表示只能被赋值一次。被 `static final` 同时修饰的成员变量称为常量，通常用来记录系统配置信息，为了方便其他类访问一般再加 public，也就是写成 `public static final`。"
+
+[[params.faqItems]]
+question = "IDEA 有哪些必须记住的快捷键？"
+answer = "6 组最常用：输入 main/psvm、sout 等缩写快速生成代码；`Ctrl + D` 复制当前行到下一行；`Ctrl + Y` 删除整行（更推荐用 `Ctrl + X`）；`Ctrl + Alt + L` 格式化代码；`Alt + Shift + ↑/↓` 上下移动当前代码；`Ctrl + /` 和 `Ctrl + Shift + /` 分别是单行注释和块注释。"
 +++
 ![image](java-logo.webp)
 

@@ -7,6 +7,30 @@ toc = true
 tags = ['Context Engineering', 'AI 编程', 'Stanford CS146S', 'Vibe Coding', 'Prompt Engineering']
 categories = ['AI原理']
 keywords = ['Context Engineering', '上下文工程', 'Specs Are the New Source Code', '长上下文失败', 'AI 编程上下文管理']
+
+[[params.faqItems]]
+question = "上下文工程和 Prompt Engineering 到底差在哪？"
+answer = "Prompt Engineering 关心怎么问一个好问题，Context Engineering 关心给 AI 呈现一个什么样的世界。写好 prompt 是加法，做好上下文工程是乘法。它包含 5 个维度：信息选择（只加载相关源文件而非整个仓库）、信息组织（设计文档→实施计划→代码分层）、信息质量（清掉过时注释）、信息时机（先架构后实现）、工具配置（用 MCP 扩展感知范围）。"
+
+[[params.faqItems]]
+question = "为什么说 Spec 才是新的源代码？"
+answer = "因为 AI 时代优先级被搞反了——精心维护生成出来的代码，却随手对待指导生成的规格说明，等于粉碎源代码却给二进制做版本控制。Spec 承载完整意图，代码只是它的有损投影；Spec 模糊，AI 就会用自己的猜测填空。实践含义有 3 条：Spec 要像代码一样进 Git，有 diff、history 和 review；Spec 质量对代码质量是指数级影响；PM 的价值大幅上升，Andrew Ng 提到有组织需要的 PM 数量是工程师的 2 倍。"
+
+[[params.faqItems]]
+question = "上下文塞得越多效果越好吗？有哪些失败模式？"
+answer = "恰恰相反，有 4 种典型失败。上下文中毒：错误信息进来后被反复引用放大，比如 CLAUDE.md 里留着一条过时规则，AI 会忠实照做。上下文分心：Databricks 的研究显示超过 32K token 后正确性显著下降，模型被近期信息带偏。上下文混淆：Berkeley 的函数调用榜单显示工具越多性能越差，Llama 3.1 8B 在 19 个工具时正常、46 个工具时开始失败。上下文冲突：微软与 Salesforce 的研究里分阶段给出先错后对的信息，性能平均下降 39%。"
+
+[[params.faqItems]]
+question = "Context Rot 研究发现了什么反直觉的结论？"
+answer = "Chroma 团队测了 18 个主流模型（Claude、GPT、Gemini、Qwen、Llama），发现输入越长性能越持续下降，连极简单的任务也不例外。更意外的有 4 点：把上下文打乱顺序后所有模型表现反而提升；问答表面相似度越低退化越严重；只加一条无关信息就能显著拉低准确率；Claude 系在不确定时倾向拒答，GPT 系倾向自信地答错。结论是上下文不是越多越好，而是越精准越好。"
+
+[[params.faqItems]]
+question = "Anthropic 的工具设计五原则是什么？"
+answer = "一，精选胜于全包：与其提供 `list_events`、`create_event`、`invite_attendees`、`book_room` 四个工具，不如封装一个 `schedule_event`。二，一致的命名空间，用 `asana_projects_search` 这样的前缀分组。三，返回语义化数据，给名称和描述而不是裸 ID。四，token 效率，要分页过滤截断，Claude Code 默认把工具响应限制在 25,000 token。五，工具描述本身就是性能杠杆，Anthropic 仅优化描述就在 SWE-bench 上拿到最先进成绩。"
+
+[[params.faqItems]]
+question = "上下文工程怎么在自己项目里落地？"
+answer = "分 4 层。项目级：用 CLAUDE.md 写清项目概述、技术栈、代码规范和禁忌（比如不要用 ORM 的 lazy loading）。任务级：每个任务单独给相关文件清单、业务规则和可参照的已有实现。上下文卫生：每周清理过时信息，校验 README、CLAUDE.md、docker-compose.yml 之间不打架，对话超过 30 轮或 50K token 就新开会话，按任务动态启用 MCP Server。反馈层：输出不对时先判断是缺失、矛盾还是过载，再针对性调整。"
 +++
 
 > 本文是「斯坦福 Vibe Coding 课程精读」系列第 2 篇。系列导航见文末。

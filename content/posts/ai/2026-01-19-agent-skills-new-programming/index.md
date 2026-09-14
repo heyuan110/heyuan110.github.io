@@ -6,6 +6,30 @@ toc = true
 tags = ['Agent', 'Skills', 'AI Coding', 'Natural Language Programming']
 categories = ['AI Guides']
 keywords = ['agent skills programming', 'natural language programming', 'AI programming paradigm', 'markdown programming', 'skills-based development']
+
+[[params.faqItems]]
+question = "Are Agent Skills just Markdown files?"
+answer = "They are Markdown files, and that is precisely the claim — a `.md` file that declares when to trigger, which steps to run, and what output format to produce is a complete program. A meeting notes organizer is roughly ten lines: a trigger phrase, three steps (read the transcript, extract topics and decisions, apply the template) and an output spec listing topics, discussion points, decisions and action items. No compilation, no deployment, no runtime to install."
+
+[[params.faqItems]]
+question = "Why would anyone call Markdown a programming language?"
+answer = "Because it now has the properties that made programs programs: a trigger condition, an ordered sequence of steps, tool calls and a defined output — expressed in whatever human language you speak. What it drops is the toolchain. Traditional delivery runs requirements to architecture to code to build to test to deploy, where each link needs specialist knowledge and any change means another full pass. A Skill changes when you edit a sentence in the file."
+
+[[params.faqItems]]
+question = "How is a Skill different from ordinary software?"
+answer = "Skills stay editable after delivery. Traditional software is frozen once shipped: a new feature waits for the next release, a bug becomes a ticket, changes need a professional developer and a redeployment. With a Skill you open the `.md` file, change a few lines, and the change is live immediately — or you ask the AI to iterate on the file for you. That is what the article means by living, evolvable programs."
+
+[[params.faqItems]]
+question = "What can I actually build with a Skill?"
+answer = "Three patterns cover most of it. Personal automation: a daily report generator that fires at 5:30 PM, reads your Git commits, calendar and completed todos, and posts the summary to Slack or email. Team workflow: a code review assistant triggered on each new PR that checks standards, flags security issues and comments on the PR. Knowledge work: an article analyzer that extracts arguments, explains key concepts and produces structured notes linked into your knowledge base."
+
+[[params.faqItems]]
+question = "Will Skills replace programmers?"
+answer = "The argument in the article is that they elevate rather than replace: boilerplate CRUD endpoints, environment setup from documentation and copy-paste work shrink, while designing complex Skill architecture, orchestrating several Skills together, debugging agent behavior and making Skills secure and reliable become their own specialty. A programmer's value was never in typing code — code is one tool for solving problems and a Skill is another."
+
+[[params.faqItems]]
+question = "How do I start writing Skills?"
+answer = "Pick a tool that supports them — Claude Code with project-level Skills and CLAUDE.md rules, or Cursor with Rules and custom Skills. Then start small: a quick translator that triggers on foreign-language text, preserves technical terminology and returns a side-by-side bilingual output is enough for a first `.md` file. Use it, notice what annoys you, edit a few lines, test again. That iteration loop is the programming. Then share it and read what other people wrote."
 +++
 ![Agent Skills: The New Programming Paradigm](cover.webp)
 

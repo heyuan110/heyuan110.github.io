@@ -6,6 +6,34 @@ toc = true
 tags = ["MySQL", "SQL", "Database", "Interview", "Index", "Transaction", "Performance"]
 categories = ["MySQL"]
 keywords = ["MySQL教程", "SQL入门", "MySQL面试题", "索引优化", "事务隔离级别", "MVCC", "B+树"]
+
+[[params.faqItems]]
+question = "MySQL 为什么用 B+ 树做索引，而不是 B 树或 Hash？"
+answer = "B+ 树只在叶子节点存数据，非叶子节点只存键值，一页能放下更多索引，磁盘 IO 次数更少；叶子节点之间有双向链表，范围查询只需顺着链表扫；所有查询都走到叶子，时间复杂度稳定在 O(log n)。相比之下红黑树太高、IO 次数多，Hash 索引不支持范围查询也不支持排序。"
+
+[[params.faqItems]]
+question = "什么是回表？覆盖索引怎么避免回表？"
+answer = "二级索引的叶子节点只存主键值，所以 `SELECT * FROM users WHERE username = 'zhangsan'` 要先用 idx_username 找到主键 id，再去聚簇索引取整行，这一步就是回表。如果查询的列都在索引里，比如索引是 idx_name_age 而你只查 name 和 age，就不用回表，这叫覆盖索引。用 EXPLAIN 看 `Extra` 列是否出现 `Using index` 即可判断。"
+
+[[params.faqItems]]
+question = "哪些写法会导致索引失效？"
+answer = "7 种高频场景：对索引列套函数（`YEAR(created_at) = 2024` 应改成范围比较）；隐式类型转换（VARCHAR 的 phone 用数字比较）；LIKE 左模糊 `'%zhang'`；OR 连接了没有索引的列；联合索引不满足最左前缀；使用不等于 `!=` 大概率全表扫描；`IS NOT NULL` 在大部分行都非空时优化器可能判定全表更快。"
+
+[[params.faqItems]]
+question = "最左前缀原则到底怎么生效？"
+answer = "对复合索引 idx_a_b_c(a, b, c) 来说，`WHERE a = 1`、`a = 1 AND b = 2`、`a = 1 AND b = 2 AND c = 3` 都能用上索引；`WHERE a = 1 AND c = 3` 只能用到 a 这一列；而 `WHERE b = 2`、`WHERE c = 3`、`WHERE b = 2 AND c = 3` 完全用不上。建索引时把选择性最高、区分度最大的列放最前面。"
+
+[[params.faqItems]]
+question = "MySQL 的四种隔离级别分别解决什么问题？默认是哪个？"
+answer = "READ UNCOMMITTED 脏读、不可重复读、幻读都可能发生；READ COMMITTED 解决脏读；REPEATABLE READ 再解决不可重复读；SERIALIZABLE 三者全解决。InnoDB 默认是 REPEATABLE READ，并靠 MVCC 加间隙锁在很大程度上也解决了幻读。查当前级别用 `SELECT @@transaction_isolation`，改用 `SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED`。"
+
+[[params.faqItems]]
+question = "MVCC 是怎么工作的？RC 和 RR 差在哪？"
+answer = "每行有隐藏列 `DB_TRX_ID` 和 `DB_ROLL_PTR`，修改时旧版本进 undo log 形成版本链，读的时候用 Read View 判断可见性：trx_id 等于 creator_trx_id 可见，小于 min_trx_id 可见（已提交），大于等于 max_trx_id 不可见，落在活跃事务列表 m_ids 里也不可见。RC 与 RR 的唯一差别是 RC 每次 SELECT 都新建 Read View，RR 只在事务开始时建一次并复用。"
+
+[[params.faqItems]]
+question = "慢 SQL 怎么定位和优化？"
+answer = "先看执行计划：`EXPLAIN` 重点看 type（从好到差 `const > eq_ref > ref > range > index > ALL`）、key、rows，以及 Extra 里有没有 `Using filesort` 和 `Using temporary`。再开慢查询日志：`SET GLOBAL slow_query_log = ON` 配 `long_query_time = 1`，用 mysqldumpslow 分析。优化清单是避免 `SELECT *`、WHERE 字段加索引、小表驱动大表、深分页改用延迟关联、子查询换 JOIN、不需要去重时用 UNION ALL。"
 +++
 ![MySQL SQL 完全指南：从基础到精通](cover.webp)
 
