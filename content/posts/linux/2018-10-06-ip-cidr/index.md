@@ -250,7 +250,7 @@ Suppose you need a subnet that supports 2,000 hosts:
 Required host bits: 2^11 = 2048 > 2000, so 11 host bits
 Network bits:       32 - 11 = 21
 CIDR notation:      xxx.xxx.xxx.xxx/21
-Subnet mask:        11111111.11111111.11100000.00000000 = 255.255.224.0
+Subnet mask:        11111111.11111111.11111000.00000000 = 255.255.248.0
 Usable hosts:       2^11 - 2 = 2,046
 ```
 
