@@ -293,3 +293,22 @@ Before pushing your AI Agent to production, ensure you can tick off every box on
 - [ ] **Double-walled Secret Filtering**: Ensure `posttooluse` sweeps the tool output for hardcoded API keys and credentials before passing them back to the model context.
 
 By moving your defensive strategies from volatile system prompts into robust, code-level lifecycle hooks, you give your Anthropic agents a reliable engineering harness. You can deploy Claude to carry out real-world tasks with absolute confidence, secure in the knowledge that your programmatic guardrails are unbreakable.
+
+---
+
+## Frequently Asked Questions (FAQ)
+
+<details>
+<summary><b>1. What are pretooluse and posttooluse hooks in Anthropic's Agent SDK?</b></summary>
+They are lifecycle callbacks in Anthropic's SDK that let developers execute custom code before a tool runs (e.g. for input validation, security auditing, or user approval) and after a tool returns (e.g. for output truncation, cost tracking, or PII redaction).
+</details>
+
+<details>
+<summary><b>2. How do pretooluse hooks prevent Prompt Injection?</b></summary>
+By acting as a programmatic hard gateway. When Claude decides to call a shell tool with a malicious command like <code>rm -rf</code>, pretooluse intercepts the arguments, runs code-level AST or regex validation, and rejects the call with an error back to the LLM without ever touching your system.
+</details>
+
+<details>
+<summary><b>3. Why should we truncate tool output in posttooluse?</b></summary>
+Because tools can return huge JSON or SQL outputs that bloat the context window, causing massive token bills. Posttooluse can programmatically inspect, summarize, or truncate outputs before they are sent back to Claude, saving up to 95% in token costs.
+</details>

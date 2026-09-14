@@ -293,3 +293,22 @@ def execute_agent_turn(task: str):
 - [ ] **凭证数据多重扫除**：确保 `posttooluse` 中内置了针对 AWS Key、GitHub Token、Database DSN 的多重正则清洗，绝对不让大模型上下文吃进任何敏感凭证。
 
 通过将 Agent 的安全控制逻辑从容易受魔法攻击影响的“System Prompt”中解耦，并在代码层通过 `pretooluse` 和 `posttooluse` 钩子实施强硬拦截，你就为你的 Agent 套上了一套工业级的**高强度控制马缰**。至此，你可以信心百倍地让 Claude 去替你干脏活累活，因为你心知肚明——代码铸造的安全围栏坚不可摧。
+
+---
+
+## 常见问题解答 (FAQ)
+
+<details>
+<summary><b>1. Anthropic Agent SDK 的 pretooluse 与 posttooluse 钩子有什么作用？</b></summary>
+它们是 Anthropic 官方 SDK 内置的工具调用生命周期回调函数。pretooluse 在工具实际执行前触发（可进行输入审计、安全拦截、人工确认等），posttooluse 在工具执行完毕后触发（可进行输出截断、敏感凭证脱敏、异常自愈等）。
+</details>
+
+<details>
+<summary><b>2. 如何通过 pretooluse 钩子防御提示词注入（Prompt Injection）攻击？</b></summary>
+通过在 pretooluse 钩子中加入代码级别的确定性防御。当 LLM 被提示词注入诱导，尝试调用敏感工具（如 Bash）执行危险命令时，pretooluse 会通过代码级正则或 AST 解析对参数进行过滤，直接强行返回错误并中断调用，绝对安全。
+</details>
+
+<details>
+<summary><b>3. 为什么强烈建议在 posttooluse 钩子中做数据截断？</b></summary>
+工具（如数据库、API）有时会返回极大（数万字）的原始数据。如果直接喂回给 Claude，会导致上下文窗口剧增、Token 消耗账单翻倍甚至溢出失效。在 posttooluse 中进行智能摘要或截断，能极大优化运营成本。
+</details>
