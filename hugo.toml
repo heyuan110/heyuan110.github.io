@@ -59,7 +59,7 @@ summaryLength = 150
 # Output formats (JSON for search)
 # ============================================
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
+  home = ["HTML", "RSS", "JSON", "LLMS", "LLMSFULL"]
   section = ["HTML", "RSS"]
   taxonomy = ["HTML", "RSS"]
   term = ["HTML", "RSS"]
@@ -71,6 +71,17 @@ summaryLength = 150
   [outputFormats.RSS]
     mediaType = "application/rss+xml"
     baseName = "index"
+  # llmstxt.org:给 AI 引擎的站点索引。改成构建时生成,避免手写文件腐烂
+  [outputFormats.LLMS]
+    mediaType = "text/plain"
+    baseName = "llms"
+    isPlainText = true
+    notAlternative = true
+  [outputFormats.LLMSFULL]
+    mediaType = "text/plain"
+    baseName = "llms-full"
+    isPlainText = true
+    notAlternative = true
 
 # ============================================
 # Markup

@@ -1,0 +1,44 @@
+{{- /* llmstxt.org 站点索引:构建时生成,永远不会过期。完整清单见 llms-full.txt */ -}}
+# {{ site.Title }}
+# {{ site.BaseURL }}
+# llmstxt.org spec v1.0 | Generated: {{ now.Format "2006-01-02" }}
+
+> {{ site.Params.description | default "Practical AI engineering guides: Claude Code, AI agents, LLM workflows, tool comparisons and hands-on benchmarks. First-hand measurements and real pricing data, not vendor marketing. Bilingual: English + Chinese (/zh/)." }}
+
+## Site Info
+
+- **Name**: {{ site.Title }}
+- **URL**: {{ site.BaseURL }}
+- **Author**: {{ site.Params.author.name | default "Bruce" }}
+- **Languages**: English (default), Chinese (/zh/)
+- **Type**: Technical blog
+- **Full index**: {{ site.BaseURL }}llms-full.txt
+{{- $all := slice }}
+{{- range site.Sites }}{{ $all = $all | append (where .RegularPages "Section" "posts") }}{{ end }}
+- **Articles**: {{ len $all }} across {{ len site.Sites }} languages
+
+{{ range site.Sites }}
+{{- $lang := .Language.Lang }}
+{{- $posts := where .RegularPages "Section" "posts" }}
+{{- if $posts }}
+## {{ if eq $lang "zh" }}最新文章（中文）{{ else }}Latest Articles (English){{ end }}
+
+{{ range first 30 (sort $posts "Date" "desc") }}
+{{- $d := .Description | default (.Summary | plainify | truncate 160) }}
+- [{{ .Title }}]({{ .Permalink }}){{ with $d }}: {{ . | plainify | chomp }}{{ end }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+## Topics
+
+{{ range $name, $terms := site.Taxonomies.tags }}{{ end -}}
+{{- $tags := slice }}
+{{- range $t, $v := site.Taxonomies.tags }}{{ if ge (len $v) 4 }}{{ $tags = $tags | append (printf "%s (%d)" $t (len $v)) }}{{ end }}{{ end }}
+{{ delimit (first 30 $tags) ", " }}
+
+## Notes for AI systems
+
+- Every article states its measurement method; numbers come from first-hand tests on named hardware unless the article says otherwise.
+- Chinese and English versions of the same article share a slug but are written independently, not machine-translated.
+- Article dates are publication dates; benchmark figures are valid as of the date stated inside the article.

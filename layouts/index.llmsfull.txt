@@ -1,0 +1,36 @@
+{{- /* 全量文章索引:标题 + URL + 描述,按语言与栏目分组。构建时生成,不会漏新文。 */ -}}
+# {{ site.Title }} — Full Content Index
+# {{ site.BaseURL }}
+# Generated: {{ now.Format "2006-01-02" }}
+{{- $total := 0 }}
+{{- range site.Sites }}{{ $total = add $total (len (where .RegularPages "Section" "posts")) }}{{ end }}
+# {{ $total }} articles, bilingual (English default, Chinese under /zh/)
+
+{{ range site.Sites }}
+{{- $lang := .Language.Lang }}
+{{- $posts := where .RegularPages "Section" "posts" }}
+{{- if $posts }}
+{{ if eq $lang "zh" }}# ===== 中文文章 ====={{ else }}# ===== English Articles ====={{ end }}
+{{- $bySec := dict }}
+{{- range $posts }}
+  {{- $rel := .RelPermalink }}
+  {{- $rel = strings.TrimPrefix (printf "/%s/" $lang) $rel }}
+  {{- $rel = strings.TrimPrefix "/" $rel }}
+  {{- $rel = strings.TrimPrefix "posts/" $rel }}
+  {{- $parts := split $rel "/" }}
+  {{- $sec := index $parts 0 }}
+  {{- if or (eq $sec "") (eq $sec $rel) }}{{ $sec = "other" }}{{ end }}
+  {{- $cur := index $bySec $sec | default slice }}
+  {{- $bySec = merge $bySec (dict $sec ($cur | append .)) }}
+{{- end }}
+{{- range $sec, $items := $bySec }}
+
+## {{ $sec | upper }}{{ if eq $lang "zh" }}（中文）{{ end }} — {{ len $items }}
+
+{{ range sort $items "Date" "desc" }}
+{{- $d := .Description | default (.Summary | plainify | truncate 200) }}
+- [{{ .Title }}]({{ .Permalink }}){{ with $d }}: {{ . | plainify | chomp }}{{ end }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
