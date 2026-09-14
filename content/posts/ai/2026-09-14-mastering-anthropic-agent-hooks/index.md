@@ -1,6 +1,6 @@
 +++
 title = "Mastering Anthropic Agent SDK Hooks: Intercept & Secure"
-date = 2026-09-14T12:00:00Z
+date = 2026-09-14T03:00:00Z
 description = "Learn how to use Anthropic's pretooluse and posttooluse hooks to secure tool-calling loops, prevent prompt injection, and optimize token costs with practical code examples."
 draft = false
 toc = true
