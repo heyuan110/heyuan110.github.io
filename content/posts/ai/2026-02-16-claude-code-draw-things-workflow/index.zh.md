@@ -7,6 +7,26 @@ toc = true
 tags = ['Claude Code', 'Draw Things', 'MCP', 'AI 自动化', 'Mac']
 categories = ['AI实战']
 keywords = ['Claude Code Draw Things', 'MCP 自动配图', 'Mac AI 生图自动化', 'Draw Things MCP Server', 'Claude Code 自动生成图片', 'AI 博客配图']
+
+[[params.faqItems]]
+question = "Draw Things 的 API Server 怎么开启？"
+answer = "默认是关闭的。打开 Draw Things，按 `⌘ + ,` 进设置，找到 API Server / HTTP API 选项，勾选「Enable API Server」，端口保持默认 7860。用 `curl http://127.0.0.1:7860/sdapi/v1/options` 验证，返回 JSON 配置信息就说明接口已就绪。"
+
+[[params.faqItems]]
+question = "Claude Code 怎么接入 Draw Things 自动生图？"
+answer = "一条命令搞定：`claude mcp add drawthings -- npx -y mcp-drawthings`。它会在 `~/.claude.json` 里注册一个 stdio 类型的 MCP Server，前提是 Node.js v18 以上。重启 Claude Code 后输入 `/mcp`，看到 drawthings 已连接并带 4 个工具就成功了。"
+
+[[params.faqItems]]
+question = "Draw Things MCP 有哪几个工具？图生图怎么调？"
+answer = "共 4 个：check_status 查服务是否在线、get_config 读当前模型与参数、generate_image 文生图、transform_image 图生图。图生图传 image_path 和 denoising_strength：0.1-0.3 只微调色调，0.4-0.6 适合风格迁移，0.7-1.0 接近重画。"
+
+[[params.faqItems]]
+question = "Mac 本地生图要多久？比 Midjourney 快吗？"
+answer = "用 Flux.1 Schnell 跑 4 步推理，512×512 在 M1 上约 8 秒、M1 Pro/Max 约 5 秒、M4 Pro/Max 约 2 秒；1200×630 的封面图从 M1 的 15 秒降到 M4 Pro/Max 的 5 秒。Midjourney 一张要 30-60 秒，本地方案更快，也不受网络影响。"
+
+[[params.faqItems]]
+question = "这套方案真的完全免费吗？值不值得折腾？"
+answer = "免费。Draw Things 在 App Store 免费下载，算力用你自己的 Apple Silicon。对比 Midjourney 每月 $10-60、DALL-E 3 API 每张 $0.04-0.12，长期写博客一年能省 $120-720，还能离线用、无配额限制、图片不出本机。配置只需 10 分钟。"
 +++
 
 ![Claude Code + Draw Things：Mac 本地 AI 自动配图完全指南](cover.webp)

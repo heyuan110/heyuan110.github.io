@@ -6,6 +6,30 @@ toc = true
 tags = ['Shell', 'Bash', 'Linux', 'Scripting']
 categories = ['Linux']
 keywords = ['Shell 特殊变量', 'Bash 变量', '$@ $* 区别', 'Shell 脚本', 'Linux 变量']
+
+[[params.faqItems]]
+question = "Shell 里的 $# 是什么意思？"
+answer = "`$#` 表示传给脚本或函数的参数个数，不包含 `$0`（脚本名本身）。执行 `./test.sh a b c` 时 `$#` 等于 3，不带参数执行时为 0。最常见的用法是在脚本开头做参数校验：`if [ $# -lt 2 ]; then echo 「至少需要 2 个参数」; exit 1; fi`。"
+
+[[params.faqItems]]
+question = "$$ 和 $! 有什么区别？"
+answer = "`$$` 是当前 Shell 脚本自己的进程 PID，`$!` 是最近一个后台进程的 PID。`$$` 常用来生成不冲突的临时文件名，比如 `TMPFILE=/tmp/myapp_$$.tmp` 配合 `trap` 退出时清理；`$!` 则在 `命令 &` 之后立即捕获，用于后续 `wait $PID` 等待或 `kill $PID` 做超时控制。"
+
+[[params.faqItems]]
+question = "$? 的退出状态码各代表什么？"
+answer = "`$?` 存的是上一条命令的退出码：0 成功，1 通用错误，2 命令用法错误（比如参数非法），126 找到了命令但不可执行，127 命令不存在，128+N 被信号 N 终止（所以 Ctrl+C 是 130），255 退出码超出范围。自己的脚本用 `exit 1` 指定退出码。注意 `$?` 要立刻读取，下一条命令会覆盖它。"
+
+[[params.faqItems]]
+question = "$* 和 $@ 到底有什么区别？该用哪个？"
+answer = "不加引号时两者完全一样，都会发生单词拆分，「hello world」会被拆成两个词。加引号才是关键：带引号的 `$*` 把所有参数合并成一个字符串，带引号的 `$@` 保留每个参数各自独立。执行 `./test.sh 「hello world」 foo bar` 时前者得到 1 项、后者得到 3 项。结论：几乎永远用带引号的 `$@`。"
+
+[[params.faqItems]]
+question = "为什么 $10 取不到第 10 个参数？"
+answer = "因为 Bash 会把 `$10` 解析成 `$1` 再跟一个字符 0。第 10 个及以后的位置参数必须加大括号：`${10}`、`${11}`。同样的大括号语法还能设默认值，比如 `${1:-(空)}` 在第一个参数缺失时输出占位符。"
+
+[[params.faqItems]]
+question = "怎么判断脚本是不是在交互式 Shell 里运行？"
+answer = "看 `$-`，它列出当前 Shell 启用的选项标志，交互式环境典型值是 `himBHs`：h 是 hashall，i 是交互式，m 是任务控制，B 是大括号展开，H 是历史展开，s 是从标准输入读命令。判断写法：`case $- in *i*) echo 交互式 ;; *) echo 非交互式 ;; esac`。"
 +++
 ![Shell 特殊变量完全指南，掌握 Bash 脚本的核心知识](cover.webp)
 

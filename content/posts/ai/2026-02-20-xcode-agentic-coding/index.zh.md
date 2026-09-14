@@ -7,6 +7,34 @@ toc = true
 tags = ['Xcode', 'AI Coding', 'Apple', 'Claude Code', 'Codex']
 categories = ['AI Guides']
 keywords = ['Xcode 26.3', 'Xcode AI', 'Xcode agentic coding', 'Apple AI 编程', 'Claude Agent SDK', 'MCP']
+
+[[params.faqItems]]
+question = "Xcode 26.3 的 Agentic Coding 是免费的吗？"
+answer = "Xcode 本身免费，但 Claude Agent 和 Codex 要用你自己的 Anthropic 或 OpenAI 账号登录、或填 API Key，费用按 API 用量计算。Apple 说已经和两家一起优化过 token 使用效率来压低成本。在 Xcode 设置里一键安装智能体，之后支持自动更新。"
+
+[[params.faqItems]]
+question = "用 Xcode 的 AI 编程功能需要什么系统版本？"
+answer = "必须是 macOS 26（Tahoe）。Xcode 26.3 能装在旧版 macOS 上，但 AI 编程功能不会启用。账号在 Xcode -> Settings -> Intelligence 里配置，登录 Anthropic 或 OpenAI 账号即可。该版本 2026 年 2 月 3 日先以 Release Candidate 形式发布。"
+
+[[params.faqItems]]
+question = "只能用 Claude Agent 和 Codex 吗？别的 AI 能接进来吗？"
+answer = "不是只能用这两个。Xcode 26.3 原生支持 MCP 协议，任何兼容 MCP 的智能体都能接入，已经有开发者把 Gemini CLI 连上去了。反过来，用 CLI 的人也可以通过 `xcrun mcpbridge` 把 Xcode 的能力接出去，比如 `claude mcp add --transport stdio xcode -- xcrun mcpbridge`。"
+
+[[params.faqItems]]
+question = "和在终端里直接用 Claude Code / Codex CLI 相比，优势在哪？"
+answer = "最大优势是原生集成：Agent 能直接触发 Xcode 构建、跑测试、读构建日志，还能截取 SwiftUI Previews 做视觉验证，判断界面是否符合设计意图再继续迭代——这些在纯终端里做不到（除非走 MCP 桥接）。另外侧边栏能实时看 transcript、点代码跳转，还能在任意节点回退到修改前的状态。"
+
+[[params.faqItems]]
+question = "Xcode 内置的 Agent 版本太旧，怎么换成本地最新版？"
+answer = "用符号链接替换掉捆绑版本即可，例如 `ln -sf $(which codex) ~/Library/Developer/Xcode/CodingAssistant/Agents/Versions/26.3/codex`，Claude 同理。自定义 Skills 放在 `~/Library/Developer/Xcode/CodingAssistant/codex/skills` 或 `ClaudeAgentConfig/skills`；配置文件分别是 codex 的 `config.toml` 和 Claude 的 `.claude`。"
+
+[[params.faqItems]]
+question = "Xcode Agentic Coding 和 Cursor、Copilot 该怎么选？"
+answer = "做 iOS/macOS 原生开发选 Xcode：它和构建系统、模拟器、SwiftUI Preview 深度绑定，Cursor 和 Copilot 都触发不了这些。全栈跨语言项目选 Cursor（Pro $20/月），想在各类 IDE 里做轻量辅助选 Copilot（个人版 $10/月）。Xcode 这边 IDE 免费、Agent 按 API 用量付费。"
+
+[[params.faqItems]]
+question = "现在适合拿它开发正式项目吗？有什么坑？"
+answer = "新项目和功能原型可以直接上，大型老项目重构建议谨慎并用好回退机制。已知问题：MCP 权限模型还不顺，每个新的 Agent PID 发起请求都要手动点一次允许访问 Xcode 的弹窗；也有开发者反馈 MCP 返回的数据格式和声明的 schema 不一致，导致部分第三方 Agent 跑不通。"
 +++
 
 2026 年 2 月 3 日，Apple 发布了 Xcode 26.3 Release Candidate，正式引入 **Agentic Coding**（智能体编程）功能。这是 Apple 开发工具历史上的一次重大转向——开发者可以直接在 Xcode 中使用 Anthropic 的 Claude Agent 和 OpenAI 的 Codex，让 AI 智能体自主地完成从规划、编码、构建到测试的完整开发流程。

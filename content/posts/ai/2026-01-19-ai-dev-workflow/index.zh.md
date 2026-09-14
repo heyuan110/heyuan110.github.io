@@ -6,6 +6,27 @@ toc = true
 tags = ['AI', 'Claude Code', 'Cursor', 'Developer Productivity', 'Workflow']
 categories = ['AI Guides']
 keywords = ['AI 开发工作流', 'Claude Code 开发流程', 'AI 辅助编程', 'Cursor 开发效率', 'AI 结对编程']
+
+[[params.faqItems]]
+question = "AI 开发工作流到底指什么？分几个阶段？"
+answer = "指把 AI 贯穿交付全过程，而不只是问一句怎么写函数。完整流程有五个阶段：需求分析、架构设计、编码实现、测试、部署上线。2026 年约 85% 的开发者日常在用 AI 工具，但多数人只停留在最后一个环节。真正的起点是拿到需求先让 AI 拆模块、找技术难点、列出要跟产品确认的问题。"
+
+[[params.faqItems]]
+question = "Claude Code 和 Cursor 怎么搭配用？"
+answer = "分工是 Claude Code 规划、Cursor 实现。Claude Code 上下文大、CLI 优先，适合架构设计、跨文件理解和复杂重构；Cursor 深度集成 IDE、实时补全，适合日常编码和快速迭代。两者可以叠加使用——在 Cursor 的终端里直接敲 `claude` 调起 CLI。ChatGPT 留给快速问答，Copilot 负责行内补全。"
+
+[[params.faqItems]]
+question = "用 AI 开发到底能提效多少？"
+answer = "按环节看差别很大：测试编写提升约 60%，编码实现 50%，问题排查 45%，需求分析 40%，架构设计 30%。收益最大的是机械重复的活，比如用 JUnit 5 + Mockito 生成单元测试、批量造 SQL 测试数据、写 Kubernetes 部署配置；架构设计提升最小，因为 AI 给的是多方案对比，决策还得你自己做。"
+
+[[params.faqItems]]
+question = "怎么提问 AI 才能写出能直接用的代码？"
+answer = "把「帮我写一个用户服务」换成一份规格说明：指明框架是 Spring Boot、要完整 CRUD、继承现有的 BaseService、ORM 用 MyBatis-Plus、风格参照 OrderService。然后增量推进——先生成骨架，再逐个方法细化，每完成一块就跑测试。上下文给得够不够，几乎决定了输出质量。"
+
+[[params.faqItems]]
+question = "用 AI 写代码有哪些坑要避开？"
+answer = "四条。第一，AI 会产生幻觉，生成看着对、实际有问题的代码，必须跑测试、读 diff；第二，不理解就提交等于给自己攒技术债，AI 产出的代码归属权在你；第三，真实密钥、密码、用户数据绝不能贴给 AI，要用占位符或脱敏数据；第四，改动要及时小步 commit，方便追踪和回滚。"
+
 +++
 ![AI开发工作流](cover.webp)
 

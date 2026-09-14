@@ -6,6 +6,30 @@ toc = true
 tags = ['Redshift', 'AWS', 'Data Warehouse', 'Performance Tuning', 'VACUUM']
 categories = ['Data Warehouse']
 keywords = ['Amazon Redshift', 'Redshift VACUUM', 'Redshift performance tuning', 'data warehouse maintenance', 'AWS data warehouse']
+
+[[params.faqItems]]
+question = "What does VACUUM actually do in Amazon Redshift?"
+answer = "It reclaims disk space and re-sorts the table. Redshift does not physically remove rows on `DELETE` or `UPDATE` — it only marks them deleted, and those ghost rows keep occupying blocks and can still be scanned. Separately, every row arriving through `COPY`, `INSERT` or `UPDATE` is appended to an unsorted region at the end of the table, which degrades range-restricted scans and merge joins until VACUUM sorts it back in."
+
+[[params.faqItems]]
+question = "Which of the six VACUUM types should I run?"
+answer = "Match the type to what happened to the table. `VACUUM FULL` (the default) sorts and reclaims; `VACUUM DELETE ONLY` just reclaims space after bulk deletes; `VACUUM SORT ONLY` just sorts after bulk inserts; `VACUUM REINDEX` is for interleaved sort keys and is the slowest; `VACUUM RECLUSTER` sorts only the unsorted region; and `BOOST` is a modifier that throws extra resources at the job but blocks concurrent DELETE and UPDATE."
+
+[[params.faqItems]]
+question = "When is VACUUM RECLUSTER better than VACUUM FULL?"
+answer = "On large, write-heavy tables where queries mostly hit recent data — AWS recommends RECLUSTER for exactly that shape. It sorts only the unsorted region and leaves the already-sorted portion alone, so it is far faster than FULL and scales with table size. Note that FULL skips the sort phase by default once 95% of rows are sorted; use `VACUUM sales TO 100 PERCENT` to force a complete sort."
+
+[[params.faqItems]]
+question = "How do I tell whether a Redshift table needs VACUUM?"
+answer = "Query `SVV_TABLE_INFO` and look at three columns: `unsorted` (percentage of unsorted rows), `vacuum_sort_benefit` (estimated gain from sorting) and `pct_used` (disk utilisation). A practical filter is `WHERE unsorted > 5 ORDER BY size DESC`. For statistics, the same view exposes `stats_off` — anything above 10 means the optimiser is planning on stale numbers."
+
+[[params.faqItems]]
+question = "Do I need to run ANALYZE as well as VACUUM?"
+answer = "Yes — they fix different problems. VACUUM reorganises storage; ANALYZE refreshes the statistics the query planner uses. Run `ANALYZE sales` after heavy INSERT/UPDATE/DELETE activity, after every VACUUM, and whenever `stats_off` exceeds 10%. `ANALYZE PREDICATE COLUMNS sales` limits the work to columns actually used in filters. A `COPY` into an empty table runs ANALYZE for you."
+
+[[params.faqItems]]
+question = "How do I monitor a VACUUM that is already running?"
+answer = "Use `SELECT * FROM SVV_VACUUM_PROGRESS;` for the estimated time remaining on the in-flight operation. Once it finishes, `SVV_VACUUM_SUMMARY` reports elapsed_time, sort_partitions, row_delta and block_delta per run, and `SVL_VACUUM_PERCENTAGE` shows how much space was actually reclaimed. For hands-off maintenance, the AWS open-source Analyze Vacuum Utility picks tables automatically based on unsorted, stats_off and size."
 +++
 ![Amazon Redshift performance tuning guide](cover.webp)
 

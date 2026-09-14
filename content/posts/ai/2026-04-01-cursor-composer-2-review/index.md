@@ -6,6 +6,30 @@ description = 'Deep technical analysis of Cursor Composer 2, built on Moonshot A
 toc = true
 tags = ['Cursor', 'Composer 2', 'AI Coding Tools', 'Kimi K2.5', 'Claude Code']
 keywords = ['Cursor Composer 2 review', 'Kimi K2.5 controversy', 'Composer 2 vs Claude Code', 'AI coding tools 2026', 'Cursor benchmarks']
+
+[[params.faqItems]]
+question = "What model is Cursor Composer 2 built on?"
+answer = "Composer 2 is built on Kimi K2.5, the open-weight Mixture of Experts model from Beijing-based Moonshot AI. Cursor added two training phases on top: continued pretraining on a code-heavy data mix, then large-scale reinforcement learning run through Anyrun, its internal platform of hundreds of thousands of sandboxed coding environments. The launch blog on March 19, 2026 did not mention the base model; the identifier `kimi-k2p5-rl-0317-s515-fast` in Cursor API configs gave it away."
+
+[[params.faqItems]]
+question = "What was the Kimi K2.5 attribution controversy about?"
+answer = "The Kimi K2.5 license requires prominent attribution from products above 1 million monthly active users or $20 million in monthly revenue. Cursor's annualized revenue is around $2 billion, far past that line, yet the Composer 2 launch post credited no base model. Developer Fynn spotted the Kimi identifier in API configs on March 21, TechCrunch reported it on March 22, co-founder Aman Sanger called the omission a miss, and the blog and technical report were updated on March 22-23."
+
+[[params.faqItems]]
+question = "Is Cursor's claim that 75% of the compute was its own a fair defense?"
+answer = "Not really. VP of Product Lee Robinson said roughly 75% of total compute went into Cursor's own continued pretraining and RL, with 25% from the base model — but compute percentage is not contribution percentage. The base model supplies core language understanding, the MoE architecture that makes Composer 2 efficient, and foundational coding knowledge. Cursor's own technical report states that better base knowledge reliably translates into a better agent."
+
+[[params.faqItems]]
+question = "How does Composer 2 score on benchmarks compared to Claude Opus 4.6?"
+answer = "Composer 2 scores 61.3 on CursorBench (up from 44.7 for Composer 1.5), 73.7 on SWE-bench Multilingual and 61.7 on Terminal-Bench 2.0 versus 58.0 for Claude Opus 4.6. Read them with context: CursorBench is Cursor's own benchmark, run in Cursor's environment with Cursor's tools, so it favors the home team. Terminal-Bench is more neutral, and the 3.7-point gap is real but modest. SWE-bench Multilingual at 73.7 is the most credible number."
+
+[[params.faqItems]]
+question = "How much does Composer 2 cost compared to Claude?"
+answer = "Composer 2 is $0.50/M input and $2.50/M output in standard mode, or $1.50/M input and $7.50/M output in fast mode. Claude Opus 4.6 is $15/M input and $75/M output; Claude Sonnet 4.5 is $3/M and $15/M. That puts Composer 2 input tokens at roughly one thirtieth the price of Opus 4.6, which is its strongest argument for high-volume everyday coding."
+
+[[params.faqItems]]
+question = "Should I use Composer 2 or Claude Code?"
+answer = "Use both. Composer 2 wins on speed and cost for the routine 80%: tab completions, small edits, inline suggestions, multi-file edits inside the Cursor IDE. Claude Code wins on the hard 20% — its 1M-token context window holds an entire codebase, against Composer 2's 200,000-token window, which matters for large refactors, cross-file debugging, security audits and architectural decisions. Claude Code is also terminal-native and editor-agnostic."
 +++
 
 ![Cursor Composer 2 — where Western product meets Eastern foundation model](cover.webp)

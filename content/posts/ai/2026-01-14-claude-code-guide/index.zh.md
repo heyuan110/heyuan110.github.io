@@ -6,6 +6,34 @@ toc = true
 tags = ['Claude Code', 'AI 工具', 'Anthropic', '命令行工具', '效率工具', '自动化']
 categories = ['AI实战']
 keywords = ['Claude Code 使用指南', 'Claude Code 教程', 'Anthropic CLI 工具', 'AI 编程助手', 'Claude Code 入门']
+
+[[params.faqItems]]
+question = "Claude Code 是什么？和 Copilot、Cursor 有什么不同？"
+answer = "Claude Code 是 Anthropic 官方的终端 AI 助手，它不只给建议，还能直接读写文件、执行 Shell 命令、跑 Git 操作。对比下来：Copilot（$10/月）是 IDE 插件，只看当前文件、不能执行操作；Cursor（$20/月）是独立 IDE，能理解整个代码库；Claude Code 跑在终端里，能理解整个代码库并直接动手干活。"
+
+[[params.faqItems]]
+question = "Claude Code 怎么安装？需要付费吗？"
+answer = "macOS/Linux/WSL 一行命令：`curl -fsSL https://claude.ai/install.sh | bash`，然后 `source ~/.zshrc`；macOS 也可用 `brew install --cask claude-code`；Windows 管理员 PowerShell 跑 `irm https://claude.ai/install.ps1 | iex`。前置是 Claude Pro（$20/月）、Max（$100/月）或 Teams 订阅，也可用按 Token 计费的 API 账户。装完跑 `claude doctor` 自检。"
+
+[[params.faqItems]]
+question = "装完提示 command not found 或 permission denied 怎么办？"
+answer = "command not found 先 `source ~/.zshrc` 重载配置，再用 `echo $PATH | grep -i claude` 检查，必要时手动 `export PATH=$HOME/.claude/bin:$PATH`，最后跑 `claude doctor` 诊断。permission denied 通常是错用了 `sudo npm install -g`——官方明确不要加 sudo，改用 `curl -fsSL https://claude.ai/install.sh | bash` 安装脚本即可。"
+
+[[params.faqItems]]
+question = "CLAUDE.md 是什么？放在哪里生效？"
+answer = "CLAUDE.md 是 Claude Code 每次启动自动读取的项目记忆文件，相当于给 AI 的「入职培训材料」，写技术栈、代码规范、常用命令、禁改目录。位置按优先级合并：`~/.claude/CLAUDE.md` 全局生效不提交 Git，项目根目录 `CLAUDE.md` 团队共享建议提交，`CLAUDE.local.md` 个人配置不提交，子目录 CLAUDE.md 只管该目录。用 `/init` 可以快速生成。"
+
+[[params.faqItems]]
+question = "对话变慢、Token 烧得快怎么办？"
+answer = "先用 `/cost` 看当前消耗，再对症下药：对话太长用 `/compact` 压缩历史或 `/clear` 清空重开；项目太大就用 `@` 指定具体文件，别让 Claude 全局搜索；简单任务切 `claude --model sonnet` 甚至 haiku，复杂架构设计才上 opus。另外精简 CLAUDE.md、完成一个任务就 `/clear`，都能明显省 Token。"
+
+[[params.faqItems]]
+question = "Claude Code 会读到我的 .env 和密钥吗？代码会上传云端吗？"
+answer = "默认不读取 .env，执行敏感操作前也会请求确认。想加固就在 `.claude/settings.json` 的 `deniedTools` 里加 `Read(.env*)`、`Read(**/*.pem)`、`Bash(sudo *)` 这类规则。代码确实会发送到 Anthropic 服务器，但官方不用你的代码训练模型；高度敏感的项目建议走企业版私有部署，或 Amazon Bedrock / Google Vertex AI 版本。"
+
+[[params.faqItems]]
+question = "非程序员能用 Claude Code 吗？"
+answer = "能，而且是文中重点强调的部分。产品经理可以用它快速验证需求可行性，运维可以让它写监控脚本，财务可以让它把 Excel 销售数据自动导进报表系统，行政可以让它写每天整理下载文件夹的 Python 脚本。你只需要用自然语言把需求说清楚，Claude 负责写代码、跑命令、加日志。"
 +++
 ![Claude Code 终端 AI 助手](cover.webp)
 

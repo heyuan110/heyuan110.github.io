@@ -8,6 +8,30 @@ images = ['cover.webp']
 tags = ['traceroute', 'Linux', 'Networking', 'TTL', 'ICMP', 'DevOps', 'CLI']
 categories = ['Linux']
 keywords = ['traceroute command', 'traceroute explained', 'tracert command', 'network diagnostics', 'traceroute linux', 'traceroute options', 'route tracing', 'network troubleshooting', 'traceroute output', 'MTR tool', 'how to use tracert', 'traceroute tutorial']
+
+[[params.faqItems]]
+question = "What is the traceroute command used for?"
+answer = "It maps the network path to a destination and measures the delay at every router along the way, so you can tell which hop is slow or broken. Run `traceroute example.com` on Linux or macOS, or `tracert example.com` on Windows. Ping only tells you whether a single target answers and how long it takes; traceroute is the command you reach for when you need the path and the per-hop latency."
+
+[[params.faqItems]]
+question = "How do I read traceroute output?"
+answer = "Each line is one hop: the hop number, three round-trip times, then the hostname and IP — for example `3  72.14.215.85  8.440 ms  7.046 ms  5.386 ms`. Three probes are sent per hop to expose jitter and load balancing. Read the jumps between consecutive hops, not the absolute numbers: 5 ms at hop 3 followed by 150 ms at hop 4 points at that link, usually a cross-ISP or international leg."
+
+[[params.faqItems]]
+question = "Why do some traceroute hops show three asterisks?"
+answer = "Usually because that router is configured not to reply with ICMP Time Exceeded, or a firewall filters the responses — not because the network is down. Congestion dropping all three probes, or a genuinely unreachable node, are the other possibilities. The rule of thumb: if the final destination answers with healthy latency, `* * *` in the middle is normal security practice and can be ignored."
+
+[[params.faqItems]]
+question = "Which traceroute options are worth knowing on Linux?"
+answer = "Six cover almost everything. `-n` skips DNS lookups, `-m` sets the hop ceiling (default 30), `-q` sets probes per hop (default 3), and `-w` sets the per-probe timeout. `traceroute -n -q 1 example.com` is the fast diagnostic mode. When probes are being filtered, `sudo traceroute -I` switches to ICMP (matching Windows tracert) and `sudo traceroute -T -p 443` uses TCP SYN against a port firewalls usually allow."
+
+[[params.faqItems]]
+question = "Does traceroute need root or sudo?"
+answer = "Not in the default mode. Linux and macOS traceroute sends UDP probes, which any user can do. ICMP mode (`-I`) and TCP mode (`-T`) open raw sockets, so both require `sudo`. Windows `tracert` needs no elevation at all because it only ever uses ICMP. The default hop limit is 30 in every case, adjustable with `-m`, though most real internet paths land in the 15-20 hop range."
+
+[[params.faqItems]]
+question = "Is there a Linux equivalent of Windows pathping?"
+answer = "MTR is the closest match, and arguably better. `mtr www.example.com` merges traceroute with continuous ping: it refreshes in real time and reports packet-loss percentage plus average latency per hop, instead of the single snapshot a one-shot traceroute gives you. Use it whenever a traceroute's numbers look unstable — a single run can be skewed by a momentary spike."
 +++
 
 ![Diagram showing how traceroute works by incrementing TTL to probe each hop along a network path](cover.webp)

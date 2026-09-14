@@ -7,6 +7,31 @@ tags = ['Claude Code', 'Remotion', 'AI Video', 'React', 'Video Production', 'AI 
 categories = ['AI Guides']
 keywords = ['Claude Code Remotion', 'AI video generation', 'programmatic video React', 'Remotion tutorial', 'AI video production']
 toc = true
+
+[[params.faqItems]]
+question = "What is Remotion and who maintains it?"
+answer = "Remotion is an open-source framework that turns React code into real MP4 video. Instead of dragging clips on an After Effects timeline, you write components and run a render command. It was created by Jonny Burger and now has 28K+ GitHub stars and 400K+ monthly npm downloads. The team also ships remotion-best-practices, a skills package for AI coding tools that reached nearly 30K weekly installs after launch."
+
+[[params.faqItems]]
+question = "How do I set up Claude Code to generate Remotion videos?"
+answer = "Two steps. Install Node.js 18 or newer and Claude Code (`npm install -g @anthropic-ai/claude-code`), then run `npx skills add remotion-dev/skills`. That single command gives Claude Code 31 Remotion coding rules covering image and video embedding, fade/spring/easing animations, text animation, Three.js 3D, data visualization and subtitles. After that you describe the video in plain English and Claude creates the project, installs dependencies, writes the code and starts the preview server."
+
+[[params.faqItems]]
+question = "How do I add transitions between clips in Remotion?"
+answer = "Use `TransitionSeries` from `@remotion/transitions` and wrap each scene as a `TransitionSeries.Sequence`, separating them with transition presets imported individually: `@remotion/transitions/slide`, `@remotion/transitions/fade` and `@remotion/transitions/wipe`. Timing comes from `linearTiming` or `springTiming`. In the Douyin Top 10 project built for this article, slide, wipe and fade were alternated between the intro, the ten song cards and the outro."
+
+[[params.faqItems]]
+question = "Is Remotion free for commercial use?"
+answer = "Yes. Remotion is open source and free for both personal and commercial projects, so a product demo or a client video costs you nothing but render time. The one paid piece is Remotion Lambda, the AWS-based parallel cloud renderer, which requires purchasing a license. Everything in the local workflow — `remotion studio` for preview and `remotion render` for export — stays free."
+
+[[params.faqItems]]
+question = "Rendering is slow. How do I speed it up?"
+answer = "Four levers. Drop the resolution with `--scale=0.5`, render a test slice with `--frame-range=0-100`, move long jobs to Remotion Lambda for parallel cloud rendering, and give the machine more RAM — 8GB or more is recommended for HD output. Expect the very first render to be slow regardless, because Remotion downloads Chromium before it can rasterize frames."
+
+[[params.faqItems]]
+question = "How is Remotion different from Sora or Pika?"
+answer = "They solve different problems. Sora and Pika are text-to-video models that hallucinate realistic footage of people and scenes. Remotion renders exactly the frames your code describes, which makes it the right tool for design-driven content: product demos, data reports, animated charts, text animation and logo reveals. If you need pixel-accurate, repeatable and parameterizable output, Remotion wins; if you need photorealistic footage from nothing, it does not compete."
+
 +++
 
 ![Claude Code + Remotion](cover.webp)

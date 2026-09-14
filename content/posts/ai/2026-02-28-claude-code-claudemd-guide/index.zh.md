@@ -7,6 +7,31 @@ toc = true
 tags = ['Claude Code', 'CLAUDE.md', 'Configuration', 'Best Practices']
 categories = ['AI Guides']
 keywords = ['CLAUDE.md 指南', 'CLAUDE.md 教程', 'Claude Code 配置', 'Claude Code 项目上下文', 'CLAUDE.md 最佳实践', 'Claude Code 记忆文件', 'CLAUDE.md 模板']
+
+[[params.faqItems]]
+question = "CLAUDE.md 是什么文件？"
+answer = "CLAUDE.md 是 Claude Code 的记忆文件，一份放在项目根目录的普通 Markdown 文档。每次启动会话时它会被自动加载进上下文，你不需要提醒 Claude 去读。里面写技术栈、常用命令、编码规范和 Git 流程，写一次就长期生效，省掉每次重复交代项目背景。"
+
+[[params.faqItems]]
+question = "CLAUDE.md 应该放在什么位置？"
+answer = "一共三个位置：`~/.claude/CLAUDE.md` 是全局配置，对所有项目生效；`./CLAUDE.md` 放项目根目录并提交到 Git，团队共享同一份上下文；`./CLAUDE.local.md` 同样在根目录，但要加进 `.gitignore`，只放个人覆盖。monorepo 里还能给 frontend/、backend/ 各写一份，Claude 会按当前工作目录自动加载。"
+
+[[params.faqItems]]
+question = "全局配置和项目配置里的规则冲突了，以哪个为准？"
+answer = "以后加载的为准。加载顺序是全局 `~/.claude/CLAUDE.md` → 项目 `./CLAUDE.md` → 个人 `./CLAUDE.local.md`，后面的覆盖前面的。所以全局写「用 4 空格缩进」、项目写「用 2 空格缩进」时，实际生效的是项目的 2 空格；CLAUDE.local.md 的优先级最高。"
+
+[[params.faqItems]]
+question = "怎么快速生成和维护 CLAUDE.md？"
+answer = "四种方式：在项目里执行 `/init`，Claude 会分析 package.json、tsconfig.json 等文件自动生成草稿；对话中用 `#` 开头的一行随手追加规则；输入 `/memory` 打开可视化编辑器分层整理；内容变多时用 `@docs/architecture.md` 这样的引用拆成多个文件。"
+
+[[params.faqItems]]
+question = "CLAUDE.md 写多长合适？哪些内容不该写？"
+answer = "控制在 300 行以内。LLM 能可靠遵循大约 150-200 条独立指令，Claude Code 的系统提示已占掉约 50 条，留给你的最多 150 条。只写 linter 管不了的东西：架构模式、业务约束、工作流规则；缩进、import 排序、尾逗号这些 ESLint 和 Prettier 已经管住的，不要重复写进来。"
+
+[[params.faqItems]]
+question = "CLAUDE.md 和 AGENTS.md 该选哪个？"
+answer = "只用 Claude Code 就写 CLAUDE.md 足够；团队同时用 Cursor、Copilot、Codex CLI，就把内容写进 AGENTS.md，CLAUDE.md 里只留一行 `See @AGENTS.md`，或者直接 `ln -s AGENTS.md CLAUDE.md` 做软链。AGENTS.md 由 Linux 基金会下属的 Agentic AI Foundation 管理，已有超过 6 万个开源仓库采用。"
+
 +++
 
 ![CLAUDE.md 配置指南——为 Claude Code 提供完美项目上下文](cover.webp)

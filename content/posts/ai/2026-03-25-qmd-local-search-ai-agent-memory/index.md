@@ -6,6 +6,30 @@ description = 'Learn how QMD, a local hybrid search engine by Shopify founder To
 toc = true
 tags = ['AI Agent', 'MCP', 'Token Optimization', 'RAG']
 keywords = ['qmd search engine', 'AI agent token optimization', 'local semantic search', 'MCP server memory', 'reduce AI token costs']
+
+[[params.faqItems]]
+question = "What is QMD and who built it?"
+answer = "QMD (Query Markup Documents) is a local search engine written in TypeScript by Tobi Lütke, co-founder and CEO of Shopify. It combines three layers in one pipeline: BM25 full-text search for exact keywords, vector semantic search for meaning, and LLM reranking to order the results. Everything runs on your machine through node-llama-cpp with GGUF models, so there are no API calls and no per-query cost."
+
+[[params.faqItems]]
+question = "How do I install QMD and index my first collection?"
+answer = "Install Bun (or Node.js 20+), then run `bun install -g @tobilu/qmd`. Register a directory with `qmd collection add ./docs --name project-docs --mask '**/*.md'`, generate vectors with `qmd embed`, and confirm the index with `qmd status`. The `--mask` flag takes glob patterns and `--ignore 'node_modules/**'` excludes directories. The first run downloads roughly 2GB of models; after that QMD is fully offline."
+
+[[params.faqItems]]
+question = "Which local models does QMD use and how much disk space do they need?"
+answer = "Three GGUF models, cached at `~/.cache/qmd/models/` and downloaded automatically on first run: `embeddinggemma-300M-Q8_0.gguf` (~300MB) for embeddings, `qwen3-reranker-0.6b-q8_0.gguf` (~600MB) for reranking, and `qmd-query-expansion-1.7B-q4_k_m.gguf` (~1GB) for query expansion. Total footprint is under 2GB. The SQLite index itself stays at a few MB even for thousands of documents."
+
+[[params.faqItems]]
+question = "What is the difference between qmd search, qmd vsearch and qmd query?"
+answer = "`qmd search` is pure BM25 keyword matching and returns in under 10ms — use it for error messages, function names and config keys. `qmd vsearch` is vector similarity at 50-200ms and handles conceptual 'how do I' questions. `qmd query` runs the full pipeline (query expansion, parallel retrieval, RRF fusion, LLM reranking) at 200-500ms. For agent memory retrieval always pick `query`; the extra latency is irrelevant inside an agent loop."
+
+[[params.faqItems]]
+question = "How do I connect QMD to Claude Code as an MCP server?"
+answer = "Add an MCP server entry whose command is `qmd` and whose args are `[mcp]`, which exposes the `query`, `get`, `multi_get` and `status` tools to the agent. If the connection fails, run `which qmd` and use the absolute path instead. For several agents sharing one instance, start a daemon with `qmd mcp --http --port 8181` and check it with `curl http://localhost:8181/health`; the HTTP server keeps models loaded so there is no cold start."
+
+[[params.faqItems]]
+question = "How much does QMD actually cut token usage?"
+answer = "In the memory-recall scenario, an agent that loads MEMORY.md, CLAUDE.md and recent logs burns about 6,500 tokens per request; querying QMD for the three relevant paragraphs costs around 200 tokens — a 97% reduction. Cross-file lookups drop from roughly 8,000 tokens of file reading to about 300, and per-conversation project context from about 5,000 tokens to 500. Because everything runs locally, the ongoing query cost is zero."
 +++
 
 ![QMD local semantic search engine for AI agent memory optimization](cover.webp)

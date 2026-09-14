@@ -7,6 +7,30 @@ toc = true
 tags = ['Claude Code', 'Tips', 'Best Practices', 'Beginner']
 categories = ['AI Guides']
 keywords = ['Claude Code mistakes', 'Claude Code tips', 'Claude Code best practices', 'Claude Code beginner guide', 'how to use Claude Code effectively', 'Claude Code productivity']
+
+[[params.faqItems]]
+question = "What is the most common Claude Code mistake beginners make?"
+answer = "Starting without a CLAUDE.md file. Without it, Claude Code rediscovers your stack, conventions and structure every session, which means more questions, more wrong assumptions and more wasted tokens. Even 20 lines listing your stack, test framework, lint commands and hard rules helps -- developers with a good CLAUDE.md report 40-60% fewer correction rounds."
+
+[[params.faqItems]]
+question = "Should I use Opus or Sonnet in Claude Code?"
+answer = "Default to Sonnet 4.6 and reach for Opus only when the task needs it. Opus costs 1.67x more per token, turning a $10-15 session into $15-25. Keep Sonnet for bug fixes, feature work, code review and tests; switch with `/model opus` for complex multi-file refactors, architecture decisions, subtle logic bugs and unfamiliar codebases. Teams that do this report 30-40% lower cost with no quality loss."
+
+[[params.faqItems]]
+question = "How much does a Claude Code session actually cost?"
+answer = "Run `/cost` after each significant task to find out. Rough benchmarks: a quick bug fix is about $0.15-0.30, a feature implementation $1-3, a major refactor $5-15, and a full-day session $15-40. If a single task pushes a session past $10, something is wrong -- usually Opus left on for everything, or a conversation that was never compacted."
+
+[[params.faqItems]]
+question = "Why does Claude Code get slower and more expensive in long sessions?"
+answer = "Every message in the conversation history is resent with each request, so after 30+ minutes you are paying for thousands of tokens of stale context. Run `/compact` to compress history -- especially when switching to an unrelated task -- which saves 20-30% of tokens in long sessions and speeds up responses. `/clear` is the full reset, and starting a fresh session for new work is often better than either."
+
+[[params.faqItems]]
+question = "How do I stop Claude Code asking permission for every command?"
+answer = "Pre-approve safe commands in your settings permissions allow list, for example Bash(git status), Bash(git diff *), Bash(npm test *), Bash(ls *) and Bash(cat *). This removes 80%+ of permission interruptions while still prompting for anything that writes or pushes. Sandbox mode is the alternative, giving Claude Code freedom inside defined boundaries."
+
+[[params.faqItems]]
+question = "Can I give Claude Code one huge refactor task in a single prompt?"
+answer = "You can, but it goes badly. Mega-prompts run out of context mid-way, lose the plan, and hit the tool call safety limit of 20 calls per turn, leaving partial and inconsistent changes. Split the work: read and explain the current design, draft a plan, implement one piece, add the next, update tests, then run the full suite -- verifying between steps."
 +++
 
 ![10 common Claude Code mistakes beginners make and how to fix them](cover.webp)

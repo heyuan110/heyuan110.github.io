@@ -7,6 +7,30 @@ toc = true
 tags = ['Claude Code', 'Git Worktree', 'Productivity', 'Parallel Development']
 categories = ['AI Guides']
 keywords = ['Claude Code worktree', 'Claude Code 并行开发', 'git worktree 教程', 'Claude Code -w', '多个 Claude 会话', 'Claude Code 效率提升']
+
+[[params.faqItems]]
+question = "Claude Code worktree 怎么用？一条命令是什么？"
+answer = "`claude -w feature-auth`。这条命令会在 `<仓库根>/.claude/worktrees/feature-auth/` 建目录，从默认远程分支切出 `worktree-feature-auth` 分支，并在里面启动 Claude Code。不想起名就直接 `claude -w`，会自动生成随机名。记得把 `.claude/worktrees/` 加进 `.gitignore`。"
+
+[[params.faqItems]]
+question = "退出 worktree 会话后目录会自动清理吗？"
+answer = "会，但分两种情况。如果没有未提交改动、也没有新提交，Claude Code 直接删掉 worktree 目录和对应分支，探索性会话不留垃圾。如果有改动或提交，会弹出选择：Keep 保留目录和分支（之后用 `claude --resume` 接着做），Delete 则连未提交的改动一起删干净。"
+
+[[params.faqItems]]
+question = "Claude Code 能同时跑多个任务并行开发吗？"
+answer = "能。开两个终端，一个跑 `claude -w feature-auth`、另一个跑 `claude -w optimize-queries`，各自独立目录、独立分支、互不污染上下文。Git 不允许两个 worktree 检出同一分支，所以 Claude Code 自动按 `worktree-<名字>` 命名。incident.io 团队常态化跑 4-5 个并行实例。"
+
+[[params.faqItems]]
+question = "并行 worktree 真的比 stash 切分支快多少？"
+answer = "incident.io 给过实测数字：一个预估 2 小时的 JavaScript 编辑器改造，拆成互相独立的子任务丢给多个并行实例后，10 分钟完成。前提是任务真的独立——两个任务改同一批文件照样会冲突。他们从试用到全面采用花了约四个月，建议先从一个 worktree 起步。"
+
+[[params.faqItems]]
+question = "每个 worktree 占多少磁盘？会不会撑爆硬盘？"
+answer = "worktree 本身只复制被 Git 跟踪的源码，`.git` 目录是所有 worktree 共享的，所以创建几乎瞬时。真正吃空间的是依赖：每个 worktree 都要单独装一遍，典型 Node.js 项目每个 200-500 MB 的 `node_modules`。用 pnpm 的内容寻址存储做跨项目去重可以显著压下来。"
+
+[[params.faqItems]]
+question = "新建的 worktree 里代码跑不起来，为什么？"
+answer = "因为 worktree 只含 Git 跟踪的文件，`node_modules/`、`venv/`、`vendor/` 和 `.env` 这些被忽略的路径都不在。先执行 `npm install` 或 `pip install -r requirements.txt`，再把环境变量文件复制过去：`cp .env .claude/worktrees/<名字>/.env`，或者做个软链 `ln -s ../../.env .env`。把这条规则写进 CLAUDE.md 就不用每次交代。"
 +++
 
 ![Claude Code worktree 模式运行多个并行 AI 编码会话](cover.webp)

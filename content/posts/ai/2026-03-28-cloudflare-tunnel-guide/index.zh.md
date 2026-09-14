@@ -6,6 +6,27 @@ description = '内网穿透怎么选？SSH 反向隧道、frp、Cloudflare Tunne
 toc = true
 tags = ['Cloudflare', 'Networking', 'DevOps', 'Tunneling']
 keywords = ['内网穿透', 'Cloudflare Tunnel 教程', 'SSH 反向隧道', 'frp 配置', 'ngrok 替代方案', '本地服务公网访问', 'NAT 穿透', 'localhost 公网']
+
+[[params.faqItems]]
+question = "Cloudflare Tunnel 做内网穿透要花钱吗？"
+answer = "免费。唯一的前提是有一个 DNS 托管在 Cloudflare 的域名，免费套餐就够用，不需要 VPS、公网 IP、端口转发，TLS 证书也由 Cloudflare 在边缘自动签发。作为对比，SSH 反向隧道和 frp 都得先有一台公网服务器，成本大约每月 5-20 美元。"
+
+[[params.faqItems]]
+question = "Cloudflare Tunnel 的原理是什么？为什么不用公网 IP 也能访问？"
+answer = "靠出站连接。`cloudflared` 启动时会主动向 Cloudflare 建立 4 条持久连接，分布在至少 2 个数据中心，使用 TLS 1.3 加后量子加密。全部是出站流量，防火墙不需要任何入站规则。用户访问域名时先解析到 Cloudflare 的 Anycast IP，边缘节点再沿着这条已建立的连接把请求回送到你本机的端口。"
+
+[[params.faqItems]]
+question = "Cloudflare Tunnel 怎么配置？大概几步？"
+answer = "六步。`brew install cloudflared` 安装，`cloudflared tunnel login` 授权域名，`cloudflared tunnel create` 建隧道，在 `~/.cloudflared/config.yml` 写 ingress 规则把 hostname 映射到 `http://localhost:8080`（结尾必须有 `- service: http_status:404` 兜底），再 `cloudflared tunnel route dns` 配 DNS，最后 `cloudflared tunnel run` 启动。"
+
+[[params.faqItems]]
+question = "想把内网的 SSH 或数据库暴露出去，该用哪个方案？"
+answer = "用 frp。Cloudflare Tunnel 只支持 HTTP/HTTPS，穿透不了任意 TCP/UDP。frp 在 frpc.toml 里写一段 type 设为 tcp、`localPort = 22`、`remotePort = 6022`，之后 `ssh -p 6022 user@server-ip` 就直连本机。临时用一次也可以直接 `ssh -R 8080:127.0.0.1:8080 user@server-ip`，但 SSH 隧道断线不会自动重连，要配 autossh。"
+
+[[params.faqItems]]
+question = "内网穿透会让速度变慢吗？三种方案怎么选？"
+answer = "都会多一跳。SSH 和 frp 多经过你自己的 VPS，Cloudflare Tunnel 走最近的边缘节点，可以在启动日志的 location 字段看到接入的机房。如果 VPS 离用户更近，自建方案通常更快；静态资源则因为有 Cloudflare 缓存反而更快。临时演示用 SSH 隧道，要 TCP/UDP 用 frp，要长期稳定零维护就用 Cloudflare Tunnel。"
+
 +++
 
 ![内网穿透实战 — SSH 隧道、frp、Cloudflare Tunnel 三种方案深度对比](cover.webp)

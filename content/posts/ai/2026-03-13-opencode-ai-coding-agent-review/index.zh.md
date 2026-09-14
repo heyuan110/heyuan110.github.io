@@ -6,6 +6,30 @@ description = 'OpenCode 深度评测：两周实测这个 GitHub 12 万星的 MI
 toc = true
 tags = ['OpenCode', 'AI Agent', 'Coding Tools', 'CLI', 'Developer Tools']
 keywords = ['OpenCode 评测', '开源编程代理', 'OpenCode vs Claude Code', 'AI编程工具对比', '终端AI助手']
+
+[[params.faqItems]]
+question = "OpenCode 是哪个公司做的？"
+answer = "OpenCode 出自 Anomaly 团队，也就是做 SST（Serverless Stack，2.5 万星）的那帮人，核心开发者 Dax（GitHub ID: thdxr）同时也是 terminal.shop 和 OpenAuth 的作者。名字有段公案：OpenCode 原本是 Kujtim Hoxha 用 Go 写的终端工具（1.1 万星），同名发布后原版被迫归档，改名 Crush 在 Charm 旗下继续开发。"
+
+[[params.faqItems]]
+question = "OpenCode 能替代 Claude Code 吗？"
+answer = "两周实测的结论是还不能完全替代。OpenCode 赢在 LSP 自修正、75+ 模型提供商和按命令粒度的权限；Claude Code 赢在稳定性、长会话上下文、MCP 生态、Hooks 和文档。具体短板：上下文超过约 10 万 token 后响应变慢且质量下降，两周里有 3 次补丁无法正确应用，内存吃到约 1.2GB（Claude Code 约 400MB）。"
+
+[[params.faqItems]]
+question = "OpenCode 的 LSP 自修正到底是什么？"
+answer = "它是 OpenCode 最硬的差异化能力。执行 `/init` 后会自动下载并启动对应语言的 LSP 服务器（支持约 40 种语言），代理每写一段代码 LSP 立刻回报类型错误，代理自动改完再继续。实测重命名一个 TypeScript 核心接口，一次性捕获了 40+ 文件的下游类型错误，全程不用手动跑 `tsc`。缺点是仍属实验性，且多占 200-500MB 内存。"
+
+[[params.faqItems]]
+question = "OpenCode 收费吗？Zen 要多少钱？"
+answer = "OpenCode 本体 MIT 开源、完全免费，只需自带模型 API Key。官方的 Zen 模型代理服务起步 $20，余额低于 $5 自动充值，号称零加价。横向对比：Claude Code 的 Max 套餐约 $100/月，Cursor $20/月。已有 GitHub Copilot 订阅的话，可以把 OpenCode 路由过去，相当于用旧订阅换一套 Claude Code 级体验。"
+
+[[params.faqItems]]
+question = "OpenCode 有安全风险吗？"
+answer = "有前科。客户端-服务器架构会在本地 4096 端口开一个代理服务器，因为没做认证，曾导致一个 CVSS 评分约 10 分的未认证远程代码执行漏洞——任何网站都能在你机器上执行任意代码。据报已修复，但单体架构的工具天然没有这个攻击面。缓解办法是用它的按命令权限，把 `rm -rf *` 设成 deny、`git push *` 设成 ask。"
+
+[[params.faqItems]]
+question = "除了 OpenCode，还有哪些同类工具可以选？"
+answer = "看你缺什么。要稳定成熟、依赖 MCP 生态和 Hooks，留在 Claude Code；要 IDE 内的体验选 Cursor（$20/月）；要显式控制上下文与 token 用量、每步改动自动 Git 提交，选 Aider（Apache 2.0 开源，启动最快、占用最小）。四个里只有 OpenCode 同时给你模型自由和 LSP 自修正。"
 +++
 
 ![OpenCode开源AI编程代理终端界面与架构概览](cover.webp)

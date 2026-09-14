@@ -6,6 +6,30 @@ description = 'QMD 是 Shopify CEO Tobi Lütke 开源的本地语义搜索引擎
 toc = true
 tags = ['AI Agent', 'MCP', 'Token Optimization', 'RAG']
 keywords = ['QMD 本地搜索', 'AI Agent Token 优化', '语义搜索引擎', 'MCP 记忆服务器', '减少 Token 消耗', 'AI 成本优化']
+
+[[params.faqItems]]
+question = "QMD 是什么？谁做的？"
+answer = "QMD（Query Markup Documents）是一个完全跑在本地的搜索引擎，用 TypeScript 写成，作者是 Shopify 联合创始人兼 CEO Tobi Lütke。它把三层技术串成一条管线：BM25 全文检索负责关键词精确匹配，向量语义搜索负责理解意思，LLM 重排序负责挑出真正有用的结果。三层都通过 node-llama-cpp 加载 GGUF 小模型本地运行，零 API 调用、搜索次数不限也不花钱。"
+
+[[params.faqItems]]
+question = "QMD 怎么安装？第一个记忆库怎么建？"
+answer = "先装 Bun（或 Node.js 20+），然后 `bun install -g @tobilu/qmd`。接着用 `qmd collection add ./docs --name project-docs --mask '**/*.md'` 注册文档集合，`qmd embed` 生成向量，`qmd status` 查看索引状态。`--mask` 支持 glob，配合 `--ignore 'node_modules/**'` 可以排除目录。首次运行会下载约 2GB 模型，之后完全离线。"
+
+[[params.faqItems]]
+question = "QMD 用了哪几个本地模型？占多少磁盘？"
+answer = "三个 GGUF 模型，首次运行自动下载并缓存在 `~/.cache/qmd/models/`：`embeddinggemma-300M-Q8_0.gguf` 约 300MB 做向量化，`qwen3-reranker-0.6b-q8_0.gguf` 约 600MB 做重排序，`qmd-query-expansion-1.7B-q4_k_m.gguf` 约 1GB 做查询扩展，总共不到 2GB。SQLite 索引本身很小，几千篇文档也只有几 MB。"
+
+[[params.faqItems]]
+question = "search、vsearch、query 三种搜索模式该用哪个？"
+answer = "`qmd search` 是纯 BM25 关键词检索，10ms 以内出结果，适合找函数名、报错信息、配置项。`qmd vsearch` 是向量语义搜索，50-200ms，适合「怎么做 XX」这类概念性问题。`qmd query` 跑完整管线（查询扩展 + 双路检索 + RRF 融合 + LLM 重排序），200-500ms，精度最高。给 Agent 用永远选 `query`，这点延迟在 Agent 工作流里可以忽略。"
+
+[[params.faqItems]]
+question = "怎么把 QMD 接到 Claude Code 当 MCP 服务器？"
+answer = "在 MCP 配置里加一个服务器，command 填 `qmd`，args 填 `[mcp]`，Agent 就能用到 `query`、`get`、`multi_get`、`status` 四个工具。连不上先跑 `which qmd`，把绝对路径填进去。多个 Agent 共用时改成常驻守护进程 `qmd mcp --http --port 8181`，用 `curl http://localhost:8181/health` 检查；HTTP 模式下模型常驻显存，没有冷启动延迟。"
+
+[[params.faqItems]]
+question = "用了 QMD 到底能省多少 Token？"
+answer = "回忆用户偏好这个场景：原来要把 MEMORY.md、CLAUDE.md、历史对话一股脑塞进去，约 6500 token；换成向 QMD 查询后只拿回 3 段相关内容，约 200 token，降幅 97%。跨文件检索从约 8000 token 降到约 300，每轮对话的项目上下文从约 5000 token 降到约 500。而且全本地运行，查询本身不产生任何费用。"
 +++
 
 ![QMD 本地语义搜索引擎——AI Agent 记忆优化利器](cover.webp)

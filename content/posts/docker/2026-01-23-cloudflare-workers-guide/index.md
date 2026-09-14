@@ -8,6 +8,34 @@ images = ['cover.webp']
 tags = ['Cloudflare', 'Workers', 'Serverless', 'Edge Computing', 'CDN']
 categories = ['Docker']
 keywords = ['Cloudflare Workers', 'edge computing', 'serverless', 'API proxy', 'Wrangler', 'Workers KV', 'D1 database']
+
+[[params.faqItems]]
+question = "What is Cloudflare Workers and how does edge computing work here?"
+answer = "Cloudflare Workers is a serverless platform that runs your JavaScript, TypeScript or WASM code across 300+ data centers worldwide. Instead of routing a request to one server in one region, it executes on the edge node nearest the user. It runs on V8 isolates rather than containers or VMs, which is why cold starts stay under 5 ms while AWS Lambda takes 100 ms to several seconds."
+
+[[params.faqItems]]
+question = "What is included in the Cloudflare Workers free tier?"
+answer = "The free plan gives you 100,000 requests per day (about 3 million per month), 10 ms of CPU time per request, Workers KV at 100K reads and 1K writes per day with 1 GB storage, D1 at 5M row reads and 100K row writes per day with 5 GB storage, unlimited static assets, and unbilled sub-requests. Outbound fetches from your Worker cost nothing, so personal blogs, small tools and API proxies usually run at $0."
+
+[[params.faqItems]]
+question = "How much does Cloudflare Workers cost once you exceed the free tier?"
+answer = "The paid plan starts at $5/month and includes 10 million requests, then charges $0.30 per additional million. It also raises CPU time to 5 minutes per request and lifts KV to 10M reads / 1M writes per month and D1 to 2.5B row reads / 50M row writes. Worked examples from this guide: 50,000 requests/day still costs $0, 500,000/day costs $5, and 5,000,000/day lands around $6.50."
+
+[[params.faqItems]]
+question = "How do I deploy my first Worker with Wrangler?"
+answer = "You need a free Cloudflare account and Node.js 16.17.0 or later. Run `npx wrangler login` to authorize the CLI, scaffold with `npm create cloudflare@latest -- my-first-worker`, test locally with `npx wrangler dev` (it serves on http://localhost:8787 with hot reload), then ship with `npx wrangler deploy`. Your Worker goes live at a workers.dev subdomain in a couple of seconds."
+
+[[params.faqItems]]
+question = "When should I not use Cloudflare Workers?"
+answer = "Skip Workers for compute that runs longer than 30 seconds (use Queues plus Durable Objects), apps needing more than 128 MB of memory (use a traditional VM), code that requires the full Node.js API (Vercel Functions is a better fit), database-heavy workloads that blow past KV and D1 caps, and persistent WebSocket connections, which need Durable Objects. Workers suits short-lived, stateless requests that benefit from global low latency."
+
+[[params.faqItems]]
+question = "What is the difference between Workers and Pages Functions?"
+answer = "Pages Functions are part of Cloudflare Pages and exist to add backend logic to a static site; under the hood they run on the Workers runtime, but the deployment model and typical use cases differ. Pick Pages Functions when the site is the product and the API is an accessory, and standalone Workers when the API, proxy or gateway is the product itself."
+
+[[params.faqItems]]
+question = "Does Cloudflare Workers support WebSocket and large file uploads?"
+answer = "A basic Worker can proxy a WebSocket connection through, but holding WebSocket state inside the Worker requires Durable Objects, which is a paid feature. For uploads, the request body limit is 100 MB on the paid plan — anything larger should go to R2 Storage with presigned upload URLs rather than through the Worker."
 +++
 
 ![Cloudflare Workers serverless platform official cover](cover.webp)

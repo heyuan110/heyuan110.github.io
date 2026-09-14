@@ -6,6 +6,27 @@ description = 'Three battle-tested ways to expose local dev services to the inte
 toc = true
 tags = ['Cloudflare', 'Networking', 'DevOps', 'Tunneling']
 keywords = ['expose localhost', 'Cloudflare Tunnel', 'SSH reverse tunnel', 'frp tunnel', 'ngrok alternative', 'NAT traversal', 'internal network penetration']
+
+[[params.faqItems]]
+question = "How do I expose http://127.0.0.1:8080 to the internet with Cloudflare Tunnel?"
+answer = "Six commands. Install with `brew install cloudflared`, run `cloudflared tunnel login` to authorize a domain, then `cloudflared tunnel create my-tunnel`. In `~/.cloudflared/config.yml` add an ingress rule mapping `hostname: app.example.com` to `service: http://localhost:8080`, ending with the mandatory catch-all `- service: http_status:404`. Finally run `cloudflared tunnel route dns my-tunnel app.example.com` and `cloudflared tunnel run my-tunnel`."
+
+[[params.faqItems]]
+question = "Is Cloudflare Tunnel free, and what do I need before I start?"
+answer = "It is free, and the only prerequisite is a domain whose DNS is managed by Cloudflare — the free plan is enough. You need no VPS, no public IP, no port forwarding and no TLS certificate of your own, because Cloudflare terminates TLS at the edge. By comparison, the SSH reverse tunnel and frp approaches both require a public server, which typically runs $5-20 a month."
+
+[[params.faqItems]]
+question = "frp or Cloudflare Tunnel — which one should I choose?"
+answer = "Choose frp when you need to tunnel arbitrary TCP or UDP: databases, SSH on port 22, Redis, game servers. Cloudflare Tunnel handles HTTP and HTTPS only. Choose frp also when data sovereignty matters, since traffic never leaves your own VPS. Choose Cloudflare Tunnel when you want zero infrastructure, automatic TLS and built-in high availability across 300+ edge locations. frp costs you a VPS plus its upkeep; Cloudflare Tunnel costs nothing but routes traffic through Cloudflare."
+
+[[params.faqItems]]
+question = "How do I keep a tunnel running 24/7 and restart it automatically after a reboot?"
+answer = "For Cloudflare Tunnel, run `sudo cloudflared service install` then `sudo systemctl enable cloudflared` on Linux (or `sudo launchctl start com.cloudflare.cloudflared` on macOS); cloudflared already holds four persistent connections across at least two data centers, and you can run up to 25 replicas for HA. frp reconnects natively. Plain SSH does not — wrap it in `autossh -M 20000 -R 8080:127.0.0.1:8080 -N user@server-ip` with `ServerAliveInterval=60`."
+
+[[params.faqItems]]
+question = "Why do I get 'Blocked request - host not allowed' or a 502 Bad Gateway through the tunnel?"
+answer = "The first error comes from your dev server, not the tunnel: Vite, Next.js and Webpack Dev Server reject unknown hostnames. Add `allowedHosts: ['app.example.com']` to `vite.config.ts`, or `allowedDevOrigins` to `next.config.js`. A 502 means Cloudflare reached cloudflared but cloudflared could not reach your local service — check that the service is actually running, that the port in `config.yml` is right, and try swapping `localhost` for `127.0.0.1`."
+
 +++
 
 ![Expose localhost to the internet — SSH tunnels, frp, and Cloudflare Tunnel compared](cover.webp)

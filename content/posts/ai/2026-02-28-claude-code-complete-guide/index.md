@@ -7,6 +7,30 @@ toc = true
 tags = ['Claude Code', 'Guide', 'Tutorial', 'AI Coding Tools']
 categories = ['AI Guides']
 keywords = ['Claude Code guide', 'Claude Code tutorial', 'Claude Code 2026', 'how to use Claude Code', 'Claude Code complete guide', 'Claude Code for beginners', 'Claude Code advanced', 'Claude Code features']
+
+[[params.faqItems]]
+question = "What is Claude Code and how is it different from Copilot or Cursor?"
+answer = "Claude Code is Anthropic's terminal-based AI coding agent. Traditional AI coding tools behave like smart autocomplete: they see the current file and suggest the next few lines. Claude Code is agentic — give it a task such as add JWT authentication and it reads the codebase, plans the change across files, writes routes, middleware, tests and config, runs your test suite, then fixes failures and iterates. The tradeoff is higher token usage and more trust placed in the agent."
+
+[[params.faqItems]]
+question = "How much does Claude Code cost in 2026?"
+answer = "Claude Code is covered by the Claude subscription plans: Free, Pro at $20/month, Max 5x at $100/month, Max 20x at $200/month, plus Team and Enterprise tiers. You can also pay per token through the API. Every plan is subject to a dual-layer limit system — messages per 5-hour window plus a weekly cap — so the plan you need depends on session volume rather than raw feature access."
+
+[[params.faqItems]]
+question = "What is CLAUDE.md and is it worth writing?"
+answer = "CLAUDE.md is the project context file Claude Code reads at the start of every session, and it is the single highest-impact configuration you can add. A well-written one cuts token usage by roughly 20-30% because the agent does not have to rediscover your project structure each time. It works as a three-layer system — global, project and directory level — so team conventions live at the repo root while per-directory rules stay local."
+
+[[params.faqItems]]
+question = "What is the difference between Hooks and Skills in Claude Code?"
+answer = "Hooks are deterministic automation rules that override AI behavior: they fire on lifecycle events such as PreToolUse and PostToolUse, and are used for auto-formatting on save, protecting sensitive files from modification and blocking dangerous shell commands. Skills are reusable domain knowledge packaged in SKILL.md files that the agent invokes on demand, typically through slash commands. Use Hooks to enforce rules, Skills to teach workflows."
+
+[[params.faqItems]]
+question = "How do I run multiple Claude Code tasks in parallel?"
+answer = "Two mechanisms handle parallelism. Worktree mode (`claude -w`) uses git worktrees so several sessions run on isolated checkouts without branch conflicts, with automatic cleanup of temporary worktrees. Agent Teams instead coordinates a lead agent and sub-agents against a shared task list, which suits one complex task split across components. Use Worktree for independent features and Teams when the subtasks need to stay coordinated."
+
+[[params.faqItems]]
+question = "How can I reduce Claude Code token costs?"
+answer = "Stack five habits: make Sonnet the default model since it covers around 80% of tasks at far lower token cost than Opus, write a detailed CLAUDE.md so the agent stops rediscovering your structure, set up Hooks for auto-formatting so you spend fewer correction rounds, run `/cost` in every session to watch spending, and start a fresh session for unrelated tasks instead of dragging stale context along."
 +++
 
 ![Complete Claude Code guide covering all features and workflows in 2026](cover.webp)

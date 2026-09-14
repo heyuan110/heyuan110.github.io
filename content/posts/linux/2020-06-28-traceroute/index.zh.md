@@ -8,6 +8,30 @@ images = ['cover.webp']
 tags = ['traceroute', 'Linux', 'Networking', 'TTL', 'ICMP', 'DevOps', 'CLI']
 categories = ['Linux']
 keywords = ['traceroute 命令详解', 'traceroute 用法', '网络诊断命令', 'traceroute linux', 'tracert 命令', '路由追踪', 'traceroute 参数', '网络故障排查', 'traceroute 输出解读', 'MTR 工具', '如何使用 tracert', 'traceroute 教程']
+
+[[params.faqItems]]
+question = "路由追踪用什么命令？Linux 和 Windows 一样吗？"
+answer = "不一样。Linux 和 macOS 用 `traceroute example.com`，默认发 UDP 探测包；Windows 用 `tracert example.com`，默认走 ICMP。所以同一条链路在两个系统上跑出来的结果常常不同——防火墙对两种协议的处理策略不一样。想在 Linux 上复现 Windows 的结果，加 `-I` 切到 ICMP 模式即可。"
+
+[[params.faqItems]]
+question = "traceroute 的输出怎么看？"
+answer = "每一行是一跳：跳数、三个往返时延、主机名和 IP，例如 `3  72.14.215.85  8.440 ms  7.046 ms  5.386 ms`。默认每跳发 3 个包，用来暴露抖动和负载均衡。看的是相邻两跳之间的跳变，不是绝对值——第 3 跳 5 ms、第 4 跳 150 ms，瓶颈就在这段链路上。"
+
+[[params.faqItems]]
+question = "某些跳显示 `* * *`，是网络出问题了吗？"
+answer = "多数情况不是。最常见的原因是该路由器被配置为不回 ICMP 超时报文，或者防火墙把响应过滤掉了，这是正常的安全策略。当然也可能是拥塞导致三个探测包全丢，或节点确实不可达。判断标准很简单：只要最终目标能正常响应、延迟也正常，中间的 `* * *` 可以忽略。"
+
+[[params.faqItems]]
+question = "traceroute 常用参数有哪些？"
+answer = "`-n` 不做 DNS 反查、`-m` 设最大跳数（默认 30）、`-q` 设每跳探测次数（默认 3）、`-w` 设超时。快速排查用 `traceroute -n -q 1 example.com`。探测包被拦时换协议：`sudo traceroute -I` 走 ICMP，`sudo traceroute -T -p 443` 用 TCP SYN 打常开端口，往往能穿过防火墙。"
+
+[[params.faqItems]]
+question = "traceroute 需要 sudo 吗？最多能追多少跳？"
+answer = "默认的 UDP 模式不需要，普通用户就能跑。但 `-I`（ICMP）和 `-T`（TCP）要创建原始套接字，Linux 和 macOS 上都得加 `sudo`；Windows 的 tracert 全程走 ICMP，不需要提权。默认最多追 30 跳，可用 `-m` 调整，实际互联网路径大多在 15-20 跳以内。"
+
+[[params.faqItems]]
+question = "延迟数字忽高忽低不可信，怎么办？"
+answer = "改用 MTR。`mtr www.example.com` 把 traceroute 和持续 ping 合在一起，实时刷新并统计每一跳的丢包率和平均延迟，比单次 traceroute 的瞬时快照可靠得多。单跑一次 traceroute 很容易被一瞬间的抖动带偏，多跑几次对比也是办法。"
 +++
 
 ![Traceroute 工作原理图解，展示 TTL 递增探测网络路径的过程](cover.webp)

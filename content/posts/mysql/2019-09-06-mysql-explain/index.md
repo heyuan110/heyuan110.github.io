@@ -7,6 +7,30 @@ toc = true
 tags = ["MySQL", "EXPLAIN", "SQL Optimization", "Performance Tuning", "Index", "Database"]
 categories = ["MySQL"]
 keywords = ["MySQL EXPLAIN", "execution plan", "SQL optimization", "query performance", "index optimization", "EXPLAIN type"]
+
+[[params.faqItems]]
+question = "What does MySQL EXPLAIN actually show?"
+answer = "EXPLAIN returns one row per table involved in the query, with 12 columns: id, select_type, table, partitions, type, possible_keys, key, key_len, ref, rows, filtered and Extra. Start with four of them: `type` (the access method), `key` (the index actually chosen), `rows` (estimated rows examined) and `Extra` (warnings such as Using filesort). The other eight are context."
+
+[[params.faqItems]]
+question = "Which EXPLAIN type values are fast enough?"
+answer = "MySQL ranks access types from best to worst as system > const > eq_ref > ref > fulltext > ref_or_null > index_merge > unique_subquery > index_subquery > range > index > ALL. Aim for `range` at minimum and `ref` or better when you can. `ALL` is a full table scan and `index` is a full index scan -- both are red flags on a large table and usually mean a missing index."
+
+[[params.faqItems]]
+question = "What is the difference between EXPLAIN and EXPLAIN ANALYZE?"
+answer = "Plain EXPLAIN only asks the optimizer for its plan and never touches your data. `EXPLAIN ANALYZE`, added in MySQL 8.0.18, actually runs the query and reports real execution time, actual row counts and loop iterations for each step, so you can compare the optimizer estimate against reality. Because it really executes, be careful with statements that modify data."
+
+[[params.faqItems]]
+question = "How do I see the query cost in MySQL?"
+answer = "Run `EXPLAIN FORMAT=JSON SELECT ...` -- the JSON output carries a cost_info block with the optimizer cost estimate, which the default tabular format hides, plus the exact index parts used. MySQL 8.0 also supports `FORMAT=TREE` to show execution order, and `SHOW WARNINGS` right after an EXPLAIN reveals how the optimizer rewrote your query."
+
+[[params.faqItems]]
+question = "How do I get rid of Using filesort in the Extra column?"
+answer = "Add a composite index whose leading column matches the WHERE clause and whose trailing column matches the ORDER BY. For `SELECT * FROM orders WHERE user_id = 100 ORDER BY created_at`, running `ALTER TABLE orders ADD INDEX idx_user_created(user_id, created_at)` removes the filesort and turns Extra into Using index condition. Sorting on an unindexed column always forces an extra sort pass."
+
+[[params.faqItems]]
+question = "What does key_len tell me about a composite index?"
+answer = "key_len is the number of index bytes MySQL actually uses, so it tells you how many columns of a composite index are active. With idx_name_age(name, age) where name is VARCHAR(50) and age is INT, filtering on name alone gives key_len 152 (50x3 + 2); adding age = 25 raises it to 157 (+4 for INT, +1 for the NULL flag). INT is 4 bytes, BIGINT 8, DATE 3, DATETIME 8."
 +++
 ![MySQL EXPLAIN execution plan analysis](cover.webp)
 

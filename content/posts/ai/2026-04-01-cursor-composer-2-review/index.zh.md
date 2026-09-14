@@ -6,6 +6,30 @@ description = 'Cursor Composer 2 深度评测：2026 年 3 月 19 日发布，�
 toc = true
 tags = ['Cursor', 'Composer 2', 'AI Coding Tools', 'Kimi K2.5', 'Claude Code']
 keywords = ['Cursor Composer 2 评测', 'Kimi K2.5 争议', 'Composer 2 对比 Claude Code', 'AI 编程工具 2026', '月之暗面']
+
+[[params.faqItems]]
+question = "Composer 2 是什么模型？和 Kimi K2.5 是什么关系？"
+answer = "Composer 2 是 Cursor 自研的编程模型，底座是月之暗面 2026 年初开源的 MoE 模型 Kimi K2.5。Cursor 在底座上做了两阶段训练：先用代码密集数据继续预训练，再用内部平台 Anyrun（数十万个沙盒编码环境）做大规模强化学习。2026 年 3 月 19 日的发布稿没提底座，是开发者从 API 配置里的 `kimi-k2p5-rl-0317-s515-fast` 扒出来的。"
+
+[[params.faqItems]]
+question = "Cursor 为什么会因为 Kimi K2.5 被骂？"
+answer = "因为许可证要求署名而它没署。Kimi K2.5 的商业许可规定：月活超 100 万或月收入超 2000 万美元的产品，必须在显著位置标注来源。Cursor 年化收入约 20 亿美元，远超门槛。3 月 21 日开发者 Fynn 在 API 配置里发现 Kimi 标识，3 月 22 日 TechCrunch 报道，联合创始人 Aman Sanger 承认是疏忽，22 至 23 日才补上署名。"
+
+[[params.faqItems]]
+question = "Cursor 说 75% 算力是自己的，这个说法成立吗？"
+answer = "不太成立。产品副总裁 Lee Robinson 称约 75% 算力花在自家继续预训练和 RL 上、只有 25% 来自底座，但算力占比不等于贡献占比。底座提供的是核心语言理解能力、让推理高效的 MoE 架构和基础编码知识，RL 只能精炼和引导已有能力，不能凭空造出来。Cursor 技术报告自己也写了：更好的底座知识能可靠转化为更好的 Agent。"
+
+[[params.faqItems]]
+question = "Composer 2 跑分怎么样？比 Claude Opus 4.6 强吗？"
+answer = "CursorBench 61.3（Composer 1.5 是 44.7），SWE-bench Multilingual 73.7，Terminal-Bench 2.0 拿到 61.7，对比 Claude Opus 4.6 的 58.0。但要看语境：CursorBench 是 Cursor 自家基准，在自家环境、用自家工具测自家专门训练过的模型，有主场优势；Terminal-Bench 相对中立，领先 3.7 分统计上有效、单次使用几乎感受不到；SWE-bench Multilingual 的 73.7 最扎实。"
+
+[[params.faqItems]]
+question = "Composer 2 多少钱？比 Claude 便宜多少？"
+answer = "标准模式输入 $0.50/M、输出 $2.50/M；快速模式输入 $1.50/M、输出 $7.50/M。对比 Claude Opus 4.6 的 $15/M 输入、$75/M 输出，以及 Sonnet 4.5 的 $3/M 和 $15/M，Composer 2 的输入 token 价格只有 Opus 4.6 的约 1/30。高频日常编码省钱效果明显，但需要深度推理时省这点钱反而亏时间。"
+
+[[params.faqItems]]
+question = "Composer 2 和 Claude Code 该选哪个？"
+answer = "建议都用，分工不同。Composer 2 负责 80% 的日常活：补全、小改动、行内 diff、IDE 内多文件编辑，快且便宜。Claude Code 负责 20% 的硬骨头：它有 100 万 token 上下文窗口，而 Composer 2 只有 20 万，大型重构、跨文件 debug、安全审计和架构决策靠的就是这个。Claude Code 还跑在终端里，不绑定编辑器。"
 +++
 
 ![Cursor Composer 2 — 当西方产品遇上东方底座模型](cover.webp)

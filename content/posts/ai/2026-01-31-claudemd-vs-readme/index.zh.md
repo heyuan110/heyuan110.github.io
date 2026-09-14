@@ -7,6 +7,30 @@ tags = ['Claude Code', 'CLAUDE.md', 'AGENTS.md', 'AI Agent', 'Anthropic']
 categories = ['AI']
 keywords = ['CLAUDE.md 怎么写', 'CLAUDE.md vs README.md', 'AGENTS.md', 'Claude Code 记忆系统', 'AI Agent 项目配置']
 toc = true
+
+[[params.faqItems]]
+question = "README.md 是什么文件？和 CLAUDE.md 有什么区别？"
+answer = "README.md 是给人看的项目说明，回答「这个项目是什么、怎么跑、目录长什么样」，可以用表格、树形图、链接，视觉优先。CLAUDE.md 是给 AI Agent 看的指令集，Claude Code 每次启动自动加载，只写祈使句规则，用紧凑列表和代码块换 token 效率。两者读者不同，不应互相替代。"
+
+[[params.faqItems]]
+question = "哪些内容该写进 CLAUDE.md，哪些该留在 README？"
+answer = "Git 提交规则、代码规范、测试约定、开发流程只写进 CLAUDE.md——新同事入职用不上，但 AI 每改一次代码都要判断要不要提交。项目是什么、环境要求、功能介绍、License 只写进 README。技术栈和启动命令两边都写，CLAUDE.md 里压成一行。Roadmap 和 TODO 两边都别写，丢给 Issues。"
+
+[[params.faqItems]]
+question = "CLAUDE.md 写多长合适？写越多 AI 越听话吗？"
+answer = "控制在 300 行以内，写多了反而更不听话。Builder.io 的指南提到 AI 能稳定遵守的指令上限大约 150-200 条，而 Claude Code 自带的系统提示词已经占掉约 50 条。我自己那份 186 行的文件按 OpenClaw 的祈使句风格重写后压到 85 行，效果更好。内容太多就用 `@` 导入语法拆成子文件。"
+
+[[params.faqItems]]
+question = "该用 CLAUDE.md 还是 AGENTS.md？"
+answer = "只用 Claude Code 的话 CLAUDE.md 就够。团队里混用 Cursor、Copilot、Codex、Gemini CLI，就把正文写进 AGENTS.md，CLAUDE.md 只留一行指针——12.4 万 Star 的 OpenClaw 就是这么干的。AGENTS.md 规范 2025 年 8 月发布，现由 Linux 基金会下的 Agentic AI Foundation 管理，已有 6 万多个开源项目采用。做法是符号链接，或者 `echo 'See @AGENTS.md' > CLAUDE.md`。"
+
+[[params.faqItems]]
+question = "Claude Code 会从哪些位置加载 CLAUDE.md？"
+answer = "按优先级从高到低：组织策略 `/Library/Application Support/ClaudeCode/CLAUDE.md`、项目记忆 `./CLAUDE.md` 或 `./.claude/CLAUDE.md`、项目规则 `./.claude/rules/*.md`、个人记忆 `~/.claude/CLAUDE.md`、项目本地 `./CLAUDE.local.md`。它还会从当前目录向上递归查找，子目录的 CLAUDE.md 只在读该目录下文件时加载，所以能给 `frontend/` 和 `backend/` 写不同规则。"
+
+[[params.faqItems]]
+question = "CLAUDE.md 要提交到 Git 吗？"
+answer = "要。它是团队共享的 AI 协作规范，性质和 `.eslintrc` 一样属于项目基础设施，提交后还要定期 review、删掉过期规则。个人偏好写在 `CLAUDE.local.md` 里，这个文件会自动进 `.gitignore`。另外 README 不必提 CLAUDE.md，就像你不会在 README 里介绍 `.eslintrc` 的内容。"
 +++
 
 ![CLAUDE.md vs README.md](cover.webp)

@@ -7,6 +7,31 @@ toc = true
 tags = ['Claude Code', 'CLAUDE.md', 'Configuration', 'Best Practices']
 categories = ['AI Guides']
 keywords = ['CLAUDE.md guide', 'CLAUDE.md tutorial', 'Claude Code configuration', 'Claude Code project context', 'CLAUDE.md best practices', 'Claude Code memory', 'CLAUDE.md template']
+
+[[params.faqItems]]
+question = "What is CLAUDE.md and when does Claude Code load it?"
+answer = "CLAUDE.md is Claude Code's memory file: a plain Markdown document in your project root that is loaded into context automatically at the start of every session, with no need to mention or reference it. It holds the tech stack, common commands, coding conventions and workflow rules. Claude Code also recursively scans parent directories, so in a monorepo `frontend/CLAUDE.md` and `backend/CLAUDE.md` each load when Claude works inside that subdirectory."
+
+[[params.faqItems]]
+question = "Where do CLAUDE.md files live, and what is CLAUDE.local.md for?"
+answer = "Three layers, three paths. `~/.claude/CLAUDE.md` is global and applies to every project you touch. `./CLAUDE.md` sits in the project root and is committed to Git so the whole team shares one AI context. `./CLAUDE.local.md` also sits in the root but belongs in `.gitignore` — it is for personal overrides such as 'my local PostgreSQL runs on port 5433'. Enterprise setups can add `/Library/Application Support/ClaudeCode/CLAUDE.md` on macOS plus `.claude/rules/*.md`."
+
+[[params.faqItems]]
+question = "If my user CLAUDE.md says 4-space indentation and the project CLAUDE.md says 2-space, which one wins?"
+answer = "The project file wins, so 2-space. Claude Code loads global `~/.claude/CLAUDE.md` first, then project `./CLAUDE.md`, then personal `./CLAUDE.local.md`, and every later file overrides the earlier one. The same logic applies to any conflict: a global rule of 'write comments in English' loses to a project rule of 'write comments in Spanish', and CLAUDE.local.md overrides both."
+
+[[params.faqItems]]
+question = "How do I use AGENTS.md together with CLAUDE.md?"
+answer = "Put the real instructions in AGENTS.md and leave one line in CLAUDE.md: `See @AGENTS.md`. Claude Code pulls the file in through the `@` import, while Cursor, Codex CLI, Gemini CLI and Copilot read AGENTS.md natively. A symlink works too: `ln -s AGENTS.md CLAUDE.md`. AGENTS.md is managed by the Agentic AI Foundation under the Linux Foundation and has been adopted by more than 60,000 open-source repositories. Keep Claude-only rules, such as Skill references, in CLAUDE.md."
+
+[[params.faqItems]]
+question = "How long should a CLAUDE.md file be?"
+answer = "Keep it under 300 lines. LLMs reliably follow roughly 150-200 discrete instructions, and Claude Code's system prompt already consumes about 50 of those slots, which leaves you 150 at most. Past 300 lines, split the content into `@docs/architecture.md`-style imports and keep the main file as a short index. Also delete anything a linter already enforces — indentation, import order, trailing commas — because Claude Code reads those config files on its own."
+
+[[params.faqItems]]
+question = "What is the difference between README.md and CLAUDE.md?"
+answer = "README answers 'What is this project?' for human developers; CLAUDE.md answers 'How should I work on it?' for the agent. README gets tables, badges and step-by-step getting-started instructions. CLAUDE.md gets imperative, token-efficient lists: Git commit conventions, coding standards, testing rules and workflow constraints. The same stack that fills a six-row README table should compress to two lines in CLAUDE.md."
+
 +++
 
 ![CLAUDE.md configuration guide for Claude Code project context](cover.webp)

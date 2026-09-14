@@ -6,6 +6,27 @@ toc = true
 tags = ['AI', 'Claude Code', 'Cursor', 'Developer Productivity', 'Workflow']
 categories = ['AI Guides']
 keywords = ['AI development workflow', 'Claude Code workflow', 'AI pair programming', 'Cursor AI coding', 'AI assisted development', 'AI coding tools workflow']
+
+[[params.faqItems]]
+question = "What is an AI development workflow?"
+answer = "It is using AI across all five phases of delivery rather than only for snippets: requirements analysis, architecture design, coding, testing and deployment. Roughly 85% of developers now use AI tools daily, but most stop at asking a chatbot how to write one function. A real workflow starts before any code exists — handing the requirement to AI to decompose into modules, surface technical risks and list the product questions you still need answered."
+
+[[params.faqItems]]
+question = "Which AI tool should I use at each stage of development?"
+answer = "Do not pick just one. Claude Code handles planning: architecture decisions, cross-file analysis and complex refactoring, thanks to its large context window and CLI-first design. Cursor handles implementation with IDE integration and real-time completions. ChatGPT is for quick one-off questions and Copilot for inline completion. The two pair well because you can invoke the Claude Code CLI straight from Cursor's integrated terminal by typing `claude`."
+
+[[params.faqItems]]
+question = "How much productivity gain does an AI workflow actually deliver?"
+answer = "Measured across phases in my own work: test writing improved about 60%, coding 50%, incident troubleshooting 45%, requirements analysis 40% and architecture design 30%. The biggest wins are where the work is mechanical or repetitive — generating unit tests with JUnit 5 and Mockito, producing SQL INSERT test data, drafting Kubernetes manifests. The smallest win is architecture, where the value is fast comparison of options, not the decision itself."
+
+[[params.faqItems]]
+question = "How do I write a prompt that produces usable code?"
+answer = "Replace 'Write a user service for me' with a spec. Name the framework (Spring Boot), the operations (full CRUD), the base class to extend (`BaseService`), the ORM (MyBatis-Plus) and an existing file whose style to match (OrderService). Then work incrementally: generate the skeleton first, flesh out one method at a time, run tests after each addition. Context density is the single biggest predictor of output quality."
+
+[[params.faqItems]]
+question = "What are the main risks of AI-assisted development?"
+answer = "Four. AI hallucinates code that looks right and hides subtle bugs, so always run the tests and read the diff. Committing code you do not understand converts AI speed into tech debt — you own the output like any other contributor's. Never paste real API keys, passwords or user data into an AI tool; use placeholders or anonymized data. And commit AI-generated changes in small, well-described increments so you can roll back cleanly."
+
 +++
 ![AI Development Workflow](cover.webp)
 

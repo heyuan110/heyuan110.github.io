@@ -6,6 +6,30 @@ toc = true
 tags = ['Redshift', 'AWS', 'Data Warehouse', 'Performance Tuning', 'VACUUM']
 categories = ['Data Warehouse']
 keywords = ['Amazon Redshift', 'Redshift VACUUM', 'Redshift 优化', '数据仓库运维', 'AWS 数据仓库']
+
+[[params.faqItems]]
+question = "Redshift 的 VACUUM 到底在做什么？为什么必须跑？"
+answer = "回收空间 + 重新排序。Redshift 执行 `DELETE`/`UPDATE` 时不会真正删除数据，只是打上删除标记，这些幽灵行仍然占磁盘、仍可能被扫描；同时 `COPY`/`INSERT` 写入的新数据都追加在表尾的未排序区，排序键失效后范围扫描和 merge join 都会变慢。VACUUM 就是把这两件事一起修好。"
+
+[[params.faqItems]]
+question = "Redshift 的 6 种 VACUUM 该选哪一种？"
+answer = "按表刚经历了什么来选：`VACUUM FULL`（默认）排序加回收；大批删除后用 `VACUUM DELETE ONLY` 只回收空间；大批插入后用 `VACUUM SORT ONLY` 只排序；交错排序键（interleaved）的表用 `VACUUM REINDEX`，最慢；大表增量维护用 `VACUUM RECLUSTER`；`BOOST` 是修饰符，加资源提速但会阻塞并发 DELETE 和 UPDATE。"
+
+[[params.faqItems]]
+question = "VACUUM RECLUSTER 和 VACUUM FULL 有什么区别？"
+answer = "RECLUSTER 只排未排序区，已排序部分原封不动，所以比 FULL 快得多，AWS 推荐写入频繁、查询集中在近期数据的大表用它。另外要注意 FULL 默认在已排序比例超过 95% 时会跳过排序阶段，想强制全量排序得写 `VACUUM sales TO 100 PERCENT`。"
+
+[[params.faqItems]]
+question = "怎么判断哪些表该跑 VACUUM 了？"
+answer = "查 `SVV_TABLE_INFO` 三个字段：`unsorted`（未排序行占比）、`vacuum_sort_benefit`（排序后的预估收益）、`pct_used`（磁盘占用）。实用筛选条件是 `WHERE unsorted > 5 ORDER BY size DESC`。同一张视图里的 `stats_off` 超过 10 就说明统计信息过期，优化器在用旧数字做执行计划。"
+
+[[params.faqItems]]
+question = "VACUUM 之后还要跑 ANALYZE 吗？"
+answer = "要，两者解决的是不同问题。VACUUM 管存储组织，ANALYZE 管查询优化器用的统计信息。大批增删改之后、每次 VACUUM 之后、以及 `stats_off` 超过 10% 时都该跑 `ANALYZE sales`。只想更新过滤条件用到的列就用 `ANALYZE PREDICATE COLUMNS sales`。往空表 `COPY` 时系统会自动 ANALYZE，不用手动。"
+
+[[params.faqItems]]
+question = "VACUUM 跑了很久，怎么看进度？"
+answer = "执行 `SELECT * FROM SVV_VACUUM_PROGRESS;` 看当前操作的预估剩余时间。跑完之后用 `SVV_VACUUM_SUMMARY` 看 elapsed_time、sort_partitions、row_delta、block_delta，用 `SVL_VACUUM_PERCENTAGE` 看实际回收了多少空间。想省事就上 AWS 开源的 Analyze Vacuum Utility，按 unsorted、stats_off 和表大小自动挑表。"
 +++
 ![Amazon Redshift 数据仓库性能优化指南](cover.webp)
 

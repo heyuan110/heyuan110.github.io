@@ -6,6 +6,30 @@ toc = true
 tags = ['Shell', 'Bash', 'Linux', 'Scripting']
 categories = ['Linux']
 keywords = ['Bash special variables', 'Shell variables', '$@ vs $* difference', 'Shell scripting', 'Linux variables', 'exit status code']
+
+[[params.faqItems]]
+question = "What does $# mean in Bash?"
+answer = "`$#` is the number of arguments passed to the script or function, excluding `$0` (the script name itself). Running `./test.sh a b c` makes `$#` equal 3; running `./test.sh` with no arguments makes it 0. The standard guard clause is `if [ $# -lt 2 ]; then echo 'at least 2 arguments required'; exit 1; fi` placed at the top of the script."
+
+[[params.faqItems]]
+question = "What is $$ in Bash, and how is it different from $!?"
+answer = "`$$` is the process ID of the Shell running the current script; `$!` is the PID of the most recently backgrounded command. `$$` is mostly used to build collision-free temp files, as in `TMPFILE=/tmp/myapp_$$.tmp` paired with `trap 'rm -f $TMPFILE' EXIT`. `$!` is what you capture right after `command &` so you can later `wait $PID` or `kill $PID` to implement a timeout."
+
+[[params.faqItems]]
+question = "What exit codes does $? return, and what do they mean?"
+answer = "`$?` holds the exit status of the last command: 0 is success, 1 is a general error, 2 is command misuse such as invalid arguments, 126 means the command was found but is not executable, 127 means command not found, 128+N means terminated by signal N (so 130 is Ctrl+C), and 255 means the exit code was out of range. Set your own with `exit 1` and read it immediately, because the next command overwrites it."
+
+[[params.faqItems]]
+question = "What is the difference between $* and $@ in Bash?"
+answer = "Unquoted they behave identically — both undergo word splitting, so an argument like hello world is torn into two words. Quoted they diverge: the double-quoted `$*` collapses every argument into one single string, while the double-quoted `$@` preserves each argument as its own separate word. For `./test.sh 'hello world' foo bar`, the quoted `$*` yields one item and the quoted `$@` yields three. Almost always use the quoted `$@`."
+
+[[params.faqItems]]
+question = "Why does $10 not give me the tenth argument?"
+answer = "Because Bash parses `$10` as `$1` followed by the literal character 0. Positional parameters above 9 require braces: use `${10}`, `${11}` and so on. The same brace syntax also lets you supply defaults, for example `${1:-'(empty)'}` prints a placeholder when the first argument is missing."
+
+[[params.faqItems]]
+question = "How do I tell whether a script is running in an interactive Shell?"
+answer = "Check `$-`, which lists the Shell option flags currently enabled — a typical interactive value is `himBHs`, where h is hashall, i is interactive, m is job control, B is brace expansion, H is history expansion and s is reading from stdin. Test for the i flag with `case $- in *i*) echo 'Interactive Shell' ;; *) echo 'Non-interactive Shell' ;; esac`."
 +++
 ![A complete guide to Bash special variables for Shell scripting](cover.webp)
 

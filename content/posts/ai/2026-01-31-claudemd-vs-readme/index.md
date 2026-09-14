@@ -7,6 +7,30 @@ tags = ['Claude Code', 'CLAUDE.md', 'AGENTS.md', 'AI Agent', 'Anthropic']
 categories = ['AI Guides']
 keywords = ['CLAUDE.md vs README.md', 'how to write CLAUDE.md', 'AGENTS.md guide', 'Claude Code memory system', 'AI agent project configuration']
 toc = true
+
+[[params.faqItems]]
+question = "What is the difference between CLAUDE.md and README.md?"
+answer = "README.md is a project description for humans; CLAUDE.md is an instruction set for AI agents. README is expository and answers 'what is this project and how do I run it', using tables, tree diagrams and links. CLAUDE.md is purely imperative and answers 'what must you do', using compact lists and code blocks to save tokens. Claude Code loads CLAUDE.md automatically on every startup, so the two files should never replace each other."
+
+[[params.faqItems]]
+question = "What goes in CLAUDE.md versus the README for coding agents?"
+answer = "Git commit rules, coding conventions, testing conventions and development workflow belong only in CLAUDE.md — a new human hire does not need them during onboarding, but the agent decides whether to commit after every change. What the project is, environment requirements, feature descriptions and the license belong only in README.md. Tech stack and startup commands appear in both, compressed to one line in CLAUDE.md. Roadmap and TODO items belong in neither — use Issues."
+
+[[params.faqItems]]
+question = "How long should CLAUDE.md be?"
+answer = "Keep it under 300 lines. Research cited in the Builder.io guide suggests an AI reliably follows a maximum of 150-200 instructions, and Claude Code's own system prompt already consumes roughly 50 of them, so extra rules actively reduce compliance. Rewriting my own 186-line file in the OpenClaw imperative style cut it to 85 lines. Split overflow into sub-files with the `@` import syntax instead of padding one file."
+
+[[params.faqItems]]
+question = "Should I use CLAUDE.md or AGENTS.md?"
+answer = "If you only use Claude Code, CLAUDE.md alone is enough. If your team mixes Cursor, Copilot, Codex or Gemini CLI, put the real content in AGENTS.md and make CLAUDE.md a one-line pointer — that is exactly what OpenClaw (124k stars) does. The AGENTS.md spec shipped in August 2025, is now managed by the Agentic AI Foundation, and has been adopted by 60,000+ open-source projects. Either symlink the two files or write `echo 'See @AGENTS.md' > CLAUDE.md`."
+
+[[params.faqItems]]
+question = "Where does Claude Code look for CLAUDE.md?"
+answer = "It loads memory files by priority: enterprise policy at `/Library/Application Support/ClaudeCode/CLAUDE.md`, then project memory at `./CLAUDE.md` or `./.claude/CLAUDE.md`, then `./.claude/rules/*.md`, then personal memory at `~/.claude/CLAUDE.md`, and finally `./CLAUDE.local.md`. It also searches upward from the current directory, and a subdirectory CLAUDE.md loads only when files inside that directory are read — so `frontend/` and `backend/` can carry different rules."
+
+[[params.faqItems]]
+question = "Should CLAUDE.md be committed to Git?"
+answer = "Yes. It is a shared AI collaboration standard for the team, the same way `.eslintrc` is project infrastructure — commit it, review it periodically, and delete outdated rules. Personal preferences go in `CLAUDE.local.md`, which is added to `.gitignore` automatically. Your README should not mention CLAUDE.md at all, just as you would not document `.eslintrc` contents there."
 +++
 
 ![CLAUDE.md vs README.md](cover.webp)

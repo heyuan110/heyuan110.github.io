@@ -6,6 +6,34 @@ toc = true
 tags = ['supervisor', 'linux', '进程管理', 'systemd', '运维']
 categories = ['Linux']
 keywords = ['Supervisor 教程', 'Supervisor vs systemd', 'Linux 进程管理', 'supervisord 配置', 'supervisorctl']
+
+[[params.faqItems]]
+question = "Supervisor 是什么？主要解决什么问题？"
+answer = "Supervisor 是用 Python 写的进程管理工具，能方便地启动、重启、关闭进程，托管对象不限于 Python 程序，任何可执行文件都行。除了控制单个进程，还能一次拉起或停掉一整组服务，服务器异常后恢复很快。维护多个业务进程（队列 worker、定时任务、爬虫、脚本服务）时最好用。"
+
+[[params.faqItems]]
+question = "Supervisor 和 systemd 该怎么选？"
+answer = "已有 systemd 体系的生产环境优先用 systemd：原生、开机自启最强、日志管理也强，代价是学习成本偏高。需要快速把多种语言的进程统一托管时选 Supervisor，学习成本中等、配置简单，属于高性价比方案。只跑单个 Node.js 应用可以用 PM2，但跨语言统一托管还是 Supervisor 更顺手。"
+
+[[params.faqItems]]
+question = "Supervisor 怎么安装？配置文件放在哪？"
+answer = "文中用源码方式统一装到 `/usr/local/programs/`：先备好 Python 2.7 环境，下载 setuptools egg 和 `supervisor-3.3.1.tar.gz`，解压后 `python setup.py install`，再用 `echo_supervisord_conf` 生成 `supervisord.conf`，最后 `supervisord -c <配置路径>` 启动。生成的配置注释很全，重点是底部的 `[include]` 段：`files = conf.d/*.conf`，托管的程序都写在 `conf.d/` 里。"
+
+[[params.faqItems]]
+question = "怎么让 Supervisor 托管一个程序？配置怎么写？"
+answer = "在 `conf.d/` 目录下给每个程序建一个 `.conf` 文件。以 Nginx 为例，写 `[program:nginx]`，然后是 `command=` 可执行文件的完整路径、`user=root`、`autostart=true`、`autorestart=true`、`startsecs=3`，再加上 `stdout_logfile=` 和 `stderr_logfile=` 两个日志路径。程序起不来时，第一件事就是去看这两个日志。"
+
+[[params.faqItems]]
+question = "supervisorctl 常用命令有哪些？改了配置怎么生效？"
+answer = "直接敲 `supervisorctl` 进交互模式，也可以在命令行后面跟参数。`supervisorctl status` 看所有程序状态，`stop`/`start`/`restart <名字>` 控制单个程序，`reread` 重新读取改动过的配置但不启动新程序，`update` 才会重启配置发生变化的程序。改完 `conf.d/` 里的文件，标准动作是先 reread 再 update。"
+
+[[params.faqItems]]
+question = "Supervisor 怎么配开机自启？rc.local 还能用吗？"
+answer = "推荐写 systemd unit：新建 `/etc/systemd/system/supervisord.service`，`Type=forking`、`ExecStart` 指向 `supervisord -c <配置文件>`、`ExecStop` 用 `supervisorctl shutdown`，再加 `Restart=on-failure`，然后依次 `systemctl daemon-reload`、`enable`、`start`。老版本 Ubuntu 还能往 `/etc/rc.local` 里塞启动命令，但新版已弃用。"
+
+[[params.faqItems]]
+question = "报 unix:///tmp/supervisor.sock no such file 怎么办？"
+answer = "说明 supervisord 守护进程没起来，或者配置里的 socket 路径对不上。用正确的配置文件启动 supervisord，并确认 `[supervisorctl]` 段的 `serverurl` 和 `[unix_http_server]` 段的 `file` 指向同一个路径。如果是程序一直 BACKOFF/FATAL，那多半是 `command` 写错或进程启动即退出，去看 stderr 日志、把命令手动跑一遍。"
 +++
 Supervisor (http://supervisord.org) 是一个用 Python 写的进程管理工具，可以很方便地启动、重启、关闭进程（不仅仅是 Python 进程）。除了对单个进程的控制，还可以同时启动、关闭多个进程，比如服务器异常后快速拉起整组服务。
 

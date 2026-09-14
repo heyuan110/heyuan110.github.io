@@ -8,6 +8,30 @@ toc = true
 tags = ['Docker', 'Docker Compose', 'Containerization', 'Tutorial', 'YAML']
 categories = ['AI Guides']
 keywords = ['docker compose tutorial', 'docker-compose.yml explained', 'docker compose configuration', 'compose.yaml', 'docker compose yml', 'docker compose getting started', 'docker compose volumes', 'docker compose networks', 'docker compose ports', 'container orchestration', 'docker compose 2026', 'docker compose yaml tutorial', 'how to write docker-compose.yml', 'docker compose services', 'docker compose healthcheck']
+
+[[params.faqItems]]
+question = "How do I create a docker-compose.yml file from scratch?"
+answer = "Create a file named `compose.yaml` in your project root and start with `services`, the only mandatory top-level key. A working file can be four lines: `services:` then a service name, `image: nginx`, and `ports: - '80:80'`. Compose V2 dropped the `version` field entirely, so do not add it. Run `docker compose up -d` to start everything, and `docker compose config` to validate before you run."
+
+[[params.faqItems]]
+question = "Should the file be called docker-compose.yml or compose.yaml?"
+answer = "For new projects use `compose.yaml` — that is the preferred V2 name. Compose still searches four filenames in order: `compose.yaml`, `compose.yml`, `docker-compose.yaml`, then `docker-compose.yml`, so old files keep working. For any other filename, pass it explicitly with `docker compose -f my-config.yaml up -d`."
+
+[[params.faqItems]]
+question = "Is the old docker-compose command with a hyphen still supported?"
+answer = "It runs if the legacy binary is still installed, but it reached end-of-life in July 2023. That version was a standalone Python tool; the replacement is `docker compose` with a space, a Go plugin built into the Docker CLI. Migration is mechanical — every command maps one to one, so `docker-compose up` becomes `docker compose up`. Check what you have with `docker compose version`."
+
+[[params.faqItems]]
+question = "Why does my compose file fail with a YAML parse error?"
+answer = "Almost always indentation. YAML forbids tab characters, so indent with 2 spaces per level and keep siblings aligned at the same depth. A space is required after every colon (`image: nginx`, never `image:nginx`), and list items need a dash plus a space. Always quote port mappings such as `'8080:80'`, because YAML can read `xx:yy` as a base-60 number. Run `docker compose config` — it reports the failing line number."
+
+[[params.faqItems]]
+question = "How do I make one service wait until the database is actually ready?"
+answer = "Plain `depends_on` only controls startup order; it does not wait for readiness. Add a `healthcheck` to the database, for example `test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']` with `interval: 10s`, `timeout: 5s` and `retries: 5`, then depend on it with `condition: service_healthy`. Adding `restart: true` also restarts the dependent service when the database restarts."
+
+[[params.faqItems]]
+question = "How do containers in a compose file talk to each other?"
+answer = "Use the service name as the hostname. If a service is called `db`, then `DB_HOST=db` from the `api` container resolves to that container's IP, and `ping db` works out of the box — Compose puts every service on a shared default network unless you declare custom ones. Custom `networks` are only worth adding when you want isolation, such as keeping the web tier from reaching the database directly."
 +++
 
 Docker Compose is the go-to tool for running multi-container applications, and **docker-compose.yml** (now officially `compose.yaml`) is its configuration file. Whether you are picking up containers for the first time or brushing up on the finer details, this tutorial walks you through every field you will actually use.

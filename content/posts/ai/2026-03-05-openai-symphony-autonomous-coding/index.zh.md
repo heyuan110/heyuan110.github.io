@@ -7,6 +7,27 @@ toc = true
 tags = ['OpenAI', 'Symphony', 'AI Agents', 'Autonomous Coding', 'Codex']
 categories = ['AI Guides']
 keywords = ['OpenAI Symphony', 'Symphony AI 编码', '自主编码代理', 'Symphony 框架', 'harness engineering', 'Codex 编排']
+
+[[params.faqItems]]
+question = "OpenAI Symphony 是什么？免费吗？"
+answer = "Symphony 是 OpenAI 开源的自动化编排服务，以 Apache 2.0 协议发布在 GitHub 上。它持续监控你的工单系统（目前是 Linear），把打了指定标签的工单自动派给 Codex 代理，在隔离工作区里写代码、跑 CI，最后交付带证据的 Pull Request。框架本身免费，但 Codex 和 Linear 的 API 调用要各自付费。"
+
+[[params.faqItems]]
+question = "Symphony 怎么跑起来？需要准备什么？"
+answer = "前置条件是 Elixir 1.15+、Erlang/OTP 26+、一个有 API 权限的 Linear 账号和 OpenAI API 密钥。步骤是 `git clone https://github.com/openai/symphony.git`，进 `elixir` 目录执行 `mix deps.get`，导出 `LINEAR_API_KEY` 和 `OPENAI_API_KEY`，在项目仓库里放一份 WORKFLOW.md，再 `mix phx.server` 启动，浏览器打开 4000 端口看仪表板。"
+
+[[params.faqItems]]
+question = "WORKFLOW.md 里应该写什么？"
+answer = "两部分。上半部分是 YAML 前置数据，配置 tracker（Linear 团队和候选标签）、polling（默认 30 秒轮询、最多 10 个并发代理）、workspace 钩子、agent（模型与 timeout_ms）和 Codex 沙盒模式；下半部分是 Liquid 模板正文，用 issue.identifier、issue.title 等变量渲染提示词。它随代码提交进仓库，改完下一个轮询周期自动生效，不用重启服务。"
+
+[[params.faqItems]]
+question = "代理跑失败了会怎么样？"
+answer = "进重试队列，按指数退避重来：延迟公式是 min(10000 × 2^(尝试次数-1), max_backoff_ms)，默认上限 5 分钟，所以依次是 10 秒、20 秒、40 秒、80 秒、160 秒，之后固定 300 秒。超过 max_retries 后工单被释放回跟踪器等人工处理。超时、停滞、工单被改动都有对应的终态。"
+
+[[params.faqItems]]
+question = "Symphony 和 Copilot Coding Agent、Devin、Claude Code 有什么区别？"
+answer = "定位不同。Copilot 的编码代理锁死在 GitHub 生态且每仓库只能跑 1 个；Devin 是闭源云端产品，开箱即用但不可定制；Claude Code 的多代理是会话级的，要你手动启动。Symphony 是项目级编排，开源可自托管，靠 WORKFLOW.md 定制。代价是目前只支持 Linear 和 Codex，且只擅长范围明确的小任务，复杂重构仍要人来。"
+
 +++
 
 ![OpenAI Symphony — 自主编码代理编排框架](cover.webp)

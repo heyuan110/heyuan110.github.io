@@ -6,6 +6,30 @@ toc = true
 tags = ['AI', 'FaceFusion', 'Face Swap', 'Open Source']
 categories = ['AI Guides']
 keywords = ['FaceFusion tutorial', 'AI face swap', 'FaceFusion install', 'open source face swap', 'FaceFusion GPU requirements', 'FaceFusion setup guide']
+
+[[params.faqItems]]
+question = "Is FaceFusion open source and free to use?"
+answer = "Yes. FaceFusion is fully open source and free. It is the successor to Roop, rebuilt from the ground up by the same developer after Roop was discontinued, with better models and improved output. Version 3.5.x supports image face swapping, video face swapping, batch processing, face enhancement, and both NVIDIA and AMD GPUs. You clone it from `github.com/facefusion/facefusion` and run it entirely on your own machine."
+
+[[params.faqItems]]
+question = "What are the system requirements for FaceFusion?"
+answer = "An NVIDIA GPU with 8 GB or more VRAM is the requirement that matters most — an RTX 3060 12 GB is solid for both images and video. You also want 16 GB of RAM minimum (32 GB recommended) and an SSD, since the model files total several gigabytes. A GTX 1660 6 GB or CPU-only setup can handle stills but is painfully slow on video. Manual installs need Python 3.10.x specifically."
+
+[[params.faqItems]]
+question = "How do I install FaceFusion?"
+answer = "There are three routes. Beginners should grab a community pre-built all-in-one package — extract it to a path with no non-ASCII characters. Intermediate users can install Pinokio, search facefusion under Discover, click Install then Run Default, and open `http://127.0.0.1:7860`. Advanced users clone the repo, create a venv, run `pip install -r requirements.txt`, replace onnxruntime with `onnxruntime-gpu` on NVIDIA cards, then `python run.py`."
+
+[[params.faqItems]]
+question = "The target image has several faces — how do I swap only one of them?"
+answer = "Use the Face Selector parameter to specify which face in the target gets swapped. If the face is partly covered by glasses, a mask or a scarf, also switch the Mask mode from `box` to `occlusion`: it automatically detects the occluded areas and swaps only the visible regions, which avoids the obvious seams a plain rectangular mask leaves behind."
+
+[[params.faqItems]]
+question = "How do I fix a CUDA out of memory error in FaceFusion?"
+answer = "Lower the output resolution first, then turn off the face enhancer, and switch the swapper model from `inswapper_128` to `inswapper_128_fp16`, which uses noticeably less VRAM. For video, drop the frame rate or process the clip in segments. Out-of-memory errors almost always appear on high-resolution video rather than on single images."
+
+[[params.faqItems]]
+question = "How long does FaceFusion take to process an image or a video?"
+answer = "Measured on an RTX 3080 10 GB: a single image swap takes 1–2 seconds, and a one-minute 1080p video takes roughly 3–5 minutes. Enabling the face enhancer (`gfpgan_1.4` is the most stable choice) adds about 30% to the processing time but clearly improves clarity. CPU-only processing works for stills but is impractical for video."
 +++
 ![FaceFusion](FaceFusion.webp)
 

@@ -7,6 +7,30 @@ toc = true
 tags = ["MySQL", "EXPLAIN", "SQL Optimization", "Performance Tuning", "Index", "Database"]
 categories = ["MySQL"]
 keywords = ["MySQL EXPLAIN", "执行计划", "SQL优化", "查询性能", "索引优化", "type类型"]
+
+[[params.faqItems]]
+question = "EXPLAIN 输出这么多字段，重点该看哪几个？"
+answer = "输出共 12 个字段，但优先看四个：type（访问类型，至少要到 range）、key（实际用到的索引）、rows（预估扫描行数，越小越好）、Extra（是否出现 Using filesort、Using temporary）。其余 8 个字段属于辅助信息，定位问题时可以先放一边。"
+
+[[params.faqItems]]
+question = "type 显示 ALL 是什么意思？怎么优化？"
+answer = "ALL 表示全表扫描，说明没有可用索引。例如 `SELECT * FROM orders WHERE status = 'pending'` 在 10 万行的表上 rows 是 100000，执行 `ALTER TABLE orders ADD INDEX idx_status(status)` 后 type 变成 ref、rows 降到 500。注意 `LIKE '%test%'` 这类前缀模糊查询即使建了索引也会退化成 ALL。"
+
+[[params.faqItems]]
+question = "EXPLAIN 和 EXPLAIN ANALYZE 有什么区别？"
+answer = "EXPLAIN 只向优化器索要执行计划，不会真正跑 SQL；EXPLAIN ANALYZE 是 MySQL 8.0.18 才引入的，它会真实执行查询并输出每一步的实际耗时、实际行数和循环次数，可以拿来和优化器的估算值做对比。正因为真的执行，对 UPDATE、DELETE 这类语句要谨慎使用。"
+
+[[params.faqItems]]
+question = "Extra 里出现 Using filesort 怎么消除？"
+answer = "建复合索引，让 WHERE 字段在前、ORDER BY 字段在后。例如 `WHERE user_id = 100 ORDER BY created_at`，执行 `ALTER TABLE orders ADD INDEX idx_user_created(user_id, created_at)` 后 filesort 消失，Extra 变成 Using index condition。对没有索引的列排序（如 ORDER BY amount）必然触发 filesort。"
+
+[[params.faqItems]]
+question = "key_len 能看出复合索引用了几个字段吗？"
+answer = "能。key_len 是实际使用的索引字节数。以 idx_name_age(name, age) 为例，name 是 VARCHAR(50)、age 是 INT：只按 name 查询时 key_len = 152（50×3+2），再加上 age = 25 就变成 157（多了 INT 的 4 字节和 NULL 标志 1 字节）。字节数对不上，就说明复合索引没吃满。"
+
+[[params.faqItems]]
+question = "怎么知道优化器把我的 SQL 改写成了什么样？"
+answer = "在 EXPLAIN 之后紧接着执行 `SHOW WARNINGS`，会输出优化器重写后的真实语句，很多看不懂的执行计划由此就能解释。想看成本估算用 `EXPLAIN FORMAT=JSON`，里面的 cost_info 是表格格式看不到的；想看执行顺序用 `EXPLAIN FORMAT=TREE`。"
 +++
 ![MySQL EXPLAIN 执行计划分析](cover.webp)
 

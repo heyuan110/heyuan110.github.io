@@ -6,6 +6,30 @@ toc = true
 tags = ['Cursor', 'AI Coding', 'Agent', 'Best Practices']
 categories = ['AI Guides']
 keywords = ['Cursor Agent best practices', 'Cursor tips and tricks', 'AI coding assistant', 'Cursor Rules configuration', 'Cursor Plan Mode', 'AI pair programming']
+
+[[params.faqItems]]
+question = "How do I turn on Plan Mode in Cursor?"
+answer = "Press `Shift + Tab` to enter Plan Mode. The Agent then researches the codebase, asks clarifying questions, drafts an implementation roadmap and waits for your approval before writing any code. Plans are saved as Markdown files under `.cursor/plans/`, so they double as team documentation and let you resume an interrupted task. If the Agent drifts off target, go back and refine the plan instead of iterating on broken code."
+
+[[params.faqItems]]
+question = "How can Cursor reference a previous conversation instead of repeating context?"
+answer = "Use `@Past Chats` to selectively import context from earlier conversations rather than re-describing the whole requirement. This keeps the useful history without dragging in the noise a long thread accumulates. Start a fresh conversation when you switch tasks, finish a logical unit of work, or the Agent seems stuck; stay in the current one while you iterate on the same feature or debug code it just wrote."
+
+[[params.faqItems]]
+question = "What is the difference between Cursor Rules and Skills?"
+answer = "Rules are static context: Markdown files in `.cursor/rules/` that carry persistent project knowledge such as build commands (`npm run build`), test commands and code style conventions. Skills are dynamic capabilities defined in `SKILL.md` files, exposing slash commands, hooks that run before or after Agent actions, and domain knowledge loaded only when relevant. Add rules reactively, only after you see the Agent repeat the same mistake."
+
+[[params.faqItems]]
+question = "Should I tag files with @ to give the Agent context?"
+answer = "Usually no. The Agent already has semantic search, grep search and file traversal, so tagging a pile of files mostly adds noise. Instead of `@file1.ts @file2.ts @file3.ts fix the auth logic`, write: fix the user authentication logic to support OAuth login. Tag files manually only when you know exactly which specific files are involved."
+
+[[params.faqItems]]
+question = "Can I run several Cursor Agents on the same project at once?"
+answer = "Yes. Cursor automatically uses Git Worktrees so each Agent gets an isolated workspace under `.worktrees/` with no file conflicts. The common pattern is to launch several Agents with the same prompt, let them work independently, compare results side by side, and merge the best one. It is useful for comparing models, exploring different implementation paths, or splitting a complex task into independent subtasks."
+
+[[params.faqItems]]
+question = "How do I make the Agent keep iterating until all tests pass?"
+answer = "Wire up a stop hook. In `.cursor/hooks.json`, register a `stop` hook such as `bun run .cursor/hooks/grind.ts`. The hook script receives JSON input and returns a `followup_message`, which restarts the Agent and creates a fix, test, fix again loop. Pair it with TDD: have the Agent write tests from input/output pairs, confirm they fail, commit them, then let it write code without modifying the tests."
 +++
 ![Cursor Agent Best Practices](cover.webp)
 

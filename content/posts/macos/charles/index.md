@@ -6,6 +6,30 @@ toc = true
 tags = ['Charles', '抓包', '调试', 'HTTPS', '网络', 'API 调试']
 categories = ['macOS']
 keywords = ['Charles proxy tutorial', 'Charles HTTPS certificate', 'Charles mock API', 'HTTP debugging', 'network traffic capture macOS']
+
+[[params.faqItems]]
+question = "How do I capture iPhone traffic with Charles?"
+answer = "Open Charles and check Proxy > Proxy Settings for the port (8888 by default). On the iPhone go to Settings > Wi-Fi, tap your current network, scroll to HTTP Proxy, choose Manual, and enter your Mac local IP plus that port. Find the Mac IP under System Settings > Network. Open any app and Charles will prompt to allow the device — click Allow, and requests start appearing in the session list."
+
+[[params.faqItems]]
+question = "Why does Charles only show CONNECT for HTTPS requests with no readable content?"
+answer = "Either the Charles root certificate is not trusted, or the app uses SSL pinning. On macOS, install the Charles Root Certificate and then set it to Always Trust in Keychain Access. On iOS, installing the profile is not enough — go to Settings > General > About > Certificate Trust Settings and enable full trust manually. If the app pins its certificate, Charles alone cannot decrypt the traffic; you need a debug build with pinning disabled."
+
+[[params.faqItems]]
+question = "How do I mock an API response in Charles while the backend is not ready?"
+answer = "Use Tools > Map Local to point a request straight at a file on your disk, for example mapping `http://api.test.com/user?user_id=1` to a local `user_info.json`. No local server needed. If you would rather redirect to a real endpoint, Tools > Map Remote sends the call to another server such as a local Nginx or Apache instance. To change only part of a payload instead of replacing it, use Tools > Rewrite."
+
+[[params.faqItems]]
+question = "How do I simulate a slow 2G or 3G network in Charles?"
+answer = "Go to Proxy > Throttle Settings and pick a speed profile. You can limit throttling to specific hosts by adding URLs under Hosts, which is more controllable than throttling everything. If you start seeing excessive timeouts, your parameters are too aggressive — begin with a 3G profile and tighten from there rather than jumping straight to the slowest setting."
+
+[[params.faqItems]]
+question = "My Map Local or Rewrite rule is configured but nothing happens. Why?"
+answer = "Two causes account for most cases. First, the host or path pattern is too strict — start with a deliberately broad match, confirm it fires, then narrow it down. Second, the rule is saved but its enable checkbox was never ticked, which is an easy thing to miss since the rule still shows up in the list. The same checkbox trap applies to the Black List and DNS Spoofing tools."
+
+[[params.faqItems]]
+question = "Can Charles pause a request so I can edit it before it is sent?"
+answer = "Yes, through Breakpoints, which behave much like IDE breakpoints. Open the breakpoint settings window, click Add and enter the URL you want to intercept. When a matching request fires, Charles pauses and opens an editing window where you can modify the request, the response, or both — you can enable just the response breakpoint if that is all you need. Click Execute to let the request continue."
 +++
 
 Charles is one of the most popular network debugging tools on macOS. It works as an HTTP proxy, allowing you to inspect, intercept, and modify network traffic between your device and the internet. This guide covers the most practical use cases for mobile and web developers.

@@ -7,6 +7,30 @@ tags = ['Terminal', 'Dev Tools', 'Productivity', 'macOS', 'Windows', 'Linux']
 categories = ['macOS']
 toc = true
 keywords = ['终端工具', '终端模拟器', 'iTerm2', 'Warp', 'Ghostty', 'Tabby', 'Windows Terminal', '跨平台终端', 'SSH客户端', '命令行工具']
+
+[[params.faqItems]]
+question = "Windows 下好用的 shell 有哪些？"
+answer = "首选 PowerShell 7，它已经跨平台，管道里传的是对象而不是纯文本，还能直接调 .NET。要 Unix 体验就用 WSL 里的 bash/zsh，或者 Git for Windows 自带的 Git Bash（提供 bash、grep、ssh 等命令）。这些 shell 都可以放进 Windows Terminal 的标签页里同时开，不用来回切窗口。"
+
+[[params.faqItems]]
+question = "Windows 终端工具选哪个最合适？"
+answer = "日常开发直接用 Windows Terminal：多标签同时跑 PowerShell、CMD、WSL，GPU 加速渲染，支持 Unicode 和 Emoji。要免安装、插 U 盘就能用选 Cmder，它自带 Git for Windows。频繁连远程服务器选 MobaXterm 或 XShell。喜欢 Fluent Design 亚克力界面可以试 Fluent Terminal。"
+
+[[params.faqItems]]
+question = "macOS 上最好用的终端工具是什么？"
+answer = "老牌首选 iTerm2，16.8k+ GitHub Stars，支持水平/垂直分屏、Hotkey Window 一键呼出、Shell Integration 和 Triggers 自动响应输出。想要 AI 辅助选 Warp（Rust 编写，25.7k+ Stars）。追求极致性能选 Ghostty，Zig 编写、GPU 渲染，2024 年 12 月开源，已有 41.8k+ Stars。"
+
+[[params.faqItems]]
+question = "哪款终端工具速度最快？"
+answer = "Ghostty 和 Alacritty 最快。Ghostty 用 Zig 写、GPU 加速、原生 UI 而非 Electron；Alacritty 干脆砍掉标签页和分屏，只留 OpenGL 渲染，资源占用极低，适合搭配 tmux 或 Zellij 用。Kitty 和 WezTerm 同样是 GPU 渲染，但保留了图片显示、连字、内置多路复用等功能。"
+
+[[params.faqItems]]
+question = "有哪些内置 AI 的终端工具？"
+answer = "Warp 是 AI 终端的代表，用自然语言描述就能生成命令，并把每条命令和输出组织成可分享的 Block。Wave Terminal 是开源免费的替代品，同样内置 AI 助手。IShell 内置 70B 大模型，可以生成命令和脚本，还集成了 SFTP 断点续传和多端云同步，覆盖 Windows、macOS、Linux、Android、iOS。"
+
+[[params.faqItems]]
+question = "跨平台用同一套终端体验，该选什么？"
+answer = "Tabby 最全面，68.3k+ GitHub Stars，原名 Terminus，内置 SSH 连接管理器、串口支持、插件生态，还能跨机器同步配置。WezTerm 是另一个选择：Rust 编写、GPU 加速、内置多路复用器（不用装 tmux）、全部用 Lua 配置。只要极简渲染的话 Alacritty 三大平台都能跑。"
 +++
 
 作为开发者，终端是我们每天打交道最多的工具之一。一款好用的终端工具不仅能提升工作效率，还能让枯燥的[命令行操作](/zh/posts/linux/2020-03-19-linux-mac-commands/)变得更加愉悦。本文将全面介绍 23 款主流终端工具，涵盖 Windows、macOS 和 Linux 三大平台，帮你找到最适合自己的那一款。

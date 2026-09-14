@@ -6,6 +6,30 @@ toc = true
 tags = ['Charles', '抓包', '调试', 'HTTPS', '网络', 'API 调试']
 categories = ['macOS']
 keywords = ['Charles 抓包教程', 'Charles HTTPS 证书', 'Charles Mock', 'HTTP 抓包', '接口调试']
+
+[[params.faqItems]]
+question = "Charles 怎么抓手机（iPhone）的包？"
+answer = "先在 Charles 里打开 Proxy -> Proxy Settings 确认端口（默认 8888）。iPhone 上进「设置 -> 无线局域网」，点进当前网络，滚到底找到 HTTP 代理，选手动，服务器填电脑的局域网 IP（在系统设置 -> 网络里能看到），端口填 8888。随便打开一个 App，Charles 会弹窗问是否允许该设备走本机代理，点允许后请求就出来了。"
+
+[[params.faqItems]]
+question = "Charles 抓 HTTPS 全是 CONNECT、看不到内容怎么办？"
+answer = "要么是证书没被系统信任，要么是 App 开了 SSL Pinning。macOS 上装完 Charles Root Certificate 后，还要去钥匙串把它设成「始终信任」；iOS 上装完描述文件不算完，得再进「设置 -> 通用 -> 关于本机 -> 证书信任设置」手动开启完全信任。如果 App 做了证书固定，光靠 Charles 代理解不开，需要配合测试开关或专用调试方案。"
+
+[[params.faqItems]]
+question = "后端接口还没写好，怎么用 Charles mock 返回数据？"
+answer = "用 Tools -> Map Local，把某个请求直接映射到本地文件，比如把 `http://api.test.com/user?user_id=1` 映射到本地的 `user_info.json`，改数据就是改文件，不用搭服务器。如果想转到真实地址，用 Tools -> Map Remote 转到本地的 nginx 或 apache。只想改返回里的一部分而不是整体替换，就用 Tools -> Rewrite。"
+
+[[params.faqItems]]
+question = "Charles 怎么模拟 2G/3G 慢网速？"
+answer = "选 Proxy -> Throttle Settings，打开限速并挑一个速度档位。想只对某个地址限速，在 Hosts 里把 URL 加进去，比全局限速更可控。如果限速后请求大量超时，说明参数压得太狠了，建议先按 3G 模拟，再逐步往 2G 压，而不是一上来就拉到最低档。"
+
+[[params.faqItems]]
+question = "Map Local / Rewrite 规则配了却不生效，是什么原因？"
+answer = "最常见两个原因：一是 Host 或 Path 匹配写得太严，建议先放宽规则确认能命中，再一步步收紧；二是规则配好了但前面的勾选框没打开——很多人只配不勾，规则照样出现在列表里却不会执行。Black List 和 DNS Spoofing 也是同一个坑。"
+
+[[params.faqItems]]
+question = "Charles 能像 IDE 那样打断点改请求吗？"
+answer = "能，用 BreakPoints。先打开断点设置窗口，点 Add 添加要调试的 URL；之后请求命中时会弹出断点窗口，request 和 response 都可以编辑，也可以只对 response 打断点。改完点 Execute 请求才继续往下走，体验和在 Xcode 里断点调试基本一致。"
 +++
 
 Charles是Mac下常用的网络抓包工具，常用来模拟数据和网络辅助接口调试，作为代理抓取网络请求数据，这篇文章记录了几个实用场景，希望对你有帮助。

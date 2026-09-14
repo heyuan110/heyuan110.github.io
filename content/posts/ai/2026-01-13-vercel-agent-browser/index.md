@@ -6,6 +6,26 @@ toc = true
 tags = ['AI', 'Vercel', 'Browser Automation', 'Agent', 'CLI']
 categories = ['AI Guides']
 keywords = ['Vercel Agent Browser', 'AI browser automation', 'headless browser CLI', 'Playwright alternative', 'AI agent browser tool', 'snapshot-driven automation']
+
+[[params.faqItems]]
+question = "What is Vercel Agent Browser?"
+answer = "Agent Browser is an open-source headless browser automation CLI from Vercel Labs, built for AI agents rather than test suites and released under Apache 2.0. It pairs a Rust CLI for millisecond startup with a Node.js daemon that keeps long-running Playwright browser instances alive, so repeated commands reuse the same session instead of relaunching Chromium each time."
+
+[[params.faqItems]]
+question = "How does snapshot-based element targeting with refs work?"
+answer = "Instead of CSS selectors or XPath, `agent-browser snapshot -i --json` returns the page's accessibility tree as a list of interactive elements, each with a stable reference like `@e1` or `@e2`. You then act on the reference directly: `agent-browser click @e5` or `agent-browser fill @e3 'Hello World'`. Nothing breaks when class names change, and the agent never has to invent a selector."
+
+[[params.faqItems]]
+question = "How do I install agent-browser and run my first automation?"
+answer = "Two commands to install: `npm install -g agent-browser` then `agent-browser install` to download Chromium. The recommended loop is snapshot-interact-verify: `agent-browser open https://example.com`, `agent-browser snapshot -i --json` to get element refs, `agent-browser click @e5` or `agent-browser fill @e3 'text'` to act, then re-snapshot to confirm the page changed as expected."
+
+[[params.faqItems]]
+question = "Can I use Agent Browser from Claude Code?"
+answer = "Yes, it ships an official Claude Code Skill. Run `mkdir -p ~/.claude/skills/agent-browser`, then `curl -o ~/.claude/skills/agent-browser/SKILL.md https://raw.githubusercontent.com/vercel-labs/agent-browser/main/skills/agent-browser/SKILL.md`, and restart Claude Code. After that you invoke it with `/agent-browser` in any conversation to run web tests, fill forms, take screenshots or scrape page content."
+
+[[params.faqItems]]
+question = "How is Agent Browser different from Playwright?"
+answer = "It is built on Playwright, not a replacement for its engine — the difference is the interface. Playwright expects you to write selector-based scripts for deterministic test suites; Agent Browser exposes a per-command CLI whose unit of work is an accessibility snapshot with element refs, which matches the observe-decide-act-verify loop an agent already runs. It also adds isolated parallel sessions via `--session`, saved auth state, network interception and JavaScript execution."
 +++
 ![Agent Browser](cover.webp)
 

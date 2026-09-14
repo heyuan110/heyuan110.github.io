@@ -6,6 +6,34 @@ toc = true
 tags = ['supervisor', 'linux', '进程管理', 'systemd', '运维']
 categories = ['Linux']
 keywords = ['Supervisor tutorial', 'Supervisor vs systemd', 'Linux process management', 'supervisord configuration', 'supervisorctl commands']
+
+[[params.faqItems]]
+question = "What is Supervisor and what is it used for on Linux?"
+answer = "Supervisor is a Python-based process manager that starts, stops and restarts long-running processes — not only Python programs, but any executable. Besides controlling a single process it can bring up or shut down whole groups at once, which is how you recover an entire service stack quickly after a server failure. It is the practical choice when you run several application processes side by side: queue workers, scheduled jobs, scrapers and utility scripts written in different languages."
+
+[[params.faqItems]]
+question = "Supervisor vs systemd — which one should I use?"
+answer = "If your production environment already runs on systemd, stay with systemd: it is native, has the strongest boot integration and the best log handling, at the cost of a steeper learning curve. Pick Supervisor when you need to unify process management across several languages quickly — its learning curve is moderate and its config is far simpler. PM2 is fine for Node.js-only deployments, but Supervisor handles polyglot setups better."
+
+[[params.faqItems]]
+question = "How do I install Supervisor and where does the config live?"
+answer = "This guide installs from source into `/usr/local/programs/` so every app on the server follows the same layout: download the setuptools egg and `supervisor-3.3.1.tar.gz`, unpack it, run `python setup.py install`, then generate the config with `echo_supervisord_conf > /usr/local/programs/supervisoretc/supervisord.conf` and start it with `supervisord -c <that path>`. The generated file is heavily commented; the part that matters is the `[include]` block with `files = conf.d/*.conf`."
+
+[[params.faqItems]]
+question = "How do I configure a program for Supervisor to manage?"
+answer = "Drop one `.conf` file per program into the `conf.d/` directory. A minimal block looks like `[program:nginx]` followed by `command=` with the full path to the executable, `user=root`, `autostart=true`, `autorestart=true`, `startsecs=3`, plus `stdout_logfile=` and `stderr_logfile=` paths. Those two log files are also the first place to look when the process refuses to stay up."
+
+[[params.faqItems]]
+question = "What are the essential supervisorctl commands?"
+answer = "Run `supervisorctl` for an interactive shell, or pass the command directly: `supervisorctl status` lists every program, `supervisorctl stop|start|restart <name>` controls one of them, `supervisorctl reread` picks up changed config files without starting anything new, and `supervisorctl update` restarts the programs whose configuration actually changed. After editing a file in `conf.d/`, reread then update is the normal sequence."
+
+[[params.faqItems]]
+question = "How do I make Supervisor start on boot?"
+answer = "Use a systemd unit at `/etc/systemd/system/supervisord.service` with `Type=forking`, `ExecStart=/usr/local/bin/supervisord -c <your supervisord.conf>`, `ExecStop=/usr/local/bin/supervisorctl shutdown`, `KillMode=process` and `Restart=on-failure`, then run `sudo systemctl daemon-reload`, `enable` and `start`. The older `/etc/rc.local` trick still works on legacy Ubuntu, but rc.local is deprecated on modern Ubuntu and Debian."
+
+[[params.faqItems]]
+question = "How do I fix unix:///tmp/supervisor.sock no such file?"
+answer = "That error means the `supervisord` daemon is not running, or the socket path in the config does not match. Start supervisord with the correct config file and check that `serverurl` in the `[supervisorctl]` section points at the same `file` path declared in `[unix_http_server]`. If instead a program sits in BACKOFF or FATAL, the `command` is wrong or the process exits immediately — read the stderr log and try running the command by hand."
 +++
 
 Supervisor ([supervisord.org](http://supervisord.org)) is a Python-based process management tool that makes it easy to start, stop, and restart long-running processes — not just Python programs, but any executable. It can manage individual processes or bring up entire groups of services at once, which is especially useful for recovering from server failures quickly.

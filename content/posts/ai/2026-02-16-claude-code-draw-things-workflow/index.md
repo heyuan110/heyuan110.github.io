@@ -7,6 +7,30 @@ toc = true
 tags = ['Claude Code', 'Draw Things', 'MCP', 'AI Automation', 'Mac']
 categories = ['AI Guides']
 keywords = ['Claude Code Draw Things', 'MCP image generation', 'Mac local AI image generation', 'Draw Things MCP Server', 'Claude Code auto generate images', 'AI blog illustrations free']
+
+[[params.faqItems]]
+question = "How do I enable the Draw Things API server?"
+answer = "Open Draw Things, press ⌘ + , for Settings, find the 'API Server' (or 'HTTP API') option, tick 'Enable API Server' and keep the default port 7860 — it is switched off by default. Verify it with `curl http://127.0.0.1:7860/sdapi/v1/options`; a JSON configuration response means the API is ready to accept requests."
+
+[[params.faqItems]]
+question = "How do I connect Claude Code to Draw Things through MCP?"
+answer = "Run `claude mcp add drawthings -- npx -y mcp-drawthings` in your terminal. That registers a stdio MCP server named drawthings in `~/.claude.json` and lets npx auto-download the Node.js bridge; Node.js v18 or newer is required. Restart Claude Code, type `/mcp`, and drawthings should appear as connected with 4 tools."
+
+[[params.faqItems]]
+question = "What tools does the Draw Things MCP server expose?"
+answer = "Four. `check_status` confirms the API server is reachable, `get_config` reports the loaded model, resolution, sampler and CFG scale, `generate_image` handles text-to-image, and `transform_image` handles image-to-image. generate_image accepts prompt, negative_prompt, width/height (64-2048), steps (1-150), cfg_scale (1-30), seed, model and output_path."
+
+[[params.faqItems]]
+question = "How fast is local image generation on an Apple Silicon Mac?"
+answer = "Fast enough to stay inside your writing loop. With Flux.1 Schnell at 4 inference steps, a 512×512 image takes roughly 8s on M1, 5s on M1 Pro/Max, 3s on M3 Pro/Max and 2s on M4 Pro/Max. A 1200×630 blog cover runs about 15s on M1 down to 5s on M4 Pro/Max, versus 30-60s per image on Midjourney."
+
+[[params.faqItems]]
+question = "Is Claude Code plus Draw Things cheaper than Midjourney or DALL-E 3?"
+answer = "Yes, it is free. Draw Things is a free App Store download and Apple Silicon compute costs nothing, against $10-60/month for Midjourney or $0.04-0.12 per image on the DALL-E 3 API. For a blogger who illustrates regularly that is $120-720 saved per year, plus offline use, unlimited batches and no image ever leaving the Mac."
+
+[[params.faqItems]]
+question = "Why does check_status fail to connect to Draw Things?"
+answer = "Work through four checks in order: the Draw Things app is actually open; the API Server toggle is enabled under Settings; port 7860 answers `curl http://127.0.0.1:7860/sdapi/v1/options`; and `node --version` reports v18 or higher. If npx cannot be found, re-register with an absolute path: `claude mcp add drawthings -- /usr/local/bin/npx -y mcp-drawthings`."
 +++
 
 ![Claude Code + Draw Things: Local AI Image Generation on Mac](cover.webp)

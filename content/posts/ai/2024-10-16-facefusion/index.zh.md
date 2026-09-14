@@ -6,6 +6,30 @@ toc = true
 tags = ['AI', 'FaceFusion']
 categories = ['AI实战']
 keywords = ['FaceFusion 教程', 'AI 换脸工具', 'FaceFusion 安装', '开源换脸', 'FaceFusion 参数调优']
+
+[[params.faqItems]]
+question = "FaceFusion 是免费的吗？和 Roop 有什么区别？"
+answer = "完全免费开源。FaceFusion 是 Roop 作者在 Roop 停更后重写的项目，模型和成片质量都更好。当前版本 3.5.x，支持图片换脸、视频换脸、批量处理和人脸增强，N 卡和 A 卡都能跑，全程在本地运行。"
+
+[[params.faqItems]]
+question = "跑 FaceFusion 对显卡和内存有什么要求？"
+answer = "推荐 NVIDIA 显卡、显存 8G 以上，RTX 3060 12G 处理视频就不算慢。内存 16G 起步、32G 更稳，模型文件加起来有几个 G，建议放 SSD。GTX 1660 6G 换图片没问题、视频会很慢；AMD 显卡新版已支持但比 N 卡慢；纯 CPU 跑视频基本没法用。"
+
+[[params.faqItems]]
+question = "FaceFusion 怎么安装？新手该选哪种方式？"
+answer = "新手直接用整合包，下载解压就能跑，注意解压路径不要有中文。有点基础的用 Pinokio，在 Discover 里搜 facefusion 装完点 Run Default，浏览器打开 `http://127.0.0.1:7860`。折腾党手动装：Python 必须 3.10.x，clone 仓库后建虚拟环境、`pip install -r requirements.txt`，N 卡再换成 `onnxruntime-gpu`，最后 `python run.py`。"
+
+[[params.faqItems]]
+question = "处理视频时爆显存、报 CUDA out of memory 怎么解决？"
+answer = "先降低输出分辨率，再关掉人脸增强，把换脸模型从 `inswapper_128` 换成 `inswapper_128_fp16`，显存占用会明显下降。视频还可以降帧率或者分段处理。爆显存基本只出现在高清视频上，处理单张图片很少遇到。"
+
+[[params.faqItems]]
+question = "换完脸看着很假、边缘有接缝怎么办？"
+answer = "通常是三个原因：源脸图片不够清晰、源脸和目标脸角度差太多、没开人脸增强。换一张正面清晰、角度接近的源脸，再勾上 `gfpgan_1.4` 增强。边缘接缝就调 Face Mask 参数、把遮罩模式改成 `occlusion`，它会自动识别眼镜口罩这类遮挡，只换露出来的部分。"
+
+[[params.faqItems]]
+question = "换一张图、一分钟视频分别要跑多久？"
+answer = "实测 RTX 3080 10G：单张图片换脸 1-2 秒，1 分钟 1080p 视频大约 3-5 分钟。开人脸增强会再慢三成左右，但清晰度提升明显。纯 CPU 处理单图勉强能用，视频就别想了。"
 +++
 ![FaceFusion](FaceFusion.webp)
 

@@ -6,6 +6,26 @@ toc = true
 tags = ['AI', 'Vercel', 'Browser Automation', 'Agent', 'CLI']
 categories = ['AI工具']
 keywords = ['Vercel Agent Browser', 'AI 浏览器自动化', '无头浏览器 CLI', 'Playwright 替代方案', 'AI Agent 浏览器工具']
+
+[[params.faqItems]]
+question = "agent-browser 是什么？谁做的？"
+answer = "Agent Browser 是 Vercel Labs 开源的无头浏览器自动化 CLI（Apache 2.0 协议），专为 AI Agent 设计而非传统测试框架。架构上用 Rust 写 CLI 保证毫秒级启动，用 Node.js 守护进程托管长期运行的 Playwright 浏览器实例，多条命令复用同一会话，不用每次重启 Chromium。"
+
+[[params.faqItems]]
+question = "agent-browser 怎么安装和使用？"
+answer = "两步装好：`npm install -g agent-browser`，再 `agent-browser install` 下载 Chromium。典型工作流是「快照—交互—验证」：`agent-browser open <url>` 打开页面，`agent-browser snapshot -i --json` 拿到带引用的交互元素，`agent-browser click @e5` 或 `agent-browser fill @e3 文本` 操作，最后重新快照确认结果。"
+
+[[params.faqItems]]
+question = "快照模式（snapshot + @e1 引用）和 CSS 选择器有什么区别？"
+answer = "传统自动化要写 CSS 选择器或 XPath，页面类名一改就失效。Agent Browser 返回的是无障碍树快照，每个可交互元素带一个稳定引用（`@e1`、`@e2`），直接用引用点击和填写，一行选择器都不用写。这也正好贴合 AI Agent 的工作方式：先看当前状态，再决定动作。"
+
+[[params.faqItems]]
+question = "怎么在 Claude Code 里用 agent-browser？"
+answer = "官方提供了 Claude Code Skill。先 `mkdir -p ~/.claude/skills/agent-browser`，再用 `curl` 把官方 SKILL.md 下载到该目录，然后重启 Claude Code，之后在任意对话里输入 `/agent-browser` 即可调用，做网页测试、填表单、截图、抓取页面内容。"
+
+[[params.faqItems]]
+question = "它和 Playwright 比怎么选？"
+answer = "Agent Browser 底层就是 Playwright，区别在使用方式。Playwright 适合写选择器脚本、做确定性的端到端测试；Agent Browser 按命令粒度暴露能力，以快照和元素引用为单位，更适合 Agent 的「观察—决策—执行—验证」循环。它还支持 `--session` 隔离并行会话、保存登录态、网络拦截和 JavaScript 执行。"
 +++
 ![Agent Browser](cover.webp)
 

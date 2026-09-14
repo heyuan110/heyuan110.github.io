@@ -8,6 +8,30 @@ toc = true
 tags = ['Docker', 'Docker Compose', 'Containerization', 'Tutorial', 'YAML']
 categories = ['AI Guides']
 keywords = ['docker compose 教程', 'docker-compose.yml 详解', 'docker compose 配置', 'compose.yaml', 'docker compose yml', 'docker compose 入门', 'docker compose volumes', 'docker compose networks', 'docker compose ports', '容器编排', 'docker compose 2026', 'docker compose yaml 教程', 'docker-compose.yml 怎么写', 'docker compose services', 'docker compose healthcheck']
+
+[[params.faqItems]]
+question = "docker-compose.yml 怎么写？最小可用的配置是什么样？"
+answer = "在项目根目录建一个 `compose.yaml`，顶层只有 `services` 是必选的。最小配置四行就够：`services:` 下写服务名，再加 `image: nginx` 和 `ports: - '80:80'`。注意 Compose V2 已经去掉了 `version` 字段，别再写。写完用 `docker compose config` 验证，再 `docker compose up -d` 启动。"
+
+[[params.faqItems]]
+question = "文件名必须叫 compose.yaml 吗？docker-compose.yml 还能用吗？"
+answer = "新项目推荐用 `compose.yaml`，但老文件名照样能跑。Compose V2 按这个优先级查找：`compose.yaml`、`compose.yml`、`docker-compose.yaml`、`docker-compose.yml`。想用其他名字就显式指定：`docker compose -f my-config.yaml up -d`。"
+
+[[params.faqItems]]
+question = "带连字符的 docker-compose 命令还能用吗？"
+answer = "还能跑，但它已于 2023 年 7 月停止维护。旧版是 Python 写的独立工具，新版 `docker compose`（空格分隔）是 Go 重写的 Docker CLI 内置插件。迁移是机械的：把连字符换成空格即可，`docker-compose up` → `docker compose up`。用 `docker compose version` 确认你装的是哪个。"
+
+[[params.faqItems]]
+question = "compose.yaml 缩进报错怎么排查？"
+answer = "九成是缩进问题。YAML 禁止 Tab，只能用空格，每深一层缩进 2 个空格，同级 key 必须对齐；冒号后必须有空格（写 `image: nginx`，不能写 `image:nginx`）；列表项是短横线加空格。端口映射一定要加引号，比如 `'8080:80'`，否则 YAML 会把 xx:yy 当成 60 进制数。跑 `docker compose config` 会直接报出错行号。"
+
+[[params.faqItems]]
+question = "怎么让服务等数据库真正就绪后再启动？"
+answer = "光写 `depends_on` 只控制启动顺序，不等就绪。要给数据库加 `healthcheck`，例如 `test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']`，配 `interval: 10s`、`timeout: 5s`、`retries: 5`；依赖方再写 `condition: service_healthy`。加上 `restart: true` 还能在数据库重启时一并重启依赖服务。"
+
+[[params.faqItems]]
+question = "容器之间怎么互相访问？需要配 networks 吗？"
+answer = "直接用服务名当主机名。服务叫 `db`，在 api 容器里写 `DB_HOST=db` 就能连通，`ping db` 也能通——不声明 networks 时所有服务默认在同一个网络里。只有当你需要隔离（比如不让 web 层直接访问数据库）时，才有必要自定义 `networks`。"
 +++
 
 Docker Compose 是目前最流行的多容器编排工具，而 **docker-compose.yml**（新版推荐命名为 `compose.yaml`）就是它的核心配置文件。无论你是刚接触容器化的新手，还是想系统梳理配置细节的老手，这篇 Docker Compose 教程都适合你。

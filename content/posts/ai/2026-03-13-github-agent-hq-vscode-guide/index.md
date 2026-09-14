@@ -6,6 +6,27 @@ description = 'Set up GitHub Agent HQ to run Claude, Codex, and Copilot in VS Co
 toc = true
 tags = ['GitHub Copilot', 'AI Coding Tools', 'VS Code', 'Claude', 'Multi-Agent']
 keywords = ['GitHub Agent HQ', 'multi-agent VS Code', 'Claude Codex Copilot VS Code', 'Agent HQ setup guide', 'VS Code multi-agent development']
+
+[[params.faqItems]]
+question = "What is GitHub Agent HQ?"
+answer = "Agent HQ is GitHub's platform for orchestrating multiple AI coding agents across github.com, VS Code and GitHub Mobile. Announced at GitHub Universe 2025 and released in public preview in February 2026, it lets you run Anthropic Claude, OpenAI Codex and GitHub Copilot from one interface — assigning tasks, monitoring concurrent sessions, comparing outputs and merging the best result. Agent output lands as pull requests, comments and issue updates."
+
+[[params.faqItems]]
+question = "Which agents does Agent HQ support, and what is each one good at?"
+answer = "Three as of March 2026. Copilot is GitHub's native agent with the deepest context on your repository and the best inline experience. Claude is strongest at multi-file refactoring, architectural reasoning and nuanced review. Codex is fastest at code generation, algorithm work and concise implementations. Agents from Google, Cognition and xAI are planned. A common pipeline is Claude for planning, Codex for implementation, Copilot for integration."
+
+[[params.faqItems]]
+question = "What do I need to set up Agent HQ in VS Code?"
+answer = "VS Code v1.109 or newer (the January 2026 release added multi-agent support), the GitHub Copilot and Copilot Chat extensions, and a qualifying subscription. Then set `chat.agent.enabled` and `github.copilot.chat.claudeAgent.enabled` to true in settings, and confirm by searching the Command Palette for 'Agent Sessions'. In enterprise setups `chat.agent.enabled` may be locked at the organization level."
+
+[[params.faqItems]]
+question = "How much does Agent HQ cost, and does Copilot Individual work?"
+answer = "Claude and Codex access requires Copilot Pro+ at $39 per month or Copilot Enterprise. Copilot Free, Individual and Business tiers can use Copilot agent mode but not the multi-agent capability; broader access is planned for later in 2026. Each agent session also consumes one premium request from your quota, so running all three agents on every trivial task burns through the allowance fast."
+
+[[params.faqItems]]
+question = "Does Agent HQ replace Claude Code CLI?"
+answer = "Not entirely. Agent HQ wins on multi-agent comparison, visual diffs, session panels and enterprise governance such as access controls and audit logs. Claude Code CLI still wins on full filesystem and shell access, scriptability, hook-based automation, worktree workflows and CLAUDE.md-level customization, none of which Agent HQ replicates. Agent HQ also has no cross-session memory, so context has to be moved between agents by hand."
+
 +++
 
 ![GitHub Agent HQ multi-agent development dashboard showing Claude, Codex, and Copilot panels in VS Code](cover.webp)

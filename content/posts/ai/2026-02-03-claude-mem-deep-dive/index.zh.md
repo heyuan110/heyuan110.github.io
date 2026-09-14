@@ -7,6 +7,34 @@ toc = true
 tags = ['Claude Code', 'Claude-Mem', 'AI Memory', 'Plugin Architecture', 'MCP']
 categories = ['AI Guides']
 keywords = ['Claude-Mem', 'Claude Code 记忆', 'AI 持久记忆', 'Claude Code 插件', '跨会话上下文']
+
+[[params.faqItems]]
+question = "claude-mem 是什么？解决什么问题？"
+answer = "claude-mem 是给 Claude Code 加跨会话长期记忆的插件（AGPL-3.0 开源，仓库 thedotmack/claude-mem）。它用 Hook 自动捕获每次工具调用，让 AI 把原始输出压缩成约 500 token 的结构化「观察」，存进 SQLite FTS5 + ChromaDB 双库，下次开会话时再把相关记忆注回去，从此不用每天重复讲一遍项目背景。"
+
+[[params.faqItems]]
+question = "claude-mem 怎么安装和使用？"
+answer = "在 Claude Code 里敲两条命令：`/plugin marketplace add thedotmack/claude-mem`，然后 `/plugin install claude-mem`。重启后新会话会自动带上历史上下文。配置文件在 `~/.claude-mem/settings.json`，浏览器打开 `http://localhost:37777` 能实时看观察流、搜索记忆库、调注入参数。"
+
+[[params.faqItems]]
+question = "claude-mem 能省多少 Token？"
+answer = "上下文注入从 v3 的约 25,000 token 降到 v7 的约 1,500 token，省了约 94%。三层渐进式检索（索引层每条 50-100 token → 时间线 → 完整详情每条 500-1000 token）相比传统 RAG 一次性全塞进去，大约省 10 倍；v7 还把 9 个 MCP 工具（约 2,500 token）合并成 1 个 Skill（约 250 token）。"
+
+[[params.faqItems]]
+question = "Endless Mode 是什么？值得开吗？"
+answer = "Endless Mode（Beta）是仿生双层记忆：上下文窗口里只留约 500 token 的压缩观察，完整工具输出归档到磁盘。PostToolUse Hook 最多阻塞 110 秒做压缩，把 Token 增长从 O(N²) 降到 O(N)，窗口内 Token 少约 95%，工具调用次数能多约 20 倍。代价是每次工具调用多 60-90 秒延迟，适合大规模重构这类需要长时间连续作业的场景。"
+
+[[params.faqItems]]
+question = "有了 CLAUDE.md 还需要 claude-mem 吗？"
+answer = "两者互补，建议一起用。CLAUDE.md 手写静态知识——技术栈、代码规范、架构原则、常用命令，而且能提交 Git 团队共享；claude-mem 自动记录动态过程——Bug 排查轨迹、架构决策理由、试过哪些方案，但属于个人记忆，不跨设备同步。一个是员工手册，一个是工作日志。"
+
+[[params.faqItems]]
+question = "数据会上传云端吗？敏感信息怎么排除？"
+answer = "不会，所有数据存在本地 `~/.claude-mem/`，Worker 只监听 `127.0.0.1:37777`，外部访问不到，AI 压缩走你自己的 Claude 订阅或第三方 Key。想让某段内容不进记忆，在对话里用 `<private>` 标签包起来；也可以在配置的 `CLAUDE_MEM_SKIP_TOOLS` 里排除指定工具。"
+
+[[params.faqItems]]
+question = "装了 claude-mem 会不会把 Claude Code 拖慢？"
+answer = "普通模式不会。所有 Hook 都是轻量 HTTP 客户端（v7.0 重构后每个约 75 行代码），只负责把请求异步发给 Worker，拿到 202 Accepted 就立刻返回，不等处理完成。唯一明显变慢的是 Endless Mode，它故意阻塞压缩，每次工具调用多 60-90 秒。"
 +++
 
 ![Claude-Mem 深度解析：给 Claude Code 装上永久记忆的插件架构图](cover.webp)

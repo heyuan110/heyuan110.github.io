@@ -6,6 +6,30 @@ description = 'Hands-on review of OpenCode, the 121K-star open source AI coding 
 toc = true
 tags = ['OpenCode', 'AI Agent', 'Coding Tools', 'CLI', 'Developer Tools']
 keywords = ['OpenCode review', 'open source coding agent', 'OpenCode vs Claude Code', 'AI coding tool comparison', 'terminal AI assistant', 'LSP AI integration']
+
+[[params.faqItems]]
+question = "Who developed OpenCode?"
+answer = "OpenCode is built by Anomaly, the team behind SST (Serverless Stack, 25K+ stars); the lead developer is Dax (GitHub: thdxr), who also created terminal.shop and OpenAuth. Worth knowing the naming history: the name OpenCode was first used by Kujtim Hoxha's Go-based TUI with 11K+ stars, which was archived after Anomaly's launch and now continues as Crush under Charm."
+
+[[params.faqItems]]
+question = "What does OpenCode's LSP integration actually do?"
+answer = "OpenCode connects directly to Language Server Protocol servers -- around 40 languages, started automatically when you run `/init` -- and feeds live diagnostics back to the model, creating a self-correction loop. Renaming a core TypeScript interface, it caught every downstream type error across 40+ files without anyone running `tsc`. LSP support is still flagged experimental and adds roughly 200-500MB of RAM."
+
+[[params.faqItems]]
+question = "Can OpenCode replace Claude Code?"
+answer = "Not yet, based on two weeks of daily use. OpenCode wins on LSP self-correction, 75+ model providers and per-command permissions; Claude Code wins on stability, long-session context handling, the MCP ecosystem, hooks and documentation. The concrete rough edges: responses degraded past roughly 100K tokens of context, 3 patches failed to apply cleanly in two weeks, and RAM use hit ~1.2GB versus Claude Code's ~400MB."
+
+[[params.faqItems]]
+question = "How much does OpenCode cost, and what is OpenCode Zen?"
+answer = "OpenCode itself is free and MIT-licensed -- you only pay for the model API keys you bring. OpenCode Zen, the team's curated model proxy, starts at $20 pay-as-you-go and auto-tops-up when the balance drops below $5, advertising zero-markup pricing. For comparison, Claude Code's Max plan runs around $100/month and Cursor is $20/month. An existing GitHub Copilot subscription can also be routed through OpenCode."
+
+[[params.faqItems]]
+question = "Is OpenCode safe to install?"
+answer = "Treat it with care. The client-server design exposes a local agent server on port 4096, which led to an unauthenticated remote code execution vulnerability rated around CVSS 10 -- any website could run arbitrary code as your user. It has reportedly been patched, but monolithic agents simply do not have that attack surface. Offsetting this, OpenCode's per-command permission rules let you set `rm -rf *` to deny while allowing `git status`."
+
+[[params.faqItems]]
+question = "How do I install and start OpenCode?"
+answer = "Install with `curl -fsSL https://opencode.ai/install | bash`, `npm i -g opencode`, or `brew install opencode`. Then cd into your project, run `opencode`, use `/connect anthropic` (or openai, ollama) to add a provider, and `/init` to detect the project and start LSP servers. Press `Tab` to switch between the Build and Plan agents, `@` to call the @general or @explore subagent, and `Ctrl+Z` to undo the last change."
 +++
 
 ![OpenCode open source AI coding agent terminal interface and architecture overview](cover.webp)

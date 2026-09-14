@@ -7,6 +7,30 @@ toc = true
 tags = ['Claude Code', 'Git Worktree', 'Productivity', 'Parallel Development']
 categories = ['AI Guides']
 keywords = ['Claude Code worktree', 'Claude Code parallel development', 'git worktree', 'Claude Code -w', 'run multiple Claude sessions', 'Claude Code productivity']
+
+[[params.faqItems]]
+question = "How do I start Claude Code in worktree mode?"
+answer = "Run `claude -w <name>`, for example `claude -w feature-auth`. One command creates the directory `<repo-root>/.claude/worktrees/feature-auth/`, cuts a branch named `worktree-feature-auth` from the default remote branch, and launches Claude Code inside it. Plain `claude -w` auto-generates a name like bright-running-fox. Add `.claude/worktrees/` to your `.gitignore` so the copies never show up in `git status`."
+
+[[params.faqItems]]
+question = "What happens to the worktree when I exit the session?"
+answer = "It depends on whether you changed anything. With no uncommitted modifications and no new commits, Claude Code deletes the worktree directory and its branch automatically — a throwaway exploration leaves nothing behind. If there are changes or commits, it prompts you to Keep (directory and branch survive, reachable later via `claude --resume`) or Delete (everything goes, including uncommitted work)."
+
+[[params.faqItems]]
+question = "Can two Claude Code sessions work on different branches at the same time?"
+answer = "Yes — that is the whole point. Open two terminals, run `claude -w feature-auth` in one and `claude -w optimize-queries` in the other, and each session gets its own directory, its own branch and its own context. Git forbids two worktrees checking out the same branch, which is why Claude Code auto-names each one `worktree-<name>`. The incident.io team routinely runs 4-5 parallel instances this way."
+
+[[params.faqItems]]
+question = "Is parallel worktree development actually faster than stashing and switching?"
+answer = "The incident.io case study puts numbers on it: a JavaScript editor enhancement estimated at 2 hours of manual development finished in 10 minutes once it was split into independent sub-tasks across parallel worktrees. The caveat is task decomposition — if two tasks touch the same files you get merge conflicts regardless. Their team also took about four months to move from experiment to full adoption."
+
+[[params.faqItems]]
+question = "How much disk space does each worktree consume?"
+answer = "Roughly the size of your tracked source files. The `.git` directory is shared across all worktrees, so nothing is re-downloaded and creation is near instant. The real cost is dependencies: each worktree needs its own install, which for a typical Node.js project means 200-500 MB of `node_modules` per worktree. Using pnpm and its content-addressable store deduplicates packages and cuts that significantly."
+
+[[params.faqItems]]
+question = "Why does my code fail to run in a freshly created worktree?"
+answer = "Because a worktree contains only Git-tracked files — ignored paths like `node_modules/`, `venv/`, `vendor/` and `.env` are missing. Run `npm install` or `pip install -r requirements.txt` first, and bring the env file over with `cp .env .claude/worktrees/<name>/.env` or a symlink (`ln -s ../../.env .env`). Putting that rule in CLAUDE.md, or a post-session hook, makes Claude do it for you every time."
 +++
 
 ![Claude Code worktree mode running multiple parallel AI coding sessions](cover.webp)

@@ -8,6 +8,34 @@ images = ['cover.webp']
 tags = ['Cloudflare', 'Workers', 'Serverless', 'Edge Computing', 'CDN']
 categories = ['Docker']
 keywords = ['Cloudflare Workers', '边缘计算', 'Serverless', '无服务器', 'API代理', 'Wrangler']
+
+[[params.faqItems]]
+question = "Cloudflare Workers 是什么？边缘计算到底快在哪？"
+answer = "Cloudflare Workers 是无服务器边缘计算平台，代码跑在全球 300+ 个数据中心，请求由离用户最近的边缘节点处理，而不是回源到某一个机房。它底层用 V8 isolates 而非容器或虚拟机，所以冷启动 < 5ms，而 AWS Lambda 通常要 100ms 到数秒。"
+
+[[params.faqItems]]
+question = "Cloudflare Workers 免费额度有多少？够个人项目用吗？"
+answer = "免费版每天 10 万次请求（约每月 300 万次）、每次请求 10ms CPU 时间；Workers KV 每天读 10 万、写 1000 次、存储 1GB；D1 数据库每天读 500 万行、写 10 万行、存储 5GB；静态资源不限量，子请求不计费。个人博客、小工具、API 代理这类场景基本一分钱不花。"
+
+[[params.faqItems]]
+question = "超出免费额度后要花多少钱？"
+answer = "付费版 $5/月起，含每月 1000 万次请求，超出部分每百万次 $0.30，同时把 CPU 时间放宽到每次请求 5 分钟。文中算过账：每天 5 万次请求还是 $0，每天 50 万次是 $5，每天 500 万次约 $6.5。触发付费的三种情况是日请求超 10 万、单次请求 CPU 超 10ms、数据库吞吐不够。"
+
+[[params.faqItems]]
+question = "怎么用 Wrangler 部署第一个 Worker？"
+answer = "准备好免费 Cloudflare 账号和 Node.js 16.17.0+，四步走：`npx wrangler login` 授权，`npm create cloudflare@latest -- my-first-worker` 创建项目，`npx wrangler dev` 本地跑起来（默认 http://localhost:8787，支持热重载），最后 `npx wrangler deploy` 上线，几秒后就能通过 workers.dev 子域名访问。"
+
+[[params.faqItems]]
+question = "哪些场景不适合用 Workers？"
+answer = "四类要绕开：单次超过 30 秒的长任务（改用 Queues + Durable Objects）、内存超过 128MB 的应用（回传统云服务器）、依赖完整 Node.js API 的项目（Vercel Functions 更合适）、以及需要长连接 WebSocket 的服务（要买 Durable Objects）。数据库读写量大的也容易撞 KV / D1 上限。"
+
+[[params.faqItems]]
+question = "Workers 和 Pages Functions 有什么区别？"
+answer = "Pages Functions 属于 Cloudflare Pages，定位是给静态站点补后端逻辑，底层同样跑在 Workers 运行时上，但部署模型和典型场景不同。站点是主体、接口是配角时选 Pages Functions；API 代理、网关、短链服务这种接口本身就是产品时，直接用独立 Workers。"
+
+[[params.faqItems]]
+question = "Workers 支持 WebSocket 和大文件上传吗？"
+answer = "普通 Worker 可以转发（代理）WebSocket 连接，但要在 Worker 内部维持 WebSocket 状态必须用 Durable Objects，这是付费功能。上传方面，付费版请求体上限 100MB，超过这个体积应该改用 R2 存储配合预签名上传 URL，不要让文件流经 Worker。"
 +++
 
 ![Cloudflare Workers 快速无服务器平台官方封面图](cover.webp)

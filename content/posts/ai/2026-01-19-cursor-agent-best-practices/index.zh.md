@@ -6,6 +6,30 @@ toc = true
 tags = ['Cursor', 'AI Coding', 'Agent', 'Best Practices']
 categories = ['AI Guides']
 keywords = ['Cursor Agent 最佳实践', 'Cursor 使用技巧', 'AI 编程助手', 'Cursor Rules 配置', 'Cursor 计划模式']
+
+[[params.faqItems]]
+question = "Cursor 的计划模式（Plan Mode）怎么开？"
+answer = "按 `Shift + Tab` 进入计划模式。Agent 会先研究代码库、提出澄清问题、给出可执行方案，等你确认后才动手写代码。计划以 Markdown 保存在 `.cursor/plans/` 目录，既能当团队决策文档，也能让中断的任务断点续传。发现输出跑偏时，回去改计划比反复修代码更快。"
+
+[[params.faqItems]]
+question = "Cursor 怎么配置 grind 这种一直跑到测试通过的循环？"
+answer = "靠 stop 钩子。在 `.cursor/hooks.json` 里注册 `stop` 钩子，例如 `bun run .cursor/hooks/grind.ts`。钩子脚本接收 JSON 输入、返回 `followup_message`，Agent 就会被重新唤起，形成「修复 → 测试 → 再修复」的自动循环。配合 TDD 用效果最好：测试通过就等于任务完成。"
+
+[[params.faqItems]]
+question = "Cursor 的 Rules 和 Skills 有什么区别？"
+answer = "Rules 是静态上下文，放在 `.cursor/rules/` 下的 Markdown 文件里，写常用命令（如 `npm run build`、`npm run test`）、关键模式和文件引用；Skills 是动态能力，定义在 `SKILL.md` 中，提供 `/` 触发的自定义命令、Agent 动作前后的钩子函数和按需加载的领域知识。规则要响应式添加，等 Agent 反复犯同一个错再补。"
+
+[[params.faqItems]]
+question = "要不要手动 @ 一堆文件给 Agent 当上下文？"
+answer = "不要。Agent 自带语义搜索、Grep 搜索和文件遍历，手动塞文件反而制造噪音。与其写「@file1.ts @file2.ts @file3.ts 帮我改认证逻辑」，不如直接说「帮我修改用户认证逻辑，需要支持 OAuth 登录」。只有当你明确知道涉及哪几个文件时，才值得手动指定。"
+
+[[params.faqItems]]
+question = "什么时候该开新对话，什么时候继续当前对话？"
+answer = "切换任务、完成一个逻辑单元、或者 Agent 开始犯迷糊时，就开新对话；在同一功能上迭代、调试它刚写的代码时继续当前对话。长对话会积累上下文噪音，拉低 Agent 有效性。需要旧上下文时用 `@Past Chats` 选择性导入，而不是把整个需求重新描述一遍。"
+
+[[params.faqItems]]
+question = "Cursor 能同时跑多个 Agent 吗？"
+answer = "能。Cursor 自动用 Git Worktrees 给每个 Agent 分配独立工作区（放在 `.worktrees/` 下），文件改动互相隔离。典型用法是用同一个 prompt 启动多个 Agent，让它们独立跑完，并排比较后合并最优方案，适合对比不同模型、探索不同实现路径或并行处理独立子任务。"
 +++
 ![Cursor Agent 编码最佳实践](cover.webp)
 

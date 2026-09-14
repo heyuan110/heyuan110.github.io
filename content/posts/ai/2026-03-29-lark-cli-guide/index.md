@@ -6,6 +6,34 @@ description = 'Lark CLI is the official command-line tool for Feishu/Lark Open P
 toc = true
 tags = ['Lark CLI', 'Feishu', 'AI Agent', 'Claude Code', 'CLI Tools', 'Open Source', 'Productivity']
 keywords = ['Lark CLI', 'lark-cli install', 'Feishu CLI', 'AI Agent Feishu', 'Claude Code Feishu', 'Lark Open Platform', 'lark-cli tutorial']
+
+[[params.faqItems]]
+question = "What is Lark CLI and who maintains it?"
+answer = "Lark CLI is the official command-line tool for the Feishu (Lark) Open Platform, built and open-sourced under MIT by the larksuite team. It covers 11 business domains with 200+ curated commands and ships 19 AI Agent Skills, and had 1.7k GitHub stars as of March 2026. Think of it as a remote control for Feishu: manage calendars, chats, docs, spreadsheets and Bitable without opening a browser."
+
+[[params.faqItems]]
+question = "How do I install lark-cli and run auth login?"
+answer = "Four commands, about five minutes. Install with `sudo npm install -g @larksuite/cli` (Node.js v18+ required), add the Agent Skills with `npx skills add larksuite/cli -y -g`, then run `lark-cli config init` and `lark-cli auth login --recommend`. Verify with `lark-cli auth status` and `lark-cli doctor`. Windows users can drop the `sudo`."
+
+[[params.faqItems]]
+question = "What information does `lark-cli config init` ask for?"
+answer = "Nothing you need to prepare in advance. `config init` walks you through creating the Feishu app, fetching credentials and configuring permissions straight from the terminal prompts, so you never have to visit the developer console manually. Credentials are then stored encrypted in the OS keychain (macOS Keychain, Linux Secret Service) rather than in a plaintext file."
+
+[[params.faqItems]]
+question = "Why does `auth login --recommend` fail to open a browser, and how do I fix it?"
+answer = "On headless servers or when the browser handoff breaks, add `--no-wait`: `lark-cli auth login --recommend --no-wait` prints the authorization URL so you can paste it into a browser on any device. The `--recommend` flag preselects the common permission scopes. For scope errors after login, check with `lark-cli auth check`, list options with `lark-cli auth scopes`, or restrict login to specific domains: `lark-cli auth login --domain calendar,im`."
+
+[[params.faqItems]]
+question = "How does Lark CLI differ from calling the Feishu API directly?"
+answer = "The raw API gives you 2,500+ endpoints but makes you write code, refresh tokens, handle pagination and parse JSON. Lark CLI wraps that in three layers: `+` shortcut commands for common tasks, 100+ API commands mapped 1:1 to endpoints, and `lark-cli api GET /open-apis/...` as a fallback that still reaches all 2,500+ endpoints. It adds built-in OAuth, `--page-all` pagination and JSON/Table/CSV/Pretty output."
+
+[[params.faqItems]]
+question = "Can Claude Code drive Feishu through Lark CLI?"
+answer = "Yes, that is the main point of the 19 Agent Skills installed by `npx skills add larksuite/cli -y -g`. They follow the standard Skills protocol, so Claude Code, Cursor and Gemini CLI load them directly: you say «check my meetings tomorrow» and the agent picks `lark-cli calendar +agenda` itself. Security caveat from the article: keep the connected Feishu bot as a private assistant, since model hallucination and uncontrolled execution are real risks."
+
+[[params.faqItems]]
+question = "I get an EACCES permission error during npm install. What now?"
+answer = "Either prefix with `sudo`, or move the npm global directory somewhere you own: `mkdir ~/.npm-global && npm config set prefix '~/.npm-global'`, then add `export PATH=~/.npm-global/bin:$PATH` to your `~/.zshrc`. The error happens because a global npm install writes to `/usr/local/lib` by default, which needs admin rights on macOS and Linux."
 +++
 
 ![Lark CLI - Feishu Command Line Tool](cover.png)

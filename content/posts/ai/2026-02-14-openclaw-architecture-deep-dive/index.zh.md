@@ -7,6 +7,30 @@ toc = true
 tags = ['OpenClaw', 'AI Agent', '架构', '自动化', 'Skills']
 categories = ['AI原理']
 keywords = ['OpenClaw 架构', 'OpenClaw Gateway', 'OpenClaw Heartbeat', 'OpenClaw Cron', 'AI Agent 自动化原理']
+
+[[params.faqItems]]
+question = "OpenClaw 的 Gateway 是什么？和普通聊天机器人有什么区别？"
+answer = "Gateway 是一个常驻进程，负责路由、控制、连接和安全边界，属于控制平面而不是机器人本身。Telegram、WhatsApp、Slack、WebChat 的入站消息都先到 Gateway；它默认要求 token/password 鉴权，支持多实例多 profile 隔离（不同端口、不同 state dir、不同 workspace），把 session transcript 持久化成 JSONL，并通过 WebSocket 对外提供控制和事件流。"
+
+[[params.faqItems]]
+question = "OpenClaw 的 Heartbeat 会不会一直刷屏打扰你？"
+answer = "不会，因为它有一份响应契约。Gateway 周期性触发 main session 的 agent turn，模型如果判断没事，必须回复 `HEARTBEAT_OK`；Gateway 把它当作 ack，内容很短时直接丢弃，不会投递到聊天里。设计逻辑跟巡逻系统一样：有事才报警，没事就静默。"
+
+[[params.faqItems]]
+question = "Cron 和 Heartbeat 有什么区别？定时任务该用哪个？"
+answer = "Cron 负责到点叫醒谁（持久化，重启不丢），Heartbeat 负责被叫醒后用主会话上下文巡逻执行。Cron 有两种执行风格：main session job 只往主会话塞一个 systemEvent，等下一次 Heartbeat 执行；isolated job 直接跑 `cron:<jobId>` 的隔离会话。像「每天早上汇总」这类任务建议用 isolated + announce，避免污染主对话上下文。"
+
+[[params.faqItems]]
+question = "OpenClaw 的 Skills 和 Tools 是一回事吗？"
+answer = "不是。Tools 是能力的 API，比如 browser、exec、read/write、nodes、message；Skills 是如何用这些 API 完成任务的可复用方法论和约束。OpenClaw 采用与 AgentSkills 兼容的目录规范，一个 skill 目录里放 `SKILL.md`（带 YAML front matter），写清用途、触发方式和操作步骤。好处是可审计（能读文本知道它会怎么做）和可移植（跨 agent、跨机器复用）。"
+
+[[params.faqItems]]
+question = "Nodes 怎么实现跨设备执行？安全吗？"
+answer = "Node 是伴生设备，连到 Gateway 同一个 WebSocket 端口，但以 role: node 身份握手。Gateway 可以把 system.run、camera、screen record、canvas 这类工具调用转发给 node 执行，于是模型跑在 Gateway 主机上，执行面却能分散到手机、平板或另一台电脑。安全上要配合 allowlist 和 exec approvals，默认配置应该保守，跨设备执行不等于远程控制一切。"
+
+[[params.faqItems]]
+question = "为什么 OpenClaw 的长期记忆要落成文件，而不是塞进提示词？"
+answer = "因为文件化记忆可维护。短期记忆是当前 session 的对话历史，由 Gateway 持久化成 JSONL；长期记忆放在 workspace 的文件里，比如 `memory/YYYY-MM-DD.md`、`MEMORY.md` 和项目资料 Markdown。这样你能手动编辑纠错对抗幻觉，能用 git 做版本管理，还能划隐私边界——哪些文件只在 main 私聊加载，哪些不加载。"
 +++
 
 ![OpenClaw 架构深度解析封面：自动化如何发生](cover.webp)

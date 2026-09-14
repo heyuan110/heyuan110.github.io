@@ -14,6 +14,30 @@ keywords = ['ai agent memory', 'rag vs context engineering', 'ai agent context m
     { question = "Why do AI coding agents need memory systems?", answer = "AI agents like Claude Code lose all context when a session ends — every architectural decision, debugging finding, and coding convention discussed is forgotten. Memory systems solve this session amnesia by persisting important information across conversations, reducing repetitive context-setting and improving agent performance over time." },
     { question = "How does CLAUDE.md work as an AI agent memory system?", answer = "CLAUDE.md is a markdown file placed in your project root that Claude Code reads at the start of every session. It serves as persistent, human-curated memory containing project rules, tech stack details, coding conventions, and architectural decisions. Unlike RAG, it requires manual maintenance but offers full control over what the agent knows." }
   ]
+
+[[params.faqItems]]
+question = "Agent memory vs RAG — what is the actual difference?"
+answer = "RAG retrieves information at query time: documents are chunked, embedded, stored in a vector database, and the top 5-20 semantically similar chunks are injected into the prompt. Context engineering instead curates what enters the window upfront, through files like CLAUDE.md and a structured docs/ tree. RAG wins on large, evolving knowledge bases; context engineering wins on project rules where you need deterministic, version-controlled behaviour."
+
+[[params.faqItems]]
+question = "Is a vector database alone enough for agent memory?"
+answer = "No — production memory layers pair it with keyword search. Claude-Mem runs ChromaDB vector similarity next to SQLite FTS5 full-text search and merges both through hybrid ranking, because embeddings miss exact technical strings like 401 error or JWT token. It also uses progressive disclosure — index results of 50-100 tokens first, full observations of 500-1000 tokens only on demand — which saves roughly 10x the tokens of naive RAG injection."
+
+[[params.faqItems]]
+question = "Why does a 200K context window still run out during a coding session?"
+answer = "Because token cost grows quadratically: every new tool call must carry all previous context. A single tool call — reading a file, running a command, writing code — consumes 1,000 to 10,000 tokens, and a moderately complex task takes 50+ of them. That exhausts a 200K window (Claude Sonnet 4) well before the task is done; GPT-4o has 128K and Gemini 1.5 Pro 2M, but the same curve applies."
+
+[[params.faqItems]]
+question = "Does giving an agent more context always make it better?"
+answer = "No. Four documented failure modes say the opposite. Context poisoning amplifies a wrong rule until the agent reinforces it; context distraction kicks in past roughly 32K tokens, where models repeat recent patterns instead of forming new strategies; context confusion degrades tool selection once you expose 40+ tools; and context conflict is the worst — Microsoft and Salesforce research measured an average 39% performance drop when partially wrong information preceded the correct answer."
+
+[[params.faqItems]]
+question = "Can I run RAG and context engineering at the same time?"
+answer = "Yes, and the layered stack is the recommended setup. Layer 1 is CLAUDE.md for static, version-controlled rules that always load. Layer 2 is structured docs (designs, plans, guides) loaded selectively per task. Layer 3 is RAG memory for conversation history and debugging discoveries, retrieved by semantic search. Layer 4 is live session context — open files, test output, error messages."
+
+[[params.faqItems]]
+question = "If I only do one thing, where should I start?"
+answer = "Write a CLAUDE.md. A single well-maintained file with tech stack, coding conventions, architectural decisions and an explicit Do NOT section gives roughly 80% of the benefit for 20% of the effort, with zero infrastructure. Add a RAG memory plugin only once you actually need cross-session recall, and start it conservatively — last 10 sessions, 50 observations maximum."
 +++
 
 ![AI agent memory systems compared: RAG retrieval pipelines versus context engineering approaches for LLM agents](cover.webp)

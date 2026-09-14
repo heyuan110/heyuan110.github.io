@@ -7,6 +7,31 @@ tags = ['Claude Code', 'Remotion', 'AI Video', 'React', 'Video Production', 'AI 
 categories = ['AI Guides']
 keywords = ['Claude Code Remotion', 'AI 视频制作', 'React 生成视频', 'Remotion 教程', '程序员做视频']
 toc = true
+
+[[params.faqItems]]
+question = "Remotion 是什么？"
+answer = "Remotion 是一个用 React 代码做视频的开源框架。写组件、跑一条渲染命令，直接产出 MP4，不用在 Premiere 或 After Effects 里拖时间轴。它由 Jonny Burger 创立，GitHub 上有 2.8 万颗星，npm 月安装量超过 40 万次。因为视频变成了代码，它天然适合让 AI 来写。"
+
+[[params.faqItems]]
+question = "Claude Code 真的能直接生成视频吗？怎么配？"
+answer = "能，两步就够。先装好 Node.js 18 以上和 Claude Code，然后执行 `npx skills add remotion-dev/skills`。这条命令让 Claude Code 获得 31 条 Remotion 编程规则，涵盖图片视频嵌入、fade/spring/缓动动画、文字动画、Three.js 3D、数据可视化和字幕。之后用中文描述想要的效果，它会自动建项目、装依赖、写代码并启动预览。"
+
+[[params.faqItems]]
+question = "Remotion 显示中文会乱码吗？"
+answer = "不会。Remotion 底层渲染的是网页内容，只要把字体加载进去就能正常显示中文。常用写法是从 `@remotion/google-fonts/NotoSansSC` 导入 `loadFont` 并调用一次。本文的抖音榜单项目就是同时加载了思源黑体和 Poppins，中英文混排不会掉字。"
+
+[[params.faqItems]]
+question = "怎么用 Remotion 批量生成上百条视频？"
+answer = "靠参数化。让 Claude Code 把视频改成接受 `customerName` 之类的 props，然后用 shell 循环调用 `npx remotion render src/index.ts MyVideo out/xxx.mp4 --props=...` 逐个渲染。这是 Remotion 相比传统剪辑软件最大的优势：一百个客户的个性化视频只改数据，不重复剪辑。"
+
+[[params.faqItems]]
+question = "Remotion 收费吗？可以商用吗？"
+answer = "本体开源免费，个人和商业项目都能直接用。唯一收费的是 Remotion Lambda，也就是跑在 AWS 上的并行云渲染服务，需要单独购买 license。本地这条链路（`remotion studio` 预览加 `remotion render` 导出）全程不花钱。"
+
+[[params.faqItems]]
+question = "Remotion 和 Sora、Pika 这类 AI 视频工具有什么区别？"
+answer = "解决的问题不一样。Sora、Pika 是文生视频，AI 凭空生成写实的人物和场景，结果不可控；Remotion 严格按代码渲染每一帧，适合产品演示、数据报表、图表动画、文字动画、Logo 演绎这类设计驱动的内容。要精确、可复现、可批量就用 Remotion，要写实素材它不是同一个赛道。"
+
 +++
 
 ![Claude Code + Remotion](cover.webp)

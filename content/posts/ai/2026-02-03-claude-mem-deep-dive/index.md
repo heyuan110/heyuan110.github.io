@@ -7,6 +7,34 @@ toc = true
 tags = ['Claude Code', 'Claude-Mem', 'AI Memory', 'Plugin Architecture', 'MCP']
 categories = ['AI Guides']
 keywords = ['Claude-Mem', 'Claude Code memory', 'AI persistent memory', 'Claude Code plugin', 'cross-session context']
+
+[[params.faqItems]]
+question = "What is Claude-Mem?"
+answer = "Claude-Mem is a Claude Code plugin that gives the tool cross-session persistent memory. It hooks into the session lifecycle to capture every tool call, uses an AI agent to compress raw output into roughly 500-token structured observations, stores them in SQLite FTS5 plus ChromaDB, and injects the relevant ones back when you start a new session. It is open source under AGPL-3.0 at thedotmack/claude-mem."
+
+[[params.faqItems]]
+question = "How do I install claude-mem?"
+answer = "Two slash commands inside Claude Code: `/plugin marketplace add thedotmack/claude-mem` then `/plugin install claude-mem`. Restart Claude Code and context from earlier sessions shows up automatically in new ones. Settings land in `~/.claude-mem/settings.json`, and a live dashboard runs at `http://localhost:37777` where you can watch the observation stream and tune injection parameters."
+
+[[params.faqItems]]
+question = "How much context does Claude-Mem actually save?"
+answer = "Context injection dropped from about 25,000 tokens in v3 to about 1,500 tokens in v7 — a 94% reduction — thanks to AI compression plus progressive loading. The three-tier search (index at 50-100 tokens per entry, then timeline, then full details at 500-1000 tokens) saves roughly 10x versus dumping everything like traditional RAG, and v7 also folded 9 MCP tools (~2,500 tokens) into 1 Skill (~250 tokens)."
+
+[[params.faqItems]]
+question = "What is Endless Mode and what does it cost?"
+answer = "Endless Mode (Beta) is a two-tier bionic memory: working memory holds ~500-token compressed observations in the context window while full tool outputs are archived to disk. The PostToolUse hook blocks up to 110 seconds so the agent can compress each output, turning token growth from O(N squared) into O(N), cutting in-context tokens ~95% and raising tool-call capacity roughly 20x. The price is 60-90 seconds of added latency per tool call."
+
+[[params.faqItems]]
+question = "Does Claude-Mem replace CLAUDE.md?"
+answer = "No — the article's recommendation is to run both. CLAUDE.md holds static project knowledge you write by hand: tech stack, coding conventions, architecture principles, common commands. Claude-Mem automatically records the dynamic side: bug investigation trails, why an architecture decision was made, approaches already tried. Employee handbook versus work journal. CLAUDE.md is also Git-shareable, while Claude-Mem memory is personal and does not sync across devices."
+
+[[params.faqItems]]
+question = "Is my data uploaded anywhere, and can I exclude sensitive content?"
+answer = "Everything stays local under `~/.claude-mem/`, and the Worker only binds `127.0.0.1:37777`, so it is unreachable from outside. AI compression runs on your own Claude subscription or a configured third-party key. To keep something out of memory entirely, wrap it in `<private>` tags in the conversation, or add the tool to `CLAUDE_MEM_SKIP_TOOLS` in settings."
+
+[[params.faqItems]]
+question = "Does Claude-Mem slow Claude Code down?"
+answer = "Not in normal mode. Every hook is a lightweight HTTP client — roughly 75 lines of code after the v7.0 refactor — that fires an async request to the Worker, gets a 202 Accepted back and returns immediately without waiting for processing. Endless Mode is the exception: it deliberately blocks per tool call to compress output, adding 60-90 seconds each time."
 +++
 
 ![Claude-Mem architecture diagram showing the persistent memory plugin for Claude Code](cover.webp)

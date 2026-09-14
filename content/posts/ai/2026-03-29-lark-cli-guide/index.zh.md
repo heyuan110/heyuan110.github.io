@@ -5,6 +5,34 @@ description = 'Lark CLI 是飞书开放平台官方命令行工具，覆盖日�
 toc = true
 tags = ['Lark CLI', 'Feishu', 'AI Agent', 'Claude Code', 'CLI Tools', 'Open Source', 'Productivity']
 keywords = ['Lark CLI', 'lark-cli 安装', '飞书命令行', 'AI Agent 飞书', 'Claude Code 飞书', '飞书开放平台', 'lark-cli 教程']
+
+[[params.faqItems]]
+question = "lark-cli 是什么？和直接调飞书 API 有什么区别？"
+answer = "Lark CLI 是飞书开放平台官方命令行工具，larksuite 团队开源（MIT 协议），覆盖 11 大业务域、200+ 精选命令和 19 个 AI Agent Skills，截至 2026 年 3 月 GitHub 有 1.7k Star。直接调 API 要自己写代码、管 Token、处理分页；Lark CLI 内置 OAuth，一行命令搞定，还支持 JSON / Table / CSV / Pretty 四种输出。"
+
+[[params.faqItems]]
+question = "lark-cli 怎么安装？需要什么前置条件？"
+answer = "只要 Node.js v18+，4 条命令 5 分钟搞定：`sudo npm install -g @larksuite/cli` 装主程序，`npx skills add larksuite/cli -y -g` 装 19 个 AI Skills，`lark-cli config init` 初始化配置，`lark-cli auth login --recommend` 授权登录。装完用 `lark-cli doctor` 做一次健康检查。Windows 不用加 sudo。"
+
+[[params.faqItems]]
+question = "lark-cli config init 需要提前准备飞书应用吗？"
+answer = "不需要。`config init` 会自动引导你完成飞书应用创建、凭证获取和权限配置，全程跟着终端提示点就行，不用去开发者后台手动操作。凭证加密存在系统钥匙串里（macOS 用 Keychain，Linux 用 Secret Service），不会明文落盘。"
+
+[[params.faqItems]]
+question = "auth login 浏览器打不开、或者报 scope 权限不足怎么办？"
+answer = "服务器等无浏览器环境加 `--no-wait`：`lark-cli auth login --recommend --no-wait` 会打印授权 URL，复制到任意有浏览器的设备完成即可。报 scope 错误时用 `lark-cli auth check` 看当前权限、`lark-cli auth scopes` 看可选权限，或登录时指定域：`lark-cli auth login --domain calendar,im`。"
+
+[[params.faqItems]]
+question = "怎么让 Claude Code 直接操作飞书？"
+answer = "装完 19 个 Skills 就行。它们走标准 Skills 协议，Claude Code、Cursor、Gemini CLI 都能直接加载。之后你说「帮我看看明天有什么会」，AI 会自己调 `lark-cli calendar +agenda`，不用记任何命令。注意安全：对接的飞书机器人建议只当私人助手用，别拉进群，AI 存在幻觉和执行不可控的风险。"
+
+[[params.faqItems]]
+question = "安装报 EACCES 权限错误怎么解决？"
+answer = "加 `sudo` 最快，或者改 npm 全局目录更优雅：`mkdir ~/.npm-global && npm config set prefix '~/.npm-global'`，再在 `~/.zshrc` 里加 `export PATH=~/.npm-global/bin:$PATH`。原因是 npm 全局安装默认写入 `/usr/local/lib`，macOS/Linux 下需要管理员权限。"
+
+[[params.faqItems]]
+question = "Lark CLI 支持国际版 Lark 吗？"
+answer = "支持，飞书（Feishu）和国际版 Lark 都兼容，同一套命令通用。另外发消息前建议先用 `--dry-run` 预览，比如 `lark-cli im +messages-send --chat-id oc_xxx --text 测试 --dry-run` 只打印请求不真正发送，新手强烈建议先这样试水。"
 +++
 
 ![Lark CLI - 飞书命令行工具](cover.png)
