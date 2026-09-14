@@ -1,8 +1,8 @@
 +++
 date = '2026-02-15T00:30:00+08:00'
 draft = false
-title = 'Mac Mini M4 AI Image Generation 2026: ComfyUI vs Draw Things (24GB/48GB Flux 50s Benchmark)'
-description = 'Flux 1024×1024 in 50 seconds on Mac Mini M4 Pro 24GB — full benchmark of ComfyUI, Draw Things, DiffusionBee. Draw Things beats ComfyUI by 20% on Apple Silicon; 48GB unlocks FP16. Setup guide + GGUF quantization picks for 16GB/24GB/48GB.'
+title = 'Draw Things vs ComfyUI vs DiffusionBee on Mac Mini M4'
+description = 'Draw Things renders Flux 1024x1024 in 50s on a Mac Mini M4 Pro 24GB, about 20% faster than ComfyUI. DiffusionBee has not shipped a release since August 2024.'
 toc = true
 tags = ['Mac Mini', 'AI Image Generation', 'ComfyUI', 'Draw Things', 'Stable Diffusion', 'Flux']
 categories = ['AI Guides']

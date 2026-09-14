@@ -1,8 +1,8 @@
 +++
 date = '2026-02-15T01:00:00+08:00'
 draft = false
-title = 'Draw Things 教程 2026：Mac 本地 AI 生图免费神器，比 ComfyUI 快 40%'
-description = 'Draw Things 深度教程（2026 更新）：免费的 Mac/iOS 原生 AI 生图 App，靠自研 Metal FlashAttention v2 比 ComfyUI 快 20-40%。16GB Mac Mini M4 就能本地训练 SDXL LoRA、跑 Flux on Mac、Wan 2.2 视频生成，还内置 MCP Server 让 Claude Code 直接调用出图。从安装到 LoRA 训练、ComfyUI vs Draw Things 对比、MCP 集成的完整指南。'
+title = 'Draw Things 教程：Mac 免费 AI 生图与模型推荐'
+description = '免费 macOS 原生生图 App，靠 Metal FlashAttention 比 ComfyUI 快 20-40%。16GB Mac Mini M4 能跑 Flux、训 LoRA，附模型推荐与 MCP 集成。'
 toc = true
 tags = ['Draw Things', 'AI 生图', 'Mac', 'LoRA', 'ControlNet']
 categories = ['AI实战']

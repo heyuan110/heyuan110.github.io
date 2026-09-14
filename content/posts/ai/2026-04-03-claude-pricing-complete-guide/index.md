@@ -1,8 +1,8 @@
 +++
 date = '2026-04-03T14:00:00+08:00'
 draft = false
-title = 'Claude Pricing 2026: My $400/mo Bill Decoded — Pro vs Max vs API ROI'
-description = 'I spent $400/mo across Claude Pro, Max 20x, and API for 6 months. Here is the honest break-even math: when Pro is enough, when Max pays off, and when the API actually wins.'
+title = 'Claude Pricing 2026: Pro $20, Max $100/$200, Team and API'
+description = 'Claude Pro costs $20/mo, Max 5x $100, Max 20x $200, Team $25-30 per seat, Free $0. Usage multipliers, API rates, and which tier pays off for daily Claude Code.'
 toc = true
 tags = ['Claude', 'AI Tools', 'Pricing', 'Claude Code']
 keywords = ['claude pricing 2026', 'claude pro price', 'claude max plan pricing 2026', 'claude code pricing', 'claude ai free tier limits 2026', 'claude pro rate limits 2026', 'claude pro subscription price', 'claude pro message limits 2026']

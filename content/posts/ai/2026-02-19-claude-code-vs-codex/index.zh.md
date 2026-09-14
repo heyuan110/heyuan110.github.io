@@ -2,8 +2,8 @@
 date = '2026-02-19T10:00:00+08:00'
 lastmod = '2026-02-23T10:00:00+08:00'
 draft = false
-title = 'Claude Code 和 Codex CLI 哪个好用？2026 八维度深度对比'
-description = '深度对比 Claude Code（Opus 4.6）与 OpenAI Codex CLI（GPT-5.3）：编码质量、百万 token 上下文、Agent 多智能体协作、安全沙箱、定价全面实测。有代码重构场景必看。'
+title = 'Claude Code 和 Codex CLI 哪个好？2026 八维度实测'
+description = 'Claude Code（Opus 4.6）对比 Codex CLI（GPT-5.3）八个维度：编码质量、百万 token 上下文、Agent 协作、安全沙箱与定价，两者入门价都是 $20/月。'
 toc = true
 tags = ['Claude Code', 'ChatGPT Codex', 'AI Coding', 'Comparison']
 categories = ['AI实战']

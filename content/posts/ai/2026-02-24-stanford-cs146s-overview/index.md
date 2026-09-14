@@ -1,8 +1,8 @@
 +++
 date = '2026-02-24T07:00:00+08:00'
 draft = false
-title = 'Stanford CS146S: The Modern Software Developer — 2026 Guide'
-description = 'A complete breakdown of Stanford CS146S The Modern Software Developer — 10-week syllabus, all-star guest speakers, free learning resources, and how a top university is teaching Vibe Coding systematically.'
+title = 'Stanford CS146S: The Modern Software Developer Syllabus'
+description = 'Stanford CS146S covers AI-driven development in 10 weeks, LLM basics to agent security. Slides, readings and code are free; Fall 2026 runs Sep 22 to Dec 3.'
 toc = true
 tags = ['Vibe Coding', 'Stanford CS146S', 'AI Coding', 'Course Review', 'Agentic Engineering']
 categories = ['AI Guides']

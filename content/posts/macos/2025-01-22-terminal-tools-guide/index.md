@@ -1,8 +1,8 @@
 +++
-title = 'Best Terminal Emulators in 2025: 23 Tools Compared for Every Platform'
+title = 'Terminal Emulator Comparison: 23 Tools Across 3 Platforms'
 date = '2026-01-22'
 draft = false
-description = 'A comprehensive comparison of 23 terminal emulators for macOS, Windows, and Linux. Covers iTerm2, Warp, Ghostty, Windows Terminal, Tabby, and more — including AI-powered terminals and SSH clients.'
+description = '23 terminal emulators compared for macOS, Windows and Linux: iTerm2, Warp, Ghostty, Windows Terminal, Tabby, WezTerm, Alacritty, plus SSH and AI terminals.'
 tags = ['Terminal', 'Dev Tools', 'Productivity', 'macOS', 'Windows', 'Linux']
 categories = ['macOS']
 toc = true

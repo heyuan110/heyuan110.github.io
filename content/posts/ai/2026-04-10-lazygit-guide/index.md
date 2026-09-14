@@ -1,8 +1,8 @@
 +++
 date = '2026-04-10T14:00:00+08:00'
 draft = false
-title = 'Lazygit in 2026: The Git TUI That Makes Interactive Rebase Feel Like Cheating'
-description = 'Lazygit turns painful Git operations like interactive rebase and line-level staging into single-keystroke actions. With 76K stars and 8 years of development, here is why it belongs in every terminal developer workflow.'
+title = 'Lazygit Guide: Interactive Rebase in a Terminal Git TUI'
+description = 'Lazygit turns interactive rebase and line-level staging into single keystrokes. 76K stars, written in Go, plus how it stacks up against gitui (22K) and tig.'
 toc = true
 tags = ['Developer Tools', 'Git', 'Terminal', 'Productivity']
 keywords = ['lazygit', 'lazygit tutorial', 'git TUI', 'terminal git client', 'lazygit vs gitui', 'interactive rebase tool', 'lazygit neovim']

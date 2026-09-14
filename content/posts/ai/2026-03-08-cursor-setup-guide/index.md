@@ -1,8 +1,8 @@
 +++
 date = '2026-03-08T18:00:00+08:00'
 draft = false
-title = 'Cursor Setup Guide 2026: From Install to Advanced Agent Mode'
-description = 'Complete Cursor IDE setup guide covering installation, configuration, Agent Mode, Rules, TDD workflows, and parallel execution for maximum AI coding productivity.'
+title = 'Cursor Agent Mode Guide 2026: Rules, Plan Mode, Worktrees'
+description = 'Cursor Agent Mode from a fresh install: Shift+Tab Plan Mode, .cursor/rules files, parallel agents isolated by Git Worktrees, and Cloud Agents.'
 toc = true
 tags = ['Cursor', 'AI Coding Tools', 'AI IDE', 'Setup Guide']
 categories = ['AI Guides']

@@ -1,7 +1,7 @@
 +++
 date = '2018-10-07T00:35:04+08:00'
-title = 'Supervisor Guide: Installation, Configuration, Troubleshooting & Comparison with systemd'
-description = 'A practical guide to Supervisor for Linux process management — covering installation, configuration, common issues, and how it compares to systemd and PM2.'
+title = 'Supervisor Linux Guide: Install, Config, systemd Compared'
+description = 'Install Supervisor from source, write a [program] block with autorestart, drive it with supervisorctl, boot it from a systemd unit, and fix 4 common errors.'
 toc = true
 tags = ['supervisor', 'linux', '进程管理', 'systemd', '运维']
 categories = ['Linux']

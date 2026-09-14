@@ -1,8 +1,8 @@
 +++
 date = '2026-04-18T16:00:00+08:00'
 draft = false
-title = 'Harness Engineering: Build the 6 Layers Backwards (6→1, Not 1→6)'
-description = '60 days running an AI coding harness in production. The 6 layers are not equal — layers 5 and 6 (eval + recovery) drive 80% of stability. Build backwards. Real ROI numbers, three case studies, and the layer that wastes most teams.'
+title = 'Harness Engineering: Build the 6 Layers Backwards (6 to 1)'
+description = '60 days running an AI coding harness in production: layers 5 and 6 (eval and recovery) drive about 80% of stability. Build 6 to 1, not 1 to 6, with ROI numbers.'
 toc = true
 tags = ['Harness Engineering', 'AI Agent', 'Claude Code', 'AI Coding', 'Production AI']
 keywords = ['harness engineering layers', 'ai agent stability', 'harness 6 layers', 'agent eval and recovery', 'harness engineering roi', 'ai coding harness 2026', 'agent observability layer']

@@ -1,8 +1,8 @@
 +++
 date = '2026-02-28T10:00:00+08:00'
 draft = false
-title = 'Claude Rate Limits 2026: I Burned Through Pro & Max in One Week — Real Caps'
-description = 'After hitting Claude rate limits on Pro, Max 5x, and Max 20x in a single week, here are the real message caps, what actually happens at the wall, and the 3 workarounds that saved my billing.'
+title = 'Claude Rate Limits 2026: Real Caps for Pro, Max 5x and 20x'
+description = 'Pro allows roughly 10-45 messages per 5 hours, Max 5x 50-200, Max 20x 200-800, with weekly hour caps on top. How the 5-hour window resets, and 3 workarounds.'
 toc = true
 tags = ['Claude Code', 'Rate Limits', 'Pricing', 'AI Coding Tools']
 categories = ['AI Guides']

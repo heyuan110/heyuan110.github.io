@@ -1,8 +1,8 @@
 +++
 date = '2026-02-12T16:02:00+08:00'
 draft = false
-title = 'Codex CLI 完全指南（2026）：从安装到进阶的 20+ 实战技巧'
-description = 'Codex CLI 完全指南 2026：npm install -g @openai/codex 一步装好，20+ 实战技巧覆盖模型切换、会话恢复、MCP 集成与 Suggest/Auto-edit/Full-auto 三种安全模式，附 Codex CLI 与 Claude Code 实测对比。'
+title = 'Codex CLI 使用技巧 2026：20+ 实战招式与沙箱详解'
+description = 'npm install -g @openai/codex 装好即用。20+ 技巧覆盖模型切换、会话恢复、Option+Enter 换行、关闭沙箱与 MCP 集成，附 Claude Code 对比。'
 toc = true
 tags = ['Codex CLI', 'AI 编程', 'OpenAI', '终端工具', 'AI Agent']
 categories = ['AI实战']

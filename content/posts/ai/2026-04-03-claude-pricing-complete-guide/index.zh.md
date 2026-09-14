@@ -1,8 +1,8 @@
 +++
 date = '2026-04-03T14:00:00+08:00'
 draft = false
-title = 'Claude 订阅价格全对比 2026：Pro/Max/Team/API 哪个最划算？'
-description = '2026 年 Claude 订阅价格全对比：Pro 20 美元/月（年付 17 美元），Max 5x/20x 分别 100/200 美元，Team 25 美元/人起。一文讲透免费版到 Enterprise 和 API 六档套餐的用量上限与适用场景，附省钱建议和选型决策树。'
+title = 'Claude 价格 2026：订阅与 API 六档套餐全对比'
+description = 'Claude Pro 每月 20 美元，Max 5x/20x 分别 100/200 美元，Team 每人 25 美元起，免费版 0 元只给 Sonnet。六档套餐的用量上限、API 计费与选型决策树一次看全。'
 toc = true
 tags = ['Claude', 'AI Tools', 'Pricing', 'Claude Code']
 keywords = ['claude 价格 2026', 'claude pro 价格 2026', 'claude pro 当前价格 2026', 'claude pro 额度 2026', 'claude pro 订阅多少钱', 'claude api 价格 2026', 'claude 免费额度 2026', 'claude ai 最新版本 2026', 'claude max 套餐', 'claude 免费版限制', 'claude code 费用', 'claude team 价格', 'claude 多少钱', 'claude pro vs max', 'claude pro 官方价格 2026']

@@ -1,8 +1,8 @@
 +++
 date = '2026-04-14T10:00:00+08:00'
 draft = false
-title = 'Best Mac for Local LLM 2026: M4 Pro vs M3 Max Llama 3.3 70B Benchmark (9.8 tok/s)'
-description = 'M3 Max 64GB beats new M4 Pro for local LLM: 7.5 tok/s on Llama 3.3 70B vs OOM. Memory bandwidth (300-400 GB/s) wins, Neural Engine is dead weight. Full benchmarks for Ollama, MLX, llama.cpp, ComfyUI, Draw Things across 48GB/64GB/128GB unified memory tiers.'
+title = 'Mac Local LLM Benchmarks: M3 Max vs M4 Pro on Llama 70B'
+description = 'Llama 3.3 70B runs at 9.8 tok/s on a 128GB M3 Max Studio, 7.5 on M3 Max 64GB, and OOMs on M4 Pro 48GB. Memory bandwidth sets tok/s; the Neural Engine idles.'
 toc = true
 tags = ['Apple Silicon', 'M4 Pro', 'M3 Max', 'Local LLM', 'Ollama', 'MLX', 'AI Workstation', 'ComfyUI', 'Draw Things']
 keywords = ['best mac for local llm 2026', 'M4 Pro vs M3 Max LLM', 'apple silicon llama 70B', 'mac unified memory ai', 'memory bandwidth llm inference', 'mac vs nvidia local ai', 'mlx vs ollama mac', 'draw things comfyui mac benchmark', 'apple silicon local AI', 'M3 Max LLM benchmark', 'how much ram for llama 70B mac', 'is M4 Pro good for AI', 'mac studio vs mac mini ai', 'M4 Max vs M3 Max AI', 'mac neural engine useless', 'M3 Max 64GB vs 128GB', 'apple silicon tokens per second']

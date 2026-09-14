@@ -1,8 +1,8 @@
 +++
 date = '2026-01-31 06:00:02'
 draft = false
-title = 'CLAUDE.md vs README.md: Why Your AI Agent Needs Its Own Instruction File'
-description = 'CLAUDE.md tells AI agents how to work in your codebase. README.md tells humans what the project is. Learn how to write both effectively with real-world examples from OpenClaw (124k stars).'
+title = 'CLAUDE.md vs README.md: What Goes in Each File'
+description = 'README.md describes the project to humans; CLAUDE.md tells agents what to do. The exact split of rules and commands, plus why 300 lines is the ceiling.'
 tags = ['Claude Code', 'CLAUDE.md', 'AGENTS.md', 'AI Agent', 'Anthropic']
 categories = ['AI Guides']
 keywords = ['CLAUDE.md vs README.md', 'how to write CLAUDE.md', 'AGENTS.md guide', 'Claude Code memory system', 'AI agent project configuration']

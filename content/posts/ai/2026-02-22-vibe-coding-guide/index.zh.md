@@ -1,8 +1,8 @@
 +++
 date = '2026-02-22T09:00:00+08:00'
 draft = false
-title = 'Vibe Coding 是什么？氛围编程完全指南：工具对比 + 实战教程（2026）'
-description = '91% 的工程团队已在用 Vibe Coding，你还没入门？一文讲透氛围编程核心理念、Claude Code/Cursor/Trae 工具横评，附完整实战流程，零基础也能 10 分钟跑起来第一个 AI 项目。'
+title = 'Vibe Coding 是什么？氛围编程完全指南与工具对比'
+description = 'Vibe Coding 是 Karpathy 于 2025 年 2 月提出的编程方式：用自然语言描述需求，AI 生成实现，人只管方向和质量。含 Claude Code/Cursor/Trae 横评与完整实战流程。'
 toc = true
 tags = ['Vibe Coding', 'AI Coding', 'Claude Code', 'Cursor', 'AI Tools']
 categories = ['AI Guides']

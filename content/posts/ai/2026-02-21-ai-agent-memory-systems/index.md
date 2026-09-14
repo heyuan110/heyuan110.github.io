@@ -1,8 +1,8 @@
 +++
 date = '2026-02-21T10:00:00+08:00'
 draft = false
-title = 'AI Agent Memory Systems: RAG vs Context Engineering'
-description = 'Compare RAG and context engineering for AI agent memory. Learn how to implement persistent memory, manage context windows, and choose the right approach for LLM agents.'
+title = 'Agent Memory vs RAG: Context Engineering for LLM Agents'
+description = 'RAG retrieves at query time; context engineering curates the window upfront. Why a 200K window dies after 50 tool calls, plus a 4-layer memory stack.'
 toc = true
 tags = ['AI Agent', 'RAG', 'Context Engineering', 'Claude Code', 'LLM Memory']
 categories = ['AI Guides']

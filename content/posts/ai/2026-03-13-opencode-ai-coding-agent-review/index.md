@@ -1,8 +1,8 @@
 +++
 date = '2026-03-13T10:00:00+08:00'
 draft = false
-title = 'OpenCode Review: Can This Open Source AI Coding Agent Replace Claude Code?'
-description = 'Hands-on review of OpenCode, the 121K-star open source AI coding agent with LSP integration, multi-model support, and client-server architecture. Honest comparison with Claude Code, Cursor, and Aider.'
+title = 'OpenCode Review: Open Source AI Coding Agent, 2 Weeks In'
+description = 'Two weeks with OpenCode as my main agent: MIT licence, 121K stars, 75+ model providers, built-in LSP, client-server on port 4096. Can it replace Claude Code?'
 toc = true
 tags = ['OpenCode', 'AI Agent', 'Coding Tools', 'CLI', 'Developer Tools']
 keywords = ['OpenCode review', 'open source coding agent', 'OpenCode vs Claude Code', 'AI coding tool comparison', 'terminal AI assistant', 'LSP AI integration']

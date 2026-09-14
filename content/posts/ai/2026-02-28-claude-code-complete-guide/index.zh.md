@@ -1,8 +1,8 @@
 +++
 date = '2026-03-01T10:00:00+08:00'
 draft = false
-title = 'Claude Code 完全指南 2026：从安装到工作流一篇看懂（新手到进阶）'
-description = 'Claude Code 怎么用？新手到精通一站式教程：安装配置、CLAUDE.md、MCP、Hooks、Skills、Worktree、Agent Teams、定价选型和高级工作流全覆盖，读完直接上手 2026 最强终端 AI 编程代理。'
+title = 'Claude Code 是什么？2026 完全指南：安装到工作流'
+description = 'Claude Code 是 Anthropic 的终端 AI 编程智能体，能读懂代码库、跨文件改代码、跑测试并自动迭代。安装配置、CLAUDE.md、MCP、Hooks、Skills、Worktree 与定价选型全覆盖。'
 toc = true
 tags = ['Claude Code', 'Guide', 'Tutorial', 'AI Coding Tools']
 categories = ['AI Guides']

@@ -1,8 +1,8 @@
 +++
 date = '2026-03-28T10:00:00+08:00'
 draft = false
-title = 'Expose Localhost to the Internet: SSH Tunnels, frp, and Cloudflare Tunnel'
-description = 'Three battle-tested ways to expose local dev services to the internet without a public IP — SSH reverse tunnels, frp, and Cloudflare Tunnel. Full setup guides, architecture deep dives, and a practical comparison.'
+title = 'Cloudflare Tunnel vs frp vs SSH: Expose Localhost Safely'
+description = 'Expose 127.0.0.1:8080 with no public IP. Cloudflare Tunnel is free with a Cloudflare-managed domain, frp carries raw TCP and UDP, SSH -R needs a $5-20 VPS.'
 toc = true
 tags = ['Cloudflare', 'Networking', 'DevOps', 'Tunneling']
 keywords = ['expose localhost', 'Cloudflare Tunnel', 'SSH reverse tunnel', 'frp tunnel', 'ngrok alternative', 'NAT traversal', 'internal network penetration']

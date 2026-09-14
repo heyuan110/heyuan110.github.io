@@ -1,8 +1,8 @@
 +++
 date = '2026-03-25T10:00:00+08:00'
 draft = false
-title = 'QMD: Local Semantic Search That Cuts AI Agent Token Costs by 90%'
-description = 'Learn how QMD, a local hybrid search engine by Shopify founder Tobi Lütke, dramatically reduces AI agent token consumption through intelligent memory retrieval with BM25, vector search, and LLM reranking.'
+title = 'QMD Local Search: Cut AI Agent Token Costs by 90%'
+description = 'QMD, the local hybrid search engine from Shopify CEO Tobi Lutke, turns a 6,500-token memory load into roughly 200. BM25, vectors, LLM reranking, offline.'
 toc = true
 tags = ['AI Agent', 'MCP', 'Token Optimization', 'RAG']
 keywords = ['qmd search engine', 'AI agent token optimization', 'local semantic search', 'MCP server memory', 'reduce AI token costs']

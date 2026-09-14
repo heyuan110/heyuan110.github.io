@@ -1,8 +1,8 @@
 +++
-title = '2025年终端工具推荐：23款高效终端模拟器全面对比'
+title = '终端工具推荐：23 款终端模拟器跨平台实测对比'
 date = '2026-01-22'
 draft = false
-description = '2025年终端工具完整指南，深度对比23款主流终端模拟器：iTerm2、Warp、Ghostty、Windows Terminal、Tabby等。涵盖macOS、Windows、Linux三大平台，包含SSH客户端推荐和AI终端新趋势，助你找到最适合的命令行工具。'
+description = 'iTerm2、Warp、Ghostty、Windows Terminal、Tabby 等 23 款终端对比，覆盖 macOS/Windows/Linux 三平台，附 Windows shell 与 SSH 客户端选型。'
 tags = ['Terminal', 'Dev Tools', 'Productivity', 'macOS', 'Windows', 'Linux']
 categories = ['macOS']
 toc = true

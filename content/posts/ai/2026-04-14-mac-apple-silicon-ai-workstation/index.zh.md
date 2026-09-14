@@ -1,8 +1,8 @@
 +++
 date = '2026-04-14T10:00:00+08:00'
 draft = false
-title = '2026 年 Mac 本地跑大模型实测：M4 Pro vs M3 Max 谁更快？Llama 3.3 70B 9.8 tok/s'
-description = 'M3 Max 64GB 跑 Llama 3.3 70B 实测 7.5 tok/s，新款 M4 Pro 直接 OOM 跑不动。内存带宽 300-400 GB/s 才是决胜参数，ANE 神经网络引擎对开源 AI 完全没用。Ollama / MLX / ComfyUI / Draw Things 在 48GB、64GB、128GB 三档机器上完整跑分，附国内购买决策框架。'
+title = 'Mac 本地跑大模型实测：M3 Max 比 M4 Pro 强在哪'
+description = 'M3 Max Studio 128GB 跑 Llama 3.3 70B 实测 9.8 tok/s，M4 Pro 48GB 直接跑不动。决定速度的是内存带宽不是 GPU 核心数，附 48/64/128GB 选购建议。'
 toc = true
 tags = ['Apple Silicon', 'M4 Pro', 'M3 Max', 'Local LLM', 'Ollama', 'MLX', 'AI Workstation', 'ComfyUI', 'Draw Things']
 keywords = ['M4 Pro vs M3 Max 跑 AI', 'mac mini 本地 LLM', 'mac studio 本地 AI 工作站', 'Apple Silicon 跑大模型', '本地跑 llama 70B 苹果', 'M3 Max 64GB vs 128GB', '苹果统一内存 AI', 'mac mini 本地 AI', 'mac studio 跑大模型', '本地出图 Mac', 'M4 Pro 24GB 够吗', 'Mac mini M4 Pro 选配', 'Mac Studio M3 Max 二手', 'Ollama 苹果芯片', 'mac 跑 llama 3.3', 'Draw Things 中文', 'ComfyUI mac 实测', '内存带宽 LLM 推理', 'M4 Max 值得买吗']

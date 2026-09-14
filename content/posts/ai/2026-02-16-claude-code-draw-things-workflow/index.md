@@ -1,8 +1,8 @@
 +++
 date = '2026-02-16T18:00:00+08:00'
 draft = false
-title = 'Claude Code + Draw Things: Local AI Image Generation on Mac (2026 Guide)'
-description = 'Set up Claude Code with Draw Things via MCP for fully local, free AI image generation on Mac. Covers configuration, 4 core tools, prompt engineering, and automated blog illustration workflows.'
+title = 'Draw Things API + MCP: Local Image Generation in Claude Code'
+description = 'Draw Things exposes an HTTP API on localhost:7860; mcp-drawthings bridges it to Claude Code over MCP. Setup in 3 steps, 4 core tools, free and fully offline.'
 toc = true
 tags = ['Claude Code', 'Draw Things', 'MCP', 'AI Automation', 'Mac']
 categories = ['AI Guides']

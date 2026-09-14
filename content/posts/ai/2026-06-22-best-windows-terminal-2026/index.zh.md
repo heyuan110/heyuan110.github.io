@@ -1,8 +1,8 @@
 +++
 date = '2026-06-22T12:00:00+08:00'
 draft = false
-title = '2026 Windows 终端推荐：5 款横评与选型决策'
-description = '2026 年 Windows 终端推荐首选 Windows Terminal + PowerShell 7 + WSL2；跨平台选 WezTerm，极致速度选 Alacritty + Zellij，AI 工作流选 Warp。附选型决策树与速查表，帮你按需求一次选对。'
+title = 'Windows 终端推荐 2026：5 款横评与选型决策树'
+description = 'Windows 终端首选 Windows Terminal + PowerShell 7 + WSL2，九成人够用；跨平台换 WezTerm，极致速度选 Alacritty + Zellij，AI 工作流上 Warp。'
 toc = true
 tags = ['Windows Terminal', 'WezTerm', 'Terminal', 'Dev Tools', 'WSL']
 keywords = ['windows 终端推荐', 'windows 好用的终端', 'windows terminal 推荐 2026', 'windows 命令行工具', 'windows 终端 vs wezterm', 'wsl 终端', 'warp 终端 windows']

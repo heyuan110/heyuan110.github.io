@@ -1,8 +1,8 @@
 +++
 date = '2026-02-27T10:00:00+08:00'
 draft = false
-title = 'Claude Code Teammates Mode 2026: Multi-Agent Setup Guide'
-description = 'How to use Claude Code Agent Teams (teammate-mode) for multi-agent coding. Setup, tmux split-pane, collaboration patterns, worktree isolation, and cost control tips.'
+title = 'Claude Code Teammate Mode: Multi-Agent Setup with tmux'
+description = 'Run several Claude agents at once with teammate-mode: split-pane in tmux or iTerm2, mailbox messaging between agents, worktree isolation and token cost control.'
 toc = true
 tags = ['Claude Code', 'Agent Teams', 'Multi-Agent', 'Collaboration']
 categories = ['AI Guides']

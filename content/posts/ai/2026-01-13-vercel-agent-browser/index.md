@@ -1,7 +1,7 @@
 +++
 date = '2026-01-13T08:00:00+08:00'
 title = 'Vercel Agent Browser: AI-Native Browser Automation CLI Tool'
-description = 'Vercel open-sourced Agent Browser, a snapshot-driven browser automation CLI built with Rust and Node.js, designed specifically for AI agents to interact with web pages.'
+description = 'Vercel open-sourced Agent Browser: a Rust CLI plus Node.js daemon that hands agents an accessibility snapshot with refs like @e1, not CSS selectors.'
 toc = true
 tags = ['AI', 'Vercel', 'Browser Automation', 'Agent', 'CLI']
 categories = ['AI Guides']

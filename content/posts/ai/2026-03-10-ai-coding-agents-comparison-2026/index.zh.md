@@ -1,8 +1,8 @@
 +++
 date = '2026-03-08T14:00:00+08:00'
 draft = false
-title = '2026 年 AI 编程工具全面对比：7 款主流工具实测评析'
-description = '深度对比 2026 年 7 款 AI 编程工具：Claude Code、Cursor、Google Antigravity、GitHub Copilot、Kiro、Codex CLI 和 Windsurf，涵盖价格、功能、基准测试与实际使用体验。'
+title = 'AI 编程工具 2026 排名：7 款主流工具实测对比'
+description = '实测对比 Claude Code、Cursor、Google Antigravity、GitHub Copilot、Kiro、Codex CLI、Windsurf 七款工具的价格、功能与基准测试表现。'
 toc = true
 tags = ['AI Coding Tools', 'Comparison', 'Claude Code', 'Cursor', 'Copilot']
 categories = ['Comparisons']

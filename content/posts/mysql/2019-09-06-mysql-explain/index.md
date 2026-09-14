@@ -1,8 +1,8 @@
 +++
-title = "MySQL EXPLAIN Explained: A Complete Guide to Reading Query Execution Plans"
+title = 'MySQL EXPLAIN: Read Execution Plans and Optimize Queries'
 date = 2019-09-06T20:10:21+08:00
 lastmod = 2026-01-22T15:49:45+08:00
-description = "Learn how to read MySQL EXPLAIN output, understand all 12 fields including type, key, and Extra, and use execution plans to diagnose and optimize slow SQL queries."
+description = 'All 12 MySQL EXPLAIN fields decoded, with type and Extra covered in depth, plus FORMAT=JSON query cost, EXPLAIN ANALYZE, and 4 worked optimization examples.'
 toc = true
 tags = ["MySQL", "EXPLAIN", "SQL Optimization", "Performance Tuning", "Index", "Database"]
 categories = ["MySQL"]

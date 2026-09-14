@@ -1,8 +1,8 @@
 +++
 date = '2026-03-08T10:00:00+08:00'
 draft = false
-title = "Kiro Review 2026: Amazon's Spec-Driven AI Agent That Codes for Days"
-description = 'In-depth review of Amazon Kiro IDE — the spec-driven AI coding agent with Agent Hooks, Steering Files, and MCP support. Plus the AWS outage incident and lessons learned.'
+title = 'Kiro Review: Amazon Spec-Driven AI IDE, Tested in 2026'
+description = 'Amazon Kiro turns a prompt into specs, a plan, then code. Code OSS fork with Agent Hooks, Steering Files, MCP, and the 13-hour AWS outage it was blamed for.'
 toc = true
 tags = ['Kiro', 'Amazon', 'AI Coding Tools', 'AI IDE']
 categories = ['AI Guides']

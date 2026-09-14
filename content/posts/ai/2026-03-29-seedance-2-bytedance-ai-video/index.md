@@ -1,8 +1,8 @@
 +++
 date = '2026-03-29T10:00:00+08:00'
 draft = false
-title = 'Seedance 2.0 Deep Dive: ByteDance AI Video Model That Tops Sora and Veo'
-description = 'Complete guide to ByteDance Seedance 2.0: the #1 ranked AI video model beating Sora 2 and Veo 3. Architecture deep dive, honest quality assessment, step-by-step access guide for international users, and the IP controversy explained.'
+title = 'Seedance 2.0 Review: ByteDance AI Video vs Sora 2 and Veo 3'
+description = 'Seedance 2.0 tops the Artificial Analysis text-to-video board at Elo 1,269, ahead of Sora 2 and Veo 3. Free in CapCut, roughly $0.14 per 15-second clip via API.'
 toc = true
 tags = ['Seedance', 'AI Video', 'ByteDance', 'AI Tools', 'Video Generation']
 keywords = ['seedance 2.0', 'bytedance ai video', 'seedance 2.0 review', 'ai video generation 2026', 'seedance vs sora', 'seedance vs veo', 'seedance 2.0 capcut', 'bytedance seedance', 'ai video generator', 'seedance pricing', 'dreamina ai video', 'how to use seedance 2.0']

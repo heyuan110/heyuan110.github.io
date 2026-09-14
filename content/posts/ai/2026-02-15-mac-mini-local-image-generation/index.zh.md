@@ -1,8 +1,8 @@
 +++
 date = '2026-02-15T00:30:00+08:00'
 draft = false
-title = 'Mac Mini M4 本地 AI 生图 2026：ComfyUI vs Draw Things 实测，24GB 跑 Flux 仅需 50 秒'
-description = 'Mac Mini M4 Pro 24GB 跑 Flux 1024×1024 仅需 50 秒——实测 ComfyUI、DiffusionBee、Draw Things 三款工具，Draw Things 凭 Metal FlashAttention 比 ComfyUI 快 20%。附 16GB/24GB/48GB 内存配置选购指南和 Apple Silicon 生图量化方案。'
+title = 'Mac Mini 跑 ComfyUI 实测：24GB 出 Flux 图 50 秒'
+description = 'Mac Mini M4 Pro 24GB 跑 Flux 1024×1024 只要 50 秒。实测 ComfyUI、Draw Things、DiffusionBee，附 16/24/48GB 内存选购建议。'
 toc = true
 tags = ['Mac Mini', 'AI 生图', 'ComfyUI', 'Draw Things', 'Stable Diffusion', 'Flux']
 categories = ['AI实战']

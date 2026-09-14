@@ -1,8 +1,8 @@
 +++
 date = '2026-03-07T14:00:00+08:00'
 draft = false
-title = 'Codex CLI Deep Dive: Setup, Config, and 20+ Power User Tips'
-description = 'Master OpenAI Codex CLI with this complete guide. Installation, model switching, session recovery, MCP integration, security modes, and real Codex CLI vs Claude Code comparison.'
+title = 'Codex CLI Deep Dive: Setup, Sandbox Modes, and 20+ Tips'
+description = 'Codex CLI reads ~/.codex/config.toml, where approval_policy, sandbox_mode, trust_level decide what it can run. Model switching, session recovery, MCP, 20+ tips.'
 toc = true
 tags = ['Codex CLI', 'OpenAI', 'AI Coding Tools', 'Terminal']
 categories = ['AI Guides']

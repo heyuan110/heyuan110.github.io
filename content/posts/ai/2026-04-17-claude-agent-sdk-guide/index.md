@@ -1,8 +1,8 @@
 +++
 date = '2026-04-17T10:00:00+08:00'
 draft = false
-title = 'Claude Agent SDK: Build Production AI Agents in Python (2026 Guide)'
-description = 'A practical guide to building AI agents with Claude Agent SDK. Covers query() vs ClaudeSDKClient, MCP tool integration, three-layer permission control, and production deployment patterns.'
+title = 'Claude Agent SDK in Python: query() vs ClaudeSDKClient'
+description = 'query() opens a fresh session per call; ClaudeSDKClient keeps multi-turn context. Custom MCP tools, three-layer permissions and production patterns.'
 toc = true
 tags = ['Claude Code', 'AI Agent', 'Agent SDK', 'Python', 'MCP']
 keywords = ['claude agent sdk', 'claude agent sdk tutorial', 'build ai agent python', 'claude agent sdk guide 2026', 'claude code sdk production', 'ai agent development']

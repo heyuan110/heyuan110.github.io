@@ -1,8 +1,8 @@
 +++
 date = '2026-04-09T10:00:00+08:00'
 draft = false
-title = 'Claude Code + OpenSpec + Superpowers: Triple Stack or Overkill?'
-description = 'Should you run Claude Code, OpenSpec and Superpowers together in 2026? A hands-on verdict on when the triple stack pays off, when it drags, and which tool actually owns which job.'
+title = 'OpenSpec vs Superpowers in Claude Code: Who Owns What'
+description = 'OpenSpec and Superpowers fix different failures: Superpowers enforces branches, tests and review, while only OpenSpec Delta/Archive preserves design rationale.'
 toc = true
 tags = ['Claude Code', 'OpenSpec', 'Superpowers', 'AI Development', 'Spec-Driven Development']
 keywords = ['Claude Code OpenSpec Superpowers', 'OpenSpec tutorial', 'Superpowers Claude Code', 'spec-driven development', 'AI coding workflow 2026', 'OpenSpec vs Superpowers', 'AI engineering best practices']

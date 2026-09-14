@@ -1,7 +1,7 @@
 +++
 date = '2026-01-19T16:33:00+08:00'
-title = 'Cursor Agent Best Practices: The Complete Guide to AI Coding'
-description = 'Master Cursor Agent with official best practices covering Plan Mode, context management, Rules and Skills configuration, test-driven development, and parallel execution to maximize your AI coding productivity.'
+title = 'Cursor Agent Best Practices: Plan Mode, Rules, Past Chats'
+description = 'Plan first with Shift+Tab Plan Mode and keep plans in .cursor/plans/. Pull context via @Past Chats, split static Rules from dynamic Skills, add a stop hook.'
 toc = true
 tags = ['Cursor', 'AI Coding', 'Agent', 'Best Practices']
 categories = ['AI Guides']

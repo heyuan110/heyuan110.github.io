@@ -1,8 +1,8 @@
 +++
 date = '2026-04-21T10:00:00+08:00'
 draft = false
-title = 'wshobson/agents Deep Dive: What 184 Claude Code Agents Actually Do'
-description = 'The 33.9K-star Claude Code plugin marketplace, audited component by component. 78 plugins, 184 agents, 150 skills — a scenario-driven install guide, the 6 moats nobody talks about, and why installing everything is a trap.'
+title = 'wshobson/agents Audit: 184 Claude Code Agents, 78 Plugins'
+description = 'The 33.9K-star Claude Code marketplace audited piece by piece: 78 plugins, 184 agents, 150 skills, which 2-4 to pick, and why installing all is a trap.'
 toc = true
 tags = ['Claude Code', 'AI Agent', 'Claude Skills', 'Plugin Marketplace', 'wshobson']
 keywords = ['wshobson agents review', 'claude code plugins guide', 'claude code subagents', 'claude code skills catalog', 'wshobson agents install', 'plugin marketplace claude code', 'claude agent skills 2026']
