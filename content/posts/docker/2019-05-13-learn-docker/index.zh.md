@@ -5,6 +5,34 @@ description = 'Docker 零基础入门教程，详解镜像、容器、仓库三�
 toc = true
 tags = ['Docker', 'Dockerfile', '容器化', 'DevOps', '镜像']
 categories = ['Docker']
+
+[[params.faqItems]]
+question = "Docker 的镜像、容器、仓库分别是什么？"
+answer = "镜像和容器的关系就像面向对象里的类和实例：镜像是静态定义，内容构建完就不再改变；容器是镜像运行时的实体，可以创建、启动、停止、删除。仓库（Registry）负责集中存储和分发镜像——一个 Registry 可以包含多个 Repository，每个 Repository 又有多个 Tag，每个 Tag 对应一个镜像。"
+
+[[params.faqItems]]
+question = "为什么说容器不应该往自己的存储层写数据？"
+answer = "因为容器存储层的生命周期和容器一样长，容器一删，写在里面的数据全部丢失。容器是以镜像为基础层、在其上叠一层读写存储层跑起来的，这层要保持无状态。所有文件写入都应该走数据卷（Volume）或绑定宿主目录——这些位置的读写会跳过容器存储层，直接落到宿主或网络存储，性能和稳定性都更好。"
+
+[[params.faqItems]]
+question = "docker commit 能用来做镜像吗？"
+answer = "不建议。`docker commit <容器ID> <仓库名>:<标签>` 确实能把容器打成镜像，但这样做出来的 image 会越来越臃肿，而且每一层改了什么无从追溯。定制镜像应该用 Dockerfile，每条指令构建一层，内容清清楚楚。commit 真正有用的场景是特殊情况，比如服务器被入侵后保存现场。"
+
+[[params.faqItems]]
+question = "docker rmi 删不掉镜像是什么原因？"
+answer = "因为删除请求先作用在标签上。一个镜像可以有多个标签，`docker rmi` 实际是先做 Untagged，只有当所有标签都被取消、镜像失去存在意义时才触发 Deleted。而且镜像是多层结构，只要还有别的镜像依赖当前层，这层就不会被真正删除。另一个常见原因是容器依赖：只要有用该镜像启动的容器存在（哪怕没在运行），镜像就删不掉，得先删容器。注意 `docker rm` 删的是容器，别和 `docker rmi` 混淆。"
+
+[[params.faqItems]]
+question = "怎么批量删除 Docker 镜像？"
+answer = "用 `docker images -q` 拿到 ID 列表再喂给 `docker rmi`。清理悬空镜像：`docker rmi $(docker images -q -f dangling=true)`；删掉某个仓库的全部镜像：`docker rmi $(docker images -q redis)`；按时间清老镜像：`docker rmi $(docker images -q -f before=mongo:3.2)`。"
+
+[[params.faqItems]]
+question = "Docker 数据卷怎么用？和挂载主机目录有什么区别？"
+answer = "`docker run -d -P --name web -v /webapp training/webapp` 创建的是匿名数据卷，绕过 UFS，可在容器间共享复用，修改立即生效且不影响镜像，容器删了卷还在。想挂主机目录就写成 `-v /src/webapp:/opt/webapp`，主机路径必须是绝对路径，不存在时 Docker 会自动创建；加 `:ro` 变只读。注意 Dockerfile 里只能用 VOLUME 声明卷，不支持挂载主机目录，因为各系统路径格式不同、不可移植。"
+
+[[params.faqItems]]
+question = "多个容器之间怎么共享数据？数据卷怎么备份？"
+answer = "用数据卷容器：先 `docker run -d -v /dbdata --name dbdata training/postgres` 建一个专门提供卷的容器，其他容器用 `--volumes-from dbdata` 挂上去。删除挂载它的容器不会自动删卷，要连卷一起删得在删最后一个容器时用 `docker rm -v`。备份的标准做法是 `docker run --volumes-from dbdata -v $(pwd):/backup ubuntu tar cvf /backup/backup.tar /dbdata`，把卷打包成当前目录下的 backup.tar。"
 +++
 
 Docker 是一个开源的应用容器引擎，基于 Go 语言 并遵从Apache2.0协议开源。Docker 可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。

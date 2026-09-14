@@ -5,6 +5,30 @@ description = '基于 Jenkins、AWS CodeDeploy 和 AutoScaling 搭建 CI/CD 持�
 toc = true
 tags = ['Jenkins', 'AWS', 'CodeDeploy', 'AutoScaling', 'CI/CD', '蓝绿部署', 'DevOps']
 categories = ['Linux']
+
+[[params.faqItems]]
+question = "就地部署和蓝绿部署有什么区别？各自适合什么场景？"
+answer = "就地部署是把部署组里每台实例依次下线、装新版本、再验证上线，配合负载均衡器在部署期间摘掉实例，回滚只能靠重新部署上一个版本。蓝绿部署是另起一组替换实例装好新版本，测试通过后在 ELB 上注册新实例、注销旧实例来切流量，只要原实例还没终止就能快速切回去。蓝绿只能配合 EC2 实例使用。"
+
+[[params.faqItems]]
+question = "CodeDeploy 的核心组件分别是什么？"
+answer = "5 个。应用程序是部署组和修订版的集合；修订版是可部署内容的特定版本（源码、构建产物、部署脚本加 AppSpec 文件），代理可从 S3 或 GitHub 拉取；部署组是一组目标实例，可以按标签、Auto Scaling 组名或两者指定，一个应用可以定义多个部署组比如模拟和生产；部署配置规定部署行为和故障处理，比如要求至少 50% 实例在线以实现零停机，不指定时默认一次只部署一台；部署则是把某个修订版发布出去的动作。"
+
+[[params.faqItems]]
+question = "appspec.yml 该怎么写？有哪些注意事项？"
+answer = "文件名必须是 appspec.yml，放在修订版根目录，YAML 格式且对空格数量要求严格。结构上 `version: 0.0` 是固定写法，`os` 写 linux 或 windows，`files` 段声明 source 和 destination 的映射（source 写 `/` 表示整个包，destination 是目标服务器完整路径），`hooks` 段按生命周期事件挂脚本，如 ApplicationStop、BeforeInstall、AfterInstall，每个 location 还可以配 `timeout` 和 `runas`。"
+
+[[params.faqItems]]
+question = "EC2 上怎么安装 CodeDeploy agent？"
+answer = "agent 要预先烘焙进 AMI，或在启动时用 user data 安装。Ubuntu 上先 `sudo apt-get install ruby wget`，再 `wget https://bucket-name.s3.amazonaws.com/latest/install`、`chmod +x ./install`、`sudo ./install auto`，最后 `sudo service codedeploy-agent status` 确认在跑。bucket-name 要换成所在区域的资源桶，如美东俄亥俄用 aws-codedeploy-us-east-2。"
+
+[[params.faqItems]]
+question = "CodeDeploy 和 Auto Scaling 是怎么联动的？"
+answer = "靠 Auto Scaling 生命周期挂钩，建议不要手动设置或修改，CodeDeploy 会自动处理。在部署组配置里填上 Auto Scaling 组名后，CodeDeploy 会用服务角色去装挂钩，让实例启动时把通知发到它自己的队列；它只监听已启动、即将进入 InService 的实例通知，Auto Scaling 会等到 CodeDeploy 返回成功才继续。用 `describe-lifecycle-hooks` 可以查看组上已安装的挂钩。"
+
+[[params.faqItems]]
+question = "Jenkins 在整条流水线里具体做什么？"
+answer = "Jenkins 需要装 CodeDeploy 插件，它负责构建并把部署包上传到指定的 S3 存储桶，到此它的工作就结束了。剩下的交给实例：EC2 上的 CodeDeploy-Agent 轮询发现 S3 出现新修订版后拉取并解压，按包里的 appspec.yml 执行部署。这样同一个部署组内的所有实例拿到的都是同一个最新部署包。"
 +++
 本文主要记录如何结合jenkins,codedeploy,s3, autoscaling等相关服务搭建一套可持续交付和应用部署的服务。
 

@@ -5,6 +5,30 @@ description = '记录 Linux 服务器遭受 kerberods 挖矿病毒入侵的完�
 toc = true
 tags = ['Linux', '安全', '挖矿病毒', 'Confluence', '故障排查', 'CPU']
 categories = ['Linux']
+
+[[params.faqItems]]
+question = "Linux 服务器 CPU 持续 100%，top 却只显示 1 个 CPU，是什么原因？"
+answer = "极大概率是挖矿病毒。案例里这台 16 核 EC2 用 `top` 按 1 只能看到 cpu0，AWS 控制台却显示 CPU 直接打满 100%，重启多次现象依旧，`/var/log/syslog` 最后一行是 `didn't collect load info for all cpus, balancing is broken`。挖矿进程伪装成内核线程占满核心，导致调度信息采集异常，top 显示不全。"
+
+[[params.faqItems]]
+question = "怎么确认是挖矿进程在占 CPU？"
+answer = "用 NMI 把所有 CPU 上正在执行的进程打进内核日志：执行 `echo l > /proc/sysrq-trigger`，再 `dmesg` 看输出。案例里 16 个核心中有 15 个显示 `Comm: khugepageds`，只有 cpu4 没有，和 top 只显示一个 CPU 的现象正好吻合。再用日志里的 PID 反查 `ls /proc | grep 2500`，确认进程名就是 khugepageds。"
+
+[[params.faqItems]]
+question = "khugepageds 是什么？和正常的 khugepaged 有什么关系？"
+answer = "khugepageds 是挖矿病毒伪装出来的进程名，多了一个 s，故意蹭系统真实内核线程 khugepaged（负责透明大页合并）的名字，让人一眼扫过去以为是正常内核进程。正因为名字像，排查时很容易被跳过。用这个关键词搜索就能找到大量同类感染案例，确认是 kerberods 挖矿病毒。"
+
+[[params.faqItems]]
+question = "kerberods 是怎么入侵进来的？"
+answer = "这台机器上跑了 gitlab、jira、confluence 三个服务，最终查出是 Confluence 漏洞被利用导致感染，对应 Atlassian 2019-03-20 的安全公告。表面症状具有迷惑性：同事先报的是 git 提交失败、gitlab 返回 502，顺着 gitlab 502 排查了两个多小时毫无进展，`netstat -ntlp` 显示 8080 端口根本没被占用，实际上是病毒吃光 CPU 让所有服务都起不来。"
+
+[[params.faqItems]]
+question = "发现中了 kerberods 之后怎么清理？"
+answer = "先对故障机做快照保留现场，再按公开的 clear_kerberods.sh 清理脚本处理，最后必须打上 Confluence 的漏洞补丁——不补漏洞，清完还会被重新种回来。顺带把透明大页关掉：`echo never > /sys/kernel/mm/transparent_hugepage/enabled` 和 defrag，并在 `/etc/default/grub` 里加 `transparent_hugepage=never` 后 `update-grub` 持久化。"
+
+[[params.faqItems]]
+question = "这次事故最值得吸取的教训是什么？"
+answer = "三点。一是症状会误导方向：看到 gitlab 502 就一路往 gitlab 配置和端口上钻，浪费了两个多小时，实际根因在别的服务上；遇到 CPU 异常应优先按入侵排查。二是 AWS support 帮不上忙，他们不能碰客户机器，真正推进是从 share screen 开始的，别把希望寄托在云厂商售后上。三是开源软件漏洞多（Confluence、WordPress 都有前科），要跟官方安全公告，并且——备份，备份，备份。"
 +++
 最近经常听到挖矿病毒kerberods肆虐，大量linux主机沦陷，导致的结果显著特征CPU持续100%，正常的应用服务无法提供。不幸昨天我们有一台机器中招了，下面记录整个事件发生、处理过程。
 

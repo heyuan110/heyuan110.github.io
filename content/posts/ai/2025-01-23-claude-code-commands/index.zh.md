@@ -10,11 +10,11 @@ keywords = ['Claude Code 技巧', 'Claude Code 教程', 'AI 编程助手', 'Clau
 
 [[params.faqItems]]
 question = "Claude Code 怎么安装？有哪几种启动方式？"
-answer = "一行命令安装：`curl -fsSL https://claude.ai/install.sh | bash`。启动有三种：直接敲 `claude` 进交互会话；`claude ”帮我看看这个项目的目录结构”` 带着问题启动；`claude -p ”生成一个 .gitignore 文件”` 走非交互模式，适合脚本调用。进去以后 `/help` 看帮助，`/exit` 退出。"
+answer = "一行命令安装：`curl -fsSL https://claude.ai/install.sh | bash`。启动有三种：直接敲 `claude` 进交互会话；`claude '帮我看看这个项目的目录结构'` 带着问题启动；`claude -p '生成一个 .gitignore 文件'` 走非交互模式，适合脚本调用。进去以后 `/help` 看帮助，`/exit` 退出。"
 
 [[params.faqItems]]
 question = "非交互模式（-p）能做什么？怎么防止跑飞？"
-answer = "`-p` 就是把 Claude 当命令行工具用，最大价值是接管道：`npm test 2>&1 | claude -p ”分析测试失败的原因”`、`tail -100 error.log | claude -p ”这些错误有什么共同点？”`、`git log --oneline -20 | claude -p ”总结最近的开发工作”`。在 CI 或脚本里要加限额：`--max-budget-usd 5.00` 限制花费、`--max-turns 10` 限制轮数，两个可以组合用。"
+answer = "`-p` 就是把 Claude 当命令行工具用，最大价值是接管道：`npm test 2>&1 | claude -p '分析测试失败的原因'`、`tail -100 error.log | claude -p '这些错误有什么共同点？'`、`git log --oneline -20 | claude -p '总结最近的开发工作'`。在 CI 或脚本里要加限额：`--max-budget-usd 5.00` 限制花费、`--max-turns 10` 限制轮数，两个可以组合用。"
 
 [[params.faqItems]]
 question = "常用斜杠命令有哪些？"
@@ -26,7 +26,7 @@ answer = "推荐在 `~/.claude/settings.json` 里预设白名单，`permissions.
 
 [[params.faqItems]]
 question = "关掉终端后怎么接着昨天的会话继续？"
-answer = "用 `claude -c`（等价 `--continue`）直接续上最近一次对话；`claude -r`（`--resume`）列出历史会话挑一个；`claude -r ”重构认证”` 支持模糊匹配。建议在会话里先 `/rename 支付模块重构` 起个名字，下次 `claude -r ”支付模块”` 一秒定位。长任务按 `Ctrl+B` 丢后台，用 `/tasks` 查看状态，不阻塞你继续提问。"
+answer = "用 `claude -c`（等价 `--continue`）直接续上最近一次对话；`claude -r`（`--resume`）列出历史会话挑一个；`claude -r '重构认证'` 支持模糊匹配。建议在会话里先 `/rename 支付模块重构` 起个名字，下次 `claude -r '支付模块'` 一秒定位。长任务按 `Ctrl+B` 丢后台，用 `/tasks` 查看状态，不阻塞你继续提问。"
 
 [[params.faqItems]]
 question = "上下文快满了、Token 烧得快怎么办？"

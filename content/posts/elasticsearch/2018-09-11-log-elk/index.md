@@ -6,6 +6,34 @@ toc = true
 tags = ['Elasticsearch', 'ELK', 'Kibana', 'Kafka', 'Logstash', '日志分析']
 categories = ['Elasticsearch']
 keywords = ['ELK stack setup', 'Elasticsearch Logstash Kibana tutorial', 'Kafka log pipeline', 'centralized logging', 'ELK architecture']
+
+[[params.faqItems]]
+question = "Do I need Kafka in an ELK stack, or can Filebeat go straight to Elasticsearch?"
+answer = "Three patterns are common, and the right one depends on volume. Filebeat → Elasticsearch → Kibana is the simplest and fine for small deployments, but a traffic spike pushes back-pressure all the way to your application servers. Filebeat → Logstash → Kafka → Logstash → Elasticsearch adds parsing before buffering. Filebeat → Kafka → Logstash → Elasticsearch → Kibana is the production shape used here: Kafka absorbs bursts as a buffering layer so Logstash can consume at its own pace and Elasticsearch is never the bottleneck for collection."
+
+[[params.faqItems]]
+question = "What hardware do I need for a production ELK cluster?"
+answer = "This six-server build uses r5.xlarge (4 vCPU, 32GB RAM, 1TB disk) for each Kafka plus ZooKeeper broker, c5.2xlarge (8 vCPU, 16GB, 100GB) for the Logstash nodes because parsing is CPU-bound, and r5.xlarge with 2TB disk for each Elasticsearch plus Kibana node. The split is two Kafka/ZooKeeper nodes, two Logstash nodes (one for web logs, one for app logs), and two Elasticsearch nodes."
+
+[[params.faqItems]]
+question = "Why won't Elasticsearch start after installation?"
+answer = "The usual culprit is kernel and ulimit tuning that was skipped. Set `vm.max_map_count = 262144` in `/etc/sysctl.conf` — too low and Elasticsearch refuses to start — along with `vm.swappiness = 0`, then apply with `sudo sysctl -p`. In `/etc/security/limits.conf` raise `nofile` to 65535 soft and hard, log out and back in, and confirm with `ulimit -n`. A second cause is JVM settings: switching from CMS to G1 with wrong values will also stop ES from starting."
+
+[[params.faqItems]]
+question = "How much heap should I give Elasticsearch?"
+answer = "Half of available RAM, set identically for min and max in `config/jvm.options` — on a 32GB box the build here uses `-Xms4g` and `-Xmx4g`. Pair it with `bootstrap.memory_lock: true` in `elasticsearch.yml` so the heap is locked into RAM and never swapped, which is also why `vm.swappiness` is set to 0 at the kernel level."
+
+[[params.faqItems]]
+question = "How do I stop Elasticsearch split brain in a cluster?"
+answer = "Set `discovery.zen.minimum_master_nodes` to (total master-eligible nodes / 2) + 1, so a minority partition can never elect its own master. List the peers explicitly in `discovery.zen.ping.unicast.hosts` using the transport port, for example `['172.31.2.6:9300', '172.31.2.7:9300']`, and set `gateway.recover_after_nodes` so recovery waits for a quorum before rebuilding shards."
+
+[[params.faqItems]]
+question = "Which ports does the ELK plus Kafka stack need open?"
+answer = "Eight. Kafka broker on 9092; ZooKeeper on 2181 for client connections, 2888 for leader-follower traffic and 3888 for leader election; Logstash input on 5044; Kibana web UI on 5601; Elasticsearch on 9200 for the HTTP API and 9300 for inter-node communication. Only 5601 should be publicly reachable, and in this architecture Nginx reverse-proxies it to give users a single entry point."
+
+[[params.faqItems]]
+question = "What do I need to do after enabling X-Pack security?"
+answer = "Reset the built-in account passwords, then propagate them. Through the Kibana Management UI or the REST API, call `PUT _xpack/security/user/elastic/_password`, then the same for `kibana` and `logstash_system`, each with a `{ 'password': '...' }` body. The step people forget is updating the matching credentials in `kibana.yml` and `logstash.yml` — miss it and both services fail to connect to the cluster after restart."
 +++
 
 Logs are essential for understanding system health -- they include system logs, application logs, and security logs. Operations and development teams rely on logs to monitor servers, track application behavior, identify errors, and trace root causes. A reliable, secure, and scalable log collection and analysis solution makes troubleshooting significantly easier when things go wrong.

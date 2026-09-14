@@ -5,6 +5,30 @@ description = '基于 Elasticsearch、Logstash、Kibana 和 Kafka 搭建企业�
 toc = true
 tags = ['Elasticsearch', 'ELK', 'Kibana', 'Kafka', 'Logstash', '日志分析']
 categories = ['Elasticsearch']
+
+[[params.faqItems]]
+question = "ELK 日志系统有哪几种搭建模式？该选哪一种？"
+answer = "文中对比了 3 种：最简单的 filebeat → elasticsearch → kibana；中间多一层 logstash 的 filebeat → logstash → kafka+zookeeper → logstash → elasticsearch → kibana；以及本文采用的 filebeat → kafka+zookeeper → logstash → elasticsearch → kibana。第三种少一层 logstash、由 Kafka 直接做缓冲队列，日志洪峰时最稳，也是生产环境的推荐架构。"
+
+[[params.faqItems]]
+question = "这套 ELK 架构分成哪几层？每层负责什么？"
+answer = "4 层。数据采集层用 filebeat 把日志发到 kafka broker 集群；数据缓存层由 kafka 充当队列的生产者侧，做本地临时转存；数据处理转发层是 logstash 实时从 kafka 拉日志、分析处理后转发给 elasticsearch，相当于消费者；数据存储展示层由 elasticsearch 存储、kibana 展示，前面再用 nginx 反代 kibana，保证用户只有一个访问入口。"
+
+[[params.faqItems]]
+question = "搭 ELK 需要多少台机器、什么配置？"
+answer = "文中用了 6 台：kz1、kz2 跑 kafka+zookeeper，logstash-web 和 logstash-app 分别处理 web 和 app 日志，es-node1、es-node2 跑 elasticsearch+kibana。硬件上 Kafka broker 和 Elasticsearch 都用 r5.xlarge（4 核 32G，磁盘分别 1T 和 2T），logstash 用 c5.2xlarge（8 核 16G、100G 盘）——logstash 吃 CPU，ES 和 Kafka 吃内存和磁盘。"
+
+[[params.faqItems]]
+question = "Elasticsearch 启动前系统要做哪些内核调优？"
+answer = "两处必改。一是文件描述符，在 `/etc/security/limits.conf` 里把 nofile 的 soft 和 hard 都设成 65535，nproc 设 2048/4096，重新登录后 `ulimit -n` 显示 65535 才算生效。二是内核参数，在 `/etc/sysctl.conf` 里设 `vm.max_map_count = 262144`（太小 ES 根本起不来）和 `vm.swappiness = 0`（不使用虚拟内存），再执行 `sudo sysctl -p`。"
+
+[[params.faqItems]]
+question = "Kafka topic 的日常运维命令有哪些？"
+answer = "创建用 `--create --topic my-topic --replication-factor 2 --partitions 8`：partitions 决定分成几个 log，replication-factor 决定消息存几份、一般等于 broker 数。扩分区 `--alter --partitions 16`，另有 `--delete`、`--list`。排障看两个过滤器：`--under-replicated-partitions` 列出副本没跟上 leader 的，`--unavailable-partitions` 列出没有 leader 已离线的。"
+
+[[params.faqItems]]
+question = "Elasticsearch 内置账号的密码怎么重置？"
+answer = "x-pack 有 3 个内置用户：elastic 是超级用户，kibana 用于 Kibana 连接 ES，logstash_system 用于 Logstash 写监控数据。必须先重置这三个默认密码再关掉默认密码支持，可以在 Kibana 的 Management > Users 界面改，也可以调 Reset Password API，例如 `PUT _xpack/security/user/elastic/_password` 带上 password 字段。改完记得同步更新 kibana 配置文件里连接 elasticsearch 的密码。"
 +++
 
 日志主要包含系统日志、应用日志和安全日志。运维和开发人员通过日志可以了解服务器、程序运行情况，发现错误及检查错误发生原因。一个可靠、安全、可扩展的日志收集分析解决方案在程序或系统异常时能够让一切都变得轻松起来。

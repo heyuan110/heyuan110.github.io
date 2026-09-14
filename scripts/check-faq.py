@@ -30,8 +30,8 @@ def parse(path: str):
     fm = raw.split("+++", 2)[1]
     items = []
     for blk in re.split(r"\[\[params\.faqItems\]\]", fm)[1:]:
-        q = re.search(r'^question\s*=\s*"(.*)"\s*$', blk, re.M)
-        a = re.search(r'^answer\s*=\s*"(.*)"\s*$', blk, re.M)
+        q = re.search(r'^[ \t]*question\s*=\s*"(.*)"\s*$', blk, re.M)
+        a = re.search(r'^[ \t]*answer\s*=\s*"(.*)"\s*$', blk, re.M)
         if q and a:
             items.append((q.group(1), a.group(1)))
     return items

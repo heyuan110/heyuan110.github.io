@@ -6,6 +6,26 @@ toc = true
 tags = ['AI', 'Claude Code', 'Skills', 'MCP']
 categories = ['AI Guides']
 keywords = ['Claude Code Skills vs MCP', 'Model Context Protocol explained', 'Claude Code MCP setup', 'AI agent tools', 'Claude Code extensions']
+
+[[params.faqItems]]
+question = "What is the difference between a Skill and MCP in Claude Code?"
+answer = "They sit at different layers. MCP is a protocol standard that exposes atomic tools the AI decides to call — `browser_navigate`, `browser_click`, `browser_type` from the Playwright server, for instance. A Skill is a capability template: a bundle of instructions, domain knowledge and workflow that composes several steps, invoked by the user (`/commit`) or loaded by context. The analogy the article uses: MCP tools are LEGO bricks, Skills are the instruction manuals for assembling them."
+
+[[params.faqItems]]
+question = "Which one costs more context — MCP or Skills?"
+answer = "MCP, and the difference is structural. When you connect an MCP server, every tool definition — names, descriptions, parameter schemas — loads into the context window and stays resident whether you call the tools or not, so more tools means permanently less room. Skills are lazily loaded: only a short trigger phrase and description sit in context, the full instructions load at invocation, and the details can be unloaded afterwards leaving just the result."
+
+[[params.faqItems]]
+question = "When should I build an MCP server instead of a Skill?"
+answer = "Reach for MCP in 3 situations: when you need to interact with an external service — a database, an API, a browser — when the task is a standardized atomic operation, or when several AI applications must share the same toolset. Reach for a Skill when the task is a repeatable workflow, when you want to encode domain knowledge and best practices, when you want to cut the number of manual steps for the user, or when context budget matters."
+
+[[params.faqItems]]
+question = "Can Skills and MCP be used together?"
+answer = "Yes, and that is the usual production shape: many Skills call MCP tools such as `browser_snapshot` internally. The Skill owns orchestration and decision-making — which tool, in what order, how to handle the edge cases — while the MCP tools do the actual execution. It mirrors ordinary layered software design, where low-level libraries supply capability and higher-level frameworks encode the best practices for using it."
+
+[[params.faqItems]]
+question = "What does a Skill actually contain, using /commit as an example?"
+answer = "More than the git commands. The built-in `commit` Skill encodes how to analyze code changes and group them meaningfully, how to write a clear conventional commit message, when to split work across multiple commits, how to deal with sensitive files, and what the output should look like. Done with raw MCP tools instead, you would orchestrate `git status`, then `git diff`, then the analysis, then the message, then `git commit` yourself — every step a separate call you direct."
 +++
 ![Skill vs MCP](skill-vs-mcp.webp)
 

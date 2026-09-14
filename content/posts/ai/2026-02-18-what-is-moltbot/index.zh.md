@@ -8,6 +8,34 @@ toc = true
 tags = ['MoltBot', 'AI Agent', 'OpenClaw', 'Clawdbot', '个人AI助手']
 categories = ['AI原理']
 keywords = ['moltbot 是什么', 'moltbot ai agent', 'moltbot 改名', 'moltbot 原理', 'moltbot 介绍', 'moltbot 能做什么', 'openclaw', 'clawdbot', 'moltbot 个人资料和背景', 'moltbot openclaw 区别', 'moltbot是什么']
+
+[[params.faqItems]]
+question = "MoltBot 是什么？"
+answer = "MoltBot（现已改名 OpenClaw）是奥地利开发者 Peter Steinberger 创建的开源个人 AI Agent，跑在你自己的电脑或服务器上，通过 Telegram、WhatsApp、Discord、iMessage 等聊天工具接收指令，能真正替你操作电脑。核心特征是本地运行、消息驱动、自主执行 Shell 命令和浏览器操作、持久记忆，以及 5700+ 社区技能插件。"
+
+[[params.faqItems]]
+question = "MoltBot、Clawdbot、OpenClaw 是同一个东西吗？"
+answer = "是的，同一个项目改了三次名：Clawdbot（2025 年 11 月起）→ MoltBot（2026 年 1 月 27 日）→ OpenClaw（1 月 29 日至今），不到一周完成三次更名。目前官方名称是 OpenClaw，但很多人仍习惯叫 MoltBot，代码和功能完全一致，变的只是品牌名。另外 MoltBook 是另一个项目——由 Matt Schlicht 创建的 AI Agent 社交网络，最初是为 MoltBot 的 Agent 设计的社交空间。"
+
+[[params.faqItems]]
+question = "MoltBot 和 ChatGPT、Claude Code 有什么区别？"
+answer = "和 ChatGPT 的区别是「说」与「做」：你让 ChatGPT 订机票，它只能回一段操作指引；MoltBot 会直接打开浏览器、登录账号、完成预订、把确认信息发回给你。和 Claude Code 的区别是定位：Claude Code 是面向开发者的编程助手，走命令行；MoltBot 是面向生活和工作全场景的通用助手，走聊天平台，24/7 后台常驻。"
+
+[[params.faqItems]]
+question = "跑 MoltBot 需要什么配置？要花多少钱？"
+answer = "硬件门槛不高，因为 AI 推理在云端完成，本机只做调度。社区最推荐 Mac Mini M4，约 4000 元，功耗只有 6-8W 且支持 iMessage；VPS 约 50-100 元/月，缺点是用不了 iMessage；家里的旧电脑零成本但费电；树莓派 5 约 500 元，性能有限。软件本身开源免费，花钱的是大模型 API 调用，改用 Ollama 跑本地模型可以完全免费但智力下降。"
+
+[[params.faqItems]]
+question = "MoltBot 怎么安装？Telegram 怎么接进去？"
+answer = "前提是 Node.js 22 以上、pnpm 和一个 LLM API Key。一键安装执行 `curl -sSL https://get.moltbot.org/install.sh | bash`，装完进 TUI 引导配置。更安全的做法是 Docker：`docker run -d -p 18789:18789 -v ~/.openclaw:/root/.openclaw -e ANTHROPIC_API_KEY=xxx openclaw/openclaw:latest`。Telegram 接入在 @BotFather 发 /newbot 拿 Token 再粘进 TUI。"
+
+[[params.faqItems]]
+question = "MoltBot 安全吗？有哪些已知风险？"
+answer = "有实打实的风险。已知隐患包括：API Key 和 OAuth 令牌以明文存在本地文件；恶意邮件可以通过提示注入诱导它执行非预期操作；在 Nginx 反向代理后认证可能失效；已有专门针对它本地存储的信息窃取恶意软件。Palo Alto Networks 把它称为安全上的「致命三合一」——有私人数据访问权、暴露于不可信内容、又能对外通信并保留记忆。"
+
+[[params.faqItems]]
+question = "怎么相对安全地使用 MoltBot？"
+answer = "六条原则：不要以 root 运行，建一个专用低权限用户；从只读权限起步，确认安全后再逐步放开；不要把端口裸露到公网，用防火墙挡住；优先用 Docker 容器运行以限制访问范围；定期检查 `~/.openclaw/` 目录下的凭证文件；模型选提示注入防护更强的 Claude Opus 4.5。对安全零容忍的人，建议先观望。"
 +++
 
 如果你最近在技术社区看到 "MoltBot" 这个词却一头雾水，这篇文章就是为你写的。

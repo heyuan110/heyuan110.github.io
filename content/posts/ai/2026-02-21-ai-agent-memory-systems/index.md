@@ -8,12 +8,6 @@ tags = ['AI Agent', 'RAG', 'Context Engineering', 'Claude Code', 'LLM Memory']
 categories = ['AI Guides']
 keywords = ['ai agent memory', 'rag vs context engineering', 'ai agent context management', 'llm memory systems', 'claude code memory', 'ai agent persistent memory', 'context window management', 'vector database ai']
 
-[params]
-  faq = [
-    { question = "What is the difference between RAG and context engineering for AI agents?", answer = "RAG (Retrieval-Augmented Generation) uses embedding and vector databases to dynamically retrieve relevant information at query time. Context engineering focuses on structuring and curating context files, type systems, and strategic prompt design to provide the right information upfront. RAG excels at large knowledge bases, while context engineering works better for project-specific rules and conventions." },
-    { question = "Why do AI coding agents need memory systems?", answer = "AI agents like Claude Code lose all context when a session ends — every architectural decision, debugging finding, and coding convention discussed is forgotten. Memory systems solve this session amnesia by persisting important information across conversations, reducing repetitive context-setting and improving agent performance over time." },
-    { question = "How does CLAUDE.md work as an AI agent memory system?", answer = "CLAUDE.md is a markdown file placed in your project root that Claude Code reads at the start of every session. It serves as persistent, human-curated memory containing project rules, tech stack details, coding conventions, and architectural decisions. Unlike RAG, it requires manual maintenance but offers full control over what the agent knows." }
-  ]
 
 [[params.faqItems]]
 question = "Agent memory vs RAG — what is the actual difference?"

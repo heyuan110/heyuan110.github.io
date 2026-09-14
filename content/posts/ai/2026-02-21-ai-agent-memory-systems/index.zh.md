@@ -8,12 +8,6 @@ tags = ['AI Agent', 'RAG', 'Context Engineering', 'Claude Code', 'LLM Memory']
 categories = ['AI Guides']
 keywords = ['AI Agent 记忆系统', 'RAG 检索增强生成', '上下文工程', 'LLM 记忆管理', 'Claude Code 记忆', 'AI Agent 持久化记忆', '上下文窗口管理', '向量数据库']
 
-[params]
-  faq = [
-    { question = "RAG 和上下文工程在 AI Agent 记忆系统中有什么区别？", answer = "RAG（检索增强生成）通过向量嵌入和向量数据库，在查询时动态检索相关信息。上下文工程则侧重于结构化地组织和策划上下文文件、类型系统以及策略性的提示词设计，在交互前就提供正确的信息。RAG 擅长处理大规模知识库，而上下文工程更适合项目级别的规则和约定。" },
-    { question = "为什么 AI 编程 Agent 需要记忆系统？", answer = "像 Claude Code 这样的 AI Agent 在会话结束时会丢失所有上下文——之前讨论的架构决策、调试发现和编码规范全部消失。记忆系统通过在会话之间持久化重要信息来解决这个'会话失忆症'，减少重复的上下文设置工作，并持续提升 Agent 的表现。" },
-    { question = "CLAUDE.md 如何作为 AI Agent 的记忆系统运作？", answer = "CLAUDE.md 是一个放置在项目根目录的 Markdown 文件，Claude Code 在每次会话开始时都会读取它。它相当于持久化的、人工策划的记忆，包含项目规则、技术栈详情、编码规范和架构决策。与 RAG 不同，它需要手动维护，但能完全控制 Agent 所接收的信息。" }
-  ]
 
 [[params.faqItems]]
 question = "AI Agent 的记忆系统到底是什么？和 RAG 是一回事吗？"
