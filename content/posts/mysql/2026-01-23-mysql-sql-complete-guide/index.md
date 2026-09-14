@@ -6,6 +6,34 @@ toc = true
 tags = ["MySQL", "SQL", "Database", "Interview", "Index", "Transaction", "Performance"]
 categories = ["MySQL"]
 keywords = ["MySQL tutorial", "SQL guide", "MySQL interview questions", "index optimization", "transaction isolation levels", "MVCC", "B+ tree"]
+
+[[params.faqItems]]
+question = "Why does MySQL use a B+ tree for indexes instead of a hash index or a red-black tree?"
+answer = "Because of disk I/O and range scans. A B+ tree stores data only in leaf nodes, so internal pages hold far more keys and each lookup touches fewer pages; a red-black tree is much taller and costs more I/O per lookup. The leaf nodes form a doubly linked list, which makes a range scan a sequential traversal — something a hash index cannot do at all, since it supports neither range queries nor ordered scans. Every lookup reaches a leaf, so the cost is a consistent O(log n)."
+
+[[params.faqItems]]
+question = "Why is my MySQL index not being used?"
+answer = "Seven patterns cause the optimizer to skip it. Wrapping the column in a function — `WHERE YEAR(created_at) = 2024` instead of a date range. Implicit type conversion, such as comparing a VARCHAR `phone` to an unquoted number. A leading wildcard, `LIKE '%alice'`. An `OR` against a column with no index, which drops the whole query to a full scan. Violating the leftmost prefix rule on a composite index. Not-equal conditions like `status != 1`. And `IS NOT NULL` when most rows are non-NULL, where a full scan is simply cheaper."
+
+[[params.faqItems]]
+question = "What is the leftmost prefix rule for composite indexes?"
+answer = "With an index `idx_a_b_c(a, b, c)`, MySQL can only use the columns from the left edge inward. `WHERE a = 1`, `a = 1 AND b = 2`, and `a = 1 AND b = 2 AND c = 3` all use the index; `WHERE a = 1 AND c = 3` uses only column a. But `WHERE b = 2`, `WHERE c = 3` and `WHERE b = 2 AND c = 3` cannot use the index at all, because the leading column is missing. Put the most selective column — the one with the highest cardinality — first."
+
+[[params.faqItems]]
+question = "What is the difference between a clustered index and a secondary index?"
+answer = "The leaf nodes hold different things. A clustered index leaf stores the full row, and a table has exactly one — chosen as the primary key, else the first unique non-null index, else a hidden row_id. A secondary index leaf stores only the primary key value, so `SELECT * FROM users WHERE username = 'alice'` needs a bookmark lookup: read `idx_username` to get the primary key, then read the clustered index for the row. `SELECT id, username` skips that second step because the index already covers both columns — EXPLAIN shows `Using index`."
+
+[[params.faqItems]]
+question = "What are the four transaction isolation levels, and which one does MySQL use?"
+answer = "READ UNCOMMITTED allows dirty reads, non-repeatable reads and phantom reads; READ COMMITTED prevents dirty reads only; REPEATABLE READ also prevents non-repeatable reads; SERIALIZABLE prevents all three. InnoDB defaults to REPEATABLE READ and largely prevents phantom reads at that level too, via MVCC and gap locks. Check yours with `SELECT @@transaction_isolation` and change it with `SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED`."
+
+[[params.faqItems]]
+question = "How does MVCC work in InnoDB?"
+answer = "Every row carries hidden columns `DB_TRX_ID` (the transaction that last modified it) and `DB_ROLL_PTR` (a pointer into the undo log), so updates leave the old version behind and build a version chain. A reading transaction consults a Read View holding creator_trx_id, m_ids (active transaction IDs), min_trx_id and max_trx_id, and picks the newest version that is visible: written by itself, or committed before the view was created. The RC versus RR difference is timing — READ COMMITTED creates a new Read View on every SELECT, REPEATABLE READ creates one at transaction start and reuses it."
+
+[[params.faqItems]]
+question = "How do I find and fix a slow MySQL query?"
+answer = "Start with `EXPLAIN`. Read `type` first — the ranking is `const > eq_ref > ref > range > index > ALL`, and `ALL` means a full scan — then `key` for the index actually chosen, `rows` for the estimate, and `Extra` for the red flags `Using filesort` and `Using temporary`. To catch offenders in production, enable the slow log with `SET GLOBAL slow_query_log = ON` and `SET GLOBAL long_query_time = 1`, then summarize it with `mysqldumpslow -s t -t 10`. Then work the checklist: no `SELECT *`, index the WHERE columns, drive joins from the smaller table, and use keyset pagination for deep pages."
 +++
 ![MySQL SQL Complete Guide: From Beginner to Advanced](cover.webp)
 

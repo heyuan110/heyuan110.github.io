@@ -6,6 +6,34 @@ toc = true
 tags = ['Java', 'JDK', 'JVM', 'IDEA']
 categories = ['Java']
 keywords = ['Java beginner tutorial', 'JDK vs JRE vs JVM', 'IntelliJ IDEA setup', 'Java basic syntax', 'Java OOP']
+
+[[params.faqItems]]
+question = "What is the difference between JDK, JRE, and JVM?"
+answer = "They nest inside each other. The JVM is the runtime engine that actually executes compiled bytecode on your operating system. The JRE is the JVM plus the core class libraries a running program needs. The JDK is the full development kit — the JRE plus tools such as `javac` (the compiler) and `java` (the launcher). Put simply: JDK = JRE + development tools, and JRE = JVM + core libraries. Install the JDK to write Java; the JRE alone only runs it."
+
+[[params.faqItems]]
+question = "What are Java SE, Java EE, and Java ME?"
+answer = "They are the 3 editions of the Java platform. Java SE is the Standard Edition and the foundation every Java developer learns first. Java EE is the Enterprise Edition, aimed at large-scale server-side systems. Java ME is the Micro Edition for constrained devices. Java came out of Sun Microsystems in 1995 — originally named Oak, after a tree outside James Gosling's office — and has been maintained by Oracle since the 2009 acquisition."
+
+[[params.faqItems]]
+question = "What actually happens in memory when I write Student s1 = new Student()?"
+answer = "Two allocations in two places. `Student s1` declares a reference variable on the stack. `new Student()` allocates the object itself on the heap, with all its fields initialized to default values, and the system assigns it a memory address such as `0x4f3f5b24`. That address — not the object — is what gets stored in `s1`, which is why assigning one reference to another makes both point at the same heap object. Arrays follow the same model."
+
+[[params.faqItems]]
+question = "What is the difference between static and instance members in Java?"
+answer = "Ownership and copy count. A static field is a class variable: exactly one copy exists in memory, shared by every object, and you access it as `ClassName.variable`. A non-static field is an instance variable: every object gets its own copy, accessed as `objectName.variable`. The same split applies to methods — a static method loads with the class and is called as `ClassName.method()`, while an instance method needs an object to call it on."
+
+[[params.faqItems]]
+question = "What are wrapper classes, and what do autoboxing and unboxing mean?"
+answer = "Java's philosophy is that everything is an object, but the 8 primitive types are not — wrapper classes close that gap so primitives can be used with collections and object-based APIs. Autoboxing converts automatically from primitive to wrapper (`Integer c = 10;`), unboxing goes the other way (`int d = c;`), and both happen implicitly in collections: `list.add(100)` boxes, `list.get(0)` unboxes. For conversions, use `Integer.parseInt('123')` and `Double.parseDouble('3.14')` from strings, and `String.valueOf(123)` back."
+
+[[params.faqItems]]
+question = "What are the four access modifiers in Java?"
+answer = "There are 4 levels controlling the visibility of fields, methods and constructors: `public` (visible everywhere), `protected` (the class, its package, and subclasses), default with no modifier at all (the class and its package), and `private` (only within the declaring class). Access control is how encapsulation is enforced — the usual pattern is private fields exposed through public getters and setters, which is exactly what a JavaBean entity class looks like."
+
+[[params.faqItems]]
+question = "Which IntelliJ IDEA shortcuts should a Java beginner learn first?"
+answer = "Six carry most of the load. Type `psvm` or `main` and `sout` to expand the live templates for a main method and a print statement. Ctrl + D duplicates the current line and Ctrl + Y deletes it (Ctrl + X also works). Ctrl + Alt + L reformats the file. Alt + Shift + Up or Down moves the current line. Ctrl + / toggles a line comment and Ctrl + Shift + / a block comment."
 +++
 ![image](java-logo.webp)
 
