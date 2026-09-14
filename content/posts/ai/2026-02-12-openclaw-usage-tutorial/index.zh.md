@@ -7,6 +7,30 @@ toc = true
 tags = ['OpenClaw', 'AI Agent', 'Telegram', '个人助手', '开源']
 categories = ['AI实战']
 keywords = ['OpenClaw 教程', 'OpenClaw 安装', 'AI Agent 网关', 'Telegram 机器人', 'OpenClaw TUI', 'Moltbot 教程', 'Clawdbot 教程', 'OpenClaw Moltbot']
+
+[[params.faqItems]]
+question = "OpenClaw 是什么？和 Moltbot、Clawdbot 是同一个项目吗？"
+answer = "是同一条项目演进线的三个阶段名：Clawdbot 是早期社区爆红时的名字，Moltbot 是改名过渡期，OpenClaw 是现在的官方主名。它本身是一个开源 AI Agent 网关，让你的私人助手常驻在 Telegram、WhatsApp、Discord 等平台上 7×24 响应。搜到老资料写 Moltbot 属正常现象，以 OpenClaw 官方仓库和文档为准。"
+
+[[params.faqItems]]
+question = "OpenClaw 怎么装？最快多久能跑起来？"
+answer = "三步。装 CLI：`npm install -g openclaw@latest`（pnpm 同理），用 `openclaw --version` 验证。跑向导：`openclaw onboard --install-daemon`，它会一次配完模型认证、Gateway、渠道、配对白名单，macOS 还能顺手装 launchd 后台服务。启动网关：`openclaw gateway --port 18789`，然后浏览器打开 http://127.0.0.1:18789/ 就能开聊。用 Telegram/WhatsApp 建议用 Node 跑，Bun 有已知兼容坑。"
+
+[[params.faqItems]]
+question = "终端模式（TUI）怎么进？为什么 TUI 里的回复没发到 Telegram？"
+answer = "Gateway 在跑的前提下执行 `openclaw tui` 即可，连远程机器用 `openclaw tui --url ws://<host>:<port> --token <gateway-token>`。回复没出去是设计如此：TUI 默认只把消息发给 Gateway、不投递到聊天平台，防止测试消息误发到群里。要真发出去，在 TUI 里敲 `/deliver on`，或启动时加 `--deliver`。"
+
+[[params.faqItems]]
+question = "机器人不回消息，怎么排查？"
+answer = "按四步走。先看网关活着没：`openclaw gateway status` 和 `openclaw status`；再跟日志 `openclaw logs --follow` 看真实报错；然后查渠道深度状态 `openclaw status --deep`；如果你在用 TUI，确认有没有开 `/deliver on`。工具里 exec 被 SIGKILL 通常不是 OpenClaw 的锅，多半是命令跑太久被外部杀或终端被关，长任务要拆分或放后台。"
+
+[[params.faqItems]]
+question = "有哪些老鸟才知道的技巧？"
+answer = "四个最实用：`openclaw --profile lab gateway --port 19001` 开一套完全隔离的实验环境，状态落在 `~/.openclaw-lab`，配 `--dev` 还会自动偏移端口；配置用 `$include` 拆成多文件；同一个 Gateway 用多智能体路由跑多个人格和工作区，并开 DM 会话隔离避免私信串台；TUI 里直接用 `!` 前缀跑本地 shell（如 `! openclaw status`），注意每条都是独立非交互 shell，不记得上一次 cd。"
+
+[[params.faqItems]]
+question = "配置改坏了 Gateway 起不来，怎么回滚？"
+answer = "第一次跑通就立刻备份：`cp ~/.openclaw/openclaw.json ~/.openclaw/openclaw.json.bak`。改崩了就反向拷回去再 `openclaw gateway restart`。定位错误用 `openclaw doctor` 看 schema 报错，需要自动修复再加 `--fix`（会改动配置和状态）。日常小改动建议用 `openclaw config get/set/unset` 而不是手改 JSON，少一类低级语法错。"
 +++
 
 ![OpenClaw 超详细上手教程封面](cover.webp)

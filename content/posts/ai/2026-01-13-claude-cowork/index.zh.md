@@ -7,6 +7,26 @@ toc = true
 tags = ['Claude Cowork', 'Claude Desktop', 'Anthropic', 'AI Agent', 'MCP']
 categories = ['AI实战']
 keywords = ['Claude Cowork', 'Anthropic AI 桌面代理', 'Claude Desktop Agent', 'AI 文件操作', 'Claude MCP 集成']
+
+[[params.faqItems]]
+question = "Claude Cowork 是什么？和普通 Claude 聊天有什么区别？"
+answer = "Cowork 是 Claude 桌面应用里的研究预览功能，把 Claude 从对话助手变成能动手的工作伙伴。区别在于不用再复制粘贴文件内容——它能直接读写本地文件、在沙盒里跑 Python 和 JavaScript、执行终端命令，还能通过 MCP 连 Notion、Linear、Figma 等 5 个应用拿上下文。在对话里输入 `@` 就能把具体文件交给它。"
+
+[[params.faqItems]]
+question = "Cowork 怎么开启？需要什么条件？"
+answer = "打开 Claude 桌面应用，进设置 → Features，启用 Cowork 选项后重启。预览期门槛较高：仅支持 macOS、需要最新版桌面应用、必须是 Claude Max 订阅（$100/月），Windows 和 Linux 版本还没发布。要让它访问文件，在对话里输入 `@` 选择具体文件或文件夹。"
+
+[[params.faqItems]]
+question = "Cowork 能在后台跑任务吗？"
+answer = "能，后台运行是它 4 大核心功能之一（另外 3 个是本地文件访问、沙盒代码执行、第三方应用集成）。启动耗时任务后可以最小化窗口去干别的，Claude 在后台处理完再通知你。适合的场景比如：把 Downloads 里所有 CSV 合并按日期排序，或者扫描整个笔记文件夹按主题分类并生成索引。"
+
+[[params.faqItems]]
+question = "Cowork 能连哪些第三方应用？"
+answer = "通过 MCP 协议连接，目前覆盖 5 个：Notion（读取和创建页面、查数据库）、Linear（管理任务和项目）、Figma（获取设计文件信息）、GitHub（查看仓库、Issue、PR）、Slack（搜索消息和频道）。每个连接都要单独配置 MCP 服务器。价值在于上下文——Claude 看到的是你真实的工作环境，而不是你粘贴过来的一段摘录。"
+
+[[params.faqItems]]
+question = "让 AI 直接操作本地文件安全吗？"
+answer = "有 4 层保护。一是权限确认，执行敏感操作前弹框说明要访问哪些文件、执行什么命令、可能有什么影响；二是沙盒隔离，代码在隔离环境跑，碰不到系统关键区域；三是操作审计，所有动作都有详细日志可查；四是范围限制，你精确指定它能访问哪些文件夹而不是整个文件系统。预览期还额外限制了部分网络操作。"
 +++
 
 ![Claude Cowork](cover.webp)

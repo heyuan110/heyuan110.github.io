@@ -7,6 +7,30 @@ toc = true
 tags = ['Claude Code', 'AI Agent', 'Skills', 'Productivity']
 categories = ['AI Guides']
 keywords = ['Claude Code Skills', 'SKILL.md tutorial', 'Claude Code custom skills', 'AI workflow automation', 'Claude Code tips']
+
+[[params.faqItems]]
+question = "What is the SKILL.md file format?"
+answer = "Two parts: YAML frontmatter and Markdown body. The frontmatter needs exactly two fields, `name` and `description`. The body conventionally carries an Instructions section with step-by-step guidance for Claude and an Examples section with concrete usage. Nothing else is required — a working Skill is one folder and one file. Type `/skills` in Claude Code to confirm it was picked up."
+
+[[params.faqItems]]
+question = "Where does SKILL.md have to live?"
+answer = "Inside its own subfolder, always. `.claude/skills/my-skill/SKILL.md` works; `.claude/skills/my-skill.md` is silently ignored, which is the single most common reason a Skill never fires. The filename is case-sensitive and must be `SKILL.md`. Use `~/.claude/skills/<name>/` for a personal Skill and `.claude/skills/<name>/` for a project Skill you commit to git so teammates get it on pull."
+
+[[params.faqItems]]
+question = "How should I write the description so Claude actually activates the Skill?"
+answer = "Third person, stating what it does and when to use it, with concrete trigger terms, and kept under about 20 words — longer descriptions lower the activation rate. Compare a bad one, a tool that explains things and makes hard stuff simple, with a good one that names the transformation and the target audience explicitly. For broader coverage, add a trigger keyword matrix listing the synonyms users actually type, such as negative reviews, complaint analysis, customer pain points."
+
+[[params.faqItems]]
+question = "How is a Skill different from a slash command?"
+answer = "You never invoke a Skill manually. A slash command fires because you typed `/command`; a Skill fires because Claude Code read the conversation context and decided this capability applies. That is why the `description` field carries so much weight — it is the entire basis for the activation decision. The mental model is a seasoned colleague noticing what you are working on and stepping in, rather than a button you press."
+
+[[params.faqItems]]
+question = "What should the name field look like?"
+answer = "English gerund form — verb plus -ing — so the capability is obvious at a glance: `processing-pdfs`, `analyzing-spreadsheets`, `writing-documentation`. Avoid vague nouns like `helper`, `utils` or `documents`; they tell Claude nothing about when to act. The name works together with the description, so treat both as routing signals rather than labels."
+
+[[params.faqItems]]
+question = "Can Claude Code write the SKILL.md for me?"
+answer = "Yes, and it is the fastest way to start. Ask it to generate a complete SKILL.md and state the four requirements explicitly: proper YAML frontmatter, gerund form for the name, a third-person description containing trigger terms, and Instructions plus Examples sections. Then describe the capability you want. Start with one Skill for a task you already repeat — a git commit message generator or a meeting-notes-to-action-items converter are good first ones."
 +++
 
 ![Skills Secret](skills-secret-compressed.webp)

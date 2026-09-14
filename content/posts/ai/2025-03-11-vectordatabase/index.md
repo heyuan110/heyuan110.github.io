@@ -6,6 +6,30 @@ toc = true
 tags = ['AI', 'Vector Database', 'RAG']
 categories = ['AI Guides']
 keywords = ['vector database', 'RAG retrieval augmented generation', 'embedding model', 'semantic search', 'ANN indexing', 'Milvus vs Pinecone', 'vector database comparison']
+
+[[params.faqItems]]
+question = "What is a vector database and what problem does it actually solve?"
+answer = "A vector database stores embeddings — arrays of 768 or 1536 numbers that encode the meaning of text — and finds the ones closest to a query vector, usually by cosine similarity. That buys you semantic rather than literal retrieval: a keyword index searching for Apple phone will never return a document that says iPhone, but their vectors sit right next to each other. This is the retrieval half of RAG, where you find the most relevant chunks first and only then hand them to the LLM."
+
+[[params.faqItems]]
+question = "When did vector databases become mainstream?"
+answer = "The technology is older than the hype. Before 2023 it was a niche most engineers had never heard of, living inside recommendation systems as Faiss or an in-house ANN service rather than as a product category. ChatGPT changed that: once people hit the wall of an LLM whose knowledge is frozen at training time and whose context window cannot swallow hundreds of pages, RAG became the standard fix — and semantic retrieval became something every team suddenly needed."
+
+[[params.faqItems]]
+question = "Why can't I just store vectors in MySQL or Postgres?"
+answer = "Three reasons. The query paradigm is different — relational engines do exact-match and range lookups, where a B+ tree helps, while vector search asks for the Top 10 most similar items, where it does not. Then there is the curse of dimensionality: at 768 or 1536 dimensions, distances between points converge and conventional indexes degrade into full scans. Finally, production means Top K out of millions of vectors in single-digit milliseconds, which brute-force cosine similarity will never deliver."
+
+[[params.faqItems]]
+question = "Which ANN index should I use — HNSW, IVF, or PQ?"
+answer = "HNSW is the default choice: a multi-layer navigable graph that gives fast queries and high recall, at the cost of heavy memory use and slow index builds. IVF clusters vectors with K-means and searches only the nearest clusters — less memory, slightly lower recall, and it pairs well with quantization. PQ splits vectors into sub-segments and compresses each with a codebook; it exists to cut memory footprint and is usually deployed as IVF-PQ rather than alone."
+
+[[params.faqItems]]
+question = "Milvus vs Pinecone vs Qdrant vs pgvector — how do I choose?"
+answer = "Match the tool to scale and ops appetite. For prototypes and datasets under a few hundred thousand vectors, pgvector adds an extension to a Postgres you already run. Already on Elasticsearch 8.x? Its native vector search combines cleanly with full-text. For mid-scale production with heavy filtering, Qdrant (written in Rust) or Weaviate (multimodal, built-in embeddings) fit well. At large scale Milvus is the serious option, though it is heavyweight and depends on etcd and MinIO. Pinecone removes ops entirely but costs more and holds your data."
+
+[[params.faqItems]]
+question = "What are the most common vector search mistakes in production?"
+answer = "Five recur. Treating vector search as universal — order numbers and SKU codes belong in keyword search, and the usual answer is hybrid retrieval with re-ranking. Picking an embedding model casually, when model quality directly caps retrieval quality; check MTEB, then benchmark on your own data. Chunking badly — roughly 300-500 words with overlap for plain text, by section for structured docs, by function for code. Measuring recall instead of Top K precision. And ignoring metadata filter performance: a post-filter design can fetch 10,000 candidates and leave you 10 results."
 +++
 ![VectorDatabase](vector-db.webp)
 

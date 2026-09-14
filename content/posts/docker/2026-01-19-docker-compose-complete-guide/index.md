@@ -6,6 +6,30 @@ toc = true
 tags = ['Docker', 'Docker Compose', 'Containers', 'DevOps']
 categories = ['Docker']
 keywords = ['Docker Compose tutorial', 'docker-compose.yml guide', 'Docker for beginners', 'multi-container deployment', 'Docker best practices']
+
+[[params.faqItems]]
+question = "What is Docker Compose and when do I need it instead of plain docker run?"
+answer = "Docker Compose defines and runs a multi-container application from one YAML file and one command. You need it as soon as services depend on each other — a web app plus MySQL plus Redis means creating a network by hand, then three separate `docker run` lines each carrying `--network`, `-e` and `-p` flags, and repeating all of it on every machine. Compose replaces that with `docker compose up -d`, and `docker compose down` tears the whole stack back down."
+
+[[params.faqItems]]
+question = "How do I check that Docker and Docker Compose installed correctly?"
+answer = "Run `docker --version`; a healthy install prints something like `Docker version 24.0.7, build afdd53b`. Then `docker info` for daemon details and `docker run hello-world` to prove containers actually start. For Compose, run `docker compose version` — note the space, not a hyphen. You rarely install Compose separately: Docker Desktop bundles it on macOS and Windows, and on Ubuntu, Debian, CentOS or RHEL the `docker-compose-plugin` package installs alongside `docker-ce`."
+
+[[params.faqItems]]
+question = "Docker volumes or bind mounts — which one should I use for persistence?"
+answer = "Use named volumes for data you care about and bind mounts for files you edit. Containers are stateless by default: delete the container and the data goes with it. A volume (`docker volume create my-data`, then `-v my-data:/var/lib/mysql`) is managed by Docker in its own directory and stays portable across hosts — right for databases. A bind mount (`-v $(pwd)/html:/usr/share/nginx/html`) maps a real host path, which is what you want for config files and live source code; add `:ro` to make it read-only."
+
+[[params.faqItems]]
+question = "How do containers in the same docker-compose.yml talk to each other?"
+answer = "By service name. Compose puts the services on a shared network, so an app container reaches the database with `DB_HOST=mysql` when the service is named `mysql` — no IP addresses, no links. When it fails, the cause is almost always one of three: the containers are not on the same network, the service name is misspelled, or the port was never exposed. Debug with `docker network ls`, `docker network inspect <name>`, and `docker exec container1 ping container2`."
+
+[[params.faqItems]]
+question = "What are the Docker Compose production best practices?"
+answer = "Four things separate a demo compose file from a production one. Cap resources with `deploy.resources.limits` (for example `cpus: '1.0'` and `memory: 1G`) plus reservations. Cap logs with the `json-file` driver and `max-size: 100m` / `max-file: 5`, or a single chatty service will fill the disk. Harden the container: `user: '1000:1000'`, `read_only: true` with a `tmpfs` for /tmp, and `security_opt: no-new-privileges:true`. And pin image tags like `node:18.19.0-alpine` instead of `latest`."
+
+[[params.faqItems]]
+question = "My container will not start and the disk is full — how do I troubleshoot?"
+answer = "Start with `docker logs <container>` and `docker inspect <container>`; a container that dies immediately is usually a port conflict, a volume permission problem, or a dependency service that was not ready yet. For disk pressure, `docker system df` shows where the space went, `docker system prune` clears unused containers and networks, `docker system prune -a` also removes unused images, and `docker volume prune` sweeps orphaned volumes — check what those volumes hold before you run it."
 +++
 ![Docker Complete Guide](docker-cover.webp)
 

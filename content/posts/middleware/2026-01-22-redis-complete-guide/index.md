@@ -7,6 +7,30 @@ toc = true
 tags = ['Redis', 'Database', 'Cache', 'NoSQL', 'Middleware']
 categories = ['AI Guides']
 keywords = ['Redis installation', 'Redis tutorial', 'Redis data types', 'Redis persistence', 'Redis cluster']
+
+[[params.faqItems]]
+question = "Should maxmemory-policy be allkeys-lru or noeviction?"
+answer = "Use `allkeys-lru` when Redis is a cache and `noeviction` when it is the system of record. With allkeys-lru, Redis discards the least recently used keys once `maxmemory` is hit, so writes keep succeeding; with noeviction it returns an error on every write instead of dropping data. The other choices are volatile-lru and volatile-ttl (only keys that carry an expiration), plus allkeys-random and volatile-random. Always set an explicit `maxmemory` first, for example `maxmemory 4gb`."
+
+[[params.faqItems]]
+question = "What are the minimum settings a production redis.conf needs?"
+answer = "Five lines cover the basics: `bind 127.0.0.1` (or a specific private IP), `port 6379`, `requirepass your_password`, a hard `maxmemory 256mb` limit and a matching `maxmemory-policy`. Keep the default RDB rules (`save 900 1`, `save 300 10`, `save 60 10000`) unless you have a reason to change them, and set `loglevel notice` with an explicit `logfile`. On the operational side, ban `KEYS *`, `FLUSHALL` and `FLUSHDB` in production — any of them can block or wipe the instance."
+
+[[params.faqItems]]
+question = "RDB or AOF — which persistence mode should I turn on?"
+answer = "Hybrid mode, which has been the default since Redis 5.0 via `aof-use-rdb-preamble yes`: the AOF file starts with an RDB snapshot and appends commands after it, giving fast restores and minimal loss. RDB alone forks a child to write `dump.rdb` on the `save` rules and loses everything written since the last snapshot. AOF alone with `appendfsync everysec` loses at most one second but restores slowly. Only use `appendfsync always` if zero data loss is a hard requirement."
+
+[[params.faqItems]]
+question = "What is the difference between Redis Sentinel and Redis Cluster?"
+answer = "Sentinel gives you automatic failover on a single dataset; Cluster gives you sharding as well. Sentinel processes watch the primary, and once a quorum agrees it is down (`sentinel monitor mymaster 192.168.1.100 6379 2` with `down-after-milliseconds 30000`) they promote a replica and repoint the others. Cluster splits the keyspace into 16,384 hash slots across several primaries, each with its own replica — build it with `redis-cli --cluster create ... --cluster-replicas 1` and connect using `redis-cli -c` so redirects are followed."
+
+[[params.faqItems]]
+question = "How do I install and start Redis on macOS, Docker, or Windows?"
+answer = "On macOS run `brew install redis` then `brew services start redis`, and check it with `brew services list`. Docker is the quickest cross-platform route and is covered with a ready-made run command in the guide. Windows has no official native build: WSL is the recommended path, an MSI-packaged Windows port is the second option, and recent versions have no MSI at all. Verify any install by connecting with `redis-cli` on port 6379."
+
+[[params.faqItems]]
+question = "How do I find out which Redis commands are slow?"
+answer = "Use the slow log. Set `slowlog-log-slower-than 10000` (the unit is microseconds, so that is 10 ms) and `slowlog-max-len 128` in redis.conf, then read it with `SLOWLOG GET 10`, count entries with `SLOWLOG LEN`, and clear it with `SLOWLOG RESET`. Most entries trace back to big keys or full scans, so split oversized Hashes, Lists and Sets into shards, keep keys under 1 KB and values under 10 KB, and batch round trips with pipelines."
 +++
 ![Redis Complete Guide: From Beginner to Production](cover.webp)
 

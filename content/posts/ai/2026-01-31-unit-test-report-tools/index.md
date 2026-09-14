@@ -7,6 +7,30 @@ toc = true
 tags = ['Unit Testing', 'Test Reports', 'Allure', 'AI Testing', 'Quality Engineering']
 categories = ['AI Guides']
 keywords = ['unit test report tools', 'test report framework comparison', 'Allure Report setup', 'AI automated testing', 'code coverage tools 2026']
+
+[[params.faqItems]]
+question = "What code coverage threshold should a team actually set?"
+answer = "Line coverage at or above 80%, branch coverage at or above 75%, critical paths such as payment and authentication at 95%, and new code in each PR at 90%. Branch coverage matters more than line coverage: `def divide(a, b): return a / b` hits 100% line coverage from a single `divide(10, 2)` call while the divide-by-zero path is never touched. Chasing 100% usually means writing low-value tests for getters and setters."
+
+[[params.faqItems]]
+question = "Which coverage tool goes with which test framework?"
+answer = "JUnit 5 needs JaCoCo bolted on (jacoco-maven-plugin 0.8.12) because it only emits JUnit XML. PyTest uses pytest-cov, run as `pytest --cov=src --cov-report=html --cov-report=term-missing`. Jest ships Istanbul coverage built in via `npx jest --coverage`, and Vitest ships a v8 provider. C and C++ pair GoogleTest with gcov plus lcov (or llvm-cov on Clang), XCTest has coverage built into Xcode, and .NET uses Coverlet through `dotnet test --collect:'XPlat Code Coverage'`."
+
+[[params.faqItems]]
+question = "What does Allure Report add over a framework's built-in report?"
+answer = "It normalizes 30+ framework adapters into one JSON intermediate format and renders a single HTML report, which is the point when a team runs a Java backend, Python scripts and a TypeScript frontend side by side. Beyond pass and fail it gives suites, graphs, an execution timeline, automatic failure categories and cross-run history trends. Setup for Python is three steps: `pip install allure-pytest`, `pytest --alluredir=./allure-results`, then `allure serve ./allure-results`."
+
+[[params.faqItems]]
+question = "How do I make CI fail when coverage drops?"
+answer = "Put the floor in the test runner config rather than a manual check. Vitest supports it natively — a `coverage.thresholds` block with `lines: 80` and `branches: 75` in vitest.config.ts fails the run below those numbers. On the platform side, Codecov and Coveralls surface the per-PR delta in the pull request itself, and SonarQube adds code smells and security findings. Link the report into PR comments so it gets read during review."
+
+[[params.faqItems]]
+question = "Should I choose Jest or Vitest for a new project?"
+answer = "Vitest for anything new, and leave working Jest projects alone. Vitest is API-compatible with Jest but faster, with native TypeScript and ESM support, a built-in v8 coverage provider and configurable thresholds. Jest still has the deeper ecosystem and first-party Allure support, while Vitest's Allure adapter is community-maintained. Both give built-in parallel workers, so the migration cost is the deciding factor, not raw capability."
+
+[[params.faqItems]]
+question = "Can AI just write my unit tests for me?"
+answer = "It can write the first draft, not the final suite. In practice AI-assisted generation saves 30-60% of the time and lifts coverage from roughly 65% to 78%, and a 200K context window lets a tool read the whole codebase before generating. But a 2025 study found developers perceived a 20% speedup while actually spending 19% more time once debugging and cleanup were counted. The workflow that holds up: humans set the strategy, AI drafts cases and analyzes coverage blind spots, humans review edge and error paths."
 +++
 
 ![Unit Test Report Tools: Framework Comparison, Coverage Strategy & AI Workflow](cover.webp)

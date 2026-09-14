@@ -7,6 +7,30 @@ toc = true
 tags = ['Agentic Coding', 'Claude Code', 'AI Coding', 'Trends Report', 'Anthropic']
 categories = ['AI Guides']
 keywords = ['agentic coding', 'agentic coding trends', 'Claude Code 2026', 'AI coding trends', 'Anthropic revenue', 'AI coding agent', 'Claude Code revenue']
+
+[[params.faqItems]]
+question = "What does Anthropic's 2026 Agentic Coding trends report actually say?"
+answer = "It identifies eight trends: multi-agent systems going mainstream (57% of organizations run multi-step agent workflows), the papercut revolution that drives the cost of clearing small technical debt toward zero, cowork agent democratization letting non-engineers build their own tools, self-healing code, hybrid build architecture (47% mix general tools with custom agents), enterprise agent security frameworks, AI-native workflow redesign, and the climb from code completion to system-level autonomy."
+
+[[params.faqItems]]
+question = "How much revenue does Claude Code generate in 2026?"
+answer = "Claude Code reached $1B in annualized revenue in 6 months and $2.5B ARR by February 2026 — faster to the first billion than ChatGPT. Parent company Anthropic went from $1B ARR at the end of 2024 to $14B in February 2026, a 14x jump in 14 months, versus OpenAI's 3.4x over the same window. Enterprise customers grew from under 1,000 to more than 300,000, and Anthropic projects $20-26B for 2026."
+
+[[params.faqItems]]
+question = "What share of developers actually use AI coding agents in 2026?"
+answer = "84% use AI coding tools, 67% use them daily, and 41% of shipped code is AI-generated. But only 3% report high trust in AI-generated code and fully unsupervised delegation sits at just 0-20%, so the working model is still draft-by-AI, review-by-human. The measured payoff: 55% faster task completion and 15-25 hours saved per developer per month. 84% of developers use more than one tool at once."
+
+[[params.faqItems]]
+question = "How far along is enterprise adoption of AI coding agents?"
+answer = "Less far than the headlines suggest. Only 11% of enterprises run agents in production; 30% are still exploring and evaluating, 38% are running pilots, and 14% are preparing to scale — meaning 68% have not left the pilot stage. The two biggest blockers are legacy system integration (46%) and security compliance requirements (40%). Among Fortune 100 companies, 90% have adopted GitHub Copilot."
+
+[[params.faqItems]]
+question = "How does agentic coding change the software development lifecycle?"
+answer = "The classic requirements → design → develop → test → deploy pipeline was built for humans, so leading teams are rebuilding it around agents: product requirement documents parsed directly into code tasks, continuous agent review on every change rather than only at submission, agents writing tests alongside code so TDD becomes the default, and documentation that syncs automatically with code changes. TELUS ran this full-pipeline integration and reports 500,000 engineering hours saved and 30% faster delivery."
+
+[[params.faqItems]]
+question = "Claude Code vs GitHub Copilot vs Cursor vs Codex — who leads the market?"
+answer = "GitHub Copilot still leads on installed base with 1.8M paid users and 42% market share, riding IDE embedding and GitHub ties, but its growth is decelerating. Claude Code is the fastest-growing challenger at $2.5B ARR, strongest on large codebases and multi-agent work from the terminal. Cursor defined the AI-native IDE category and sits at $500M ARR with 18% share. ChatGPT Codex has the widest reach, named a regular tool by 49% of developers, and runs asynchronously in the cloud."
 +++
 
 6 months. $1 billion.

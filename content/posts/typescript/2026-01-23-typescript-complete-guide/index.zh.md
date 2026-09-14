@@ -8,6 +8,30 @@ images = ['cover.webp']
 tags = ['TypeScript', 'JavaScript', 'Frontend', 'Type System']
 categories = ['AI Guides']
 keywords = ['TypeScript', 'TypeScript教程', 'TypeScript面试题', 'TypeScript高级类型', '类型体操', '泛型']
+
+[[params.faqItems]]
+question = "TypeScript 项目怎么初始化？tsconfig 必开哪些配置？"
+answer = "先 `npm install typescript --save-dev`，再 `npx tsc --init` 生成配置。tsconfig.json 里最关键的是 `strict: true`，它会一并打开 `strictNullChecks` 和 `noImplicitAny`；其余常用项是 `target: ES2020`、`module: ESNext`、`outDir: ./dist`、`rootDir: ./src`。开发时挂一个 `tsc --watch` 即可增量编译。"
+
+[[params.faqItems]]
+question = "interface 和 type 有什么区别？面试怎么答？"
+answer = "四点差异：interface 用 `extends` 继承，type 用 `&` 交叉；只有 interface 支持声明合并（同名 interface 会自动合并成员）；联合类型、元组、映射类型、计算属性只有 type 能写。选型原则是描述对象结构和类实现约束用 interface，需要联合/元组/映射类型或要扩展第三方库类型时用 type。"
+
+[[params.faqItems]]
+question = "any 和 unknown 的区别是什么？"
+answer = "`any` 等于关掉类型检查，`anything.foo()` 能编译过但运行时可能直接崩。`unknown` 是安全版：什么值都能赋进去，但必须先收窄类型（比如 `typeof x === 'string'`）才能取属性或调方法，也不能直接赋给别的类型。快速迁移老代码可以临时用 any，接收不确定类型的外部数据一律用 unknown。"
+
+[[params.faqItems]]
+question = "never 和 void 有什么不一样？"
+answer = "void 表示函数正常返回但没有返回值，比如 `function log(msg: string): void`。never 表示函数根本不会正常返回——要么抛异常（`throw new Error(msg)`），要么死循环（`while (true) {}`）。类型体操里 never 还常被用作条件类型的兜底分支，以及在分布式条件类型中被自动过滤掉。"
+
+[[params.faqItems]]
+question = "infer 关键字到底在做什么？"
+answer = "infer 在条件类型的 extends 里声明一个占位类型变量，匹配成功就把它捕获出来。取返回值：`type MyReturnType<T> = T extends (...args: any[]) => infer R ? R : never`；取参数元组：`T extends (...args: infer P) => any ? P : never`；取数组元素：`T extends (infer E)[] ? E : never`；解包 Promise：`T extends Promise<infer U> ? U : T`。"
+
+[[params.faqItems]]
+question = "ReturnType、Parameters 这些工具类型怎么用？"
+answer = "它们接收的是函数类型不是函数值，所以要配 `typeof`。对 `function createUser(name: string, age: number)` 来说，`Parameters<typeof createUser>` 得到 `[string, number]`，`ReturnType<typeof createUser>` 得到返回值类型。类对应的是 `ConstructorParameters<typeof MyClass>` 和 `InstanceType<typeof MyClass>`。"
 +++
 
 ![TypeScript 完全指南：从基础到高级类型系统的全面解析](cover.webp)

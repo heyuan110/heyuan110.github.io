@@ -7,6 +7,30 @@ toc = true
 tags = ['Product Thinking', 'Mental Models', 'AI Collaboration', 'Requirements Analysis', 'Project Management']
 categories = ['AI Guides']
 keywords = ['product methodology', 'SMART goals', 'MECE principle', 'JTBD framework', 'RICE prioritization', 'OKR goal setting', 'requirements analysis', 'thinking frameworks for developers']
+
+[[params.faqItems]]
+question = "How do I turn a vague idea into a requirement an AI can execute?"
+answer = "Run it through five phases rather than one prompt. Define the goal with SMART, OKR, first principles, 5W2H and Occam's razor; break it down with MECE, Pareto, 5 Whys and SWOT; describe it with JTBD, user stories, GWT acceptance criteria, the Kano model and SCQA; prioritize with the Eisenhower matrix, MoSCoW, RICE, MVP/MLP and a pre-mortem; then improve with PDCA and design thinking. You do not need all 22 every time — output quality rises because input quality did."
+
+[[params.faqItems]]
+question = "What makes a goal SMART instead of a wish?"
+answer = "Five tests: Specific, Measurable, Achievable, Relevant, Time-bound. The framework comes from George T. Doran's 1981 paper. In practice the rewrite is what matters: build a blog system is a wish, while committing to ship a Hugo-based blog with Markdown support and automated GitHub Pages deployment by February 28, with homepage load under 3 seconds, is a goal. Same for metrics — get more users becomes grow MAU from 10K to 30K."
+
+[[params.faqItems]]
+question = "What does MECE mean and how do I know my breakdown is wrong?"
+answer = "MECE means Mutually Exclusive (no category overlaps another) and Collectively Exhaustive (the categories cover everything). Barbara Minto invented it at McKinsey in the 1960s as the backbone of the Pyramid Principle. A concrete failure: splitting users into free, VIP and active is not MECE, because a VIP can also be active (overlap) and silent paying users fall through (gap). Split by one axis at a time — free versus paid, active versus inactive — then cross-reference the four cells."
+
+[[params.faqItems]]
+question = "How do I write a user story that actually changes the code?"
+answer = "Use the three-part form: as a [user type], I want [action], so that [outcome]. Build an export feature tells you nothing; as an operations manager I want to export last week's user behavior data as Excel so I can present it at Monday's team meeting tells you the user, the scenario and the format — which decides data volume, whether the export must be async, and how customizable it needs to be. Pair it with a Given/When/Then acceptance criterion so done is defined before work starts."
+
+[[params.faqItems]]
+question = "How does RICE scoring work?"
+answer = "Score = (Reach x Impact x Confidence) / Effort, developed by Sean McBride on Intercom's product team to stop pet projects from winning. Reach is users affected, such as 5,000 a month. Impact is scored 3 for massive down to 0.25 for minimal. Confidence is 100% for data-backed, 80% for experience, 50% for a gut feeling. Effort is person-months. Worked example: optimizing search scores 5,000 x 2 x 80% / 2 = 4,000, dark mode 533, a payment refactor 1,500 — so search wins."
+
+[[params.faqItems]]
+question = "What is Jobs To Be Done and why does it beat asking users what they want?"
+answer = "JTBD, from Harvard's Clayton Christensen, says people do not buy products, they hire them to do a job — and 75-85% of new products fail because they miss that job. McDonald's changed milkshake flavors from survey feedback and sales did not move. Observation found 40% were sold before 8:30 AM to commuters hiring a one-handed, filling, non-boring breakfast whose real rivals were bananas and bagels. Thicker shakes with fruit chunks lifted sales 7x. Tell AI the scenario and pain point, not the feature name."
 +++
 
 "Build me a user management system."

@@ -9,23 +9,23 @@ keywords = ['Anthropic IPO', 'Anthropic 9650 亿估值', 'Anthropic 上市', 'Cl
 
 [[params.faqItems]]
 question = "Anthropic 9650 亿估值是不是泡沫？"
-answer = '''不是泡沫。Series H 在 2026-06-02 秘密递交 S-1 时定的是 post-money 9650 亿美元，背后是 5 月底 470 亿美元年化收入和 Q2 预期 109 亿美元（环比翻倍）的硬数字。9650 / 470 ≈ 20 倍收入倍数，对一个季度环比翻倍、企业收入主导的类别领导者来说不算贵。参照系：Snowflake 2020 年 IPO 倍数约 175 倍，Datadog IPO 时超过 50 倍。投资人买的不是"Claude 模型比 GPT-5 好"——Opus 4.7、GPT-5、Gemini 3 Pro、Qwen 3.7 Max 在基础能力上已经非常接近——投资人买的是 Managed Agents 这套生产级 Agent 运行时的入口控制权。'''
+answer = "不是泡沫。2026-06-02 秘密递交 S-1 时 Series H 的 post-money 估值是 9650 亿美元，对应 5 月底 470 亿美元年化收入约 20 倍——参照 Snowflake 2020 年 IPO 约 175 倍、Datadog 超 50 倍，这个倍数并不贵，Q2 单季预期 109 亿美元、环比翻倍是支撑点。投资人买的不是模型领先（Opus 4.7、GPT-5、Gemini 3 Pro 已基本平手），而是 Managed Agents 这套生产级 Agent 运行时的入口。"
 
 [[params.faqItems]]
 question = "Claude Managed Agents 到底是什么，国内能用吗？"
-answer = '''Managed Agents 是 Anthropic 2026-04-08 上线公测的 Agent 托管运行时，包含沙箱代码执行、任务 checkpoint（可暂停/恢复）、scoped 凭证管理、端到端 tracing。2026-06-09 东京站新增 cron 调度 + 命令行凭证保险库（公测）。2026-05-19 伦敦站推出 Self-hosted Sandboxes 公测。但 Anthropic 至今不开放中国大陆 API 访问，技术上控制面在 Anthropic 美国侧，国内主流方案只有两种：① 海外 VPN + 海外信用卡，合规风险自担；② 用国内替代方案（智谱、通义、Kimi、豆包），但目前**没有一家有完整的 Managed Agents 等价物**。'''
+answer = "Managed Agents 是 Anthropic 2026-04-08 上线公测的 Agent 托管运行时：沙箱代码执行、可暂停恢复的任务 checkpoint、scoped 凭证管理、端到端 tracing，06-09 东京站又补上 cron 调度和命令行凭证保险库。国内用不了——Anthropic 至今不开放中国大陆 API，控制面在美国侧，只能走海外账号（合规风险自担）或改用国内方案，而国内目前没有完整等价物。"
 
 [[params.faqItems]]
 question = "Self-hosted Sandboxes 是不是意味着可以完全私有部署？"
-answer = '''不是。Self-hosted Sandboxes 让你的团队在自己的基础设施（你的 VPC、你的合规边界、你的数据）里跑沙箱代码执行——但 agent 编排循环、规划、工具路由仍然跑在 Anthropic 的控制面上。这是混合模式：私有数据面 + 托管控制面。如果你的诉求是数据驻留或 PII 合规，这够用；如果你的诉求是完全离线运行或对中国大陆部署，这不解决问题，因为控制面无法跨境联通。Anthropic 在工程博客《Scaling Managed Agents: Decoupling the brain from the hands》里说得非常明确——"hands"（手）可以下放，"brain"（脑）必须留在 Anthropic 控制面。'''
+answer = "不是。Self-hosted Sandboxes 只把沙箱代码执行下放到你自己的 VPC 和合规边界，agent 编排循环、规划和工具路由仍跑在 Anthropic 控制面上，是私有数据面加托管控制面的混合模式。诉求是数据驻留或 PII 合规，它够用；想完全离线或部署到中国大陆，它不解决，因为控制面无法跨境。Anthropic 工程博客说得很直白：手可以下放，脑必须留在自己这边。"
 
 [[params.faqItems]]
 question = "国内有哪些 Claude Code Managed Agents 的替代方案？"
-answer = '''截至 2026-06-12，国内没有任何一家有完整对位 Managed Agents 的生产级方案。各家分别有部分能力：智谱 ChatGLM Agent 有基础 Agent 编排但缺生产级沙箱和 cron；阿里通义 Qwen 3.7 Max API 有强模型但 Agent 运行时仍要自建；字节豆包提供 Agent 开发平台但没有端到端 tracing 和 checkpoint API；月之暗面 Kimi K2 主打超长上下文但 Agent 工具链最弱。务实路径：模型层用国内 API，Agent 运行时用开源方案自建（Hermes Agent、LangGraph、AutoGen），凭证管理用 Vault、Cron 用 Temporal/Airflow，自己拼出一套"半 Managed Agents"。代价是工程量大约 3-6 个人月，胜在数据不出境、合规可控。'''
+answer = "截至 2026-06-12 没有一家国内厂商有完整对位的生产级方案。智谱 ChatGLM Agent 有基础编排但缺生产级沙箱和 cron，通义 Qwen 3.7 Max 模型够强但运行时要自建，字节豆包有 Agent 开发平台却没有端到端 tracing 和 checkpoint API，Kimi K2 长上下文强、工具链最弱。务实做法是模型层用国内 API、运行时用 LangGraph 或 AutoGen 自建、凭证用 Vault、调度用 Temporal，工程量约 3-6 个人月。"
 
 [[params.faqItems]]
 question = "Anthropic 什么时候 IPO？对中国投资人有影响吗？"
-answer = '''截至 2026-06-12 已知信息：S-1 在 6 月 2 日秘密递交，公开报道目标窗口"as soon as this fall"，基本指向 2026 年 Q4 上市。Series H post-money 估值 9650 亿美元，最终 IPO 定价范围 Anthropic 还未公布。对中国投资人来说有两个现实约束：① 中国大陆个人投资者认购美股 IPO 通道有限，通常通过老虎、富途等持牌券商打新，且 9650 亿估值的 IPO 通常机构优先，散户中签率极低；② 即便上市后买入二级市场，中国政府对赴美 IPO 中概股的监管态度也是变量，但 Anthropic 是美国本土公司不存在 VIE 问题。务实建议：把它当 "AI 时代的 Microsoft IPO" 看，长期叙事重要，但短期定价波动会非常大，不要 all in。'''
+answer = "S-1 已于 2026 年 6 月 2 日秘密递交，公开报道的目标窗口是今年秋天，基本指向 2026 年 Q4 上市，Series H post-money 估值 9650 亿美元，最终 IPO 定价区间尚未公布。对中国投资人有两个现实约束：个人打新通道有限，通常只能通过老虎、富途等持牌券商，这种体量的 IPO 机构优先、散户中签率极低；二级市场买入不存在 VIE 问题，因为 Anthropic 是美国本土公司。"
 +++
 
 ![Anthropic 9650 亿估值与 Claude Managed Agents 基础设施架构](cover.webp)

@@ -6,6 +6,30 @@ toc = true
 tags = ['AI', 'VectorDatabase', 'RAG']
 categories = ['AI原理']
 keywords = ['向量数据库', 'RAG 检索增强生成', 'Embedding 向量化', '语义检索', '向量数据库选型']
+
+[[params.faqItems]]
+question = "向量数据库到底解决什么问题？"
+answer = "它存的是 Embedding——768 或 1536 个数字组成的向量，用余弦相似度找出离查询向量最近的内容，做的是语义检索而不是字面匹配。关键词索引搜「苹果手机」永远匹配不到写着「iPhone」的文档，但这两者的向量挨得很近。这正是 RAG 的检索环节：先捞出最相关的片段，再把它们喂给大模型。"
+
+[[params.faqItems]]
+question = "向量数据库是什么时候火起来的？"
+answer = "技术比热度老得多。2023 年之前它是个小众领域，主要藏在推荐系统里，叫 Faiss 或者 ANN 服务，没人当成一个产品品类。ChatGPT 之后才变了：大模型知识固定在训练时刻、prompt 又塞不下几百页文档，RAG 成了标准解法，语义检索一下变成人人都需要的能力。"
+
+[[params.faqItems]]
+question = "向量为什么不能直接存在 MySQL 里？"
+answer = "三个原因。一是查询范式不同，关系型数据库擅长精确匹配和范围查询，B+ 树帮得上忙；向量检索问的是「最相似的 Top 10」，B+ 树完全用不上。二是维度灾难，768 甚至 1536 维空间里各点距离趋于接近，传统索引退化成全表扫描。三是性能，生产环境要从几百万上千万条向量里毫秒级返回 Top K，逐条算余弦相似度撑不住。"
+
+[[params.faqItems]]
+question = "HNSW、IVF、PQ 这几种索引怎么选？"
+answer = "HNSW 是当下主流：多层图结构，查询快、召回率高，代价是内存占用大、建索引慢。IVF 用 K-means 把向量聚类，查询时先找最近的几个簇再在簇内搜，内存省、召回略低，和量化配合得好。PQ 是把向量切段后用码本压缩，目的就是降内存，通常不单用，而是组合成 IVF-PQ。"
+
+[[params.faqItems]]
+question = "Milvus、Pinecone、Qdrant、pgvector 怎么选？"
+answer = "按规模和运维意愿选。几十万条以内、快速验证，直接给现有 PostgreSQL 装 pgvector 插件。已经在用 Elasticsearch 8.x，它原生支持向量检索还能和全文检索无缝结合。中等规模、过滤需求重，选 Rust 写的 Qdrant 或支持多模态的 Weaviate。大规模高性能上 Milvus，但部署偏重，依赖 etcd 和 MinIO。完全不想运维、预算充足就用 Pinecone，代价是贵且数据在别人服务器上。"
+
+[[params.faqItems]]
+question = "落地时最容易踩的坑有哪些？"
+answer = "五个反复出现。一是以为向量检索万能，订单号、SKU 这类精确查询该走关键词，正解通常是混合检索加重排。二是 Embedding 模型随便选，模型质量直接决定检索上限，先看 MTEB 榜再拿自己的数据实测。三是 chunk 切得不对，纯文本一般 300-500 字带重叠，结构化文档按章节切，代码按函数切。四是只看召回率不看排序，该盯 Top K 精度。五是忽略元数据过滤性能，后过滤模式可能捞 1 万条最后只剩 10 条。"
 +++
 ![VectorDatabase](vector-db.webp)
 

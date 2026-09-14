@@ -8,6 +8,34 @@ images = ['cover.webp']
 tags = ['TypeScript', 'JavaScript', 'Frontend', 'Type System']
 categories = ['AI Guides']
 keywords = ['TypeScript', 'TypeScript tutorial', 'TypeScript advanced types', 'TypeScript generics', 'type gymnastics', 'utility types']
+
+[[params.faqItems]]
+question = "How do I set up a TypeScript project from scratch?"
+answer = "Install the compiler with `npm install typescript --save-dev` (or `-g` for a global copy), then generate a config with `npx tsc --init`. In tsconfig.json the settings that matter most are `target: ES2020`, `module: ESNext`, `outDir: ./dist`, `rootDir: ./src` and above all `strict: true`, which turns on `strictNullChecks` and `noImplicitAny` together. Compile with `tsc hello.ts`, or keep `tsc --watch` running during development."
+
+[[params.faqItems]]
+question = "What is the difference between interface and type in TypeScript?"
+answer = "They overlap for object shapes but differ in four places: interfaces extend with `extends` while types compose with `&`; declaration merging works only for interfaces (declare `interface User` twice and the members merge); union types, tuples, mapped types and computed properties are type-only. Practical rule: use `interface` for object shapes, class contracts and augmenting third-party library types, and `type` for unions, tuples and anything produced by a mapped type."
+
+[[params.faqItems]]
+question = "What is the difference between any and unknown?"
+answer = "`any` switches type checking off, so `anything.foo()` compiles and then crashes at runtime. `unknown` is the safe counterpart: it accepts any value but you cannot read a property or call a method until you narrow it, for example with `if (typeof value === 'string')`. `any` is assignable to any other type, `unknown` needs an assertion or a type guard first. Use `any` only for quick migrations, and `unknown` whenever a value's type is genuinely uncertain."
+
+[[params.faqItems]]
+question = "What does Parameters<typeof fn> return?"
+answer = "A tuple of the function's parameter types. For `function createUser(name: string, age: number)`, `Parameters<typeof createUser>` is `[string, number]`, and the matching `ReturnType<typeof createUser>` is the declared return type. `typeof` is required because these utilities take a function type, not a value. The class equivalents are `ConstructorParameters<typeof MyClass>` for the constructor tuple and `InstanceType<typeof MyClass>` for the instance type."
+
+[[params.faqItems]]
+question = "How does the infer keyword work?"
+answer = "`infer` declares a type variable inside the true branch of a conditional type and captures whatever matched. `type MyReturnType<T> = T extends (...args: any[]) => infer R ? R : never` pulls the return type out of a function type; `T extends (...args: infer P) => any ? P : never` pulls the parameter tuple. The same pattern unwraps containers: `T extends (infer E)[] ? E : never` gives an array's element type and `T extends Promise<infer U> ? U : T` unwraps a Promise."
+
+[[params.faqItems]]
+question = "When should I use the Record utility type?"
+answer = "When you want to build an object type from a set of keys and one value type. `Record<'home' | 'about' | 'contact', PageInfo>` expands to an object with those three keys, each typed as PageInfo — useful when a union must stay exhaustively covered. With an open key type it models dictionaries: `Record<string, string>` or `Record<string, number>`. It pairs well with `satisfies`, as in `const palette = {...} satisfies Record<Colors, string | RGB>`."
+
+[[params.faqItems]]
+question = "What problem does the satisfies operator solve?"
+answer = "It validates a value against a type without widening the value's inferred type. Writing `const palette = { red: [255, 0, 0], green: '#00ff00' } satisfies Record<Colors, string | RGB>` still errors if a color is missing or malformed, yet `palette.red` stays the tuple type rather than collapsing to `string | RGB`, so `palette.red[0]` type-checks. A plain type annotation would have lost that precision. `satisfies` arrived with TypeScript 5.x alongside decorators and const type parameters."
 +++
 
 ![TypeScript Complete Guide: From Basics to Advanced Type System Mastery](cover.webp)

@@ -7,6 +7,26 @@ toc = true
 tags = ['Claude Cowork', 'Claude Desktop', 'Anthropic', 'AI Agent', 'MCP']
 categories = ['AI Guides']
 keywords = ['Claude Cowork', 'Claude desktop agent', 'AI file access', 'Claude MCP integration', 'Anthropic Cowork setup']
+
+[[params.faqItems]]
+question = "What is Claude Cowork?"
+answer = "Claude Cowork is a research-preview capability inside the Claude desktop app that turns Claude from a conversation partner into a hands-on desktop agent. Instead of copy-pasting file contents into a chat window, it reads and edits local files, runs Python or JavaScript in a sandbox, executes terminal commands, and pulls context from 5 third-party apps over MCP. Type `@` in the conversation to hand it specific files or folders."
+
+[[params.faqItems]]
+question = "How do I turn on Claude Cowork, and what does it cost?"
+answer = "Open the Claude desktop app, go to Settings then Features, flip the Cowork toggle, and restart the app. Requirements are strict in the preview: macOS only, the latest desktop app, and a Claude Max subscription at $100 per month. Windows and Linux support has not been announced. To give Claude access to files, type `@` in the conversation and pick the files or folders it may read."
+
+[[params.faqItems]]
+question = "Can Claude Cowork run tasks in the background?"
+answer = "Yes — background mode is one of its 4 headline features, alongside file access, sandboxed code execution and app integration. Start a long task, minimize the window, and carry on with other work; Claude processes the job quietly and notifies you when it finishes. That matters for the jobs Cowork is built for, such as merging every CSV in a folder and sorting by date, or scanning a notes directory, classifying by topic and writing an index file."
+
+[[params.faqItems]]
+question = "Which third-party apps can Claude Cowork connect to?"
+answer = "Integration runs over MCP, the Model Context Protocol, and covers 5 apps today: Notion (read and create pages, query databases), Linear (manage tasks and track projects), Figma (retrieve design file details), GitHub (browse repos, issues and pull requests), and Slack (search messages and channels). Each connection needs its own MCP server configured. The point is context — Claude sees your actual work environment rather than a pasted excerpt."
+
+[[params.faqItems]]
+question = "Is it safe to let an AI agent touch my local files?"
+answer = "There are 4 layers of protection. Permission prompts appear before any sensitive operation, showing which files will be touched, what commands will run, and the likely impact. Code executes inside an isolated sandbox with no direct access to critical system areas. Every action is written to an audit log you can review. And access is scoped — you pick exactly which folders Claude may read, never the whole filesystem. Network access is also deliberately restricted during the preview."
 +++
 
 ![Claude Cowork](cover.webp)

@@ -6,6 +6,30 @@ toc = true
 tags = ["AWS", "AWS CLI", "S3", "EC2", "Cloud Computing", "DevOps", "CLI"]
 categories = ["Linux"]
 keywords = ["AWS CLI", "AWS command line", "S3 commands", "EC2 commands", "aws configure"]
+
+[[params.faqItems]]
+question = "How do I install AWS CLI v2 on macOS, Linux, or Windows?"
+answer = "AWS recommends v2 for every new install. On macOS the easiest route is `brew install awscli`, or download `https://awscli.amazonaws.com/AWSCLIV2.pkg` and run `sudo installer -pkg AWSCLIV2.pkg -target /`. On Linux, curl `awscli-exe-linux-x86_64.zip` (or `-aarch64.zip` on ARM), unzip it, and run `sudo ./aws/install`. On Windows, download and run the MSI at https://awscli.amazonaws.com/AWSCLIV2.msi. Confirm with `aws --version`, which prints something like `aws-cli/2.27.41 Python/3.11.6`."
+
+[[params.faqItems]]
+question = "How do I test that the AWS CLI can actually reach S3?"
+answer = "Run `aws sts get-caller-identity` first — it returns the UserId, Account and Arn the CLI is authenticating as, which separates a credentials problem from a permissions one. Then `aws s3 ls` to list buckets, and `aws s3 ls s3://my-bucket` for one bucket's contents. For EC2 actions you want to test without side effects, add `--dry-run`, as in `aws ec2 run-instances --dry-run --image-id ami-123456`, which checks permissions and stops there."
+
+[[params.faqItems]]
+question = "What is the difference between aws s3 cp and aws s3 sync?"
+answer = "`cp` copies unconditionally; `sync` transfers only files that changed, which makes it the right tool for incremental backups. Typical use: `aws s3 sync ./local-folder s3://my-bucket/folder/` in either direction, `--delete` to remove destination files that no longer exist in the source, and `--storage-class STANDARD_IA` to land them in a cheaper tier. With `cp` you need `--recursive` for directories, plus `--exclude '*.log'` or `--include '*.jpg' --exclude '*'` to filter."
+
+[[params.faqItems]]
+question = "How do I use the AWS CLI with multiple accounts?"
+answer = "Use named profiles. Run `aws configure --profile prod` and `aws configure --profile dev` to store separate credentials, then either pass `--profile prod` per command or `export AWS_PROFILE=prod` once per session. Credentials land in `~/.aws/credentials` and region plus output format in `~/.aws/config`. In CI/CD and containers, prefer the environment variables `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and `AWS_DEFAULT_REGION`, which override the config files."
+
+[[params.faqItems]]
+question = "How do I extract only the fields I need from AWS CLI output?"
+answer = "Use `--query` with JMESPath instead of piping into `jq`. `aws ec2 describe-instances --query 'Reservations[].Instances[].InstanceId'` returns just the IDs, and you can filter inside the expression with `[?State.Name=='running']` before selecting a field. Pair it with `--output table` for a readable grid or `--output text` for something shell scripts can cut up; `json` is the default and `yaml` is also supported. For big result sets, page with `--max-items` and `--starting-token`."
+
+[[params.faqItems]]
+question = "How do I fix AccessDenied and InvalidAccessKeyId errors in the AWS CLI?"
+answer = "`InvalidAccessKeyId` means the key itself does not exist — verify the Access Key ID and check the IAM user is still active and the key was not rotated or deleted. `AccessDenied` means the identity is valid but lacks permission: run `aws sts get-caller-identity` to confirm which user or role the CLI is actually using, then check the attached policy. `Could not connect to the endpoint URL` is usually a region problem — the service may not exist in the region you configured."
 +++
 ![AWS CLI complete guide](cover.webp)
 

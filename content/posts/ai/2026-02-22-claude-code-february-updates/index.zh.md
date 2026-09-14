@@ -7,6 +7,30 @@ toc = true
 tags = ['Claude Code', 'Git Worktree', 'AI 编程', '版本更新', 'Anthropic']
 categories = ['AI实战']
 keywords = ['Claude Code 更新', 'Claude Code 新功能 2026', 'Claude Code worktree', 'Claude Code 后台任务', 'Claude Code simple mode', 'Claude Code 2月更新']
+
+[[params.faqItems]]
+question = "Claude Code 的 Simple Mode 怎么开启？"
+answer = "启动时加环境变量：`CLAUDE_CODE_SIMPLE=true claude`。它是给非开发者和临时任务用的精简模式。v2.1.49 之前只有 Bash 工具，基本没法改文件；那一版加入了文件编辑工具，现在可以直接读写文件。启动更快、token 消耗更低。"
+
+[[params.faqItems]]
+question = "Simple Mode 下为什么 CLAUDE.md 和 MCP 都不生效？"
+answer = "这是设计如此。v2.1.50 在 Simple Mode 里禁用了 MCP 工具、附件、Hooks、CLAUDE.md 加载、Skills 和会话记忆、自定义 Agent、token 计数。所以项目规则被忽略时先确认是不是开了 `CLAUDE_CODE_SIMPLE`，不是 bug。代价换来的是一个真正轻量的终端助手。"
+
+[[params.faqItems]]
+question = "后台 Agent 还在跑，怎么终止？"
+answer = "3 秒内按两次 `Ctrl+F`：第一次弹确认，第二次终止所有后台 Agent，双击设计是防误杀。v2.1.47 起 `ESC` 只取消主线程操作，不再影响后台任务，所以打断当前对话是安全的。想看还有哪些任务在跑，用 `/tasks` 命令。"
+
+[[params.faqItems]]
+question = "1M 上下文怎么关掉？为什么要关？"
+answer = "启动前设置 `export CLAUDE_CODE_DISABLE_1M_CONTEXT=1`，这个变量是 v2.1.50 新加的，主要用途是在不需要超长上下文时压低 token 成本。背景是 v2.1.49 把 Max plan 的 Sonnet 4.5 换成了 Sonnet 4.6 并带上 1M 窗口，v2.1.50 又让 Opus 4.6 的 Fast Mode 也支持完整 1M。"
+
+[[params.faqItems]]
+question = "WorktreeCreate 这个 Hook 有什么用？"
+answer = "它在 Claude Code 创建 worktree 时自动触发，配合 WorktreeRemove 做新工作目录的初始化和清理，两个都是 v2.1.50 加的。最常见的写法是让 WorktreeCreate 跑 `npm install`，这样新建的 worktree 一开始就有依赖。它配合 `claude -w` 使用——后者会在 `.claude/worktrees/` 下从当前 HEAD 建一个独立工作目录。"
+
+[[params.faqItems]]
+question = "2026 年 2 月 Claude Code 一共更新了哪些东西？"
+answer = "v2.1.39 到 v2.1.50 共十余个版本。明线是 v2.1.49 的 Git Worktree 支持（`claude -w`、Agent 定义里的 `isolation: worktree`）、后台 Agent（`background: true`）和更精简的 Simple Mode。暗线是性能：v2.1.45 到 v2.1.50 连修 6 个内存泄漏，`@` 文件提及改成启动预热索引，延迟执行 SessionStart hook 省下约 500ms 启动时间。"
 +++
 
 Claude Code 在 2026 年 2 月密集发布了 v2.1.39 到 v2.1.50 共十余个版本，带来了几个改变日常工作流的重要功能。本文汇总 2 月最值得关注的更新，逐个解析用法和实战场景，帮你快速上手。

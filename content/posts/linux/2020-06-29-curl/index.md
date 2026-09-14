@@ -7,6 +7,30 @@ description = 'Complete curl tutorial covering GET/POST/PUT/DELETE requests, JSO
 tags = ['curl', 'Linux', 'HTTP', 'API', 'CLI']
 categories = ['Linux']
 keywords = ['curl command guide', 'curl tutorial', 'curl examples', 'curl post request', 'curl get request', 'curl download file', 'curl json', 'curl proxy', 'curl certificate', 'curl linux', 'curl cheat sheet', 'curl command 2026']
+
+[[params.faqItems]]
+question = "How do I send a PUT or PATCH request with curl?"
+answer = "Set the method with `-X` and send the body with `-d`. A full replacement looks like `curl -X PUT -H 'Content-Type: application/json' -d '{...}' https://httpbin.org/put`, while a partial update is the same command with `-X PATCH` and only the changed fields in the body. The JSON content-type header matters: without it many APIs parse the payload as form data. To send a payload from disk instead of inline, use `-d @data.json`."
+
+[[params.faqItems]]
+question = "How do I turn on curl debug mode to see the full request and response?"
+answer = "Add `-v` for verbose mode, which prints the entire exchange. Read the prefixes: `>` lines are what curl sent, `<` lines are what the server returned, and `*` lines are curl's own status messages such as DNS resolution and the TLS handshake. Lighter options exist when you need less: `-i` includes response headers with the body, `-I` issues a HEAD request for headers only, and `-s` silences the progress meter so output pipes cleanly into `jq`."
+
+[[params.faqItems]]
+question = "curl prints garbled output — what is going wrong?"
+answer = "The server is almost certainly returning a gzip or brotli compressed body that curl is dumping raw to the terminal. Add `--compressed` and curl advertises the encodings it supports, then decompresses the response for you: `curl --compressed https://example.com`. If the text is still wrong after that, the issue is character encoding rather than compression — check the charset in the response Content-Type header."
+
+[[params.faqItems]]
+question = "How do I download and upload files with curl?"
+answer = "For downloads, `-o myfile.zip` writes to a name you choose and `-O` keeps the remote filename. A broken transfer resumes with `-C -`, bandwidth is capped with `--limit-rate 100k`, and `-#` swaps the default meter for a progress bar. For uploads, `-F` sends multipart/form-data: `curl -F 'file=@/path/to/file.jpg' https://httpbin.org/post`. Repeat `-F` for several files or to mix a file with ordinary form fields, and append `;type=image/jpeg` to force a MIME type."
+
+[[params.faqItems]]
+question = "How do I handle HTTPS certificate errors in curl?"
+answer = "For a quick test against a self-signed endpoint, `-k` (or `--insecure`) skips verification entirely — never do this in production. The proper fixes are `--cacert /path/to/ca.crt` to trust a private CA and `--cert client.crt --key client.key` for mutual TLS. If you are diagnosing a protocol mismatch rather than a trust problem, pin the version with `--tlsv1.2` or `--tlsv1.3` and watch the handshake in the `*` lines of `-v` output."
+
+[[params.faqItems]]
+question = "How do I point curl at a specific server IP behind a CDN or load balancer?"
+answer = "Use `--resolve`, which overrides DNS for one host and port while keeping SNI and certificate validation intact: `curl --resolve example.com:443:192.168.1.100 https://example.com/api`. The alternatives are worse — `-x 192.168.1.100:80` only works for plain HTTP, and forcing `-H 'Host: example.com'` against the IP means you have to add `-k` because the certificate no longer matches. Add `-vo /dev/null` to discard the body and watch just the handshake."
 +++
 
 If there is one [command-line](/posts/linux/2020-03-19-linux-mac-commands/) tool every developer should master, it is **curl**. Supporting HTTP, HTTPS, FTP, and 20+ other protocols, curl handles everything from quick API tests and POST requests to large file downloads and network diagnostics — all from a single command.

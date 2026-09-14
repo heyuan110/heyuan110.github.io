@@ -6,6 +6,30 @@ description = 'GPT-5.4 and Claude Opus 4.6 compared head-to-head on coding bench
 toc = true
 tags = ['AI Coding Tools', 'GPT-5.4', 'Claude Code', 'AI Agent']
 keywords = ['GPT-5.4 vs Claude Opus 4.6', 'best AI model for coding 2026', 'GPT-5.4 review', 'Claude Opus 4.6 review', 'AI coding comparison']
+
+[[params.faqItems]]
+question = "When were GPT-5.4 and Claude Opus 4.6 released?"
+answer = "Claude Opus 4.6 landed first, on February 5, 2026, together with Agent Teams. GPT-5.4 followed on March 5, 2026, bringing native computer use, a 1M-token API context window and Tool Search. Both now sit at 1M tokens of context, but their max output differs: 64K for GPT-5.4 against 128K for Opus 4.6."
+
+[[params.faqItems]]
+question = "Is GPT-5.4 better than Claude Opus 4.6 for coding?"
+answer = "Neither wins outright — they split the benchmarks. On SWE-bench Verified, which replays real GitHub issues, they are effectively tied at 80.8% for Opus 4.6 and about 80.0% for GPT-5.4. On the harder SWE-bench Pro, GPT-5.4 pulls clearly ahead at 57.7% versus roughly 45.9%, so it handles unfamiliar problem spaces better. Opus 4.6 tops Terminal-Bench 2.0 for agentic coding and leads ARC-AGI-2 at 68.8% against about 52.9%."
+
+[[params.faqItems]]
+question = "Which model is cheaper to run?"
+answer = "GPT-5.4, by a wide margin: $2.50 input and $15 output per million tokens against Opus 4.6's $5 and $25, which is half the input price and 40% less on output. Opus charges a premium above 200K context at $10 and $37.50. Factor in Tool Search cutting token use by 47% and a task costing $1.00 on Opus can land at $0.10-$0.15. If cost dominates, Claude Sonnet 4.6 at $3/$15 still scores 79.6% on SWE-bench."
+
+[[params.faqItems]]
+question = "What are Agent Teams in Claude Opus 4.6?"
+answer = "A built-in way to run several Opus instances in parallel instead of one sequential agent. A lead agent decomposes the task, spawns sub-agents for the API layer, the frontend components and the test suite, then synthesizes their outputs, coordinating through environment-level signals so they do not collide. In Claude Code each sub-agent can run in its own worktree to avoid merge conflicts. Developers report 40-60% less wall-clock time on complex features versus sequential execution."
+
+[[params.faqItems]]
+question = "Can GPT-5.4 actually control a computer?"
+answer = "Yes — native computer use lets it read the screen and drive mouse and keyboard across desktop applications, not only code editors. It scored 75% on OSWorld-Verified, above average human performance and ahead of Opus 4.6's 72.7%. That makes it the pick for Figma-to-code handoffs, browser QA checklists, UI-driven test pipelines and operating database tools that would otherwise need custom automation scripts."
+
+[[params.faqItems]]
+question = "Which model should I trust with a whole codebase in context?"
+answer = "Opus 4.6, because retrieval quality holds across the window: it scores 76% on MRCR v2 needle-in-haystack tests, against 18.5% for Sonnet 4.5, so loading many files and reasoning across them actually works. GPT-5.4 takes the opposite route — Tool Search avoids filling the window at all, searching the tool inventory rather than loading every definition, and cuts token use 47% on complex tasks. More context and reliable recall versus using less context more cheaply."
 +++
 
 ![GPT-5.4 and Claude Opus 4.6 comparison illustration showing two AI systems connected by data streams](cover.webp)

@@ -8,6 +8,30 @@ toc = true
 tags = ['MoltBot', 'AI Agent', 'OpenClaw', 'Clawdbot', 'Personal AI Assistant']
 categories = ['AI Guides']
 keywords = ['what is moltbot', 'moltbot ai agent', 'moltbot renamed openclaw', 'moltbot tutorial', 'moltbot vs claude code', 'openclaw setup guide', 'personal ai agent', 'moltbot architecture', 'moltbot security', 'openclaw features']
+
+[[params.faqItems]]
+question = "How does MoltBot learn continuously?"
+answer = "Through two mechanisms that survive across sessions. First, persistent memory: conversation history, user preferences, project context and learned behaviors are written as Markdown files under `~/.clawdbot/` on your own machine, so it still knows what you said last month. Second, self-extension: MoltBot can write new skills for itself, each one a Markdown description plus an executable script, so its capability set grows from use. That is the difference from ChatGPT's session-level memory, which resets when you close the window."
+
+[[params.faqItems]]
+question = "What is MoltBot in one sentence?"
+answer = "MoltBot — now renamed OpenClaw — is an open-source personal AI agent created by Peter Steinberger that runs on your own machine, takes commands through Telegram, WhatsApp, Discord or iMessage, and actually executes tasks: shell commands, browser control via the Chrome DevTools Protocol, file reads and writes, and API calls. The one-line framing is that ChatGPT is a conversation tool while MoltBot is an execution engine."
+
+[[params.faqItems]]
+question = "Are MoltBot, Clawdbot and OpenClaw the same project?"
+answer = "Yes — same codebase, three names in under a week. It launched as Clawdbot in November 2025, was renamed MoltBot on January 27, 2026 after Anthropic flagged the trademark similarity to Claude, and became OpenClaw on January 29. The MoltBot rename left a roughly 10-second gap between releasing the old social handles and claiming the new ones; snipers took them and pumped a fake $CLAWD token to a $16 million market cap before it crashed 90%."
+
+[[params.faqItems]]
+question = "How do I develop a MoltBot skill?"
+answer = "A skill is a Markdown file plus an executable script. The Markdown describes in natural language what the skill is for — the AI reads that description to decide when to invoke it — while the script in Python, Bash or anything else does the work. ClawHub already carries 5,700+ community skills covering Spotify, Obsidian, Gmail, GitHub, smart home and DeFi integrations, so check there before writing one. MoltBot can also author new skills itself."
+
+[[params.faqItems]]
+question = "What hardware do I need and what does running MoltBot cost?"
+answer = "You need a device that stays on 24/7. A Mac Mini M4 runs about $550 and draws only 6-8W while being the only option that supports iMessage; a cloud VPS is $7-15 a month but has no iMessage; a Raspberry Pi 5 is about $70 with limited performance; an old laptop costs nothing but power. The software itself is open source and free — you pay for LLM API calls. Prerequisites are Node.js 22 or later and pnpm."
+
+[[params.faqItems]]
+question = "What are the security risks of running MoltBot?"
+answer = "Palo Alto Networks called it a deadly trifecta: it holds private data, is exposed to untrusted content, and can communicate externally while keeping memory. Concrete issues include plaintext API keys and OAuth tokens in local files, prompt injection through malicious emails, authentication bypass behind an Nginx reverse proxy, and info-stealer malware built specifically for its storage. Minimum precautions: never run as root, `chmod 700 ~/.openclaw`, firewall port 18789 to localhost only, and prefer Docker."
 +++
 
 If you have been seeing "MoltBot" pop up across tech communities and wondering what all the fuss is about, this article is for you.

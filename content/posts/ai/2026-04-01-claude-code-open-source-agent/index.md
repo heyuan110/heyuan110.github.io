@@ -7,13 +7,29 @@ toc = true
 tags = ['Claude Code Open Source', 'Open Source', 'AI Coding Tools', 'Claude Code', 'Agent Framework']
 keywords = ['Claude Code Open Source review', 'Claude Code source leak', 'open source AI coding agent', 'Claude Code Open Source vs Claude Code', 'agent harness architecture', 'clean room rewrite']
 
-[params]
-  faq = [
-    ['What is Claude Code Open Source?', 'Claude Code Open Source is an open-source AI coding agent framework built in Python and Rust. It is a clean-room rewrite of the Claude Code agent harness architecture, created after Anthropic accidentally leaked their source code via npm in March 2026.'],
-    ['Is Claude Code Open Source legal to use?', 'Claude Code Open Source claims to be a clean-room implementation that reimplements architectural patterns without copying proprietary code. However, the legal landscape is untested. The project carries inherent risk since it was directly inspired by leaked proprietary source code.'],
-    ['How does Claude Code Open Source differ from Claude Code?', 'Claude Code Open Source is written in Python and Rust instead of TypeScript, supports multiple LLM providers instead of Claude-only, and is fully open source under MIT license. Claude Code remains a proprietary, polished product with official Anthropic support.'],
-    ['Should I switch from Claude Code to Claude Code Open Source?', 'For most developers, no. Claude Code offers a more polished, stable experience with official support. Claude Code Open Source is better suited for researchers, framework builders, and developers who need full control over their agent harness or want to use non-Claude models.']
-  ]
+[[params.faqItems]]
+question = "Is the Claude Code harness open source?"
+answer = "Claude Code itself is not — it remains a proprietary Anthropic product. What changed is that on March 31, 2026 a missing `.npmignore` entry shipped a 59.8 MB source map to npm, exposing roughly 512,000 lines of unobfuscated TypeScript across about 1,906 files. Two days later an independent clean-room rewrite called Claude Code Open Source appeared under an MIT license. Google's Gemini CLI and OpenAI's Codex were already open, which is why many argued Claude Code should have been from the start."
+
+[[params.faqItems]]
+question = "What exactly happened in the Claude Code source code leak?"
+answer = "Security researcher Chaofan Shou spotted that Anthropic's npm package included a debug source map containing the complete TypeScript source. Anthropic confirmed it was a packaging error, not a breach, but mirrors were forked more than 41,500 times within minutes. The nastier detail is timing: a concurrent npm supply-chain attack on `axios` meant anyone who installed Claude Code between 00:21 and 03:29 UTC on March 31 may have pulled a dependency carrying a Remote Access Trojan."
+
+[[params.faqItems]]
+question = "What is Claude Code Open Source and who built it?"
+answer = "It is a clean-room reimplementation of the Claude Code agent harness, built by Korean developer Sigrid Jin (@instructkr) overnight after the leak, using oh-my-codex as an orchestration layer. It passed 100,000 GitHub stars within its first hours. The codebase is split 27.1% Python for agent orchestration — LLM integration, command parsing, tool dispatch — and 72.9% Rust for the runtime, organized as a 6-crate workspace with 16 runtime modules."
+
+[[params.faqItems]]
+question = "How does Claude Code Open Source compare with Claude Code technically?"
+answer = "Both run the same core agent loop, but the packaging differs. Claude Code is a monolithic TypeScript bundle tightly coupled to Anthropic's API with roughly 40 tools; Claude Code Open Source splits a Python orchestration layer over a Rust runtime with explicit provider abstraction, 19 permission-gated tools (allow/deny/ask per tool), 15 slash commands, and MCP support across 6 transport types with OAuth. Where it clearly lags is context management: it has basic session persistence, while Claude Code layers multi-level memory and persistent knowledge graphs on top of transcript compaction."
+
+[[params.faqItems]]
+question = "Is it legal to use a clean-room rewrite built from leaked source?"
+answer = "Unsettled. The clean-room defense normally requires that the implementers never saw the proprietary source, and this project was built in direct response to reading it, so that claim is shaky. Two things work in its favor: copyright protects expression rather than ideas, and trade secrets generally lose protection once publicly disclosed, even by accident. Audits reportedly found no Anthropic code or model weights included, and as of April 2026 there have been no DMCA takedowns — but silence is not approval."
+
+[[params.faqItems]]
+question = "Should I switch from Claude Code to the open-source rewrite?"
+answer = "For daily professional work, no. Claude Code has over a year of production hardening, prompt engineering tuned for Claude, a mature ecosystem of skills, hooks, CLAUDE.md conventions and worktrees, and official support. Pick the open-source project if you are researching harness architectures, building a domain-specific agent framework, or need non-Claude providers. To try it: `git clone https://github.com/instructkr/claw-code.git`, then `pip install -r requirements.txt` and `python src/main.py` — expect breaking changes and sparse docs."
 +++
 
 ![Claude Code open-source agent framework visualization](cover.webp)

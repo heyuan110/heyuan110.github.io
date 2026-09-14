@@ -7,13 +7,29 @@ toc = true
 tags = ['Claude Code 开源版', 'Open Source', 'AI Coding Tools', 'Claude Code', 'Agent Framework']
 keywords = ['Claude Code 开源版 评测', 'Claude Code 源码泄露', '开源 AI 编程工具', 'Claude Code 开源版 对比 Claude Code', 'AI Agent 框架', '代理架构']
 
-[params]
-  faq = [
-    ['Claude Code 开源版 是什么？', 'Claude Code 开源版 是一个用 Python 和 Rust 编写的开源 AI 编程代理框架。它是在 2026 年 3 月 Anthropic 意外泄露 Claude Code 源码后，基于公开架构模式进行的全新重写。'],
-    ['使用 Claude Code 开源版 合法吗？', 'Claude Code 开源版 声称是洁净室实现，没有直接复制专有代码。但法律风险尚未经过司法检验，建议个人研究使用风险较低，商业使用需谨慎评估。'],
-    ['Claude Code 开源版 和 Claude Code 有什么区别？', 'Claude Code 开源版 用 Python + Rust 编写（非 TypeScript），支持多个 LLM 提供商（非仅 Claude），采用 MIT 开源协议。Claude Code 则是 Anthropic 官方维护的成熟商业产品。'],
-    ['我该从 Claude Code 切换到 Claude Code 开源版 吗？', '对大多数开发者来说不建议切换。Claude Code 更稳定、生态更完善。Claude Code 开源版 更适合研究者、框架开发者，以及需要完全控制代理架构或使用非 Claude 模型的场景。']
-  ]
+[[params.faqItems]]
+question = "Claude Code 有开源版本吗？"
+answer = "官方没有开源，但社区有重写版。2026 年 3 月 31 日 Anthropic 因为 `.npmignore` 配置遗漏，把 Claude Code 的 51.2 万行 TypeScript 源码连同 59.8MB 的 source map 一起推到了 npm 公共仓库。两天后韩国开发者 Sigrid Jin 发布了洁净室重写版 claw-code，首日冲破 10 万星标。"
+
+[[params.faqItems]]
+question = "源码泄露是怎么发生的？是被黑了吗？"
+answer = "不是入侵，是发布打包错误。安全研究员 Chaofan Shou 最先发现 npm 包里带了一个 59.8MB 的 source map，里面含约 1,906 个未混淆的 TypeScript 源文件，Anthropic 已确认是打包失误。GitHub 上的镜像备份被 fork 超过 4.15 万次。同一时段 npm 还叠加了 axios 供应链攻击——3 月 31 日 UTC 00:21 到 03:29 之间装过 Claude Code 的用户可能拉到含木马的依赖。"
+
+[[params.faqItems]]
+question = "claw-code 和官方 Claude Code 有什么区别？"
+answer = "三点：语言栈、模型支持、成熟度。claw-code 是 Python（27.1%，负责 Agent 编排）加 Rust（72.9%，6 个 crate、16 个运行时模块）的双语言架构，MIT 协议；官方是紧耦合的 TypeScript 单体包。claw-code 提供商无关，能接 Claude、OpenAI 和本地模型；工具数是 19 个对官方约 40 个，上下文压缩和子代理编排也没官方打磨得细。"
+
+[[params.faqItems]]
+question = "用这个开源版有法律风险吗？"
+answer = "个人研究风险很低，商业使用要谨慎。洁净室抗辩有瑕疵——严格的洁净室要求实现者从未接触原始代码，而作者恰恰是看到泄露架构后作为回应构建的。不过版权法保护表达而非思想，用另一种语言重新实现架构模式通常合法；商业秘密一旦被公开披露（哪怕是意外）保护效力也大幅削弱。截至 2026 年 4 月 Anthropic 没有发起 DMCA 下架，但沉默不等于默许。"
+
+[[params.faqItems]]
+question = "我该从 Claude Code 切到开源版吗？"
+answer = "多数人不该切。日常开发要稳定、企业有合规要求、已经深度依赖 Skills/Hooks/CLAUDE.md 生态的，继续用官方。值得切换或并行使用的场景是：研究 Agent 架构、为特定领域定制代理框架、必须支持非 Claude 模型、或者想搞清楚生产级编程代理内部到底怎么跑。注意项目仍在活跃开发，随时可能有破坏性变更。"
+
+[[params.faqItems]]
+question = "这件事对 AI 工具行业意味着什么？"
+answer = "Agent 控制层不是护城河，模型才是。Google Gemini CLI 开源了、OpenAI Codex 开源了，现在 Claude Code 的架构也被独立重现——连接 LLM 和文件系统的那层壳正在走向通用化。真正的价值留在模型的代码推理能力、Prompt 工程精度、生态集成深度和边界情况处理上。10 万星标反映的是开发者对代理透明性的真实需求。"
 +++
 
 ![Claude Code 开源版 开源代理框架可视化](cover.webp)

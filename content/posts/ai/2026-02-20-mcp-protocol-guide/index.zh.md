@@ -7,6 +7,30 @@ toc = true
 tags = ['MCP', 'Model Context Protocol', 'AI Architecture', 'Claude Code']
 categories = ['AI Guides']
 keywords = ['MCP 协议', 'Model Context Protocol', 'MCP Server', 'MCP Apps', 'AI 工具集成', 'Agentic AI Foundation']
+
+[[params.faqItems]]
+question = "MCP 协议到底是什么？为什么说它是 AI 领域的 USB-C？"
+answer = "MCP（Model Context Protocol）是 AI 应用连接外部系统的开放标准，2024 年 11 月由 Anthropic 发布，现已捐赠给 Linux Foundation，OpenAI、Google、Microsoft 都是 Agentic AI Foundation 的支持方。它统一了数据库、API、文件等能力的暴露方式，SDK 月下载量已突破 9700 万次，公开运行的 MCP Server 超过一万个。"
+
+[[params.faqItems]]
+question = "Streamable HTTP 传输具体怎么实现？和旧的 HTTP+SSE 差在哪？"
+answer = "Streamable HTTP 是 2025 年 3 月规范更新引入的传输方式，用来取代 HTTP+SSE。实现上 Server 只暴露一个统一的 HTTP 端点，同时接受 POST 和 GET，并可选地用 Server-Sent Events 做流式返回。关键差别是单端点就能完成双向通信，部署和反向代理配置都大幅简化。本地开发仍然用 STDIO，Client 和 Server 同机跑、走进程标准输入输出。"
+
+[[params.faqItems]]
+question = "MCP 的六大核心能力分别是什么？"
+answer = "分两类。服务端原语三个：Tools 暴露可执行函数、由模型决定何时调用，走模型发起加用户确认加 Server 执行的流程；Resources 暴露只读上下文数据，由应用或用户主动选用；Prompts 暴露结构化提示词模板。客户端能力三个：Sampling 让 Server 通过 Client 反向请求 LLM 补全；Roots 限定 Server 能访问的文件系统路径；Elicitation 让工具执行中途暂停、向用户补要信息。"
+
+[[params.faqItems]]
+question = "有了 Function Calling 为什么还要 MCP？两者怎么选？"
+answer = "两者互补不互斥：Function Calling 是模型层能力（判断何时该调工具），MCP 是基础设施层协议（标准化工具的发现、调用和交互），MCP 底层仍依赖模型的 Function Calling。差别在可移植性——Function Calling 换模型厂商要重写集成，MCP 一次开发所有兼容客户端可用，Server 还能独立部署和版本管理。快速原型、工具很少用前者；生产环境、多模型、工具要跨项目复用用后者。"
+
+[[params.faqItems]]
+question = "开发一个 MCP Server 门槛高吗？"
+answer = "不高，Python 用官方推荐的 FastMCP 几十行就能跑起来：`FastMCP` 传入服务名 创建实例，`@mcp.tool()` 装饰一个 async 函数就是工具，`@mcp.resource` 挂一个 config:// 地址 暴露只读配置，`@mcp.prompt` 定义提示词模板，最后 `mcp.run()`。设计上每个工具保持单一职责，描述和参数说明要写清楚——模型就是靠这些信息决定调不调。"
+
+[[params.faqItems]]
+question = "MCP 的安全性怎么保障？"
+answer = "协议层内置了多重机制：工具调用必须经用户确认，人始终在环路里；Roots 把 Server 能碰的文件系统路径限制在指定目录，避免无限制访问；MCP Apps 的交互式 UI 跑在沙箱 iframe 里。此外 OWASP 已经发布了专门的 MCP 安全开发指南，可以对照自查。"
 +++
 
 当 AI 模型需要查询数据库、调用 API、读取文件时，过去每个模型提供商都有自己的一套接口方式，开发者不得不为不同平台重复编写集成代码。MCP（Model Context Protocol，模型上下文协议）的出现彻底改变了这一局面——它被称为"AI 领域的 USB-C"，为 AI 应用连接外部系统提供了一个通用的开放标准。

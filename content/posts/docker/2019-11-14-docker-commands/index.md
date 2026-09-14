@@ -6,6 +6,30 @@ toc = true
 tags = ['Docker', '命令行', '容器', '运维', '速查手册']
 categories = ['Docker']
 keywords = ['Docker commands', 'Docker cheat sheet', 'docker run examples', 'Docker container commands', 'Docker image commands', 'Docker volume commands']
+
+[[params.faqItems]]
+question = "What are the Docker commands I will use every day?"
+answer = "For images: `docker pull ubuntu:22.04`, `docker images` (or `docker image ls`), `docker image rm redis` and `docker system df` for disk usage. For containers: `docker run --name mynginx -d nginx:latest` to start one detached, `docker ps` for running and `docker ps -a` for everything, then `docker start`, `docker stop`, `docker restart` and `docker rm`. Short IDs work anywhere a full ID does, so `docker image rm 578c3` is enough."
+
+[[params.faqItems]]
+question = "How do I map ports and mount volumes in a docker run command?"
+answer = "`-p host:container` maps one port, as in `docker run -p 80:80 -v /data:/data -d nginx:latest`, and `-P` maps every exposed port to a random host port. The host side of `-v` must be an absolute path. To expose a port only on the loopback interface, qualify it: `docker run -p 127.0.0.1:80:8080/tcp ubuntu bash`. For a shell inside the image add `-it` — `-i` keeps stdin open and `-t` allocates a pseudo-TTY."
+
+[[params.faqItems]]
+question = "How do I clean up dangling images and stopped containers?"
+answer = "List the untagged ones with `docker image ls -f dangling=true`, then remove them with `docker image prune` or `docker rmi $(docker images -q -f dangling=true)`. Drop every stopped container with `docker rm $(docker ps -a -q)`, and to be surgical about exited ones use `docker ps -a | grep 'Exited' | awk '{print $1}' | xargs docker rm`. `docker system df` tells you whether the cleanup was worth it by reporting image, container and volume usage."
+
+[[params.faqItems]]
+question = "What is the docker run command for MySQL with persistent data?"
+answer = "Mount the data directory out of the container so a restart does not wipe the database: `docker run -d -p 3306:3306 --name mysql -v /usr/local/programs/mysql/conf:/etc/mysql/conf.d -v /usr/local/programs/mysql/logs:/logs -v /usr/local/programs/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=your-password mysql:5.7`. `MYSQL_ROOT_PASSWORD` is only read on first run. Redis is the same idea with a named volume: `-p 6379:6379 -v redis-data:/data redis:latest`."
+
+[[params.faqItems]]
+question = "How do I copy files into a container and find its IP address?"
+answer = "Copy in either direction with `docker cp`: `docker cp /www/myfiles test-container:/www/` to push and `docker cp test-container:/www/myfiles /local/path/` to pull. For the address, either enter the container with `docker exec -it <container> cat /etc/hosts` or inspect it from the host with `docker inspect <container>`, which also prints mounts, environment and port bindings."
+
+[[params.faqItems]]
+question = "How do I remove many images at once?"
+answer = "Compose the removal from a list query. `docker image rm $(docker image ls -q)` wipes everything, while `docker image rm $(docker image ls -q redis)` targets one repository. Untagged leftovers can also be dropped with `docker images | grep none | awk '{print $3}' | xargs docker rmi`. Stop anything still running first — `docker kill $(docker ps -a -q)` — since Docker refuses to delete an image that a live container depends on."
 +++
 
 A quick-reference guide to the Docker commands you will use most often in daily development and operations work.

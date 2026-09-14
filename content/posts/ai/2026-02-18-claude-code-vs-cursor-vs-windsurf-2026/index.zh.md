@@ -7,6 +7,30 @@ toc = true
 tags = ['Claude Code', 'Cursor', 'Windsurf', 'AI Coding', 'Tool Comparison']
 categories = ['Comparisons']
 keywords = ['Claude Code vs Cursor', 'Windsurf 对比', 'AI IDE 选型', 'AI编程成本', '2026 AI开发工具']
+
+[[params.faqItems]]
+question = "Cursor 和 Windsurf 怎么选？两者区别在哪？"
+answer = "团队协作和稳定交付选 Cursor，快速验证 MVP 选 Windsurf。实测里 Cursor 的可控性 4 星、学习成本 4 星，规则体系让多人输出风格一致，适合有 PR 流程的中小团队；Windsurf 速度 5 星、学习成本 5 星，起步最快，但可控性只有 3 星，默认智能强而硬约束少，工程阶段要自己补规则和测试门禁。"
+
+[[params.faqItems]]
+question = "Claude Code、Cursor、Windsurf 三个哪个最快？"
+answer = "看任务类型，不存在一个全胜的。单点小改动和 MVP 原型阶段 Windsurf 通常最快，启动和反馈都轻。跨多文件的批量重构 Claude Code 最强，模式化改造加统一校验一气呵成。中大型仓库里边查边改、跨文件追调用链，Cursor 的代码导航和上下文连续性更好。真正影响交付速度的是返工率，不是生成速度。"
+
+[[params.faqItems]]
+question = "AI 编程工具的真实成本怎么算？只看月费够吗？"
+answer = "不够。总成本 = 订阅成本 + 调用成本 + 返工成本 + 沟通成本，其中返工往往才是大头。按每周 10 个任务、每任务返工 0.5 小时、工程师 200 元/小时算，返工成本就是 10 × 0.5 × 200 = 1000 元/周，通常已经超过订阅费。所以能降低返工率的工具，长期一定更便宜。"
+
+[[params.faqItems]]
+question = "Windsurf 适合做大型项目吗？"
+answer = "可以，但必须先补上工程约束。Windsurf 默认体验优先、交互友好，问题在于硬约束偏少，复杂 bug 容易出现改对一处坏另一处。做大项目要配齐三样：统一的 lint/test/PR 规则、每批改动都可测试的小批次拆分、生成后强制自动测试加人工抽检。补不上这些，后期维护成本会明显升高。"
+
+[[params.faqItems]]
+question = "Claude Code 是三款里最难上手的吗？"
+answer = "门槛确实最高，学习成本只有 3 星，需要命令行和工程化习惯，但上限也最高，可控性拿了满分 5 星。它能严格限制执行步骤、改动边界和命令权限，天然接得上 shell、CI 和脚本链路。如果你已经习惯把排查流程脚本化（抓日志、grep、重跑测试），会很快吃到红利。"
+
+[[params.faqItems]]
+question = "三款工具能混用吗？该先优化速度还是可控性？"
+answer = "能混用，但建议一个主力加一个补位，别一开始三套并行。比如个人开发者白天用 Windsurf 快速试错，晚上用 Claude Code 批量重构收口。顺序上先可控再提速：没有可控性的速度最后都会变成返工成本。落地节奏是先定统一验收（lint、单测、构建、回归），固定提示模板，每周复盘耗时和返工率，两周后再决定要不要引入第二个工具。"
 +++
 
 ![Claude Code、Cursor、Windsurf 在速度与成本与可控性维度的实测对比封面图](cover.webp)

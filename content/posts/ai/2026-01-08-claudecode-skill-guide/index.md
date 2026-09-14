@@ -6,6 +6,30 @@ toc = true
 tags = ['AI', 'Claude Code', 'Skills', 'Productivity']
 categories = ['AI Guides']
 keywords = ['Claude Code Skills tutorial', 'SKILL.md guide', 'Claude Code custom skills', 'AI workflow automation', 'how to create Claude Code Skill']
+
+[[params.faqItems]]
+question = "What is a Claude Code Skill, exactly?"
+answer = "A folder containing one `SKILL.md` file — no code, no training. The file carries YAML front matter with `name` and `description`, then sections telling Claude what the skill does, what input it needs, how to execute, what the output should look like, and which pitfalls to avoid. A usable skill can be twenty lines: a daily-report skill that specifies three output sections and a rule to keep each item under 20 words is already complete."
+
+[[params.faqItems]]
+question = "Where do I put skill files so Claude Code finds them?"
+answer = "Inside `.claude/skills/<skill-name>/SKILL.md`. Put that folder in a project to scope the skill to that repo, or in `~/.claude/skills/` to make it available everywhere. The project location is what you want for team standardization — commit it and everyone gets consistent output from the same instructions. Create the directory with `mkdir -p .claude/skills/your-skill-name` and write the file inside it."
+
+[[params.faqItems]]
+question = "What is the difference between a Skill and a slash command?"
+answer = "Who decides to run it. A Skill lives in `.claude/skills/` as a folder plus SKILL.md and Claude auto-detects when it applies, which suits complex workflows. A slash command is a single .md file in `.claude/commands/` that you trigger yourself by typing `/command`, which suits simple manual operations. Rule of thumb: if you want Claude to recognize the situation on its own, write a Skill; if you want to pull the trigger, write a slash command."
+
+[[params.faqItems]]
+question = "How long should a SKILL.md be?"
+answer = "Between 500 and 2000 words. Shorter leaves Claude guessing; longer and it starts losing focus on the key points. What raises quality inside that budget is specificity: a concrete example beats an abstract description, an explicit output template makes runs reproducible, and the guidelines section should list pitfalls you actually hit rather than advice like be careful. Then test with real input and iterate on the file."
+
+[[params.faqItems]]
+question = "Why does my skill never activate?"
+answer = "Almost always a missing `name` or `description` in the front matter — those two fields are how Claude decides whether the skill applies to the current request, so without them it never fires. The other two recurring failures are instructions that are vague (asking for something more professional without defining what professional means) and the absence of an output format template, which makes results differ from run to run."
+
+[[params.faqItems]]
+question = "What does the Amazon listing skill do with A9 keyword tiering?"
+answer = "It sorts ABA keyword data into four tiers and assigns each a placement. S-tier is the top 3 by search volume and must appear within the first 80 characters of the title; A-tier is the top 10, going in the title or first bullet; B-tier long-tail terms spread across bullets and description; C-tier synonyms and variants go in backend Search Terms. Hard limits back it up: US titles cap at 200 characters with 150-180 the target, and backend Search Terms must stay under 249 characters with no repeats and no competitor brands."
 +++
 ![Skill Guide](skill-guide.webp)
 

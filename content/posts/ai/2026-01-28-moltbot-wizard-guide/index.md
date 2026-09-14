@@ -7,6 +7,34 @@ toc = true
 tags = ['Moltbot', 'AI Assistant', 'Personal AI', 'Open Source', 'Clawdbot']
 categories = ['AI Guides']
 keywords = ['Moltbot setup guide', 'Moltbot Wizard configuration', 'personal AI assistant', 'Clawdbot tutorial', 'self-hosted AI bot']
+
+[[params.faqItems]]
+question = "What are the hardware and system requirements for Moltbot?"
+answer = "Modest ones: macOS, Linux, or Windows with WSL2, Node.js 22 or newer, and network access to your AI provider's API. There is no GPU requirement because the model runs in the cloud — Moltbot only orchestrates. You also need at least one model API key; Anthropic is the recommended provider, and if you already use the Claude Code CLI the Wizard can reuse its existing OAuth credentials instead of asking for a new key."
+
+[[params.faqItems]]
+question = "How do I install Moltbot and run the setup wizard?"
+answer = "On Linux or macOS run `curl -fsSL https://molt.bot/install.sh | bash`; on Windows PowerShell use `iwr -useb https://molt.bot/install.ps1 | iex`. Confirm with `moltbot --version`, then start the interactive setup with `moltbot onboard`. Pick QuickStart on your first run and it configures a local Gateway on port 18789, auto-generates a token, and enables allowlist mode for Telegram and WhatsApp. Advanced mode exposes every setting instead."
+
+[[params.faqItems]]
+question = "What exactly does the Moltbot Wizard configure?"
+answer = "Six things, in order: model auth (the API key that gives the agent its brain), the workspace directory it works in, the Gateway with its port and authentication, messaging channels such as WhatsApp and Telegram, the background daemon, and Skills. Done by hand this means writing JSON config, wiring per-platform tokens, installing a service and debugging network settings — the Wizard reduces it to a sequence of prompts."
+
+[[params.faqItems]]
+question = "How do I install Moltbot skills and add custom capabilities?"
+answer = "The Wizard's final step offers to install recommended skills through npm or pnpm: `web_search` for search, `web_fetch` to pull and parse pages, `exec` to run system commands, and `browser` for browser automation. You can revisit the choice later with `moltbot configure --section skills`. To change the agent's persona rather than its capabilities, edit `IDENTITY.md` in the workspace (`~/clawd` by default) and describe its name, tone and responsibilities there."
+
+[[params.faqItems]]
+question = "How do I install Moltbot on a server without interactive prompts?"
+answer = "Use `moltbot onboard --non-interactive` with the answers as flags — `--mode local`, `--auth-choice anthropic-api-key`, `--anthropic-api-key $ANTHROPIC_API_KEY`, `--gateway-port 18789`, `--gateway-bind loopback`, `--install-daemon`, `--daemon-runtime node`. The daemon becomes a LaunchAgent on macOS and a systemd user service on Linux. If you want the Gateway on a VPS but the CLI on your laptop, run `moltbot onboard --mode remote` and point it at `ws://your-vps-ip:18789`."
+
+[[params.faqItems]]
+question = "Moltbot Gateway will not start or WhatsApp will not pair — how do I fix it?"
+answer = "A Gateway that refuses to start is almost always a port collision: run `lsof -i :18789` to see the offender, then `moltbot configure --section gateway` to move it. For WhatsApp that hangs after the QR scan, check that phone and computer are on the same network, check firewall rules, and re-pair with `moltbot channels login whatsapp`. Slow replies are usually network latency to the provider — try a closer provider or set `HTTPS_PROXY` before starting the Gateway."
+
+[[params.faqItems]]
+question = "Is it safe to run Moltbot on my own machine?"
+answer = "Only with guardrails, because Moltbot runs locally with real permissions. Always keep Gateway authentication on, even in loopback mode, and never expose the Gateway to the public internet. Be deliberate about `exec`, which lets the AI run system commands, and only install skills from sources you trust. For group chats, set the agent default `sandbox.mode` to `non-main`, which isolates every non-primary session inside a Docker container. Config lives in `~/.clawdbot/moltbot.json`, with credentials under `~/.clawdbot/credentials/`."
 +++
 
 Imagine mentioning your AI in a group chat and having it book flights, check the weather, write code, and manage your schedule — all while remembering every conversation from last week. That is exactly what **Moltbot** delivers: a fully self-hosted, private AI assistant you actually own.

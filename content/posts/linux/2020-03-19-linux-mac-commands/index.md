@@ -6,6 +6,30 @@ toc = true
 tags = ['Linux', 'macOS', 'Shell', '命令行', '运维']
 categories = ['Linux']
 keywords = ['Linux commands cheat sheet', 'macOS terminal commands', 'shell command reference', 'Linux networking commands', 'developer command line tools']
+
+[[params.faqItems]]
+question = "How do I find out which process is using a port?"
+answer = "`lsof -i:3000` is the one-liner that works on both macOS and Linux, and `sudo lsof -i -P | grep LISTEN` lists every listening port. On Linux, `netstat -ntlp | grep 3000` shows the PID and program name, but you need sudo for the process name to appear. On macOS the netstat flags differ — use `netstat -an | grep 3306` for a single port or `netstat -an | grep LISTEN` for all of them."
+
+[[params.faqItems]]
+question = "Is there an ss command on macOS?"
+answer = "No — `ss` is part of the Linux iproute2 toolset, so on macOS reach for `netstat -an | grep LISTEN` or `sudo lsof -i -P | grep LISTEN` instead. On Linux the ss equivalents of the common netstat calls are `ss -t` for all TCP connections, `ss -tuln` to list listening TCP and UDP ports, `ss -tuln | grep :80` to filter by port, and `ss -s` for a socket statistics summary."
+
+[[params.faqItems]]
+question = "How do I find a process by keyword and kill it?"
+answer = "Locate it with `ps aux | grep nginx` or `ps -ef | grep java`, then terminate by PID. `kill <PID>` sends SIGTERM (signal 15) for a graceful shutdown, `kill -9 <PID>` forces it, and `kill -1 <PID>` makes many daemons reload their config instead of dying. To skip the PID lookup entirely use `pkill nginx` or `killall nginx`. On Linux, `ps auxf` or `pstree` shows the parent-child tree so you kill the right process."
+
+[[params.faqItems]]
+question = "How do I find what is eating CPU, memory, or disk space?"
+answer = "For CPU and memory, sort the process list: `ps aux --sort=-%cpu | head -10` and `ps aux --sort=-%mem | head -10`, or watch it live with `top` / `htop`. For disk, start with `df` for an overview, then `du -sh * | sort -hr` inside a directory, `du -h --max-depth=1` for one level down, or `du -a /var | sort -rn | head -10` for the biggest offenders. `ncdu /var` gives the same thing as an interactive browser."
+
+[[params.faqItems]]
+question = "How do I keep a job running after I close the terminal?"
+answer = "Prefix it with nohup and background it: `nohup ./script.sh > output.log 2>&1 &` detaches the process from the hangup signal and captures both stdout and stderr. Use `jobs` to list background jobs in the current shell, `bg %1` to resume one in the background and `fg %1` to pull it back to the foreground. On Linux, anything that should survive reboots belongs in systemd via `systemctl` rather than nohup."
+
+[[params.faqItems]]
+question = "Which macOS-only terminal commands are worth memorizing?"
+answer = "Six earn their keep. `pbcopy` and `pbpaste` bridge the shell and the clipboard, as in `cat file.txt | pbcopy`. `open .` reveals the current directory in Finder and `open -a 'Visual Studio Code' file.txt` opens a file in a named app. `pmset -g batt` reports battery state. `caffeinate -d` blocks display sleep and `caffeinate -i` blocks system sleep. Flush DNS with `sudo dscacheutil -flushcache` plus `sudo killall -HUP mDNSResponder`, and clear a blocked app with `sudo xattr -r -d com.apple.quarantine /Applications/xxx.app`."
 +++
 
 The command line is an essential skill for every developer. This reference organizes the most frequently used Linux and macOS commands by category for quick lookup.

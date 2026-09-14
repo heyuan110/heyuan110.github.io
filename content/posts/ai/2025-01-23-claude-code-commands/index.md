@@ -7,6 +7,34 @@ toc = true
 tags = ['AI', 'Claude Code', 'CLI', 'Developer Tools', 'Productivity']
 categories = ['AI Guides']
 keywords = ['Claude Code tips', 'Claude Code tutorial', 'AI coding assistant', 'Claude CLI tricks', 'Claude Code shortcuts', 'Claude Code MCP']
+
+[[params.faqItems]]
+question = "How do I stop Claude Code when it starts doing the wrong thing?"
+answer = "Press `Esc` — that interrupts the current task and leaves you in the session. Do not press `Ctrl+C`, which exits the program entirely. Pressing `Esc` twice undoes the operation, rolling back both the code changes and the conversation turn. Interrupt as soon as you see it touching files it should not, then restate the boundary: only refactor files in src/auth, do not touch src/user."
+
+[[params.faqItems]]
+question = "How do I stop Claude Code asking permission for every command?"
+answer = "Two options. The blunt one is launching with `claude --dangerously-skip-permissions`, which should stay in trusted environments only. The better one is pre-approving specific commands in `~/.claude/settings.json` under a permissions allow list — entries like `Bash(npm:*)`, `Bash(git:*)`, `Bash(docker:*)`, plus `Read` and `Edit` cover most daily work without handing over everything."
+
+[[params.faqItems]]
+question = "How do I resume a previous Claude Code session?"
+answer = "`claude -c` (or `--continue`) picks up the most recent conversation. `claude -r` (or `--resume`) opens the session history to browse, and `claude -r` with a phrase does fuzzy matching, as in `claude -r 'auth refactor'`. Naming sessions makes this reliable: run `/rename payment-module-refactor` inside a session, then find it later with `claude -r 'payment'`."
+
+[[params.faqItems]]
+question = "What do think, think hard and ultrathink actually do?"
+answer = "They raise reasoning depth and token cost together. Use `think` for simple questions, `think hard` for trade-off decisions, `think harder` for architecture design, and `ultrathink` only for complex system design — it is the most expensive by a wide margin. The practical rule is to match depth to stakes: a regex that will not match needs `think`, decomposing a monolith into microservices is where `ultrathink` earns its price."
+
+[[params.faqItems]]
+question = "How do I control Claude Code costs?"
+answer = "Watch and cap. `/cost` shows token usage for the session, `/context` shows window utilization as a bar, `/stats` gives overall statistics and `/usage` shows subscription quota. Past about 70% context, run `/compact` with a focus hint to keep the important thread, or `/clear` for a fresh topic. For scripts and CI, hard caps matter more: `claude -p --max-budget-usd 5.00 --max-turns 10` stops a runaway loop before it bills you."
+
+[[params.faqItems]]
+question = "Can Claude Code work across multiple project directories?"
+answer = "Yes, via `/add-dir`. Run `/add-dir ../backend-api` and `/add-dir ../shared-types` and Claude can reason across repos — tracing a frontend call to `/api/users` into its backend implementation, or checking whether both sides use the same UserDTO. The same pattern covers microservices: add user-service, order-service and gateway, then ask how two services communicate. It is the fix for split frontend/backend layouts."
+
+[[params.faqItems]]
+question = "How do I create a custom slash command?"
+answer = "Drop a Markdown file describing the workflow into `.claude/commands/` for a project command, invoked as `/project:<name>`, or `~/.claude/commands/` for a personal one, invoked as `/user:<name>`. Arguments come through `$ARGUMENTS`: a fix-issue.md containing steps that run `gh issue view $ARGUMENTS` is then called as `/project:fix-issue 42`. A review.md or a standup.md that summarizes yesterday's git log are the two most reusable starting points."
 +++
 
 Claude Code is Anthropic's command-line AI coding assistant. It's not just a chatbot — it reads your code, writes files, and executes commands directly in your terminal. Here are 24 power tips to help you get the most out of it.

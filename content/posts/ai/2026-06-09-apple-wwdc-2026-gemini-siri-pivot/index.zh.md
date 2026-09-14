@@ -9,23 +9,23 @@ keywords = ['Apple WWDC 2026', 'Apple Intelligence Gemini', '苹果 AI 用谷歌
 
 [[params.faqItems]]
 question = "WWDC 2026 之后 Siri 真的是谷歌 Gemini 在驱动吗？"
-answer = '''是的。2026 年 6 月 8 日 WWDC 苹果官方确认：新 Siri 由 Google Gemini 驱动，Apple Foundation Models v2 与谷歌联合开发。复杂查询走 AFM Cloud Pro，跑在谷歌云的 NVIDIA GPU 上（机密计算环境）；简单本地任务由蒸馏小模型在设备上跑。这跟 2024-2025 年苹果一直讲的"Private Cloud Compute、自研服务器芯片"故事是一个 180 度反转。'''
+answer = "是的。2026 年 6 月 8 日 WWDC 苹果官方确认：新 Siri 由 Google Gemini 驱动，Apple Foundation Models v2 与谷歌联合开发。复杂查询走 AFM Cloud Pro，跑在谷歌云的 NVIDIA GPU 上（机密计算环境）；简单本地任务由蒸馏小模型在设备上跑。这跟 2024-2025 年苹果一直讲的「Private Cloud Compute、自研服务器芯片」故事是一个 180 度反转。"
 
 [[params.faqItems]]
 question = "国行 iPhone 用得了 Apple Intelligence 吗？Gemini 在中国大陆不能用啊。"
-answer = '''WWDC 2026 苹果没公布中国大陆方案。Gemini 在大陆封禁，Apple Intelligence 中国版必然得换本地大模型供应商，候选基本就三家：百度文心、阿里通义、腾讯混元。参考 Apple Maps、Apple Pay、iCloud 的历史，国行版会单独搞一套，且时间表苹果说了不算——大概率会比全球版晚 1-2 个季度甚至更久。短期想体验完整 Apple Intelligence 的，海外版 iPhone + 海外 Apple ID 仍是唯一靠谱路线。'''
+answer = "WWDC 2026 苹果没公布中国大陆方案。Gemini 在大陆封禁，Apple Intelligence 中国版必然得换本地大模型供应商，候选基本就三家：百度文心、阿里通义、腾讯混元。参考 Apple Maps、Apple Pay、iCloud 的历史，国行版会单独搞一套，且时间表苹果说了不算——大概率会比全球版晚 1-2 个季度甚至更久。短期想体验完整 Apple Intelligence 的，海外版 iPhone + 海外 Apple ID 仍是唯一靠谱路线。"
 
 [[params.faqItems]]
 question = "现在还该不该买 M5 Mac mini 搞本地 AI？"
-answer = '''该买，而且 WWDC 2026 之后买的理由更强了，不是更弱。原因是苹果系统级 AI 不再跟你的 Ollama / MLX / Draw Things 抢算力——苹果模型层都让出去了，本地开源工具反而获得了更纯净的硬件资源。Apple Silicon 硬件路线没变，M5 / M6 还会继续堆统一内存和带宽。本地 70B 推理仍是 64GB 起步、跑 Qwen 2.5 / Llama 3.3 仍是当前性价比最高的方案。详见我之前写的 [M4 Pro vs M3 Max 实测](/zh/posts/ai/2026-04-14-mac-apple-silicon-ai-workstation/)。'''
+answer = "该买，而且 WWDC 2026 之后买的理由更强了，不是更弱。原因是苹果系统级 AI 不再跟你的 Ollama / MLX / Draw Things 抢算力——苹果模型层都让出去了，本地开源工具反而获得了更纯净的硬件资源。Apple Silicon 硬件路线没变，M5 / M6 还会继续堆统一内存和带宽。本地 70B 推理仍是 64GB 起步、跑 Qwen 2.5 / Llama 3.3 仍是当前性价比最高的方案。详见我之前写的 [M4 Pro vs M3 Max 实测](/zh/posts/ai/2026-04-14-mac-apple-silicon-ai-workstation/)。"
 
 [[params.faqItems]]
 question = "苹果不是说一切隐私优先吗？现在数据要上传谷歌云，隐私故事还成立吗？"
-answer = '''技术上成立，营销上完蛋。AFM Cloud Pro 用的是机密计算（confidential compute），技术原理是云端运营商在物理控制权下也读不到租户数据，NVIDIA H100/H200 支持这个能力。但消费者认知里"苹果不上传 vs 谷歌上传"的简单对比已经死了。2024 年的卖点是"苹果根本不传你的东西"，2026 年的卖点变成"我们传到谷歌云，但加密了"。这两句话在普通用户脑子里完全不是一回事，苹果保住了技术，丢了故事。'''
+answer = "技术上成立，营销上完蛋。AFM Cloud Pro 用的是机密计算（confidential compute），技术原理是云端运营商在物理控制权下也读不到租户数据，NVIDIA H100/H200 支持这个能力。但消费者认知里「苹果不上传 vs 谷歌上传」的简单对比已经死了。2024 年的卖点是「苹果根本不传你的东西」，2026 年的卖点变成「我们传到谷歌云，但加密了」。这两句话在普通用户脑子里完全不是一回事，苹果保住了技术，丢了故事。"
 
 [[params.faqItems]]
 question = "WWDC 2026 真正的赢家是谁？"
-answer = '''Google 和 NVIDIA 大获全胜，Apple 降级。Google 拿到了 iPhone 用户每一次复杂查询的搜索意图数据——这是 Android + iPhone 双平台的搜索意图金矿；NVIDIA 拿到了 AFM Cloud Pro 的硬件订单。Apple 终于让 Siri 能用了，但从"AI 平台所有者"降级成"AI 客户"。意外的隐藏赢家是本地 AI 圈：Ollama、MLX、ComfyUI、Draw Things 这帮工具不再担心被苹果系统级 AI 锁死生态，Apple Silicon 硬件红利继续吃。'''
+answer = "Google 和 NVIDIA 大获全胜，Apple 降级。Google 拿到了 iPhone 用户每一次复杂查询的搜索意图数据——这是 Android + iPhone 双平台的搜索意图金矿；NVIDIA 拿到了 AFM Cloud Pro 的硬件订单。Apple 终于让 Siri 能用了，但从「AI 平台所有者」降级成「AI 客户」。意外的隐藏赢家是本地 AI 圈：Ollama、MLX、ComfyUI、Draw Things 这帮工具不再担心被苹果系统级 AI 锁死生态，Apple Silicon 硬件红利继续吃。"
 +++
 
 ![Apple WWDC 2026 Siri 改用 Google Gemini，Apple Foundation Models v2 跑在谷歌云 NVIDIA GPU 上](cover.webp)

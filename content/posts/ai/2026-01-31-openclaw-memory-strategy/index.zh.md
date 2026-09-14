@@ -7,6 +7,26 @@ toc = true
 tags = ['OpenClaw', 'RAG', '向量检索', 'Agent', '记忆系统']
 categories = ['AI原理']
 keywords = ['OpenClaw 记忆', 'memory_search', 'RAG', 'BM25', '向量数据库', 'Agent 工具调用']
+
+[[params.faqItems]]
+question = "OpenClaw 的记忆机制是怎么工作的？"
+answer = "不自动注入，靠工具按需检索。它提供两个工具：`memory_search` 做语义搜索（通常是 BM25 加向量检索的组合），`memory_get` 按命中结果的文件路径加行范围精确取回片段。也就是说记忆不是每轮往 system prompt 里塞一坨，而是「需要时才查、查到只取必要片段」。好处是省 token，也把「要不要回忆、回忆什么」变成 Agent 可决策的动作。"
+
+[[params.faqItems]]
+question = "OpenClaw 的 RAG 数据是怎么存的？"
+answer = "文本和向量分离，全文检索与向量检索并存，分三张表：`chunks` 存文本和元信息（路径、行范围、text、source），`chunks_vec` 存向量，`chunks_fts` 存全文检索索引。这种分层的好处是可解释（命中能回到具体文件和行号）、可调优（BM25 与向量召回可以混合加权再 rerank）、可审计（出问题能定位到底记了什么）。"
+
+[[params.faqItems]]
+question = "OpenClaw 只索引聊天记录吗？"
+answer = "不止。它还会对工作区生成的 `.md` 文件做 chunks 并进入 Memory 索引，也就是笔记、文章、总结、SOP 这些 Agent 产出的结构化成果都能被检索到。这更像一个靠谱同事的做法——你问他上次怎么做的，他不是去翻聊天记录，而是去翻上次写的文档。"
+
+[[params.faqItems]]
+question = "会话被 /compact 压缩后，旧记忆会丢吗？"
+answer = "不会。会话数据以 `.jsonl` 形式保存，系统监控文件变化、增量到达阈值后读取并索引。很多系统里压缩历史会导致旧消息被替换或删除，OpenClaw 则把原始会话和摘要后的会话都纳入可索引的事实来源。背后的取舍是：记忆系统更像日志检索，摘要只是压缩手段，不要求每轮都塞进上下文。"
+
+[[params.faqItems]]
+question = "自己做 Agent 记忆系统该怎么借鉴这套思路？"
+answer = "3 条可直接落地：一是把长期偏好写成明确的文件（Profile 或 MEMORY.md），给 Agent 一个稳定锚点；二是对产出的文档做索引，而不是只索引对话；三是训练 Agent 分三步走——先判断是否需要回忆、再决定搜什么关键词、最后只取回需要的片段。核心是把记忆变成可调用能力，而不是默认负担。"
 +++
 
 ![OpenClaw 记忆实施策略封面图](cover.webp)

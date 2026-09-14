@@ -7,6 +7,30 @@ toc = true
 tags = ['Claude Code', 'MCP', 'TypeScript', 'Tutorial']
 categories = ['AI Guides']
 keywords = ['Claude Code MCP', 'MCP setup guide', 'MCP server tutorial', 'Model Context Protocol', 'Claude Code MCP server', 'build MCP server', 'MCP TypeScript tutorial']
+
+[[params.faqItems]]
+question = "How do I connect Claude Code to a Postgres database?"
+answer = "Install the Postgres MCP server and pass your connection string: `claude mcp add postgres npx @anthropic/mcp-postgres postgresql://user:pass@localhost:5432/mydb` (quote the URL in your shell). Claude then sees your schema, writes SQL and returns results. If you build your own server instead, expose the schema as a Resource by querying `information_schema.columns` — that way Claude understands your tables without you re-explaining them every session, which sharply improves query accuracy."
+
+[[params.faqItems]]
+question = "How do I add an MCP server to Claude Code?"
+answer = "One command: `claude mcp add <name> <command> [args...]`. Pass secrets with `-e`, as in `claude mcp add github -e GITHUB_TOKEN=ghp_xxx npx @anthropic/mcp-github`. The default is project scope, meaning the server only exists in the current directory; add `--scope user` for tools you want everywhere. Rule of thumb: project scope for databases and project APIs, user scope for GitHub, Slack and filesystem."
+
+[[params.faqItems]]
+question = "Why does my MCP server crash with an unexpected token error?"
+answer = "Almost always `console.log`. Stdout is the JSON-RPC protocol channel, so any log you print there corrupts the message stream and the client receives garbage. Use `console.error` for every log line — it goes to stderr, which is safe. The other two recurring causes are a missing `type: module` in package.json, which produces Cannot use import statement, and a relative path in `claude mcp add`, which produces ENOENT. Always use the absolute path to the built `dist/index.js`."
+
+[[params.faqItems]]
+question = "How do I check whether my MCP servers are actually connected?"
+answer = "Run `/mcp` inside a Claude Code session — it lists every configured server, whether it is running, and what tools it exposes. Outside the session, `claude mcp list` shows project and user servers separately, and `claude mcp remove <name>` deletes one. For deeper debugging, set `MCP_DEBUG=1` to see protocol-level messages, read stderr from `~/Library/Logs/Claude Code/mcp*.log` on macOS, or test standalone with `npx @modelcontextprotocol/inspector node dist/index.js`."
+
+[[params.faqItems]]
+question = "How many MCP servers can I run at once?"
+answer = "There is no hard limit, but each server is a separate process holding memory. In practice 3-5 servers cause no noticeable impact, 5-10 add slightly longer startup time, and past 10 you should merge related servers or activate them on demand. A related design rule: group tools that share authentication, a data source or a domain into one server — a single server with 20+ unrelated tools makes Claude pick the wrong one."
+
+[[params.faqItems]]
+question = "Why use MCP when Claude Code can already run shell commands?"
+answer = "Three reasons. Safety: MCP tools carry explicit schemas, so Claude knows exactly which parameters are valid instead of assembling arbitrary shell strings. Discoverability: Claude sees every available tool automatically, so you never have to explain in a prompt that curl can reach your API. Reusability: the same server works in Claude Code, Claude Desktop, Cursor, Windsurf, VS Code Copilot and Cline — write once, use everywhere."
 +++
 
 ![Claude Code MCP setup connecting AI to external services](cover.webp)

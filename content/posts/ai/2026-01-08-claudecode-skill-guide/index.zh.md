@@ -6,6 +6,30 @@ toc = true
 tags = ['AI', 'Claude Code', 'Skills', '效率工具']
 categories = ['AI实战']
 keywords = ['Claude Code Skill 教程', 'Skill 创建指南', 'Claude Code 技能', 'AI 工作流自动化', 'SKILL.md']
+
+[[params.faqItems]]
+question = "亚马逊运营 Skill 怎么写？能帮着做什么？"
+answer = "把 A9/COSMO/Rufus 算法规则和竞品分析流程写进 SKILL.md，Claude 就能按流程产出 Listing。文中的 amazon-listing-pro 分三步：清洗本品属性表和竞品出单词报告、按 ABA 数据把关键词分成 S/A/B/C 四级、再写标题（美国站上限 200 字符，前 80 字符放最大权重词）、五点（每条 200-250 字符）、HTML 描述和不超过 249 字符的后台 Search Terms，最后跑一遍合规自查。"
+
+[[params.faqItems]]
+question = "Skill 和 Slash Command 有什么区别？该用哪个？"
+answer = "触发方式不同。Skill 放在 `.claude/skills/`，由 Claude 读上下文自动判断要不要用；Slash Command 放在 `.claude/commands/`，必须你手动输入 `/xxx` 才触发。结构也不同：Skill 是文件夹加 SKILL.md，命令是单个 .md 文件。复杂工作流想让 AI 自己识别就用 Skill，简单操作想自己控制就用命令。"
+
+[[params.faqItems]]
+question = "SKILL.md 放在哪个目录？必须写哪些字段？"
+answer = "放 `.claude/skills/<技能名>/SKILL.md`，必须在自己的子文件夹里。放项目目录只对当前项目生效，放 `~/.claude/skills/` 则对所有项目生效。YAML 里 `name`（英文、连字符）和 `description`（一句话说明什么时候用）两个字段必填——漏了 Claude 就不知道何时该调用这个 Skill。"
+
+[[params.faqItems]]
+question = "SKILL.md 写多长合适？有哪些常见坑？"
+answer = "控制在 500-2000 字，太长 Claude 反而抓不住重点。三个典型坑：漏写 `name` 和 `description` 导致技能永远不触发；指令太模糊，比如写「专业一点」却不说清什么叫专业；没给输出格式模板，导致每次结构都不一样。注意事项要写你真踩过的坑，别写「要仔细」这种废话。"
+
+[[params.faqItems]]
+question = "什么样的工作值得做成 Skill？"
+answer = "四类：重复性流程（每周报表、固定审批、模板化文档）、需要行业专有知识（特殊术语、行业规范）、输出必须符合固定格式（公司模板、指定字段）、团队要统一风格（Skill 提交进项目仓库，大家共享）。一次性的简单任务直接问 Claude 就行，不用做成 Skill。"
+
+[[params.faqItems]]
+question = "不会写代码能创建 Skill 吗？"
+answer = "能，Skill 本质就是一份 Markdown 说明书，不涉及任何代码。四步：`mkdir -p .claude/skills/你的技能名` 建目录、写 SKILL.md（概述、输入要求、执行步骤、输出格式、注意事项）、在 Claude Code 里跑一遍测试、根据效果迭代。做了十年财务、招了五年人的经验写下来就是一个 Skill。"
 +++
 ![Skill Guide](skill-guide.webp)
 

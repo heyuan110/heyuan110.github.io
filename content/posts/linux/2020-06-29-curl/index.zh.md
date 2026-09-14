@@ -7,6 +7,30 @@ description = 'curl 命令完整教程：GET/POST/PUT/DELETE 请求、JSON 数�
 tags = ['curl', 'Linux', 'HTTP', 'API', 'CLI']
 categories = ['Linux']
 keywords = ['curl 命令详解', 'curl 用法大全', 'curl 常用参数', 'curl post 请求', 'curl get 请求', 'curl 下载文件', 'curl json', 'curl 代理', 'curl 证书', 'curl linux', 'curl 教程', 'curl 命令 2026']
+
+[[params.faqItems]]
+question = "curl 怎么发 GET 请求并把结果存成文件？"
+answer = "直接跟 URL 就是 GET：`curl https://httpbin.org/get`。存文件有两种写法——`curl -o response.json URL` 自己指定文件名，`curl -O URL` 用远程文件名。调试时加 `-v` 看完整请求响应过程（`>` 是发出的请求、`<` 是收到的响应、`*` 是 curl 自己的处理信息），加 `-i` 显示响应头，`-I` 只发 HEAD 请求。"
+
+[[params.faqItems]]
+question = "curl 怎么发 JSON 格式的 POST 请求？"
+answer = "两件事缺一不可：加 `Content-Type: application/json` 请求头，用 `-d` 传 JSON 字符串。写法是 `curl -X POST -H 'Content-Type: application/json' -d '{name:john}' https://httpbin.org/post`（实际 JSON 用双引号包字段名）。JSON 太长可以放文件里用 `-d @data.json` 读取。不加这个头服务端会按 application/x-www-form-urlencoded 解析，参数就收不到。"
+
+[[params.faqItems]]
+question = "curl 下载大文件断了怎么续传？还能限速吗？"
+answer = "断点续传用 `curl -C - -O URL`，那个单独的短横线是让 curl 自动判断从哪个字节继续。限速用 `--limit-rate 100k` 控制在 100KB/s，避免占满带宽。想看进度条加 `-#`。另外建议配 `--connect-timeout 10` 和 `-m 30` 两个超时，再加 `--retry 3 --retry-delay 5` 自动重试。"
+
+[[params.faqItems]]
+question = "怎么用 curl 指定 IP 访问某个域名，调试 CDN 或负载均衡？"
+answer = "推荐 `--resolve`：`curl --resolve example.com:443:192.168.1.100 https://example.com/api`，它把域名强制解析到指定 IP，证书校验照常走。另外两种写法：HTTP 可以用 `-x 192.168.1.100:80` 走代理方式，HTTPS 可以直接请求 IP 再用 `-H 'Host: example.com'` 配 `-k` 跳过证书。只想看过程不要正文就加 `-vo /dev/null`。"
+
+[[params.faqItems]]
+question = "curl 和 wget 该用哪个？"
+answer = "调试 API 用 curl，批量下载用 wget。curl 支持 20+ 种协议、全部 HTTP 方法、能上传文件、默认输出到 stdout 方便配 jq 做管道处理；wget 只支持 HTTP/HTTPS/FTP 和 GET/POST，不能上传，但支持 `-r` 递归下载和网站镜像，默认直接存文件。两者是互补关系，不是替代。"
+
+[[params.faqItems]]
+question = "怎么用 curl 测网站各阶段响应耗时？"
+answer = "用 `-w` 输出内置变量，配合 `-o /dev/null -s` 丢掉正文只看数字。关键的四个变量是 `%{time_namelookup}`（DNS 解析）、`%{time_connect}`（TCP 连接）、`%{time_appconnect}`（SSL 握手）、`%{time_starttransfer}`（首字节）和 `%{time_total}`（总耗时）。对比这几个数就能判断慢在 DNS、建连、TLS 还是服务端处理。"
 +++
 
 在日常开发和运维中，**curl 命令**几乎是使用频率最高的[命令行](/zh/posts/linux/2020-03-19-linux-mac-commands/)工具之一。它支持 HTTP、HTTPS、FTP 等 20+ 种协议，无论是调试 REST API、发送 POST 请求、下载文件还是测试网络连通性，一条 curl 命令就能搞定。

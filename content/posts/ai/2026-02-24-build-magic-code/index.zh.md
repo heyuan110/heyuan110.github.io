@@ -7,6 +7,30 @@ toc = true
 tags = ['Claude Code', 'Python', 'Agentic Loop', 'Tool Use', 'AI Agent']
 categories = ['AI Guides']
 keywords = ['自己动手构建 Claude Code', 'Agentic Loop 教程', 'Python AI 编程助手', 'Function Calling 教程', 'Tool Use OpenAI', '终端 AI 助手', 'MagicCode']
+
+[[params.faqItems]]
+question = "Claude Code 能用 Python 自己实现吗？大概要多少行代码？"
+answer = "能，250 行就够。教程分四步：V1 是 20 行的基础聊天循环，跑通 Chat Completions API；V2 加流式输出约 30 行；V3 用 Rich 渲染终端 UI 约 35 行；V4 补上完整工具系统和 Agentic Loop，总共 250 行。省掉的是产品化那部分：权限确认、会话持久化、MCP、token 统计。"
+
+[[params.faqItems]]
+question = "Agentic Loop 是什么？跟普通聊天机器人差在哪？"
+answer = "Agentic Loop 是让模型从「说」变成「做」的循环：消息发给 LLM，LLM 要么直接回答要么请求调用工具，你的代码执行工具并把结果回传，LLM 再判断，直到不再返回 tool_calls 才退出。聊天机器人只会把 `print('hello world')` 甩给你自己复制粘贴，智能体会直接建 hello.py、写入、运行、汇报结果。这个循环核心不到 40 行。"
+
+[[params.faqItems]]
+question = "跟着做需要什么 Python 环境？要装哪些依赖？"
+answer = "Python 3.10 以上（建议 3.12+）、一个 OpenAI API Key、一个终端就够。建好虚拟环境后执行 `pip install openai rich prompt_toolkit`：openai 提供原生 Function Calling，rich 负责终端里的 Markdown 渲染和语法高亮，prompt_toolkit 提供历史记录和补全（可选）。再 `export OPENAI_API_KEY=sk-xxx`，写进 `~/.zshrc` 免得每次重设。"
+
+[[params.faqItems]]
+question = "Function Calling 是 AI 自己执行命令吗？会不会不安全？"
+answer = "不是。模型只负责决定调用哪个工具、传什么参数，返回一个 tool_calls 数组，真正的读写文件和执行 shell 全在你自己的 Python 代码里跑，执行边界完全由你掌控。所以加权限确认很简单：read_file、list_files、search_code 这类只读操作直接放行，write_file 和 run_command 前弹一次 y/n 确认。"
+
+[[params.faqItems]]
+question = "工具调用后 API 报错、请求被拒，通常是什么原因？"
+answer = "九成是消息协议写错了两处。一是工具结果必须用 `role: 'tool'` 而不是 `role: 'user'`，模型要靠这个区分数据来自工具执行还是人类输入。二是每条工具结果的 tool_call_id 必须和对应 tool_call 的 id 完全一致，对不上 API 会直接拒绝整个请求——模型正是靠这个 id 把结果和调用配对的。"
+
+[[params.faqItems]]
+question = "自己实现的 6 个工具够用吗？和 Claude Code 的 15 个差多少？"
+answer = "日常够用。MagicCode 实现了 read_file、write_file、edit_file（替换首个匹配文本）、run_command（30 秒超时）、list_files、search_code 六个，覆盖大约 80% 的真实场景。缺的那 20% 主要是 MCP 集成、多文件 diff、notebook 编辑这类进阶能力，锦上添花但不影响核心体验。"
 +++
 
 ![MagicCode 终端 AI 编程助手演示](cover.webp)

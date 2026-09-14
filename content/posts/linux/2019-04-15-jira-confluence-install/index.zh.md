@@ -5,6 +5,30 @@ description = 'Ubuntu 16.04 搭建 Jira 项目管理和 Confluence 知识库完�
 toc = true
 tags = ['Jira', 'Confluence', 'Atlassian', 'Linux', 'MySQL']
 categories = ['Linux']
+
+[[params.faqItems]]
+question = "Ubuntu 上怎么安装 Jira？需要什么配置？"
+answer = "先装 JDK 1.8 以上和 MySQL 5.7，再建库、跑安装包。本文用的机器是 Ubuntu 16.04.5 LTS、4 核 CPU、16GB 内存，最多支持 2000 人，人更多要升配。装完应用在 `/opt/atlassian/jira`，数据在 `/var/atlassian/application-data/jira`。注意：Jira 和 Confluence 共用账号体系时要先装 Jira。"
+
+[[params.faqItems]]
+question = "建库时 COLLATE 为什么必须用 utf8_bin？"
+answer = "因为 Jira 和 Confluence 都要求二进制排序规则，用别的会在安装向导里直接报错。正确写法是 `CREATE DATABASE jira CHARACTER SET utf8 COLLATE utf8_bin;`，Confluence 同理。另外别忘了把 MySQL 驱动 JAR 拷进 `/opt/atlassian/jira/atlassian-jira/WEB-INF/lib/`（Confluence 是 `/opt/atlassian/confluence/lib/`），拷之前先停服务。"
+
+[[params.faqItems]]
+question = "Confluence 配置到数据库那步一直超时怎么办？"
+answer = "改用 IP+端口访问，不要用域名。Confluence 默认监听 8090，安装未完成前用 `http://ip:8090` 打开向导；重装几次验证过，用域名走到数据库配置那一步必定报超时，用 IP 就正常。要改端口编辑 `/opt/atlassian/confluence/conf/server.xml`。"
+
+[[params.faqItems]]
+question = "Jira 的系统备份包含附件吗？"
+answer = "不包含，这是迁移最容易踩的坑。备份 zip 在 `/var/atlassian/application-data/jira/export`，附件单独存在 `/var/atlassian/application-data/jira/data/attachments`，要自己写脚本备份。恢复时先停服务、解压附件覆盖原目录，再把 jira-backup.zip 放进 import 目录后启动恢复。Confluence 的附件在 `/var/atlassian/application-data/confluence/attachments`，同样规则。"
+
+[[params.faqItems]]
+question = "数据恢复后 Confluence 登录不进去了怎么办？"
+answer = "恢复会把新建的内部管理员删掉、外部目录配置回滚成老机器的，于是谁都登不上。解法是直接往数据库插一个管理员：在 `cwd_user` 里绑定 Confluence Internal Directory 建用户，补 `user_mapping` 记录，再往 `cwd_membership` 插两条分别加入 confluence-users 和 confluence-administrators 组。登录后重新配置外部目录即可。"
+
+[[params.faqItems]]
+question = "恢复数据时报 duplicate entry 乱码错误是什么原因？"
+answer = "MySQL 默认字符集是 Latin 导致的。编辑 `/etc/mysql/mysql.conf.d/mysqld.cnf`，在 `[mysqld]` 下加 `character_set_server=utf8`、`collation_server=utf8_unicode_ci`、`skip-character-set-client-handshake`、`transaction-isolation=READ-COMMITTED`，再把 `max_allowed_packet` 调到 128M、`innodb_log_file_size` 调到 512M，重启 MySQL 后重新导入。"
 +++
 jira和confluence都是Atlassian公司产品。jira是项目与事务跟踪工具，可以完成项目执行管理、敏捷开发管理、体系流程管理、产品Bug跟踪、提案跟踪、需求管理、客户服务等工作。confluence是一个专业的企业知识管理与协同软件，可以用于构建企业wiki，通过它可以实现团队成员之间的协作和知识共享。
 <!--more-->

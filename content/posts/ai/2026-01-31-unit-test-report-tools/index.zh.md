@@ -7,6 +7,30 @@ toc = true
 tags = ['单元测试', '测试报告', 'Allure', 'AI 测试', '质量工程']
 categories = ['AI实战']
 keywords = ['单元测试报告生成工具', '测试报告框架', 'Allure Report', 'AI 自动化测试', '代码覆盖率']
+
+[[params.faqItems]]
+question = "单元测试报告生成工具怎么选？"
+answer = "按语言先定框架，再看要不要聚合。Java/Kotlin 用 JUnit 5 + JaCoCo，Python 用 PyTest + pytest-cov，前端新项目用 Vitest（内置 v8 覆盖率）、存量项目留在 Jest（内置 Istanbul），C/C++ 用 GoogleTest + gcov/llvm-cov，iOS 用 XCTest，.NET 用 NUnit + Coverlet。只要是多语言混合项目，就必须上 Allure 统一报告格式。"
+
+[[params.faqItems]]
+question = "Allure Report 是什么？什么时候有必要用？"
+answer = "Allure 不是测试框架，是报告聚合框架：各语言框架经适配器输出统一 JSON，再生成 HTML 报告，目前支持 30+ 框架。报告含 Dashboard 总览、Suites 步骤拆解、Graphs 图表、Timeline 时间线、失败自动分类和 History 趋势。单语言小项目用框架自带报告就够；多语言混合、要看趋势、要给非技术同事看的场景才值得上 Allure。"
+
+[[params.faqItems]]
+question = "PyTest 怎么生成覆盖率和 HTML 测试报告？"
+answer = "三套命令覆盖大部分需求：`pytest -v` 看终端结果；`pip install pytest-html` 后 `pytest --html=report.html --self-contained-html` 出独立 HTML；`pip install pytest-cov` 后 `pytest --cov=src --cov-report=html --cov-report=term-missing`，终端会直接列出每个文件的覆盖率和未覆盖行号。接 Allure 则是 `pytest --alluredir=./allure-results` 再 `allure serve`。"
+
+[[params.faqItems]]
+question = "代码覆盖率阈值设多少合适？要追求 100% 吗？"
+answer = "不要追 100%。推荐阈值：行覆盖率 ≥ 80% 作为新代码底线，分支覆盖率 ≥ 75%（比行覆盖率更重要），支付登录等关键路径 ≥ 95%，每个 PR 的新增代码 ≥ 90%。原因很直白：`def divide(a, b): return a / b` 只测 divide(10, 2) 行覆盖率就 100% 了，但除零场景完全没覆盖。"
+
+[[params.faqItems]]
+question = "覆盖率门禁怎么配？低于阈值让 CI 直接失败"
+answer = "Vitest 在 `vitest.config.ts` 的 `test.coverage.thresholds` 里写 `lines: 80`、`branches: 75`，低于阈值 CI 直接挂，比人工检查靠谱。Java 侧在 Maven 里配 jacoco-maven-plugin（0.8.12）的 prepare-agent 和 report 目标，.NET 用 `dotnet test --collect:'XPlat Code Coverage'`。再配合 Codecov 或 SonarQube 在 PR 上显示覆盖率增减。"
+
+[[params.faqItems]]
+question = "AI 生成单元测试靠谱吗？能省多少时间？"
+answer = "能省 30-60% 的时间，覆盖率大致能从 65% 提到 78%，但不能全交给它。2025 年的一项研究发现，用 AI 辅助编码的开发者自我感觉效率提升约 20%，算上调试和清理时间后实际反而多花了 19%。可行的分工是：人定测试策略，AI 生成基础用例和分析覆盖率盲区，边界条件和异常路径必须人工复核。"
 +++
 
 ![单元测试报告生成工具全解析：框架对比、覆盖率策略与 AI 实战](cover.webp)

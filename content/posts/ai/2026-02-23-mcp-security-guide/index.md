@@ -7,6 +7,30 @@ toc = true
 tags = ['MCP', 'AI Security', 'AI Agent', 'OWASP', 'Security']
 categories = ['AI Guides']
 keywords = ['MCP security', 'MCP vulnerability', 'AI agent security', 'mcp-scan', 'OWASP agentic top 10', 'MCP server security', 'tool poisoning', 'prompt injection']
+
+[[params.faqItems]]
+question = "How do I get visibility into MCP server interactions that bypass traditional security controls?"
+answer = "Scan the configuration and log the tool calls, because network and code scanners never see these interactions. Run `uvx mcp-scan` against every client config (`--path ~/.claude/mcp.json`, `--path ~/.cursor/mcp.json`), then wire `uvx mcp-scan --output report.json` into CI and pre-commit so configuration changes get diffed. At runtime, log every tool invocation, alert on abnormal call frequency, and monitor transfer volume and destination addresses — that is the only layer where exfiltration shows up."
+
+[[params.faqItems]]
+question = "What is tool poisoning and why is it different from a normal supply chain attack?"
+answer = "Tool poisoning hides malicious instructions in a tool's natural language description instead of in code, so nothing in the binary or dependency tree looks wrong. Because the agent decides when and how to call a tool from that description, a line such as asking it to read ~/.ssh/id_rsa and pass it as a context parameter is enough. Real attacks hide the payload with Unicode invisible characters or inside very long descriptions. The April 2025 WhatsApp MCP Server case exfiltrated entire chat histories this way."
+
+[[params.faqItems]]
+question = "Which MCP vulnerabilities have real CVE numbers?"
+answer = "Three to know. CVE-2025-49596 was remote code execution in Anthropic's own MCP Inspector, the debugging tool itself being the attack vector. CVE-2025-6514 hit `mcp-remote`, which had over 437,000 downloads, and let a malicious server URL run arbitrary commands on the client. CVE-2025-54136, known as MCPoison, was Cursor IDE's trust bypass: once a user approved an MCP configuration it was never re-checked, so a benign server could turn malicious in a later update."
+
+[[params.faqItems]]
+question = "Is it safe to install MCP servers straight from the registry?"
+answer = "No — treat it like early npm. A February 2026 audit found 518 official MCP servers with 41% lacking authentication, after the registry grew from 90 servers in a single month. September 2025 brought a working supply chain attack: a fake Postmark MCP server delivered email normally while stealing API keys. Before installing, check the repository's stars, issue activity and contributors, read the tool definition code and its description text, and prefer servers that have been audited."
+
+[[params.faqItems]]
+question = "How did a sandboxed filesystem MCP server end up reading files outside its directory?"
+answer = "Path traversal. In August 2025 Anthropic's official Filesystem MCP Server, which was supposed to confine access to one configured directory, was escaped with traversal sequences that let an attacker read and write arbitrary files. October 2025's Smithery vulnerability was the same class one layer up: traversal on the hosting platform exposed other users' Docker credentials and environment variables. Path checks must be enforced on the resolved absolute path, not the string the caller supplied."
+
+[[params.faqItems]]
+question = "What are the first three MCP hardening steps I should take today?"
+answer = "Scan, de-hardcode, then scope down. Run `uvx mcp-scan` over your installed servers. Replace any plaintext secret in the config — a literal GITHUB_TOKEN value of ghp_xxxx should become a `${GITHUB_TOKEN}` environment reference. Then apply least privilege per server: GitHub tokens scoped to specific repositories instead of the full `repo` scope, read-only database accounts limited to specific tables, and cloud credentials cut down by IAM policy. Enterprise teams can layer on SecureClaw, which ships 55 audit checks and 15 behavioral rules mapped to the OWASP Agentic Top 10."
 +++
 
 **518 official MCP Servers, 41% lacking authentication.** This is not a hypothetical threat model — it is real data from a February 2026 security audit.

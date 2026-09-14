@@ -7,6 +7,34 @@ toc = true
 tags = ['Moltbot', 'AI 助手', 'Clawdbot', '个人AI', '开源']
 categories = ['AI实战']
 keywords = ['Moltbot', 'Clawdbot', 'AI助手', 'Wizard配置', '个人AI助手搭建']
+
+[[params.faqItems]]
+question = "Moltbot 对电脑配置有什么要求？需要显卡吗？"
+answer = "不需要显卡，模型跑在云端，本地只做调度。要求是 macOS、Linux 或装了 WSL2 的 Windows，Node.js 22 及以上，能访问所选 AI 服务商的 API。另外至少要有一个模型 API Key，推荐 Anthropic；如果你已经在用 Claude Code CLI，向导可以直接复用它的 OAuth 凭据，不用再申请新 Key。"
+
+[[params.faqItems]]
+question = "Moltbot 怎么安装？安装完第一步做什么？"
+answer = "Linux/macOS 执行 `curl -fsSL https://molt.bot/install.sh | bash`，Windows 用 PowerShell 跑 `iwr -useb https://molt.bot/install.ps1 | iex`，然后 `moltbot --version` 验证。接着执行 `moltbot onboard` 启动配置向导。第一次用选 QuickStart，它会自动配好本地 Gateway（端口 18789）、自动生成认证 token、给 Telegram 和 WhatsApp 开启白名单模式。"
+
+[[params.faqItems]]
+question = "Wizard 向导到底帮我配了哪些东西？"
+answer = "六样，按顺序是：模型认证（API Key，相当于给 AI 装大脑）、工作空间目录、Gateway 的端口和认证、WhatsApp/Telegram 等消息渠道、后台守护进程、以及 Skills 插件。手动配这些要写 JSON、逐个平台申请 token、装服务、调网络，向导把整个过程变成几个问答。"
+
+[[params.faqItems]]
+question = "Moltbot 的 Skill 怎么装？能自定义 AI 人设吗？"
+answer = "向导最后一步会问是否安装推荐 Skills，用 npm 或 pnpm 装：web_search 联网搜索、web_fetch 抓取解析网页、exec 执行系统命令、browser 浏览器自动化。之后想改就跑 `moltbot configure --section skills`。人设不在 Skill 里，改工作空间（默认 `~/clawd`）下的 `IDENTITY.md`，在里面写清楚名字、语气和职责即可。"
+
+[[params.faqItems]]
+question = "服务器上怎么免交互安装 Moltbot？能跑多个 Agent 吗？"
+answer = "自动化部署用 `moltbot onboard --non-interactive`，把答案当参数传：`--mode local`、`--auth-choice anthropic-api-key`、`--gateway-port 18789`、`--gateway-bind loopback`、`--install-daemon`、`--daemon-runtime node`。一个实例可以跑多个 Agent，各有独立工作空间：`moltbot agents add work --workspace ~/clawd-work`，再用路由规则把不同渠道的消息分发给不同 Agent。"
+
+[[params.faqItems]]
+question = "Gateway 启动失败、WhatsApp 扫码连不上怎么办？"
+answer = "Gateway 起不来基本都是端口被占，先 `lsof -i :18789` 看谁占了，再 `moltbot configure --section gateway` 换端口。WhatsApp 扫完码连不上，先确认手机和电脑在同一网络、检查防火墙，然后 `moltbot channels login whatsapp` 重新配对。回复慢一般是到服务商的网络延迟，可以换更近的服务商或先 `export HTTPS_PROXY=http://你的代理:端口` 再启动。"
+
+[[params.faqItems]]
+question = "本机跑 Moltbot 安全吗？要注意什么？"
+answer = "它在你机器上有实打实的权限，必须加约束。Gateway 认证一定要开，哪怕只监听 loopback；不要把 Gateway 暴露到公网；exec 权限意味着 AI 能执行系统命令，要谨慎；Skill 只装可信来源的。群聊场景把 agent 默认配置里的 `sandbox.mode` 设成 `non-main`，非主会话会被隔离进 Docker 容器。配置文件在 `~/.clawdbot/moltbot.json`，凭据在 `~/.clawdbot/credentials/`。"
 +++
 
 想象一下这个场景：你在微信群里@一下 AI，它就能帮你订机票、查天气、写代码、管理日程，甚至能记住你上周聊过的所有内容。这不是科幻电影，这就是 **Moltbot**——一个你可以完全掌控的私人 AI 助手。

@@ -7,6 +7,30 @@ toc = true
 tags = ['Claude Code', 'AI Security', 'Code Audit', 'Vulnerability Scanning', 'Anthropic']
 categories = ['AI Guides']
 keywords = ['Claude Code Security', 'AI code security scanning', 'Claude vulnerability detection', 'AI security audit', 'Anthropic security tool', 'SAST alternative']
+
+[[params.faqItems]]
+question = "What is AI-powered code scanning and how does it improve detection accuracy?"
+answer = "It replaces pattern matching with reasoning. Traditional SAST answers whether code matches a known vulnerability signature; Claude Code Security, built on Claude Opus 4.6, traces how data moves across components and asks whether the code is secure. Accuracy improves through multi-stage verification: each candidate finding is revisited, proved or disproved, and false positives are filtered before you ever see it. Survivors carry a severity level, a confidence score, a plain-language explanation and a targeted patch."
+
+[[params.faqItems]]
+question = "How many real vulnerabilities has Claude Code Security actually found?"
+answer = "Over 500 in production-grade open source codebases, according to Anthropic's Frontier Red Team — including critical zero-days in software used in enterprise systems and critical infrastructure, some of which had survived years of expert review. Notably, Claude Opus 4.6 used no specialized security tooling or custom prompts: it explored the codebases autonomously, read commit history to find bug-introducing changes, and crafted targeted inputs to validate its own findings."
+
+[[params.faqItems]]
+question = "How is this different from GitHub CodeQL and Dependabot?"
+answer = "Different target classes. Dependabot and CodeQL work from known vulnerability databases and predefined query rules, so they are strong on CVE-identified issues and dependency risk. Claude Code Security uses semantic understanding to surface unknown zero-days and especially business logic flaws, which rule-based tools essentially cannot detect. They are complementary — running both covers known threats and unknown risks, rather than picking one."
+
+[[params.faqItems]]
+question = "Can I use Claude Code Security as an individual developer?"
+answer = "Not yet. It is a limited research preview open to Enterprise and Team customers, who apply through claude.com/contact-sales/security, plus an accelerated free access program for open source maintainers. Individual access is expected as the product matures. One usage restriction matters: you must agree to scan only code your organization has rights to, so scanning arbitrary third-party or open source repos is not permitted outside the official program."
+
+[[params.faqItems]]
+question = "Does Claude Code Security apply fixes automatically?"
+answer = "No — every suggested fix requires human approval and nothing is applied on its own. The system gives you an integrated review panel where you inspect, approve or reject each finding and its proposed patch one at a time. That human-in-the-loop design is deliberate: AI handles discovery and proposes solutions, developers make the call. Anthropic red-teamed the feature internally for over a year, including CTF competitions and work with Pacific Northwest National Laboratory."
+
+[[params.faqItems]]
+question = "Why did cybersecurity stocks drop when it launched?"
+answer = "Investors read it as cheap AI scanning disrupting a multi-billion-dollar tooling market. On February 20, 2026 CrowdStrike fell nearly 8%, Cloudflare 8.1%, Okta 9.2%, SailPoint 9.4%, Zscaler 5.5%, and the Global X Cybersecurity ETF 4.9% to its lowest since November 2023. Jefferies analyst Joseph Gallo argued the sector is ultimately a net beneficiary, since AI systems themselves need protection and AI security becomes a new growth driver — the selloff was a headline reaction more than a fundamentals call."
 +++
 
 On February 20, 2026, Anthropic launched **Claude Code Security** — an AI-powered code security scanner built on Claude Opus 4.6. The market reaction was immediate and dramatic: CrowdStrike dropped nearly 8%, Cloudflare fell over 8%, Okta slid 9.2%, and the Global X Cybersecurity ETF hit its lowest point since November 2023. Bloomberg, Fortune, and The Hacker News all covered the story, calling it a direct challenge from AI to the traditional security industry.

@@ -7,6 +7,30 @@ toc = true
 tags = ['Claude Code', 'Git Worktree', 'AI Coding', 'Release Notes', 'Anthropic']
 categories = ['AI Guides']
 keywords = ['Claude Code update', 'Claude Code new features 2026', 'Claude Code worktree', 'Claude Code background tasks', 'Claude Code simple mode', 'Claude Code February update']
+
+[[params.faqItems]]
+question = "How do I enable Claude Code Simple Mode?"
+answer = "Set an environment variable at launch: `CLAUDE_CODE_SIMPLE=true claude`. It is a stripped-down mode aimed at non-developers and quick one-off tasks. Until v2.1.49 it could only run Bash, which made it nearly useless for editing; that release added file editing tools, so it can now read and modify files directly. Startup is faster and token use is lower than a full session."
+
+[[params.faqItems]]
+question = "What does Simple Mode turn off?"
+answer = "As of v2.1.50 it disables MCP tools, attachments, hooks, CLAUDE.md loading, Skills and Session Memory, custom agents, and token counting. So if your project instructions or MCP servers appear to be ignored, check whether `CLAUDE_CODE_SIMPLE` is set — that is the expected behavior, not a bug. The trade is a genuinely lightweight terminal assistant with faster startup and lower resource use."
+
+[[params.faqItems]]
+question = "A session is still running as a background agent — how do I stop it?"
+answer = "Press Ctrl+F twice within 3 seconds. The first press raises a confirmation prompt and the second terminates all background agents; the double press exists so you do not kill work by accident. Note that since v2.1.47 the ESC key only cancels main-thread operations and no longer touches background agents, so you can interrupt your current conversation safely. Use `/tasks` to see what is still running."
+
+[[params.faqItems]]
+question = "How do I turn off the 1M context window in Claude Code?"
+answer = "Export `CLAUDE_CODE_DISABLE_1M_CONTEXT=1` before launching. The variable arrived in v2.1.50, mainly as a way to hold down token costs when you do not need the full window. Context matters here: v2.1.49 replaced Sonnet 4.5 with Sonnet 4.6 on the Max plan and the 1M window came with it, and v2.1.50 extended full 1M support to Opus 4.6 Fast Mode."
+
+[[params.faqItems]]
+question = "What are the WorktreeCreate and WorktreeRemove hooks for?"
+answer = "They fire automatically when Claude Code creates or removes a worktree, so you can script the setup and teardown a fresh working directory needs. Both were added in v2.1.50 and go in your hooks config — a common WorktreeCreate hook runs `npm install` so the new tree has dependencies, while WorktreeRemove handles cleanup. They pair with `claude -w`, which creates an isolated directory under `.claude/worktrees/` branched from your current HEAD."
+
+[[params.faqItems]]
+question = "What shipped in Claude Code during February 2026?"
+answer = "Over a dozen releases, v2.1.39 through v2.1.50. The headline is Git worktree support in v2.1.49 (`claude -w`, plus `isolation: worktree` in agent definitions), background agents via `background: true`, and a leaner Simple Mode. Less visible but significant: six memory leaks fixed between v2.1.45 and v2.1.50, `@` file-mention index pre-warming, and roughly 500ms saved at startup by deferring the SessionStart hook."
 +++
 
 Claude Code released over a dozen versions in February 2026 (v2.1.39 through v2.1.50), introducing several features that fundamentally change how you work. This article covers the most important updates, explains how to use each one, and highlights the practical scenarios where they shine.

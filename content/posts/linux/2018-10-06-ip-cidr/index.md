@@ -7,6 +7,30 @@ tags = ['IP', 'CIDR', 'Networking', 'Subnet Mask', 'Linux']
 categories = ['Linux']
 toc = true
 keywords = ['IP address', 'CIDR notation', 'subnet mask', 'IPv4', 'subnetting', 'network fundamentals']
+
+[[params.faqItems]]
+question = "What is the prefix length notation for the subnet mask 255.255.255.224?"
+answer = "It is /27, which leaves 30 usable hosts. The rule is simply to count the 1-bits in the mask: each 255 octet contributes 8, and 224 in binary is 11100000, which contributes 3 — so 8 + 8 + 8 + 3 = 27. The same arithmetic works anywhere in the address: 255.255.224.0 counts 8 + 8 + 3 = /19. A /27 is the usual size for a small department; /28 (255.255.255.240) gives 14 hosts and /26 (255.255.255.192) gives 62."
+
+[[params.faqItems]]
+question = "What does the /24 in 192.168.1.0/24 actually mean?"
+answer = "CIDR notation is written as IP_address/prefix_length, and the prefix length is the number of leading bits that identify the network. /24 means the first 24 bits are the network ID and the remaining 8 bits address hosts — exactly equivalent to the subnet mask 255.255.255.0. This is the form tools ask for when they want an address in CIDR form: write `192.168.1.100/24` rather than an address plus a separate mask field. CIDR arrived with RFC 1518 and RFC 1519 in 1993 to replace the wasteful A/B/C class system."
+
+[[params.faqItems]]
+question = "How many usable hosts does a subnet have, and why subtract 2?"
+answer = "Usable hosts = 2^(host bits) - 2. The two missing addresses are reserved in every subnet: the network address, where all host bits are 0 (192.168.1.0), and the broadcast address, where all host bits are 1 (192.168.1.255). So a /24 has 8 host bits and 254 usable addresses, a /26 has 62, a /27 has 30, and a /30 — the classic point-to-point link — has exactly 2."
+
+[[params.faqItems]]
+question = "How do I split 192.168.1.0/24 into four subnets?"
+answer = "Borrow 2 host bits, because 2^2 = 4, which turns the /24 into four /26 networks with mask 255.255.255.192 and 62 usable hosts each. The blocks are 192.168.1.0/26 (usable .1-.62, broadcast .63), 192.168.1.64/26 (.65-.126, broadcast .127), 192.168.1.128/26 (.129-.190, broadcast .191) and 192.168.1.192/26 (.193-.254, broadcast .255). The general procedure: decide how many subnets or hosts you need, work out how many bits to borrow, derive the mask, then list each range."
+
+[[params.faqItems]]
+question = "Which IP address ranges are private and cannot be routed on the internet?"
+answer = "RFC 1918 reserves three blocks: 10.0.0.0/8 (10.0.0.0-10.255.255.255, about 16.7 million addresses), 172.16.0.0/12 (172.16.0.0-172.31.255.255, roughly 1 million), and 192.168.0.0/16 (192.168.0.0-192.168.255.255, 65,536). Home routers and corporate LANs use these and reach the public internet through NAT. Separately, the whole 127.x.x.x block is loopback and 255.255.255.255 is the limited broadcast address."
+
+[[params.faqItems]]
+question = "How do I check an IP configuration and calculate a network address on Linux?"
+answer = "Use `ip addr show` to list interfaces (or `ip addr show eth0` for one) and `ip route show` for the routing table. To avoid doing the binary AND by hand, run `ipcalc 192.168.1.100/24` — it prints the network (192.168.1.0/24), netmask, broadcast (192.168.1.255), HostMin, HostMax and the usable host count in one shot. For reachability, `ping 192.168.1.1` confirms the local gateway and `traceroute 8.8.8.8` shows where traffic actually stops."
 +++
 
 Every device on the internet needs an **IP address** to communicate. Whether you are configuring cloud infrastructure, debugging connectivity issues, or setting up container networks, a solid grasp of IP addressing and CIDR is essential. This guide walks through IPv4 address structure, the legacy class system, subnet masks, and modern CIDR notation from the ground up.

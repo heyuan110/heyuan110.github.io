@@ -7,6 +7,30 @@ toc = true
 tags = ['AI App Development', 'DevOps', 'Stanford CS146S', 'Vibe Coding', 'Deployment']
 categories = ['AI Guides']
 keywords = ['AI app lifecycle', 'vibe coding production', 'AI operations', 'AI app deployment', 'prototype to production']
+
+[[params.faqItems]]
+question = "What is Stanford CS146S, The Modern Software Developer?"
+answer = "CS146S is Stanford's course on building software with AI agents, taught over ten weeks from prompt engineering in Week 1 to a future outlook in Week 10. Weeks 8 and 9 — the subject of this article — pair rapid AI prototyping with production operations. Course materials live at themodernsoftware.dev and the assignments at github.com/mihail911/modern-software-dev-assignments. Its throughline is that the developer's role shifts from executor to conductor, not from working to hands-off."
+
+[[params.faqItems]]
+question = "What did Gaspar Garcia of Vercel say AI app builders cannot do?"
+answer = "Vercel's Head of AI Research demonstrated generating a full web app — frontend, backend, database, deployment — from a single prompt, then drew the boundary honestly. Tools like v0 handle UI prototypes in minutes, basic CRUD, standard layouts and common interaction patterns. They struggle with complex business logic such as multi-step conditional flows, performance work like lazy loading and caching, accessibility, brand-level visual design, and integration with existing auth, third-party APIs and legacy systems."
+
+[[params.faqItems]]
+question = "If AI builds the demo, how much work is left?"
+answer = "About 90%. The prototype is roughly 10% of total effort, and it is the stage where AI substitutes best, at 80%+. After that the replacement rate falls as the work gets harder: feature completion is 25% of effort at 50-70% AI substitution, testing 15% at 40-60%, deployment configuration 10% at 30-50%, performance 10% at 20-40%, and security hardening 10% at only 20-30%. Operations and monitoring is the single largest bucket at 20%."
+
+[[params.faqItems]]
+question = "What does observability actually require for an AI-built app?"
+answer = "Three pillars. Logs: structured JSON rather than plain text, real DEBUG/INFO/WARN/ERROR levels, explicit records for logins, payments and permission changes, and aggregation through something like ELK or Loki. Metrics: Google SRE's four golden signals — latency at P50/P95/P99, traffic in requests per second, 5xx error rate, and saturation of CPU, memory and disk. Traces: the full path of a request across frontend, API, database, cache and third parties, via Jaeger, Zipkin or OpenTelemetry."
+
+[[params.faqItems]]
+question = "How do AI agents change incident response and the SRE role?"
+answer = "The Week 9 guest from Resolve AI described replacing the classic alert → page → investigate → fix → post-mortem loop with one where the agent gathers context, does initial root cause analysis and proposes a remediation, a human confirms it (or the agent auto-executes low-risk actions), and the post-mortem is generated automatically. It works best on bounded, evidence-heavy problems: Kubernetes crash loops, connection pool exhaustion, latency spikes correlated with deploys, disk pressure, certificate expiry. The role shifts from investigating to directing investigation, and from writing runbooks to training agents."
+
+[[params.faqItems]]
+question = "Does AI code quality depend on which tech stack I pick?"
+answer = "Yes, and the Week 8 multi-stack assignment exists to make you feel it. AI performs strongly on React and Next.js where training data is abundant, and noticeably worse on Svelte, Solid or niche frameworks. Python with FastAPI tends to produce better generated code than Rust with Actix, and database code quality varies with the choice between an ORM and raw SQL. Building an intuition for where AI is reliable is itself a valuable input to technical decisions."
 +++
 
 > This is Part 5 (the finale) of the "Stanford Vibe Coding Course Deep Dive" series. See the series navigation at the bottom.

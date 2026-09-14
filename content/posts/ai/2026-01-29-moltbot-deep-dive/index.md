@@ -8,6 +8,34 @@ toc = true
 tags = ['OpenClaw', 'Moltbot', 'Clawdbot', 'AI Agent', 'Open Source', 'Security']
 categories = ['AI Guides']
 keywords = ['what is Moltbot', 'Moltbot AI Agent', 'OpenClaw', 'Moltbot rename', 'Moltbot security', 'Clawdbot', 'Moltbot architecture', 'Moltbot vs Claude Code', 'personal AI agent', 'Moltbot setup guide']
+
+[[params.faqItems]]
+question = "What is Moltbot?"
+answer = "Moltbot is an open-source personal AI agent that runs 24/7 on a machine you own. You message it from Telegram, WhatsApp, iMessage, Discord, Slack, Signal or Teams, and it drives your browser, handles email, runs shell commands and schedules cron jobs rather than only offering advice. It went from launch to 80,000+ GitHub stars in under a week in January 2026, and by late February had passed 186,000 stars with 32,000+ forks."
+
+[[params.faqItems]]
+question = "Why did Clawdbot change its name to Moltbot, and what is OpenClaw?"
+answer = "All three names refer to the same project at different stages. It launched as Clawdbot, which was too close to Claude for Anthropic's legal team, so a trademark request forced a rename to Moltbot — a reference to molting, how lobsters grow. The community also uses OpenClaw, which is the name the project now carries. The renaming also opened the door for a cryptocurrency scam that traded on the confusion."
+
+[[params.faqItems]]
+question = "What does Moltbot's architecture look like under the hood?"
+answer = "Four layers. A messaging channel layer covering 12+ chat platforms; a Gateway that runs at `ws://127.0.0.1:18789` over WebSocket and acts as the connection hub for every client, tool and event; an AI reasoning layer that can sit on Claude, OpenAI or a local model; and a tool layer for browser control via Chrome DevTools Protocol, file I/O, shell execution, cron jobs and 50+ plugins. It is TypeScript on Node.js 22+, with pnpm and stable/beta/dev release tracks. Memory persists as files under `~/.clawdbot/`."
+
+[[params.faqItems]]
+question = "Why were developers panic-buying Mac Minis for Moltbot?"
+answer = "Because the agent needs a machine running around the clock, and the Mac Mini hits the sweet spot: 6-8 watts at idle (pennies a month in electricity), an M4 chip that handles AI workloads comfortably, a footprint that disappears into a desk corner, and native iMessage support that Windows and Linux simply cannot offer. One machine is plenty despite the multi-Mac-Mini clusters people showed off — a cloud server works too."
+
+[[params.faqItems]]
+question = "Is Moltbot safe to run on my own machine?"
+answer = "Not without hardening. Researchers documented plaintext API keys and OAuth tokens in `~/.clawdbot/`, a reverse-proxy auth bypass (Moltbot trusts localhost, and behind Nginx every external connection looks like 127.0.0.1), and a working prompt-injection attack by Matvey Kukuy where a crafted email made an agent forward the user's 5 most recent emails to an attacker in about 5 minutes. SecurityScorecard later found over 135,000 exposed instances, 63% with vulnerabilities — which is why Meta and other companies banned it on corporate devices."
+
+[[params.faqItems]]
+question = "How should I deploy Moltbot securely?"
+answer = "Never run it as root — create a dedicated low-privilege user. Never expose the port: on a VPS, put it behind a firewall with real authentication rather than relying on the localhost default. Limit it to specific directories, start with read-only permissions and widen only after you have verified behavior, and run it inside a Docker container to bound the tool layer. Audit the credential files under `~/.clawdbot/` regularly, and prefer a model with stronger prompt-injection defenses such as Claude Opus 4.5."
+
+[[params.faqItems]]
+question = "What happened to Moltbot after January 2026?"
+answer = "The project outgrew its founder. On February 15, 2026, Peter Steinberger announced he was joining OpenAI and OpenClaw moved to foundation-backed community governance with 130+ core contributors. Stars went from 80K to 186,000+, the ClawHub marketplace passed 1,700 skill plugins, and releases came fast: v2026.2.17 added Sonnet 4.6, a 1M context window and sub-agent spawning, while v2026.2.19 shipped an Apple Watch MVP, a gateway auth overhaul and 40+ security fixes."
 +++
 
 **What is Moltbot?** In short, Moltbot is an open-source personal AI Agent that runs 24/7 on your computer, takes commands via Telegram, WhatsApp, or iMessage, and autonomously controls your browser, handles emails, and executes real tasks -- not just chatting, but actually doing work for you. Originally named Clawdbot, then briefly OpenClaw, it became one of the most explosive open-source AI projects of early 2026.

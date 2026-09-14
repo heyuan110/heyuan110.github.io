@@ -7,6 +7,30 @@ toc = true
 tags = ['OpenClaw', 'RAG', 'Vector Search', 'AI Agent', 'Memory System']
 categories = ['AI Guides']
 keywords = ['OpenClaw memory', 'agent memory architecture', 'RAG memory system', 'BM25 vector search', 'tool-driven recall', 'AI agent memory design']
+
+[[params.faqItems]]
+question = "How does OpenClaw's memory system actually work?"
+answer = "Through two tools rather than prompt injection. `memory_search` runs a hybrid query that combines BM25 full-text scoring with vector similarity, and `memory_get` pulls an exact text chunk by file path and line range. Nothing is concatenated into the system prompt automatically — the agent decides whether recall is needed, what to search for, and how much to retrieve. That keeps irrelevant history out of the context window and makes recall part of the agent's own reasoning."
+
+[[params.faqItems]]
+question = "Is OpenClaw memory a RAG system?"
+answer = "Yes — it is a production-shaped RAG layer with three separated stores: `chunks` holds text plus metadata (file path, line range, source), `chunks_vec` holds embedding vectors, and `chunks_fts` holds the full-text index. Splitting them buys three properties: explainability, because every result traces back to a file and line numbers; tunability, because BM25 and vector recall can be weighted and reranked independently; and auditability, because you can inspect exactly what was indexed."
+
+[[params.faqItems]]
+question = "Why not just inject a user profile into the system prompt every turn?"
+answer = "It works, but it burns tokens and scales badly — every request pays for context that is usually irrelevant. The article's analogy: auto-injection is like having someone read your entire resume aloud before every sentence you speak, while tool-driven retrieval is reaching for your notebook when you actually need it. The second matches how people work and is what handing control to the agent really means."
+
+[[params.faqItems]]
+question = "What does OpenClaw index besides chat history?"
+answer = "Workspace documents. Any `.md` file the agent produces — notes, summaries, SOPs, articles — is chunked and added to the memory index alongside raw conversation data. The reasoning is that a competent colleague asked how something was handled last time does not scroll back through old chat messages, they open the document they wrote. Agent-generated structured output is often more valuable for recall than the transcript that produced it."
+
+[[params.faqItems]]
+question = "How does OpenClaw index new sessions, and what happens to compacted history?"
+answer = "Sessions are stored as `.jsonl` files and indexed incrementally: the files are watched for changes, and once new content crosses a threshold the delta is read and chunked. Compression is treated as an addition, not a replacement — unlike systems where a `/compact` summary overwrites or deletes old messages, OpenClaw keeps both the original session data and the summary as indexable sources. Memory behaves like log retrieval rather than a curated persona."
+
+[[params.faqItems]]
+question = "What should I copy if I am building my own agent memory?"
+answer = "Three patterns. Anchor long-term preferences in an explicit file such as a Profile or `MEMORY.md` that the agent can reference reliably. Index what the agent writes, not only what it said. And teach it an actual retrieval workflow — first decide whether this task needs recall at all, then pick the keywords or concepts to search, then fetch only the fragments needed. Minimal, engineered, agent-controlled, with retrievability valued over automatic injection."
 +++
 
 ![OpenClaw memory strategy overview](cover.webp)

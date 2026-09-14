@@ -7,6 +7,30 @@ tags = ['AI', 'Claude Code', 'CLI', '开发工具', '效率']
 categories = ['AI实战']
 toc = true
 keywords = ['Claude Code 技巧', 'Claude Code 教程', 'AI 编程助手', 'Claude CLI']
+
+[[params.faqItems]]
+question = "Claude Code 怎么安装？有哪几种启动方式？"
+answer = "一行命令安装：`curl -fsSL https://claude.ai/install.sh | bash`。启动有三种：直接敲 `claude` 进交互会话；`claude ”帮我看看这个项目的目录结构”` 带着问题启动；`claude -p ”生成一个 .gitignore 文件”` 走非交互模式，适合脚本调用。进去以后 `/help` 看帮助，`/exit` 退出。"
+
+[[params.faqItems]]
+question = "非交互模式（-p）能做什么？怎么防止跑飞？"
+answer = "`-p` 就是把 Claude 当命令行工具用，最大价值是接管道：`npm test 2>&1 | claude -p ”分析测试失败的原因”`、`tail -100 error.log | claude -p ”这些错误有什么共同点？”`、`git log --oneline -20 | claude -p ”总结最近的开发工作”`。在 CI 或脚本里要加限额：`--max-budget-usd 5.00` 限制花费、`--max-turns 10` 限制轮数，两个可以组合用。"
+
+[[params.faqItems]]
+question = "常用斜杠命令有哪些？"
+answer = "高频的是这几个：`/clear` 清空对话、`/compact 保留数据库设计相关的讨论` 带重点压缩历史、`/cost` 看 Token 消耗、`/context` 看上下文占用、`/model` 切模型、`/resume` 恢复会话、`/rename` 给会话改名、`/export` 导出对话、`/tasks` 看后台任务、`/init` 初始化项目配置、`/memory` 编辑记忆文件、`/mcp` 管理 MCP 服务器、`/doctor` 检查安装状态。"
+
+[[params.faqItems]]
+question = "每次都弹授权确认，怎么才能不被打断？"
+answer = "推荐在 `~/.claude/settings.json` 里预设白名单，`permissions.allow` 写上 `Bash(npm:*)`、`Bash(git:*)`、`Bash(docker:*)`、`Read`、`Edit`，这些操作就不再弹确认。另一种是启动时加 `--dangerously-skip-permissions` 跳过全部权限检查，只建议在可信环境用。临时执行命令还可以用 `!` 前缀，比如 `! npm test`，直接跑不经过 Claude 解释。"
+
+[[params.faqItems]]
+question = "关掉终端后怎么接着昨天的会话继续？"
+answer = "用 `claude -c`（等价 `--continue`）直接续上最近一次对话；`claude -r`（`--resume`）列出历史会话挑一个；`claude -r ”重构认证”` 支持模糊匹配。建议在会话里先 `/rename 支付模块重构` 起个名字，下次 `claude -r ”支付模块”` 一秒定位。长任务按 `Ctrl+B` 丢后台，用 `/tasks` 查看状态，不阻塞你继续提问。"
+
+[[params.faqItems]]
+question = "上下文快满了、Token 烧得快怎么办？"
+answer = "先用 `/context` 看占用（输出是可视化进度条），超过 70% 就该处理：`/compact` 带上重点做智能压缩，换话题时直接 `/clear`。花费用 `/cost` 看当前会话、`/stats` 看整体、`/usage` 看订阅额度。另外深度思考关键词是分档的：`think` 消耗低、`think hard` 中等、`think harder` 高、`ultrathink` 很高，简单问题别上 ultrathink。"
 +++
 
 Claude Code 是 Anthropic 推出的命令行 AI 编程助手。它不是一个简单的聊天机器人，而是一个能直接在你的终端里读代码、写代码、执行命令的智能助手。本文整理了 24 个实用技巧，帮你把 Claude Code 用到极致。

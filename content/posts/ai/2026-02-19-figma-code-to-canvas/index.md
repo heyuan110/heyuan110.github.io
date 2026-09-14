@@ -7,6 +7,30 @@ toc = true
 tags = ['Figma', 'Claude Code', 'Anthropic', 'AI Design', 'MCP']
 categories = ['AI Guides']
 keywords = ['Figma Code to Canvas', 'Figma MCP server', 'Claude Code Figma integration', 'code to design tool', 'AI design workflow', 'Figma Anthropic']
+
+[[params.faqItems]]
+question = "What does Code to Canvas mean?"
+answer = "It means taking UI that Claude Code has already built and running in a browser, and turning it into editable Figma frames — real vector layers with text nodes, spacing and color values intact, not a flat screenshot. The distinction matters: a screenshot is a photograph of a house, while Code to Canvas hands you the blueprint in architectural software, where you can move walls and resize windows. Figma and Anthropic announced it on February 17, 2026."
+
+[[params.faqItems]]
+question = "How do I connect Claude Code to Figma?"
+answer = "Three steps. Open the Figma desktop app, go to Preferences and enable Dev Mode MCP Server, which starts a local service at `http://127.0.0.1:3845/sse`. Then register it with one terminal command: `claude mcp add --transport sse figma-dev-mode-mcp-server http://127.0.0.1:3845/sse`. Then type Send this to Figma in Claude Code, and the current browser-rendered state lands on your canvas as a frame."
+
+[[params.faqItems]]
+question = "Does Code to Canvas work in the Figma browser version?"
+answer = "No — the MCP Server only runs in the Figma desktop app. Two other access requirements catch people out: you need a Figma Dev or Full Seat license, and Claude Code is a CLI tool, so designers who do not work in a terminal face a real learning curve. Capture is also single-frame, meaning a multi-page flow has to be sent page by page."
+
+[[params.faqItems]]
+question = "If I adjust spacing or colors in Figma, does my code update?"
+answer = "No, and this is the biggest gap in the current release. The flow is one-way for visual tweaks: changes a designer makes on the canvas do not propagate back into the codebase, so synchronization is still manual. There is a reverse path, but it works at the frame level — select a frame in Figma, send its link to Claude Code, and it generates code that respects your design system components and tokens."
+
+[[params.faqItems]]
+question = "How is Code to Canvas different from v0, Bolt or Lovable?"
+answer = "Direction. v0, Bolt and Lovable go text to code or text to app — they solve building from zero. Code to Canvas goes code to design, solving what happens after the code exists: getting designers into the loop with editable frames rather than screenshots they have to rebuild. That makes it a downstream complement, not a competitor — you can generate with v0 and then send the result to Figma for design review."
+
+[[params.faqItems]]
+question = "What is Code to Canvas actually useful for day to day?"
+answer = "Four things stand out. Side-by-side comparison: have Claude generate 5-6 variants and lay them on the canvas like cards instead of screenshotting each one. Rapid prototyping: idea to discussable high-fidelity prototype in minutes. Fidelity review: drop the shipped interface next to the original comp and annotate every discrepancy. And design review of AI-generated UI, where a designer applies polish the model did not."
 +++
 
 On February 17, 2026, Figma and Anthropic jointly announced **Code to Canvas** — a feature that converts UI built with Claude Code into fully editable Figma frames. Not screenshots. Not flat images. Real, manipulable vector layers with preserved text, spacing, and color properties.

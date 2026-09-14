@@ -7,6 +7,30 @@ toc = true
 tags = ['Claude Code', 'Python', 'Agentic Loop', 'Tool Use', 'AI Agent']
 categories = ['AI Guides']
 keywords = ['build your own Claude Code', 'agentic loop tutorial', 'AI coding assistant Python', 'function calling tutorial', 'tool use OpenAI', 'terminal AI assistant', 'MagicCode']
+
+[[params.faqItems]]
+question = "Can you really build your own Claude Code in 250 lines of Python?"
+answer = "Yes — the core architecture is far simpler than the product around it. This tutorial builds MagicCode in four steps: V1 is a 20-line chat loop on the Chat Completions API, V2 adds streaming in about 30 lines, V3 adds a Rich-rendered terminal UI at roughly 35 lines, and V4 lands the full tool system plus Agentic Loop at 250 lines. What you do not get for free is everything else a shipped product carries: permission prompts, session persistence, MCP, token accounting."
+
+[[params.faqItems]]
+question = "What is the Agentic Loop and how does it differ from a chatbot?"
+answer = "The Agentic Loop is the cycle that lets the model act instead of only talking. Your message goes to the LLM; the LLM either answers or asks for a tool; your code runs the tool and feeds the result back; the LLM thinks again and may call another tool; the loop exits only when the model returns no tool calls. A chatbot hands you `print('hello world')` to copy-paste — an agent creates hello.py, writes it, runs it, and reports the output. The whole loop fits in under 40 lines."
+
+[[params.faqItems]]
+question = "What do I need installed to follow this Python tutorial?"
+answer = "Python 3.10 or newer (3.12+ recommended), an OpenAI API key, and a terminal. Create a virtualenv and run `pip install openai rich prompt_toolkit` — the SDK for native Function Calling, `rich` for Markdown rendering and syntax highlighting in the terminal, and `prompt_toolkit` for history and autocomplete (optional). Export the key with `export OPENAI_API_KEY=sk-...`, and put that line in `~/.zshrc` or `~/.bashrc` so it persists."
+
+[[params.faqItems]]
+question = "Does the AI execute the tools itself? Is that safe?"
+answer = "No — and that is the point. With Function Calling the model only decides which tool to call and what arguments to pass; it returns a `tool_calls` array and nothing more. Every actual read, write, and shell command runs inside your own Python code, so you own the execution boundary completely. That is why adding a confirmation gate is trivial: let read-only tools such as `read_file`, `list_files` and `search_code` run immediately, and prompt for approval before writes and `run_command`."
+
+[[params.faqItems]]
+question = "Why does the API reject my request after a tool call?"
+answer = "Almost always a message-protocol mistake. Tool results must be sent with `role: 'tool'`, not `role: 'user'` — the model treats the two differently because it needs to know the data came from execution rather than from a human. And every tool result must carry a `tool_call_id` that exactly matches the `id` of the originating `tool_call`; any mismatch and the API rejects the whole request, because that id is how the model maps results back to the calls that produced them."
+
+[[params.faqItems]]
+question = "Are 6 tools enough compared with the 15 that Claude Code ships?"
+answer = "For everyday work, mostly yes. MagicCode implements `read_file`, `write_file`, `edit_file` (replace the first occurrence of a string), `run_command` (30-second timeout), `list_files` and `search_code` — roughly 80% of real use cases. The missing 20% is the advanced surface: MCP integration, multi-file diffs, and notebook editing. Useful, but not what makes the experience work."
 +++
 
 ![MagicCode terminal AI coding assistant demo](cover.webp)

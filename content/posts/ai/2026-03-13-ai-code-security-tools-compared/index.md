@@ -6,6 +6,30 @@ description = 'Compare OpenAI Codex Security, Claude Code Security, and Snyk for
 toc = true
 tags = ['AI Security', 'Code Audit', 'Claude Code', 'DevSecOps', 'Vulnerability Scanning']
 keywords = ['AI code security tools', 'Codex Security vs Claude Code Security', 'AI vulnerability scanning comparison', 'Snyk vs AI security tools', 'code security scanning 2026']
+
+[[params.faqItems]]
+question = "What is Codex Security and how does its scan work?"
+answer = "Codex Security is OpenAI's AI vulnerability scanner, grown out of an internal tool called Aardvark and released into public research preview on March 6, 2026. A scan runs in three stages: context analysis builds a security map of the repo and an editable threat model, vulnerability identification classifies issues by real-world impact rather than theoretical severity, and sandbox validation pressure-tests each finding in an isolated environment to prove it is actually exploitable. That last stage cut false positives by over 50% during the beta."
+
+[[params.faqItems]]
+question = "Codex Security vs Claude Code Security: which one should I pick?"
+answer = "Pick Codex Security for volume and proof — it scanned 1.2 million commits in beta, surfaced 792 critical and 10,561 high-severity findings, and earned 14 CVEs in projects like GnuPG, GnuTLS, GOGS and OpenSSH. Pick Claude Code Security for precision: built on Claude Opus 4.6, it found 500+ vulnerabilities in production open-source code and runs multi-stage self-verification so fewer false positives reach you. If you already live in Claude Code, the second is less friction; both are still research previews."
+
+[[params.faqItems]]
+question = "Is Snyk Code still worth using now that AI scanners exist?"
+answer = "Yes, for coverage the AI tools do not have. Snyk Code came from the 2020 DeepCode acquisition and does AI data flow analysis inline in VS Code or IntelliJ as you type, with no compile step — versus repository-level scans from Codex and Claude. It also spans five products: open source dependency scanning, SAST, containers, IaC and DAST. Pricing is transparent: free for up to 5 projects, Team from $25 per developer per month, Enterprise custom."
+
+[[params.faqItems]]
+question = "Do these AI scanners replace penetration testing?"
+answer = "No. AI code scanning is static analysis — it reads source without running your application in a realistic environment, so it cannot see misconfigured infrastructure, broken deployment settings, or runtime-only behavior. Penetration testing evaluates the running system. Treat them as complements. For the same reason, Codex Security and Claude Code Security should be supplemental scans rather than your primary security gate while they remain research previews."
+
+[[params.faqItems]]
+question = "Can I run Codex Security and Claude Code Security on the same codebase?"
+answer = "Yes, and on a critical codebase it is worth it. They use different models and different validation strategies — sandbox exploitation on one side, multi-stage semantic self-review on the other — so they surface different classes of bugs. Note that both process your code on their servers: Codex analyzes in isolated containers, Claude routes through Anthropic's infrastructure, so check each provider's data handling policy before scanning proprietary code."
+
+[[params.faqItems]]
+question = "What kind of bug do AI scanners catch that SonarQube misses?"
+answer = "Context-dependent ones. Take a Python handler that passes `user_id` into a `build_query` helper which f-strings it into SQL: SonarQube likely misses it because the injection happens indirectly and the helper is not registered as a sink, while Snyk traces the data flow, Claude reasons about the unsafe interpolation across function boundaries, and Codex confirms exploitability in a sandbox. SonarQube is rule-based — about 85% of its 6,500+ rules target code quality, not security — so treat it as a complement, not a replacement."
 +++
 
 ![AI code security tools comparison showing three security scanning dashboards](cover.webp)

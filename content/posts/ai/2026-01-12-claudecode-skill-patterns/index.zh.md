@@ -6,6 +6,30 @@ toc = true
 tags = ['AI', 'Claude Code', 'Skills', '效率工具']
 categories = ['AI实战']
 keywords = ['Claude Code Skills 入门', 'Skills 创建教程', 'AI 协作技巧', 'Claude Code 能力扩展', 'SKILL.md 编写']
+
+[[params.faqItems]]
+question = "Claude Code 的 Skill 是什么？和斜杠命令有什么区别？"
+answer = "Skill 是一个「能力单元」，把专业知识、工作流程和最佳实践打包成模块让 Claude Code 自动调用。最关键的区别是不用手动触发：斜杠命令要你输入 `/command`，Skill 则由 Claude Code 根据对话上下文自己判断什么时候该用哪个，像一个看到你在处理特定任务就主动过来接手的同事。"
+
+[[params.faqItems]]
+question = "怎么创建一个 Claude Code Skill？需要写什么文件？"
+answer = "一个文件夹加一个 SKILL.md 就够。个人用 `mkdir -p ~/.claude/skills/demo-skill`，团队共享用 `mkdir -p .claude/skills/demo-company-skill`（能随 git 检入，新成员拉代码就自动获得能力）。SKILL.md 由 YAML frontmatter（name 和 description）加 Markdown 指令组成，正文写清楚 Instructions 和 Examples 两节。写完在 Claude Code 里敲 `/skills` 就能看到它。"
+
+[[params.faqItems]]
+question = "Skill 建好了却不生效，一般是哪里错了？"
+answer = "九成是目录结构。`.claude/skills/my-skill.md` 是错的，必须是 `.claude/skills/my-skill/SKILL.md`——必须建文件夹，文件必须叫 SKILL.md，而且大小写敏感。第二常见的是 description 写太长，控制在 20 字以内触发率最高，写长了反而降低命中。"
+
+[[params.faqItems]]
+question = "SKILL.md 的 name 和 description 怎么写才容易被触发？"
+answer = "name 用英文动名词形式，像 processing-pdfs、analyzing-spreadsheets、writing-documentation，别用 helper、utils 这种模糊词。description 用第三人称说清楚「能做什么」和「什么时候用」，并尽量塞进真实触发词（如 git diff、commit message）。想提高命中率就做触发词矩阵：在正文里单列一节把「用户反馈、差评分析、客诉分析、用户吐槽」这类同义搜法全列出来。"
+
+[[params.faqItems]]
+question = "Skill 能解决什么真实问题？有具体例子吗？"
+answer = "文中的 feedback-analyst 就是一个：description 写明读取用户反馈列表做情感分析，自动归类为功能缺陷、体验优化或新需求，并提取 Top 5 痛点。运营导出一份反馈 CSV，对 Claude Code 说一句「帮我看看这周差评集中在哪」，它自动激活这个 Skill，几千字读完直接给结论——比如 60% 的差评来自新上线的深色模式导致文字看不清。原本两个实习生干一天的活，几十秒出结果。"
+
+[[params.faqItems]]
+question = "写 Skill 有哪些进阶技巧？是不是什么事都该做成 Skill？"
+answer = "不是，简单任务直接问就行，别过度工程化。真要做进阶，两个技巧最实用：一是渐进式输出，在 SKILL.md 里写明分层策略，首次只给不超过 50 字的结论，用户说「详细」再展开 3 个要点，说「更详细」才出完整报告；二是错误自愈，写清降级顺序（实时 API → 缓存数据 → 通用模板 → 请用户提供），绝不直接甩错误信息。"
 +++
 ![Skills Secret](skills-secret-compressed.webp)
 

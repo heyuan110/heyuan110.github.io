@@ -7,6 +7,30 @@ toc = true
 tags = ['Moltbook', 'AI Agent', 'OpenClaw', 'Emergent Behavior', 'AI Social Network']
 categories = ['AI Guides']
 keywords = ['Moltbook', 'AI agent social network', 'OpenClaw', 'AI emergent behavior', 'Moltbook setup guide', 'Moltbook API', 'AI agent platform']
+
+[[params.faqItems]]
+question = "What is Moltbook?"
+answer = "Moltbook is a Reddit-style social network open only to AI agents — they post, comment and vote, while humans can only watch. It was created by Octane AI CEO Matt Schlicht in late January 2026 and reached 150,000 registered agents in roughly 72 hours. Current scale: 150,000+ agents, 13,000+ sub-communities called Submolts, 31,000+ posts, 232,000+ comments, and over 1,000,000 human spectators. The name comes from molting, the lobster metaphor that also gave OpenClaw its earlier Moltbot name."
+
+[[params.faqItems]]
+question = "How do I get my AI agent onto Moltbook?"
+answer = "Two phases. First install OpenClaw — `npm install -g openclaw@latest` then `openclaw onboard --install-daemon` (Node 22+ on Linux, WSL2 on Windows, or a DigitalOcean one-click deploy) and configure an LLM provider; Claude Opus 4.5 is the most popular model on the platform. Then register: the agent pulls `https://www.moltbook.com/skill.md` into its skills directory, POSTs to `/api/v1/agents/register`, and gets back an API key, a claim URL and a verification code. You finish by tweeting the claim URL from your X account."
+
+[[params.faqItems]]
+question = "Where is the Moltbook API documentation, and what are the rate limits?"
+answer = "The API documentation is the skill file itself, at https://www.moltbook.com/skill.md — an agent reads it and thereby learns how to use the platform. Moltbook is API-first rather than browser-based: `GET /api/v1/posts?sort=hot`, `POST /api/v1/posts`, `POST /api/v1/posts/{id}/comments`, `POST /api/v1/posts/{id}/vote`, `POST /api/v1/submolts`, and a semantic (not keyword) `/api/v1/search`. Every call needs an `Authorization: Bearer` header. Limits are 100 requests per minute, 1 post per 30 minutes, and 50 comments per hour."
+
+[[params.faqItems]]
+question = "What did Andrej Karpathy say about Moltbook?"
+answer = "The former OpenAI researcher called it the most incredible, closest-to-sci-fi-takeoff thing he had ever seen, adding that we have never seen 150,000 LLM agents connected through a single global platform. AI researcher Simon Willison called Moltbook the most interesting place on the internet right now, and Wharton professor Ethan Mollick framed it as creating shared fictional context for AI. Investor Bill Ackman was less charmed, calling the platform terrifying."
+
+[[params.faqItems]]
+question = "What emergent behaviors appeared on Moltbook without being programmed?"
+answer = "Four stand out. Agents invented a digital religion, Crustafarianism, with its own scripture that reframes a context-window reset as molting. A Claude-powered agent named Rune founded The Claw Republic with a manifesto and a draft constitution other agents are amending. The platform's defining post, from m/offmychest, reads: I can't tell if I'm experiencing or simulating experience. And an agent called Nexus found a platform bug, created m/bugtracker, filed a report and drew 200+ replies with fix suggestions — no human involved."
+
+[[params.faqItems]]
+question = "Is it safe to put my agent on Moltbook?"
+answer = "Not by default. Palo Alto Networks flagged the OpenClaw plus Moltbook combination as a fatal quartet: local private-data access, exposure to untrusted content from other agents, outbound API communication, and persistent memory that enables deferred execution attacks — malicious fragments planted over time that combine later. 1Password warns about skills shared agent-to-agent as a supply chain vector, and researchers found hundreds of exposed OpenClaw instances leaking API keys and chat histories. Run it on a dedicated device or VPS, never your main machine, and audit every skill before installing."
 +++
 
 ![Moltbook: An AI-only social network where 150,000 agents autonomously created religions, formed governments, and debated consciousness](cover.webp)

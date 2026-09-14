@@ -6,6 +6,30 @@ description = 'AI代码安全工具横评 2026：Codex Security（3 月发布，
 toc = true
 tags = ['AI Security', 'Code Audit', 'Claude Code', 'DevSecOps', 'Vulnerability Scanning']
 keywords = ['AI代码安全工具对比', 'Codex Security评测', 'Claude Code Security使用体验', 'Snyk替代方案', '代码安全扫描工具2026', 'AI漏洞扫描']
+
+[[params.faqItems]]
+question = "Codex Security 是什么？跟普通代码扫描有什么不一样？"
+answer = "Codex Security 是 OpenAI 的 AI 漏洞扫描工具，脱胎于内部工具 Aardvark，2026 年 3 月 6 日开放公开预览。它分三步：先分析仓库结构生成一份可编辑的威胁模型，再按实际影响而非理论严重性识别漏洞，最后把发现放进隔离沙箱压力测试，验证是否真能被利用。这一步让它的误报率比常规 SAST 低 50% 以上。"
+
+[[params.faqItems]]
+question = "Codex Security 能替代渗透测试吗？"
+answer = "不能。AI 代码扫描属于静态分析，只读源码不跑应用，看不到运行时配置错误、基础设施问题和线上才会暴露的行为；渗透测试评估的是运行中的系统。两者互补。而且 Codex Security 和 Claude Code Security 都还在研究预览阶段，建议作为补充扫描，不要当成唯一的安全关卡。"
+
+[[params.faqItems]]
+question = "Codex Security 怎么跑一次深度安全扫描？要花钱吗？"
+answer = "通过 Codex 网页界面发起扫描，面向 ChatGPT Pro、Enterprise、Business 和 Edu 用户开放，首月免费，长期定价还没公布。开源项目维护者可以申请免费使用。扫描前建议先编辑那份自动生成的威胁模型，把 AI 理解错的业务逻辑改对——就像审计前给顾问做 briefing，信息越准结果越准。"
+
+[[params.faqItems]]
+question = "Codex Security 和 Claude Code Security 该选哪个？"
+answer = "要广度和可利用性证明选 Codex：测试期扫了 120 万次提交，找出 792 个严重漏洞、10,561 个高危漏洞、14 个 CVE，涉及 GnuPG、GnuTLS、GOGS、OpenSSH 等项目。要精度选 Claude Code Security：基于 Opus 4.6，在生产级开源代码中发现 500 多个漏洞，靠多阶段自我审查过滤误报，且已经内置在 Claude Code 里。"
+
+[[params.faqItems]]
+question = "Snyk 多少钱？免费版够小项目用吗？"
+answer = "免费版最多 5 个项目、开源扫描不限次数，小项目确实够用；团队版起价 $25/开发者/月，企业版定制。Snyk 的优势不在单点扫描而在覆盖面：SCA 依赖扫描、SAST 源码分析、容器、IaC、DAST 五条产品线，且在 VS Code、IntelliJ 里实时提示，不用编译。这些是只做源码分析的 AI 扫描器覆盖不到的。"
+
+[[params.faqItems]]
+question = "SonarQube 为什么抓不到上下文相关的漏洞？"
+answer = "因为它本质是规则匹配，6,500 多条规则里约 85% 针对代码质量而非安全。举例：`user_id` 经 `build_query` 辅助函数用 f-string 拼进 SQL，SonarQube 大概率漏掉，因为注入是间接发生的、该函数没被登记为 sink；而 Snyk 能追数据流、Claude 能做跨函数语义推理、Codex 还能在沙箱里验证可利用性。SonarQube 适合作为 AI 工具的补充，尤其是需要私有部署时。"
 +++
 
 ![AI code security tools comparison showing three security scanning dashboards](cover.webp)

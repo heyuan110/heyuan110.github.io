@@ -6,6 +6,30 @@ toc = true
 tags = ['Jira', 'Confluence', 'Atlassian', 'Linux', 'MySQL']
 categories = ['Linux']
 keywords = ['Jira installation Ubuntu', 'Confluence setup guide', 'Atlassian self-hosted', 'Jira Confluence migration', 'Confluence MySQL configuration']
+
+[[params.faqItems]]
+question = "How do I install Jira on Ubuntu?"
+answer = "Install JDK 1.8 or later with `sudo apt install default-jre` and MySQL 5.7, create the database, then run the downloaded installer. The database step matters most: `CREATE DATABASE jira CHARACTER SET utf8 COLLATE utf8_bin;` — Jira requires binary collation and will reject anything else. Make the .bin file executable and run it; defaults land the application in `/opt/atlassian/jira` and data in `/var/atlassian/application-data/jira`. Change the port in `/opt/atlassian/jira/conf/server.xml`."
+
+[[params.faqItems]]
+question = "What server specs does a self-hosted Jira and Confluence need?"
+answer = "The setup described here — Ubuntu 16.04.5 LTS, 4 CPU cores, 16 GB RAM — supports roughly 2,000 users running both products on one machine. Installation order matters when the two share a user directory: install Jira first, because Confluence links to the Jira directory rather than the other way around."
+
+[[params.faqItems]]
+question = "Why does Confluence use port 8090 and fail when I set it up by domain name?"
+answer = "8090 is Confluence's default HTTP port. During initial setup always reach it as IP:port, for example `http://10.0.0.5:8090`, never through a domain name — using a domain at the database configuration step consistently produces timeout errors. Record the Server ID shown on the license page before you go further, and copy the MySQL connector JAR into `/opt/atlassian/confluence/lib/` with the service stopped."
+
+[[params.faqItems]]
+question = "Does a Jira backup include attachments?"
+answer = "No — this is the classic migration trap. The system backup ZIP at `/var/atlassian/application-data/jira/export` contains no attachments; those live separately in `/var/atlassian/application-data/jira/data/attachments` and must be archived by hand. To restore, stop Jira, extract attachments back to that path, drop `jira-backup.zip` into `/var/atlassian/application-data/jira/import`, start Jira, then use System, Import and Export, Restore System. Confluence behaves the same way with its own `attachments` directory."
+
+[[params.faqItems]]
+question = "Restoring data locked me out of Confluence — how do I get back in?"
+answer = "The restore deletes the new internal admin and reverts external directory settings to the old configuration. Fix it by inserting an admin directly into the database: add a row to `cwd_user` bound to the Confluence Internal Directory, a matching row in `user_mapping`, and two `cwd_membership` rows joining it to `confluence-users` and `confluence-administrators`. Log in with that account and reconfigure the external directory. Prevention: always create an internal admin during initial setup, because only internal admins can edit external directory settings."
+
+[[params.faqItems]]
+question = "I see duplicate entry errors during a Confluence restore — what causes that?"
+answer = "MySQL is defaulting to a Latin character set. Edit `/etc/mysql/mysql.conf.d/mysqld.cnf` and under `[mysqld]` set `character_set_server=utf8`, `collation_server=utf8_unicode_ci`, `skip-character-set-client-handshake` and `transaction-isolation=READ-COMMITTED`, plus `max_allowed_packet = 128M` and `innodb_log_file_size = 512M` for the large import. Restart MySQL and retry."
 +++
 
 Jira and Confluence are both products from Atlassian. Jira handles project tracking, agile development management, bug tracking, and workflow management. Confluence serves as an enterprise wiki and knowledge base for team collaboration and documentation. This guide covers installing both on Ubuntu, integrating their user directories, and migrating data from an existing deployment.

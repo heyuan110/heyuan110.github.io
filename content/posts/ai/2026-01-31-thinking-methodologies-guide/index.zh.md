@@ -7,6 +7,30 @@ toc = true
 tags = ['产品方法论', '思维模型', 'AI 协作', '需求分析', '项目管理']
 categories = ['AI原理']
 keywords = ['产品方法论', 'SMART 目标', 'MECE 原则', 'JTBD 用户需求', 'RICE 优先级', 'OKR 目标管理', '需求分析方法论', 'AI 需求沟通']
+
+[[params.faqItems]]
+question = "需求太模糊，怎么让 AI 真的做对？"
+answer = "按五个阶段过一遍，而不是一句话丢过去。定目标用 SMART、OKR、第一性原理、5W2H、奥卡姆剃刀；拆问题用 MECE、二八法则、5 Whys、SWOT；描述需求用 JTBD、用户故事、GWT 验收标准、Kano 模型、SCQA；排优先级用 Eisenhower 矩阵、MoSCoW、RICE、MVP/MLP、Pre-mortem；持续改进用 PDCA 和 Design Thinking。22 个不用每次全上，先把输入质量提上去，输出质量自然跟着涨。"
+
+[[params.faqItems]]
+question = "SMART 目标怎么写才不像许愿？"
+answer = "卡住五个字母：Specific 具体、Measurable 可衡量、Achievable 可实现、Relevant 相关、Time-bound 有期限，出自 George T. Doran 1981 年那篇论文。对照着改最直观：我想做个博客系统是许愿，2 月 28 日前用 Hugo 搭好个人博客、支持 Markdown、自动部署到 GitHub Pages、首页加载 3 秒内才是目标；多来点用户要改成 MAU 从 1 万涨到 3 万。"
+
+[[params.faqItems]]
+question = "MECE 是什么意思？怎么判断自己拆错了？"
+answer = "MECE 就是相互独立（分类之间不重叠）、完全穷尽（合起来覆盖所有情况），由 Barbara Minto 在 1960 年代于麦肯锡提出，是金字塔原理的地基。举个典型反例：把用户分成免费用户、VIP 用户、活跃用户就不 MECE——VIP 可能同时是活跃用户（重叠），沉默的付费用户又没被覆盖（遗漏）。正确做法是一次只按一个维度切：付费与否、活跃与否，再交叉成四格。"
+
+[[params.faqItems]]
+question = "用户故事怎么写才能影响到技术方案？"
+answer = "用三段式：作为某类用户，我希望做某事，以便获得某个价值。做个导出功能什么信息都没有；作为运营经理，我希望把上周的用户行为数据导出成 Excel，以便在周一例会上汇报——用户是谁、什么场景、什么格式都有了，这直接决定数据量多大、要不要异步导出、格式要不要可配。再配一条 Given/When/Then 验收标准，把做完了的定义提前钉死。"
+
+[[params.faqItems]]
+question = "RICE 打分具体怎么算？"
+answer = "公式是（Reach × Impact × Confidence）÷ Effort，由 Intercom 产品团队的 Sean McBride 提出，目的是压住凭偏好立项。Reach 是影响多少用户（比如每月 5000），Impact 按 3 巨大、2 高、1 中、0.5 低、0.25 极小打分，Confidence 用 100% 有数据、80% 凭经验、50% 靠直觉，Effort 是人月。示例：优化搜索 5000×2×80%÷2 = 4000 分，暗黑模式 533 分，重构支付 1500 分，先做搜索。"
+
+[[params.faqItems]]
+question = "JTBD 到底解决什么问题？为什么不能直接问用户想要什么？"
+answer = "JTBD 由哈佛商学院 Clayton Christensen 提出：用户不是买产品，而是雇产品来完成某个任务，75-85% 的新产品失败正是因为没找准这个任务。麦当劳按问卷改奶昔口味，销量纹丝不动；改去观察才发现 40% 的奶昔在早上 8:30 前卖出，买的是通勤族——他们雇奶昔做的是单手能喝、能顶到午饭、比面包有意思的早餐，真正的对手是香蕉和贝果。加稠加果粒后销量涨了 7 倍。"
 +++
 
 "帮我做一个用户管理系统。"

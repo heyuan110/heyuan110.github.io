@@ -7,6 +7,30 @@ toc = true
 tags = ['Claude Code', 'MCP', 'TypeScript', 'AI Development', 'MCP Server']
 categories = ['AI Guides']
 keywords = ['MCP Server tutorial', 'build MCP Server', 'Claude Code MCP', 'MCP TypeScript', 'Model Context Protocol', 'MCP Server development', 'MCP tools']
+
+[[params.faqItems]]
+question = "What is the minimal McpServer + registerTool + StdioServerTransport example in TypeScript?"
+answer = "Five moving parts. Import `McpServer` and `StdioServerTransport` from `@modelcontextprotocol/server` plus zod, instantiate `new McpServer({ name, version })`, then call `server.registerTool(name, { title, description, inputSchema: z.object({ city: z.string() }) }, handler)`. The handler returns `{ content: [{ type: 'text', text }] }`. Finally `const transport = new StdioServerTransport()` and `await server.connect(transport)`. Log startup with `console.error`, never `console.log`."
+
+[[params.faqItems]]
+question = "What do I need installed before building an MCP server?"
+answer = "Node.js 18 or newer (`node -v`), npm 9 or newer (`npm -v`), TypeScript 5.0 or newer (`npx tsc --version`) and a current Claude Code (`claude --version`). The project itself needs `npm install @modelcontextprotocol/server zod` plus `npm install -D typescript @types/node`. In tsconfig set `module` and `moduleResolution` to Node16 with `target: ES2022`, and in package.json set `type: module` — the SDK is ESM-only and omitting it is the number one reason a server refuses to start."
+
+[[params.faqItems]]
+question = "How do I register my server with Claude Code and confirm it loaded?"
+answer = "Compile with `npx tsc`, make the entry executable with `chmod +x dist/index.js`, then run `claude mcp add weather-server node /absolute/path/to/project/dist/index.js` — the path must be absolute. Check it with `claude mcp list`. Claude Code then discovers your tools automatically, so asking something like what the weather is in Tokyo triggers `get_weather` with no further wiring. To restart a misbehaving server, `claude mcp remove` it and add it again."
+
+[[params.faqItems]]
+question = "Why does my MCP server produce garbled communication?"
+answer = "Because something called `console.log`. MCP over STDIO uses stdout as the protocol channel, so any stray print corrupts the JSON-RPC stream — route all logging to `console.error`, which writes to stderr. For structured logs, enable the capability with `new McpServer({ name, version }, { capabilities: { logging: {} } })` and call `await ctx.mcpReq.log('info', message)` inside a handler, which sends the message to the client instead of the pipe."
+
+[[params.faqItems]]
+question = "What changed between MCP SDK v1 and v2?"
+answer = "Three breaking changes. The single `@modelcontextprotocol/sdk` package was split into `@modelcontextprotocol/server` and `@modelcontextprotocol/client`. Tool registration moved from `server.tool()` to `server.registerTool()`. Input validation now requires the schema to be wrapped in `z.object()` — an unwrapped schema is why tools silently fail to appear. Any tutorial still calling `server.tool()` is v1 and needs updating."
+
+[[params.faqItems]]
+question = "How many tools should one MCP server expose?"
+answer = "The protocol sets no limit, but keep each server focused on one domain with roughly 3 to 10 related tools — registering too many degrades the accuracy of the model's tool selection. Write a clear description and per-parameter `.describe()` text for each one, since that is all the client has to go on. And the server is not Claude-Code-specific: Cursor, VS Code Copilot via extensions, Continue and any other MCP client can consume it."
 +++
 
 **MCP Servers** are becoming the backbone of the AI tool ecosystem in 2026. Gartner predicts that 40% of enterprise applications will embed AI agents by end of year. **Claude Code**, one of the most capable AI coding tools available today, doubles as a full-featured MCP client. Learning to build MCP Servers means learning to extend what AI can do.

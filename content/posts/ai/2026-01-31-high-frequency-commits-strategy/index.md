@@ -7,6 +7,30 @@ toc = true
 tags = ['Git', 'Engineering Productivity', 'Conventional Commits', 'CI/CD', 'Testing']
 categories = ['AI Guides']
 keywords = ['high frequency commits', 'atomic commits', 'conventional commits', 'git bisect', 'progressive rollout', 'feature flags', 'CI CD pipeline', 'commit strategy']
+
+[[params.faqItems]]
+question = "How many commits per day is too many?"
+answer = "There is no number that is inherently too many — dozens to hundreds a day is the new normal once AI coding tools shorten the feedback loop. The count is a side effect, not a goal. What actually decides whether a project speeds up or spirals is whether every single commit is explainable, reversible and verifiable. A hundred atomic commits behind feature flags and a 15-minute test suite is safer than five sprawling ones."
+
+[[params.faqItems]]
+question = "How do I increase commit frequency without breaking things?"
+answer = "Build the five constraints before you raise the rate: atomic commits (one commit, one purpose, tens to a few hundred lines), Conventional Commits prefixes so history becomes queryable data, change-type isolation so fixes never carry refactors, layered tests that return core results in 5-15 minutes, and progressive rollout from a fast Beta channel to a deliberate Stable one. Without isolation and rollback, high-frequency pulses shatter the system; with them, it converges faster."
+
+[[params.faqItems]]
+question = "What makes a commit atomic, in practice?"
+answer = "One commit does exactly one thing. Keep each diff to tens or a few hundred lines depending on language. If a commit contains refactoring plus a new feature plus a bug fix, split it. For a large refactor, land several pure-refactor commits first and introduce behavior changes afterward. When unsure, make the smallest possible commit and converge with follow-ups. The payoff is that `git bisect` becomes an O(log N) debugging experience instead of a guessing game."
+
+[[params.faqItems]]
+question = "Which Conventional Commits prefixes should a team enforce?"
+answer = "Six carry most of the weight: `feat:` for a new feature, `fix:` for a bug fix, `docs:` for documentation, `refactor:` for restructuring with no behavior change, `test:` for test changes, and `chore:` for build tooling and dependencies. Validate the commit message or PR title in CI so the rule has teeth. Once history is structured you can auto-generate release notes and apply stricter gates to `feat` and `fix` than to `docs`."
+
+[[params.faqItems]]
+question = "How fast do CI tests need to be for this to work?"
+answer = "Core suites on PRs and the main branch should return in 5 to 15 minutes. Get there by layering: fast unit tests that always run, integration tests triggered by path, and E2E tests run by strategy, plus a smoke suite — the minimum viable regression set — on every commit covering login, payment and messaging. Flaky tests get zero tolerance; unstable tests destroy high-frequency iteration faster than slow ones do."
+
+[[params.faqItems]]
+question = "What are the traps that look agile but are not?"
+answer = "Three. Treating commit count as productivity — unexplainable, irreversible commits are noise, not speed. Relying on people to catch quality problems, when high-frequency iteration actually runs on system constraints: CI, tests, feature flags, progressive rollout. And hiding refactors inside bug fixes, which looks faster for a week and always explodes later. The underlying mistake is managing high-frequency change with discipline designed for low-frequency iteration."
 +++
 
 ![Engineering practices for high-frequency commits and stable delivery](cover.webp)
