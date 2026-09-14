@@ -417,6 +417,11 @@ General optimization strategies:
 3. **Avoid index-killing patterns** like wrapping indexed columns in functions or using leading wildcards in LIKE
 4. **Optimize JOINs** by driving from the smaller table and ensuring all join columns are indexed
 
+> 💡 **Useful Interactive Tool**:
+> Raw SQL statements extracted from slow query logs can be messy and hard to read. Before running EXPLAIN, we recommend formatting them using our free **[SQL Formatter on UseMagicTools](https://www.usemagictools.com/code-formatter.html)**.
+> 
+> Instantly format complex, multi-nested SQL statements with clean indentations and keywords highlighting, making it easy to spot performance bottlenecks!
+
 ## References
 
 - [MySQL Official Docs: EXPLAIN Output Format](https://dev.mysql.com/doc/refman/8.0/en/explain-output.html)

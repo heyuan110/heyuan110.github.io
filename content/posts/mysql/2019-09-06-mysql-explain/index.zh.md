@@ -417,6 +417,11 @@ EXPLAIN 是 MySQL 性能分析的必备工具，重点关注以下几个方面�
 3. **避免索引失效**：不要对索引列使用函数、不要前缀模糊查询
 4. **优化 JOIN**：小表驱动大表，确保关联字段有索引
 
+> 💡 **复杂慢查询排版神兵**：
+> 线上抓出来的慢查询 SQL 往往极其臃肿、嵌套多层，在用 EXPLAIN 分析前，推荐先用 **UseMagicTools** 上的免费 **[SQL 代码在线美化格式化器](https://www.usemagictools.com/code-formatter.html)** 重新规整排版。
+> 
+> 一键将杂乱的代码转换为标准缩进、层级分明的高可读语句，助您一眼看清 JOIN 关联漏洞和逻辑缺陷！
+
 ## 参考资料
 
 - [MySQL 官方文档：EXPLAIN Output Format](https://dev.mysql.com/doc/refman/8.0/en/explain-output.html)
