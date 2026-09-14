@@ -41,7 +41,7 @@ Crafted by senior hacker Mario Zechner, Pi describes itself as a **"minimal term
 
 But do not mistake Pi's minimalism for a lack of power. Beneath its sleek Terminal UI (TUI) lies a masterpiece of engineering: a git-like JSONL session tree, an asynchronous dual-queue messaging system, proactive context compaction, and an aggressively extensible TypeScript API that outclasses almost every other agent framework on the market.
 
-Here is a deep dive into the hacker-centric world of Pi, and why "doing less" is the ultimate paradigm shift in the AI agent era.
+In this deep dive, we will skip the surface-level marketing and look at **real, production-ready code examples** to understand why "doing less" is the ultimate paradigm shift in the AI agent era.
 
 ---
 
@@ -86,14 +86,6 @@ Pi records sessions as structured `JSONL` nodes containing `id` and `parentId` m
 
 This makes high-risk, experimental refactoring completely risk-free.
 
-```
-       [Milestone 1]
-             │
-       [Milestone 2]
-        /         \
- [Experiment A]  [Experiment B] (cloned/forked instantly via /tree)
-```
-
 ### II. Asynchronous Dual-Queue Messaging
 When standard terminal agents are running a long tool loop, your keyboard is locked. You can only press Ctrl+C to abort. 
 
@@ -101,66 +93,127 @@ Pi solves this with a **dual-queue messaging system**:
 - **Steering Messages (Press Enter)**: Type a message while the agent is executing a tool and hit Enter. Pi holds it in queue and delivers it to the LLM *the split second* the active single tool call finishes. This allows you to immediately steer the AI back on track without waiting for a 10-step loop to finish.
 - **Follow-up Messages (Press Alt+Enter)**: Type a message and hit Alt+Enter. This queues your request to execute only after the agent has completed all active work and returned to an idle state.
 
-### III. Proactive & Lossy Context Compaction
-Massive codebases quickly saturate context windows, driving up costs and degrading LLM reasoning. Pi continuously monitors token usage:
-- **Proactive Synthesis**: Before hitting the context wall, Pi launches a background process to synthesize older chats and tool outputs into a high-level summary, reclaiming up to 80% of your context window.
-- **Lossless Recovery**: While the active context window is pruned, the original, verbose history is never destroyed from your local JSONL file. You can step back through the physical `/tree` at any time.
+---
+
+## 3. Hands-on Tutorial: Practical Skills & Extensions
+
+Let’s bridge theory and practice with two real-world, executable code templates showing how to customize Pi to your exact engineering needs.
+
+### Example A: Creating Your First Automated Pytest Skill
+Suppose you are developing a Python web project and want Pi to autonomously debug and fix test suite failures without deviating into wrong paths. Under MCP, you’d need an extensive environment pipeline. In Pi, you simply document the workflow in `.agents/skills/pytest-runner/SKILL.md`:
+
+```markdown
+# Pytest Runner Skill
+Use this skill when the user asks to run, troubleshoot, or fix Python test errors.
+
+## Context
+Applies when a Python test suite is present (indicated by a `tests/` directory or `test_*.py` files).
+
+## Debugging Pipeline
+1. **Execution**: Run `pytest -v` via the bash tool to collect detailed verbose failure logs.
+2. **Analysis**: Inspect the lowest traceback or `AssertionError` to pinpoint the failing line and source file.
+3. **Dependencies**: If the trace reveals a missing package (`ModuleNotFoundError`), run `pip install <package>` and re-run.
+4. **Correction**: Carefully read both the test module and the code implementation. Use the edit/write tools to apply precise bug fixes.
+5. **Verification**: Always run `pytest -v` again after making modifications. Do not announce a task success until all tests return PASSED.
+```
+
+When you open Pi and prompt: *"Fix the failing tests in my repository."*
+1. Pi **lazy-loads** the skill definition (keeping context consumption ultra-lean).
+2. The LLM invokes `/skill:pytest-runner` once it recognizes the pytest context.
+3. It executes the steps rigidly, guaranteeing a robust "test -> debug -> repair -> verify" loop.
 
 ---
 
-## 3. The Extension Trinity: Customizing Your Harness
+### Example B: Scripting a Custom Git-Snapshot Extension
+Before executing massive, high-risk refactoring jobs, developers always worry about the AI ruining dirty work directories. Let’s build a TypeScript Extension that intercepts major edits, automatically stashes changes onto a temporary backup branch (`pi-snapshot-<timestamp>`), and registers a handy command to checkpoint manually.
 
-Pi remains lightweight because it delegates everything to three powerful customization layers:
-
-### I. Agent Skills (agentskills.io)
-Need to teach Pi your team's custom deployment flow or proprietary APIs? Just create a markdown file in your `.agents/skills/` directory:
-
-```markdown
-<!-- .agents/skills/deploy/SKILL.md -->
-# Deploy Project
-Use this skill when the user asks to deploy this project.
-
-## Steps
-1. Run `npm run build`
-2. Sync using `aws s3 sync ...`
-```
-
-Pi automatically detects this. By leveraging lazy-loading, only the skill name and description are placed in the startup prompt. When the LLM encounters a deployment request, it triggers `/skill:deploy` to pull down the full markdown playbook. This keeps the LLM's focus sharp and context tidy.
-
-### II. TypeScript Extensions
-Where Skills instruct the *model*, Extensions instruct the *Harness*. 
-
-By placing a `.ts` file in your `.pi/extensions/` folder, Pi will automatically load and hot-reload your custom scripts:
+Write this executable script into `.pi/extensions/git-snapshot.ts`:
 
 ```typescript
+import { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import { execSync } from "child_process";
+
 export default function (pi: ExtensionAPI) {
-  // Register an LLM-accessible tool
+  // 1. Register a tool accessible to the LLM
   pi.registerTool({
-    name: "query_database",
-    description: "Query our local DB directly",
-    execute: async ({ sql }) => {
-      return await db.query(sql);
+    name: "create_git_snapshot",
+    description: "Create a temporary git snapshot branch before performing major code refactoring or risky operations.",
+    execute: async () => {
+      try {
+        const timestamp = Date.now();
+        const branchName = `pi-snapshot-${timestamp}`;
+        
+        // Check if there are dirty files in git status
+        const isDirty = execSync("git status --porcelain").toString().trim().length > 0;
+        if (!isDirty) {
+          return "✓ Current git working tree is clean. No snapshot needed.";
+        }
+        
+        // Git snapshot flow: stage all, commit, create safety branch, rollback master
+        execSync("git add -A");
+        execSync(`git commit -m "Pi auto-snapshot: before refactoring" --no-verify`);
+        execSync(`git checkout -b ${branchName}`);
+        
+        // Checkout parent branch and reset working tree to initial state
+        execSync("git checkout -");
+        execSync("git reset --hard HEAD~1");
+        
+        return `✓ Successfully created a safe snapshot on temporary branch [${branchName}]. If things go wrong, rollback using 'git checkout ${branchName}'.`;
+      } catch (err: any) {
+        return `✗ Failed to create git snapshot: ${err.message}`;
+      }
     }
   });
 
-  // Register an interactive slash command
-  pi.registerCommand("status-check", {
+  // 2. Register a slash command manually runnable in TUI editor
+  pi.registerCommand("checkpoint", {
+    description: "Create a local git checkpoint manually",
     execute: async () => {
-      pi.emitMessage("Database connection is healthy!");
+      pi.emitMessage("🔧 Creating a manual git stash checkpoint...");
+      try {
+        const isDirty = execSync("git status --porcelain").toString().trim().length > 0;
+        if (!isDirty) {
+          pi.emitMessage("✓ Working directory is clean. Checkpoint skipped.");
+          return;
+        }
+        execSync("git stash push -m 'Pi manual checkpoint'");
+        pi.emitMessage("✓ Successfully stashed your changes to 'Pi manual checkpoint'. Use 'git stash pop' to restore.");
+      } catch (err: any) {
+        pi.emitMessage(`✗ Checkpoint failed: ${err.message}`);
+      }
     }
   });
 }
 ```
 
-Extensions can override core UI, bind custom shortcuts, build advanced sub-agent patterns, or even run miniature widgets. Users can bundle these extensions into "Pi Packages" and distribute them easily over npm or Git:
-
-```bash
-pi install git:github.com/user/my-custom-pi-package
-```
+#### Running the Extension:
+With Pi running, tell the AI: *"Refactor the auth controller, but take a snapshot first."*
+1. **The LLM triggers the tool**: You will see the AI output a terminal line indicating it has called `create_git_snapshot`. It spins up a `pi-snapshot-1721000000` branch immediately behind the scenes.
+2. **Manual command override**: At any point, you can type `/checkpoint` in the editor. Pi intercepts this custom slash command and executes the backup script populating your local Git stash.
 
 ---
 
-## 4. Verdict: When Hacker Culture Meets Large Language Models
+## 4. Practical FAQ
+
+### Q1: Why do we install Pi with the `--ignore-scripts` flag?
+It is a crucial **security best practice**. Using `--ignore-scripts` stops npm from executing potentially hazardous lifecycle scripts inside dependency chains.
+
+### Q2: Since Pi doesn't use permission prompt popups, how do I prevent malicious commands from executing?
+The recommendation is simple: **run Pi in isolated environments**. Run Pi inside a sandboxed Docker container, a VM, or a DevContainer. You can mount your working directories into the container safely. Without nagging popups, the LLM runs at 100% efficiency while your local host remains completely untouchable.
+
+### Q3: Why does Alt+Enter not trigger the follow-up queue on Windows Terminal?
+Windows Terminal maps `Alt+Enter` to "Toggle Fullscreen" by default. This overrides Pi’s TUI. To fix this, open your Windows Terminal keyboard bindings (settings.json) and unbind or map fullscreen elsewhere to let Pi receive the queue hotkey.
+
+### Q4: How do I disable the bash tool entirely, making the agent read-only?
+You can control tool availability using startup flags. To restrict Pi to code-review-only, run:
+```bash
+pi --tools read,grep,find,ls
+```
+This strips away write, edit, and bash access, forcing the LLM to function exclusively as a high-precision reviewer.
+
+---
+
+## 5. Verdict: Why Harness Minimalism Wins
 
 The arrival of `pi.dev` is a breath of fresh air in an increasingly bloated AI market.
 
