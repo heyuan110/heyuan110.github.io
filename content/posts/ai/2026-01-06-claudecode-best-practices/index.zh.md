@@ -6,6 +6,30 @@ toc = true
 tags = ['AI', 'Claude Code', 'Best Practices', 'Anthropic']
 categories = ['AI Guides']
 keywords = ['Claude Code 最佳实践', 'Claude Code 并行工作', 'CLAUDE.md 维护', 'Claude Code 使用技巧', 'AI 编程效率']
+
+[[params.faqItems]]
+question = "Claude Code 创始人推荐的最佳实践有哪几条？"
+answer = "五条：并行跑多个 Agent、用最智能的模型、把踩过的坑手写进 CLAUDE.md、用 slash 命令和 SubAgent 自动化重复流程、开启验证循环。都是他在 X 上分享的日常心得，不是官方文档。其中验证循环收益最大，创始人称质量提升 2-3 倍。"
+
+[[params.faqItems]]
+question = "多开几个 Claude Code 实例怎么避免文件冲突？"
+answer = "用 Git Worktree 给每个实例分配独立工作目录，例如 `git worktree add ../feature-a feature-a`。一个窗口重构模块、一个写测试、一个查文档，互不干扰。你的角色从士兵变成指挥官——布置完任务只在关键节点检查，不用盯着每个窗口看它敲代码。"
+
+[[params.faqItems]]
+question = "为了省钱用便宜模型划算吗？"
+answer = "不划算。瓶颈已经不是 token 生成速度（计算税），而是你纠正模型错误的时间（纠正税）——模型越笨，你交的税越多。便宜模型省下几毛钱 token 费，却要搭进一小时 review 和调 bug。建议：写代码、重构、需要推理的任务至少用 Sonnet，复杂任务上 Opus；简单智能体任务和批量处理才用轻量模型。"
+
+[[params.faqItems]]
+question = "CLAUDE.md 里到底该写什么内容？"
+answer = "写这个项目特有的坑，人工维护、保持短。比如：本项目用 ESM 模块不要用 require()、测试文件放 tests/ 不放 src/、调 payment API 前必须先查用户状态否则 500。不要让 AI 自己总结生成，会越写越长越虚；文件太长每次启动都吃掉一大块上下文，得不偿失。"
+
+[[params.faqItems]]
+question = "怎么用 slash 命令把提交流程自动化？"
+answer = "在 `.claude/commands/` 下建一个 markdown 文件即可。比如 push-pr.md 里写四步：跑 `npm run lint` 有错先修、跑 `npm run test` 确保通过、基于改动生成 commit message 并提交、创建 PR。之后输入 `/push-pr` 就走完整个流程。SubAgent 更进一步，适合需要独立上下文的子任务，比如专门跑测试或做代码审查的 Agent。"
+
+[[params.faqItems]]
+question = "验证循环怎么开启？效果有多大？"
+answer = "在 CLAUDE.md 的工作流程里写明验证步骤：每次改完代码跑 `npm run test`、前端改动要在浏览器里验证、提交前跑 `npm run lint`。这样 Claude 写完会自己跑测试、自己排查浏览器报错，而不是把半成品丢给你。还可以配 Playwright MCP 让它真能操作浏览器。创始人给出的质量提升是 2-3 倍。"
 +++
 ![Claude Code Best Practices](claude-code-best-practices.webp)
 

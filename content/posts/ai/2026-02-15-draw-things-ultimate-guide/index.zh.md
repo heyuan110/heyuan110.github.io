@@ -9,24 +9,32 @@ categories = ['AI实战']
 keywords = ['Draw Things 教程', 'Draw Things 怎么用', 'Draw Things 中文', 'comfyui vs drawthings', 'Mac 本地 AI 生图 2026', 'Apple Silicon 生图', 'Metal FlashAttention', 'Flux on Mac', 'Draw Things LoRA 训练', 'Draw Things MCP', 'Mac 免费 AI 生图工具 2026']
 
 [[params.faqItems]]
-question = '''Draw Things 是什么？跟 ComfyUI、Midjourney 比有什么独特优势？'''
-answer = '''Draw Things 是一款完全免费的 macOS/iOS 原生 AI 生图 App——不用装 Python、不用 Docker、不用订阅、不上传云端。核心差异在引擎：它用 SwiftUI + 自研推理引擎 s4nnc + Metal FlashAttention v2，从底层为 Apple Silicon 优化。同样硬件比 ComfyUI 的 PyTorch MPS 后端快 20-40%，生成延迟降低 43-120%。和 ComfyUI 比，它原生支持本地 LoRA 训练、JavaScript 脚本 API、官方 MCP Server——这三样 ComfyUI 都没有。和 Midjourney 比，没有 $30/月的订阅、不用进 Discord 打字、不用把你的参考图传到别人服务器。'''
+question = "Draw Things 是什么？跟 ComfyUI、Midjourney 比有什么独特优势？"
+answer = "Draw Things 是一款完全免费的 macOS/iOS 原生 AI 生图 App，不用装 Python、不用 Docker、不用订阅、不上传云端。它用 SwiftUI 加自研推理引擎 s4nnc 和 Metal FlashAttention v2 为 Apple Silicon 做底层优化，同样硬件比 ComfyUI 的 PyTorch MPS 后端快 20-40%。相比 ComfyUI 它多了本地 LoRA 训练、JavaScript 脚本 API 和官方 MCP Server；相比 Midjourney 省掉 $30/月订阅，也不用把参考图传到别人服务器。"
 
 [[params.faqItems]]
-question = '''Mac 多少内存才能跑？16GB 的 Mac Mini M4 真的够用吗？'''
-answer = '''2026 年靠量化技术，16GB 完全够用。按内存档位的真实配置：8GB Mac（M1 Air）跑 SD 1.5 8-bit + Tiled Decoding，512x512 输出；16GB Mac Mini M4 跑 SDXL 8-bit 或 Flux.1 Schnell，1024x1024 流畅，还能用 QLoRA 训练 SDXL LoRA；24GB+ Mac 直接上 Flux.1 Dev Q6_K（磁盘约 10GB）满血画质。关键三招：8-bit/Q6_K 量化模型、VAE 阶段开 Tiled Decoding、训练时开 Memory Saver。QLoRA 甚至能在 6GB 可用内存的 iPhone 15 Pro 上训练 SD 1.5 LoRA。'''
+question = "Mac 多少内存才能跑 Draw Things？16GB 的 Mac Mini M4 够用吗？"
+answer = "2026 年靠量化技术，16GB 完全够用。8GB Mac（M1 Air）跑 SD 1.5 8-bit 加 Tiled Decoding，出 512x512；16GB Mac Mini M4 跑 SDXL 8-bit 或 Flux.1 Schnell，1024x1024 流畅，还能用 QLoRA 训 SDXL LoRA；24GB+ 直接上 Flux.1 Dev Q6_K（磁盘约 10GB）。三个省内存开关：量化模型、VAE 阶段开 Tiled Decoding、训练时开 Memory Saver。"
 
 [[params.faqItems]]
-question = '''Draw Things、ComfyUI、Midjourney 三选一怎么选？'''
-answer = '''Mac 用户、想零配置、在意隐私、需要本地训练 LoRA 或 Claude Code 集成——选 Draw Things。喜欢复杂节点工作流、需要社区最新自定义节点、用非 Mac 的 GPU 主机——选 ComfyUI。只追求单张图的极致美感、不在乎钱不在乎控制不在乎数据本地化——选 Midjourney。对 2026 年大部分 Mac 用户来说，Draw Things 在性价比+性能+隐私三角上是最优解，而且它是三者里唯一能让 Claude Code 通过 MCP 直接出图的。'''
+question = "Draw Things 新手下载哪个模型？有什么模型推荐？"
+answer = "新手直接下 Flux.1 Schnell：只要 4 步就能出图，16GB 可用内存就能跑，速度和画质最平衡。按需求挑：写实人像用 Juggernaut XL，插画和概念艺术用 DreamShaper XL，最高画质用 Flux.1 Dev（需 24GB+），8GB 的老 Mac 只能选 SD 1.5，中文提示词场景用 Kwai Kolors 理解更准。"
 
 [[params.faqItems]]
-question = '''Draw Things 怎么训练本地 LoRA？怎么用 MCP 接 Claude Code？'''
-answer = '''训练 LoRA：进 PEFT 标签 → 选基础模型（SDXL Base 1.0 最稳）→ 上传 5-20 张风格一致的图 → 设独特触发词 → 先跑 500-1000 步测试 checkpoint，再决定是否继续（过拟合是新手第一大坑）。靠 QLoRA 16GB Mac Mini M4 训 SDXL 完全没问题。MCP 集成：Draw Things 设置里开启 API Server（默认 7860 端口），然后执行 `claude mcp add -s user drawthings -- npx -y mcp-drawthings`，重启 Claude Code 即可。之后让 Claude Code 直接调用 generate_image 和 transform_image，不用离开终端，图片自动存到 ~/Pictures/drawthings-mcp/。'''
+question = "Draw Things、ComfyUI、Midjourney 三选一怎么选？"
+answer = "Mac 用户、想零配置、在意隐私、需要本地训练 LoRA 或 Claude Code 集成，选 Draw Things。喜欢复杂节点工作流、需要社区最新自定义节点、用非 Mac 的 GPU 主机，选 ComfyUI。只追求单张图的极致美感、不在乎钱和数据本地化，选 Midjourney。三者里只有 Draw Things 能让 Claude Code 通过 MCP 直接出图。"
 
 [[params.faqItems]]
-question = '''Draw Things 能在 Mac 上跑 Wan 2.2、Hunyuan 视频生成吗？'''
-answer = '''能。Draw Things 支持 Wan 2.2 5B（文生视频）、Hunyuan Video（高质量视频）、Stable Video Diffusion（图生视频）。采样器用 DDIM Trailing 运动连贯性最好。真实硬件门槛：24GB+ 统一内存最舒服，16GB 理论上能跑短的低分辨率 Wan 2.2 5B 片段，但内存压力大。这是目前 Mac 上做本地视频生成最干净的方案——不用单独搭一套 ComfyUI 工作流。'''
+question = "Draw Things 怎么在 Mac 本地训练 LoRA？"
+answer = "进 PEFT 标签页，选基础模型（SDXL Base 1.0 最稳），上传 5-20 张风格一致的图，设一个独特触发词，先跑 500-1000 步存 checkpoint 看效果再决定要不要继续，过拟合是新手第一大坑。打标可以用内置的 Blip2 或 Moondream2 自动完成。靠 QLoRA，16GB 的 Mac Mini M4 训 SDXL LoRA 没问题。"
+
+[[params.faqItems]]
+question = "Draw Things 的 MCP 怎么接到 Claude Code？"
+answer = "先在 Draw Things 设置里打开 API Server（默认 7860 端口），再在终端执行 `claude mcp add -s user drawthings -- npx -y mcp-drawthings`，重启 Claude Code 生效。之后直接让 Claude Code 调用 generate_image、transform_image 出图，全程不用离开终端，图片自动存到 ~/Pictures/drawthings-mcp/ 目录。"
+
+[[params.faqItems]]
+question = "Draw Things 能在 Mac 上跑 Wan 2.2、Hunyuan 这类视频生成吗？"
+answer = "能。Draw Things 支持 Wan 2.2 5B（文生视频）、Hunyuan Video（高质量视频）和 Stable Video Diffusion（图生视频）。采样器选 DDIM Trailing 运动连贯性最好。硬件上 24GB+ 统一内存最舒服，16GB 只能跑短的低分辨率 Wan 2.2 5B 片段，内存压力偏大。"
 +++
 
 ![Draw Things 完全指南：Mac 本地 AI 生图从入门到精通的封面图](cover.webp)

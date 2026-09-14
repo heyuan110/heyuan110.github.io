@@ -6,6 +6,30 @@ toc = true
 tags = ['Python', 'Conda', 'Anaconda', 'Miniconda', 'Environment Management', 'Version Control']
 categories = ['Python']
 keywords = ['Conda tutorial', 'Anaconda vs Miniconda', 'Python environment management', 'virtual environment', 'pip vs conda', 'conda create environment']
+
+[[params.faqItems]]
+question = "How do I create a Conda environment with a specific Python version?"
+answer = "Use `conda create -n myenv python=3.10` — Conda downloads that interpreter for you, so the version does not have to be installed on the system first. You can pre-install packages in the same command, for example `conda create -n datascience python=3.11 numpy pandas jupyter`, or duplicate a working setup with `conda create -n myenv_copy --clone myenv`. Activate it with `conda activate myenv` and your prompt changes to (myenv)."
+
+[[params.faqItems]]
+question = "How do I switch between Python 2.7 and Python 3.10 projects?"
+answer = "Keep one environment per version instead of changing the version in place. Run `conda create -n py27 python=2.7` and `conda create -n py310 python=3.10`, then switch with `conda activate py27` or `conda activate py310` — `python --version` confirms 2.7.18 or 3.10.x, and `which python` shows which binary is live. `conda env list` prints every environment with a star next to the active one."
+
+[[params.faqItems]]
+question = "How do I install multiple packages at once with Conda?"
+answer = "Pass them on one command line: `conda install numpy pandas matplotlib`. Conda resolves all of them together with a SAT solver, which is why one command beats three. Pin a version with `conda install numpy=1.24.0`, pull from a specific channel with `conda install -c conda-forge pytorch`, and target another environment without activating it using `conda install -n myenv numpy`. Add `--dry-run` to preview changes first."
+
+[[params.faqItems]]
+question = "Should I install Anaconda or Miniconda?"
+answer = "Miniconda unless you specifically want the batteries included. Anaconda bundles 250+ packages plus the Navigator GUI and weighs roughly 500 MB to 3 GB — good for beginners and data science on a personal machine. Miniconda is about 50 MB, command-line only, and better for servers, CI, and custom setups. One more catch: Anaconda requires a paid license at organizations with more than 200 employees, so pair Miniconda with conda-forge to avoid it."
+
+[[params.faqItems]]
+question = "Conda or pip — which one should I use?"
+answer = "Conda when native dependencies are involved, pip when they are not. Conda installs pre-compiled binaries, handles non-Python libraries such as C/C++ dependencies, resolves everything globally with a SAT solver, and manages environments itself; pip installs Python-only wheels from PyPI serially and needs venv alongside it. Practical rule: install everything you can with `conda install` first, then fill gaps with `pip install`, and never install the same package both ways."
+
+[[params.faqItems]]
+question = "Why is Conda so slow, and why does conda activate not work?"
+answer = "Slowness is almost always dependency solving. Make conda-forge your primary channel with `conda config --add channels conda-forge`, or install Mamba — `conda install -c conda-forge mamba` — a drop-in replacement with identical syntax that solves up to 10x faster. If `conda activate` fails, shell integration was never set up: run `conda init bash` (or zsh / fish / powershell) and restart the terminal. Reclaim disk space with `conda clean --all`."
 +++
 If you have ever worked on one project that requires Python 2.7 and another that needs Python 3.10, you know how painful version conflicts can be. **Conda** solves this problem once and for all. This guide walks you through everything you need to know about Conda — from installation to daily workflow.
 

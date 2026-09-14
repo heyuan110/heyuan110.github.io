@@ -6,6 +6,30 @@ toc = true
 tags = ['AI', 'Claude Code', 'Best Practices', 'Anthropic']
 categories = ['AI Guides']
 keywords = ['Claude Code best practices', 'Claude Code parallel agents', 'CLAUDE.md tips', 'Claude Code workflow', 'AI coding productivity']
+
+[[params.faqItems]]
+question = "What are the Claude Code best practices the founder actually recommends?"
+answer = "Five: run multiple agents in parallel, always pick the smartest model available, record project-specific mistakes in CLAUDE.md by hand, package repetitive workflows into slash commands and subagents, and turn on verification loops so Claude tests its own output. They came from a thread on X rather than the official docs, which is why they read as habits instead of documentation. The verification loop is the highest-leverage one, worth a claimed 2-3x quality improvement."
+
+[[params.faqItems]]
+question = "How do I run several Claude Code instances in parallel without file conflicts?"
+answer = "Give each instance its own working directory with Git worktrees: `git worktree add ../feature-a feature-a` and `git worktree add ../feature-b feature-b`. One terminal refactors a module, another writes tests, a third researches docs. You do not watch each window line by line — you assign tasks and check in at decision points, acting as a commander rather than a soldier. The hard part is unlearning the habit of babysitting one agent before starting the next."
+
+[[params.faqItems]]
+question = "Is it worth paying for a smarter model like Opus instead of a cheaper one?"
+answer = "Yes, because the bottleneck is no longer the compute tax but the correction tax — the time you spend fixing the model's mistakes. A cheap model saves cents on tokens and then burns an hour in review and debugging. The practical split: Sonnet at minimum for coding, refactoring and reasoning-heavy work, Opus for genuinely complex work, and lighter models for simple agentic or batch tasks."
+
+[[params.faqItems]]
+question = "What should I actually write in CLAUDE.md?"
+answer = "Concrete traps from this specific codebase, curated by hand and kept short. Good entries look like: this project uses ESM modules, never use require(); test files go in tests/, not src/; always check user status before calling the payment API or it returns 500. Do not let AI generate or summarize the file — it grows bloated and vague, and a large CLAUDE.md eats context on every startup, which defeats the point."
+
+[[params.faqItems]]
+question = "How do slash commands and subagents cut repetitive work?"
+answer = "A slash command packages a whole workflow behind one trigger. Drop a markdown file in `.claude/commands/` — for example a push-pr.md that runs `npm run lint`, runs `npm run test`, generates a commit message, and opens a pull request — then type /push-pr. Subagents go further: the main agent spawns a worker with its own context for a subtask and gets the result back, which suits a dedicated testing or code-review agent."
+
+[[params.faqItems]]
+question = "How do I turn on a verification loop in Claude Code?"
+answer = "Write the verification steps into CLAUDE.md, for example: after every code change run `npm run test`; verify frontend changes in the browser; run `npm run lint` before committing. Claude then runs tests, type checks and lint on its own output and fixes what fails instead of handing you broken code. Adding a browser MCP server such as Playwright gives it visual checking too. The founder estimates a 2-3x quality gain from this alone."
 +++
 ![Claude Code Best Practices](claude-code-best-practices.webp)
 

@@ -7,6 +7,30 @@ toc = true
 tags = ['Claude Code', 'OpenClaw', 'AI Coding', 'Agent Engineering', 'AGENTS.md']
 categories = ['AI Guides']
 keywords = ['Claude Code workflow', 'OpenClaw development method', 'AGENTS.md guide', 'AI coding workflow', 'multi-agent parallel development', 'spec-driven development']
+
+[[params.faqItems]]
+question = "How do I set up a Claude Code workflow like the one behind OpenClaw?"
+answer = "Start with two files, not more tooling. Put an AGENTS.md in the repo root and symlink CLAUDE.md to it, covering project structure, build/test commands, coding style, git conventions and multi-agent rules. Then write a spec under docs/ and tell Claude Code `Build spec.md`. Peter Steinberger ran OpenClaw this way — 5-10 agents in parallel, 600+ commits per day, no team — and his own summary of the method is simply: write documentation."
+
+[[params.faqItems]]
+question = "What goes inside OpenClaw's AGENTS.md?"
+answer = "It is an 800+ line file Peter calls a collection of organizational scar tissue, and the AI maintains it rather than the human. It has 7 modules: project structure (src/, colocated *.test.ts, docs/, extensions/), build commands (`pnpm build`, `pnpm test`, `pnpm lint`), coding style (TypeScript ESM, files under ~700 LOC), git conventions via `scripts/committer`, multi-agent safety rules, documentation standards, and project-specific rules such as never editing node_modules."
+
+[[params.faqItems]]
+question = "How do multiple Claude Code agents work in one repo without conflicting?"
+answer = "They all share the same folder and the same main branch — no worktrees, no feature branches — and order comes from rules written into AGENTS.md. Each agent commits only files it modified, uses an atomic commit script, never runs git stash or switches branches, ignores changes it does not recognize, and pulls with `git pull --rebase`. Peter's reasoning is that branches cause merge conflicts, while atomic commits straight onto main cause fewer."
+
+[[params.faqItems]]
+question = "How many agents should I run in parallel?"
+answer = "Match the count to blast radius: 1-2 for refactoring because the changes overlap, around 4 for tests and cleanup because those tasks do not interfere, and 5-8 when UI, backend and docs are separate modules. Peter runs them in a 3x3 terminal grid on a 3840x1620 monitor. His point is that once work is parallelized, how long any single agent takes stops mattering much."
+
+[[params.faqItems]]
+question = "Why does Peter Steinberger use CLI tools instead of MCP servers?"
+answer = "Context budget. He uses no MCP servers at all, because GitHub MCP alone costs about 23,000 tokens of context while the `gh` CLI costs 0 — the model already knows how to use it. The setup is one line in CLAUDE.md, such as: use `gh` CLI for all GitHub operations. The model will try it, fail, read the help output, and learn. He does the same with `vercel`, `psql` and `axiom`."
+
+[[params.faqItems]]
+question = "What is the spec-driven workflow from requirements to code?"
+answer = "Six steps. Collect source material (repo2txt converts a reference repo to Markdown), have Gemini generate a roughly 500-line software design document, then run a teardown review in a fresh session asking for 20 underspecified or inconsistent points and iterate 3-5 rounds. Save the result as docs/spec.md, tell Claude Code to build it, and it implements in 2-4 hours. No elaborate prompting is needed because the spec already removes the ambiguity."
 +++
 
 ![OpenClaw Claude Code development methodology: documentation-driven, multi-agent parallel development](cover.webp)

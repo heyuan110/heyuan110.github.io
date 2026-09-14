@@ -7,6 +7,30 @@ tags = ['zsh', 'oh-my-zsh', 'shell', 'linux', 'macos', 'powerlevel10k']
 categories = ['Linux']
 toc = true
 keywords = ['Oh My Zsh', 'Zsh configuration', 'Powerlevel10k', 'terminal customization', 'shell setup', 'zsh-autosuggestions']
+
+[[params.faqItems]]
+question = "How do I install Zsh on macOS and Ubuntu?"
+answer = "macOS Catalina and later already ship Zsh as the default shell — confirm with `echo $SHELL`, which should print /bin/zsh. If you are still on Bash, run `brew install zsh` then `chsh -s $(which zsh)`. On Ubuntu or Debian use `sudo apt update && sudo apt install zsh -y`; on CentOS or RHEL use `sudo yum install zsh -y` (or `dnf`). Finish with `chsh -s $(which zsh)` and log out and back in for the shell change to take effect."
+
+[[params.faqItems]]
+question = "How do I install Oh My Zsh?"
+answer = "Run the official one-liner, which feeds `https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh` into `sh -c` (fetch it with curl -fsSL, or wget -O-). and if GitHub is unreachable the mirror `https://install.ohmyz.sh/` serves the same script. The installer backs up your existing config as `~/.zshrc.pre-oh-my-zsh`, so nothing is lost, and drops you straight into the Oh My Zsh welcome screen."
+
+[[params.faqItems]]
+question = "Which theme and plugins should I enable first?"
+answer = "Powerlevel10k for the theme and three plugins for daily work. Clone it with `git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k`, set `ZSH_THEME=powerlevel10k/powerlevel10k`, and a wizard launches on first load (`p10k configure` re-runs it). Then set `plugins=(git zsh-autosuggestions zsh-syntax-highlighting z extract sudo)` — autosuggestions completes from history, syntax highlighting turns invalid commands red before you press Enter."
+
+[[params.faqItems]]
+question = "Why does my prompt show squares or garbled icons?"
+answer = "Your terminal font lacks the glyphs Powerlevel10k draws. Install a Nerd Font — MesloLGS NF is the recommended one, via `brew tap homebrew/cask-fonts && brew install font-meslo-lg-nerd-font` — then select MesloLGS NF in your terminal emulator preferences. Hack Nerd Font works as well. The icons render correctly as soon as the terminal is using the patched font."
+
+[[params.faqItems]]
+question = "How do I fix a slow Zsh startup?"
+answer = "Three fixes, in order of payoff. Trim the plugins array to only what you actually use, since every plugin adds load time. Add the Powerlevel10k instant prompt block at the very top of `~/.zshrc` so the prompt paints before the rest of the config loads. Then measure: `time zsh -i -c exit` gives a quick number, and `zmodload zsh/zprof` plus `zprof` at the end of .zshrc shows exactly which lines are expensive."
+
+[[params.faqItems]]
+question = "How do I update or uninstall Oh My Zsh, or recover a broken .zshrc?"
+answer = "Update with `omz update` (the older `upgrade_oh_my_zsh` still works). Uninstall with `uninstall_oh_my_zsh`, which restores your pre-install shell config. If you broke your own config while editing, copy the backup the installer made: `cp ~/.zshrc.pre-oh-my-zsh ~/.zshrc` followed by `source ~/.zshrc`."
 +++
 
 If you spend any time in a terminal on Linux or macOS, you owe it to yourself to move beyond the default Bash experience. **Zsh** paired with **Oh My Zsh** transforms your shell into something far more capable and enjoyable to use. This guide walks you through the entire setup — from installing Zsh to fine-tuning performance — so you can get more done on the [command line](/posts/linux/2020-03-19-linux-mac-commands/) with less effort.

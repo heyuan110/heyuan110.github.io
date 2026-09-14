@@ -7,6 +7,30 @@ toc = true
 tags = ['AGI', 'AI Agent', 'AI Trends', 'Long-horizon Agent', 'Sequoia Capital']
 categories = ['AI Guides']
 keywords = ['AGI 2026', 'AI agent capabilities', 'Sequoia Capital AGI', 'long-horizon agents', 'AI recruiting agent', 'AI capability growth', 'functional AGI definition']
+
+[[params.faqItems]]
+question = "What does Sequoia Capital's '2026: This is AGI' post actually claim?"
+answer = "It claims long-horizon agents are functionally AGI and that 2026 is their year. The post was published January 14, 2026 by Sequoia partners Pat Grady and Sonya Huang, and its argument is that the three missing pieces are now all in place: pre-trained knowledge from ChatGPT in 2022, reasoning from OpenAI's o1 series in late 2024, and iteration from coding agents like Claude Code in 2026. Their advice to founders is to stop waiting for AGI to arrive."
+
+[[params.faqItems]]
+question = "Who are Pat Grady and Sonya Huang, and why does their AGI call matter?"
+answer = "Pat Grady is Sequoia's co-managing partner with 19 years of investment experience, and Sonya Huang is the Sequoia partner who identified the generative AI megatrend back in 2022. They are explicit that they write as investors, not researchers, so the piece is a market thesis rather than a technical paper. It matters because it is a formal position from one of the most influential venture firms, and OpenAI's Greg Brockman shared it with endorsement."
+
+[[params.faqItems]]
+question = "How does Sequoia define AGI in practical terms?"
+answer = "AGI is the ability to figure things out. Sequoia deliberately skips parameter counts and benchmark scores and defines it by outcome: can the system get the job done. They map it onto three human capabilities — knowledge, reasoning, and iteration — and argue an AI needs the same three. Earlier, when they asked top AI researchers for a definition, the answer was that everyone had their own and would know it when they saw it."
+
+[[params.faqItems]]
+question = "What happened in the 31-minute AI recruiting example?"
+answer = "A founder sent one message asking for a Head of DevRel, and the agent delivered a single targeted candidate in 31 minutes. It searched LinkedIn, decided titles were uninformative, pivoted to YouTube conference talks, filtered 50+ speakers by engagement, cross-referenced Twitter to find roughly a dozen authentic accounts, noticed three had cut posting frequency over three months, and landed on a Series D DevRel lead with 14,000 followers and no LinkedIn updates in two months. Nobody told it to do any of those steps."
+
+[[params.faqItems]]
+question = "How fast are agent capabilities improving, according to the post?"
+answer = "Roughly doubling every 7 months, based on measurements from METR rather than speculation. Extrapolating that curve gives about 30 minutes of expert-level work in 2026, a full day by 2028, a year of work by 2034, and a century by 2037. Sequoia's point is that the rate of improvement, not the capability at any single moment, is what should drive planning — goals set for 2030 may land in 2026."
+
+[[params.faqItems]]
+question = "What is the difference between the talker era and the doer era of AI?"
+answer = "Talkers extend conversation, doers complete work. In 2023-2024 ChatGPT and AI writing or coding assistants ended with you still doing the job yourself. Sequoia predicts 2026-2027 applications will feel like colleagues: running 24/7 instead of a few times a day, multiple instances working in parallel instead of one chat window, with the user managing a team of agents and delegating tasks rather than chatting. Pricing has to follow — charge on value and outcomes, not API calls."
 +++
 
 ![The AGI era has arrived](cover.webp)

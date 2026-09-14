@@ -6,6 +6,30 @@ toc = true
 tags = ['Python', 'Conda', 'Anaconda', 'Miniconda', 'Environment Management', 'Version Control']
 categories = ['Python']
 keywords = ['Conda', 'Anaconda', 'Miniconda', 'Python 环境管理', '虚拟环境', 'pip vs conda']
+
+[[params.faqItems]]
+question = "conda 怎么创建指定 Python 版本的环境？"
+answer = "一条命令：`conda create -n myenv python=3.10`，Conda 会自己下载对应解释器，系统里没装这个版本也没关系。也可以建环境时一起装包，比如 `conda create -n datascience python=3.11 numpy pandas jupyter`，或用 `--clone myenv` 克隆现成环境。之后 `conda activate myenv` 激活，提示符会变成 (myenv)。"
+
+[[params.faqItems]]
+question = "Python 2.7 和 3.10 项目怎么来回切换？"
+answer = "不要改现有环境的版本，而是一个版本建一个环境：`conda create -n py27 python=2.7`、`conda create -n py310 python=3.10`，然后 `conda activate py27` / `conda activate py310` 切换，用 `python --version` 验证输出 2.7.18 或 3.10.x，`which python` 可以看当前用的是哪个解释器。"
+
+[[params.faqItems]]
+question = "conda 下载特别慢，怎么配置国内镜像源？"
+answer = "加清华 TUNA 源：`conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/`，同样方式再加 free 和 cloud/conda-forge 三个地址，并执行 `conda config --set show_channel_urls yes`。也可以直接编辑 `~/.condarc` 写 channels 列表。装 mamba（`conda install -c conda-forge mamba`）能让依赖求解再快一个量级。"
+
+[[params.faqItems]]
+question = "Anaconda 和 Miniconda 该选哪个？"
+answer = "个人电脑上想开箱即用选 Anaconda：预装 250+ 个包、带 Navigator 图形界面，体积约 500MB–3GB。服务器、CI 或想自己控制装什么就选 Miniconda，只有约 50MB、纯命令行。另外注意：员工超过 200 人的组织商用 Anaconda 需要付费授权，这种情况建议 Miniconda + conda-forge。"
+
+[[params.faqItems]]
+question = "conda activate 不生效怎么办？"
+answer = "这是 shell 集成没初始化。执行 `conda init bash`（zsh / fish / powershell 同理），然后重启终端即可。顺带两个常用维护命令：`conda config --set auto_activate_base false` 关掉开机自动进 base，`conda clean --all` 清理缓存包释放磁盘空间。"
+
+[[params.faqItems]]
+question = "conda 和 pip 能混用吗？"
+answer = "能，但有顺序要求：先用 `conda install` 把能装的包装完，再用 `pip install` 补 Conda 渠道里没有的包，最后 `conda env export > environment.yml` 导出时会一并记录 pip 包。绝对不要同一个包既 conda install 又 pip install，这是环境被搞坏的最常见原因。"
 +++
 作为 Python 开发者，你是否遇到过这些问题：项目 A 需要 Python 2.7，项目 B 需要 Python 3.10，不同项目依赖的包版本相互冲突……**Conda** 正是解决这些问题的终极方案。本文将全面介绍 Conda 的使用方法，帮助你轻松管理多版本 Python 环境。
 

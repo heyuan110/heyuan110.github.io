@@ -7,6 +7,30 @@ tags = ['zsh', 'oh-my-zsh', 'shell', 'linux', 'macos', 'powerlevel10k']
 categories = ['Linux']
 toc = true
 keywords = ['Oh My Zsh', 'Zsh 配置', 'Powerlevel10k', '终端美化', 'Shell 配置', 'zsh-autosuggestions']
+
+[[params.faqItems]]
+question = "Zsh 怎么安装并设为默认 Shell？"
+answer = "macOS Catalina 及以后版本已自带 Zsh，用 `echo $SHELL` 输出 /bin/zsh 即可确认；否则 `brew install zsh`。Ubuntu/Debian 用 `sudo apt install zsh -y`，CentOS/RHEL 用 `sudo yum install zsh -y`。装好后执行 `chsh -s $(which zsh)`，退出登录再进来才会生效。"
+
+[[params.faqItems]]
+question = "Oh My Zsh 怎么安装和配置？"
+answer = "官方一行命令即可：用 curl -fsSL 拉取 `https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh` 再交给 `sh -c` 执行（wget -O- 同理）。GitHub 访问不畅时可换镜像 `https://install.ohmyz.sh/`。安装会自动把原配置备份成 `~/.zshrc.pre-oh-my-zsh`，之后所有配置都改 `~/.zshrc` 这一个文件。"
+
+[[params.faqItems]]
+question = "Powerlevel10k 主题怎么装？为什么图标是方块乱码？"
+answer = "用 `git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k` 下载，把 `ZSH_THEME` 改成 powerlevel10k/powerlevel10k 再 `source ~/.zshrc`，首次加载会弹配置向导（之后用 `p10k configure` 重跑）。图标变方块是字体问题，装 MesloLGS NF 或 Hack Nerd Font 并在终端里选中即可。"
+
+[[params.faqItems]]
+question = "必装插件有哪些？怎么启用？"
+answer = "三个最值：zsh-autosuggestions 根据历史补全（按右方向键采纳）、zsh-syntax-highlighting 实时把错命令标红、z 按使用频率跳目录。两个插件用 git clone 放进 `$ZSH_CUSTOM/plugins/`，然后在 `~/.zshrc` 里写 `plugins=(git zsh-autosuggestions zsh-syntax-highlighting z extract sudo)`，`source ~/.zshrc` 生效。"
+
+[[params.faqItems]]
+question = "终端启动变慢怎么优化？"
+answer = "先精简 plugins 数组，插件越多启动越慢；再把 Powerlevel10k 的 instant prompt 代码块放在 `~/.zshrc` 最顶部，让提示符先出来。想定位瓶颈就用 `time zsh -i -c exit` 测总耗时，或 `zmodload zsh/zprof` 配合末尾的 `zprof` 看每一项的开销。"
+
+[[params.faqItems]]
+question = "Oh My Zsh 怎么更新和卸载？配置改坏了如何恢复？"
+answer = "更新执行 `omz update`（旧命令 `upgrade_oh_my_zsh` 也还能用），卸载执行 `uninstall_oh_my_zsh`。如果是自己把 `.zshrc` 改坏了，直接恢复安装时的备份：`cp ~/.zshrc.pre-oh-my-zsh ~/.zshrc` 然后 `source ~/.zshrc`。"
 +++
 
 如果你使用 Linux 或 macOS，终端是每天都要打交道的工具。默认的 Bash 虽然够用，但 **Zsh** 配合 **Oh My Zsh** 能带来更强大的功能和更愉悦的使用体验。本文将手把手教你打造一个高效、美观的终端环境，让你的[命令行操作](/zh/posts/linux/2020-03-19-linux-mac-commands/)效率翻倍。

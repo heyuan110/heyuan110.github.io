@@ -8,24 +8,24 @@ tags = ['AI Agent', 'Hermes Agent', 'Nous Research', 'Harness Engineering', 'MCP
 keywords = ['Hermes Agent 评测', 'Hermes Agent 安装', 'Hermes Agent v0.9', 'Hermes Agent 中文教程', 'Nous Research Hermes Agent', 'Hermes Agent vs Claude Code', 'Hermes Agent 安装指南 2026', 'Hermes Agent 是什么', '自改进 AI 代理']
 
 [[params.faqItems]]
-question = '''Hermes Agent 是什么？'''
-answer = '''Hermes Agent 是 Nous Research 在 2026 年 2 月开源的 AI 代理框架，MIT 许可。它最大的特点是"出厂就带缰绳"——内置了学习循环、三层记忆、Skill 系统、40+ 工具和多平台接入，不需要你手写 CLAUDE.md 或配置 hooks，Agent 会自己从使用中进化。两个月 GitHub 冲到 27000+ stars。'''
+question = "Hermes Agent 是什么？"
+answer = "Hermes Agent 是 Nous Research 在 2026 年 2 月开源的 AI 代理框架，MIT 许可。它最大的特点是「出厂就带缰绳」——内置了学习循环、三层记忆、Skill 系统、40+ 工具和多平台接入，不需要你手写 CLAUDE.md 或配置 hooks，Agent 会自己从使用中进化。两个月 GitHub 冲到 27000+ stars。"
 
 [[params.faqItems]]
-question = '''Hermes Agent 和 Claude Code 有什么区别？'''
-answer = '''Claude Code 是"交互式编码工具"——你坐在终端前，它实时回应你。Hermes 是"自主后台引擎"——你部署到 $5 VPS 后它 24/7 运行、自己记忆、自己写 Skill、自己改进。我的判断是：Claude Code 是白天团队，Hermes 是夜班团队。两者不是替代关系，是分工关系。'''
+question = "Hermes Agent 和 Claude Code 有什么区别？"
+answer = "Claude Code 是「交互式编码工具」——你坐在终端前，它实时回应你。Hermes 是「自主后台引擎」——你部署到 $5 VPS 后它 24/7 运行、自己记忆、自己写 Skill、自己改进。我的判断是：Claude Code 是白天团队，Hermes 是夜班团队。两者不是替代关系，是分工关系。"
 
 [[params.faqItems]]
-question = '''Hermes Agent 怎么安装？最便宜要多少钱？'''
-answer = '''三种方式：一键脚本（curl 安装脚本到 bash）、Docker、$5/月 VPS。Hermes 本身 MIT 开源免费，你只付 LLM API 调用费。最省钱方案是 Hetzner CX22（~$4/月）+ OpenRouter 走 Claude Haiku 或 DeepSeek，整套 24/7 在线月成本 $10 以内。'''
+question = "Hermes Agent 怎么安装？最便宜要多少钱？"
+answer = "三种方式：一键脚本（curl 安装脚本到 bash）、Docker、$5/月 VPS。Hermes 本身 MIT 开源免费，你只付 LLM API 调用费。最省钱方案是 Hetzner CX22（~$4/月）+ OpenRouter 走 Claude Haiku 或 DeepSeek，整套 24/7 在线月成本 $10 以内。"
 
 [[params.faqItems]]
-question = '''v0.9.0 the everywhere release 有什么新东西？'''
-answer = '''2026-04-13 发布的 v0.9.0 主打"无处不在"：Termux 移动端和 Android 支持、iMessage 和 WeChat 集成、OpenAI/Anthropic 的 Fast Mode、后台进程监控、本地 Web 仪表板。过去两周合并 209 个 PR，解决 81 个 issue，活跃度在开源 Agent 项目里数一数二。'''
+question = "v0.9.0 the everywhere release 有什么新东西？"
+answer = "2026-04-13 发布的 v0.9.0 主打「无处不在」：Termux 移动端和 Android 支持、iMessage 和 WeChat 集成、OpenAI/Anthropic 的 Fast Mode、后台进程监控、本地 Web 仪表板。过去两周合并 209 个 PR，解决 81 个 issue，活跃度在开源 Agent 项目里数一数二。"
 
 [[params.faqItems]]
-question = '''自改进 Agent 会不会失控？'''
-answer = '''技术上有三重约束：Skill 文件是可读 markdown（不是黑箱权重）、记忆数据在本地 SQLite（你能直接看和删）、工具权限有沙箱。你能看到 Agent 改了什么、能回滚、能删除。但"你能看到代码"和"你看了代码"是两回事，真正的边界是你愿意让它自改进到什么程度。Nous Research 选了"用户控制优先"，MIT 许可给你审计权利，但不保证你行使这个权利。'''
+question = "自改进 Agent 会不会失控？"
+answer = "技术上有三重约束：Skill 文件是可读 markdown（不是黑箱权重）、记忆数据在本地 SQLite（你能直接看和删）、工具权限有沙箱。你能看到 Agent 改了什么、能回滚、能删除。但「你能看到代码」和「你看了代码」是两回事，真正的边界是你愿意让它自改进到什么程度。Nous Research 选了「用户控制优先」，MIT 许可给你审计权利，但不保证你行使这个权利。"
 +++
 
 ![Hermes Agent 完全指南：Nous Research 会成长的个人 AI 代理](cover.webp)

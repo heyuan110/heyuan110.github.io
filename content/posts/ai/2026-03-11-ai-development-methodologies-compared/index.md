@@ -7,6 +7,30 @@ toc = true
 tags = ['AI Coding', 'Spec-Driven Development', 'Vibe Coding', 'BMAD Method', 'AI Workflow']
 categories = ['AI Guides']
 keywords = ['AI development methodology', 'vibe coding', 'spec-driven development', 'AI coding workflow', 'BMAD method', 'Ralph Wiggum Loop', 'context-driven development']
+
+[[params.faqItems]]
+question = "What is the difference between vibe coding and spec-driven development (SDD)?"
+answer = "Vibe Coding means talking to the AI and iterating on whatever it produces — no plan, no spec. SDD inverts that: you write requirements, design and task files first and let the AI generate code from them (Kiro emits `requirements.md`, `design.md`, `tasks.md` per module). Vibe Coding wins on speed for throwaway prototypes and one-line fixes; SDD wins on auditability for large multi-person projects. Vibe Coding breaks down past a few hundred lines as contradictions accumulate; SDD breaks down on ceremony — Fowler's team watched a small bug fix expand into 4 user stories with 16 acceptance criteria."
+
+[[params.faqItems]]
+question = "Is spec-driven development actually production-ready in 2026?"
+answer = "Not in its strict form. After hands-on evaluation, Martin Fowler's team listed six systemic problems: rigid one-size workflows, review fatigue (engineers preferred reading code over markdown specs), fragile control where agents frequently ignored or over-interpreted the spec, spec drift, an unclear target audience, and a strong resemblance to Model-Driven Development from the 2000s, which ultimately failed. The underlying principle — be explicit before you build — is sound; the tooling is not there yet."
+
+[[params.faqItems]]
+question = "BMAD vs Spec-Kit vs Kiro — which SDD tool should I pick?"
+answer = "Match the tool to project size. AWS Kiro runs Requirements → Design → Tasks with EARS notation on Claude Sonnet and suits AWS-native teams, but gives even trivial bugs the full three-file treatment. GitHub Spec-Kit (Constitution → Specify → Plan → Tasks) is an open-source CLI whose generated markdown tends to be verbose. BMAD is the enterprise battleship — 21 agent personas, 50+ workflows, proven on a 50,000-LOC COBOL-to-Spring-Boot migration that cut integration time 40% — and overkill below enterprise scale. For SDD without vendor lock-in, cc-sdd supports Claude Code, Codex, Cursor and Gemini CLI."
+
+[[params.faqItems]]
+question = "What are the alternatives to SDD when writing full specs is overkill?"
+answer = "Three practical ones. Peter Steinberger's workflow: a lean AGENTS.md under 200 lines plus a `docs/` folder where every file carries `summary` and `read_when` frontmatter so agents read on demand, with 3-8 agents in parallel. The Ralph Wiggum Loop: each session starts with a clean context, reads the task list from disk, implements one task, commits, exits — git is the persistence layer, which kills context-window pollution. Context-Driven Development: invest in the right situational context (errors, snippets, screenshots) rather than the right spec."
+
+[[params.faqItems]]
+question = "How many AI coding agents should I run in parallel?"
+answer = "Three to eight, based on Peter Steinberger's practice. Below three you underutilize the machine; above eight, coordination overhead exceeds the gains. For focused mechanical refactoring four agents is the sweet spot, and he reports roughly 20% of his time goes to fully agent-driven refactoring. Atomic git commits become mandatory once several agents touch the same repo — otherwise rollback is impossible."
+
+[[params.faqItems]]
+question = "Can I mix AI development methodologies in the same project?"
+answer = "Yes, and you should — match the process to task complexity. Bug fixes and small features: Vibe Coding or plain interactive iteration, no spec. New modules: lean AGENTS.md plus on-demand docs, with a spec only where ambiguity is expensive. Architecture design or system refactoring: write requirements, design and tasks, but without dogma. Enterprise-scale work and legacy migrations: BMAD or a customized SDD process."
 +++
 
 ![AI development methodologies comparison — Vibe Coding, SDD, BMAD, and pragmatic workflows](cover.webp)
