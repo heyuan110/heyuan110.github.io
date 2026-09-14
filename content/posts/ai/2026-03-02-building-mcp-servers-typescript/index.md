@@ -659,6 +659,14 @@ Building MCP servers follows a straightforward workflow:
 
 The MCP ecosystem is growing fast. Every MCP server you build becomes instantly usable by Claude Code, Cursor, Copilot, and any future MCP-compatible tool. Start building today.
 
+> 💡 **Useful Interactive Tools**:
+> When developing custom MCP servers or inspecting JSON payloads, dealing with formatting and protocol connections can be tedious.
+> 
+> Try our free developer utilities on **UseMagicTools**:
+> 1. **[JSON Viewer & Formatter](https://www.usemagictools.com/json-viewer.html)**: Syntax highlight, validate, search, and fold complex JSON payloads instantly.
+> 2. **[API Tester](https://www.usemagictools.com/api-tester.html)**: Send GET/POST requests directly in your browser to debug your custom MCP backend REST endpoints.
+> 3. **[WebSocket Tester](https://www.usemagictools.com/websocket-tester.html)**: Connect to ws:// and wss:// protocols with live message logging and connection tracking. 100% free and private!
+
 ## Related Articles
 
 - [MCP Protocol Explained: The Universal Standard for AI Tools](/posts/ai/2026-02-28-mcp-protocol-explained/)

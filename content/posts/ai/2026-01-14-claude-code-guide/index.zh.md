@@ -763,6 +763,11 @@ Recent sessions:
 Select a session to resume (1-3) or press Enter to start new:
 ```
 
+> 💡 **实用调试工具推荐**：
+> Claude Code 的本地聊天历史全部以 JSONL 格式静静地躺在您的 `~/.claude/sessions/` 目录下。在终端中阅读和搜索这些会话历史极为吃力。
+> 
+> 推荐您试试 **UseMagicTools** 上的免费 **[Claude Code 历史会话离线查看器](https://www.usemagictools.com/claude-history-viewer.html)**。无需上传任何数据，直接将您本地的 JSONL 会话文件拖拽进去，即可在精美的 Web UI 中流畅地进行全文搜索、代码高亮对比和导出，100% 本地离线处理，确保商业代码隐私！
+
 ### 2. 常用斜杠命令
 
 在交互式对话中，可以使用斜杠命令：

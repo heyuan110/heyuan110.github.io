@@ -992,6 +992,14 @@ FastMCP 是官方 MCP Python SDK（PyPI 上的 `mcp` 包）中包含的高级框
 
 MCP 生态系统正在快速增长——仅 Python SDK 每月下载量就达数百万次。你构建的每个服务器都能立即与 Claude Code、Cursor、VS Code Copilot 以及未来任何兼容 MCP 的工具一起使用。现在就开始构建吧。
 
+> 💡 **调试提效工具推荐**：
+> 在编写 Python 自定义 MCP 服务、处理大模型 JSON 传输数据或进行连接排查时，手动打印 JSON 报文往往极不方便。
+> 
+> 推荐您配合使用 **UseMagicTools** 上的开发者三件套：
+> 1. **[JSON 格式化查看器](https://www.usemagictools.com/json-viewer.html)**：一键格式化、语法验证、节点折叠和检索复杂的 JSON 报文。
+> 2. **[API 接口调试测试器](https://www.usemagictools.com/api-tester.html)**：快速发出 GET/POST 接口调试请求，测试您 MCP 背后调用的第三方 API 数据。
+> 3. **[WebSocket 在线测试调试仪](https://www.usemagictools.com/websocket-tester.html)**：支持 ws:// 与 wss:// 协议的一键在线连通调试与日志显示，本地运行，绝对保护隐私！
+
 ## 相关阅读
 
 - [MCP 协议详解：AI 工具的通用标准](/zh/posts/ai/2026-02-28-mcp-protocol-explained/) — 深入了解 MCP 架构和概念

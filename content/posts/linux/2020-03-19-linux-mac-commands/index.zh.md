@@ -723,6 +723,11 @@ sudo dscacheutil -flushcache
 sudo killall -HUP mDNSResponder
 ```
 
+> 💡 **文本处理与正则小工具推荐**：
+> 在平时使用 `grep`、`sed`、`awk` 过滤文本，或是在开发脚本匹配特定的字符串模式时，反复在终端调试正则表达式非常容易踩坑。
+> 
+> 推荐您配合使用 **UseMagicTools** 上的免费 **[在线正则表达式测试器](https://www.usemagictools.com/regex-tester.html)**。纯浏览器本地高亮匹配测试，支持分组与标志选项，还能为您自动一键生成 JavaScript、Python、Golang、Bash 等多语言的正则匹配代码片段，轻量高效！
+
 ---
 
 ## 参考资料

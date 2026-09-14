@@ -189,6 +189,9 @@ Claude Code 的潜力比很多人想象的大。但它毕竟只是工具，用�
 
 与其抱怨 AI 不够聪明，不如想想自己的使用方式有没有优化空间。
 
+> 💡 **提效小工具推荐**：
+> 想要直观地检索、管理和翻看 Claude Code 在终端中产生的本地历史聊天会话？我们在 **UseMagicTools** 上线了免费的 **[Claude Code 历史会话离线查看器](https://www.usemagictools.com/claude-history-viewer.html)**。无需上传任何代码，直接拖拽您本地的 JSONL 会话文件（通常在 `~/.claude/sessions/`），即可在精美、带代码高亮的网页界面中流畅翻看和搜索，100% 离线处理，保障本地隐私，欢迎体验！
+
 ## 相关阅读
 
 - [Claude Code 浏览器自动化方案对比：Agent Browser、Playwright、DevTools](/zh/posts/ai/2026-01-28-claude-code-browser-automation/)

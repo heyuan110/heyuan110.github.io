@@ -357,6 +357,11 @@ claude --continue
 claude --resume
 ```
 
+> 💡 **Useful Interactive Tool**:
+> Claude Code's local conversation history is stored entirely in JSONL format inside your local `~/.claude/sessions/` directory. Reading and searching these raw files in the terminal can be extremely difficult.
+> 
+> Try our free, browser-based **[Claude Code History Viewer on UseMagicTools](https://www.usemagictools.com/claude-history-viewer.html)**. No data is ever uploaded to any server; simply drag & drop your local JSONL session files to search, read, compare code diffs with syntax highlighting, and export them. 100% private and secure!
+
 **Mode comparison**:
 
 | Launch Mode | Best For | Saves History |

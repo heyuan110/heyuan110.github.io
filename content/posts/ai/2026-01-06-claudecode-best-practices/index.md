@@ -181,6 +181,9 @@ Claude Code is more capable than most people realize. But it's still a tool — 
 
 Instead of complaining that AI isn't smart enough, consider whether your workflow has room for improvement.
 
+> 💡 **Useful Interactive Tool**:
+> Want to search, manage, and read your local Claude Code terminal history with an elegant UI? Try our free **[Claude Code History Viewer on UseMagicTools](https://www.usemagictools.com/claude-history-viewer.html)**. No data is ever uploaded; simply drag and drop your local JSONL session files (from `~/.claude/sessions/`) to browse, search, and review code diffs with syntax highlighting, 100% locally in your browser.
+
 ## Further Reading
 
 - [Claude Code Browser Automation: 5 Approaches Compared](/posts/ai/2026-01-28-claude-code-browser-automation/)

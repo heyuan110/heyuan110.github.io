@@ -475,6 +475,11 @@ export HTTPS_PROXY=http://proxy.company.com:8080
 
 Claude Code 给的上下文越充分，它的表现就越好。花点时间打磨你的 CLAUDE.md，配置合理的权限，从小任务开始再逐步交付复杂的重构。用不了一周，你就会纳闷以前没有它是怎么写代码的。
 
+> 💡 **提效小工具推荐**：
+> 别忘了，Claude Code 的本地聊天历史全部以 JSONL 格式保存在您本地的 `~/.claude/sessions/` 目录下。在终端里翻看历史或进行检索比较艰涩。
+> 
+> 您可以使用 **UseMagicTools** 上的免费 **[Claude Code 历史会话离线查看器](https://www.usemagictools.com/claude-history-viewer.html)**。直接拖拽您本地的 JSONL 会话文件进去，即可在精美、支持暗色主题的网页界面中流畅翻看和搜索，100% 浏览器本地离线处理，确保商业代码隐私！
+
 ## 相关阅读
 
 - [Claude Code 2026 定价：Max 方案值不值？](/zh/posts/ai/2026-02-25-claude-code-pricing/) — 完整的费用拆解

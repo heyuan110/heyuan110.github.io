@@ -1223,6 +1223,13 @@ ORDER BY month, total_quantity DESC;
 2. **理解原理**：不只会写 SQL，更要理解索引和事务原理
 3. **关注性能**：养成用 EXPLAIN 分析的习惯
 
+> 💡 **轻量数据库调试小工具推荐**：
+> 在平时练习 SQL 语句、或者分析本地 AI 智能体产生的缓存 `.db`/`.sqlite` 数据库文件时，无需去启动庞大臃肿的商业客户端（如 Navicat 或 DBeaver）。
+> 
+> 推荐您配合使用 **UseMagicTools** 上的免费工具：
+> 1. **[SQLite 在线免安装查看器](https://www.usemagictools.com/sqlite-viewer.html)**：100% 浏览器本地解析，支持拖拽直接读取 `.db`/`.sqlite` 文件、浏览表结构并执行自定义 SQL 查询。
+> 2. **[SQL 代码在线美化格式化器](https://www.usemagictools.com/code-formatter.html)**：一键对复杂的多层嵌套 SQL 语句进行规范排版，极速提升代码可读性！
+
 ## 参考资料
 
 - [MySQL 官方文档](https://dev.mysql.com/doc/refman/8.0/en/)

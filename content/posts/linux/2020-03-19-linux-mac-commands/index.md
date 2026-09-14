@@ -724,6 +724,11 @@ sudo dscacheutil -flushcache
 sudo killall -HUP mDNSResponder
 ```
 
+> 💡 **Useful Interactive Tool**:
+> When using `grep`, `sed`, `awk` to filter text on the terminal, or when writing scripts to match specific string patterns, debugging regular expressions in the CLI can be error-prone.
+> 
+> Try our free browser-based **[Regex Tester on UseMagicTools](https://www.usemagictools.com/regex-tester.html)**. Real-time matching, groups, and flags highlight fully locally. It can also instantly generate code snippets for JavaScript, Python, Go, PHP, and Bash!
+
 ---
 
 ## References

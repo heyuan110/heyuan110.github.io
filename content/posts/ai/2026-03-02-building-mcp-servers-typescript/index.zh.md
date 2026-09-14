@@ -659,6 +659,14 @@ SDK v2 将包拆分为 `@modelcontextprotocol/server` 和 `@modelcontextprotocol
 
 MCP 生态正在快速增长。你构建的每一个 MCP Server 都能立刻被 Claude Code、Cursor、Copilot 以及未来任何兼容 MCP 的工具使用。现在就开始构建吧。
 
+> 💡 **调试提效工具推荐**：
+> 在编写自定义 MCP 服务或拦截调试 JSON Payload 报文时，频繁拼装 JSON 和调试协议连接往往极为费时。
+> 
+> 推荐您配合使用 **UseMagicTools** 上的开发者三件套：
+> 1. **[JSON 格式化查看器](https://www.usemagictools.com/json-viewer.html)**：支持高亮验证、节点折叠、快速查找 JSON 数据。
+> 2. **[API 接口调试测试器](https://www.usemagictools.com/api-tester.html)**：快速模拟发出 GET/POST 请求，极速验证您 MCP 背后调用的第三方 API 接口。
+> 3. **[WebSocket 在线测试调试仪](https://www.usemagictools.com/websocket-tester.html)**：一键对 ws:// 与 wss:// 协议进行全功能在线连通调试与日志监控，免安装、全本地执行，保护隐私！
+
 ## 相关阅读
 
 - [MCP 协议详解：AI 工具的通用标准](/zh/posts/ai/2026-02-28-mcp-protocol-explained/)
