@@ -44,10 +44,12 @@ jobs:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
           HUGO_ENVIRONMENT: production
         run: |
+          # 不要用 --baseURL 覆盖:GitHub Pages 对自定义域名返回的是 http://,
+          # 会让 sitemap 的 432 条 <loc>、og:url 和 alias 跳转全变成 http,
+          # Googlebot 每次发现都要吃一次重定向。hugo.toml 里的 https 才是对的。
           hugo \
             --minify \
-            --buildFuture \
-            --baseURL "${{ steps.pages.outputs.base_url }}/"
+            --buildFuture
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
