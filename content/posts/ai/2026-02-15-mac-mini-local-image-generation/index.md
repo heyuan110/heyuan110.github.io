@@ -79,6 +79,9 @@ Combined with Apple's **Metal Performance Shaders (MPS)** and **Core ML** framew
 
 > **Key insight**: macOS itself uses 1-2GB of unified memory, so a 16GB Mac Mini has roughly 14GB available for AI workloads. If you plan to use Flux models regularly, **24GB is the comfortable starting point**.
 
+> 💡 **Useful Interactive Tool**:
+> Still wondering if you need a 16GB, 24GB, or larger unified memory configuration for your AI workloads? We have launched an interactive **[Mac Local LLM Hardware Selection Tool on UseMagicTools](https://www.usemagictools.com/mac-llm-selector.html)**. Just choose your target model size, quantization precision, and context window to accurately calculate the required Model RAM, KV Cache VRAM, and OS headroom, and find the perfect Mac model recommendation with custom purchase options!
+
 ## Three Tools at a Glance
 
 For local AI image generation on Mac, three tools deserve serious comparison:
