@@ -37,6 +37,11 @@ This is not some "learn to code with ChatGPT" fluff course. CS146S covers the fu
 
 This article breaks down every module of the course to give you a systematic overview. Subsequent articles in this series will deep-dive into the most valuable topics.
 
+> **Fall 2026 is running right now.** The course started September 22 and runs to December 3, with a
+> largely rewritten syllabus. There are still no official lecture videos. For the current calendar,
+> what changed since 2025, and a week-by-week plan you can follow from outside Stanford, see
+> [Stanford CS146S Fall 2026: schedule, videos, and how to follow along](/posts/ai/2026-09-11-cs146s-fall-2026-follow-along/).
+
 ## Course Overview
 
 | Item | Details |
@@ -44,7 +49,7 @@ This article breaks down every module of the course to give you a systematic ove
 | **Course Number** | CS146S |
 | **Course Name** | The Modern Software Developer |
 | **University** | Stanford University |
-| **Term** | Fall 2025 (inaugural offering) |
+| **Term** | Fall 2025 (inaugural) · **Fall 2026 running now, Sep 22–Dec 3** |
 | **Instructor** | Mihail Eric |
 | **TAs** | Febie Lin, Brent Ju |
 | **Credits** | 3 units |

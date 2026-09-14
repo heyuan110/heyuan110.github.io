@@ -6,7 +6,7 @@ title = 'CS146S Study Guide 2026: Lecture-by-Lecture Notes & Workbook'
 description = 'Self-study Stanford CS146S in 2026: lecture-by-lecture verdicts, the exercises worth doing, Claude Code/Cursor tool mappings, and a route that skips filler.'
 toc = true
 tags = ['Stanford CS146S', 'Vibe Coding', 'AI Coding', 'Study Guide', 'Agentic Engineering']
-keywords = ['cs146s study guide', 'cs146s lecture notes', 'cs146s the modern software developer', 'stanford cs146s syllabus 2026', 'stanford vibe coding course', 'how to self-study cs146s', 'cs146s assignments']
+keywords = ['cs146s study guide', 'cs146s lecture notes', 'cs146s the modern software developer', 'stanford cs146s syllabus 2026', 'how to self-study cs146s', 'cs146s assignments']
 
 [[params.faqItems]]
 question = "Is CS146S available online for free?"

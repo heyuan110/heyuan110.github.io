@@ -1,11 +1,11 @@
 +++
 date = '2026-09-11T10:00:00+08:00'
 draft = false
-title = '斯坦福 CS146S 2026 秋季开课了：不注册怎么免费跟课'
-description = '斯坦福 CS146S 2026 秋季 9 月 22 日开课到 12 月 3 日。官方没有录像，本文给出完整课程表、免费与付费边界、对比 2025 的新内容，以及国内时区的逐周跟课方案。'
+title = '斯坦福 CS146S 2026 秋季课程表：视频在哪、怎么免费跟课'
+description = '斯坦福 CS146S 2026 秋季 9 月 22 日开课，12 月 3 日结束，官方没有课堂录像。本文给出完整课程表、能看的视频到底有哪些、和 2025 秋的差异，以及国内时区的逐周跟课方案。'
 toc = true
 tags = ['Stanford CS146S', 'AI Coding', 'Learning Path', 'Agentic Engineering']
-keywords = ['斯坦福 cs146s', 'cs146s 课程', 'cs146s 视频', '斯坦福 vibe coding 课程', 'cs146s 免费', 'cs146s 2026 秋季', 'cs146s 怎么看', 'cs146s 报名', 'cs146s 课程表']
+keywords = ['cs146s 课程表', 'cs146s 视频', '斯坦福 cs146s 2026', 'cs146s 秋季', 'cs146s 怎么看', 'cs146s 免费跟课', 'cs146s 开课时间']
 
 [[params.faqItems]]
 question = "CS146S 是免费的吗？"

@@ -1,11 +1,11 @@
 +++
 date = '2026-09-11T10:00:00+08:00'
 draft = false
-title = 'CS146S Fall 2026: How to Watch and Follow Along Free'
-description = 'Stanford CS146S Fall 2026 runs Sep 22 to Dec 3 with no official lecture videos. What is free, full calendar, what changed since 2025, and a follow-along plan.'
+title = 'Stanford CS146S Fall 2026: Schedule, Videos, Follow Along'
+description = 'Stanford CS146S Fall 2026 runs Sep 22 to Dec 3. There are no official lecture videos: here is what you can actually watch, the full calendar, and a week-by-week plan.'
 toc = true
 tags = ['Stanford CS146S', 'AI Coding', 'Learning Path', 'Agentic Engineering']
-keywords = ['cs146s fall 2026', 'cs146s video', 'cs146s online', 'cs146s course', 'stanford vibe coding course', 'cs146s free', 'how to watch cs146s', 'cs146s enroll', 'cs146s schedule 2026']
+keywords = ['cs146s fall 2026', 'cs146s video', 'cs146s online', 'cs146s schedule', 'when does cs146s start', 'how to watch cs146s', 'cs146s lectures 2026', 'cs146s free', 'cs146s enroll']
 
 [[params.faqItems]]
 question = "Is CS146S free?"
