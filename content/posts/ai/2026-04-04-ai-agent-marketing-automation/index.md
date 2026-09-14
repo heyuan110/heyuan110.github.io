@@ -17,7 +17,7 @@ answer = "Not entirely. AI excels at volume production — social scheduling, tr
 
 [[params.faqItems]]
 question = "What are the risks of AI-generated marketing content?"
-answer = "University of Florida research shows consumers experience a 'trust penalty' when they know content is AI-generated — lower trust, weaker engagement, and even moral disgust. Major brands have faced backlash for AI ads labeled 'AI slop.' All AI content should go through human review before publishing."
+answer = "University of Florida research from March 2026 documents a trust penalty: once consumers recognize content as AI-generated they report not only lower trust but moral disgust, and several major brands have drawn organized backlash over ads dismissed as AI slop. The performance numbers are brutal too — one large-scale study logged 1,381 clicks against 1,092,079 impressions, a 0.13% CTR. Route every AI draft through human review before it ships."
 
 [[params.faqItems]]
 question = "How much does an AI marketing automation stack cost?"
@@ -25,7 +25,7 @@ answer = "Nevo's stack is mostly open source (Paperclip + Postiz self-hosted). T
 
 [[params.faqItems]]
 question = "What is the Skill system in AI agent platforms?"
-answer = "Skills are Markdown files that teach AI agents specific capabilities — like 'Neo learning Kung Fu in the Matrix.' Install with one command (e.g., npx skills add gitroomhq/postiz-agent). Skills are becoming the App Store of the AI agent ecosystem, with community-driven marketplaces emerging rapidly."
+answer = "Skills are Markdown files that teach an agent one specific capability — Neo learning Kung Fu in the Matrix. Installation is a single command, `npx skills add gitroomhq/postiz-agent`, and Nevo's working set is five of them: Postiz for social scheduling, agent-media for UGC images, Larry for TikTok carousels, Virlo for trend monitoring, GStack for de-AI-ifying copy. Next to MCP, Skills are lighter and easier to share; MCP is more standardized and reaches more services."
 +++
 
 ![AI Agent marketing automation — one founder plus an AI team generating 2,000 customers per month](cover.webp)

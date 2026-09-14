@@ -9,7 +9,7 @@ keywords = ['claude hud 是什么', 'claude hud 安装', 'claude-hud', 'claude h
 
 [[params.faqItems]]
 question = "Claude HUD 是什么？"
-answer = "Claude HUD 是一个开源的 Claude Code 插件，在终端底部显示实时状态栏，包括上下文窗口用量、rate limit 消耗、工具活动和 agent 状态。"
+answer = "Claude HUD 是一个开源的 Claude Code 插件，相当于 Claude Code 的 htop：在输入框下方显示一条实时状态栏，包含 context 用量（可显示成 `45% (45k/200k)`）、rate limit 消耗、工具活动、subagent 状态和任务进度。数据取自 Claude Code 原生的 statusline API，约每 300ms 推一次 JSON，是真实 token 数不是估算，没有网络调用也没有后台进程。"
 
 [[params.faqItems]]
 question = "Claude HUD 怎么安装？"
@@ -17,11 +17,11 @@ answer = "在 Claude Code 中依次运行 /plugin marketplace add jarrodwatts/cl
 
 [[params.faqItems]]
 question = "Claude HUD 免费吗？"
-answer = "完全免费，MIT 开源协议，GitHub 上已有 18000+ stars。"
+answer = "完全免费，MIT 开源协议。2026 年 1 月发布至今已拿到 18,000+ stars 和 782 forks，是 Claude Code 生态里最火的插件。要注意版本号还停在 0.0.9，属于早期软件，预期会有 breaking changes；它也依赖 Claude Code 的 statusline API，官方哪天做了内置面板就可能被取代。"
 
 [[params.faqItems]]
 question = "Claude HUD 和 ccstatusline 选哪个？"
-answer = "Claude HUD 侧重功能性（agent 追踪、任务进度、上下文健康度），ccstatusline 侧重颜值（Powerline 字体、主题系统）。日常开发推荐 Claude HUD，追求终端美观选 ccstatusline。"
+answer = "Claude HUD 侧重功能性：agent 追踪、任务进度、context 健康度，这几项在竞品里没有对标。ccstatusline 侧重颜值：Powerline 字体和主题预设。日常开发选 Claude HUD，追求终端好看选 ccstatusline——18K vs 7K stars 的差距基本就是这个能力差造成的。"
 
 [[params.faqItems]]
 question = "API Key 用户能用 Claude HUD 吗？"

@@ -9,11 +9,11 @@ keywords = ['Mac Mini VPN', '远程访问 Mac', 'Tailscale 教程', 'WireGuard m
 
 [[params.faqItems]]
 question = "Tailscale 在国内能不能直接用？"
-answer = "不太行。Tailscale 的控制面（login.tailscale.com）在国内被墙了。数据通道可以通过 DERP 中继走通，但首次认证和密钥交换必须访问 Tailscale 的协调服务器。实测断开 VPN 后 Tailscale 立刻掉线。"
+answer = "不太行。控制面 `login.tailscale.com` 在国内被墙了：`tailscale netcheck` 显示所有 DERP 中继都能通，数据通道没问题，但首次认证和密钥交换必须访问协调服务器。我的实测是断开公司 VPN 后 `tailscale status` 立刻变 offline。另外 macOS 用 Homebrew 装还得 `sudo brew services start tailscale`，不带 sudo 会报 failed to connect to local Tailscale service。"
 
 [[params.faqItems]]
 question = "公司 Mac Mini 在国内，用哪个方案最稳？"
-answer = "如果公司有固定公网 IP，WireGuard 最稳——内核级协议，不依赖任何第三方控制面。没有公网 IP 的话，frp + 一台 VPS 是国内最成熟的方案。如果公司本身就有硬件 VPN，直接用就行，别折腾了。"
+answer = "公司有固定公网 IP 就上 WireGuard：内核级协议、不依赖任何第三方控制面，只需在路由器上把 UDP 51820 转发到 Mac Mini 的内网 IP。没有公网 IP 就用 frp 加一台 VPS，这是国内最成熟的组合（10.5 万+ star）。公司本来就有硬件 VPN 的，直接用，别折腾。"
 
 [[params.faqItems]]
 question = "WireGuard 和 OpenVPN 性能差多少？"

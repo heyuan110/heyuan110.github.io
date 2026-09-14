@@ -18,11 +18,11 @@ answer = "No. Symphony automates the implementation step but still requires huma
 
 [[params.faqItems]]
 question = "What issue trackers does Symphony support?"
-answer = "Symphony currently ships with a Linear integration using GraphQL. The architecture is pluggable, and the community is working on a GitHub Issues adapter. Adding support for Jira or other trackers requires implementing a standard interface."
+answer = "Symphony ships with a Linear integration built on Linear's GraphQL API. It polls for issues carrying a configurable label such as `symphony`, claims the eligible ones, and writes status back. The tracker client sits behind a standard interface, so the architecture is pluggable: a GitHub Issues adapter is in community development, and supporting Jira or any other tracker means implementing that same interface."
 
 [[params.faqItems]]
 question = "What is harness engineering in the context of Symphony?"
-answer = "Harness engineering is OpenAI's term for designing infrastructure, constraints, and feedback loops that make AI agents reliably productive. It encompasses context engineering, architectural constraints like sandboxed execution, and entropy management through retry queues and proof-of-work verification."
+answer = "Harness engineering is OpenAI's term for designing the infrastructure, constraints, and feedback loops that make AI agents reliably productive. Symphony is the reference implementation: 8 modular components, a `WORKFLOW.md` that version-controls the orchestration rules next to your code, isolated per-issue workspaces with `after_create` / `after_run` lifecycle hooks, a 30-second polling interval, a default cap of 10 concurrent agents (override with `SYMPHONY_MAX_CONCURRENT_AGENTS`), and proof of work — passing CI, PR diffs, complexity analysis — before a human ever looks."
 
 [[params.faqItems]]
 question = "How does Symphony handle agent failures?"

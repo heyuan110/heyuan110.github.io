@@ -13,11 +13,11 @@ answer = "uv 是 Astral 公司用 Rust 开发的 Python 包管理器，速度比
 
 [[params.faqItems]]
 question = "uv 能完全替代 conda 吗？"
-answer = "不能。uv 只管理 Python 包，不能安装 CUDA、cuDNN 等非 Python 依赖。做深度学习建议用 conda 管系统级依赖 + uv 管 Python 包的混合方案。"
+answer = "不能。uv 只管 Python 包，装不了 CUDA、cuDNN 这类非 Python 的系统级依赖——功能对照表里唯一空着的就是这一格。做深度学习的标准做法是混合方案：先用 conda/mamba 建基础环境、装好 CUDA，再在这个环境里用 `uv` 管 Python 包。这是 2026 年数据科学的最佳实践。"
 
 [[params.faqItems]]
 question = "uv 适合新手使用吗？"
-answer = "非常适合。uv 把 pip、venv、pyenv、pip-tools 的功能整合到一个命令里，新手只需记住 uv 一个工具就能完成所有 Python 环境管理。"
+answer = "非常适合。uv 把 pip、venv、pyenv、pip-tools 四个工具的活合成一个命令，新手只要记住 `uv` 一个名字。而且它装 Python 是直接下预编译二进制，不像 pyenv 要从源码编译 3-5 分钟、还常因缺 openssl 或 libffi 失败；`uv.lock` 连哈希一起锁住版本，从源头堵掉「在我机器上能跑」。"
 
 [[params.faqItems]]
 question = "从 pip 迁移到 uv 难吗？"

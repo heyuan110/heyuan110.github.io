@@ -18,7 +18,7 @@ answer = "没有银弹，但有共识模式：Peter Steinberger 式的「3-8 个
 
 [[params.faqItems]]
 question = "BMAD 方法和 Ralph Loop 各适合什么场景？"
-answer = "BMAD（Breakthrough Method for Agile AI-Driven Development）强调结构化 agent 角色（PM、架构师、开发、QA），适合复杂多人项目；Ralph Wiggum Loop 则是极简的「观察-反思-行动」循环，适合让单个 agent 自主完成耗时较长的任务。BMAD 是团队协作增强版，Ralph Loop 是单人长程自动化。"
+answer = "BMAD 是企业级框架：21 个专用 agent 角色（PM、架构师、开发、QA）加 50 多个引导式工作流。有个 3 人团队用它把 5 万行 COBOL 系统迁到 Java Spring Boot，集成时间减少 40%，生产团队报告交付提速 2.7 倍、bug 减少 75%。Ralph Wiggum Loop 在另一头：极简的「观察-反思-行动」循环，适合让单个 agent 自主跑完耗时很长的任务。"
 
 [[params.faqItems]]
 question = "并行跑多少个 AI agent 效率最高？"
@@ -26,7 +26,7 @@ answer = "Peter Steinberger 的经验数据是 3-8 个 agent。低于 3 个利�
 
 [[params.faqItems]]
 question = "SDD 会取代传统编程吗？什么时候该用？"
-answer = "以目前形态不会取代。SDD 工具（Kiro、spec-kit、Tessl）在严格合规性和 AI 遵守规范方面还不够可靠。但 SDD 的核心原则——要求 AI 构建前先明确需求——会长期存在。建议：副业和原型跳过 SDD 直接 Vibe，复杂系统的关键模块（支付、认证、数据迁移）用 SDD 写清规范再让 AI 实现。"
+answer = "以目前形态不会。Martin Fowler 团队实测中，一个小 bug 修复被 SDD 撑成 4 个用户故事和 16 条验收标准，agent 还经常忽略或过度解读规范。但「构建前先想清需求」这条原则会长期存在。建议：副业和原型跳过 SDD 直接 Vibe，支付、认证、数据迁移这类关键模块再用 SDD 写清 `requirements.md` 和 `design.md`。"
 +++
 
 ![AI 开发方法论对比 — Vibe Coding、SDD、BMAD 与务实工作流](cover.webp)

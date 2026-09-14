@@ -18,7 +18,7 @@ answer = "Yes. The Pro plan ($20/month) includes Claude Code access with standar
 
 [[params.faqItems]]
 question = "How many messages do I get with Claude Pro?"
-answer = "Approximately 10-45 messages per 5-hour rolling window with Sonnet 4.6, fewer with Opus 4.6. The exact number varies based on message length and model complexity."
+answer = "Pro gives you up to about 45 messages per rolling 5-hour window on Sonnet 4.6 — this is the 1x baseline every other plan is measured against. Opus 4.6 eats that budget much faster, and the real count swings with message length and how much context each turn carries. For scale: the free tier is about 15 messages per 5 hours, Max 5x about 225, and Max 20x about 900."
 
 [[params.faqItems]]
 question = "What happens when I hit the Claude Pro rate limit?"
@@ -30,7 +30,7 @@ answer = "Start with Pro ($20/month) for occasional use. Upgrade to Max 5x ($100
 
 [[params.faqItems]]
 question = "Can I use Claude Code for free?"
-answer = "No. You need at least a Pro subscription ($20/month) or an API key with credits. There is no free tier for Claude Code."
+answer = "No. Claude Code needs at least a Pro subscription at $20/month (or $17/month billed annually at $200/year), or an API key with credits on pay-per-token billing. The $0 free tier is Claude.ai chat only — roughly 15 messages per 5-hour window on Sonnet, with no Claude Code, no Opus access, and no Projects."
 
 [[params.faqItems]]
 question = "Is the Claude Max 20x plan worth $200/month?"

@@ -9,7 +9,7 @@ keywords = ['claude hud', 'claude-hud', 'claude code hud', 'claude hud install',
 
 [[params.faqItems]]
 question = "What is Claude HUD?"
-answer = "Claude HUD is an open-source Claude Code plugin that adds a real-time status bar showing context window usage, rate limits, tool activity, and agent status directly in your terminal."
+answer = "Claude HUD is an open-source Claude Code plugin that puts a live status bar under your prompt: context window usage, subscriber rate-limit consumption with time left in the 5-hour window, current tool activity, subagent status, and todo progress. It reads native token data from Claude Code's statusline API — streamed as JSON roughly every 300ms — instead of estimating from word counts, and makes no network calls or background processes. Launched January 2026, it is now the most popular Claude Code plugin."
 
 [[params.faqItems]]
 question = "How do I install Claude HUD?"
@@ -17,7 +17,7 @@ answer = "Run /plugin marketplace add jarrodwatts/claude-hud, then /plugin insta
 
 [[params.faqItems]]
 question = "Is Claude HUD free?"
-answer = "Yes, Claude HUD is completely free and open-source under the MIT license. It has 18,000+ stars on GitHub."
+answer = "Yes — MIT-licensed and completely free. It has 18,000+ GitHub stars and 782 forks since its January 2026 launch, which makes it the most popular Claude Code plugin in existence. There is no paid tier, no telemetry, and no account to create: it keeps nothing beyond a local config file, so the only thing you pay for is the Claude Code subscription you already have."
 
 [[params.faqItems]]
 question = "Does Claude HUD work with API keys?"
@@ -25,7 +25,7 @@ answer = "Partially. Context window tracking works for all users, but rate limit
 
 [[params.faqItems]]
 question = "What is the difference between Claude HUD and ccstatusline?"
-answer = "Claude HUD focuses on session observability with context health, agent tracking, and todo progress. ccstatusline focuses on visual customization with Powerline fonts, themes, and beautiful styling. Choose Claude HUD for functionality, ccstatusline for aesthetics."
+answer = "Claude HUD (18K stars) is built for session observability — context health, rate-limit burn, tool and agent tracking, todo progress. ccstatusline (7K stars) is built for visual customization: Powerline fonts, themes, styling. Both run on Node.js; a third option, claudeline, is a single Go binary aimed at minimalism. Pick Claude HUD when you want to know what your session is doing, ccstatusline when you want it to look good."
 +++
 
 ![Claude HUD adds real-time session monitoring to Claude Code terminal](cover.webp)

@@ -10,7 +10,7 @@ keywords = ['cursor 安装教程', 'cursor 官方下载', 'cursor 中文设置',
 
 [[params.faqItems]]
 question = "Cursor Agent 模式是什么？怎么用？"
-answer = "Cursor Agent 模式是内置在 Cursor IDE 中的 AI 编程助手。它通过指令系统、工具集（文件编辑、代码搜索、终端）和用户消息来自主编写、修改和调试代码。按 Shift+Tab 可以启用规划模式，让 Agent 先分析代码库并提出方案，再动手写代码。"
+answer = "按 `Cmd/Ctrl + I` 打开 AI 面板就进入 Agent 模式。它由三部分驱动：系统指令、工具集（文件编辑、代码搜索、终端执行）和你的消息。按 `Shift + Tab` 可切到规划模式——Agent 先分析代码库、提澄清问题、给出分步方案，计划以 Markdown 存在 `.cursor/plans/` 目录，你确认后它才开始写代码。"
 
 [[params.faqItems]]
 question = "Cursor 和 VS Code 有什么区别？"
@@ -18,7 +18,7 @@ answer = "Cursor 基于 VS Code 构建，但增加了深度 AI 集成，包括 A
 
 [[params.faqItems]]
 question = "Cursor Rules 是什么？怎么配置？"
-answer = "Cursor Rules 是存放在 .cursor/rules/ 目录下的 Markdown 文件，为 AI Agent 提供项目级的持久化指令。可以包含构建命令、编码规范和工作流指引。最佳实践是按需添加——只在发现 Agent 反复犯同样的错误时才加规则。"
+answer = "`.cursor/rules/` 目录下的 Markdown 文件，给 Agent 提供项目级的持久指令。典型内容是构建与测试命令（`npm run build`、`npm run test`、`npm run typecheck`）、代码风格约定和工作流说明。最佳实践是按需添加：只在发现 Agent 反复犯同一个错时才补一条规则，别一上来就写一大篇。"
 
 [[params.faqItems]]
 question = "Cursor 能同时运行多个 AI Agent 吗？"

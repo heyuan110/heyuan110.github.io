@@ -14,7 +14,7 @@ answer = "OpenClaw requires Node.js 20+, 16GB RAM minimum (32GB recommended for 
 
 [[params.faqItems]]
 question = "Is OpenClaw the same as Moltbot and Clawdbot?"
-answer = "Yes. OpenClaw, Moltbot, and Clawdbot are all the same project at different stages. It started as Clawdbot, was renamed to Moltbot due to Anthropic trademark concerns, and finally became OpenClaw as the official name. Always use 'OpenClaw' for current documentation and commands."
+answer = "Yes — one project, three names. Peter Steinberger launched it as Clawdbot in early 2026, renamed it Moltbot in January-February over Anthropic trademark concerns (too close to Claude), and settled on OpenClaw from February 2026 onward. It passed 80,000 GitHub stars in its first week and now sits above 247,000. Old Moltbot and Clawdbot tutorials still apply conceptually — just swap the name, and use `openclaw` for every current CLI command."
 
 [[params.faqItems]]
 question = "How much does it cost to run OpenClaw?"
@@ -26,7 +26,7 @@ answer = "Yes. OpenClaw can control browsers via its built-in browser automation
 
 [[params.faqItems]]
 question = "Is it safe to run OpenClaw on my computer?"
-answer = "OpenClaw includes multiple security layers: sandbox mode restricts file system access, pairing mode requires device authorization, permission controls limit which tools each agent can use, and all data stays on your local machine. Always enable sandbox mode and use pairing for any internet-facing deployment."
+answer = "OpenClaw layers several controls: sandbox mode restricts filesystem access, pairing mode requires explicit device authorization before a node connects, per-agent permissions limit which tools each agent may call, and all state stays local under `~/.openclaw/` rather than in a vendor cloud. The gateway listens on port 18789, so never expose that port straight to the internet — keep sandbox mode on and pair every device for any deployment reachable from outside your LAN."
 +++
 
 ![OpenClaw setup guide covering installation, configuration, and personal AI agent automation](cover.webp)

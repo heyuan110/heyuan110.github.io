@@ -10,11 +10,11 @@ keywords = ['rag pipeline tutorial', 'vector database guide', 'rag setup python'
 
 [[params.faqItems]]
 question = "What is a RAG pipeline and why do I need one?"
-answer = "A RAG (Retrieval-Augmented Generation) pipeline connects your private data to an LLM by converting documents into vector embeddings, storing them in a vector database, and retrieving relevant context at query time. It solves the LLM knowledge cutoff problem and lets you ground responses in your own data without expensive fine-tuning."
+answer = "A RAG pipeline connects your private data to an LLM: documents get chunked, turned into vector embeddings (say `text-embedding-3-small` at 1536 dimensions), stored in a vector database, and the closest chunks are retrieved at query time as grounding context. It fixes the knowledge-cutoff problem without fine-tuning, and it is far cheaper than stuffing the prompt — RAG sends roughly 1-3K tokens of relevant context per query instead of 100K."
 
 [[params.faqItems]]
 question = "Which vector database should I choose for RAG in 2026?"
-answer = "For prototyping and small datasets, use Chroma or pgvector. For production workloads with moderate scale, Qdrant and Weaviate are excellent choices. For large-scale deployments requiring distributed architecture, Milvus is the strongest option. Pinecone is ideal if you want a fully managed service and have the budget."
+answer = "For prototyping, Chroma (embedded, Python) or pgvector if your team already runs PostgreSQL. For production under roughly 10M vectors, Qdrant (Rust) and Weaviate (Go) are both fast and easy to deploy — Qdrant is stronger on rich filtering, Weaviate on multi-modal data and built-in vectorizers. Past that scale, Milvus is the distributed choice. Pinecone if you want zero-ops managed hosting and have the budget for it."
 
 [[params.faqItems]]
 question = "What is the best chunking strategy for RAG?"

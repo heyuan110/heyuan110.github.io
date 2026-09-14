@@ -22,11 +22,11 @@ answer = "各有所长。Claude Code 在代码理解和多文件重构上更强�
 
 [[params.faqItems]]
 question = "Codex CLI 的安全模式有几种？"
-answer = "三种模式：Suggest（只建议不执行）、Auto-edit（自动编辑文件但不运行命令）、Full-auto（完全自主执行）。生产环境建议用 Suggest 或 Auto-edit，个人项目可用 Full-auto 提高效率。"
+answer = "三种预设模式：Auto（默认，可编辑文件、在工作目录运行命令，越界访问需确认）、Read Only（只读）、Full Access（完全放开）。也可以用 flags 精细组合，比如 `codex --sandbox workspace-write --ask-for-approval untrusted`。要彻底关沙箱只能用 `--dangerously-bypass-approvals-and-sandbox`（别名 `--yolo`），仅限 CI/Docker 隔离环境；`--full-auto` 仍保留沙箱保护。"
 
 [[params.faqItems]]
 question = "Codex CLI 支持哪些 AI 模型？"
-answer = "默认使用 OpenAI 的模型（GPT-4o、o1 等），同时支持通过配置切换到其他兼容 OpenAI API 的模型。可以在配置文件中设置不同任务使用不同模型，比如简单任务用便宜模型、复杂任务用强力模型。"
+answer = "默认模型是代码专用的 `gpt-5.3-codex`，另外可选 `gpt-5` 跑复杂推理、`o4-mini` 跑成本敏感的简单任务，也支持任何兼容 OpenAI API 的模型。运行中用 `/model` 切换，或在 `~/.codex/config.toml` 里预定义 profile，之后 `codex --profile review` 一条命令同时切模型和推理等级。"
 +++
 
 ![Codex CLI 深度指南：20+ 实战技巧封面图](cover.webp)

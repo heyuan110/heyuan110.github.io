@@ -10,7 +10,7 @@ keywords = ['OpenClaw 多 Agent 教程', 'OpenClaw 多智能体配置', '多 Age
 
 [[params.faqItems]]
 question = "OpenClaw 是什么？"
-answer = "OpenClaw 是一个开源的 AI Agent 管理框架，让你为不同任务创建专职 Agent（写作、编码、调研等），每个 Agent 有独立记忆和工具配置，通过路由规则自动分发用户请求。"
+answer = "OpenClaw 是一个开源的 AI Agent 管理框架，可以为写作、编码、调研各建一个专职 Agent。每个 Agent 做三层隔离：身份层 `agents/<id>/agent/` 决定用哪个模型和凭证，状态层 `agents/<id>/sessions/` 存独立聊天记录，工作层 `workspace-<id>/` 放各自的文件和记忆；用户请求按 `openclaw.json` 里的 Bindings 规则自动路由到对应 Agent。"
 
 [[params.faqItems]]
 question = "为什么需要多 Agent 而不是一个 Agent？"
@@ -18,7 +18,7 @@ answer = "单 Agent 随着使用会出现记忆膨胀（响应变慢）、上下
 
 [[params.faqItems]]
 question = "OpenClaw 多 Agent 有哪些协作模式？"
-answer = "主要有四种：管道模式（任务按顺序传递）、广播模式（同时发给多个 Agent）、投票模式（多个 Agent 给出方案投票选最优）、分层模式（一个 Lead Agent 统一调度）。"
+answer = "四种：Supervisor（主管 Agent 拆解任务、分给专家再汇总）、Router（无状态分类后并行分发，靠 Bindings 路由规则实现）、Pipeline（调研员 → 写手 → 校审官 顺序传递）、Parallel（同一任务拆成子任务同时跑再聚合）。Agent 之间通过 `sessions_send` 通信，需要先在 `openclaw.json` 的 `tools.agentToAgent` 里开启并列出白名单。"
 
 [[params.faqItems]]
 question = "OpenClaw 和 Claude Code Agent Teams 有什么区别？"

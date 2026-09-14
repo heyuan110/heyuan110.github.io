@@ -18,11 +18,11 @@ answer = "It means that in AI-assisted development, well-written specification d
 
 [[params.faqItems]]
 question = "What are the four failure modes of long contexts in AI?"
-answer = "The four failure modes are: lost-in-the-middle (AI ignores information in the middle of long contexts), contradictory context (conflicting instructions confuse the AI), stale context (outdated information leads to wrong decisions), and context overflow (exceeding the model's effective window degrades all output quality)."
+answer = "Poisoning, Distraction, Confusion, and Conflict. Poisoning: one stale rule in `CLAUDE.md` (say, use React 16 class components) gets followed faithfully forever. Distraction: Databricks found correctness declines once context passes 32K tokens, because the model fixates on recent text. Confusion: Berkeley's function-calling leaderboard shows Llama 3.1 8B handles 19 tools fine but starts failing at 46. Conflict: a Microsoft and Salesforce study found that staging information — a wrong partial answer first, the full correct one later — cut performance by 39% on average."
 
 [[params.faqItems]]
 question = "How do I apply Context Engineering in practice?"
-answer = "Build a layered documentation structure: design docs for goals, implementation plans for details, API guides for specifics, and CLAUDE.md for AI-specific guidance. Load only relevant files (not the entire codebase), keep documentation current, and connect external tools via MCP to extend the AI's perception."
+answer = "Build layered context: a project-level `CLAUDE.md` carrying stack, conventions, and an explicit Do Not list; a task-level file naming the relevant paths and business rules; then hygiene — start a fresh session once a conversation passes roughly 30 turns or 50K tokens. Load only the files a task needs rather than the whole codebase, delete outdated docs instead of letting them poison the context, and connect external data through MCP. Keep tool output bounded too: Claude Code truncates tool responses at 25,000 tokens by default."
 +++
 
 > This is Part 2 of the "Stanford Vibe Coding Course Deep Dive" series. See the series navigation at the end of this article.

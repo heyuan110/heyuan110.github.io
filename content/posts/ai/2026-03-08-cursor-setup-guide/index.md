@@ -10,19 +10,19 @@ keywords = ['cursor setup guide', 'cursor ide tutorial', 'cursor agent mode', 'c
 
 [[params.faqItems]]
 question = "What is Cursor Agent Mode and how does it work?"
-answer = "Cursor Agent Mode is an AI-powered coding assistant built into the Cursor IDE. It uses a system of instructions, tools (file editing, code search, terminal), and user messages to autonomously write, edit, and debug code. You can activate planning mode with Shift+Tab to have the agent research your codebase and propose a plan before writing any code."
+answer = "Cursor Agent Mode is the AI agent built into the Cursor IDE. It combines a system prompt, tools (file editing, codebase search, terminal) and your messages to write, edit and debug code on its own. Open it with `Cmd/Ctrl + I`, or press `Shift + Tab` for Plan Mode, where the agent researches your codebase, asks clarifying questions and proposes a step-by-step plan before touching any code. Approved plans are saved as Markdown files under `.cursor/plans/`."
 
 [[params.faqItems]]
 question = "How is Cursor different from VS Code?"
-answer = "Cursor is built on top of VS Code but adds deep AI integration including Agent Mode, Plan Mode, custom Rules, parallel agent execution via Git Worktrees, and Cloud Agents for background tasks. While VS Code has Copilot, Cursor offers a more comprehensive AI-first development experience with context-aware coding assistance."
+answer = "Cursor is a fork of VS Code — it imports your VS Code extensions, keybindings and themes — but treats AI as a first-class citizen rather than a bolt-on extension. On top of the editor it adds Agent Mode, Plan Mode (`Shift + Tab`), persistent project rules in `.cursor/rules/`, `SKILL.md` capability packs, iterate-until-green hooks configured in `.cursor/hooks.json`, parallel agents over Git worktrees, and Cloud Agents for background work."
 
 [[params.faqItems]]
 question = "What are Cursor Rules and how do I set them up?"
-answer = "Cursor Rules are Markdown files stored in the .cursor/rules/ directory that provide persistent project-specific instructions to the AI agent. They can include build commands, coding conventions, and workflow guidelines. Best practice is to add rules reactively — only when you notice the agent repeatedly making the same mistake."
+answer = "Cursor Rules are Markdown files in `.cursor/rules/` that feed the agent persistent, project-specific instructions — build and test commands such as `npm run build` and `npm run typecheck`, naming conventions, workflow constraints. Do not front-load them: start with the default configuration and add a rule only after you catch the agent making the same mistake twice. That keeps the rule set short and high-signal."
 
 [[params.faqItems]]
 question = "Can Cursor run multiple AI agents at the same time?"
-answer = "Yes. Cursor supports parallel agent execution using Git Worktrees. Each agent works in an isolated workspace so file changes don't conflict. This is useful for comparing different approaches, testing multiple models, or breaking complex tasks into independent subtasks."
+answer = "Yes. Cursor runs agents in parallel on top of Git worktrees, so each agent gets an isolated checkout and their file edits cannot collide. It is worth using when you want to compare two implementation approaches side by side, pit different models against the same task, or split one big job into independent subtasks. Cloud Agents extend the same idea to background runs outside your machine."
 +++
 
 ![Cursor Setup Guide 2026 - From Installation to Advanced Agent Mode](cover.webp)

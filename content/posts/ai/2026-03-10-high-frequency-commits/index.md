@@ -14,15 +14,15 @@ answer = "Not at all. High-frequency commits are a natural byproduct of AI-assis
 
 [[params.faqItems]]
 question = "What is the ideal size for an atomic commit?"
-answer = "An atomic commit should represent exactly one logical change — typically a few dozen to a few hundred lines of diff. If a single commit touches a bug fix, a refactor, and a new feature simultaneously, it must be split."
+answer = "One logical change — typically a few dozen to a few hundred lines of diff. If a commit mixes a bug fix, a refactor and a new feature, split it. The payoff is mechanical: `git bisect` only binary-searches usefully when each commit is one isolated change, and reverting a single clear change is a 30-second fix instead of a 3-hour untangling session. Large refactors go in as pure `refactor:` commits before any behavioral change lands."
 
 [[params.faqItems]]
 question = "How fast should CI feedback be for high-frequency commit workflows?"
-answer = "Your core regression suite should return results within 5 to 15 minutes. Anything longer creates a bottleneck that discourages frequent commits and slows down the entire team."
+answer = "Your core regression suite has to return a pass/fail verdict within 5 to 15 minutes — this is the non-negotiable number. If CI takes 45 minutes, developers start batching changes to avoid the wait and the atomic commit discipline collapses. Split the budget by layer: unit tests under 3 minutes, integration tests under 10, end-to-end journeys for critical paths under 20."
 
 [[params.faqItems]]
 question = "Do I need feature flags for every new feature?"
-answer = "For teams shipping at high frequency, yes. Feature flags decouple deployment from release, letting you merge to main quickly while controlling when users actually see the change."
+answer = "For teams shipping at high frequency, yes — every `feat:` commit should ship wrapped in a flag, defaulting to off. Flags decouple deployment from release: the code merges to an always-deployable main branch after CI, while you control exposure separately and ramp 1% to 10% to 50% to 100%. That also means an incident is a flag flip, not a revert-and-redeploy scramble."
 +++
 
 ![High-frequency commits workflow showing atomic changes flowing through CI/CD pipeline](cover.webp)

@@ -10,7 +10,7 @@ keywords = ['OpenClaw multi-agent', 'multi-agent architecture', 'AI agent collab
 
 [[params.faqItems]]
 question = "What is OpenClaw multi-agent architecture?"
-answer = "OpenClaw multi-agent architecture lets you create multiple specialized AI agents — each with its own memory, workspace, and model — that collaborate through routing bindings and inter-agent communication via sessions_send. Instead of one overloaded agent, you build a team of specialists (writer, coder, researcher) coordinated by a supervisor agent."
+answer = "OpenClaw gives each agent three isolated layers: identity in `agents/<id>/agent/` (which model and credentials it uses), state in `agents/<id>/sessions/` (its own chat history and routing state), and a workspace in `workspace-<id>/` (its own files, prompt, and memory). Messages reach the right agent through bindings rules in `openclaw.json`, and agents talk to each other with the built-in `sessions_send` tool. Instead of one overloaded assistant, you run a team of specialists behind a supervisor."
 
 [[params.faqItems]]
 question = "How many agents should I create in OpenClaw?"
@@ -18,11 +18,11 @@ answer = "For personal use, 3-5 agents are sufficient: one supervisor plus 2-4 s
 
 [[params.faqItems]]
 question = "Does inter-agent communication in OpenClaw consume extra tokens?"
-answer = "Yes. Every sessions_send call is an API call that consumes tokens. To reduce costs, have the supervisor agent handle simple tasks directly, use token optimization strategies for context length, and assign lighter-weight models to sub-agents."
+answer = "Yes. Every `sessions_send` call is a separate API round trip that bills tokens on both ends, so a supervisor delegating to a specialist costs at least twice what handling it inline would. Three ways to hold the line: let the supervisor answer simple questions directly instead of dispatching, keep each agent's workspace memory trimmed so input context stays small, and give sub-agents cheaper models such as `deepseek` or `glm-4.7` while reserving `claude-sonnet` for the coder."
 
 [[params.faqItems]]
 question = "What are the main multi-agent collaboration patterns in OpenClaw?"
-answer = "OpenClaw supports four patterns: Supervisor (central coordinator delegates to specialists sequentially), Router (parallel dispatch based on message source), Pipeline (assembly-line processing where each agent's output feeds the next), and Parallel (splitting one task across multiple agents simultaneously). Start with Supervisor and upgrade as needed."
+answer = "Four. Supervisor: a central `main` agent delegates to specialists in sequence and reviews their output. Router: parallel dispatch decided by message source, resolved through the 8-level bindings priority chain. Pipeline: an assembly line where each agent's output feeds the next. Parallel: one task split across several agents at once. Start with Supervisor — it is just the `main` agent wired up with `agentToAgent` and `sessions_send` — and move on only when the coordinator becomes the bottleneck."
 
 [[params.faqItems]]
 question = "Can OpenClaw agents use different AI models?"

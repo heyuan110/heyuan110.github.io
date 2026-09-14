@@ -10,7 +10,7 @@ keywords = ['typescript ai tools', 'typescript surge 66%', 'typescript github nu
 
 [[params.faqItems]]
 question = "Why did TypeScript grow 66% on GitHub?"
-answer = "AI coding tools like Cursor, Claude Code, and Copilot generate significantly better TypeScript code than JavaScript because static types provide explicit constraints. This created a 'convenience loop' — better AI support drives adoption, more code means better training data, which makes AI even better at TypeScript."
+answer = "TypeScript jumped 66.6% year over year to 2,636,006 monthly GitHub contributors, moving from #3 to #1. The driver is AI: tools like Cursor, Claude Code, and Copilot generate markedly better TypeScript than JavaScript, because static types are explicit constraints that narrow what the model may emit. GitHub calls it a convenience loop — better AI support drives adoption, more code becomes better training data, and the models get better at TypeScript still."
 
 [[params.faqItems]]
 question = "Does TypeScript make AI-generated code more accurate?"

@@ -17,7 +17,7 @@ answer = "基本没变。fish 官方原话是'执行时间通常略好'，但闲
 
 [[params.faqItems]]
 question = "Claude Code 能在 fish shell 下用吗？"
-answer = "能用但有坑。在 fish 里交互运行 claude 命令没问题，但 Claude Code 的 Bash 工具会调用系统默认 shell（一般是 zsh 或 bash），不继承 fish 的 PATH 和环境变量；CLAUDE_CODE_SHELL_PREFIX 加载的是 zsh 格式快照，在 fish 下每条命令前都会报语法错误。AI 重度用户建议保留 zsh 作为 agent shell。"
+answer = "能用但有坑。在 fish 里交互跑 `claude` 没问题，但 Claude Code 的 Bash 工具调用的是系统默认 shell（macOS 上通常是 zsh），不继承 fish 的 PATH、函数和缩写——见 issue #7490。更难受的是 #13425：`CLAUDE_CODE_SHELL_PREFIX` 加载的是 zsh 格式快照，在 fish 下每条命令前都会先吐一串语法错误。AI 重度用户建议保留 zsh 当 agent shell。"
 
 [[params.faqItems]]
 question = "fish 为什么不兼容 POSIX？"
@@ -25,7 +25,7 @@ answer = "fish 主动放弃 POSIX 是为了让语法更干净——没有变量�
 
 [[params.faqItems]]
 question = "推荐的双 shell 配置长什么样？"
-answer = "chsh 把 fish 设为交互登录 shell，但保留 /bin/zsh 并在 Claude Code/Codex 的 env 配置里显式设 SHELL=/bin/zsh。curl | bash 类的安装脚本手动用 bash 执行；fish 只管你亲手敲的命令。文章里有完整配置片段可以直接抄。"
+answer = "用 `chsh -s (which fish)` 把 fish 设成交互登录 shell，同时保留 `/bin/zsh`，并在 `~/.claude/settings.json` 的 env 里显式写 `SHELL=/bin/zsh`，Codex CLI 同理。`curl | bash` 这类安装脚本手动用 bash 跑；fish 只负责你亲手敲的命令。我在 M4 MacBook Pro 上这么跑了七个月，文章里有可以直接抄的配置片段。"
 +++
 
 ![fish shell 4.6 Rust 重写实测 2026](cover.webp)

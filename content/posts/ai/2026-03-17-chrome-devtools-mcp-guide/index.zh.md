@@ -17,7 +17,7 @@ answer = """默认配置下 MCP 会启动一个全新的 Chrome 实例，用独�
 
 [[params.faqItems]]
 question = "Chrome 启动加了 --remote-debugging-port=9222 但连不上、curl 返回 404 怎么解决？"
-answer = """从 Chrome 136 开始，--remote-debugging-port 在默认用户配置目录下会被静默忽略（安全策略）。完整修复方案：第一步先彻底杀进程 macOS 用 `killall -9 \"Google Chrome\"`、Windows 用 `taskkill /F /IM chrome.exe`；第二步启动时同时加 --remote-debugging-port=9222 和 --user-data-dir=/tmp/chrome-debug-profile（任何非默认路径都行）；第三步用 `curl http://127.0.0.1:9222/json/version` 验证返回 JSON 即成功。"""
+answer = "从 Chrome 136 开始，`--remote-debugging-port` 在默认用户配置目录下会被静默忽略。修复三步：先彻底杀掉进程，macOS 用 `killall -9 Google Chrome`、Windows 用 `taskkill /F /IM chrome.exe`；启动时同时加 `--remote-debugging-port=9222` 和 `--user-data-dir=/tmp/chrome-debug-profile`（非默认路径即可）；最后 `curl http://127.0.0.1:9222/json/version` 返回 JSON 就说明连通了。"
 
 [[params.faqItems]]
 question = "autoConnect 和 --browserUrl 哪个更好用？什么时候用哪个？"
@@ -25,7 +25,7 @@ answer = """日常调试 Chrome 146+ 稳定版无脑选 --autoConnect，配置�
 
 [[params.faqItems]]
 question = "Claude Code、Cursor、Windsurf 怎么各自配置 Chrome DevTools MCP？"
-answer = """Claude Code 直接命令行一键添加：`claude mcp add chrome-devtools -- npx chrome-devtools-mcp@latest --autoConnect`。Cursor 进设置 → MCP → Add New MCP Server，粘贴 npx 配置即可。Windsurf 和 Cline 在各自的 MCP 配置 JSON 里加同样的 chrome-devtools 段就行。VS Code GitHub Copilot 放在 .vscode/mcp.json。所有客户端用的都是同一个 chrome-devtools-mcp 二进制，区别只在注册入口的 UI。"""
+answer = "Claude Code 一行命令搞定：`claude mcp add chrome-devtools -- npx chrome-devtools-mcp@latest --autoConnect`。Cursor 进设置 → MCP → Add New MCP Server 粘贴同样的 npx 配置；Windsurf 和 Cline 在各自的 MCP 配置 JSON 里加一段 chrome-devtools；VS Code GitHub Copilot 写进 `.vscode/mcp.json`。各家用的都是同一个 chrome-devtools-mcp，区别只在注册入口。"
 +++
 
 ![Chrome DevTools MCP 连接 AI 助手与浏览器调试工具](cover.webp)

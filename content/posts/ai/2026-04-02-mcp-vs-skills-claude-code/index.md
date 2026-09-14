@@ -9,11 +9,11 @@ keywords = ['MCP vs Skills Claude Code', 'Claude Code MCP Skills difference', 'C
 
 [[params.faqItems]]
 question = "What is the main difference between MCP and Skills in Claude Code?"
-answer = "MCP (Model Context Protocol) connects Claude Code to external services through a standardized protocol — it provides tools like database queries or browser automation. Skills are reusable instruction packages that teach Claude how to perform complex workflows using those tools and built-in capabilities. MCP is the infrastructure layer; Skills are the application layer."
+answer = "MCP is the protocol layer — JSON-RPC 2.0 under the hood — that connects Claude Code to external services and exposes Tools, Resources, and Prompts such as `db_query` or `browser_click`. Skills are the application layer above it: a folder holding a `SKILL.md` with YAML frontmatter and Markdown steps telling Claude when to use those tools, in what order, and how to handle edge cases. MCP supplies capability; Skills supply procedure; Hooks form a third layer that enforces what must happen every time."
 
 [[params.faqItems]]
 question = "When should I use Hooks instead of Skills?"
-answer = "Use Hooks when something must happen reliably every time — they execute deterministic shell commands at lifecycle events like before/after tool use. Skills are best for complex workflows where Claude needs judgment. Hooks enforce rules; Skills encode expertise."
+answer = "Use Hooks when something must happen reliably every time. They live in `settings.json` with three parts — an event (`PreToolUse`, `PostToolUse`, `Stop`), an optional matcher, and a handler that is a shell command, HTTP call, or LLM prompt — and they fire deterministically: a `PostToolUse` hook on the `Write` tool runs on every single write, no exceptions. Skills are for workflows where Claude needs judgment about ordering and edge cases. Hooks enforce rules; Skills encode expertise."
 
 [[params.faqItems]]
 question = "Do MCP servers consume more tokens than Skills?"

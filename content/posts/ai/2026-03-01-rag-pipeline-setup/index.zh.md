@@ -10,11 +10,11 @@ keywords = ['rag pipeline tutorial', 'vector database guide', 'rag setup python'
 
 [[params.faqItems]]
 question = "什么是 RAG 管道？为什么需要它？"
-answer = "RAG（检索增强生成）管道通过将文档转换为向量嵌入、存储到向量数据库中，并在查询时检索相关上下文来将私有数据连接到 LLM。它解决了 LLM 知识截止日期的问题，让你无需昂贵的微调即可基于自有数据生成回答。"
+answer = "RAG（检索增强生成）管道先把文档切块、转成向量嵌入存进向量数据库，查询时检索最相关的片段注入 prompt 再交给 LLM 生成。它解决了知识截止日期和私有数据的问题，而且比长上下文便宜得多：一次查询通常只送 1–3K token 的相关上下文，把全部文档塞进 100K token 窗口不仅烧钱，还会因为「迷失在中间」拉低准确率。"
 
 [[params.faqItems]]
 question = "2026 年做 RAG 应该选哪个向量数据库？"
-answer = "原型开发和小数据集建议使用 Chroma 或 pgvector。中等规模的生产环境推荐 Qdrant 和 Weaviate。大规模分布式部署首选 Milvus。如果需要全托管服务且预算充足，可以选择 Pinecone。"
+answer = "原型和小数据集用 Chroma 或 pgvector；生产环境在 1000 万向量以内，选 Qdrant 或 Weaviate，性能好也好部署；再往上的大规模分布式用 Milvus；不想自己运维、预算够就上全托管的 Pinecone。索引默认选 HNSW（召回率通常 95%+），内存吃紧再换 IVF 并调 `nprobe` 参数。"
 
 [[params.faqItems]]
 question = "RAG 最佳的文本分块策略是什么？"

@@ -9,7 +9,7 @@ keywords = ['Anthropic IPO 2026', 'Anthropic 965 billion valuation', 'Anthropic 
 
 [[params.faqItems]]
 question = "Why is Anthropic valued at $965 billion if OpenAI has more users?"
-answer = "Because investors are repricing the AI stack. Anthropic's Series H closed at $965B post-money on a confidentially-filed S-1 (June 2, 2026), backed by a $47B run-rate in revenue as of late May and a projected $10.9B in Q2 alone. The bet is not that Claude beats GPT-5 on benchmarks — Opus 4.7, GPT-5, Gemini 3 Pro, and Qwen 3.7 Max are all close enough on raw capability. The bet is that Anthropic owns the production agent runtime: Managed Agents, sandboxed execution, checkpointing, credential vault, cron schedules, end-to-end tracing. OpenAI's Codex CLI has none of this. Google's Gemini Agents are months behind. Infrastructure, not intelligence, is the bottleneck — and infrastructure is what compounds revenue."
+answer = "Because investors are repricing the AI stack. Anthropic's Series H closed at $965B post-money on a confidentially-filed S-1 (June 2, 2026), backed by a $47B revenue run-rate as of late May and a projected $10.9B in Q2 alone. The bet is not that Claude beats GPT-5 on benchmarks — Opus 4.7, GPT-5, Gemini 3 Pro, and Qwen 3.7 Max are all close enough on raw capability. The bet is that Anthropic owns the production agent runtime: Managed Agents, sandboxed execution, checkpointing, credential vault, cron schedules, end-to-end tracing. OpenAI's Codex CLI has none of it. Infrastructure, not intelligence, is the bottleneck — and infrastructure compounds revenue."
 
 [[params.faqItems]]
 question = "What are Claude Managed Agents and what's new as of June 2026?"
@@ -17,7 +17,7 @@ answer = "Managed Agents is Anthropic's hosted runtime for production agents, in
 
 [[params.faqItems]]
 question = "How is Self-hosted Sandboxes different from a fully self-hosted agent?"
-answer = "It's not. Self-hosted Sandboxes lets your team run sandboxed code execution on your own infrastructure (your VPC, your compliance perimeter, your data) — but the agent orchestration loop, planning, and tool routing still run on Anthropic's control plane. In other words: your data stays home, your control plane doesn't. This is a hybrid SaaS + private data plane model. If your concern is data residency or PII handling, this works. If your concern is vendor independence or air-gapped operation, this does not solve your problem. Anthropic was explicit in their engineering blog ('Scaling Managed Agents: Decoupling the brain from the hands') that this is a deliberate split: the brain stays managed."
+answer = "It isn't. Self-hosted Sandboxes lets your team run sandboxed code execution on your own infrastructure — your VPC, your compliance perimeter, your data — but the orchestration loop, planning, and tool routing still run on Anthropic's control plane. Your data stays home; your control plane does not. It is a hybrid SaaS plus private data plane. If your concern is data residency or PII handling, this works. If your concern is vendor independence or air-gapped operation, it does not. Anthropic said so explicitly in the engineering post 'Scaling Managed Agents: Decoupling the brain from the hands' — the brain stays managed."
 
 [[params.faqItems]]
 question = "When will Anthropic IPO and what does the timeline look like?"
@@ -25,7 +25,7 @@ answer = "As of June 12, 2026, the only confirmed facts are: confidential S-1 fi
 
 [[params.faqItems]]
 question = "Can OpenAI catch up on the agent infrastructure gap?"
-answer = "Technically yes — building sandboxed execution, checkpointing, and credential management is engineering work, not research. Practically, the lag is now meaningful. OpenAI's Codex CLI shipped impressive autonomy but offers no managed runtime equivalent: no hosted sandboxes, no checkpointing API, no built-in cron, no scoped credential vault. They are essentially shipping the brain and asking the developer to build the hands. Google's Gemini Code Assist is in a similar position. The window for OpenAI to match Managed Agents feature-for-feature is realistically 6-12 months, but during that window Anthropic gets to compound enterprise lock-in with every team that builds on top of the runtime. This is the textbook 'platform first-mover' setup, and it's why investors priced the gap in."
+answer = "Technically yes — sandboxed execution, checkpointing, and credential management are engineering work, not research. Practically the lag is real. OpenAI's Codex CLI shipped impressive autonomy but no managed runtime: no hosted sandboxes, no checkpointing API, no built-in cron, no scoped credential vault. They ship the brain and ask the developer to build the hands, and Google's Gemini Code Assist sits in the same spot. Matching Managed Agents feature-for-feature is realistically a 6-12 month job, and through that window Anthropic compounds enterprise lock-in with every team that builds on the runtime. Textbook platform first-mover — which is exactly what investors priced in."
 +++
 
 ![Anthropic 965B valuation Claude Managed Agents infrastructure architecture diagram](cover.webp)

@@ -10,23 +10,23 @@ keywords = ['Claude Code worktree', 'Claude Code parallel development', 'git wor
 
 [[params.faqItems]]
 question = "What does Claude Code --worktree (-w) mode do?"
-answer = "It creates an isolated Git worktree directory and launches a new Claude Code session inside it with a single command (claude -w <name>). This lets you run multiple AI coding tasks in parallel within the same repository without file conflicts."
+answer = "It creates an isolated Git worktree and launches a new Claude Code session inside it with one command: `claude -w feature-auth`. The worktree lands in `<repo-root>/.claude/worktrees/feature-auth/` on a new branch `worktree-feature-auth` cut from the default remote branch. Run `claude -w` with no name and Claude generates a random one like bright-running-fox. Several sessions can then work the same repository in parallel without stepping on each other's files."
 
 [[params.faqItems]]
 question = "Where are Claude Code worktrees stored?"
-answer = "All worktrees created via claude -w are stored under <repo-root>/.claude/worktrees/<name>/. You should add .claude/worktrees/ to your .gitignore to keep them out of version control."
+answer = "All worktrees created via `claude -w <name>` live under `<repo-root>/.claude/worktrees/<name>/`, so they stay in one predictable place instead of scattering sibling directories next to your repo. Add `.claude/worktrees/` to your `.gitignore` to keep their contents out of `git status`, and clear finished ones with `git worktree remove .claude/worktrees/old-feature`."
 
 [[params.faqItems]]
 question = "Does Claude Code automatically clean up worktrees?"
-answer = "Yes. If no changes were made during the session, the worktree and its branch are automatically deleted on exit. If uncommitted changes or new commits exist, Claude prompts you to keep or delete the worktree."
+answer = "Yes. If the session made no changes, the worktree and its `worktree-<name>` branch are deleted automatically when you exit. If uncommitted changes or new commits exist, Claude asks whether to keep or delete: keeping preserves the directory and branch so you can pick the task back up with `/resume` or `claude --resume`, while deleting removes the directory along with those commits and uncommitted edits."
 
 [[params.faqItems]]
 question = "Can two Git worktrees use the same branch?"
-answer = "No. Git does not allow two worktrees to check out the same branch simultaneously. That is why claude -w <name> automatically creates a new branch named worktree-<name>."
+answer = "No. Git refuses to check out the same branch in two worktrees at once, which is why `claude -w <name>` always cuts a fresh branch named `worktree-<name>` from the default remote branch rather than reusing an existing one. If you want a worktree on a branch that already exists, create it yourself with `git worktree add ../project-bugfix bugfix-123` and run `claude` inside that directory."
 
 [[params.faqItems]]
 question = "What is the difference between Git worktree and git clone?"
-answer = "Worktrees share the same .git repository, so creation is faster and there is no re-downloading of code. A clone creates a fully independent repository copy, which is better when you need complete isolation such as different remote configurations."
+answer = "Worktrees share one `.git` directory, so `git worktree add ../project-hotfix -b hotfix-branch` is near-instant and re-downloads nothing. A clone makes a fully independent copy of the repository — slower and larger, but the right call when you need separate remotes or a different Git config. Neither copies untracked files: a fresh worktree still needs its own `npm install` and a copied `.env`."
 +++
 
 Have you ever run into these situations?

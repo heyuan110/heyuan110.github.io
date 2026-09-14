@@ -18,15 +18,15 @@ answer = "Subagents use one-way hierarchical communication where a parent delega
 
 [[params.faqItems]]
 question = "What display modes does Claude Code Agent Teams support?"
-answer = "Agent Teams supports two display modes: in-process mode (default, works in any terminal) where agents share one window, and split-pane mode (requires tmux or iTerm2) where each Teammate gets its own pane for simultaneous viewing."
+answer = "Two. In-process mode is the default and works in any terminal — all agents share one window and you cycle views with `Shift+Down` / `Shift+Up`. Split-pane mode gives every Teammate its own pane so you can watch them work simultaneously, but it needs tmux or iTerm2. Pick one at launch with `claude --teammate-mode in-process` or `claude --teammate-mode split-panes`, and hit `Ctrl+T` in either mode to see the shared task list."
 
 [[params.faqItems]]
 question = "How much does Claude Code Agent Teams cost?"
-answer = "Agent Teams runs multiple Claude agents simultaneously, each consuming tokens independently. Costs are higher than single-agent usage since multiple Opus or Sonnet instances run in parallel. The exact cost depends on the number of teammates and task complexity."
+answer = "A 3-teammate session costs roughly 3-4x a single-agent session for the same work, because each agent burns tokens independently and coordination messages add overhead. In one worked example the team used enough tokens to run about 2.3x the cost of a single agent's ~120K tokens (~$3.60) — but finished in 18 minutes instead of 40. Keep it down by assigning Sonnet to mechanical tasks, capping teams at 3 agents (past 5 the coordination overhead outweighs the speedup), or running on a flat-rate Max 20x plan at $200/month."
 
 [[params.faqItems]]
 question = "Can Claude Code teammates communicate with each other?"
-answer = "Yes, teammates use a mailbox messaging system for lateral communication. When one agent modifies an API interface, it can notify another agent building a frontend that consumes it, enabling real-time coordination instead of discovering conflicts after both agents finish."
+answer = "Yes. Teammates talk to each other through a mailbox message-passing system, so communication runs in three directions: Team Lead to Teammates (assignments), Teammates back to the Lead (status, questions), and Teammate to Teammate (for example, I changed the API signature, here it is). That lateral channel is the architectural difference from Subagents. Everything is anchored on a shared task list you can open with `Ctrl+T` and edit at any time."
 +++
 
 ![Claude Code Agent Teams multi-agent collaboration patterns](cover.webp)

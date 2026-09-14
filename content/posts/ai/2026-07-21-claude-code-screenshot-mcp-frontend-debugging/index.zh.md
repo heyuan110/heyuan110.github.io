@@ -9,7 +9,7 @@ keywords = ['claude code 截图 mcp 配置', 'claude code 浏览器自动化', '
 
 [[params.faqItems]]
 question = "Claude Code 怎么配置截图 MCP?"
-answer = "Chrome DevTools MCP 用 `claude mcp add chrome-devtools --scope user npx chrome-devtools-mcp@latest`,Playwright MCP 用 `claude mcp add playwright npx @playwright/mcp@latest`,装完用 `/mcp` 验证。关键是调 take_screenshot 时一定要传 filePath,让图片落盘而不是 base64 塞进上下文;再加上 `--screenshot-max-width=2000 --screenshot-max-height=2000`,否则一张超限图片会永久废掉整个会话。"
+answer = "两条命令:`claude mcp add chrome-devtools --scope user npx chrome-devtools-mcp@latest` 和 `claude mcp add playwright npx @playwright/mcp@latest`,装完用 `/mcp` 验证。关键是调 take_screenshot 时传 filePath 让图片落盘,别把 base64 塞进上下文;再加 `--screenshot-max-width=2000 --screenshot-max-height=2000`,否则一张超限图会永久废掉会话。"
 
 [[params.faqItems]]
 question = "为什么一张截图会把 Claude Code 会话搞崩?"

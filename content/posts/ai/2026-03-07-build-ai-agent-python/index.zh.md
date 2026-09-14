@@ -14,7 +14,7 @@ answer = "大约 250 行 Python 代码就能构建一个功能完整的 AI 编�
 
 [[params.faqItems]]
 question = "什么是 Agentic Loop？为什么它很重要？"
-answer = "Agentic Loop 是一种 while 循环模式，AI 在循环中反复调用工具、观察结果、决定下一步行动——完全自主——直到任务完成。这是 Claude Code、Cursor、Copilot 等所有现代 AI 编程工具背后的核心架构。"
+answer = "Agentic Loop 就是一个 `while` 循环：把用户请求和工具定义发给模型 → 模型决定调用哪个工具 → 你的代码执行并把结果以 `role: tool` 消息追加回 `history` → 再发下一轮，直到模型不再要求调用工具。全程不需要人工介入。Claude Code、Cursor、Copilot 底层跑的都是这套架构，本文 V4 版本用 250 行把它实现出来。"
 
 [[params.faqItems]]
 question = "Tool Use 和 Function Calling 有什么区别？"
@@ -22,7 +22,7 @@ answer = "Tool Use 和 Function Calling 指的是同一个概念。OpenAI 称之
 
 [[params.faqItems]]
 question = "这个 AI Agent 架构可以用 GPT-4 以外的模型吗？"
-answer = "可以。因为本教程使用 OpenAI Python SDK 的标准接口，你只需更改 base URL 和 API key，就能换成任何支持 Function Calling 的模型——包括 DeepSeek、Qwen、Claude（通过兼容端点）或通过 Ollama 运行的本地模型。"
+answer = "可以。教程用的是 OpenAI Python SDK 的标准接口，只要改 `base_url` 和 API Key，就能换成任何支持 Function Calling 的模型——DeepSeek、Qwen、Claude（走兼容端点），或用 Ollama 跑的本地模型。依赖只有 `openai`、`rich`、`prompt_toolkit` 三个，Python 3.10+ 就能运行。"
 +++
 
 ![用 Python 从零构建 AI 编程 Agent——完整实战教程，涵盖 Agentic Loop 与工具调用](cover.webp)

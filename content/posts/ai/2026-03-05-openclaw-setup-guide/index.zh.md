@@ -26,7 +26,7 @@ answer = "可以。OpenClaw 支持内置的浏览器自动化 Skill，能执行 
 
 [[params.faqItems]]
 question = "在自己电脑上跑 OpenClaw 安全吗？"
-answer = "OpenClaw 提供多层安全防护：沙箱模式限制文件系统访问范围，配对模式要求设备授权，权限控制可以限定每个 Agent 可用的工具，所有数据都保存在本地。任何对外暴露的部署都建议开启沙箱模式和配对认证。"
+answer = "能，但必须自己配好三层防护，配置都写在 `~/.openclaw/` 下的 JSON5 配置里：`security.sandbox` 用 `allowedPaths` / `blockedPaths` 圈定可读写范围（不开沙箱，Agent 能读你的 `~/.ssh`、`~/.aws` 和浏览器 Cookie）；`security.pairing` 打开 `requireApproval`，新设备要审批才能发指令；再按 Agent 用 `tools.allowed` / `blocked` 收紧权限。网关默认只监听本机 18789 端口，数据全留在本地。"
 +++
 
 ![OpenClaw 安装配置指南：涵盖安装部署、参数配置和私人 AI Agent 自动化](cover.webp)

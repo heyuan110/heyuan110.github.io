@@ -14,15 +14,15 @@ answer = "Superpowers 是一个 GitHub 上 4 万星的 Claude Code 代理技能�
 
 [[params.faqItems]]
 question = "Superpowers 怎么安装？"
-answer = "克隆 Superpowers 仓库，将 skills 文件夹复制到项目的 .claude/skills/ 目录下即可。核心引导只占不到 2,000 Token，各技能按需加载。安装后 Claude 会自动检测并在合适的场景触发对应技能。"
+answer = "安装是两条斜杠命令：先 `/plugin marketplace add obra/superpowers-marketplace` 注册市场，再 `/plugin install superpowers@superpowers-marketplace` 装插件，要求 Claude Code 2.0.13 以上。重启后输入 `/help`，能看到 `/superpowers:brainstorm` 就算成功。核心引导不到 2000 Token，技能按需加载。"
 
 [[params.faqItems]]
 question = "Superpowers 的七阶段工作流是什么？"
-answer = "从需求到交付的完整流程：头脑风暴（澄清问题）→ 计划制定（写实施方案）→ 测试驱动开发（先写测试再写代码）→ 子代理并行开发 → 代码审查 → 系统化调试 → 验证完成。每个阶段都有对应的 Skill 来规范 Claude 的行为。"
+answer = "七个阶段依次是：头脑风暴（`brainstorming`）→ Git Worktree 隔离（`using-git-worktrees`）→ 制定计划（`writing-plans`）→ 子代理并行开发 → TDD 强制执行 → 代码审查 → 分支收尾（`finishing-a-development-branch`）。每个阶段都由一个 SKILL.md 约束行为，不是建议而是硬性流程。"
 
 [[params.faqItems]]
 question = "什么是子代理驱动开发？"
-answer = "子代理驱动开发是 Superpowers 的核心工作流之一。Claude 会将实施计划拆分成独立任务，为每个任务生成一个子代理并行执行，最后合并结果。类似于技术负责人把任务分配给团队成员各自完成。"
+answer = "`subagent-driven-development` 技能把实施计划拆成几分钟粒度的小任务，每个任务分派一个上下文干净的全新子代理。子代理交付后主代理做两阶段审查：先查是否符合计划，再查代码质量，Critical 级问题会阻塞进度。这让 Claude 能连续自主干几个小时不跑偏。"
 
 [[params.faqItems]]
 question = "Superpowers 适合什么样的项目？"

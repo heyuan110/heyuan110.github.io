@@ -14,7 +14,7 @@ answer = "Yes. In August 2025, TypeScript became the #1 most-used language on Gi
 
 [[params.faqItems]]
 question = "Is TypeScript better than Python for AI coding?"
-answer = "It depends on what you mean by 'AI coding.' For using AI tools to write application code, TypeScript is better — static types help LLMs generate more accurate code. For building AI/ML models, Python remains dominant due to its ecosystem (PyTorch, TensorFlow, scikit-learn)."
+answer = "It depends what you mean. For using AI tools to write application code, TypeScript wins — types constrain generation and catch the type errors that make up 94% of LLM compilation failures. For building AI/ML systems, Python is still the only serious option: PyTorch, TensorFlow, scikit-learn, pandas, and Hugging Face have no TypeScript equivalents, and roughly 50% of new AI-tagged GitHub repos in 2025 were Python against about 20% TypeScript."
 
 [[params.faqItems]]
 question = "Should I switch from Python to TypeScript?"
@@ -22,7 +22,7 @@ answer = "Not necessarily. The better strategy is to use both: TypeScript for we
 
 [[params.faqItems]]
 question = "Which language do AI coding tools support better?"
-answer = "AI coding tools like Claude Code, Cursor, and Copilot work well with both languages, but produce more accurate code in TypeScript because static types provide explicit constraints. Python with type hints (mypy) bridges some of this gap but doesn't match TypeScript's structural type system."
+answer = "Claude Code, Cursor, and Copilot handle both, but produce more accurate code in TypeScript because static types constrain the output. A 2025 study found 94% of LLM compilation errors are type-check failures — TypeScript catches those at compile time, while untyped Python only discovers them at runtime. Python with `mypy` or `pyright` hints narrows the gap, but coverage is optional and depends on developer discipline, so it never matches TypeScript's mandatory structural type system."
 
 [[params.faqItems]]
 question = "Is Python dying because of TypeScript?"

@@ -26,7 +26,7 @@ answer = "Lazygit. Reviewing agent-generated diffs hunk by hunk, juggling worktr
 
 [[params.faqItems]]
 question = "Do gitui or lazygit require a Nerd Font?"
-answer = "Neither. Both render with plain box-drawing characters. Lazygit can show file icons if you set gui.nerdFontsVersion to '3', but it is optional; gitui has no icon mode at all."
+answer = "Neither. Both render with plain box-drawing characters and work in any terminal font out of the box. Lazygit can show file-type icons if you set `gui.nerdFontsVersion` to '3' in its config, but it is entirely optional; gitui has no icon mode at all, so installing a Nerd Font buys you nothing there."
 +++
 
 ![gitui vs lazygit benchmark cover: two terminal Git clients compared on a large repository](cover.webp)

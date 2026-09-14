@@ -10,7 +10,7 @@ keywords = ['typescript ai 工具', 'typescript 增长 66%', 'typescript github 
 
 [[params.faqItems]]
 question = "TypeScript 在 GitHub 上为什么增长了 66%？"
-answer = "Cursor、Claude Code、Copilot 等 AI 编程工具在处理 TypeScript 时表现远优于 JavaScript，因为静态类型提供了明确的约束条件。这形成了一个「便利循环」——更好的 AI 支持推动了采用率，更多代码意味着更好的训练数据，反过来又让 AI 更擅长 TypeScript。"
+answer = "按 GitHub Octoverse 的数据，TypeScript 月活贡献者达到 2,636,006，年增 66.6%，一年净增约 105 万人，排名从第 3 升到第 1。推手是 AI：Cursor、Claude Code、Copilot 处理有类型的代码明显更准，每个类型注解都是一个约束条件，能缩小代码生成的搜索空间。GitHub 称之为「便利循环」——AI 支持更好带动采用，代码越多训练数据越好。"
 
 [[params.faqItems]]
 question = "TypeScript 能让 AI 生成的代码更准确吗？"
@@ -18,7 +18,7 @@ answer = "能。2025 年的一项学术研究发现，大模型产生的编译�
 
 [[params.faqItems]]
 question = "我该从 JavaScript 切换到 TypeScript 吗？"
-answer = "如果你经常使用 AI 编程工具，建议切换。TypeScript 为 AI 提供了关于代码意图的明确上下文，能减少 Bug、减少反复调试，生成更接近生产就绪的代码。迁移成本很低，因为 TypeScript 是 JavaScript 的超集。"
+answer = "如果你常用 AI 编程工具，建议切。类型注解等于提前告诉 AI 输入输出的精确结构，能减少 Bug 和反复调试。迁移成本很低：TypeScript 是 JavaScript 的超集，`npx tsc --init` 就能起步，再打开 strict 模式、先定义类型再让 AI 填实现，运行时边界用 Zod 校验。不想换语言的 Python 项目，用 `mypy` 或 `pyright` 补 type hints 也能拿到类似收益。"
 
 [[params.faqItems]]
 question = "哪个 AI 编程工具对 TypeScript 支持最好？"

@@ -13,7 +13,7 @@ answer = "Yes. As of July 9, 2026, GPT-5.6 (Sol, Terra, Luna) is generally avail
 
 [[params.faqItems]]
 question = "How much does GPT-5.6 cost?"
-answer = "Per million tokens: Sol is $5 input / $30 output, Terra is $2.50 / $15, and Luna is $1 / $6. All three ship with a 1M-token context window and 128K max output."
+answer = "Per million tokens: Sol is $5 input / $30 output, Terra is $2.50 / $15, and Luna is $1 / $6. All three ship with a 1M-token context window and 128K max output, so what separates the tiers is capability and price, not context. Luna at $1/$6 is the cheap way to find out whether GPT-5.6 helps on your workload before committing to Sol at five times the input cost."
 
 [[params.faqItems]]
 question = "What is ChatGPT Work?"

@@ -13,7 +13,7 @@ answer = "Claude Code Buddy is a virtual terminal pet companion built into Claud
 
 [[params.faqItems]]
 question = "How do I activate Claude Code Buddy?"
-answer = "Type /buddy in your Claude Code terminal. This triggers a hatch animation and reveals your unique companion. You need Claude Code v2.1.89+ and a Pro subscription ($20/month)."
+answer = "Type `/buddy` in your Claude Code terminal. A hatch animation plays and your companion appears; the name and personality Claude generates at that moment are written into `~/.claude.json` with a `hatchedAt` timestamp and never regenerated. You need Claude Code v2.1.89 or newer and a Pro subscription ($20/month). Reinstall on another machine and you get the same buddy back, as long as you sign in with the same account."
 
 [[params.faqItems]]
 question = "Can I change or reroll my Claude Code Buddy?"

@@ -14,7 +14,7 @@ answer = "ClawHub tavily-search skill 是 OpenClaw 官方提供的联网搜索�
 
 [[params.faqItems]]
 question = "如何通过 clawhub 安装 tavily-search skill？"
-answer = "执行 'clawdhub install tavily-search'（注意：CLI 叫 clawdhub 带 'd'，但仓库名是 clawhub）。命令会把 skill 拉到 ~/.openclaw/workspace/skills/tavily-search/ 目录。然后在 shell profile 里导出 TAVILY_API_KEY='tvly-...'（或写到 openclaw.json 的 skills.entries.tavily-search.env 里），执行 'openclaw restart' 重启网关，最后用 'openclaw skills list' 验证——能看到 tavily-search 的 SKILL.md 路径就说明加载成功。国内用户额外注意：需要给 api.tavily.com 配代理。"
+answer = "执行 `clawdhub install tavily-search`（CLI 叫 clawdhub 带 d，仓库名却是 clawhub），skill 会落到 `~/.openclaw/workspace/skills/tavily-search/`。再在 shell profile 里导出 `TAVILY_API_KEY`（以 tvly- 开头），或写进 `openclaw.json` 的 skills.entries 段，然后 `openclaw restart` 重启网关，用 `openclaw skills list` 验证。国内用户还要给 api.tavily.com 配代理。"
 
 [[params.faqItems]]
 question = "如何在 OpenClaw 中添加 Tavily 搜索？"

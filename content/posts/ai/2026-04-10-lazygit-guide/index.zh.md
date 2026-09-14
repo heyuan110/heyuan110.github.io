@@ -13,7 +13,7 @@ answer = "Lazygit 是一个开源的终端 Git 界面，用键盘操作替代复
 
 [[params.faqItems]]
 question = "Lazygit 怎么安装？"
-answer = "macOS 用 brew install lazygit，Ubuntu 用 sudo apt install lazygit，Windows 用 winget install lazygit。安装后在任意 Git 仓库中运行 lazygit 即可。"
+answer = "macOS 用 `brew install lazygit`，Ubuntu 用 `sudo apt install lazygit`，Arch 用 `pacman -S lazygit`，Windows 用 `winget install lazygit`。装完在任意 Git 仓库里运行 `lazygit` 即可，建议顺手设个 alias `lg`。最新版本是 2026 年 4 月 6 日发布的 v0.61.0。"
 
 [[params.faqItems]]
 question = "Lazygit 和 gitui 选哪个？"
@@ -21,7 +21,7 @@ answer = "Lazygit 功能更全（interactive rebase、custom patches、worktree 
 
 [[params.faqItems]]
 question = "Lazygit 能替代 GitKraken 吗？"
-answer = "对终端开发者来说可以。Lazygit 处理 staging、rebase、cherry-pick、冲突解决都不需要离开终端。但 GUI 客户端在大规模可视化 diff 和 PR 管理上仍有优势。"
+answer = "对终端开发者来说可以。staging、rebase、cherry-pick、冲突解决全在终端完成：逐行暂存按 `space`，interactive rebase 按 `i`，改旧 commit 按 `shift+a`，cherry-pick 是 `shift+c` 复制、`shift+v` 粘贴，操作错了 `ctrl+z` 撤销。但大规模可视化 diff 和 PR 管理，GUI 客户端仍然更强。"
 
 [[params.faqItems]]
 question = "Lazygit 需要多久上手？"

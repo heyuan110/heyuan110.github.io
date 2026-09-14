@@ -14,11 +14,11 @@ answer = "You need Python 3.10 or higher. The MCP Python SDK officially supports
 
 [[params.faqItems]]
 question = "What is FastMCP and how does it relate to the MCP Python SDK?"
-answer = "FastMCP is the high-level framework included in the official MCP Python SDK (the mcp package on PyPI). It provides a decorator-based API for building MCP servers — you use @mcp.tool(), @mcp.resource(), and @mcp.prompt() to register capabilities. It is the recommended way to build Python MCP servers."
+answer = "FastMCP is the high-level framework bundled with the official MCP Python SDK — the `mcp` package on PyPI, pinned as `mcp[cli]>=1.2.0` in `pyproject.toml`. It gives you a decorator API: `@mcp.tool()` for actions, `@mcp.resource()` for readable data, `@mcp.prompt()` for reusable templates. Type hints and docstrings become the tool schema automatically, which is why a working server fits in under 50 lines. It is the recommended way to build Python MCP servers."
 
 [[params.faqItems]]
 question = "Can I use pip instead of uv to install the MCP Python SDK?"
-answer = "Yes. Install with pip install mcp[cli] for the full package including CLI tools, or pip install mcp for just the library. However, uv is recommended because it is significantly faster, handles virtual environments automatically, and is the tool used in the official MCP documentation."
+answer = "Yes. `pip install mcp[cli]` gets the full package with CLI tools, `pip install mcp` just the library — the tutorial lists a pip equivalent for every `uv` command. You still need Python 3.10+ and pip 22.0 or newer. `uv` is recommended because it is substantially faster, creates and manages the virtual environment for you, and is what the official MCP docs use: `uv init`, then `uv add mcp[cli]`."
 
 [[params.faqItems]]
 question = "How do I test my Python MCP server before connecting it to Claude Code?"
@@ -26,7 +26,7 @@ answer = "Run mcp dev server.py to launch the MCP Inspector, a web-based testing
 
 [[params.faqItems]]
 question = "What is the difference between building MCP servers in Python vs TypeScript?"
-answer = "Both languages have official SDKs. Python uses decorator-based registration (@mcp.tool()) while TypeScript uses method calls (server.registerTool()). Python is better for data science, ML pipelines, and scripting tasks. TypeScript has a slightly more mature SDK. The protocol is identical — servers built in either language work with any MCP client."
+answer = "Both languages have official SDKs and speak the identical protocol, so a server written in either works with any MCP client. Python registers capabilities with decorators — `@mcp.tool()`, `@mcp.resource()` — and infers the schema from type hints and docstrings; TypeScript uses explicit method calls such as `server.registerTool()` with a declared schema. Pick Python for data science, ML pipelines, and scripting; the TypeScript SDK is marginally more mature and fits web-facing deployments."
 +++
 
 ![Build MCP servers in Python with FastMCP step by step tutorial](cover.webp)

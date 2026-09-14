@@ -10,7 +10,7 @@ keywords = ['mcp vs skills', 'cli vs mcp', 'claude skills vs mcp', 'mcp alternat
 
 [[params.faqItems]]
 question = "Is MCP dead in 2026?"
-answer = "No. MCP is being demoted, not buried. It lost its position as the default integration layer to CLI + Skills, but it still wins in four niches: dynamic tool discovery for consumer products, OAuth-managed remote services, sandboxed environments without a shell, and enterprise setups that need protocol-level audit boundaries."
+answer = "No — MCP is being demoted, not buried. It lost the default integration slot to CLI + Skills for a measurable reason: GitHub's official MCP server initially spent on the order of 50,000 context tokens just describing its tools, and by March 2026 Perplexity had moved back to APIs and CLIs. Four niches still belong to it: dynamic tool discovery in consumer products, OAuth-managed remote services, sandboxed environments with no shell, and enterprise setups that need protocol-level audit boundaries."
 
 [[params.faqItems]]
 question = "What is the difference between MCP and Claude Skills?"
@@ -22,7 +22,7 @@ answer = "Training data. Models have ingested billions of lines of shell command
 
 [[params.faqItems]]
 question = "When should I still use MCP instead of CLI + Skills?"
-answer = "Keep MCP when there is no CLI equivalent for the service, when your agent runs in a no-shell sandbox (web-based agents), when the service requires OAuth flows you don't want to manage yourself, or when the tool population changes so often that dynamic discovery genuinely pays for its context cost."
+answer = "Keep MCP when no CLI equivalent exists for the service, when your agent runs in a no-shell sandbox such as a web-based agent, when the service demands OAuth flows you would rather not manage, or when the tool population churns often enough that dynamic discovery earns back its context cost. CompanyOS is the honest example: it still wires up 8 MCP servers for Gmail, Linear and Help Scout, while the soul of the system is 12 skill files of roughly 2,000 tokens."
 
 [[params.faqItems]]
 question = "How do I migrate from an MCP server to CLI + SKILL.md?"

@@ -10,11 +10,11 @@ keywords = ['Claude Code vs Cursor', 'Claude Code 对比 Cursor', '最好的AI�
 
 [[params.faqItems]]
 question = "Claude Code 比 Cursor 好用吗？"
-answer = "取决于你的工作流。Claude Code 擅长终端自主任务、大规模重构和多文件操作，且 token 消耗更低。Cursor 擅长 IDE 集成开发、行内代码补全和可视化编辑。很多开发者两个都用。"
+answer = "取决于你的工作流。Claude Code 是终端里的自主 Agent：上下文 200K–1M，能把整个代码库放进去跨文件推理，完成同等任务 token 消耗约少 5.5 倍，返工率据报告低约 30%。Cursor 是 IDE：行内补全、可视化编辑，自研 Composer 模型代码生成快 4 倍、最多 8 个 Agent 并行，但实际有效上下文只有 70K–120K。很多开发者两个都用。"
 
 [[params.faqItems]]
 question = "Claude Code 和 Cursor 可以一起用吗？"
-answer = "可以，很多开发者都是这样做的。常见搭配：日常编辑用 Cursor 的行内补全和可视化调试，遇到复杂的多文件重构、架构设计和自动化任务时切换到 Claude Code。"
+answer = "可以，很多开发者就是这么搭的。日常编辑、行内补全和可视化调试交给 Cursor，遇到跨文件大重构、架构设计和自动化任务切到 Claude Code（Hooks、Skills、Worktree 隔离都在这边）。两边 Pro 各 $20/月，合起来 $40/月，是同时拿到两种能力最划算的组合；往上升档大约 $40–120/月。"
 
 [[params.faqItems]]
 question = "Claude Code 和 Cursor 哪个更划算？"

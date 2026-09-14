@@ -9,7 +9,7 @@ keywords = ['openspec superpowers', 'openspec 教程', 'spec 驱动开发', 'cla
 
 [[params.faqItems]]
 question = "OpenSpec vs Superpowers 到底该选哪个?"
-answer = "它们在不同层,基本不是二选一。日常默认用 Superpowers——它对话优先,负责执行纪律(TDD、子代理、代码审查)。只有当一个功能会跨多个会话、由多人反复迭代时才加上 OpenSpec,因为它的 Delta/Archive 机制能给决策历史留版本,而这正是 Superpowers 会被下一轮覆盖掉的东西。"
+answer = "它们在不同层,基本不是二选一。Superpowers(约 24.9 万 star)管执行纪律——对话式规划、TDD、子代理、代码审查,而且早已不限 Claude,Codex、Cursor、Copilot CLI 都能装。OpenSpec(约 5.9 万 star)管产物层,产出 `proposal.md`、`specs/`、`design.md`、`tasks.md`。日常默认用 Superpowers;只有功能要跨多个会话反复迭代时才加 OpenSpec,它的 Delta/Archive 能留住决策历史。"
 
 [[params.faqItems]]
 question = "OpenSpec 和 Superpowers 会自动配合吗?"
@@ -17,7 +17,7 @@ answer = "不会。它们是两套独立系统,不会自动串联。如果你两
 
 [[params.faqItems]]
 question = "Claude Code 里的 spec 驱动开发是什么?"
-answer = "spec 驱动开发(SDD)是让 AI 按照约定好的规格文档写代码,而不是从一句话提示里即兴发挥。在 Claude Code 里,OpenSpec 把规格落成带版本的文件(proposal、specs、design、tasks),而 Superpowers 先用对话把规格聊出来,再强制测试先行地执行。"
+answer = "spec 驱动开发(SDD)是让 AI 按约定好的规格文档写代码,而不是从一句话提示里即兴发挥。在 Claude Code 里,OpenSpec 把规格落成带版本的文件——`proposal.md`(含 Out-of-Scope 边界)、装 GIVEN/WHEN/THEN 的 `specs/`、记选型理由的 `design.md`、当清单用的 `tasks.md`;Superpowers 则先用对话把规格聊出来,再强制测试先行地执行。"
 
 [[params.faqItems]]
 question = "个人开发者用 OpenSpec 还是 Superpowers?"

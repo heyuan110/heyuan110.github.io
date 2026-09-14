@@ -9,11 +9,11 @@ keywords = ['Mac Mini VPN', 'remote access Mac', 'Tailscale setup', 'WireGuard m
 
 [[params.faqItems]]
 question = "Can Tailscale work in China without a separate VPN?"
-answer = "Not reliably. Tailscale's control plane (login.tailscale.com) is blocked in mainland China. The data plane may work through DERP relays, but initial authentication and key exchange require access to Tailscale's coordination servers. You need an existing VPN or proxy to complete the initial setup, and reconnections after network changes may fail."
+answer = "Not reliably. Tailscale's control plane (`login.tailscale.com`) is blocked in mainland China. The data plane often still works — `tailscale netcheck` will report DERP relays reachable — but login, key exchange, and re-authentication all need those coordination servers. I verified it firsthand: the moment I dropped my corporate VPN, the Tailscale link went offline even though every relay was still reachable. You need an existing VPN or proxy to finish setup, and reconnects after a network change can fail."
 
 [[params.faqItems]]
 question = "Which remote access tool is best for a Mac Mini in a Chinese office?"
-answer = "If your office has a static public IP, WireGuard is the most reliable choice — it's a kernel-level protocol with no dependency on third-party control planes. If you don't have a public IP, frp with a VPS in your region gives you the most control. Hardware VPN appliances remain the most hassle-free option if your company already has one."
+answer = "If your office has a static public IP, WireGuard is the most reliable choice — a kernel-level protocol (in Linux since 5.6) with no third-party control plane, needing only UDP port 51820 forwarded to the Mac Mini. Without a public IP, frp (105,700+ GitHub stars) plus a VPS in your region gives you the most control. A hardware VPN appliance stays the least painful option if your company already runs one. Avoid making Tailscale or Cloudflare Tunnel the primary path: both lean on control planes that are unreliable from the mainland."
 
 [[params.faqItems]]
 question = "What is the performance difference between WireGuard and OpenVPN?"

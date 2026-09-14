@@ -15,7 +15,7 @@ question = "多 Agent 系统一定比单 Agent 好吗？"
 answer = "不是。Cognition 团队在 Devin 的公开复盘里明确说过：朴素的多 Agent 架构在真实任务上经常比单 Agent 差，因为子 Agent 之间对模糊目标会失去对齐。正确的心智模型是：Sub-Agent 是「上下文垃圾回收」机制，不是并行加速器。它的价值是帮主 Agent 扔掉噪声，不是把思考切碎。只有当子任务真正独立、交接契约清晰时，多 Agent 才会赢过单 Agent。"
 [[params.faqItems]]
 question = "Sub-Agent 怎么在 Opus / Sonnet / Haiku 之间选？"
-answer = "按「决策复杂度」路由，不要按「输入体量」路由。需要判断力的生成任务（写代码、写方案、做架构选型）上 Opus；结构化抽取和摘要（准确但不需要创造力）上 Sonnet；确定性的过滤、分类、大批量扫描上 Haiku。最常见的错配是：主 Agent 用 Opus 做调度、子 Agent 用 Sonnet 写代码。应该反过来——让便宜模型探路，把 Opus 留到最终生成那一步。"
+answer = "按「决策复杂度」路由，不要按「输入体量」路由。需要判断力的生成任务（写代码、做架构选型）上 Opus；结构化抽取和摘要上 Sonnet；确定性过滤、分类、大批量扫描上 Haiku——读 10 万 token 日志返回 200 token 分类结果，Haiku 干得很漂亮。我把博客写作管线从「Opus 调度 + Sonnet 执行」改成「Sonnet 调度 + Opus 写作 + Haiku 搜索」后，端到端 token 成本降了约 60%，质量反而更好。"
 [[params.faqItems]]
 question = "Sub-Agent 实际成本比单个大上下文高多少？"
 answer = "每次 spawn 都有冷启动开销：system prompt、CLAUDE.md、工具 schema 都要重新计 token。如果子 Agent 只处理 2000 token 的真实工作，光是开销就能超过工作本身。经验盈亏平衡点大约是「每次 spawn 至少 10,000 token 输入」。低于这个量级就留在主 Agent 里做。高于这个量级，子 Agent 才真正通过释放主 Agent 上下文赚回成本。"

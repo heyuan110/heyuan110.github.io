@@ -18,7 +18,7 @@ answer = "Claude slows down rather than stopping completely. You'll see longer w
 
 [[params.faqItems]]
 question = "Does Claude Code share limits with Claude.ai?"
-answer = "Yes. Claude Code and Claude.ai share the same message quota on Pro and Max plans. Using Claude.ai chat reduces your available Claude Code messages and vice versa."
+answer = "Yes. On Pro and Max plans, Claude Code and Claude.ai draw from one shared quota — spend 30 messages in the web chat and your Claude Code allowance drops by that much token budget. The asymmetry is what bites: a short chat turn runs about 200 tokens, while a Claude Code turn that reads 10 files and edits them can exceed 50,000, so agentic work burns the shared pool 5-10x faster than casual chat. Both the 5-hour rolling window and the 7-day weekly cap are shared."
 
 [[params.faqItems]]
 question = "Can I buy extra messages on the Pro plan?"

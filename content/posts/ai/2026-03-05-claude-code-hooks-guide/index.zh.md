@@ -14,7 +14,7 @@ answer = "Claude Code Hooks 是用户定义的 Shell 命令、HTTP 端点或 LLM
 
 [[params.faqItems]]
 question = "Claude Code Hooks 支持多少个生命周期事件？"
-answer = "共 17 个生命周期事件，分为五类：会话类（SessionStart、InstructionsLoaded、SessionEnd）、用户输入（UserPromptSubmit）、工具循环（PreToolUse、PermissionRequest、PostToolUse、PostToolUseFailure）、完成类（Stop、SubagentStart、SubagentStop、Notification、TeammateIdle、TaskCompleted）和上下文/配置类（PreCompact、ConfigChange、WorktreeCreate）。新手优先掌握 PreToolUse、PostToolUse、Notification、Stop 和 SessionStart 这五个即可覆盖日常场景。"
+answer = "共 17 个，分五类：会话类（SessionStart、InstructionsLoaded、SessionEnd）、用户输入（UserPromptSubmit）、工具循环（PreToolUse、PermissionRequest、PostToolUse、PostToolUseFailure）、完成类（Stop、SubagentStart/Stop、Notification、TeammateIdle、TaskCompleted）、上下文类（PreCompact、ConfigChange）。日常够用的是 `PreToolUse`、`PostToolUse`、`Stop`。"
 
 [[params.faqItems]]
 question = "Claude Code Hooks 可以拦截危险命令吗？"

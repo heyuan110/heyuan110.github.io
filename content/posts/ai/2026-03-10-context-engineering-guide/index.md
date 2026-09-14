@@ -18,7 +18,7 @@ answer = "Prompt engineering is about writing better individual messages. Contex
 
 [[params.faqItems]]
 question = "What are the main context failure modes?"
-answer = "There are four primary failure modes: Context Poisoning (wrong information that corrupts outputs), Context Distraction (too much irrelevant information), Context Confusion (contradictory or ambiguous information), and Context Conflict (conflicting instructions from different context sources). Each requires different mitigation strategies."
+answer = "Four. Context Poisoning: stale facts corrupt the output — a `CLAUDE.md` still claiming PostgreSQL 14 after you migrated to 16 makes the model emit PG14 migration syntax. Context Distraction: pasting a 500-line file when the model needs one 20-line function, so it over-engineers and touches code it should not. Context Confusion: vague instructions like handle errors gracefully instead of a concrete rule. Context Conflict: project config, conversation and MCP server each point a different way — fix it with a documented priority order of conversation > CLAUDE.md > tool context > model defaults."
 
 [[params.faqItems]]
 question = "How many tokens should I put in my context?"

@@ -10,7 +10,7 @@ keywords = ['MCP protocol', 'Model Context Protocol', 'MCP explained', 'MCP vs f
 
 [[params.faqItems]]
 question = "What is MCP (Model Context Protocol)?"
-answer = "MCP is an open standard created by Anthropic that lets AI applications connect to external tools and data sources through a universal protocol. Think of it as USB-C for AI — one standard interface that works with any AI tool and any external service."
+answer = "MCP is an open standard from Anthropic that lets AI applications reach external tools and data through one universal protocol — USB-C for AI. A server exposes three primitives: Tools (executable actions), Resources (read-only data), and Prompts (reusable instruction templates), carried over `stdio` for local subprocesses or HTTP plus Server-Sent Events for networked ones. Build a Slack server once and every MCP-compatible client can use it with no glue code."
 
 [[params.faqItems]]
 question = "Is MCP only for Claude?"
@@ -18,7 +18,7 @@ answer = "No. While Anthropic created MCP, it has been adopted by OpenAI, Google
 
 [[params.faqItems]]
 question = "What is the difference between MCP and function calling?"
-answer = "Function calling lets an LLM output structured calls to predefined functions. MCP is a full interaction protocol covering discovery, invocation, and response handling. MCP servers are reusable across any MCP-compatible AI tool, while function calling is typically tied to a specific provider."
+answer = "Function calling only lets an LLM emit a structured call to a function you predefined in that provider's own format. MCP is the whole interaction protocol — discovery, invocation, and response handling — spoken over `stdio` or HTTP with SSE. The practical difference is portability: one MCP server works in Claude Code, Cursor, VS Code, and ChatGPT alike, while function-calling schemas get rewritten per provider and per app. Organizations report 40-60% faster agent deployment after the switch."
 +++
 
 ![MCP Protocol architecture and ecosystem explained for 2026](cover.webp)

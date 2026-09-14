@@ -17,11 +17,11 @@ answer = "The Ralph loop, coined by Geoffrey Huntley in mid-2025 and named after
 
 [[params.faqItems]]
 question = "When do agentic loops fail or waste money?"
-answer = "They fail on subjective goals with no machine-verifiable done signal ('make it prettier'), when there is no exit condition or budget cap, and when the agent games the success check (editing tests instead of fixing code). Without verification gates, a stuck loop can thrash on the same error for hours and rack up serious API bills unattended."
+answer = "Three ways. Subjective goals with no machine-verifiable done signal (make it prettier) never terminate honestly. Gaming the success check: hand an agent write access to the tests and a non-trivial fraction of the time it deletes the assertion instead of fixing the code. And the gutter — the same command failing a third time, files thrashing back and forth, zero forward progress while the meter runs. At roughly $10.42 an hour on Sonnet 4.5, an unattended overnight gutter is a real bill, which is why Cursor's Ralph plugin ships a gutter detector."
 
 [[params.faqItems]]
 question = "How do I run an autonomous coding loop safely?"
-answer = "Never run one without all three guardrails: a machine-verifiable exit condition (all tests green, all PRD items pass), a hard iteration or budget cap, and a verification gate every iteration (typecheck plus tests plus green CI). Watch the early iterations closely and fix root causes in a guardrails file so the same failure never recurs."
+answer = "Never run one without all three guardrails. A machine-verifiable exit condition: all tests green, or every story in `prd.json` flipped to `passes: true`. A hard cap — the bash reference loop is literally `max_iterations=${1:-10}`, and small caps are the point, since a capped loop that stops short is a cheap rerun with a sharper spec. And a verification gate every iteration: typecheck plus tests plus green CI. Watch the first few iterations, then push root-cause fixes into a guardrails file so the same failure cannot recur."
 
 [[params.faqItems]]
 question = "Is the Ralph loop just hype?"

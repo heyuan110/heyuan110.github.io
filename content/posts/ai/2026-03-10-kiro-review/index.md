@@ -10,7 +10,7 @@ keywords = ['kiro', 'kiro review', 'amazon kiro', 'kiro ide', 'kiro vs claude co
 
 [[params.faqItems]]
 question = "Is Kiro free to use?"
-answer = "Kiro offers a free tier with limited agent usage. The Pro plan starts at $19/month with more generous limits and priority model access. Enterprise pricing is custom through AWS."
+answer = "There is a free tier with limited agent usage, enough to try the spec-driven workflow end to end. Pro starts at $19/month with more generous limits and priority model access, which undercuts Cursor and Claude Code, both of which start at $20/month. Enterprise pricing is custom through AWS. Pricing as of March 2026 — Kiro changes it often, so check kiro.dev before budgeting."
 
 [[params.faqItems]]
 question = "What happened with the Kiro AWS outage?"

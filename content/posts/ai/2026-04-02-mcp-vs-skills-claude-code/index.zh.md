@@ -9,11 +9,11 @@ keywords = ['MCP和Skill的区别', 'mcp skill 区别', 'Claude Code MCP Skill H
 
 [[params.faqItems]]
 question = "MCP 和 Skill 最核心的区别是什么？"
-answer = "MCP 是连接外部服务的协议——让 AI 能调用数据库、浏览器、API 等外部工具。Skill 是教 AI 做事的知识包——告诉 AI 遇到某个任务该按什么步骤、什么标准来完成。简单说：MCP 提供能力，Skill 提供智慧。"
+answer = "MCP 是连接外部服务的协议，配置写在 `.claude/settings.json` 的 `mcpServers` 里，让 AI 能调数据库、浏览器、API。Skill 是教 AI 做事的知识包，放在 `.claude/skills/<name>/SKILL.md`，写清楚某类任务按什么步骤、什么标准完成。一句话：MCP 提供能力，Skill 提供智慧。"
 
 [[params.faqItems]]
 question = "什么时候该用 Hooks 而不是 Skill？"
-answer = "当某件事必须每次都执行、不能遗漏时用 Hooks。比如写完代码自动格式化、禁止执行危险命令——这些是硬性规则，不能靠 AI 自觉。Skill 适合需要 AI 判断和推理的复杂流程。"
+answer = "当某件事必须每次都执行、不能靠 AI 自觉时用 Hooks。它同样配在 `settings.json` 里，按事件触发：`PreToolUse` 拦危险命令（比如 `rm -rf /`），`PostToolUse` 自动跑 `prettier --write`，还有 `Stop`、`SessionStart`、`SessionEnd`。Skill 则适合需要 AI 判断和推理的多步流程。"
 
 [[params.faqItems]]
 question = "MCP 服务器会不会很占 Token？"

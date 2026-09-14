@@ -13,11 +13,11 @@ answer = "The Client SDK requires you to implement the tool execution loop yours
 
 [[params.faqItems]]
 question = "Can I use my Claude Pro or Max subscription with the Agent SDK?"
-answer = "No. The Agent SDK only accepts API key billing. You cannot use claude.ai Pro or Max subscription quotas. Anthropic blocked OAuth token extraction in January 2026."
+answer = "No. The Agent SDK bills through API keys only — you export `ANTHROPIC_API_KEY` — and it cannot draw on claude.ai Pro or Max subscription quota. In January 2026 Anthropic blocked OAuth token extraction, closing the workaround some developers relied on. If you already hold cloud credits you can redirect billing instead: `CLAUDE_CODE_USE_BEDROCK=1` for AWS Bedrock, `CLAUDE_CODE_USE_VERTEX=1` for Google Vertex AI, or `CLAUDE_CODE_USE_FOUNDRY=1` for Microsoft Azure."
 
 [[params.faqItems]]
 question = "When should I use query() vs ClaudeSDKClient?"
-answer = "Use query() for one-shot tasks like CI/CD bug fixes or report generation — each call creates a fresh session. Use ClaudeSDKClient for multi-turn conversations where the agent needs to remember previous context across exchanges."
+answer = "Use `query()` for one-shot tasks — CI/CD bug fixes, batch jobs, report generation. It is stateless: every call opens a fresh session, runs the tools autonomously, ends, and hands back a result message carrying `duration_ms` and `total_cost_usd`. Calling it in a loop to build a chatbot is the classic mistake, because Claude remembers nothing between calls. Use `ClaudeSDKClient` when the agent has to carry context across turns."
 
 [[params.faqItems]]
 question = "How much does running an Agent SDK task cost?"
@@ -25,7 +25,7 @@ answer = "It depends on the model and task complexity. Sonnet handles simple tas
 
 [[params.faqItems]]
 question = "Does the Agent SDK require Claude Code CLI installed separately?"
-answer = "No. The pip install claude-agent-sdk package bundles the Claude Code CLI automatically. However, you need Node.js 18+ runtime installed on your system."
+answer = "No — `pip install claude-agent-sdk` (or `uv add claude-agent-sdk`) bundles the Claude Code CLI for you. But the SDK shells out to that CLI, so the machine still needs a Node.js 18+ runtime next to Python 3.10+ (3.12 recommended). Export `ANTHROPIC_API_KEY` after installing and the three-line agent runs."
 +++
 
 ![Claude Agent SDK: build production AI agents with Python toolchain](cover.webp)

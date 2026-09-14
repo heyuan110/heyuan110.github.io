@@ -14,15 +14,15 @@ answer = "Multi-agent orchestration is the practice of coordinating multiple spe
 
 [[params.faqItems]]
 question = "When should I use multi-agent instead of a single agent?"
-answer = "Switch to multi-agent when you hit one of three bottlenecks: memory bloat (the agent slows down from accumulated context), context pollution (responses drift off-topic because unrelated knowledge interferes), or cost explosion (every request carries unnecessary tokens). If your single agent consistently struggles with these, it is time to specialize."
+answer = "Switch when you hit one of three bottlenecks. Memory bloat: latency climbs with history, so an agent that answered in 2 seconds on day one takes 8 seconds by week three. Context pollution: unrelated domains bleed into each other, so a coding agent starts formatting marketing copy like code. Cost explosion: carrying 50,000 tokens of stale context into every request runs 3-5x the token bill you actually need."
 
 [[params.faqItems]]
 question = "Which multi-agent pattern is best for coding tasks?"
-answer = "The Orchestrator-Worker pattern works best for most coding tasks. An orchestrator agent plans the work, spawns specialized worker agents for implementation and testing, then reviews the results. Claude Code's Worktree feature and Cursor's parallel agents both use variants of this pattern in production."
+answer = "Orchestrator-Worker fits most coding work: one agent plans, spawns specialized workers for implementation and testing, then reviews what comes back. Claude Code's Worktree feature is a textbook implementation — the main instance creates separate git worktrees so parallel agents never touch the same files — and Cursor's background agents do the same with a sandbox per agent. Escalate to it only after a Router with 2-3 specialists stops being enough."
 
 [[params.faqItems]]
 question = "How do agents communicate in a multi-agent system?"
-answer = "Agents communicate through structured message passing — typically JSON payloads sent via internal APIs. The key principle is minimal, structured communication: agents should exchange only the information needed for the next step, using schemas rather than free-form text to avoid misinterpretation."
+answer = "Through structured data, not free-form prose. A handoff is a JSON payload carrying `task`, a `context` block (endpoint, schema reference, constraints) and explicit `acceptance_criteria` such as `>80% test coverage`. Keep the topology hub-and-spoke so every message routes through the orchestrator, and gate it with a whitelist — `agentToAgent` with an `allow` list — so only agents that genuinely need to talk to each other can."
 +++
 
 ![Multi-agent orchestration patterns showing Pipeline, Router, Orchestrator-Worker, and Evaluator-Optimizer architectures for AI agent collaboration](cover.webp)

@@ -14,11 +14,11 @@ answer = "需要 Python 3.10 或更高版本。MCP Python SDK 官方支持 Pytho
 
 [[params.faqItems]]
 question = "FastMCP 是什么？它和 MCP Python SDK 是什么关系？"
-answer = "FastMCP 是官方 MCP Python SDK（PyPI 上的 mcp 包）中包含的高级框架。它提供了基于装饰器的 API 来构建 MCP 服务器——你可以用 @mcp.tool()、@mcp.resource() 和 @mcp.prompt() 来注册能力。这是构建 Python MCP 服务器的推荐方式。"
+answer = "FastMCP 是官方 MCP Python SDK（PyPI 上的 `mcp` 包）里自带的高级框架，用装饰器注册能力：`@mcp.tool()`、`@mcp.resource()`、`@mcp.prompt()`。在 `pyproject.toml` 的依赖里写上 `mcp[cli]>=1.2.0` 就能用，靠它写一个跑得起来的服务器不到 50 行代码，这也是官方推荐的 Python 写法。"
 
 [[params.faqItems]]
 question = "可以用 pip 代替 uv 来安装 MCP Python SDK 吗？"
-answer = "可以。使用 pip install mcp[cli] 安装包含 CLI 工具的完整包，或者 pip install mcp 只安装库。不过推荐使用 uv，因为它速度更快，能自动处理虚拟环境，而且是官方 MCP 文档使用的工具。"
+answer = "可以。`pip install mcp[cli]` 装带 CLI 工具的完整包，`pip install mcp` 只装库，pip 版本需要 22.0 以上。不过更推荐 uv：它更快、会自动管理 `.venv` 虚拟环境，也是官方 MCP 文档在用的工具，一行 `curl -LsSf https://astral.sh/uv/install.sh | sh` 就能装上。"
 
 [[params.faqItems]]
 question = "在连接 Claude Code 之前如何测试 Python MCP 服务器？"

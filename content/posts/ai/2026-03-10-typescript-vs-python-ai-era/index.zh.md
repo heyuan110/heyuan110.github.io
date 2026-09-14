@@ -14,7 +14,7 @@ answer = "是的。2025 年 8 月，TypeScript 以每月 263 万活跃贡献者�
 
 [[params.faqItems]]
 question = "用 AI 写代码，TypeScript 比 Python 好吗？"
-answer = "取决于你说的是哪种场景。如果是用 AI 工具写应用代码，TypeScript 更好——静态类型能帮助 LLM 生成更准确的代码。如果是构建 AI/ML 模型，Python 凭借其生态系统（PyTorch、TensorFlow、scikit-learn）依然占据绝对优势。"
+answer = "看场景。写应用代码 TypeScript 更稳：2025 年的研究发现 94% 的 LLM 编译错误都是类型检查失败，静态类型在编译期就把这些拦下来了。做 AI/ML 模型仍然是 Python 的地盘——PyTorch、Hugging Face、scikit-learn 在 TypeScript 里没有对等方案，2025 年 GitHub 上近一半的新 AI 仓库是 Python。"
 
 [[params.faqItems]]
 question = "我应该从 Python 转到 TypeScript 吗？"
@@ -22,7 +22,7 @@ answer = "不一定。更聪明的策略是两者都用：TypeScript 负责 Web 
 
 [[params.faqItems]]
 question = "AI 编程工具对哪种语言支持更好？"
-answer = "Claude Code、Cursor、Copilot 等 AI 编程工具对两种语言都支持良好，但在 TypeScript 中生成的代码更准确，因为静态类型提供了明确的约束。Python 加上类型注解（mypy）可以缩小部分差距，但无法完全匹配 TypeScript 的结构化类型系统。"
+answer = "主流工具两种语言都支持得不错，但 TypeScript 下更准：Cursor 的行内补全在没有类型的 Python 里精度会掉，Claude Code 则靠类型系统深度理解代码。给 Python 补上类型注解、用 `mypy` 或 `pyright` 检查能追回一部分差距，但覆盖率不够就没用，仍比不上 TypeScript 编译期强制的结构化类型。"
 
 [[params.faqItems]]
 question = "Python 会因为 TypeScript 的崛起而衰落吗？"

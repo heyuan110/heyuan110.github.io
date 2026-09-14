@@ -14,19 +14,19 @@ answer = "Superpowers is an open-source agentic skills framework (40K+ GitHub st
 
 [[params.faqItems]]
 question = "How does Superpowers enforce test-driven development?"
-answer = "When the TDD skill is active, if Claude tries to write implementation code without tests first, Superpowers forces it to delete the code and start over with tests. This is enforcement, not suggestion — the skill literally blocks non-TDD workflows."
+answer = "When the `test-driven-development` skill is active and Claude tries to write implementation code before tests, Superpowers makes it delete that code and restart from a failing test. The skill drives the full RED-GREEN-REFACTOR-COMMIT cycle: write a failing test, write the minimum code to pass it, clean up while tests stay green, then commit the complete cycle. This is enforcement, not suggestion."
 
 [[params.faqItems]]
 question = "How do I install Superpowers in Claude Code?"
-answer = "Clone the Superpowers repository and copy the skills folder into your project's .claude/skills/ directory. The core bootstrap loads in under 2,000 tokens, with individual skills loaded on demand as Claude detects the need for them."
+answer = "Superpowers ships as a Claude Code plugin. On Claude Code 2.0.13 or newer, run `/plugin marketplace add obra/superpowers-marketplace`, then `/plugin install superpowers@superpowers-marketplace`, restart Claude Code, and type `/help` to confirm commands like `/superpowers:brainstorm` appear. Personal skills live in `~/.config/superpowers/skills/`. The core bootstrap loads in under 2,000 tokens, with the 14 core skills pulled in on demand."
 
 [[params.faqItems]]
 question = "What is subagent-driven development in Superpowers?"
-answer = "Subagent-driven development is a Superpowers workflow where Claude spawns independent sub-agents for parallel tasks. Each sub-agent works in isolation on a specific piece of the implementation plan, and results are merged back — similar to how a tech lead delegates tasks to team members."
+answer = "Subagent-driven development is the workflow behind the `subagent-driven-development` skill: Claude dispatches a fresh subagent for each task in the plan, so no task inherits another task's context. When a subagent finishes, the main agent runs a two-phase review — spec compliance first, then code quality — which Superpowers 4.0 split into two independent review agents."
 
 [[params.faqItems]]
 question = "Can Superpowers work with other AI coding tools besides Claude Code?"
-answer = "Superpowers is designed specifically for Claude Code's Skills system. However, its methodology (TDD enforcement, structured planning, systematic debugging) can inspire similar workflows in other tools like Cursor or Copilot through their respective configuration systems."
+answer = "Superpowers targets Claude Code's Skills system first, but it is not locked to it: OpenAI Codex has been supported since Superpowers 3.3, and skills are plain `SKILL.md` files other agents can read. There is no official Cursor or Copilot port, so there you would reimplement the methodology — TDD enforcement, structured planning, systematic debugging — inside their own rules files."
 +++
 
 ![Superpowers Deep Dive](cover.webp)

@@ -9,11 +9,11 @@ keywords = ['lazygit', 'lazygit tutorial', 'git TUI', 'terminal git client', 'la
 
 [[params.faqItems]]
 question = "What is lazygit?"
-answer = "Lazygit is an open-source terminal UI for Git that replaces complex Git commands with intuitive keyboard-driven interactions. It has 76K+ GitHub stars and is written in Go."
+answer = "Lazygit is an open-source terminal UI for Git, written in Go, that turns Git's most painful commands into single keystrokes — `space` to stage a line, `i` to start an interactive rebase, `s` to squash, `shift+a` to amend an old commit, `ctrl+z` to undo the last operation. It has 76,000+ GitHub stars and 8 years of active development, shipped v0.61.0 on April 6 2026, and counts DHH and Shopify's Tobias Lutke among its sponsors."
 
 [[params.faqItems]]
 question = "How do I install lazygit?"
-answer = "On macOS: brew install lazygit. On Ubuntu: sudo apt install lazygit. On Windows: winget install lazygit. Or download binaries from GitHub releases."
+answer = "One package-manager command on every platform: `brew install lazygit` on macOS, `sudo apt install lazygit` on Ubuntu, `winget install lazygit` on Windows, or download a prebuilt binary from the GitHub releases page — it is a single Go executable with no runtime dependencies. Then run `lazygit` inside any Git repository. Most people add a shell alias such as `lg`, since you will be launching it dozens of times a day."
 
 [[params.faqItems]]
 question = "Is lazygit better than gitui?"
@@ -25,7 +25,7 @@ answer = "For terminal-native developers, yes. Lazygit handles staging, rebasing
 
 [[params.faqItems]]
 question = "Does lazygit work with Neovim?"
-answer = "Yes. The lazygit.nvim plugin embeds lazygit directly into Neovim as a floating terminal. You can open it with a keybinding, perform all Git operations, and return to your editor seamlessly."
+answer = "Yes. The `lazygit.nvim` plugin embeds lazygit inside Neovim as a floating terminal — bind it to a key, do your staging, rebasing, and conflict resolution, then drop straight back into the buffer you were editing. Because lazygit ships as a single Go binary, the plugin simply shells out to it, so there is no extra runtime to install beyond lazygit itself."
 +++
 
 ![Lazygit terminal UI for Git commands with interactive rebase and staging](cover.webp)

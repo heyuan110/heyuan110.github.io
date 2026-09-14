@@ -14,19 +14,19 @@ answer = "The Gateway acts as a central dispatch center that receives messages f
 
 [[params.faqItems]]
 question = "What are OpenClaw Nodes and how do they enable cross-device execution?"
-answer = "Nodes are remote execution endpoints — your other computers, phones, or tablets registered with OpenClaw. An agent can instruct a Node to run commands, take photos, capture screenshots, or render content on a different device, enabling truly cross-device AI automation."
+answer = "Nodes are companion devices — laptops, phones, tablets — that connect to the Gateway's WebSocket port with a `role: node` handshake. Once paired, the Gateway forwards specific tool calls such as `system.run`, camera capture, screen recording, or canvas rendering to that node instead of running them on the Gateway machine. That is what makes cross-device automation real rather than metaphorical: the agent reasons in one place and acts in another."
 
 [[params.faqItems]]
 question = "How does OpenClaw Heartbeat work?"
-answer = "Heartbeat is a periodic check-in system where the agent 'looks up' at configurable intervals to see if anything needs attention. It follows a 'don't disturb if nothing's happening' protocol — the agent only sends a message when it detects something worth reporting."
+answer = "Heartbeat is a periodic tick the Gateway sends the agent at a configurable interval so it can look up and check whether anything needs attention. If there is genuinely nothing to report, the agent must answer with the literal token `HEARTBEAT_OK`, which the Gateway treats as an acknowledgement and silently discards. Your chat never fills with 'all quiet' messages — you hear from the agent only when something actually deserves it."
 
 [[params.faqItems]]
 question = "What is the difference between OpenClaw Heartbeat and Cron?"
-answer = "Heartbeat is a lightweight periodic awareness check (agent decides whether to act), while Cron is a durable scheduled job system (specific tasks run at specific times). Heartbeat is for reactive monitoring; Cron is for proactive scheduled automation like daily reports or weekly summaries."
+answer = "Heartbeat is a lightweight awareness tick where the agent decides whether anything is worth surfacing and stays silent otherwise. Cron is durable scheduling that survives restarts, and it comes in two shapes: a main-session job that injects a `systemEvent` into your ongoing conversation, and an isolated job that runs a full agent turn in its own session named `cron:<jobId>`. Heartbeat suits reactive monitoring; Cron suits 'every Monday at 09:00, send the weekly summary'."
 
 [[params.faqItems]]
 question = "How do OpenClaw Skills orchestrate tool usage?"
-answer = "Skills are Standard Operating Procedures (SOPs) that tell agents how to handle specific task types and which tools to use. When an agent receives a task, it matches it against installed Skills, which provide step-by-step instructions, constraints, and tool-calling patterns for that task category."
+answer = "Skills are written SOPs, not model intuition. OpenClaw uses the AgentSkills-compatible folder convention: every skill directory holds a `SKILL.md` with YAML front matter declaring the skill's purpose, trigger conditions, and step-by-step procedure. When a task arrives, the agent matches it against installed skills and follows the tool-calling sequence spelled out there. Because the procedure is plain text, you can audit exactly what will run and reuse the same folder across agents and machines."
 +++
 
 ![OpenClaw architecture deep dive cover: how automation actually happens](cover.webp)

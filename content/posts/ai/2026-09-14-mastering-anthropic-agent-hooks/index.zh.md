@@ -12,11 +12,11 @@ tags = ["Anthropic", "Agent Hooks", "pretooluse", "posttooluse", "AI Engineering
 
 [[params.faqItems]]
   question = "如何通过 pretooluse 钩子防御提示词注入（Prompt Injection）攻击？"
-  answer = "通过在 pretooluse 钩子中加入代码级别的确定性防御。当 LLM 被提示词注入诱导，尝试调用敏感工具（如 Bash）执行危险命令时，pretooluse 会通过代码级正则或 AST 解析对参数进行过滤，直接强行返回错误并中断调用，绝对安全。"
+  answer = "靠代码级的确定性防御。在 `pre_tool_use_hook` 里用正则审计 LLM 想执行的 Bash 命令:命中 `rm -rf`、`mkfs`、`dd`、`chmod` 这类黑名单，或者试图把 12 位以上的明文凭证硬编码进命令，就直接返回结构化错误、中断这次调用。这段逻辑跑在本地 Python 进程里，提示词注入再离谱也改不了它。"
 
 [[params.faqItems]]
   question = "为什么强烈建议在 posttooluse 钩子中做数据截断？"
-  answer = "工具（如数据库、API）有时会返回极大（数万字）的原始数据。如果直接喂回给 Claude，会导致上下文窗口剧增、Token 消耗账单翻倍甚至溢出失效。在 posttooluse 中进行智能摘要或截断，能极大优化运营成本。"
+  answer = "工具（数据库、API）可能一次吐回 15,000 条原始记录。直接喂给 Claude 会同时触发三件事:账单雪崩（Messages API 输入每百万 token $3.00、输出 $15.00，一次超大 payload 就能吃掉 100k 输入 token）、注意力被稀释导致决策精度下滑、报错里带出的 `password` 等凭证混进上下文历史。所以要在 `posttooluse` 里按 5000 字符截断并顺手脱敏。"
 +++
 
 ![ALT](cover.webp)

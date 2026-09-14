@@ -14,7 +14,7 @@ answer = "You can build a fully functional AI coding agent with an agentic loop,
 
 [[params.faqItems]]
 question = "What is an agentic loop and why does it matter?"
-answer = "An agentic loop is a while-loop pattern where the AI repeatedly calls tools, observes results, and decides its next action — autonomously — until the task is complete. It is the core architecture behind every modern AI coding tool including Claude Code, Cursor, and Copilot."
+answer = "An agentic loop is a `while True:` loop where the model calls a tool, your code executes it and appends the output back as a `role: tool` message, and the model then decides what to do next — repeating until the task is done instead of answering in one shot. A single request can trigger a dozen tool calls, each informed by the last. It is the core architecture behind Claude Code, Cursor, and Copilot, and it is what turns the tutorial's 35-line chat UI into a 250-line agent."
 
 [[params.faqItems]]
 question = "What is the difference between tool use and function calling?"
@@ -22,7 +22,7 @@ answer = "Tool use and function calling refer to the same concept. OpenAI calls 
 
 [[params.faqItems]]
 question = "Can I use this AI agent architecture with models other than GPT-4?"
-answer = "Yes. Because the tutorial uses the OpenAI Python SDK's standard interface, you can swap in any model that supports function calling — including DeepSeek, Qwen, Claude (via compatible endpoints), or local models through Ollama — by changing only the base URL and API key."
+answer = "Yes. The agent talks to models through the OpenAI Python SDK's standard interface, so switching providers changes two arguments and nothing else — the loop and the tool definitions stay untouched. DeepSeek is `OpenAI(api_key=..., base_url=https://api.deepseek.com/v1)`, a local model through Ollama is `base_url=http://localhost:11434/v1`, and Qwen or Claude work the same way via compatible endpoints. The only requirement is that the model supports function calling."
 +++
 
 ![Build an AI coding agent from scratch in Python — complete tutorial with agentic loop and tool use](cover.webp)

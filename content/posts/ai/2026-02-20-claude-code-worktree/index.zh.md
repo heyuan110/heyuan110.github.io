@@ -10,19 +10,19 @@ keywords = ['Claude Code worktree', 'Claude Code 并行开发', 'git worktree', 
 
 [[params.faqItems]]
 question = "Claude Code 的 --worktree (-w) 模式是什么？"
-answer = "它用一条命令（claude -w <名称>）创建一个隔离的 Git Worktree 目录，并在其中启动新的 Claude Code 会话。让你在同一个仓库里并行跑多个 AI 编码任务，互不干扰。"
+answer = "`claude -w <名称>`（完整写法 `--worktree`）一条命令做三件事：在 `.claude/worktrees/<名称>/` 建隔离工作目录、从默认远程分支新建 `worktree-<名称>` 分支、在该目录里启动全新的 Claude Code 会话。同一个仓库可以并行跑多个 AI 编码任务，文件系统和上下文互不干扰。"
 
 [[params.faqItems]]
 question = "Claude Code 的 Worktree 存在哪里？"
-answer = "所有通过 claude -w 创建的 Worktree 都存储在 <仓库根目录>/.claude/worktrees/<名称>/ 下。建议在 .gitignore 中添加 .claude/worktrees/ 以避免提交到版本控制。"
+answer = "统一放在 `<仓库根目录>/.claude/worktrees/<名称>/` 下。建议在 `.gitignore` 里加一行 `.claude/worktrees/`，否则这些目录会出现在主仓库的 `git status` 里。另外 `node_modules`、`.env` 这类不受 Git 管理的东西不会跟过去，新 worktree 要重新装依赖。"
 
 [[params.faqItems]]
 question = "Worktree 用完会自动清理吗？"
-answer = "会。如果会话期间没有任何修改，退出时 Worktree 和对应分支会自动删除。如果有未提交的修改或新的提交，Claude 会询问你是保留还是删除。"
+answer = "分两种情况：会话期间零改动，退出时 worktree 和 `worktree-<名称>` 分支都自动删除；有未提交改动或已有 commit，Claude 会问你保留还是删除——保留的话下次用 `--resume` 接着干，删除则连未提交改动一起清掉。手动清理用 `git worktree remove <path>`。"
 
 [[params.faqItems]]
 question = "Git Worktree 和 git clone 有什么区别？"
-answer = "Worktree 共享同一个 .git 仓库，创建速度快且不需要重新下载代码。Clone 创建完全独立的仓库副本，适合需要完全隔离（如不同的远程配置）的场景。"
+answer = "Worktree 共享同一个 `.git` 目录，只复制工作文件，磁盘占用约等于源码大小，也不用重新拉代码。`git clone` 是完全独立的仓库副本，适合需要不同远程配置的场景。另外 Git 不允许两个 worktree 检出同一分支，所以 `claude -w feature-auth` 会自动新建 `worktree-feature-auth`。"
 
 [[params.faqItems]]
 question = "什么场景下应该用 Claude Code Worktree？"

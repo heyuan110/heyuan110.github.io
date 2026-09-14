@@ -10,7 +10,7 @@ keywords = ['OpenClaw 工具', 'OpenClaw Skill 开发', 'ClawHub skill', 'SKILL.
 
 [[params.faqItems]]
 question = "OpenClaw 的 tavily-search skill 是什么，怎么配置？"
-answer = "tavily-search 是 ClawHub 里最常用的联网搜索 skill，位置在 clawhub/skills/tavily-search/SKILL.md。参数包括 query（必填）、max_results（默认 5）、search_depth（basic 或 advanced）、include_domains/exclude_domains。配置三步：1) openclaw skills install tavily-search；2) 在 ~/.openclaw/.env 里写入 TAVILY_API_KEY；3) openclaw skills list 验证加载。国内用户需要给 api.tavily.com 配代理，否则会超时。"
+answer = "tavily-search 是 ClawHub 里最常用的联网搜索 skill，位置在 `clawhub/skills/tavily-search/SKILL.md`。参数有 query（必填）、max_results（默认 5）、search_depth（basic/advanced）。三步配置：`openclaw skills install tavily-search`，在 `~/.openclaw/.env` 写入 TAVILY_API_KEY，再用 `openclaw skills list` 验证。国内需给 api.tavily.com 配代理，否则超时。"
 
 [[params.faqItems]]
 question = "怎么写一个自定义的 OpenClaw Skill？"
@@ -18,7 +18,7 @@ answer = "在 <workspace>/clawhub/skills/<skill 名字>/ 下创建 SKILL.md 即�
 
 [[params.faqItems]]
 question = "openclaw write tool 的 path 和 content 参数怎么用？"
-answer = "openclaw write tool 只接受两个参数：path 和 content，都是必填字符串。path 必须是**绝对路径**（以 / 或 Windows 盘符开头），不会展开 ~ 也不会按 cwd 解析相对路径——填错了会直接报 'parent directory not found'。content 是字面量的文件全文，原样写入，不做任何模板替换、变量插值或编码转换，永远以 UTF-8 写。Write 没有 append/mode/encoding 这类可选参数，它永远是**整体覆盖**。要追加内容就先 Read、拼接、再 Write；要写二进制就把内容 base64 编码放进 content，后面用 Bash 步骤解码。"
+answer = "只有 path 和 content 两个必填字符串参数。path 必须是绝对路径，OpenClaw 不展开 `~` 也不按 cwd 解析相对路径，父目录不存在会直接报错，得先 `mkdir -p`。content 按字面量整体写入，不做模板渲染或变量替换，永远以 UTF-8 落盘。没有 append/mode/encoding 参数——要追加就先 Read 再拼接重写，要写二进制就 base64 塞进 content 再用 Bash 解码。"
 
 [[params.faqItems]]
 question = "OpenClaw 的 Write 工具有哪些参数？"

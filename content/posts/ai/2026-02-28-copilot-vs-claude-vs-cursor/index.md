@@ -14,7 +14,7 @@ answer = "There is no single best tool. GitHub Copilot excels at inline completi
 
 [[params.faqItems]]
 question = "Is GitHub Copilot free?"
-answer = "Yes. GitHub Copilot Free offers 2,000 code completions per month and 50 chat requests. For more, Copilot Pro costs $10/month with higher limits and additional models."
+answer = "Yes. GitHub Copilot Free gives you 2,000 code completions and 50 chat requests per month — genuinely enough to evaluate it or cover light use. Past that, Copilot Pro is $10/month, the cheapest paid tier of the three tools compared here, and Pro+ is $39/month with higher limits and more models. All tiers work across 6+ IDEs, including VS Code, JetBrains, Xcode, Eclipse, Sublime, and Visual Studio."
 
 [[params.faqItems]]
 question = "Can I use GitHub Copilot with Claude models?"

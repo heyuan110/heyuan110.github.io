@@ -21,7 +21,7 @@ answer = "Yes. uv has 75 million monthly PyPI downloads (surpassing Poetry), is 
 
 [[params.faqItems]]
 question = "How do I migrate from pip to uv?"
-answer = "Run uv init, then uv add -r requirements.txt to import existing dependencies. uv is backward-compatible with pip commands via uv pip install. Migration cost is near zero."
+answer = "Run `uv init` to create a `pyproject.toml`, then `uv add -r requirements.txt` to pull in what you already have; `uv sync` then reproduces that environment from the generated `uv.lock` on any machine. Anything you have not converted yet still works, because `uv pip install` mirrors pip's interface. Migration cost is near zero and the payoff is immediate — in the Real Python benchmark, installing JupyterLab takes 2.6 seconds with uv against 21.4 seconds with pip."
 
 [[params.faqItems]]
 question = "Is uv open source? What about vendor lock-in?"

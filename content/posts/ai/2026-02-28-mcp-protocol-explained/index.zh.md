@@ -10,7 +10,7 @@ keywords = ['MCP 协议', 'Model Context Protocol', 'MCP 详解', 'MCP vs functi
 
 [[params.faqItems]]
 question = "什么是 MCP（Model Context Protocol）？"
-answer = "MCP 是 Anthropic 创建的开放标准，让 AI 应用通过统一协议连接外部工具和数据源。可以把它想象成 AI 界的 USB-C —— 一个标准接口兼容所有 AI 工具和外部服务。"
+answer = "MCP 是 Anthropic 于 2024 年 11 月发布的开放标准，让 AI 应用通过统一协议连接外部工具和数据源，相当于 AI 界的 USB-C。协议定义三类原语：Tools（可执行的操作）、Resources（数据访问）、Prompts（可复用指令模板），传输层走 stdio 或 HTTP + SSE。企业反馈采用 MCP 后 AI Agent 部署速度提升 40–60%。"
 
 [[params.faqItems]]
 question = "MCP 只能用于 Claude 吗？"
@@ -18,7 +18,7 @@ answer = "不是。虽然 MCP 由 Anthropic 创建，但 OpenAI、Google DeepMin
 
 [[params.faqItems]]
 question = "MCP 和 Function Calling 有什么区别？"
-answer = "Function Calling 让 LLM 输出结构化的函数调用。MCP 是完整的交互协议，涵盖发现、调用和响应处理。MCP Server 可在任何兼容 MCP 的 AI 工具间复用，而 Function Calling 通常绑定特定供应商。"
+answer = "Function Calling 只负责让 LLM 输出结构化的函数调用；MCP 是完整的交互协议，覆盖发现、调用和响应处理。差别体现在复用上：用 `mcp`（Python FastMCP）或 `@modelcontextprotocol/sdk`（TypeScript）写一次 Server，Claude Code、Cursor、VS Code、ChatGPT 都能直接接；Function Calling 通常绑定某一家供应商。"
 +++
 
 ![MCP 协议架构与生态系统详解（2026）](cover.webp)

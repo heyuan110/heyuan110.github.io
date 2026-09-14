@@ -18,7 +18,7 @@ answer = "Managed Agents 公测阶段在 API token 费用之外加了 managed ru
 
 [[params.faqItems]]
 question = "以前用 OpenClaw 写的多 Agent 工作流，Managed Agents 能平滑迁过去吗？"
-answer = "不能平滑。Managed Agents 是 Anthropic 官方 harness（beta header `managed-agents-2026-04-01`），和 OpenClaw 的 Sub-Agent 调度模型、Skill 机制、MCP 注入方式都不一样。迁移的真实工作量主要在三块：(1) 多 Agent 编排逻辑要重写成 Anthropic 的原生调用，(2) Skills 要拆成 Managed Agents 支持的 built-in tools + custom tools 组合，(3) Claude.md 风格的上下文规则要翻译成 Managed Agents 的 system prompt + context files。粗估一个中等复杂度的项目迁过去 5-10 人天，不是一天能搞定的。"
+answer = "不能平滑。Managed Agents 是 Anthropic 官方 harness（beta header `managed-agents-2026-04-01`），和 OpenClaw 的 Sub-Agent 调度、Skill 机制、MCP 注入方式都不一样。三块真实工作量：多 Agent 编排逻辑重写成原生调用；Skills 拆成 built-in tools 加 custom tools；`CLAUDE.md` 风格的上下文规则翻译成 system prompt 加 context files。中等复杂度项目粗估 5-10 人天。"
 
 [[params.faqItems]]
 question = "Harness 自研值不值？三类团队的判断框架"

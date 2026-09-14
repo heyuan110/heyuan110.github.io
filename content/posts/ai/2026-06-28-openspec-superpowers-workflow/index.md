@@ -9,7 +9,7 @@ keywords = ['openspec superpowers', 'openspec vs superpowers', 'spec driven deve
 
 [[params.faqItems]]
 question = "OpenSpec vs Superpowers: which should I use?"
-answer = "They operate at different layers, so it is rarely either/or. Use Superpowers as your daily driver — it is conversation-first and owns execution discipline (TDD, subagents, code review). Add OpenSpec only when a feature will be re-iterated across multiple sessions or by more than one person, because its Delta/Archive model versions the decision history that Superpowers overwrites."
+answer = "They sit on different layers, so it is rarely either/or. Run Superpowers as the daily driver — roughly 249,000 GitHub stars as of mid-2026, and no longer Claude-only since it installs into Codex and Cursor too. It is conversation-first and owns execution discipline: TDD, subagents, code review. Add OpenSpec only when a feature will be re-iterated across sessions or by more than one person, because its Delta/Archive model versions the decision history that Superpowers just overwrites in `docs/superpowers/specs/`."
 
 [[params.faqItems]]
 question = "Do OpenSpec and Superpowers automatically work together?"
@@ -17,7 +17,7 @@ answer = "No. They are two independent systems that do not auto-chain. If you in
 
 [[params.faqItems]]
 question = "What is spec-driven development in Claude Code?"
-answer = "Spec-driven development (SDD) means the AI writes code against an agreed specification instead of improvising from a one-line prompt. In Claude Code, OpenSpec captures that spec as versioned files (proposal, specs, design, tasks), while Superpowers teases the spec out of a conversation first and then enforces test-first execution."
+answer = "Spec-driven development means the agent codes against an agreed specification instead of improvising from a one-line prompt. OpenSpec makes that spec a set of versioned files: `proposal.md` with its critical Out-of-Scope section, a `specs/` directory of GIVEN/WHEN/THEN behavior, `design.md` for the reasoning, and `tasks.md` as the checklist. Superpowers instead teases the spec out of a conversation and then enforces test-first execution on it."
 
 [[params.faqItems]]
 question = "Is OpenSpec or Superpowers better for a solo developer?"

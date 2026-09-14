@@ -30,7 +30,7 @@ answer = "偶尔使用选 Pro（$20/月）；日常主力工具且经常触发�
 
 [[params.faqItems]]
 question = "Claude Code 能免费用吗？"
-answer = "不能。至少需要 Pro 订阅（$20/月）或有余额的 API Key，Claude Code 没有免费版。"
+answer = "不能。Claude Code 没有免费版：要么订阅 Pro（$20/月，年付折合 $17/月）拿到 1x 配额，要么挂一个有余额的 API Key 按 Token 计费。免费版 Claude 每 5 小时约 15 条消息，只能在网页里聊天，不含 Claude Code、Opus 和 Projects。"
 
 [[params.faqItems]]
 question = "Max 20x 每月 $200 值吗？"

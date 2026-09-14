@@ -14,7 +14,7 @@ answer = "Agentic Coding is a new capability in Xcode 26.3 that integrates Anthr
 
 [[params.faqItems]]
 question = "How do I enable Claude Agent in Xcode 26.3?"
-answer = "Go to Xcode Settings, find the AI Agents section, and enable Claude Agent with one click. You need to sign in with your Anthropic account or enter an API key. Usage is billed through Anthropic's API pricing. Codex can be enabled the same way with an OpenAI account."
+answer = "Open Xcode Settings in Xcode 26.3, find the AI agents section, and enable Claude Agent with one click, then sign in with your Anthropic account or paste an API key — usage is billed through Anthropic's API. Codex enables the same way with an OpenAI account. The features only activate on macOS 26 (Tahoe). If the bundled agent build lags behind, symlink your own: `ln -sf $(which claude) ~/Library/Developer/Xcode/CodingAssistant/Agents/Versions/26.3/claude`."
 
 [[params.faqItems]]
 question = "Can Xcode AI agents search Apple documentation?"
@@ -22,7 +22,7 @@ answer = "Yes. The integrated AI agents can directly search Apple Developer Docu
 
 [[params.faqItems]]
 question = "How does Xcode Agentic Coding compare to Cursor and GitHub Copilot?"
-answer = "Xcode Agentic Coding offers deep Apple ecosystem integration that Cursor and Copilot cannot match — native Xcode Previews visual verification, direct Apple documentation search, and project settings management. However, Cursor and Copilot support more languages and have larger plugin ecosystems."
+answer = "Xcode 26.3 wins on Apple-ecosystem depth that Cursor and Copilot cannot reach: it triggers Xcode's own build system, runs the Simulator, captures SwiftUI Previews screenshots for visual verification, and searches Apple Developer Documentation. Cursor and Copilot cover far more languages and plugins. Pricing differs too — Xcode is free with agents billed per API usage, while Cursor Pro is $20/mo and Copilot Individual $10/mo."
 
 [[params.faqItems]]
 question = "Does Xcode 26.3 support MCP (Model Context Protocol)?"

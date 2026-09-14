@@ -9,7 +9,7 @@ keywords = ['harness engineering 是不是炒作', 'harness engineering 中文',
 
 [[params.faqItems]]
 question = "Harness Engineering 到底是不是炒作？"
-answer = "不是。这个词本身只有 7 周历史（2 月 5 日 Mitchell Hashimoto 随口起名，2 月 11 日 OpenAI 把它写进标题），但它指向的工程范式是真实可量化的。LangChain 不换模型只改 Harness，TerminalBench 2.0 排名从第 30 升到第 5；Anthropic 的 Full Harness 三 Agent 架构（Planner + Generator + Evaluator）把一个原本不可用的代码生成任务做到生产可用。看着像炒作的部分，其实是把过去散落在 Linter、测试夹具、提示词补丁里的零散工程实践统一到一个范式里——这本身就是工程进步。"
+answer = "不是。这个词本身只有 7 周历史（2 月 5 日 Mitchell Hashimoto 随口起名，2 月 11 日 OpenAI 把它写进标题），但它指向的工程范式是真实可量化的。LangChain 不换模型只改 Harness，TerminalBench 2.0 排名从第 30 升到第 5；Anthropic 的三 Agent 架构（Planner + Generator + Evaluator）把一个原本不可用的代码生成任务做到生产可用。看着像炒作的部分，其实是把过去散落在 Linter、测试夹具、提示词补丁里的零散实践统一成一个范式，这本身就是工程进步。"
 
 [[params.faqItems]]
 question = "模型变强会不会让 Harness Engineering 没用？"
