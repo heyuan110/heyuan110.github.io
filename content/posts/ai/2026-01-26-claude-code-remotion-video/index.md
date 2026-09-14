@@ -779,6 +779,7 @@ If you're a developer who regularly needs product demos, data visualizations, or
 - [Claude Code Skills Guide](/posts/ai/2026-01-08-claudecode-skill-guide/) — Deep dive into the Skills system
 - [Top 20 Claude Code Skills Worth Installing](/posts/ai/2026-01-20-claude-code-skills-top20/) — Curated skill recommendations
 - [AI Development Workflow](/posts/ai/2026-01-19-ai-dev-workflow/) — Boost your dev productivity with AI
+- [Seedance 2.0 Prompt Guide: Best Practices & Failure Modes](/posts/ai/2026-07-11-seedance-2-prompt-guide/) — generated shots versus code-rendered ones, and when each is the right tool
 
 ---
 

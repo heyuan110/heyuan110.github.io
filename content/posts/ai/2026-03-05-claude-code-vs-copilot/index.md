@@ -468,3 +468,4 @@ Claude Code and GitHub Copilot are not competitors in the traditional sense -- t
 - [Claude Code Guide 2026: Everything You Need to Know](/posts/ai/2026-02-28-claude-code-complete-guide/) -- Complete Claude Code overview
 - [Claude vs ChatGPT vs Gemini: Best LLM for Coding in 2026](/posts/ai/2026-03-02-claude-vs-chatgpt-vs-gemini/) -- LLM model comparison for coding tasks
 - [Claude Pricing 2026](/posts/ai/2026-02-25-claude-code-pricing/) -- Full pricing analysis with competitor benchmarks
+- [GitHub Agent HQ: Multi-Agent Development Guide for VS Code](/posts/ai/2026-03-13-github-agent-hq-vscode-guide/) -- GitHub's own answer to terminal agents, run from the VS Code sidebar

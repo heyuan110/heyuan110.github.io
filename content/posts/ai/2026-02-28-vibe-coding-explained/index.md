@@ -255,3 +255,4 @@ If you want to try vibe coding responsibly:
 - [10 Claude Code Mistakes Beginners Make](/posts/ai/2026-02-25-claude-code-mistakes/) — Avoid common pitfalls
 - [Claude Code vs Cursor 2026](/posts/ai/2026-02-28-claude-code-vs-cursor/) — Compare the top two vibe coding tools
 - [CLAUDE.md Guide](/posts/ai/2026-02-28-claude-code-claudemd-guide/) — Essential project context for better AI output
+- [Lovable vs v0 vs Bolt: AI App Builders Compared 2026](/posts/ai/2026-07-08-lovable-vs-v0-vs-bolt/) — the no-code end of vibe coding, and what each builder is actually good at

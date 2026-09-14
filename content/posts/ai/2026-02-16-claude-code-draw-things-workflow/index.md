@@ -566,3 +566,4 @@ claude mcp add drawthings -- npx -y mcp-drawthings
 - [My AI Development Workflow: From Requirements to Deployment](/posts/ai/2026-01-19-ai-dev-workflow/)
 - [Claude Code Best Practices Guide](/posts/ai/2026-01-06-claudecode-best-practices/)
 - [Claude Code Skills Complete Guide](/posts/ai/2026-01-08-claudecode-skill-guide/)
+- [FaceFusion Guide: Open-Source AI Face Swap Setup and Tips](/posts/ai/2024-10-16-facefusion/) — another local generative-media tool you drive from the command line

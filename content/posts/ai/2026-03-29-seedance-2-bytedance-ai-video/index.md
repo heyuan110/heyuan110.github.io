@@ -410,3 +410,6 @@ The competitive dynamic is clear: ByteDance is leveraging its content ecosystem 
 - [Google Antigravity Review 2026](/posts/ai/2026-03-10-google-antigravity-review/) — Another major AI tool launch from a tech giant
 - [AI Coding Agents Comparison 2026](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — How AI agents compare across different domains
 - [OpenAI Symphony: Autonomous Coding Deep Dive](/posts/ai/2026-03-05-openai-symphony-autonomous-coding/) — ByteDance's biggest competitor's AI strategy
+- [Seedream 5.0 Pro: ByteDance's Image Model Takes On Gemini](/posts/ai/2026-07-09-seedream-5-pro/) — the image side of the same ByteDance model family, with the Volcano Ark API walkthrough
+- [Seedance 2.0 Prompt Guide: Best Practices & Failure Modes](/posts/ai/2026-07-11-seedance-2-prompt-guide/) — the prompt-level follow-up: which phrasings actually work and where they break
+- [Claude Code + Remotion: Generate Pro Videos with AI Conversations](/posts/ai/2026-01-26-claude-code-remotion-video/) — the deterministic alternative: video rendered from React code instead of a prompt

@@ -833,3 +833,4 @@ Compare this to Claude Code's [Hooks system](/posts/ai/2026-02-28-claude-code-ho
 - [Claude Code vs Cursor: Which Wins?](/posts/ai/2026-02-28-claude-code-vs-cursor/) — Another key tool comparison
 - [CLAUDE.md Guide](/posts/ai/2026-02-28-claude-code-claudemd-guide/) — The Claude Code equivalent of AGENTS.md
 - [Best MCP Servers for Claude Code](/posts/ai/2026-03-05-best-mcp-servers-claude-code/) — MCP servers that work with both tools
+- [Codex App Guide 2026: Setup, Workflows, and Real Pitfalls](/posts/ai/2026-07-12-openai-codex-app-guide/) — the desktop app on the same Codex backend, and where it parts ways with the CLI

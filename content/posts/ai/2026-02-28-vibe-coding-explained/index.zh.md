@@ -255,3 +255,4 @@ Vibe Coding 是一种**工具，而非信仰**。和所有工具一样，正确�
 - [Claude Code 新手常犯的 10 个错误](/zh/posts/ai/2026-02-25-claude-code-mistakes/) — 避免常见陷阱
 - [Claude Code vs Cursor 2026](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/) — 两大 Vibe Coding 工具对比
 - [CLAUDE.md 指南](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) — 提升 AI 输出质量的项目上下文配置
+- [Lovable vs v0 vs Bolt：AI 应用生成器怎么选](/zh/posts/ai/2026-07-08-lovable-vs-v0-vs-bolt/) — Vibe Coding 的无代码一端，三款生成器各自擅长什么

@@ -302,6 +302,7 @@ For more on automation pitfalls, see my companion article:
 - [OpenClaw + Claude Code Collaboration Workflow](/posts/ai/2026-01-31-openclaw-claude-code-workflow/)
 - [Agent Skills: The New Programming Paradigm for AI](/posts/ai/2026-01-19-agent-skills-new-programming/)
 - [ClaudeMD vs README](/posts/ai/2026-01-31-claudemd-vs-readme/)
+- [OpenClaw Tools & Skills Reference: Every Built-in Tool and Skill](/posts/ai/2026-04-14-openclaw-tools-skills-reference/) — the tool and skill surface that architecture exposes, enumerated one by one
 
 ## Related Reading (External)
 

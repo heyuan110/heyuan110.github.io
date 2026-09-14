@@ -174,3 +174,5 @@ GPT-5.6 的发布是真的、全球的、定价带着杀气的——这些经得
 - [MCP vs Skills：为什么 CLI + Skill 赢下 agent 工具链](/zh/posts/ai/2026-07-10-cli-skills-vs-mcp/) — 理解 Codex 合并背后哲学分叉的分层论
 - [Claude Code vs Codex：8 维度正面对决](/zh/posts/ai/2026-02-19-claude-code-vs-codex/) — Codex 变形前的两大 agent CLI 对比
 - [2026 年 Claude 免费额度实测：免费版到底能干什么](/zh/posts/ai/2026-07-08-claude-free-tier-limits/)
+- [OpenAI Codex App：是什么、怎么用与避坑手册](/zh/posts/ai/2026-07-12-openai-codex-app-guide/) — Codex 合并后落地的那个 App，附实际使用踩的坑
+- [Claude Fable 5 值不值：$10/$50 的决策账与用好它的方法](/zh/posts/ai/2026-07-10-claude-fable-5-guide/) — 同一价格区间里 Anthropic 这一侧的选择

@@ -751,3 +751,5 @@ If this guide helped you, bookmark it and start experimenting. AI image generati
 - [AI Workflow Practical Guide: Not the Future, It's Now](/posts/ai/2026-01-30-ai-workflow-real-guide/)
 - [Claude Code Best Practices: Complete Guide from Beginner to Expert](/posts/ai/2026-01-06-claudecode-best-practices/)
 - [Claude Code Browser Automation: Complete Guide to AI Web Control](/posts/ai/2026-01-28-claude-code-browser-automation/)
+- [FaceFusion Guide: Open-Source AI Face Swap Setup and Tips](/posts/ai/2024-10-16-facefusion/) — what running models locally looks like when the task is face swapping, not diffusion prompts
+- [Seedream 5.0 Pro: ByteDance's Image Model Takes On Gemini](/posts/ai/2026-07-09-seedream-5-pro/) — per-image cloud pricing set against the zero-marginal-cost local route

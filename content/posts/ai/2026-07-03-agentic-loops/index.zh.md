@@ -174,5 +174,6 @@ Ralph loop 不是跳过工程的捷径——它是把工程从"写代码"挪到"
 - [Claude Code Agent Teams](/zh/posts/ai/2026-02-22-claude-code-agent-teams/)
 - [Agent 管理者模式](/zh/posts/ai/2026-02-24-agent-manager-patterns/)
 - [AI Agent 记忆系统](/zh/posts/ai/2026-02-21-ai-agent-memory-systems/)
+- [一个人 + AI Agent 月增 2000 客户：营销自动化实战拆解](/zh/posts/ai/2026-04-04-ai-agent-marketing-automation/) — 一条真的在按时跑业务流程的循环，附真实数字
 
 **参考来源：** [Geoffrey Huntley — everything is a ralph loop](https://ghuntley.com/loop/) · [snarktank/ralph（GitHub）](https://github.com/snarktank/ralph) · [2026：Ralph Loop Agent 元年（DEV）](https://dev.to/alexandergekov/2026-the-year-of-the-ralph-loop-agent-1gkj) · [What Is an Agentic Loop?（MindStudio）](https://www.mindstudio.ai/blog/what-is-an-agentic-loop-ai-coding-agents)

@@ -321,6 +321,7 @@ Are you ready to level up?
 - [Complete Guide to Claude Code Agent Teams](/posts/ai/2026-02-22-claude-code-agent-teams/) — From single Agent to multi-Agent collaboration
 - [CLAUDE.md Memory Guide](/posts/ai/2026-01-12-claudemd-memory-guide/) — Core practices for project-level context management
 - [Build a Claude Code from Scratch](/posts/ai/2026-02-24-build-magic-code/) — The best way to understand Agent architecture under the hood
+- [Ten Leadership Disciplines: Responsibility, Reflection, and Growth](/posts/management/2019-08-19-liulan-management/) — the human management disciplines this Agent Manager role borrows from
 
 ## Series Navigation
 

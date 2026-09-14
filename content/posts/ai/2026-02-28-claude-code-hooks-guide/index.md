@@ -765,4 +765,5 @@ From there, layer on more hooks as your workflow demands. The combined config ex
 - [CLAUDE.md Guide](/posts/ai/2026-02-28-claude-code-claudemd-guide/) — Project context and memory configuration
 - [Claude Code Skills Guide](/posts/ai/2026-02-28-claude-code-skills-guide/) — Slash commands and reusable workflows
 - [Claude Code MCP Setup](/posts/ai/2026-02-28-claude-code-mcp-setup/) — External service integration
+- [Mastering Anthropic Agent SDK Hooks: Intercept & Secure](/posts/ai/2026-09-14-mastering-anthropic-agent-hooks/) — PreToolUse and PostToolUse in the Agent SDK, written in Python instead of settings.json
 - [Official Claude Code Hooks Documentation](https://docs.anthropic.com/en/docs/claude-code/hooks) — Anthropic's reference docs

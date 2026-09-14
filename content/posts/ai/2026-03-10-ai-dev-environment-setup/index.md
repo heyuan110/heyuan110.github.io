@@ -798,3 +798,5 @@ Explore these guides for deeper dives into specific topics covered in this artic
 - [Codex CLI Deep Dive: Setup, Config, and Power User Tips](/posts/ai/2026-03-10-codex-cli-deep-dive/) — OpenAI's alternative terminal AI agent
 - [Google Antigravity Review](/posts/ai/2026-03-10-google-antigravity-review/) — Google's latest AI development offering
 - [What Is Vibe Coding? The AI-First Development Philosophy](/posts/ai/2026-02-28-vibe-coding-explained/) — Understanding the broader AI coding movement
+- [Claude HUD 2026: Claude Code's 18K-Star Status Bar in 3 Min](/posts/ai/2026-04-10-claude-hud-guide/) — the statusline plugin worth adding to a Claude Code setup, installed in 3 minutes
+- [Claude Code Buddy: The Terminal Pet Hidden in Your AI Coding Tool](/posts/ai/2026-04-04-claude-code-buddy-terminal-pet/) — the least serious plugin in a Claude Code setup, and how to switch it on

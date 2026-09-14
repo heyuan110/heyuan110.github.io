@@ -833,3 +833,4 @@ args = ["-title", "Codex CLI", "-message", "Task complete", "-sound", "default"]
 - [Claude Code vs Cursor: Which Wins?](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/) — 另一个关键工具对比
 - [CLAUDE.md Guide](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) — Claude Code 版的 AGENTS.md
 - [Best MCP Servers for Claude Code](/zh/posts/ai/2026-03-05-best-mcp-servers-claude-code/) — 两个工具都能用的 MCP 服务器
+- [OpenAI Codex App：是什么、怎么用与避坑手册](/zh/posts/ai/2026-07-12-openai-codex-app-guide/) — 同一套 Codex 后端的桌面版，和 CLI 的差别在哪

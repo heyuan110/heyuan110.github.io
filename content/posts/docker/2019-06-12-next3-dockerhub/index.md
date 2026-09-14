@@ -172,3 +172,5 @@ Results are returned in the priority order you configured in the group repositor
 - [Docker Beginner Tutorial: Images, Containers, Registries, and Dockerfile Explained](/posts/docker/2019-05-13-learn-docker/) — Core Docker concepts and getting started
 - [Docker Compose Complete Guide: From Basics to Production](/posts/docker/2026-01-19-docker-compose-complete-guide/) — Multi-container orchestration and best practices
 - [Docker Commands Cheat Sheet](/posts/docker/2019-11-14-docker-commands/) — Essential daily reference for Docker commands
+- [Setting Up Jira and Confluence on Ubuntu: Install, Config, and Data Migration](/posts/linux/2019-04-15-jira-confluence-install/) — another piece of self-hosted team infrastructure on Ubuntu, from install to data migration
+- [Jenkins + AWS CodeDeploy + Auto Scaling: A Complete CI/CD Pipeline](/posts/linux/2018-11-20-jenkins-codedeploy-autoscaling/) — the pipeline a private registry feeds: Jenkins, CodeDeploy, and blue-green releases

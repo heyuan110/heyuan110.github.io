@@ -673,3 +673,4 @@ claude -p "your query" \
 - [CLAUDE.md Best Practices: Write Files That Actually Work](/posts/ai/2026-03-05-claude-code-claudemd-best-practices/) -- Effective project configuration
 - [Install Claude Code in 5 Minutes](/posts/ai/2026-02-25-claude-code-setup-guide/) -- Getting started from zero
 - [10 Claude Code Mistakes Beginners Make](/posts/ai/2026-02-25-claude-code-mistakes/) -- Common pitfalls to avoid
+- [Claude Code Buddy: The Terminal Pet Hidden in Your AI Coding Tool](/posts/ai/2026-04-04-claude-code-buddy-terminal-pet/) -- the hidden command that spawns a pet in your terminal

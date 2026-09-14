@@ -293,3 +293,4 @@ ChatGPT Codex 代表的是"快速迭代"的开发理念 -- 先快速生成可用
 - [2026 终端 AI 编程工具深度横评：Claude Code、Codex CLI、Gemini CLI、Aider 怎么选](/zh/posts/ai/2026-04-14-terminal-ai-coding-tools-2026-comparison/) — 更大视野下的横评
 - [GPT-5.4 vs Claude Opus 4.6 终极对比 2026：编程/价格/Agent 谁赢？](/zh/posts/ai/2026-03-13-gpt-5-4-vs-claude-opus-comparison/) — 背后的模型层较量
 - [2026 年 AI 编程工具全面对比：7 款主流工具实测评析](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — 7 款工具的系统横评
+- [Xcode 26.3 Agentic Coding 深度解析：Apple 如何用 AI Agent 重塑开发体验](/zh/posts/ai/2026-02-20-xcode-agentic-coding/) — 这两个 Agent 在 Xcode 26.3 里并排跑是什么样

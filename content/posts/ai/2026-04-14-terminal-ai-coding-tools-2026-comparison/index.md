@@ -264,3 +264,4 @@ In the orchestration lane, Symphony is still in engineering preview and OpenClaw
 - [Claude Agent SDK Guide](/posts/ai/2026-04-17-claude-agent-sdk-guide/) — Getting 1M context via API
 - [OpenClaw Multi-Agent Guide](/posts/ai/2026-02-23-openclaw-multi-agent-guide/) — Orchestration lane deep dive
 - [5 AI Coding Tools in Action](/posts/ai/2026-04-03-claude-code-vs-cursor-vs-copilot/) — Broader AI coding tool landscape
+- [pi Coding Agent Review: 4 Tools vs Claude Code, Tested](/posts/ai/2026-09-06-pi-coding-agent-review/) — the minimal lane taken to its limit: an agent shipped with exactly four tools

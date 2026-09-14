@@ -579,3 +579,5 @@ ERR Failed to fetch features error="lookup cfd-features.argotunnel.com: i/o time
 - [Tmux 终端复用指南](/zh/posts/ai/2026-03-03-tmux-guide-ai-development/) — AI 开发场景下的终端管理
 - [AI 开发环境搭建](/zh/posts/ai/2026-03-10-ai-dev-environment-setup/) — 完整的 AI 开发环境配置指南
 - [MCP 协议详解](/zh/posts/ai/2026-02-28-mcp-protocol-explained/) — 理解模型上下文协议
+- [Cloudflare Workers 完全指南：从入门到实战的边缘计算部署手册](/zh/posts/docker/2026-01-23-cloudflare-workers-guide/) — Cloudflare 的另一半：把代码跑在边缘，而不是把 localhost 打通出去
+- [把公司 Mac Mini 变成你的私人 VPN：5 种方案实测对比](/zh/posts/linux/2026-04-11-remote-access-mac-mini-vpn/) — 同一个「连回我的机器」问题在网络层的解法：Tailscale、WireGuard 等 5 种

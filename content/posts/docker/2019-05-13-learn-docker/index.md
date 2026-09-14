@@ -517,3 +517,4 @@ Docker uses a **client-server architecture**. The Docker daemon runs as a backgr
 - [Docker Compose Complete Guide: From Basics to Production](/posts/docker/2026-01-19-docker-compose-complete-guide/) — Multi-container orchestration and production best practices
 - [Docker Commands Cheat Sheet](/posts/docker/2019-11-14-docker-commands/) — Essential daily reference for Docker commands
 - [Nexus3 Private Docker Registry Setup](/posts/docker/2019-06-12-next3-dockerhub/) — Enterprise container registry guide
+- [Supervisor Linux Guide: Install, Config, systemd Compared](/posts/linux/2018-10-07-supervisor/) — process supervision on a bare host, the problem containers later took over

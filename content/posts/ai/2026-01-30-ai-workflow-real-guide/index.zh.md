@@ -301,3 +301,4 @@ AI 领域变化太快，工具半年一换、模型月月更新。保持信息�
 - [Cursor Agent 编码最佳实践：官方指南完整解读](/zh/posts/ai/2026-01-19-cursor-agent-best-practices/)
 - [Claude Code 浏览器自动化方案对比](/zh/posts/ai/2026-01-28-claude-code-browser-automation/)
 - [AI 时代，一个人的 Taste 比以往任何时候都重要](/zh/posts/ai/2026-01-23-taste-matters-in-ai-era/)
+- [Claude Code + Remotion：用 AI 对话生成专业视频](/zh/posts/ai/2026-01-26-claude-code-remotion-video/) — 产出物是成片而不是代码的一条 AI 工作流

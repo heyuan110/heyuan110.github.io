@@ -453,6 +453,7 @@ Traceroute 是网络诊断的基础工具，掌握它能帮助你：
 
 - [curl 命令详解：GET/POST、文件上传下载与调试实战](/zh/posts/linux/2020-06-29-curl/) - HTTP 请求调试神器，与 traceroute 配合使用定位网络问题
 - [Linux/macOS 常用命令速查手册](/zh/posts/linux/2020-03-19-linux-mac-commands/) - 运维开发常用命令参考，包含 ping、netstat 等网络诊断命令
+- [Charles 抓包教程：HTTP/HTTPS 拦截、Mock 调试与证书配置](/zh/posts/macos/charles/) - 路由排查完之后的应用层调试：HTTPS 解密与 Mock 返回
 
 ## 参考资料
 

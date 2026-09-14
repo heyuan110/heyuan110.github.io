@@ -499,6 +499,7 @@ curl 是一个功能强大的命令行工具，掌握它能大幅提升你的工
 - [Linux/macOS 常用命令速查手册](/zh/posts/linux/2020-03-19-linux-mac-commands/) - 运维开发常用命令参考
 - [AWS CLI 完全指南](/zh/posts/linux/2020-07-04-aws-cli/) - 云服务命令行管理
 - [Oh My Zsh 安装配置指南](/zh/posts/linux/2015-06-17-shell-zsh/) - 打造高效终端环境
+- [Charles 抓包教程：HTTP/HTTPS 拦截、Mock 调试与证书配置](/zh/posts/macos/charles/) - curl 搞不定的场景：用 GUI 代理拦截并改写 App 流量
 
 ## 参考资源
 

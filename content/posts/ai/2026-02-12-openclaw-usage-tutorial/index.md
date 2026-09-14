@@ -698,3 +698,4 @@ And remember the troubleshooting trifecta: `openclaw status`, `openclaw logs --f
 - [OpenClaw Memory Implementation Strategy: Tool-Driven RAG and On-Demand Recall](/posts/ai/2026-01-31-openclaw-memory-strategy/)
 - [Moltbook Deep Dive: The Bold Experiment of an AI Agent Social Network](/posts/ai/2026-02-01-moltbook-ai-agent-social-network/)
 - [AI Workflow Practical Guide: From Prompts to Programming](/posts/ai/2026-01-30-ai-workflow-real-guide/)
+- [OpenClaw Tools & Skills Reference: Every Built-in Tool and Skill](/posts/ai/2026-04-14-openclaw-tools-skills-reference/) — the full list of built-in tools and skills, plus how to write your own

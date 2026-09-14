@@ -309,6 +309,7 @@ Cron 是 Gateway 内置 scheduler。它和 Heartbeat 的关系可以这样理解
 - [OpenClaw + Claude Code 的协作工作流](/zh/posts/ai/2026-01-31-openclaw-claude-code-workflow/)
 - [Agent Skills：AI 时代的新编程方式](/zh/posts/ai/2026-01-19-agent-skills-new-programming/)
 - [ClaudeMD vs README](/zh/posts/ai/2026-01-31-claudemd-vs-readme/)
+- [OpenClaw 工具与 Skill 完全手册：内置清单 + 自定义开发](/zh/posts/ai/2026-04-14-openclaw-tools-skills-reference/) — 这套架构对外暴露的工具与 Skill，逐个列清楚
 
 ## 相关阅读（外链）
 

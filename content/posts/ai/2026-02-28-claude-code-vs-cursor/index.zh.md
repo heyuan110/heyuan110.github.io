@@ -224,3 +224,4 @@ Claude Code → 复杂重构、自动化、架构规划
 - [Claude Pricing 2026: Every Plan from Free to Max $200](/zh/posts/ai/2026-02-25-claude-code-pricing/) — 详细定价分析
 - [Claude Rate Limits 2026](/zh/posts/ai/2026-02-28-claude-rate-limits/) — 用量限制说明
 - [GitHub Copilot vs Claude Code vs Cursor](/zh/posts/ai/2026-02-28-copilot-vs-claude-vs-cursor/) — 三方对比
+- [SpaceX 600 亿美元收购 Cursor：还能用吗、要不要迁移](/zh/posts/ai/2026-07-09-spacex-cursor-acquisition/) — 对比 Cursor 时必须算进去的一条：它换了东家

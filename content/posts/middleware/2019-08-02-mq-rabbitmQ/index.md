@@ -579,4 +579,5 @@ rabbitmqctl list_connections
 ## Related Reading
 
 - [Message Queue Fundamentals](/posts/middleware/2019-07-31-mq/) — Core concepts and technology selection
+- [Redis Complete Guide: Installation, Data Types, Persistence, and Clustering](/posts/middleware/2026-01-22-redis-complete-guide/) — when a Redis list or stream is enough and you do not need a broker at all
 - [RabbitMQ Documentation](https://www.rabbitmq.com/documentation.html) — Official guide

@@ -448,3 +448,5 @@ SWE-1 模型还行，但不算出彩。标准编码任务处理得不错，在�
 - [Google Antigravity 评测](/zh/posts/ai/2026-03-10-google-antigravity-review/) —— 免费的 Agent 优先 IDE
 - [2026 Kiro 评测](/zh/posts/ai/2026-03-10-kiro-review/) —— Amazon 的规格驱动编程 Agent
 - [Vibe Coding 详解](/zh/posts/ai/2026-02-28-vibe-coding-explained/) —— AI 辅助开发的新范式
+- [Xcode 26.3 Agentic Coding 深度解析：Apple 如何用 AI Agent 重塑开发体验](/zh/posts/ai/2026-02-20-xcode-agentic-coding/) —— 同样这些 Agent 装进苹果 IDE 之后是什么体验
+- [pi coding agent 实测：只给 4 个工具的极简 Agent](/zh/posts/ai/2026-09-06-pi-coding-agent-review/) —— 这份 7 款横评里没有的极简派选手

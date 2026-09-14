@@ -337,3 +337,4 @@ function createUser(input: unknown): User {
 - [Vibe Coding 详解](/zh/posts/ai/2026-02-28-vibe-coding-explained/) — TypeScript 让 Vibe Coding 更可靠
 - [AI 开发环境搭建](/zh/posts/ai/2026-03-10-ai-dev-environment-setup/) — 配置你的 TypeScript + AI 工作流
 - [Claude Code vs Cursor](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/) — 两者在 TypeScript 上都很出色
+- [TypeScript 完全指南：从入门到精通的进阶手册](/zh/posts/typescript/2026-01-23-typescript-complete-guide/) — 涨势背后的语言本身：从基础到高级类型系统

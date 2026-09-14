@@ -307,3 +307,4 @@ This isn't an article to read and forget. Pick your most painful workflow bottle
 - [Cursor Agent Coding Best Practices: Complete Official Guide](/posts/ai/2026-01-19-cursor-agent-best-practices/)
 - [Claude Code Browser Automation: 5 Methods Compared](/posts/ai/2026-01-28-claude-code-browser-automation/)
 - [Why Personal Taste Matters More Than Ever in the AI Era](/posts/ai/2026-01-23-taste-matters-in-ai-era/)
+- [Claude Code + Remotion: Generate Pro Videos with AI Conversations](/posts/ai/2026-01-26-claude-code-remotion-video/) — an AI workflow whose deliverable is a finished video, not code

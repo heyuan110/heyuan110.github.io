@@ -941,3 +941,4 @@ You now have a working OpenClaw installation with messaging integration, AI mode
 - [OpenClaw Architecture Deep Dive](/posts/ai/2026-02-14-openclaw-architecture-deep-dive/) — Internal architecture and system design
 - [OpenClaw Multi-Agent Deep Guide](/posts/ai/2026-02-23-openclaw-multi-agent-guide/) — Advanced multi-agent coordination patterns
 - [OpenClaw Automation Pitfalls](/posts/ai/2026-02-14-openclaw-automation-pitfalls/) — Lessons learned from real-world automation failures
+- [OpenClaw Tools & Skills Reference: Every Built-in Tool and Skill](/posts/ai/2026-04-14-openclaw-tools-skills-reference/) — what you can actually call once setup is done: every built-in tool and skill

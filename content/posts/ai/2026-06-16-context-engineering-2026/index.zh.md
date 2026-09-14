@@ -227,5 +227,7 @@ flowchart TD
 - [Claude Code CLAUDE.md 指南](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) —— CLAUDE.md/AGENTS.md 的实用组织方式
 - [AI Agent 记忆系统](/zh/posts/ai/2026-02-21-ai-agent-memory-systems/) —— 上下文窗口之外的持久记忆
 - [MCP 协议完全指南](/zh/posts/ai/2026-02-20-mcp-protocol-guide/) —— 连接工具而不撑爆上下文
+- [Claude HUD 是什么？3 分钟装好 Claude Code 状态栏插件](/zh/posts/ai/2026-04-10-claude-hud-guide/) —— 实时看到上下文窗口到底被吃掉了多少
+- [QMD：本地语义搜索引擎，帮 AI Agent 省下 90% Token 开销](/zh/posts/ai/2026-03-25-qmd-local-search-ai-agent-memory/) —— 把检索当上下文预算工具，实测省下 90% token
 
 外部来源：[Anthropic 2026 Agentic Coding 报告摘要](https://www.claudeainews.com/news/anthropic-2026-agentic-coding-report)、[Sourcegraph：上下文工程实战指南](https://sourcegraph.com/blog/context-engineering)、[LangChain：Deep Agents 的上下文管理](https://www.langchain.com/blog/context-management-for-deepagents)、[开源软件中 AI Agent 的上下文工程（arXiv）](https://arxiv.org/html/2510.21413v1)。

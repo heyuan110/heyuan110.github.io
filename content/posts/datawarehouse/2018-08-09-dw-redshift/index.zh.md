@@ -422,6 +422,7 @@ Amazon Redshift 性能优化的核心是理解数据存储机制，并制定合�
 ## 相关阅读
 
 - [AWS CLI 完全指南：安装配置与常用命令速查](/zh/posts/linux/2020-07-04-aws-cli/) - AWS 命令行工具使用教程
+- [MySQL SQL 完全指南：从小白到高手（含面试宝典）](/zh/posts/mysql/2026-01-23-mysql-sql-complete-guide/) - 这些查询背后的 SQL 基本功：从 JOIN 到走索引的写法
 
 ## 参考资料
 

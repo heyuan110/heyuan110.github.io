@@ -565,5 +565,7 @@ class Orchestrator:
 - [AI 编码智能体对比 2026](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — 不同工具如何实现多智能体模式
 - [从零构建 AI 智能体](/zh/posts/ai/2026-03-07-build-ai-agent-python/) — 通过亲手构建来理解智能体内部原理
 - [Google Antigravity 评测](/zh/posts/ai/2026-03-10-google-antigravity-review/) — 可视化智能体编排与 Manager View
+- [GitHub Agent HQ + VS Code 完整指南：怎么用、和 Copilot 啥区别](/zh/posts/ai/2026-03-13-github-agent-hq-vscode-guide/) — 当 IDE 厂商自己下场做编排，产品形态长什么样
+- [一个人 + AI Agent 月增 2000 客户：营销自动化实战拆解](/zh/posts/ai/2026-04-04-ai-agent-marketing-automation/) — 把编排用在工程之外：一个人的营销流水线
 - [LangChain: 选择多智能体架构](https://blog.langchain.com/choosing-the-right-multi-agent-architecture/) — 框架层面的编排模式视角
 - [Anthropic: 构建高效智能体](https://docs.anthropic.com/en/docs/agents-overview) — Claude 团队的官方智能体设计指南

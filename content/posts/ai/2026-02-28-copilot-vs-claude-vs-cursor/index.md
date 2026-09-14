@@ -230,3 +230,4 @@ Each tool has a clear strength:
 - [Claude Code Guide 2026](/posts/ai/2026-02-28-claude-code-complete-guide/) — Complete Claude Code overview
 - [Claude Pricing 2026](/posts/ai/2026-02-25-claude-code-pricing/) — Full pricing analysis with competitor benchmarks
 - [Claude Rate Limits 2026](/posts/ai/2026-02-28-claude-rate-limits/) — Understanding usage limits across plans
+- [GitHub Agent HQ: Multi-Agent Development Guide for VS Code](/posts/ai/2026-03-13-github-agent-hq-vscode-guide/) — where GitHub went after Copilot: assigning work to several agents inside VS Code

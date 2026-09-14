@@ -423,6 +423,7 @@ With these practices in place, your Redshift cluster will consistently deliver t
 ## Related Reading
 
 - [AWS CLI Complete Guide: Installation, Configuration, and Command Reference](/posts/linux/2020-07-04-aws-cli/) - AWS command-line tool tutorial
+- [MySQL SQL Complete Guide: From Beginner to Advanced (With Interview Questions)](/posts/mysql/2026-01-23-mysql-sql-complete-guide/) - the SQL fundamentals behind these queries, from joins to index-aware writing
 
 ## References
 

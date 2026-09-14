@@ -212,3 +212,4 @@ sudo systemctl status supervisord
 - [Traceroute Command Explained](/posts/linux/2020-06-28-traceroute/)
 - [Docker Compose Complete Guide](/posts/docker/2026-01-19-docker-compose-complete-guide/)
 - [docker-compose.yml Explained](/posts/docker/2026-01-24-docker-compose-yml-explained/)
+- [Setting Up Jira and Confluence on Ubuntu: Install, Config, and Data Migration](/posts/linux/2019-04-15-jira-confluence-install/) — a heavier self-hosted service on the same box, and what keeping it running involves

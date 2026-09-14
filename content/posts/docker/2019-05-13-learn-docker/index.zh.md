@@ -643,3 +643,4 @@ Docker 采用了 C/S架构，包括客户端和服务端。 Docker daemon 作为
 - [Docker Compose 完全指南：从入门到生产实践](/zh/posts/docker/2026-01-19-docker-compose-complete-guide/) - 多容器编排与生产环境最佳实践
 - [Docker 常用命令速查手册](/zh/posts/docker/2019-11-14-docker-commands/) - 日常开发必备命令参考
 - [使用 Nexus3 搭建 Docker 私有镜像仓库](/zh/posts/docker/2019-06-12-next3-dockerhub/) - 企业级私有仓库搭建方案
+- [Supervisor 教程：安装配置、常见问题与 systemd 选型](/zh/posts/linux/2018-10-07-supervisor/) - 裸机上的进程守护，也就是容器后来接管的那件事

@@ -320,6 +320,7 @@ Boris Cherney 创造 Claude Code 的初衷正是如此——不是做一个更�
 - [Claude Code Agent Teams 完全指南](/zh/posts/ai/2026-02-22-claude-code-agent-teams/) — 从单 Agent 到多 Agent 协作
 - [CLAUDE.md 记忆术](/zh/posts/ai/2026-01-12-claudemd-memory-guide/) — 项目级上下文管理的核心实践
 - [从零手搓一个 Claude Code](/zh/posts/ai/2026-02-24-build-magic-code/) — 理解 Agent 底层架构的最佳方式
+- [刘澜领导力十项修炼：领导力本质与管理者成长](/zh/posts/management/2019-08-19-liulan-management/) — Agent Manager 这个角色借用的，其实是这十项管人的修炼
 
 ## 系列文章导航
 

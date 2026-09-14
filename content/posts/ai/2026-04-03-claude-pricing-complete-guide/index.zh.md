@@ -245,3 +245,4 @@ Claude Code 是 Anthropic 的终端编程代理，在 Pro、Max、Team、API 上
 - [Claude Code 安装配置指南](/zh/posts/ai/2026-02-25-claude-code-setup-guide/) — 从零开始的安装教程
 - [Claude Code 完全指南](/zh/posts/ai/2026-01-14-claude-code-guide/) — Claude Code 功能全面解读
 - [Claude vs ChatGPT vs Gemini 2026](/zh/posts/ai/2026-03-02-claude-vs-chatgpt-vs-gemini/) — 三大 AI 助手功能和价格对比
+- [Claude Fable 5 值不值：$10/$50 的决策账与用好它的方法](/zh/posts/ai/2026-07-10-claude-fable-5-guide/) — 最贵那一档的单任务账，以及怎么用才不烧钱

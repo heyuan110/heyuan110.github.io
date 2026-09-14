@@ -362,3 +362,4 @@ Run `mypy --strict` in your CI pipeline to enforce type checking. This won't mat
 - [Claude Code Complete Guide](/posts/ai/2026-02-28-claude-code-complete-guide/) — Works great with both TypeScript and Python
 - [AI Dev Environment Setup](/posts/ai/2026-03-10-ai-dev-environment-setup/) — Configure your multi-language AI workflow
 - [Vibe Coding Explained](/posts/ai/2026-02-28-vibe-coding-explained/) — TypeScript makes vibe coding more reliable
+- [TypeScript Complete Guide: From Basics to Advanced Type System Mastery](/posts/typescript/2026-01-23-typescript-complete-guide/) — if you pick TypeScript, this is the type-system depth you are signing up for

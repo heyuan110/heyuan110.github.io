@@ -376,3 +376,4 @@ OpenCode is the most ambitious open source AI coding agent available today. Its 
 - [Claude Code vs Cursor vs Windsurf](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/) — IDE-based vs terminal-based AI coding approaches
 - [MCP Protocol Explained](/posts/ai/2026-02-28-mcp-protocol-explained/) — Understanding the Model Context Protocol powering modern AI agents
 - [Claude Code Skills and Sub-Agents](/posts/ai/2025-12-26-claudecode-skillsubagent/) — How Claude Code handles multi-agent workflows
+- [pi Coding Agent Review: 4 Tools vs Claude Code, Tested](/posts/ai/2026-09-06-pi-coding-agent-review/) — another open-source agent tested the same way, with a far smaller tool surface

@@ -549,3 +549,5 @@ Mac Mini 本地 AI 生图在 2026 年已经是一个**完全可行且实用**的
 - [Claude Code 最佳实践：从入门到精通的完整指南](/zh/posts/ai/2026-01-06-claudecode-best-practices/)
 - [AI 工作流实战指南：不是未来，是现在](/zh/posts/ai/2026-01-30-ai-workflow-real-guide/)
 - [Codex CLI 完全指南：OpenAI 的开源终端 AI 编程助手](/zh/posts/ai/2026-02-12-codex-cli-mastery-guide/)
+- [全面解析 FaceFusion：从原理到实战](/zh/posts/ai/2024-10-16-facefusion/) — 同一台本地 GPU 机器，换成跑换脸而不是文生图
+- [Seedream 5.0 Pro 上线：字节生图杀入 Gemini 腹地](/zh/posts/ai/2026-07-09-seedream-5-pro/) — 本地出图嫌慢时的云端 API 对照，按张计费

@@ -148,3 +148,4 @@ OpenClaw 的记忆策略整体给人的感觉是：**极简、工程化、把主
 - [OpenClaw vs AutoGPT vs CrewAI：2026 年最佳个人 AI Agent 全面对比](/zh/posts/ai/2026-03-05-openclaw-vs-ai-agents/) — 放回竞品里比较
 - [AI Agent 记忆系统全解析：RAG 与上下文工程的对比与选择](/zh/posts/ai/2026-02-21-ai-agent-memory-systems/) — 跨产品看 Agent 记忆方案
 - [QMD：本地语义搜索引擎，帮 AI Agent 省下 90% Token 开销](/zh/posts/ai/2026-03-25-qmd-local-search-ai-agent-memory/) — 本地化记忆的另一条路径
+- [Claude-Mem 深度解析：给 Claude Code 装上永久记忆](/zh/posts/ai/2026-02-03-claude-mem-deep-dive/) — 同样的「按需回忆」思路，做成 Claude Code 插件的版本

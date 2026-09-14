@@ -543,3 +543,4 @@ CLAUDE.md 就是那个记忆体。
 - [CLAUDE.md 最佳实践：我把 90 行砍到 50 行，Agent 表现反而提升 — Harness #2](/zh/posts/ai/2026-03-31-harness-claudemd-guide/) — 不是写越多越好
 - [CLAUDE.md 最佳实践：写出真正有效的配置文件](/zh/posts/ai/2026-03-05-claude-code-claudemd-best-practices/) — 有效配置的 9 条经验
 - [上下文工程：2026 年最被低估的 AI 开发技能](/zh/posts/ai/2026-03-10-context-engineering-guide/) — CLAUDE.md 背后的 context engineering
+- [Claude-Mem 深度解析：给 Claude Code 装上永久记忆](/zh/posts/ai/2026-02-03-claude-mem-deep-dive/) — 静态 CLAUDE.md 不够用时，让记忆自己往下写的插件方案

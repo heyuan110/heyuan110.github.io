@@ -448,5 +448,6 @@ Cursor 不只是一个装了 AI 的编辑器。配置得当、用对方法，它
 - [Claude Code 完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)
 - [2026 年 AI 编程工具对比](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)
 - [AI 开发的上下文工程指南](/zh/posts/ai/2026-03-10-context-engineering-guide/)
+- [SpaceX 600 亿美元收购 Cursor：还能用吗、要不要迁移](/zh/posts/ai/2026-07-09-spacex-cursor-acquisition/) — 被收购之后这套配置还值不值得继续投入，以及迁移方案
 - [Cursor 官方文档](https://cursor.com/docs)
 - [Cursor Agent 最佳实践博客](https://cursor.com/blog/agent-best-practices)

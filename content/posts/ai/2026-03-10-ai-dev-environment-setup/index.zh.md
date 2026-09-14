@@ -798,3 +798,5 @@ AI 开发环境不只是一堆工具的集合——它是一个**系统**。每�
 - [Codex CLI Deep Dive: Setup, Config, and Power User Tips](/zh/posts/ai/2026-03-10-codex-cli-deep-dive/) — OpenAI 的终端 AI 智能体
 - [Google Antigravity Review](/zh/posts/ai/2026-03-10-google-antigravity-review/) — Google 最新的 AI 开发产品
 - [What Is Vibe Coding? The AI-First Development Philosophy](/zh/posts/ai/2026-02-28-vibe-coding-explained/) — 理解更广泛的 AI 编程运动
+- [Claude HUD 是什么？3 分钟装好 Claude Code 状态栏插件](/zh/posts/ai/2026-04-10-claude-hud-guide/) — Claude Code 环境里值得加的状态栏插件，3 分钟装完
+- [Claude Code Buddy 终端宠物：藏在 AI 编程工具里的电子宠物](/zh/posts/ai/2026-04-04-claude-code-buddy-terminal-pet/) — Claude Code 环境里最不正经的一个插件，以及怎么开

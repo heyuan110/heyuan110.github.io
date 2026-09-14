@@ -786,4 +786,5 @@ Claude Code 有三种扩展机制。它们服务于不同目的：
 - [CLAUDE.md 指南](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) -- 项目上下文和记忆配置
 - [Claude Code Skills 指南](/zh/posts/ai/2026-02-28-claude-code-skills-guide/) -- 斜杠命令和可复用工作流
 - [Claude Code MCP 配置](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/) -- 通过 MCP 集成外部服务
+- [深度驾驭 Anthropic Agent SDK 钩子：用 PreToolUse/PostToolUse 构建安全闭环](/zh/posts/ai/2026-09-14-mastering-anthropic-agent-hooks/) -- 同样这些生命周期事件，在 Agent SDK 里怎么用来做安全闭环
 - [官方 Claude Code Hooks 参考文档](https://code.claude.com/docs/en/hooks) -- Anthropic 的完整参考文档

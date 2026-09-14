@@ -596,3 +596,4 @@ Come back to this article, pick one or two methodologies, and apply them. You do
 - [Why Taste Matters More Than Ever in the AI Era](/posts/ai/2026-01-23-taste-matters-in-ai-era/) — When AI can do everything, deciding what is worth doing becomes the key question
 - [AI Workflow Practical Guide: From Prompts to Production](/posts/ai/2026-01-30-ai-workflow-real-guide/) — Turning AI from a chat toy into a productivity tool
 - [My AI Development Workflow: From Requirements to Production](/posts/ai/2026-01-19-ai-dev-workflow/) — Real-world AI integration across the full software development lifecycle
+- [Ten Leadership Disciplines: Responsibility, Reflection, and Growth](/posts/management/2019-08-19-liulan-management/) — leadership disciplines that start from the same move: ask the question before answering it

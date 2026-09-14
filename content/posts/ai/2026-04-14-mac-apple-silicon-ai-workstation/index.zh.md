@@ -185,6 +185,7 @@ LLM 推理是内存带宽瓶颈，GPU 占用率一般在 60-70%，封装温度�
 - [Codex CLI 深度指南](/zh/posts/ai/2026-03-10-codex-cli-deep-dive/) — 本地模型 + 编码 Agent 组合拳
 - [Claude Code 浏览器自动化](/zh/posts/ai/2026-01-28-claude-code-browser-automation/) — 在新工作站上跑 Agent
 - [Claude Code 安全使用指南](/zh/posts/ai/2026-02-22-claude-code-security/) — 本地化部署的隐私优势
+- [把公司 Mac Mini 变成你的私人 VPN：5 种方案实测对比](/zh/posts/linux/2026-04-11-remote-access-mac-mini-vpn/) — 这台 Mac mini 当推理机之后，人在外面怎么连回去
 
 ## 写在最后：给国内读者的诚实建议
 

@@ -690,5 +690,7 @@ Use this checklist. Pass through all six gates. Ship with confidence.
 - [Vibe Coding Explained](/posts/ai/2026-02-28-vibe-coding-explained/) — Understanding the methodology behind AI-assisted development
 - [AI Dev Environment Setup](/posts/ai/2026-03-10-ai-dev-environment-setup/) — Configure your tools for production-grade AI development
 - [Context Engineering Guide](/posts/ai/2026-03-10-context-engineering-guide/) — Master the art of providing context to AI agents
+- [Cloudflare Workers Complete Guide: Edge Computing from Setup to Production](/posts/docker/2026-01-23-cloudflare-workers-guide/) — a concrete edge deploy target for the production checklist in this post
+- [Lovable vs v0 vs Bolt: AI App Builders Compared 2026](/posts/ai/2026-07-08-lovable-vs-v0-vs-bolt/) — where those prototypes come from, and the handoff pipeline out of the builders
 - [Google SRE Book](https://sre.google/sre-book/introduction/) — The foundational text on site reliability engineering
 - [OWASP Top 10](https://owasp.org/www-project-top-ten/) — The industry standard for web application security risks

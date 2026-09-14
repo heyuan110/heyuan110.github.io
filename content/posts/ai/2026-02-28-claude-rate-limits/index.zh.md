@@ -309,3 +309,4 @@ Claude会降速而不是完全停止。你会发现响应间隔变长。Opus请�
 - [CLAUDE.md指南：为AI提供完美的项目上下文](/zh/posts/ai/2026-02-28-claude-code-claudemd-guide/) — 通过更好的项目配置减少token浪费
 - [Claude Code Hooks指南：12个自动化配置](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) — 自动化任务以减少自主操作次数
 - [Claude Code Worktree指南](/zh/posts/ai/2026-02-28-claude-code-worktree-guide/) — 高效运行并行会话
+- [Claude HUD 是什么？3 分钟装好 Claude Code 状态栏插件](/zh/posts/ai/2026-04-10-claude-hud-guide/) — 实时显示 rate limit 消耗的状态栏，不用再靠猜

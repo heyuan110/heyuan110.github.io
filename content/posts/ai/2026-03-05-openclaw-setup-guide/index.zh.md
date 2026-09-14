@@ -940,3 +940,4 @@ openclaw doctor --fix
 - [OpenClaw 架构深度剖析](/zh/posts/ai/2026-02-14-openclaw-architecture-deep-dive/) ——内部架构与系统设计
 - [OpenClaw 多 Agent 深度指南](/zh/posts/ai/2026-02-23-openclaw-multi-agent-guide/) ——高级多 Agent 协作模式
 - [OpenClaw 自动化踩坑实录](/zh/posts/ai/2026-02-14-openclaw-automation-pitfalls/) ——真实自动化场景中的经验教训
+- [OpenClaw 工具与 Skill 完全手册：内置清单 + 自定义开发](/zh/posts/ai/2026-04-14-openclaw-tools-skills-reference/) ——装完之后到底能调什么：内置工具与 Skill 全清单

@@ -162,5 +162,6 @@ If your work is exploratory, subjective, or design-led, don't loop it yet. Stay 
 - [Claude Code Agent Teams](/posts/ai/2026-02-22-claude-code-agent-teams/)
 - [Agent Manager Patterns](/posts/ai/2026-02-24-agent-manager-patterns/)
 - [AI Agent Memory Systems](/posts/ai/2026-02-21-ai-agent-memory-systems/)
+- [One Founder + AI Agents = 2,000 New Customers/Month: The Playbook](/posts/ai/2026-04-04-ai-agent-marketing-automation/) — a loop running a real business process on a schedule, with the numbers attached
 
 **Sources:** [Geoffrey Huntley — everything is a ralph loop](https://ghuntley.com/loop/) · [snarktank/ralph on GitHub](https://github.com/snarktank/ralph) · [2026: The Year of the Ralph Loop Agent (DEV)](https://dev.to/alexandergekov/2026-the-year-of-the-ralph-loop-agent-1gkj) · [What Is an Agentic Loop? (MindStudio)](https://www.mindstudio.ai/blog/what-is-an-agentic-loop-ai-coding-agents)

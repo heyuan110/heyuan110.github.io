@@ -470,5 +470,8 @@ CLAUDE.md 是一个放置在项目根目录的 Markdown 文件，Claude Code 在
 - [上下文工程指南](/zh/posts/ai/2026-03-10-context-engineering-guide/) — 从提示词工程到上下文工程
 - [MCP 协议详解](/zh/posts/ai/2026-02-28-mcp-protocol-explained/) — 通过工具集成扩展 AI Agent 上下文
 - [用 Python 从零构建 AI Agent](/zh/posts/ai/2026-03-07-build-ai-agent-python/) — 实现你自己的带记忆功能的 Agent
+- [QMD：本地语义搜索引擎，帮 AI Agent 省下 90% Token 开销](/zh/posts/ai/2026-03-25-qmd-local-search-ai-agent-memory/) — 用本地语义索引替代把整份文档硬塞进上下文
+- [Claude-Mem 深度解析：给 Claude Code 装上永久记忆](/zh/posts/ai/2026-02-03-claude-mem-deep-dive/) — 这套记忆层在 Claude Code 上的一个落地实现
+- [向量数据库到底解决了什么问题：从原理到工程实践](/zh/posts/ai/2025-03-11-vectordatabase/) — Agent 长期记忆底下那层存储：从原理到工程落地
 - [Anthropic: Writing Effective Tools for Agents](https://www.anthropic.com/engineering/writing-tools-for-agents) — Anthropic 关于影响上下文质量的工具设计原则
 - [How Long Contexts Fail](https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html) — 上下文失败模式和缓解策略的研究

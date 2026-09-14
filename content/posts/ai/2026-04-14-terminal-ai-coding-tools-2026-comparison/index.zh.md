@@ -274,3 +274,4 @@ Gemini CLI 每天 1000 次免费请求、1M 上下文窗口、Google Search grou
 - [Claude Agent SDK 实战指南](/zh/posts/ai/2026-04-17-claude-agent-sdk-guide/) — 用 API 获取 1M 上下文的方式
 - [OpenClaw 多 Agent 编排指南](/zh/posts/ai/2026-02-23-openclaw-multi-agent-guide/) — 编排赛道的深度实践
 - [5 款 AI 编程工具实测对比](/zh/posts/ai/2026-04-03-claude-code-vs-cursor-vs-copilot/) — 更广维度的 AI 编程工具对比
+- [pi coding agent 实测：只给 4 个工具的极简 Agent](/zh/posts/ai/2026-09-06-pi-coding-agent-review/) — 极简这条路走到极致：只给 4 个工具的 Agent

@@ -709,3 +709,4 @@ content-length: 1141
 
 - [ELK 日志系统搭建教程：Elasticsearch + Logstash + Kibana + Kafka 完整指南](/zh/posts/elasticsearch/2018-09-11-log-elk/) - 企业级日志收集分析平台搭建
 - [AWS EKK 日志系统搭建：Elasticsearch + Kinesis + Kibana 实战教程](/zh/posts/elasticsearch/2018-09-12-log-ekk/) - 基于 AWS 托管服务的日志方案
+- [MySQL SQL 完全指南：从小白到高手（含面试宝典）](/zh/posts/mysql/2026-01-23-mysql-sql-complete-guide/) - 同一个查询问题的 SQL 一侧：什么时候该用关系型引擎

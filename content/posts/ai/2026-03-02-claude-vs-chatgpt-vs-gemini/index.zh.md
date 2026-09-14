@@ -330,3 +330,4 @@ SWE-bench Verified 被认为是真实世界编程评估的金标准。它在真�
 - [GitHub Copilot vs Claude Code vs Cursor: Real-World Benchmarks](/zh/posts/ai/2026-02-28-copilot-vs-claude-vs-cursor/)
 - [Claude Code vs Cursor: Which Wins for Real Projects?](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/)
 - [Claude Code Complete Guide 2026](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)
+- [Anthropic CEO 彭博社访谈：指数增长、芯片出口与超级智能](/zh/posts/ai/2025-01-21-anthropic-ceo-bloomberg-interview/) — 这场对比背后，Anthropic CEO 自己怎么看竞争格局

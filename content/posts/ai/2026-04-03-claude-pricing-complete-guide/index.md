@@ -286,3 +286,4 @@ Several significant pricing changes happened in early 2026:
 - [Claude Code Setup Guide](/posts/ai/2026-02-25-claude-code-setup-guide/) — Step-by-step installation and configuration
 - [Claude vs ChatGPT vs Gemini 2026](/posts/ai/2026-03-02-claude-vs-chatgpt-vs-gemini/) — Feature and pricing comparison across major AI assistants
 - [AI Coding Agents Comparison 2026](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — How Claude Code stacks up against Cursor, Copilot, and others
+- [Claude Fable 5: When the $10/$50 Flagship Is Worth It](/posts/ai/2026-07-10-claude-fable-5-guide/) — per-task math for the most expensive tier, and how to keep it from eating the budget

@@ -241,3 +241,4 @@ Here is a screenshot of the logs flowing into Kibana:
 
 - [Elasticsearch Tutorial: Core Concepts of Indices, Documents, and Query APIs](/posts/elasticsearch/2018-09-12-elasticsearch/) - Deep dive into ES fundamentals and query syntax
 - [ELK Stack Setup Guide: Elasticsearch + Logstash + Kibana + Kafka Full Architecture](/posts/elasticsearch/2018-09-11-log-elk/) - Complete enterprise logging platform deployment
+- [Amazon Redshift Performance Tuning: VACUUM, ANALYZE, and Operations](/posts/datawarehouse/2018-08-09-dw-redshift/) - where Kinesis-fed data lands for SQL analytics, and how to keep it fast

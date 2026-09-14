@@ -665,3 +665,4 @@ MCP 生态正在快速增长。你构建的每一个 MCP Server 都能立刻被 
 - [Claude Code MCP 配置：连接 AI 到任何外部服务](/zh/posts/ai/2026-02-28-claude-code-mcp-setup/)
 - [Claude Code 2026 完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/)
 - [Claude Code Hooks：自动化配置](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/)
+- [TypeScript 完全指南：从入门到精通的进阶手册](/zh/posts/typescript/2026-01-23-typescript-complete-guide/) — SDK 里那些泛型和 Zod schema 背后的类型系统基础

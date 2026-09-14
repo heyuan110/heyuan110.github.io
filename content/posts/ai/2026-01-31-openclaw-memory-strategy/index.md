@@ -152,3 +152,5 @@ If you are building your own agent system, this tool-driven approach to memory i
 - [AI Agent Memory Systems: RAG vs Context Engineering](/posts/ai/2026-02-21-ai-agent-memory-systems/) — Broader comparison of memory approaches
 - [OpenClaw Claude Code Workflow: How One Dev Built a 100K-Star Project](/posts/ai/2026-01-31-openclaw-claude-code-workflow/) — Real workflow patterns with OpenClaw
 - [RAG Pipeline Setup: Vector Database + LLM Integration Guide](/posts/ai/2026-03-01-rag-pipeline-setup/) — Build the RAG infrastructure that powers agent memory
+- [QMD Local Search: Cut AI Agent Token Costs by 90%](/posts/ai/2026-03-25-qmd-local-search-ai-agent-memory/) — the local search engine behind on-demand recall, measured in tokens saved
+- [Claude-Mem Deep Dive: Persistent Memory Plugin for Claude Code](/posts/ai/2026-02-03-claude-mem-deep-dive/) — the same on-demand recall idea, implemented as a Claude Code plugin

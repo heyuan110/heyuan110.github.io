@@ -825,3 +825,4 @@ Start with the simplest ones -- desktop notifications and auto-formatting -- the
 - [Skills vs MCP: Two Ways to Extend AI Capabilities](/posts/ai/2026-01-06-skillmcp/)
 - [Claude Code Memory: One File to Make AI Remember You](/posts/ai/2026-01-12-claudemd-memory-guide/)
 - [OpenClaw Author's Claude Code Development Methodology](/posts/ai/2026-01-31-openclaw-claude-code-workflow/)
+- [Mastering Anthropic Agent SDK Hooks: Intercept & Secure](/posts/ai/2026-09-14-mastering-anthropic-agent-hooks/) — beyond settings.json: intercepting tool calls programmatically with the Agent SDK

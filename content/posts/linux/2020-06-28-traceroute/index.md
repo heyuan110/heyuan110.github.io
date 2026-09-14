@@ -455,6 +455,7 @@ Key takeaways:
 
 - [Curl Command Guide: GET/POST, File Transfers, and Debugging](/posts/linux/2020-06-29-curl/) - Debug HTTP requests alongside traceroute for end-to-end network troubleshooting
 - [Linux/macOS Command Cheat Sheet](/posts/linux/2020-03-19-linux-mac-commands/) - Quick reference for essential commands including ping, netstat, and other network tools
+- [Charles Proxy Tutorial: HTTP/HTTPS Interception and Mock Debugging](/posts/macos/charles/) - layer-7 debugging once the route is ruled out: HTTPS decryption and mock responses
 
 ## References
 

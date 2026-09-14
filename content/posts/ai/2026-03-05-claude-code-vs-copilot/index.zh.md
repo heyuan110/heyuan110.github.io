@@ -467,3 +467,4 @@ Claude Code 和 GitHub Copilot 严格意义上不是竞争对手——它们是�
 - [Claude Code 2026完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — Claude Code 完整概述
 - [Claude vs ChatGPT vs Gemini：2026年最佳编程 LLM](/zh/posts/ai/2026-03-02-claude-vs-chatgpt-vs-gemini/) — 编程任务的 LLM 模型对比
 - [Claude 定价 2026](/zh/posts/ai/2026-02-25-claude-code-pricing/) — 完整定价分析与竞品对比
+- [GitHub Agent HQ + VS Code 完整指南：怎么用、和 Copilot 啥区别](/zh/posts/ai/2026-03-13-github-agent-hq-vscode-guide/) — GitHub 对终端 Agent 的回应，跑在 VS Code 侧边栏里

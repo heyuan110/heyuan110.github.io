@@ -175,3 +175,4 @@ Anthropic 自己的迁移文档也写了，Sonnet 5"默认更 agentic"，更愿�
 - [Claude 价格完全指南：API、Pro、Max 怎么选](/zh/posts/ai/2026-04-03-claude-pricing-complete-guide/)
 - [Claude Code vs Codex：两大 agentic CLI 对决](/zh/posts/ai/2026-02-19-claude-code-vs-codex/)
 - [Claude Code vs Cursor vs Windsurf：2026 终极对比](/zh/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/)
+- [Claude Fable 5 值不值：$10/$50 的决策账与用好它的方法](/zh/posts/ai/2026-07-10-claude-fable-5-guide/) — Fable 5 的花钱账：$10/$50 什么时候划得来

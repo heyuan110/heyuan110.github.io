@@ -540,3 +540,5 @@ The AWS CLI turns cloud management into a scriptable, repeatable workflow. Here 
 - [curl Command Complete Guide](/posts/linux/2020-06-29-curl/)
 - [Oh My Zsh Configuration Guide](/posts/linux/2015-06-17-shell-zsh/)
 - [Docker Commands Cheat Sheet](/posts/docker/2019-11-14-docker-commands/)
+- [Amazon Redshift Performance Tuning: VACUUM, ANALYZE, and Operations](/posts/datawarehouse/2018-08-09-dw-redshift/) — cluster maintenance the CLI does not cover: VACUUM, ANALYZE, and WLM tuning
+- [Jenkins + AWS CodeDeploy + Auto Scaling: A Complete CI/CD Pipeline](/posts/linux/2018-11-20-jenkins-codedeploy-autoscaling/) — these commands inside a real blue-green pipeline: CodeDeploy plus Auto Scaling

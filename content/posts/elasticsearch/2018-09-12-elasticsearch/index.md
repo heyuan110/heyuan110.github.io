@@ -380,3 +380,4 @@ Pay attention to the nesting structure: `query`, `_source`, and `sort` are all a
 
 - [ELK Stack Setup Guide: Elasticsearch + Logstash + Kibana + Kafka Full Architecture](/posts/elasticsearch/2018-09-11-log-elk/) - Complete enterprise logging platform deployment
 - [AWS EKK Log System Setup: Elasticsearch + Kinesis + Kibana Hands-On Guide](/posts/elasticsearch/2018-09-12-log-ekk/) - AWS managed services approach to centralized logging
+- [MySQL SQL Complete Guide: From Beginner to Advanced (With Interview Questions)](/posts/mysql/2026-01-23-mysql-sql-complete-guide/) - the SQL side of the same querying problem, for when a relational engine is the right tool

@@ -179,3 +179,4 @@ WWDC 2026 之后的关键判断是：**苹果硬件投入的方向不变，软�
 - [Mac mini 本地出图完整指南](/zh/posts/ai/2026-02-15-mac-mini-local-image-generation/) — 跟苹果 OS 层做什么完全无关的本地 AI 工作流
 - [Draw Things 终极指南](/zh/posts/ai/2026-02-15-draw-things-ultimate-guide/) — Mac 原生本地出图最佳选择，完全独立于 Apple Intelligence
 - [Hermes Agent 工程指南](/zh/posts/ai/2026-04-14-hermes-agent-guide/) — 自建 Agent harness，按需路由本地和前沿模型，不依赖系统级 AI
+- [Xcode 26.3 Agentic Coding 深度解析：Apple 如何用 AI Agent 重塑开发体验](/zh/posts/ai/2026-02-20-xcode-agentic-coding/) — 苹果的另一手 AI 牌：把第三方编程 Agent 直接接进 Xcode

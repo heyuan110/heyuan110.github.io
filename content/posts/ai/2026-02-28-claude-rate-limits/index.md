@@ -305,3 +305,4 @@ Most likely you were benefiting from a temporary promotion. Anthropic doubled al
 - [CLAUDE.md Guide: Give AI Perfect Project Context](/posts/ai/2026-02-28-claude-code-claudemd-guide/) — Reduce token waste with better project setup
 - [Claude Code Hooks Guide: 12 Automation Configs](/posts/ai/2026-02-28-claude-code-hooks-guide/) — Automate tasks to reduce agentic turns
 - [Claude Code Worktree Guide](/posts/ai/2026-02-28-claude-code-worktree-guide/) — Run parallel sessions efficiently
+- [Claude HUD 2026: Claude Code's 18K-Star Status Bar in 3 Min](/posts/ai/2026-04-10-claude-hud-guide/) — the status bar that shows rate-limit burn in real time instead of making you guess

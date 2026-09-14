@@ -564,5 +564,7 @@ The developers who master multi-agent orchestration now will have a significant 
 - [AI Coding Agents Comparison 2026](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — How different tools implement multi-agent patterns
 - [Build AI Agent from Scratch](/posts/ai/2026-03-07-build-ai-agent-python/) — Understand agent internals by building one yourself
 - [Google Antigravity Review](/posts/ai/2026-03-10-google-antigravity-review/) — Visual agent orchestration with Manager View
+- [GitHub Agent HQ: Multi-Agent Development Guide for VS Code](/posts/ai/2026-03-13-github-agent-hq-vscode-guide/) — what orchestration looks like once the IDE vendor ships it as a product
+- [One Founder + AI Agents = 2,000 New Customers/Month: The Playbook](/posts/ai/2026-04-04-ai-agent-marketing-automation/) — orchestration applied outside engineering: a one-person marketing pipeline
 - [LangChain: Choosing Multi-Agent Architecture](https://blog.langchain.com/choosing-the-right-multi-agent-architecture/) — Framework-level perspective on orchestration patterns
 - [Anthropic: Building Effective Agents](https://docs.anthropic.com/en/docs/agents-overview) — Official guidance on agent design from the Claude team

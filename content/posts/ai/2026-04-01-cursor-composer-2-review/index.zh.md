@@ -179,3 +179,4 @@ Cursor 选了经济上合理的路，却在伦理上栽了跟头。更讽刺的�
 - [Claude Code vs Cursor 2026：哪个 AI 编程工具更强？](/zh/posts/ai/2026-02-28-claude-code-vs-cursor/) — Composer 2 的直接对手
 - [2026 年 AI 编程工具全面对比：7 款主流工具实测评析](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — Composer 2 在横评中的位置
 - [GPT-5.4 vs Claude Opus 4.6 终极对比 2026](/zh/posts/ai/2026-03-13-gpt-5-4-vs-claude-opus-comparison/) — 底座模型层面的对比参考
+- [SpaceX 600 亿美元收购 Cursor：还能用吗、要不要迁移](/zh/posts/ai/2026-07-09-spacex-cursor-acquisition/) — 600 亿收购之后，已经在用 Composer 2 的人该怎么办

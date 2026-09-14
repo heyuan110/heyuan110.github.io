@@ -722,5 +722,6 @@ RAG 管道不是一项单一技术，而是由多个环环相扣的组件构成�
 - [AI Agent 记忆系统](/zh/posts/ai/2026-02-21-ai-agent-memory-systems/) —— Agent 如何使用向量数据库实现长期记忆
 - [MCP 协议详解](/zh/posts/ai/2026-02-28-mcp-protocol-explained/) —— 将 AI 工具连接到外部数据源的协议
 - [上下文工程指南](/zh/posts/ai/2026-03-10-context-engineering-guide/) —— 为 AI 系统设计信息流
+- [向量数据库到底解决了什么问题：从原理到工程实践](/zh/posts/ai/2025-03-11-vectordatabase/) —— 这条管线的存储层到底怎么工作：HNSW、分片与选型
 - [MTEB 排行榜](https://huggingface.co/spaces/mteb/leaderboard) —— 比较 Embedding 模型性能（外部链接）
 - [Qdrant 文档](https://qdrant.tech/documentation/) —— Qdrant 向量数据库官方文档（外部链接）

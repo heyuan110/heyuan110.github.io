@@ -1160,3 +1160,4 @@ RabbitMQ会自动减慢这个连接的速率，让client端以为网络带宽变
 ## 相关文章
 
 - [消息队列 MQ 技术选型指南：核心概念与分布式系统应用场景](/zh/posts/middleware/2019-07-31-mq/) - MQ 核心概念、架构模型与技术选型对比
+- [Redis 从入门到精通：安装配置与实战指南](/zh/posts/middleware/2026-01-22-redis-complete-guide/) - Redis 的 list/stream 够用、不必上 broker 的那些场景

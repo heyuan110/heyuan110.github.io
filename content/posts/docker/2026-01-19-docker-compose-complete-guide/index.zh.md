@@ -1596,6 +1596,9 @@ docker stack deploy -c docker-compose.yml myapp
 - [Docker 入门指南：核心概念、安装配置与容器化实践](/zh/posts/docker/2019-05-13-learn-docker/) - Docker 基础概念与入门教程
 - [Docker 常用命令速查手册](/zh/posts/docker/2019-11-14-docker-commands/) - 日常开发必备命令参考
 - [使用 Nexus3 搭建 Docker 私有镜像仓库](/zh/posts/docker/2019-06-12-next3-dockerhub/) - 企业级私有仓库搭建方案
+- [Supervisor 教程：安装配置、常见问题与 systemd 选型](/zh/posts/linux/2018-10-07-supervisor/) - 容器化之前进程是怎么守住的，以及和 restart 策略的对照
+- [Cloudflare Workers 完全指南：从入门到实战的边缘计算部署手册](/zh/posts/docker/2026-01-23-cloudflare-workers-guide/) - 完全不用容器的部署方式：边缘函数没有常驻服务器
+- [Redis 从入门到精通：安装配置与实战指南](/zh/posts/middleware/2026-01-22-redis-complete-guide/) - compose 文件里最常挂的那个有状态服务：持久化与集群配置详解
 
 ---
 

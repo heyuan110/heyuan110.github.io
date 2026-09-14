@@ -392,6 +392,7 @@ Absolutely — and you should. Use Vibe Coding for quick fixes, Peter's workflow
 - [OpenClaw Multi-Agent Guide](/posts/ai/2026-02-23-openclaw-multi-agent-guide/) — Running multiple AI agents in parallel
 - [AI Coding Agents Comparison 2026](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — Detailed tool comparisons
 - [Kiro Review](/posts/ai/2026-03-10-kiro-review/) — In-depth look at AWS's SDD IDE
+- [22 Thinking Frameworks That Turn Vague Ideas Into Clear Requirements](/posts/ai/2026-01-31-thinking-methodologies-guide/) — the layer above coding methodology: getting the requirement clear first
 
 ## References
 

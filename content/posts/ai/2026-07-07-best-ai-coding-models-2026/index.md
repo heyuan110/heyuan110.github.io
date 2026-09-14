@@ -161,3 +161,4 @@ Three sentences to leave with. Sonnet 5 is the best AI coding model for most dev
 - [Claude Pricing Complete Guide: API vs Pro vs Max](/posts/ai/2026-04-03-claude-pricing-complete-guide/)
 - [Claude Code vs Codex: Which Agentic CLI Wins](/posts/ai/2026-02-19-claude-code-vs-codex/)
 - [Claude Code vs Cursor vs Windsurf in 2026](/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/)
+- [Claude Fable 5: When the $10/$50 Flagship Is Worth It](/posts/ai/2026-07-10-claude-fable-5-guide/) — the spend-side decision for Fable 5: when the $10/$50 rate pays for itself

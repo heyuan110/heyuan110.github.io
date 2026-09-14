@@ -215,3 +215,5 @@ answer = "每月至少一次：找一个真实用户（付费用户优先），�
 - [我的 AI 开发工作流：从需求到上线](/zh/posts/ai/2026-01-19-ai-dev-workflow/)
 - [2026 年 AGI 已经来了：从功能定义到 31 分钟猎头实战](/zh/posts/ai/2026-01-26-agi-is-here/)
 - [AI 工作流实战手册：从提示词到编程，真正把 AI 用起来](/zh/posts/ai/2026-01-30-ai-workflow-real-guide/)
+- [别再跟 AI 说「帮我做个 XX」：22 个方法论让需求从模糊变清晰](/zh/posts/ai/2026-01-31-thinking-methodologies-guide/) — 删除之前那一步：先把需求问清楚的 22 个方法论
+- [一个人 + AI Agent 月增 2000 客户：营销自动化实战拆解](/zh/posts/ai/2026-04-04-ai-agent-marketing-automation/) — 一个人做产品时，哪些环节交给 Agent、哪些坚持手工

@@ -191,3 +191,4 @@ flowchart TD
 - [GPT-5.6 General Availability: Reading Vendor Claims Critically](/posts/ai/2026-07-10-gpt-5-6-general-availability/) — the benchmark-discount framework used in this post
 - [Draw Things Ultimate Guide](/posts/ai/2026-02-15-draw-things-ultimate-guide/) — local image generation when APIs aren't an option
 - [Mac mini as a Local Image Generation Box](/posts/ai/2026-02-15-mac-mini-local-image-generation/) — zero-marginal-cost alternative for hobby volume
+- [Seedance 2.0 Prompt Guide: Best Practices & Failure Modes](/posts/ai/2026-07-11-seedance-2-prompt-guide/) — the video-side prompt playbook from the same ByteDance stack

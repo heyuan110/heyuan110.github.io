@@ -595,3 +595,4 @@ Design Thinking 的价值在于：它是前面所有方法论的"操作系统"�
 - [AI 时代，一个人的 Taste 比以往任何时候都重要](/zh/posts/ai/2026-01-23-taste-matters-in-ai-era/) — 当 AI 什么都能做，什么值得做是核心问题
 - [AI 工作流实战手册：从提示词到编程](/zh/posts/ai/2026-01-30-ai-workflow-real-guide/) — 把 AI 从聊天玩具变成生产力工具
 - [我的 AI 开发工作流：从需求到上线](/zh/posts/ai/2026-01-19-ai-dev-workflow/) — 软件开发全流程中的 AI 实战经验
+- [刘澜领导力十项修炼：领导力本质与管理者成长](/zh/posts/management/2019-08-19-liulan-management/) — 同样从「先问对问题」出发的十项领导力修炼

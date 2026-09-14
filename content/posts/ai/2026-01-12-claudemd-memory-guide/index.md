@@ -533,3 +533,4 @@ CLAUDE.md is that memory.
 - [CLAUDE.md vs README.md: Why Your AI Agent Needs Its Own Instruction File](/posts/ai/2026-01-31-claudemd-vs-readme/) — Understanding the difference between human and AI documentation
 - [Claude Code Skills Guide: Teach AI Your Exact Workflow](/posts/ai/2026-01-08-claudecode-skill-guide/) — Extend Claude Code capabilities with custom Skills
 - [Claude Code Hooks Guide: 12 Ready-to-Use Configs for Automation](/posts/ai/2026-02-18-claude-code-hooks-guide/) — Automate workflows alongside your CLAUDE.md configuration
+- [Claude-Mem Deep Dive: Persistent Memory Plugin for Claude Code](/posts/ai/2026-02-03-claude-mem-deep-dive/) — when a static CLAUDE.md is not enough and you want memory that writes itself

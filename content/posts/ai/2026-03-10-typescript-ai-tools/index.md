@@ -337,3 +337,4 @@ The era of "types are optional boilerplate" is over. In the AI age, **types are 
 - [Vibe Coding Explained](/posts/ai/2026-02-28-vibe-coding-explained/) — TypeScript makes vibe coding more reliable
 - [AI Dev Environment Setup](/posts/ai/2026-03-10-ai-dev-environment-setup/) — Configure your TypeScript + AI workflow
 - [Claude Code vs Cursor](/posts/ai/2026-02-28-claude-code-vs-cursor/) — Both excel at TypeScript
+- [TypeScript Complete Guide: From Basics to Advanced Type System Mastery](/posts/typescript/2026-01-23-typescript-complete-guide/) — the language itself, from basics to the advanced type system behind that surge

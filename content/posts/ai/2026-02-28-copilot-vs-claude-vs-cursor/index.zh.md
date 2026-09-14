@@ -230,3 +230,4 @@ Copilot Pro ($10) + Cursor Pro ($20) + Claude Code Max 5x ($100)
 - [Claude Code Guide 2026](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — Claude Code 完整指南
 - [Claude Pricing 2026](/zh/posts/ai/2026-02-25-claude-code-pricing/) — 完整定价分析及竞品基准对比
 - [Claude Rate Limits 2026](/zh/posts/ai/2026-02-28-claude-rate-limits/) — 各方案用量限制详解
+- [GitHub Agent HQ + VS Code 完整指南：怎么用、和 Copilot 啥区别](/zh/posts/ai/2026-03-13-github-agent-hq-vscode-guide/) — Copilot 之后 GitHub 的动作：在 VS Code 里直接派活给多个 Agent

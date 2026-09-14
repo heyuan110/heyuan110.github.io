@@ -499,6 +499,7 @@ Consider saving your most-used commands as shell aliases or functions. For advan
 - [Linux/macOS Command Cheat Sheet](/posts/linux/2020-03-19-linux-mac-commands/) - Essential command reference for developers
 - [AWS CLI Complete Guide](/posts/linux/2020-07-04-aws-cli/) - Cloud service management from the terminal
 - [Oh My Zsh Setup Guide](/posts/linux/2015-06-17-shell-zsh/) - Build a productive shell environment
+- [Charles Proxy Tutorial: HTTP/HTTPS Interception and Mock Debugging](/posts/macos/charles/) - when curl is not enough: intercept and rewrite app traffic with a GUI proxy
 
 ## References
 

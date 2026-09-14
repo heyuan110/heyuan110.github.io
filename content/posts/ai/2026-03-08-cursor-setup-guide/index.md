@@ -448,5 +448,6 @@ Cursor is more than an editor with AI bolted on. When configured properly and us
 - [Claude Code Complete Guide](/posts/ai/2026-02-28-claude-code-complete-guide/)
 - [AI Coding Agents Comparison 2026](/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/)
 - [Context Engineering Guide for AI Development](/posts/ai/2026-03-10-context-engineering-guide/)
+- [What SpaceX's $60B Cursor Acquisition Means for Developers](/posts/ai/2026-07-09-spacex-cursor-acquisition/) — whether this setup is still worth investing in after the acquisition, and migration options
 - [Cursor Official Documentation](https://cursor.com/docs)
 - [Cursor Agent Best Practices Blog Post](https://cursor.com/blog/agent-best-practices)

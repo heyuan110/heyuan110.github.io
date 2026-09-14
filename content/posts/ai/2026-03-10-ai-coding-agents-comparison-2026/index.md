@@ -448,3 +448,5 @@ Start with Cursor + Claude Code at $40/month. Add Antigravity for free parallel 
 - [Google Antigravity Review](/posts/ai/2026-03-10-google-antigravity-review/) — The free agent-first IDE
 - [Kiro Review 2026](/posts/ai/2026-03-10-kiro-review/) — Amazon's spec-driven coding agent
 - [Vibe Coding Explained](/posts/ai/2026-02-28-vibe-coding-explained/) — The new paradigm of AI-assisted development
+- [Xcode 26.3 Agentic Coding: Claude Agent & Codex in Apple IDE](/posts/ai/2026-02-20-xcode-agentic-coding/) — what these same agents feel like inside Apple's IDE instead of a terminal
+- [pi Coding Agent Review: 4 Tools vs Claude Code, Tested](/posts/ai/2026-09-06-pi-coding-agent-review/) — the minimalist entry this 7-tool roundup does not cover

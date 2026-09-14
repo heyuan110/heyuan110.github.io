@@ -271,6 +271,7 @@ AI won't replace developers. But developers who use AI effectively will outperfo
 - [Claude Code Browser Automation: Comparing 5 Approaches](/posts/ai/2026-01-28-claude-code-browser-automation/)
 - [Claude Code Best Practices Guide](/posts/ai/2026-01-06-claudecode-best-practices/)
 - [Anthropic Launches Claude Cowork: AI That Operates Your Files Directly](/posts/ai/2026-01-13-claude-cowork/)
+- [22 Thinking Frameworks That Turn Vague Ideas Into Clear Requirements](/posts/ai/2026-01-31-thinking-methodologies-guide/) — the frameworks for the step before this one: turning a vague ask into a requirement worth handing to AI
 - [2025 DORA AI Development Report](https://dora.dev/research/2025/dora-report/)
 
 ## Related Reading

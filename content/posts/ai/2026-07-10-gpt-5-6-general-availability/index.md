@@ -136,3 +136,5 @@ The GPT-5.6 release is real, global, and priced for a fight — that part surviv
 - [MCP vs Skills: Why CLI + Skill Wins the Agent Toolchain](/posts/ai/2026-07-10-cli-skills-vs-mcp/) — the composable-primitives thesis behind my read of the merger
 - [Claude Code vs Codex: 8-Dimension Head-to-Head](/posts/ai/2026-02-19-claude-code-vs-codex/) — how the two agent CLIs compared before Codex changed shape
 - [Claude Free Tier Limits in 2026: What You Actually Get](/posts/ai/2026-07-08-claude-free-tier-limits/)
+- [Codex App Guide 2026: Setup, Workflows, and Real Pitfalls](/posts/ai/2026-07-12-openai-codex-app-guide/) — the app the Codex merger shipped into, plus the pitfalls found in daily use
+- [Claude Fable 5: When the $10/$50 Flagship Is Worth It](/posts/ai/2026-07-10-claude-fable-5-guide/) — the Anthropic side of the same price bracket

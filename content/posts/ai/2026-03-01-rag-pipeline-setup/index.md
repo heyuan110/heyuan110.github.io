@@ -722,5 +722,6 @@ For deeper exploration of how RAG fits into broader AI systems, see the [Context
 - [AI Agent Memory Systems](/posts/ai/2026-02-21-ai-agent-memory-systems/) -- How agents use vector databases for long-term memory
 - [MCP Protocol Explained](/posts/ai/2026-02-28-mcp-protocol-explained/) -- The protocol that connects AI tools to external data sources
 - [Context Engineering Guide](/posts/ai/2026-03-10-context-engineering-guide/) -- Design the information flow for AI systems
+- [Vector Database Explained: From Core Concepts to Production](/posts/ai/2025-03-11-vectordatabase/) -- how the storage layer of this pipeline actually works, from HNSW to sharding
 - [MTEB Leaderboard](https://huggingface.co/spaces/mteb/leaderboard) -- Compare embedding model performance (external)
 - [Qdrant Documentation](https://qdrant.tech/documentation/) -- Official docs for the Qdrant vector database (external)

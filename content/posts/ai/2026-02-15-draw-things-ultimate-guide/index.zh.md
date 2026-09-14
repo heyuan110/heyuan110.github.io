@@ -734,3 +734,5 @@ Draw Things 是 Mac 上**被严重低估**的 AI 生图工具。它不只是一�
 - [AI 工作流实战指南：不是未来，是现在](/zh/posts/ai/2026-01-30-ai-workflow-real-guide/)
 - [Claude Code 最佳实践：从入门到精通的完整指南](/zh/posts/ai/2026-01-06-claudecode-best-practices/)
 - [Claude Code 浏览器自动化实战：用 AI 操控网页的完整指南](/zh/posts/ai/2026-01-28-claude-code-browser-automation/)
+- [全面解析 FaceFusion：从原理到实战](/zh/posts/ai/2024-10-16-facefusion/) — 同样是本地跑模型，换脸这条线用的是另一套 pipeline
+- [Seedream 5.0 Pro 上线：字节生图杀入 Gemini 腹地](/zh/posts/ai/2026-07-09-seedream-5-pro/) — 按张计费的云端方案，和本地零边际成本路线的对照

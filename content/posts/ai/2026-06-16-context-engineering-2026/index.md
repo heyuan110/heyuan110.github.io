@@ -181,5 +181,7 @@ If you run coding agents in 2026, treat the context window as a budget and defau
 - [Claude Code CLAUDE.md Guide](/posts/ai/2026-02-28-claude-code-claudemd-guide/) — practical CLAUDE.md/AGENTS.md organization
 - [AI Agent Memory Systems](/posts/ai/2026-02-21-ai-agent-memory-systems/) — persistent memory beyond the context window
 - [MCP Protocol Complete Guide](/posts/ai/2026-02-20-mcp-protocol-guide/) — connecting tools without bloating context
+- [Claude HUD 2026: Claude Code's 18K-Star Status Bar in 3 Min](/posts/ai/2026-04-10-claude-hud-guide/) — a live readout of how much of the context window you have actually spent
+- [QMD Local Search: Cut AI Agent Token Costs by 90%](/posts/ai/2026-03-25-qmd-local-search-ai-agent-memory/) — retrieval as a context-budget tool, with the 90% token reduction actually measured
 
 External sources: [Anthropic 2026 Agentic Coding report summary](https://www.claudeainews.com/news/anthropic-2026-agentic-coding-report), [Sourcegraph: Context Engineering — A Practical Guide](https://sourcegraph.com/blog/context-engineering), [LangChain: Context Management for Deep Agents](https://www.langchain.com/blog/context-management-for-deepagents), [Context Engineering for AI Agents in Open-Source Software (arXiv)](https://arxiv.org/html/2510.21413v1).

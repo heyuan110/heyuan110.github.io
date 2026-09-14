@@ -240,6 +240,7 @@ flowchart TB
 - [OpenClaw 多 Agent 配置完整指南](/zh/posts/ai/2026-04-02-openclaw-multi-agent-setup-guide/)
 - [OpenClaw vs AI Agents：开源 harness 能力边界对比](/zh/posts/ai/2026-03-05-openclaw-vs-ai-agents/)
 - [wshobson/agents 深度挖掘：79 个插件的护城河在哪](/zh/posts/ai/2026-04-20-wshobson-agents-deep-dive/)
+- [Anthropic CEO 彭博社访谈：指数增长、芯片出口与超级智能](/zh/posts/ai/2025-01-21-anthropic-ceo-bloomberg-interview/) — 收口动作一年前，Dario 自己讲的指数增长逻辑
 
 外部链接：
 

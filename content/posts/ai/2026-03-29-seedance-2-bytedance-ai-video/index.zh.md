@@ -314,3 +314,6 @@ video_url = response.json()["data"]["video_url"]
 - [Google Antigravity 评测 2026](/zh/posts/ai/2026-03-10-google-antigravity-review/) — 另一个科技巨头的 AI 重磅发布
 - [2026 AI 编程工具横评](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — AI 工具跨领域对比
 - [OpenAI Symphony 自主编程深度解析](/zh/posts/ai/2026-03-05-openai-symphony-autonomous-coding/) — 字节最大竞争对手的 AI 战略
+- [Seedream 5.0 Pro 上线：字节生图杀入 Gemini 腹地](/zh/posts/ai/2026-07-09-seedream-5-pro/) — 同一套字节模型矩阵的生图侧，含火山方舟调用实操
+- [Seedance 2.0 提示词最佳实践：从官方指南到实战](/zh/posts/ai/2026-07-11-seedance-2-prompt-guide/) — 提示词层面的续篇：哪些写法有效、哪些必翻车
+- [Claude Code + Remotion：用 AI 对话生成专业视频](/zh/posts/ai/2026-01-26-claude-code-remotion-video/) — 确定性的另一条路：用 React 代码渲染视频，而不是写提示词

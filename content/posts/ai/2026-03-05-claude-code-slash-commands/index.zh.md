@@ -673,3 +673,4 @@ claude -p "your query" \
 - [CLAUDE.md Best Practices: Write Files That Actually Work](/zh/posts/ai/2026-03-05-claude-code-claudemd-best-practices/) -- 高效的项目配置
 - [Install Claude Code in 5 Minutes](/zh/posts/ai/2026-02-25-claude-code-setup-guide/) -- 从零开始入门
 - [10 Claude Code Mistakes Beginners Make](/zh/posts/ai/2026-02-25-claude-code-mistakes/) -- 避免常见陷阱
+- [Claude Code Buddy 终端宠物：藏在 AI 编程工具里的电子宠物](/zh/posts/ai/2026-04-04-claude-code-buddy-terminal-pet/) -- 藏起来的那条命令：在终端里养一只电子宠物

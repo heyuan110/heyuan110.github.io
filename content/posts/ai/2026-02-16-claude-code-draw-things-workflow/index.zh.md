@@ -562,3 +562,4 @@ claude mcp add drawthings -- npx -y mcp-drawthings
 - [我的 AI 开发工作流：从需求到上线](/zh/posts/ai/2026-01-19-ai-dev-workflow/)
 - [Claude Code 最佳实践指南](/zh/posts/ai/2026-01-06-claudecode-best-practices/)
 - [Claude Code Skills 完全指南](/zh/posts/ai/2026-01-08-claudecode-skill-guide/)
+- [全面解析 FaceFusion：从原理到实战](/zh/posts/ai/2024-10-16-facefusion/) — 另一个用命令行驱动的本地生成式媒体工具

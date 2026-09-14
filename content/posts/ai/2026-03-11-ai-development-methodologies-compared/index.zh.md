@@ -388,6 +388,7 @@ Peter Steinberger 的经验表明 **3-8 个 agent** 是最佳范围。低于 3 �
 - [OpenClaw Multi-Agent Guide](/zh/posts/ai/2026-02-23-openclaw-multi-agent-guide/) — 并行运行多个 AI agent
 - [AI Coding Agents Comparison 2026](/zh/posts/ai/2026-03-10-ai-coding-agents-comparison-2026/) — 详细工具对比
 - [Kiro Review](/zh/posts/ai/2026-03-10-kiro-review/) — AWS SDD IDE 深度评测
+- [别再跟 AI 说「帮我做个 XX」：22 个方法论让需求从模糊变清晰](/zh/posts/ai/2026-01-31-thinking-methodologies-guide/) — 编码方法论上面的一层：先把需求想清楚
 
 ## 参考资料
 

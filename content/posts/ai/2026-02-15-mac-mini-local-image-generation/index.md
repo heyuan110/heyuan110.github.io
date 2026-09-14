@@ -559,3 +559,5 @@ One final recommendation: regardless of which tool you choose, **start with SDXL
 - [Claude Code Best Practices: Complete Guide from Beginner to Expert](/posts/ai/2026-01-06-claudecode-best-practices/)
 - [AI Workflow Practical Guide: Not the Future — It's Now](/posts/ai/2026-01-30-ai-workflow-real-guide/)
 - [Codex CLI Complete Guide: OpenAI's Open-Source Terminal AI Coding Assistant](/posts/ai/2026-02-12-codex-cli-mastery-guide/)
+- [FaceFusion Guide: Open-Source AI Face Swap Setup and Tips](/posts/ai/2024-10-16-facefusion/) — the same local-GPU box pointed at face swapping instead of text-to-image
+- [Seedream 5.0 Pro: ByteDance's Image Model Takes On Gemini](/posts/ai/2026-07-09-seedream-5-pro/) — the cloud API option when local generation is too slow, priced per image

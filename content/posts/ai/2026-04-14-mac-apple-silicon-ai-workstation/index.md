@@ -187,6 +187,7 @@ For the full tooling picture around Apple Silicon AI development:
 - [Stanford CS146S Overview](/posts/ai/2026-02-24-stanford-cs146s-overview/) — if you want the theoretical foundation for what these chips are actually doing
 - [Codex CLI Deep Dive](/posts/ai/2026-03-10-codex-cli-deep-dive/) — pairs well with local models for coding agents
 - [Claude Code Browser Automation](/posts/ai/2026-01-28-claude-code-browser-automation/) — for running agents on your new workstation
+- [Turn Your Office Mac Mini into a Personal VPN: 5 Approaches Compared](/posts/linux/2026-04-11-remote-access-mac-mini-vpn/) — how to actually reach that Mac mini from outside once it is your inference box
 
 ## The Honest Bottom Line
 

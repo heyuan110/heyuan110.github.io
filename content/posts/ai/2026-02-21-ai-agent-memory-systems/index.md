@@ -470,5 +470,8 @@ Context poisoning occurs when incorrect or outdated information enters an agent'
 - [Context Engineering Guide](/posts/ai/2026-03-10-context-engineering-guide/) — From prompt engineering to context engineering
 - [MCP Protocol Explained](/posts/ai/2026-02-28-mcp-protocol-explained/) — Extending AI agent context through tool integration
 - [Build an AI Agent from Scratch with Python](/posts/ai/2026-03-07-build-ai-agent-python/) — Implement your own agent with memory capabilities
+- [QMD Local Search: Cut AI Agent Token Costs by 90%](/posts/ai/2026-03-25-qmd-local-search-ai-agent-memory/) — a local semantic index that replaces stuffing whole documents into context
+- [Claude-Mem Deep Dive: Persistent Memory Plugin for Claude Code](/posts/ai/2026-02-03-claude-mem-deep-dive/) — a working implementation of the memory layer described here
+- [Vector Database Explained: From Core Concepts to Production](/posts/ai/2025-03-11-vectordatabase/) — the storage layer under agent long-term memory, from concepts to production
 - [Anthropic: Writing Effective Tools for Agents](https://www.anthropic.com/engineering/writing-tools-for-agents) — Anthropic's principles for tool design that impacts context quality
 - [How Long Contexts Fail](https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html) — Research on context failure modes and mitigation strategies

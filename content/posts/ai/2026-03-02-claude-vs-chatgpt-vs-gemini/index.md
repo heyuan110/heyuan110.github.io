@@ -330,3 +330,4 @@ The practical advice? **Don't lock yourself into one model.** API prices have dr
 - [GitHub Copilot vs Claude Code vs Cursor: Real-World Benchmarks](/posts/ai/2026-02-28-copilot-vs-claude-vs-cursor/)
 - [Claude Code vs Cursor: Which Wins for Real Projects?](/posts/ai/2026-02-28-claude-code-vs-cursor/)
 - [Claude Code Complete Guide 2026](/posts/ai/2026-02-28-claude-code-complete-guide/)
+- [Anthropic CEO Dario Amodei Bloomberg Interview: Key Takeaways](/posts/ai/2025-01-21-anthropic-ceo-bloomberg-interview/) — what Anthropic's CEO says about the competition this comparison measures

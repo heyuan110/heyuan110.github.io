@@ -1190,3 +1190,4 @@ Key takeaways:
 - [AI-Powered Development Workflows](/posts/ai/2026-01-19-ai-dev-workflow/)
 - [Cursor Agent Best Practices](/posts/ai/2026-01-19-cursor-agent-best-practices/)
 - [Claude Code Best Practices Guide](/posts/ai/2026-01-06-claudecode-best-practices/)
+- [Codex App Guide 2026: Setup, Workflows, and Real Pitfalls](/posts/ai/2026-07-12-openai-codex-app-guide/) — what changes once Codex leaves the terminal for a desktop app

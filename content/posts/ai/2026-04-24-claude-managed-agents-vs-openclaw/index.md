@@ -234,6 +234,7 @@ If the enclosure analysis is right, these are likely outcomes in the next 18 mon
 - [OpenClaw Multi-Agent Setup Guide](/posts/ai/2026-04-02-openclaw-multi-agent-setup-guide/)
 - [OpenClaw vs AI Agents: OSS Harness Capability Comparison](/posts/ai/2026-03-05-openclaw-vs-ai-agents/)
 - [wshobson/agents Deep Dive: Where the 33.9K-Star Moat Actually Is](/posts/ai/2026-04-20-wshobson-agents-deep-dive/)
+- [Anthropic CEO Dario Amodei Bloomberg Interview: Key Takeaways](/posts/ai/2025-01-21-anthropic-ceo-bloomberg-interview/) — Dario's own framing of exponential scaling, a year before this enclosure move
 
 External links:
 

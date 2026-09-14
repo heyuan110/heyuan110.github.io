@@ -287,3 +287,4 @@ For a broader comparison that includes Cursor and Windsurf, check out my recent 
 - [Claude Code vs GitHub Copilot 2026](/posts/ai/2026-03-05-claude-code-vs-copilot/) — Side-by-side after 3 months of daily use
 - [Claude Code Pricing 2026: Free vs Pro $20 vs Max $200](/posts/ai/2026-02-25-claude-code-pricing/) — Understand the real cost of each tool
 - [GitHub Copilot vs Claude Code vs Cursor: 2026 Comparison](/posts/ai/2026-02-28-copilot-vs-claude-vs-cursor/) — Three-way comparison with benchmarks
+- [Xcode 26.3 Agentic Coding: Claude Agent & Codex in Apple IDE](/posts/ai/2026-02-20-xcode-agentic-coding/) — both agents running side by side inside Xcode 26.3

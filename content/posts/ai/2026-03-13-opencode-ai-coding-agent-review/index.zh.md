@@ -360,3 +360,4 @@ OpenCode是目前最有野心的开源AI编程代理。LSP集成和模型灵活�
 - [Claude Code vs Cursor vs Windsurf](/zh/posts/ai/2026-02-18-claude-code-vs-cursor-vs-windsurf-2026/) — IDE路线 vs 终端路线的AI编程方案
 - [MCP协议详解](/zh/posts/ai/2026-02-28-mcp-protocol-explained/) — 理解驱动现代AI代理的模型上下文协议
 - [Claude Code Skills和子代理](/zh/posts/ai/2025-12-26-claudecode-skillsubagent/) — Claude Code如何处理多代理工作流
+- [pi coding agent 实测：只给 4 个工具的极简 Agent](/zh/posts/ai/2026-09-06-pi-coding-agent-review/) — 另一个开源 Agent 的同口径实测，工具面小得多

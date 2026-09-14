@@ -149,3 +149,4 @@ The pivot is done. The story changed on a Monday in June. The only open question
 - [Mac mini Local Image Generation Guide](/posts/ai/2026-02-15-mac-mini-local-image-generation/) — The local AI workflow that does not care what Apple does at the OS layer
 - [Draw Things Ultimate Guide](/posts/ai/2026-02-15-draw-things-ultimate-guide/) — Best-in-class Mac-native local image generation, fully independent of Apple Intelligence
 - [Hermes Agent Engineering Guide](/posts/ai/2026-04-14-hermes-agent-guide/) — Building your own agent harnesses that route between local and frontier models, no system AI required
+- [Xcode 26.3 Agentic Coding: Claude Agent & Codex in Apple IDE](/posts/ai/2026-02-20-xcode-agentic-coding/) — Apple's other AI bet: third-party coding agents wired straight into Xcode

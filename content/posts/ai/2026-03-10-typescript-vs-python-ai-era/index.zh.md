@@ -362,3 +362,4 @@ def process_order(
 - [Claude Code 完全指南](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — TypeScript 和 Python 都能用好
 - [AI 开发环境搭建](/zh/posts/ai/2026-03-10-ai-dev-environment-setup/) — 配置多语言 AI 工作流
 - [Vibe Coding 详解](/zh/posts/ai/2026-02-28-vibe-coding-explained/) — TypeScript 让 vibe coding 更可靠
+- [TypeScript 完全指南：从入门到精通的进阶手册](/zh/posts/typescript/2026-01-23-typescript-complete-guide/) — 如果选了 TypeScript，这就是要补上的类型系统深度

@@ -579,3 +579,5 @@ Start with whatever matches your constraints today. You can always switch later 
 - [Tmux Guide for AI Development](/posts/ai/2026-03-03-tmux-guide-ai-development/) — Terminal multiplexing for dev workflows
 - [AI Dev Environment Setup](/posts/ai/2026-03-10-ai-dev-environment-setup/) — Complete setup guide for AI-powered development
 - [MCP Protocol Explained](/posts/ai/2026-02-28-mcp-protocol-explained/) — Understanding the Model Context Protocol
+- [Cloudflare Workers Complete Guide: Edge Computing from Setup to Production](/posts/docker/2026-01-23-cloudflare-workers-guide/) — the other half of the Cloudflare stack: running code at the edge instead of tunneling to localhost
+- [Turn Your Office Mac Mini into a Personal VPN: 5 Approaches Compared](/posts/linux/2026-04-11-remote-access-mac-mini-vpn/) — the same reach-my-machine problem solved at the network layer: Tailscale, WireGuard and three more

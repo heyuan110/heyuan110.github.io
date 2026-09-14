@@ -197,3 +197,4 @@ flowchart TD
 - [GPT-5.6 正式发布全解读](/zh/posts/ai/2026-07-10-gpt-5-6-general-availability/)——本文使用的厂商跑分打折框架出处
 - [Draw Things 完全指南](/zh/posts/ai/2026-02-15-draw-things-ultimate-guide/)——API 之外的本地生图路线
 - [Mac mini 本地生图方案](/zh/posts/ai/2026-02-15-mac-mini-local-image-generation/)——零边际成本的对照组
+- [Seedance 2.0 提示词最佳实践：从官方指南到实战](/zh/posts/ai/2026-07-11-seedance-2-prompt-guide/)——同一套字节模型在视频侧的提示词实操

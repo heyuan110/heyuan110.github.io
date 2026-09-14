@@ -665,6 +665,7 @@ The MCP ecosystem is growing fast. Every MCP server you build becomes instantly 
 - [Claude Code MCP Setup: Connect AI to Any External Service](/posts/ai/2026-02-28-claude-code-mcp-setup/)
 - [Claude Code Complete Guide 2026](/posts/ai/2026-02-28-claude-code-complete-guide/)
 - [Claude Code Hooks: Automation Configs](/posts/ai/2026-02-28-claude-code-hooks-guide/)
+- [TypeScript Complete Guide: From Basics to Advanced Type System Mastery](/posts/typescript/2026-01-23-typescript-complete-guide/) — the type-system fundamentals behind the SDK's generics and Zod schemas
 
 ## Related Reading
 

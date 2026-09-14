@@ -359,3 +359,4 @@ sudo systemctl status supervisord
 - [traceroute 命令详解](/zh/posts/linux/2020-06-28-traceroute/)
 - [Docker Compose 完全指南（2026）](/zh/posts/docker/2026-01-19-docker-compose-complete-guide/)
 - [docker-compose.yml 详解](/zh/posts/docker/2026-01-24-docker-compose-yml-explained/)
+- [Ubuntu 搭建 Jira + Confluence 完整教程：安装配置与数据迁移](/zh/posts/linux/2019-04-15-jira-confluence-install/) — 同一台机器上更重的自建服务，以及把它跑起来要做哪些事

@@ -257,4 +257,5 @@ AI不会取代程序员，但会用AI的程序员会取代不会用的。
 - [Claude Code 浏览器自动化方案对比：Agent Browser、Playwright、DevTools](/zh/posts/ai/2026-01-28-claude-code-browser-automation/)
 - [Claude Code 最佳实践指南](/zh/posts/ai/2026-01-06-claudecode-best-practices/)
 - [Anthropic 发布 Claude Cowork：让 AI 直接操作你的电脑文件](/zh/posts/ai/2026-01-13-claude-cowork/)
+- [别再跟 AI 说「帮我做个 XX」：22 个方法论让需求从模糊变清晰](/zh/posts/ai/2026-01-31-thinking-methodologies-guide/) — 这条工作流的前一步：把模糊想法变成可以交给 AI 的需求
 - [2025 DORA AI开发报告](https://dora.dev/research/2025/dora-report/)

@@ -334,3 +334,4 @@ Pick a tool and start your first Vibe Coding session now.
 - [Cursor Agent Best Practices: The Complete Guide to AI Coding](/posts/ai/2026-01-19-cursor-agent-best-practices/) — Vibe Coding techniques specific to Cursor
 - [Harness Engineering: Why the System Around Your AI Agent Matters More Than the Model](/posts/ai/2026-03-30-harness-engineering-guide/) — Building reliable infrastructure for AI-assisted coding
 - [AI Workflow Playbook: From Prompts to Production Code](/posts/ai/2026-01-30-ai-workflow-real-guide/) — Turn Vibe Coding output into production-ready systems
+- [Lovable vs v0 vs Bolt: AI App Builders Compared 2026](/posts/ai/2026-07-08-lovable-vs-v0-vs-bolt/) — vibe coding without a terminal: three prompt-to-app builders put side by side

@@ -197,3 +197,4 @@ If you are using Claude Code for any serious development work, install Claude HU
 - [Claude Code vs Cursor vs Copilot: Which AI Coding Tool Wins in 2026?](/posts/ai/2026-04-03-claude-code-vs-cursor-vs-copilot/) — how Claude Code stacks up against alternatives
 - [Claude Code Hooks Guide: Automate Your Development Workflow](/posts/ai/2026-02-28-claude-code-hooks-guide/) — extend Claude Code with custom automation
 - [Claude Code Rate Limits Explained](/posts/ai/2026-02-28-claude-rate-limits/) — understand and manage your usage limits
+- [Claude Code Buddy: The Terminal Pet Hidden in Your AI Coding Tool](/posts/ai/2026-04-04-claude-code-buddy-terminal-pet/) — the other thing living in your Claude Code status line, for fun rather than metrics

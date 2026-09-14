@@ -224,3 +224,4 @@ This combination costs $40–120/month depending on tiers, but maximizes product
 - [Claude Pricing 2026: Every Plan from Free to Max $200](/posts/ai/2026-02-25-claude-code-pricing/) — Detailed cost analysis
 - [Claude Rate Limits 2026](/posts/ai/2026-02-28-claude-rate-limits/) — Understanding usage limits
 - [GitHub Copilot vs Claude Code vs Cursor](/posts/ai/2026-02-28-copilot-vs-claude-vs-cursor/) — Three-way comparison
+- [What SpaceX's $60B Cursor Acquisition Means for Developers](/posts/ai/2026-07-09-spacex-cursor-acquisition/) — the ownership change that now belongs in any Cursor comparison

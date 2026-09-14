@@ -215,3 +215,5 @@ In the AI era, this mindset matters more than ever. When AI can produce at high 
 - [My AI Development Workflow: From Requirements to Launch](/posts/ai/2026-01-19-ai-dev-workflow/)
 - [AGI Is Already Here in 2026: From Feature Definition to a 31-Minute Recruiting Sprint](/posts/ai/2026-01-26-agi-is-here/)
 - [AI Workflow Playbook: From Prompts to Programming](/posts/ai/2026-01-30-ai-workflow-real-guide/)
+- [22 Thinking Frameworks That Turn Vague Ideas Into Clear Requirements](/posts/ai/2026-01-31-thinking-methodologies-guide/) — 22 frameworks for the step before deleting: working out what the requirement even is
+- [One Founder + AI Agents = 2,000 New Customers/Month: The Playbook](/posts/ai/2026-04-04-ai-agent-marketing-automation/) — what a solo founder actually hands to agents, and what stays manual

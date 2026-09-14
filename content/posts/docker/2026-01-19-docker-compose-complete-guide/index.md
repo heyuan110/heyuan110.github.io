@@ -1565,6 +1565,9 @@ Container technology is now a fundamental part of modern software development. M
 - [Docker 入门指南：核心概念、安装配置与容器化实践](/posts/docker/2019-05-13-learn-docker/) - Docker 基础概念与入门教程
 - [Docker 常用命令速查手册](/posts/docker/2019-11-14-docker-commands/) - 日常开发必备命令参考
 - [使用 Nexus3 搭建 Docker 私有镜像仓库](/posts/docker/2019-06-12-next3-dockerhub/) - 企业级私有仓库搭建方案
+- [Supervisor Linux Guide: Install, Config, systemd Compared](/posts/linux/2018-10-07-supervisor/) - how processes were kept alive before restart policies moved into the container runtime
+- [Cloudflare Workers Complete Guide: Edge Computing from Setup to Production](/posts/docker/2026-01-23-cloudflare-workers-guide/) - deploying with no containers at all: edge functions with no server left running
+- [Redis Complete Guide: Installation, Data Types, Persistence, and Clustering](/posts/middleware/2026-01-22-redis-complete-guide/) - the stateful service most often bolted onto a compose file: persistence and clustering explained
 
 ---
 

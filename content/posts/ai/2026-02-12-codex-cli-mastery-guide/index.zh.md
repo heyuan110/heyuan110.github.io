@@ -1190,3 +1190,4 @@ Codex CLI 是一个**功能远比表面看起来丰富得多**的工具。从五
 - [AI 时代的开发工作流](/zh/posts/ai/2026-01-19-ai-dev-workflow/)
 - [Cursor Agent 最佳实践](/zh/posts/ai/2026-01-19-cursor-agent-best-practices/)
 - [Claude Code 最佳实践指南](/zh/posts/ai/2026-01-06-claudecode-best-practices/)
+- [OpenAI Codex App：是什么、怎么用与避坑手册](/zh/posts/ai/2026-07-12-openai-codex-app-guide/) — Codex 从终端搬到桌面应用之后有什么不同

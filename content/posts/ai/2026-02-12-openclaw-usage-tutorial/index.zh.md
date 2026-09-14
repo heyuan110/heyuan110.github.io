@@ -706,3 +706,4 @@ OpenClaw 的核心价值在于：**一个本地网关，连接所有聊天平台
 - [OpenClaw 记忆实施策略解析：工具驱动的 RAG 与"按需回忆"](/zh/posts/ai/2026-01-31-openclaw-memory-strategy/)
 - [Moltbook 深度解析：AI Agent 专属社交网络的疯狂实验](/zh/posts/ai/2026-02-01-moltbook-ai-agent-social-network/)
 - [AI 工作流实战手册：从提示词到编程，真正把 AI 用起来](/zh/posts/ai/2026-01-30-ai-workflow-real-guide/)
+- [OpenClaw 工具与 Skill 完全手册：内置清单 + 自定义开发](/zh/posts/ai/2026-04-14-openclaw-tools-skills-reference/) — 内置工具和 Skill 的完整清单，以及自定义开发方法

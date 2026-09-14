@@ -196,3 +196,4 @@ Context window 是任何 AI 编码 session 最关键的资源，而在 Claude HU
 - [Claude Code vs Cursor vs Copilot：2026 年 AI 编程工具横评](/zh/posts/ai/2026-04-03-claude-code-vs-cursor-vs-copilot/) — Claude Code 与竞品对比
 - [Claude Code Hooks 指南：自动化开发工作流](/zh/posts/ai/2026-02-28-claude-code-hooks-guide/) — 用 Hooks 扩展 Claude Code
 - [Claude Code Rate Limit 详解](/zh/posts/ai/2026-02-28-claude-rate-limits/) — 理解和管理你的用量限制
+- [Claude Code Buddy 终端宠物：藏在 AI 编程工具里的电子宠物](/zh/posts/ai/2026-04-04-claude-code-buddy-terminal-pet/) — 同样住在 Claude Code 状态栏里的东西，只不过它不显示指标

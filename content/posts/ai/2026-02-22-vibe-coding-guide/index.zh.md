@@ -335,3 +335,4 @@ Vibe Coding 正在重新定义软件开发的方式。它不是银弹，也不�
 - [AI 编程方法论对比 2026：Vibe Coding vs SDD vs BMAD 怎么选？](/zh/posts/ai/2026-03-11-ai-development-methodologies-compared/) — Vibe Coding 与其他方法论的对位
 - [Claude Code 完全指南 2026：从安装到工作流一篇看懂](/zh/posts/ai/2026-02-28-claude-code-complete-guide/) — Vibe Coding 最主流的载体
 - [5 款 AI 编程工具实测对比：为什么只选一个是错的](/zh/posts/ai/2026-04-03-claude-code-vs-cursor-vs-copilot/) — Vibe Coding 工具选型参考
+- [Lovable vs v0 vs Bolt：AI 应用生成器怎么选](/zh/posts/ai/2026-07-08-lovable-vs-v0-vs-bolt/) — 不开终端的 Vibe Coding：三个「提示词直接出应用」的工具横评

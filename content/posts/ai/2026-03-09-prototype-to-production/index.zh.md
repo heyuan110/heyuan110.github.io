@@ -690,5 +690,7 @@ jobs:
 - [Vibe Coding 详解](/zh/posts/ai/2026-02-28-vibe-coding-explained/) — 理解 AI 辅助开发的方法论
 - [AI 开发环境搭建](/zh/posts/ai/2026-03-10-ai-dev-environment-setup/) — 配置面向生产级 AI 开发的工具
 - [上下文工程指南](/zh/posts/ai/2026-03-10-context-engineering-guide/) — 掌握为 AI Agent 提供上下文的技巧
+- [Cloudflare Workers 完全指南：从入门到实战的边缘计算部署手册](/zh/posts/docker/2026-01-23-cloudflare-workers-guide/) — 这份上线清单可以落到的一个具体边缘部署目标
+- [Lovable vs v0 vs Bolt：AI 应用生成器怎么选](/zh/posts/ai/2026-07-08-lovable-vs-v0-vs-bolt/) — 这些原型从哪来，以及怎么从生成器交接到生产
 - [Google SRE Book](https://sre.google/sre-book/introduction/) — 站点可靠性工程的奠基之作
 - [OWASP Top 10](https://owasp.org/www-project-top-ten/) — Web 应用安全风险的行业标准
