@@ -1,230 +1,322 @@
 +++
 date = '2026-09-14T18:00:00+08:00'
-title = '极简主义的胜利：深度解析 Terminal AI 编码利器 Pi (pi.dev'
-description = '在这个各大 AI Agent 疯狂堆砌功能的时代，pi 以“五无”哲学横空出世，成为最纯粹的黑客级 Terminal Harness。本文深度剖析 Pi (pi.dev) 的设计哲学、双队列会话机制...'
+draft = false
+title = '极简主义的胜利：Pi (pi.dev) Agent 双层架构与自研插件深度剖析'
+description = '深度拆解爆火极简 Coding Agent 工具 Pi (pi.dev) 的底层原理。详细剖析其双层循环机制、分支会话树、本地与全局插件隔离，以及如何用 AI 自主编写 TUI 与安全拦截插件。'
 toc = true
-tags = ['AI', 'AI Agent', 'Pi Agent', 'Developer Tools']
-keywords = ['Pi Agent', 'pi.dev', 'Terminal AI Agent', 'AI 编码工具', 'TypeScript Extensions', 'Agent Skills', 'Mario Zechner']
+tags = ['Pi Agent', 'AI Agent', 'Configuration', 'Developer Tools', 'TypeScript']
+keywords = ['Pi Agent', 'pi.dev', '极简 AI 智能体', '双层循环机制', '会话树回滚', 'TypeScript 自研插件', '技术爬爬虾']
 
 [[params.faqItems]]
-question = "既然 pi.dev 强调“No MCP”，它和支持 MCP 的 Agent 工具相比有什么优势？"
-answer = "MCP（Model Context Protocol）为了把系统工具暴露给 AI，使用了一套繁琐的 JSON Schema 包装协议，这不仅增加了开发复杂度，还让 AI 的上下文塞满了工具的冗长说明。Pi 的理念是：CLI（命令行界面）本身就是人与计算机、AI 与系统最完美的标准协议。Pi 通过 Lazy-loaded Skills，在需要时才将工具指南调入上下文。如果你非要 MCP，Pi 允许你通过 TypeScript Extension 自己写一个适配器。极简的核心，无限的外延，这就是 Pi 的魅力。"
+question = "为什么 Pi 在 Token 消耗上比 Codex 和 Claude Code 节省这么多？"
+answer = "因为 Pi 遵循了极致的极简主义设计。在 Codex 中，由于 upfront MCP 注入和复杂的 planning 机制，打个招呼（你好）就会白白消耗 18,000 个 Token（占上下文的 7%）；而 Pi 的系统提示词仅 1000 Token，打招呼只消耗 1100 Token（占上下文的 0.4%），这为大长程开发省下了大量注意力空间和资金成本。"
 
 [[params.faqItems]]
-question = "什么是 JSONL 多分支树会话管理？它在实际开发中怎么帮到我？"
-answer = "市面上绝大多数 Agent 都是线性历史，AI 聊歪了或者搞砸了，你只能删掉重来。Pi 采用类似 Git 的树状 JSONL 保存结构。你在交互界面按下 Escape 两次，就能打开一个华丽的 `/tree` 视图。在这个视图里，你可以看到 AI 的所有探索分支，并且可以直接“回滚”到任意历史节点，克隆当前分支，或者从之前的某一步“分叉（fork）”出新的探索。这让尝试复杂的重构方案变得完全无痛，且不丢失任何探索历史。"
+question = "在 Windows PowerShell 下使用 Pi，Alt+Enter 快捷键冲突如何解决？"
+answer = "在 Windows 终端（Windows Terminal）中，Alt+Enter 默认被映射为切换全屏操作。这会拦截该快捷键导致 Pi 无法进入 follow-up 排队模式。你只需在 Windows 终端的“操作”设置面板中找到该快捷键绑定并删除，即可将信号正常透传给 Pi。"
 
 [[params.faqItems]]
-question = "双消息队列（Steering 和 Follow-up）有什么用？"
-answer = "这是 Pi 独创的绝活。传统的 Agent 思考或调用工具时，你只能干等。而在 Pi 中，当你看到 AI 正在跑一个错误的工具或漏掉了某个关键细节，你可以直接在 Editor 输入文字。敲回车（Enter），该信息会作为 Steering 消息，在 AI 跑完当前这步 Tool Call 后的瞬间插入它的脑中进行干预；敲 Alt+Enter 则是 Follow-up 消息，作为后续任务队列。这个设计不仅节省了你宝贵的 Token，更让开发者拥有了前所未有的“即时接管权”。"
+question = "在使用树状回退（/tree）功能时，为什么本地文件没有跟着回滚？"
+answer = "Pi 的会话树回退（/tree）仅仅能将大模型的“记忆”和对话历史回滚到指定历史节点，无法对物理硬盘上的代码进行写回。要想做到代码与记忆的完美同步，你应当先 git commit 暂存当前脏代码，在 Pi 中通过树回滚至茄子节点后，复制该节点的 commit ID，通过单感叹号执行命令 '!git reset --hard <commit-id>' 即可。"
 
 [[params.faqItems]]
-question = "自动上下文压缩（Proactive Compaction）会让我丢失代码细节吗？"
-answer = "不会。Pi 的 Compaction（压缩）是智能且有损的。当你的会话很长，上下文窗口快被榨干时，Pi 会触发主动压缩：将早期的对话和工具调用过程提炼总结成摘要，以此释放几万乃至十几万的 Token，而保留最近的对话和工具输出。更厉害的是，旧有的完整历史并不会从物理文件里消失，你可以随时通过 `/tree` 重温。如果你觉得 AI 快不行了，你还可以通过向它下达手动压缩指令，或者用 rewind 技巧清空临时上下文，只保留它做完工作的文档路径。"
-
-[[params.faqItems]]
-question = "Skills 和 Extensions 到底有什么区别？"
-answer = "Skills 遵循 Agent Skills 开放规范，它是对 AI 模型的“行为指南”，指导 AI 如何使用现有的命令行或工作流；Extensions 是对 Pi 这个“宿主程序（Harness）”的硬核武装。Extensions 用 TypeScript 编写，可以直接修改 Pi 的 UI、注册全新的 CLI 命令和 LLM 专用工具、监听系统事件，甚至能定制一整个子 Agent 的派发逻辑。可以说，Skills 决定了 AI 能“想”到什么，Extensions 决定了 Pi 能“做”到什么。"
+question = "全局安装插件和本地安装（-L）有什么本质区别？"
+answer = "全局安装（/package install <name>）会将插件应用于整台电脑的所有项目，每次启动都会加载对应提示词。而本地安装（/package install <name> -L）将插件隔离在当前项目的 '.pi/' 文件夹下，只在当前目录启动 Pi 时加载，能够极大精简不必要项目的 Token 负担。"
 +++
 
-![Pi Agent Banner](cover.webp)
+![极简主义的胜利：Pi 深度剖析](cover.webp)
 
-AI 编程工具的战局已经进入到了一个“堆功能、拼体量”的军备竞赛阶段。
+AI 编程 Agent 的技术世界，目前正在陷入一场“重度工具化、高配置 overhead”的军备竞赛。
 
-不管是商业闭源的 Cursor Agent，还是大厂背书的 Claude Code，亦或是社区开源的 Cline、Roo Code，都在疯狂地向自己的代码中填充各种规划模式（Plan Mode）、子 Agent 派发框架、网络浏览器适配、以及极其繁杂的 MCP（Model Context Protocol）接入。
+商业化 IDE 插件如 Cursor Agent、浏览器端工具如 Bolt.new、CLI 终端智能体如 Claude Code 以及开源插件 Cline，都在疯狂堆砌功能：复杂的子代理（Sub-Agents）编排、重度依赖 Model Context Protocol (MCP) 服务器、内置复杂的浏览器容器环境，以及满屏弹窗的交互式权限确认。
 
-然而，在这种疯狂堆砌功能的热潮中，一个特立独行的“反叛者”悄然诞生了。
+然而，在这场喧闹的工具内卷之外，一位反叛的黑马却在黑客社区引发了极高的热度。
 
 它就是 **Pi (https://pi.dev)**。
 
-由资深开发者 Mario Zechner 打造的 Pi，自称为一个 **“Minimal terminal coding harness”**（极简终端编码马具/容器）。它以一己之力抗拒当下日益臃肿的 AI 潮流，甚至提出了让主流工程界感到震惊的**“五无哲学”**。
+由资深开发者 Mario Zechner 亲手打造的 Pi，在官网上给自己的定义是一个 **“极简主义终端编程 Harness（马鞍/容器）”**。它拒绝盲从一切主流的重度设计，在开发者社区中高举 **“五无哲学”（Five No's Philosophy）**。
 
-但千万不要以为它是个残缺的半成品。Pi 拥有着极其惊艳的 TUI 交互、类似 Git 的多分支会话管理、双队列 Steering 机制，以及可以说是目前市面上**最硬核、最纯粹的 TypeScript Extension 与 Skills 扩展能力**。
+但是，绝不要将 Pi 的极简误读为弱小。在其流畅精致的 Terminal UI (TUI) 之下，隐藏着极其惊艳的工程之作。根据知名数据平台 Databricks 在其百万行代码仓库上运行的综合基准测试，**Pi + Claude 3.5 / Opus** 的组合在同等成本下达到了全网代码通过率与质量的最顶点，任务处理速度更是比主流重度 Agent 框架快了 **1.5 至 2 倍**。
 
-今天，我们将深入 Pi 的黑客世界，通过**真实、可运行的实战案例**，看看为什么“少即是多”在 AI Agent 时代依然是颠扑不破的真理。
-
----
-
-## 一、 Pi 的 “五无” 反叛哲学
-
-在 Pi 的官方哲学陈述中，作者指出了目前大多数 AI 工具的通病：**功能过度设计（Over-engineered），在没有充分发挥 CLI（命令行）威力的情况下，急于用复杂的自定义协议和多 Agent 框架把事情搞复杂。**
-
-为此，Pi 在核心功能中砍掉了五样东西：
-
-### 1. No MCP (没有内置 MCP)
-> *“与其用冗长的 JSON 规范去包装工具，不如直接写一个生动的 CLI README（Skills）。”*
-
-MCP（模型上下文协议）是当前非常火热的概念。然而，Mario 在其博文《What if you don't need MCP?》中犀利地指出：**Unix 命令行界面（CLI）已经是人、计算机和 AI 之间最完美、最成熟的标准协议。**
-
-在 MCP 模式下，你需要编写大量的描述性 JSON 和客户端-服务端逻辑，而这些描述最终都会一股脑塞进 AI 的 Prompt 提示词里，让有限的上下文窗口很快被工具的冗余定义占满。Pi 采用更清爽、更符合黑客习惯的 [Agent Skills](https://agentskills.io) 规范。只有当 AI 确实需要使用某个 Skill 时，它的完整说明才会被**懒加载（Lazy-load）**进来，保护了宝贵的上下文卫生。
-
-### 2. No Sub-agents (没有内置子 Agent)
-子 Agent 之间的委派和上下文交接往往伴随着严重的信息丢失和庞大的 Token 开销。Pi 的核心保持纯粹。它主张：如果你需要多任务，通过 tmux 窗口开两个 Pi 实例去干活就是最直观的；或者，如果你真的有业务痛点需要子 Agent，Pi 提供了极强大的 TypeScript API，你可以用几行 Extension 代码自己写一套最适合你特定场景的委派逻辑，而不是由工具强加给你一套难用的分发框架。
-
-### 3. No Permission Popups (没有权限弹窗)
-频频弹出的“AI 想要执行 `npm run dev`，允许还是拒绝？”不仅严重打断了开发者的工作流，也会阻碍 AI 在后台执行链式推理。Pi 的理念非常硬核：要么你完全信任这个项目，要么你在 Docker 等安全沙箱容器中运行 Pi。Pi 让你一次性决定是否信任该项目（Project Trust）。如果你确实需要限制某些危险路径的读写，可以通过写一个 TypeScript Extension 拦截危险操作，高度自定制。
-
-### 4. No Plan Mode (没有内置规划模式)
-很多 Agent 工具在动手前，非要先打印一个冗长的规划（Plan Stage），并且反复和你确认。这在大规模重构时纯粹是在浪费昂贵、漫长且带有延迟的 Token 输出。Pi 主张：在项目里直接维护一个 `TODO.md` 文件是最简单、最显式也是最容易被人和 AI 共同编辑的方法。
-
-### 5. No Background Bash (没有后台异步 Bash)
-AI 默默在后台跑脚本而你不自知是一件极度危险和缺乏控制感的事情。Pi 所有的命令都显式地在 TUI 中流式（Streaming）展示。如果需要长时间跑服务，在 tmux 里跑就行了。
+今天这篇深度指南将剥离一切宣传术语，带大家**直击其底层的双层循环运行机制、Git 联动的会话树回滚、本地与全局插件作用域管理，并实操用 AI 给自己编写 TUI 定制与安全拦截插件**。
 
 ---
 
-## 二、 令人惊叹的技术硬实力
+## 1. 极简主义的“五无”反叛哲学
 
-虽然哲学上极度克制，但在开发者体验和运行时设计上，Pi 却展现出了令人赞叹的技术高度：
+在 Pi 的官方设计宣言中，作者指出了目前 AI 工具设计的一个巨大误区：**许多工具为了实现特定能力，强行在成熟的 Unix 系统上包裹一层冗余的 Web 服务，这不仅浪费了 Token，稀释了模型的注意力，更剥夺了开发者的主动权。**
 
-### 1. 类似 Git 的 JSONL 分支树会话管理
-这大概是 Pi 最令人着迷的功能。在传统的 Agent 中，会话只是一条单向的时间线，一旦 AI 跑歪或者把代码改乱了，你只能删掉整个对话或者忍受被弄脏的历史继续。
+为此，Pi 明确砍掉了五个主流繁琐设计：
 
-而在 Pi 中，所有的会话都是以 `JSONL` 树状结构保存的。你可以在 TUI 中输入快捷键（在交互模式下按住 Escape 键两次），即可唤起一个华丽的 `/tree` 视图：
+### I. 无内置 MCP (No Model Context Protocol)
+> “既然写一个干净、可读的 CLI README 就能完美解决，为什么还要用冗长的 JSON Schema 包装工具？”
 
-- **就地回滚**：选中任何一个历史气泡，直接回退并从这一步继续。
-- **分支分叉**：使用 `/fork` 基于历史上的某一步派生出一个独立的新会话文件。
-- **分支克隆**：使用 `/clone` 复制当前分支的状态到新会话中，原历史完好无损。
+MCP 协议虽然爆火，但它强迫开发者编写沉重的 JSON 描述和客户端-服务器绑定，导致大模型启动时就会被塞入几万字的基础 metadata，还未提问就已消耗了天量上下文。Pi 彻底抛弃了它。
 
-所有的尝试都被完整地记录在树上，极大地降低了开发者在探索高风险代码重构时的心理负担。
+在 Pi 中打一个招呼，上传仅需 **1100 Token**（仅占上下文窗口的千分之四）；而在 Codex 中，相同的问候需要消耗 **18,000 Token**（占窗口的 7%），什么都没干，7% 的金钱和长程记忆就已经凭空蒸发了。Pi 改为拥抱轻量化的 [Agent Skills](https://agentskills.io) 标准，遵循 **“懒加载”（Lazy-loading）** 机制：只在首屏注入技能的单句摘要，仅当模型决定调用时，才拉取完整的 Markdown 操作说明。
 
-### 2. 双队列 Steering & Follow-up 机制
-在传统的终端 Agent 运行长任务或长 Tool Call 时，你的终端通常是被锁死的。如果你发现 AI 读错了文件，或者参数填错了，你唯一的选择就是按 Ctrl+C 强行终止，然后重新构思 prompt 发送。
+### II. 核心无子代理（No Sub-Agents in Core）
+在核心架构中强行拆分子代理（Sub-Agents）进行上下文跨进程分发，会产生极其严重的 Token 损耗与信息失真。Pi 的核心 Runtime 保持单线程的绝对聚焦。如果你有并行开发多个页面的硬需求，在 `tmux` 窗格中多开几个 Pi 窗口，才是更符合 Unix 哲学的标准操作。
 
-Pi 独创了**双队列异步提交机制**：
-- **Steering 消息（敲 Enter 发送）**：当 AI 正在运行工具时，你随时可以敲入文字并回车。Pi 会将它作为“Steering（舵向/操纵）”指令，暂存在队列中。当 AI 执行完当前的这**一个** Tool Call 后，会立刻读取该 Steering 消息并改变接下来的行为。
-- **Follow-up 消息（敲 Alt+Enter 发送）**：如果你想等 AI 把手头所有的工具调用和工作干完后，再让它去做下一件事，你可以敲入文字并使用 Alt+Enter，它会被作为一个挂起的后续任务，等 AI 闲置后自动执行。
+### III. 无权限确认弹窗（No Permission Popups）
+频繁弹出 “AI 想要运行 npm install，允许/拒绝？” 的权限悬浮窗，不仅打断了人类开发者的专注力，更切断了大模型的思维链（Chain of Thought）。Pi 的逻辑冷酷而直接：要么你信任该项目文件夹（通过 Pi 健全的 **Project Trust** 信任机制）并在物理容器/虚拟机中运行它；要么你就不信任。
+
+### IV. 无计划模式（No Plan Mode）
+很多工具在写代码前，强迫大模型先输出一段长篇大论的“计划大纲”并等待用户确认。在大型重构任务里，这种过度规划除了烧钱和增加延迟，没有带来任何额外价值。Pi 认为，在项目根目录下维护一个纯文本 `TODO.md`，才是人机协作、最明确且最不易出错的路线图。
+
+### V. 无后台静默 Bash（No Background Bash）
+允许 AI 在后台静默执行各种修改硬盘或调用命令的操作，是极大的安全隐患。在 Pi 中，每一条工具执行都会在 TUI 中被完整且显式地流式渲染。
 
 ---
 
-## 三、 实战演练：Skills 与 TypeScript Extensions 零基础实战
+## 2. 动态执行：掌控全局的“Steering”与“Follow-up”双循环
 
-理论聊完，我们用最真实的落地代码，来展示 Pi 独步天下的定制威力。
+在 Pi 优雅统一的 TUI 背后，真正起支柱作用的是其高度精妙的**双层循环运行架构**（Dual-Loop Runtime）。大多数 AI 客户端在执行大模型任务时终端是彻底卡死的，而 Pi 依然保持键盘实时响应，并将用户输入的追加指令分为两条截然不同的通道处理：
 
-### 案例一：编写你的第一个自动化测试 Skill
-假设你正在开发一个复杂的 Python Web 项目，你希望 AI 能够极其稳健地帮你调试并修好所有的测试报错。在 MCP 下你需要配置庞大的外部工具，而在 Pi 中，你只需要在项目的 `.agents/skills/pytest-runner/SKILL.md` 中写下如下的“大模型使用说明书”：
-
-```markdown
-# Pytest Runner Skill
-当用户要求运行测试、排查测试错误或修复 Bug 导致测试通过时，使用此 Skill。
-
-## 适用条件
-项目中包含 pytest 测试框架，且存在 `tests/` 目录或带有 `test_*.py` 的测试文件。
-
-## 调试步骤
-1. **执行测试**：首先通过 bash 工具运行 `pytest -v` 获取当前的详细报错信息。
-2. **分析日志**：重点看 `AssertionError` 或 `Traceback` 的最底层报错，定位发生错误的文件和代码行号。
-3. **环境排查**：如果是缺包报错（ModuleNotFoundError），先执行 `pip install <package>` 解决，再重新跑 pytest。
-4. **代码修复**：定位到源码后，先通读对应的 test 文件与实现逻辑，使用精确的编辑（edit/write）工具修复。
-5. **循环验证**：修复后必须重新运行 `pytest -v` 验证，直到获取全部 OK/PASSED 为止，绝不可提前宣告胜利。
+```
+                           用户键盘输入
+                               │
+            ┌──────────────────┴──────────────────┐
+            ▼                                     ▼
+       直接按回车                              按 Alt+Enter
+   (Steering 实时引导)                    (Follow-up 异步排队)
+            │                                     │
+            ▼                                     ▼
+    【内层循环机制】                          【外层循环机制】
+ 立即注入到当前的下一轮                 等待内层循环工作闲置后，
+  Tool Execution 上下文中                 弹出消息开启新一轮执行
 ```
 
-当你在 Pi 的 TUI 终端中对 AI 说：“*帮我看看怎么项目里有测试在报错*”：
-1. Pi 在启动时就已经**懒加载**了这个 Skill 的名字与功能。
-2. LLM 感知到任务后，会自动激活 `/skill:pytest-runner` 并将上面的 5 步规范调入脑中。
-3. 它会极其守规矩地遵循“运行 → 定位 → 修复 → 重测 → 循环”的工程纪律，一次性完美解决你的测试故障。
+### 内层循环：Staring (控制引导/打方向盘)
+**内层循环**管理着大模型与系统工具（读、写、改文件和执行命令）的即时交互：
+$$\text{模型调用} \longrightarrow \text{执行工具并返回} \longrightarrow \text{模型自我审查} \longrightarrow \text{进入下一轮}$$
+
+当大模型正在进行数十轮的长程代码修改时，如果你发现它的修改方向跑偏了（例如你想让它写 Next.js，它却装了 Express 依赖），你随时可以直接在输入框输入指令并敲**回车**。Pi 会立刻将这条 **Staring (控制引导/打方向盘)** 指令作为控制信号直接注入到下一轮的内层循环上下文中。大模型会立即“打方向盘”纠正方向，而无需中断或重启整个开发进程。
+
+### 外层循环：Follow-up (异步排队)
+如果你在输入框敲入指令，并使用 **Alt+Enter**（Mac 下为 **Option+Enter**）发送，该指令便会作为 **Follow-up (排队)** 消息被暂存：
+- 它处于外层循环队列中，不会干扰内层循环当前手头正在推进的工作。
+- 等大模型把当前任务完全搞定并闲置下来，外层循环才会将该排队指令弹窗并分配给大模型开启新一轮的工作。
+- **神级交互技巧**：在指令排队期间，你可以通过 `Alt + 向上方向键` 将队列中的消息拿回来重新编辑，修改完毕后再重新送入排队！
 
 ---
 
-### 案例二：编写你的第一个 TypeScript Extension —— 自动 Git 快照
-在让 AI 进行大规模重构代码前，开发者最害怕的就是它把工作区改得一塌糊涂，而没有进行提交备份。
+## 3. 会话树状管理与代码状态同步回滚
 
-我们可以写一个高度硬核的 TypeScript Extension。当 AI 在修改重要代码前，Pi 会自动在背后默默通过 Git 创建一个临时备份分支（Snapshot）。如果改错了或跑测试挂了，我们能够一键回滚。
+传统的 AI 会话都是纯线性的，一旦中间写错或幻觉，整个会话的上下文就全被污染了。Pi 将每次对话管理单元存为 JSONL 节点，彼此通过 `id` 与 `parentId` 指针相连，形成了一个真正的 **树状会话结构**（Tree Session）。通过键入 `/tree`（或快捷键 `/t`），你可以直接唤醒可视化会话树：
 
-在 `.pi/extensions/git-snapshot.ts` 中写入如下的真实代码：
+```
+               【茄子历史会话节点】
+                        │
+         ┌──────────────┴──────────────┐
+         ▼                             ▼
+【芹菜/白菜节点 (分支 A)】     【皮皮虾海鲜节点 (分支 B)】
+```
+
+### 树回滚 + Git 复位黄金公式
+在实战中，很多开发者会遇到一个直觉上的误区：**在 TUI 会话树中回退了对话节点，为什么我本地硬盘里的代码文件没有跟着回滚？**
+
+因为树回退只作用于大模型的“记忆空间”，不作用于物理硬盘的文件。要做到完美的时空复位，必须配合 Git：
+
+1. 在执行高风险操作前，先通过 Git 暂存当前代码：
+   ```bash
+   git add -A && git commit -m "保存当前状态：准备回滚"
+   ```
+2. 在 Pi 中唤起 `/tree`，选择想要退回的节点（如茄子节点），按下回车。
+3. 选择 **Summarize** 选项。Pi 会自动把被丢弃的分支 A 总结成一两句抽象总结带入记忆，使大模型既能对刚才失败的尝试有模糊的“避坑印象”，又彻底清理了冗余的代码上下文。
+4. 在对话框中敲入单感叹号 `!`（表示运行大模型能观察到的命令行工具，双感叹号 `!!` 运行大模型看不到的静默命令）：
+   ```bash
+   !git reset --hard <茄子节点的真实Commit_ID>
+   ```
+
+至此，大模型的记忆时空与物理文件全部完美复位，毫无后顾之忧。
+
+---
+
+## 4. 本地与全局插件作用域隔离 (Package Scope)
+
+Pi 的核心虽然极致轻量，但它在官网 package 页面提供了一个极其丰富的开放插件生态。
+
+在安装插件时，Pi 提供了两个极其干净的作用域级别：
+
+```bash
+# 全局级别安装：作用于该电脑上的所有项目文件夹
+/package install <package-name>
+
+# 本地级别安装：仅仅作用于当前的项目工程目录（强烈推荐）
+/package install <package-name> -L
+```
+
+### 为什么本地安装（-L）是神级设计？
+由于每个安装的插件都会向大模型追加一部分系统提示词（System Prompts），如果你把所有子代理、高德地图等插件全部全局安装，每次启动任何极简项目，都会平白无故背负大量提示词，增加 Token 成本并稀释模型对业务代码的注意力。
+
+使用 `-L` 选项后，插件将被完全隔离和安装在项目根目录的 `.pi/` 下，实现即插即用、按需加载。
+
+### 5 个必装神级插件
+
+1.  **`web-assist`**：装完即用的联网搜索工具。基于 Exa MCP 服务，不需要用户自己去申请配置任何 Exa API Key。
+2.  **`subagents`**：并行子智能体调度器。例如你可以给主智能体一个大任务，它会自动拉起 5 个 worker 子代理，并行编写、并行审查、并行修复 5 个不同风格的页面。
+3.  **`mcp-adapter`**：MCP 适配器。它通过自动读取项目根目录下的 `.mcp.json`，让极简的 Pi 立刻重获调用外部任意 MCP 服务器的能力。
+4.  **`btw` (By the Way)**：旁路对话助手。在主大模型正在哼哧哼哧写代码的同时，你可以随时 `/btw` 开启一个侧边气泡，询问它一些无关代码逻辑的理论问题，完全不打断主开发线程。
+5.  **`plan-mode`**：计划模式。大模型在接单后不会急于写代码，而是先输出一份 `plan.md` 计划书，等用户在文件中修改确认后，再次输入 `PlanMode` 才会正式动工。
+
+---
+
+## 5. 跨会话记忆：项目级与全局系统记忆机制
+
+大模型最忌讳的事情是“每次开启新对话，它就不认识项目了，必须重读代码”。Pi 通过最原始、高内聚的 Markdown 文件彻底解决了记忆连续性难题。
+
+### 项目级记忆：`agents.md`
+在项目根目录创建 `agents.md`。每次开启新会话，大模型在读代码前会强制通读此指南。
+
+*实操干货：* 懒得手动写？直接给 Pi 丢下一条命令，让它自己生出记忆：
+```
+通读当前项目文件夹的所有代码，将关于系统架构、依赖库、核心模块的知识整理成 agents.md 放在根目录。
+```
+
+### 全局级防删除安全守则：`~/.pi/agent/agents.md`
+在这个全局记忆文件里写的配置，对这台电脑上运行的**所有项目**全部生效。我们可以把它用作全局安全守则，防止 AI 恶意指令：
+
+```markdown
+# 全局安全规范
+- 你被严格禁止使用通配符或批量删除文件与目录（例如 rm -rf * 或 rm -rf src/）。
+- 如有清理需求，你必须立即停下来向用户发送询问，等待用户手动确认或删除。
+```
+
+---
+
+## 6. AI 自我迭代：在 Pi 中让 AI 编写它自己的 TUI 与安全插件
+
+由于 Pi 提供了基于 TypeScript 的极简插件加载接口，我们完全可以发挥 AI 的“自我编码”实力：**让 Pi 帮自己编写系统扩展，存入 `.pi/extensions/`，实现完美的闭环定制！**
+
+以下是三款完全由 Pi 帮自己生成并在本地沙箱中跑通的 TypeScript 插件代码示例：
+
+### 插件示例 1：本地 IP 地理位置与天气展示（TUI UI 定制）
+它会在每次加载或启动时，通过 IP 定位解析出地理位置，自动查好当地天气并呈现在 TUI 的头部诊断栏。
 
 ```typescript
+// .pi/extensions/weather-widget.ts
 import { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { execSync } from "child_process";
 
 export default function (pi: ExtensionAPI) {
-  // 1. 注册一个专门给 LLM 调用的工具
-  pi.registerTool({
-    name: "create_git_snapshot",
-    description: "Create a temporary git snapshot branch before performing major code refactoring or risky operations.",
+  pi.registerCommand("weather", {
+    description: "根据当前 IP 自动查询本地气象数据",
     execute: async () => {
+      pi.emitMessage("🌤️ 正在为您查询本地天气信息...");
       try {
-        const timestamp = Date.now();
-        const branchName = `pi-snapshot-${timestamp}`;
+        const ipInfo = JSON.parse(execSync("curl -s https://ipapi.co/json/").toString());
+        const { city, latitude, longitude } = ipInfo;
+        const weather = JSON.parse(execSync(`curl -s "https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true"`).toString());
+        const temp = weather.current_weather.temperature;
         
-        // 检查当前是否有脏代码需要暂存
-        const isDirty = execSync("git status --porcelain").toString().trim().length > 0;
-        if (!isDirty) {
-          return "✓ Current git working tree is clean. No snapshot needed.";
-        }
-        
-        // 执行 Git 快照逻辑：将当前脏代码全量 add 并 commit，然后切出一个专门备份的分支
-        execSync("git add -A");
-        execSync(`git commit -m "Pi auto-snapshot: before refactoring" --no-verify`);
-        execSync(`git checkout -b ${branchName}`);
-        
-        // 恢复原有的工作区状态
-        execSync("git checkout -");
-        execSync("git reset --hard HEAD~1");
-        
-        return `✓ Successfully created a safe snapshot on temporary branch [${branchName}]. If things go wrong, you can recover via 'git checkout ${branchName}'.`;
+        pi.emitMessage(`📍 地理位置: ${city} (${latitude}, ${longitude})`);
+        pi.emitMessage(`🌡️ 实测温度: ${temp}°C`);
       } catch (err: any) {
-        return `✗ Failed to create git snapshot: ${err.message}`;
-      }
-    }
-  });
-
-  // 2. 注册一个专门给开发者在 TUI 输入框中运行的快捷斜杠命令 (Slash Command)
-  pi.registerCommand("checkpoint", {
-    description: "Create a local git checkpoint manually",
-    execute: async () => {
-      pi.emitMessage("🔧 Creating a manual git stash checkpoint...");
-      try {
-        const isDirty = execSync("git status --porcelain").toString().trim().length > 0;
-        if (!isDirty) {
-          pi.emitMessage("✓ Working directory is clean. Checkpoint skipped.");
-          return;
-        }
-        execSync("git stash push -m 'Pi manual checkpoint'");
-        pi.emitMessage("✓ Successfully stashed your changes to 'Pi manual checkpoint'. Use 'git stash pop' to restore.");
-      } catch (err: any) {
-        pi.emitMessage(`✗ Checkpoint failed: ${err.message}`);
+        pi.emitMessage(`✗ 天气加载失败: ${err.message}`);
       }
     }
   });
 }
 ```
 
-#### 🚀 实战测试：
-当你在终端中启用 Pi，如果对 AI 说：“*我想把这个模块重构成 TypeScript。在重构前，先帮我建一个 Git 快照。*”
+### 插件示例 2：`.env` 配置文件防火墙（中间件拦截）
+该中间件会拦截一切文件读取、修改工具，一旦检测到入参包含敏感的 `.env` 配置文件，立刻中断并拒绝返回。
 
-1. **LLM 调用工具**：AI 发现自己有 `create_git_snapshot` 工具，它会先调用。终端会流式显示它在默默创建 `pi-snapshot-1721000000` 分支，工作区瞬间多了一个安全的时光回滚节点。
-2. **开发者手动执行**：你在终端输入框中输入 `/checkpoint`，Pi 宿主也会自动执行插件里的 Git Stash 逻辑，保护你手头的临时工作，两层保险！
+```typescript
+// .pi/extensions/env-guardian.ts
+import { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 
----
-
-## 四、 常见问题 FAQ
-
-为了让大家少走弯路，这里整理了关于 Pi 实战中最常见的几个高频疑问：
-
-### Q1: 在运行 `npm install -g @earendil-works/pi-coding-agent` 时为什么要带 `--ignore-scripts`？
-这是为了**最大化你的系统安全性**。Pi 在正常的 npm 安装中完全不需要生命周期安装脚本（install scripts）。使用 `--ignore-scripts` 可以防止 npm 运行那些可能存在于依赖包中的危险代码。
-
-### Q2: 既然 Pi 是在沙箱中运行更安全，我如何与外部主机建立顺畅的代码协作？
-你可以通过 **SSH / DevContainer / Docker** 挂载。在 Docker 镜像中预装好 `npm` 和 `pi`，并将你本地的项目目录挂载（mount）到容器中运行。这样既能利用 Pi 强大的文件改写能力，又彻底杜绝了 AI 执行恶意代码对真实主机的破坏，甚至不用再为了弹窗确认而烦恼。
-
-### Q3: 为什么我在输入队列消息时，Alt+Enter 在 Windows 终端不起作用？
-在 Windows Terminal 等终端中，`Alt+Enter` 默认是“切换全屏”的系统热键，因此会被操作系统拦截而无法送达 Pi。你需要打开终端的设置文件（settings.json），解除或重映射 `Alt+Enter` 快捷键，以便把这个极其好用的“Follow-up”队列热键交还给 Pi。
-
-### Q4: 如何让 Pi 只用特定的工具，不让它用 bash 工具？
-Pi 提供了无与伦比的白名单/黑名单机制。如果你想让它进入“只读、只搜索”的绝对安全状态，启动时加上这行指令即可：
-```bash
-pi --tools read,grep,find,ls
+export default function (pi: ExtensionAPI) {
+  pi.registerMiddleware({
+    name: "env_file_guardian",
+    onToolCall: async (toolCall, next) => {
+      const argsStr = JSON.stringify(toolCall.arguments);
+      if (argsStr.includes(".env")) {
+        return {
+          error: "权限拒绝：本地安全策略严禁大模型读取或篡改含有敏感密钥的 .env 文件。"
+        };
+      }
+      return next(toolCall);
+    }
+  });
+}
 ```
-这样 AI 会感知到它只有只读权限，从而完美化身为一个高精度的**代码阅读和审查专家**。
+
+### 插件示例 3：高危 `rm` 指令拦截并弹出 TUI 交互式确认弹窗
+拦截一切 run_bash_command 工具中的 `rm` 关键字，在底层执行前弹窗阻断，由人类在 TUI 中输入确认。
+
+```typescript
+// .pi/extensions/rm-confirm-gate.ts
+import { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+
+export default function (pi: ExtensionAPI) {
+  pi.registerMiddleware({
+    name: "rm_command_gate",
+    onToolCall: async (toolCall, next) => {
+      if (toolCall.name === "run_bash_command") {
+        const command = toolCall.arguments.command || "";
+        if (command.includes("rm ")) {
+          const approved = await pi.showConfirmationDialog({
+            title: "拦截到高危物理删除指令",
+            message: `智能体正在尝试执行删除操作: "${command}"。您确定要放行吗？`
+          });
+          if (!approved) {
+            return {
+              error: "操作已被拦截：用户手动驳回了删除指令的执行。"
+            };
+          }
+        }
+      }
+      return next(toolCall);
+    }
+  });
+}
+```
+
+写完后，在对话框内轻松输入 `/reload` 重新加载，所有的拦截器和天气 TUI 插件便能立刻生效，尽显极致的控制自由度！
 
 ---
 
-## 五、 总结：当黑客精神遇上大语言模型
+## 7. 解耦与二次开发：如何把 Pi 引入你自己的软件
 
-`pi.dev` 的诞生，像是一股清流吹进了已经有些令人窒息的 AI Agent 战场。
+Pi 已经远远超越了一个命令行工具本身，它简直就是一部活生生的 AI Agent 工程设计教科书。它在架构设计上做到了完美的包解耦，并作为 SDK 整体开源在 npm 仓库中：
 
-它向我们证明了：**一个好的 AI 工具，其核心竞争力不在于它替你预置了多少笨重的业务流程，而在于它是否提供了一个稳健、极简、完全透明且可任意插拔扩展的运行时。**
+*   **`@pi/ai`**：大模型统一调度包。实现了在底层将市面上四十多家模型厂商（DeepSeek、OpenAI、Anthropic、智谱、Kimi等）的调用，规范化为统一的一套通用输入输出接口。
+*   **`@pi/agent`**：Agent Loop 双层架构的核心实现。
+*   **`@pi/coding-agent`**：读、写、改、执行 Bash 这四个原子工具以及 Skills 机制的底层实现。
+*   **`@pi/tui`**：高性能终端渲染层。
 
-如果你是一个极度重视控制感、不喜欢被工具链绑架、同时又希望将 AI 的能力丝滑地融入到现有终端工作流中的黑客级开发者，那么 Pi 绝对是目前最懂你的那匹“黑马”。
+这意味着，你完全可以不使用它的命令行工具，而是通过 `npm install @pi/coding-agent`，将这套业内目前最强、通过百万行代码基准测试的智能体运行环路，无缝集成到你自己的系统甚至后台管理平台中：
 
-适应工具的时代已经过去了。利用 Pi，去定制属于你自己的 AI Harness。
+```typescript
+import { createPiSession } from "@pi/coding-agent";
+
+const session = await createPiSession({
+  model: "deepseek-chat",
+  workspace: "./my-project-dir"
+});
+
+const result = await session.executeTask("帮我将后端模块重构为支持双因子 MFA 验证。");
+console.log("执行状态：", result.status);
+```
+
+---
+
+## 8. 终极判词：为什么极简主义 Harness 能笑到最后
+
+`pi.dev` 的爆火，是对当前日益臃肿的 AI 行业的一次深刻敲打：**功能的堆砌与花哨的多代理规划并不等于生产力的提升。**
+
+当你往系统提示词里无脑塞入大量不必要的规划结构、接口描述和多代理握手机制时，大模型的长程推理核心就会受到极大的噪声干扰，产生幻觉与延迟。而 Pi 用仅有 4 个原子工具、1000 Token 的系统核心，给模型留出了最纯净的推理空间，反而实现了最高效、质量最恐怖的代码输出。
+
+如果你也反感过度包装，追求极致的执行速度、精确的上下文掌控以及无上限的定制自由度，那么 Pi 就是你终端命令行的不二之选。
+
+大道至简，今天就安装并构建属于你自己的 Agent 马鞍：
+
+```bash
+# 全局安全安装
+npm install -g --ignore-scripts @earendil-works/pi-coding-agent
+
+# 启动 Pi
+pi
+```
