@@ -2,7 +2,7 @@
 date = '2026-04-02T14:00:00+08:00'
 draft = false
 title = 'OpenClaw Multi-Agent Setup: Stop Letting LLMs Orchestrate'
-description = 'Complete OpenClaw multi-agent configuration guide. 8-tier binding priority, Lobster deterministic pipelines vs sessions_send, Feishu integration, cost optimization strategies, and a copy-paste 3-agent starter config.'
+description = 'Complete OpenClaw multi-agent configuration guide. 8-tier binding priority, Lobster deterministic pipelines vs sessions_send, Feishu integration, cost...'
 toc = true
 tags = ['OpenClaw', 'Multi-Agent', 'AI Architecture', 'Lobster', 'Agent Orchestration']
 keywords = ['OpenClaw multi-agent configuration', 'OpenClaw multi-agent setup guide', 'openclaw bindings routing', 'openclaw Lobster pipeline', 'sessions_send vs Lobster', 'multi-agent cost optimization', 'openclaw.json configuration', 'agent orchestration patterns 2026']

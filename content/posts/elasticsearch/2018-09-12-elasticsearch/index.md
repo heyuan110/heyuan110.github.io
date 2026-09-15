@@ -1,7 +1,7 @@
 +++
 date = '2018-09-12T18:52:59+08:00'
-title = 'Elasticsearch Tutorial: Core Concepts of Indices, Documents, and Query APIs'
-description = 'A beginner-friendly Elasticsearch tutorial covering core concepts like indices, types, and documents (with RDBMS analogies), plus hands-on examples of _cat, _search, CRUD operations, and DSL queries'
+title = 'Elasticsearch Tutorial: Core Concepts of Indices,'
+description = 'A beginner-friendly Elasticsearch tutorial covering core concepts like indices, types, and documents (with RDBMS analogies), plus hands-on examples of _cat...'
 toc = true
 tags = ['Elasticsearch', '搜索引擎', '全文检索', 'API']
 categories = ['Elasticsearch']

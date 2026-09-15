@@ -1,7 +1,7 @@
 +++
 date = '2019-08-02T11:47:04+08:00'
-title = 'RabbitMQ Tutorial: AMQP Protocol, Exchanges, and Message Delivery'
-description = 'A comprehensive RabbitMQ tutorial covering the AMQP protocol, exchange types (direct, topic, fanout, headers), queue patterns, and practical PHP examples. Learn about producers, consumers, channels, and clustering.'
+title = 'RabbitMQ Tutorial: AMQP Protocol, Exchanges, and Message'
+description = 'A comprehensive RabbitMQ tutorial covering the AMQP protocol, exchange types (direct, topic, fanout, headers), queue patterns, and practical PHP examples...'
 toc = true
 tags = ['RabbitMQ', '消息队列', 'AMQP', '中间件']
 categories = ['中间件']

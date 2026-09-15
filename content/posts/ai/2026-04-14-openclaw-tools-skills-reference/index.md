@@ -1,8 +1,8 @@
 +++
 date = '2026-04-14T10:00:00+08:00'
 draft = false
-title = 'OpenClaw Tools & Skills Reference 2026: Every Built-in Tool and Skill'
-description = 'Complete OpenClaw 2026 reference covering built-in tools (Read, Write, Edit, Bash, Grep, Glob, Task, TodoWrite) with exact write tool parameters (path, content), ClawHub skill architecture, SKILL.md format, tavily-search configuration, and custom skill authoring.'
+title = 'OpenClaw Tools & Skills Reference 2026: Every Built-in Tool'
+description = 'Complete OpenClaw 2026 reference covering built-in tools (Read, Write, Edit, Bash, Grep, Glob, Task, TodoWrite) with exact write tool parameters (path...'
 toc = true
 image = "cover.webp"
 tags = ['OpenClaw', 'AI Agent Framework', 'ClawHub', 'Skills', 'Developer Tools']

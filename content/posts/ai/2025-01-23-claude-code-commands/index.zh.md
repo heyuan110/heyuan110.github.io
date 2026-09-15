@@ -747,3 +747,4 @@ $ claude -p --max-budget-usd 2.00 --max-turns 5 "优化性能"
 - [Claude Code 浏览器自动化方案对比：Agent Browser、Playwright、DevTools](/zh/posts/ai/2026-01-28-claude-code-browser-automation/)
 - [Claude Code 最佳实践指南](/zh/posts/ai/2026-01-06-claudecode-best-practices/)
 - [Anthropic 发布 Claude Cowork：让 AI 直接操作你的电脑文件](/zh/posts/ai/2026-01-13-claude-cowork/)
+- [AI 自动化技术中心：打造你的全自动开发流](/zh/posts/ai/ai-automation-hub/)

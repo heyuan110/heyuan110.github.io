@@ -1,8 +1,8 @@
 +++
 date = '2026-03-05T19:00:00+08:00'
 draft = false
-title = 'Claude Code Slash Commands 2026: Complete List + Custom Commands'
-description = 'Every Claude Code slash command, keyboard shortcut, and CLI flag in one reference. 40+ built-in commands, custom Skills commands, and environment variables explained.'
+title = 'Claude Code Slash Commands 2026: Complete List + Custom'
+description = 'Every Claude Code slash command, keyboard shortcut, and CLI flag in one reference. 40+ built-in commands, custom Skills commands, and environment variables...'
 toc = true
 tags = ['Claude Code', 'Commands', 'CLI Reference', 'Productivity']
 categories = ['AI Guides']

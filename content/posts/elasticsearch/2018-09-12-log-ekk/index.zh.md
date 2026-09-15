@@ -1,6 +1,6 @@
 +++
 date = '2018-09-12T18:52:59+08:00'
-title = 'AWS EKK 日志系统搭建：Elasticsearch + Kinesis + Kibana 实战教程'
+title = 'AWS EKK 日志系统搭建：Elasticsearch + Kinesis +'
 description = '基于 AWS 托管服务搭建 EKK 日志系统完整教程，使用 Amazon Elasticsearch Service、Kinesis 和 Kibana 实现 Nginx 日志收集分析，比 ELK 更易运维'
 toc = true
 tags = ['Elasticsearch', 'AWS', 'Kinesis', 'Kibana', '日志分析']

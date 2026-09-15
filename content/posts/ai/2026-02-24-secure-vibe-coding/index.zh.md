@@ -1,8 +1,8 @@
 +++
 date = '2026-02-24T08:30:00+08:00'
 draft = false
-title = '斯坦福 CS146S 精读（四）：Secure Vibe Coding——AI 代码安全攻防全指南'
-description = '深度解读斯坦福 CS146S 第六七周课程：Prompt Injection 导致远程代码执行的真实案例、OWASP Top 10 在 Agent 时代的新威胁、AI 代码审查方法论，以及如何建立安全的 Vibe Coding 实践。'
+title = '斯坦福 CS146S 精读（四）：Secure Vibe Coding——AI'
+description = '深度解读斯坦福 CS146S 第六七周课程：Prompt Injection 导致远程代码执行的真实案例、OWASP Top 10 在 Agent 时代的新威胁、AI 代码审查方法论，以及如何建立安全...'
 toc = true
 tags = ['AI 安全', 'Vibe Coding', 'Stanford CS146S', 'Prompt Injection', 'Code Review']
 categories = ['AI实战']

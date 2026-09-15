@@ -1,8 +1,8 @@
 +++
 date = '2026-06-12T10:00:00+08:00'
 draft = false
-title = 'Anthropic 9650 亿估值买的不是模型，是 Agent 基础设施：国内开发者怎么办'
-description = "Anthropic 秘密递交 IPO，9650 亿美元估值对 470 亿年化收入只有 20 倍——投资人定价的是 Managed Agents 这套生产级 Agent 运行时，不是 Claude 模型。本文拆 20 倍估值账、讲透 Self-hosted Sandboxes 半开放真相，并给国内开发者三条落地路径。"
+title = 'Anthropic 9650 亿估值买的不是模型，是 Agent 基础设施：国内'
+description = "Anthropic 秘密递交 IPO，9650 亿美元估值对 470 亿年化收入只有 20 倍——投资人定价的是 Managed Agents 这套生产级 Agent 运行时，不是 Claude 模型..."
 toc = true
 tags = ['Anthropic', 'Claude Code', 'Managed Agents', 'AI Infrastructure', 'IPO']
 keywords = ['Anthropic IPO', 'Anthropic 9650 亿估值', 'Anthropic 上市', 'Claude Managed Agents 中文', 'Anthropic 不进中国', 'Claude API 国内不能用', '国内 Claude Code 替代', '智谱 ChatGLM Agent vs Claude', '通义 Qwen Agent vs Claude', 'Self-hosted Sandboxes 中国']

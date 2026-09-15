@@ -2,7 +2,7 @@
 date = '2026-01-23'
 draft = false
 title = 'Claude Code: 24 Power Tips to Master the AI Terminal'
-description = 'Master Claude Code with 24 practical tips covering shortcuts, CLAUDE.md config, MCP integration, custom slash commands, session management, and cost control for AI-powered terminal coding.'
+description = 'Master Claude Code with 24 practical tips covering shortcuts, CLAUDE.md config, MCP integration, custom slash commands, session management, and cost control...'
 toc = true
 tags = ['AI', 'Claude Code', 'CLI', 'Developer Tools', 'Productivity']
 categories = ['AI Guides']
@@ -750,3 +750,4 @@ Start with the 6 core usage tips and gradually work your way through the rest as
 - [Claude Code Browser Automation: Agent Browser vs Playwright vs DevTools](/posts/ai/2026-01-28-claude-code-browser-automation/)
 - [Claude Code Best Practices Guide](/posts/ai/2026-01-06-claudecode-best-practices/)
 - [Anthropic Launches Claude Cowork: AI That Operates Your Computer Files](/posts/ai/2026-01-13-claude-cowork/)
+- [AI Automation Hub: Building Your Fully Automated Dev Flows](/posts/ai/ai-automation-hub/)

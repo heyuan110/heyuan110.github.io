@@ -1,7 +1,7 @@
 +++
 date = '2026-09-14T18:00:00+08:00'
-title = 'The Triumph of Minimalism: A Deep Dive into Pi (pi.dev), the Ultimate Terminal Agent Harness'
-description = 'While other AI agents are bloating with complex protocols, sub-agents, and planning modes, Pi (pi.dev) takes the rebel route. As a "minimal terminal coding harness", Pi embraces a "No-MCP, No-Subagent, No-Plan" philosophy. Discover how its dual-queue messaging, JSONL session branching, and TypeScript extensions make it the most powerful developer-centric agent tool on the market.'
+title = 'The Triumph of Minimalism: A Deep Dive into Pi (pi.dev),'
+description = 'While other AI agents are bloating with complex protocols, sub-agents, and planning modes, Pi (pi.dev) takes the rebel route. As a "minimal terminal coding...'
 toc = true
 tags = ['AI', 'AI Agent', 'Pi Agent', 'Developer Tools']
 keywords = ['Pi Agent', 'pi.dev', 'terminal coding agent', 'minimalist AI agent', 'TypeScript extensions', 'Agent Skills', 'Mario Zechner']

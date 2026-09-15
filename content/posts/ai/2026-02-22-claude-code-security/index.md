@@ -1,8 +1,8 @@
 +++
 date = '2026-02-22T11:00:00+08:00'
 draft = false
-title = 'Claude Code Security: How AI-Powered Code Scanning Changes Everything (2026)'
-description = 'Deep dive into Anthropic Claude Code Security: how AI vulnerability scanning works, real-world results with 500+ bugs found, comparison with traditional SAST tools, and what it means for developers.'
+title = 'Claude Code Security: How AI-Powered Code Scanning Changes'
+description = 'Deep dive into Anthropic Claude Code Security: how AI vulnerability scanning works, real-world results with 500+ bugs found, comparison with traditional SAST...'
 toc = true
 tags = ['Claude Code', 'AI Security', 'Code Audit', 'Vulnerability Scanning', 'Anthropic']
 categories = ['AI Guides']

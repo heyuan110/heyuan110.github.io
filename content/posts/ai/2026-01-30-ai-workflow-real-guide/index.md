@@ -2,7 +2,7 @@
 date = '2026-01-30T10:00:00+08:00'
 draft = false
 title = 'AI Workflow Playbook: From Prompts to Production Code'
-description = 'A battle-tested AI workflow methodology covering prompt engineering, AI-assisted coding, tool selection, and enterprise deployment — turn AI from a chat toy into a real productivity engine.'
+description = 'A battle-tested AI workflow methodology covering prompt engineering, AI-assisted coding, tool selection, and enterprise deployment — turn AI from a chat toy...'
 toc = true
 tags = ['AI Workflow', 'AI Coding', 'Prompt Engineering', 'AI Tools', 'Productivity']
 categories = ['AI Guides']

@@ -2,7 +2,7 @@
 title = 'Oh My Zsh 安装配置指南：打造高效终端环境'
 date = '2015-06-17'
 draft = false
-description = 'Oh My Zsh 完整安装配置教程，涵盖 Zsh 安装、Oh My Zsh 配置、Powerlevel10k 主题美化、zsh-autosuggestions 和 zsh-syntax-highlighting 插件。适用于 macOS、Ubuntu、Linux，附常用别名配置和性能优化技巧。'
+description = 'Oh My Zsh 完整安装配置教程，涵盖 Zsh 安装、Oh My Zsh 配置、Powerlevel10k 主题美化、zsh-autosuggestions 和 zsh-syntax-highli...'
 tags = ['zsh', 'oh-my-zsh', 'shell', 'linux', 'macos', 'powerlevel10k']
 categories = ['Linux']
 toc = true

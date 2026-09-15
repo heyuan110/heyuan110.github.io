@@ -3,7 +3,7 @@ date = '2026-01-28T23:55:00+08:00'
 lastmod = '2026-03-12T18:00:00+08:00'
 draft = false
 title = 'Claude Code 浏览器自动化怎么选？5 套方案实测对比（2026）'
-description = 'Browser-use vs Agent Browser vs Playwright CLI vs Playwright MCP vs DevTools MCP，实测 Token 消耗差 10 倍+。本文对比速度、成本、稳定性，附安装命令和选型结论，帮你选对方案。'
+description = 'Browser-use vs Agent Browser vs Playwright CLI vs Playwright MCP vs DevTools MCP，实测 Token 消耗差 10 倍+...'
 toc = true
 tags = ['Claude Code', '浏览器自动化', 'MCP', 'Playwright CLI', 'Playwright MCP', 'Agent Browser', 'Browser-use']
 categories = ['AI实战']
@@ -739,6 +739,7 @@ chrome.exe --remote-debugging-port=9222
 - [Claude Code 使用教程（OpenClaw 实战）](/zh/posts/ai/2026-02-12-openclaw-usage-tutorial/)
 - [Codex CLI 实战指南](/zh/posts/ai/2026-02-12-codex-cli-mastery-guide/)
 - [ego lite 实测：把你登录好的浏览器交给 Claude Code，token 省了多少](/zh/posts/ai/2026-09-10-ego-lite-browser-review/) — 本文对比的 2026 年 9 月更新：同样的任务在 ego lite、agent-browser、Chrome DevTools MCP 上实测，带真实 token 和费用收据
+- [Python 包管理工具大决战：uv vs conda vs pyenv](/zh/posts/python/2026-07-27-uv-vs-conda-vs-pyenv/)
 
 ## 系列文章导航
 

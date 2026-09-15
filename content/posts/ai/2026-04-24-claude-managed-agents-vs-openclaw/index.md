@@ -1,8 +1,8 @@
 +++
 date = '2026-04-24T09:00:00+08:00'
 draft = false
-title = 'Managed Agents vs OpenClaw: Anthropic Just Enclosed the Harness Layer in 12 Days'
-description = 'On April 4 Anthropic blocked OpenClaw. On April 16 they shipped Managed Agents beta. 12 days between killing the community harness and shipping the official one. Platform enclosure, not coincidence. A field guide to the harness layer war and what it means for your stack.'
+title = 'Managed Agents vs OpenClaw: Anthropic Just Enclosed the'
+description = 'On April 4 Anthropic blocked OpenClaw. On April 16 they shipped Managed Agents beta. 12 days between killing the community harness and shipping the official...'
 toc = true
 tags = ['Claude Managed Agents', 'OpenClaw', 'Harness Engineering', 'AI Agent', 'Anthropic']
 

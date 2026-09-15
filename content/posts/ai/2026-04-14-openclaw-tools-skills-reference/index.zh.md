@@ -1,8 +1,8 @@
 +++
 date = '2026-04-14T10:00:00+08:00'
 draft = false
-title = 'OpenClaw 工具与 Skill 完全手册 2026：内置工具清单 + 自定义开发'
-description = 'OpenClaw 2026 内置工具完整参数速查，含 write tool 的 path 和 content 参数详解、ClawHub skill 加载机制、SKILL.md 格式、tavily-search 配置，以及国内网络下的自定义 Skill 开发实操。'
+title = 'OpenClaw 工具与 Skill 完全手册 2026：内置工具清单 + 自定'
+description = 'OpenClaw 2026 内置工具完整参数速查，含 write tool 的 path 和 content 参数详解、ClawHub skill 加载机制、SKILL.md 格式、tavily-se...'
 toc = true
 image = "cover.webp"
 tags = ['OpenClaw', 'AI Agent Framework', 'ClawHub', 'Skills', 'Developer Tools']

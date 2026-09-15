@@ -1,7 +1,7 @@
 +++
 date = '2026-02-22T11:00:00+08:00'
 draft = false
-title = 'Claude Code Security 深度解析：AI 驱动的代码安全扫描如何颠覆传统（2026）'
+title = 'Claude Code Security 深度解析：AI 驱动的代码安全扫描如何'
 description = '全面解析 Anthropic 最新发布的 Claude Code Security：AI 漏洞扫描原理、与传统 SAST 对比、实测发现 500+ 生产级漏洞、获取方式与行业影响分析。'
 toc = true
 tags = ['Claude Code', 'AI 安全', '代码审计', '漏洞扫描', 'Anthropic']

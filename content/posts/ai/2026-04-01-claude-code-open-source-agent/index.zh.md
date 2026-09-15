@@ -2,7 +2,7 @@
 date = '2026-04-01T10:00:00+08:00'
 draft = false
 title = 'Claude Code 开源风波：源码泄露到社区重写的全过程'
-description = '深度技术分析 Claude Code 开源版 — 基于 Claude Code 泄露架构的 Python + Rust 开源重写。涵盖源码泄露事件始末、架构对比、法律风险评估，以及是否值得从 Claude Code 切换。'
+description = '深度技术分析 Claude Code 开源版 — 基于 Claude Code 泄露架构的 Python + Rust 开源重写。涵盖源码泄露事件始末、架构对比、法律风险评估，以及是否值得从 Clau...'
 toc = true
 tags = ['Claude Code 开源版', 'Open Source', 'AI Coding Tools', 'Claude Code', 'Agent Framework']
 keywords = ['Claude Code 开源版 评测', 'Claude Code 源码泄露', '开源 AI 编程工具', 'Claude Code 开源版 对比 Claude Code', 'AI Agent 框架', '代理架构']

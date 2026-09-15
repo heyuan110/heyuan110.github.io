@@ -1,8 +1,8 @@
 +++
 date = '2026-04-24T09:00:00+08:00'
 draft = false
-title = 'Claude Managed Agents 发布 vs OpenClaw 被封：12 天组合拳看懂 Harness 层战争'
-description = '4 月 4 日 Anthropic 封禁 OpenClaw，4 月 16 日官方推出 Managed Agents 公测。12 天组合拳不是巧合，是 Harness 层商业化围剿的明确信号。本文复盘时间线、拆解护城河逻辑，给出 OpenClaw 老用户的迁移决策框架。'
+title = 'Claude Managed Agents 发布 vs OpenClaw 被封'
+description = '4 月 4 日 Anthropic 封禁 OpenClaw，4 月 16 日官方推出 Managed Agents 公测。12 天组合拳不是巧合，是 Harness 层商业化围剿的明确信号。本文复盘时...'
 toc = true
 tags = ['Claude Managed Agents', 'OpenClaw', 'Harness Engineering', 'AI Agent', 'Anthropic']
 

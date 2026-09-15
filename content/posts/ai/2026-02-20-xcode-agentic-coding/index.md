@@ -2,7 +2,7 @@
 date = '2026-02-20T10:00:00+08:00'
 draft = false
 title = 'Xcode 26.3 Agentic Coding: Claude Agent & Codex in Apple IDE'
-description = 'Xcode 26.3 integrates Anthropic Claude Agent and OpenAI Codex with full agentic coding capabilities. Deep dive into setup, features, MCP support, and how it compares to Cursor and Copilot.'
+description = 'Xcode 26.3 integrates Anthropic Claude Agent and OpenAI Codex with full agentic coding capabilities. Deep dive into setup, features, MCP support, and how it...'
 toc = true
 tags = ['Xcode', 'AI Coding', 'Apple', 'Claude Code', 'Codex']
 categories = ['AI Guides']

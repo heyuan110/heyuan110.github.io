@@ -1,6 +1,6 @@
 +++
 date = '2018-11-20T11:05:40+08:00'
-title = 'Jenkins + AWS CodeDeploy + AutoScaling 持续集成实战指南'
+title = 'Jenkins + AWS CodeDeploy + AutoScaling 持'
 description = '基于 Jenkins、AWS CodeDeploy 和 AutoScaling 搭建 CI/CD 持续集成流水线完整教程，详解蓝绿部署、就地部署原理，AppSpec 配置和生命周期钩子'
 toc = true
 tags = ['Jenkins', 'AWS', 'CodeDeploy', 'AutoScaling', 'CI/CD', '蓝绿部署', 'DevOps']

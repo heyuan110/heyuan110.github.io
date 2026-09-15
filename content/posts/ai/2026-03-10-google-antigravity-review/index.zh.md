@@ -1,8 +1,8 @@
 +++
 date = '2026-03-07T10:00:00+08:00'
 draft = false
-title = 'Google Antigravity 深度测评：这款免费 Agent-First IDE 到底怎么样？'
-description = 'Google Antigravity IDE 深度体验报告——基于 Gemini 3 的免费 Agent-First 开发平台。涵盖安装配置、核心功能、Manager View 以及与 Cursor 和 Claude Code 的详细对比。'
+title = 'Google Antigravity 深度测评：这款免费 Agent-First'
+description = 'Google Antigravity IDE 深度体验报告——基于 Gemini 3 的免费 Agent-First 开发平台。涵盖安装配置、核心功能、Manager View 以及与 Cursor...'
 toc = true
 tags = ['Google Antigravity', 'AI Coding Tools', 'AI IDE', 'Gemini']
 categories = ['AI Guides']

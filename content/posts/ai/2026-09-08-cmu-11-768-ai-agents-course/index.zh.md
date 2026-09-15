@@ -2,8 +2,8 @@
 date = '2026-09-08T10:00:00+08:00'
 aliases = ['/posts/ai/2026-09-11-cmu-11-768-ai-agents-course/', '/posts/ai/2026-09-16-cmu-11-768-ai-agents-course/']
 draft = false
-title = 'CMU 11-768 AI Agents 课程拆解：OpenHands 作者教你搭 Harness、建评测、RL 训 Agent'
-description = 'CMU 11-768 AI Agents 2026 秋季课全拆解：Graham Neubig 与 Daniel Fried 的 28 节课表、三份作业（Harness/评测/RL 训练）、评分、免费视频和 PPT 怎么拿、国内怎么跟、和 CS146S 怎么选。'
+title = 'CMU 11-768 AI Agents 课程拆解：OpenHands 作者教你'
+description = 'CMU 11-768 AI Agents 2026 秋季课全拆解：Graham Neubig 与 Daniel Fried 的 28 节课表、三份作业（Harness/评测/RL 训练）、评分、免费视...'
 toc = true
 tags = ['AI Agent', 'CMU 11-768', 'Course Review', 'Harness Engineering', 'OpenHands']
 keywords = ['cmu ai agents 课程', '11-768', 'graham neubig 课程', 'ai agent 公开课', 'openhands 课程', 'cmu 11-768 ai agents', 'ai agent 课程 免费', 'agent 强化学习 课程']

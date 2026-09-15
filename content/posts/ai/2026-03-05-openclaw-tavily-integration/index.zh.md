@@ -1,8 +1,8 @@
 +++
 date = '2026-03-06T14:00:00+08:00'
 draft = false
-title = 'OpenClaw ClawHub Tavily Search Skill 集成完整指南（2026）'
-description = '通过 ClawHub 安装 tavily-search skill，为 OpenClaw agent 接入网络搜索仅需三步。含 clawdhub install 命令、API Key 配置、按 Agent 权限控制与费用优化。'
+title = 'OpenClaw ClawHub Tavily Search Skill 集成完'
+description = '通过 ClawHub 安装 tavily-search skill，为 OpenClaw agent 接入网络搜索仅需三步。含 clawdhub install 命令、API Key 配置、按 Age...'
 toc = true
 tags = ['OpenClaw', 'Tavily', 'AI Agents', 'Web Search', 'ClawHub']
 categories = ['AI Guides']

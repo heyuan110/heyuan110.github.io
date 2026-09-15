@@ -1,8 +1,8 @@
 +++
 date = '2026-03-04T14:00:00+08:00'
 draft = false
-title = 'Claude Code vs GitHub Copilot 2026: Which AI Coding Tool Wins?'
-description = 'Claude Code vs GitHub Copilot after 3 months: Copilot wins autocomplete ($10/mo), Claude Code wins autonomous coding ($20-200/mo). Real examples and pricing compared.'
+title = 'Claude Code vs GitHub Copilot 2026: Which AI Coding Tool'
+description = 'Claude Code vs GitHub Copilot after 3 months: Copilot wins autocomplete ($10/mo), Claude Code wins autonomous coding ($20-200/mo). Real examples and pricing...'
 toc = true
 tags = ['Claude Code', 'GitHub Copilot', 'Comparison', 'AI Coding Tools']
 categories = ['Comparisons']

@@ -1,7 +1,7 @@
 +++
 date = '2019-06-12T20:50:36+08:00'
-title = 'Nexus3 搭建 Docker 私有镜像仓库：企业级 Registry 完整教程'
-description = '使用 Nexus3 搭建企业级 Docker 私有镜像仓库完整教程，详解 hosted、proxy、group 三种仓库类型配置，实现镜像的推送和拉取，附 Ubuntu 客户端 insecure-registries 配置'
+title = 'Nexus3 搭建 Docker 私有镜像仓库：企业级 Registry 完整教'
+description = '使用 Nexus3 搭建企业级 Docker 私有镜像仓库完整教程，详解 hosted、proxy、group 三种仓库类型配置，实现镜像的推送和拉取，附 Ubuntu 客户端 insecure-re...'
 toc = true
 tags = ['Docker', 'Nexus3', 'Registry', '私有仓库', 'DevOps']
 categories = ['Docker']

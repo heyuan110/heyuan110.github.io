@@ -2,7 +2,7 @@
 date = '2026-04-18T10:00:00+08:00'
 draft = false
 title = 'Playwright CLI + Skills: 0-Token Browser Automation Pattern'
-description = 'Browser automation costs collapse in 3 stages — explore with AI (41% context), freeze as a Skill (5%), ship as a script (0 tokens). Hands-on Playwright CLI vs MCP data, real cases.'
+description = 'Browser automation costs collapse in 3 stages — explore with AI (41% context), freeze as a Skill (5%), ship as a script (0 tokens). Hands-on...'
 toc = true
 tags = ['Playwright CLI', 'Browser Automation', 'Claude Code', 'Skills', 'AI Agent']
 keywords = ['playwright cli skill', 'playwright cli vs mcp', 'zero token browser automation', 'claude code browser skill 2026', 'playwright cli skill tutorial', 'ai browser automation cost', 'browser automation skill pattern']

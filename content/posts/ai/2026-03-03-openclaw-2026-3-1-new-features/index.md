@@ -1,8 +1,8 @@
 +++
 date = '2026-03-03T10:00:00+08:00'
 draft = false
-title = 'OpenClaw 2026.3.1: WebSocket Streaming, Agent Routing, and K8s Support'
-description = 'Complete guide to OpenClaw 2026.3.1 new features. Covers WebSocket-first transport, agent routing CLI, external secrets management, Kubernetes health endpoints, and Claude 4.6 adaptive thinking.'
+title = 'OpenClaw 2026.3.1: WebSocket Streaming, Agent Routing, and'
+description = 'Complete guide to OpenClaw 2026.3.1 new features. Covers WebSocket-first transport, agent routing CLI, external secrets management, Kubernetes health...'
 toc = true
 tags = ['OpenClaw', 'AI Agents', 'WebSocket', 'Kubernetes', 'Self-Hosted AI']
 categories = ['AI Guides']

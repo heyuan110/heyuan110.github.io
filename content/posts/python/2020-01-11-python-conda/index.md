@@ -1,7 +1,7 @@
 +++
-title = 'Conda Guide: How to Manage Multiple Python Versions and Environments'
+title = 'Conda Guide: How to Manage Multiple Python Versions and'
 date = '2020-01-11T20:33:33+08:00'
-description = 'Learn how to use Conda for Python environment management. This guide covers Conda vs pip, Anaconda vs Miniconda, creating and managing environments, essential commands, and best practices for juggling multiple Python versions.'
+description = 'Learn how to use Conda for Python environment management. This guide covers Conda vs pip, Anaconda vs Miniconda, creating and managing environments...'
 toc = true
 tags = ['Python', 'Conda', 'Anaconda', 'Miniconda', 'Environment Management', 'Version Control']
 categories = ['Python']

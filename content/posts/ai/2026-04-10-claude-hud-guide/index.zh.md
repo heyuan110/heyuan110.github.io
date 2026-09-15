@@ -1,8 +1,8 @@
 +++
 date = '2026-04-10T10:00:00+08:00'
 draft = false
-title = 'Claude HUD 是什么？3 分钟装好 Claude Code 状态栏插件（2026）'
-description = 'Claude HUD 是 Claude Code 的开源状态栏插件，实时显示 context 用量、rate limit 消耗和 agent 状态，18000+ stars。本文给出 3 分钟安装命令、推荐配置和 ccstatusline 对比。'
+title = 'Claude HUD 是什么？3 分钟装好 Claude Code 状态栏插件（'
+description = 'Claude HUD 是 Claude Code 的开源状态栏插件，实时显示 context 用量、rate limit 消耗和 agent 状态，18000+ stars。本文给出 3 分钟安装命令...'
 toc = true
 tags = ['Claude Code', 'Developer Tools', 'Productivity', 'AI Coding']
 keywords = ['claude hud 是什么', 'claude hud 安装', 'claude-hud', 'claude hud', 'claude code hud', 'claude code 状态栏', 'claude code 状态栏插件', 'claude code 上下文窗口', 'claude code 插件推荐', 'claude code 用量监控', 'claude code rate limit']

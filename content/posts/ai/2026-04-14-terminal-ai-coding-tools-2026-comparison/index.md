@@ -2,7 +2,7 @@
 date = '2026-04-14T10:00:00+08:00'
 draft = false
 title = 'Terminal AI Coding Tools 2026: Three Lanes, Not One Race'
-description = 'Deep comparison of Claude Code, Codex CLI, Gemini CLI, and Aider. Instead of a flat feature table, this guide maps the 2026 terminal AI landscape into three lanes — subscription, free/open-source, and orchestration — with budget-based combo recommendations.'
+description = 'Deep comparison of Claude Code, Codex CLI, Gemini CLI, and Aider. Instead of a flat feature table, this guide maps the 2026 terminal AI landscape into three...'
 toc = true
 tags = ['Claude Code', 'Codex CLI', 'Gemini CLI', 'Aider', 'AI Coding Tools', 'Terminal']
 keywords = ['terminal AI coding tools 2026', 'Claude Code vs Codex CLI', 'Gemini CLI free tier', 'Aider AI coding', 'best AI CLI tool 2026', 'AI coding agents comparison', 'terminal coding agent guide', 'Claude Code vs Gemini CLI']
@@ -265,3 +265,4 @@ In the orchestration lane, Symphony is still in engineering preview and OpenClaw
 - [OpenClaw Multi-Agent Guide](/posts/ai/2026-02-23-openclaw-multi-agent-guide/) — Orchestration lane deep dive
 - [5 AI Coding Tools in Action](/posts/ai/2026-04-03-claude-code-vs-cursor-vs-copilot/) — Broader AI coding tool landscape
 - [pi Coding Agent Review: 4 Tools vs Claude Code, Tested](/posts/ai/2026-09-06-pi-coding-agent-review/) — the minimal lane taken to its limit: an agent shipped with exactly four tools
+- [The Triumph of Minimalism: A Deep Dive into Pi (pi.dev), the Ultimate Terminal Agent Harness](/posts/ai/2026-09-14-pi-coding-agent-deep-dive/) — Deep dive into the "No-MCP, No-Subagent, No-Plan" rebel terminal agent harness with TS Extensions & Skills

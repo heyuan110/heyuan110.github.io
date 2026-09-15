@@ -1,8 +1,8 @@
 +++
 date = '2026-03-06T22:00:00+08:00'
 draft = false
-title = 'OpenAI Symphony: From Issue Ticket to Pull Request Without a Developer'
-description = 'OpenAI Symphony monitors your issue tracker, spawns Codex agents, and delivers verified PRs automatically. Architecture breakdown, WORKFLOW.md setup, and real-world limitations.'
+title = 'OpenAI Symphony: From Issue Ticket to Pull Request Without'
+description = 'OpenAI Symphony monitors your issue tracker, spawns Codex agents, and delivers verified PRs automatically. Architecture breakdown, WORKFLOW.md setup, and...'
 toc = true
 tags = ['OpenAI', 'Symphony', 'AI Agents', 'Autonomous Coding', 'Codex']
 categories = ['AI Guides']

@@ -1,6 +1,6 @@
 +++
 date = '2026-01-19T10:00:00+08:00'
-title = 'Docker Compose 完全指南（2026）：安装、docker-compose.yml、实战部署一篇搞定'
+title = 'Docker Compose 完全指南（2026）：安装、docker-comp'
 description = '从 Docker 基础到 Docker Compose 实战：安装配置、compose.yml 核心字段、WordPress/Node+MySQL 案例与生产环境最佳实践。'
 toc = true
 tags = ['Docker', 'Docker Compose', 'Containers', 'DevOps']

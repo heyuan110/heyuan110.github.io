@@ -1,8 +1,8 @@
 +++
 date = '2026-02-16T17:14:00+08:00'
 draft = false
-title = 'OpenClaw 30-Day Rise: 180K Stars, 40+ Vulnerabilities, OpenAI Acquisition'
-description = 'How the OpenClaw AI agent framework went from a solo open-source project to 180K GitHub stars in 2026, exposed 40+ security flaws, spawned the first AI social network, and ended with its founder joining OpenAI — all in 30 days.'
+title = 'OpenClaw 30-Day Rise: 180K Stars, 40+ Vulnerabilities,'
+description = 'How the OpenClaw AI agent framework went from a solo open-source project to 180K GitHub stars in 2026, exposed 40+ security flaws, spawned the first...'
 toc = true
 tags = ['OpenClaw', 'AI Agent', 'OpenAI', 'Open Source']
 categories = ['AI Guides']

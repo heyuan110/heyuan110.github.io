@@ -1,7 +1,7 @@
 +++
 date = '2026-03-13T10:00:00+08:00'
 draft = false
-title = 'GPT-5.4 vs Claude Opus 4.6: Complete Comparison for Developers'
+title = 'GPT-5.4 vs Claude Opus 4.6: Complete Comparison for'
 description = 'GPT-5.4 and Claude Opus 4.6 compared head-to-head on coding benchmarks, agent capabilities, pricing, and real-world developer workflows in 2026.'
 toc = true
 tags = ['AI Coding Tools', 'GPT-5.4', 'Claude Code', 'AI Agent']

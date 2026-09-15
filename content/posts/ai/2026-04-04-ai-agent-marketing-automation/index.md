@@ -1,8 +1,8 @@
 +++
 date = '2026-04-04T18:00:00+08:00'
 draft = false
-title = 'One Founder + AI Agents = 2,000 New Customers/Month: The Playbook'
-description = 'How Postiz founder Nevo David used Paperclip, Claude Code, and a Skill system to build an AI marketing department. The 6-layer stack, 3-step starter framework, and 3 traps of full automation.'
+title = 'One Founder + AI Agents = 2,000 New Customers/Month: The'
+description = 'How Postiz founder Nevo David used Paperclip, Claude Code, and a Skill system to build an AI marketing department. The 6-layer stack, 3-step starter...'
 toc = true
 tags = ['AI Agent', 'Marketing Automation', 'Paperclip', 'Claude Code', 'Solo Founder']
 keywords = ['AI agent marketing automation 2026', 'Paperclip AI orchestration', 'solo founder AI tools', 'AI replace marketing team', 'Claude Code marketing', 'AI content automation risks', 'Skill system AI agent']

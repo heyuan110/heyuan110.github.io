@@ -1,7 +1,7 @@
 +++
 date = '2019-08-19T21:10:21+08:00'
-title = 'Ten Leadership Disciplines: Lessons on Responsibility, Reflection, and Growth'
-description = 'Key takeaways from a leadership training course covering the ten essential disciplines — from taking ownership and embracing failure to systems thinking and self-awareness. Practical insights for tech managers and team leads.'
+title = 'Ten Leadership Disciplines: Lessons on Responsibility,'
+description = 'Key takeaways from a leadership training course covering the ten essential disciplines — from taking ownership and embracing failure to systems thinking and...'
 toc = true
 tags = ['领导力', '管理', '职场成长', '学习笔记']
 categories = ['管理']

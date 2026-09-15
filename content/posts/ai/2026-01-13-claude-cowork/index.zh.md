@@ -1,7 +1,7 @@
 +++
 date = '2026-01-13T19:00:00+08:00'
 draft = false
-title = 'Anthropic 发布 Claude Cowork：让 AI 直接操作你的电脑文件'
+title = 'Anthropic 发布 Claude Cowork：让 AI 直接操作你的电脑'
 description = 'Anthropic 推出 Claude Cowork 研究预览版，这是一个可以直接访问本地文件、运行代码并与第三方应用集成的桌面 AI 代理，目前仅限 macOS 上的 Max 订阅用户使用。'
 toc = true
 tags = ['Claude Cowork', 'Claude Desktop', 'Anthropic', 'AI Agent', 'MCP']

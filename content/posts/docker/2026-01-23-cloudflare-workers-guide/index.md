@@ -1,8 +1,8 @@
 +++
 date = '2026-01-23T20:20:00+08:00'
 draft = false
-title = 'Cloudflare Workers Complete Guide: Edge Computing from Setup to Production'
-description = 'Learn how to build and deploy serverless applications with Cloudflare Workers. Covers core concepts, free tier limits, use cases, development workflow, and hands-on projects including an API proxy and URL shortener.'
+title = 'Cloudflare Workers Complete Guide: Edge Computing from'
+description = 'Learn how to build and deploy serverless applications with Cloudflare Workers. Covers core concepts, free tier limits, use cases, development workflow, and...'
 toc = true
 images = ['cover.webp']
 tags = ['Cloudflare', 'Workers', 'Serverless', 'Edge Computing', 'CDN']

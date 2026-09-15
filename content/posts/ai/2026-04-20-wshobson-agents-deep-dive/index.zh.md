@@ -1,8 +1,8 @@
 +++
 date = '2026-04-21T10:00:00+08:00'
 draft = false
-title = '深度挖掘 wshobson/agents：33.9K Star 的 Claude Code 插件市场 79 个 Plugin 到底怎么用'
-description = '33.9K Star 的 wshobson/agents 全仓库盘点：79 个 Plugin、184 个 Agent、150 个 Skill 的逐个解析，10 个场景该装哪些、6 个别家没有的独家组件、以及为什么不能全装。Claude Code 插件生态最完整的中文导览。'
+title = '深度挖掘 wshobson/agents：33.9K Star 的 Claude'
+description = '33.9K Star 的 wshobson/agents 全仓库盘点：79 个 Plugin、184 个 Agent、150 个 Skill 的逐个解析，10 个场景该装哪些、6 个别家没有的独家组件...'
 toc = true
 tags = ['Claude Code', 'AI Agent', 'Claude Skills', 'Plugin Marketplace', 'wshobson']
 keywords = ['wshobson agents 中文', 'Claude Code 插件市场', 'Claude Code subagents', 'Claude Code skill 使用', 'wshobson 安装指南', 'Claude 插件推荐', 'Claude Agent 目录 2026']

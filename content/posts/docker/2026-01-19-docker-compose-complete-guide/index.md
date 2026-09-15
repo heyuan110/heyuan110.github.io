@@ -1,7 +1,7 @@
 +++
 date = '2026-01-19T10:00:00+08:00'
-title = 'Docker Compose Complete Guide (2026): Install, Configure, and Deploy Multi-Container Apps'
-description = 'Master Docker and Docker Compose from scratch: installation, core concepts, docker-compose.yml deep dive, WordPress and Node.js deployment examples, plus production best practices.'
+title = 'Docker Compose Complete Guide (2026): Install, Configure,'
+description = 'Master Docker and Docker Compose from scratch: installation, core concepts, docker-compose.yml deep dive, WordPress and Node.js deployment examples, plus...'
 toc = true
 tags = ['Docker', 'Docker Compose', 'Containers', 'DevOps']
 categories = ['Docker']

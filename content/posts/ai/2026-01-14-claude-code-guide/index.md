@@ -1,7 +1,7 @@
 +++
 date = '2026-01-14T14:38:00+08:00'
 title = 'Claude Code Complete Guide: From Beginner to Power User'
-description = 'Master Claude Code, Anthropic official CLI tool. Learn installation, CLAUDE.md setup, Skills, Subagents, MCP integration, and advanced workflows for developers and non-technical users.'
+description = 'Master Claude Code, Anthropic official CLI tool. Learn installation, CLAUDE.md setup, Skills, Subagents, MCP integration, and advanced workflows for...'
 toc = true
 tags = ['Claude Code', 'AI Tools', 'Anthropic', 'CLI Tools', 'Productivity', 'Automation']
 categories = ['AI Guides']

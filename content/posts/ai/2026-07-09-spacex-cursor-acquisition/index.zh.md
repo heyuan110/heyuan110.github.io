@@ -2,7 +2,7 @@
 date = '2026-07-09T13:00:00+08:00'
 draft = false
 title = 'SpaceX 600 亿美元收购 Cursor:还能用吗?要不要迁移?'
-description = '已核实:SpaceX 于 2026 年 6 月 16 日以 600 亿美元全股票收购 Cursor 母公司 Anysphere,Q3 交割。本文分析 Claude 会不会被切、会不会涨价、国内开发者还能不能用、该不该迁移到 Claude Code。'
+description = '已核实:SpaceX 于 2026 年 6 月 16 日以 600 亿美元全股票收购 Cursor 母公司 Anysphere,Q3 交割。本文分析 Claude 会不会被切、会不会涨价、国内开发者还...'
 toc = true
 tags = ['Cursor', 'SpaceX', 'xAI', 'AI Coding', 'Claude Code', 'Acquisition']
 keywords = ['spacex 收购 cursor', 'cursor 被收购', 'cursor 还能用吗', 'cursor 替代品', 'cursor 涨价', 'xai cursor', 'cursor claude 被切', 'cursor 迁移 claude code']

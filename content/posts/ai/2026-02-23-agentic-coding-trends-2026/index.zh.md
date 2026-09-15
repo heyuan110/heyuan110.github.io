@@ -1,7 +1,7 @@
 +++
 date = '2026-02-23T14:00:00+08:00'
 draft = false
-title = '2026 Agentic Coding 趋势报告：Claude Code 年入 25 亿美元背后的 8 大趋势'
+title = '2026 Agentic Coding 趋势报告：Claude Code 年入'
 description = '深度解读 Anthropic 2026 Agentic Coding 趋势报告：从 Claude Code 6个月营收10亿到 Anthropic 年化140亿，拆解 AI 编程 8 大趋势、市场格局与开发者采用数据。'
 toc = true
 tags = ['Agentic Coding', 'Claude Code', 'AI 编程', '趋势报告', 'Anthropic']

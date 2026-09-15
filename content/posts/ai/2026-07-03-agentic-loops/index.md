@@ -2,7 +2,7 @@
 date = '2026-07-03T14:00:00+08:00'
 draft = false
 title = 'Agentic Loops 2026: Self-Looping AI Agents Explained'
-description = 'What agentic loops and the Ralph loop are, when self-looping AI agents ship code versus burn money, and the guardrails to run an autonomous coding agent in 2026.'
+description = 'What agentic loops and the Ralph loop are, when self-looping AI agents ship code versus burn money, and the guardrails to run an autonomous coding agent in...'
 toc = true
 tags = ['AI Agent', 'Agentic Loops', 'Ralph Loop', 'Autonomous Coding']
 keywords = ['agentic loops', 'agent loop', 'ralph loop', 'autonomous coding agent', 'ai agent loop 2026', 'self-looping agent', 'agent while loop']

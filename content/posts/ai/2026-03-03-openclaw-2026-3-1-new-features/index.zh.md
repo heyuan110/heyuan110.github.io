@@ -1,7 +1,7 @@
 +++
 date = '2026-03-03T10:00:00+08:00'
 draft = false
-title = 'OpenClaw 2026.3.1 新功能详解：WebSocket 流式传输、Agent 路由与 K8s 支持'
+title = 'OpenClaw 2026.3.1 新功能详解：WebSocket 流式传输、A'
 description = 'OpenClaw 2026.3.1 新版本完整指南，涵盖 WebSocket 传输、Agent 路由 CLI、外部密钥管理、Kubernetes 健康检查端点以及 Claude 4.6 自适应思考等全部新功能。'
 toc = true
 tags = ['OpenClaw', 'AI Agents', 'WebSocket', 'Kubernetes', 'Self-Hosted AI']

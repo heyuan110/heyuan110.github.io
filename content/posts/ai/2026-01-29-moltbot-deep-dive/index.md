@@ -2,8 +2,8 @@
 date = '2026-01-29T21:00:00+08:00'
 lastmod = '2026-02-22T10:00:00+08:00'
 draft = false
-title = 'Moltbot Explained: 80K Stars, Renaming Drama & Security Guide'
-description = 'Moltbot (formerly Clawdbot/OpenClaw) is the fastest-growing open-source AI Agent of 2026. Learn about its architecture, the Anthropic-forced rename, crypto scam fallout, and critical security risks before deploying.'
+title = 'Moltbot Explained: 80K Stars, Renaming Drama & Security'
+description = 'Moltbot (formerly Clawdbot/OpenClaw) is the fastest-growing open-source AI Agent of 2026. Learn about its architecture, the Anthropic-forced rename, crypto...'
 toc = true
 tags = ['OpenClaw', 'Moltbot', 'Clawdbot', 'AI Agent', 'Open Source', 'Security']
 categories = ['AI Guides']

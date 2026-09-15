@@ -1,8 +1,8 @@
 +++
 date = '2026-02-23T10:00:00+08:00'
 draft = false
-title = 'MCP Security Guide: Attack Patterns, Real CVEs, and Defense Strategies for AI Agents'
-description = 'Complete MCP security analysis covering OWASP Agentic Top 10, real CVE cases, mcp-scan tooling, and practical defense strategies for securing AI agent workflows.'
+title = 'MCP Security Guide: Attack Patterns, Real CVEs, and Defense'
+description = 'Complete MCP security analysis covering OWASP Agentic Top 10, real CVE cases, mcp-scan tooling, and practical defense strategies for securing AI agent...'
 toc = true
 tags = ['MCP', 'AI Security', 'AI Agent', 'OWASP', 'Security']
 categories = ['AI Guides']

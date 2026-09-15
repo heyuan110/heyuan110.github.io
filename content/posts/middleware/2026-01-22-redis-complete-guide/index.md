@@ -1,8 +1,8 @@
 +++
-title = 'Redis Complete Guide: Installation, Data Types, Persistence, and Clustering'
+title = 'Redis Complete Guide: Installation, Data Types,'
 date = '2026-01-22T17:00:00+08:00'
 draft = false
-description = 'A comprehensive Redis guide covering installation on macOS, Windows, and Docker, all five core data types with commands, RDB/AOF persistence, replication, Sentinel, and Cluster deployment.'
+description = 'A comprehensive Redis guide covering installation on macOS, Windows, and Docker, all five core data types with commands, RDB/AOF persistence, replication...'
 toc = true
 tags = ['Redis', 'Database', 'Cache', 'NoSQL', 'Middleware']
 categories = ['AI Guides']

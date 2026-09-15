@@ -1,8 +1,8 @@
 +++
 date = '2026-03-31T10:00:00+08:00'
 draft = false
-title = 'Harness Engineering #2: The 60-Line CLAUDE.md Rule (and Why My 90-Line File Failed)'
-description = 'I shipped a 90-line CLAUDE.md and watched my agent get dumber. The ETH Zurich study explains why: LLM-generated files drop success by 20%, human-written files under 60 lines add 4%. Here is the audit, the layering, and the template I use today.'
+title = 'Harness Engineering #2: The 60-Line CLAUDE.md Rule (and Why'
+description = 'I shipped a 90-line CLAUDE.md and watched my agent get dumber. The ETH Zurich study explains why: LLM-generated files drop success by 20%...'
 toc = true
 tags = ['Harness Engineering', 'Claude Code', 'CLAUDE.md', 'AI Agents', 'AI Engineering', 'Context Engineering']
 keywords = ['CLAUDE.md best practices', 'how to write CLAUDE.md', 'CLAUDE.md guide 2026', 'harness engineering CLAUDE.md', 'CLAUDE.md vs AGENTS.md', 'CLAUDE.md anti-patterns', 'CLAUDE.md template', 'ETH Zurich CLAUDE.md study', 'CLAUDE.md audit', 'CLAUDE.md 60 lines', 'layered CLAUDE.md', 'CLAUDE.md too long']

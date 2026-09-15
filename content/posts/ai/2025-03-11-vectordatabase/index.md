@@ -1,7 +1,7 @@
 +++
 date = '2025-03-11T14:40:02+08:00'
 title = 'Vector Database Explained: From Core Concepts to Production'
-description = 'Learn what vector databases actually solve, how ANN indexing works, when to use semantic search vs keyword search, and how to choose between Milvus, Pinecone, Qdrant, and pgvector.'
+description = 'Learn what vector databases actually solve, how ANN indexing works, when to use semantic search vs keyword search, and how to choose between Milvus, Pinecone...'
 toc = true
 tags = ['AI', 'Vector Database', 'RAG']
 categories = ['AI Guides']

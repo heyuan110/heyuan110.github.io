@@ -1,8 +1,8 @@
 +++
 date = '2026-02-25T14:00:00+08:00'
 draft = false
-title = 'Claude Code 10 大常见坑 2026：新手必看的避坑指南（省 50% Token）'
-description = 'Claude Code 新手最爱踩的 10 个坑：没写 CLAUDE.md、默认用 Opus 烧钱、忽略 Hooks、权限弹窗烦人、超长对话不压缩……每条附具体解决方案，帮你省一半 Token、输出质量提升 5-10 倍。'
+title = 'Claude Code 10 大常见坑 2026：新手必看的避坑指南（省 50%'
+description = 'Claude Code 新手最爱踩的 10 个坑：没写 CLAUDE.md、默认用 Opus 烧钱、忽略 Hooks、权限弹窗烦人、超长对话不压缩……每条附具体解决方案，帮你省一半 Token、输出质...'
 toc = true
 tags = ['Claude Code', 'Tips', 'Best Practices', 'Beginner']
 categories = ['AI Guides']

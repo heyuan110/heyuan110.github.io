@@ -1,7 +1,7 @@
 +++
 date = '2026-02-19T11:00:00+08:00'
 draft = false
-title = 'Figma Code to Canvas：Anthropic 联手打造代码转设计新范式'
+title = 'Figma Code to Canvas：Anthropic 联手打造代码转设计'
 description = 'Figma 与 Anthropic 合作推出 Code to Canvas 功能，将 Claude Code 生成的代码直接转化为可编辑的 Figma 设计稿。本文深度解析工作原理、使用方法与行业影响。'
 toc = true
 tags = ['Figma', 'Claude Code', 'Anthropic', 'AI Design', 'MCP']

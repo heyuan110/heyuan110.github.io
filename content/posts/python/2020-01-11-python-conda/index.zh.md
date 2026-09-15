@@ -1,7 +1,7 @@
 +++
 title = 'Conda 完全指南：Python 多版本环境管理从入门到精通'
 date = '2020-01-11T20:33:33+08:00'
-description = 'Conda 是 Python 开发者必备的环境管理工具，本文详解 Conda 与 pip 的区别、Anaconda 与 Miniconda 的选择、环境创建与管理、常用命令及最佳实践，帮助你轻松管理 Python 2/3 多版本环境。'
+description = 'Conda 是 Python 开发者必备的环境管理工具，本文详解 Conda 与 pip 的区别、Anaconda 与 Miniconda 的选择、环境创建与管理、常用命令及最佳实践，帮助你轻松管理...'
 toc = true
 tags = ['Python', 'Conda', 'Anaconda', 'Miniconda', 'Environment Management', 'Version Control']
 categories = ['Python']

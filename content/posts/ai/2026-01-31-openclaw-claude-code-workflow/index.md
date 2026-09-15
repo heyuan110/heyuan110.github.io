@@ -1,8 +1,8 @@
 +++
 date = '2026-01-31T22:50:00+08:00'
 draft = false
-title = 'OpenClaw Claude Code Workflow: How One Dev Built a 100K-Star Project'
-description = 'Deep dive into Peter Steinberger OpenClaw development methodology using Claude Code. Learn AGENTS.md documentation-driven development, multi-agent parallel workflows, and spec-driven building.'
+title = 'OpenClaw Claude Code Workflow: How One Dev Built a'
+description = 'Deep dive into Peter Steinberger OpenClaw development methodology using Claude Code. Learn AGENTS.md documentation-driven development, multi-agent parallel...'
 toc = true
 tags = ['Claude Code', 'OpenClaw', 'AI Coding', 'Agent Engineering', 'AGENTS.md']
 categories = ['AI Guides']

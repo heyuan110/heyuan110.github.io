@@ -2,7 +2,7 @@
 date = '2026-04-18T10:00:00+08:00'
 draft = false
 title = 'Fish Shell 4.6 Review: Best Interactive Shell, Wrong Default'
-description = 'Fish shell 4.6 is the most polished interactive shell in 2026, but the Rust rewrite did not fix POSIX. Here is why I run fish as a front-end and keep zsh for AI agents.'
+description = 'Fish shell 4.6 is the most polished interactive shell in 2026, but the Rust rewrite did not fix POSIX. Here is why I run fish as a front-end and keep zsh for...'
 toc = true
 tags = ['Fish Shell', 'Shell', 'Developer Tools', 'Claude Code', 'Rust']
 keywords = ['fish shell 4.6 review', 'fish shell rust rewrite', 'fish shell vs zsh 2026', 'fish shell claude code', 'fish shell posix', 'default shell 2026']

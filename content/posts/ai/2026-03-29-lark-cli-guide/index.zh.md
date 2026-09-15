@@ -1,7 +1,7 @@
 +++
 date = '2026-03-29T09:00:00+08:00'
 title = 'Lark CLI 完全指南：用命令行和 AI Agent 操控飞书'
-description = 'Lark CLI 是飞书开放平台官方命令行工具，覆盖日历、消息、文档等 11 大业务域，提供 200+ 命令和 19 个 AI Agent Skills。本文手把手教你从安装配置到实战操作，让 AI Agent 直接帮你管理飞书。'
+description = 'Lark CLI 是飞书开放平台官方命令行工具，覆盖日历、消息、文档等 11 大业务域，提供 200+ 命令和 19 个 AI Agent Skills。本文手把手教你从安装配置到实战操作，让 AI...'
 toc = true
 tags = ['Lark CLI', 'Feishu', 'AI Agent', 'Claude Code', 'CLI Tools', 'Open Source', 'Productivity']
 keywords = ['Lark CLI', 'lark-cli 安装', '飞书命令行', 'AI Agent 飞书', 'Claude Code 飞书', '飞书开放平台', 'lark-cli 教程']

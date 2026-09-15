@@ -1,8 +1,8 @@
 +++
 date = '2026-04-13T10:00:00+08:00'
 draft = false
-title = 'Sub-Agent Architecture for AI Coding Harnesses: When to Spawn, How to Route, What It Costs'
-description = 'Most teams use sub-agents as a speed hack. The real value is context garbage collection. A practical guide to sub-agent architecture, Opus/Sonnet/Haiku routing, isolation strategies, and the cost-quality tradeoffs nobody talks about.'
+title = 'Sub-Agent Architecture for AI Coding Harnesses: When to'
+description = 'Most teams use sub-agents as a speed hack. The real value is context garbage collection. A practical guide to sub-agent architecture, Opus/Sonnet/Haiku...'
 toc = true
 tags = ['Harness Engineering', 'Sub-Agents', 'Claude Code', 'AI Agents', 'AI Engineering']
 keywords = ['sub-agent architecture', 'claude code subagents', 'when to use sub-agents', 'opus sonnet haiku routing', 'agent orchestration patterns', 'multi-agent vs single agent', 'context isolation strategy', 'sub-agent cost optimization']

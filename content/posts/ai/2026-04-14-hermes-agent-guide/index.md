@@ -2,7 +2,7 @@
 date = '2026-04-14T10:00:00+08:00'
 draft = false
 title = 'Hermes Agent Review 2026: Nous Research Setup + Best Models'
-description = "Nous Research Hermes Agent v0.9.0 hands-on review (April 2026): 27K+ GitHub stars, installation guide on $5 Hetzner VPS, best models for the harness (Claude Haiku / DeepSeek), Claude Code integration, and harness engineering pattern explained."
+description = "Nous Research Hermes Agent v0.9.0 hands-on review (April 2026): 27K+ GitHub stars, installation guide on $5 Hetzner VPS, best models for the harness (Claude..."
 toc = true
 tags = ['AI Agent', 'Hermes Agent', 'Nous Research', 'Harness Engineering', 'MCP']
 keywords = ['hermes agent review', 'hermes agent v0.9', 'hermes agent nous research', 'hermes agent installation guide 2026', 'hermes agent harness engineering', 'best model for hermes agent nous research 2026', 'hermes agent vs claude code', 'hermes agent github stars 2026', 'hermes agent current version april 2026']

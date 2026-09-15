@@ -1,8 +1,8 @@
 +++
 date = '2026-02-19T11:00:00+08:00'
 draft = false
-title = 'Figma Code to Canvas: Turn AI-Generated Code into Editable Designs'
-description = 'Figma and Anthropic launch Code to Canvas, converting Claude Code UI output into editable Figma frames via MCP. Complete setup guide, use cases, and comparison with v0, Bolt, and Lovable.'
+title = 'Figma Code to Canvas: Turn AI-Generated Code into Editable'
+description = 'Figma and Anthropic launch Code to Canvas, converting Claude Code UI output into editable Figma frames via MCP. Complete setup guide, use cases, and...'
 toc = true
 tags = ['Figma', 'Claude Code', 'Anthropic', 'AI Design', 'MCP']
 categories = ['AI Guides']

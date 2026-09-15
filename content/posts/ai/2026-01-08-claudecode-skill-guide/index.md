@@ -628,3 +628,4 @@ Give it a try.
 - [Claude Code Best Practices Guide](/posts/ai/2026-01-06-claudecode-best-practices/)
 - [Claude Code Skill Advanced Patterns](/posts/ai/2026-01-12-claudecode-skill-patterns/)
 - [Agent Skills: A New Paradigm for AI Programming](/posts/ai/2026-01-19-agent-skills-new-programming/)
+- [Claude Code Skills vs SubAgents: Context Management Guide](/posts/ai/2025-12-26-claudecode-skill&subagent/)

@@ -1,8 +1,8 @@
 +++
 date = '2026-03-29T09:00:00+08:00'
 draft = false
-title = 'Lark CLI Complete Guide: Control Feishu with Terminal and AI Agents'
-description = 'Lark CLI is the official command-line tool for Feishu/Lark Open Platform, covering 11 business domains with 200+ commands and 19 AI Agent Skills. Step-by-step guide from installation to real-world usage with Claude Code integration.'
+title = 'Lark CLI Complete Guide: Control Feishu with Terminal and'
+description = 'Lark CLI is the official command-line tool for Feishu/Lark Open Platform, covering 11 business domains with 200+ commands and 19 AI Agent Skills...'
 toc = true
 tags = ['Lark CLI', 'Feishu', 'AI Agent', 'Claude Code', 'CLI Tools', 'Open Source', 'Productivity']
 keywords = ['Lark CLI', 'lark-cli install', 'Feishu CLI', 'AI Agent Feishu', 'Claude Code Feishu', 'Lark Open Platform', 'lark-cli tutorial']

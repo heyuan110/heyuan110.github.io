@@ -2,8 +2,8 @@
 date = '2026-09-06T10:00:00+08:00'
 aliases = ['/posts/ai/2026-09-23-pi-coding-agent-review/']
 draft = false
-title = 'pi coding agent 实测：只给 4 个工具的极简 Agent，比 Claude Code 少了什么、多了什么'
-description = 'pi coding agent 与 Claude Code 跑同样 3 个任务实测：上下文 1,358 vs 31,012 token，4 个工具、不弹权限框、不带沙箱。附 DeepSeek / 通义 / Kimi 接入配置、40 行守卫扩展代码、六轮实测收据和该不该换的判断。'
+title = 'pi coding agent 实测：只给 4 个工具的极简 Agent，比 C'
+description = 'pi coding agent 与 Claude Code 跑同样 3 个任务实测：上下文 1,358 vs 31,012 token，4 个工具、不弹权限框、不带沙箱。附 DeepSeek / 通义...'
 toc = true
 tags = ['pi coding agent', 'Claude Code', 'Harness Engineering', 'AI Coding', 'AI Agent']
 keywords = ['pi coding agent', 'pi 编程 agent', 'ai 编程 agent 对比', 'claude code 替代', '终端 ai 编程工具', '自建 agent harness', 'pi coding agent 教程', 'pi agent deepseek 配置']

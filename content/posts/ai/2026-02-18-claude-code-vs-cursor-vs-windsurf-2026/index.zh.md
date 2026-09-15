@@ -1,7 +1,7 @@
 +++
 date = '2026-02-18T22:16:52+08:00'
 draft = false
-title = 'Claude Code vs Cursor vs Windsurf（2026）实测：速度、成本、可控性怎么选'
+title = 'Claude Code vs Cursor vs Windsurf（2026）实'
 description = '基于真实开发任务对 Claude Code、Cursor、Windsurf 做 2026 年实测对比，重点拆解速度、成本、可控性、学习成本与适用人群，并给出按场景可直接套用的选型建议。'
 toc = true
 tags = ['Claude Code', 'Cursor', 'Windsurf', 'AI Coding', 'Tool Comparison']

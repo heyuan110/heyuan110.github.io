@@ -1,7 +1,7 @@
 +++
 date = '2026-02-20T10:00:00+08:00'
 draft = false
-title = 'Xcode 26.3 Agentic Coding 深度解析：Apple 如何用 AI Agent 重塑开发体验'
+title = 'Xcode 26.3 Agentic Coding 深度解析：Apple 如何用'
 description = 'Apple 发布 Xcode 26.3，首次集成 Anthropic Claude Agent 和 OpenAI Codex，支持 MCP 协议。本文深度解析其工作原理、实际体验和对 iOS 开发者的影响。'
 toc = true
 tags = ['Xcode', 'AI Coding', 'Apple', 'Claude Code', 'Codex']

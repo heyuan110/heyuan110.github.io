@@ -1,7 +1,7 @@
 +++
 date = '2026-02-26T10:00:00+08:00'
 draft = false
-title = 'Claude Code Hooks 详解：PreToolUse、PostToolUse 与 settings.json 配置'
+title = 'Claude Code Hooks 详解：PreToolUse、PostTool'
 description = 'PreToolUse、PostToolUse 在 .claude/settings.json 里怎么配：事件触发时机、matcher 规则、退出码含义全部讲透，附 12 个生产级配置和常见踩坑。'
 toc = true
 tags = ['Claude Code', 'Hooks', 'Automation', 'Configuration']

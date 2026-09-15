@@ -2,7 +2,7 @@
 date = '2026-03-08T10:00:00+08:00'
 draft = false
 title = 'Kiro 深度评测：亚马逊这款「规格驱动」的 AI 编程代理到底行不行？'
-description = 'Kiro 是亚马逊的规格驱动 AI 编程 IDE：先生成规格文档再写代码，Pro 版 19 美元/月，基于 Code OSS 兼容 VS Code 插件。深度评测 Agent Hooks、Steering Files 与 MCP 支持，并复盘 2025 年 12 月 13 小时 AWS 宕机事件的教训。'
+description = 'Kiro 是亚马逊的规格驱动 AI 编程 IDE：先生成规格文档再写代码，Pro 版 19 美元/月，基于 Code OSS 兼容 VS Code 插件。深度评测 Agent Hooks、Steeri...'
 toc = true
 tags = ['Kiro', 'Amazon', 'AI Coding Tools', 'AI IDE']
 categories = ['AI Guides']

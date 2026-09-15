@@ -1,7 +1,7 @@
 +++
 date = '2026-01-20T10:51:00+08:00'
 title = 'Claude Code Skills: Top 20 Most Popular Skills in 2026'
-description = 'Discover the 20 most popular Claude Code Skills ranked by GitHub stars and usage. Covers dev workflows, AI/LLM development, specialized tools, and skill creation — with install instructions.'
+description = 'Discover the 20 most popular Claude Code Skills ranked by GitHub stars and usage. Covers dev workflows, AI/LLM development, specialized tools, and skill...'
 toc = true
 tags = ['Claude Code', 'AI Coding', 'Skills', 'Agent', 'Developer Tools']
 categories = ['AI Guides']

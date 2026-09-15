@@ -1,9 +1,9 @@
 +++
-title = 'Anthropic CEO Dario Amodei Bloomberg Interview: Key Takeaways'
+title = 'Anthropic CEO Dario Amodei Bloomberg Interview: Key'
 date = '2026-01-21T15:09:00+08:00'
 draft = false
 toc = true
-description = 'Anthropic CEO Dario Amodei shares insights on AI exponential growth, chip export controls, superintelligence, economic disruption, and why his lead engineer stopped writing code — key takeaways from his Bloomberg interview.'
+description = 'Anthropic CEO Dario Amodei shares insights on AI exponential growth, chip export controls, superintelligence, economic disruption, and why his lead engineer...'
 tags = ['AI', 'Anthropic', 'Claude', 'AI Trends', 'AI Economy']
 categories = ['AI Guides']
 keywords = ['Anthropic CEO interview', 'Dario Amodei Bloomberg', 'AI exponential growth', 'chip export controls', 'AI superintelligence', 'AI economic impact']

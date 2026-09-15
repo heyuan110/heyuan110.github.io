@@ -37,3 +37,10 @@ I also don't bury the answer. If you're here for a specific solution, you'll fin
 - Email: heyuan110@gmail.com
 
 Found something useful? Share it with a friend. Found something wrong? Leave a comment.
+
+## Featured Guides
+
+- [AI Automation Hub: Building Your Fully Automated Dev Flows](/posts/ai/ai-automation-hub/)
+- [The Triumph of Minimalism: A Deep Dive into Pi (pi.dev), the Ultimate Terminal Agent Harness](/posts/ai/2026-09-14-pi-coding-agent-deep-dive/)
+- [Java Beginner to Master: Complete Guide](/posts/java/2024-05-05-learn-java/)
+- [Linux Ops & Site Reliability Hub](/posts/linux/linux-ops-basics-hub/)

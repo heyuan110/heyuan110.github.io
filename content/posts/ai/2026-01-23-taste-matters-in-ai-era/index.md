@@ -2,7 +2,7 @@
 date = '2026-01-23T20:30:00+08:00'
 draft = false
 title = 'Taste Matters More Than Ever in the AI Era: Your Only Moat'
-description = 'When AI can generate infinite content instantly, the real bottleneck is no longer creation but judgment. Learn why personal taste is the scarcest skill in the AI age and how to develop this irreplaceable competitive advantage.'
+description = 'When AI can generate infinite content instantly, the real bottleneck is no longer creation but judgment. Learn why personal taste is the scarcest...'
 toc = true
 tags = ['AI', 'Taste', 'Creativity', 'Personal Growth', 'Career']
 categories = ['AI Guides']

@@ -1,8 +1,8 @@
 +++
 date = '2026-07-21T10:00:00+08:00'
 draft = false
-title = 'Claude Code 截图 MCP 配置:浏览器自动化调试省 100 倍 token'
-description = '一条命令配好 Claude Code 截图 MCP,再告诉你 Chrome DevTools MCP 和 Playwright MCP 怎么选:实测 snapshot 10,220 token,定向脚本只要 65。含 fullPage 陷阱和防炸会话配置。'
+title = 'Claude Code 截图 MCP 配置:浏览器自动化调试省 100 倍 to'
+description = '一条命令配好 Claude Code 截图 MCP,再告诉你 Chrome DevTools MCP 和 Playwright MCP 怎么选:实测 snapshot 10,220 token,定向脚...'
 toc = true
 tags = ['Claude Code', 'MCP', 'Browser Automation', 'Frontend', 'Developer Tools']
 keywords = ['claude code 截图 mcp 配置', 'claude code 浏览器自动化', 'claude code playwright mcp', 'playwright mcp 浏览器测试', 'playwright mcp 安装', 'chrome devtools mcp 配置', 'chrome devtools mcp 和 playwright mcp 选哪个', 'claude code 截图', 'claude code mcp 截图', 'claude code 前端调试', 'mcp 截图 token', 'mcp 图片过大报错']

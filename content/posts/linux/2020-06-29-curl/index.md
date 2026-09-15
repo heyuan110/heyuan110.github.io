@@ -1,5 +1,5 @@
 +++
-title = 'curl Command Guide (2026): HTTP Requests, File Transfers, and API Debugging'
+title = 'curl Command Guide (2026): HTTP Requests, File Transfers,'
 date = '2020-06-29'
 draft = false
 toc = true

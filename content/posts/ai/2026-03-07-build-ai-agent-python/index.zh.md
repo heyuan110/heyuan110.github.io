@@ -2,7 +2,7 @@
 date = '2026-03-07T18:00:00+08:00'
 draft = false
 title = '用 Python 从零构建 AI 编程 Agent（完整实战教程）'
-description = '用 Python 从零构建 AI 编程 Agent：250 行代码实现 Agentic Loop + Function Calling，带读写文件、执行命令、搜索代码等 6 个工具。从 20 行的基础对话到完整 Agent 分四个版本递进，不用框架，理解 Claude Code 们的底层架构。'
+description = '用 Python 从零构建 AI 编程 Agent：250 行代码实现 Agentic Loop + Function Calling，带读写文件、执行命令、搜索代码等 6 个工具。从 20 行的基础...'
 toc = true
 tags = ['Python', 'AI Agent', 'Agentic Loop', 'Tutorial']
 categories = ['AI Guides']

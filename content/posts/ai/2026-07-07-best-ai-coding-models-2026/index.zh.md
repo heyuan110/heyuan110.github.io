@@ -2,7 +2,7 @@
 date = '2026-07-07T11:00:00+08:00'
 aliases = ['/posts/ai/2026-07-09-best-ai-coding-models-2026/']
 draft = false
-title = '2026 最强 AI 编码模型对比：Fable 5、Sonnet 5 还是 GPT-5.6？'
+title = '2026 最强 AI 编码模型对比：Fable 5、Sonnet 5 还是 GP'
 description = '2026 年写代码选哪个模型？直接答案：大多数人选 Sonnet 5——Terminal-Bench 反超旗舰 Opus 4.8，价格只有四成；Fable 5 留给一次顶一天工作量的任务。附选型决策树与价格速查表。'
 toc = true
 tags = ['AI Coding Models', 'Claude', 'LLM Benchmarks', 'Model Comparison']

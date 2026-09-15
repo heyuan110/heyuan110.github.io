@@ -1,8 +1,8 @@
 +++
 date = '2026-02-20T11:00:00+08:00'
 draft = false
-title = 'MCP Protocol Explained: The Universal Standard for AI Integration'
-description = 'Complete guide to Model Context Protocol (MCP) — architecture, core primitives, MCP Apps interactive UI, Linux Foundation governance, Function Calling comparison, and hands-on development.'
+title = 'MCP Protocol Explained: The Universal Standard for AI'
+description = 'Complete guide to Model Context Protocol (MCP) — architecture, core primitives, MCP Apps interactive UI, Linux Foundation governance, Function Calling...'
 toc = true
 tags = ['MCP', 'Model Context Protocol', 'AI Architecture', 'Claude Code']
 categories = ['AI Guides']

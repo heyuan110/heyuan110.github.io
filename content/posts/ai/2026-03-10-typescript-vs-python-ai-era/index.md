@@ -1,8 +1,8 @@
 +++
 date = '2026-03-10T20:00:00+08:00'
 draft = false
-title = 'TypeScript vs Python in the AI Era: Which Language Should You Choose in 2026?'
-description = 'TypeScript overtook Python on GitHub with 66% growth driven by AI tools. Compare both languages for AI-assisted coding, ML development, full-stack apps, and career strategy in 2026.'
+title = 'TypeScript vs Python in the AI Era: Which Language Should'
+description = 'TypeScript overtook Python on GitHub with 66% growth driven by AI tools. Compare both languages for AI-assisted coding, ML development, full-stack apps, and...'
 toc = true
 tags = ['TypeScript', 'Python', 'AI Coding Tools', 'Comparison']
 categories = ['Comparisons']

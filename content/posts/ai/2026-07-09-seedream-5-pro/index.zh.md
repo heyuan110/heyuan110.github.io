@@ -2,8 +2,8 @@
 date = '2026-07-09T18:00:00+08:00'
 aliases = ['/posts/ai/2026-07-10-seedream-5-pro/']
 draft = false
-title = 'Seedream 5.0 Pro 上线：字节生图杀入 Gemini 腹地？API 实操与选型'
-description = 'Seedream 5.0 Pro 于 2026 年 7 月 8 日上线火山方舟：1K 单张 0.3 元、2K 0.6 元，按张计费。本文核检"超过 Gemini"的真实出处，给出开通、调用、计费全流程实操，以及和即梦、Seedance 的联动关系与选型结论。'
+title = 'Seedream 5.0 Pro 上线：字节生图杀入 Gemini 腹地？API'
+description = 'Seedream 5.0 Pro 于 2026 年 7 月 8 日上线火山方舟：1K 单张 0.3 元、2K 0.6 元，按张计费。本文核检"超过 Gemini"的真实出处，给出开通、调用、计费全流程...'
 toc = true
 tags = ['Seedream', 'ByteDance', 'AI Image Generation', 'Gemini']
 keywords = ['seedream 5.0 教程', '即梦 api', '豆包生图', 'seedream 5.0 pro 价格', '火山方舟 生图 api', 'seedream 对比 gemini', '字节 生图模型']

@@ -2,7 +2,7 @@
 date = '2026-02-27T10:00:00+08:00'
 draft = false
 title = 'AI Agent Security: Protecting Automated Workflows in 2026'
-description = 'Learn how to secure AI agent workflows against prompt injection, tool poisoning, and MCP vulnerabilities. Covers OWASP Agentic Top 10, real CVEs, defense strategies, and security tools.'
+description = 'Learn how to secure AI agent workflows against prompt injection, tool poisoning, and MCP vulnerabilities. Covers OWASP Agentic Top 10, real CVEs, defense...'
 toc = true
 tags = ['AI Security', 'MCP', 'AI Agent', 'Claude Code']
 categories = ['AI Guides']

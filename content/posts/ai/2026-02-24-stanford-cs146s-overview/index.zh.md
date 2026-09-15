@@ -2,7 +2,7 @@
 date = '2026-02-24T07:00:00+08:00'
 draft = false
 title = '斯坦福 CS146S 全解析 2026：AI 编程公开课中文笔记（免费自学路线）'
-description = '斯坦福顶级 AI 编程课 CS146S The Modern Software Developer 完整拆解：10 周大纲、Boris Cherney/Karpathy 级嘉宾阵容、免费 PPT 和作业代码资源全收录，一篇看懂如何系统学 Vibe Coding。'
+description = '斯坦福顶级 AI 编程课 CS146S The Modern Software Developer 完整拆解：10 周大纲、Boris Cherney/Karpathy 级嘉宾阵容、免费 PPT 和作...'
 toc = true
 tags = ['Vibe Coding', 'Stanford CS146S', 'AI 编程', '课程解读', 'Agentic Engineering']
 categories = ['AI原理']

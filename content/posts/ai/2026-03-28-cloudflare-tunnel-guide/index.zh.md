@@ -1,8 +1,8 @@
 +++
 date = '2026-03-28T10:00:00+08:00'
 draft = false
-title = '内网穿透实战：SSH 隧道、frp、Cloudflare Tunnel 三种方案深度对比'
-description = '内网穿透怎么选？SSH 反向隧道、frp、Cloudflare Tunnel 三种方案深度对比：前两种需要一台有公网 IP 的 VPS，Cloudflare Tunnel 免费但要托管域名。附一条 ssh -R 命令建隧道的完整教程、frp 配置与踩坑记录。'
+title = '内网穿透实战：SSH 隧道、frp、Cloudflare Tunnel 三种方案'
+description = '内网穿透怎么选？SSH 反向隧道、frp、Cloudflare Tunnel 三种方案深度对比：前两种需要一台有公网 IP 的 VPS，Cloudflare Tunnel 免费但要托管域名。附一条 s...'
 toc = true
 tags = ['Cloudflare', 'Networking', 'DevOps', 'Tunneling']
 keywords = ['内网穿透', 'Cloudflare Tunnel 教程', 'SSH 反向隧道', 'frp 配置', 'ngrok 替代方案', '本地服务公网访问', 'NAT 穿透', 'localhost 公网']

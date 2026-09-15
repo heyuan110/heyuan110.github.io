@@ -2,7 +2,7 @@
 date = '2026-03-10T18:00:00+08:00'
 draft = false
 title = 'High-Frequency Commits: Ship 100+ Commits/Day Without Chaos'
-description = 'Learn how to sustain 100+ daily commits without breaking your codebase. Covers atomic commits, conventional commits, CI testing, and progressive release strategies.'
+description = 'Learn how to sustain 100+ daily commits without breaking your codebase. Covers atomic commits, conventional commits, CI testing, and progressive release...'
 toc = true
 tags = ['Git', 'AI Workflow', 'CI/CD', 'Engineering']
 categories = ['AI Guides']

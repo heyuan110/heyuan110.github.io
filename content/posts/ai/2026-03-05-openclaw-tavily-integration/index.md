@@ -1,8 +1,8 @@
 +++
 date = '2026-03-06T14:00:00+08:00'
 draft = false
-title = 'OpenClaw Tavily Search: ClawHub Skill Integration Guide (2026)'
-description = 'The clawhub tavily-search skill gives OpenClaw agents web search in minutes. Step-by-step install via clawdhub, API key setup, per-agent config, and cost control.'
+title = 'OpenClaw Tavily Search: ClawHub Skill Integration Guide'
+description = 'The clawhub tavily-search skill gives OpenClaw agents web search in minutes. Step-by-step install via clawdhub, API key setup, per-agent config, and cost...'
 toc = true
 tags = ['OpenClaw', 'Tavily', 'AI Agents', 'Web Search', 'ClawHub']
 categories = ['AI Guides']

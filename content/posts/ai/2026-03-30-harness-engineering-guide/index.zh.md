@@ -1,8 +1,8 @@
 +++
 date = '2026-03-30T10:00:00+08:00'
 draft = false
-title = 'Harness Engineering 实战：模型是 AI Agent 里最不重要的部分（60 天管线复盘）'
-description = '60 天跑 Claude Code 博客管线，换模型只升 5%，重写 Harness 端到端降本 60%。讲透 Agent = 模型 + Harness 公式、引导器+传感器架构、Sub-Agent 路由策略、和你今天就能用的 ROI 决策表。'
+title = 'Harness Engineering 实战：模型是 AI Agent 里最不重'
+description = '60 天跑 Claude Code 博客管线，换模型只升 5%，重写 Harness 端到端降本 60%。讲透 Agent = 模型 + Harness 公式、引导器+传感器架构、Sub-Agent...'
 toc = true
 tags = ['Harness Engineering', 'AI Agents', 'AI Engineering', 'Claude Code', 'AI Coding Tools', 'Sub-Agent', 'Context Engineering']
 keywords = ['harness engineering', '线束工程', 'AI Agent 外围系统', 'harness engineering 是什么', 'harness engineering 入门', '提示词工程 vs 线束工程', 'AI 编程工具', 'Claude Code 配置', 'Sub-Agent 路由', 'Agent 降本']

@@ -2,8 +2,8 @@
 date = '2026-01-24'
 lastmod = '2026-02-23T10:00:00+08:00'
 draft = false
-title = 'Docker Compose 教程：docker-compose.yml 配置详解与实战案例（2026）'
-description = '最全 Docker Compose 教程：逐字段讲透 docker-compose.yml 的 services、volumes、networks、healthcheck 配置，附 WordPress+MySQL 实战案例和生产级模板。'
+title = 'Docker Compose 教程：docker-compose.yml 配置详'
+description = '最全 Docker Compose 教程：逐字段讲透 docker-compose.yml 的 services、volumes、networks、healthcheck 配置，附 WordPress...'
 toc = true
 tags = ['Docker', 'Docker Compose', 'Containerization', 'Tutorial', 'YAML']
 categories = ['AI Guides']

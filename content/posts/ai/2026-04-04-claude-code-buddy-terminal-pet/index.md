@@ -1,8 +1,8 @@
 +++
 date = '2026-04-04T16:00:00+08:00'
 draft = false
-title = 'Claude Code Buddy: The Terminal Pet Hidden in Your AI Coding Tool'
-description = 'A deep dive into Claude Code Buddy — the deterministic terminal pet system with 18 species, 5 rarity tiers, and a dual-layer architecture that makes each developer unique companion.'
+title = 'Claude Code Buddy: The Terminal Pet Hidden in Your AI'
+description = 'A deep dive into Claude Code Buddy — the deterministic terminal pet system with 18 species, 5 rarity tiers, and a dual-layer architecture that makes each...'
 toc = true
 tags = ['Claude Code', 'Developer Tools', 'AI Coding']
 keywords = ['Claude Code buddy', 'Claude Code terminal pet', 'Claude Code buddy species', 'Claude Code buddy rarity', 'how to use Claude Code buddy', 'Claude Code buddy commands']

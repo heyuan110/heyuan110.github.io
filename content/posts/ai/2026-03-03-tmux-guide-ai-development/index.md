@@ -1,8 +1,8 @@
 +++
 date = '2026-03-03T10:00:00+08:00'
 draft = false
-title = 'Tmux Complete Guide: From Basics to AI-Powered Multi-Agent Workflows'
-description = 'Master tmux from zero to advanced AI development workflows. Learn session management, pane splitting, configuration, and how to run parallel Claude Code agents with tmux for 10x productivity.'
+title = 'Tmux Complete Guide: From Basics to AI-Powered Multi-Agent'
+description = 'Master tmux from zero to advanced AI development workflows. Learn session management, pane splitting, configuration, and how to run parallel Claude...'
 toc = true
 tags = ['tmux', 'Claude Code', 'AI Workflow', 'Terminal', 'Developer Tools']
 categories = ['AI Guides']

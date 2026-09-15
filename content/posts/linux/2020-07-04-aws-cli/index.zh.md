@@ -540,3 +540,4 @@ AWS CLI 是管理云资源的强大工具，掌握常用命令可以大幅提升
 - [Docker 常用命令速查](/zh/posts/docker/2019-11-14-docker-commands/)
 - [Amazon Redshift 性能优化指南：VACUUM、ANALYZE 与运维最佳实践](/zh/posts/datawarehouse/2018-08-09-dw-redshift/) — CLI 管不到的集群运维：VACUUM、ANALYZE 与 WLM 调优
 - [Jenkins + AWS CodeDeploy + AutoScaling 持续集成实战指南](/zh/posts/linux/2018-11-20-jenkins-codedeploy-autoscaling/) — 把这些命令放进真实的蓝绿发布流水线：CodeDeploy + Auto Scaling
+- [Linux 运维基础与常用 Shell 命令中心](/zh/posts/linux/linux-ops-basics-hub/)

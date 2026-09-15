@@ -1,6 +1,6 @@
 +++
 date = '2015-08-15T11:33:11+08:00'
-title = 'Charles 抓包教程（2026）：HTTP/HTTPS 拦截、Mock 调试与证书配置'
+title = 'Charles 抓包教程（2026）：HTTP/HTTPS 拦截、Mock 调试'
 description = 'Charles 抓包实战指南：HTTP/HTTPS 请求拦截、Mock 数据、网络限速与断点调试，补充 2026 证书安装与常见问题排查。'
 toc = true
 tags = ['Charles', '抓包', '调试', 'HTTPS', '网络', 'API 调试']
@@ -189,4 +189,5 @@ PS:补充breakpoints调试
 - [Linux/macOS 常用命令大全](/zh/posts/linux/2020-03-19-linux-mac-commands/)
 - [Docker Compose 完全指南（2026）](/zh/posts/docker/2026-01-19-docker-compose-complete-guide/)
 - [OpenClaw 超详细上手教程：小白友好 + 老鸟技巧](/zh/posts/ai/2026-02-12-openclaw-usage-tutorial/)
+- [macOS 终端显示/隐藏隐藏文件完全指南](/zh/posts/macos/show-hide-files/)
 

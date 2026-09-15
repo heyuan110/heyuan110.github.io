@@ -1,8 +1,8 @@
 +++
 date = '2026-03-17T10:00:00+08:00'
 draft = false
-title = 'Chrome DevTools MCP Setup 2026: Fix "Opens New Window" + Port 9222 (Claude Code & Cursor)'
-description = 'How to connect AI to your already-logged-in Chrome browser. Fix the new-window problem in 3 steps, configure remote debugging port 9222 on macOS, enable autoConnect on Chrome 146+, and solve the user-data-dir conflict. Works with Claude Code, Cursor, Windsurf.'
+title = 'Chrome DevTools MCP Setup 2026: Fix "Opens New Window" +'
+description = 'How to connect AI to your already-logged-in Chrome browser. Fix the new-window problem in 3 steps, configure remote debugging port 9222 on macOS, enable...'
 toc = true
 tags = ['Chrome DevTools', 'MCP', 'AI Coding Tools', 'Claude Code']
 keywords = ['Chrome DevTools MCP', 'chrome devtools mcp setup', 'chrome devtools mcp setup 2026', 'chrome devtools mcp not connecting', 'chrome remote debugging port 9222', 'chrome remote debugging port 9222 mac', 'autoConnect chrome mcp', 'chrome devtools mcp autoConnect', 'chrome devtools mcp user-data-dir', 'AI browser debugging', 'AI browser session login', 'claude code chrome mcp', 'chrome devtools mcp claude code', 'cursor chrome devtools mcp', 'mcp server chrome setup', 'how to connect AI to existing chrome browser']

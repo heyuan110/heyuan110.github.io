@@ -1,8 +1,8 @@
 +++
 date = '2026-04-02T10:00:00+08:00'
 draft = false
-title = 'MCP vs Skills vs Hooks in Claude Code: Which Extension Do You Need?'
-description = 'Deep technical comparison of Claude Code MCP, Skills, and Hooks — protocol design, context costs, trigger mechanisms, and a decision framework for choosing the right extension.'
+title = 'MCP vs Skills vs Hooks in Claude Code: Which Extension Do'
+description = 'Deep technical comparison of Claude Code MCP, Skills, and Hooks — protocol design, context costs, trigger mechanisms, and a decision framework for...'
 toc = true
 tags = ['Claude Code', 'MCP', 'Skills', 'Hooks', 'AI Architecture']
 keywords = ['MCP vs Skills Claude Code', 'Claude Code MCP Skills difference', 'Claude Code Hooks vs Skills', 'Model Context Protocol', 'Claude Code extensions comparison', 'when to use MCP vs Skills']

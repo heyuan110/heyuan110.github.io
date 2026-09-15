@@ -1,8 +1,8 @@
 +++
 date = '2026-01-25'
 draft = false
-title = 'ClawdBot Setup Guide: Build Your Personal AI Assistant in 30 Minutes'
-description = 'Learn how to set up ClawdBot, an open-source AI agent that runs 24/7 on your computer. This step-by-step guide covers installation, Telegram integration, and automating emails, scheduling, and reminders.'
+title = 'ClawdBot Setup Guide: Build Your Personal AI Assistant in'
+description = 'Learn how to set up ClawdBot, an open-source AI agent that runs 24/7 on your computer. This step-by-step guide covers installation, Telegram integration, and...'
 tags = ['ClawdBot', 'AI Agent', 'AI Assistant', 'Open Source', 'Automation', 'Anthropic', 'Claude']
 categories = ['AI Guides']
 keywords = ['ClawdBot setup guide', 'personal AI assistant', 'open source AI agent', 'Telegram AI bot', 'ClawdBot tutorial', 'self-hosted AI assistant']

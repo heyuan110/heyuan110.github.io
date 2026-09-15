@@ -1,8 +1,8 @@
 +++
 date = '2026-02-22T08:00:00+08:00'
 draft = false
-title = 'Claude Code Agent Teams 2026: Parallel Multi-Agent Development (With Cost Optimization)'
-description = 'Complete guide to Claude Code Agent Teams: run multiple Claude instances in parallel, Opus+Sonnet mixed orchestration for cost savings, real-world workflows, and command reference. Compress hours of serial work into minutes.'
+title = 'Claude Code Agent Teams 2026: Parallel Multi-Agent'
+description = 'Complete guide to Claude Code Agent Teams: run multiple Claude instances in parallel, Opus+Sonnet mixed orchestration for cost savings, real-world workflows...'
 toc = true
 tags = ['Claude Code', 'Agent Teams', 'AI Coding', 'Multi-Agent', 'Anthropic']
 categories = ['AI Guides']

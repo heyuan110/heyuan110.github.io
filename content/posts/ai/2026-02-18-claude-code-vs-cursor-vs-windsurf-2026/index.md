@@ -1,8 +1,8 @@
 +++
 date = '2026-02-18T22:16:52+08:00'
 draft = false
-title = 'Claude Code vs Cursor vs Windsurf 2026: Speed, Cost & Control'
-description = 'Hands-on comparison of Claude Code, Cursor, and Windsurf in 2026 covering speed, cost, controllability, and learning curve with actionable selection advice for every developer type.'
+title = 'Claude Code vs Cursor vs Windsurf 2026: Speed, Cost &'
+description = 'Hands-on comparison of Claude Code, Cursor, and Windsurf in 2026 covering speed, cost, controllability, and learning curve with actionable selection...'
 toc = true
 tags = ['Claude Code', 'Cursor', 'Windsurf', 'AI Coding', 'Tool Comparison']
 categories = ['Comparisons']

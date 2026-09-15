@@ -1,8 +1,8 @@
 +++
 date = '2026-02-03T00:23:00+08:00'
 draft = false
-title = 'Claude-Mem Deep Dive: Persistent Memory Plugin for Claude Code'
-description = 'Claude-Mem gives Claude Code cross-session persistent memory via hooks, AI compression, hybrid search, and Endless Mode. Full architecture breakdown and comparison with native CLAUDE.md.'
+title = 'Claude-Mem Deep Dive: Persistent Memory Plugin for Claude'
+description = 'Claude-Mem gives Claude Code cross-session persistent memory via hooks, AI compression, hybrid search, and Endless Mode. Full architecture breakdown and...'
 toc = true
 tags = ['Claude Code', 'Claude-Mem', 'AI Memory', 'Plugin Architecture', 'MCP']
 categories = ['AI Guides']

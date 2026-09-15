@@ -1,7 +1,7 @@
 +++
-title = 'Amazon Redshift 性能优化指南：VACUUM、ANALYZE 与运维最佳实践'
+title = 'Amazon Redshift 性能优化指南：VACUUM、ANALYZE 与运'
 date = '2018-08-09T16:03:05+08:00'
-description = 'Amazon Redshift 数据仓库性能优化完全指南，详解 VACUUM 六种类型（FULL、DELETE ONLY、SORT ONLY、REINDEX、RECLUSTER、BOOST）、ANALYZE 统计更新、表设计最佳实践和常用运维命令。'
+description = 'Amazon Redshift 数据仓库性能优化完全指南，详解 VACUUM 六种类型（FULL、DELETE ONLY、SORT ONLY、REINDEX、RECLUSTER、BOOST）、ANAL...'
 toc = true
 tags = ['Redshift', 'AWS', 'Data Warehouse', 'Performance Tuning', 'VACUUM']
 categories = ['Data Warehouse']

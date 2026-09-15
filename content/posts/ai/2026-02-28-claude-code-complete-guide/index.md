@@ -2,7 +2,7 @@
 date = '2026-03-01T10:00:00+08:00'
 draft = false
 title = 'Claude Code Guide 2026: Everything You Need to Know'
-description = 'The complete Claude Code guide for 2026. Installation, CLAUDE.md, MCP servers, Hooks, Skills, Worktree, Teams, pricing, and advanced workflows — all in one place.'
+description = 'The complete Claude Code guide for 2026. Installation, CLAUDE.md, MCP servers, Hooks, Skills, Worktree, Teams, pricing, and advanced workflows — all in one...'
 toc = true
 tags = ['Claude Code', 'Guide', 'Tutorial', 'AI Coding Tools']
 categories = ['AI Guides']

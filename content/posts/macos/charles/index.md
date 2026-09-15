@@ -1,7 +1,7 @@
 +++
 date = '2015-08-15T11:33:11+08:00'
-title = 'Charles Proxy Tutorial: HTTP/HTTPS Interception, Mock Data, and Debugging'
-description = 'A practical guide to Charles Proxy on macOS — learn how to intercept HTTP/HTTPS traffic, mock API responses, throttle network speed, use breakpoints, and configure SSL certificates.'
+title = 'Charles Proxy Tutorial: HTTP/HTTPS Interception, Mock Data,'
+description = 'A practical guide to Charles Proxy on macOS — learn how to intercept HTTP/HTTPS traffic, mock API responses, throttle network speed, use breakpoints, and...'
 toc = true
 tags = ['Charles', '抓包', '调试', 'HTTPS', '网络', 'API 调试']
 categories = ['macOS']
@@ -172,3 +172,4 @@ Modern macOS and iOS versions have strict security policies that require extra s
 - [Essential Linux/macOS Command Reference](/posts/linux/2020-03-19-linux-mac-commands/)
 - [Docker Compose Complete Guide (2026)](/posts/docker/2026-01-19-docker-compose-complete-guide/)
 - [OpenClaw Hands-On Tutorial: Beginner-Friendly with Advanced Tips](/posts/ai/2026-02-12-openclaw-usage-tutorial/)
+- [macOS Show/Hide Hidden Files Complete Guide](/posts/macos/show-hide-files/)

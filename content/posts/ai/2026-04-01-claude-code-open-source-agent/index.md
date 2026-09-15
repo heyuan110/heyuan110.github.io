@@ -1,8 +1,8 @@
 +++
 date = '2026-04-01T10:00:00+08:00'
 draft = false
-title = 'Claude Code Open Source: The Rewrite That Hit 100K Stars in Hours'
-description = 'Deep technical analysis of Claude Code Open Source — the clean-room Python and Rust rewrite of Claude Code agent harness architecture, born from the March 2026 source code leak. Architecture comparison, legal implications, and honest assessment.'
+title = 'Claude Code Open Source: The Rewrite That Hit 100K Stars in'
+description = 'Deep technical analysis of Claude Code Open Source — the clean-room Python and Rust rewrite of Claude Code agent harness architecture, born from the...'
 toc = true
 tags = ['Claude Code Open Source', 'Open Source', 'AI Coding Tools', 'Claude Code', 'Agent Framework']
 keywords = ['Claude Code Open Source review', 'Claude Code source leak', 'open source AI coding agent', 'Claude Code Open Source vs Claude Code', 'agent harness architecture', 'clean room rewrite']

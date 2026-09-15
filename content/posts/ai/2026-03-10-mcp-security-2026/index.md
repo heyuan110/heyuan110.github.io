@@ -2,7 +2,7 @@
 date = '2026-03-09T14:00:00+08:00'
 draft = false
 title = 'MCP Security 2026: 30 CVEs in 60 Days — What Went Wrong'
-description = 'A deep dive into 30 MCP vulnerabilities filed in 60 days. Covers attack patterns, CVE timeline, OWASP Agentic Top 10, security tools comparison, and a practical defense checklist for MCP server operators.'
+description = 'A deep dive into 30 MCP vulnerabilities filed in 60 days. Covers attack patterns, CVE timeline, OWASP Agentic Top 10, security tools comparison, and a...'
 toc = true
 tags = ['MCP', 'Security', 'AI Agent', 'Claude Code']
 categories = ['AI Guides']

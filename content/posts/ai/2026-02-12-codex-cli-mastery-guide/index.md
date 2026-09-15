@@ -1,8 +1,8 @@
 +++
 date = '2026-02-12T16:02:00+08:00'
 draft = false
-title = 'Codex CLI Mastery Guide: 20+ Power Tips for Real-World Development'
-description = 'Complete Codex CLI guide covering installation, model switching, session recovery, MCP integration, security modes, and an honest Codex CLI vs Claude Code comparison.'
+title = 'Codex CLI Mastery Guide: 20+ Power Tips for Real-World'
+description = 'Complete Codex CLI guide covering installation, model switching, session recovery, MCP integration, security modes, and an honest Codex CLI vs Claude Code...'
 toc = true
 tags = ['Codex CLI', 'AI Coding', 'OpenAI', 'Terminal Tools', 'AI Agent']
 categories = ['AI Guides']

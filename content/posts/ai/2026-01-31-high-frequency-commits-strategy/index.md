@@ -1,8 +1,8 @@
 +++
 date = '2026-01-31T09:10:00+08:00'
 draft = false
-title = 'High-Frequency Commits: Engineering Practices for 100+ Commits per Day'
-description = 'High-frequency commits do not mean chaos. Learn atomic commits, Conventional Commits, layered testing, progressive rollouts, and a 10-point checklist to ship fast without breaking things.'
+title = 'High-Frequency Commits: Engineering Practices for 100+'
+description = 'High-frequency commits do not mean chaos. Learn atomic commits, Conventional Commits, layered testing, progressive rollouts, and a 10-point checklist to ship...'
 toc = true
 tags = ['Git', 'Engineering Productivity', 'Conventional Commits', 'CI/CD', 'Testing']
 categories = ['AI Guides']

@@ -1,8 +1,8 @@
 +++
 date = '2026-01-23T20:07:08+08:00'
 draft = false
-title = 'TypeScript Complete Guide: From Basics to Advanced Type System Mastery'
-description = 'A comprehensive TypeScript tutorial covering basic syntax, advanced types, generics, type gymnastics, utility types, and best practices with real-world code examples.'
+title = 'TypeScript Complete Guide: From Basics to Advanced Type'
+description = 'A comprehensive TypeScript tutorial covering basic syntax, advanced types, generics, type gymnastics, utility types, and best practices with real-world code...'
 toc = true
 images = ['cover.webp']
 tags = ['TypeScript', 'JavaScript', 'Frontend', 'Type System']

@@ -2,7 +2,7 @@
 date = '2026-09-09T10:00:00+08:00'
 aliases = ['/posts/ai/2026-09-11-free-ai-agent-courses-fall-2026/', '/posts/ai/2026-09-14-free-ai-agent-courses-fall-2026/']
 draft = false
-title = '2026 秋季 5 门免费大学 AI Agent 课怎么跟：斯坦福、CMU、MIT'
+title = '2026 秋季 5 门免费大学 AI Agent 课怎么跟：斯坦福、CMU、MI'
 description = '斯坦福 CS146S/CS329Z/CS329A、CMU 11-768、MIT 多模态课五门免费 AI Agent 课程横向对比：哪门有公开视频、哪门只有材料、国内怎么获取、先跟哪门、每周几小时。'
 toc = true
 tags = ['AI Agent', 'Learning Path', 'Stanford CS146S', 'Agentic Engineering']

@@ -1,8 +1,8 @@
 +++
 date = '2026-02-27T10:00:00+08:00'
 draft = false
-title = 'Claude Code --teammate-mode 详解：让多个 Agent 真正协作起来'
-description = 'Claude Code Agent Teams 实战：设置 CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1 即可启用 2026 年 2 月随 Opus 4.6 发布的多 Agent 协作，详解 Team Lead 架构、mailbox 通信、tmux 分屏与成本控制。'
+title = 'Claude Code --teammate-mode 详解：让多个 Agent'
+description = 'Claude Code Agent Teams 实战：设置 CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1 即可启用 2026 年 2 月随 Opus 4.6 发布的多...'
 toc = true
 tags = ['Claude Code', 'Agent Teams', 'Multi-Agent', 'Collaboration']
 categories = ['AI Guides']

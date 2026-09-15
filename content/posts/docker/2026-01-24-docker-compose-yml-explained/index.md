@@ -2,8 +2,8 @@
 date = '2026-01-24'
 lastmod = '2026-02-23T10:00:00+08:00'
 draft = false
-title = 'Docker Compose Tutorial: docker-compose.yml Explained with Real Examples (2026)'
-description = 'Complete Docker Compose tutorial covering every docker-compose.yml field — services, volumes, networks, healthcheck, ports — with a WordPress + MySQL hands-on example and production-ready templates.'
+title = 'Docker Compose Tutorial: docker-compose.yml Explained with'
+description = 'Complete Docker Compose tutorial covering every docker-compose.yml field — services, volumes, networks, healthcheck, ports — with a WordPress + MySQL...'
 toc = true
 tags = ['Docker', 'Docker Compose', 'Containerization', 'Tutorial', 'YAML']
 categories = ['AI Guides']

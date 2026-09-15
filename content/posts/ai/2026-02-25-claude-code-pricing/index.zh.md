@@ -1,8 +1,8 @@
 +++
 date = '2026-03-03T10:00:00+08:00'
 draft = false
-title = 'Claude Code 价格 2026：免费/Pro $20/Max $200 真实花费对比'
-description = 'Claude Code 价格 2026 真实对比：免费版不含 Claude Code，Pro $20/月每 5 小时约 45 条消息，Max 5x $100 约 225 条，Max 20x $200 近乎无限。附 API 按 Token 计费的成本核算与各档升级建议。'
+title = 'Claude Code 价格 2026：免费/Pro $20/Max $200'
+description = 'Claude Code 价格 2026 真实对比：免费版不含 Claude Code，Pro $20/月每 5 小时约 45 条消息，Max 5x $100 约 225 条，Max 20x $200...'
 toc = true
 tags = ['Claude Code', 'Pricing', 'AI Coding Tools', 'Comparison']
 categories = ['AI Guides']

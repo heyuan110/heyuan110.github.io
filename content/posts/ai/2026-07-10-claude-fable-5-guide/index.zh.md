@@ -2,7 +2,7 @@
 date = '2026-07-10T15:00:00+08:00'
 draft = false
 title = 'Claude Fable 5 值不值：$10/$50 的决策账与用好它的方法'
-description = '2026 年 7 月 13 日起 Fable 5 退出所有 Claude 订阅，只能用 usage credits 按 $10/$50 计费。本文算清单次任务 $30-100 的真实成本账，给出该不该开 Fable 5 的决策树，以及用未知项框架榨干每一次付费调用的完整流程。'
+description = '2026 年 7 月 13 日起 Fable 5 退出所有 Claude 订阅，只能用 usage credits 按 $10/$50 计费。本文算清单次任务 $30-100 的真实成本账，给出该不该...'
 toc = true
 tags = ['Claude', 'Fable 5', 'AI Coding Models', 'LLM Pricing']
 keywords = ['claude fable 5', 'fable 5 价格', 'fable 5 值不值', 'fable 模型', 'fable 5 订阅', 'fable 5 额度', 'fable 5 怎么用']

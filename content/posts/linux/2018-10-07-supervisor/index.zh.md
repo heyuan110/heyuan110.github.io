@@ -1,6 +1,6 @@
 +++
 date = '2018-10-07T00:35:04+08:00'
-title = 'Supervisor 教程（2026）：安装配置、常见问题与 Supervisor vs systemd 选型'
+title = 'Supervisor 教程（2026）：安装配置、常见问题与 Superviso'
 description = '面向 Linux 运维与开发者的 Supervisor 实战指南：安装配置、进程托管、常见故障排查，以及与 systemd/PM2 的选型对比。'
 toc = true
 tags = ['supervisor', 'linux', '进程管理', 'systemd', '运维']

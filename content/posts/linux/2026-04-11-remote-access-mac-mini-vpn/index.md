@@ -1,8 +1,8 @@
 +++
 date = '2026-04-11T10:00:00+08:00'
 draft = false
-title = 'Turn Your Office Mac Mini into a Personal VPN: 5 Approaches Compared'
-description = 'Five practical ways to remotely access your office Mac Mini from anywhere — Tailscale, WireGuard, ZeroTier, Cloudflare Tunnel, and frp. Full setup guides, real-world gotchas, and an honest comparison for developers in China.'
+title = 'Turn Your Office Mac Mini into a Personal VPN: 5 Approaches'
+description = 'Five practical ways to remotely access your office Mac Mini from anywhere — Tailscale, WireGuard, ZeroTier, Cloudflare Tunnel, and frp. Full setup guides...'
 toc = true
 tags = ['VPN', 'WireGuard', 'Tailscale', 'Networking', 'macOS', 'Remote Access']
 keywords = ['Mac Mini VPN', 'remote access Mac', 'Tailscale setup', 'WireGuard macOS', 'office VPN', 'NAT traversal', 'work from home VPN']

@@ -1,8 +1,8 @@
 +++
 date = '2026-03-13T10:00:00+08:00'
 draft = false
-title = 'AI Code Security Tools Compared: Codex Security vs Claude Code Security vs Snyk'
-description = 'Compare OpenAI Codex Security, Claude Code Security, and Snyk for AI-powered vulnerability scanning. Real results, pricing, and which tool fits your security workflow in 2026.'
+title = 'AI Code Security Tools Compared: Codex Security vs Claude'
+description = 'Compare OpenAI Codex Security, Claude Code Security, and Snyk for AI-powered vulnerability scanning. Real results, pricing, and which tool fits your security...'
 toc = true
 tags = ['AI Security', 'Code Audit', 'Claude Code', 'DevSecOps', 'Vulnerability Scanning']
 keywords = ['AI code security tools', 'Codex Security vs Claude Code Security', 'AI vulnerability scanning comparison', 'Snyk vs AI security tools', 'code security scanning 2026']

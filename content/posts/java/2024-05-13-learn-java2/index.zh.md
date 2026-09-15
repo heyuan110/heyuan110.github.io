@@ -29,7 +29,7 @@ answer = "前提很苛刻：元素必须有序，否则不能用。步骤是先�
 +++
 ![image](java-logo.webp)
 
-[接上一篇《Java学习笔记（一）》](../2024-05-05-learn-java)
+[接上一篇《Java学习笔记（一）》](/zh/posts/java/2024-05-05-learn-java/)
 
 
 

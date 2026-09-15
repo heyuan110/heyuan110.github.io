@@ -1,7 +1,7 @@
 +++
 date = '2024-05-13T15:13:10+08:00'
-title = 'Java Tutorial Part 2: Arrays Utility, Lambda Expressions, Regex, and Sorting Algorithms'
-description = 'A hands-on Java tutorial covering the Arrays utility class, Lambda expressions, method references, regular expressions, exception handling, and classic sorting and searching algorithms with code examples.'
+title = 'Java Tutorial Part 2: Arrays Utility, Lambda Expressions,'
+description = 'A hands-on Java tutorial covering the Arrays utility class, Lambda expressions, method references, regular expressions, exception handling, and...'
 toc = true
 tags = ['Java', 'Arrays', 'Collections', 'IO', 'Tutorial']
 categories = ['Java']
@@ -33,7 +33,7 @@ answer = "Stop swapping inside the inner loop. The naive version divides the arr
 +++
 ![image](java-logo.webp)
 
-[Continued from Part 1: Java Tutorial (Part 1)](../2024-05-05-learn-java)
+[Continued from Part 1: Java Tutorial (Part 1)](/posts/java/2024-05-05-learn-java/)
 
 
 

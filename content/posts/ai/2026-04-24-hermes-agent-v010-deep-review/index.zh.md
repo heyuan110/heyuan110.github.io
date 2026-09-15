@@ -1,8 +1,8 @@
 +++
 date = '2026-04-24T11:00:00+08:00'
 draft = false
-title = 'Hermes Agent v0.10 深度评测：113K star 的黑马是真自生长还是营销包装？'
-description = 'Hermes Agent v0.10 发布 8 天、GitHub star 破 113K，成为 2026 年最快的开源 Agent 框架。本文实测三层记忆、118 技能、Tool Gateway，拆解"自生长"的真相，对比 Managed Agents 和 OpenClaw 给出选型决策框架。'
+title = 'Hermes Agent v0.10 深度评测：113K star 的黑马是真自'
+description = 'Hermes Agent v0.10 发布 8 天、GitHub star 破 113K，成为 2026 年最快的开源 Agent 框架。本文实测三层记忆、118 技能、Tool Gateway，拆解...'
 toc = true
 tags = ['Hermes Agent', 'Nous Research', 'AI Agent', 'Harness Engineering', 'Open Source Agent']
 

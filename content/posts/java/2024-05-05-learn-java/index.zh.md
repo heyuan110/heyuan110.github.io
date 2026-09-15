@@ -1,6 +1,6 @@
 +++
 date = '2024-05-04T21:00:00+08:00'
-title = 'Java 入门教程（一）：JDK/JRE/JVM 概念解析与 IDEA 开发环境配置'
+title = 'Java 入门教程（一）：JDK/JRE/JVM 概念解析与 IDEA 开发环境'
 description = 'Java 零基础入门教程第一篇，涵盖 Java 发展历史、SE/EE/ME 技术体系，详解 JDK、JRE、JVM 概念区别，IDEA 开发环境配置和常用快捷键'
 toc = true
 tags = ['Java', 'JDK', 'JVM', 'IDEA']
@@ -1698,7 +1698,7 @@ public class Test6_DateTimeFormatter {
 
 
 
-[下一篇《Java学习笔记（二）》](../2024-05-13-learn-java2)
+[下一篇《Java学习笔记（二）》](/zh/posts/java/2024-05-13-learn-java2/)
 
 
 

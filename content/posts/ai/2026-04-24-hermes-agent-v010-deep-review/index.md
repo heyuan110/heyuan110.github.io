@@ -1,8 +1,8 @@
 +++
 date = '2026-04-24T11:00:00+08:00'
 draft = false
-title = 'Hermes Agent v0.10 Review: How 113K Stars in 7 Weeks Hides an Economic Innovation, Not a Technical One'
-description = 'Hermes Agent hit 113K GitHub stars 8 days after shipping v0.10 — the fastest open-source agent framework of 2026. We dissect the three-tier memory, 118 skills, and Tool Gateway to separate marketing ("self-improving") from what Hermes actually does well: bundling the tax of running an agent into one subscription.'
+title = 'Hermes Agent v0.10 Review: How 113K Stars in 7 Weeks Hides'
+description = 'Hermes Agent hit 113K GitHub stars 8 days after shipping v0.10 — the fastest open-source agent framework of 2026. We dissect the three-tier memory...'
 toc = true
 tags = ['Hermes Agent', 'Nous Research', 'AI Agent', 'Harness Engineering', 'Open Source Agent']
 

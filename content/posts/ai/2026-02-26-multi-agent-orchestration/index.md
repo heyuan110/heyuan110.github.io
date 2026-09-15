@@ -2,7 +2,7 @@
 date = '2026-02-26T10:00:00+08:00'
 draft = false
 title = 'Multi-Agent Orchestration: 4 Patterns That Actually Work'
-description = 'Learn 4 proven multi-agent orchestration patterns — Pipeline, Router, Orchestrator-Worker, and Evaluator-Optimizer — with real-world examples from Claude Code, Cursor, and Antigravity.'
+description = 'Learn 4 proven multi-agent orchestration patterns — Pipeline, Router, Orchestrator-Worker, and Evaluator-Optimizer — with real-world examples from...'
 toc = true
 tags = ['Multi-Agent', 'AI Architecture', 'Agent Orchestration', 'Claude Code', 'AI Patterns']
 categories = ['AI Guides']

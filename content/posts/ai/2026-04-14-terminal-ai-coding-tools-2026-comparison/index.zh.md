@@ -1,8 +1,8 @@
 +++
 date = '2026-04-14T10:00:00+08:00'
 draft = false
-title = '2026 终端 AI 编程工具深度横评：Claude Code、Codex CLI、Gemini CLI、Aider 怎么选'
-description = '2026 终端 AI 编程工具横评：Claude Code、Codex CLI、Gemini CLI、Aider 分属三条赛道——预算 $0 选 Gemini CLI（免费 1000 次/天）+ Aider，$40 选 Pro 组合，$200 上 Claude Code Max。按赛道拆解真实能力边界与定价。'
+title = '2026 终端 AI 编程工具深度横评：Claude Code、Codex CL'
+description = '2026 终端 AI 编程工具横评：Claude Code、Codex CLI、Gemini CLI、Aider 分属三条赛道——预算 $0 选 Gemini CLI（免费 1000 次/天）+ Ai...'
 toc = true
 tags = ['Claude Code', 'Codex CLI', 'Gemini CLI', 'Aider', 'AI Coding Tools', 'Terminal']
 keywords = ['终端 AI 编程工具', 'AI 编程工具对比 2026', 'Claude Code 对比 Codex CLI', 'Gemini CLI 免费', 'Aider AI 编程', 'AI CLI 工具推荐', '终端编程工具哪个好', '2026 AI 编程工具横评']
@@ -275,3 +275,4 @@ Gemini CLI 每天 1000 次免费请求、1M 上下文窗口、Google Search grou
 - [OpenClaw 多 Agent 编排指南](/zh/posts/ai/2026-02-23-openclaw-multi-agent-guide/) — 编排赛道的深度实践
 - [5 款 AI 编程工具实测对比](/zh/posts/ai/2026-04-03-claude-code-vs-cursor-vs-copilot/) — 更广维度的 AI 编程工具对比
 - [pi coding agent 实测：只给 4 个工具的极简 Agent](/zh/posts/ai/2026-09-06-pi-coding-agent-review/) — 极简这条路走到极致：只给 4 个工具的 Agent
+- [极简主义的胜利：深度解析 Terminal AI 编码利器 Pi (pi.dev)](/zh/posts/ai/2026-09-14-pi-coding-agent-deep-dive/) — “无 MCP、无 Subagent、无 Plan Mode”的黑客级 Terminal Harness 深度实战解析

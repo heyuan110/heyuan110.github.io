@@ -1,8 +1,8 @@
 +++
 date = '2026-02-20T12:00:00+08:00'
 draft = false
-title = 'Claude Code Worktree 实战：一个仓库同时跑多个 AI 任务的正确姿势'
-description = '详解 Claude Code --worktree (-w) 模式，从 Git Worktree 基础到并行开发实战，涵盖自动创建、隔离开发、清理机制、最佳实践与常见问题。帮你在一个仓库里同时跑多个 Claude 任务互不干扰。'
+title = 'Claude Code Worktree 实战：一个仓库同时跑多个 AI 任务的'
+description = '详解 Claude Code --worktree (-w) 模式，从 Git Worktree 基础到并行开发实战，涵盖自动创建、隔离开发、清理机制、最佳实践与常见问题。帮你在一个仓库里同时跑多个...'
 toc = true
 tags = ['Claude Code', 'Git Worktree', 'AI 编程', '开发效率']
 categories = ['AI实战']

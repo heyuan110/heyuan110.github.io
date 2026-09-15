@@ -1,7 +1,7 @@
 +++
 title = 'Bash Special Variables Explained: $$, $?, $@, $# and More'
 date = '2026-01-22T15:47:58+08:00'
-description = 'A complete guide to Bash special variables including $$, $!, $?, $-, $*, $@, $#, and $0. Learn the difference between $* and $@, exit status codes, and best practices with practical examples.'
+description = 'A complete guide to Bash special variables including $$, $!, $?, $-, $*, $@, $#, and $0. Learn the difference between $* and $@, exit status codes, and best...'
 toc = true
 tags = ['Shell', 'Bash', 'Linux', 'Scripting']
 categories = ['Linux']

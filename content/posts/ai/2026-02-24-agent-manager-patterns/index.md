@@ -1,8 +1,8 @@
 +++
 date = '2026-02-24T08:00:00+08:00'
 draft = false
-title = 'Stanford CS146S Deep Dive (3): Agent Manager — Best Practices for Human-AI Collaboration'
-description = "A deep dive into Stanford CS146S Week 4: from Claude Code creator Boris Cherney's talk to Anthropic's official best practices, learn how to manage Coding Agents and design human-AI collaboration patterns."
+title = 'Stanford CS146S Deep Dive (3): Agent Manager — Best'
+description = "A deep dive into Stanford CS146S Week 4: from Claude Code creator Boris Cherney's talk to Anthropic's official best practices, learn how to manage Coding..."
 toc = true
 tags = ['Agent Manager', 'Claude Code', 'AI Coding', 'Stanford CS146S', 'Human-AI Collaboration']
 categories = ['AI Guides']

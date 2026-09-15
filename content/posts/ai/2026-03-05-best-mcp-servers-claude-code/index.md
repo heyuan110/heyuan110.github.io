@@ -2,7 +2,7 @@
 date = '2026-03-03T14:00:00+08:00'
 draft = false
 title = 'Best MCP Servers for Claude Code: 18 Tools You Need in 2026'
-description = 'Curated list of the best MCP servers for Claude Code in 2026. Install commands, key features, and practical use cases for 18 top MCP servers across databases, browsers, productivity, and more.'
+description = 'Curated list of the best MCP servers for Claude Code in 2026. Install commands, key features, and practical use cases for 18 top MCP servers across databases...'
 toc = true
 tags = ['Claude Code', 'MCP', 'AI Tools', 'Developer Tools']
 categories = ['AI Guides']

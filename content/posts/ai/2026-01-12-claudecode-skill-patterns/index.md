@@ -2,7 +2,7 @@
 date = '2026-01-12T10:00:00+08:00'
 draft = false
 title = 'Claude Code Skills: Create Custom AI Abilities in 30 Seconds'
-description = 'Learn how to build Claude Code Skills that turn your expertise into reusable AI modules. Step-by-step guide with practical SKILL.md examples for developers and teams.'
+description = 'Learn how to build Claude Code Skills that turn your expertise into reusable AI modules. Step-by-step guide with practical SKILL.md examples for...'
 toc = true
 tags = ['Claude Code', 'AI Agent', 'Skills', 'Productivity']
 categories = ['AI Guides']
@@ -459,3 +459,4 @@ The hardest part is getting started -- and this article has already cleared that
 - [Claude Code Browser Automation: Comparing Agent Browser, Playwright, and DevTools](/posts/ai/2026-01-28-claude-code-browser-automation/)
 - [Claude Code Best Practices Guide](/posts/ai/2026-01-06-claudecode-best-practices/)
 - [Agent Skills: A New Paradigm for AI Programming](/posts/ai/2026-01-19-agent-skills-new-programming/)
+- [Claude Code Skills vs MCP: Why Skills Win](/posts/ai/2026-01-06-skill&mcp/)

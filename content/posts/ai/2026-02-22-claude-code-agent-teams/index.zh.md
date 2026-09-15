@@ -1,7 +1,7 @@
 +++
 date = '2026-02-22T08:00:00+08:00'
 draft = false
-title = 'Claude Code 多 Agent 协作教程 2026：Agent Teams 配置与实战'
+title = 'Claude Code 多 Agent 协作教程 2026：Agent Team'
 description = '手把手配置 Claude Code Agent Teams：多 Agent 并行开发原理、Team Lead + Teammate 架构、Opus+Sonnet 混合编排省钱、命令速查表，将小时级工作压缩到分钟级。'
 toc = true
 tags = ['Claude Code', 'Agent Teams', 'AI Coding', 'Multi-Agent', 'Anthropic']

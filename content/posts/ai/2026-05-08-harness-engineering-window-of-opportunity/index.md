@@ -1,8 +1,8 @@
 +++
 date = '2026-05-08T10:00:00+08:00'
 draft = false
-title = 'Harness Engineering: Window of Opportunity, Not a Forever Moat'
-description = "Is Harness Engineering hype or substance? After 60 days in production, my call: a 2026-2027 window of opportunity, not a forever moat. Use this investment matrix today."
+title = 'Harness Engineering: Window of Opportunity, Not a Forever'
+description = "Is Harness Engineering hype or substance? After 60 days in production, my call: a 2026-2027 window of opportunity, not a forever moat. Use this investment..."
 toc = true
 tags = ['Harness Engineering', 'AI Agents', 'AI Engineering', 'Claude Code', 'OpenAI Codex']
 keywords = ['harness engineering hype', 'is harness engineering real', 'harness engineering 2026', 'ai agent harness investment', 'harness engineering vs prompt engineering', 'openai codex harness', 'anthropic harness design', 'ai agent infrastructure window']

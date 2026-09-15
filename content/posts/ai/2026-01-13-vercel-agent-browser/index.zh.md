@@ -1,6 +1,6 @@
 +++
 date = '2026-01-13T08:00:00+08:00'
-title = 'Vercel 发布 Agent Browser：专为 AI 代理打造的浏览器自动化工具'
+title = 'Vercel 发布 Agent Browser：专为 AI 代理打造的浏览器自动'
 description = 'Vercel 开源了 Agent Browser，一个专为 AI 代理设计的浏览器自动化 CLI 工具，采用 Rust + Node.js 架构，支持快照驱动的交互模式'
 toc = true
 tags = ['AI', 'Vercel', 'Browser Automation', 'Agent', 'CLI']

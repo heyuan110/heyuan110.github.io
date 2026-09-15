@@ -1,8 +1,8 @@
 +++
 date = '2026-02-22T09:00:00+08:00'
 draft = false
-title = 'Vibe Coding Guide 2026: What It Is, Best Tools, and How to Start'
-description = 'Learn vibe coding from basics to advanced. Compare top tools (Claude Code, Cursor, Trae), see real workflow examples, and discover why 91% of engineering teams now use AI coding tools.'
+title = 'Vibe Coding Guide 2026: What It Is, Best Tools, and How to'
+description = 'Learn vibe coding from basics to advanced. Compare top tools (Claude Code, Cursor, Trae), see real workflow examples, and discover why 91% of...'
 toc = true
 tags = ['Vibe Coding', 'AI Coding', 'Claude Code', 'Cursor', 'AI Tools']
 categories = ['AI Guides']

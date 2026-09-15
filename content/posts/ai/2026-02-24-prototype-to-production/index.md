@@ -1,8 +1,8 @@
 +++
 date = '2026-02-24T09:00:00+08:00'
 draft = false
-title = 'Stanford CS146S Deep Dive (5): From Prototype to Production — The Full AI App Lifecycle'
-description = 'A deep analysis of Stanford CS146S Weeks 8-9: building an app with one prompt is just the beginning. Learn the complete path from demo to production, covering testing, security, observability, and AI-powered operations.'
+title = 'Stanford CS146S Deep Dive (5): From Prototype to Production'
+description = 'A deep analysis of Stanford CS146S Weeks 8-9: building an app with one prompt is just the beginning. Learn the complete path from demo to production...'
 toc = true
 tags = ['AI App Development', 'DevOps', 'Stanford CS146S', 'Vibe Coding', 'Deployment']
 categories = ['AI Guides']

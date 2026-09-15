@@ -41,3 +41,10 @@ comments = true
 - 邮箱: heyuan110@gmail.com
 
 觉得有用？转给需要的朋友。发现有错？欢迎留言。
+
+## 推荐阅读
+
+- [AI 自动化技术中心：打造你的全自动开发流](/zh/posts/ai/ai-automation-hub/)
+- [极简主义的胜利：深度解析 Terminal AI 编码利器 Pi (pi.dev)](/zh/posts/ai/2026-09-14-pi-coding-agent-deep-dive/)
+- [Java 零基础入门到精通指南](/zh/posts/java/2024-05-05-learn-java/)
+- [Linux 运维与运维开发实战中心](/zh/posts/linux/linux-ops-basics-hub/)

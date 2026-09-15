@@ -1,7 +1,7 @@
 +++
 date = '2025-12-26T12:40:02+08:00'
 title = 'Claude Code Skills vs SubAgents: Context Management Guide'
-description = 'Learn the key differences between Skills and SubAgents in Claude Code. Understand when to internalize capabilities vs delegate to child agents for optimal context management.'
+description = 'Learn the key differences between Skills and SubAgents in Claude Code. Understand when to internalize capabilities vs delegate to child agents for optimal...'
 toc = true
 tags = ['AI', 'Claude Code', 'Skills', 'SubAgent']
 categories = ['AI Guides']

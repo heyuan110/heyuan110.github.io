@@ -2,7 +2,7 @@
 date = '2026-02-24T10:00:00+08:00'
 draft = false
 title = '从零开始用 Python 构建你自己的 Claude Code（仅 250 行）'
-description = '一篇实战教程，通过用 Python 从零重建 Claude Code 的核心架构——Agentic Loop、Tool Use 和流式输出，彻底揭开 AI 编程助手的神秘面纱。从 20 行代码到完整的终端 AI 编程助手。'
+description = '一篇实战教程，通过用 Python 从零重建 Claude Code 的核心架构——Agentic Loop、Tool Use 和流式输出，彻底揭开 AI 编程助手的神秘面纱。从 20 行代码到完整的...'
 toc = true
 tags = ['Claude Code', 'Python', 'Agentic Loop', 'Tool Use', 'AI Agent']
 categories = ['AI Guides']

@@ -1,7 +1,7 @@
 +++
 date = '2026-02-22T12:00:00+08:00'
 draft = false
-title = '用 Claude Code 从零开发 MCP Server：TypeScript 实战教程（2026）'
+title = '用 Claude Code 从零开发 MCP Server：TypeScript'
 description = '手把手教你用 Claude Code 开发自定义 MCP Server，从项目初始化到工具定义、调试、发布，附完整代码和避坑指南。适合想给 AI 扩展能力的开发者。'
 toc = true
 tags = ['Claude Code', 'MCP', 'TypeScript', 'AI 编程', 'MCP Server']

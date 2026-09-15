@@ -1,7 +1,7 @@
 +++
 date = '2026-03-02T10:00:00+08:00'
 draft = false
-title = 'Claude vs ChatGPT vs Gemini：2026年最佳编程LLM对比'
+title = 'Claude vs ChatGPT vs Gemini：2026年最佳编程LLM'
 description = '深度对比 Claude Opus 4.6、GPT-5.2 和 Gemini 2.5 Pro 的编程能力。真实基准测试、定价、上下文窗口和使用场景推荐，帮你选出最适合项目的 LLM。'
 toc = true
 tags = ['Claude', 'ChatGPT', 'Gemini', 'LLM Comparison', 'AI Coding Tools']

@@ -1,7 +1,7 @@
 +++
-title = "MySQL SQL Complete Guide: From Beginner to Advanced (With Interview Questions)"
+title = "MySQL SQL Complete Guide: From Beginner to Advanced (With"
 date = 2026-01-23T20:06:36+08:00
-description = "Master MySQL SQL from basics to advanced topics: indexes, B+ trees, transactions, MVCC, locks, and query optimization. Includes real-world examples and common interview questions."
+description = "Master MySQL SQL from basics to advanced topics: indexes, B+ trees, transactions, MVCC, locks, and query optimization. Includes real-world examples..."
 toc = true
 tags = ["MySQL", "SQL", "Database", "Interview", "Index", "Transaction", "Performance"]
 categories = ["MySQL"]

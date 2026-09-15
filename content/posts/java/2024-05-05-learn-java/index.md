@@ -1,7 +1,7 @@
 +++
 date = '2024-05-04T21:00:00+08:00'
-title = 'Java Beginner Tutorial Part 1: JDK, JRE, JVM Explained and IntelliJ IDEA Setup'
-description = 'A comprehensive Java beginner guide covering the Java ecosystem (SE/EE/ME), the differences between JDK, JRE, and JVM, IntelliJ IDEA setup, core syntax, OOP fundamentals, and essential APIs.'
+title = 'Java Beginner Tutorial Part 1: JDK, JRE, JVM Explained and'
+description = 'A comprehensive Java beginner guide covering the Java ecosystem (SE/EE/ME), the differences between JDK, JRE, and JVM, IntelliJ IDEA setup, core syntax, OOP...'
 toc = true
 tags = ['Java', 'JDK', 'JVM', 'IDEA']
 categories = ['Java']
@@ -1481,7 +1481,7 @@ public class Test6_DateTimeFormatter {
 
 ---
 
-[Next: Java Learning Notes Part 2](../2024-05-13-learn-java2)
+[Next: Java Learning Notes Part 2](/posts/java/2024-05-13-learn-java2/)
 
 ## References
 

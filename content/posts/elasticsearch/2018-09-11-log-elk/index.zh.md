@@ -1,6 +1,6 @@
 +++
 date = '2018-09-11T20:02:19+08:00'
-title = 'ELK 日志系统搭建指南：Elasticsearch + Logstash + Kibana + Kafka 完整架构'
+title = 'ELK 日志系统搭建指南：Elasticsearch + Logstash +'
 description = '基于 Elasticsearch、Logstash、Kibana 和 Kafka 搭建企业级 ELK 日志收集分析系统完整教程，对比多种架构模式，附 Filebeat 配置'
 toc = true
 tags = ['Elasticsearch', 'ELK', 'Kibana', 'Kafka', 'Logstash', '日志分析']

@@ -1,7 +1,7 @@
 +++
 date = '2026-04-09T10:00:00+08:00'
 draft = false
-title = 'Claude Code + OpenSpec + Superpowers：三件套到底是刚需还是过度工程？'
+title = 'Claude Code + OpenSpec + Superpowers：三件套'
 description = '2026 年 Claude Code、OpenSpec、Superpowers 到底要不要一起上？实测后给出 trade-off 判断框架：三件套何时值回票价，何时只是徒增开销，以及每个工具真正独占的能力是什么。'
 toc = true
 tags = ['Claude Code', 'OpenSpec', 'Superpowers', 'AI Development', 'Spec-Driven Development']

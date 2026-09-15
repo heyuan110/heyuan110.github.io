@@ -2,8 +2,8 @@
 date = '2026-02-18T10:00:00+08:00'
 lastmod = '2026-02-23T10:00:00+08:00'
 draft = false
-title = 'MoltBot Explained: What It Is, How It Works, and Why It Renamed to OpenClaw'
-description = 'MoltBot (now OpenClaw) is an open-source personal AI agent that runs locally and executes real tasks via Telegram and WhatsApp. Learn its architecture, features, renaming history, and setup guide.'
+title = 'MoltBot Explained: What It Is, How It Works, and Why It'
+description = 'MoltBot (now OpenClaw) is an open-source personal AI agent that runs locally and executes real tasks via Telegram and WhatsApp. Learn its architecture...'
 toc = true
 tags = ['MoltBot', 'AI Agent', 'OpenClaw', 'Clawdbot', 'Personal AI Assistant']
 categories = ['AI Guides']

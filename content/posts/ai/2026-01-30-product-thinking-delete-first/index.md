@@ -1,8 +1,8 @@
 +++
 date = '2026-01-30T10:30:00+08:00'
 draft = false
-title = 'Delete Before You Optimize: 3 Product Thinking Rules for Solo Developers'
-description = 'A practical product methodology for indie hackers and solopreneurs: delete before optimizing, question every assumption, and observe real users. With real-world examples and a reusable decision framework.'
+title = 'Delete Before You Optimize: 3 Product Thinking Rules for'
+description = 'A practical product methodology for indie hackers and solopreneurs: delete before optimizing, question every assumption, and observe real users. With...'
 toc = true
 tags = ['Product Thinking', 'Indie Development', 'Solopreneur', 'Product Strategy']
 categories = ['AI Guides']

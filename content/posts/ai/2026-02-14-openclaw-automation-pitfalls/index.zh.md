@@ -2,7 +2,7 @@
 date = '2026-02-14T07:32:00+08:00'
 draft = false
 title = 'OpenClaw 自动化别踩坑：装 3 个 Skill 不等于真的好用'
-description = '很多人以为给 OpenClaw 装上 tavily-search、find-skills、proactive-agent 就能自动化起飞。真正决定可用性的，是会话隔离、任务调度、进度汇报这些系统工程。本文用真实翻车案例和完整配置模板，帮你避开最常见的坑。'
+description = '很多人以为给 OpenClaw 装上 tavily-search、find-skills、proactive-agent 就能自动化起飞。真正决定可用性的，是会话隔离、任务调度、进度汇报这些系统工程...'
 toc = true
 tags = ['OpenClaw', 'Agent', 'Automation', 'Skills', 'Best Practices']
 categories = ['AI Guides']

@@ -1,7 +1,7 @@
 +++
 date = '2019-05-13T20:33:33+08:00'
-title = 'Docker Beginner Tutorial: Images, Containers, Registries, and Dockerfile Explained'
-description = 'A comprehensive Docker tutorial for beginners covering the three core concepts — images, containers, and registries — along with layered storage, Dockerfile instructions (FROM, RUN, COPY, CMD, ENTRYPOINT), data volumes, and networking fundamentals.'
+title = 'Docker Beginner Tutorial: Images, Containers, Registries,'
+description = 'A comprehensive Docker tutorial for beginners covering the three core concepts — images, containers, and registries — along with layered storage, Dockerfile...'
 toc = true
 tags = ['Docker', 'Dockerfile', '容器化', 'DevOps', '镜像']
 categories = ['Docker']

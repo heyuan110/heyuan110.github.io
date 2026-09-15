@@ -1,7 +1,7 @@
 +++
 date = '2019-06-12T20:50:36+08:00'
-title = 'Nexus3 Private Docker Registry Setup: Enterprise Container Registry Guide'
-description = 'Step-by-step guide to setting up an enterprise Docker private registry with Nexus3, covering hosted, proxy, and group repository types, image push/pull workflows, and client-side insecure-registries configuration.'
+title = 'Nexus3 Private Docker Registry Setup: Enterprise Container'
+description = 'Step-by-step guide to setting up an enterprise Docker private registry with Nexus3, covering hosted, proxy, and group repository types, image push/pull...'
 toc = true
 tags = ['Docker', 'Nexus3', 'Registry', '私有仓库', 'DevOps']
 categories = ['Docker']

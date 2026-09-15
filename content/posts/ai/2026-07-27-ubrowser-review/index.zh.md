@@ -1,7 +1,7 @@
 +++
 date = '2026-07-27T10:00:00+08:00'
 draft = false
-title = 'ubrowser 实测：号称最快最便宜的 Claude Code 浏览器自动化，靠谱吗'
+title = 'ubrowser 实测：号称最快最便宜的 Claude Code 浏览器自动化，'
 description = '我把 lulzx/ubrowser 装起来跑了一遍：同一页面快照 761 token，Playwright MCP 要 7400。设计思想是对的，但这个项目本身有大问题，实测数据全在文里。'
 toc = true
 tags = ['ubrowser', 'Claude Code', 'MCP', 'Browser Automation', 'Token Efficiency']

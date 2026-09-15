@@ -1,8 +1,8 @@
 +++
 date = '2026-03-30T10:00:00+08:00'
 draft = false
-title = 'Harness Engineering 2026: The Model Is the Least Important Part'
-description = '60 days running an AI coding harness in production. Model upgrades got me ~5%. Harness rewrites got me 60%+ cost drop with higher quality. A practical guide to Agent = Model + Harness, with routing tables, fitness functions, and ROI math.'
+title = 'Harness Engineering 2026: The Model Is the Least Important'
+description = '60 days running an AI coding harness in production. Model upgrades got me ~5%. Harness rewrites got me 60%+ cost drop with higher quality. A...'
 toc = true
 tags = ['Harness Engineering', 'AI Agents', 'AI Engineering', 'Claude Code', 'AI Coding Tools', 'Sub-Agent Architecture']
 keywords = ['harness engineering', 'harness engineering guide', 'what is harness engineering', 'agent harness', 'harness engineering vs prompt engineering', 'harness engineering vs context engineering', 'ai agent harness 2026', 'claude code harness', 'harness engineering coding agents', 'model routing', 'sub-agent architecture', 'agent roi']

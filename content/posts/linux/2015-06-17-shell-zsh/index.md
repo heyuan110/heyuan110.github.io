@@ -1,8 +1,8 @@
 +++
-title = 'Oh My Zsh Setup Guide: Build a Productive Terminal Environment'
+title = 'Oh My Zsh Setup Guide: Build a Productive Terminal'
 date = '2015-06-17'
 draft = false
-description = 'Complete Oh My Zsh installation and configuration guide covering Zsh setup, Powerlevel10k theme, zsh-autosuggestions, zsh-syntax-highlighting plugins, custom aliases, and performance tuning for macOS and Linux.'
+description = 'Complete Oh My Zsh installation and configuration guide covering Zsh setup, Powerlevel10k theme, zsh-autosuggestions, zsh-syntax-highlighting plugins, custom...'
 tags = ['zsh', 'oh-my-zsh', 'shell', 'linux', 'macos', 'powerlevel10k']
 categories = ['Linux']
 toc = true

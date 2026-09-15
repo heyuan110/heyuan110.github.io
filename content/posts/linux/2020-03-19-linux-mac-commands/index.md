@@ -1,7 +1,7 @@
 +++
 date = '2020-03-19T10:55:52+08:00'
 title = 'Linux and macOS Command Cheat Sheet for Developers'
-description = 'Essential Linux and macOS command reference covering networking, process management, file operations, text processing, disk management, and macOS-specific tips — with practical examples for each command.'
+description = 'Essential Linux and macOS command reference covering networking, process management, file operations, text processing, disk management, and...'
 toc = true
 tags = ['Linux', 'macOS', 'Shell', '命令行', '运维']
 categories = ['Linux']

@@ -1,8 +1,8 @@
 +++
 date = '2026-01-31T22:00:00+08:00'
 draft = false
-title = '22 Thinking Frameworks That Turn Vague Ideas Into Clear Requirements'
-description = 'A practical guide to SMART, OKR, MECE, JTBD, RICE, PDCA, and 16 more proven methodologies for defining goals, breaking down problems, writing requirements, prioritizing work, and improving continuously.'
+title = '22 Thinking Frameworks That Turn Vague Ideas Into Clear'
+description = 'A practical guide to SMART, OKR, MECE, JTBD, RICE, PDCA, and 16 more proven methodologies for defining goals, breaking down problems, writing requirements...'
 toc = true
 tags = ['Product Thinking', 'Mental Models', 'AI Collaboration', 'Requirements Analysis', 'Project Management']
 categories = ['AI Guides']

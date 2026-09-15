@@ -1,8 +1,8 @@
 +++
 date = '2026-03-17T10:00:00+08:00'
 draft = false
-title = 'Chrome DevTools MCP 2026 配置教程：彻底解决「打开新窗口」+ 9222 端口连不上（Claude Code / Cursor）'
-description = '手把手教你让 AI 连接你已登录的 Chrome 浏览器：3 步修复「每次开新窗口」，配置 9222 远程调试端口（macOS/Windows 全覆盖），Chrome 146+ 启用 autoConnect，绕过 user-data-dir 冲突。Claude Code、Cursor、Windsurf 通用方案。'
+title = 'Chrome DevTools MCP 2026 配置教程：彻底解决「打开新窗口'
+description = '手把手教你让 AI 连接你已登录的 Chrome 浏览器：3 步修复「每次开新窗口」，配置 9222 远程调试端口（macOS/Windows 全覆盖），Chrome 146+ 启用 autoConn...'
 toc = true
 tags = ['Chrome DevTools', 'MCP', 'AI Coding Tools', 'Claude Code']
 keywords = ['chrome mcp 教程 2026', 'chrome devtools mcp 安装', 'chrome devtools mcp 怎么用', 'chrome devtools mcp 连接不上', 'chrome devtools mcp claude code 配置', 'chrome mcp autoconnect', 'chrome devtools mcp 端口 9222', 'chrome mcp 端口 9222 教程', 'mcp 浏览器工具推荐', 'Chrome DevTools MCP 配置教程', 'Claude Code 浏览器调试', 'claude code 浏览器调试', 'MCP 打开新窗口怎么解决', 'Chrome MCP 连接已有浏览器', 'cursor chrome mcp 配置', 'Cursor MCP 浏览器配置', 'Chrome DevTools MCP 避坑', 'AI 浏览器自动化 2026', 'MCP 浏览器自动化 2026', 'AI 连接已登录浏览器']

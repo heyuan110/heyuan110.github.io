@@ -1,8 +1,8 @@
 +++
 date = '2026-06-09T10:00:00+08:00'
 draft = false
-title = 'Apple WWDC 2026 大转向：Siri 改用谷歌 Gemini，国行 iPhone 怎么办？'
-description = 'WWDC 2026 快评：Siri 改由谷歌 Gemini 驱动，AFM Cloud Pro 跑在谷歌云的 NVIDIA GPU 上，苹果自研 AI 叙事终结。谁赢谁输、国行 iPhone 用什么模型、现在要不要买 M5 Mac mini 搞本地 AI，一文给出判断。'
+title = 'Apple WWDC 2026 大转向：Siri 改用谷歌 Gemini，国行'
+description = 'WWDC 2026 快评：Siri 改由谷歌 Gemini 驱动，AFM Cloud Pro 跑在谷歌云的 NVIDIA GPU 上，苹果自研 AI 叙事终结。谁赢谁输、国行 iPhone 用什么模型...'
 toc = true
 tags = ['Apple WWDC 2026', 'Apple Intelligence', 'Google Gemini', 'Siri', 'Apple Foundation Models', 'Local AI', 'Apple Silicon', 'MLX', 'NVIDIA', 'Private Cloud Compute']
 keywords = ['Apple WWDC 2026', 'Apple Intelligence Gemini', '苹果 AI 用谷歌', 'Siri 谷歌 Gemini', 'Apple Foundation Models v2', '苹果 AI 路线转向', 'Apple Intelligence 中国', '国行 iPhone AI', 'Mac mini M5 本地 AI', '苹果统一内存 AI 2026', '苹果发布会 2026', 'AFM Cloud Pro', '苹果隐私 AI', '苹果 Google 合作', 'Siri 重做 2026']

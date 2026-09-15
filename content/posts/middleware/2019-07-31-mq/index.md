@@ -1,7 +1,7 @@
 +++
 date = '2019-07-31T21:26:23+08:00'
-title = 'Message Queue Fundamentals: Core Concepts, Use Cases, and Technology Selection'
-description = 'A comprehensive guide to message queues in distributed systems — covering the Producer-Broker-Consumer model, key benefits (decoupling, async processing, load leveling), trade-offs, and how to choose between RabbitMQ, Kafka, RocketMQ, and ActiveMQ.'
+title = 'Message Queue Fundamentals: Core Concepts, Use Cases, and'
+description = 'A comprehensive guide to message queues in distributed systems — covering the Producer-Broker-Consumer model, key benefits (decoupling, async...'
 toc = true
 tags = ['消息队列', '中间件', '分布式系统', '架构设计']
 categories = ['中间件']

@@ -1,8 +1,8 @@
 +++
 date = '2026-03-10T14:00:00+08:00'
 draft = false
-title = 'AI Dev Environment Setup: Tools, Configs, and Dotfiles for 2026'
-description = 'Set up the ultimate AI development environment with Claude Code, Cursor, terminal configs, and dotfiles. Complete guide with templates, shell aliases, and workflow tips.'
+title = 'AI Dev Environment Setup: Tools, Configs, and Dotfiles for'
+description = 'Set up the ultimate AI development environment with Claude Code, Cursor, terminal configs, and dotfiles. Complete guide with templates, shell aliases, and...'
 toc = true
 tags = ['AI Development', 'Developer Setup', 'Claude Code', 'Workflow']
 categories = ['AI Guides']

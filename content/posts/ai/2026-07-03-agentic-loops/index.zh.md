@@ -2,7 +2,7 @@
 date = '2026-07-03T14:00:00+08:00'
 draft = false
 title = 'Agentic Loops 2026：让 AI Agent 自主循环干活'
-description = '讲清楚 agentic loop 和 Ralph loop 到底是什么，自主 agent 循环什么时候真能干活、什么时候烧钱失控，以及在 Claude Code / Cursor 上跑自主编码循环前必须配好的退出条件和预算护栏。'
+description = '讲清楚 agentic loop 和 Ralph loop 到底是什么，自主 agent 循环什么时候真能干活、什么时候烧钱失控，以及在 Claude Code / Cursor 上跑自主编码循环前必...'
 toc = true
 tags = ['AI Agent', 'Agentic Loops', 'Ralph Loop', 'Autonomous Coding']
 keywords = ['agent 循环', 'agentic loop', '自主 agent', 'ralph loop', 'ai agent 自主循环', 'agent 无限循环', 'Claude Code 循环']

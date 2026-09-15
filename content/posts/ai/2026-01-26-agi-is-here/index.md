@@ -1,8 +1,8 @@
 +++
 date = '2026-01-26T11:00:00+08:00'
 draft = false
-title = 'AGI Is Here in 2026: Sequoia Capital Case Study and What It Means'
-description = 'Sequoia Capital declares AGI has arrived. See how an AI agent completed a full recruiting job in 31 minutes, why agent capabilities double every 7 months, and what this exponential growth means for your career.'
+title = 'AGI Is Here in 2026: Sequoia Capital Case Study and What It'
+description = 'Sequoia Capital declares AGI has arrived. See how an AI agent completed a full recruiting job in 31 minutes, why agent capabilities double every 7...'
 toc = true
 tags = ['AGI', 'AI Agent', 'AI Trends', 'Long-horizon Agent', 'Sequoia Capital']
 categories = ['AI Guides']

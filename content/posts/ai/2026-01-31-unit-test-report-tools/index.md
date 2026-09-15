@@ -1,8 +1,8 @@
 +++
 date = '2026-01-31T18:00:00+08:00'
 draft = false
-title = 'Unit Test Report Tools: Framework Comparison, Coverage Strategy & AI Workflow'
-description = 'Compare top unit test reporting tools in 2026 including JUnit, PyTest, Jest, Allure Report, and AI-assisted testing workflows to build effective test reporting pipelines.'
+title = 'Unit Test Report Tools: Framework Comparison, Coverage'
+description = 'Compare top unit test reporting tools in 2026 including JUnit, PyTest, Jest, Allure Report, and AI-assisted testing workflows to build effective test...'
 toc = true
 tags = ['Unit Testing', 'Test Reports', 'Allure', 'AI Testing', 'Quality Engineering']
 categories = ['AI Guides']

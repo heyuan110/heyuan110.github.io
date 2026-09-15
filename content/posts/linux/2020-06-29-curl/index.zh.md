@@ -1,5 +1,5 @@
 +++
-title = 'curl 命令详解（2026）：GET/POST 请求、文件传输与 API 调试实战'
+title = 'curl 命令详解（2026）：GET/POST 请求、文件传输与 API 调试'
 date = '2020-06-29'
 draft = false
 toc = true

@@ -1,8 +1,8 @@
 +++
 date = '2026-01-31T22:50:00+08:00'
 draft = false
-title = 'OpenClaw 作者 Claude Code 工作流：一人 AI 写 10 万星项目'
-description = 'OpenClaw 作者 Peter Steinberger 的 Claude Code 开发方法论拆解：AGENTS.md 文档驱动、5-10 个 Agent 并行、Spec 驱动构建、日均 600 次 commit。一个人做出一家公司的产出。'
+title = 'OpenClaw 作者 Claude Code 工作流：一人 AI 写 10 万'
+description = 'OpenClaw 作者 Peter Steinberger 的 Claude Code 开发方法论拆解：AGENTS.md 文档驱动、5-10 个 Agent 并行、Spec 驱动构建、日均 600...'
 toc = true
 tags = ['Claude Code', 'OpenClaw', 'AI 编程', 'Agent Engineering', 'AGENTS.md']
 categories = ['AI实战']

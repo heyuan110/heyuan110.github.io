@@ -2,8 +2,8 @@
 date = '2026-09-04T10:00:00+08:00'
 aliases = ['/posts/ai/2026-09-11-stanford-cs329z-engineering-ai-agents/', '/posts/ai/2026-09-18-stanford-cs329z-engineering-ai-agents/']
 draft = false
-title = '斯坦福 CS329Z Engineering AI Agents 课程拆解：没有公开录像，怎么用大纲自学'
-description = '斯坦福 CS329Z（2026 秋）把 AI Agent 当工程学科教：拆解、数据、评测三大挑战。完整带日期课表、HW1/HW2 作业说明、评分表、和 CS146S 怎么二选一，以及没有公开录像时用 Claude Code 复刻作业的逐模块自学方案。'
+title = '斯坦福 CS329Z Engineering AI Agents 课程拆解：没有'
+description = '斯坦福 CS329Z（2026 秋）把 AI Agent 当工程学科教：拆解、数据、评测三大挑战。完整带日期课表、HW1/HW2 作业说明、评分表、和 CS146S 怎么二选一，以及没有公开录像时用...'
 toc = true
 tags = ['Stanford CS329Z', 'AI Agent', 'DSPy', 'Course Review', 'Agentic Engineering']
 keywords = ['斯坦福 cs329z', 'engineering ai agents 课程', '斯坦福 ai agent 课程', 'dspy 课程', 'ai agent 工程 课程', 'cs329z 自学', 'cs329z 课表', 'diyi yang agent 课程']

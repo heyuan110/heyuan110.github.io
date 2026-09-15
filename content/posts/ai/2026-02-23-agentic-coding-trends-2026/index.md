@@ -1,8 +1,8 @@
 +++
 date = '2026-02-23T14:00:00+08:00'
 draft = false
-title = '2026 Agentic Coding Trends: 8 Key Insights Behind Claude Code $2.5B ARR'
-description = 'Deep dive into Anthropic 2026 Agentic Coding trends report: from Claude Code hitting $1B in 6 months to Anthropic $14B ARR, breaking down 8 major AI coding trends, market landscape, and developer adoption data.'
+title = '2026 Agentic Coding Trends: 8 Key Insights Behind Claude'
+description = 'Deep dive into Anthropic 2026 Agentic Coding trends report: from Claude Code hitting $1B in 6 months to Anthropic $14B ARR, breaking down 8 major AI coding...'
 toc = true
 tags = ['Agentic Coding', 'Claude Code', 'AI Coding', 'Trends Report', 'Anthropic']
 categories = ['AI Guides']

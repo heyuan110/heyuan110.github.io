@@ -1,7 +1,7 @@
 +++
 date = '2026-02-16T18:00:00+08:00'
 draft = false
-title = 'Claude Code + Draw Things：Mac 本地 AI 自动配图完全指南（2026）'
+title = 'Claude Code + Draw Things：Mac 本地 AI 自动配图'
 description = '深度教程：用 Claude Code 通过 MCP 协议调用 Draw Things 实现本地 AI 自动配图。涵盖配置、4 大工具详解、自动化工作流实战，告别云端付费，Mac 一台搞定。'
 toc = true
 tags = ['Claude Code', 'Draw Things', 'MCP', 'AI 自动化', 'Mac']

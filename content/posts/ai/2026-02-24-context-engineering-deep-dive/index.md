@@ -1,8 +1,8 @@
 +++
 date = '2026-02-24T07:30:00+08:00'
 draft = false
-title = 'Context Engineering: The Most Underrated Core Skill in AI Programming (Stanford CS146S Deep Dive)'
-description = 'Deep dive into Stanford CS146S Week 3: the paradigm shift from Prompt Engineering to Context Engineering, why Specs are the new source code, and four failure modes of long contexts with practical solutions.'
+title = 'Context Engineering: The Most Underrated Core Skill in AI'
+description = 'Deep dive into Stanford CS146S Week 3: the paradigm shift from Prompt Engineering to Context Engineering, why Specs are the new source code, and four failure...'
 toc = true
 tags = ['Context Engineering', 'AI Coding', 'Stanford CS146S', 'Vibe Coding', 'Prompt Engineering']
 categories = ['AI Guides']

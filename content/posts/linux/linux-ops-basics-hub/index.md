@@ -1,5 +1,5 @@
 +++
-title = 'Linux Ops Fundamentals Hub: CLI, Network Troubleshooting & Docker'
+title = 'Linux Ops Fundamentals Hub: CLI, Network Troubleshooting &'
 description = 'A curated hub for essential Linux operations skills — command-line basics, network diagnostics, Docker containers, and AWS CLI for everyday dev and ops work.'
 date = '2026-02-18T21:35:00+08:00'
 lastmod = '2026-02-18T21:35:00+08:00'

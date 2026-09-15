@@ -1,7 +1,7 @@
 +++
 date = '2026-01-19T16:45:00+08:00'
 title = 'Agent Skills: Why Markdown Files Are the New Programs'
-description = 'Agent Skills turn plain Markdown into executable programs that anyone can write, modify, and share. Discover how natural language programming is reshaping software development.'
+description = 'Agent Skills turn plain Markdown into executable programs that anyone can write, modify, and share. Discover how natural language programming is reshaping...'
 toc = true
 tags = ['Agent', 'Skills', 'AI Coding', 'Natural Language Programming']
 categories = ['AI Guides']

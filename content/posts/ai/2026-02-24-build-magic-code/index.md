@@ -1,8 +1,8 @@
 +++
 date = '2026-02-24T10:00:00+08:00'
 draft = false
-title = 'Build Your Own Claude Code from Scratch in Python (250 Lines)'
-description = 'A hands-on tutorial that demystifies Claude Code by rebuilding its core architecture — the Agentic Loop, Tool Use, and streaming — from scratch in Python. Go from 20 lines to a fully working terminal AI coding assistant.'
+title = 'Build Your Own Claude Code from Scratch in Python (250'
+description = 'A hands-on tutorial that demystifies Claude Code by rebuilding its core architecture — the Agentic Loop, Tool Use, and streaming — from scratch in Python. Go...'
 toc = true
 tags = ['Claude Code', 'Python', 'Agentic Loop', 'Tool Use', 'AI Agent']
 categories = ['AI Guides']

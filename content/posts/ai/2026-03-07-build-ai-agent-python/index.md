@@ -1,7 +1,7 @@
 +++
 date = '2026-03-07T18:00:00+08:00'
 draft = false
-title = 'Build an AI Coding Agent from Scratch in Python (Complete Tutorial)'
+title = 'Build an AI Coding Agent from Scratch in Python (Complete'
 description = 'Learn how to build an AI agent in Python with agentic loops, function calling, and tool use. Step-by-step tutorial with complete runnable code in 250 lines.'
 toc = true
 tags = ['Python', 'AI Agent', 'Agentic Loop', 'Tutorial']

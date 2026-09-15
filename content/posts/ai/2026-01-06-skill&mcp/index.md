@@ -1,7 +1,7 @@
 +++
 date = '2026-01-06T17:00:00+08:00'
-title = 'Skills vs MCP in Claude Code: Two Ways to Extend AI Capabilities'
-description = 'Understand the key differences between Skills and MCP (Model Context Protocol) in Claude Code — when to use each, how they manage context, and how they work together.'
+title = 'Skills vs MCP in Claude Code: Two Ways to Extend AI'
+description = 'Understand the key differences between Skills and MCP (Model Context Protocol) in Claude Code — when to use each, how they manage context, and how they work...'
 toc = true
 tags = ['AI', 'Claude Code', 'Skills', 'MCP']
 categories = ['AI Guides']

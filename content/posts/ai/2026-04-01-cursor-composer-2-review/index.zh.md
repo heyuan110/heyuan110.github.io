@@ -1,8 +1,8 @@
 +++
 date = '2026-04-01T14:00:00+08:00'
 draft = false
-title = 'Cursor Composer 2 深度评测：Kimi K2.5 风波背后的真相与启示'
-description = 'Cursor Composer 2 深度评测：2026 年 3 月 19 日发布，三天后被发现底座是月之暗面 Kimi K2.5，75% 算力做 RL 的说法站得住吗？Terminal-Bench 61.7 对 Claude Opus 4.6 的 58.0，跑分、争议与实战体验全拆解。'
+title = 'Cursor Composer 2 深度评测：Kimi K2.5 风波背后的真相'
+description = 'Cursor Composer 2 深度评测：2026 年 3 月 19 日发布，三天后被发现底座是月之暗面 Kimi K2.5，75% 算力做 RL 的说法站得住吗？Terminal-Bench 6...'
 toc = true
 tags = ['Cursor', 'Composer 2', 'AI Coding Tools', 'Kimi K2.5', 'Claude Code']
 keywords = ['Cursor Composer 2 评测', 'Kimi K2.5 争议', 'Composer 2 对比 Claude Code', 'AI 编程工具 2026', '月之暗面']

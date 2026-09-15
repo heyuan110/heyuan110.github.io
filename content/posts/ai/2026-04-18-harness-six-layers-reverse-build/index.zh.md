@@ -2,7 +2,7 @@
 date = '2026-04-18T16:00:00+08:00'
 draft = false
 title = 'Harness 六层架构倒着建：80% 稳定性来自第 5、6 层'
-description = 'Harness 六层架构并不平等：60 天生产实测显示第 5 层评估 +22%、第 6 层容错恢复 +18%，两层合计贡献约 80% 稳定性。倒着建（6→1）把迭代时间砍 3 倍、4 周稳定上线，附各层 ROI 数据与被高估的 Memory 层分析。'
+description = 'Harness 六层架构并不平等：60 天生产实测显示第 5 层评估 +22%、第 6 层容错恢复 +18%，两层合计贡献约 80% 稳定性。倒着建（6→1）把迭代时间砍 3 倍、4 周稳定上线，附各...'
 toc = true
 tags = ['Harness Engineering', 'AI Agent', 'Claude Code', 'AI Coding', 'Production AI']
 keywords = ['Harness Engineering 六层', 'AI Agent 稳定性', 'AI Agent 评估观测', 'agent 容错恢复', 'Harness Engineering ROI', 'Claude Code 工程实践', '智能体落地']

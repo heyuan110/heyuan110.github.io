@@ -1,8 +1,8 @@
 +++
 date = '2026-07-10T16:00:00+08:00'
 draft = false
-title = 'GPT-5.6 正式发布：三档价格、Codex 并入 ChatGPT Work 全解读'
-description = 'GPT-5.6 于 2026 年 7 月 9 日全量开放：Sol/Terra/Luna 三档定价对着 Claude 打、Codex 并入 ChatGPT Work 意味着什么、厂商跑分该打几折、国内怎么用 Luna 低成本试水，以及 Claude Code 用户的三个迁移信号。'
+title = 'GPT-5.6 正式发布：三档价格、Codex 并入 ChatGPT Work'
+description = 'GPT-5.6 于 2026 年 7 月 9 日全量开放：Sol/Terra/Luna 三档定价对着 Claude 打、Codex 并入 ChatGPT Work 意味着什么、厂商跑分该打几折、国内怎...'
 toc = true
 tags = ['GPT-5.6', 'OpenAI', 'AI Coding Models', 'Model Comparison']
 keywords = ['gpt-5.6 发布', 'gpt5.6 价格', 'chatgpt work 是什么', 'codex 合并', 'gpt-5.6 国内使用', 'gpt-5.6 对比 claude', 'gpt-5.6 api 多少钱']

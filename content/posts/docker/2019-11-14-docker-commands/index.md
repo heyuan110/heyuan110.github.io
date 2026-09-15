@@ -1,7 +1,7 @@
 +++
 date = '2019-11-14T20:37:13+08:00'
-title = 'Docker Commands Cheat Sheet: Images, Containers, Networks, and Volumes'
-description = 'A practical Docker command reference covering image management, container lifecycle, port mapping, volume mounting, and ready-to-use run commands for MySQL, Nginx, Redis, MongoDB, Prometheus, and Grafana.'
+title = 'Docker Commands Cheat Sheet: Images, Containers, Networks,'
+description = 'A practical Docker command reference covering image management, container lifecycle, port mapping, volume mounting, and ready-to-use run commands for MySQL...'
 toc = true
 tags = ['Docker', '命令行', '容器', '运维', '速查手册']
 categories = ['Docker']

@@ -1,8 +1,8 @@
 +++
 date = '2026-01-25'
 draft = false
-title = 'Claude Code + Remotion: Generate Pro Videos with AI Conversations'
-description = 'Learn how to create professional animated videos using Claude Code and Remotion. This step-by-step guide covers setup, workflow, and real-world examples of AI-powered programmatic video generation.'
+title = 'Claude Code + Remotion: Generate Pro Videos with AI'
+description = 'Learn how to create professional animated videos using Claude Code and Remotion. This step-by-step guide covers setup, workflow, and real-world examples of...'
 tags = ['Claude Code', 'Remotion', 'AI Video', 'React', 'Video Production', 'AI Agent']
 categories = ['AI Guides']
 keywords = ['Claude Code Remotion', 'AI video generation', 'programmatic video React', 'Remotion tutorial', 'AI video production']

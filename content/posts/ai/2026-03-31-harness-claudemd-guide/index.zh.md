@@ -1,7 +1,7 @@
 +++
 date = '2026-03-31T10:00:00+08:00'
 draft = false
-title = 'CLAUDE.md 最佳实践：我把 90 行砍到 50 行，Agent 表现反而提升 — Harness #2'
+title = 'CLAUDE.md 最佳实践：我把 90 行砍到 50 行，Agent 表现反而'
 description = '一个真刀真枪的 CLAUDE.md 写法指南：我翻车的 90 行版本，ETH Zurich 研究证实的 60 行上限，AI 自动生成降 20%。含分层架构、3 个误区、90 秒审查清单和可拷贝的 50 行模板。'
 toc = true
 tags = ['Harness Engineering', 'Claude Code', 'CLAUDE.md', 'AI Agents', 'AI Engineering', 'Prompt Engineering']

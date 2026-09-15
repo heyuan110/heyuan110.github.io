@@ -1,7 +1,7 @@
 +++
 date = '2026-01-19T17:00:00+08:00'
 title = 'AI Development Workflow: From Requirements to Production'
-description = 'A practical guide to integrating AI tools like Claude Code and Cursor into every stage of software development — from requirements analysis and architecture design to coding, testing, and deployment.'
+description = 'A practical guide to integrating AI tools like Claude Code and Cursor into every stage of software development — from requirements analysis and architecture...'
 toc = true
 tags = ['AI', 'Claude Code', 'Cursor', 'Developer Productivity', 'Workflow']
 categories = ['AI Guides']

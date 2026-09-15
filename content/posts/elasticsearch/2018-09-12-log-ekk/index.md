@@ -1,7 +1,7 @@
 +++
 date = '2018-09-12T18:52:59+08:00'
-title = 'AWS EKK Log System Setup: Elasticsearch + Kinesis + Kibana Hands-On Guide'
-description = 'Step-by-step tutorial for building an EKK log collection system on AWS using Amazon Elasticsearch Service, Kinesis, and Kibana to collect and analyze Nginx access logs with custom field parsing'
+title = 'AWS EKK Log System Setup: Elasticsearch + Kinesis + Kibana'
+description = 'Step-by-step tutorial for building an EKK log collection system on AWS using Amazon Elasticsearch Service, Kinesis, and Kibana to collect and analyze Nginx...'
 toc = true
 tags = ['Elasticsearch', 'AWS', 'Kinesis', 'Kibana', '日志分析']
 categories = ['Elasticsearch']

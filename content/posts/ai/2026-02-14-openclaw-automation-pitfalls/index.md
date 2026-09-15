@@ -1,8 +1,8 @@
 +++
 date = '2026-02-14T07:32:00+08:00'
 draft = false
-title = 'OpenClaw Automation Pitfalls: Installing 3 Skills Is Not Enough'
-description = 'Installing tavily-search, find-skills, and proactive-agent on OpenClaw raises the capability ceiling, but without session isolation, task scheduling, and progress reporting, your agent will leak data, corrupt context, and silently fail.'
+title = 'OpenClaw Automation Pitfalls: Installing 3 Skills Is Not'
+description = 'Installing tavily-search, find-skills, and proactive-agent on OpenClaw raises the capability ceiling, but without session isolation, task scheduling, and...'
 toc = true
 tags = ['OpenClaw', 'Agent', 'Automation', 'Skills', 'Best Practices']
 categories = ['AI Guides']

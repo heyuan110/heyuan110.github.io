@@ -168,5 +168,5 @@ Task1,Task2,Task3就是任务依赖关系，必须先按照顺序Task1->Task2->T
 任何脱离业务实际的技术选型就是耍流氓，可根据团队技术栈，业务规模做出合适选择。对于中小型互联网公司，RabbitMQ是不错的选择，管理简单，社区活跃，文档多，兼容语言多。kafaka更多是给大数据领域准备。
 
 相关文章：
-[RabbitMQ 入门教程：AMQP 协议、Exchange 交换机与消息投递详解](/posts/middleware/2019-08-02-mq-rabbitmQ/)
+[RabbitMQ 入门教程：AMQP 协议、Exchange 交换机与消息投递详解](/zh/posts/middleware/2019-08-02-mq-rabbitmQ/)
 

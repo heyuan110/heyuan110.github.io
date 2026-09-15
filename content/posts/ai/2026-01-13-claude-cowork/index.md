@@ -1,8 +1,8 @@
 +++
 date = '2026-01-13T19:00:00+08:00'
 draft = false
-title = 'Claude Cowork: Anthropic Desktop AI Agent That Controls Your Files'
-description = 'Claude Cowork is a research preview desktop AI agent that directly accesses local files, runs code in sandboxed environments, and integrates with Notion, Linear, and GitHub via MCP. Currently macOS only.'
+title = 'Claude Cowork: Anthropic Desktop AI Agent That Controls'
+description = 'Claude Cowork is a research preview desktop AI agent that directly accesses local files, runs code in sandboxed environments, and integrates with Notion...'
 toc = true
 tags = ['Claude Cowork', 'Claude Desktop', 'Anthropic', 'AI Agent', 'MCP']
 categories = ['AI Guides']

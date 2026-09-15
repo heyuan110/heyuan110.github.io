@@ -1,6 +1,6 @@
 +++
 date = '2019-08-02T11:47:04+08:00'
-title = 'RabbitMQ 入门教程：AMQP 协议、Exchange 交换机与消息投递详解'
+title = 'RabbitMQ 入门教程：AMQP 协议、Exchange 交换机与消息投递详'
 description = 'RabbitMQ 消息队列入门教程，详解 AMQP 协议原理、四种 Exchange 交换机类型（Direct、Fanout、Topic、Headers）、队列绑定和消息投递工作流程'
 toc = true
 tags = ['RabbitMQ', '消息队列', 'AMQP', '中间件']

@@ -1,8 +1,8 @@
 +++
 date = '2026-03-13T15:00:00+08:00'
 draft = false
-title = 'GitHub Agent HQ + VS Code 完整指南 2026：怎么用？和 Copilot 啥区别？'
-description = 'GitHub Agent HQ 实战教程：VS Code v1.109 配置、Claude/Codex/Copilot 三 Agent 并行对比、本地/云端/后台三种模式。含 Copilot Pro+ 订阅要求，以及与 Claude Code CLI、Cursor 的定位差异。'
+title = 'GitHub Agent HQ + VS Code 完整指南 2026：怎么用？'
+description = 'GitHub Agent HQ 实战教程：VS Code v1.109 配置、Claude/Codex/Copilot 三 Agent 并行对比、本地/云端/后台三种模式。含 Copilot Pro+...'
 toc = true
 tags = ['GitHub Copilot', 'AI Coding Tools', 'VS Code', 'Claude', 'Multi-Agent']
 keywords = ['GitHub Agent HQ 教程', 'VS Code 多 Agent 开发', 'Claude Codex Copilot 同时使用', 'AI 编程助手对比', 'Agent HQ 设置指南', 'GitHub Agent HQ 怎么用', 'Copilot 多模型', 'GitHub Agent HQ 是什么', 'VS Code AI Agent', 'Copilot Pro+ 价格', 'Agent HQ vs Cursor']

@@ -1,8 +1,8 @@
 +++
 date = '2026-03-03T10:00:00+08:00'
 draft = false
-title = 'Claude AI Pricing 2026: Every Plan — Free, Pro $20, Max $100/$200'
-description = 'Complete Claude AI pricing 2026: Free (limited), Pro $20/mo, Max 5x $100/mo, Max 20x $200/mo. Real usage data, API vs subscription math, and which plan is worth it.'
+title = 'Claude AI Pricing 2026: Every Plan — Free, Pro $20, Max'
+description = 'Complete Claude AI pricing 2026: Free (limited), Pro $20/mo, Max 5x $100/mo, Max 20x $200/mo. Real usage data, API vs subscription math, and which plan is...'
 toc = true
 tags = ['Claude Code', 'Pricing', 'AI Coding Tools', 'Comparison']
 categories = ['AI Guides']

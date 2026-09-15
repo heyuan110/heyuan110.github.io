@@ -1,7 +1,7 @@
 +++
 title = "Mastering Anthropic Agent SDK Hooks: Intercept & Secure"
 date = 2026-09-14T03:00:00Z
-description = "Learn how to use Anthropic's pretooluse and posttooluse hooks to secure tool-calling loops, prevent prompt injection, and optimize token costs with practical code examples."
+description = "Learn how to use Anthropic's pretooluse and posttooluse hooks to secure tool-calling loops, prevent prompt injection, and optimize token costs with practical..."
 draft = false
 toc = true
 tags = ["Anthropic", "Agent Hooks", "pretooluse", "posttooluse", "AI Engineering", "Security"]

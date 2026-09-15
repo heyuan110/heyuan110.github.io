@@ -1,8 +1,8 @@
 +++
 date = '2026-01-28T23:30:00+08:00'
 draft = false
-title = 'Moltbot Wizard Setup Guide: Build Your Own Private AI Assistant'
-description = 'Step-by-step guide to configuring Moltbot using the Wizard CLI. Set up Gateway, connect Telegram and WhatsApp, install Skills, and deploy your personal AI assistant.'
+title = 'Moltbot Wizard Setup Guide: Build Your Own Private AI'
+description = 'Step-by-step guide to configuring Moltbot using the Wizard CLI. Set up Gateway, connect Telegram and WhatsApp, install Skills, and deploy your personal AI...'
 toc = true
 tags = ['Moltbot', 'AI Assistant', 'Personal AI', 'Open Source', 'Clawdbot']
 categories = ['AI Guides']

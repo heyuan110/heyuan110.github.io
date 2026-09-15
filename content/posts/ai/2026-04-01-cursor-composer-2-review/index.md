@@ -1,8 +1,8 @@
 +++
 date = '2026-04-01T14:00:00+08:00'
 draft = false
-title = 'Cursor Composer 2 Review: The Kimi K2.5 Controversy and What It Means for AI Coding'
-description = 'Deep technical analysis of Cursor Composer 2, built on Moonshot AI Kimi K2.5. Benchmarks, pricing, the attribution scandal, and honest comparison with Claude Code.'
+title = 'Cursor Composer 2 Review: The Kimi K2.5 Controversy and'
+description = 'Deep technical analysis of Cursor Composer 2, built on Moonshot AI Kimi K2.5. Benchmarks, pricing, the attribution scandal, and honest comparison with Claude...'
 toc = true
 tags = ['Cursor', 'Composer 2', 'AI Coding Tools', 'Kimi K2.5', 'Claude Code']
 keywords = ['Cursor Composer 2 review', 'Kimi K2.5 controversy', 'Composer 2 vs Claude Code', 'AI coding tools 2026', 'Cursor benchmarks']

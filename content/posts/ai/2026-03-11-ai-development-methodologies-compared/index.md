@@ -1,8 +1,8 @@
 +++
 date = '2026-03-11T18:00:00+08:00'
 draft = false
-title = 'AI Development Methodologies Compared: From Vibe Coding to SDD'
-description = 'Deep comparison of 6 AI development methodologies — Vibe Coding, SDD, BMAD, Ralph Loop, and pragmatic hybrid workflows. With Martin Fowler critique and practical recommendations.'
+title = 'AI Development Methodologies Compared: From Vibe Coding to'
+description = 'Deep comparison of 6 AI development methodologies — Vibe Coding, SDD, BMAD, Ralph Loop, and pragmatic hybrid workflows. With Martin Fowler critique and...'
 toc = true
 tags = ['AI Coding', 'Spec-Driven Development', 'Vibe Coding', 'BMAD Method', 'AI Workflow']
 categories = ['AI Guides']

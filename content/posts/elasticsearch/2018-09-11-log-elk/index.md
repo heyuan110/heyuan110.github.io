@@ -1,7 +1,7 @@
 +++
 date = '2018-09-11T20:02:19+08:00'
-title = 'ELK Stack Setup Guide: Elasticsearch + Logstash + Kibana + Kafka Full Architecture'
-description = 'Complete guide to building an enterprise-grade ELK log collection and analysis system using Elasticsearch, Logstash, Kibana, and Kafka with Filebeat, including architecture comparison and step-by-step deployment'
+title = 'ELK Stack Setup Guide: Elasticsearch + Logstash + Kibana +'
+description = 'Complete guide to building an enterprise-grade ELK log collection and analysis system using Elasticsearch, Logstash, Kibana, and Kafka with Filebeat...'
 toc = true
 tags = ['Elasticsearch', 'ELK', 'Kibana', 'Kafka', 'Logstash', '日志分析']
 categories = ['Elasticsearch']

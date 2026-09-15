@@ -1,8 +1,8 @@
 +++
 date = '2026-04-03T10:00:00+08:00'
 draft = false
-title = '5 AI Coding Tools Compared: Why Picking Just One Is the Wrong Question'
-description = 'Claude Code, Cursor, Copilot, Codex CLI, and Gemini CLI after 8 months of daily use. The $30/month combo that beats the $200/month single tool. Real benchmarks, honest limitations, and the decision framework I actually use.'
+title = '5 AI Coding Tools Compared: Why Picking Just One Is the'
+description = 'Claude Code, Cursor, Copilot, Codex CLI, and Gemini CLI after 8 months of daily use. The $30/month combo that beats the $200/month single tool. Real...'
 toc = true
 tags = ['Claude Code', 'Cursor', 'GitHub Copilot', 'Codex CLI', 'Gemini CLI', 'AI Coding Tools']
 keywords = ['claude code vs cursor vs copilot 2026', 'best AI coding tool 2026', 'codex cli review', 'gemini cli review', 'AI coding tools comparison', 'cursor composer 2 kimi', 'claude code pricing']

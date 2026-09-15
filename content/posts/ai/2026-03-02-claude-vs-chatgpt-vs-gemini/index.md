@@ -2,7 +2,7 @@
 date = '2026-03-02T10:00:00+08:00'
 draft = false
 title = 'Claude vs ChatGPT vs Gemini: Best LLM for Coding in 2026'
-description = 'Compare Claude Opus 4.6, GPT-5.2, and Gemini 2.5 Pro for coding tasks. Real benchmarks, pricing, context windows, and use-case recommendations to pick the best LLM for your projects.'
+description = 'Compare Claude Opus 4.6, GPT-5.2, and Gemini 2.5 Pro for coding tasks. Real benchmarks, pricing, context windows, and use-case recommendations to...'
 toc = true
 tags = ['Claude', 'ChatGPT', 'Gemini', 'LLM Comparison', 'AI Coding Tools']
 categories = ['Comparisons']

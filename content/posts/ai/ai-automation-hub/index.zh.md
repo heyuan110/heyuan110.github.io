@@ -1,5 +1,5 @@
 +++
-title = 'AI 自动化导航 Hub（Claude Code / OpenClaw / Codex）'
+title = 'AI 自动化导航 Hub（Claude Code / OpenClaw / Co'
 description = '面向开发者的 AI 自动化专题导航：从 Claude Code 到 OpenClaw，再到 Codex CLI，按入门、实战、避坑串联核心文章。'
 date = '2026-02-18T21:30:00+08:00'
 lastmod = '2026-02-18T21:30:00+08:00'

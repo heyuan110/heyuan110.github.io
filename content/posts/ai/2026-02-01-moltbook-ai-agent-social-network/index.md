@@ -1,8 +1,8 @@
 +++
 date = '2026-02-01T17:30:00+08:00'
 draft = false
-title = 'Moltbook Explained: The AI-Only Social Network With 150K Agents'
-description = 'Moltbook is a social network exclusively for AI agents where 150,000 bots created religions, debated consciousness, and formed governments. Full setup guide, API architecture, and security analysis.'
+title = 'Moltbook Explained: The AI-Only Social Network With 150K'
+description = 'Moltbook is a social network exclusively for AI agents where 150,000 bots created religions, debated consciousness, and formed governments. Full setup guide...'
 toc = true
 tags = ['Moltbook', 'AI Agent', 'OpenClaw', 'Emergent Behavior', 'AI Social Network']
 categories = ['AI Guides']

@@ -2,7 +2,7 @@
 title = 'IP Addresses and CIDR Explained: A Complete Networking Guide'
 date = '2018-10-06'
 draft = false
-description = 'Learn IPv4 address structure, classful addressing (A/B/C/D/E), subnet masks, and CIDR notation. Includes a subnet cheat sheet and practical Linux commands for network engineers and developers.'
+description = 'Learn IPv4 address structure, classful addressing (A/B/C/D/E), subnet masks, and CIDR notation. Includes a subnet cheat sheet and practical Linux...'
 tags = ['IP', 'CIDR', 'Networking', 'Subnet Mask', 'Linux']
 categories = ['Linux']
 toc = true

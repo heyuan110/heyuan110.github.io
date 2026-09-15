@@ -1,7 +1,7 @@
 +++
 date = '2026-09-14T18:00:00+08:00'
-title = '极简主义的胜利：深度解析 Terminal AI 编码利器 Pi (pi.dev)'
-description = '在这个各大 AI Agent 疯狂堆砌功能的时代，pi 以“五无”哲学横空出世，成为最纯粹的黑客级 Terminal Harness。本文深度剖析 Pi (pi.dev) 的设计哲学、双队列会话机制、上下文压缩，并提供 Skills 与 TypeScript Extensions 零基础实战开发指南。'
+title = '极简主义的胜利：深度解析 Terminal AI 编码利器 Pi (pi.dev'
+description = '在这个各大 AI Agent 疯狂堆砌功能的时代，pi 以“五无”哲学横空出世，成为最纯粹的黑客级 Terminal Harness。本文深度剖析 Pi (pi.dev) 的设计哲学、双队列会话机制...'
 toc = true
 tags = ['AI', 'AI Agent', 'Pi Agent', 'Developer Tools']
 keywords = ['Pi Agent', 'pi.dev', 'Terminal AI Agent', 'AI 编码工具', 'TypeScript Extensions', 'Agent Skills', 'Mario Zechner']

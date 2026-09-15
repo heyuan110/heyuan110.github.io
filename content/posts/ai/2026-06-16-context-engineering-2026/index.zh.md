@@ -2,7 +2,7 @@
 date = '2026-06-16T11:00:00+08:00'
 draft = false
 title = '上下文工程 2026：编码 Agent 该做减法而不是加法'
-description = '上下文工程 2026 实战：为什么删上下文比加上下文更有效——Sourcegraph 同任务实测 5K 精准检索打败 100K 摘要，precision@5 从 0.14 升到 0.48。附先卸载再摘要的阈值打法、工具极简与 CLAUDE.md 精简原则。'
+description = '上下文工程 2026 实战：为什么删上下文比加上下文更有效——Sourcegraph 同任务实测 5K 精准检索打败 100K 摘要，precision@5 从 0.14 升到 0.48。附先卸载再摘...'
 toc = true
 tags = ['Context Engineering', 'AI Coding Agents', 'Context Window', 'Claude Code', 'LLM']
 keywords = ['上下文工程 2026', 'context engineering', '编码 agent 上下文', '上下文窗口管理', '上下文压缩']

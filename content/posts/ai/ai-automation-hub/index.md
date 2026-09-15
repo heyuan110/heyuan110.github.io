@@ -1,6 +1,6 @@
 +++
 title = 'AI Automation Hub: Claude Code, OpenClaw, and Codex CLI'
-description = 'A developer-focused navigation hub for AI automation — from Claude Code to OpenClaw to Codex CLI, organized by getting started, hands-on workflows, and pitfalls.'
+description = 'A developer-focused navigation hub for AI automation — from Claude Code to OpenClaw to Codex CLI, organized by getting started, hands-on workflows, and...'
 date = '2026-02-18T21:30:00+08:00'
 lastmod = '2026-02-18T21:30:00+08:00'
 draft = true

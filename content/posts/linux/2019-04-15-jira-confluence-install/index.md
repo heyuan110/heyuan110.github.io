@@ -1,7 +1,7 @@
 +++
 date = '2019-04-15T13:53:32+08:00'
-title = 'Setting Up Jira and Confluence on Ubuntu: Installation, Configuration, and Data Migration'
-description = 'Complete guide to installing Jira and Confluence on Ubuntu 16.04 with MySQL, including database setup, license activation, user directory integration, backup/restore procedures, and security vulnerability fixes.'
+title = 'Setting Up Jira and Confluence on Ubuntu: Installation,'
+description = 'Complete guide to installing Jira and Confluence on Ubuntu 16.04 with MySQL, including database setup, license activation, user directory integration...'
 toc = true
 tags = ['Jira', 'Confluence', 'Atlassian', 'Linux', 'MySQL']
 categories = ['Linux']

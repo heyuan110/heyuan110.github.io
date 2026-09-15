@@ -1,8 +1,8 @@
 +++
 date = '2026-01-31T08:20:18+08:00'
 draft = false
-title = 'OpenClaw Memory Strategy: Tool-Driven RAG and On-Demand Recall'
-description = 'How OpenClaw implements agent memory using tool-driven RAG instead of prompt injection — combining BM25 and vector search, chunk-based indexing, and incremental session indexing for scalable recall.'
+title = 'OpenClaw Memory Strategy: Tool-Driven RAG and On-Demand'
+description = 'How OpenClaw implements agent memory using tool-driven RAG instead of prompt injection — combining BM25 and vector search, chunk-based indexing, and...'
 toc = true
 tags = ['OpenClaw', 'RAG', 'Vector Search', 'AI Agent', 'Memory System']
 categories = ['AI Guides']

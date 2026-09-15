@@ -1,7 +1,7 @@
 +++
-title = "深度驾驭 Anthropic Agent SDK 钩子：通过 pretooluse 与 posttooluse 构建安全闭环"
+title = "深度驾驭 Anthropic Agent SDK 钩子：通过 pretoolus"
 date = 2026-09-14T03:00:00Z
-description = "深度剖析 Anthropic Agent SDK 的生命周期钩子。实战演练通过 pretooluse 和 posttooluse 拦截 Tool-calling 循环、防御提示词注入漏洞并进行 Token 成本优化的完整代码模板。"
+description = "深度剖析 Anthropic Agent SDK 的生命周期钩子。实战演练通过 pretooluse 和 posttooluse 拦截 Tool-calling 循环、防御提示词注入漏洞并进行 Tok..."
 draft = false
 toc = true
 tags = ["Anthropic", "Agent Hooks", "pretooluse", "posttooluse", "AI Engineering", "Security"]

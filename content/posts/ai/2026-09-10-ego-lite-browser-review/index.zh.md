@@ -2,8 +2,8 @@
 date = '2026-09-10T10:00:00+08:00'
 aliases = ['/posts/ai/2026-09-21-ego-lite-browser-review/']
 draft = false
-title = 'ego lite 实测：把你登录好的浏览器交给 Claude Code，token 省了多少'
-description = 'ego lite v0.5 接 Claude Code 跑 3 个真实任务，对比 agent-browser 和 Chrome DevTools MCP：最好 16 秒 $0.12，最差 195 秒。省 token 是真的，隔离是假的；本地 Chromium 不需要梯子。'
+title = 'ego lite 实测：把你登录好的浏览器交给 Claude Code，toke'
+description = 'ego lite v0.5 接 Claude Code 跑 3 个真实任务，对比 agent-browser 和 Chrome DevTools MCP：最好 16 秒 $0.12，最差 195 秒...'
 toc = true
 tags = ['ego lite', 'Claude Code', 'Browser Automation', 'AI Agent', 'Token Efficiency']
 keywords = ['ego lite', 'ai agent 浏览器', 'claude code 浏览器自动化', 'ego browser 教程', 'ai 专属浏览器', 'ego lite 实测', 'ego lite windows', 'ego lite 隐私']

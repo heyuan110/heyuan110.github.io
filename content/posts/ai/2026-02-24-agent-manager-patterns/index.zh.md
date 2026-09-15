@@ -1,7 +1,7 @@
 +++
 date = '2026-02-24T08:00:00+08:00'
 draft = false
-title = '斯坦福 CS146S 精读（三）：Agent Manager——人机协作的最佳实践'
+title = '斯坦福 CS146S 精读（三）：Agent Manager——人机协作的最佳实'
 description = '深度解读斯坦福 CS146S 第四周课程：从 Claude Code 创始人 Boris Cherney 的演讲到 Anthropic 官方最佳实践，系统学习 Coding Agent 的自治度管控和人机协作模式设计。'
 toc = true
 tags = ['Agent Manager', 'Claude Code', 'AI 编程', 'Stanford CS146S', '人机协作']

@@ -2,8 +2,8 @@
 date = '2026-02-19T10:00:00+08:00'
 lastmod = '2026-02-23T10:00:00+08:00'
 draft = false
-title = 'Claude Code vs Codex CLI (2026): 8-Dimension Head-to-Head Comparison'
-description = 'Claude Code Opus 4.6 vs ChatGPT Codex GPT-5.3 compared across coding quality, context window, agent collaboration, pricing, and more. Real-world testing to help you choose.'
+title = 'Claude Code vs Codex CLI (2026): 8-Dimension Head-to-Head'
+description = 'Claude Code Opus 4.6 vs ChatGPT Codex GPT-5.3 compared across coding quality, context window, agent collaboration, pricing, and more. Real-world testing to...'
 toc = true
 tags = ['Claude Code', 'ChatGPT Codex', 'AI Coding', 'Tool Comparison']
 categories = ['Comparisons']

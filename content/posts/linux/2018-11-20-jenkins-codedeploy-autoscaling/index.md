@@ -1,7 +1,7 @@
 +++
 date = '2018-11-20T11:05:40+08:00'
-title = 'Jenkins + AWS CodeDeploy + Auto Scaling: A Complete CI/CD Pipeline Guide'
-description = 'Step-by-step guide to building a CI/CD pipeline with Jenkins, AWS CodeDeploy, and Auto Scaling — covering in-place and blue/green deployments, AppSpec configuration, and lifecycle hooks.'
+title = 'Jenkins + AWS CodeDeploy + Auto Scaling: A Complete CI/CD'
+description = 'Step-by-step guide to building a CI/CD pipeline with Jenkins, AWS CodeDeploy, and Auto Scaling — covering in-place and blue/green deployments, AppSpec...'
 toc = true
 tags = ['Jenkins', 'AWS', 'CodeDeploy', 'AutoScaling', 'CI/CD', '蓝绿部署', 'DevOps']
 categories = ['Linux']

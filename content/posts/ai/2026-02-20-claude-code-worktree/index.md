@@ -2,7 +2,7 @@
 date = '2026-02-20T12:00:00+08:00'
 draft = false
 title = 'Claude Code Worktree: Run Multiple AI Tasks in One Repo'
-description = 'Learn how to use Claude Code --worktree (-w) mode to run parallel AI coding sessions in isolated directories. Covers setup, auto-cleanup, best practices, and real-world workflows.'
+description = 'Learn how to use Claude Code --worktree (-w) mode to run parallel AI coding sessions in isolated directories. Covers setup, auto-cleanup, best practices, and...'
 toc = true
 tags = ['Claude Code', 'Git Worktree', 'AI Coding', 'Developer Productivity']
 categories = ['AI Guides']

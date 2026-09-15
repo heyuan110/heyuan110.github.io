@@ -1,8 +1,8 @@
 +++
 date = '2026-03-13T10:00:00+08:00'
 draft = false
-title = 'GPT-5.4 vs Claude Opus 4.6 终极对比 2026：编程/价格/Agent 谁赢？'
-description = '一文看懂 2026 AI 模型选型。GPT-5 和 Claude 到底哪个强？实测 SWE-bench Pro（57.7% vs 45.9%）、API 价格（便宜一半）、100 万上下文、Agent Teams 并行开发等 8 大维度，给出编程/写作/自动化场景的明确选型结论。'
+title = 'GPT-5.4 vs Claude Opus 4.6 终极对比 2026：编程/'
+description = '一文看懂 2026 AI 模型选型。GPT-5 和 Claude 到底哪个强？实测 SWE-bench Pro（57.7% vs 45.9%）、API 价格（便宜一半）、100 万上下文、Agent...'
 toc = true
 tags = ['AI Coding Tools', 'GPT-5.4', 'Claude Code', 'AI Agent']
 keywords = ['gpt-5 和 claude 哪个好 2026', 'gpt-5.4 评测 2026', 'claude opus 4.6 测评', 'claude gpt 对比 2026', 'ai 大模型 对比 2026', 'chatgpt 和 claude 哪个更好', '2026 最强 ai 模型', 'GPT-5.4 和 Claude Opus 4.6 哪个好', 'GPT-5.4 对比 Claude Opus', 'AI 编程模型哪个强', 'GPT-5.4 vs Claude 价格对比', 'AI 模型选哪个 2026', 'GPT-5.4 Claude Opus 性价比对比', 'GPT 还是 Claude']

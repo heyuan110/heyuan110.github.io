@@ -1,8 +1,8 @@
 +++
 date = '2026-06-28T13:00:00+08:00'
 draft = false
-title = 'OpenSpec vs Superpowers 实战工作流:spec 驱动开发怎么落地'
-description = 'OpenSpec 和 Superpowers 一起装、零配置必打架:同一个功能一小时内长出两份互相矛盾的规格,apply 还写出零测试实现。本文给出我踩坑后沉淀的 CLAUDE.md 路由块和单用/组合决策规则,把 spec 驱动开发接成可照抄的 Claude Code 工作流。'
+title = 'OpenSpec vs Superpowers 实战工作流:spec 驱动开发怎'
+description = 'OpenSpec 和 Superpowers 一起装、零配置必打架:同一个功能一小时内长出两份互相矛盾的规格,apply 还写出零测试实现。本文给出我踩坑后沉淀的 CLAUDE.md 路由块和单用/组...'
 toc = true
 tags = ['Claude Code', 'OpenSpec', 'Superpowers', 'AI Development', 'Spec-Driven Development']
 keywords = ['openspec superpowers', 'openspec 教程', 'spec 驱动开发', 'claude code 工作流', 'openspec vs superpowers', 'superpowers 插件']

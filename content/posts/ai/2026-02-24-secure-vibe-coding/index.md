@@ -1,8 +1,8 @@
 +++
 date = '2026-02-24T08:30:00+08:00'
 draft = false
-title = 'Stanford CS146S Deep Dive (4): Secure Vibe Coding — AI Code Security Guide'
-description = 'Deep dive into Stanford CS146S Weeks 6-7: real-world Prompt Injection to RCE exploit, OWASP Top 10 in the Agent era, AI code review methodology, and how to build secure Vibe Coding practices.'
+title = 'Stanford CS146S Deep Dive (4): Secure Vibe Coding — AI Code'
+description = 'Deep dive into Stanford CS146S Weeks 6-7: real-world Prompt Injection to RCE exploit, OWASP Top 10 in the Agent era, AI code review methodology, and how to...'
 toc = true
 tags = ['AI Security', 'Vibe Coding', 'Stanford CS146S', 'Prompt Injection', 'Code Review']
 categories = ['AI Guides']

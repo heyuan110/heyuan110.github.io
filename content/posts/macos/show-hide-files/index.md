@@ -1,7 +1,7 @@
 +++
 date = '2013-06-18T17:44:50+08:00'
 draft = true
-title = 'Show and Hide Hidden Files on macOS: Terminal Commands and GUI Tool'
+title = 'Show and Hide Hidden Files on macOS: Terminal Commands and'
 description = 'How to show and hide dotfiles on macOS using shell scripts and a simple GUI utility. Includes downloadable tools for toggling hidden file visibility.'
 toc = true
 tags = ['macOS', '终端', '隐藏文件', '技巧']

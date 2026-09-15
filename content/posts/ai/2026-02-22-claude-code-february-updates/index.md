@@ -1,8 +1,8 @@
 +++
 date = '2026-02-22T10:00:00+08:00'
 draft = false
-title = 'Claude Code February 2026 Updates: Worktree, Background Agents, Simple Mode'
-description = 'Claude Code shipped major features in February 2026 including Git Worktree parallel development, background agent tasks, and a leaner Simple Mode. Full breakdown with commands and use cases.'
+title = 'Claude Code February 2026 Updates: Worktree, Background'
+description = 'Claude Code shipped major features in February 2026 including Git Worktree parallel development, background agent tasks, and a leaner Simple Mode. Full...'
 toc = true
 tags = ['Claude Code', 'Git Worktree', 'AI Coding', 'Release Notes', 'Anthropic']
 categories = ['AI Guides']

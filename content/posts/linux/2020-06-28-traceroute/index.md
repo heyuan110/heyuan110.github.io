@@ -1,8 +1,8 @@
 +++
-title = 'Traceroute Command Explained: Network Path Tracing and Troubleshooting Guide'
+title = 'Traceroute Command Explained: Network Path Tracing and'
 date = '2020-06-28T12:12:04+08:00'
 draft = false
-description = 'Complete traceroute/tracert tutorial covering TTL mechanics, command options, output interpretation, and real-world troubleshooting on Linux, macOS, and Windows.'
+description = 'Complete traceroute/tracert tutorial covering TTL mechanics, command options, output interpretation, and real-world troubleshooting on Linux, macOS, and...'
 toc = true
 images = ['cover.webp']
 tags = ['traceroute', 'Linux', 'Networking', 'TTL', 'ICMP', 'DevOps', 'CLI']

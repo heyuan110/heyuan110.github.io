@@ -1,8 +1,8 @@
 +++
 date = '2026-04-18T10:00:00+08:00'
 draft = false
-title = 'Playwright CLI + Skill 三段式：把 AI 浏览器自动化做到 0 Token'
-description = '浏览器自动化的成本要分三段降——AI 探索（消耗 41% 上下文）、提炼成 Skill（5%）、固化成脚本（0 Token）。Playwright CLI vs MCP 4 倍 Token 差实测，3 个真实案例和 5 个没人告诉你的坑。'
+title = 'Playwright CLI + Skill 三段式：把 AI 浏览器自动化做到'
+description = '浏览器自动化的成本要分三段降——AI 探索（消耗 41% 上下文）、提炼成 Skill（5%）、固化成脚本（0 Token）。Playwright CLI vs MCP 4 倍 Token 差实测，3...'
 toc = true
 tags = ['Playwright CLI', 'Browser Automation', 'Claude Code', 'Skills', 'AI Agent']
 keywords = ['Playwright CLI Skill', 'Playwright CLI 教程', 'Playwright CLI vs MCP', 'AI 浏览器自动化', 'Claude Code 浏览器自动化', '0 Token 自动化', 'Skill 三段式']

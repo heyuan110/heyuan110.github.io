@@ -1,7 +1,7 @@
 +++
 date = '2019-04-12T16:15:53+08:00'
-title = 'Kerberods Cryptominer on Linux: Incident Response and Cleanup Guide'
-description = 'Real-world incident report of a Linux server compromised by the kerberods cryptomining malware — covering detection, investigation of mysterious CPU behavior, root cause analysis via Confluence vulnerability, and full cleanup steps.'
+title = 'Kerberods Cryptominer on Linux: Incident Response and'
+description = 'Real-world incident report of a Linux server compromised by the kerberods cryptomining malware — covering detection, investigation of mysterious CPU behavior...'
 toc = true
 tags = ['Linux', '安全', '挖矿病毒', 'Confluence', '故障排查', 'CPU']
 categories = ['Linux']

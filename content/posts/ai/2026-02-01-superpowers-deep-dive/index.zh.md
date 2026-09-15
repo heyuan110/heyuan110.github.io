@@ -1,8 +1,8 @@
 +++
 date = '2026-02-01T17:00:00+08:00'
 draft = false
-title = 'Superpowers 深度解析：让 Claude Code 变身高级工程师的技能框架'
-description = 'Superpowers 是 GitHub 上 4 万星的 Claude Code 技能框架，通过 TDD、子代理驱动开发、系统化调试等技能，将 AI 编码助手变成遵循工程纪律的高级开发者。本文深度解析其原理、安装、工作流与实战。'
+title = 'Superpowers 深度解析：让 Claude Code 变身高级工程师的技'
+description = 'Superpowers 是 GitHub 上 4 万星的 Claude Code 技能框架，通过 TDD、子代理驱动开发、系统化调试等技能，将 AI 编码助手变成遵循工程纪律的高级开发者。本文深度解析...'
 toc = true
 tags = ['Claude Code', 'Superpowers', 'TDD', 'Agent Skills', 'AI 编程']
 categories = ['AI实战']

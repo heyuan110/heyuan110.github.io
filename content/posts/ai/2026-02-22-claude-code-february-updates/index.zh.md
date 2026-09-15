@@ -1,7 +1,7 @@
 +++
 date = '2026-02-22T10:00:00+08:00'
 draft = false
-title = 'Claude Code 2026年2月更新：Worktree 并行开发、后台任务、Simple Mode 全解析'
+title = 'Claude Code 2026年2月更新：Worktree 并行开发、后台任务'
 description = 'Claude Code 2月迎来重磅更新：Git Worktree 隔离开发、后台 Agent 管理、Simple Mode 文件编辑等新功能。本文逐个解析用法和实战场景，附命令速查。'
 toc = true
 tags = ['Claude Code', 'Git Worktree', 'AI 编程', '版本更新', 'Anthropic']

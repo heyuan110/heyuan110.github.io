@@ -1,8 +1,8 @@
 +++
 date = '2026-02-01T17:00:00+08:00'
 draft = false
-title = 'Superpowers Deep Dive: The Skills Framework That Makes Claude Code a Senior Engineer'
-description = 'Superpowers is a 40K-star agentic skills framework for Claude Code. It enforces TDD, subagent-driven development, and structured planning to transform AI coding assistants into disciplined senior developers.'
+title = 'Superpowers Deep Dive: The Skills Framework That Makes'
+description = 'Superpowers is a 40K-star agentic skills framework for Claude Code. It enforces TDD, subagent-driven development, and structured planning to transform AI...'
 toc = true
 tags = ['Claude Code', 'Superpowers', 'TDD', 'Agent Skills', 'AI Coding']
 categories = ['AI Guides']

@@ -1,8 +1,8 @@
 +++
 date = '2026-02-22T12:00:00+08:00'
 draft = false
-title = 'Build an MCP Server with Claude Code: TypeScript Tutorial (2026)'
-description = 'Learn how to build a custom MCP Server using Claude Code and TypeScript. Covers project setup, tool registration, debugging, and publishing to npm with full code examples.'
+title = 'Build an MCP Server with Claude Code: TypeScript Tutorial'
+description = 'Learn how to build a custom MCP Server using Claude Code and TypeScript. Covers project setup, tool registration, debugging, and publishing to npm with full...'
 toc = true
 tags = ['Claude Code', 'MCP', 'TypeScript', 'AI Development', 'MCP Server']
 categories = ['AI Guides']
