@@ -203,6 +203,27 @@ Codex (CLI / App) -> Localhost Proxy (127.0.0.1:15721) -> Translates JSON Struct
 
 Once enabled, CC Switch automatically rewrites your `~/.codex/config.toml` to point directly to its local loopback daemon (`http://127.0.0.1:15721`).
 
+### CC Switch Protocol Translation Loop
+
+To help visualize how CC Switch intercepts and translates communication between your client and standard third-party servers, see the sequence loop below:
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant Codex as Codex Client
+    participant Proxy as CC Switch (Localhost:15721)
+    participant API as Third-Party API
+    
+    Codex->>Proxy: POST /responses (Responses Protocol)
+    Note over Proxy: Intercepts & parses client session context,<br/>maps tool schemas to compatible structures
+    Proxy->>API: POST /chat/completions (Standard Chat API)
+    API-->>Proxy: SSE Stream Blocks (Raw Chunk JSONs)
+    Note over Proxy: Translates SSE frames on-the-fly<br/>back to Responses SSE events
+    Proxy-->>Codex: Responses Stream (Valid agent & text chunks)
+```
+
+By keeping CC Switch running in the background, your system will enjoy zero-latency translation, bridging the gap between proprietary agent specifications and generic model completions.
+
 ---
 
 ## 5. Three Clients, One Heart: Multi-Client Integration
