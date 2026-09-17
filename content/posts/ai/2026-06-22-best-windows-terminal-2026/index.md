@@ -164,6 +164,7 @@ If you're unsure, here's the move: Windows Terminal, PowerShell 7 as the default
 
 ## Related Reading
 
+- [Modern Windows Shell Guide 2026: PowerShell 7 & Nushell](/posts/ai/2026-09-17-modern-windows-shell-terminal-guide/) — Complete companion guide for choosing and configuring modern shells
 - [Best Terminal Emulators in 2025: 23 Tools Compared for Every Platform](/posts/macos/2025-01-22-terminal-tools-guide/) — the cross-platform companion, including macOS and Linux picks
 - [tmux Guide for AI-Assisted Development](/posts/ai/2026-03-03-tmux-guide-ai-development/) — the multiplexer that pairs with Windows Terminal and Alacritty
 - [Terminal AI Coding Tools 2026 Comparison](/posts/ai/2026-04-14-terminal-ai-coding-tools-2026-comparison/) — which AI agent to run once your terminal is set up

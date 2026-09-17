@@ -198,6 +198,7 @@ flowchart LR
 
 ## 延伸阅读
 
+- [Windows 下好用的 Shell 推荐：别再把终端当 Shell 了](/zh/posts/ai/2026-09-17-modern-windows-shell-terminal-guide/) —— 搭配 Windows Terminal 的现代 Shell 终极选型
 - [2025 年终端模拟器横评：23 款全平台工具对比](/zh/posts/macos/2025-01-22-terminal-tools-guide/) —— 跨平台姊妹篇，含 macOS 与 Linux 选择
 - [面向 AI 开发的 tmux 指南](/zh/posts/ai/2026-03-03-tmux-guide-ai-development/) —— 和 Windows Terminal、Alacritty 搭配的多路复用器
 - [终端 AI 编码工具 2026 横评](/zh/posts/ai/2026-04-14-terminal-ai-coding-tools-2026-comparison/) —— 终端搞定后该选哪个 AI agent
